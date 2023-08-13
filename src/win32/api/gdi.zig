@@ -1276,44 +1276,56 @@ pub const E_EXCEPTIONINCOMPRESSION = @as(i32, 522);
 // Section: Types (252)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
-pub const HDC = ?*c_void;
+pub const HDC = ?*opaque{};
 
-// TODO: this type is also usable for 'HDC'
 // TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
-pub const CreatedHDC = isize;
+//TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
+//      convertible to 'HDC' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const CreatedHDC = HDC;
 
-pub const HGDIOBJ = ?*c_void;
+pub const HGDIOBJ = ?*opaque{};
 
-// TODO: this type is also usable for 'HGDIOBJ'
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HBITMAP = ?*c_void;
+//TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBITMAP = HGDIOBJ;
 
-// TODO: this type is also usable for 'HGDIOBJ'
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HRGN = ?*c_void;
+//TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HRGN = HGDIOBJ;
 
-// TODO: this type is also usable for 'HGDIOBJ'
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HPEN = ?*c_void;
+//TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPEN = HGDIOBJ;
 
-// TODO: this type is also usable for 'HGDIOBJ'
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HBRUSH = ?*c_void;
+//TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBRUSH = HGDIOBJ;
 
-// TODO: this type is also usable for 'HGDIOBJ'
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HFONT = ?*c_void;
+//TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HFONT = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = ?*c_void;
+pub const HMETAFILE = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = ?*c_void;
+pub const HENHMETAFILE = ?*opaque{};
 
-pub const HMONITOR = ?*c_void;
+pub const HMONITOR = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HPALETTE = ?*c_void;
+pub const HPALETTE = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
 pub const HdcMetdataFileHandle = isize;
@@ -3885,7 +3897,8 @@ pub const MONITORENUMPROC = fn(
 pub extern "GDI32" fn GetObjectA(
     h: HANDLE,
     c: i32,
-    pv: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4011,7 +4024,7 @@ pub extern "GDI32" fn CreateDiscardableBitmap(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateCompatibleDC(
     hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDCA(
@@ -4019,7 +4032,7 @@ pub extern "GDI32" fn CreateDCA(
     pwszDevice: ?[*:0]const u8,
     pszPort: ?[*:0]const u8,
     pdm: ?*const DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDCW(
@@ -4027,7 +4040,7 @@ pub extern "GDI32" fn CreateDCW(
     pwszDevice: ?[*:0]const u16,
     pszPort: ?[*:0]const u16,
     pdm: ?*const DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBitmap(
@@ -4135,12 +4148,12 @@ pub extern "GDI32" fn CreateICW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateMetaFileA(
     pszFile: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) HdcMetdataFileHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateMetaFileW(
     pszFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) HdcMetdataFileHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreatePalette(
@@ -4218,7 +4231,7 @@ pub extern "GDI32" fn CreateSolidBrush(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteDC(
-    hdc: HDC,
+    hdc: CreatedHDC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4236,6 +4249,7 @@ pub extern "GDI32" fn DrawEscape(
     hdc: HDC,
     iEscape: i32,
     cjIn: i32,
+    // TODO: what to do with BytesParamIndex 2?
     lpIn: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4325,7 +4339,8 @@ pub extern "GDI32" fn ExcludeClipRect(
 pub extern "GDI32" fn ExtCreateRegion(
     lpx: ?*const XFORM,
     nCount: u32,
-    lpData: [*]const RGNDATA,
+    // TODO: what to do with BytesParamIndex 1?
+    lpData: *const RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) HRGN;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4396,7 +4411,8 @@ pub extern "GDI32" fn GetBkMode(
 pub extern "GDI32" fn GetBitmapBits(
     hbit: HBITMAP,
     cb: i32,
-    lpvBits: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    lpvBits: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4550,7 +4566,8 @@ pub extern "GDI32" fn GetFontData(
     hdc: HDC,
     dwTable: u32,
     dwOffset: u32,
-    pvBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvBuffer: ?*c_void,
     cjBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4561,7 +4578,8 @@ pub extern "GDI32" fn GetGlyphOutlineA(
     fuFormat: GetGlyphOutline_fuFormat,
     lpgm: *GLYPHMETRICS,
     cjBuffer: u32,
-    pvBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvBuffer: ?*c_void,
     lpmat2: *const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4572,7 +4590,8 @@ pub extern "GDI32" fn GetGlyphOutlineW(
     fuFormat: GetGlyphOutline_fuFormat,
     lpgm: *GLYPHMETRICS,
     cjBuffer: u32,
-    pvBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvBuffer: ?*c_void,
     lpmat2: *const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4590,7 +4609,8 @@ pub extern "GDI32" fn GetMapMode(
 pub extern "GDI32" fn GetMetaFileBitsEx(
     hMF: HMETAFILE,
     cbBuffer: u32,
-    lpData: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "GDI32" fn GetMetaFileA(
@@ -4622,14 +4642,16 @@ pub extern "GDI32" fn GetObjectType(
 pub extern "GDI32" fn GetOutlineTextMetricsA(
     hdc: HDC,
     cjCopy: u32,
-    potm: ?[*]OUTLINETEXTMETRICA,
+    // TODO: what to do with BytesParamIndex 1?
+    potm: ?*OUTLINETEXTMETRICA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetOutlineTextMetricsW(
     hdc: HDC,
     cjCopy: u32,
-    potm: ?[*]OUTLINETEXTMETRICW,
+    // TODO: what to do with BytesParamIndex 1?
+    potm: ?*OUTLINETEXTMETRICW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4654,7 +4676,8 @@ pub extern "GDI32" fn GetPolyFillMode(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetRasterizerCaps(
-    lpraststat: [*]RASTERIZER_STATUS,
+    // TODO: what to do with BytesParamIndex 1?
+    lpraststat: *RASTERIZER_STATUS,
     cjBytes: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4669,7 +4692,8 @@ pub extern "GDI32" fn GetRandomRgn(
 pub extern "GDI32" fn GetRegionData(
     hrgn: HRGN,
     nCount: u32,
-    lpRgnData: ?[*]RGNDATA,
+    // TODO: what to do with BytesParamIndex 1?
+    lpRgnData: ?*RGNDATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4886,7 +4910,8 @@ pub extern "GDI32" fn RemoveFontResourceExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontMemResourceEx(
-    pFileView: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pFileView: *c_void,
     cjSize: u32,
     pvResrved: *c_void,
     pNumFonts: *u32,
@@ -5199,7 +5224,8 @@ pub extern "GDI32" fn SetBkMode(
 pub extern "GDI32" fn SetBitmapBits(
     hbm: HBITMAP,
     cb: u32,
-    pvBits: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pvBits: *const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5268,7 +5294,8 @@ pub extern "GDI32" fn GetLayout(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetMetaFileBitsEx(
     cbBuffer: u32,
-    lpData: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 0?
+    lpData: *const u8,
 ) callconv(@import("std").os.windows.WINAPI) HMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5509,7 +5536,7 @@ pub extern "GDI32" fn CreateEnhMetaFileA(
     lpFilename: ?[*:0]const u8,
     lprc: ?*const RECT,
     lpDesc: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) HdcMetdataEnhFileHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateEnhMetaFileW(
@@ -5517,7 +5544,7 @@ pub extern "GDI32" fn CreateEnhMetaFileW(
     lpFilename: ?[*:0]const u16,
     lprc: ?*const RECT,
     lpDesc: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) HdcMetdataEnhFileHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn DeleteEnhMetaFile(
@@ -5547,7 +5574,8 @@ pub extern "GDI32" fn GetEnhMetaFileW(
 pub extern "GDI32" fn GetEnhMetaFileBits(
     hEMF: HENHMETAFILE,
     nSize: u32,
-    lpData: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    lpData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5568,7 +5596,8 @@ pub extern "GDI32" fn GetEnhMetaFileDescriptionW(
 pub extern "GDI32" fn GetEnhMetaFileHeader(
     hemf: HENHMETAFILE,
     nSize: u32,
-    lpEnhMetaHeader: ?[*]ENHMETAHEADER,
+    // TODO: what to do with BytesParamIndex 1?
+    lpEnhMetaHeader: ?*ENHMETAHEADER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5582,7 +5611,8 @@ pub extern "GDI32" fn GetEnhMetaFilePaletteEntries(
 pub extern "GDI32" fn GetWinMetaFileBits(
     hemf: HENHMETAFILE,
     cbData16: u32,
-    pData16: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData16: ?*u8,
     iMapMode: i32,
     hdcRef: HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -5605,13 +5635,15 @@ pub extern "GDI32" fn PlayEnhMetaFileRecord(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetEnhMetaFileBits(
     nSize: u32,
-    pb: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 0?
+    pb: *const u8,
 ) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetWinMetaFileBits(
     nSize: u32,
-    lpMeta16Data: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 0?
+    lpMeta16Data: *const u8,
     hdcRef: HDC,
     lpMFP: ?*const METAFILEPICT,
 ) callconv(@import("std").os.windows.WINAPI) HENHMETAFILE;
@@ -5620,7 +5652,8 @@ pub extern "GDI32" fn SetWinMetaFileBits(
 pub extern "GDI32" fn GdiComment(
     hdc: HDC,
     nSize: u32,
-    lpData: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    lpData: *const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5844,7 +5877,8 @@ pub extern "GDI32" fn GetArcDirection(
 pub extern "GDI32" fn GetObjectW(
     h: HANDLE,
     c: i32,
-    pv: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pv: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'

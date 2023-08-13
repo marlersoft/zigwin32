@@ -7,7 +7,7 @@ pub const FACILITY_DWRITE = @as(u32, 2200);
 pub const DWRITE_ERR_BASE = @as(u32, 20480);
 
 //--------------------------------------------------------------------------------
-// Section: Types (192)
+// Section: Types (193)
 //--------------------------------------------------------------------------------
 pub const DWRITE_FONT_AXIS_TAG = extern enum(u32) {
     WEIGHT = 1952999287,
@@ -22,6 +22,13 @@ pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
 pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
 pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
 
+pub const DWRITE_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
 pub const DWRITE_MEASURING_MODE = extern enum(i32) {
     NATURAL = 0,
     GDI_CLASSIC = 1,
@@ -31,7 +38,8 @@ pub const DWRITE_MEASURING_MODE_NATURAL = DWRITE_MEASURING_MODE.NATURAL;
 pub const DWRITE_MEASURING_MODE_GDI_CLASSIC = DWRITE_MEASURING_MODE.GDI_CLASSIC;
 pub const DWRITE_MEASURING_MODE_GDI_NATURAL = DWRITE_MEASURING_MODE.GDI_NATURAL;
 
-pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(u32) {
     NONE = 0,
     TRUETYPE = 1,
     CFF = 2,
@@ -41,6 +49,7 @@ pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(i32) {
     JPEG = 32,
     TIFF = 64,
     PREMULTIPLIED_B8G8R8A8 = 128,
+    _,
 };
 pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS.NONE;
 pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE;
@@ -94,10 +103,12 @@ pub const DWRITE_FONT_FACE_TYPE_UNKNOWN = DWRITE_FONT_FACE_TYPE.UNKNOWN;
 pub const DWRITE_FONT_FACE_TYPE_RAW_CFF = DWRITE_FONT_FACE_TYPE.RAW_CFF;
 pub const DWRITE_FONT_FACE_TYPE_TRUETYPE_COLLECTION = DWRITE_FONT_FACE_TYPE.TRUETYPE_COLLECTION;
 
-pub const DWRITE_FONT_SIMULATIONS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWRITE_FONT_SIMULATIONS = extern enum(u32) {
     NONE = 0,
     BOLD = 1,
     OBLIQUE = 2,
+    _,
 };
 pub const DWRITE_FONT_SIMULATIONS_NONE = DWRITE_FONT_SIMULATIONS.NONE;
 pub const DWRITE_FONT_SIMULATIONS_BOLD = DWRITE_FONT_SIMULATIONS.BOLD;
@@ -270,7 +281,8 @@ pub const IDWriteFontFileLoader = extern struct {
         base: IUnknown.VTable,
         CreateStreamFromKey: fn(
             self: *const IDWriteFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteFontFileStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -279,7 +291,7 @@ pub const IDWriteFontFileLoader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFileLoader_CreateStreamFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, fontFileStream: **IDWriteFontFileStream) callconv(.Inline) HRESULT {
+        pub fn IDWriteFontFileLoader_CreateStreamFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, fontFileStream: **IDWriteFontFileStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFontFileLoader.VTable, self.vtable).CreateStreamFromKey(@ptrCast(*const IDWriteFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
         }
     };}
@@ -293,20 +305,23 @@ pub const IDWriteLocalFontFileLoader = extern struct {
         base: IDWriteFontFileLoader.VTable,
         GetFilePathLengthFromKey: fn(
             self: *const IDWriteLocalFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             filePathLength: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFilePathFromKey: fn(
             self: *const IDWriteLocalFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             filePath: [*:0]u16,
             filePathSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLastWriteTimeFromKey: fn(
             self: *const IDWriteLocalFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             lastWriteTime: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -315,15 +330,15 @@ pub const IDWriteLocalFontFileLoader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetFilePathLengthFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, filePathLength: *u32) callconv(.Inline) HRESULT {
+        pub fn IDWriteLocalFontFileLoader_GetFilePathLengthFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, filePathLength: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteLocalFontFileLoader.VTable, self.vtable).GetFilePathLengthFromKey(@ptrCast(*const IDWriteLocalFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, filePathLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetFilePathFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, filePath: [*:0]u16, filePathSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDWriteLocalFontFileLoader_GetFilePathFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, filePath: [*:0]u16, filePathSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteLocalFontFileLoader.VTable, self.vtable).GetFilePathFromKey(@ptrCast(*const IDWriteLocalFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, filePath, filePathSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteLocalFontFileLoader_GetLastWriteTimeFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, lastWriteTime: *FILETIME) callconv(.Inline) HRESULT {
+        pub fn IDWriteLocalFontFileLoader_GetLastWriteTimeFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, lastWriteTime: *FILETIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteLocalFontFileLoader.VTable, self.vtable).GetLastWriteTimeFromKey(@ptrCast(*const IDWriteLocalFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, lastWriteTime);
         }
     };}
@@ -550,7 +565,7 @@ pub const IDWriteFontFace = extern struct {
             glyphMetrics: [*]DWRITE_GLYPH_METRICS,
             isSideways: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGlyphIndicesA: fn(
+        GetGlyphIndices: fn(
             self: *const IDWriteFontFace,
             codePoints: [*]const u32,
             codePointCount: u32,
@@ -642,8 +657,8 @@ pub const IDWriteFontFace = extern struct {
             return @ptrCast(*const IDWriteFontFace.VTable, self.vtable).GetDesignGlyphMetrics(@ptrCast(*const IDWriteFontFace, self), glyphIndices, glyphCount, glyphMetrics, isSideways);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace_GetGlyphIndicesA(self: *const T, codePoints: [*]const u32, codePointCount: u32, glyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDWriteFontFace.VTable, self.vtable).GetGlyphIndicesA(@ptrCast(*const IDWriteFontFace, self), codePoints, codePointCount, glyphIndices);
+        pub fn IDWriteFontFace_GetGlyphIndices(self: *const T, codePoints: [*]const u32, codePointCount: u32, glyphIndices: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDWriteFontFace.VTable, self.vtable).GetGlyphIndices(@ptrCast(*const IDWriteFontFace, self), codePoints, codePointCount, glyphIndices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDWriteFontFace_TryGetFontTable(self: *const T, openTypeTableTag: u32, tableData: *const *const c_void, tableSize: *u32, tableContext: **c_void, exists: *BOOL) callconv(.Inline) HRESULT {
@@ -682,7 +697,8 @@ pub const IDWriteFontCollectionLoader = extern struct {
         CreateEnumeratorFromKey: fn(
             self: *const IDWriteFontCollectionLoader,
             factory: *IDWriteFactory,
-            collectionKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            collectionKey: *const c_void,
             collectionKeySize: u32,
             fontFileEnumerator: **IDWriteFontFileEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -691,7 +707,7 @@ pub const IDWriteFontCollectionLoader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontCollectionLoader_CreateEnumeratorFromKey(self: *const T, factory: *IDWriteFactory, collectionKey: [*]const u8, collectionKeySize: u32, fontFileEnumerator: **IDWriteFontFileEnumerator) callconv(.Inline) HRESULT {
+        pub fn IDWriteFontCollectionLoader_CreateEnumeratorFromKey(self: *const T, factory: *IDWriteFactory, collectionKey: *const c_void, collectionKeySize: u32, fontFileEnumerator: **IDWriteFontFileEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFontCollectionLoader.VTable, self.vtable).CreateEnumeratorFromKey(@ptrCast(*const IDWriteFontCollectionLoader, self), factory, collectionKey, collectionKeySize, fontFileEnumerator);
         }
     };}
@@ -1535,9 +1551,11 @@ pub const IDWriteTypography = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DWRITE_SCRIPT_SHAPES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWRITE_SCRIPT_SHAPES = extern enum(u32) {
     DEFAULT = 0,
     NO_VISUAL = 1,
+    _,
 };
 pub const DWRITE_SCRIPT_SHAPES_DEFAULT = DWRITE_SCRIPT_SHAPES.DEFAULT;
 pub const DWRITE_SCRIPT_SHAPES_NO_VISUAL = DWRITE_SCRIPT_SHAPES.NO_VISUAL;
@@ -2654,7 +2672,8 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
             self: *const IDWriteGlyphRunAnalysis,
             textureType: DWRITE_TEXTURE_TYPE,
             textureBounds: *const RECT,
-            alphaValues: [*:0]u8,
+            // TODO: what to do with BytesParamIndex 3?
+            alphaValues: *u8,
             bufferSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAlphaBlendParams: fn(
@@ -2673,7 +2692,7 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
             return @ptrCast(*const IDWriteGlyphRunAnalysis.VTable, self.vtable).GetAlphaTextureBounds(@ptrCast(*const IDWriteGlyphRunAnalysis, self), textureType, textureBounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteGlyphRunAnalysis_CreateAlphaTexture(self: *const T, textureType: DWRITE_TEXTURE_TYPE, textureBounds: *const RECT, alphaValues: [*:0]u8, bufferSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDWriteGlyphRunAnalysis_CreateAlphaTexture(self: *const T, textureType: DWRITE_TEXTURE_TYPE, textureBounds: *const RECT, alphaValues: *u8, bufferSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteGlyphRunAnalysis.VTable, self.vtable).CreateAlphaTexture(@ptrCast(*const IDWriteGlyphRunAnalysis, self), textureType, textureBounds, alphaValues, bufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2698,7 +2717,8 @@ pub const IDWriteFactory = extern struct {
         CreateCustomFontCollection: fn(
             self: *const IDWriteFactory,
             collectionLoader: *IDWriteFontCollectionLoader,
-            collectionKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            collectionKey: *const c_void,
             collectionKeySize: u32,
             fontCollection: **IDWriteFontCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2718,7 +2738,8 @@ pub const IDWriteFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCustomFontFileReference: fn(
             self: *const IDWriteFactory,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             fontFileLoader: *IDWriteFontFileLoader,
             fontFile: **IDWriteFontFile,
@@ -2834,7 +2855,7 @@ pub const IDWriteFactory = extern struct {
             return @ptrCast(*const IDWriteFactory.VTable, self.vtable).GetSystemFontCollection(@ptrCast(*const IDWriteFactory, self), fontCollection, checkForUpdates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateCustomFontCollection(self: *const T, collectionLoader: *IDWriteFontCollectionLoader, collectionKey: [*]const u8, collectionKeySize: u32, fontCollection: **IDWriteFontCollection) callconv(.Inline) HRESULT {
+        pub fn IDWriteFactory_CreateCustomFontCollection(self: *const T, collectionLoader: *IDWriteFontCollectionLoader, collectionKey: *const c_void, collectionKeySize: u32, fontCollection: **IDWriteFontCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFactory.VTable, self.vtable).CreateCustomFontCollection(@ptrCast(*const IDWriteFactory, self), collectionLoader, collectionKey, collectionKeySize, fontCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2850,7 +2871,7 @@ pub const IDWriteFactory = extern struct {
             return @ptrCast(*const IDWriteFactory.VTable, self.vtable).CreateFontFileReference(@ptrCast(*const IDWriteFactory, self), filePath, lastWriteTime, fontFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory_CreateCustomFontFileReference(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, fontFileLoader: *IDWriteFontFileLoader, fontFile: **IDWriteFontFile) callconv(.Inline) HRESULT {
+        pub fn IDWriteFactory_CreateCustomFontFileReference(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, fontFileLoader: *IDWriteFontFileLoader, fontFile: **IDWriteFontFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFactory.VTable, self.vtable).CreateCustomFontFileReference(@ptrCast(*const IDWriteFactory, self), fontFileReferenceKey, fontFileReferenceKeySize, fontFileLoader, fontFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4599,7 +4620,7 @@ pub const IDWriteFontFace2 = extern struct {
             colorPaletteIndex: u32,
             firstEntryIndex: u32,
             entryCount: u32,
-            paletteEntries: [*]D3DCOLORVALUE,
+            paletteEntries: [*]DWRITE_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecommendedRenderingMode: fn(
             self: *const IDWriteFontFace2,
@@ -4631,7 +4652,7 @@ pub const IDWriteFontFace2 = extern struct {
             return @ptrCast(*const IDWriteFontFace2.VTable, self.vtable).GetPaletteEntryCount(@ptrCast(*const IDWriteFontFace2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFontFace2_GetPaletteEntries(self: *const T, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]D3DCOLORVALUE) callconv(.Inline) HRESULT {
+        pub fn IDWriteFontFace2_GetPaletteEntries(self: *const T, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: [*]DWRITE_COLOR_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFontFace2.VTable, self.vtable).GetPaletteEntries(@ptrCast(*const IDWriteFontFace2, self), colorPaletteIndex, firstEntryIndex, entryCount, paletteEntries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4647,7 +4668,7 @@ pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
     glyphRunDescription: *DWRITE_GLYPH_RUN_DESCRIPTION,
     baselineOriginX: f32,
     baselineOriginY: f32,
-    runColor: D3DCOLORVALUE,
+    runColor: DWRITE_COLOR_F,
     paletteIndex: u16,
 };
 
@@ -6123,13 +6144,15 @@ pub const IDWriteRemoteFontFileLoader = extern struct {
         base: IDWriteFontFileLoader.VTable,
         CreateRemoteStreamFromKey: fn(
             self: *const IDWriteRemoteFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteRemoteFontFileStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocalityFromKey: fn(
             self: *const IDWriteRemoteFontFileLoader,
-            fontFileReferenceKey: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: *const c_void,
             fontFileReferenceKeySize: u32,
             locality: *DWRITE_LOCALITY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6145,11 +6168,11 @@ pub const IDWriteRemoteFontFileLoader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileLoader_CreateRemoteStreamFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, fontFileStream: **IDWriteRemoteFontFileStream) callconv(.Inline) HRESULT {
+        pub fn IDWriteRemoteFontFileLoader_CreateRemoteStreamFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, fontFileStream: **IDWriteRemoteFontFileStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteRemoteFontFileLoader.VTable, self.vtable).CreateRemoteStreamFromKey(@ptrCast(*const IDWriteRemoteFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, fontFileStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteRemoteFontFileLoader_GetLocalityFromKey(self: *const T, fontFileReferenceKey: [*]const u8, fontFileReferenceKeySize: u32, locality: *DWRITE_LOCALITY) callconv(.Inline) HRESULT {
+        pub fn IDWriteRemoteFontFileLoader_GetLocalityFromKey(self: *const T, fontFileReferenceKey: *const c_void, fontFileReferenceKeySize: u32, locality: *DWRITE_LOCALITY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteRemoteFontFileLoader.VTable, self.vtable).GetLocalityFromKey(@ptrCast(*const IDWriteRemoteFontFileLoader, self), fontFileReferenceKey, fontFileReferenceKeySize, locality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6168,7 +6191,8 @@ pub const IDWriteInMemoryFontFileLoader = extern struct {
         CreateInMemoryFontFileReference: fn(
             self: *const IDWriteInMemoryFontFileLoader,
             factory: *IDWriteFactory,
-            fontData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            fontData: *const c_void,
             fontDataSize: u32,
             ownerObject: ?*IUnknown,
             fontFile: **IDWriteFontFile,
@@ -6181,7 +6205,7 @@ pub const IDWriteInMemoryFontFileLoader = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteInMemoryFontFileLoader_CreateInMemoryFontFileReference(self: *const T, factory: *IDWriteFactory, fontData: [*]const u8, fontDataSize: u32, ownerObject: ?*IUnknown, fontFile: **IDWriteFontFile) callconv(.Inline) HRESULT {
+        pub fn IDWriteInMemoryFontFileLoader_CreateInMemoryFontFileReference(self: *const T, factory: *IDWriteFactory, fontData: *const c_void, fontDataSize: u32, ownerObject: ?*IUnknown, fontFile: **IDWriteFontFile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteInMemoryFontFileLoader.VTable, self.vtable).CreateInMemoryFontFileReference(@ptrCast(*const IDWriteInMemoryFontFileLoader, self), factory, fontData, fontDataSize, ownerObject, fontFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6213,13 +6237,15 @@ pub const IDWriteFactory5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AnalyzeContainerType: fn(
             self: *const IDWriteFactory5,
-            fileData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            fileData: *const c_void,
             fileDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_CONTAINER_TYPE,
         UnpackFontFile: fn(
             self: *const IDWriteFactory5,
             containerType: DWRITE_CONTAINER_TYPE,
-            fileData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            fileData: *const c_void,
             fileDataSize: u32,
             unpackedFontStream: **IDWriteFontFileStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6240,11 +6266,11 @@ pub const IDWriteFactory5 = extern struct {
             return @ptrCast(*const IDWriteFactory5.VTable, self.vtable).CreateHttpFontFileLoader(@ptrCast(*const IDWriteFactory5, self), referrerUrl, extraHeaders, newLoader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_AnalyzeContainerType(self: *const T, fileData: [*]const u8, fileDataSize: u32) callconv(.Inline) DWRITE_CONTAINER_TYPE {
+        pub fn IDWriteFactory5_AnalyzeContainerType(self: *const T, fileData: *const c_void, fileDataSize: u32) callconv(.Inline) DWRITE_CONTAINER_TYPE {
             return @ptrCast(*const IDWriteFactory5.VTable, self.vtable).AnalyzeContainerType(@ptrCast(*const IDWriteFactory5, self), fileData, fileDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDWriteFactory5_UnpackFontFile(self: *const T, containerType: DWRITE_CONTAINER_TYPE, fileData: [*]const u8, fileDataSize: u32, unpackedFontStream: **IDWriteFontFileStream) callconv(.Inline) HRESULT {
+        pub fn IDWriteFactory5_UnpackFontFile(self: *const T, containerType: DWRITE_CONTAINER_TYPE, fileData: *const c_void, fileDataSize: u32, unpackedFontStream: **IDWriteFontFileStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDWriteFactory5.VTable, self.vtable).UnpackFontFile(@ptrCast(*const IDWriteFactory5, self), containerType, fileData, fileDataSize, unpackedFontStream);
         }
     };}
@@ -6269,17 +6295,21 @@ pub const DWRITE_FONT_FAMILY_MODEL = extern enum(i32) {
 pub const DWRITE_FONT_FAMILY_MODEL_TYPOGRAPHIC = DWRITE_FONT_FAMILY_MODEL.TYPOGRAPHIC;
 pub const DWRITE_FONT_FAMILY_MODEL_WEIGHT_STRETCH_STYLE = DWRITE_FONT_FAMILY_MODEL.WEIGHT_STRETCH_STYLE;
 
-pub const DWRITE_AUTOMATIC_FONT_AXES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWRITE_AUTOMATIC_FONT_AXES = extern enum(u32) {
     NONE = 0,
     OPTICAL_SIZE = 1,
+    _,
 };
 pub const DWRITE_AUTOMATIC_FONT_AXES_NONE = DWRITE_AUTOMATIC_FONT_AXES.NONE;
 pub const DWRITE_AUTOMATIC_FONT_AXES_OPTICAL_SIZE = DWRITE_AUTOMATIC_FONT_AXES.OPTICAL_SIZE;
 
-pub const DWRITE_FONT_AXIS_ATTRIBUTES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWRITE_FONT_AXIS_ATTRIBUTES = extern enum(u32) {
     NONE = 0,
     VARIABLE = 1,
     HIDDEN = 2,
+    _,
 };
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_NONE = DWRITE_FONT_AXIS_ATTRIBUTES.NONE;
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_VARIABLE = DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE;
@@ -7151,7 +7181,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
@@ -7160,7 +7190,6 @@ const FILETIME = @import("windows_programming.zig").FILETIME;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FONTSIGNATURE = @import("intl.zig").FONTSIGNATURE;
 const IUnknown = @import("com.zig").IUnknown;
-const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
 const HRESULT = @import("com.zig").HRESULT;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
 const RECT = @import("display_devices.zig").RECT;
@@ -7175,13 +7204,13 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     const constant_export_count = 3;
-    const type_export_count = 192;
+    const type_export_count = 193;
     const enum_value_export_count = 587;
     const com_iface_id_export_count = 88;
     const com_class_id_export_count = 0;
     const func_export_count = 1;
     const unicode_alias_count = 0;
-    const import_count = 19;
+    const import_count = 18;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

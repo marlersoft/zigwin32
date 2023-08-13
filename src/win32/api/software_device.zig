@@ -47,7 +47,7 @@ pub const SW_DEVICE_CREATE_CALLBACK = fn(
     pszDeviceInstanceId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HSWDEVICE = ?*c_void;
+pub const HSWDEVICE = ?*opaque{};
 
 
 //--------------------------------------------------------------------------------

@@ -6,6 +6,106 @@
 //--------------------------------------------------------------------------------
 // Section: Types (188)
 //--------------------------------------------------------------------------------
+pub const HKL = ?*opaque{};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
+pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
+pub const ITfMSAAControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SystemEnableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SystemDisableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const ITfSystemDeviceTypeLangBarItem_SetIconModeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+};
+pub const TF_DTLBI_USEPROFILEICON = ITfSystemDeviceTypeLangBarItem_SetIconModeFlags.N;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITextStoreACPSink_OnTextChangeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+    _,
+};
+pub const TS_ST_CORRECTION = ITextStoreACPSink_OnTextChangeFlags.N;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITextStoreAnchorSink_OnTextChangeFlags = extern enum(u32) {
+    None = 0,
+    N = 1,
+    _,
+};
+pub const TS_TC_CORRECTION = ITextStoreAnchorSink_OnTextChangeFlags.N;
+
+pub const ITfInsertAtSelection_InsertTextAtSelectionFlags = extern enum(u32) {
+    NOQUERY = 1,
+    QUERYONLY = 2,
+    NO_DEFAULT_COMPOSITION = 2147483648,
+};
+pub const TF_IAS_NOQUERY = ITfInsertAtSelection_InsertTextAtSelectionFlags.NOQUERY;
+pub const TF_IAS_QUERYONLY = ITfInsertAtSelection_InsertTextAtSelectionFlags.QUERYONLY;
+pub const TF_IAS_NO_DEFAULT_COMPOSITION = ITfInsertAtSelection_InsertTextAtSelectionFlags.NO_DEFAULT_COMPOSITION;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const IAnchor_GetChangeHistory_pdwHistoryFlags = extern enum(u32) {
+    PRECEDING_DEL = 1,
+    FOLLOWING_DEL = 2,
+    _,
+};
+pub const TS_CH_PRECEDING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.PRECEDING_DEL;
+pub const TS_CH_FOLLOWING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.FOLLOWING_DEL;
+
+pub const OnLockGranted_dwLockFlags = extern enum(u32) {
+    D = 2,
+    WRITE = 6,
+};
+pub const TS_LF_READ = OnLockGranted_dwLockFlags.D;
+pub const TS_LF_READWRITE = OnLockGranted_dwLockFlags.WRITE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITfEditRecord_GetTextAndPropertyUpdatesFlags = extern enum(u32) {
+    None = 0,
+    T = 1,
+    _,
+};
+pub const TF_GTP_INCL_TEXT = ITfEditRecord_GetTextAndPropertyUpdatesFlags.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ITfContext_RequestEditSessionFlags = extern enum(u32) {
+    ASYNCDONTCARE = 0,
+    SYNC = 1,
+    READ = 2,
+    READWRITE = 6,
+    ASYNC = 8,
+    _,
+};
+pub const TF_ES_ASYNCDONTCARE = ITfContext_RequestEditSessionFlags.ASYNCDONTCARE;
+pub const TF_ES_SYNC = ITfContext_RequestEditSessionFlags.SYNC;
+pub const TF_ES_READ = ITfContext_RequestEditSessionFlags.READ;
+pub const TF_ES_READWRITE = ITfContext_RequestEditSessionFlags.READWRITE;
+pub const TF_ES_ASYNC = ITfContext_RequestEditSessionFlags.ASYNC;
+
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,
     dwStaticFlags: u32,
@@ -7718,106 +7818,6 @@ pub const ITfSpeechUIServer = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const HKL = ?*c_void;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
-pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
-pub const ITfMSAAControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SystemEnableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SystemDisableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const ITfSystemDeviceTypeLangBarItem_SetIconModeFlags = extern enum(u32) {
-    None = 0,
-    N = 1,
-};
-pub const TF_DTLBI_USEPROFILEICON = ITfSystemDeviceTypeLangBarItem_SetIconModeFlags.N;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const ITextStoreACPSink_OnTextChangeFlags = extern enum(u32) {
-    None = 0,
-    N = 1,
-    _,
-};
-pub const TS_ST_CORRECTION = ITextStoreACPSink_OnTextChangeFlags.N;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const ITextStoreAnchorSink_OnTextChangeFlags = extern enum(u32) {
-    None = 0,
-    N = 1,
-    _,
-};
-pub const TS_TC_CORRECTION = ITextStoreAnchorSink_OnTextChangeFlags.N;
-
-pub const ITfInsertAtSelection_InsertTextAtSelectionFlags = extern enum(u32) {
-    NOQUERY = 1,
-    QUERYONLY = 2,
-    NO_DEFAULT_COMPOSITION = 2147483648,
-};
-pub const TF_IAS_NOQUERY = ITfInsertAtSelection_InsertTextAtSelectionFlags.NOQUERY;
-pub const TF_IAS_QUERYONLY = ITfInsertAtSelection_InsertTextAtSelectionFlags.QUERYONLY;
-pub const TF_IAS_NO_DEFAULT_COMPOSITION = ITfInsertAtSelection_InsertTextAtSelectionFlags.NO_DEFAULT_COMPOSITION;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IAnchor_GetChangeHistory_pdwHistoryFlags = extern enum(u32) {
-    PRECEDING_DEL = 1,
-    FOLLOWING_DEL = 2,
-    _,
-};
-pub const TS_CH_PRECEDING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.PRECEDING_DEL;
-pub const TS_CH_FOLLOWING_DEL = IAnchor_GetChangeHistory_pdwHistoryFlags.FOLLOWING_DEL;
-
-pub const OnLockGranted_dwLockFlags = extern enum(u32) {
-    D = 2,
-    WRITE = 6,
-};
-pub const TS_LF_READ = OnLockGranted_dwLockFlags.D;
-pub const TS_LF_READWRITE = OnLockGranted_dwLockFlags.WRITE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const ITfEditRecord_GetTextAndPropertyUpdatesFlags = extern enum(u32) {
-    None = 0,
-    T = 1,
-    _,
-};
-pub const TF_GTP_INCL_TEXT = ITfEditRecord_GetTextAndPropertyUpdatesFlags.T;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const ITfContext_RequestEditSessionFlags = extern enum(u32) {
-    ASYNCDONTCARE = 0,
-    SYNC = 1,
-    READ = 2,
-    READWRITE = 6,
-    ASYNC = 8,
-    _,
-};
-pub const TF_ES_ASYNCDONTCARE = ITfContext_RequestEditSessionFlags.ASYNCDONTCARE;
-pub const TF_ES_SYNC = ITfContext_RequestEditSessionFlags.SYNC;
-pub const TF_ES_READ = ITfContext_RequestEditSessionFlags.READ;
-pub const TF_ES_READWRITE = ITfContext_RequestEditSessionFlags.READWRITE;
-pub const TF_ES_ASYNC = ITfContext_RequestEditSessionFlags.ASYNC;
 
 
 //--------------------------------------------------------------------------------

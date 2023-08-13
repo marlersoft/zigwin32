@@ -6,11 +6,13 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const WSL_DISTRIBUTION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const WSL_DISTRIBUTION_FLAGS = extern enum(u32) {
     NONE = 0,
     ENABLE_INTEROP = 1,
     APPEND_NT_PATH = 2,
     ENABLE_DRIVE_MOUNTING = 4,
+    _,
 };
 pub const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS.NONE;
 pub const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP = WSL_DISTRIBUTION_FLAGS.ENABLE_INTEROP;

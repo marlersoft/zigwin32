@@ -225,7 +225,8 @@ pub const IXAPO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IXAPO,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
             DataByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
@@ -274,7 +275,7 @@ pub const IXAPO = extern struct {
             return @ptrCast(*const IXAPO.VTable, self.vtable).IsOutputFormatSupported(@ptrCast(*const IXAPO, self), pInputFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_Initialize(self: *const T, pData: ?[*]const u8, DataByteSize: u32) callconv(.Inline) HRESULT {
+        pub fn IXAPO_Initialize(self: *const T, pData: ?*const c_void, DataByteSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAPO.VTable, self.vtable).Initialize(@ptrCast(*const IXAPO, self), pData, DataByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -312,12 +313,14 @@ pub const IXAPOParameters = extern struct {
         base: IUnknown.VTable,
         SetParameters: fn(
             self: *const IXAPOParameters,
-            pParameters: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pParameters: *const c_void,
             ParameterByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetParameters: fn(
             self: *const IXAPOParameters,
-            pParameters: [*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pParameters: *c_void,
             ParameterByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
@@ -325,11 +328,11 @@ pub const IXAPOParameters = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_SetParameters(self: *const T, pParameters: [*]const u8, ParameterByteSize: u32) callconv(.Inline) void {
+        pub fn IXAPOParameters_SetParameters(self: *const T, pParameters: *const c_void, ParameterByteSize: u32) callconv(.Inline) void {
             return @ptrCast(*const IXAPOParameters.VTable, self.vtable).SetParameters(@ptrCast(*const IXAPOParameters, self), pParameters, ParameterByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_GetParameters(self: *const T, pParameters: [*]u8, ParameterByteSize: u32) callconv(.Inline) void {
+        pub fn IXAPOParameters_GetParameters(self: *const T, pParameters: *c_void, ParameterByteSize: u32) callconv(.Inline) void {
             return @ptrCast(*const IXAPOParameters.VTable, self.vtable).GetParameters(@ptrCast(*const IXAPOParameters, self), pParameters, ParameterByteSize);
         }
     };}
@@ -653,14 +656,16 @@ pub const IXAudio2Voice = extern struct {
         SetEffectParameters: fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
-            pParameters: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pParameters: *const c_void,
             ParametersByteSize: u32,
             OperationSet: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectParameters: fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
-            pParameters: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pParameters: *c_void,
             ParametersByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFilterParameters: fn(
@@ -749,11 +754,11 @@ pub const IXAudio2Voice = extern struct {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).GetEffectState(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetEffectParameters(self: *const T, EffectIndex: u32, pParameters: [*]const u8, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+        pub fn IXAudio2Voice_SetEffectParameters(self: *const T, EffectIndex: u32, pParameters: *const c_void, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).SetEffectParameters(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pParameters, ParametersByteSize, OperationSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetEffectParameters(self: *const T, EffectIndex: u32, pParameters: [*]u8, ParametersByteSize: u32) callconv(.Inline) HRESULT {
+        pub fn IXAudio2Voice_GetEffectParameters(self: *const T, EffectIndex: u32, pParameters: *c_void, ParametersByteSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).GetEffectParameters(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pParameters, ParametersByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1197,7 +1202,8 @@ pub const IXAPOHrtfParameters = extern struct {
 pub extern "XAudio2_9" fn CreateFX(
     clsid: *const Guid,
     pEffect: **IUnknown,
-    pInitDat: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pInitDat: ?*const c_void,
     InitDataByteSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

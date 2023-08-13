@@ -930,8 +930,19 @@ pub const UIA_SummaryChangeId = @as(i32, 90000);
 pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (258)
+// Section: Types (260)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = ?*opaque{};
+
+pub const HUIANODE = ?*opaque{};
+
+pub const HUIAPATTERNOBJECT = ?*opaque{};
+
+pub const HUIATEXTRANGE = ?*opaque{};
+
+pub const HUIAEVENT = ?*opaque{};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STICKYKEYS_FLAGS = extern enum(u32) {
     STICKYKEYSON = 1,
@@ -1073,17 +1084,6 @@ pub const SSWF_DISPLAY = SOUNDSENTRYA_iWindowsEffect.DISPLAY;
 pub const SSWF_NONE = SOUNDSENTRYA_iWindowsEffect.NONE;
 pub const SSWF_TITLE = SOUNDSENTRYA_iWindowsEffect.TITLE;
 pub const SSWF_WINDOW = SOUNDSENTRYA_iWindowsEffect.WINDOW;
-
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = ?*c_void;
-
-pub const HUIANODE = ?*c_void;
-
-pub const HUIAPATTERNOBJECT = ?*c_void;
-
-pub const HUIATEXTRANGE = ?*c_void;
-
-pub const HUIAEVENT = ?*c_void;
 
 const CLSID_MSAAControl_Value = @import("../zig.zig").Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
 pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
@@ -2181,6 +2181,12 @@ pub const IAccPropServices = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+const CLSID_CUIAutomation_Value = @import("../zig.zig").Guid.initString("ff48dba4-60ef-4201-aa87-54103eef594e");
+pub const CLSID_CUIAutomation = &CLSID_CUIAutomation_Value;
+
+const CLSID_CUIAutomation8_Value = @import("../zig.zig").Guid.initString("e22ad333-b25f-460c-83d0-0581107395c9");
+pub const CLSID_CUIAutomation8 = &CLSID_CUIAutomation8_Value;
 
 const CLSID_CUIAutomationRegistrar_Value = @import("../zig.zig").Guid.initString("6e29fabf-9977-42d1-8d0e-ca7e61ad87e6");
 pub const CLSID_CUIAutomationRegistrar = &CLSID_CUIAutomationRegistrar_Value;
@@ -4633,7 +4639,7 @@ pub const ITextRangeProvider = extern struct {
             backward: BOOL,
             pRetVal: **ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindTextA: fn(
+        FindText: fn(
             self: *const ITextRangeProvider,
             text: BSTR,
             backward: BOOL,
@@ -4719,8 +4725,8 @@ pub const ITextRangeProvider = extern struct {
             return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).FindAttribute(@ptrCast(*const ITextRangeProvider, self), attributeId, val, backward, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRangeProvider_FindTextA(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).FindTextA(@ptrCast(*const ITextRangeProvider, self), text, backward, ignoreCase, pRetVal);
+        pub fn ITextRangeProvider_FindText(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: **ITextRangeProvider) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITextRangeProvider.VTable, self.vtable).FindText(@ptrCast(*const ITextRangeProvider, self), text, backward, ignoreCase, pRetVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITextRangeProvider_GetAttributeValue(self: *const T, attributeId: i32, pRetVal: *VARIANT) callconv(.Inline) HRESULT {
@@ -5105,25 +5111,6 @@ pub const TreeScope_Parent = TreeScope.Parent;
 pub const TreeScope_Ancestors = TreeScope.Ancestors;
 pub const TreeScope_Subtree = TreeScope.Subtree;
 
-pub const ConditionType = extern enum(i32) {
-    True = 0,
-    False = 1,
-    Property = 2,
-    And = 3,
-    Or = 4,
-    Not = 5,
-};
-pub const ConditionType_True = ConditionType.True;
-pub const ConditionType_False = ConditionType.False;
-pub const ConditionType_Property = ConditionType.Property;
-pub const ConditionType_And = ConditionType.And;
-pub const ConditionType_Or = ConditionType.Or;
-pub const ConditionType_Not = ConditionType.Not;
-
-pub const UiaCondition = extern struct {
-    ConditionType: ConditionType,
-};
-
 pub const PropertyConditionFlags = extern enum(i32) {
     None = 0,
     IgnoreCase = 1,
@@ -5133,49 +5120,12 @@ pub const PropertyConditionFlags_None = PropertyConditionFlags.None;
 pub const PropertyConditionFlags_IgnoreCase = PropertyConditionFlags.IgnoreCase;
 pub const PropertyConditionFlags_MatchSubstring = PropertyConditionFlags.MatchSubstring;
 
-pub const UiaPropertyCondition = extern struct {
-    ConditionType: ConditionType,
-    PropertyId: i32,
-    Value: VARIANT,
-    Flags: PropertyConditionFlags,
-};
-
-pub const UiaAndOrCondition = extern struct {
-    ConditionType: ConditionType,
-    ppConditions: **UiaCondition,
-    cConditions: i32,
-};
-
-pub const UiaNotCondition = extern struct {
-    ConditionType: ConditionType,
-    pCondition: *UiaCondition,
-};
-
 pub const AutomationElementMode = extern enum(i32) {
     None = 0,
     Full = 1,
 };
 pub const AutomationElementMode_None = AutomationElementMode.None;
 pub const AutomationElementMode_Full = AutomationElementMode.Full;
-
-pub const UiaCacheRequest = extern struct {
-    pViewCondition: *UiaCondition,
-    Scope: TreeScope,
-    pProperties: *i32,
-    cProperties: i32,
-    pPatterns: *i32,
-    cPatterns: i32,
-    automationElementMode: AutomationElementMode,
-};
-
-pub const NormalizeState = extern enum(i32) {
-    None = 0,
-    View = 1,
-    Custom = 2,
-};
-pub const NormalizeState_None = NormalizeState.None;
-pub const NormalizeState_View = NormalizeState.View;
-pub const NormalizeState_Custom = NormalizeState.Custom;
 
 pub const TreeTraversalOptions = extern enum(i32) {
     Default = 0,
@@ -5186,140 +5136,19 @@ pub const TreeTraversalOptions_Default = TreeTraversalOptions.Default;
 pub const TreeTraversalOptions_PostOrder = TreeTraversalOptions.PostOrder;
 pub const TreeTraversalOptions_LastToFirstOrder = TreeTraversalOptions.LastToFirstOrder;
 
-pub const UiaFindParams = extern struct {
-    MaxDepth: i32,
-    FindFirst: BOOL,
-    ExcludeRoot: BOOL,
-    pFindCondition: *UiaCondition,
+pub const ConnectionRecoveryBehaviorOptions = extern enum(i32) {
+    Disabled = 0,
+    Enabled = 1,
 };
+pub const ConnectionRecoveryBehaviorOptions_Disabled = ConnectionRecoveryBehaviorOptions.Disabled;
+pub const ConnectionRecoveryBehaviorOptions_Enabled = ConnectionRecoveryBehaviorOptions.Enabled;
 
-pub const ProviderType = extern enum(i32) {
-    BaseHwnd = 0,
-    Proxy = 1,
-    NonClientArea = 2,
+pub const CoalesceEventsOptions = extern enum(i32) {
+    Disabled = 0,
+    Enabled = 1,
 };
-pub const ProviderType_BaseHwnd = ProviderType.BaseHwnd;
-pub const ProviderType_Proxy = ProviderType.Proxy;
-pub const ProviderType_NonClientArea = ProviderType.NonClientArea;
-
-pub const UiaProviderCallback = fn(
-    hwnd: HWND,
-    providerType: ProviderType,
-) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
-
-pub const AutomationIdentifierType = extern enum(i32) {
-    Property = 0,
-    Pattern = 1,
-    Event = 2,
-    ControlType = 3,
-    TextAttribute = 4,
-    LandmarkType = 5,
-    Annotation = 6,
-    Changes = 7,
-    Style = 8,
-};
-pub const AutomationIdentifierType_Property = AutomationIdentifierType.Property;
-pub const AutomationIdentifierType_Pattern = AutomationIdentifierType.Pattern;
-pub const AutomationIdentifierType_Event = AutomationIdentifierType.Event;
-pub const AutomationIdentifierType_ControlType = AutomationIdentifierType.ControlType;
-pub const AutomationIdentifierType_TextAttribute = AutomationIdentifierType.TextAttribute;
-pub const AutomationIdentifierType_LandmarkType = AutomationIdentifierType.LandmarkType;
-pub const AutomationIdentifierType_Annotation = AutomationIdentifierType.Annotation;
-pub const AutomationIdentifierType_Changes = AutomationIdentifierType.Changes;
-pub const AutomationIdentifierType_Style = AutomationIdentifierType.Style;
-
-pub const EventArgsType = extern enum(i32) {
-    Simple = 0,
-    PropertyChanged = 1,
-    StructureChanged = 2,
-    AsyncContentLoaded = 3,
-    WindowClosed = 4,
-    TextEditTextChanged = 5,
-    Changes = 6,
-    Notification = 7,
-    ActiveTextPositionChanged = 8,
-    StructuredMarkup = 9,
-};
-pub const EventArgsType_Simple = EventArgsType.Simple;
-pub const EventArgsType_PropertyChanged = EventArgsType.PropertyChanged;
-pub const EventArgsType_StructureChanged = EventArgsType.StructureChanged;
-pub const EventArgsType_AsyncContentLoaded = EventArgsType.AsyncContentLoaded;
-pub const EventArgsType_WindowClosed = EventArgsType.WindowClosed;
-pub const EventArgsType_TextEditTextChanged = EventArgsType.TextEditTextChanged;
-pub const EventArgsType_Changes = EventArgsType.Changes;
-pub const EventArgsType_Notification = EventArgsType.Notification;
-pub const EventArgsType_ActiveTextPositionChanged = EventArgsType.ActiveTextPositionChanged;
-pub const EventArgsType_StructuredMarkup = EventArgsType.StructuredMarkup;
-
-pub const AsyncContentLoadedState = extern enum(i32) {
-    Beginning = 0,
-    Progress = 1,
-    Completed = 2,
-};
-pub const AsyncContentLoadedState_Beginning = AsyncContentLoadedState.Beginning;
-pub const AsyncContentLoadedState_Progress = AsyncContentLoadedState.Progress;
-pub const AsyncContentLoadedState_Completed = AsyncContentLoadedState.Completed;
-
-pub const UiaEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-};
-
-pub const UiaPropertyChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    PropertyId: i32,
-    OldValue: VARIANT,
-    NewValue: VARIANT,
-};
-
-pub const UiaStructureChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    StructureChangeType: StructureChangeType,
-    pRuntimeId: *i32,
-    cRuntimeIdLen: i32,
-};
-
-pub const UiaTextEditTextChangedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    TextEditChangeType: TextEditChangeType,
-    pTextChange: *SAFEARRAY,
-};
-
-pub const UiaChangesEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    EventIdCount: i32,
-    pUiaChanges: *UiaChangeInfo,
-};
-
-pub const UiaAsyncContentLoadedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    AsyncContentLoadedState: AsyncContentLoadedState,
-    PercentComplete: f64,
-};
-
-pub const UiaWindowClosedEventArgs = extern struct {
-    Type: EventArgsType,
-    EventId: i32,
-    pRuntimeId: *i32,
-    cRuntimeIdLen: i32,
-};
-
-pub const UiaEventCallback = fn(
-    pArgs: *UiaEventArgs,
-    pRequestedData: *SAFEARRAY,
-    pTreeStructure: BSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-const CLSID_CUIAutomation_Value = @import("../zig.zig").Guid.initString("ff48dba4-60ef-4201-aa87-54103eef594e");
-pub const CLSID_CUIAutomation = &CLSID_CUIAutomation_Value;
-
-const CLSID_CUIAutomation8_Value = @import("../zig.zig").Guid.initString("e22ad333-b25f-460c-83d0-0581107395c9");
-pub const CLSID_CUIAutomation8 = &CLSID_CUIAutomation8_Value;
+pub const CoalesceEventsOptions_Disabled = CoalesceEventsOptions.Disabled;
+pub const CoalesceEventsOptions_Enabled = CoalesceEventsOptions.Enabled;
 
 pub const ExtendedProperty = extern struct {
     PropertyName: BSTR,
@@ -7908,7 +7737,7 @@ pub const IUIAutomationTextRange = extern struct {
             backward: BOOL,
             found: **IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindTextA: fn(
+        FindText: fn(
             self: *const IUIAutomationTextRange,
             text: BSTR,
             backward: BOOL,
@@ -7994,8 +7823,8 @@ pub const IUIAutomationTextRange = extern struct {
             return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).FindAttribute(@ptrCast(*const IUIAutomationTextRange, self), attr, val, backward, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationTextRange_FindTextA(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, found: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).FindTextA(@ptrCast(*const IUIAutomationTextRange, self), text, backward, ignoreCase, found);
+        pub fn IUIAutomationTextRange_FindText(self: *const T, text: BSTR, backward: BOOL, ignoreCase: BOOL, found: **IUIAutomationTextRange) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomationTextRange.VTable, self.vtable).FindText(@ptrCast(*const IUIAutomationTextRange, self), text, backward, ignoreCase, found);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IUIAutomationTextRange_GetAttributeValue(self: *const T, attr: i32, value: *VARIANT) callconv(.Inline) HRESULT {
@@ -10563,6 +10392,191 @@ pub const IUIAutomation5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const ConditionType = extern enum(i32) {
+    True = 0,
+    False = 1,
+    Property = 2,
+    And = 3,
+    Or = 4,
+    Not = 5,
+};
+pub const ConditionType_True = ConditionType.True;
+pub const ConditionType_False = ConditionType.False;
+pub const ConditionType_Property = ConditionType.Property;
+pub const ConditionType_And = ConditionType.And;
+pub const ConditionType_Or = ConditionType.Or;
+pub const ConditionType_Not = ConditionType.Not;
+
+pub const UiaCondition = extern struct {
+    ConditionType: ConditionType,
+};
+
+pub const UiaPropertyCondition = extern struct {
+    ConditionType: ConditionType,
+    PropertyId: i32,
+    Value: VARIANT,
+    Flags: PropertyConditionFlags,
+};
+
+pub const UiaAndOrCondition = extern struct {
+    ConditionType: ConditionType,
+    ppConditions: **UiaCondition,
+    cConditions: i32,
+};
+
+pub const UiaNotCondition = extern struct {
+    ConditionType: ConditionType,
+    pCondition: *UiaCondition,
+};
+
+pub const UiaCacheRequest = extern struct {
+    pViewCondition: *UiaCondition,
+    Scope: TreeScope,
+    pProperties: *i32,
+    cProperties: i32,
+    pPatterns: *i32,
+    cPatterns: i32,
+    automationElementMode: AutomationElementMode,
+};
+
+pub const NormalizeState = extern enum(i32) {
+    None = 0,
+    View = 1,
+    Custom = 2,
+};
+pub const NormalizeState_None = NormalizeState.None;
+pub const NormalizeState_View = NormalizeState.View;
+pub const NormalizeState_Custom = NormalizeState.Custom;
+
+pub const UiaFindParams = extern struct {
+    MaxDepth: i32,
+    FindFirst: BOOL,
+    ExcludeRoot: BOOL,
+    pFindCondition: *UiaCondition,
+};
+
+pub const ProviderType = extern enum(i32) {
+    BaseHwnd = 0,
+    Proxy = 1,
+    NonClientArea = 2,
+};
+pub const ProviderType_BaseHwnd = ProviderType.BaseHwnd;
+pub const ProviderType_Proxy = ProviderType.Proxy;
+pub const ProviderType_NonClientArea = ProviderType.NonClientArea;
+
+pub const UiaProviderCallback = fn(
+    hwnd: HWND,
+    providerType: ProviderType,
+) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
+
+pub const AutomationIdentifierType = extern enum(i32) {
+    Property = 0,
+    Pattern = 1,
+    Event = 2,
+    ControlType = 3,
+    TextAttribute = 4,
+    LandmarkType = 5,
+    Annotation = 6,
+    Changes = 7,
+    Style = 8,
+};
+pub const AutomationIdentifierType_Property = AutomationIdentifierType.Property;
+pub const AutomationIdentifierType_Pattern = AutomationIdentifierType.Pattern;
+pub const AutomationIdentifierType_Event = AutomationIdentifierType.Event;
+pub const AutomationIdentifierType_ControlType = AutomationIdentifierType.ControlType;
+pub const AutomationIdentifierType_TextAttribute = AutomationIdentifierType.TextAttribute;
+pub const AutomationIdentifierType_LandmarkType = AutomationIdentifierType.LandmarkType;
+pub const AutomationIdentifierType_Annotation = AutomationIdentifierType.Annotation;
+pub const AutomationIdentifierType_Changes = AutomationIdentifierType.Changes;
+pub const AutomationIdentifierType_Style = AutomationIdentifierType.Style;
+
+pub const EventArgsType = extern enum(i32) {
+    Simple = 0,
+    PropertyChanged = 1,
+    StructureChanged = 2,
+    AsyncContentLoaded = 3,
+    WindowClosed = 4,
+    TextEditTextChanged = 5,
+    Changes = 6,
+    Notification = 7,
+    ActiveTextPositionChanged = 8,
+    StructuredMarkup = 9,
+};
+pub const EventArgsType_Simple = EventArgsType.Simple;
+pub const EventArgsType_PropertyChanged = EventArgsType.PropertyChanged;
+pub const EventArgsType_StructureChanged = EventArgsType.StructureChanged;
+pub const EventArgsType_AsyncContentLoaded = EventArgsType.AsyncContentLoaded;
+pub const EventArgsType_WindowClosed = EventArgsType.WindowClosed;
+pub const EventArgsType_TextEditTextChanged = EventArgsType.TextEditTextChanged;
+pub const EventArgsType_Changes = EventArgsType.Changes;
+pub const EventArgsType_Notification = EventArgsType.Notification;
+pub const EventArgsType_ActiveTextPositionChanged = EventArgsType.ActiveTextPositionChanged;
+pub const EventArgsType_StructuredMarkup = EventArgsType.StructuredMarkup;
+
+pub const AsyncContentLoadedState = extern enum(i32) {
+    Beginning = 0,
+    Progress = 1,
+    Completed = 2,
+};
+pub const AsyncContentLoadedState_Beginning = AsyncContentLoadedState.Beginning;
+pub const AsyncContentLoadedState_Progress = AsyncContentLoadedState.Progress;
+pub const AsyncContentLoadedState_Completed = AsyncContentLoadedState.Completed;
+
+pub const UiaEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+};
+
+pub const UiaPropertyChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    PropertyId: i32,
+    OldValue: VARIANT,
+    NewValue: VARIANT,
+};
+
+pub const UiaStructureChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    StructureChangeType: StructureChangeType,
+    pRuntimeId: *i32,
+    cRuntimeIdLen: i32,
+};
+
+pub const UiaTextEditTextChangedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    TextEditChangeType: TextEditChangeType,
+    pTextChange: *SAFEARRAY,
+};
+
+pub const UiaChangesEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    EventIdCount: i32,
+    pUiaChanges: *UiaChangeInfo,
+};
+
+pub const UiaAsyncContentLoadedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    AsyncContentLoadedState: AsyncContentLoadedState,
+    PercentComplete: f64,
+};
+
+pub const UiaWindowClosedEventArgs = extern struct {
+    Type: EventArgsType,
+    EventId: i32,
+    pRuntimeId: *i32,
+    cRuntimeIdLen: i32,
+};
+
+pub const UiaEventCallback = fn(
+    pArgs: *UiaEventArgs,
+    pRequestedData: *SAFEARRAY,
+    pTreeStructure: BSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
     dwFlags: SERIALKEYSW_dwFlags,
@@ -11563,8 +11577,8 @@ test {
     _ = WINEVENTPROC;
 
     const constant_export_count = 926;
-    const type_export_count = 248;
-    const enum_value_export_count = 329;
+    const type_export_count = 250;
+    const enum_value_export_count = 333;
     const com_iface_id_export_count = 147;
     const com_class_id_export_count = 10;
     const func_export_count = 123;

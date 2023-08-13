@@ -209,12 +209,6 @@ pub const LPM_HANDLE = isize;
 
 pub const RHANDLE = isize;
 
-pub const QOS = extern struct {
-    SendingFlowspec: FLOWSPEC,
-    ReceivingFlowspec: FLOWSPEC,
-    ProviderSpecific: WSABUF,
-};
-
 pub const FLOWSPEC = extern struct {
     TokenRate: u32,
     TokenBucketSize: u32,
@@ -675,7 +669,8 @@ pub const TCI_NOTIFY_HANDLER = fn(
     Event: u32,
     SubCode: HANDLE,
     BufSize: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TCI_ADD_FLOW_COMPLETE_HANDLER = fn(
@@ -760,6 +755,12 @@ pub const ENUMERATION_BUFFER = extern struct {
     GenericFilter: [1]TC_GEN_FILTER,
 };
 
+pub const QOS = extern struct {
+    SendingFlowspec: FLOWSPEC,
+    ReceivingFlowspec: FLOWSPEC,
+    ProviderSpecific: WSABUF,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -793,7 +794,8 @@ pub extern "qwave" fn QOSStopTrackingClient(
 pub extern "qwave" fn QOSEnumerateFlows(
     QOSHandle: HANDLE,
     Size: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -820,7 +822,8 @@ pub extern "qwave" fn QOSSetFlow(
     FlowId: u32,
     Operation: QOS_SET_FLOW,
     Size: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *c_void,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -831,7 +834,8 @@ pub extern "qwave" fn QOSQueryFlow(
     FlowId: u32,
     Operation: QOS_QUERY_FLOW,
     Size: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *c_void,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -842,7 +846,8 @@ pub extern "qwave" fn QOSNotifyFlow(
     FlowId: u32,
     Operation: QOS_NOTIFY_FLOW,
     Size: ?*u32,
-    Buffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*c_void,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -895,7 +900,8 @@ pub extern "TRAFFIC" fn TcQueryInterface(
     pGuidParam: *Guid,
     NotifyChange: u8,
     pBufferSize: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -903,7 +909,8 @@ pub extern "TRAFFIC" fn TcSetInterface(
     IfcHandle: HANDLE,
     pGuidParam: *Guid,
     BufferSize: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -911,7 +918,8 @@ pub extern "TRAFFIC" fn TcQueryFlowA(
     pFlowName: PSTR,
     pGuidParam: *Guid,
     pBufferSize: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -919,7 +927,8 @@ pub extern "TRAFFIC" fn TcQueryFlowW(
     pFlowName: PWSTR,
     pGuidParam: *Guid,
     pBufferSize: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -927,7 +936,8 @@ pub extern "TRAFFIC" fn TcSetFlowA(
     pFlowName: PSTR,
     pGuidParam: *Guid,
     BufferSize: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -935,7 +945,8 @@ pub extern "TRAFFIC" fn TcSetFlowW(
     pFlowName: PWSTR,
     pGuidParam: *Guid,
     BufferSize: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'

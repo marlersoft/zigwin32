@@ -7,17 +7,19 @@
 // Section: Types (4)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
-pub const HICON = ?*c_void;
+pub const HICON = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
-pub const HMENU = ?*c_void;
+pub const HMENU = ?*opaque{};
 
-// TODO: this type is also usable for 'HICON'
 // TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
-pub const HCURSOR = ?*c_void;
+//TODO: type 'HCURSOR' is "AlsoUsableFor" 'HICON' which means this type is implicitly
+//      convertible to 'HICON' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HCURSOR = HICON;
 
 // TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
-pub const HACCEL = ?*c_void;
+pub const HACCEL = ?*opaque{};
 
 
 //--------------------------------------------------------------------------------

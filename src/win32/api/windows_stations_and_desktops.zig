@@ -6,6 +6,12 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
+pub const HWINSTA = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
+pub const HDESK = ?*opaque{};
+
 pub const GetUserObjectInformation_nIndex = extern enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
@@ -20,12 +26,6 @@ pub const UOI_IO = GetUserObjectInformation_nIndex.IO;
 pub const UOI_NAME = GetUserObjectInformation_nIndex.NAME;
 pub const UOI_TYPE = GetUserObjectInformation_nIndex.TYPE;
 pub const UOI_USER_SID = GetUserObjectInformation_nIndex.USER_SID;
-
-// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = ?*c_void;
-
-// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = ?*c_void;
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -205,7 +205,8 @@ pub extern "USER32" fn GetProcessWindowStation(
 pub extern "USER32" fn GetUserObjectInformationA(
     hObj: HANDLE,
     nIndex: GetUserObjectInformation_nIndex,
-    pvInfo: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvInfo: ?*c_void,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -214,7 +215,8 @@ pub extern "USER32" fn GetUserObjectInformationA(
 pub extern "USER32" fn GetUserObjectInformationW(
     hObj: HANDLE,
     nIndex: GetUserObjectInformation_nIndex,
-    pvInfo: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvInfo: ?*c_void,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -223,7 +225,8 @@ pub extern "USER32" fn GetUserObjectInformationW(
 pub extern "USER32" fn SetUserObjectInformationA(
     hObj: HANDLE,
     nIndex: i32,
-    pvInfo: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvInfo: *c_void,
     nLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -231,7 +234,8 @@ pub extern "USER32" fn SetUserObjectInformationA(
 pub extern "USER32" fn SetUserObjectInformationW(
     hObj: HANDLE,
     nIndex: i32,
-    pvInfo: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvInfo: *c_void,
     nLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

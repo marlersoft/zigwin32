@@ -717,7 +717,8 @@ pub extern "USERENV" fn RsopAccessCheckByType(
     pObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
     pGenericMapping: *GENERIC_MAPPING,
-    pPrivilegeSet: ?[*]PRIVILEGE_SET,
+    // TODO: what to do with BytesParamIndex 8?
+    pPrivilegeSet: ?*PRIVILEGE_SET,
     pdwPrivilegeSetLength: ?*u32,
     pdwGrantedAccessMask: *u32,
     pbAccessStatus: *i32,

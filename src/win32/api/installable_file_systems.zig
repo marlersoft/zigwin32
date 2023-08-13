@@ -11,7 +11,7 @@ pub const FLT_PORT_FLAG_SYNC_HANDLE = @as(u32, 1);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
-pub const HFILTER = ?*c_void;
+pub const HFILTER = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
 pub const HFILTER_INSTANCE = isize;
@@ -244,7 +244,8 @@ pub extern "FLTLIB" fn FilterAttach(
     lpVolumeName: [*:0]const u16,
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
-    lpCreatedInstanceName: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 3?
+    lpCreatedInstanceName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterAttachAtAltitude(
@@ -253,7 +254,8 @@ pub extern "FLTLIB" fn FilterAttachAtAltitude(
     lpAltitude: [*:0]const u16,
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
-    lpCreatedInstanceName: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 4?
+    lpCreatedInstanceName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterDetach(
@@ -264,16 +266,18 @@ pub extern "FLTLIB" fn FilterDetach(
 
 pub extern "FLTLIB" fn FilterFindFirst(
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpFilterFind: *HANDLE,
+    lpFilterFind: *FilterFindHandle,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterFindNext(
     hFilterFind: HANDLE,
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -284,16 +288,18 @@ pub extern "FLTLIB" fn FilterFindClose(
 
 pub extern "FLTLIB" fn FilterVolumeFindFirst(
     dwInformationClass: FILTER_VOLUME_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpVolumeFind: *HANDLE,
+    lpVolumeFind: *FilterVolumeFindHandle,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterVolumeFindNext(
     hVolumeFind: HANDLE,
     dwInformationClass: FILTER_VOLUME_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -305,16 +311,18 @@ pub extern "FLTLIB" fn FilterVolumeFindClose(
 pub extern "FLTLIB" fn FilterInstanceFindFirst(
     lpFilterName: [*:0]const u16,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpFilterInstanceFind: *HANDLE,
+    lpFilterInstanceFind: *FilterInstanceFindHandle,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterInstanceFindNext(
     hFilterInstanceFind: HANDLE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -326,16 +334,18 @@ pub extern "FLTLIB" fn FilterInstanceFindClose(
 pub extern "FLTLIB" fn FilterVolumeInstanceFindFirst(
     lpVolumeName: [*:0]const u16,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
-    lpVolumeInstanceFind: *HANDLE,
+    lpVolumeInstanceFind: *FilterVolumeInstanceFindHandle,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterVolumeInstanceFindNext(
     hVolumeInstanceFind: HANDLE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -347,7 +357,8 @@ pub extern "FLTLIB" fn FilterVolumeInstanceFindClose(
 pub extern "FLTLIB" fn FilterGetInformation(
     hFilter: HFILTER,
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -355,7 +366,8 @@ pub extern "FLTLIB" fn FilterGetInformation(
 pub extern "FLTLIB" fn FilterInstanceGetInformation(
     hInstance: HFILTER_INSTANCE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     dwBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -363,7 +375,8 @@ pub extern "FLTLIB" fn FilterInstanceGetInformation(
 pub extern "FLTLIB" fn FilterConnectCommunicationPort(
     lpPortName: [*:0]const u16,
     dwOptions: u32,
-    lpContext: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpContext: ?*const c_void,
     wSizeOfContext: u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     hPort: *HANDLE,
@@ -371,16 +384,19 @@ pub extern "FLTLIB" fn FilterConnectCommunicationPort(
 
 pub extern "FLTLIB" fn FilterSendMessage(
     hPort: HANDLE,
-    lpInBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpInBuffer: *c_void,
     dwInBufferSize: u32,
-    lpOutBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    lpOutBuffer: ?*c_void,
     dwOutBufferSize: u32,
     lpBytesReturned: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "FLTLIB" fn FilterGetMessage(
     hPort: HANDLE,
-    lpMessageBuffer: [*]FILTER_MESSAGE_HEADER,
+    // TODO: what to do with BytesParamIndex 2?
+    lpMessageBuffer: *FILTER_MESSAGE_HEADER,
     dwMessageBufferSize: u32,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -388,7 +404,8 @@ pub extern "FLTLIB" fn FilterGetMessage(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "FLTLIB" fn FilterReplyMessage(
     hPort: HANDLE,
-    lpReplyBuffer: [*]FILTER_REPLY_HEADER,
+    // TODO: what to do with BytesParamIndex 2?
+    lpReplyBuffer: *FILTER_REPLY_HEADER,
     dwReplyBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

@@ -88,7 +88,8 @@ pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_BLOCKMAP = APPX_BUNDLE_FOOTPRINT_FILE_
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_SIGNATURE = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.SIGNATURE;
 pub const APPX_BUNDLE_FOOTPRINT_FILE_TYPE_LAST = APPX_BUNDLE_FOOTPRINT_FILE_TYPE.LAST;
 
-pub const APPX_CAPABILITIES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const APPX_CAPABILITIES = extern enum(u32) {
     INTERNET_CLIENT = 1,
     INTERNET_CLIENT_SERVER = 2,
     PRIVATE_NETWORK_CLIENT_SERVER = 4,
@@ -101,6 +102,7 @@ pub const APPX_CAPABILITIES = extern enum(i32) {
     REMOVABLE_STORAGE = 512,
     APPOINTMENTS = 1024,
     CONTACTS = 2048,
+    _,
 };
 pub const APPX_CAPABILITY_INTERNET_CLIENT = APPX_CAPABILITIES.INTERNET_CLIENT;
 pub const APPX_CAPABILITY_INTERNET_CLIENT_SERVER = APPX_CAPABILITIES.INTERNET_CLIENT_SERVER;
@@ -2736,10 +2738,12 @@ pub const APPX_ENCRYPTED_PACKAGE_SETTINGS = extern struct {
     blockMapHashAlgorithm: *IUri,
 };
 
-pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = extern enum(u32) {
     NONE = 0,
     DIFFUSION = 1,
     PAGE_HASHING = 2,
+    _,
 };
 pub const APPX_ENCRYPTED_PACKAGE_OPTION_NONE = APPX_ENCRYPTED_PACKAGE_OPTIONS.NONE;
 pub const APPX_ENCRYPTED_PACKAGE_OPTION_DIFFUSION = APPX_ENCRYPTED_PACKAGE_OPTIONS.DIFFUSION;
@@ -3101,10 +3105,12 @@ pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION = extern enum(i32) {
 };
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION_APPEND_DELTA = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION.A;
 
-pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS = extern enum(u32) {
     NONE = 0,
     SKIP_VALIDATION = 1,
     LOCALIZED = 2,
+    _,
 };
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_NONE = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS.NONE;
 pub const APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTION_SKIP_VALIDATION = APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS.SKIP_VALIDATION;
@@ -3351,7 +3357,8 @@ pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetCurrentPackageId(
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 0?
+    buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3376,7 +3383,8 @@ pub extern "KERNEL32" fn GetCurrentPackagePath(
 pub extern "KERNEL32" fn GetPackageId(
     hProcess: HANDLE,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3450,7 +3458,8 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3503,7 +3512,8 @@ pub extern "KERNEL32" fn PackageIdFromFullName(
     packageFullName: [*:0]const u16,
     flags: u32,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3583,7 +3593,8 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
 pub extern "KERNEL32" fn GetCurrentPackageInfo(
     flags: u32,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3611,7 +3622,8 @@ pub extern "KERNEL32" fn GetPackageInfo(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
     flags: u32,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3619,7 +3631,8 @@ pub extern "KERNEL32" fn GetPackageInfo(
 pub extern "KERNEL32" fn GetPackageApplicationIds(
     packageInfoReference: *_PACKAGE_INFO_REFERENCE,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3669,7 +3682,8 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
     bufferLength: *u32,
-    buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: ?*u8,
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

@@ -917,7 +917,7 @@ pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemIn
 pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFileAttributesA: fn(
+        GetFileAttributes: fn(
             self: *const IOfflineFilesSyncErrorItemInfo,
             pdwAttributes: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -935,8 +935,8 @@ pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorItemInfo_GetFileAttributesA(self: *const T, pdwAttributes: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileAttributesA(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pdwAttributes);
+        pub fn IOfflineFilesSyncErrorItemInfo_GetFileAttributes(self: *const T, pdwAttributes: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileAttributes(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pdwAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOfflineFilesSyncErrorItemInfo_GetFileTimes(self: *const T, pftLastWrite: *FILETIME, pftChange: *FILETIME) callconv(.Inline) HRESULT {
@@ -2035,7 +2035,7 @@ pub const IOfflineFilesCache = extern struct {
             self: *const IOfflineFilesCache,
             ppszPath: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDiskSpaceInformationA: fn(
+        GetDiskSpaceInformation: fn(
             self: *const IOfflineFilesCache,
             pcbVolumeTotal: *u64,
             pcbLimit: *u64,
@@ -2117,8 +2117,8 @@ pub const IOfflineFilesCache = extern struct {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetLocation(@ptrCast(*const IOfflineFilesCache, self), ppszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetDiskSpaceInformationA(self: *const T, pcbVolumeTotal: *u64, pcbLimit: *u64, pcbUsed: *u64, pcbUnpinnedLimit: *u64, pcbUnpinnedUsed: *u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetDiskSpaceInformationA(@ptrCast(*const IOfflineFilesCache, self), pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
+        pub fn IOfflineFilesCache_GetDiskSpaceInformation(self: *const T, pcbVolumeTotal: *u64, pcbLimit: *u64, pcbUsed: *u64, pcbUnpinnedLimit: *u64, pcbUnpinnedUsed: *u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetDiskSpaceInformation(@ptrCast(*const IOfflineFilesCache, self), pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOfflineFilesCache_SetDiskSpaceLimits(self: *const T, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.Inline) HRESULT {

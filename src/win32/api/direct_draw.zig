@@ -548,9 +548,9 @@ pub const DDBLTFX = extern struct {
     ddckSrcColorkey: DDCOLORKEY,
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSCAPS = extern struct {
@@ -857,11 +857,11 @@ pub const DDPIXELFORMAT = extern struct {
     Anonymous3: DDPIXELFORMAT._Anonymous3_e__Union,
     Anonymous4: DDPIXELFORMAT._Anonymous4_e__Union,
     Anonymous5: DDPIXELFORMAT._Anonymous5_e__Union,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOVERLAYFX = extern struct {
@@ -877,8 +877,8 @@ pub const DDOVERLAYFX = extern struct {
     dckSrcColorkey: DDCOLORKEY,
     dwDDFX: u32,
     dwFlags: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDBLTBATCH = extern struct {
@@ -3763,8 +3763,8 @@ pub const DDSURFACEDESC = extern struct {
     ddckCKSrcBlt: DDCOLORKEY,
     ddpfPixelFormat: DDPIXELFORMAT,
     ddsCaps: DDSCAPS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSURFACEDESC2 = extern struct {
@@ -3785,11 +3785,11 @@ pub const DDSURFACEDESC2 = extern struct {
     Anonymous5: DDSURFACEDESC2._Anonymous5_e__Union,
     ddsCaps: DDSCAPS2,
     dwTextureStage: u32,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOPTSURFACEDESC = extern struct {

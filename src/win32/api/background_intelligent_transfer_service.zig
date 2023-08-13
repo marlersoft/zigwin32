@@ -767,12 +767,12 @@ pub const IBackgroundCopyManager = extern struct {
             pJobId: *Guid,
             ppJob: **IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IBackgroundCopyManager,
             jobID: *const Guid,
             ppJob: **IBackgroundCopyJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumJobsA: fn(
+        EnumJobs: fn(
             self: *const IBackgroundCopyManager,
             dwFlags: u32,
             ppEnum: **IEnumBackgroundCopyJobs,
@@ -792,12 +792,12 @@ pub const IBackgroundCopyManager = extern struct {
             return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyManager, self), DisplayName, Type, pJobId, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_GetJobA(self: *const T, jobID: *const Guid, ppJob: **IBackgroundCopyJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetJobA(@ptrCast(*const IBackgroundCopyManager, self), jobID, ppJob);
+        pub fn IBackgroundCopyManager_GetJob(self: *const T, jobID: *const Guid, ppJob: **IBackgroundCopyJob) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyManager, self), jobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyManager_EnumJobsA(self: *const T, dwFlags: u32, ppEnum: **IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).EnumJobsA(@ptrCast(*const IBackgroundCopyManager, self), dwFlags, ppEnum);
+        pub fn IBackgroundCopyManager_EnumJobs(self: *const T, dwFlags: u32, ppEnum: **IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyManager, self), dwFlags, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBackgroundCopyManager_GetErrorDescription(self: *const T, hResult: HRESULT, LanguageId: u32, pErrorDescription: *PWSTR) callconv(.Inline) HRESULT {
@@ -2198,12 +2198,12 @@ pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
 pub const IBackgroundCopyGroup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropA: fn(
+        GetProp: fn(
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
             pvarVal: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropA: fn(
+        SetProp: fn(
             self: *const IBackgroundCopyGroup,
             propID: GROUPPROP,
             pvarVal: *VARIANT,
@@ -2218,7 +2218,7 @@ pub const IBackgroundCopyGroup = extern struct {
             pdwStatus: *u32,
             pdwJobIndex: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IBackgroundCopyGroup,
             jobID: Guid,
             ppJob: **IBackgroundCopyJob1,
@@ -2245,7 +2245,7 @@ pub const IBackgroundCopyGroup = extern struct {
             guidJobID: Guid,
             ppJob: **IBackgroundCopyJob1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumJobsA: fn(
+        EnumJobs: fn(
             self: *const IBackgroundCopyGroup,
             dwFlags: u32,
             ppEnumJobs: **IEnumBackgroundCopyJobs1,
@@ -2268,12 +2268,12 @@ pub const IBackgroundCopyGroup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetPropA(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetPropA(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
+        pub fn IBackgroundCopyGroup_GetProp(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_SetPropA(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetPropA(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
+        pub fn IBackgroundCopyGroup_SetProp(self: *const T, propID: GROUPPROP, pvarVal: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBackgroundCopyGroup_GetProgress(self: *const T, dwFlags: u32, pdwProgress: *u32) callconv(.Inline) HRESULT {
@@ -2284,8 +2284,8 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetStatus(@ptrCast(*const IBackgroundCopyGroup, self), pdwStatus, pdwJobIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_GetJobA(self: *const T, jobID: Guid, ppJob: **IBackgroundCopyJob1) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetJobA(@ptrCast(*const IBackgroundCopyGroup, self), jobID, ppJob);
+        pub fn IBackgroundCopyGroup_GetJob(self: *const T, jobID: Guid, ppJob: **IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyGroup, self), jobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBackgroundCopyGroup_SuspendGroup(self: *const T) callconv(.Inline) HRESULT {
@@ -2312,8 +2312,8 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyGroup, self), guidJobID, ppJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_EnumJobsA(self: *const T, dwFlags: u32, ppEnumJobs: **IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).EnumJobsA(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, ppEnumJobs);
+        pub fn IBackgroundCopyGroup_EnumJobs(self: *const T, dwFlags: u32, ppEnumJobs: **IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, ppEnumJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBackgroundCopyGroup_SwitchToForeground(self: *const T) callconv(.Inline) HRESULT {

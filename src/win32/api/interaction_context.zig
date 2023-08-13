@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
-pub const HINTERACTIONCONTEXT = ?*c_void;
+pub const HINTERACTIONCONTEXT = ?*opaque{};
 
 pub const INTERACTION_ID = extern enum(i32) {
     NONE = 0,
@@ -27,13 +27,15 @@ pub const INTERACTION_ID_DRAG = INTERACTION_ID.DRAG;
 pub const INTERACTION_ID_CROSS_SLIDE = INTERACTION_ID.CROSS_SLIDE;
 pub const INTERACTION_ID_MAX = INTERACTION_ID.MAX;
 
-pub const INTERACTION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const INTERACTION_FLAGS = extern enum(u32) {
     NONE = 0,
     BEGIN = 1,
     END = 2,
     CANCEL = 4,
     INERTIA = 8,
-    MAX = -1,
+    MAX = 4294967295,
+    _,
 };
 pub const INTERACTION_FLAG_NONE = INTERACTION_FLAGS.NONE;
 pub const INTERACTION_FLAG_BEGIN = INTERACTION_FLAGS.BEGIN;
@@ -42,7 +44,8 @@ pub const INTERACTION_FLAG_CANCEL = INTERACTION_FLAGS.CANCEL;
 pub const INTERACTION_FLAG_INERTIA = INTERACTION_FLAGS.INERTIA;
 pub const INTERACTION_FLAG_MAX = INTERACTION_FLAGS.MAX;
 
-pub const INTERACTION_CONFIGURATION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const INTERACTION_CONFIGURATION_FLAGS = extern enum(u32) {
     NONE = 0,
     MANIPULATION = 1,
     MANIPULATION_TRANSLATION_X = 2,
@@ -70,7 +73,8 @@ pub const INTERACTION_CONFIGURATION_FLAGS = extern enum(i32) {
     HOLD_MOUSE = 2,
     HOLD_MULTIPLE_FINGER = 4,
     DRAG = 1,
-    MAX = -1,
+    MAX = 4294967295,
+    _,
 };
 pub const INTERACTION_CONFIGURATION_FLAG_NONE = INTERACTION_CONFIGURATION_FLAGS.NONE;
 pub const INTERACTION_CONFIGURATION_FLAG_MANIPULATION = INTERACTION_CONFIGURATION_FLAGS.MANIPULATION;
@@ -155,12 +159,14 @@ pub const CROSS_SLIDE_THRESHOLD_REARRANGE_START = CROSS_SLIDE_THRESHOLD.REARRANG
 pub const CROSS_SLIDE_THRESHOLD_COUNT = CROSS_SLIDE_THRESHOLD.COUNT;
 pub const CROSS_SLIDE_THRESHOLD_MAX = CROSS_SLIDE_THRESHOLD.MAX;
 
-pub const CROSS_SLIDE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CROSS_SLIDE_FLAGS = extern enum(u32) {
     NONE = 0,
     SELECT = 1,
     SPEED_BUMP = 2,
     REARRANGE = 4,
-    MAX = -1,
+    MAX = 4294967295,
+    _,
 };
 pub const CROSS_SLIDE_FLAGS_NONE = CROSS_SLIDE_FLAGS.NONE;
 pub const CROSS_SLIDE_FLAGS_SELECT = CROSS_SLIDE_FLAGS.SELECT;

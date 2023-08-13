@@ -15,13 +15,90 @@ pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-81
 // Section: Types (83)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
-pub const HSTRING = ?*c_void;
+pub const HSTRING = ?*opaque{};
 
 pub const HSTRING_BUFFER = isize;
 
 pub const ROPARAMIIDHANDLE = isize;
 
 pub const APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = isize;
+
+pub const ACTIVATIONTYPE = extern enum(i32) {
+    UNCATEGORIZED = 0,
+    FROM_MONIKER = 1,
+    FROM_DATA = 2,
+    FROM_STORAGE = 4,
+    FROM_STREAM = 8,
+    FROM_FILE = 16,
+};
+pub const ACTIVATIONTYPE_UNCATEGORIZED = ACTIVATIONTYPE.UNCATEGORIZED;
+pub const ACTIVATIONTYPE_FROM_MONIKER = ACTIVATIONTYPE.FROM_MONIKER;
+pub const ACTIVATIONTYPE_FROM_DATA = ACTIVATIONTYPE.FROM_DATA;
+pub const ACTIVATIONTYPE_FROM_STORAGE = ACTIVATIONTYPE.FROM_STORAGE;
+pub const ACTIVATIONTYPE_FROM_STREAM = ACTIVATIONTYPE.FROM_STREAM;
+pub const ACTIVATIONTYPE_FROM_FILE = ACTIVATIONTYPE.FROM_FILE;
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IAgileReference_Value = @import("../zig.zig").Guid.initString("c03f6a43-65a4-9818-987e-e0b810d2a6f2");
+pub const IID_IAgileReference = &IID_IAgileReference_Value;
+pub const IAgileReference = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Resolve: fn(
+            self: *const IAgileReference,
+            riid: *const Guid,
+            ppvObjectReference: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAgileReference_Resolve(self: *const T, riid: *const Guid, ppvObjectReference: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAgileReference.VTable, self.vtable).Resolve(@ptrCast(*const IAgileReference, self), riid, ppvObjectReference);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IApartmentShutdown_Value = @import("../zig.zig").Guid.initString("a2f05a09-27a2-42b5-bc0e-ac163ef49d9b");
+pub const IID_IApartmentShutdown = &IID_IApartmentShutdown_Value;
+pub const IApartmentShutdown = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnUninitialize: fn(
+            self: *const IApartmentShutdown,
+            ui64ApartmentIdentifier: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApartmentShutdown_OnUninitialize(self: *const T, ui64ApartmentIdentifier: u64) callconv(.Inline) void {
+            return @ptrCast(*const IApartmentShutdown.VTable, self.vtable).OnUninitialize(@ptrCast(*const IApartmentShutdown, self), ui64ApartmentIdentifier);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const ServerInformation = extern struct {
+    dwServerPid: u32,
+    dwServerTid: u32,
+    ui64ServerAddress: u64,
+};
+
+pub const AgileReferenceOptions = extern enum(i32) {
+    FAULT = 0,
+    LAYEDMARSHAL = 1,
+};
+pub const AGILEREFERENCE_DEFAULT = AgileReferenceOptions.FAULT;
+pub const AGILEREFERENCE_DELAYEDMARSHAL = AgileReferenceOptions.LAYEDMARSHAL;
+
+pub const EventRegistrationToken = extern struct {
+    value: i64,
+};
 
 pub const HSTRING_HEADER = extern struct {
     Reserved: HSTRING_HEADER._Reserved_e__Union,
@@ -646,7 +723,7 @@ pub const PDF_RENDER_PARAMS = extern struct {
     SourceRect: D2D_RECT_F,
     DestinationWidth: u32,
     DestinationHeight: u32,
-    BackgroundColor: D3DCOLORVALUE,
+    BackgroundColor: D2D_COLOR_F,
     IgnoreHighContrast: u8,
 };
 
@@ -1844,12 +1921,14 @@ pub const IBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RO_ERROR_REPORTING_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RO_ERROR_REPORTING_FLAGS = extern enum(u32) {
     NONE = 0,
     SUPPRESSEXCEPTIONS = 1,
     FORCEEXCEPTIONS = 2,
     USESETERRORINFO = 4,
     SUPPRESSSETERRORINFO = 8,
+    _,
 };
 pub const RO_ERROR_REPORTING_NONE = RO_ERROR_REPORTING_FLAGS.NONE;
 pub const RO_ERROR_REPORTING_SUPPRESSEXCEPTIONS = RO_ERROR_REPORTING_FLAGS.SUPPRESSEXCEPTIONS;
@@ -2013,87 +2092,24 @@ pub const IMemoryBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACTIVATIONTYPE = extern enum(i32) {
-    UNCATEGORIZED = 0,
-    FROM_MONIKER = 1,
-    FROM_DATA = 2,
-    FROM_STORAGE = 4,
-    FROM_STREAM = 8,
-    FROM_FILE = 16,
-};
-pub const ACTIVATIONTYPE_UNCATEGORIZED = ACTIVATIONTYPE.UNCATEGORIZED;
-pub const ACTIVATIONTYPE_FROM_MONIKER = ACTIVATIONTYPE.FROM_MONIKER;
-pub const ACTIVATIONTYPE_FROM_DATA = ACTIVATIONTYPE.FROM_DATA;
-pub const ACTIVATIONTYPE_FROM_STORAGE = ACTIVATIONTYPE.FROM_STORAGE;
-pub const ACTIVATIONTYPE_FROM_STREAM = ACTIVATIONTYPE.FROM_STREAM;
-pub const ACTIVATIONTYPE_FROM_FILE = ACTIVATIONTYPE.FROM_FILE;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IAgileReference_Value = @import("../zig.zig").Guid.initString("c03f6a43-65a4-9818-987e-e0b810d2a6f2");
-pub const IID_IAgileReference = &IID_IAgileReference_Value;
-pub const IAgileReference = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Resolve: fn(
-            self: *const IAgileReference,
-            riid: *const Guid,
-            ppvObjectReference: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAgileReference_Resolve(self: *const T, riid: *const Guid, ppvObjectReference: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAgileReference.VTable, self.vtable).Resolve(@ptrCast(*const IAgileReference, self), riid, ppvObjectReference);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const ServerInformation = extern struct {
-    dwServerPid: u32,
-    dwServerTid: u32,
-    ui64ServerAddress: u64,
-};
-
-pub const AgileReferenceOptions = extern enum(i32) {
-    FAULT = 0,
-    LAYEDMARSHAL = 1,
-};
-pub const AGILEREFERENCE_DEFAULT = AgileReferenceOptions.FAULT;
-pub const AGILEREFERENCE_DELAYEDMARSHAL = AgileReferenceOptions.LAYEDMARSHAL;
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IApartmentShutdown_Value = @import("../zig.zig").Guid.initString("a2f05a09-27a2-42b5-bc0e-ac163ef49d9b");
-pub const IID_IApartmentShutdown = &IID_IApartmentShutdown_Value;
-pub const IApartmentShutdown = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnUninitialize: fn(
-            self: *const IApartmentShutdown,
-            ui64ApartmentIdentifier: u64,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApartmentShutdown_OnUninitialize(self: *const T, ui64ApartmentIdentifier: u64) callconv(.Inline) void {
-            return @ptrCast(*const IApartmentShutdown.VTable, self.vtable).OnUninitialize(@ptrCast(*const IApartmentShutdown, self), ui64ApartmentIdentifier);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const EventRegistrationToken = extern struct {
-    value: i64,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (70)
 //--------------------------------------------------------------------------------
+pub extern "OLE32" fn CoDecodeProxy(
+    dwClientPid: u32,
+    ui64ProxyAddress: u64,
+    pServerInformation: *ServerInformation,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "OLE32" fn RoGetAgileReference(
+    options: AgileReferenceOptions,
+    riid: *const Guid,
+    pUnk: *IUnknown,
+    ppAgileReference: **IAgileReference,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: *u32,
@@ -2155,7 +2171,7 @@ pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateString(
-    sourceString: ?[*:0]u16,
+    sourceString: ?[*:0]const u16,
     length: u32,
     string: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2525,20 +2541,6 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAcce
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn CoDecodeProxy(
-    dwClientPid: u32,
-    ui64ProxyAddress: u64,
-    pServerInformation: *ServerInformation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "OLE32" fn RoGetAgileReference(
-    options: AgileReferenceOptions,
-    riid: *const Guid,
-    pUnk: *IUnknown,
-    ppAgileReference: **IAgileReference,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -2557,7 +2559,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IMarshal = @import("com.zig").IMarshal;
-const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
 const HRESULT = @import("com.zig").HRESULT;
 const IWICBitmap = @import("windows_imaging_component.zig").IWICBitmap;
 const BOOL = @import("system_services.zig").BOOL;
@@ -2571,6 +2572,7 @@ const ID2D1DeviceContext = @import("direct2d.zig").ID2D1DeviceContext;
 const IStream = @import("structured_storage.zig").IStream;
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const PWSTR = @import("system_services.zig").PWSTR;
+const D2D_COLOR_F = @import("direct2d.zig").D2D_COLOR_F;
 const IUnknown = @import("com.zig").IUnknown;
 const POINTER_INFO = @import("pointer_input.zig").POINTER_INFO;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;

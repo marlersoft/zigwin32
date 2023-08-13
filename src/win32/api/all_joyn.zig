@@ -1475,7 +1475,8 @@ pub extern "MSAJApi" fn AllJoynCloseBusHandle(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynSendToBus(
     connectedBusHandle: HANDLE,
-    buffer: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*const c_void,
     bytesToWrite: u32,
     bytesTransferred: ?*u32,
     reserved: *c_void,
@@ -1484,7 +1485,8 @@ pub extern "MSAJApi" fn AllJoynSendToBus(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynReceiveFromBus(
     connectedBusHandle: HANDLE,
-    buffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*c_void,
     bytesToRead: u32,
     bytesTransferred: ?*u32,
     reserved: *c_void,

@@ -198,7 +198,8 @@ pub extern "RstrtMgr" fn RmRemoveFilter(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmGetFilterList(
     dwSessionHandle: u32,
-    pbFilterBuf: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pbFilterBuf: ?*u8,
     cbFilterBuf: u32,
     cbFilterBufNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;

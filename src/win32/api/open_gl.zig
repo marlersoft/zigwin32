@@ -7,7 +7,7 @@
 // Section: Types (5)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
-pub const HGLRC = ?*c_void;
+pub const HGLRC = ?*opaque{};
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
@@ -93,7 +93,8 @@ pub extern "GDI32" fn DescribePixelFormat(
     hdc: HDC,
     iPixelFormat: i32,
     nBytes: u32,
-    ppfd: ?[*]PIXELFORMATDESCRIPTOR,
+    // TODO: what to do with BytesParamIndex 2?
+    ppfd: ?*PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -112,7 +113,8 @@ pub extern "GDI32" fn SetPixelFormat(
 pub extern "GDI32" fn GetEnhMetaFilePixelFormat(
     hemf: HENHMETAFILE,
     cbBuffer: u32,
-    ppfd: ?[*]PIXELFORMATDESCRIPTOR,
+    // TODO: what to do with BytesParamIndex 1?
+    ppfd: ?*PIXELFORMATDESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'

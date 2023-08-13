@@ -2060,13 +2060,15 @@ pub const ID3D11DeviceChild = extern struct {
             self: *const ID3D11DeviceChild,
             guid: *const Guid,
             pDataSize: *u32,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const ID3D11DeviceChild,
             guid: *const Guid,
             DataSize: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const ID3D11DeviceChild,
@@ -2082,11 +2084,11 @@ pub const ID3D11DeviceChild = extern struct {
             return @ptrCast(*const ID3D11DeviceChild.VTable, self.vtable).GetDevice(@ptrCast(*const ID3D11DeviceChild, self), ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11DeviceChild_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D11DeviceChild_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11DeviceChild.VTable, self.vtable).GetPrivateData(@ptrCast(*const ID3D11DeviceChild, self), guid, pDataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11DeviceChild_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn ID3D11DeviceChild_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11DeviceChild.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D11DeviceChild, self), guid, DataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3821,7 +3823,8 @@ pub const ID3D11DeviceContext = extern struct {
         GetData: fn(
             self: *const ID3D11DeviceContext,
             pAsync: *ID3D11Asynchronous,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*c_void,
             DataSize: u32,
             GetDataFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4403,7 +4406,7 @@ pub const ID3D11DeviceContext = extern struct {
             return @ptrCast(*const ID3D11DeviceContext.VTable, self.vtable).End(@ptrCast(*const ID3D11DeviceContext, self), pAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11DeviceContext_GetData(self: *const T, pAsync: *ID3D11Asynchronous, pData: ?[*]u8, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D11DeviceContext_GetData(self: *const T, pAsync: *ID3D11Asynchronous, pData: ?*c_void, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11DeviceContext.VTable, self.vtable).GetData(@ptrCast(*const ID3D11DeviceContext, self), pAsync, pData, DataSize, GetDataFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4952,20 +4955,23 @@ pub const ID3D11Device = extern struct {
         CheckFeatureSupport: fn(
             self: *const ID3D11Device,
             Feature: D3D11_FEATURE,
-            pFeatureSupportData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pFeatureSupportData: *c_void,
             FeatureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrivateData: fn(
             self: *const ID3D11Device,
             guid: *const Guid,
             pDataSize: *u32,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const ID3D11Device,
             guid: *const Guid,
             DataSize: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const ID3D11Device,
@@ -5117,15 +5123,15 @@ pub const ID3D11Device = extern struct {
             return @ptrCast(*const ID3D11Device.VTable, self.vtable).CheckCounter(@ptrCast(*const ID3D11Device, self), pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11Device_CheckFeatureSupport(self: *const T, Feature: D3D11_FEATURE, pFeatureSupportData: [*]u8, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D11Device_CheckFeatureSupport(self: *const T, Feature: D3D11_FEATURE, pFeatureSupportData: *c_void, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11Device.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID3D11Device, self), Feature, pFeatureSupportData, FeatureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11Device_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D11Device_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11Device.VTable, self.vtable).GetPrivateData(@ptrCast(*const ID3D11Device, self), guid, pDataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11Device_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn ID3D11Device_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11Device.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D11Device, self), guid, DataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8182,10 +8188,11 @@ pub const ID3D11InfoQueue = extern struct {
         ClearStoredMessages: fn(
             self: *const ID3D11InfoQueue,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const ID3D11InfoQueue,
             MessageIndex: u64,
-            pMessage: ?[*]D3D11_MESSAGE,
+            // TODO: what to do with BytesParamIndex 2?
+            pMessage: ?*D3D11_MESSAGE,
             pMessageByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumMessagesAllowedByStorageFilter: fn(
@@ -8212,7 +8219,8 @@ pub const ID3D11InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageFilter: fn(
             self: *const ID3D11InfoQueue,
-            pFilter: ?[*]D3D11_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearStorageFilter: fn(
@@ -8240,7 +8248,8 @@ pub const ID3D11InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRetrievalFilter: fn(
             self: *const ID3D11InfoQueue,
-            pFilter: ?[*]D3D11_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearRetrievalFilter: fn(
@@ -8321,8 +8330,8 @@ pub const ID3D11InfoQueue = extern struct {
             return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).ClearStoredMessages(@ptrCast(*const ID3D11InfoQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11InfoQueue_GetMessageA(self: *const T, MessageIndex: u64, pMessage: ?[*]D3D11_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).GetMessageA(@ptrCast(*const ID3D11InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
+        pub fn ID3D11InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D11_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).GetMessage(@ptrCast(*const ID3D11InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D11InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) callconv(.Inline) u64 {
@@ -8353,7 +8362,7 @@ pub const ID3D11InfoQueue = extern struct {
             return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).AddStorageFilterEntries(@ptrCast(*const ID3D11InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11InfoQueue_GetStorageFilter(self: *const T, pFilter: ?[*]D3D11_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D11InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D11_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).GetStorageFilter(@ptrCast(*const ID3D11InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8385,7 +8394,7 @@ pub const ID3D11InfoQueue = extern struct {
             return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).AddRetrievalFilterEntries(@ptrCast(*const ID3D11InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?[*]D3D11_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D11InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D11_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11InfoQueue.VTable, self.vtable).GetRetrievalFilter(@ptrCast(*const ID3D11InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9512,11 +9521,13 @@ pub const ID3D11Query1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D11_FENCE_FLAG = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D11_FENCE_FLAG = extern enum(u32) {
     NONE = 0,
     SHARED = 2,
     SHARED_CROSS_ADAPTER = 4,
     NON_MONITORED = 8,
+    _,
 };
 pub const D3D11_FENCE_FLAG_NONE = D3D11_FENCE_FLAG.NONE;
 pub const D3D11_FENCE_FLAG_SHARED = D3D11_FENCE_FLAG.SHARED;
@@ -9880,7 +9891,8 @@ pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_G = D3D11_VIDEO_DECODER_HISTOG
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_B = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.B;
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT.A;
 
-pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS = extern enum(u32) {
     NONE = 0,
     Y = 1,
     U = 2,
@@ -9889,6 +9901,7 @@ pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS = extern enum(i32) {
     G = 2,
     B = 4,
     A = 8,
+    _,
 };
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_NONE = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.NONE;
 pub const D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_Y = D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS.Y;
@@ -9906,8 +9919,10 @@ pub const D3D11_FEATURE_DATA_VIDEO_DECODER_HISTOGRAM = extern struct {
     CounterBitDepth: u32,
 };
 
-pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAG_NONE = D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS.E;
 
@@ -9919,7 +9934,8 @@ pub const ID3D11VideoDevice2 = extern struct {
         CheckFeatureSupport: fn(
             self: *const ID3D11VideoDevice2,
             Feature: D3D11_FEATURE_VIDEO,
-            pFeatureSupportData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pFeatureSupportData: *c_void,
             FeatureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NegotiateCryptoSessionKeyExchangeMT: fn(
@@ -9927,18 +9943,19 @@ pub const ID3D11VideoDevice2 = extern struct {
             pCryptoSession: *ID3D11CryptoSession,
             flags: D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS,
             DataSize: u32,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11VideoDevice1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice2_CheckFeatureSupport(self: *const T, Feature: D3D11_FEATURE_VIDEO, pFeatureSupportData: [*]u8, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D11VideoDevice2_CheckFeatureSupport(self: *const T, Feature: D3D11_FEATURE_VIDEO, pFeatureSupportData: *c_void, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11VideoDevice2.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID3D11VideoDevice2, self), Feature, pFeatureSupportData, FeatureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoDevice2_NegotiateCryptoSessionKeyExchangeMT(self: *const T, pCryptoSession: *ID3D11CryptoSession, flags: D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS, DataSize: u32, pData: [*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D11VideoDevice2_NegotiateCryptoSessionKeyExchangeMT(self: *const T, pCryptoSession: *ID3D11CryptoSession, flags: D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11VideoDevice2.VTable, self.vtable).NegotiateCryptoSessionKeyExchangeMT(@ptrCast(*const ID3D11VideoDevice2, self), pCryptoSession, flags, DataSize, pData);
         }
     };}
@@ -9967,7 +9984,8 @@ pub const ID3D11VideoContext3 = extern struct {
             pDecoder: *ID3D11VideoDecoder,
             pView: *ID3D11VideoDecoderOutputView,
             ContentKeySize: u32,
-            pContentKey: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pContentKey: ?*const c_void,
             NumComponentHistograms: u32,
             pHistogramOffsets: ?[*]const u32,
             ppHistogramBuffers: ?[*]?*ID3D11Buffer,
@@ -9983,7 +10001,7 @@ pub const ID3D11VideoContext3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11VideoContext2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D11VideoContext3_DecoderBeginFrame1(self: *const T, pDecoder: *ID3D11VideoDecoder, pView: *ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?[*]const u8, NumComponentHistograms: u32, pHistogramOffsets: ?[*]const u32, ppHistogramBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) HRESULT {
+        pub fn ID3D11VideoContext3_DecoderBeginFrame1(self: *const T, pDecoder: *ID3D11VideoDecoder, pView: *ID3D11VideoDecoderOutputView, ContentKeySize: u32, pContentKey: ?*const c_void, NumComponentHistograms: u32, pHistogramOffsets: ?[*]const u32, ppHistogramBuffers: ?[*]?*ID3D11Buffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D11VideoContext3.VTable, self.vtable).DecoderBeginFrame1(@ptrCast(*const ID3D11VideoContext3, self), pDecoder, pView, ContentKeySize, pContentKey, NumComponentHistograms, pHistogramOffsets, ppHistogramBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11460,7 +11478,8 @@ pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "D3DCOMPILER_47" fn D3DDisassemble11Trace(
-    pSrcData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
     SrcDataSize: usize,
     pTrace: *ID3D11ShaderTrace,
     StartStep: u32,

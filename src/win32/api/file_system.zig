@@ -2,29 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (198)
 //--------------------------------------------------------------------------------
-pub const ClfsNullRecord = @as(u8, 0);
-pub const ClfsDataRecord = @as(u8, 1);
-pub const ClfsRestartRecord = @as(u8, 2);
-pub const ClfsClientRecord = @as(u8, 3);
-pub const ClsContainerInitializing = @as(u32, 1);
-pub const ClsContainerInactive = @as(u32, 2);
-pub const ClsContainerActive = @as(u32, 4);
-pub const ClsContainerActivePendingDelete = @as(u32, 8);
-pub const ClsContainerPendingArchive = @as(u32, 16);
-pub const ClsContainerPendingArchiveAndDelete = @as(u32, 32);
-pub const ClfsContainerInitializing = @as(u32, 1);
-pub const ClfsContainerInactive = @as(u32, 2);
-pub const ClfsContainerActive = @as(u32, 4);
-pub const ClfsContainerActivePendingDelete = @as(u32, 8);
-pub const ClfsContainerPendingArchive = @as(u32, 16);
-pub const ClfsContainerPendingArchiveAndDelete = @as(u32, 32);
-pub const CLFS_MAX_CONTAINER_INFO = @as(u32, 256);
-pub const CLFS_SCAN_INIT = @as(u8, 1);
-pub const CLFS_SCAN_FORWARD = @as(u8, 2);
-pub const CLFS_SCAN_BACKWARD = @as(u8, 4);
-pub const CLFS_SCAN_CLOSE = @as(u8, 8);
-pub const CLFS_SCAN_INITIALIZED = @as(u8, 16);
-pub const CLFS_SCAN_BUFFERED = @as(u8, 32);
 pub const IOCTL_VOLUME_BC_VERSION = @as(u32, 1);
 pub const CSV_BLOCK_CACHE_CALLBACK_VERSION = @as(u32, 1);
 pub const CSV_BLOCK_AND_FILE_CACHE_CALLBACK_VERSION = @as(u32, 2);
@@ -200,28 +177,33 @@ pub const KTM_MARSHAL_BLOB_VERSION_MAJOR = @as(u32, 1);
 pub const KTM_MARSHAL_BLOB_VERSION_MINOR = @as(u32, 1);
 pub const MAX_TRANSACTION_DESCRIPTION_LENGTH = @as(u32, 64);
 pub const MAX_RESOURCEMANAGER_DESCRIPTION_LENGTH = @as(u32, 64);
+pub const ClfsNullRecord = @as(u8, 0);
+pub const ClfsDataRecord = @as(u8, 1);
+pub const ClfsRestartRecord = @as(u8, 2);
+pub const ClfsClientRecord = @as(u8, 3);
+pub const ClsContainerInitializing = @as(u32, 1);
+pub const ClsContainerInactive = @as(u32, 2);
+pub const ClsContainerActive = @as(u32, 4);
+pub const ClsContainerActivePendingDelete = @as(u32, 8);
+pub const ClsContainerPendingArchive = @as(u32, 16);
+pub const ClsContainerPendingArchiveAndDelete = @as(u32, 32);
+pub const ClfsContainerInitializing = @as(u32, 1);
+pub const ClfsContainerInactive = @as(u32, 2);
+pub const ClfsContainerActive = @as(u32, 4);
+pub const ClfsContainerActivePendingDelete = @as(u32, 8);
+pub const ClfsContainerPendingArchive = @as(u32, 16);
+pub const ClfsContainerPendingArchiveAndDelete = @as(u32, 32);
+pub const CLFS_MAX_CONTAINER_INFO = @as(u32, 256);
+pub const CLFS_SCAN_INIT = @as(u8, 1);
+pub const CLFS_SCAN_FORWARD = @as(u8, 2);
+pub const CLFS_SCAN_BACKWARD = @as(u8, 4);
+pub const CLFS_SCAN_CLOSE = @as(u8, 8);
+pub const CLFS_SCAN_INITIALIZED = @as(u8, 16);
+pub const CLFS_SCAN_BUFFERED = @as(u8, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (457)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileHandle = isize;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileNameHandle = isize;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindStreamHandle = isize;
-
-// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
-pub const FindChangeNotificationHandle = isize;
-
-// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
-pub const FindVolumeHandle = isize;
-
-// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
-pub const FindVolumeMointPointHandle = isize;
-
 pub const FILE_ID_128 = extern struct {
     Identifier: [16]u8,
 };
@@ -268,461 +250,23 @@ pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.Undetermined;
 pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.Committed;
 pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.Aborted;
 
-pub const OFSTRUCT = extern struct {
-    cBytes: u8,
-    fFixedDisk: u8,
-    nErrCode: u16,
-    Reserved1: u16,
-    Reserved2: u16,
-    szPathName: [128]i8,
-};
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileHandle = isize;
 
-pub const PFE_EXPORT_FUNC = fn(
-    pbData: [*:0]u8,
-    pvCallbackContext: ?*c_void,
-    ulLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileNameHandle = isize;
 
-pub const PFE_IMPORT_FUNC = fn(
-    pbData: [*:0]u8,
-    pvCallbackContext: ?*c_void,
-    ulLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindStreamHandle = isize;
 
-pub const LPPROGRESS_ROUTINE = fn(
-    TotalFileSize: LARGE_INTEGER,
-    TotalBytesTransferred: LARGE_INTEGER,
-    StreamSize: LARGE_INTEGER,
-    StreamBytesTransferred: LARGE_INTEGER,
-    dwStreamNumber: u32,
-    dwCallbackReason: LPPROGRESS_ROUTINE_dwCallbackReasonFlags,
-    hSourceFile: HANDLE,
-    hDestinationFile: HANDLE,
-    lpData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
+// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
+pub const FindChangeNotificationHandle = isize;
 
-pub const COPYFILE2_MESSAGE_TYPE = extern enum(i32) {
-    NONE = 0,
-    CHUNK_STARTED = 1,
-    CHUNK_FINISHED = 2,
-    STREAM_STARTED = 3,
-    STREAM_FINISHED = 4,
-    POLL_CONTINUE = 5,
-    ERROR = 6,
-    MAX = 7,
-};
-pub const COPYFILE2_CALLBACK_NONE = COPYFILE2_MESSAGE_TYPE.NONE;
-pub const COPYFILE2_CALLBACK_CHUNK_STARTED = COPYFILE2_MESSAGE_TYPE.CHUNK_STARTED;
-pub const COPYFILE2_CALLBACK_CHUNK_FINISHED = COPYFILE2_MESSAGE_TYPE.CHUNK_FINISHED;
-pub const COPYFILE2_CALLBACK_STREAM_STARTED = COPYFILE2_MESSAGE_TYPE.STREAM_STARTED;
-pub const COPYFILE2_CALLBACK_STREAM_FINISHED = COPYFILE2_MESSAGE_TYPE.STREAM_FINISHED;
-pub const COPYFILE2_CALLBACK_POLL_CONTINUE = COPYFILE2_MESSAGE_TYPE.POLL_CONTINUE;
-pub const COPYFILE2_CALLBACK_ERROR = COPYFILE2_MESSAGE_TYPE.ERROR;
-pub const COPYFILE2_CALLBACK_MAX = COPYFILE2_MESSAGE_TYPE.MAX;
+// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
+pub const FindVolumeHandle = isize;
 
-pub const COPYFILE2_MESSAGE_ACTION = extern enum(i32) {
-    CONTINUE = 0,
-    CANCEL = 1,
-    STOP = 2,
-    QUIET = 3,
-    PAUSE = 4,
-};
-pub const COPYFILE2_PROGRESS_CONTINUE = COPYFILE2_MESSAGE_ACTION.CONTINUE;
-pub const COPYFILE2_PROGRESS_CANCEL = COPYFILE2_MESSAGE_ACTION.CANCEL;
-pub const COPYFILE2_PROGRESS_STOP = COPYFILE2_MESSAGE_ACTION.STOP;
-pub const COPYFILE2_PROGRESS_QUIET = COPYFILE2_MESSAGE_ACTION.QUIET;
-pub const COPYFILE2_PROGRESS_PAUSE = COPYFILE2_MESSAGE_ACTION.PAUSE;
-
-pub const COPYFILE2_COPY_PHASE = extern enum(i32) {
-    NONE = 0,
-    PREPARE_SOURCE = 1,
-    PREPARE_DEST = 2,
-    READ_SOURCE = 3,
-    WRITE_DESTINATION = 4,
-    SERVER_COPY = 5,
-    NAMEGRAFT_COPY = 6,
-    MAX = 7,
-};
-pub const COPYFILE2_PHASE_NONE = COPYFILE2_COPY_PHASE.NONE;
-pub const COPYFILE2_PHASE_PREPARE_SOURCE = COPYFILE2_COPY_PHASE.PREPARE_SOURCE;
-pub const COPYFILE2_PHASE_PREPARE_DEST = COPYFILE2_COPY_PHASE.PREPARE_DEST;
-pub const COPYFILE2_PHASE_READ_SOURCE = COPYFILE2_COPY_PHASE.READ_SOURCE;
-pub const COPYFILE2_PHASE_WRITE_DESTINATION = COPYFILE2_COPY_PHASE.WRITE_DESTINATION;
-pub const COPYFILE2_PHASE_SERVER_COPY = COPYFILE2_COPY_PHASE.SERVER_COPY;
-pub const COPYFILE2_PHASE_NAMEGRAFT_COPY = COPYFILE2_COPY_PHASE.NAMEGRAFT_COPY;
-pub const COPYFILE2_PHASE_MAX = COPYFILE2_COPY_PHASE.MAX;
-
-pub const COPYFILE2_MESSAGE = extern struct {
-    Type: COPYFILE2_MESSAGE_TYPE,
-    dwPadding: u32,
-    Info: COPYFILE2_MESSAGE._Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PCOPYFILE2_PROGRESS_ROUTINE = fn(
-    pMessage: *const COPYFILE2_MESSAGE,
-    pvCallbackContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION;
-
-pub const COPYFILE2_EXTENDED_PARAMETERS = extern struct {
-    dwSize: u32,
-    dwCopyFlags: u32,
-    pfCancel: *BOOL,
-    pProgressRoutine: PCOPYFILE2_PROGRESS_ROUTINE,
-    pvCallbackContext: *c_void,
-};
-
-pub const FILE_BASIC_INFO = extern struct {
-    CreationTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    LastWriteTime: LARGE_INTEGER,
-    ChangeTime: LARGE_INTEGER,
-    FileAttributes: u32,
-};
-
-pub const FILE_STANDARD_INFO = extern struct {
-    AllocationSize: LARGE_INTEGER,
-    EndOfFile: LARGE_INTEGER,
-    NumberOfLinks: u32,
-    DeletePending: u8,
-    Directory: u8,
-};
-
-pub const FILE_NAME_INFO = extern struct {
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const FILE_RENAME_INFO = extern struct {
-    Anonymous: FILE_RENAME_INFO._Anonymous_e__Union,
-    RootDirectory: HANDLE,
-    FileNameLength: u32,
-    FileName: [1]u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const FILE_ALLOCATION_INFO = extern struct {
-    AllocationSize: LARGE_INTEGER,
-};
-
-pub const FILE_END_OF_FILE_INFO = extern struct {
-    EndOfFile: LARGE_INTEGER,
-};
-
-pub const FILE_STREAM_INFO = extern struct {
-    NextEntryOffset: u32,
-    StreamNameLength: u32,
-    StreamSize: LARGE_INTEGER,
-    StreamAllocationSize: LARGE_INTEGER,
-    StreamName: [1]u16,
-};
-
-pub const FILE_COMPRESSION_INFO = extern struct {
-    CompressedFileSize: LARGE_INTEGER,
-    CompressionFormat: u16,
-    CompressionUnitShift: u8,
-    ChunkShift: u8,
-    ClusterShift: u8,
-    Reserved: [3]u8,
-};
-
-pub const FILE_ATTRIBUTE_TAG_INFO = extern struct {
-    FileAttributes: u32,
-    ReparseTag: u32,
-};
-
-pub const FILE_DISPOSITION_INFO = extern struct {
-    DeleteFileA: u8,
-};
-
-pub const FILE_ID_BOTH_DIR_INFO = extern struct {
-    NextEntryOffset: u32,
-    FileIndex: u32,
-    CreationTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    LastWriteTime: LARGE_INTEGER,
-    ChangeTime: LARGE_INTEGER,
-    EndOfFile: LARGE_INTEGER,
-    AllocationSize: LARGE_INTEGER,
-    FileAttributes: u32,
-    FileNameLength: u32,
-    EaSize: u32,
-    ShortNameLength: i8,
-    ShortName: [12]u16,
-    FileId: LARGE_INTEGER,
-    FileName: [1]u16,
-};
-
-pub const FILE_FULL_DIR_INFO = extern struct {
-    NextEntryOffset: u32,
-    FileIndex: u32,
-    CreationTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    LastWriteTime: LARGE_INTEGER,
-    ChangeTime: LARGE_INTEGER,
-    EndOfFile: LARGE_INTEGER,
-    AllocationSize: LARGE_INTEGER,
-    FileAttributes: u32,
-    FileNameLength: u32,
-    EaSize: u32,
-    FileName: [1]u16,
-};
-
-pub const PRIORITY_HINT = extern enum(i32) {
-    IoPriorityHintVeryLow = 0,
-    IoPriorityHintLow = 1,
-    IoPriorityHintNormal = 2,
-    MaximumIoPriorityHintType = 3,
-};
-pub const IoPriorityHintVeryLow = PRIORITY_HINT.IoPriorityHintVeryLow;
-pub const IoPriorityHintLow = PRIORITY_HINT.IoPriorityHintLow;
-pub const IoPriorityHintNormal = PRIORITY_HINT.IoPriorityHintNormal;
-pub const MaximumIoPriorityHintType = PRIORITY_HINT.MaximumIoPriorityHintType;
-
-pub const FILE_IO_PRIORITY_HINT_INFO = extern struct {
-    PriorityHint: PRIORITY_HINT,
-};
-
-pub const FILE_ALIGNMENT_INFO = extern struct {
-    AlignmentRequirement: u32,
-};
-
-pub const FILE_STORAGE_INFO = extern struct {
-    LogicalBytesPerSector: u32,
-    PhysicalBytesPerSectorForAtomicity: u32,
-    PhysicalBytesPerSectorForPerformance: u32,
-    FileSystemEffectivePhysicalBytesPerSectorForAtomicity: u32,
-    Flags: u32,
-    ByteOffsetForSectorAlignment: u32,
-    ByteOffsetForPartitionAlignment: u32,
-};
-
-pub const FILE_ID_INFO = extern struct {
-    VolumeSerialNumber: u64,
-    FileId: FILE_ID_128,
-};
-
-pub const FILE_ID_EXTD_DIR_INFO = extern struct {
-    NextEntryOffset: u32,
-    FileIndex: u32,
-    CreationTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    LastWriteTime: LARGE_INTEGER,
-    ChangeTime: LARGE_INTEGER,
-    EndOfFile: LARGE_INTEGER,
-    AllocationSize: LARGE_INTEGER,
-    FileAttributes: u32,
-    FileNameLength: u32,
-    EaSize: u32,
-    ReparsePointTag: u32,
-    FileId: FILE_ID_128,
-    FileName: [1]u16,
-};
-
-pub const FILE_REMOTE_PROTOCOL_INFO = extern struct {
-    StructureVersion: u16,
-    StructureSize: u16,
-    Protocol: u32,
-    ProtocolMajorVersion: u16,
-    ProtocolMinorVersion: u16,
-    ProtocolRevision: u16,
-    Reserved: u16,
-    Flags: u32,
-    GenericReserved: FILE_REMOTE_PROTOCOL_INFO._GenericReserved_e__Struct,
-    ProtocolSpecific: FILE_REMOTE_PROTOCOL_INFO._ProtocolSpecific_e__Union,
-    const _ProtocolSpecific_e__Union = u32; // TODO: generate this nested type!
-    const _GenericReserved_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const FILE_ID_TYPE = extern enum(i32) {
-    FileIdType = 0,
-    ObjectIdType = 1,
-    ExtendedFileIdType = 2,
-    MaximumFileIdType = 3,
-};
-pub const FileIdType = FILE_ID_TYPE.FileIdType;
-pub const ObjectIdType = FILE_ID_TYPE.ObjectIdType;
-pub const ExtendedFileIdType = FILE_ID_TYPE.ExtendedFileIdType;
-pub const MaximumFileIdType = FILE_ID_TYPE.MaximumFileIdType;
-
-pub const FILE_ID_DESCRIPTOR = extern struct {
-    dwSize: u32,
-    Type: FILE_ID_TYPE,
-    Anonymous: FILE_ID_DESCRIPTOR._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
-    CASE_SENSITIVE = 1,
-    LARGE_FETCH = 2,
-    ON_DISK_ENTRIES_ONLY = 4,
-    _,
-};
-pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
-pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
-pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
-    RAW_TARGET_PATH = 1,
-    REMOVE_DEFINITION = 2,
-    EXACT_MATCH_ON_REMOVE = 4,
-    NO_BROADCAST_SYSTEM = 8,
-    LUID_BROADCAST_DRIVE = 16,
-    _,
-};
-pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
-pub const DDD_REMOVE_DEFINITION = DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION;
-pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE;
-pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
-pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
-    FILE_ATTRIBUTE_READONLY = 1,
-    FILE_ATTRIBUTE_HIDDEN = 2,
-    FILE_ATTRIBUTE_SYSTEM = 4,
-    FILE_ATTRIBUTE_DIRECTORY = 16,
-    FILE_ATTRIBUTE_ARCHIVE = 32,
-    FILE_ATTRIBUTE_DEVICE = 64,
-    FILE_ATTRIBUTE_NORMAL = 128,
-    FILE_ATTRIBUTE_TEMPORARY = 256,
-    FILE_ATTRIBUTE_SPARSE_FILE = 512,
-    FILE_ATTRIBUTE_REPARSE_POINT = 1024,
-    FILE_ATTRIBUTE_COMPRESSED = 2048,
-    FILE_ATTRIBUTE_OFFLINE = 4096,
-    FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 8192,
-    FILE_ATTRIBUTE_ENCRYPTED = 16384,
-    FILE_ATTRIBUTE_INTEGRITY_STREAM = 32768,
-    FILE_ATTRIBUTE_VIRTUAL = 65536,
-    FILE_ATTRIBUTE_NO_SCRUB_DATA = 131072,
-    FILE_ATTRIBUTE_EA = 262144,
-    FILE_ATTRIBUTE_PINNED = 524288,
-    FILE_ATTRIBUTE_UNPINNED = 1048576,
-    FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144,
-    FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 4194304,
-    FILE_FLAG_WRITE_THROUGH = 2147483648,
-    FILE_FLAG_OVERLAPPED = 1073741824,
-    FILE_FLAG_NO_BUFFERING = 536870912,
-    FILE_FLAG_RANDOM_ACCESS = 268435456,
-    FILE_FLAG_SEQUENTIAL_SCAN = 134217728,
-    FILE_FLAG_DELETE_ON_CLOSE = 67108864,
-    FILE_FLAG_BACKUP_SEMANTICS = 33554432,
-    FILE_FLAG_POSIX_SEMANTICS = 16777216,
-    FILE_FLAG_SESSION_AWARE = 8388608,
-    FILE_FLAG_OPEN_REPARSE_POINT = 2097152,
-    FILE_FLAG_OPEN_NO_RECALL = 1048576,
-    FILE_FLAG_FIRST_PIPE_INSTANCE = 524288,
-    SECURITY_ANONYMOUS = 0,
-    SECURITY_IDENTIFICATION = 65536,
-    SECURITY_IMPERSONATION = 131072,
-    SECURITY_DELEGATION = 196608,
-    SECURITY_CONTEXT_TRACKING = 262144,
-    SECURITY_EFFECTIVE_ONLY = 524288,
-    SECURITY_SQOS_PRESENT = 1048576,
-    SECURITY_VALID_SQOS_FLAGS = 2031616,
-    _,
-};
-pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
-pub const FILE_ATTRIBUTE_HIDDEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN;
-pub const FILE_ATTRIBUTE_SYSTEM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM;
-pub const FILE_ATTRIBUTE_DIRECTORY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY;
-pub const FILE_ATTRIBUTE_ARCHIVE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE;
-pub const FILE_ATTRIBUTE_DEVICE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE;
-pub const FILE_ATTRIBUTE_NORMAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL;
-pub const FILE_ATTRIBUTE_TEMPORARY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY;
-pub const FILE_ATTRIBUTE_SPARSE_FILE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE;
-pub const FILE_ATTRIBUTE_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT;
-pub const FILE_ATTRIBUTE_COMPRESSED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED;
-pub const FILE_ATTRIBUTE_OFFLINE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE;
-pub const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED;
-pub const FILE_ATTRIBUTE_ENCRYPTED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED;
-pub const FILE_ATTRIBUTE_INTEGRITY_STREAM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM;
-pub const FILE_ATTRIBUTE_VIRTUAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL;
-pub const FILE_ATTRIBUTE_NO_SCRUB_DATA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA;
-pub const FILE_ATTRIBUTE_EA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
-pub const FILE_ATTRIBUTE_PINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
-pub const FILE_ATTRIBUTE_UNPINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
-pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN;
-pub const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS;
-pub const FILE_FLAG_WRITE_THROUGH = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH;
-pub const FILE_FLAG_OVERLAPPED = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED;
-pub const FILE_FLAG_NO_BUFFERING = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING;
-pub const FILE_FLAG_RANDOM_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS;
-pub const FILE_FLAG_SEQUENTIAL_SCAN = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN;
-pub const FILE_FLAG_DELETE_ON_CLOSE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE;
-pub const FILE_FLAG_BACKUP_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS;
-pub const FILE_FLAG_POSIX_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS;
-pub const FILE_FLAG_SESSION_AWARE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE;
-pub const FILE_FLAG_OPEN_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT;
-pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL;
-pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE;
-pub const SECURITY_ANONYMOUS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS;
-pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION;
-pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION;
-pub const SECURITY_DELEGATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION;
-pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING;
-pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY;
-pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
-pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FILE_ACCESS_FLAGS = extern enum(u32) {
-    FILE_READ_DATA = 1,
-    FILE_LIST_DIRECTORY = 1,
-    FILE_WRITE_DATA = 2,
-    FILE_ADD_FILE = 2,
-    FILE_APPEND_DATA = 4,
-    FILE_ADD_SUBDIRECTORY = 4,
-    FILE_CREATE_PIPE_INSTANCE = 4,
-    FILE_READ_EA = 8,
-    FILE_WRITE_EA = 16,
-    FILE_EXECUTE = 32,
-    FILE_TRAVERSE = 32,
-    FILE_DELETE_CHILD = 64,
-    FILE_READ_ATTRIBUTES = 128,
-    FILE_WRITE_ATTRIBUTES = 256,
-    READ_CONTROL = 131072,
-    SYNCHRONIZE = 1048576,
-    STANDARD_RIGHTS_REQUIRED = 983040,
-    STANDARD_RIGHTS_READ = 131072,
-    STANDARD_RIGHTS_WRITE = 131072,
-    STANDARD_RIGHTS_EXECUTE = 131072,
-    STANDARD_RIGHTS_ALL = 2031616,
-    SPECIFIC_RIGHTS_ALL = 65535,
-    FILE_ALL_ACCESS = 2032127,
-    FILE_GENERIC_READ = 1179785,
-    FILE_GENERIC_WRITE = 1179926,
-    FILE_GENERIC_EXECUTE = 1179808,
-    _,
-};
-pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
-pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
-pub const FILE_WRITE_DATA = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
-pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_ADD_FILE;
-pub const FILE_APPEND_DATA = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
-pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY;
-pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE;
-pub const FILE_READ_EA = FILE_ACCESS_FLAGS.FILE_READ_EA;
-pub const FILE_WRITE_EA = FILE_ACCESS_FLAGS.FILE_WRITE_EA;
-pub const FILE_EXECUTE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
-pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_TRAVERSE;
-pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS.FILE_DELETE_CHILD;
-pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES;
-pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES;
-pub const READ_CONTROL = FILE_ACCESS_FLAGS.READ_CONTROL;
-pub const SYNCHRONIZE = FILE_ACCESS_FLAGS.SYNCHRONIZE;
-pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED;
-pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ;
-pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE;
-pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE;
-pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL;
-pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL;
-pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS.FILE_ALL_ACCESS;
-pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS.FILE_GENERIC_READ;
-pub const FILE_GENERIC_WRITE = FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE;
-pub const FILE_GENERIC_EXECUTE = FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE;
+// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
+pub const FindVolumeMointPointHandle = isize;
 
 pub const OVERLAPPED_ENTRY = extern struct {
     lpCompletionKey: usize,
@@ -1534,7 +1078,7 @@ pub const PARTITION_STYLE_RAW = PARTITION_STYLE.RAW;
 pub const PARTITION_INFORMATION_GPT = extern struct {
     PartitionType: Guid,
     PartitionId: Guid,
-    Attributes: u64,
+    Attributes: GPT_ATTRIBUTES,
     Name: [36]u16,
 };
 
@@ -2023,8 +1567,8 @@ pub const NTFS_STATISTICS = extern struct {
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS_EX = extern struct {
@@ -2105,9 +1649,9 @@ pub const NTFS_STATISTICS_EX = extern struct {
     NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
     const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_OBJECTID_BUFFER = extern struct {
@@ -2469,7 +2013,7 @@ pub const FILE_STORAGE_TIER = extern struct {
     Id: Guid,
     Name: [256]u16,
     Description: [256]u16,
-    Flags: u64,
+    Flags: FILE_STORAGE_TIER_Flags,
     ProvisionedCapacity: u64,
     MediaType: FILE_STORAGE_TIER_MEDIA_TYPE,
     Class: FILE_STORAGE_TIER_CLASS,
@@ -2529,6 +2073,464 @@ pub const VOLUME_DISK_EXTENTS = extern struct {
 
 pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
     GptAttributes: u64,
+};
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
+    CASE_SENSITIVE = 1,
+    LARGE_FETCH = 2,
+    ON_DISK_ENTRIES_ONLY = 4,
+    _,
+};
+pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
+pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
+pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
+    RAW_TARGET_PATH = 1,
+    REMOVE_DEFINITION = 2,
+    EXACT_MATCH_ON_REMOVE = 4,
+    NO_BROADCAST_SYSTEM = 8,
+    LUID_BROADCAST_DRIVE = 16,
+    _,
+};
+pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
+pub const DDD_REMOVE_DEFINITION = DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION;
+pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE;
+pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
+pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
+    FILE_ATTRIBUTE_READONLY = 1,
+    FILE_ATTRIBUTE_HIDDEN = 2,
+    FILE_ATTRIBUTE_SYSTEM = 4,
+    FILE_ATTRIBUTE_DIRECTORY = 16,
+    FILE_ATTRIBUTE_ARCHIVE = 32,
+    FILE_ATTRIBUTE_DEVICE = 64,
+    FILE_ATTRIBUTE_NORMAL = 128,
+    FILE_ATTRIBUTE_TEMPORARY = 256,
+    FILE_ATTRIBUTE_SPARSE_FILE = 512,
+    FILE_ATTRIBUTE_REPARSE_POINT = 1024,
+    FILE_ATTRIBUTE_COMPRESSED = 2048,
+    FILE_ATTRIBUTE_OFFLINE = 4096,
+    FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 8192,
+    FILE_ATTRIBUTE_ENCRYPTED = 16384,
+    FILE_ATTRIBUTE_INTEGRITY_STREAM = 32768,
+    FILE_ATTRIBUTE_VIRTUAL = 65536,
+    FILE_ATTRIBUTE_NO_SCRUB_DATA = 131072,
+    FILE_ATTRIBUTE_EA = 262144,
+    FILE_ATTRIBUTE_PINNED = 524288,
+    FILE_ATTRIBUTE_UNPINNED = 1048576,
+    FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144,
+    FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 4194304,
+    FILE_FLAG_WRITE_THROUGH = 2147483648,
+    FILE_FLAG_OVERLAPPED = 1073741824,
+    FILE_FLAG_NO_BUFFERING = 536870912,
+    FILE_FLAG_RANDOM_ACCESS = 268435456,
+    FILE_FLAG_SEQUENTIAL_SCAN = 134217728,
+    FILE_FLAG_DELETE_ON_CLOSE = 67108864,
+    FILE_FLAG_BACKUP_SEMANTICS = 33554432,
+    FILE_FLAG_POSIX_SEMANTICS = 16777216,
+    FILE_FLAG_SESSION_AWARE = 8388608,
+    FILE_FLAG_OPEN_REPARSE_POINT = 2097152,
+    FILE_FLAG_OPEN_NO_RECALL = 1048576,
+    FILE_FLAG_FIRST_PIPE_INSTANCE = 524288,
+    SECURITY_ANONYMOUS = 0,
+    SECURITY_IDENTIFICATION = 65536,
+    SECURITY_IMPERSONATION = 131072,
+    SECURITY_DELEGATION = 196608,
+    SECURITY_CONTEXT_TRACKING = 262144,
+    SECURITY_EFFECTIVE_ONLY = 524288,
+    SECURITY_SQOS_PRESENT = 1048576,
+    SECURITY_VALID_SQOS_FLAGS = 2031616,
+    _,
+};
+pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
+pub const FILE_ATTRIBUTE_HIDDEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN;
+pub const FILE_ATTRIBUTE_SYSTEM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM;
+pub const FILE_ATTRIBUTE_DIRECTORY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY;
+pub const FILE_ATTRIBUTE_ARCHIVE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE;
+pub const FILE_ATTRIBUTE_DEVICE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE;
+pub const FILE_ATTRIBUTE_NORMAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL;
+pub const FILE_ATTRIBUTE_TEMPORARY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY;
+pub const FILE_ATTRIBUTE_SPARSE_FILE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE;
+pub const FILE_ATTRIBUTE_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT;
+pub const FILE_ATTRIBUTE_COMPRESSED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED;
+pub const FILE_ATTRIBUTE_OFFLINE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE;
+pub const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED;
+pub const FILE_ATTRIBUTE_ENCRYPTED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED;
+pub const FILE_ATTRIBUTE_INTEGRITY_STREAM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM;
+pub const FILE_ATTRIBUTE_VIRTUAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL;
+pub const FILE_ATTRIBUTE_NO_SCRUB_DATA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA;
+pub const FILE_ATTRIBUTE_EA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
+pub const FILE_ATTRIBUTE_PINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
+pub const FILE_ATTRIBUTE_UNPINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
+pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN;
+pub const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS;
+pub const FILE_FLAG_WRITE_THROUGH = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH;
+pub const FILE_FLAG_OVERLAPPED = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED;
+pub const FILE_FLAG_NO_BUFFERING = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING;
+pub const FILE_FLAG_RANDOM_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS;
+pub const FILE_FLAG_SEQUENTIAL_SCAN = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN;
+pub const FILE_FLAG_DELETE_ON_CLOSE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE;
+pub const FILE_FLAG_BACKUP_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS;
+pub const FILE_FLAG_POSIX_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS;
+pub const FILE_FLAG_SESSION_AWARE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE;
+pub const FILE_FLAG_OPEN_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT;
+pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL;
+pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE;
+pub const SECURITY_ANONYMOUS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS;
+pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION;
+pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION;
+pub const SECURITY_DELEGATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION;
+pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING;
+pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY;
+pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
+pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FILE_ACCESS_FLAGS = extern enum(u32) {
+    FILE_READ_DATA = 1,
+    FILE_LIST_DIRECTORY = 1,
+    FILE_WRITE_DATA = 2,
+    FILE_ADD_FILE = 2,
+    FILE_APPEND_DATA = 4,
+    FILE_ADD_SUBDIRECTORY = 4,
+    FILE_CREATE_PIPE_INSTANCE = 4,
+    FILE_READ_EA = 8,
+    FILE_WRITE_EA = 16,
+    FILE_EXECUTE = 32,
+    FILE_TRAVERSE = 32,
+    FILE_DELETE_CHILD = 64,
+    FILE_READ_ATTRIBUTES = 128,
+    FILE_WRITE_ATTRIBUTES = 256,
+    READ_CONTROL = 131072,
+    SYNCHRONIZE = 1048576,
+    STANDARD_RIGHTS_REQUIRED = 983040,
+    STANDARD_RIGHTS_READ = 131072,
+    STANDARD_RIGHTS_WRITE = 131072,
+    STANDARD_RIGHTS_EXECUTE = 131072,
+    STANDARD_RIGHTS_ALL = 2031616,
+    SPECIFIC_RIGHTS_ALL = 65535,
+    FILE_ALL_ACCESS = 2032127,
+    FILE_GENERIC_READ = 1179785,
+    FILE_GENERIC_WRITE = 1179926,
+    FILE_GENERIC_EXECUTE = 1179808,
+    _,
+};
+pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
+pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
+pub const FILE_WRITE_DATA = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
+pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_ADD_FILE;
+pub const FILE_APPEND_DATA = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
+pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY;
+pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE;
+pub const FILE_READ_EA = FILE_ACCESS_FLAGS.FILE_READ_EA;
+pub const FILE_WRITE_EA = FILE_ACCESS_FLAGS.FILE_WRITE_EA;
+pub const FILE_EXECUTE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
+pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_TRAVERSE;
+pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS.FILE_DELETE_CHILD;
+pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES;
+pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES;
+pub const READ_CONTROL = FILE_ACCESS_FLAGS.READ_CONTROL;
+pub const SYNCHRONIZE = FILE_ACCESS_FLAGS.SYNCHRONIZE;
+pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED;
+pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ;
+pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE;
+pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE;
+pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL;
+pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL;
+pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS.FILE_ALL_ACCESS;
+pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS.FILE_GENERIC_READ;
+pub const FILE_GENERIC_WRITE = FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE;
+pub const FILE_GENERIC_EXECUTE = FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE;
+
+pub const OFSTRUCT = extern struct {
+    cBytes: u8,
+    fFixedDisk: u8,
+    nErrCode: u16,
+    Reserved1: u16,
+    Reserved2: u16,
+    szPathName: [128]i8,
+};
+
+pub const PFE_EXPORT_FUNC = fn(
+    // TODO: what to do with BytesParamIndex 2?
+    pbData: *u8,
+    pvCallbackContext: ?*c_void,
+    ulLength: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFE_IMPORT_FUNC = fn(
+    // TODO: what to do with BytesParamIndex 2?
+    pbData: *u8,
+    pvCallbackContext: ?*c_void,
+    ulLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const LPPROGRESS_ROUTINE = fn(
+    TotalFileSize: LARGE_INTEGER,
+    TotalBytesTransferred: LARGE_INTEGER,
+    StreamSize: LARGE_INTEGER,
+    StreamBytesTransferred: LARGE_INTEGER,
+    dwStreamNumber: u32,
+    dwCallbackReason: LPPROGRESS_ROUTINE_dwCallbackReasonFlags,
+    hSourceFile: HANDLE,
+    hDestinationFile: HANDLE,
+    lpData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const COPYFILE2_MESSAGE_TYPE = extern enum(i32) {
+    NONE = 0,
+    CHUNK_STARTED = 1,
+    CHUNK_FINISHED = 2,
+    STREAM_STARTED = 3,
+    STREAM_FINISHED = 4,
+    POLL_CONTINUE = 5,
+    ERROR = 6,
+    MAX = 7,
+};
+pub const COPYFILE2_CALLBACK_NONE = COPYFILE2_MESSAGE_TYPE.NONE;
+pub const COPYFILE2_CALLBACK_CHUNK_STARTED = COPYFILE2_MESSAGE_TYPE.CHUNK_STARTED;
+pub const COPYFILE2_CALLBACK_CHUNK_FINISHED = COPYFILE2_MESSAGE_TYPE.CHUNK_FINISHED;
+pub const COPYFILE2_CALLBACK_STREAM_STARTED = COPYFILE2_MESSAGE_TYPE.STREAM_STARTED;
+pub const COPYFILE2_CALLBACK_STREAM_FINISHED = COPYFILE2_MESSAGE_TYPE.STREAM_FINISHED;
+pub const COPYFILE2_CALLBACK_POLL_CONTINUE = COPYFILE2_MESSAGE_TYPE.POLL_CONTINUE;
+pub const COPYFILE2_CALLBACK_ERROR = COPYFILE2_MESSAGE_TYPE.ERROR;
+pub const COPYFILE2_CALLBACK_MAX = COPYFILE2_MESSAGE_TYPE.MAX;
+
+pub const COPYFILE2_MESSAGE_ACTION = extern enum(i32) {
+    CONTINUE = 0,
+    CANCEL = 1,
+    STOP = 2,
+    QUIET = 3,
+    PAUSE = 4,
+};
+pub const COPYFILE2_PROGRESS_CONTINUE = COPYFILE2_MESSAGE_ACTION.CONTINUE;
+pub const COPYFILE2_PROGRESS_CANCEL = COPYFILE2_MESSAGE_ACTION.CANCEL;
+pub const COPYFILE2_PROGRESS_STOP = COPYFILE2_MESSAGE_ACTION.STOP;
+pub const COPYFILE2_PROGRESS_QUIET = COPYFILE2_MESSAGE_ACTION.QUIET;
+pub const COPYFILE2_PROGRESS_PAUSE = COPYFILE2_MESSAGE_ACTION.PAUSE;
+
+pub const COPYFILE2_COPY_PHASE = extern enum(i32) {
+    NONE = 0,
+    PREPARE_SOURCE = 1,
+    PREPARE_DEST = 2,
+    READ_SOURCE = 3,
+    WRITE_DESTINATION = 4,
+    SERVER_COPY = 5,
+    NAMEGRAFT_COPY = 6,
+    MAX = 7,
+};
+pub const COPYFILE2_PHASE_NONE = COPYFILE2_COPY_PHASE.NONE;
+pub const COPYFILE2_PHASE_PREPARE_SOURCE = COPYFILE2_COPY_PHASE.PREPARE_SOURCE;
+pub const COPYFILE2_PHASE_PREPARE_DEST = COPYFILE2_COPY_PHASE.PREPARE_DEST;
+pub const COPYFILE2_PHASE_READ_SOURCE = COPYFILE2_COPY_PHASE.READ_SOURCE;
+pub const COPYFILE2_PHASE_WRITE_DESTINATION = COPYFILE2_COPY_PHASE.WRITE_DESTINATION;
+pub const COPYFILE2_PHASE_SERVER_COPY = COPYFILE2_COPY_PHASE.SERVER_COPY;
+pub const COPYFILE2_PHASE_NAMEGRAFT_COPY = COPYFILE2_COPY_PHASE.NAMEGRAFT_COPY;
+pub const COPYFILE2_PHASE_MAX = COPYFILE2_COPY_PHASE.MAX;
+
+pub const COPYFILE2_MESSAGE = extern struct {
+    Type: COPYFILE2_MESSAGE_TYPE,
+    dwPadding: u32,
+    Info: COPYFILE2_MESSAGE._Info_e__Union,
+    const _Info_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PCOPYFILE2_PROGRESS_ROUTINE = fn(
+    pMessage: *const COPYFILE2_MESSAGE,
+    pvCallbackContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION;
+
+pub const COPYFILE2_EXTENDED_PARAMETERS = extern struct {
+    dwSize: u32,
+    dwCopyFlags: u32,
+    pfCancel: *BOOL,
+    pProgressRoutine: PCOPYFILE2_PROGRESS_ROUTINE,
+    pvCallbackContext: *c_void,
+};
+
+pub const FILE_BASIC_INFO = extern struct {
+    CreationTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    LastWriteTime: LARGE_INTEGER,
+    ChangeTime: LARGE_INTEGER,
+    FileAttributes: u32,
+};
+
+pub const FILE_STANDARD_INFO = extern struct {
+    AllocationSize: LARGE_INTEGER,
+    EndOfFile: LARGE_INTEGER,
+    NumberOfLinks: u32,
+    DeletePending: u8,
+    Directory: u8,
+};
+
+pub const FILE_NAME_INFO = extern struct {
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const FILE_RENAME_INFO = extern struct {
+    Anonymous: FILE_RENAME_INFO._Anonymous_e__Union,
+    RootDirectory: HANDLE,
+    FileNameLength: u32,
+    FileName: [1]u16,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const FILE_ALLOCATION_INFO = extern struct {
+    AllocationSize: LARGE_INTEGER,
+};
+
+pub const FILE_END_OF_FILE_INFO = extern struct {
+    EndOfFile: LARGE_INTEGER,
+};
+
+pub const FILE_STREAM_INFO = extern struct {
+    NextEntryOffset: u32,
+    StreamNameLength: u32,
+    StreamSize: LARGE_INTEGER,
+    StreamAllocationSize: LARGE_INTEGER,
+    StreamName: [1]u16,
+};
+
+pub const FILE_COMPRESSION_INFO = extern struct {
+    CompressedFileSize: LARGE_INTEGER,
+    CompressionFormat: u16,
+    CompressionUnitShift: u8,
+    ChunkShift: u8,
+    ClusterShift: u8,
+    Reserved: [3]u8,
+};
+
+pub const FILE_ATTRIBUTE_TAG_INFO = extern struct {
+    FileAttributes: u32,
+    ReparseTag: u32,
+};
+
+pub const FILE_DISPOSITION_INFO = extern struct {
+    DeleteFileA: u8,
+};
+
+pub const FILE_ID_BOTH_DIR_INFO = extern struct {
+    NextEntryOffset: u32,
+    FileIndex: u32,
+    CreationTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    LastWriteTime: LARGE_INTEGER,
+    ChangeTime: LARGE_INTEGER,
+    EndOfFile: LARGE_INTEGER,
+    AllocationSize: LARGE_INTEGER,
+    FileAttributes: u32,
+    FileNameLength: u32,
+    EaSize: u32,
+    ShortNameLength: i8,
+    ShortName: [12]u16,
+    FileId: LARGE_INTEGER,
+    FileName: [1]u16,
+};
+
+pub const FILE_FULL_DIR_INFO = extern struct {
+    NextEntryOffset: u32,
+    FileIndex: u32,
+    CreationTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    LastWriteTime: LARGE_INTEGER,
+    ChangeTime: LARGE_INTEGER,
+    EndOfFile: LARGE_INTEGER,
+    AllocationSize: LARGE_INTEGER,
+    FileAttributes: u32,
+    FileNameLength: u32,
+    EaSize: u32,
+    FileName: [1]u16,
+};
+
+pub const PRIORITY_HINT = extern enum(i32) {
+    IoPriorityHintVeryLow = 0,
+    IoPriorityHintLow = 1,
+    IoPriorityHintNormal = 2,
+    MaximumIoPriorityHintType = 3,
+};
+pub const IoPriorityHintVeryLow = PRIORITY_HINT.IoPriorityHintVeryLow;
+pub const IoPriorityHintLow = PRIORITY_HINT.IoPriorityHintLow;
+pub const IoPriorityHintNormal = PRIORITY_HINT.IoPriorityHintNormal;
+pub const MaximumIoPriorityHintType = PRIORITY_HINT.MaximumIoPriorityHintType;
+
+pub const FILE_IO_PRIORITY_HINT_INFO = extern struct {
+    PriorityHint: PRIORITY_HINT,
+};
+
+pub const FILE_ALIGNMENT_INFO = extern struct {
+    AlignmentRequirement: u32,
+};
+
+pub const FILE_STORAGE_INFO = extern struct {
+    LogicalBytesPerSector: u32,
+    PhysicalBytesPerSectorForAtomicity: u32,
+    PhysicalBytesPerSectorForPerformance: u32,
+    FileSystemEffectivePhysicalBytesPerSectorForAtomicity: u32,
+    Flags: u32,
+    ByteOffsetForSectorAlignment: u32,
+    ByteOffsetForPartitionAlignment: u32,
+};
+
+pub const FILE_ID_INFO = extern struct {
+    VolumeSerialNumber: u64,
+    FileId: FILE_ID_128,
+};
+
+pub const FILE_ID_EXTD_DIR_INFO = extern struct {
+    NextEntryOffset: u32,
+    FileIndex: u32,
+    CreationTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    LastWriteTime: LARGE_INTEGER,
+    ChangeTime: LARGE_INTEGER,
+    EndOfFile: LARGE_INTEGER,
+    AllocationSize: LARGE_INTEGER,
+    FileAttributes: u32,
+    FileNameLength: u32,
+    EaSize: u32,
+    ReparsePointTag: u32,
+    FileId: FILE_ID_128,
+    FileName: [1]u16,
+};
+
+pub const FILE_REMOTE_PROTOCOL_INFO = extern struct {
+    StructureVersion: u16,
+    StructureSize: u16,
+    Protocol: u32,
+    ProtocolMajorVersion: u16,
+    ProtocolMinorVersion: u16,
+    ProtocolRevision: u16,
+    Reserved: u16,
+    Flags: u32,
+    GenericReserved: FILE_REMOTE_PROTOCOL_INFO._GenericReserved_e__Struct,
+    ProtocolSpecific: FILE_REMOTE_PROTOCOL_INFO._ProtocolSpecific_e__Union,
+    const _ProtocolSpecific_e__Union = u32; // TODO: generate this nested type!
+    const _GenericReserved_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const FILE_ID_TYPE = extern enum(i32) {
+    FileIdType = 0,
+    ObjectIdType = 1,
+    ExtendedFileIdType = 2,
+    MaximumFileIdType = 3,
+};
+pub const FileIdType = FILE_ID_TYPE.FileIdType;
+pub const ObjectIdType = FILE_ID_TYPE.ObjectIdType;
+pub const ExtendedFileIdType = FILE_ID_TYPE.ExtendedFileIdType;
+pub const MaximumFileIdType = FILE_ID_TYPE.MaximumFileIdType;
+
+pub const FILE_ID_DESCRIPTOR = extern struct {
+    dwSize: u32,
+    Type: FILE_ID_TYPE,
+    Anonymous: FILE_ID_DESCRIPTOR._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -3008,96 +3010,6 @@ pub const FindStreamInfoMaxInfoLevel = STREAM_INFO_LEVELS.MaxInfoLevel;
 pub const WIN32_FIND_STREAM_DATA = extern struct {
     StreamSize: LARGE_INTEGER,
     cStreamName: [296]u16,
-};
-
-pub const EFS_CERTIFICATE_BLOB = extern struct {
-    dwCertEncodingType: u32,
-    cbData: u32,
-    pbData: *u8,
-};
-
-pub const EFS_HASH_BLOB = extern struct {
-    cbData: u32,
-    pbData: *u8,
-};
-
-pub const EFS_RPC_BLOB = extern struct {
-    cbData: u32,
-    pbData: *u8,
-};
-
-pub const EFS_PIN_BLOB = extern struct {
-    cbPadding: u32,
-    cbData: u32,
-    pbData: *u8,
-};
-
-pub const EFS_KEY_INFO = extern struct {
-    dwVersion: u32,
-    Entropy: u32,
-    Algorithm: u32,
-    KeyLength: u32,
-};
-
-pub const EFS_COMPATIBILITY_INFO = extern struct {
-    EfsVersion: u32,
-};
-
-pub const EFS_VERSION_INFO = extern struct {
-    EfsVersion: u32,
-    SubVersion: u32,
-};
-
-pub const EFS_DECRYPTION_STATUS_INFO = extern struct {
-    dwDecryptionError: u32,
-    dwHashOffset: u32,
-    cbHash: u32,
-};
-
-pub const EFS_ENCRYPTION_STATUS_INFO = extern struct {
-    bHasCurrentKey: BOOL,
-    dwEncryptionError: u32,
-};
-
-pub const ENCRYPTION_CERTIFICATE = extern struct {
-    cbTotalLength: u32,
-    pUserSid: *SID,
-    pCertBlob: *EFS_CERTIFICATE_BLOB,
-};
-
-pub const ENCRYPTION_CERTIFICATE_HASH = extern struct {
-    cbTotalLength: u32,
-    pUserSid: *SID,
-    pHash: *EFS_HASH_BLOB,
-    lpDisplayInformation: PWSTR,
-};
-
-pub const ENCRYPTION_CERTIFICATE_HASH_LIST = extern struct {
-    nCert_Hash: u32,
-    pUsers: **ENCRYPTION_CERTIFICATE_HASH,
-};
-
-pub const ENCRYPTION_CERTIFICATE_LIST = extern struct {
-    nUsers: u32,
-    pUsers: **ENCRYPTION_CERTIFICATE,
-};
-
-pub const ENCRYPTED_FILE_METADATA_SIGNATURE = extern struct {
-    dwEfsAccessType: u32,
-    pCertificatesAdded: *ENCRYPTION_CERTIFICATE_HASH_LIST,
-    pEncryptionCertificate: *ENCRYPTION_CERTIFICATE,
-    pEfsStreamSignature: *EFS_RPC_BLOB,
-};
-
-pub const ENCRYPTION_PROTECTOR = extern struct {
-    cbTotalLength: u32,
-    pUserSid: *SID,
-    lpProtectorDescriptor: PWSTR,
-};
-
-pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
-    nProtectors: u32,
-    pProtectors: **ENCRYPTION_PROTECTOR,
 };
 
 pub const NtmsObjectsTypes = extern enum(i32) {
@@ -4881,6 +4793,96 @@ pub const IDiskQuotaEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const EFS_CERTIFICATE_BLOB = extern struct {
+    dwCertEncodingType: u32,
+    cbData: u32,
+    pbData: *u8,
+};
+
+pub const EFS_HASH_BLOB = extern struct {
+    cbData: u32,
+    pbData: *u8,
+};
+
+pub const EFS_RPC_BLOB = extern struct {
+    cbData: u32,
+    pbData: *u8,
+};
+
+pub const EFS_PIN_BLOB = extern struct {
+    cbPadding: u32,
+    cbData: u32,
+    pbData: *u8,
+};
+
+pub const EFS_KEY_INFO = extern struct {
+    dwVersion: u32,
+    Entropy: u32,
+    Algorithm: u32,
+    KeyLength: u32,
+};
+
+pub const EFS_COMPATIBILITY_INFO = extern struct {
+    EfsVersion: u32,
+};
+
+pub const EFS_VERSION_INFO = extern struct {
+    EfsVersion: u32,
+    SubVersion: u32,
+};
+
+pub const EFS_DECRYPTION_STATUS_INFO = extern struct {
+    dwDecryptionError: u32,
+    dwHashOffset: u32,
+    cbHash: u32,
+};
+
+pub const EFS_ENCRYPTION_STATUS_INFO = extern struct {
+    bHasCurrentKey: BOOL,
+    dwEncryptionError: u32,
+};
+
+pub const ENCRYPTION_CERTIFICATE = extern struct {
+    cbTotalLength: u32,
+    pUserSid: *SID,
+    pCertBlob: *EFS_CERTIFICATE_BLOB,
+};
+
+pub const ENCRYPTION_CERTIFICATE_HASH = extern struct {
+    cbTotalLength: u32,
+    pUserSid: *SID,
+    pHash: *EFS_HASH_BLOB,
+    lpDisplayInformation: PWSTR,
+};
+
+pub const ENCRYPTION_CERTIFICATE_HASH_LIST = extern struct {
+    nCert_Hash: u32,
+    pUsers: **ENCRYPTION_CERTIFICATE_HASH,
+};
+
+pub const ENCRYPTION_CERTIFICATE_LIST = extern struct {
+    nUsers: u32,
+    pUsers: **ENCRYPTION_CERTIFICATE,
+};
+
+pub const ENCRYPTED_FILE_METADATA_SIGNATURE = extern struct {
+    dwEfsAccessType: u32,
+    pCertificatesAdded: *ENCRYPTION_CERTIFICATE_HASH_LIST,
+    pEncryptionCertificate: *ENCRYPTION_CERTIFICATE,
+    pEfsStreamSignature: *EFS_RPC_BLOB,
+};
+
+pub const ENCRYPTION_PROTECTOR = extern struct {
+    cbTotalLength: u32,
+    pUserSid: *SID,
+    lpProtectorDescriptor: PWSTR,
+};
+
+pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
+    nProtectors: u32,
+    pProtectors: **ENCRYPTION_PROTECTOR,
+};
+
 pub const WofEnumEntryProc = fn(
     EntryInfo: *const c_void,
     UserData: ?*c_void,
@@ -5654,7 +5656,7 @@ pub extern "KERNEL32" fn FindFirstFileTransactedA(
     lpSearchFilter: *c_void,
     dwAdditionalFlags: u32,
     hTransaction: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileTransactedW(
@@ -5665,7 +5667,7 @@ pub extern "KERNEL32" fn FindFirstFileTransactedW(
     lpSearchFilter: *c_void,
     dwAdditionalFlags: u32,
     hTransaction: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CopyFileA(
@@ -5851,7 +5853,7 @@ pub extern "KERNEL32" fn FindFirstStreamTransactedW(
     lpFindStreamData: *c_void,
     dwFlags: u32,
     hTransaction: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindStreamHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindFirstFileNameTransactedW(
@@ -5860,7 +5862,7 @@ pub extern "KERNEL32" fn FindFirstFileNameTransactedW(
     StringLength: *u32,
     LinkName: [*:0]u16,
     hTransaction: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileNameHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn SetVolumeLabelA(
@@ -5897,7 +5899,8 @@ pub extern "KERNEL32" fn GetFileBandwidthReservation(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadDirectoryChangesW(
     hDirectory: HANDLE,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
@@ -5909,7 +5912,8 @@ pub extern "KERNEL32" fn ReadDirectoryChangesW(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "KERNEL32" fn ReadDirectoryChangesExW(
     hDirectory: HANDLE,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
@@ -5923,11 +5927,11 @@ pub extern "KERNEL32" fn ReadDirectoryChangesExW(
 pub extern "KERNEL32" fn FindFirstVolumeA(
     lpszVolumeName: [*:0]u8,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindVolumeHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextVolumeA(
-    hFindVolume: HANDLE,
+    hFindVolume: FindVolumeHandle,
     lpszVolumeName: [*:0]u8,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5937,32 +5941,32 @@ pub extern "KERNEL32" fn FindFirstVolumeMountPointA(
     lpszRootPathName: [*:0]const u8,
     lpszVolumeMountPoint: [*:0]u8,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindVolumeMointPointHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstVolumeMountPointW(
     lpszRootPathName: [*:0]const u16,
     lpszVolumeMountPoint: [*:0]u16,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindVolumeMointPointHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextVolumeMountPointA(
-    hFindVolumeMountPoint: HANDLE,
+    hFindVolumeMountPoint: FindVolumeMointPointHandle,
     lpszVolumeMountPoint: [*:0]u8,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextVolumeMountPointW(
-    hFindVolumeMountPoint: HANDLE,
+    hFindVolumeMountPoint: FindVolumeMointPointHandle,
     lpszVolumeMountPoint: [*:0]u16,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindVolumeMountPointClose(
-    hFindVolumeMountPoint: HANDLE,
+    hFindVolumeMountPoint: FindVolumeMointPointHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6008,7 +6012,8 @@ pub extern "KERNEL32" fn GetVolumePathNamesForVolumeNameA(
 pub extern "KERNEL32" fn GetFileInformationByHandleEx(
     hFile: HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
-    lpFileInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpFileInformation: *c_void,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6115,7 +6120,7 @@ pub extern "KERNEL32" fn FindClose(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindCloseChangeNotification(
-    hChangeHandle: HANDLE,
+    hChangeHandle: FindChangeNotificationHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6123,26 +6128,26 @@ pub extern "KERNEL32" fn FindFirstChangeNotificationA(
     lpPathName: [*:0]const u8,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindChangeNotificationHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstChangeNotificationW(
     lpPathName: [*:0]const u16,
     bWatchSubtree: BOOL,
     dwNotifyFilter: FILE_NOTIFY_CHANGE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindChangeNotificationHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileA(
     lpFileName: [*:0]const u8,
     lpFindFileData: *WIN32_FIND_DATAA,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileW(
     lpFileName: [*:0]const u16,
     lpFindFileData: *WIN32_FIND_DATAW,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileExA(
@@ -6152,7 +6157,7 @@ pub extern "KERNEL32" fn FindFirstFileExA(
     fSearchOp: FINDEX_SEARCH_OPS,
     lpSearchFilter: *c_void,
     dwAdditionalFlags: FIND_FIRST_EX_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstFileExW(
@@ -6162,22 +6167,22 @@ pub extern "KERNEL32" fn FindFirstFileExW(
     fSearchOp: FINDEX_SEARCH_OPS,
     lpSearchFilter: *c_void,
     dwAdditionalFlags: FIND_FIRST_EX_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindFirstVolumeW(
     lpszVolumeName: [*:0]u16,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindVolumeHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextChangeNotification(
-    hChangeHandle: HANDLE,
+    hChangeHandle: FindChangeNotificationHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextFileA(
-    hFindFile: HANDLE,
+    hFindFile: FindFileHandle,
     lpFindFileData: *WIN32_FIND_DATAA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6189,14 +6194,14 @@ pub extern "KERNEL32" fn FindNextFileW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindNextVolumeW(
-    hFindVolume: HANDLE,
+    hFindVolume: FindVolumeHandle,
     lpszVolumeName: [*:0]u16,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FindVolumeClose(
-    hFindVolume: HANDLE,
+    hFindVolume: FindVolumeHandle,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6436,7 +6441,8 @@ pub extern "KERNEL32" fn QueryDosDeviceW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadFile(
     hFile: HANDLE,
-    lpBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
     lpNumberOfBytesRead: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -6445,7 +6451,8 @@ pub extern "KERNEL32" fn ReadFile(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadFileEx(
     hFile: HANDLE,
-    lpBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*c_void,
     nNumberOfBytesToRead: u32,
     lpOverlapped: *OVERLAPPED,
     lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE,
@@ -6491,7 +6498,8 @@ pub extern "KERNEL32" fn SetFileAttributesW(
 pub extern "KERNEL32" fn SetFileInformationByHandle(
     hFile: HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
-    lpFileInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpFileInformation: *c_void,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6538,7 +6546,8 @@ pub extern "KERNEL32" fn UnlockFileEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteFile(
     hFile: HANDLE,
-    lpBuffer: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*const c_void,
     nNumberOfBytesToWrite: u32,
     lpNumberOfBytesWritten: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -6547,7 +6556,8 @@ pub extern "KERNEL32" fn WriteFile(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteFileEx(
     hFile: HANDLE,
-    lpBuffer: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: ?*const c_void,
     nNumberOfBytesToWrite: u32,
     lpOverlapped: *OVERLAPPED,
     lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE,
@@ -6617,11 +6627,11 @@ pub extern "KERNEL32" fn FindFirstStreamW(
     InfoLevel: STREAM_INFO_LEVELS,
     lpFindStreamData: *c_void,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindStreamHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindNextStreamW(
-    hFindStream: HANDLE,
+    hFindStream: FindStreamHandle,
     lpFindStreamData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6641,11 +6651,11 @@ pub extern "KERNEL32" fn FindFirstFileNameW(
     dwFlags: u32,
     StringLength: *u32,
     LinkName: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) FindFileNameHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FindNextFileNameW(
-    hFindStream: HANDLE,
+    hFindStream: FindFileNameHandle,
     StringLength: *u32,
     LinkName: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6818,148 +6828,6 @@ pub extern "api-ms-win-core-wow64-l1-1-1" fn Wow64SetThreadDefaultGuestMachine(
 pub extern "KERNEL32" fn Wow64SuspendThread(
     hThread: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn LZStart(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn LZDone(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CopyLZFile(
-    hfSource: i32,
-    hfDest: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZCopy(
-    hfSource: i32,
-    hfDest: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZInit(
-    hfSource: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetExpandedNameA(
-    lpszSource: PSTR,
-    lpszBuffer: *[260]u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetExpandedNameW(
-    lpszSource: PWSTR,
-    lpszBuffer: *[260]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZOpenFileA(
-    lpFileName: PSTR,
-    lpReOpenBuf: *OFSTRUCT,
-    wStyle: LZOpenFile_wStyle,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZOpenFileW(
-    lpFileName: PWSTR,
-    lpReOpenBuf: *OFSTRUCT,
-    wStyle: LZOpenFile_wStyle,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZSeek(
-    hFile: i32,
-    lOffset: i32,
-    iOrigin: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZRead(
-    hFile: i32,
-    lpBuffer: [*]i8,
-    cbRead: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LZClose(
-    hFile: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryUsersOnEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pUsers: **ENCRYPTION_CERTIFICATE_HASH_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn QueryRecoveryAgentsOnEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pRecoveryAgents: **ENCRYPTION_CERTIFICATE_HASH_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn RemoveUsersFromEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pHashes: *ENCRYPTION_CERTIFICATE_HASH_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AddUsersToEncryptedFile(
-    lpFileName: [*:0]const u16,
-    pEncryptionCertificates: *ENCRYPTION_CERTIFICATE_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetUserFileEncryptionKey(
-    pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ADVAPI32" fn SetUserFileEncryptionKeyEx(
-    pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
-    dwCapabilities: u32,
-    dwFlags: u32,
-    pvReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn FreeEncryptionCertificateHashList(
-    pUsers: *ENCRYPTION_CERTIFICATE_HASH_LIST,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn EncryptionDisable(
-    DirPath: [*:0]const u16,
-    Disable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn DuplicateEncryptionInfoFile(
-    SrcFileName: [*:0]const u16,
-    DstFileName: [*:0]const u16,
-    dwCreationDistribution: u32,
-    dwAttributes: u32,
-    lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ADVAPI32" fn GetEncryptedFileMetadata(
-    lpFileName: [*:0]const u16,
-    pcbMetadata: *u32,
-    ppbMetadata: **u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ADVAPI32" fn SetEncryptedFileMetadata(
-    lpFileName: [*:0]const u16,
-    pbOldMetadata: ?*u8,
-    pbNewMetadata: *u8,
-    pOwnerHash: *ENCRYPTION_CERTIFICATE_HASH,
-    dwOperation: u32,
-    pCertificatesAdded: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ADVAPI32" fn FreeEncryptedFileMetadata(
-    pbMetadata: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "clfsw32" fn LsnEqual(
     plsn1: *const CLS_LSN,
@@ -7408,6 +7276,149 @@ pub extern "clfsw32" fn RegisterForLogWriteNotification(
     fEnable: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn QueryUsersOnEncryptedFile(
+    lpFileName: [*:0]const u16,
+    pUsers: **ENCRYPTION_CERTIFICATE_HASH_LIST,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn QueryRecoveryAgentsOnEncryptedFile(
+    lpFileName: [*:0]const u16,
+    pRecoveryAgents: **ENCRYPTION_CERTIFICATE_HASH_LIST,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn RemoveUsersFromEncryptedFile(
+    lpFileName: [*:0]const u16,
+    pHashes: *ENCRYPTION_CERTIFICATE_HASH_LIST,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn AddUsersToEncryptedFile(
+    lpFileName: [*:0]const u16,
+    pEncryptionCertificates: *ENCRYPTION_CERTIFICATE_LIST,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn SetUserFileEncryptionKey(
+    pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ADVAPI32" fn SetUserFileEncryptionKeyEx(
+    pEncryptionCertificate: ?*ENCRYPTION_CERTIFICATE,
+    dwCapabilities: u32,
+    dwFlags: u32,
+    pvReserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn FreeEncryptionCertificateHashList(
+    pUsers: *ENCRYPTION_CERTIFICATE_HASH_LIST,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn EncryptionDisable(
+    DirPath: [*:0]const u16,
+    Disable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn DuplicateEncryptionInfoFile(
+    SrcFileName: [*:0]const u16,
+    DstFileName: [*:0]const u16,
+    dwCreationDistribution: u32,
+    dwAttributes: u32,
+    lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ADVAPI32" fn GetEncryptedFileMetadata(
+    lpFileName: [*:0]const u16,
+    pcbMetadata: *u32,
+    ppbMetadata: **u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ADVAPI32" fn SetEncryptedFileMetadata(
+    lpFileName: [*:0]const u16,
+    pbOldMetadata: ?*u8,
+    pbNewMetadata: *u8,
+    pOwnerHash: *ENCRYPTION_CERTIFICATE_HASH,
+    dwOperation: u32,
+    pCertificatesAdded: ?*ENCRYPTION_CERTIFICATE_HASH_LIST,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ADVAPI32" fn FreeEncryptedFileMetadata(
+    pbMetadata: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn LZStart(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "KERNEL32" fn LZDone(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CopyLZFile(
+    hfSource: i32,
+    hfDest: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZCopy(
+    hfSource: i32,
+    hfDest: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZInit(
+    hfSource: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetExpandedNameA(
+    lpszSource: PSTR,
+    lpszBuffer: *[260]u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetExpandedNameW(
+    lpszSource: PWSTR,
+    lpszBuffer: *[260]u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZOpenFileA(
+    lpFileName: PSTR,
+    lpReOpenBuf: *OFSTRUCT,
+    wStyle: LZOpenFile_wStyle,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZOpenFileW(
+    lpFileName: PWSTR,
+    lpReOpenBuf: *OFSTRUCT,
+    wStyle: LZOpenFile_wStyle,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZSeek(
+    hFile: i32,
+    lOffset: i32,
+    iOrigin: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZRead(
+    hFile: i32,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *i8,
+    cbRead: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LZClose(
+    hFile: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "WOFUTIL" fn WofShouldCompressBinaries(
     Volume: [*:0]const u16,
     Algorithm: *u32,
@@ -7507,7 +7518,8 @@ pub extern "txfw32" fn TxfLogDestroyReadContext(
 pub extern "txfw32" fn TxfLogReadRecords(
     TxfLogContext: *c_void,
     BufferLength: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    Buffer: *c_void,
     BytesUsed: *u32,
     RecordCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7521,9 +7533,11 @@ pub extern "txfw32" fn TxfReadMetadataInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "txfw32" fn TxfLogRecordGetFileName(
-    RecordBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    RecordBuffer: *c_void,
     RecordBufferLengthInBytes: u32,
-    NameBuffer: [*:0]u16,
+    // TODO: what to do with BytesParamIndex 3?
+    NameBuffer: PWSTR,
     NameBufferLengthInBytes: *u32,
     TxfId: ?*TXF_ID,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8337,8 +8351,8 @@ const IConnectionPointContainer = @import("com.zig").IConnectionPointContainer;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const STORAGE_BUS_TYPE = @import("system_services.zig").STORAGE_BUS_TYPE;
 const SID = @import("security.zig").SID;
-const PWSTR = @import("system_services.zig").PWSTR;
 const IUnknown = @import("com.zig").IUnknown;
+const PWSTR = @import("system_services.zig").PWSTR;
 const HRESULT = @import("com.zig").HRESULT;
 const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
@@ -8358,11 +8372,11 @@ const FILE_STORAGE_TIER_CLASS = @import("system_services.zig").FILE_STORAGE_TIER
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    _ = LPOVERLAPPED_COMPLETION_ROUTINE;
     _ = PFE_EXPORT_FUNC;
     _ = PFE_IMPORT_FUNC;
     _ = LPPROGRESS_ROUTINE;
     _ = PCOPYFILE2_PROGRESS_ROUTINE;
-    _ = LPOVERLAPPED_COMPLETION_ROUTINE;
     _ = MAXMEDIALABEL;
     _ = CLAIMMEDIALABEL;
     _ = CLAIMMEDIALABELEX;

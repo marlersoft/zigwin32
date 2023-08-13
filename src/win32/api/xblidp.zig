@@ -172,7 +172,7 @@ pub const IXblIdpAuthTokenResult = extern struct {
             self: *const IXblIdpAuthTokenResult,
             redirect: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const IXblIdpAuthTokenResult,
             message: *PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -257,8 +257,8 @@ pub const IXblIdpAuthTokenResult = extern struct {
             return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetRedirect(@ptrCast(*const IXblIdpAuthTokenResult, self), redirect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXblIdpAuthTokenResult_GetMessageA(self: *const T, message: *PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMessageA(@ptrCast(*const IXblIdpAuthTokenResult, self), message);
+        pub fn IXblIdpAuthTokenResult_GetMessage(self: *const T, message: *PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IXblIdpAuthTokenResult.VTable, self.vtable).GetMessage(@ptrCast(*const IXblIdpAuthTokenResult, self), message);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXblIdpAuthTokenResult_GetHelpId(self: *const T, helpId: *PWSTR) callconv(.Inline) HRESULT {

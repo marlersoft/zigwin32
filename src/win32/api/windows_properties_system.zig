@@ -1662,7 +1662,8 @@ pub extern "PROPSYS" fn PSGetPropertySystem(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetPropertyFromPropertyStorage(
-    psps: [*]SERIALIZEDPROPSTORAGE,
+    // TODO: what to do with BytesParamIndex 1?
+    psps: *SERIALIZEDPROPSTORAGE,
     cb: u32,
     rpkey: *const PROPERTYKEY,
     ppropvar: *PROPVARIANT,
@@ -1670,7 +1671,8 @@ pub extern "PROPSYS" fn PSGetPropertyFromPropertyStorage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PSGetNamedPropertyFromPropertyStorage(
-    psps: [*]SERIALIZEDPROPSTORAGE,
+    // TODO: what to do with BytesParamIndex 1?
+    psps: *SERIALIZEDPROPSTORAGE,
     cb: u32,
     pszName: [*:0]const u16,
     ppropvar: *PROPVARIANT,
@@ -1918,7 +1920,8 @@ pub extern "PROPSYS" fn InitPropVariantFromResource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitPropVariantFromBuffer(
-    pv: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pv: *const c_void,
     cb: u32,
     ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2142,7 +2145,8 @@ pub extern "PROPSYS" fn PropVariantToDouble(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn PropVariantToBuffer(
     propvar: *const PROPVARIANT,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: *c_void,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2452,7 +2456,8 @@ pub extern "PROPSYS" fn InitVariantFromResource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn InitVariantFromBuffer(
-    pv: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pv: *const c_void,
     cb: u32,
     pvar: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2658,7 +2663,8 @@ pub extern "PROPSYS" fn VariantToDouble(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "PROPSYS" fn VariantToBuffer(
     varIn: *const VARIANT,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: *c_void,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2916,13 +2922,6 @@ pub extern "PROPSYS" fn VariantCompare(
     var2: *const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
-    hwnd: HWND,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
     pidl: *ITEMIDLIST,
@@ -2958,7 +2957,8 @@ pub extern "SHELL32" fn PifMgr_OpenProperties(
 pub extern "SHELL32" fn PifMgr_GetProperties(
     hProps: HANDLE,
     pszGroup: ?[*:0]const u8,
-    lpProps: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpProps: ?*c_void,
     cbProps: i32,
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2967,7 +2967,8 @@ pub extern "SHELL32" fn PifMgr_GetProperties(
 pub extern "SHELL32" fn PifMgr_SetProperties(
     hProps: HANDLE,
     pszGroup: ?[*:0]const u8,
-    lpProps: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpProps: *const c_void,
     cbProps: i32,
     flOpt: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3007,6 +3008,13 @@ pub extern "SHELL32" fn SHPropStgWriteMultiple(
     rgpspec: [*]const PROPSPEC,
     rgvar: [*]PROPVARIANT,
     propidNameFirst: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
+    hwnd: HWND,
+    riid: *const Guid,
+    ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

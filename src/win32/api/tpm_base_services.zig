@@ -101,9 +101,11 @@ pub extern "tbs" fn Tbsip_Submit_Command(
     hContext: *c_void,
     Locality: Tbsip_Submit_Command_LocalityFlags,
     Priority: Tbsip_Submit_Command_PriorityFlags,
-    pabCommand: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pabCommand: *u8,
     cbCommand: u32,
-    pabResult: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pabResult: *u8,
     pcbResult: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -115,30 +117,35 @@ pub extern "tbs" fn Tbsip_Cancel_Commands(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Physical_Presence_Command(
     hContext: *c_void,
-    pabInput: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pabInput: *u8,
     cbInput: u32,
-    pabOutput: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pabOutput: *u8,
     pcbOutput: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Get_TCG_Log(
     hContext: *c_void,
-    pOutputBuf: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pOutputBuf: ?*u8,
     pOutputBufLen: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_GetDeviceInfo(
     Size: u32,
-    Info: [*]u8,
+    // TODO: what to do with BytesParamIndex 0?
+    Info: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_Get_OwnerAuth(
     hContext: *c_void,
     ownerauthType: u32,
-    pOutputBuf: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pOutputBuf: ?*u8,
     pOutputBufLen: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -147,7 +154,8 @@ pub extern "tbs" fn Tbsi_Revoke_Attestation(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "DSOUND" fn GetDeviceID(
-    pbWindowsAIK: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pbWindowsAIK: ?*u8,
     cbWindowsAIK: u32,
     pcbResult: *u32,
     pfProtectedByTPM: ?*BOOL,
@@ -167,7 +175,8 @@ pub extern "tbs" fn Tbsi_Create_Windows_Key(
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
     logType: u32,
-    pbOutput: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pbOutput: ?*u8,
     pcbOutput: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

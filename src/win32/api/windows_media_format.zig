@@ -2,6 +2,50 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (342)
 //--------------------------------------------------------------------------------
+pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
+pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
+pub const WMT_VIDEOIMAGE_INTEGER_DENOMINATOR = @as(i32, 65536);
+pub const WMT_VIDEOIMAGE_MAGIC_NUMBER = @as(u32, 491406834);
+pub const WMT_VIDEOIMAGE_MAGIC_NUMBER_2 = @as(u32, 491406835);
+pub const WMT_VIDEOIMAGE_TRANSITION_BOW_TIE = @as(u32, 11);
+pub const WMT_VIDEOIMAGE_TRANSITION_CIRCLE = @as(u32, 12);
+pub const WMT_VIDEOIMAGE_TRANSITION_CROSS_FADE = @as(u32, 13);
+pub const WMT_VIDEOIMAGE_TRANSITION_DIAGONAL = @as(u32, 14);
+pub const WMT_VIDEOIMAGE_TRANSITION_DIAMOND = @as(u32, 15);
+pub const WMT_VIDEOIMAGE_TRANSITION_FADE_TO_COLOR = @as(u32, 16);
+pub const WMT_VIDEOIMAGE_TRANSITION_FILLED_V = @as(u32, 17);
+pub const WMT_VIDEOIMAGE_TRANSITION_FLIP = @as(u32, 18);
+pub const WMT_VIDEOIMAGE_TRANSITION_INSET = @as(u32, 19);
+pub const WMT_VIDEOIMAGE_TRANSITION_IRIS = @as(u32, 20);
+pub const WMT_VIDEOIMAGE_TRANSITION_PAGE_ROLL = @as(u32, 21);
+pub const WMT_VIDEOIMAGE_TRANSITION_RECTANGLE = @as(u32, 23);
+pub const WMT_VIDEOIMAGE_TRANSITION_REVEAL = @as(u32, 24);
+pub const WMT_VIDEOIMAGE_TRANSITION_SLIDE = @as(u32, 27);
+pub const WMT_VIDEOIMAGE_TRANSITION_SPLIT = @as(u32, 29);
+pub const WMT_VIDEOIMAGE_TRANSITION_STAR = @as(u32, 30);
+pub const WMT_VIDEOIMAGE_TRANSITION_WHEEL = @as(u32, 31);
+pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
+pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
+pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
+pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
+pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
+pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
+pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
+pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
+pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
+pub const WM_CT_INTERLACED = @as(u32, 128);
+pub const WM_CL_INTERLACED420 = @as(u32, 0);
+pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
+pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
+pub const WM_MAX_STREAMS = @as(u32, 63);
+pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
+pub const DRM_OPL_TYPES = @as(u32, 1);
 pub const g_dwWMSpecialAttributes = @as(u32, 20);
 pub const g_wszWMDuration = "Duration";
 pub const g_wszWMBitrate = "Bitrate";
@@ -300,50 +344,6 @@ pub const CLSID_WMBandwidthSharing_Partial = Guid.initString("af6060ab-5197-11d2
 pub const WMT_DMOCATEGORY_AUDIO_WATERMARK = Guid.initString("65221c5a-fa75-4b39-b50c-06c336b6a3ef");
 pub const WMT_DMOCATEGORY_VIDEO_WATERMARK = Guid.initString("187cc922-8efc-4404-9daf-63f4830df1bc");
 pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060082f2054");
-pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
-pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
-pub const WMT_VIDEOIMAGE_INTEGER_DENOMINATOR = @as(i32, 65536);
-pub const WMT_VIDEOIMAGE_MAGIC_NUMBER = @as(u32, 491406834);
-pub const WMT_VIDEOIMAGE_MAGIC_NUMBER_2 = @as(u32, 491406835);
-pub const WMT_VIDEOIMAGE_TRANSITION_BOW_TIE = @as(u32, 11);
-pub const WMT_VIDEOIMAGE_TRANSITION_CIRCLE = @as(u32, 12);
-pub const WMT_VIDEOIMAGE_TRANSITION_CROSS_FADE = @as(u32, 13);
-pub const WMT_VIDEOIMAGE_TRANSITION_DIAGONAL = @as(u32, 14);
-pub const WMT_VIDEOIMAGE_TRANSITION_DIAMOND = @as(u32, 15);
-pub const WMT_VIDEOIMAGE_TRANSITION_FADE_TO_COLOR = @as(u32, 16);
-pub const WMT_VIDEOIMAGE_TRANSITION_FILLED_V = @as(u32, 17);
-pub const WMT_VIDEOIMAGE_TRANSITION_FLIP = @as(u32, 18);
-pub const WMT_VIDEOIMAGE_TRANSITION_INSET = @as(u32, 19);
-pub const WMT_VIDEOIMAGE_TRANSITION_IRIS = @as(u32, 20);
-pub const WMT_VIDEOIMAGE_TRANSITION_PAGE_ROLL = @as(u32, 21);
-pub const WMT_VIDEOIMAGE_TRANSITION_RECTANGLE = @as(u32, 23);
-pub const WMT_VIDEOIMAGE_TRANSITION_REVEAL = @as(u32, 24);
-pub const WMT_VIDEOIMAGE_TRANSITION_SLIDE = @as(u32, 27);
-pub const WMT_VIDEOIMAGE_TRANSITION_SPLIT = @as(u32, 29);
-pub const WMT_VIDEOIMAGE_TRANSITION_STAR = @as(u32, 30);
-pub const WMT_VIDEOIMAGE_TRANSITION_WHEEL = @as(u32, 31);
-pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
-pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
-pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
-pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
-pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
-pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
-pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
-pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
-pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
-pub const WM_CT_INTERLACED = @as(u32, 128);
-pub const WM_CL_INTERLACED420 = @as(u32, 0);
-pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
-pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
-pub const WM_MAX_STREAMS = @as(u32, 63);
-pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
-pub const DRM_OPL_TYPES = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (180)
@@ -5662,14 +5662,14 @@ pub const IWMBackupRestoreProps = extern struct {
             pValue: [*:0]u8,
             pcbLength: *u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropA: fn(
+        SetProp: fn(
             self: *const IWMBackupRestoreProps,
             pszName: [*:0]const u16,
             Type: WMT_ATTR_DATATYPE,
             pValue: [*:0]const u8,
             cbLength: u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemovePropA: fn(
+        RemoveProp: fn(
             self: *const IWMBackupRestoreProps,
             pcwszName: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5693,12 +5693,12 @@ pub const IWMBackupRestoreProps = extern struct {
             return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).GetPropByName(@ptrCast(*const IWMBackupRestoreProps, self), pszName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_SetPropA(self: *const T, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).SetPropA(@ptrCast(*const IWMBackupRestoreProps, self), pszName, Type, pValue, cbLength);
+        pub fn IWMBackupRestoreProps_SetProp(self: *const T, pszName: [*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).SetProp(@ptrCast(*const IWMBackupRestoreProps, self), pszName, Type, pValue, cbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMBackupRestoreProps_RemovePropA(self: *const T, pcwszName: [*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).RemovePropA(@ptrCast(*const IWMBackupRestoreProps, self), pcwszName);
+        pub fn IWMBackupRestoreProps_RemoveProp(self: *const T, pcwszName: [*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWMBackupRestoreProps.VTable, self.vtable).RemoveProp(@ptrCast(*const IWMBackupRestoreProps, self), pcwszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWMBackupRestoreProps_RemoveAllProps(self: *const T) callconv(.Inline) HRESULT {

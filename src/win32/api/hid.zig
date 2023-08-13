@@ -1705,6 +1705,12 @@ pub const FACILITY_HID_ERROR_CODE = @as(u32, 17);
 //--------------------------------------------------------------------------------
 // Section: Types (128)
 //--------------------------------------------------------------------------------
+pub const JOYREGHWVALUES = extern struct {
+    jrvHardware: joyrange_tag,
+    dwPOVValues: [4]u32,
+    dwCalFlags: u32,
+};
+
 pub const DICONSTANTFORCE = extern struct {
     lMagnitude: i32,
 };
@@ -4640,6 +4646,7 @@ pub const HIDP_KEYBOARD_MODIFIER_STATE = extern struct {
 
 pub const PHIDP_INSERT_SCANCODES = fn(
     Context: ?*c_void,
+    // TODO: what to do with BytesParamIndex 2?
     NewScanCodes: [*]u8,
     Length: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
@@ -4655,12 +4662,6 @@ pub const HIDD_ATTRIBUTES = extern struct {
     VendorID: u16,
     ProductID: u16,
     VersionNumber: u16,
-};
-
-pub const JOYREGHWVALUES = extern struct {
-    jrvHardware: joyrange_tag,
-    dwPOVValues: [4]u32,
-    dwCalFlags: u32,
 };
 
 
@@ -4732,6 +4733,7 @@ pub extern "HID" fn HidP_InitializeReportForID(
     ReportType: HIDP_REPORT_TYPE,
     ReportID: u8,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 4?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4741,6 +4743,7 @@ pub extern "HID" fn HidP_SetData(
     DataList: [*]HIDP_DATA,
     DataLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 5?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4750,6 +4753,7 @@ pub extern "HID" fn HidP_GetData(
     DataList: [*]HIDP_DATA,
     DataLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 5?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4766,6 +4770,7 @@ pub extern "HID" fn HidP_SetUsages(
     UsageList: [*:0]u16,
     UsageLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4777,6 +4782,7 @@ pub extern "HID" fn HidP_UnsetUsages(
     UsageList: [*:0]u16,
     UsageLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4788,6 +4794,7 @@ pub extern "HID" fn HidP_GetUsages(
     UsageList: [*:0]u16,
     UsageLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4798,6 +4805,7 @@ pub extern "HID" fn HidP_GetUsagesEx(
     ButtonList: [*]USAGE_AND_PAGE,
     UsageLength: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 6?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4815,6 +4823,7 @@ pub extern "HID" fn HidP_SetUsageValue(
     Usage: u16,
     UsageValue: u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4826,6 +4835,7 @@ pub extern "HID" fn HidP_SetScaledUsageValue(
     Usage: u16,
     UsageValue: i32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4835,9 +4845,11 @@ pub extern "HID" fn HidP_SetUsageValueArray(
     UsagePage: u16,
     LinkCollection: u16,
     Usage: u16,
+    // TODO: what to do with BytesParamIndex 5?
     UsageValue: [*]u8,
     UsageValueByteLength: u16,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 8?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4849,6 +4861,7 @@ pub extern "HID" fn HidP_GetUsageValue(
     Usage: u16,
     UsageValue: *u32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4860,6 +4873,7 @@ pub extern "HID" fn HidP_GetScaledUsageValue(
     Usage: u16,
     UsageValue: *i32,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 7?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4869,9 +4883,11 @@ pub extern "HID" fn HidP_GetUsageValueArray(
     UsagePage: u16,
     LinkCollection: u16,
     Usage: u16,
+    // TODO: what to do with BytesParamIndex 5?
     UsageValue: [*]u8,
     UsageValueByteLength: u16,
     PreparsedData: isize,
+    // TODO: what to do with BytesParamIndex 8?
     Report: [*]u8,
     ReportLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4917,37 +4933,43 @@ pub extern "HID" fn HidD_FlushQueue(
 
 pub extern "HID" fn HidD_GetConfiguration(
     HidDeviceObject: HANDLE,
-    Configuration: [*]HIDD_CONFIGURATION,
+    // TODO: what to do with BytesParamIndex 2?
+    Configuration: *HIDD_CONFIGURATION,
     ConfigurationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_SetConfiguration(
     HidDeviceObject: HANDLE,
-    Configuration: [*]HIDD_CONFIGURATION,
+    // TODO: what to do with BytesParamIndex 2?
+    Configuration: *HIDD_CONFIGURATION,
     ConfigurationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetFeature(
     HidDeviceObject: HANDLE,
-    ReportBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    ReportBuffer: *c_void,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_SetFeature(
     HidDeviceObject: HANDLE,
-    ReportBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    ReportBuffer: *c_void,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetInputReport(
     HidDeviceObject: HANDLE,
-    ReportBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    ReportBuffer: *c_void,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_SetOutputReport(
     HidDeviceObject: HANDLE,
-    ReportBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    ReportBuffer: *c_void,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
@@ -4963,38 +4985,44 @@ pub extern "HID" fn HidD_SetNumInputBuffers(
 
 pub extern "HID" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: HANDLE,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetManufacturerString(
     HidDeviceObject: HANDLE,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetProductString(
     HidDeviceObject: HANDLE,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetIndexedString(
     HidDeviceObject: HANDLE,
     StringIndex: u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetSerialNumberString(
     HidDeviceObject: HANDLE,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "HID" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: HANDLE,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
@@ -5112,9 +5140,9 @@ const HRESULT = @import("com.zig").HRESULT;
 const joyreguservalues_tag = @import("multimedia.zig").joyreguservalues_tag;
 const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
-const joyreghwsettings_tag = @import("multimedia.zig").joyreghwsettings_tag;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
+const joyreghwsettings_tag = @import("multimedia.zig").joyreghwsettings_tag;
 const joyrange_tag = @import("multimedia.zig").joyrange_tag;
 const joyreghwconfig_tag = @import("multimedia.zig").joyreghwconfig_tag;
 const POINT = @import("display_devices.zig").POINT;

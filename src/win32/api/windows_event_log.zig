@@ -538,7 +538,8 @@ pub extern "wevtapi" fn EvtRender(
     Fragment: isize,
     Flags: u32,
     BufferSize: u32,
-    Buffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*c_void,
     BufferUsed: *u32,
     PropertyCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -568,7 +569,8 @@ pub extern "wevtapi" fn EvtGetLogInfo(
     Log: isize,
     PropertyId: EVT_LOG_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 2?
+    PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -638,7 +640,8 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 3?
+    PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -671,7 +674,8 @@ pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
     PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
     Flags: u32,
     PublisherMetadataPropertyBufferSize: u32,
-    PublisherMetadataPropertyBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 3?
+    PublisherMetadataPropertyBuffer: ?*EVT_VARIANT,
     PublisherMetadataPropertyBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -693,7 +697,8 @@ pub extern "wevtapi" fn EvtGetEventMetadataProperty(
     PropertyId: EVT_EVENT_METADATA_PROPERTY_ID,
     Flags: u32,
     EventMetadataPropertyBufferSize: u32,
-    EventMetadataPropertyBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 3?
+    EventMetadataPropertyBuffer: ?*EVT_VARIANT,
     EventMetadataPropertyBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -710,7 +715,8 @@ pub extern "wevtapi" fn EvtGetObjectArrayProperty(
     ArrayIndex: u32,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 4?
+    PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -719,7 +725,8 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
     QueryOrSubscription: isize,
     PropertyId: EVT_QUERY_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 2?
+    PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -739,7 +746,8 @@ pub extern "wevtapi" fn EvtGetEventInfo(
     Event: isize,
     PropertyId: EVT_EVENT_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    PropertyValueBuffer: ?[*]EVT_VARIANT,
+    // TODO: what to do with BytesParamIndex 2?
+    PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

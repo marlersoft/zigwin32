@@ -53,6 +53,7 @@ pub const hid = @import("api/hid.zig");
 pub const hi_dpi = @import("api/hi_dpi.zig");
 pub const html_help = @import("api/html_help.zig");
 pub const http = @import("api/http.zig");
+pub const hypervisor = @import("api/hypervisor.zig");
 pub const imapi = @import("api/imapi.zig");
 pub const index_server = @import("api/index_server.zig");
 pub const ink_input = @import("api/ink_input.zig");
@@ -126,6 +127,7 @@ pub const settings_management_infrastructure = @import("api/settings_management_
 pub const shell = @import("api/shell.zig");
 pub const snmp = @import("api/snmp.zig");
 pub const software_device = @import("api/software_device.zig");
+pub const speech = @import("api/speech.zig");
 pub const streaming_media = @import("api/streaming_media.zig");
 pub const structured_storage = @import("api/structured_storage.zig");
 pub const sync = @import("api/sync.zig");
@@ -145,7 +147,7 @@ pub const uianimation = @import("api/uianimation.zig");
 pub const upnp = @import("api/upnp.zig");
 pub const usb_drivers = @import("api/usb_drivers.zig");
 pub const user_access_logging = @import("api/user_access_logging.zig");
-pub const virtual_storage = @import("api/virtual_storage.zig");
+pub const vhd = @import("api/vhd.zig");
 pub const web_dav = @import("api/web_dav.zig");
 pub const web_sock = @import("api/web_sock.zig");
 pub const wia = @import("api/wia.zig");
@@ -198,7 +200,7 @@ pub const xinput = @import("api/xinput.zig");
 pub const xml_http_extended_request = @import("api/xml_http_extended_request.zig");
 pub const xps = @import("api/xps.zig");
 test {
-    const api_count = 198;
+    const api_count = 200;
     @setEvalBranchQuota(api_count);
     @import("std").testing.refAllDecls(@This());
 }

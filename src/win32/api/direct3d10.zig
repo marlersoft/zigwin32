@@ -492,13 +492,15 @@ pub const ID3D10DeviceChild = extern struct {
             self: *const ID3D10DeviceChild,
             guid: *const Guid,
             pDataSize: *u32,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const ID3D10DeviceChild,
             guid: *const Guid,
             DataSize: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const ID3D10DeviceChild,
@@ -514,11 +516,11 @@ pub const ID3D10DeviceChild = extern struct {
             return @ptrCast(*const ID3D10DeviceChild.VTable, self.vtable).GetDevice(@ptrCast(*const ID3D10DeviceChild, self), ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D10DeviceChild_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10DeviceChild.VTable, self.vtable).GetPrivateData(@ptrCast(*const ID3D10DeviceChild, self), guid, pDataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10DeviceChild_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn ID3D10DeviceChild_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10DeviceChild.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D10DeviceChild, self), guid, DataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1037,8 +1039,8 @@ pub const ID3D10View = extern struct {
 pub const D3D10_BUFFER_SRV = extern struct {
     Anonymous1: D3D10_BUFFER_SRV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_SRV._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_SRV = extern struct {
@@ -1115,8 +1117,8 @@ pub const ID3D10ShaderResourceView = extern struct {
 pub const D3D10_BUFFER_RTV = extern struct {
     Anonymous1: D3D10_BUFFER_RTV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_RTV._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_RTV = extern struct {
@@ -1452,7 +1454,8 @@ pub const ID3D10Asynchronous = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetData: fn(
             self: *const ID3D10Asynchronous,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
             DataSize: u32,
             GetDataFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1472,7 +1475,7 @@ pub const ID3D10Asynchronous = extern struct {
             return @ptrCast(*const ID3D10Asynchronous.VTable, self.vtable).End(@ptrCast(*const ID3D10Asynchronous, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Asynchronous_GetData(self: *const T, pData: ?[*]u8, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D10Asynchronous_GetData(self: *const T, pData: ?*c_void, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Asynchronous.VTable, self.vtable).GetData(@ptrCast(*const ID3D10Asynchronous, self), pData, DataSize, GetDataFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2013,13 +2016,15 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             guid: *const Guid,
             pDataSize: *u32,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const ID3D10Device,
             guid: *const Guid,
             DataSize: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const ID3D10Device,
@@ -2447,11 +2452,11 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GetExceptionMode(@ptrCast(*const ID3D10Device, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GetPrivateData(@ptrCast(*const ID3D10Device, self), guid, pDataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D10Device, self), guid, DataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3824,10 +3829,11 @@ pub const ID3D10InfoQueue = extern struct {
         ClearStoredMessages: fn(
             self: *const ID3D10InfoQueue,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const ID3D10InfoQueue,
             MessageIndex: u64,
-            pMessage: ?[*]D3D10_MESSAGE,
+            // TODO: what to do with BytesParamIndex 2?
+            pMessage: ?*D3D10_MESSAGE,
             pMessageByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumMessagesAllowedByStorageFilter: fn(
@@ -3854,7 +3860,8 @@ pub const ID3D10InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageFilter: fn(
             self: *const ID3D10InfoQueue,
-            pFilter: ?[*]D3D10_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearStorageFilter: fn(
@@ -3882,7 +3889,8 @@ pub const ID3D10InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRetrievalFilter: fn(
             self: *const ID3D10InfoQueue,
-            pFilter: ?[*]D3D10_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearRetrievalFilter: fn(
@@ -3963,8 +3971,8 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).ClearStoredMessages(@ptrCast(*const ID3D10InfoQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetMessageA(self: *const T, MessageIndex: u64, pMessage: ?[*]D3D10_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetMessageA(@ptrCast(*const ID3D10InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
+        pub fn ID3D10InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D10_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetMessage(@ptrCast(*const ID3D10InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D10InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) callconv(.Inline) u64 {
@@ -3995,7 +4003,7 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).AddStorageFilterEntries(@ptrCast(*const ID3D10InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetStorageFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D10InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetStorageFilter(@ptrCast(*const ID3D10InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4027,7 +4035,7 @@ pub const ID3D10InfoQueue = extern struct {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).AddRetrievalFilterEntries(@ptrCast(*const ID3D10InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?[*]D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D10InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10InfoQueue.VTable, self.vtable).GetRetrievalFilter(@ptrCast(*const ID3D10InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4647,13 +4655,15 @@ pub const ID3D10EffectVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) *ID3D10EffectSamplerVariable,
         SetRawValue: fn(
             self: *const ID3D10EffectVariable,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             Offset: u32,
             ByteCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRawValue: fn(
             self: *const ID3D10EffectVariable,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             Offset: u32,
             ByteCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4753,11 +4763,11 @@ pub const ID3D10EffectVariable = extern struct {
             return @ptrCast(*const ID3D10EffectVariable.VTable, self.vtable).AsSampler(@ptrCast(*const ID3D10EffectVariable, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_SetRawValue(self: *const T, pData: [*]u8, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D10EffectVariable_SetRawValue(self: *const T, pData: *c_void, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10EffectVariable.VTable, self.vtable).SetRawValue(@ptrCast(*const ID3D10EffectVariable, self), pData, Offset, ByteCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10EffectVariable_GetRawValue(self: *const T, pData: [*]u8, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D10EffectVariable_GetRawValue(self: *const T, pData: *c_void, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10EffectVariable.VTable, self.vtable).GetRawValue(@ptrCast(*const ID3D10EffectVariable, self), pData, Offset, ByteCount);
         }
     };}
@@ -6324,6 +6334,7 @@ pub extern "d3d10" fn D3D10CreateBlob(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileShader(
+    // TODO: what to do with BytesParamIndex 1?
     pSrcData: [*:0]const u8,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -6337,7 +6348,8 @@ pub extern "d3d10" fn D3D10CompileShader(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10DisassembleShader(
-    pShader: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShader: *const c_void,
     BytecodeLength: usize,
     EnableColorCode: BOOL,
     pComments: ?[*:0]const u8,
@@ -6357,12 +6369,14 @@ pub extern "d3d10" fn D3D10GetGeometryShaderProfile(
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
 pub extern "d3d10" fn D3D10ReflectShader(
-    pShaderBytecode: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShaderBytecode: *const c_void,
     BytecodeLength: usize,
     ppReflector: **ID3D10ShaderReflection,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10PreprocessShader(
+    // TODO: what to do with BytesParamIndex 1?
     pSrcData: [*:0]const u8,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -6373,25 +6387,29 @@ pub extern "d3d10" fn D3D10PreprocessShader(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputSignatureBlob(
-    pShaderBytecode: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShaderBytecode: *const c_void,
     BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetOutputSignatureBlob(
-    pShaderBytecode: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShaderBytecode: *const c_void,
     BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputAndOutputSignatureBlob(
-    pShaderBytecode: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShaderBytecode: *const c_void,
     BytecodeLength: usize,
     ppSignatureBlob: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetShaderDebugInfo(
-    pShaderBytecode: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pShaderBytecode: *const c_void,
     BytecodeLength: usize,
     ppDebugInfo: **ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -6449,7 +6467,8 @@ pub extern "d3d10" fn D3D10CreateStateBlock(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileEffectFromMemory(
-    pData: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData: *c_void,
     DataLength: usize,
     pSrcFileName: [*:0]const u8,
     pDefines: ?*const D3D_SHADER_MACRO,
@@ -6461,7 +6480,8 @@ pub extern "d3d10" fn D3D10CompileEffectFromMemory(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectFromMemory(
-    pData: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData: *c_void,
     DataLength: usize,
     FXFlags: u32,
     pDevice: *ID3D10Device,
@@ -6470,7 +6490,8 @@ pub extern "d3d10" fn D3D10CreateEffectFromMemory(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectPoolFromMemory(
-    pData: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData: *c_void,
     DataLength: usize,
     FXFlags: u32,
     pDevice: *ID3D10Device,

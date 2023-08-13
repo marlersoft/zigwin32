@@ -7,16 +7,18 @@ pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const HPSS = ?*c_void;
+pub const HPSS = ?*opaque{};
 
-pub const HPSSWALK = ?*c_void;
+pub const HPSSWALK = ?*opaque{};
 
-pub const PSS_HANDLE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSS_HANDLE_FLAGS = extern enum(u32) {
     NONE = 0,
     HAVE_TYPE = 1,
     HAVE_NAME = 2,
     HAVE_BASIC_INFORMATION = 4,
     HAVE_TYPE_SPECIFIC_INFORMATION = 8,
+    _,
 };
 pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS.NONE;
 pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS.HAVE_TYPE;
@@ -41,7 +43,8 @@ pub const PSS_OBJECT_TYPE_EVENT = PSS_OBJECT_TYPE.EVENT;
 pub const PSS_OBJECT_TYPE_SECTION = PSS_OBJECT_TYPE.SECTION;
 pub const PSS_OBJECT_TYPE_SEMAPHORE = PSS_OBJECT_TYPE.SEMAPHORE;
 
-pub const PSS_CAPTURE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSS_CAPTURE_FLAGS = extern enum(u32) {
     APTURE_NONE = 0,
     APTURE_VA_CLONE = 1,
     APTURE_RESERVED_00000002 = 2,
@@ -63,7 +66,8 @@ pub const PSS_CAPTURE_FLAGS = extern enum(i32) {
     REATE_FORCE_BREAKAWAY = 268435456,
     REATE_USE_VM_ALLOCATIONS = 536870912,
     REATE_MEASURE_PERFORMANCE = 1073741824,
-    REATE_RELEASE_SECTION = -2147483648,
+    REATE_RELEASE_SECTION = 2147483648,
+    _,
 };
 pub const PSS_CAPTURE_NONE = PSS_CAPTURE_FLAGS.APTURE_NONE;
 pub const PSS_CAPTURE_VA_CLONE = PSS_CAPTURE_FLAGS.APTURE_VA_CLONE;
@@ -118,20 +122,24 @@ pub const PSS_WALK_VA_SPACE = PSS_WALK_INFORMATION_CLASS.VA_SPACE;
 pub const PSS_WALK_HANDLES = PSS_WALK_INFORMATION_CLASS.HANDLES;
 pub const PSS_WALK_THREADS = PSS_WALK_INFORMATION_CLASS.THREADS;
 
-pub const PSS_DUPLICATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSS_DUPLICATE_FLAGS = extern enum(u32) {
     NONE = 0,
     CLOSE_SOURCE = 1,
+    _,
 };
 pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS.NONE;
 pub const PSS_DUPLICATE_CLOSE_SOURCE = PSS_DUPLICATE_FLAGS.CLOSE_SOURCE;
 
-pub const PSS_PROCESS_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSS_PROCESS_FLAGS = extern enum(u32) {
     NONE = 0,
     PROTECTED = 1,
     WOW64 = 2,
     RESERVED_03 = 4,
     RESERVED_04 = 8,
     FROZEN = 16,
+    _,
 };
 pub const PSS_PROCESS_FLAGS_NONE = PSS_PROCESS_FLAGS.NONE;
 pub const PSS_PROCESS_FLAGS_PROTECTED = PSS_PROCESS_FLAGS.PROTECTED;
@@ -254,9 +262,11 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     const _TypeSpecificInformation_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const PSS_THREAD_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSS_THREAD_FLAGS = extern enum(u32) {
     NONE = 0,
     TERMINATED = 1,
+    _,
 };
 pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS.NONE;
 pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS.TERMINATED;
@@ -311,7 +321,8 @@ pub extern "KERNEL32" fn PssFreeSnapshot(
 pub extern "KERNEL32" fn PssQuerySnapshot(
     SnapshotHandle: HPSS,
     InformationClass: PSS_QUERY_INFORMATION_CLASS,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *c_void,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

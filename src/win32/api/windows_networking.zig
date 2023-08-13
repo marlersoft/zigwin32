@@ -34,6 +34,9 @@ pub const WNCON_DYNAMIC = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
+pub const NetEnumHandle = isize;
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WNetOpenEnum_dwUsage = extern enum(u32) {
     None = 0,
@@ -135,9 +138,6 @@ pub const DISCDLGSTRUCTA_dwFlags = extern enum(u32) {
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCTA_dwFlags.UPDATE_PROFILE;
 pub const DISC_NO_FORCE = DISCDLGSTRUCTA_dwFlags.NO_FORCE;
 
-// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
-pub const NetEnumHandle = isize;
-
 pub const CONNECTDLGSTRUCTA = extern struct {
     cbStructure: u32,
     hwndOwner: HWND,
@@ -236,20 +236,24 @@ pub extern "MPR" fn WNetAddConnection3W(
 pub extern "MPR" fn WNetAddConnection4A(
     hwndOwner: HWND,
     lpNetResource: *NETRESOURCEA,
-    pAuthBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pAuthBuffer: *c_void,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    lpUseOptions: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    lpUseOptions: *u8,
     cbUseOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MPR" fn WNetAddConnection4W(
     hwndOwner: HWND,
     lpNetResource: *NETRESOURCEW,
-    pAuthBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pAuthBuffer: *c_void,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    lpUseOptions: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    lpUseOptions: *u8,
     cbUseOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -320,10 +324,12 @@ pub extern "MPR" fn WNetUseConnectionW(
 pub extern "MPR" fn WNetUseConnection4A(
     hwndOwner: HWND,
     lpNetResource: *NETRESOURCEA,
-    pAuthBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pAuthBuffer: ?*c_void,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    lpUseOptions: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    lpUseOptions: ?*u8,
     cbUseOptions: u32,
     lpAccessName: ?[*:0]u8,
     lpBufferSize: ?*u32,
@@ -333,10 +339,12 @@ pub extern "MPR" fn WNetUseConnection4A(
 pub extern "MPR" fn WNetUseConnection4W(
     hwndOwner: HWND,
     lpNetResource: *NETRESOURCEW,
-    pAuthBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pAuthBuffer: ?*c_void,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    lpUseOptions: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    lpUseOptions: ?*u8,
     cbUseOptions: u32,
     lpAccessName: ?[*:0]u16,
     lpBufferSize: ?*u32,
@@ -381,7 +389,7 @@ pub extern "MPR" fn WNetOpenEnumA(
     dwType: WNetOpenEnum_dwType,
     dwUsage: WNetOpenEnum_dwUsage,
     lpNetResource: ?*NETRESOURCEA,
-    lphEnum: *HANDLE,
+    lphEnum: *NetEnumHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -390,14 +398,15 @@ pub extern "MPR" fn WNetOpenEnumW(
     dwType: WNetOpenEnum_dwType,
     dwUsage: WNetOpenEnum_dwUsage,
     lpNetResource: ?*NETRESOURCEW,
-    lphEnum: *HANDLE,
+    lphEnum: *NetEnumHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetEnumResourceA(
     hEnum: HANDLE,
     lpcCount: *u32,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     lpBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -405,7 +414,8 @@ pub extern "MPR" fn WNetEnumResourceA(
 pub extern "MPR" fn WNetEnumResourceW(
     hEnum: HANDLE,
     lpcCount: *u32,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     lpBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -417,21 +427,24 @@ pub extern "MPR" fn WNetCloseEnum(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetResourceParentA(
     lpNetResource: *NETRESOURCEA,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     lpcbBuffer: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetResourceParentW(
     lpNetResource: *NETRESOURCEW,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     lpcbBuffer: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetResourceInformationA(
     lpNetResource: *NETRESOURCEA,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     lpcbBuffer: *u32,
     lplpSystem: *PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -439,7 +452,8 @@ pub extern "MPR" fn WNetGetResourceInformationA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetResourceInformationW(
     lpNetResource: *NETRESOURCEW,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *c_void,
     lpcbBuffer: *u32,
     lplpSystem: *PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -448,7 +462,8 @@ pub extern "MPR" fn WNetGetResourceInformationW(
 pub extern "MPR" fn WNetGetUniversalNameA(
     lpLocalPath: [*:0]const u8,
     dwInfoLevel: NPGetUniversalName_dwInfoLevel,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     lpBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -456,7 +471,8 @@ pub extern "MPR" fn WNetGetUniversalNameA(
 pub extern "MPR" fn WNetGetUniversalNameW(
     lpLocalPath: [*:0]const u16,
     dwInfoLevel: NPGetUniversalName_dwInfoLevel,
-    lpBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
     lpBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

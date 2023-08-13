@@ -38,9 +38,11 @@ pub const DML_TENSOR_TYPE = extern enum(i32) {
 pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
 pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
 
-pub const DML_TENSOR_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DML_TENSOR_FLAGS = extern enum(u32) {
     NONE = 0,
     OWNED_BY_DML = 1,
+    _,
 };
 pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS.NONE;
 pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS.OWNED_BY_DML;
@@ -1072,20 +1074,24 @@ pub const DML_BINDING_TABLE_DESC = extern struct {
     SizeInDescriptors: u32,
 };
 
-pub const DML_EXECUTION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DML_EXECUTION_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_HALF_PRECISION_COMPUTATION = 1,
     DISABLE_META_COMMANDS = 2,
     DESCRIPTORS_VOLATILE = 4,
+    _,
 };
 pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS.NONE;
 pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION;
 pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS;
 pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE;
 
-pub const DML_CREATE_DEVICE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DML_CREATE_DEVICE_FLAGS = extern enum(u32) {
     NONE = 0,
     DEBUG = 1,
+    _,
 };
 pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS.NONE;
 pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS.DEBUG;
@@ -1099,13 +1105,15 @@ pub const IDMLObject = extern struct {
             self: *const IDMLObject,
             guid: *const Guid,
             dataSize: *u32,
-            data: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            data: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const IDMLObject,
             guid: *const Guid,
             dataSize: u32,
-            data: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            data: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const IDMLObject,
@@ -1121,11 +1129,11 @@ pub const IDMLObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_GetPrivateData(self: *const T, guid: *const Guid, dataSize: *u32, data: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_GetPrivateData(self: *const T, guid: *const Guid, dataSize: *u32, data: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLObject_SetPrivateData(self: *const T, guid: *const Guid, dataSize: u32, data: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn IDMLObject_SetPrivateData(self: *const T, guid: *const Guid, dataSize: u32, data: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLObject.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1149,9 +1157,11 @@ pub const IDMLDevice = extern struct {
             self: *const IDMLDevice,
             feature: DML_FEATURE,
             featureQueryDataSize: u32,
-            featureQueryData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            featureQueryData: ?*const c_void,
             featureSupportDataSize: u32,
-            featureSupportData: [*]u8,
+            // TODO: what to do with BytesParamIndex 3?
+            featureSupportData: *c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperator: fn(
             self: *const IDMLDevice,
@@ -1207,7 +1217,7 @@ pub const IDMLDevice = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMLDevice_CheckFeatureSupport(self: *const T, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?[*]const u8, featureSupportDataSize: u32, featureSupportData: [*]u8) callconv(.Inline) HRESULT {
+        pub fn IDMLDevice_CheckFeatureSupport(self: *const T, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const c_void, featureSupportDataSize: u32, featureSupportData: *c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDMLDevice.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const IDMLDevice, self), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

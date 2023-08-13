@@ -810,7 +810,8 @@ pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
     HostName: ?[*:0]const u16,
     ProxyName: ?[*:0]const u16,
     Flags: u32,
-    ConnectionProfileFilterRawData: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    ConnectionProfileFilterRawData: ?*u8,
     ConnectionProfileFilterRawDataSize: u32,
     InterfaceContextTable: **NET_INTERFACE_CONTEXT_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

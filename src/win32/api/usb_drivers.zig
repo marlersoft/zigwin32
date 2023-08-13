@@ -1494,7 +1494,8 @@ pub extern "WINUSB" fn WinUsb_GetDescriptor(
     DescriptorType: u8,
     Index: u8,
     LanguageID: u16,
-    Buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1509,7 +1510,8 @@ pub extern "WINUSB" fn WinUsb_QueryDeviceInformation(
     InterfaceHandle: *c_void,
     InformationType: u32,
     BufferLength: *u32,
-    Buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_SetCurrentAlternateSetting(
@@ -1541,7 +1543,8 @@ pub extern "WINUSB" fn WinUsb_SetPipePolicy(
     PipeID: u8,
     PolicyType: u32,
     ValueLength: u32,
-    Value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Value: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetPipePolicy(
@@ -1549,13 +1552,15 @@ pub extern "WINUSB" fn WinUsb_GetPipePolicy(
     PipeID: u8,
     PolicyType: u32,
     ValueLength: *u32,
-    Value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Value: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_ReadPipe(
     InterfaceHandle: *c_void,
     PipeID: u8,
-    Buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
     Overlapped: ?*OVERLAPPED,
@@ -1564,7 +1569,8 @@ pub extern "WINUSB" fn WinUsb_ReadPipe(
 pub extern "WINUSB" fn WinUsb_WritePipe(
     InterfaceHandle: *c_void,
     PipeID: u8,
-    Buffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
     Overlapped: ?*OVERLAPPED,
@@ -1573,7 +1579,8 @@ pub extern "WINUSB" fn WinUsb_WritePipe(
 pub extern "WINUSB" fn WinUsb_ControlTransfer(
     InterfaceHandle: *c_void,
     SetupPacket: WINUSB_SETUP_PACKET,
-    Buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
     Overlapped: ?*OVERLAPPED,
@@ -1598,14 +1605,16 @@ pub extern "WINUSB" fn WinUsb_SetPowerPolicy(
     InterfaceHandle: *c_void,
     PolicyType: u32,
     ValueLength: u32,
-    Value: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Value: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetPowerPolicy(
     InterfaceHandle: *c_void,
     PolicyType: u32,
     ValueLength: *u32,
-    Value: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Value: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINUSB" fn WinUsb_GetOverlappedResult(
@@ -1626,7 +1635,8 @@ pub extern "WINUSB" fn WinUsb_ParseConfigurationDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) *USB_INTERFACE_DESCRIPTOR;
 
 pub extern "WINUSB" fn WinUsb_ParseDescriptors(
-    DescriptorBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    DescriptorBuffer: *c_void,
     TotalLength: u32,
     StartPosition: *c_void,
     DescriptorType: i32,
@@ -1649,7 +1659,8 @@ pub extern "WINUSB" fn WinUsb_GetAdjustedFrameNumber(
 pub extern "WINUSB" fn WinUsb_RegisterIsochBuffer(
     InterfaceHandle: *c_void,
     PipeID: u8,
-    Buffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *u8,
     BufferLength: u32,
     IsochBufferHandle: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

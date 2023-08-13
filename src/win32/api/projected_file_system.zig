@@ -10,7 +10,8 @@ pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = isize;
 
 pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = isize;
 
-pub const PRJ_NOTIFY_TYPES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRJ_NOTIFY_TYPES = extern enum(u32) {
     NONE = 0,
     SUPPRESS_NOTIFICATIONS = 1,
     FILE_OPENED = 2,
@@ -25,7 +26,8 @@ pub const PRJ_NOTIFY_TYPES = extern enum(i32) {
     FILE_HANDLE_CLOSED_FILE_MODIFIED = 1024,
     FILE_HANDLE_CLOSED_FILE_DELETED = 2048,
     FILE_PRE_CONVERT_TO_FULL = 4096,
-    USE_EXISTING_MASK = -1,
+    USE_EXISTING_MASK = 4294967295,
+    _,
 };
 pub const PRJ_NOTIFY_NONE = PRJ_NOTIFY_TYPES.NONE;
 pub const PRJ_NOTIFY_SUPPRESS_NOTIFICATIONS = PRJ_NOTIFY_TYPES.SUPPRESS_NOTIFICATIONS;
@@ -87,9 +89,11 @@ pub const PRJ_NOTIFICATION_MAPPING = extern struct {
     NotificationRoot: [*:0]const u16,
 };
 
-pub const PRJ_STARTVIRTUALIZING_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRJ_STARTVIRTUALIZING_FLAGS = extern enum(u32) {
     NONE = 0,
     USE_NEGATIVE_PATH_CACHE = 1,
+    _,
 };
 pub const PRJ_FLAG_NONE = PRJ_STARTVIRTUALIZING_FLAGS.NONE;
 pub const PRJ_FLAG_USE_NEGATIVE_PATH_CACHE = PRJ_STARTVIRTUALIZING_FLAGS.USE_NEGATIVE_PATH_CACHE;
@@ -139,7 +143,8 @@ pub const PRJ_PLACEHOLDER_INFO = extern struct {
     const _SecurityInformation_e__Struct = u32; // TODO: generate this nested type!
 };
 
-pub const PRJ_UPDATE_TYPES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRJ_UPDATE_TYPES = extern enum(u32) {
     NONE = 0,
     ALLOW_DIRTY_METADATA = 1,
     ALLOW_DIRTY_DATA = 2,
@@ -148,6 +153,7 @@ pub const PRJ_UPDATE_TYPES = extern enum(i32) {
     RESERVED2 = 16,
     ALLOW_READ_ONLY = 32,
     MAX_VAL = 64,
+    _,
 };
 pub const PRJ_UPDATE_NONE = PRJ_UPDATE_TYPES.NONE;
 pub const PRJ_UPDATE_ALLOW_DIRTY_METADATA = PRJ_UPDATE_TYPES.ALLOW_DIRTY_METADATA;
@@ -158,12 +164,14 @@ pub const PRJ_UPDATE_RESERVED2 = PRJ_UPDATE_TYPES.RESERVED2;
 pub const PRJ_UPDATE_ALLOW_READ_ONLY = PRJ_UPDATE_TYPES.ALLOW_READ_ONLY;
 pub const PRJ_UPDATE_MAX_VAL = PRJ_UPDATE_TYPES.MAX_VAL;
 
-pub const PRJ_UPDATE_FAILURE_CAUSES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRJ_UPDATE_FAILURE_CAUSES = extern enum(u32) {
     NONE = 0,
     DIRTY_METADATA = 1,
     DIRTY_DATA = 2,
     TOMBSTONE = 4,
     READ_ONLY = 8,
+    _,
 };
 pub const PRJ_UPDATE_FAILURE_CAUSE_NONE = PRJ_UPDATE_FAILURE_CAUSES.NONE;
 pub const PRJ_UPDATE_FAILURE_CAUSE_DIRTY_METADATA = PRJ_UPDATE_FAILURE_CAUSES.DIRTY_METADATA;
@@ -171,12 +179,14 @@ pub const PRJ_UPDATE_FAILURE_CAUSE_DIRTY_DATA = PRJ_UPDATE_FAILURE_CAUSES.DIRTY_
 pub const PRJ_UPDATE_FAILURE_CAUSE_TOMBSTONE = PRJ_UPDATE_FAILURE_CAUSES.TOMBSTONE;
 pub const PRJ_UPDATE_FAILURE_CAUSE_READ_ONLY = PRJ_UPDATE_FAILURE_CAUSES.READ_ONLY;
 
-pub const PRJ_FILE_STATE = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRJ_FILE_STATE = extern enum(u32) {
     PLACEHOLDER = 1,
     HYDRATED_PLACEHOLDER = 2,
     DIRTY_PLACEHOLDER = 4,
     FULL = 8,
     TOMBSTONE = 16,
+    _,
 };
 pub const PRJ_FILE_STATE_PLACEHOLDER = PRJ_FILE_STATE.PLACEHOLDER;
 pub const PRJ_FILE_STATE_HYDRATED_PLACEHOLDER = PRJ_FILE_STATE.HYDRATED_PLACEHOLDER;
@@ -316,7 +326,8 @@ pub extern "PROJECTEDFSLIB" fn PrjMarkDirectoryAsPlaceholder(
 pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     destinationFileName: [*:0]const u16,
-    placeholderInfo: [*]const PRJ_PLACEHOLDER_INFO,
+    // TODO: what to do with BytesParamIndex 3?
+    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -324,7 +335,8 @@ pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo(
 pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo2(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     destinationFileName: [*:0]const u16,
-    placeholderInfo: [*]const PRJ_PLACEHOLDER_INFO,
+    // TODO: what to do with BytesParamIndex 3?
+    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
     ExtendedInfo: ?*const PRJ_EXTENDED_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -333,7 +345,8 @@ pub extern "PROJECTEDFSLIB" fn PrjWritePlaceholderInfo2(
 pub extern "PROJECTEDFSLIB" fn PrjUpdateFileIfNeeded(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     destinationFileName: [*:0]const u16,
-    placeholderInfo: [*]const PRJ_PLACEHOLDER_INFO,
+    // TODO: what to do with BytesParamIndex 3?
+    placeholderInfo: *const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
     updateFlags: PRJ_UPDATE_TYPES,
     failureReason: ?*PRJ_UPDATE_FAILURE_CAUSES,
@@ -351,7 +364,8 @@ pub extern "PROJECTEDFSLIB" fn PrjDeleteFile(
 pub extern "PROJECTEDFSLIB" fn PrjWriteFileData(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     dataStreamId: *const Guid,
-    buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    buffer: *c_void,
     byteOffset: u64,
     length: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

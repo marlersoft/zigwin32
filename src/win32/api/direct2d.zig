@@ -72,8 +72,22 @@ pub const CLSID_D2D1HdrToneMap = Guid.initString("7b0b748d-4610-4486-a90c-999d9a
 pub const D2D1_APPEND_ALIGNED_ELEMENT = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (357)
+// Section: Types (359)
 //--------------------------------------------------------------------------------
+pub const D2D_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
+pub const D2D1_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
 pub const D2D1_ALPHA_MODE = extern enum(u32) {
     UNKNOWN = 0,
     PREMULTIPLIED = 1,
@@ -245,6 +259,7 @@ pub const D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR = D2D1_BITMAP_INTERPOL
 pub const D2D1_BITMAP_INTERPOLATION_MODE_LINEAR = D2D1_BITMAP_INTERPOLATION_MODE.LINEAR;
 pub const D2D1_BITMAP_INTERPOLATION_MODE_FORCE_DWORD = D2D1_BITMAP_INTERPOLATION_MODE.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_DRAW_TEXT_OPTIONS = extern enum(u32) {
     NO_SNAP = 1,
     CLIP = 2,
@@ -252,6 +267,7 @@ pub const D2D1_DRAW_TEXT_OPTIONS = extern enum(u32) {
     DISABLE_COLOR_BITMAP_SNAPPING = 8,
     NONE = 0,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_DRAW_TEXT_OPTIONS_NO_SNAP = D2D1_DRAW_TEXT_OPTIONS.NO_SNAP;
 pub const D2D1_DRAW_TEXT_OPTIONS_CLIP = D2D1_DRAW_TEXT_OPTIONS.CLIP;
@@ -268,7 +284,7 @@ pub const D2D1_BITMAP_PROPERTIES = extern struct {
 
 pub const D2D1_GRADIENT_STOP = extern struct {
     position: f32,
-    color: D3DCOLORVALUE,
+    color: D2D1_COLOR_F,
 };
 
 pub const D2D1_BRUSH_PROPERTIES = extern struct {
@@ -413,11 +429,13 @@ pub const D2D1_TRIANGLE = extern struct {
     point3: D2D_POINT_2F,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PATH_SEGMENT = extern enum(u32) {
     NONE = 0,
     FORCE_UNSTROKED = 1,
     FORCE_ROUND_LINE_JOIN = 2,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT.NONE;
 pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT.FORCE_UNSTROKED;
@@ -477,10 +495,12 @@ pub const D2D1_STROKE_STYLE_PROPERTIES = extern struct {
     dashOffset: f32,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_LAYER_OPTIONS = extern enum(u32) {
     NONE = 0,
     INITIALIZE_FOR_CLEARTYPE = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_LAYER_OPTIONS_NONE = D2D1_LAYER_OPTIONS.NONE;
 pub const D2D1_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE;
@@ -496,10 +516,12 @@ pub const D2D1_LAYER_PARAMETERS = extern struct {
     layerOptions: D2D1_LAYER_OPTIONS,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_WINDOW_STATE = extern enum(u32) {
     NONE = 0,
     OCCLUDED = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_WINDOW_STATE_NONE = D2D1_WINDOW_STATE.NONE;
 pub const D2D1_WINDOW_STATE_OCCLUDED = D2D1_WINDOW_STATE.OCCLUDED;
@@ -527,22 +549,26 @@ pub const D2D1_FEATURE_LEVEL_9 = D2D1_FEATURE_LEVEL.@"9";
 pub const D2D1_FEATURE_LEVEL_10 = D2D1_FEATURE_LEVEL.@"10";
 pub const D2D1_FEATURE_LEVEL_FORCE_DWORD = D2D1_FEATURE_LEVEL.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_RENDER_TARGET_USAGE = extern enum(u32) {
     NONE = 0,
     FORCE_BITMAP_REMOTING = 1,
     GDI_COMPATIBLE = 2,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_RENDER_TARGET_USAGE_NONE = D2D1_RENDER_TARGET_USAGE.NONE;
 pub const D2D1_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING;
 pub const D2D1_RENDER_TARGET_USAGE_GDI_COMPATIBLE = D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE;
 pub const D2D1_RENDER_TARGET_USAGE_FORCE_DWORD = D2D1_RENDER_TARGET_USAGE.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PRESENT_OPTIONS = extern enum(u32) {
     NONE = 0,
     RETAIN_CONTENTS = 1,
     IMMEDIATELY = 2,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_PRESENT_OPTIONS_NONE = D2D1_PRESENT_OPTIONS.NONE;
 pub const D2D1_PRESENT_OPTIONS_RETAIN_CONTENTS = D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS;
@@ -564,10 +590,12 @@ pub const D2D1_HWND_RENDER_TARGET_PROPERTIES = extern struct {
     presentOptions: D2D1_PRESENT_OPTIONS,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS = extern enum(u32) {
     NONE = 0,
     GDI_COMPATIBLE = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE;
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE;
@@ -898,21 +926,21 @@ pub const ID2D1SolidColorBrush = extern struct {
         base: ID2D1Brush.VTable,
         SetColor: fn(
             self: *const ID2D1SolidColorBrush,
-            color: *const D3DCOLORVALUE,
+            color: *const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetColor: fn(
             self: *const ID2D1SolidColorBrush,
-        ) callconv(@import("std").os.windows.WINAPI) D3DCOLORVALUE,
+        ) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_F,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Brush.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: *const D3DCOLORVALUE) callconv(.Inline) void {
+        pub fn ID2D1SolidColorBrush_SetColor(self: *const T, color: *const D2D1_COLOR_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SolidColorBrush, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SolidColorBrush_GetColor(self: *const T) callconv(.Inline) D3DCOLORVALUE {
+        pub fn ID2D1SolidColorBrush_GetColor(self: *const T) callconv(.Inline) D2D1_COLOR_F {
             return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SolidColorBrush, self));
         }
     };}
@@ -1750,7 +1778,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSolidColorBrush: fn(
             self: *const ID2D1RenderTarget,
-            color: *const D3DCOLORVALUE,
+            color: *const D2D1_COLOR_F,
             brushProperties: ?*const D2D1_BRUSH_PROPERTIES,
             solidColorBrush: **ID2D1SolidColorBrush,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1871,7 +1899,7 @@ pub const ID2D1RenderTarget = extern struct {
             interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE,
             sourceRectangle: ?*const D2D_RECT_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        DrawTextA: fn(
+        DrawText: fn(
             self: *const ID2D1RenderTarget,
             string: [*:0]const u16,
             stringLength: u32,
@@ -1966,7 +1994,7 @@ pub const ID2D1RenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         Clear: fn(
             self: *const ID2D1RenderTarget,
-            clearColor: ?*const D3DCOLORVALUE,
+            clearColor: ?*const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BeginDraw: fn(
             self: *const ID2D1RenderTarget,
@@ -2023,7 +2051,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1RenderTarget, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: *const D3DCOLORVALUE, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: **ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
+        pub fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: *const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: **ID2D1SolidColorBrush) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSolidColorBrush(@ptrCast(*const ID2D1RenderTarget, self), color, brushProperties, solidColorBrush);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2099,8 +2127,8 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1RenderTarget, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_DrawTextA(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: *ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawTextA(@ptrCast(*const ID2D1RenderTarget, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
+        pub fn ID2D1RenderTarget_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: *ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+            return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1RenderTarget, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID2D1RenderTarget_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: *IDWriteTextLayout, defaultFillBrush: *ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
@@ -2179,7 +2207,7 @@ pub const ID2D1RenderTarget = extern struct {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PopAxisAlignedClip(@ptrCast(*const ID2D1RenderTarget, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1RenderTarget_Clear(self: *const T, clearColor: ?*const D3DCOLORVALUE) callconv(.Inline) void {
+        pub fn ID2D1RenderTarget_Clear(self: *const T, clearColor: ?*const D2D1_COLOR_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).Clear(@ptrCast(*const ID2D1RenderTarget, self), clearColor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3563,6 +3591,7 @@ pub const D2D1_SUBPROPERTY_FIELDS = D2D1_SUBPROPERTY.FIELDS;
 pub const D2D1_SUBPROPERTY_INDEX = D2D1_SUBPROPERTY.INDEX;
 pub const D2D1_SUBPROPERTY_FORCE_DWORD = D2D1_SUBPROPERTY.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_BITMAP_OPTIONS = extern enum(u32) {
     NONE = 0,
     TARGET = 1,
@@ -3570,6 +3599,7 @@ pub const D2D1_BITMAP_OPTIONS = extern enum(u32) {
     CPU_READ = 4,
     GDI_COMPATIBLE = 8,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_BITMAP_OPTIONS_NONE = D2D1_BITMAP_OPTIONS.NONE;
 pub const D2D1_BITMAP_OPTIONS_TARGET = D2D1_BITMAP_OPTIONS.TARGET;
@@ -3626,12 +3656,14 @@ pub const D2D1_BUFFER_PRECISION_16BPC_FLOAT = D2D1_BUFFER_PRECISION.@"16BPC_FLOA
 pub const D2D1_BUFFER_PRECISION_32BPC_FLOAT = D2D1_BUFFER_PRECISION.@"32BPC_FLOAT";
 pub const D2D1_BUFFER_PRECISION_FORCE_DWORD = D2D1_BUFFER_PRECISION.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_MAP_OPTIONS = extern enum(u32) {
     NONE = 0,
     READ = 1,
     WRITE = 2,
     DISCARD = 4,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_MAP_OPTIONS_NONE = D2D1_MAP_OPTIONS.NONE;
 pub const D2D1_MAP_OPTIONS_READ = D2D1_MAP_OPTIONS.READ;
@@ -3676,10 +3708,12 @@ pub const D2D1_COLOR_SPACE_SRGB = D2D1_COLOR_SPACE.SRGB;
 pub const D2D1_COLOR_SPACE_SCRGB = D2D1_COLOR_SPACE.SCRGB;
 pub const D2D1_COLOR_SPACE_FORCE_DWORD = D2D1_COLOR_SPACE.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_DEVICE_CONTEXT_OPTIONS = extern enum(u32) {
     NONE = 0,
     ENABLE_MULTITHREADED_OPTIMIZATIONS = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_DEVICE_CONTEXT_OPTIONS_NONE = D2D1_DEVICE_CONTEXT_OPTIONS.NONE;
 pub const D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS = D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS;
@@ -3785,11 +3819,13 @@ pub const D2D1_STROKE_STYLE_PROPERTIES1 = extern struct {
     transformType: D2D1_STROKE_TRANSFORM_TYPE,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_LAYER_OPTIONS1 = extern enum(u32) {
     NONE = 0,
     INITIALIZE_FROM_BACKGROUND = 1,
     IGNORE_ALPHA = 2,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_LAYER_OPTIONS1_NONE = D2D1_LAYER_OPTIONS1.NONE;
 pub const D2D1_LAYER_OPTIONS1_INITIALIZE_FROM_BACKGROUND = D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND;
@@ -3936,7 +3972,7 @@ pub const ID2D1CommandSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
             self: *const ID2D1CommandSink,
-            color: ?*const D3DCOLORVALUE,
+            color: ?*const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrawGlyphRun: fn(
             self: *const ID2D1CommandSink,
@@ -4070,7 +4106,7 @@ pub const ID2D1CommandSink = extern struct {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetUnitMode(@ptrCast(*const ID2D1CommandSink, self), unitMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1CommandSink_Clear(self: *const T, color: ?*const D3DCOLORVALUE) callconv(.Inline) HRESULT {
+        pub fn ID2D1CommandSink_Clear(self: *const T, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).Clear(@ptrCast(*const ID2D1CommandSink, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5290,12 +5326,14 @@ pub const PD2D1_PROPERTY_GET_FUNCTION = fn(
     actualSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_CHANGE_TYPE = extern enum(u32) {
     NONE = 0,
     PROPERTIES = 1,
     CONTEXT = 2,
     GRAPH = 3,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_CHANGE_TYPE_NONE = D2D1_CHANGE_TYPE.NONE;
 pub const D2D1_CHANGE_TYPE_PROPERTIES = D2D1_CHANGE_TYPE.PROPERTIES;
@@ -5303,21 +5341,25 @@ pub const D2D1_CHANGE_TYPE_CONTEXT = D2D1_CHANGE_TYPE.CONTEXT;
 pub const D2D1_CHANGE_TYPE_GRAPH = D2D1_CHANGE_TYPE.GRAPH;
 pub const D2D1_CHANGE_TYPE_FORCE_DWORD = D2D1_CHANGE_TYPE.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_PIXEL_OPTIONS = extern enum(u32) {
     NONE = 0,
     TRIVIAL_SAMPLING = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_PIXEL_OPTIONS_NONE = D2D1_PIXEL_OPTIONS.NONE;
 pub const D2D1_PIXEL_OPTIONS_TRIVIAL_SAMPLING = D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING;
 pub const D2D1_PIXEL_OPTIONS_FORCE_DWORD = D2D1_PIXEL_OPTIONS.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_VERTEX_OPTIONS = extern enum(u32) {
     NONE = 0,
     DO_NOT_CLEAR = 1,
     USE_DEPTH_BUFFER = 2,
     ASSUME_NO_OVERLAP = 4,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_VERTEX_OPTIONS_NONE = D2D1_VERTEX_OPTIONS.NONE;
 pub const D2D1_VERTEX_OPTIONS_DO_NOT_CLEAR = D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR;
@@ -6280,7 +6322,8 @@ pub const ID2D1EffectContext = extern struct {
         CheckFeatureSupport: fn(
             self: *const ID2D1EffectContext,
             feature: D2D1_FEATURE,
-            featureSupportData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            featureSupportData: *c_void,
             featureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsBufferPrecisionSupported: fn(
@@ -6368,7 +6411,7 @@ pub const ID2D1EffectContext = extern struct {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1EffectContext, self), wicColorContext, colorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: [*]u8, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: *c_void, featureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID2D1EffectContext, self), feature, featureSupportData, featureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7093,11 +7136,11 @@ pub const ID2D1SvgPaint = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) D2D1_SVG_PAINT_TYPE,
         SetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *const D3DCOLORVALUE,
+            color: *const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColor: fn(
             self: *const ID2D1SvgPaint,
-            color: *D3DCOLORVALUE,
+            color: *D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetId: fn(
             self: *const ID2D1SvgPaint,
@@ -7124,11 +7167,11 @@ pub const ID2D1SvgPaint = extern struct {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetPaintType(@ptrCast(*const ID2D1SvgPaint, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: *const D3DCOLORVALUE) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgPaint_SetColor(self: *const T, color: *const D2D1_COLOR_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: *D3DCOLORVALUE) callconv(.Inline) void {
+        pub fn ID2D1SvgPaint_GetColor(self: *const T, color: *D2D1_COLOR_F) callconv(.Inline) void {
             return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7484,14 +7527,16 @@ pub const ID2D1SvgElement = extern struct {
             self: *const ID2D1SvgElement,
             name: [*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
-            value: [*]const u8,
+            // TODO: what to do with BytesParamIndex 3?
+            value: *const c_void,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributeValue1: fn(
             self: *const ID2D1SvgElement,
             name: [*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
-            value: [*]u8,
+            // TODO: what to do with BytesParamIndex 3?
+            value: *c_void,
             valueSizeInBytes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributeValue2: fn(
@@ -7614,11 +7659,11 @@ pub const ID2D1SvgElement = extern struct {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValueLength(@ptrCast(*const ID2D1SvgElement, self), name, type, valueLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: [*]const u8, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *const c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: [*]u8, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: [*:0]const u16, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: *c_void, valueSizeInBytes: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type, value, valueSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7671,7 +7716,7 @@ pub const ID2D1SvgDocument = extern struct {
         CreatePaint: fn(
             self: *const ID2D1SvgDocument,
             paintType: D2D1_SVG_PAINT_TYPE,
-            color: ?*const D3DCOLORVALUE,
+            color: ?*const D2D1_COLOR_F,
             id: ?[*:0]const u16,
             paint: **ID2D1SvgPaint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7728,7 +7773,7 @@ pub const ID2D1SvgDocument = extern struct {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Deserialize(@ptrCast(*const ID2D1SvgDocument, self), inputXmlStream, subtree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D3DCOLORVALUE, id: ?[*:0]const u16, paint: **ID2D1SvgPaint) callconv(.Inline) HRESULT {
+        pub fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: **ID2D1SvgPaint) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePaint(@ptrCast(*const ID2D1SvgDocument, self), paintType, color, id, paint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7777,30 +7822,36 @@ pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE270_FLIP_HORIZONTAL = D2D1_ORIENTATIO
 pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE90 = D2D1_ORIENTATION.ROTATE_CLOCKWISE90;
 pub const D2D1_ORIENTATION_FORCE_DWORD = D2D1_ORIENTATION.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS = extern enum(u32) {
     NONE = 0,
     RELEASE_SOURCE = 1,
     CACHE_ON_DEMAND = 2,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_NONE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_RELEASE_SOURCE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_CACHE_ON_DEMAND = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND;
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS = extern enum(u32) {
     NONE = 0,
     LOW_QUALITY_PRIMARY_CONVERSION = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_NONE = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE;
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_LOW_QUALITY_PRIMARY_CONVERSION = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION;
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD;
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS = extern enum(u32) {
     NONE = 0,
     DISABLE_DPI_SCALE = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_NONE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE;
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_DISABLE_DPI_SCALE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE;
@@ -7859,20 +7910,22 @@ pub const D2D1_GRADIENT_MESH_PATCH = extern struct {
     point31: D2D_POINT_2F,
     point32: D2D_POINT_2F,
     point33: D2D_POINT_2F,
-    color00: D3DCOLORVALUE,
-    color03: D3DCOLORVALUE,
-    color30: D3DCOLORVALUE,
-    color33: D3DCOLORVALUE,
+    color00: D2D1_COLOR_F,
+    color03: D2D1_COLOR_F,
+    color30: D2D1_COLOR_F,
+    color33: D2D1_COLOR_F,
     topEdgeMode: D2D1_PATCH_EDGE_MODE,
     leftEdgeMode: D2D1_PATCH_EDGE_MODE,
     bottomEdgeMode: D2D1_PATCH_EDGE_MODE,
     rightEdgeMode: D2D1_PATCH_EDGE_MODE,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const D2D1_SPRITE_OPTIONS = extern enum(u32) {
     NONE = 0,
     CLAMP_TO_SOURCE_RECTANGLE = 1,
     FORCE_DWORD = 4294967295,
+    _,
 };
 pub const D2D1_SPRITE_OPTIONS_NONE = D2D1_SPRITE_OPTIONS.NONE;
 pub const D2D1_SPRITE_OPTIONS_CLAMP_TO_SOURCE_RECTANGLE = D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE;
@@ -8494,7 +8547,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: *const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const D3DCOLORVALUE,
+            colors: ?*const D2D1_COLOR_F,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8507,7 +8560,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: ?*const D2D_RECT_F,
             sourceRectangles: ?*const D2D_RECT_U,
-            colors: ?*const D3DCOLORVALUE,
+            colors: ?*const D2D1_COLOR_F,
             transforms: ?*const D2D_MATRIX_3X2_F,
             destinationRectanglesStride: u32,
             sourceRectanglesStride: u32,
@@ -8520,7 +8573,7 @@ pub const ID2D1SpriteBatch = extern struct {
             spriteCount: u32,
             destinationRectangles: ?[*]D2D_RECT_F,
             sourceRectangles: ?[*]D2D_RECT_U,
-            colors: ?[*]D3DCOLORVALUE,
+            colors: ?[*]D2D1_COLOR_F,
             transforms: ?[*]D2D_MATRIX_3X2_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpriteCount: fn(
@@ -8534,15 +8587,15 @@ pub const ID2D1SpriteBatch = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID2D1Resource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: *const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D3DCOLORVALUE, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: *const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).AddSprites(@ptrCast(*const ID2D1SpriteBatch, self), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_SetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D3DCOLORVALUE, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_SetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).SetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SpriteBatch_GetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D3DCOLORVALUE, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        pub fn ID2D1SpriteBatch_GetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D2D1_COLOR_F, transforms: ?[*]D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).GetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8730,7 +8783,7 @@ pub const ID2D1DeviceContext4 = extern struct {
             self: *const ID2D1DeviceContext4,
             svgGlyphStyle: **ID2D1SvgGlyphStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DrawTextA: fn(
+        DrawText: fn(
             self: *const ID2D1DeviceContext4,
             string: [*:0]const u16,
             stringLength: u32,
@@ -8805,8 +8858,8 @@ pub const ID2D1DeviceContext4 = extern struct {
             return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).CreateSvgGlyphStyle(@ptrCast(*const ID2D1DeviceContext4, self), svgGlyphStyle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1DeviceContext4_DrawTextA(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawTextA(@ptrCast(*const ID2D1DeviceContext4, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
+        pub fn ID2D1DeviceContext4_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: *IDWriteTextFormat, layoutRect: *const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) callconv(.Inline) void {
+            return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1DeviceContext4, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID2D1DeviceContext4_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: *IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS) callconv(.Inline) void {
@@ -9245,8 +9298,8 @@ pub extern "d2d1" fn D2D1CreateDeviceContext(
 pub extern "d2d1" fn D2D1ConvertColorSpace(
     sourceColorSpace: D2D1_COLOR_SPACE,
     destinationColorSpace: D2D1_COLOR_SPACE,
-    color: *const D3DCOLORVALUE,
-) callconv(@import("std").os.windows.WINAPI) D3DCOLORVALUE;
+    color: *const D2D1_COLOR_F,
+) callconv(@import("std").os.windows.WINAPI) D2D1_COLOR_F;
 
 pub extern "d2d1" fn D2D1SinCos(
     angle: f32,
@@ -9303,15 +9356,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (30)
+// Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
 const IDWriteTextFormat = @import("direct_write.zig").IDWriteTextFormat;
 const D3D_FEATURE_LEVEL = @import("direct3d11.zig").D3D_FEATURE_LEVEL;
-const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
-const HRESULT = @import("com.zig").HRESULT;
 const DXGI_COLOR_SPACE_TYPE = @import("dxgi.zig").DXGI_COLOR_SPACE_TYPE;
+const HRESULT = @import("com.zig").HRESULT;
 const IDWriteRenderingParams = @import("direct_write.zig").IDWriteRenderingParams;
 const BOOL = @import("system_services.zig").BOOL;
 const IWICBitmap = @import("windows_imaging_component.zig").IWICBitmap;
@@ -9343,13 +9395,13 @@ test {
     _ = PD2D1_PROPERTY_GET_FUNCTION;
 
     const constant_export_count = 68;
-    const type_export_count = 357;
+    const type_export_count = 359;
     const enum_value_export_count = 920;
     const com_iface_id_export_count = 112;
     const com_class_id_export_count = 0;
     const func_export_count = 13;
     const unicode_alias_count = 0;
-    const import_count = 30;
+    const import_count = 29;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

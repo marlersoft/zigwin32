@@ -5758,14 +5758,15 @@ pub const IRowsetBookmark = extern struct {
             self: *const IRowsetBookmark,
             hChapter: usize,
             cbBookmark: u64,
-            pBookmark: [*:0]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pBookmark: *const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRowsetBookmark_PositionOnBookmark(self: *const T, hChapter: usize, cbBookmark: u64, pBookmark: [*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IRowsetBookmark_PositionOnBookmark(self: *const T, hChapter: usize, cbBookmark: u64, pBookmark: *const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRowsetBookmark.VTable, self.vtable).PositionOnBookmark(@ptrCast(*const IRowsetBookmark, self), hChapter, cbBookmark, pBookmark);
         }
     };}
@@ -5855,7 +5856,8 @@ pub const SQPE_IGNORED_CONNECTOR = STRUCTURED_QUERY_PARSE_ERROR.IGNORED_CONNECTO
 pub const SQPE_IGNORED_KEYWORD = STRUCTURED_QUERY_PARSE_ERROR.IGNORED_KEYWORD;
 pub const SQPE_UNHANDLED = STRUCTURED_QUERY_PARSE_ERROR.UNHANDLED;
 
-pub const STRUCTURED_QUERY_RESOLVE_OPTION = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const STRUCTURED_QUERY_RESOLVE_OPTION = extern enum(u32) {
     DEFAULT = 0,
     DONT_RESOLVE_DATETIME = 1,
     ALWAYS_ONE_INTERVAL = 2,
@@ -5867,6 +5869,7 @@ pub const STRUCTURED_QUERY_RESOLVE_OPTION = extern enum(i32) {
     IGNORE_PHRASE_ORDER = 128,
     ADD_VALUE_TYPE_FOR_PLAIN_VALUES = 256,
     ADD_ROBUST_ITEM_NAME = 512,
+    _,
 };
 pub const SQRO_DEFAULT = STRUCTURED_QUERY_RESOLVE_OPTION.DEFAULT;
 pub const SQRO_DONT_RESOLVE_DATETIME = STRUCTURED_QUERY_RESOLVE_OPTION.DONT_RESOLVE_DATETIME;
@@ -6109,7 +6112,8 @@ pub const IQuerySolution = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CONDITION_CREATION_OPTIONS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CONDITION_CREATION_OPTIONS = extern enum(u32) {
     DEFAULT = 0,
     NONE = 0,
     SIMPLIFY = 1,
@@ -6117,6 +6121,7 @@ pub const CONDITION_CREATION_OPTIONS = extern enum(i32) {
     VECTOR_OR = 4,
     VECTOR_LEAF = 8,
     USE_CONTENT_LOCALE = 16,
+    _,
 };
 pub const CONDITION_CREATION_DEFAULT = CONDITION_CREATION_OPTIONS.DEFAULT;
 pub const CONDITION_CREATION_NONE = CONDITION_CREATION_OPTIONS.NONE;

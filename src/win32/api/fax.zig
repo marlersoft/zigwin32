@@ -2,8 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (109)
 //--------------------------------------------------------------------------------
-pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
-pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 pub const FS_INITIALIZING = @as(u32, 536870912);
 pub const FS_DIALING = @as(u32, 536870913);
 pub const FS_TRANSMITTING = @as(u32, 536870914);
@@ -111,6 +109,8 @@ pub const FAX_CONFIG_SET = @as(u32, 8);
 pub const FAX_PORT_QUERY = @as(u32, 16);
 pub const FAX_PORT_SET = @as(u32, 32);
 pub const FAX_JOB_MANAGE = @as(u32, 64);
+pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
+pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 
 //--------------------------------------------------------------------------------
 // Section: Types (260)
@@ -2993,7 +2993,7 @@ pub const IFaxIncomingArchive = extern struct {
             lPrefetchSize: i32,
             pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const IFaxIncomingArchive,
             bstrMessageId: BSTR,
             pFaxIncomingMessage: ?*?*IFaxIncomingMessage,
@@ -3071,8 +3071,8 @@ pub const IFaxIncomingArchive = extern struct {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
+        pub fn IFaxIncomingArchive_GetMessage(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3102,7 +3102,7 @@ pub const IFaxIncomingQueue = extern struct {
             self: *const IFaxIncomingQueue,
             pFaxIncomingJobs: ?*?*IFaxIncomingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IFaxIncomingQueue,
             bstrJobId: BSTR,
             pFaxIncomingJob: ?*?*IFaxIncomingJob,
@@ -3132,8 +3132,8 @@ pub const IFaxIncomingQueue = extern struct {
             return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxIncomingQueue, self), pFaxIncomingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxIncomingQueue, self), bstrJobId, pFaxIncomingJob);
+        pub fn IFaxIncomingQueue_GetJob(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxIncomingQueue, self), bstrJobId, pFaxIncomingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3212,7 +3212,7 @@ pub const IFaxOutgoingArchive = extern struct {
             lPrefetchSize: i32,
             pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const IFaxOutgoingArchive,
             bstrMessageId: BSTR,
             pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage,
@@ -3290,8 +3290,8 @@ pub const IFaxOutgoingArchive = extern struct {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
+        pub fn IFaxOutgoingArchive_GetMessage(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3393,7 +3393,7 @@ pub const IFaxOutgoingQueue = extern struct {
             self: *const IFaxOutgoingQueue,
             pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IFaxOutgoingQueue,
             bstrJobId: BSTR,
             pFaxOutgoingJob: ?*?*IFaxOutgoingJob,
@@ -3495,8 +3495,8 @@ pub const IFaxOutgoingQueue = extern struct {
             return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxOutgoingQueue, self), pFaxOutgoingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
+        pub fn IFaxOutgoingQueue_GetJob(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6259,7 +6259,7 @@ pub const IFaxAccountIncomingQueue = extern struct {
             self: *const IFaxAccountIncomingQueue,
             pFaxIncomingJobs: ?*?*IFaxIncomingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IFaxAccountIncomingQueue,
             bstrJobId: BSTR,
             pFaxIncomingJob: ?*?*IFaxIncomingJob,
@@ -6273,8 +6273,8 @@ pub const IFaxAccountIncomingQueue = extern struct {
             return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountIncomingQueue, self), pFaxIncomingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxAccountIncomingQueue, self), bstrJobId, pFaxIncomingJob);
+        pub fn IFaxAccountIncomingQueue_GetJob(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxAccountIncomingQueue, self), bstrJobId, pFaxIncomingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6290,7 +6290,7 @@ pub const IFaxAccountOutgoingQueue = extern struct {
             self: *const IFaxAccountOutgoingQueue,
             pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobA: fn(
+        GetJob: fn(
             self: *const IFaxAccountOutgoingQueue,
             bstrJobId: BSTR,
             pFaxOutgoingJob: ?*?*IFaxOutgoingJob,
@@ -6304,8 +6304,8 @@ pub const IFaxAccountOutgoingQueue = extern struct {
             return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountOutgoingQueue, self), pFaxOutgoingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxAccountOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
+        pub fn IFaxAccountOutgoingQueue_GetJob(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxAccountOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6401,7 +6401,7 @@ pub const IFaxAccountIncomingArchive = extern struct {
             lPrefetchSize: i32,
             pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const IFaxAccountIncomingArchive,
             bstrMessageId: BSTR,
             pFaxIncomingMessage: ?*?*IFaxIncomingMessage,
@@ -6427,8 +6427,8 @@ pub const IFaxAccountIncomingArchive = extern struct {
             return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxAccountIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
+        pub fn IFaxAccountIncomingArchive_GetMessage(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxAccountIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6456,7 +6456,7 @@ pub const IFaxAccountOutgoingArchive = extern struct {
             lPrefetchSize: i32,
             pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const IFaxAccountOutgoingArchive,
             bstrMessageId: BSTR,
             pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage,
@@ -6482,8 +6482,8 @@ pub const IFaxAccountOutgoingArchive = extern struct {
             return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxAccountOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
+        pub fn IFaxAccountOutgoingArchive_GetMessage(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxAccountOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7144,7 +7144,8 @@ pub const PFAXROUTEDELETEFILE = fn(
 pub const PFAXROUTEGETFILE = fn(
     JobId: u32,
     Index: u32,
-    FileNameBuffer: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 3?
+    FileNameBuffer: ?PWSTR,
     RequiredSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

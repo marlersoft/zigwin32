@@ -224,11 +224,13 @@ pub const HTHREAD_NETWORK_CONTEXT = extern struct {
     ThreadContext: HANDLE,
 };
 
-pub const ENTERPRISE_DATA_POLICIES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const ENTERPRISE_DATA_POLICIES = extern enum(u32) {
     NONE = 0,
     ALLOWED = 1,
     ENLIGHTENED = 2,
     EXEMPT = 4,
+    _,
 };
 pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES.NONE;
 pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES.ALLOWED;
@@ -264,7 +266,8 @@ pub extern "srpapi" fn SrpSetTokenEnterpriseId(
 pub extern "srpapi" fn SrpGetEnterpriseIds(
     tokenHandle: HANDLE,
     numberOfBytes: ?*u32,
-    enterpriseIds: ?[*]?PWSTR,
+    // TODO: what to do with BytesParamIndex 1?
+    enterpriseIds: ?*?PWSTR,
     enterpriseIdCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

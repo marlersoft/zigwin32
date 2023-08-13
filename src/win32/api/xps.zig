@@ -19,75 +19,7 @@ pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
 //--------------------------------------------------------------------------------
 // Section: Types (119)
 //--------------------------------------------------------------------------------
-pub const HPTPROVIDER = ?*c_void;
-
-pub const PrintWindow_nFlags = extern enum(u32) {
-    Y = 1,
-};
-pub const PW_CLIENTONLY = PrintWindow_nFlags.Y;
-
-pub const DeviceCapabilities_fwCapability = extern enum(u32) {
-    BINNAMES = 12,
-    BINS = 6,
-    COLLATE = 22,
-    COLORDEVICE = 32,
-    COPIES = 18,
-    DRIVER = 11,
-    DUPLEX = 7,
-    ENUMRESOLUTIONS = 13,
-    EXTRA = 9,
-    FIELDS = 1,
-    FILEDEPENDENCIES = 14,
-    MAXEXTENT = 5,
-    MEDIAREADY = 29,
-    MEDIATYPENAMES = 34,
-    MEDIATYPES = 35,
-    MINEXTENT = 4,
-    ORIENTATION = 17,
-    NUP = 33,
-    PAPERNAMES = 16,
-    PAPERS = 2,
-    PAPERSIZE = 3,
-    PERSONALITY = 25,
-    PRINTERMEM = 28,
-    PRINTRATE = 26,
-    PRINTRATEPPM = 31,
-    PRINTRATEUNIT = 27,
-    SIZE = 8,
-    STAPLE = 30,
-    TRUETYPE = 15,
-    VERSION = 10,
-};
-pub const DC_BINNAMES = DeviceCapabilities_fwCapability.BINNAMES;
-pub const DC_BINS = DeviceCapabilities_fwCapability.BINS;
-pub const DC_COLLATE = DeviceCapabilities_fwCapability.COLLATE;
-pub const DC_COLORDEVICE = DeviceCapabilities_fwCapability.COLORDEVICE;
-pub const DC_COPIES = DeviceCapabilities_fwCapability.COPIES;
-pub const DC_DRIVER = DeviceCapabilities_fwCapability.DRIVER;
-pub const DC_DUPLEX = DeviceCapabilities_fwCapability.DUPLEX;
-pub const DC_ENUMRESOLUTIONS = DeviceCapabilities_fwCapability.ENUMRESOLUTIONS;
-pub const DC_EXTRA = DeviceCapabilities_fwCapability.EXTRA;
-pub const DC_FIELDS = DeviceCapabilities_fwCapability.FIELDS;
-pub const DC_FILEDEPENDENCIES = DeviceCapabilities_fwCapability.FILEDEPENDENCIES;
-pub const DC_MAXEXTENT = DeviceCapabilities_fwCapability.MAXEXTENT;
-pub const DC_MEDIAREADY = DeviceCapabilities_fwCapability.MEDIAREADY;
-pub const DC_MEDIATYPENAMES = DeviceCapabilities_fwCapability.MEDIATYPENAMES;
-pub const DC_MEDIATYPES = DeviceCapabilities_fwCapability.MEDIATYPES;
-pub const DC_MINEXTENT = DeviceCapabilities_fwCapability.MINEXTENT;
-pub const DC_ORIENTATION = DeviceCapabilities_fwCapability.ORIENTATION;
-pub const DC_NUP = DeviceCapabilities_fwCapability.NUP;
-pub const DC_PAPERNAMES = DeviceCapabilities_fwCapability.PAPERNAMES;
-pub const DC_PAPERS = DeviceCapabilities_fwCapability.PAPERS;
-pub const DC_PAPERSIZE = DeviceCapabilities_fwCapability.PAPERSIZE;
-pub const DC_PERSONALITY = DeviceCapabilities_fwCapability.PERSONALITY;
-pub const DC_PRINTERMEM = DeviceCapabilities_fwCapability.PRINTERMEM;
-pub const DC_PRINTRATE = DeviceCapabilities_fwCapability.PRINTRATE;
-pub const DC_PRINTRATEPPM = DeviceCapabilities_fwCapability.PRINTRATEPPM;
-pub const DC_PRINTRATEUNIT = DeviceCapabilities_fwCapability.PRINTRATEUNIT;
-pub const DC_SIZE = DeviceCapabilities_fwCapability.SIZE;
-pub const DC_STAPLE = DeviceCapabilities_fwCapability.STAPLE;
-pub const DC_TRUETYPE = DeviceCapabilities_fwCapability.TRUETYPE;
-pub const DC_VERSION = DeviceCapabilities_fwCapability.VERSION;
+pub const HPTPROVIDER = ?*opaque{};
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSINJECT_POINT = extern enum(u16) {
@@ -679,7 +611,7 @@ pub const IXpsOMGlyphsEditor = extern struct {
             self: *const IXpsOMGlyphsEditor,
             indexCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGlyphIndicesA: fn(
+        GetGlyphIndices: fn(
             self: *const IXpsOMGlyphsEditor,
             indexCount: *u32,
             glyphIndices: *XPS_GLYPH_INDEX,
@@ -762,8 +694,8 @@ pub const IXpsOMGlyphsEditor = extern struct {
             return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphIndexCount(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsOMGlyphsEditor_GetGlyphIndicesA(self: *const T, indexCount: *u32, glyphIndices: *XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphIndicesA(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount, glyphIndices);
+        pub fn IXpsOMGlyphsEditor_GetGlyphIndices(self: *const T, indexCount: *u32, glyphIndices: *XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphIndices(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount, glyphIndices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsOMGlyphsEditor_SetGlyphIndices(self: *const T, indexCount: u32, glyphIndices: *const XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
@@ -835,7 +767,7 @@ pub const IXpsOMGlyphs = extern struct {
             self: *const IXpsOMGlyphs,
             indexCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGlyphIndicesA: fn(
+        GetGlyphIndices: fn(
             self: *const IXpsOMGlyphs,
             indexCount: *u32,
             glyphIndices: *XPS_GLYPH_INDEX,
@@ -951,8 +883,8 @@ pub const IXpsOMGlyphs = extern struct {
             return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphIndexCount(@ptrCast(*const IXpsOMGlyphs, self), indexCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsOMGlyphs_GetGlyphIndicesA(self: *const T, indexCount: *u32, glyphIndices: *XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphIndicesA(@ptrCast(*const IXpsOMGlyphs, self), indexCount, glyphIndices);
+        pub fn IXpsOMGlyphs_GetGlyphIndices(self: *const T, indexCount: *u32, glyphIndices: *XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphIndices(@ptrCast(*const IXpsOMGlyphs, self), indexCount, glyphIndices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsOMGlyphs_GetGlyphMappingCount(self: *const T, glyphMappingCount: *u32) callconv(.Inline) HRESULT {
@@ -6172,6 +6104,74 @@ pub const kPTPageScope = EPrintTicketScope.PageScope;
 pub const kPTDocumentScope = EPrintTicketScope.DocumentScope;
 pub const kPTJobScope = EPrintTicketScope.JobScope;
 
+pub const PrintWindow_nFlags = extern enum(u32) {
+    Y = 1,
+};
+pub const PW_CLIENTONLY = PrintWindow_nFlags.Y;
+
+pub const DeviceCapabilities_fwCapability = extern enum(u32) {
+    BINNAMES = 12,
+    BINS = 6,
+    COLLATE = 22,
+    COLORDEVICE = 32,
+    COPIES = 18,
+    DRIVER = 11,
+    DUPLEX = 7,
+    ENUMRESOLUTIONS = 13,
+    EXTRA = 9,
+    FIELDS = 1,
+    FILEDEPENDENCIES = 14,
+    MAXEXTENT = 5,
+    MEDIAREADY = 29,
+    MEDIATYPENAMES = 34,
+    MEDIATYPES = 35,
+    MINEXTENT = 4,
+    ORIENTATION = 17,
+    NUP = 33,
+    PAPERNAMES = 16,
+    PAPERS = 2,
+    PAPERSIZE = 3,
+    PERSONALITY = 25,
+    PRINTERMEM = 28,
+    PRINTRATE = 26,
+    PRINTRATEPPM = 31,
+    PRINTRATEUNIT = 27,
+    SIZE = 8,
+    STAPLE = 30,
+    TRUETYPE = 15,
+    VERSION = 10,
+};
+pub const DC_BINNAMES = DeviceCapabilities_fwCapability.BINNAMES;
+pub const DC_BINS = DeviceCapabilities_fwCapability.BINS;
+pub const DC_COLLATE = DeviceCapabilities_fwCapability.COLLATE;
+pub const DC_COLORDEVICE = DeviceCapabilities_fwCapability.COLORDEVICE;
+pub const DC_COPIES = DeviceCapabilities_fwCapability.COPIES;
+pub const DC_DRIVER = DeviceCapabilities_fwCapability.DRIVER;
+pub const DC_DUPLEX = DeviceCapabilities_fwCapability.DUPLEX;
+pub const DC_ENUMRESOLUTIONS = DeviceCapabilities_fwCapability.ENUMRESOLUTIONS;
+pub const DC_EXTRA = DeviceCapabilities_fwCapability.EXTRA;
+pub const DC_FIELDS = DeviceCapabilities_fwCapability.FIELDS;
+pub const DC_FILEDEPENDENCIES = DeviceCapabilities_fwCapability.FILEDEPENDENCIES;
+pub const DC_MAXEXTENT = DeviceCapabilities_fwCapability.MAXEXTENT;
+pub const DC_MEDIAREADY = DeviceCapabilities_fwCapability.MEDIAREADY;
+pub const DC_MEDIATYPENAMES = DeviceCapabilities_fwCapability.MEDIATYPENAMES;
+pub const DC_MEDIATYPES = DeviceCapabilities_fwCapability.MEDIATYPES;
+pub const DC_MINEXTENT = DeviceCapabilities_fwCapability.MINEXTENT;
+pub const DC_ORIENTATION = DeviceCapabilities_fwCapability.ORIENTATION;
+pub const DC_NUP = DeviceCapabilities_fwCapability.NUP;
+pub const DC_PAPERNAMES = DeviceCapabilities_fwCapability.PAPERNAMES;
+pub const DC_PAPERS = DeviceCapabilities_fwCapability.PAPERS;
+pub const DC_PAPERSIZE = DeviceCapabilities_fwCapability.PAPERSIZE;
+pub const DC_PERSONALITY = DeviceCapabilities_fwCapability.PERSONALITY;
+pub const DC_PRINTERMEM = DeviceCapabilities_fwCapability.PRINTERMEM;
+pub const DC_PRINTRATE = DeviceCapabilities_fwCapability.PRINTRATE;
+pub const DC_PRINTRATEPPM = DeviceCapabilities_fwCapability.PRINTRATEPPM;
+pub const DC_PRINTRATEUNIT = DeviceCapabilities_fwCapability.PRINTRATEUNIT;
+pub const DC_SIZE = DeviceCapabilities_fwCapability.SIZE;
+pub const DC_STAPLE = DeviceCapabilities_fwCapability.STAPLE;
+pub const DC_TRUETYPE = DeviceCapabilities_fwCapability.TRUETYPE;
+pub const DC_VERSION = DeviceCapabilities_fwCapability.VERSION;
+
 pub const DRAWPATRECT = extern struct {
     ptPosition: POINT,
     ptSize: POINT,
@@ -6365,6 +6365,7 @@ pub extern "GDI32" fn Escape(
     hdc: HDC,
     iEscape: i32,
     cjIn: i32,
+    // TODO: what to do with BytesParamIndex 2?
     pvIn: ?[*:0]const u8,
     pvOut: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -6374,9 +6375,11 @@ pub extern "GDI32" fn ExtEscape(
     hdc: HDC,
     iEscape: i32,
     cjInput: i32,
+    // TODO: what to do with BytesParamIndex 2?
     lpInData: ?[*:0]const u8,
     cjOutput: i32,
-    lpOutData: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    lpOutData: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'

@@ -10,6 +10,8 @@ pub const UI_ANIMATION_SECONDS_INFINITE = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
+pub const UI_ANIMATION_KEYFRAME = isize;
+
 const CLSID_UIAnimationManager_Value = @import("../zig.zig").Guid.initString("4c1fc63a-695c-47e8-a339-1a194be3d0b8");
 pub const CLSID_UIAnimationManager = &CLSID_UIAnimationManager_Value;
 
@@ -889,12 +891,14 @@ pub const IUIAnimationTransitionLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_DEPENDENCIES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const UI_ANIMATION_DEPENDENCIES = extern enum(u32) {
     NONE = 0,
     INTERMEDIATE_VALUES = 1,
     FINAL_VALUE = 2,
     FINAL_VELOCITY = 4,
     DURATION = 8,
+    _,
 };
 pub const UI_ANIMATION_DEPENDENCY_NONE = UI_ANIMATION_DEPENDENCIES.NONE;
 pub const UI_ANIMATION_DEPENDENCY_INTERMEDIATE_VALUES = UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES;
@@ -2409,8 +2413,6 @@ pub const IUIAnimationStoryboard2 = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const UI_ANIMATION_KEYFRAME = isize;
 
 
 //--------------------------------------------------------------------------------

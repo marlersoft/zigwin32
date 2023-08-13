@@ -64,7 +64,8 @@ pub extern "Cabinet" fn CreateCompressor(
 pub extern "Cabinet" fn SetCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    CompressInformation: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: *const c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -72,16 +73,19 @@ pub extern "Cabinet" fn SetCompressorInformation(
 pub extern "Cabinet" fn QueryCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    CompressInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: *c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn Compress(
     CompressorHandle: COMPRESSOR_HANDLE,
-    UncompressedData: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    UncompressedData: ?*const c_void,
     UncompressedDataSize: usize,
-    CompressedBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    CompressedBuffer: ?*c_void,
     CompressedBufferSize: usize,
     CompressedDataSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -107,7 +111,8 @@ pub extern "Cabinet" fn CreateDecompressor(
 pub extern "Cabinet" fn SetDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    CompressInformation: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: *const c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -115,16 +120,19 @@ pub extern "Cabinet" fn SetDecompressorInformation(
 pub extern "Cabinet" fn QueryDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    CompressInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    CompressInformation: *c_void,
     CompressInformationSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "Cabinet" fn Decompress(
     DecompressorHandle: isize,
-    CompressedData: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    CompressedData: ?*const c_void,
     CompressedDataSize: usize,
-    UncompressedBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    UncompressedBuffer: ?*c_void,
     UncompressedBufferSize: usize,
     UncompressedDataSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

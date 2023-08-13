@@ -115,18 +115,22 @@ pub const OPC_STREAM_IO_MODE = extern enum(i32) {
 pub const OPC_STREAM_IO_READ = OPC_STREAM_IO_MODE.READ;
 pub const OPC_STREAM_IO_WRITE = OPC_STREAM_IO_MODE.WRITE;
 
-pub const OPC_READ_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const OPC_READ_FLAGS = extern enum(u32) {
     READ_DEFAULT = 0,
     VALIDATE_ON_LOAD = 1,
     CACHE_ON_ACCESS = 2,
+    _,
 };
 pub const OPC_READ_DEFAULT = OPC_READ_FLAGS.READ_DEFAULT;
 pub const OPC_VALIDATE_ON_LOAD = OPC_READ_FLAGS.VALIDATE_ON_LOAD;
 pub const OPC_CACHE_ON_ACCESS = OPC_READ_FLAGS.CACHE_ON_ACCESS;
 
-pub const OPC_WRITE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const OPC_WRITE_FLAGS = extern enum(u32) {
     DEFAULT = 0,
     FORCE_ZIP32 = 1,
+    _,
 };
 pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS.DEFAULT;
 pub const OPC_WRITE_FORCE_ZIP32 = OPC_WRITE_FLAGS.FORCE_ZIP32;
@@ -830,7 +834,7 @@ pub const IOpcDigitalSignature = extern struct {
             self: *const IOpcDigitalSignature,
             signingTime: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTimeFormatA: fn(
+        GetTimeFormat: fn(
             self: *const IOpcDigitalSignature,
             timeFormat: *OPC_SIGNATURE_TIME_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -896,8 +900,8 @@ pub const IOpcDigitalSignature = extern struct {
             return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSigningTime(@ptrCast(*const IOpcDigitalSignature, self), signingTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcDigitalSignature_GetTimeFormatA(self: *const T, timeFormat: *OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetTimeFormatA(@ptrCast(*const IOpcDigitalSignature, self), timeFormat);
+        pub fn IOpcDigitalSignature_GetTimeFormat(self: *const T, timeFormat: *OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetTimeFormat(@ptrCast(*const IOpcDigitalSignature, self), timeFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOpcDigitalSignature_GetPackageObjectReference(self: *const T, packageObjectReference: **IOpcSignatureReference) callconv(.Inline) HRESULT {
@@ -961,7 +965,7 @@ pub const IOpcSigningOptions = extern struct {
             self: *const IOpcSigningOptions,
             embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTimeFormatA: fn(
+        GetTimeFormat: fn(
             self: *const IOpcSigningOptions,
             timeFormat: *OPC_SIGNATURE_TIME_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1034,8 +1038,8 @@ pub const IOpcSigningOptions = extern struct {
             return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetCertificateEmbeddingOption(@ptrCast(*const IOpcSigningOptions, self), embeddingOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSigningOptions_GetTimeFormatA(self: *const T, timeFormat: *OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetTimeFormatA(@ptrCast(*const IOpcSigningOptions, self), timeFormat);
+        pub fn IOpcSigningOptions_GetTimeFormat(self: *const T, timeFormat: *OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetTimeFormat(@ptrCast(*const IOpcSigningOptions, self), timeFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IOpcSigningOptions_SetTimeFormat(self: *const T, timeFormat: OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {

@@ -373,7 +373,8 @@ pub const PWINBIO_CAPTURE_CALLBACK = fn(
     CaptureCallbackContext: ?*c_void,
     OperationStatus: HRESULT,
     UnitId: u32,
-    Sample: [*]WINBIO_BIR,
+    // TODO: what to do with BytesParamIndex 4?
+    Sample: *WINBIO_BIR,
     SampleSize: usize,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -486,9 +487,11 @@ pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = fn(
 pub const PIBIO_SENSOR_CONTROL_UNIT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -497,9 +500,11 @@ pub const PIBIO_SENSOR_CONTROL_UNIT_FN = fn(
 pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -528,7 +533,8 @@ pub const PIBIO_SENSOR_DEACTIVATE_FN = fn(
 
 pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    SensorInfo: [*]WINBIO_EXTENDED_SENSOR_INFO,
+    // TODO: what to do with BytesParamIndex 2?
+    SensorInfo: *WINBIO_EXTENDED_SENSOR_INFO,
     SensorInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -546,13 +552,15 @@ pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = fn(
 
 pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    CalibrationBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    CalibrationBuffer: *u8,
     CalibrationBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    RawBufferAddress: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    RawBufferAddress: ?*u8,
     RawBufferSize: usize,
     ResultBufferAddress: ?*?*u8,
     ResultBufferSize: ?*usize,
@@ -561,7 +569,8 @@ pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = fn(
 pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     SecureBufferIdentifier: Guid,
-    MetadataBufferAddress: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    MetadataBufferAddress: ?*u8,
     MetadataBufferSize: usize,
     ResultBufferAddress: ?*?*u8,
     ResultBufferSize: ?*usize,
@@ -569,7 +578,8 @@ pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = fn(
 
 pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    TypeInfoBufferAddress: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    TypeInfoBufferAddress: *u8,
     TypeInfoBufferSize: usize,
     TypeInfoDataSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -583,7 +593,8 @@ pub const PIBIO_SENSOR_CONNECT_SECURE_FN = fn(
 pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     Purpose: u8,
-    Nonce: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Nonce: ?*const u8,
     NonceSize: usize,
     Flags: u8,
     Overlapped: **OVERLAPPED,
@@ -668,7 +679,8 @@ pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     AlgorithmCount: *usize,
     AlgorithmBufferSize: *usize,
-    AlgorithmBuffer: [*]*u8,
+    // TODO: what to do with BytesParamIndex 2?
+    AlgorithmBuffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = fn(
@@ -684,7 +696,8 @@ pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = fn(
 
 pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    SampleBuffer: [*]WINBIO_BIR,
+    // TODO: what to do with BytesParamIndex 2?
+    SampleBuffer: *WINBIO_BIR,
     SampleSize: usize,
     Purpose: u8,
     RejectDetail: *u32,
@@ -693,7 +706,8 @@ pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = fn(
 pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     Flags: u8,
-    SampleBuffer: [*]*WINBIO_BIR,
+    // TODO: what to do with BytesParamIndex 3?
+    SampleBuffer: **WINBIO_BIR,
     SampleSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -702,9 +716,11 @@ pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = fn(
     Identity: *WINBIO_IDENTITY,
     SubFactor: u8,
     Match: *u8,
-    PayloadBlob: [*]*u8,
+    // TODO: what to do with BytesParamIndex 5?
+    PayloadBlob: **u8,
     PayloadBlobSize: *usize,
-    HashValue: [*]*u8,
+    // TODO: what to do with BytesParamIndex 7?
+    HashValue: **u8,
     HashSize: *usize,
     RejectDetail: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -713,9 +729,11 @@ pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     Identity: *WINBIO_IDENTITY,
     SubFactor: *u8,
-    PayloadBlob: [*]*u8,
+    // TODO: what to do with BytesParamIndex 4?
+    PayloadBlob: **u8,
     PayloadBlobSize: *usize,
-    HashValue: [*]*u8,
+    // TODO: what to do with BytesParamIndex 6?
+    HashValue: **u8,
     HashSize: *usize,
     RejectDetail: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -736,7 +754,8 @@ pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = fn(
 
 pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    HashValue: [*]*u8,
+    // TODO: what to do with BytesParamIndex 2?
+    HashValue: **u8,
     HashSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -751,7 +770,8 @@ pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     Identity: *WINBIO_IDENTITY,
     SubFactor: u8,
-    PayloadBlob: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    PayloadBlob: *u8,
     PayloadBlobSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -762,9 +782,11 @@ pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = fn(
 pub const PIBIO_ENGINE_CONTROL_UNIT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -773,9 +795,11 @@ pub const PIBIO_ENGINE_CONTROL_UNIT_FN = fn(
 pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -809,7 +833,8 @@ pub const PIBIO_ENGINE_DEACTIVATE_FN = fn(
 
 pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    EngineInfo: [*]WINBIO_EXTENDED_ENGINE_INFO,
+    // TODO: what to do with BytesParamIndex 2?
+    EngineInfo: *WINBIO_EXTENDED_ENGINE_INFO,
     EngineInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -831,7 +856,8 @@ pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = fn(
 
 pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    EnrollmentStatus: [*]WINBIO_EXTENDED_ENROLLMENT_STATUS,
+    // TODO: what to do with BytesParamIndex 2?
+    EnrollmentStatus: *WINBIO_EXTENDED_ENROLLMENT_STATUS,
     EnrollmentStatusSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -850,7 +876,8 @@ pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = fn(
 pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     DiscardAndRepeatCapture: *u8,
-    CalibrationBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    CalibrationBuffer: *u8,
     CalibrationBufferSize: *usize,
     MaxBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -865,7 +892,8 @@ pub const PIBIO_ENGINE_CREATE_KEY_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     Key: [*:0]const u8,
     KeySize: usize,
-    KeyIdentifier: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    KeyIdentifier: *u8,
     KeyIdentifierSize: usize,
     ResultSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -897,7 +925,8 @@ pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = fn(
 
 pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    Nonce: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Nonce: *const u8,
     NonceSize: usize,
     Identity: *WINBIO_IDENTITY,
     SubFactor: *u8,
@@ -1056,9 +1085,11 @@ pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = fn(
 pub const PIBIO_STORAGE_CONTROL_UNIT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -1067,9 +1098,11 @@ pub const PIBIO_STORAGE_CONTROL_UNIT_FN = fn(
 pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: *u32,
@@ -1098,7 +1131,8 @@ pub const PIBIO_STORAGE_DEACTIVATE_FN = fn(
 
 pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    StorageInfo: [*]WINBIO_EXTENDED_STORAGE_INFO,
+    // TODO: what to do with BytesParamIndex 2?
+    StorageInfo: *WINBIO_EXTENDED_STORAGE_INFO,
     StorageInfoSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1174,7 +1208,8 @@ pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = fn(
 
 pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    ExtendedStatus: [*]WINBIO_EXTENDED_UNIT_STATUS,
+    // TODO: what to do with BytesParamIndex 2?
+    ExtendedStatus: *WINBIO_EXTENDED_UNIT_STATUS,
     ExtendedStatusSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1190,7 +1225,8 @@ pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = fn(
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    BufferAddress: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    BufferAddress: *u8,
     BufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1206,7 +1242,8 @@ pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = fn(
 
 pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    BufferAddress: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    BufferAddress: *u8,
     BufferSize: usize,
     ReturnedDataSize: *usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1273,11 +1310,14 @@ pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = fn(
 
 pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = fn(
     Pipeline: *WINBIO_PIPELINE,
-    Authentication: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Authentication: *const u8,
     AuthenticationSize: usize,
-    Iv: [*:0]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    Iv: *const u8,
     IvSize: usize,
-    EncryptedData: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    EncryptedData: *u8,
     EncryptedDataSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1600,9 +1640,11 @@ pub extern "winbio" fn WinBioControlUnit(
     UnitId: u32,
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 7?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: ?*u32,
@@ -1614,9 +1656,11 @@ pub extern "winbio" fn WinBioControlUnitPrivileged(
     UnitId: u32,
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
-    SendBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    SendBuffer: *u8,
     SendBufferSize: usize,
-    ReceiveBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 7?
+    ReceiveBuffer: *u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: *usize,
     OperationStatus: ?*u32,
@@ -1642,7 +1686,8 @@ pub extern "winbio" fn WinBioSetProperty(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 7?
+    PropertyBuffer: *c_void,
     PropertyBufferSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1654,7 +1699,8 @@ pub extern "winbio" fn WinBioFree(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioSetCredential(
     Type: WINBIO_CREDENTIAL_TYPE,
-    Credential: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Credential: *u8,
     CredentialSize: usize,
     Format: WINBIO_CREDENTIAL_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

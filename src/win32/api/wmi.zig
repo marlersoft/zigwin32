@@ -296,7 +296,7 @@ pub const IWbemPath = extern struct {
             self: *const IWbemPath,
             Name: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClassNameA: fn(
+        GetClassName: fn(
             self: *const IWbemPath,
             puBuffLength: *u32,
             pszName: ?[*:0]u16,
@@ -410,8 +410,8 @@ pub const IWbemPath = extern struct {
             return @ptrCast(*const IWbemPath.VTable, self.vtable).SetClassName(@ptrCast(*const IWbemPath, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWbemPath_GetClassNameA(self: *const T, puBuffLength: *u32, pszName: ?[*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWbemPath.VTable, self.vtable).GetClassNameA(@ptrCast(*const IWbemPath, self), puBuffLength, pszName);
+        pub fn IWbemPath_GetClassName(self: *const T, puBuffLength: *u32, pszName: ?[*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWbemPath.VTable, self.vtable).GetClassName(@ptrCast(*const IWbemPath, self), puBuffLength, pszName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWbemPath_GetKeyList(self: *const T, pOut: **IWbemPathKeyList) callconv(.Inline) HRESULT {
@@ -3009,7 +3009,8 @@ pub const IMofCompiler = extern struct {
         CompileBuffer: fn(
             self: *const IMofCompiler,
             BuffSize: i32,
-            pBuffer: [*:0]u8,
+            // TODO: what to do with BytesParamIndex 0?
+            pBuffer: *u8,
             ServerAndNamespace: PWSTR,
             User: PWSTR,
             Authority: PWSTR,
@@ -3038,7 +3039,7 @@ pub const IMofCompiler = extern struct {
             return @ptrCast(*const IMofCompiler.VTable, self.vtable).CompileFile(@ptrCast(*const IMofCompiler, self), FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMofCompiler_CompileBuffer(self: *const T, BuffSize: i32, pBuffer: [*:0]u8, ServerAndNamespace: PWSTR, User: PWSTR, Authority: PWSTR, Password: PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: *WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+        pub fn IMofCompiler_CompileBuffer(self: *const T, BuffSize: i32, pBuffer: *u8, ServerAndNamespace: PWSTR, User: PWSTR, Authority: PWSTR, Password: PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: *WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMofCompiler.VTable, self.vtable).CompileBuffer(@ptrCast(*const IMofCompiler, self), BuffSize, pBuffer, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

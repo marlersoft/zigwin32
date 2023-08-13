@@ -18,12 +18,14 @@ pub const CF_FS_METADATA = extern struct {
     FileSize: LARGE_INTEGER,
 };
 
-pub const CF_PLACEHOLDER_CREATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_PLACEHOLDER_CREATE_FLAGS = extern enum(u32) {
     NONE = 0,
     DISABLE_ON_DEMAND_POPULATION = 1,
     MARK_IN_SYNC = 2,
     SUPERSEDE = 4,
     ALWAYS_FULL = 8,
+    _,
 };
 pub const CF_PLACEHOLDER_CREATE_FLAG_NONE = CF_PLACEHOLDER_CREATE_FLAGS.NONE;
 pub const CF_PLACEHOLDER_CREATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION;
@@ -41,7 +43,8 @@ pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
     CreateUsn: i64,
 };
 
-pub const CF_SYNC_PROVIDER_STATUS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_SYNC_PROVIDER_STATUS = extern enum(u32) {
     DISCONNECTED = 0,
     IDLE = 1,
     POPULATE_NAMESPACE = 2,
@@ -50,9 +53,10 @@ pub const CF_SYNC_PROVIDER_STATUS = extern enum(i32) {
     SYNC_INCREMENTAL = 16,
     SYNC_FULL = 32,
     CONNECTIVITY_LOST = 64,
-    CLEAR_FLAGS = -2147483648,
-    TERMINATED = -1073741823,
-    ERROR = -1073741822,
+    CLEAR_FLAGS = 2147483648,
+    TERMINATED = 3221225473,
+    ERROR = 3221225474,
+    _,
 };
 pub const CF_PROVIDER_STATUS_DISCONNECTED = CF_SYNC_PROVIDER_STATUS.DISCONNECTED;
 pub const CF_PROVIDER_STATUS_IDLE = CF_SYNC_PROVIDER_STATUS.IDLE;
@@ -82,11 +86,13 @@ pub const CF_PLATFORM_INFO = extern struct {
     IntegrationNumber: u32,
 };
 
-pub const CF_REGISTER_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_REGISTER_FLAGS = extern enum(u32) {
     NONE = 0,
     UPDATE = 1,
     DISABLE_ON_DEMAND_POPULATION_ON_ROOT = 2,
     MARK_IN_SYNC_ON_ROOT = 4,
+    _,
 };
 pub const CF_REGISTER_FLAG_NONE = CF_REGISTER_FLAGS.NONE;
 pub const CF_REGISTER_FLAG_UPDATE = CF_REGISTER_FLAGS.UPDATE;
@@ -108,11 +114,13 @@ pub const CF_HYDRATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_HYDRATION_POLICY_MODIFIER = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_HYDRATION_POLICY_MODIFIER = extern enum(u32) {
     NONE = 0,
     VALIDATION_REQUIRED = 1,
     STREAMING_ALLOWED = 2,
     AUTO_DEHYDRATION_ALLOWED = 4,
+    _,
 };
 pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER.NONE;
 pub const CF_HYDRATION_POLICY_MODIFIER_VALIDATION_REQUIRED = CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED;
@@ -141,8 +149,10 @@ pub const CF_POPULATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_POPULATION_POLICY_MODIFIER = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_POPULATION_POLICY_MODIFIER = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_POPULATION_POLICY_MODIFIER_NONE = CF_POPULATION_POLICY_MODIFIER.E;
 
@@ -166,7 +176,8 @@ pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CREATE_UNRESTRICTED = CF_PLACEHOLDER_
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CONVERT_TO_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.CONVERT_TO_UNRESTRICTED;
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_UPDATE_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.UPDATE_UNRESTRICTED;
 
-pub const CF_INSYNC_POLICY = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_INSYNC_POLICY = extern enum(u32) {
     NONE = 0,
     TRACK_FILE_CREATION_TIME = 1,
     TRACK_FILE_READONLY_ATTRIBUTE = 2,
@@ -181,7 +192,8 @@ pub const CF_INSYNC_POLICY = extern enum(i32) {
     TRACK_FILE_ALL = 5592335,
     TRACK_DIRECTORY_ALL = 11184880,
     TRACK_ALL = 16777215,
-    PRESERVE_INSYNC_FOR_SYNC_ENGINE = -2147483648,
+    PRESERVE_INSYNC_FOR_SYNC_ENGINE = 2147483648,
+    _,
 };
 pub const CF_INSYNC_POLICY_NONE = CF_INSYNC_POLICY.NONE;
 pub const CF_INSYNC_POLICY_TRACK_FILE_CREATION_TIME = CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME;
@@ -199,9 +211,11 @@ pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_ALL = CF_INSYNC_POLICY.TRACK_DIRECTOR
 pub const CF_INSYNC_POLICY_TRACK_ALL = CF_INSYNC_POLICY.TRACK_ALL;
 pub const CF_INSYNC_POLICY_PRESERVE_INSYNC_FOR_SYNC_ENGINE = CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE;
 
-pub const CF_HARDLINK_POLICY = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_HARDLINK_POLICY = extern enum(u32) {
     NONE = 0,
     ALLOWED = 1,
+    _,
 };
 pub const CF_HARDLINK_POLICY_NONE = CF_HARDLINK_POLICY.NONE;
 pub const CF_HARDLINK_POLICY_ALLOWED = CF_HARDLINK_POLICY.ALLOWED;
@@ -248,95 +262,119 @@ pub const CF_CALLBACK_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-pub const CF_CALLBACK_CANCEL_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_CANCEL_FLAGS = extern enum(u32) {
     NONE = 0,
     IO_TIMEOUT = 1,
     IO_ABORTED = 2,
+    _,
 };
 pub const CF_CALLBACK_CANCEL_FLAG_NONE = CF_CALLBACK_CANCEL_FLAGS.NONE;
 pub const CF_CALLBACK_CANCEL_FLAG_IO_TIMEOUT = CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT;
 pub const CF_CALLBACK_CANCEL_FLAG_IO_ABORTED = CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED;
 
-pub const CF_CALLBACK_FETCH_DATA_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_FETCH_DATA_FLAGS = extern enum(u32) {
     NONE = 0,
     RECOVERY = 1,
     EXPLICIT_HYDRATION = 2,
+    _,
 };
 pub const CF_CALLBACK_FETCH_DATA_FLAG_NONE = CF_CALLBACK_FETCH_DATA_FLAGS.NONE;
 pub const CF_CALLBACK_FETCH_DATA_FLAG_RECOVERY = CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY;
 pub const CF_CALLBACK_FETCH_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION;
 
-pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = extern enum(u32) {
     NONE = 0,
     EXPLICIT_HYDRATION = 2,
+    _,
 };
 pub const CF_CALLBACK_VALIDATE_DATA_FLAG_NONE = CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE;
 pub const CF_CALLBACK_VALIDATE_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION;
 
-pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAG_NONE = CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E;
 
-pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     PLACEHOLDER_UNKNOWN = 1,
     PLACEHOLDER_UNSUPPORTED = 2,
+    _,
 };
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_NONE = CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNKNOWN = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN;
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNSUPPORTED = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED;
 
-pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     DELETED = 1,
+    _,
 };
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_NONE = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_DELETED = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED;
 
-pub const CF_CALLBACK_DEHYDRATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_DEHYDRATE_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
+    _,
 };
 pub const CF_CALLBACK_DEHYDRATE_FLAG_NONE = CF_CALLBACK_DEHYDRATE_FLAGS.NONE;
 pub const CF_CALLBACK_DEHYDRATE_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND;
 
-pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
     DEHYDRATED = 2,
+    _,
 };
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_NONE = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND;
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_DEHYDRATED = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED;
 
-pub const CF_CALLBACK_DELETE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_DELETE_FLAGS = extern enum(u32) {
     NONE = 0,
     IS_DIRECTORY = 1,
     IS_UNDELETE = 2,
+    _,
 };
 pub const CF_CALLBACK_DELETE_FLAG_NONE = CF_CALLBACK_DELETE_FLAGS.NONE;
 pub const CF_CALLBACK_DELETE_FLAG_IS_DIRECTORY = CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY;
 pub const CF_CALLBACK_DELETE_FLAG_IS_UNDELETE = CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE;
 
-pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_CALLBACK_DELETE_COMPLETION_FLAG_NONE = CF_CALLBACK_DELETE_COMPLETION_FLAGS.E;
 
-pub const CF_CALLBACK_RENAME_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_RENAME_FLAGS = extern enum(u32) {
     NONE = 0,
     IS_DIRECTORY = 1,
     SOURCE_IN_SCOPE = 2,
     TARGET_IN_SCOPE = 4,
+    _,
 };
 pub const CF_CALLBACK_RENAME_FLAG_NONE = CF_CALLBACK_RENAME_FLAGS.NONE;
 pub const CF_CALLBACK_RENAME_FLAG_IS_DIRECTORY = CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY;
 pub const CF_CALLBACK_RENAME_FLAG_SOURCE_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE;
 pub const CF_CALLBACK_RENAME_FLAG_TARGET_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE;
 
-pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_CALLBACK_RENAME_COMPLETION_FLAG_NONE = CF_CALLBACK_RENAME_COMPLETION_FLAGS.E;
 
@@ -400,11 +438,13 @@ pub const CF_CALLBACK_REGISTRATION = extern struct {
     Callback: CF_CALLBACK,
 };
 
-pub const CF_CONNECT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CONNECT_FLAGS = extern enum(u32) {
     NONE = 0,
     REQUIRE_PROCESS_INFO = 2,
     REQUIRE_FULL_FILE_PATH = 4,
     BLOCK_SELF_IMPLICIT_HYDRATION = 8,
+    _,
 };
 pub const CF_CONNECT_FLAG_NONE = CF_CONNECT_FLAGS.NONE;
 pub const CF_CONNECT_FLAG_REQUIRE_PROCESS_INFO = CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO;
@@ -449,49 +489,65 @@ pub const CF_OPERATION_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-pub const CF_OPERATION_TRANSFER_DATA_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_TRANSFER_DATA_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_TRANSFER_DATA_FLAG_NONE = CF_OPERATION_TRANSFER_DATA_FLAGS.E;
 
-pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_RETRIEVE_DATA_FLAG_NONE = CF_OPERATION_RETRIEVE_DATA_FLAGS.E;
 
-pub const CF_OPERATION_ACK_DATA_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_ACK_DATA_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_ACK_DATA_FLAG_NONE = CF_OPERATION_ACK_DATA_FLAGS.E;
 
-pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = extern enum(u32) {
     NONE = 0,
     MARK_IN_SYNC = 1,
+    _,
 };
 pub const CF_OPERATION_RESTART_HYDRATION_FLAG_NONE = CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE;
 pub const CF_OPERATION_RESTART_HYDRATION_FLAG_MARK_IN_SYNC = CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC;
 
-pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = extern enum(u32) {
     NONE = 0,
     STOP_ON_ERROR = 1,
     DISABLE_ON_DEMAND_POPULATION = 2,
+    _,
 };
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_NONE = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE;
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_STOP_ON_ERROR = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR;
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION;
 
-pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_ACK_DEHYDRATE_FLAG_NONE = CF_OPERATION_ACK_DEHYDRATE_FLAGS.E;
 
-pub const CF_OPERATION_ACK_RENAME_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_ACK_RENAME_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_ACK_RENAME_FLAG_NONE = CF_OPERATION_ACK_RENAME_FLAGS.E;
 
-pub const CF_OPERATION_ACK_DELETE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPERATION_ACK_DELETE_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
 
@@ -501,19 +557,23 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const CF_CREATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CREATE_FLAGS = extern enum(u32) {
     NONE = 0,
     STOP_ON_ERROR = 1,
+    _,
 };
 pub const CF_CREATE_FLAG_NONE = CF_CREATE_FLAGS.NONE;
 pub const CF_CREATE_FLAG_STOP_ON_ERROR = CF_CREATE_FLAGS.STOP_ON_ERROR;
 
-pub const CF_OPEN_FILE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_OPEN_FILE_FLAGS = extern enum(u32) {
     NONE = 0,
     EXCLUSIVE = 1,
     WRITE_ACCESS = 2,
     DELETE_ACCESS = 4,
     FOREGROUND = 8,
+    _,
 };
 pub const CF_OPEN_FILE_FLAG_NONE = CF_OPEN_FILE_FLAGS.NONE;
 pub const CF_OPEN_FILE_FLAG_EXCLUSIVE = CF_OPEN_FILE_FLAGS.EXCLUSIVE;
@@ -526,12 +586,14 @@ pub const CF_FILE_RANGE = extern struct {
     Length: LARGE_INTEGER,
 };
 
-pub const CF_CONVERT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_CONVERT_FLAGS = extern enum(u32) {
     NONE = 0,
     MARK_IN_SYNC = 1,
     DEHYDRATE = 2,
     ENABLE_ON_DEMAND_POPULATION = 4,
     ALWAYS_FULL = 8,
+    _,
 };
 pub const CF_CONVERT_FLAG_NONE = CF_CONVERT_FLAGS.NONE;
 pub const CF_CONVERT_FLAG_MARK_IN_SYNC = CF_CONVERT_FLAGS.MARK_IN_SYNC;
@@ -539,7 +601,8 @@ pub const CF_CONVERT_FLAG_DEHYDRATE = CF_CONVERT_FLAGS.DEHYDRATE;
 pub const CF_CONVERT_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION;
 pub const CF_CONVERT_FLAG_ALWAYS_FULL = CF_CONVERT_FLAGS.ALWAYS_FULL;
 
-pub const CF_UPDATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_UPDATE_FLAGS = extern enum(u32) {
     NONE = 0,
     VERIFY_IN_SYNC = 1,
     MARK_IN_SYNC = 2,
@@ -552,6 +615,7 @@ pub const CF_UPDATE_FLAGS = extern enum(i32) {
     PASSTHROUGH_FS_METADATA = 256,
     ALWAYS_FULL = 512,
     ALLOW_PARTIAL = 1024,
+    _,
 };
 pub const CF_UPDATE_FLAG_NONE = CF_UPDATE_FLAGS.NONE;
 pub const CF_UPDATE_FLAG_VERIFY_IN_SYNC = CF_UPDATE_FLAGS.VERIFY_IN_SYNC;
@@ -566,19 +630,25 @@ pub const CF_UPDATE_FLAG_PASSTHROUGH_FS_METADATA = CF_UPDATE_FLAGS.PASSTHROUGH_F
 pub const CF_UPDATE_FLAG_ALWAYS_FULL = CF_UPDATE_FLAGS.ALWAYS_FULL;
 pub const CF_UPDATE_FLAG_ALLOW_PARTIAL = CF_UPDATE_FLAGS.ALLOW_PARTIAL;
 
-pub const CF_REVERT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_REVERT_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_REVERT_FLAG_NONE = CF_REVERT_FLAGS.E;
 
-pub const CF_HYDRATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_HYDRATE_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_HYDRATE_FLAG_NONE = CF_HYDRATE_FLAGS.E;
 
-pub const CF_DEHYDRATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_DEHYDRATE_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
+    _,
 };
 pub const CF_DEHYDRATE_FLAG_NONE = CF_DEHYDRATE_FLAGS.NONE;
 pub const CF_DEHYDRATE_FLAG_BACKGROUND = CF_DEHYDRATE_FLAGS.BACKGROUND;
@@ -596,11 +666,13 @@ pub const CF_PIN_STATE_UNPINNED = CF_PIN_STATE.UNPINNED;
 pub const CF_PIN_STATE_EXCLUDED = CF_PIN_STATE.EXCLUDED;
 pub const CF_PIN_STATE_INHERIT = CF_PIN_STATE.INHERIT;
 
-pub const CF_SET_PIN_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_SET_PIN_FLAGS = extern enum(u32) {
     NONE = 0,
     RECURSE = 1,
     RECURSE_ONLY = 2,
     RECURSE_STOP_ON_ERROR = 4,
+    _,
 };
 pub const CF_SET_PIN_FLAG_NONE = CF_SET_PIN_FLAGS.NONE;
 pub const CF_SET_PIN_FLAG_RECURSE = CF_SET_PIN_FLAGS.RECURSE;
@@ -614,12 +686,15 @@ pub const CF_IN_SYNC_STATE = extern enum(i32) {
 pub const CF_IN_SYNC_STATE_NOT_IN_SYNC = CF_IN_SYNC_STATE.NOT_IN_SYNC;
 pub const CF_IN_SYNC_STATE_IN_SYNC = CF_IN_SYNC_STATE.IN_SYNC;
 
-pub const CF_SET_IN_SYNC_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_SET_IN_SYNC_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const CF_SET_IN_SYNC_FLAG_NONE = CF_SET_IN_SYNC_FLAGS.E;
 
-pub const CF_PLACEHOLDER_STATE = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CF_PLACEHOLDER_STATE = extern enum(u32) {
     NO_STATES = 0,
     PLACEHOLDER = 1,
     SYNC_ROOT = 2,
@@ -627,7 +702,8 @@ pub const CF_PLACEHOLDER_STATE = extern enum(i32) {
     IN_SYNC = 8,
     PARTIAL = 16,
     PARTIALLY_ON_DISK = 32,
-    INVALID = -1,
+    INVALID = 4294967295,
+    _,
 };
 pub const CF_PLACEHOLDER_STATE_NO_STATES = CF_PLACEHOLDER_STATE.NO_STATES;
 pub const CF_PLACEHOLDER_STATE_PLACEHOLDER = CF_PLACEHOLDER_STATE.PLACEHOLDER;
@@ -819,7 +895,8 @@ pub extern "cldapi" fn CfCloseHandle(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConvertToPlaceholder(
     FileHandle: HANDLE,
-    FileIdentity: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
     ConvertFlags: CF_CONVERT_FLAGS,
     ConvertUsn: ?*i64,
@@ -830,7 +907,8 @@ pub extern "cldapi" fn CfConvertToPlaceholder(
 pub extern "cldapi" fn CfUpdatePlaceholder(
     FileHandle: HANDLE,
     FsMetadata: ?*const CF_FS_METADATA,
-    FileIdentity: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    FileIdentity: ?*const c_void,
     FileIdentityLength: u32,
     DehydrateRangeArray: ?[*]const CF_FILE_RANGE,
     DehydrateRangeCount: u32,
@@ -912,7 +990,8 @@ pub extern "cldapi" fn CfGetPlaceholderStateFromFindData(
 pub extern "cldapi" fn CfGetPlaceholderInfo(
     FileHandle: HANDLE,
     InfoClass: CF_PLACEHOLDER_INFO_CLASS,
-    InfoBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    InfoBuffer: *c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -941,7 +1020,8 @@ pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
     InfoClass: CF_PLACEHOLDER_RANGE_INFO_CLASS,
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
-    InfoBuffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    InfoBuffer: *c_void,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

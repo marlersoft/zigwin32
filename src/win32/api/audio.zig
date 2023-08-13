@@ -1398,7 +1398,8 @@ pub const IDirectSoundBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const IDirectSoundBuffer,
-            pwfxFormat: ?[*]WAVEFORMATEX,
+            // TODO: what to do with BytesParamIndex 1?
+            pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1464,9 +1465,11 @@ pub const IDirectSoundBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unlock: fn(
             self: *const IDirectSoundBuffer,
-            pvAudioPtr1: [*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pvAudioPtr1: *c_void,
             dwAudioBytes1: u32,
-            pvAudioPtr2: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 3?
+            pvAudioPtr2: ?*c_void,
             dwAudioBytes2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Restore: fn(
@@ -1485,7 +1488,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IDirectSoundBuffer, self), pdwCurrentPlayCursor, pdwCurrentWriteCursor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_GetFormat(self: *const T, pwfxFormat: ?[*]WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_GetFormat(self: *const T, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1541,7 +1544,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: [*]u8, dwAudioBytes1: u32, pvAudioPtr2: ?[*]u8, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: *c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1974,7 +1977,8 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormat: fn(
             self: *const IDirectSoundCaptureBuffer,
-            pwfxFormat: ?[*]WAVEFORMATEX,
+            // TODO: what to do with BytesParamIndex 1?
+            pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2006,9 +2010,11 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unlock: fn(
             self: *const IDirectSoundCaptureBuffer,
-            pvAudioPtr1: [*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pvAudioPtr1: *c_void,
             dwAudioBytes1: u32,
-            pvAudioPtr2: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 3?
+            pvAudioPtr2: ?*c_void,
             dwAudioBytes2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2024,7 +2030,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IDirectSoundCaptureBuffer, self), pdwCapturePosition, pdwReadPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_GetFormat(self: *const T, pwfxFormat: ?[*]WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_GetFormat(self: *const T, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundCaptureBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2048,7 +2054,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundCaptureBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: [*]u8, dwAudioBytes1: u32, pvAudioPtr2: ?[*]u8, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: *c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundCaptureBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
     };}
@@ -3618,6 +3624,20 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = extern struct {
+    hMidi: HMIDI,
+    dwCallback: usize,
+    dwInstance: usize,
+    dnDevNode: usize,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
+};
+
 const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
@@ -3671,20 +3691,6 @@ pub const IPropertyStore = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: HMIDI,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
 };
 
 

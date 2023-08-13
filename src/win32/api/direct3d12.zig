@@ -2,11 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (444)
 //--------------------------------------------------------------------------------
-pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
-pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
-pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
-pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
-pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 pub const D3D12_16BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 65535);
 pub const D3D12_32BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 4294967295);
 pub const D3D12_8BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 255);
@@ -446,6 +441,11 @@ pub const D3D_SHADER_REQUIRES_INNER_COVERAGE = @as(u32, 1024);
 pub const D3D_SHADER_REQUIRES_TYPED_UAV_LOAD_ADDITIONAL_FORMATS = @as(u32, 2048);
 pub const D3D_SHADER_REQUIRES_ROVS = @as(u32, 4096);
 pub const D3D_SHADER_REQUIRES_VIEWPORT_AND_RT_ARRAY_INDEX_FROM_ANY_SHADER_FEEDING_RASTERIZER = @as(u32, 8192);
+pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
+pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
+pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
+pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
+pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 
 //--------------------------------------------------------------------------------
 // Section: Types (444)
@@ -467,9 +467,11 @@ pub const D3D12_COMMAND_LIST_TYPE_VIDEO_DECODE = D3D12_COMMAND_LIST_TYPE.VIDEO_D
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_PROCESS = D3D12_COMMAND_LIST_TYPE.VIDEO_PROCESS;
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_ENCODE = D3D12_COMMAND_LIST_TYPE.VIDEO_ENCODE;
 
-pub const D3D12_COMMAND_QUEUE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_COMMAND_QUEUE_FLAGS = extern enum(u32) {
     NONE = 0,
     DISABLE_GPU_TIMEOUT = 1,
+    _,
 };
 pub const D3D12_COMMAND_QUEUE_FLAG_NONE = D3D12_COMMAND_QUEUE_FLAGS.NONE;
 pub const D3D12_COMMAND_QUEUE_FLAG_DISABLE_GPU_TIMEOUT = D3D12_COMMAND_QUEUE_FLAGS.DISABLE_GPU_TIMEOUT;
@@ -785,13 +787,15 @@ pub const ID3D12Object = extern struct {
             self: *const ID3D12Object,
             guid: *const Guid,
             pDataSize: *u32,
-            pData: ?[*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateData: fn(
             self: *const ID3D12Object,
             guid: *const Guid,
             DataSize: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPrivateDataInterface: fn(
             self: *const ID3D12Object,
@@ -807,11 +811,11 @@ pub const ID3D12Object = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?[*]u8) callconv(.Inline) HRESULT {
+        pub fn ID3D12Object_GetPrivateData(self: *const T, guid: *const Guid, pDataSize: *u32, pData: ?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12Object.VTable, self.vtable).GetPrivateData(@ptrCast(*const ID3D12Object, self), guid, pDataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Object_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?[*]const u8) callconv(.Inline) HRESULT {
+        pub fn ID3D12Object_SetPrivateData(self: *const T, guid: *const Guid, DataSize: u32, pData: ?*const c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12Object.VTable, self.vtable).SetPrivateData(@ptrCast(*const ID3D12Object, self), guid, DataSize, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -893,9 +897,11 @@ pub const D3D12_CACHED_PIPELINE_STATE = extern struct {
     CachedBlobSizeInBytes: usize,
 };
 
-pub const D3D12_PIPELINE_STATE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_PIPELINE_STATE_FLAGS = extern enum(u32) {
     NONE = 0,
     TOOL_DEBUG = 1,
+    _,
 };
 pub const D3D12_PIPELINE_STATE_FLAG_NONE = D3D12_PIPELINE_STATE_FLAGS.NONE;
 pub const D3D12_PIPELINE_STATE_FLAG_TOOL_DEBUG = D3D12_PIPELINE_STATE_FLAGS.TOOL_DEBUG;
@@ -1052,10 +1058,12 @@ pub const D3D12_FEATURE_D3D12_OPTIONS7 = D3D12_FEATURE.D3D12_OPTIONS7;
 pub const D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_TYPE_COUNT = D3D12_FEATURE.PROTECTED_RESOURCE_SESSION_TYPE_COUNT;
 pub const D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_TYPES = D3D12_FEATURE.PROTECTED_RESOURCE_SESSION_TYPES;
 
-pub const D3D12_SHADER_MIN_PRECISION_SUPPORT = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_SHADER_MIN_PRECISION_SUPPORT = extern enum(u32) {
     NONE = 0,
     @"10_BIT" = 1,
     @"16_BIT" = 2,
+    _,
 };
 pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_NONE = D3D12_SHADER_MIN_PRECISION_SUPPORT.NONE;
 pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_10_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT.@"10_BIT";
@@ -1094,7 +1102,8 @@ pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_1 = D3D12_CONSERVATIVE_RASTERIZA
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_2 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"2";
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_3 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"3";
 
-pub const D3D12_FORMAT_SUPPORT1 = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_FORMAT_SUPPORT1 = extern enum(u32) {
     NONE = 0,
     BUFFER = 1,
     IA_VERTEX_BUFFER = 2,
@@ -1125,6 +1134,7 @@ pub const D3D12_FORMAT_SUPPORT1 = extern enum(i32) {
     VIDEO_PROCESSOR_OUTPUT = 268435456,
     VIDEO_PROCESSOR_INPUT = 536870912,
     VIDEO_ENCODER = 1073741824,
+    _,
 };
 pub const D3D12_FORMAT_SUPPORT1_NONE = D3D12_FORMAT_SUPPORT1.NONE;
 pub const D3D12_FORMAT_SUPPORT1_BUFFER = D3D12_FORMAT_SUPPORT1.BUFFER;
@@ -1157,7 +1167,8 @@ pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_OUTPUT = D3D12_FORMAT_SUPPORT1.V
 pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_INPUT = D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_INPUT;
 pub const D3D12_FORMAT_SUPPORT1_VIDEO_ENCODER = D3D12_FORMAT_SUPPORT1.VIDEO_ENCODER;
 
-pub const D3D12_FORMAT_SUPPORT2 = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_FORMAT_SUPPORT2 = extern enum(u32) {
     NONE = 0,
     UAV_ATOMIC_ADD = 1,
     UAV_ATOMIC_BITWISE_OPS = 2,
@@ -1171,6 +1182,7 @@ pub const D3D12_FORMAT_SUPPORT2 = extern enum(i32) {
     TILED = 512,
     MULTIPLANE_OVERLAY = 16384,
     SAMPLER_FEEDBACK = 32768,
+    _,
 };
 pub const D3D12_FORMAT_SUPPORT2_NONE = D3D12_FORMAT_SUPPORT2.NONE;
 pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_ADD = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_ADD;
@@ -1186,9 +1198,11 @@ pub const D3D12_FORMAT_SUPPORT2_TILED = D3D12_FORMAT_SUPPORT2.TILED;
 pub const D3D12_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY = D3D12_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY;
 pub const D3D12_FORMAT_SUPPORT2_SAMPLER_FEEDBACK = D3D12_FORMAT_SUPPORT2.SAMPLER_FEEDBACK;
 
-pub const D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS = extern enum(u32) {
     NONE = 0,
     TILED_RESOURCE = 1,
+    _,
 };
 pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_NONE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.NONE;
 pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_TILED_RESOURCE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.TILED_RESOURCE;
@@ -1345,12 +1359,14 @@ pub const D3D12_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT = extern struct {
     MaxGPUVirtualAddressBitsPerProcess: u32,
 };
 
-pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     SINGLE_PSO = 1,
     LIBRARY = 2,
     AUTOMATIC_INPROC_CACHE = 4,
     AUTOMATIC_DISK_CACHE = 8,
+    _,
 };
 pub const D3D12_SHADER_CACHE_SUPPORT_NONE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.NONE;
 pub const D3D12_SHADER_CACHE_SUPPORT_SINGLE_PSO = D3D12_SHADER_CACHE_SUPPORT_FLAGS.SINGLE_PSO;
@@ -1368,7 +1384,8 @@ pub const D3D12_FEATURE_DATA_COMMAND_QUEUE_PRIORITY = extern struct {
     PriorityForTypeIsSupported: BOOL,
 };
 
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     DIRECT = 1,
     BUNDLE = 2,
@@ -1377,6 +1394,7 @@ pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = extern enum(i32) {
     VIDEO_DECODE = 16,
     VIDEO_PROCESS = 32,
     VIDEO_ENCODE = 64,
+    _,
 };
 pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_NONE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.NONE;
 pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_DIRECT = D3D12_COMMAND_LIST_SUPPORT_FLAGS.DIRECT;
@@ -1552,7 +1570,8 @@ pub const D3D12_HEAP_PROPERTIES = extern struct {
     VisibleNodeMask: u32,
 };
 
-pub const D3D12_HEAP_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
     SHARED = 1,
     DENY_BUFFERS = 4,
@@ -1569,6 +1588,7 @@ pub const D3D12_HEAP_FLAGS = extern enum(i32) {
     ALLOW_ONLY_BUFFERS = 192,
     ALLOW_ONLY_NON_RT_DS_TEXTURES = 68,
     ALLOW_ONLY_RT_DS_TEXTURES = 132,
+    _,
 };
 pub const D3D12_HEAP_FLAG_NONE = D3D12_HEAP_FLAGS.NONE;
 pub const D3D12_HEAP_FLAG_SHARED = D3D12_HEAP_FLAGS.SHARED;
@@ -1618,7 +1638,8 @@ pub const D3D12_TEXTURE_LAYOUT_ROW_MAJOR = D3D12_TEXTURE_LAYOUT.ROW_MAJOR;
 pub const D3D12_TEXTURE_LAYOUT_64KB_UNDEFINED_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_UNDEFINED_SWIZZLE";
 pub const D3D12_TEXTURE_LAYOUT_64KB_STANDARD_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_STANDARD_SWIZZLE";
 
-pub const D3D12_RESOURCE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RESOURCE_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_RENDER_TARGET = 1,
     ALLOW_DEPTH_STENCIL = 2,
@@ -1627,6 +1648,7 @@ pub const D3D12_RESOURCE_FLAGS = extern enum(i32) {
     ALLOW_CROSS_ADAPTER = 16,
     ALLOW_SIMULTANEOUS_ACCESS = 32,
     VIDEO_DECODE_REFERENCE_ONLY = 64,
+    _,
 };
 pub const D3D12_RESOURCE_FLAG_NONE = D3D12_RESOURCE_FLAGS.NONE;
 pub const D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET = D3D12_RESOURCE_FLAGS.ALLOW_RENDER_TARGET;
@@ -1748,25 +1770,30 @@ pub const D3D12_PACKED_MIP_INFO = extern struct {
     StartTileIndexInOverallResource: u32,
 };
 
-pub const D3D12_TILE_MAPPING_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_TILE_MAPPING_FLAGS = extern enum(u32) {
     NE = 0,
     _HAZARD = 1,
+    _,
 };
 pub const D3D12_TILE_MAPPING_FLAG_NONE = D3D12_TILE_MAPPING_FLAGS.NE;
 pub const D3D12_TILE_MAPPING_FLAG_NO_HAZARD = D3D12_TILE_MAPPING_FLAGS._HAZARD;
 
-pub const D3D12_TILE_COPY_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_TILE_COPY_FLAGS = extern enum(u32) {
     NONE = 0,
     NO_HAZARD = 1,
     LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = 2,
     SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = 4,
+    _,
 };
 pub const D3D12_TILE_COPY_FLAG_NONE = D3D12_TILE_COPY_FLAGS.NONE;
 pub const D3D12_TILE_COPY_FLAG_NO_HAZARD = D3D12_TILE_COPY_FLAGS.NO_HAZARD;
 pub const D3D12_TILE_COPY_FLAG_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = D3D12_TILE_COPY_FLAGS.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE;
 pub const D3D12_TILE_COPY_FLAG_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = D3D12_TILE_COPY_FLAGS.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER;
 
-pub const D3D12_RESOURCE_STATES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RESOURCE_STATES = extern enum(u32) {
     COMMON = 0,
     VERTEX_AND_CONSTANT_BUFFER = 1,
     INDEX_BUFFER = 2,
@@ -1793,6 +1820,7 @@ pub const D3D12_RESOURCE_STATES = extern enum(i32) {
     VIDEO_PROCESS_WRITE = 524288,
     VIDEO_ENCODE_READ = 2097152,
     VIDEO_ENCODE_WRITE = 8388608,
+    _,
 };
 pub const D3D12_RESOURCE_STATE_COMMON = D3D12_RESOURCE_STATES.COMMON;
 pub const D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER = D3D12_RESOURCE_STATES.VERTEX_AND_CONSTANT_BUFFER;
@@ -1846,10 +1874,12 @@ pub const D3D12_RESOURCE_UAV_BARRIER = extern struct {
     pResource: *ID3D12Resource,
 };
 
-pub const D3D12_RESOURCE_BARRIER_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RESOURCE_BARRIER_FLAGS = extern enum(u32) {
     NONE = 0,
     BEGIN_ONLY = 1,
     END_ONLY = 2,
+    _,
 };
 pub const D3D12_RESOURCE_BARRIER_FLAG_NONE = D3D12_RESOURCE_BARRIER_FLAGS.NONE;
 pub const D3D12_RESOURCE_BARRIER_FLAG_BEGIN_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.BEGIN_ONLY;
@@ -1914,9 +1944,11 @@ pub const D3D12_VIEW_INSTANCE_LOCATION = extern struct {
     RenderTargetArrayIndex: u32,
 };
 
-pub const D3D12_VIEW_INSTANCING_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_VIEW_INSTANCING_FLAGS = extern enum(u32) {
     NONE = 0,
     ENABLE_VIEW_INSTANCE_MASKING = 1,
+    _,
 };
 pub const D3D12_VIEW_INSTANCING_FLAG_NONE = D3D12_VIEW_INSTANCING_FLAGS.NONE;
 pub const D3D12_VIEW_INSTANCING_FLAG_ENABLE_VIEW_INSTANCE_MASKING = D3D12_VIEW_INSTANCING_FLAGS.ENABLE_VIEW_INSTANCE_MASKING;
@@ -1942,9 +1974,11 @@ pub const D3D12_SHADER_COMPONENT_MAPPING_FROM_MEMORY_COMPONENT_3 = D3D12_SHADER_
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_0 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_0;
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_1 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_1;
 
-pub const D3D12_BUFFER_SRV_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_BUFFER_SRV_FLAGS = extern enum(u32) {
     NONE = 0,
     RAW = 1,
+    _,
 };
 pub const D3D12_BUFFER_SRV_FLAG_NONE = D3D12_BUFFER_SRV_FLAGS.NONE;
 pub const D3D12_BUFFER_SRV_FLAG_RAW = D3D12_BUFFER_SRV_FLAGS.RAW;
@@ -2178,9 +2212,11 @@ pub const D3D12_SAMPLER_DESC = extern struct {
     MaxLOD: f32,
 };
 
-pub const D3D12_BUFFER_UAV_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_BUFFER_UAV_FLAGS = extern enum(u32) {
     NONE = 0,
     RAW = 1,
+    _,
 };
 pub const D3D12_BUFFER_UAV_FLAG_NONE = D3D12_BUFFER_UAV_FLAGS.NONE;
 pub const D3D12_BUFFER_UAV_FLAG_RAW = D3D12_BUFFER_UAV_FLAGS.RAW;
@@ -2344,10 +2380,12 @@ pub const D3D12_TEX2DMS_ARRAY_DSV = extern struct {
     ArraySize: u32,
 };
 
-pub const D3D12_DSV_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_DSV_FLAGS = extern enum(u32) {
     NONE = 0,
     READ_ONLY_DEPTH = 1,
     READ_ONLY_STENCIL = 2,
+    _,
 };
 pub const D3D12_DSV_FLAG_NONE = D3D12_DSV_FLAGS.NONE;
 pub const D3D12_DSV_FLAG_READ_ONLY_DEPTH = D3D12_DSV_FLAGS.READ_ONLY_DEPTH;
@@ -2378,18 +2416,22 @@ pub const D3D12_DEPTH_STENCIL_VIEW_DESC = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const D3D12_CLEAR_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_CLEAR_FLAGS = extern enum(u32) {
     DEPTH = 1,
     STENCIL = 2,
+    _,
 };
 pub const D3D12_CLEAR_FLAG_DEPTH = D3D12_CLEAR_FLAGS.DEPTH;
 pub const D3D12_CLEAR_FLAG_STENCIL = D3D12_CLEAR_FLAGS.STENCIL;
 
-pub const D3D12_FENCE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_FENCE_FLAGS = extern enum(u32) {
     NONE = 0,
     SHARED = 1,
     SHARED_CROSS_ADAPTER = 2,
     NON_MONITORED = 4,
+    _,
 };
 pub const D3D12_FENCE_FLAG_NONE = D3D12_FENCE_FLAGS.NONE;
 pub const D3D12_FENCE_FLAG_SHARED = D3D12_FENCE_FLAGS.SHARED;
@@ -2409,9 +2451,11 @@ pub const D3D12_DESCRIPTOR_HEAP_TYPE_RTV = D3D12_DESCRIPTOR_HEAP_TYPE.RTV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_DSV = D3D12_DESCRIPTOR_HEAP_TYPE.DSV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES = D3D12_DESCRIPTOR_HEAP_TYPE.NUM_TYPES;
 
-pub const D3D12_DESCRIPTOR_HEAP_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_DESCRIPTOR_HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
     SHADER_VISIBLE = 1,
+    _,
 };
 pub const D3D12_DESCRIPTOR_HEAP_FLAG_NONE = D3D12_DESCRIPTOR_HEAP_FLAGS.NONE;
 pub const D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE = D3D12_DESCRIPTOR_HEAP_FLAGS.SHADER_VISIBLE;
@@ -2497,7 +2541,8 @@ pub const D3D12_ROOT_PARAMETER = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const D3D12_ROOT_SIGNATURE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_ROOT_SIGNATURE_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = 1,
     DENY_VERTEX_SHADER_ROOT_ACCESS = 2,
@@ -2509,6 +2554,7 @@ pub const D3D12_ROOT_SIGNATURE_FLAGS = extern enum(i32) {
     LOCAL_ROOT_SIGNATURE = 128,
     DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = 256,
     DENY_MESH_SHADER_ROOT_ACCESS = 512,
+    _,
 };
 pub const D3D12_ROOT_SIGNATURE_FLAG_NONE = D3D12_ROOT_SIGNATURE_FLAGS.NONE;
 pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
@@ -2555,13 +2601,15 @@ pub const D3D12_ROOT_SIGNATURE_DESC = extern struct {
     Flags: D3D12_ROOT_SIGNATURE_FLAGS,
 };
 
-pub const D3D12_DESCRIPTOR_RANGE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_DESCRIPTOR_RANGE_FLAGS = extern enum(u32) {
     NONE = 0,
     DESCRIPTORS_VOLATILE = 1,
     DATA_VOLATILE = 2,
     DATA_STATIC_WHILE_SET_AT_EXECUTE = 4,
     DATA_STATIC = 8,
     DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = 65536,
+    _,
 };
 pub const D3D12_DESCRIPTOR_RANGE_FLAG_NONE = D3D12_DESCRIPTOR_RANGE_FLAGS.NONE;
 pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_VOLATILE;
@@ -2584,11 +2632,13 @@ pub const D3D12_ROOT_DESCRIPTOR_TABLE1 = extern struct {
     pDescriptorRanges: *const D3D12_DESCRIPTOR_RANGE1,
 };
 
-pub const D3D12_ROOT_DESCRIPTOR_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_ROOT_DESCRIPTOR_FLAGS = extern enum(u32) {
     NONE = 0,
     DATA_VOLATILE = 2,
     DATA_STATIC_WHILE_SET_AT_EXECUTE = 4,
     DATA_STATIC = 8,
+    _,
 };
 pub const D3D12_ROOT_DESCRIPTOR_FLAG_NONE = D3D12_ROOT_DESCRIPTOR_FLAGS.NONE;
 pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_VOLATILE = D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_VOLATILE;
@@ -2679,7 +2729,8 @@ pub const PFN_D3D12_SERIALIZE_ROOT_SIGNATURE = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER = fn(
-    pSrcData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: *const Guid,
     ppRootSignatureDeserializer: **c_void,
@@ -2692,7 +2743,8 @@ pub const PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER = fn(
-    pSrcData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: *const Guid,
     ppRootSignatureDeserializer: **c_void,
@@ -3431,13 +3483,15 @@ pub const ID3D12GraphicsCommandList = extern struct {
         SetMarker: fn(
             self: *const ID3D12GraphicsCommandList,
             Metadata: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const c_void,
             Size: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BeginEvent: fn(
             self: *const ID3D12GraphicsCommandList,
             Metadata: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const c_void,
             Size: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         EndEvent: fn(
@@ -3645,11 +3699,11 @@ pub const ID3D12GraphicsCommandList = extern struct {
             return @ptrCast(*const ID3D12GraphicsCommandList.VTable, self.vtable).SetPredication(@ptrCast(*const ID3D12GraphicsCommandList, self), pBuffer, AlignedBufferOffset, Operation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?[*]const u8, Size: u32) callconv(.Inline) void {
+        pub fn ID3D12GraphicsCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const c_void, Size: u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D12GraphicsCommandList.VTable, self.vtable).SetMarker(@ptrCast(*const ID3D12GraphicsCommandList, self), Metadata, pData, Size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?[*]const u8, Size: u32) callconv(.Inline) void {
+        pub fn ID3D12GraphicsCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const c_void, Size: u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D12GraphicsCommandList.VTable, self.vtable).BeginEvent(@ptrCast(*const ID3D12GraphicsCommandList, self), Metadata, pData, Size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3820,13 +3874,15 @@ pub const ID3D12CommandQueue = extern struct {
         SetMarker: fn(
             self: *const ID3D12CommandQueue,
             Metadata: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const c_void,
             Size: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BeginEvent: fn(
             self: *const ID3D12CommandQueue,
             Metadata: u32,
-            pData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const c_void,
             Size: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         EndEvent: fn(
@@ -3871,11 +3927,11 @@ pub const ID3D12CommandQueue = extern struct {
             return @ptrCast(*const ID3D12CommandQueue.VTable, self.vtable).ExecuteCommandLists(@ptrCast(*const ID3D12CommandQueue, self), NumCommandLists, ppCommandLists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_SetMarker(self: *const T, Metadata: u32, pData: ?[*]const u8, Size: u32) callconv(.Inline) void {
+        pub fn ID3D12CommandQueue_SetMarker(self: *const T, Metadata: u32, pData: ?*const c_void, Size: u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D12CommandQueue.VTable, self.vtable).SetMarker(@ptrCast(*const ID3D12CommandQueue, self), Metadata, pData, Size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12CommandQueue_BeginEvent(self: *const T, Metadata: u32, pData: ?[*]const u8, Size: u32) callconv(.Inline) void {
+        pub fn ID3D12CommandQueue_BeginEvent(self: *const T, Metadata: u32, pData: ?*const c_void, Size: u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D12CommandQueue.VTable, self.vtable).BeginEvent(@ptrCast(*const ID3D12CommandQueue, self), Metadata, pData, Size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3950,7 +4006,8 @@ pub const ID3D12Device = extern struct {
         CheckFeatureSupport: fn(
             self: *const ID3D12Device,
             Feature: D3D12_FEATURE,
-            pFeatureSupportData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pFeatureSupportData: *c_void,
             FeatureSupportDataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDescriptorHeap: fn(
@@ -4178,7 +4235,7 @@ pub const ID3D12Device = extern struct {
             return @ptrCast(*const ID3D12Device.VTable, self.vtable).CreateCommandList(@ptrCast(*const ID3D12Device, self), nodeMask, type, pCommandAllocator, pInitialState, riid, ppCommandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: [*]u8, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: *c_void, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12Device.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID3D12Device, self), Feature, pFeatureSupportData, FeatureSupportDataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4389,10 +4446,12 @@ pub const ID3D12PipelineLibrary1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = extern enum(u32) {
     NONE = 0,
     ANY = 1,
     ALL = 0,
+    _,
 };
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_NONE = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE;
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ANY = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ANY;
@@ -4480,9 +4539,11 @@ pub const ID3D12Device2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D12_RESIDENCY_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RESIDENCY_FLAGS = extern enum(u32) {
     NONE = 0,
     DENY_OVERBUDGET = 1,
+    _,
 };
 pub const D3D12_RESIDENCY_FLAG_NONE = D3D12_RESIDENCY_FLAGS.NONE;
 pub const D3D12_RESIDENCY_FLAG_DENY_OVERBUDGET = D3D12_RESIDENCY_FLAGS.DENY_OVERBUDGET;
@@ -4532,18 +4593,24 @@ pub const ID3D12Device3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D12_COMMAND_LIST_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_COMMAND_LIST_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D12_COMMAND_LIST_FLAG_NONE = D3D12_COMMAND_LIST_FLAGS.E;
 
-pub const D3D12_COMMAND_POOL_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_COMMAND_POOL_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D12_COMMAND_POOL_FLAG_NONE = D3D12_COMMAND_POOL_FLAGS.E;
 
-pub const D3D12_COMMAND_RECORDER_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_COMMAND_RECORDER_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D12_COMMAND_RECORDER_FLAG_NONE = D3D12_COMMAND_RECORDER_FLAGS.E;
 
@@ -4583,9 +4650,11 @@ pub const ID3D12ProtectedSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS = extern enum(u32) {
     NONE = 0,
     SUPPORTED = 1,
+    _,
 };
 pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.NONE;
 pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_SUPPORTED = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.SUPPORTED;
@@ -4595,8 +4664,10 @@ pub const D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT = extern struct 
     Support: D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS,
 };
 
-pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_FLAGS.E;
 
@@ -4819,9 +4890,11 @@ pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_VIRTUAL_ADDRESS = D3D12_META_COM
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 
-pub const D3D12_META_COMMAND_PARAMETER_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_META_COMMAND_PARAMETER_FLAGS = extern enum(u32) {
     INPUT = 1,
     OUTPUT = 2,
+    _,
 };
 pub const D3D12_META_COMMAND_PARAMETER_FLAG_INPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.INPUT;
 pub const D3D12_META_COMMAND_PARAMETER_FLAG_OUTPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.OUTPUT;
@@ -4843,7 +4916,8 @@ pub const D3D12_META_COMMAND_PARAMETER_DESC = extern struct {
     StructureOffset: u32,
 };
 
-pub const D3D12_GRAPHICS_STATES = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_GRAPHICS_STATES = extern enum(u32) {
     NONE = 0,
     IA_VERTEX_BUFFERS = 1,
     IA_INDEX_BUFFER = 2,
@@ -4862,6 +4936,7 @@ pub const D3D12_GRAPHICS_STATES = extern enum(i32) {
     OM_DEPTH_BOUNDS = 16384,
     SAMPLE_POSITIONS = 32768,
     VIEW_INSTANCE_MASK = 65536,
+    _,
 };
 pub const D3D12_GRAPHICS_STATE_NONE = D3D12_GRAPHICS_STATES.NONE;
 pub const D3D12_GRAPHICS_STATE_IA_VERTEX_BUFFERS = D3D12_GRAPHICS_STATES.IA_VERTEX_BUFFERS;
@@ -4980,11 +5055,13 @@ pub const D3D12_STATE_SUBOBJECT = extern struct {
     pDesc: *const c_void,
 };
 
-pub const D3D12_STATE_OBJECT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_STATE_OBJECT_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = 1,
     ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = 2,
     ALLOW_STATE_OBJECT_ADDITIONS = 4,
+    _,
 };
 pub const D3D12_STATE_OBJECT_FLAG_NONE = D3D12_STATE_OBJECT_FLAGS.NONE;
 pub const D3D12_STATE_OBJECT_FLAG_ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS;
@@ -5007,8 +5084,10 @@ pub const D3D12_NODE_MASK = extern struct {
     NodeMask: u32,
 };
 
-pub const D3D12_EXPORT_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_EXPORT_FLAGS = extern enum(u32) {
     E = 0,
+    _,
 };
 pub const D3D12_EXPORT_FLAG_NONE = D3D12_EXPORT_FLAGS.E;
 
@@ -5066,10 +5145,12 @@ pub const D3D12_RAYTRACING_PIPELINE_CONFIG = extern struct {
     MaxTraceRecursionDepth: u32,
 };
 
-pub const D3D12_RAYTRACING_PIPELINE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RAYTRACING_PIPELINE_FLAGS = extern enum(u32) {
     NONE = 0,
     SKIP_TRIANGLES = 256,
     SKIP_PROCEDURAL_PRIMITIVES = 512,
+    _,
 };
 pub const D3D12_RAYTRACING_PIPELINE_FLAG_NONE = D3D12_RAYTRACING_PIPELINE_FLAGS.NONE;
 pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_TRIANGLES = D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_TRIANGLES;
@@ -5093,10 +5174,12 @@ pub const D3D12_STATE_OBJECT_DESC = extern struct {
     pSubobjects: *const D3D12_STATE_SUBOBJECT,
 };
 
-pub const D3D12_RAYTRACING_GEOMETRY_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RAYTRACING_GEOMETRY_FLAGS = extern enum(u32) {
     NONE = 0,
     OPAQUE = 1,
     NO_DUPLICATE_ANYHIT_INVOCATION = 2,
+    _,
 };
 pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NONE = D3D12_RAYTRACING_GEOMETRY_FLAGS.NONE;
 pub const D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE = D3D12_RAYTRACING_GEOMETRY_FLAGS.OPAQUE;
@@ -5109,12 +5192,14 @@ pub const D3D12_RAYTRACING_GEOMETRY_TYPE = extern enum(i32) {
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES = D3D12_RAYTRACING_GEOMETRY_TYPE.TRIANGLES;
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_PROCEDURAL_PRIMITIVE_AABBS = D3D12_RAYTRACING_GEOMETRY_TYPE.PROCEDURAL_PRIMITIVE_AABBS;
 
-pub const D3D12_RAYTRACING_INSTANCE_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RAYTRACING_INSTANCE_FLAGS = extern enum(u32) {
     NONE = 0,
     TRIANGLE_CULL_DISABLE = 1,
     TRIANGLE_FRONT_COUNTERCLOCKWISE = 2,
     FORCE_OPAQUE = 4,
     FORCE_NON_OPAQUE = 8,
+    _,
 };
 pub const D3D12_RAYTRACING_INSTANCE_FLAG_NONE = D3D12_RAYTRACING_INSTANCE_FLAGS.NONE;
 pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_CULL_DISABLE = D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_CULL_DISABLE;
@@ -5162,7 +5247,8 @@ pub const D3D12_RAYTRACING_GEOMETRY_AABBS_DESC = extern struct {
     AABBs: D3D12_GPU_VIRTUAL_ADDRESS_AND_STRIDE,
 };
 
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_UPDATE = 1,
     ALLOW_COMPACTION = 2,
@@ -5170,6 +5256,7 @@ pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = extern enum(i32)
     PREFER_FAST_BUILD = 8,
     MINIMIZE_MEMORY = 16,
     PERFORM_UPDATE = 32,
+    _,
 };
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.NONE;
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_UPDATE;
@@ -5310,7 +5397,8 @@ pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO = extern struct 
     UpdateScratchDataSizeInBytes: u64,
 };
 
-pub const D3D12_RAY_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RAY_FLAGS = extern enum(u32) {
     NONE = 0,
     FORCE_OPAQUE = 1,
     FORCE_NON_OPAQUE = 2,
@@ -5322,6 +5410,7 @@ pub const D3D12_RAY_FLAGS = extern enum(i32) {
     CULL_NON_OPAQUE = 128,
     SKIP_TRIANGLES = 256,
     SKIP_PROCEDURAL_PRIMITIVES = 512,
+    _,
 };
 pub const D3D12_RAY_FLAG_NONE = D3D12_RAY_FLAGS.NONE;
 pub const D3D12_RAY_FLAG_FORCE_OPAQUE = D3D12_RAY_FLAGS.FORCE_OPAQUE;
@@ -5374,7 +5463,8 @@ pub const ID3D12Device5 = extern struct {
             self: *const ID3D12Device5,
             CommandId: *const Guid,
             NodeMask: u32,
-            pCreationParametersData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 3?
+            pCreationParametersData: ?*const c_void,
             CreationParametersDataSizeInBytes: usize,
             riid: *const Guid,
             ppMetaCommand: **c_void,
@@ -5416,7 +5506,7 @@ pub const ID3D12Device5 = extern struct {
             return @ptrCast(*const ID3D12Device5.VTable, self.vtable).EnumerateMetaCommandParameters(@ptrCast(*const ID3D12Device5, self), CommandId, Stage, pTotalStructureSizeInBytes, pParameterCount, pParameterDescs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device5_CreateMetaCommand(self: *const T, CommandId: *const Guid, NodeMask: u32, pCreationParametersData: ?[*]const u8, CreationParametersDataSizeInBytes: usize, riid: *const Guid, ppMetaCommand: **c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12Device5_CreateMetaCommand(self: *const T, CommandId: *const Guid, NodeMask: u32, pCreationParametersData: ?*const c_void, CreationParametersDataSizeInBytes: usize, riid: *const Guid, ppMetaCommand: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12Device5.VTable, self.vtable).CreateMetaCommand(@ptrCast(*const ID3D12Device5, self), CommandId, NodeMask, pCreationParametersData, CreationParametersDataSizeInBytes, riid, ppMetaCommand);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5566,10 +5656,12 @@ pub const D3D12_DRED_VERSION_1_0 = D3D12_DRED_VERSION.@"0";
 pub const D3D12_DRED_VERSION_1_1 = D3D12_DRED_VERSION.@"1";
 pub const D3D12_DRED_VERSION_1_2 = D3D12_DRED_VERSION.@"2";
 
-pub const D3D12_DRED_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_DRED_FLAGS = extern enum(u32) {
     NONE = 0,
     FORCE_ENABLE = 1,
     DISABLE_AUTOBREADCRUMBS = 2,
+    _,
 };
 pub const D3D12_DRED_FLAG_NONE = D3D12_DRED_FLAGS.NONE;
 pub const D3D12_DRED_FLAG_FORCE_ENABLE = D3D12_DRED_FLAGS.FORCE_ENABLE;
@@ -6165,11 +6257,13 @@ pub const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC = extern struct {
     StencilEndingAccess: D3D12_RENDER_PASS_ENDING_ACCESS,
 };
 
-pub const D3D12_RENDER_PASS_FLAGS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const D3D12_RENDER_PASS_FLAGS = extern enum(u32) {
     NONE = 0,
     ALLOW_UAV_WRITES = 1,
     SUSPENDING_PASS = 2,
     RESUMING_PASS = 4,
+    _,
 };
 pub const D3D12_RENDER_PASS_FLAG_NONE = D3D12_RENDER_PASS_FLAGS.NONE;
 pub const D3D12_RENDER_PASS_FLAG_ALLOW_UAV_WRITES = D3D12_RENDER_PASS_FLAGS.ALLOW_UAV_WRITES;
@@ -6226,13 +6320,15 @@ pub const ID3D12GraphicsCommandList4 = extern struct {
         InitializeMetaCommand: fn(
             self: *const ID3D12GraphicsCommandList4,
             pMetaCommand: *ID3D12MetaCommand,
-            pInitializationParametersData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pInitializationParametersData: ?*const c_void,
             InitializationParametersDataSizeInBytes: usize,
         ) callconv(@import("std").os.windows.WINAPI) void,
         ExecuteMetaCommand: fn(
             self: *const ID3D12GraphicsCommandList4,
             pMetaCommand: *ID3D12MetaCommand,
-            pExecutionParametersData: ?[*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pExecutionParametersData: ?*const c_void,
             ExecutionParametersDataSizeInBytes: usize,
         ) callconv(@import("std").os.windows.WINAPI) void,
         BuildRaytracingAccelerationStructure: fn(
@@ -6274,11 +6370,11 @@ pub const ID3D12GraphicsCommandList4 = extern struct {
             return @ptrCast(*const ID3D12GraphicsCommandList4.VTable, self.vtable).EndRenderPass(@ptrCast(*const ID3D12GraphicsCommandList4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_InitializeMetaCommand(self: *const T, pMetaCommand: *ID3D12MetaCommand, pInitializationParametersData: ?[*]const u8, InitializationParametersDataSizeInBytes: usize) callconv(.Inline) void {
+        pub fn ID3D12GraphicsCommandList4_InitializeMetaCommand(self: *const T, pMetaCommand: *ID3D12MetaCommand, pInitializationParametersData: ?*const c_void, InitializationParametersDataSizeInBytes: usize) callconv(.Inline) void {
             return @ptrCast(*const ID3D12GraphicsCommandList4.VTable, self.vtable).InitializeMetaCommand(@ptrCast(*const ID3D12GraphicsCommandList4, self), pMetaCommand, pInitializationParametersData, InitializationParametersDataSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12GraphicsCommandList4_ExecuteMetaCommand(self: *const T, pMetaCommand: *ID3D12MetaCommand, pExecutionParametersData: ?[*]const u8, ExecutionParametersDataSizeInBytes: usize) callconv(.Inline) void {
+        pub fn ID3D12GraphicsCommandList4_ExecuteMetaCommand(self: *const T, pMetaCommand: *ID3D12MetaCommand, pExecutionParametersData: ?*const c_void, ExecutionParametersDataSizeInBytes: usize) callconv(.Inline) void {
             return @ptrCast(*const ID3D12GraphicsCommandList4.VTable, self.vtable).ExecuteMetaCommand(@ptrCast(*const ID3D12GraphicsCommandList4, self), pMetaCommand, pExecutionParametersData, ExecutionParametersDataSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6543,13 +6639,15 @@ pub const ID3D12DebugDevice1 = extern struct {
         SetDebugParameter: fn(
             self: *const ID3D12DebugDevice1,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            pData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *const c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDebugParameter: fn(
             self: *const ID3D12DebugDevice1,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReportLiveDeviceObjects: fn(
@@ -6561,11 +6659,11 @@ pub const ID3D12DebugDevice1 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: [*]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugDevice1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: *const c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugDevice1.VTable, self.vtable).SetDebugParameter(@ptrCast(*const ID3D12DebugDevice1, self), Type, pData, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: [*]u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugDevice1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: *c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugDevice1.VTable, self.vtable).GetDebugParameter(@ptrCast(*const ID3D12DebugDevice1, self), Type, pData, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6620,13 +6718,15 @@ pub const ID3D12DebugDevice2 = extern struct {
         SetDebugParameter: fn(
             self: *const ID3D12DebugDevice2,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            pData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *const c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDebugParameter: fn(
             self: *const ID3D12DebugDevice2,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6634,11 +6734,11 @@ pub const ID3D12DebugDevice2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12DebugDevice.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: [*]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugDevice2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: *const c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugDevice2.VTable, self.vtable).SetDebugParameter(@ptrCast(*const ID3D12DebugDevice2, self), Type, pData, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugDevice2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: [*]u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugDevice2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: *c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugDevice2.VTable, self.vtable).GetDebugParameter(@ptrCast(*const ID3D12DebugDevice2, self), Type, pData, DataSize);
         }
     };}
@@ -6691,13 +6791,15 @@ pub const ID3D12DebugCommandList1 = extern struct {
         SetDebugParameter: fn(
             self: *const ID3D12DebugCommandList1,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            pData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *const c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDebugParameter: fn(
             self: *const ID3D12DebugCommandList1,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6709,11 +6811,11 @@ pub const ID3D12DebugCommandList1 = extern struct {
             return @ptrCast(*const ID3D12DebugCommandList1.VTable, self.vtable).AssertResourceState(@ptrCast(*const ID3D12DebugCommandList1, self), pResource, Subresource, State);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: [*]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugCommandList1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: *const c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugCommandList1.VTable, self.vtable).SetDebugParameter(@ptrCast(*const ID3D12DebugCommandList1, self), Type, pData, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: [*]u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugCommandList1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: *c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugCommandList1.VTable, self.vtable).GetDebugParameter(@ptrCast(*const ID3D12DebugCommandList1, self), Type, pData, DataSize);
         }
     };}
@@ -6766,13 +6868,15 @@ pub const ID3D12DebugCommandList2 = extern struct {
         SetDebugParameter: fn(
             self: *const ID3D12DebugCommandList2,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            pData: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *const c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDebugParameter: fn(
             self: *const ID3D12DebugCommandList2,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            pData: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: *c_void,
             DataSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -6780,11 +6884,11 @@ pub const ID3D12DebugCommandList2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12DebugCommandList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: [*]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugCommandList2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: *const c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugCommandList2.VTable, self.vtable).SetDebugParameter(@ptrCast(*const ID3D12DebugCommandList2, self), Type, pData, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12DebugCommandList2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: [*]u8, DataSize: u32) callconv(.Inline) HRESULT {
+        pub fn ID3D12DebugCommandList2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: *c_void, DataSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12DebugCommandList2.VTable, self.vtable).GetDebugParameter(@ptrCast(*const ID3D12DebugCommandList2, self), Type, pData, DataSize);
         }
     };}
@@ -8602,10 +8706,11 @@ pub const ID3D12InfoQueue = extern struct {
         ClearStoredMessages: fn(
             self: *const ID3D12InfoQueue,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        GetMessageA: fn(
+        GetMessage: fn(
             self: *const ID3D12InfoQueue,
             MessageIndex: u64,
-            pMessage: ?[*]D3D12_MESSAGE,
+            // TODO: what to do with BytesParamIndex 2?
+            pMessage: ?*D3D12_MESSAGE,
             pMessageByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumMessagesAllowedByStorageFilter: fn(
@@ -8632,7 +8737,8 @@ pub const ID3D12InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageFilter: fn(
             self: *const ID3D12InfoQueue,
-            pFilter: ?[*]D3D12_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearStorageFilter: fn(
@@ -8660,7 +8766,8 @@ pub const ID3D12InfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRetrievalFilter: fn(
             self: *const ID3D12InfoQueue,
-            pFilter: ?[*]D3D12_INFO_QUEUE_FILTER,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
             pFilterByteLength: *usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearRetrievalFilter: fn(
@@ -8741,8 +8848,8 @@ pub const ID3D12InfoQueue = extern struct {
             return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).ClearStoredMessages(@ptrCast(*const ID3D12InfoQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetMessageA(self: *const T, MessageIndex: u64, pMessage: ?[*]D3D12_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).GetMessageA(@ptrCast(*const ID3D12InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
+        pub fn ID3D12InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D12_MESSAGE, pMessageByteLength: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).GetMessage(@ptrCast(*const ID3D12InfoQueue, self), MessageIndex, pMessage, pMessageByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) callconv(.Inline) u64 {
@@ -8773,7 +8880,7 @@ pub const ID3D12InfoQueue = extern struct {
             return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).AddStorageFilterEntries(@ptrCast(*const ID3D12InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetStorageFilter(self: *const T, pFilter: ?[*]D3D12_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D12InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).GetStorageFilter(@ptrCast(*const ID3D12InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8805,7 +8912,7 @@ pub const ID3D12InfoQueue = extern struct {
             return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).AddRetrievalFilterEntries(@ptrCast(*const ID3D12InfoQueue, self), pFilter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?[*]D3D12_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
+        pub fn ID3D12InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12InfoQueue.VTable, self.vtable).GetRetrievalFilter(@ptrCast(*const ID3D12InfoQueue, self), pFilter, pFilterByteLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9926,7 +10033,8 @@ pub extern "d3d12" fn D3D12SerializeRootSignature(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12CreateRootSignatureDeserializer(
-    pSrcData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: *const Guid,
     ppRootSignatureDeserializer: **c_void,
@@ -9939,7 +10047,8 @@ pub extern "d3d12" fn D3D12SerializeVersionedRootSignature(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12CreateVersionedRootSignatureDeserializer(
-    pSrcData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: *const Guid,
     ppRootSignatureDeserializer: **c_void,

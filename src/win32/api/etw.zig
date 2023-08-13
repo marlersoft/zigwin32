@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (345)
 //--------------------------------------------------------------------------------
-pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const WNODE_FLAG_ALL_DATA = @as(u32, 1);
 pub const WNODE_FLAG_SINGLE_INSTANCE = @as(u32, 2);
 pub const WNODE_FLAG_SINGLE_ITEM = @as(u32, 4);
@@ -347,6 +346,7 @@ pub const EVENT_ENABLE_PROPERTY_SOURCE_CONTAINER_TRACKING = @as(u32, 2048);
 pub const PROCESS_TRACE_MODE_REAL_TIME = @as(u32, 256);
 pub const PROCESS_TRACE_MODE_RAW_TIMESTAMP = @as(u32, 4096);
 pub const PROCESS_TRACE_MODE_EVENT_RECORD = @as(u32, 268435456);
+pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)
@@ -1794,6 +1794,12 @@ pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "ADVAPI32" fn CveEventWrite(
+    CveId: [*:0]const u16,
+    AdditionalDetails: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StartTraceW(
     TraceHandle: *u64,
@@ -1931,9 +1937,11 @@ pub extern "ADVAPI32" fn EnableTraceEx2(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EnumerateTraceGuidsEx(
     TraceQueryInfoClass: TRACE_QUERY_INFO_CLASS,
-    InBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    InBuffer: ?*c_void,
     InBufferSize: u32,
-    OutBuffer: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    OutBuffer: ?*c_void,
     OutBufferSize: u32,
     ReturnLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1942,7 +1950,8 @@ pub extern "ADVAPI32" fn EnumerateTraceGuidsEx(
 pub extern "ADVAPI32" fn TraceSetInformation(
     SessionHandle: u64,
     InformationClass: TRACE_QUERY_INFO_CLASS,
-    TraceInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    TraceInformation: *c_void,
     InformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1950,7 +1959,8 @@ pub extern "ADVAPI32" fn TraceSetInformation(
 pub extern "ADVAPI32" fn TraceQueryInformation(
     SessionHandle: u64,
     InformationClass: TRACE_QUERY_INFO_CLASS,
-    TraceInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    TraceInformation: *c_void,
     InformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2105,7 +2115,8 @@ pub extern "ADVAPI32" fn EventUnregister(
 pub extern "ADVAPI32" fn EventSetInformation(
     RegHandle: u64,
     InformationClass: EVENT_INFO_CLASS,
-    EventInformation: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    EventInformation: *c_void,
     InformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2178,7 +2189,8 @@ pub extern "ADVAPI32" fn EventAccessControl(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventAccessQuery(
     Guid: *Guid,
-    Buffer: ?[*]SECURITY_DESCRIPTOR,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: ?*SECURITY_DESCRIPTOR,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2220,7 +2232,8 @@ pub extern "TDH" fn TdhGetEventInformation(
     Event: *EVENT_RECORD,
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
-    Buffer: ?[*]TRACE_EVENT_INFO,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: ?*TRACE_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2228,7 +2241,8 @@ pub extern "TDH" fn TdhGetEventInformation(
 pub extern "TDH" fn TdhGetEventMapInformation(
     pEvent: *EVENT_RECORD,
     pMapName: PWSTR,
-    pBuffer: ?[*]EVENT_MAP_INFO,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*EVENT_MAP_INFO,
     pBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2250,12 +2264,14 @@ pub extern "TDH" fn TdhGetProperty(
     PropertyDataCount: u32,
     pPropertyData: [*]PROPERTY_DATA_DESCRIPTOR,
     BufferSize: u32,
-    pBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pBuffer: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "TDH" fn TdhEnumerateProviders(
-    pBuffer: ?[*]PROVIDER_ENUMERATION_INFO,
+    // TODO: what to do with BytesParamIndex 1?
+    pBuffer: ?*PROVIDER_ENUMERATION_INFO,
     pBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2264,7 +2280,8 @@ pub extern "TDH" fn TdhQueryProviderFieldInformation(
     pGuid: *Guid,
     EventFieldValue: u64,
     EventFieldType: EVENT_FIELD_TYPE,
-    pBuffer: ?[*]PROVIDER_FIELD_INFOARRAY,
+    // TODO: what to do with BytesParamIndex 4?
+    pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
     pBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2272,7 +2289,8 @@ pub extern "TDH" fn TdhQueryProviderFieldInformation(
 pub extern "TDH" fn TdhEnumerateProviderFieldInformation(
     pGuid: *Guid,
     EventFieldType: EVENT_FIELD_TYPE,
-    pBuffer: ?[*]PROVIDER_FIELD_INFOARRAY,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
     pBufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2282,7 +2300,8 @@ pub extern "tdh" fn TdhEnumerateProviderFilters(
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
     FilterCount: *u32,
-    Buffer: ?[*]?*PROVIDER_FILTER_INFO,
+    // TODO: what to do with BytesParamIndex 5?
+    Buffer: ?*?*PROVIDER_FILTER_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2292,7 +2311,8 @@ pub extern "TDH" fn TdhLoadManifest(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "TDH" fn TdhLoadManifestFromMemory(
-    pData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData: *const c_void,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2302,7 +2322,8 @@ pub extern "TDH" fn TdhUnloadManifest(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "TDH" fn TdhUnloadManifestFromMemory(
-    pData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pData: *const c_void,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2315,15 +2336,17 @@ pub extern "TDH" fn TdhFormatProperty(
     PropertyOutType: u16,
     PropertyLength: u16,
     UserDataLength: u16,
-    UserData: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    UserData: *u8,
     BufferSize: *u32,
+    // TODO: what to do with BytesParamIndex 8?
     Buffer: ?[*]u16,
     UserDataConsumed: *u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhOpenDecodingHandle(
-    Handle: *isize,
+    Handle: *TDH_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2344,7 +2367,8 @@ pub extern "tdh" fn TdhGetWppProperty(
     EventRecord: *EVENT_RECORD,
     PropertyName: PWSTR,
     BufferSize: *u32,
-    Buffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2352,7 +2376,8 @@ pub extern "tdh" fn TdhGetWppMessage(
     Handle: TDH_HANDLE,
     EventRecord: *EVENT_RECORD,
     BufferSize: *u32,
-    Buffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -2368,7 +2393,8 @@ pub extern "tdh" fn TdhLoadManifestFromBinary(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "TDH" fn TdhEnumerateManifestProviderEvents(
     ProviderGuid: *Guid,
-    Buffer: ?[*]PROVIDER_EVENT_INFO,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: ?*PROVIDER_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2376,15 +2402,10 @@ pub extern "TDH" fn TdhEnumerateManifestProviderEvents(
 pub extern "TDH" fn TdhGetManifestEventInformation(
     ProviderGuid: *Guid,
     EventDescriptor: *EVENT_DESCRIPTOR,
-    Buffer: ?[*]TRACE_EVENT_INFO,
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*TRACE_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ADVAPI32" fn CveEventWrite(
-    CveId: [*:0]const u16,
-    AdditionalDetails: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 //--------------------------------------------------------------------------------

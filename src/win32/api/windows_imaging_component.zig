@@ -2503,7 +2503,8 @@ pub const IWICBitmapDecoderInfo = extern struct {
         GetPatterns: fn(
             self: *const IWICBitmapDecoderInfo,
             cbSizePatterns: u32,
-            pPatterns: ?[*]WICBitmapPattern,
+            // TODO: what to do with BytesParamIndex 0?
+            pPatterns: ?*WICBitmapPattern,
             pcPatterns: ?*u32,
             pcbPatternsActual: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2521,7 +2522,7 @@ pub const IWICBitmapDecoderInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoderInfo_GetPatterns(self: *const T, cbSizePatterns: u32, pPatterns: ?[*]WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: *u32) callconv(.Inline) HRESULT {
+        pub fn IWICBitmapDecoderInfo_GetPatterns(self: *const T, cbSizePatterns: u32, pPatterns: ?*WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICBitmapDecoderInfo, self), cbSizePatterns, pPatterns, pcPatterns, pcbPatternsActual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3200,12 +3201,14 @@ pub const IWICDevelopRaw = extern struct {
         SetToneCurve: fn(
             self: *const IWICDevelopRaw,
             cbToneCurveSize: u32,
-            pToneCurve: [*]const WICRawToneCurve,
+            // TODO: what to do with BytesParamIndex 0?
+            pToneCurve: *const WICRawToneCurve,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetToneCurve: fn(
             self: *const IWICDevelopRaw,
             cbToneCurveBufferSize: u32,
-            pToneCurve: ?[*]WICRawToneCurve,
+            // TODO: what to do with BytesParamIndex 0?
+            pToneCurve: ?*WICRawToneCurve,
             pcbActualToneCurveBufferSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRotation: fn(
@@ -3333,11 +3336,11 @@ pub const IWICDevelopRaw = extern struct {
             return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetDestinationColorContext(@ptrCast(*const IWICDevelopRaw, self), pColorContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetToneCurve(self: *const T, cbToneCurveSize: u32, pToneCurve: [*]const WICRawToneCurve) callconv(.Inline) HRESULT {
+        pub fn IWICDevelopRaw_SetToneCurve(self: *const T, cbToneCurveSize: u32, pToneCurve: *const WICRawToneCurve) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveSize, pToneCurve);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetToneCurve(self: *const T, cbToneCurveBufferSize: u32, pToneCurve: ?[*]WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWICDevelopRaw_GetToneCurve(self: *const T, cbToneCurveBufferSize: u32, pToneCurve: ?*WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveBufferSize, pToneCurve, pcbActualToneCurveBufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4110,7 +4113,8 @@ pub const IWICMetadataReaderInfo = extern struct {
             self: *const IWICMetadataReaderInfo,
             guidContainerFormat: *const Guid,
             cbSize: u32,
-            pPattern: ?[*]WICMetadataPattern,
+            // TODO: what to do with BytesParamIndex 1?
+            pPattern: ?*WICMetadataPattern,
             pcCount: ?*u32,
             pcbActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4129,7 +4133,7 @@ pub const IWICMetadataReaderInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReaderInfo_GetPatterns(self: *const T, guidContainerFormat: *const Guid, cbSize: u32, pPattern: ?[*]WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWICMetadataReaderInfo_GetPatterns(self: *const T, guidContainerFormat: *const Guid, cbSize: u32, pPattern: ?*WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICMetadataReaderInfo, self), guidContainerFormat, cbSize, pPattern, pcCount, pcbActual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4161,7 +4165,8 @@ pub const IWICMetadataWriterInfo = extern struct {
             self: *const IWICMetadataWriterInfo,
             guidContainerFormat: *const Guid,
             cbSize: u32,
-            pHeader: ?[*]WICMetadataHeader,
+            // TODO: what to do with BytesParamIndex 1?
+            pHeader: ?*WICMetadataHeader,
             pcbActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInstance: fn(
@@ -4173,7 +4178,7 @@ pub const IWICMetadataWriterInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriterInfo_GetHeader(self: *const T, guidContainerFormat: *const Guid, cbSize: u32, pHeader: ?[*]WICMetadataHeader, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWICMetadataWriterInfo_GetHeader(self: *const T, guidContainerFormat: *const Guid, cbSize: u32, pHeader: ?*WICMetadataHeader, pcbActual: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICMetadataWriterInfo.VTable, self.vtable).GetHeader(@ptrCast(*const IWICMetadataWriterInfo, self), guidContainerFormat, cbSize, pHeader, pcbActual);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

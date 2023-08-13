@@ -10,7 +10,7 @@ pub const CDB_REPORT_BYTES = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const HCOMDB = ?*c_void;
+pub const HCOMDB = ?*opaque{};
 
 
 //--------------------------------------------------------------------------------
@@ -26,7 +26,8 @@ pub extern "MSPORTS" fn ComDBClose(
 
 pub extern "MSPORTS" fn ComDBGetCurrentPortUsage(
     HComDB: HCOMDB,
-    Buffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Buffer: ?*u8,
     BufferSize: u32,
     ReportType: u32,
     MaxPortsReported: ?*u32,

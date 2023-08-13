@@ -39,83 +39,13 @@ pub const PDH_LOG_TYPE_TRACE_KERNEL = @as(u32, 4);
 pub const PDH_LOG_TYPE_TRACE_GENERIC = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
-// Section: Types (61)
+// Section: Types (54)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
 pub const PerfProviderHandle = isize;
 
 // TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
 pub const PerfQueryHandle = isize;
-
-pub const PERF_DATA_BLOCK = extern struct {
-    Signature: [4]u16,
-    LittleEndian: u32,
-    Version: u32,
-    Revision: u32,
-    TotalByteLength: u32,
-    HeaderLength: u32,
-    NumObjectTypes: u32,
-    DefaultObject: i32,
-    SystemTime: SYSTEMTIME,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-    PerfTime100nSec: LARGE_INTEGER,
-    SystemNameLength: u32,
-    SystemNameOffset: u32,
-};
-
-pub const PERF_OBJECT_TYPE = extern struct {
-    TotalByteLength: u32,
-    DefinitionLength: u32,
-    HeaderLength: u32,
-    ObjectNameTitleIndex: u32,
-    ObjectNameTitle: u32,
-    ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: u32,
-    DetailLevel: PERF_DETAIL,
-    NumCounters: u32,
-    DefaultCounter: i32,
-    NumInstances: i32,
-    CodePage: u32,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-};
-
-pub const PERF_COUNTER_DEFINITION = extern struct {
-    ByteLength: u32,
-    CounterNameTitleIndex: u32,
-    CounterNameTitle: u32,
-    CounterHelpTitleIndex: u32,
-    CounterHelpTitle: u32,
-    DefaultScale: i32,
-    DetailLevel: PERF_DETAIL,
-    CounterType: u32,
-    CounterSize: u32,
-    CounterOffset: u32,
-};
-
-pub const PERF_INSTANCE_DEFINITION = extern struct {
-    ByteLength: u32,
-    ParentObjectTitleIndex: u32,
-    ParentObjectInstance: u32,
-    UniqueID: i32,
-    NameOffset: u32,
-    NameLength: u32,
-};
-
-pub const PERF_COUNTER_BLOCK = extern struct {
-    ByteLength: u32,
-};
-
-pub const PM_COLLECT_PROC = fn(
-    lpValueName: ?PWSTR,
-    lppData: **c_void,
-    lpcbTotalBytes: *u32,
-    lpNumObjectTypes: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PM_CLOSE_PROC = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PERF_COUNTERSET_INFO = extern struct {
     CounterSetGuid: Guid,
@@ -641,31 +571,32 @@ pub extern "loadperf" fn RestorePerfRegistryFromFileW(
 pub extern "ADVAPI32" fn PerfStartProvider(
     ProviderGuid: *Guid,
     ControlCallback: ?PERFLIBREQUEST,
-    phProvider: *HANDLE,
+    phProvider: *PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn PerfStartProviderEx(
     ProviderGuid: *Guid,
     ProviderContext: ?*PERF_PROVIDER_CONTEXT,
-    Provider: *HANDLE,
+    Provider: *PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn PerfStopProvider(
-    ProviderHandle: HANDLE,
+    ProviderHandle: PerfProviderHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn PerfSetCounterSetInfo(
     ProviderHandle: HANDLE,
-    Template: [*]PERF_COUNTERSET_INFO,
+    // TODO: what to do with BytesParamIndex 2?
+    Template: *PERF_COUNTERSET_INFO,
     TemplateSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn PerfCreateInstance(
-    ProviderHandle: HANDLE,
+    ProviderHandle: PerfProviderHandle,
     CounterSetGuid: *Guid,
     Name: [*:0]const u16,
     Id: u32,
@@ -673,7 +604,7 @@ pub extern "ADVAPI32" fn PerfCreateInstance(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn PerfDeleteInstance(
-    Provider: HANDLE,
+    Provider: PerfProviderHandle,
     InstanceBlock: *PERF_COUNTERSET_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -753,7 +684,8 @@ pub extern "ADVAPI32" fn PerfEnumerateCounterSet(
 pub extern "ADVAPI32" fn PerfEnumerateCounterSetInstances(
     szMachine: ?[*:0]const u16,
     pCounterSetId: *Guid,
-    pInstances: ?[*]PERF_INSTANCE_HEADER,
+    // TODO: what to do with BytesParamIndex 3?
+    pInstances: ?*PERF_INSTANCE_HEADER,
     cbInstances: u32,
     pcbInstancesActual: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -764,7 +696,8 @@ pub extern "ADVAPI32" fn PerfQueryCounterSetRegistrationInfo(
     pCounterSetId: *Guid,
     requestCode: PerfRegInfoType,
     requestLangId: u32,
-    pbRegInfo: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pbRegInfo: ?*u8,
     cbRegInfo: u32,
     pcbRegInfoActual: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -772,7 +705,7 @@ pub extern "ADVAPI32" fn PerfQueryCounterSetRegistrationInfo(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "ADVAPI32" fn PerfOpenQueryHandle(
     szMachine: ?[*:0]const u16,
-    phQuery: *HANDLE,
+    phQuery: *PerfQueryHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
@@ -782,31 +715,35 @@ pub extern "ADVAPI32" fn PerfCloseQueryHandle(
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "ADVAPI32" fn PerfQueryCounterInfo(
-    hQuery: HANDLE,
-    pCounters: ?[*]PERF_COUNTER_IDENTIFIER,
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
     pcbCountersActual: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "ADVAPI32" fn PerfQueryCounterData(
-    hQuery: HANDLE,
-    pCounterBlock: ?[*]PERF_DATA_HEADER,
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounterBlock: ?*PERF_DATA_HEADER,
     cbCounterBlock: u32,
     pcbCounterBlockActual: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "ADVAPI32" fn PerfAddCounters(
-    hQuery: HANDLE,
-    pCounters: [*]PERF_COUNTER_IDENTIFIER,
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: *PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "ADVAPI32" fn PerfDeleteCounters(
-    hQuery: HANDLE,
-    pCounters: [*]PERF_COUNTER_IDENTIFIER,
+    hQuery: PerfQueryHandle,
+    // TODO: what to do with BytesParamIndex 2?
+    pCounters: *PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1752,12 +1689,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const PWSTR = @import("system_services.zig").PWSTR;
 const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
@@ -1766,21 +1702,19 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PM_COLLECT_PROC;
-    _ = PM_CLOSE_PROC;
     _ = PERFLIBREQUEST;
     _ = PERF_MEM_ALLOC;
     _ = PERF_MEM_FREE;
     _ = CounterPathCallBack;
 
     const constant_export_count = 35;
-    const type_export_count = 61;
+    const type_export_count = 54;
     const enum_value_export_count = 42;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 131;
     const unicode_alias_count = 49;
-    const import_count = 9;
+    const import_count = 8;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

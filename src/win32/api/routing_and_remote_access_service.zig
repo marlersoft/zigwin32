@@ -375,7 +375,7 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 // Section: Types (225)
 //--------------------------------------------------------------------------------
-pub const HRASCONN = ?*c_void;
+pub const HRASCONN = ?*opaque{};
 
 pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
     First = 0,
@@ -3085,14 +3085,16 @@ pub extern "RASAPI32" fn RasSetAutodialAddressW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasEnumAutodialAddressesA(
-    lppRasAutodialAddresses: ?[*]?PSTR,
+    // TODO: what to do with BytesParamIndex 1?
+    lppRasAutodialAddresses: ?*?PSTR,
     lpdwcbRasAutodialAddresses: *u32,
     lpdwcRasAutodialAddresses: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasEnumAutodialAddressesW(
-    lppRasAutodialAddresses: ?[*]?PWSTR,
+    // TODO: what to do with BytesParamIndex 1?
+    lppRasAutodialAddresses: ?*?PWSTR,
     lpdwcbRasAutodialAddresses: *u32,
     lpdwcRasAutodialAddresses: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3225,7 +3227,8 @@ pub extern "RASAPI32" fn RasSetEapUserDataW(
 pub extern "RASAPI32" fn RasGetCustomAuthDataA(
     pszPhonebook: ?[*:0]const u8,
     pszEntry: [*:0]const u8,
-    pbCustomAuthData: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
     pdwSizeofCustomAuthData: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3233,7 +3236,8 @@ pub extern "RASAPI32" fn RasGetCustomAuthDataA(
 pub extern "RASAPI32" fn RasGetCustomAuthDataW(
     pszPhonebook: ?[*:0]const u16,
     pszEntry: [*:0]const u16,
-    pbCustomAuthData: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: ?*u8,
     pdwSizeofCustomAuthData: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3241,7 +3245,8 @@ pub extern "RASAPI32" fn RasGetCustomAuthDataW(
 pub extern "RASAPI32" fn RasSetCustomAuthDataA(
     pszPhonebook: ?[*:0]const u8,
     pszEntry: [*:0]const u8,
-    pbCustomAuthData: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: *u8,
     dwSizeofCustomAuthData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3249,7 +3254,8 @@ pub extern "RASAPI32" fn RasSetCustomAuthDataA(
 pub extern "RASAPI32" fn RasSetCustomAuthDataW(
     pszPhonebook: ?[*:0]const u16,
     pszEntry: [*:0]const u16,
-    pbCustomAuthData: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pbCustomAuthData: *u8,
     dwSizeofCustomAuthData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3959,9 +3965,11 @@ pub extern "MPRAPI" fn MprConfigTransportCreate(
     hMprConfig: HANDLE,
     dwTransportId: u32,
     lpwsTransportName: ?PWSTR,
-    pGlobalInfo: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pGlobalInfo: *u8,
     dwGlobalInfoSize: u32,
-    pClientInterfaceInfo: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
     lpwsDLLPath: ?PWSTR,
     phRouterTransport: *HANDLE,
@@ -3984,9 +3992,11 @@ pub extern "MPRAPI" fn MprConfigTransportGetHandle(
 pub extern "MPRAPI" fn MprConfigTransportSetInfo(
     hMprConfig: HANDLE,
     hRouterTransport: HANDLE,
-    pGlobalInfo: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pGlobalInfo: ?*u8,
     dwGlobalInfoSize: u32,
-    pClientInterfaceInfo: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
     lpwsDLLPath: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4068,7 +4078,8 @@ pub extern "MPRAPI" fn MprConfigInterfaceTransportAdd(
     hRouterInterface: HANDLE,
     dwTransportId: u32,
     lpwsTransportName: ?PWSTR,
-    pInterfaceInfo: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pInterfaceInfo: *u8,
     dwInterfaceInfoSize: u32,
     phRouterIfTransport: *HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4102,7 +4113,8 @@ pub extern "MPRAPI" fn MprConfigInterfaceTransportSetInfo(
     hMprConfig: HANDLE,
     hRouterInterface: HANDLE,
     hRouterIfTransport: HANDLE,
-    pInterfaceInfo: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pInterfaceInfo: ?*u8,
     dwInterfaceInfoSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4122,6 +4134,7 @@ pub extern "MPRAPI" fn MprConfigInterfaceTransportEnum(
 pub extern "MPRAPI" fn MprConfigGetFriendlyName(
     hMprConfig: HANDLE,
     pszGuidName: PWSTR,
+    // TODO: what to do with BytesParamIndex 3?
     pszBuffer: [*]u16,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4130,6 +4143,7 @@ pub extern "MPRAPI" fn MprConfigGetFriendlyName(
 pub extern "MPRAPI" fn MprConfigGetGuidName(
     hMprConfig: HANDLE,
     pszFriendlyName: PWSTR,
+    // TODO: what to do with BytesParamIndex 3?
     pszBuffer: [*]u16,
     dwBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;

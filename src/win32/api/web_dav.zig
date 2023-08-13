@@ -66,7 +66,8 @@ pub extern "NETAPI32" fn DavAddConnection(
     RemoteName: [*:0]const u16,
     UserName: ?[*:0]const u16,
     Password: ?[*:0]const u16,
-    ClientCert: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    ClientCert: *u8,
     CertSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -92,7 +93,8 @@ pub extern "NETAPI32" fn DavGetHTTPFromUNCPath(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
     FileName: [*:0]const u16,
-    LockOwnerName: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    LockOwnerName: ?PWSTR,
     LockOwnerNameLengthInBytes: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

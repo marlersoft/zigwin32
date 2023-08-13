@@ -675,7 +675,8 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
     hEnv: u32,
     hIssuanceLicense: u32,
     uFlags: u32,
-    pbSymKey: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pbSymKey: ?*u8,
     cbSymKey: u32,
     wszSymKeyType: ?PWSTR,
     pvReserved: ?*c_void,

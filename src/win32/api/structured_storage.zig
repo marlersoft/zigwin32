@@ -2500,6 +2500,37 @@ pub const PROPSPEC_ulKind = extern enum(u32) {
 pub const PRSPEC_LPWSTR = PROPSPEC_ulKind.LPWSTR;
 pub const PRSPEC_PROPID = PROPSPEC_ulKind.PROPID;
 
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
@@ -2508,13 +2539,15 @@ pub const ISequentialStream = extern struct {
         base: IUnknown.VTable,
         Read: fn(
             self: *const ISequentialStream,
-            pv: [*]u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pv: *c_void,
             cb: u32,
             pcbRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Write: fn(
             self: *const ISequentialStream,
-            pv: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pv: *const c_void,
             cb: u32,
             pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2523,11 +2556,11 @@ pub const ISequentialStream = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISequentialStream_Read(self: *const T, pv: [*]u8, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISequentialStream_Read(self: *const T, pv: *c_void, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISequentialStream.VTable, self.vtable).Read(@ptrCast(*const ISequentialStream, self), pv, cb, pcbRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISequentialStream_Write(self: *const T, pv: [*]const u8, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISequentialStream_Write(self: *const T, pv: *const c_void, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISequentialStream.VTable, self.vtable).Write(@ptrCast(*const ISequentialStream, self), pv, cb, pcbWritten);
         }
     };}
@@ -2899,14 +2932,16 @@ pub const ILockBytes = extern struct {
         ReadAt: fn(
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
-            pv: [*]u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: *c_void,
             cb: u32,
             pcbRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteAt: fn(
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
-            pv: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: *const c_void,
             cb: u32,
             pcbWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2939,11 +2974,11 @@ pub const ILockBytes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: [*]u8, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: *c_void, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILockBytes.VTable, self.vtable).ReadAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: [*]const u8, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: *const c_void, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILockBytes.VTable, self.vtable).WriteAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3000,14 +3035,16 @@ pub const IFillLockBytes = extern struct {
         base: IUnknown.VTable,
         FillAppend: fn(
             self: *const IFillLockBytes,
-            pv: [*]const u8,
+            // TODO: what to do with BytesParamIndex 1?
+            pv: *const c_void,
             cb: u32,
             pcbWritten: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FillAt: fn(
             self: *const IFillLockBytes,
             ulOffset: ULARGE_INTEGER,
-            pv: [*]const u8,
+            // TODO: what to do with BytesParamIndex 2?
+            pv: *const c_void,
             cb: u32,
             pcbWritten: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3024,11 +3061,11 @@ pub const IFillLockBytes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAppend(self: *const T, pv: [*]const u8, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
+        pub fn IFillLockBytes_FillAppend(self: *const T, pv: *const c_void, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAppend(@ptrCast(*const IFillLockBytes, self), pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: [*]const u8, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
+        pub fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: *const c_void, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAt(@ptrCast(*const IFillLockBytes, self), ulOffset, pv, cb, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3139,37 +3176,6 @@ pub const IDirectWriterLock = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
-
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 
 //--------------------------------------------------------------------------------
@@ -3370,7 +3376,8 @@ pub extern "dflayout" fn StgOpenLayoutDocfile(
 pub extern "ole32" fn StgConvertVariantToProperty(
     pvar: *const PROPVARIANT,
     CodePage: u16,
-    pprop: ?[*]SERIALIZEDPROPERTYVALUE,
+    // TODO: what to do with BytesParamIndex 3?
+    pprop: ?*SERIALIZEDPROPERTYVALUE,
     pcb: *u32,
     pid: u32,
     fReserved: u8,
@@ -3394,7 +3401,8 @@ pub extern "ole32" fn CreateStdProgressIndicator(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgPropertyLengthAsVariant(
-    pProp: [*]const SERIALIZEDPROPERTYVALUE,
+    // TODO: what to do with BytesParamIndex 1?
+    pProp: *const SERIALIZEDPROPERTYVALUE,
     cbProp: u32,
     CodePage: u16,
     bReserved: u8,
@@ -3447,7 +3455,8 @@ pub extern "ESENT" fn JetCreateInstance2W(
 
 pub extern "ESENT" fn JetGetInstanceMiscInfo(
     instance: u64,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3501,7 +3510,8 @@ pub extern "ESENT" fn JetGetSystemParameterA(
     sesid: u64,
     paramid: u32,
     plParam: ?*u64,
-    szParam: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 5?
+    szParam: ?*i8,
     cbMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3510,7 +3520,8 @@ pub extern "ESENT" fn JetGetSystemParameterW(
     sesid: u64,
     paramid: u32,
     plParam: ?*u64,
-    szParam: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 5?
+    szParam: ?*u16,
     cbMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3527,7 +3538,8 @@ pub extern "ESENT" fn JetEnableMultiInstanceW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetThreadStats(
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 1?
+    pvResult: *c_void,
     cbMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3651,7 +3663,8 @@ pub extern "ESENT" fn JetGetObjectInfoA(
     objtyp: u32,
     szContainerName: ?*i8,
     szObjectName: ?*i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3662,7 +3675,8 @@ pub extern "ESENT" fn JetGetObjectInfoW(
     objtyp: u32,
     szContainerName: ?*u16,
     szObjectName: ?*u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3670,7 +3684,8 @@ pub extern "ESENT" fn JetGetObjectInfoW(
 pub extern "ESENT" fn JetGetTableInfoA(
     sesid: u64,
     tableid: u64,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3678,7 +3693,8 @@ pub extern "ESENT" fn JetGetTableInfoA(
 pub extern "ESENT" fn JetGetTableInfoW(
     sesid: u64,
     tableid: u64,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3779,7 +3795,8 @@ pub extern "ESENT" fn JetGetTableColumnInfoA(
     sesid: u64,
     tableid: u64,
     szColumnName: ?*i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3788,7 +3805,8 @@ pub extern "ESENT" fn JetGetTableColumnInfoW(
     sesid: u64,
     tableid: u64,
     szColumnName: ?*u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3798,7 +3816,8 @@ pub extern "ESENT" fn JetGetColumnInfoA(
     dbid: u32,
     szTableName: *i8,
     pColumnNameOrId: ?*i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3808,7 +3827,8 @@ pub extern "ESENT" fn JetGetColumnInfoW(
     dbid: u32,
     szTableName: *u16,
     pwColumnNameOrId: ?*u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3818,7 +3838,8 @@ pub extern "ESENT" fn JetAddColumnA(
     tableid: u64,
     szColumnName: *i8,
     pcolumndef: *const JET_COLUMNDEF,
-    pvDefault: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvDefault: ?*const c_void,
     cbDefault: u32,
     pcolumnid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3828,7 +3849,8 @@ pub extern "ESENT" fn JetAddColumnW(
     tableid: u64,
     szColumnName: *u16,
     pcolumndef: *const JET_COLUMNDEF,
-    pvDefault: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvDefault: ?*const c_void,
     cbDefault: u32,
     pcolumnid: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3880,7 +3902,8 @@ pub extern "ESENT" fn JetSetColumnDefaultValueA(
     dbid: u32,
     szTableName: *i8,
     szColumnName: *i8,
-    pvData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvData: *const c_void,
     cbData: u32,
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3890,7 +3913,8 @@ pub extern "ESENT" fn JetSetColumnDefaultValueW(
     dbid: u32,
     szTableName: *u16,
     szColumnName: *u16,
-    pvData: [*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvData: *const c_void,
     cbData: u32,
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3899,7 +3923,8 @@ pub extern "ESENT" fn JetGetTableIndexInfoA(
     sesid: u64,
     tableid: u64,
     szIndexName: ?*i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvResult: *c_void,
     cbResult: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3908,7 +3933,8 @@ pub extern "ESENT" fn JetGetTableIndexInfoW(
     sesid: u64,
     tableid: u64,
     szIndexName: ?*u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvResult: *c_void,
     cbResult: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3918,7 +3944,8 @@ pub extern "ESENT" fn JetGetIndexInfoA(
     dbid: u32,
     szTableName: *i8,
     szIndexName: ?*i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvResult: *c_void,
     cbResult: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3928,7 +3955,8 @@ pub extern "ESENT" fn JetGetIndexInfoW(
     dbid: u32,
     szTableName: *u16,
     szIndexName: ?*u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvResult: *c_void,
     cbResult: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3938,7 +3966,8 @@ pub extern "ESENT" fn JetCreateIndexA(
     tableid: u64,
     szIndexName: *i8,
     grbit: u32,
-    szKey: [*]const i8,
+    // TODO: what to do with BytesParamIndex 5?
+    szKey: *const i8,
     cbKey: u32,
     lDensity: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3948,6 +3977,7 @@ pub extern "ESENT" fn JetCreateIndexW(
     tableid: u64,
     szIndexName: *u16,
     grbit: u32,
+    // TODO: what to do with BytesParamIndex 5?
     szKey: [*:0]const u16,
     cbKey: u32,
     lDensity: u32,
@@ -4042,7 +4072,8 @@ pub extern "ESENT" fn JetRollback(
 pub extern "ESENT" fn JetGetDatabaseInfoA(
     sesid: u64,
     dbid: u32,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4050,21 +4081,24 @@ pub extern "ESENT" fn JetGetDatabaseInfoA(
 pub extern "ESENT" fn JetGetDatabaseInfoW(
     sesid: u64,
     dbid: u32,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetDatabaseFileInfoA(
     szDatabaseName: *i8,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetDatabaseFileInfoW(
     szDatabaseName: *u16,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4095,7 +4129,8 @@ pub extern "ESENT" fn JetOpenTableA(
     sesid: u64,
     dbid: u32,
     szTableName: *i8,
-    pvParameters: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvParameters: ?*const c_void,
     cbParameters: u32,
     grbit: u32,
     ptableid: *u64,
@@ -4105,7 +4140,8 @@ pub extern "ESENT" fn JetOpenTableW(
     sesid: u64,
     dbid: u32,
     szTableName: *u16,
-    pvParameters: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvParameters: ?*const c_void,
     cbParameters: u32,
     grbit: u32,
     ptableid: *u64,
@@ -4136,7 +4172,8 @@ pub extern "ESENT" fn JetDelete(
 pub extern "ESENT" fn JetUpdate(
     sesid: u64,
     tableid: u64,
-    pvBookmark: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvBookmark: ?*c_void,
     cbBookmark: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4144,7 +4181,8 @@ pub extern "ESENT" fn JetUpdate(
 pub extern "ESENT" fn JetUpdate2(
     sesid: u64,
     tableid: u64,
-    pvBookmark: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvBookmark: ?*c_void,
     cbBookmark: u32,
     pcbActual: ?*u32,
     grbit: u32,
@@ -4154,9 +4192,11 @@ pub extern "ESENT" fn JetEscrowUpdate(
     sesid: u64,
     tableid: u64,
     columnid: u32,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pv: *c_void,
     cbMax: u32,
-    pvOld: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pvOld: ?*c_void,
     cbOldMax: u32,
     pcbOldActual: ?*u32,
     grbit: u32,
@@ -4166,7 +4206,8 @@ pub extern "ESENT" fn JetRetrieveColumn(
     sesid: u64,
     tableid: u64,
     columnid: u32,
-    pvData: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvData: ?*c_void,
     cbData: u32,
     pcbActual: ?*u32,
     grbit: u32,
@@ -4211,7 +4252,8 @@ pub extern "ESENT" fn JetSetColumn(
     sesid: u64,
     tableid: u64,
     columnid: u32,
-    pvData: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pvData: ?*const c_void,
     cbData: u32,
     grbit: u32,
     psetinfo: ?*JET_SETINFO,
@@ -4233,7 +4275,8 @@ pub extern "ESENT" fn JetPrepareUpdate(
 pub extern "ESENT" fn JetGetRecordPosition(
     sesid: u64,
     tableid: u64,
-    precpos: [*]JET_RECPOS,
+    // TODO: what to do with BytesParamIndex 3?
+    precpos: *JET_RECPOS,
     cbRecpos: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4246,7 +4289,8 @@ pub extern "ESENT" fn JetGotoPosition(
 pub extern "ESENT" fn JetGetCursorInfo(
     sesid: u64,
     tableid: u64,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4261,14 +4305,16 @@ pub extern "ESENT" fn JetDupCursor(
 pub extern "ESENT" fn JetGetCurrentIndexA(
     sesid: u64,
     tableid: u64,
-    szIndexName: [*]i8,
+    // TODO: what to do with BytesParamIndex 3?
+    szIndexName: *i8,
     cbIndexName: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetCurrentIndexW(
     sesid: u64,
     tableid: u64,
-    szIndexName: [*:0]u16,
+    // TODO: what to do with BytesParamIndex 3?
+    szIndexName: *u16,
     cbIndexName: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4356,7 +4402,8 @@ pub extern "ESENT" fn JetGetLock(
 pub extern "ESENT" fn JetMakeKey(
     sesid: u64,
     tableid: u64,
-    pvData: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvData: ?*const c_void,
     cbData: u32,
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4391,7 +4438,8 @@ pub extern "ESENT" fn JetPrereadIndexRanges(
 pub extern "ESENT" fn JetGetBookmark(
     sesid: u64,
     tableid: u64,
-    pvBookmark: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvBookmark: ?*c_void,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4399,10 +4447,12 @@ pub extern "ESENT" fn JetGetBookmark(
 pub extern "ESENT" fn JetGetSecondaryIndexBookmark(
     sesid: u64,
     tableid: u64,
-    pvSecondaryKey: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvSecondaryKey: ?*c_void,
     cbSecondaryKeyMax: u32,
     pcbSecondaryKeyActual: ?*u32,
-    pvPrimaryBookmark: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    pvPrimaryBookmark: ?*c_void,
     cbPrimaryBookmarkMax: u32,
     pcbPrimaryBookmarkActual: ?*u32,
     grbit: u32,
@@ -4527,16 +4577,19 @@ pub extern "ESENT" fn JetResetSessionContext(
 pub extern "ESENT" fn JetGotoBookmark(
     sesid: u64,
     tableid: u64,
-    pvBookmark: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvBookmark: *c_void,
     cbBookmark: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGotoSecondaryIndexBookmark(
     sesid: u64,
     tableid: u64,
-    pvSecondaryKey: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvSecondaryKey: *c_void,
     cbSecondaryKey: u32,
-    pvPrimaryBookmark: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    pvPrimaryBookmark: ?*c_void,
     cbPrimaryBookmark: u32,
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4671,7 +4724,8 @@ pub extern "ESENT" fn JetIndexRecordCount(
 pub extern "ESENT" fn JetRetrieveKey(
     sesid: u64,
     tableid: u64,
-    pvKey: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvKey: ?*c_void,
     cbMax: u32,
     pcbActual: ?*u32,
     grbit: u32,
@@ -4687,27 +4741,31 @@ pub extern "ESENT" fn JetBeginExternalBackupInstance(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetAttachInfoA(
-    szzDatabases: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 1?
+    szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetAttachInfoW(
-    wszzDatabases: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 1?
+    wszzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetAttachInfoInstanceA(
     instance: u64,
-    szzDatabases: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 2?
+    szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetAttachInfoInstanceW(
     instance: u64,
-    szzDatabases: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    szzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4744,7 +4802,8 @@ pub extern "ESENT" fn JetOpenFileInstanceW(
 
 pub extern "ESENT" fn JetReadFile(
     hfFile: u64,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: *c_void,
     cb: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4752,7 +4811,8 @@ pub extern "ESENT" fn JetReadFile(
 pub extern "ESENT" fn JetReadFileInstance(
     instance: u64,
     hfFile: u64,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pv: *c_void,
     cb: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4767,34 +4827,39 @@ pub extern "ESENT" fn JetCloseFileInstance(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetLogInfoA(
-    szzLogs: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 1?
+    szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetLogInfoW(
-    szzLogs: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 1?
+    szzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetLogInfoInstanceA(
     instance: u64,
-    szzLogs: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 2?
+    szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetLogInfoInstanceW(
     instance: u64,
-    wszzLogs: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetLogInfoInstance2A(
     instance: u64,
-    szzLogs: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 2?
+    szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
     pLogInfo: ?*JET_LOGINFO_A,
@@ -4802,7 +4867,8 @@ pub extern "ESENT" fn JetGetLogInfoInstance2A(
 
 pub extern "ESENT" fn JetGetLogInfoInstance2W(
     instance: u64,
-    wszzLogs: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
     pLogInfo: ?*JET_LOGINFO_W,
@@ -4810,14 +4876,16 @@ pub extern "ESENT" fn JetGetLogInfoInstance2W(
 
 pub extern "ESENT" fn JetGetTruncateLogInfoInstanceA(
     instance: u64,
-    szzLogs: ?[*]i8,
+    // TODO: what to do with BytesParamIndex 2?
+    szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetGetTruncateLogInfoInstanceW(
     instance: u64,
-    wszzLogs: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5004,7 +5072,8 @@ pub extern "ESENT" fn JetConfigureProcessForCrashDump(
 
 pub extern "ESENT" fn JetGetErrorInfoW(
     pvContext: ?*c_void,
-    pvResult: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pvResult: *c_void,
     cbMax: u32,
     InfoLevel: u32,
     grbit: u32,
@@ -5013,7 +5082,8 @@ pub extern "ESENT" fn JetGetErrorInfoW(
 pub extern "ESENT" fn JetSetSessionParameter(
     sesid: u64,
     sesparamid: u32,
-    pvParam: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvParam: ?*c_void,
     cbParam: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5024,36 +5094,6 @@ pub extern "ESENT" fn JetGetSessionParameter(
     cbParamMax: u32,
     pcbParamActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateStreamOnHGlobal(
-    hGlobal: isize,
-    fDeleteOnRelease: BOOL,
-    ppstm: **IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetHGlobalFromStream(
-    pstm: *IStream,
-    phglobal: *isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn PropVariantCopy(
-    pvarDest: *PROPVARIANT,
-    pvarSrc: *const PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn PropVariantClear(
-    pvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn FreePropVariantArray(
-    cVariants: u32,
-    rgvars: [*]PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn WriteFmtUserTypeStg(
@@ -5108,6 +5148,36 @@ pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
     plHeight: *i32,
     pdwSize: *u32,
     pmedium: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateStreamOnHGlobal(
+    hGlobal: isize,
+    fDeleteOnRelease: BOOL,
+    ppstm: **IStream,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn GetHGlobalFromStream(
+    pstm: *IStream,
+    phglobal: *isize,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn PropVariantCopy(
+    pvarDest: *PROPVARIANT,
+    pvarSrc: *const PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn PropVariantClear(
+    pvar: *PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn FreePropVariantArray(
+    cVariants: u32,
+    rgvars: [*]PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

@@ -20,13 +20,13 @@ pub extern "KERNEL32" fn CreatePrivateNamespaceA(
     lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
     lpBoundaryDescriptor: *c_void,
     lpAliasPrefix: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn OpenPrivateNamespaceA(
     lpBoundaryDescriptor: *c_void,
     lpAliasPrefix: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
 
 
 //--------------------------------------------------------------------------------
@@ -45,8 +45,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
+const NamespaceHandle = @import("system_services.zig").NamespaceHandle;
 const RTL_CRITICAL_SECTION = @import("system_services.zig").RTL_CRITICAL_SECTION;
 
 test {

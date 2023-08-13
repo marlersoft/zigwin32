@@ -2118,7 +2118,8 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS
 
 pub const WS_READ_CALLBACK = fn(
     callbackState: ?*c_void,
-    bytes: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: *c_void,
     maxSize: u32,
     actualSize: *u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -2143,7 +2144,8 @@ pub const WS_PUSH_BYTES_CALLBACK = fn(
 
 pub const WS_PULL_BYTES_CALLBACK = fn(
     callbackState: ?*c_void,
-    bytes: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: *c_void,
     maxSize: u32,
     actualSize: *u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -2175,7 +2177,8 @@ pub const WS_ASYNC_FUNCTION = fn(
 
 pub const WS_CREATE_CHANNEL_CALLBACK = fn(
     channelType: WS_CHANNEL_TYPE,
-    channelParameters: [*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    channelParameters: *const c_void,
     channelParametersSize: u32,
     channelInstance: **c_void,
     @"error": ?*WS_ERROR,
@@ -2211,7 +2214,8 @@ pub const WS_CLOSE_CHANNEL_CALLBACK = fn(
 pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn(
     channelInstance: *c_void,
     id: WS_CHANNEL_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2219,7 +2223,8 @@ pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn(
 pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = fn(
     channelInstance: *c_void,
     id: WS_CHANNEL_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2328,7 +2333,8 @@ pub const WS_DECODER_START_CALLBACK = fn(
 
 pub const WS_DECODER_DECODE_CALLBACK = fn(
     encoderContext: *c_void,
-    buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: *c_void,
     maxLength: u32,
     length: *u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -2353,7 +2359,8 @@ pub const WS_HTTP_REDIRECT_CALLBACK = fn(
 
 pub const WS_CREATE_LISTENER_CALLBACK = fn(
     channelType: WS_CHANNEL_TYPE,
-    listenerParameters: [*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    listenerParameters: *const c_void,
     listenerParametersSize: u32,
     listenerInstance: **c_void,
     @"error": ?*WS_ERROR,
@@ -2384,7 +2391,8 @@ pub const WS_CLOSE_LISTENER_CALLBACK = fn(
 pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn(
     listenerInstance: *c_void,
     id: WS_LISTENER_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2392,7 +2400,8 @@ pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn(
 pub const WS_SET_LISTENER_PROPERTY_CALLBACK = fn(
     listenerInstance: *c_void,
     id: WS_LISTENER_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2411,7 +2420,8 @@ pub const WS_ABORT_LISTENER_CALLBACK = fn(
 
 pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = fn(
     listenerInstance: *c_void,
-    channelParameters: [*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    channelParameters: *const c_void,
     channelParametersSize: u32,
     channelInstance: **c_void,
     @"error": ?*WS_ERROR,
@@ -2466,7 +2476,8 @@ pub const WS_READ_TYPE_CALLBACK = fn(
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: *const c_void,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2475,15 +2486,18 @@ pub const WS_WRITE_TYPE_CALLBACK = fn(
     writer: *WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: *const c_void,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_IS_DEFAULT_VALUE_CALLBACK = fn(
     descriptionData: *const c_void,
-    value: [*]const u8,
-    defaultValue: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
+    // TODO: what to do with BytesParamIndex 3?
+    defaultValue: ?*const c_void,
     valueSize: u32,
     isDefault: *BOOL,
     @"error": ?*WS_ERROR,
@@ -4356,7 +4370,8 @@ pub extern "webservices" fn WsFreeReader(
 pub extern "webservices" fn WsGetReaderProperty(
     reader: *WS_XML_READER,
     id: WS_XML_READER_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4436,7 +4451,8 @@ pub extern "webservices" fn WsFindAttribute(
 pub extern "webservices" fn WsReadValue(
     reader: *WS_XML_READER,
     valueType: WS_VALUE_TYPE,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4462,7 +4478,8 @@ pub extern "webservices" fn WsReadCharsUtf8(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBytes(
     reader: *WS_XML_READER,
-    bytes: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: *c_void,
     maxByteCount: u32,
     actualByteCount: *u32,
     @"error": ?*WS_ERROR,
@@ -4474,7 +4491,8 @@ pub extern "webservices" fn WsReadArray(
     localName: *const WS_XML_STRING,
     ns: *const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
-    array: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    array: ?*c_void,
     arraySize: u32,
     itemOffset: u32,
     itemCount: u32,
@@ -4540,7 +4558,8 @@ pub extern "webservices" fn WsSetOutputToBuffer(
 pub extern "webservices" fn WsGetWriterProperty(
     writer: *WS_XML_WRITER,
     id: WS_XML_WRITER_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4597,7 +4616,8 @@ pub extern "webservices" fn WsWriteEndAttribute(
 pub extern "webservices" fn WsWriteValue(
     writer: *WS_XML_WRITER,
     valueType: WS_VALUE_TYPE,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4636,7 +4656,8 @@ pub extern "webservices" fn WsReadXmlBufferFromBytes(
     encoding: ?*const WS_XML_READER_ENCODING,
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
-    bytes: [*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    bytes: *const c_void,
     byteCount: u32,
     heap: *WS_HEAP,
     xmlBuffer: **WS_XML_BUFFER,
@@ -4649,7 +4670,8 @@ pub extern "webservices" fn WsWriteArray(
     localName: *const WS_XML_STRING,
     ns: *const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
-    array: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    array: ?*const c_void,
     arraySize: u32,
     itemOffset: u32,
     itemCount: u32,
@@ -4684,7 +4706,8 @@ pub extern "webservices" fn WsWriteCharsUtf8(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBytes(
     writer: *WS_XML_WRITER,
-    bytes: [*]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: *const c_void,
     byteCount: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4862,7 +4885,8 @@ pub extern "webservices" fn WsSendMessage(
     message: *WS_MESSAGE,
     messageDescription: *const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    bodyValue: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    bodyValue: ?*const c_void,
     bodyValueSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -4877,7 +4901,8 @@ pub extern "webservices" fn WsReceiveMessage(
     receiveOption: WS_RECEIVE_OPTION,
     readBodyOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 8?
+    value: *c_void,
     valueSize: u32,
     index: ?*u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -4890,13 +4915,15 @@ pub extern "webservices" fn WsRequestReply(
     requestMessage: *WS_MESSAGE,
     requestMessageDescription: *const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    requestBodyValue: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    requestBodyValue: ?*const c_void,
     requestBodyValueSize: u32,
     replyMessage: *WS_MESSAGE,
     replyMessageDescription: *const WS_MESSAGE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 11?
+    value: ?*c_void,
     valueSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
@@ -4908,7 +4935,8 @@ pub extern "webservices" fn WsSendReplyMessage(
     replyMessage: *WS_MESSAGE,
     replyMessageDescription: *const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    replyBodyValue: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    replyBodyValue: ?*const c_void,
     replyBodyValueSize: u32,
     requestMessage: *WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -4931,7 +4959,8 @@ pub extern "webservices" fn WsSendFaultMessageForError(
 pub extern "webservices" fn WsGetChannelProperty(
     channel: *WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -4940,7 +4969,8 @@ pub extern "webservices" fn WsGetChannelProperty(
 pub extern "webservices" fn WsSetChannelProperty(
     channel: *WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5019,7 +5049,8 @@ pub extern "webservices" fn WsShutdownSessionChannel(
 pub extern "webservices" fn WsGetOperationContextProperty(
     context: *const WS_OPERATION_CONTEXT,
     id: WS_OPERATION_CONTEXT_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5038,7 +5069,8 @@ pub extern "webservices" fn WsReadEndpointAddressExtension(
     extensionType: WS_ENDPOINT_ADDRESS_EXTENSION_TYPE,
     readOption: WS_READ_OPTION,
     heap: *WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5073,7 +5105,8 @@ pub extern "webservices" fn WsCopyError(
 pub extern "webservices" fn WsGetErrorProperty(
     @"error": *WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
-    buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: *c_void,
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5081,7 +5114,8 @@ pub extern "webservices" fn WsGetErrorProperty(
 pub extern "webservices" fn WsSetErrorProperty(
     @"error": *WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5099,7 +5133,8 @@ pub extern "webservices" fn WsFreeError(
 pub extern "webservices" fn WsGetFaultErrorProperty(
     @"error": *WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
-    buffer: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    buffer: *c_void,
     bufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5107,7 +5142,8 @@ pub extern "webservices" fn WsGetFaultErrorProperty(
 pub extern "webservices" fn WsSetFaultErrorProperty(
     @"error": *WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5125,7 +5161,8 @@ pub extern "webservices" fn WsSetFaultErrorDetail(
     @"error": *WS_ERROR,
     faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    value: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: ?*const c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5135,7 +5172,8 @@ pub extern "webservices" fn WsGetFaultErrorDetail(
     faultDetailDescription: *const WS_FAULT_DETAIL_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *c_void,
     valueSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5161,7 +5199,8 @@ pub extern "webservices" fn WsAlloc(
 pub extern "webservices" fn WsGetHeapProperty(
     heap: *WS_HEAP,
     id: WS_HEAP_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5232,7 +5271,8 @@ pub extern "webservices" fn WsFreeListener(
 pub extern "webservices" fn WsGetListenerProperty(
     listener: *WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5241,7 +5281,8 @@ pub extern "webservices" fn WsGetListenerProperty(
 pub extern "webservices" fn WsSetListenerProperty(
     listener: *WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5308,7 +5349,8 @@ pub extern "webservices" fn WsGetHeader(
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 6?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5321,7 +5363,8 @@ pub extern "webservices" fn WsGetCustomHeader(
     headerIndex: u32,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 7?
+    value: *c_void,
     valueSize: u32,
     headerAttributes: ?*u32,
     @"error": ?*WS_ERROR,
@@ -5340,7 +5383,8 @@ pub extern "webservices" fn WsSetHeader(
     headerType: WS_HEADER_TYPE,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5358,7 +5402,8 @@ pub extern "webservices" fn WsAddCustomHeader(
     message: *WS_MESSAGE,
     headerDescription: *const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: *const c_void,
     valueSize: u32,
     headerAttributes: u32,
     @"error": ?*WS_ERROR,
@@ -5370,7 +5415,8 @@ pub extern "webservices" fn WsAddMappedHeader(
     headerName: *const WS_XML_STRING,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5391,7 +5437,8 @@ pub extern "webservices" fn WsGetMappedHeader(
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 8?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5401,7 +5448,8 @@ pub extern "webservices" fn WsWriteBody(
     message: *WS_MESSAGE,
     bodyDescription: *const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5412,7 +5460,8 @@ pub extern "webservices" fn WsReadBody(
     bodyDescription: *const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5451,7 +5500,8 @@ pub extern "webservices" fn WsReadEnvelopeEnd(
 pub extern "webservices" fn WsGetMessageProperty(
     message: *WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5460,7 +5510,8 @@ pub extern "webservices" fn WsGetMessageProperty(
 pub extern "webservices" fn WsSetMessageProperty(
     message: *WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
-    value: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5515,7 +5566,8 @@ pub extern "webservices" fn WsRequestSecurityToken(
 pub extern "webservices" fn WsGetSecurityTokenProperty(
     securityToken: *WS_SECURITY_TOKEN,
     id: WS_SECURITY_TOKEN_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     heap: ?*WS_HEAP,
     @"error": ?*WS_ERROR,
@@ -5546,7 +5598,8 @@ pub extern "webservices" fn WsRevokeSecurityContext(
 pub extern "webservices" fn WsGetSecurityContextProperty(
     securityContext: *WS_SECURITY_CONTEXT,
     id: WS_SECURITY_CONTEXT_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5557,7 +5610,8 @@ pub extern "webservices" fn WsReadElement(
     elementDescription: *const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5568,7 +5622,8 @@ pub extern "webservices" fn WsReadAttribute(
     attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5581,7 +5636,8 @@ pub extern "webservices" fn WsReadType(
     typeDescription: ?*const c_void,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 7?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5591,7 +5647,8 @@ pub extern "webservices" fn WsWriteElement(
     writer: *WS_XML_WRITER,
     elementDescription: *const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    value: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5601,7 +5658,8 @@ pub extern "webservices" fn WsWriteAttribute(
     writer: *WS_XML_WRITER,
     attributeDescription: *const WS_ATTRIBUTE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    value: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 4?
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5613,7 +5671,8 @@ pub extern "webservices" fn WsWriteType(
     type: WS_TYPE,
     typeDescription: ?*const c_void,
     writeOption: WS_WRITE_OPTION,
-    value: ?[*]const u8,
+    // TODO: what to do with BytesParamIndex 6?
+    value: ?*const c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5631,7 +5690,8 @@ pub extern "webservices" fn WsRegisterOperationForCancel(
 pub extern "webservices" fn WsGetServiceHostProperty(
     serviceHost: *WS_SERVICE_HOST,
     id: WS_SERVICE_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5681,7 +5741,8 @@ pub extern "webservices" fn WsResetServiceHost(
 pub extern "webservices" fn WsGetServiceProxyProperty(
     serviceProxy: *WS_SERVICE_PROXY,
     id: WS_PROXY_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5823,7 +5884,8 @@ pub extern "webservices" fn WsResetMetadata(
 pub extern "webservices" fn WsGetMetadataProperty(
     metadata: *WS_METADATA,
     id: WS_METADATA_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5856,7 +5918,8 @@ pub extern "webservices" fn WsMatchPolicyAlternative(
 pub extern "webservices" fn WsGetPolicyProperty(
     policy: *WS_POLICY,
     id: WS_POLICY_PROPERTY_ID,
-    value: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    value: *c_void,
     valueSize: u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5874,7 +5937,8 @@ pub extern "webservices" fn WsCreateServiceProxyFromTemplate(
     properties: ?[*]const WS_PROXY_PROPERTY,
     propertyCount: u32,
     templateType: WS_BINDING_TEMPLATE_TYPE,
-    templateValue: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 5?
+    templateValue: ?*c_void,
     templateSize: u32,
     templateDescription: *const c_void,
     templateDescriptionSize: u32,
@@ -5892,7 +5956,8 @@ pub extern "webservices" fn WsCreateServiceEndpointFromTemplate(
     authorizationCallback: ?WS_SERVICE_SECURITY_CALLBACK,
     heap: *WS_HEAP,
     templateType: WS_BINDING_TEMPLATE_TYPE,
-    templateValue: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 9?
+    templateValue: ?*c_void,
     templateSize: u32,
     templateDescription: *const c_void,
     templateDescriptionSize: u32,

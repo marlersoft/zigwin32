@@ -2,12 +2,8 @@
 
 const win32 = @import("../win32.zig");
 
-// The CLSCTX_ALL value is missing, see https://github.com/microsoft/win32metadata/issues/203
-pub const CLSCTX_ALL = @intToEnum(win32.api.com.CLSCTX,
-    @enumToInt(win32.api.com.CLSCTX_INPROC_SERVER) |
-    @enumToInt(win32.api.com.CLSCTX_INPROC_HANDLER) |
-    @enumToInt(win32.api.com.CLSCTX_LOCAL_SERVER) |
-    @enumToInt(win32.api.com.CLSCTX_REMOTE_SERVER));
+// NOTE: all previous missing types have been removed, this is now a placeholder
+//       to put new missing types should they come up in the future
 
 const std = @import("std");
 test "" {

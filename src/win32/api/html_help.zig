@@ -2,51 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (271)
 //--------------------------------------------------------------------------------
-pub const HHWIN_NAVTYPE_TOC = @as(i32, 0);
-pub const HHWIN_NAVTYPE_INDEX = @as(i32, 1);
-pub const HHWIN_NAVTYPE_SEARCH = @as(i32, 2);
-pub const HHWIN_NAVTYPE_FAVORITES = @as(i32, 3);
-pub const HHWIN_NAVTYPE_HISTORY = @as(i32, 4);
-pub const HHWIN_NAVTYPE_AUTHOR = @as(i32, 5);
-pub const HHWIN_NAVTYPE_CUSTOM_FIRST = @as(i32, 11);
-pub const IT_INCLUSIVE = @as(i32, 0);
-pub const IT_EXCLUSIVE = @as(i32, 1);
-pub const IT_HIDDEN = @as(i32, 2);
-pub const HHWIN_NAVTAB_TOP = @as(i32, 0);
-pub const HHWIN_NAVTAB_LEFT = @as(i32, 1);
-pub const HHWIN_NAVTAB_BOTTOM = @as(i32, 2);
-pub const HH_TAB_CONTENTS = @as(i32, 0);
-pub const HH_TAB_INDEX = @as(i32, 1);
-pub const HH_TAB_SEARCH = @as(i32, 2);
-pub const HH_TAB_FAVORITES = @as(i32, 3);
-pub const HH_TAB_HISTORY = @as(i32, 4);
-pub const HH_TAB_AUTHOR = @as(i32, 5);
-pub const HH_TAB_CUSTOM_FIRST = @as(i32, 11);
-pub const HH_TAB_CUSTOM_LAST = @as(i32, 19);
-pub const HHACT_TAB_CONTENTS = @as(i32, 0);
-pub const HHACT_TAB_INDEX = @as(i32, 1);
-pub const HHACT_TAB_SEARCH = @as(i32, 2);
-pub const HHACT_TAB_HISTORY = @as(i32, 3);
-pub const HHACT_TAB_FAVORITES = @as(i32, 4);
-pub const HHACT_EXPAND = @as(i32, 5);
-pub const HHACT_CONTRACT = @as(i32, 6);
-pub const HHACT_BACK = @as(i32, 7);
-pub const HHACT_FORWARD = @as(i32, 8);
-pub const HHACT_STOP = @as(i32, 9);
-pub const HHACT_REFRESH = @as(i32, 10);
-pub const HHACT_HOME = @as(i32, 11);
-pub const HHACT_SYNC = @as(i32, 12);
-pub const HHACT_OPTIONS = @as(i32, 13);
-pub const HHACT_PRINT = @as(i32, 14);
-pub const HHACT_HIGHLIGHT = @as(i32, 15);
-pub const HHACT_CUSTOMIZE = @as(i32, 16);
-pub const HHACT_JUMP1 = @as(i32, 17);
-pub const HHACT_JUMP2 = @as(i32, 18);
-pub const HHACT_ZOOM = @as(i32, 19);
-pub const HHACT_TOC_NEXT = @as(i32, 20);
-pub const HHACT_TOC_PREV = @as(i32, 21);
-pub const HHACT_NOTES = @as(i32, 22);
-pub const HHACT_LAST_ENUM = @as(i32, 23);
 pub const HH_DISPLAY_TOPIC = @as(u32, 0);
 pub const HH_HELP_FINDER = @as(u32, 0);
 pub const HH_DISPLAY_TOC = @as(u32, 1);
@@ -273,6 +228,51 @@ pub const CLSID_IITResultSet = Guid.initString("4662daa7-d393-11d0-9a56-00c04fb6
 pub const MAX_COLUMNS = @as(u32, 256);
 pub const CLSID_ITStdBreaker = Guid.initString("4662daaf-d393-11d0-9a56-00c04fb68bf7");
 pub const CLSID_ITEngStemmer = Guid.initString("8fa0d5a8-dedf-11d0-9a61-00c04fb68bf7");
+pub const HHWIN_NAVTYPE_TOC = @as(i32, 0);
+pub const HHWIN_NAVTYPE_INDEX = @as(i32, 1);
+pub const HHWIN_NAVTYPE_SEARCH = @as(i32, 2);
+pub const HHWIN_NAVTYPE_FAVORITES = @as(i32, 3);
+pub const HHWIN_NAVTYPE_HISTORY = @as(i32, 4);
+pub const HHWIN_NAVTYPE_AUTHOR = @as(i32, 5);
+pub const HHWIN_NAVTYPE_CUSTOM_FIRST = @as(i32, 11);
+pub const IT_INCLUSIVE = @as(i32, 0);
+pub const IT_EXCLUSIVE = @as(i32, 1);
+pub const IT_HIDDEN = @as(i32, 2);
+pub const HHWIN_NAVTAB_TOP = @as(i32, 0);
+pub const HHWIN_NAVTAB_LEFT = @as(i32, 1);
+pub const HHWIN_NAVTAB_BOTTOM = @as(i32, 2);
+pub const HH_TAB_CONTENTS = @as(i32, 0);
+pub const HH_TAB_INDEX = @as(i32, 1);
+pub const HH_TAB_SEARCH = @as(i32, 2);
+pub const HH_TAB_FAVORITES = @as(i32, 3);
+pub const HH_TAB_HISTORY = @as(i32, 4);
+pub const HH_TAB_AUTHOR = @as(i32, 5);
+pub const HH_TAB_CUSTOM_FIRST = @as(i32, 11);
+pub const HH_TAB_CUSTOM_LAST = @as(i32, 19);
+pub const HHACT_TAB_CONTENTS = @as(i32, 0);
+pub const HHACT_TAB_INDEX = @as(i32, 1);
+pub const HHACT_TAB_SEARCH = @as(i32, 2);
+pub const HHACT_TAB_HISTORY = @as(i32, 3);
+pub const HHACT_TAB_FAVORITES = @as(i32, 4);
+pub const HHACT_EXPAND = @as(i32, 5);
+pub const HHACT_CONTRACT = @as(i32, 6);
+pub const HHACT_BACK = @as(i32, 7);
+pub const HHACT_FORWARD = @as(i32, 8);
+pub const HHACT_STOP = @as(i32, 9);
+pub const HHACT_REFRESH = @as(i32, 10);
+pub const HHACT_HOME = @as(i32, 11);
+pub const HHACT_SYNC = @as(i32, 12);
+pub const HHACT_OPTIONS = @as(i32, 13);
+pub const HHACT_PRINT = @as(i32, 14);
+pub const HHACT_HIGHLIGHT = @as(i32, 15);
+pub const HHACT_CUSTOMIZE = @as(i32, 16);
+pub const HHACT_JUMP1 = @as(i32, 17);
+pub const HHACT_JUMP2 = @as(i32, 18);
+pub const HHACT_ZOOM = @as(i32, 19);
+pub const HHACT_TOC_NEXT = @as(i32, 20);
+pub const HHACT_TOC_PREV = @as(i32, 21);
+pub const HHACT_NOTES = @as(i32, 22);
+pub const HHACT_LAST_ENUM = @as(i32, 23);
 
 //--------------------------------------------------------------------------------
 // Section: Types (27)
@@ -666,7 +666,7 @@ pub const IITWordWheel = extern struct {
         Close: fn(
             self: *const IITWordWheel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocaleInfoA: fn(
+        GetLocaleInfo: fn(
             self: *const IITWordWheel,
             pdwCodePageID: *u32,
             plcid: *u32,
@@ -732,8 +732,8 @@ pub const IITWordWheel = extern struct {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Close(@ptrCast(*const IITWordWheel, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_GetLocaleInfoA(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetLocaleInfoA(@ptrCast(*const IITWordWheel, self), pdwCodePageID, plcid);
+        pub fn IITWordWheel_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IITWordWheel, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IITWordWheel_GetSorterInstance(self: *const T, pdwObjInstance: *u32) callconv(.Inline) HRESULT {
@@ -815,12 +815,12 @@ pub const IID_IStemmerConfig = &IID_IStemmerConfig_Value;
 pub const IStemmerConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetLocaleInfoA: fn(
+        SetLocaleInfo: fn(
             self: *const IStemmerConfig,
             dwCodePageID: u32,
             lcid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocaleInfoA: fn(
+        GetLocaleInfo: fn(
             self: *const IStemmerConfig,
             pdwCodePageID: *u32,
             plcid: *u32,
@@ -845,12 +845,12 @@ pub const IStemmerConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemmerConfig_SetLocaleInfoA(self: *const T, dwCodePageID: u32, lcid: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetLocaleInfoA(@ptrCast(*const IStemmerConfig, self), dwCodePageID, lcid);
+        pub fn IStemmerConfig_SetLocaleInfo(self: *const T, dwCodePageID: u32, lcid: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IStemmerConfig, self), dwCodePageID, lcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStemmerConfig_GetLocaleInfoA(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetLocaleInfoA(@ptrCast(*const IStemmerConfig, self), pdwCodePageID, plcid);
+        pub fn IStemmerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IStemmerConfig, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStemmerConfig_SetControlInfo(self: *const T, grfStemFlags: u32, dwReserved: u32) callconv(.Inline) HRESULT {
@@ -877,12 +877,12 @@ pub const IID_IWordBreakerConfig = &IID_IWordBreakerConfig_Value;
 pub const IWordBreakerConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetLocaleInfoA: fn(
+        SetLocaleInfo: fn(
             self: *const IWordBreakerConfig,
             dwCodePageID: u32,
             lcid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocaleInfoA: fn(
+        GetLocaleInfo: fn(
             self: *const IWordBreakerConfig,
             pdwCodePageID: *u32,
             plcid: *u32,
@@ -924,12 +924,12 @@ pub const IWordBreakerConfig = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_SetLocaleInfoA(self: *const T, dwCodePageID: u32, lcid: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetLocaleInfoA(@ptrCast(*const IWordBreakerConfig, self), dwCodePageID, lcid);
+        pub fn IWordBreakerConfig_SetLocaleInfo(self: *const T, dwCodePageID: u32, lcid: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), dwCodePageID, lcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWordBreakerConfig_GetLocaleInfoA(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetLocaleInfoA(@ptrCast(*const IWordBreakerConfig, self), pdwCodePageID, plcid);
+        pub fn IWordBreakerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: *u32, plcid: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), pdwCodePageID, plcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWordBreakerConfig_SetBreakWordType(self: *const T, dwBreakWordType: u32) callconv(.Inline) HRESULT {

@@ -110,21 +110,24 @@ pub const PENUM_PAGE_FILE_CALLBACKA = fn(
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
 pub extern "KERNEL32" fn K32EnumProcesses(
-    lpidProcess: [*]u32,
+    // TODO: what to do with BytesParamIndex 1?
+    lpidProcess: *u32,
     cb: u32,
     lpcbNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32EnumProcessModules(
     hProcess: HANDLE,
-    lphModule: [*]isize,
+    // TODO: what to do with BytesParamIndex 2?
+    lphModule: *isize,
     cb: u32,
     lpcbNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32EnumProcessModulesEx(
     hProcess: HANDLE,
-    lphModule: [*]isize,
+    // TODO: what to do with BytesParamIndex 2?
+    lphModule: *isize,
     cb: u32,
     lpcbNeeded: *u32,
     dwFilterFlag: u32,
@@ -171,13 +174,15 @@ pub extern "KERNEL32" fn K32EmptyWorkingSet(
 
 pub extern "KERNEL32" fn K32QueryWorkingSet(
     hProcess: HANDLE,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: *c_void,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32QueryWorkingSetEx(
     hProcess: HANDLE,
-    pv: [*]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pv: *c_void,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -187,13 +192,15 @@ pub extern "KERNEL32" fn K32InitializeProcessForWsWatch(
 
 pub extern "KERNEL32" fn K32GetWsChanges(
     hProcess: HANDLE,
-    lpWatchInfo: [*]PSAPI_WS_WATCH_INFORMATION,
+    // TODO: what to do with BytesParamIndex 2?
+    lpWatchInfo: *PSAPI_WS_WATCH_INFORMATION,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn K32GetWsChangesEx(
     hProcess: HANDLE,
-    lpWatchInfoEx: [*]PSAPI_WS_WATCH_INFORMATION_EX,
+    // TODO: what to do with BytesParamIndex 2?
+    lpWatchInfoEx: *PSAPI_WS_WATCH_INFORMATION_EX,
     cb: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -212,7 +219,8 @@ pub extern "KERNEL32" fn K32GetMappedFileNameA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32EnumDeviceDrivers(
-    lpImageBase: [*]*c_void,
+    // TODO: what to do with BytesParamIndex 1?
+    lpImageBase: **c_void,
     cb: u32,
     lpcbNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

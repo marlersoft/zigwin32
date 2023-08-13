@@ -2,9 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (18)
 //--------------------------------------------------------------------------------
-pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
-pub const c_DwmMaxMonitors = @as(u32, 16);
-pub const c_DwmMaxAdapters = @as(u32, 16);
 pub const DWM_BB_ENABLE = @as(u32, 1);
 pub const DWM_BB_BLURREGION = @as(u32, 2);
 pub const DWM_BB_TRANSITIONONMAXIMIZED = @as(u32, 4);
@@ -20,6 +17,9 @@ pub const DWM_FRAME_DURATION_DEFAULT = @as(i32, -1);
 pub const DWM_EC_DISABLECOMPOSITION = @as(u32, 0);
 pub const DWM_EC_ENABLECOMPOSITION = @as(u32, 1);
 pub const DWM_SIT_DISPLAYFRAME = @as(u32, 1);
+pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
+pub const c_DwmMaxMonitors = @as(u32, 16);
+pub const c_DwmMaxAdapters = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (13)
@@ -199,14 +199,16 @@ pub const GT_TOUCH_PRESSANDHOLD = GESTURE_TYPE.TOUCH_PRESSANDHOLD;
 pub const GT_TOUCH_PRESSANDHOLDABORT = GESTURE_TYPE.TOUCH_PRESSANDHOLDABORT;
 pub const GT_TOUCH_PRESSANDTAP = GESTURE_TYPE.TOUCH_PRESSANDTAP;
 
-pub const DWM_SHOWCONTACT = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWM_SHOWCONTACT = extern enum(u32) {
     DOWN = 1,
     UP = 2,
     DRAG = 4,
     HOLD = 8,
     PENBARREL = 16,
     NONE = 0,
-    ALL = -1,
+    ALL = 4294967295,
+    _,
 };
 pub const DWMSC_DOWN = DWM_SHOWCONTACT.DOWN;
 pub const DWMSC_UP = DWM_SHOWCONTACT.UP;
@@ -216,7 +218,8 @@ pub const DWMSC_PENBARREL = DWM_SHOWCONTACT.PENBARREL;
 pub const DWMSC_NONE = DWM_SHOWCONTACT.NONE;
 pub const DWMSC_ALL = DWM_SHOWCONTACT.ALL;
 
-pub const DWM_TAB_WINDOW_REQUIREMENTS = extern enum(i32) {
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DWM_TAB_WINDOW_REQUIREMENTS = extern enum(u32) {
     NONE = 0,
     IMPLEMENTED_BY_SYSTEM = 1,
     WINDOW_RELATIONSHIP = 2,
@@ -228,6 +231,7 @@ pub const DWM_TAB_WINDOW_REQUIREMENTS = extern enum(i32) {
     USER_POLICY = 128,
     GROUP_POLICY = 256,
     APP_COMPAT = 512,
+    _,
 };
 pub const DWMTWR_NONE = DWM_TAB_WINDOW_REQUIREMENTS.NONE;
 pub const DWMTWR_IMPLEMENTED_BY_SYSTEM = DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM;
@@ -292,7 +296,8 @@ pub extern "dwmapi" fn DwmGetCompositionTimingInfo(
 pub extern "dwmapi" fn DwmGetWindowAttribute(
     hwnd: HWND,
     dwAttribute: u32,
-    pvAttribute: [*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvAttribute: *c_void,
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -337,7 +342,8 @@ pub extern "dwmapi" fn DwmSetPresentParameters(
 pub extern "dwmapi" fn DwmSetWindowAttribute(
     hwnd: HWND,
     dwAttribute: u32,
-    pvAttribute: [*]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pvAttribute: *const c_void,
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

@@ -1911,7 +1911,7 @@ pub const IDCompositionVisualDebug = extern struct {
         base: IDCompositionVisual2.VTable,
         EnableHeatMap: fn(
             self: *const IDCompositionVisualDebug,
-            color: *const D3DCOLORVALUE,
+            color: *const D2D1_COLOR_F,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisableHeatMap: fn(
             self: *const IDCompositionVisualDebug,
@@ -1927,7 +1927,7 @@ pub const IDCompositionVisualDebug = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionVisual2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDCompositionVisualDebug_EnableHeatMap(self: *const T, color: *const D3DCOLORVALUE) callconv(.Inline) HRESULT {
+        pub fn IDCompositionVisualDebug_EnableHeatMap(self: *const T, color: *const D2D1_COLOR_F) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDCompositionVisualDebug.VTable, self.vtable).EnableHeatMap(@ptrCast(*const IDCompositionVisualDebug, self), color);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3191,12 +3191,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const D3DCOLORVALUE = @import("direct3d9.zig").D3DCOLORVALUE;
 const HRESULT = @import("com.zig").HRESULT;
 const D2D_MATRIX_4X4_F = @import("direct2d.zig").D2D_MATRIX_4X4_F;
 const D2D_VECTOR_4F = @import("direct2d.zig").D2D_VECTOR_4F;
 const BOOL = @import("system_services.zig").BOOL;
 const DXGI_ALPHA_MODE = @import("dxgi.zig").DXGI_ALPHA_MODE;
+const D2D1_COLOR_F = @import("direct2d.zig").D2D1_COLOR_F;
 const D2D1_BORDER_MODE = @import("direct2d.zig").D2D1_BORDER_MODE;
 const D2D1_COLORMATRIX_ALPHA_MODE = @import("direct2d.zig").D2D1_COLORMATRIX_ALPHA_MODE;
 const D2D1_COMPOSITE_MODE = @import("direct2d.zig").D2D1_COMPOSITE_MODE;

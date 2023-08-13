@@ -89,6 +89,9 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+pub const HCOLORSPACE = ?*opaque{};
+
 pub const UpdateICMRegKey_command = extern enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
@@ -115,8 +118,53 @@ pub const CS_ENABLE = ColorMatchToTarget_actionFlags.ENABLE;
 pub const CS_DISABLE = ColorMatchToTarget_actionFlags.DISABLE;
 pub const CS_DELETE_TRANSFORM = ColorMatchToTarget_actionFlags.DELETE_TRANSFORM;
 
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*c_void;
+pub const CIEXYZ = extern struct {
+    ciexyzX: i32,
+    ciexyzY: i32,
+    ciexyzZ: i32,
+};
+
+pub const CIEXYZTRIPLE = extern struct {
+    ciexyzRed: CIEXYZ,
+    ciexyzGreen: CIEXYZ,
+    ciexyzBlue: CIEXYZ,
+};
+
+pub const LOGCOLORSPACEA = extern struct {
+    lcsSignature: u32,
+    lcsVersion: u32,
+    lcsSize: u32,
+    lcsCSType: i32,
+    lcsIntent: i32,
+    lcsEndpoints: CIEXYZTRIPLE,
+    lcsGammaRed: u32,
+    lcsGammaGreen: u32,
+    lcsGammaBlue: u32,
+    lcsFilename: [260]i8,
+};
+
+pub const LOGCOLORSPACEW = extern struct {
+    lcsSignature: u32,
+    lcsVersion: u32,
+    lcsSize: u32,
+    lcsCSType: i32,
+    lcsIntent: i32,
+    lcsEndpoints: CIEXYZTRIPLE,
+    lcsGammaRed: u32,
+    lcsGammaGreen: u32,
+    lcsGammaBlue: u32,
+    lcsFilename: [260]u16,
+};
+
+pub const ICMENUMPROCA = fn(
+    param0: PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const ICMENUMPROCW = fn(
+    param0: PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const XYZColorF = extern struct {
     X: f32,
@@ -728,58 +776,150 @@ pub const DisplayTransformLut = extern struct {
     blue: [256]u16,
 };
 
-pub const CIEXYZ = extern struct {
-    ciexyzX: i32,
-    ciexyzY: i32,
-    ciexyzZ: i32,
-};
-
-pub const CIEXYZTRIPLE = extern struct {
-    ciexyzRed: CIEXYZ,
-    ciexyzGreen: CIEXYZ,
-    ciexyzBlue: CIEXYZ,
-};
-
-pub const LOGCOLORSPACEA = extern struct {
-    lcsSignature: u32,
-    lcsVersion: u32,
-    lcsSize: u32,
-    lcsCSType: i32,
-    lcsIntent: i32,
-    lcsEndpoints: CIEXYZTRIPLE,
-    lcsGammaRed: u32,
-    lcsGammaGreen: u32,
-    lcsGammaBlue: u32,
-    lcsFilename: [260]i8,
-};
-
-pub const LOGCOLORSPACEW = extern struct {
-    lcsSignature: u32,
-    lcsVersion: u32,
-    lcsSize: u32,
-    lcsCSType: i32,
-    lcsIntent: i32,
-    lcsEndpoints: CIEXYZTRIPLE,
-    lcsGammaRed: u32,
-    lcsGammaGreen: u32,
-    lcsGammaBlue: u32,
-    lcsFilename: [260]u16,
-};
-
-pub const ICMENUMPROCA = fn(
-    param0: PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const ICMENUMPROCW = fn(
-    param0: PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (131)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetICMMode(
+    hdc: HDC,
+    mode: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn CheckColorsInGamut(
+    hdc: HDC,
+    lpRGBTriple: [*]RGBTRIPLE,
+    // TODO: what to do with BytesParamIndex 3?
+    dlpBuffer: *c_void,
+    nCount: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetColorSpace(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetLogColorSpaceA(
+    hColorSpace: HCOLORSPACE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *LOGCOLORSPACEA,
+    nSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetLogColorSpaceW(
+    hColorSpace: HCOLORSPACE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBuffer: *LOGCOLORSPACEW,
+    nSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn CreateColorSpaceA(
+    lplcs: *LOGCOLORSPACEA,
+) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn CreateColorSpaceW(
+    lplcs: *LOGCOLORSPACEW,
+) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetColorSpace(
+    hdc: HDC,
+    hcs: HCOLORSPACE,
+) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn DeleteColorSpace(
+    hcs: HCOLORSPACE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetICMProfileA(
+    hdc: HDC,
+    pBufSize: *u32,
+    pszFilename: ?[*:0]u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetICMProfileW(
+    hdc: HDC,
+    pBufSize: *u32,
+    pszFilename: ?[*:0]u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetICMProfileA(
+    hdc: HDC,
+    lpFileName: PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetICMProfileW(
+    hdc: HDC,
+    lpFileName: PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetDeviceGammaRamp(
+    hdc: HDC,
+    lpRamp: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetDeviceGammaRamp(
+    hdc: HDC,
+    lpRamp: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn ColorMatchToTarget(
+    hdc: HDC,
+    hdcTarget: HDC,
+    action: ColorMatchToTarget_actionFlags,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn EnumICMProfilesA(
+    hdc: HDC,
+    proc: ICMENUMPROCA,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn EnumICMProfilesW(
+    hdc: HDC,
+    proc: ICMENUMPROCW,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn UpdateICMRegKeyA(
+    reserved: u32,
+    lpszCMID: PSTR,
+    lpszFileName: PSTR,
+    command: UpdateICMRegKey_command,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn UpdateICMRegKeyW(
+    reserved: u32,
+    lpszCMID: PWSTR,
+    lpszFileName: PWSTR,
+    command: UpdateICMRegKey_command,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn ColorCorrectPalette(
+    hdc: HDC,
+    hPal: HPALETTE,
+    deFirst: u32,
+    num: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "mscms" fn OpenColorProfileA(
     pProfile: *PROFILE,
     dwDesiredAccess: u32,
@@ -800,7 +940,8 @@ pub extern "mscms" fn CloseColorProfile(
 
 pub extern "mscms" fn GetColorProfileFromHandle(
     hProfile: isize,
-    pProfile: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pProfile: ?*u8,
     pcbProfile: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -846,7 +987,8 @@ pub extern "mscms" fn GetColorProfileElement(
     tag: u32,
     dwOffset: u32,
     pcbElement: *u32,
-    pElement: ?[*]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pElement: ?*c_void,
     pbReference: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -879,7 +1021,8 @@ pub extern "mscms" fn GetPS2ColorSpaceArray(
     hProfile: isize,
     dwIntent: u32,
     dwCSAType: u32,
-    pPS2ColorSpaceArray: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pPS2ColorSpaceArray: ?*u8,
     pcbPS2ColorSpaceArray: *u32,
     pbBinary: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -887,14 +1030,16 @@ pub extern "mscms" fn GetPS2ColorSpaceArray(
 pub extern "mscms" fn GetPS2ColorRenderingIntent(
     hProfile: isize,
     dwIntent: u32,
-    pBuffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?*u8,
     pcbPS2ColorRenderingIntent: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetPS2ColorRenderingDictionary(
     hProfile: isize,
     dwIntent: u32,
-    pPS2ColorRenderingDictionary: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pPS2ColorRenderingDictionary: ?*u8,
     pcbPS2ColorRenderingDictionary: *u32,
     pbBinary: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1031,13 +1176,15 @@ pub extern "mscms" fn SelectCMM(
 
 pub extern "mscms" fn GetColorDirectoryA(
     pMachineName: ?[*:0]const u8,
-    pBuffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?PSTR,
     pdwSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetColorDirectoryW(
     pMachineName: ?[*:0]const u16,
-    pBuffer: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 2?
+    pBuffer: ?PWSTR,
     pdwSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1066,7 +1213,8 @@ pub extern "mscms" fn UninstallColorProfileW(
 pub extern "mscms" fn EnumColorProfilesA(
     pMachineName: ?[*:0]const u8,
     pEnumRecord: *ENUMTYPEA,
-    pEnumerationBuffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pEnumerationBuffer: ?*u8,
     pdwSizeOfEnumerationBuffer: *u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1074,7 +1222,8 @@ pub extern "mscms" fn EnumColorProfilesA(
 pub extern "mscms" fn EnumColorProfilesW(
     pMachineName: ?[*:0]const u16,
     pEnumRecord: *ENUMTYPEW,
-    pEnumerationBuffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pEnumerationBuffer: ?*u8,
     pdwSizeOfEnumerationBuffer: *u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1094,14 +1243,16 @@ pub extern "mscms" fn SetStandardColorSpaceProfileW(
 pub extern "mscms" fn GetStandardColorSpaceProfileA(
     pMachineName: ?[*:0]const u8,
     dwSCS: u32,
-    pBuffer: ?[*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?PSTR,
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn GetStandardColorSpaceProfileW(
     pMachineName: ?[*:0]const u16,
     dwSCS: u32,
-    pBuffer: ?[*:0]u16,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: ?PWSTR,
     pcbSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1158,7 +1309,8 @@ pub extern "mscms" fn WcsEnumColorProfilesSize(
 pub extern "mscms" fn WcsEnumColorProfiles(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
     pEnumRecord: *ENUMTYPEW,
-    pBuffer: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    pBuffer: *u8,
     dwSize: u32,
     pnProfiles: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1179,7 +1331,8 @@ pub extern "mscms" fn WcsGetDefaultColorProfile(
     cpstColorProfileSubType: COLORPROFILESUBTYPE,
     dwProfileID: u32,
     cbProfileName: u32,
-    pProfileName: [*:0]u16,
+    // TODO: what to do with BytesParamIndex 5?
+    pProfileName: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsSetDefaultColorProfile(
@@ -1219,11 +1372,13 @@ pub extern "mscms" fn WcsTranslateColors(
     nInputChannels: u32,
     cdtInput: COLORDATATYPE,
     cbInput: u32,
-    pInputData: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pInputData: *c_void,
     nOutputChannels: u32,
     cdtOutput: COLORDATATYPE,
     cbOutput: u32,
-    pOutputData: [*]u8,
+    // TODO: what to do with BytesParamIndex 8?
+    pOutputData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsCheckColors(
@@ -1232,7 +1387,8 @@ pub extern "mscms" fn WcsCheckColors(
     nInputChannels: u32,
     cdtInput: COLORDATATYPE,
     cbInput: u32,
-    pInputData: [*]u8,
+    // TODO: what to do with BytesParamIndex 4?
+    pInputData: *c_void,
     paResult: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1314,7 +1470,8 @@ pub extern "ICM32" fn CMCreateTransformExt(
 pub extern "ICM32" fn CMCheckColorsInGamut(
     hcmTransform: isize,
     lpaRGBTriple: [*]RGBTRIPLE,
-    lpaResult: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpaResult: *u8,
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1468,7 +1625,8 @@ pub extern "mscms" fn ColorAdapterGetCurrentProfileCalibration(
     displayID: DisplayID,
     maxCalibrationBlobSize: u32,
     blobSize: *u32,
-    calibrationBlob: [*:0]u8,
+    // TODO: what to do with BytesParamIndex 2?
+    calibrationBlob: *u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mscms" fn ColorAdapterRegisterOEMColorService(
@@ -1528,154 +1686,23 @@ pub extern "mscms" fn ColorProfileGetDisplayUserScope(
     scope: *WCS_PROFILE_MANAGEMENT_SCOPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMMode(
-    hdc: HDC,
-    mode: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CheckColorsInGamut(
-    hdc: HDC,
-    lpRGBTriple: [*]RGBTRIPLE,
-    dlpBuffer: [*]u8,
-    nCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetColorSpace(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetLogColorSpaceA(
-    hColorSpace: HCOLORSPACE,
-    lpBuffer: [*]LOGCOLORSPACEA,
-    nSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetLogColorSpaceW(
-    hColorSpace: HCOLORSPACE,
-    lpBuffer: [*]LOGCOLORSPACEW,
-    nSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CreateColorSpaceA(
-    lplcs: *LOGCOLORSPACEA,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn CreateColorSpaceW(
-    lplcs: *LOGCOLORSPACEW,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetColorSpace(
-    hdc: HDC,
-    hcs: HCOLORSPACE,
-) callconv(@import("std").os.windows.WINAPI) HCOLORSPACE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn DeleteColorSpace(
-    hcs: HCOLORSPACE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetICMProfileA(
-    hdc: HDC,
-    pBufSize: *u32,
-    pszFilename: ?[*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetICMProfileW(
-    hdc: HDC,
-    pBufSize: *u32,
-    pszFilename: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMProfileA(
-    hdc: HDC,
-    lpFileName: PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetICMProfileW(
-    hdc: HDC,
-    lpFileName: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetDeviceGammaRamp(
-    hdc: HDC,
-    lpRamp: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetDeviceGammaRamp(
-    hdc: HDC,
-    lpRamp: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ColorMatchToTarget(
-    hdc: HDC,
-    hdcTarget: HDC,
-    action: ColorMatchToTarget_actionFlags,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EnumICMProfilesA(
-    hdc: HDC,
-    proc: ICMENUMPROCA,
-    param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EnumICMProfilesW(
-    hdc: HDC,
-    proc: ICMENUMPROCW,
-    param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn UpdateICMRegKeyA(
-    reserved: u32,
-    lpszCMID: PSTR,
-    lpszFileName: PSTR,
-    command: UpdateICMRegKey_command,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn UpdateICMRegKeyW(
-    reserved: u32,
-    lpszCMID: PWSTR,
-    lpszFileName: PWSTR,
-    command: UpdateICMRegKey_command,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ColorCorrectPalette(
-    hdc: HDC,
-    hPal: HPALETTE,
-    deFirst: u32,
-    num: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (26)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const LOGCOLORSPACE = LOGCOLORSPACEA;
+        pub const ICMENUMPROC = ICMENUMPROCA;
         pub const ENUMTYPE = ENUMTYPEA;
         pub const PCMSCALLBACK = PCMSCALLBACKA;
         pub const COLORMATCHSETUP = COLORMATCHSETUPA;
-        pub const LOGCOLORSPACE = LOGCOLORSPACEA;
-        pub const ICMENUMPROC = ICMENUMPROCA;
+        pub const GetLogColorSpace = GetLogColorSpaceA;
+        pub const CreateColorSpace = CreateColorSpaceA;
+        pub const GetICMProfile = GetICMProfileA;
+        pub const SetICMProfile = SetICMProfileA;
+        pub const EnumICMProfiles = EnumICMProfilesA;
+        pub const UpdateICMRegKey = UpdateICMRegKeyA;
         pub const OpenColorProfile = OpenColorProfileA;
         pub const CreateProfileFromLogColorSpace = CreateProfileFromLogColorSpaceA;
         pub const CreateColorTransform = CreateColorTransformA;
@@ -1691,19 +1718,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DisassociateColorProfileFromDevice = DisassociateColorProfileFromDeviceA;
         pub const SetupColorMatching = SetupColorMatchingA;
         pub const WcsOpenColorProfile = WcsOpenColorProfileA;
-        pub const GetLogColorSpace = GetLogColorSpaceA;
-        pub const CreateColorSpace = CreateColorSpaceA;
-        pub const GetICMProfile = GetICMProfileA;
-        pub const SetICMProfile = SetICMProfileA;
-        pub const EnumICMProfiles = EnumICMProfilesA;
-        pub const UpdateICMRegKey = UpdateICMRegKeyA;
     },
     .wide => struct {
+        pub const LOGCOLORSPACE = LOGCOLORSPACEW;
+        pub const ICMENUMPROC = ICMENUMPROCW;
         pub const ENUMTYPE = ENUMTYPEW;
         pub const PCMSCALLBACK = PCMSCALLBACKW;
         pub const COLORMATCHSETUP = COLORMATCHSETUPW;
-        pub const LOGCOLORSPACE = LOGCOLORSPACEW;
-        pub const ICMENUMPROC = ICMENUMPROCW;
+        pub const GetLogColorSpace = GetLogColorSpaceW;
+        pub const CreateColorSpace = CreateColorSpaceW;
+        pub const GetICMProfile = GetICMProfileW;
+        pub const SetICMProfile = SetICMProfileW;
+        pub const EnumICMProfiles = EnumICMProfilesW;
+        pub const UpdateICMRegKey = UpdateICMRegKeyW;
         pub const OpenColorProfile = OpenColorProfileW;
         pub const CreateProfileFromLogColorSpace = CreateProfileFromLogColorSpaceW;
         pub const CreateColorTransform = CreateColorTransformW;
@@ -1719,19 +1746,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DisassociateColorProfileFromDevice = DisassociateColorProfileFromDeviceW;
         pub const SetupColorMatching = SetupColorMatchingW;
         pub const WcsOpenColorProfile = WcsOpenColorProfileW;
-        pub const GetLogColorSpace = GetLogColorSpaceW;
-        pub const CreateColorSpace = CreateColorSpaceW;
-        pub const GetICMProfile = GetICMProfileW;
-        pub const SetICMProfile = SetICMProfileW;
-        pub const EnumICMProfiles = EnumICMProfilesW;
-        pub const UpdateICMRegKey = UpdateICMRegKeyW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const LOGCOLORSPACE = *opaque{};
+        pub const ICMENUMPROC = *opaque{};
         pub const ENUMTYPE = *opaque{};
         pub const PCMSCALLBACK = *opaque{};
         pub const COLORMATCHSETUP = *opaque{};
-        pub const LOGCOLORSPACE = *opaque{};
-        pub const ICMENUMPROC = *opaque{};
+        pub const GetLogColorSpace = *opaque{};
+        pub const CreateColorSpace = *opaque{};
+        pub const GetICMProfile = *opaque{};
+        pub const SetICMProfile = *opaque{};
+        pub const EnumICMProfiles = *opaque{};
+        pub const UpdateICMRegKey = *opaque{};
         pub const OpenColorProfile = *opaque{};
         pub const CreateProfileFromLogColorSpace = *opaque{};
         pub const CreateColorTransform = *opaque{};
@@ -1747,18 +1774,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DisassociateColorProfileFromDevice = *opaque{};
         pub const SetupColorMatching = *opaque{};
         pub const WcsOpenColorProfile = *opaque{};
-        pub const GetLogColorSpace = *opaque{};
-        pub const CreateColorSpace = *opaque{};
-        pub const GetICMProfile = *opaque{};
-        pub const SetICMProfile = *opaque{};
-        pub const EnumICMProfiles = *opaque{};
-        pub const UpdateICMRegKey = *opaque{};
     } else struct {
+        pub const LOGCOLORSPACE = @compileError("'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module");
+        pub const ICMENUMPROC = @compileError("'ICMENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const ENUMTYPE = @compileError("'ENUMTYPE' requires that UNICODE be set to true or false in the root module");
         pub const PCMSCALLBACK = @compileError("'PCMSCALLBACK' requires that UNICODE be set to true or false in the root module");
         pub const COLORMATCHSETUP = @compileError("'COLORMATCHSETUP' requires that UNICODE be set to true or false in the root module");
-        pub const LOGCOLORSPACE = @compileError("'LOGCOLORSPACE' requires that UNICODE be set to true or false in the root module");
-        pub const ICMENUMPROC = @compileError("'ICMENUMPROC' requires that UNICODE be set to true or false in the root module");
+        pub const GetLogColorSpace = @compileError("'GetLogColorSpace' requires that UNICODE be set to true or false in the root module");
+        pub const CreateColorSpace = @compileError("'CreateColorSpace' requires that UNICODE be set to true or false in the root module");
+        pub const GetICMProfile = @compileError("'GetICMProfile' requires that UNICODE be set to true or false in the root module");
+        pub const SetICMProfile = @compileError("'SetICMProfile' requires that UNICODE be set to true or false in the root module");
+        pub const EnumICMProfiles = @compileError("'EnumICMProfiles' requires that UNICODE be set to true or false in the root module");
+        pub const UpdateICMRegKey = @compileError("'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module");
         pub const OpenColorProfile = @compileError("'OpenColorProfile' requires that UNICODE be set to true or false in the root module");
         pub const CreateProfileFromLogColorSpace = @compileError("'CreateProfileFromLogColorSpace' requires that UNICODE be set to true or false in the root module");
         pub const CreateColorTransform = @compileError("'CreateColorTransform' requires that UNICODE be set to true or false in the root module");
@@ -1774,12 +1801,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DisassociateColorProfileFromDevice = @compileError("'DisassociateColorProfileFromDevice' requires that UNICODE be set to true or false in the root module");
         pub const SetupColorMatching = @compileError("'SetupColorMatching' requires that UNICODE be set to true or false in the root module");
         pub const WcsOpenColorProfile = @compileError("'WcsOpenColorProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetLogColorSpace = @compileError("'GetLogColorSpace' requires that UNICODE be set to true or false in the root module");
-        pub const CreateColorSpace = @compileError("'CreateColorSpace' requires that UNICODE be set to true or false in the root module");
-        pub const GetICMProfile = @compileError("'GetICMProfile' requires that UNICODE be set to true or false in the root module");
-        pub const SetICMProfile = @compileError("'SetICMProfile' requires that UNICODE be set to true or false in the root module");
-        pub const EnumICMProfiles = @compileError("'EnumICMProfiles' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateICMRegKey = @compileError("'UpdateICMRegKey' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -1803,11 +1824,11 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    _ = ICMENUMPROCA;
+    _ = ICMENUMPROCW;
     _ = LPBMCALLBACKFN;
     _ = PCMSCALLBACKW;
     _ = PCMSCALLBACKA;
-    _ = ICMENUMPROCA;
-    _ = ICMENUMPROCW;
 
     const constant_export_count = 83;
     const type_export_count = 51;

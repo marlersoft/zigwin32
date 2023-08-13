@@ -91,8 +91,8 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {
@@ -703,10 +703,12 @@ pub const IMLOperatorKernel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MLOperatorParameterOptions = extern enum(u32) {
     Single = 0,
     Optional = 1,
     Variadic = 2,
+    _,
 };
 pub const Single = MLOperatorParameterOptions.Single;
 pub const Optional = MLOperatorParameterOptions.Optional;
@@ -950,9 +952,11 @@ pub const MLOperatorSetId = extern struct {
     version: i32,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MLOperatorKernelOptions = extern enum(u32) {
     None = 0,
     s = 1,
+    _,
 };
 pub const AllowDynamicInputShapes = MLOperatorKernelOptions.s;
 
