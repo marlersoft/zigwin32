@@ -71827,7 +71827,7 @@ pub extern "kernel32" fn RtlVirtualUnwind(
 
 pub extern "kernel32" fn RtlRaiseException(
     ExceptionRecord: ?*EXCEPTION_RECORD,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(@import("std").os.windows.WINAPI) noreturn;
 
 pub extern "kernel32" fn RtlPcToFileHeader(
     PcValue: ?*anyopaque,
@@ -71927,7 +71927,7 @@ pub extern "kernel32" fn RaiseException(
     dwExceptionFlags: u32,
     nNumberOfArguments: u32,
     lpArguments: ?[*]const usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(@import("std").os.windows.WINAPI) noreturn;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn UnhandledExceptionFilter(
