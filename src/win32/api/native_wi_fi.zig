@@ -1144,8 +1144,8 @@ pub const NDIS_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv6Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_IPSEC_OFFLOAD_V1 = extern struct {
@@ -1185,8 +1185,8 @@ pub const NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv6Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_IPSEC_OFFLOAD_V1 = extern struct {

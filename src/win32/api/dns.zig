@@ -6,9 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (98)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-pub const DnsContextHandle = ?*c_void;
-
 pub const IP4_ARRAY = extern struct {
     AddrCount: u32,
     AddrArray: [1]u32,
@@ -790,6 +787,9 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
+
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+pub const DnsContextHandle = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

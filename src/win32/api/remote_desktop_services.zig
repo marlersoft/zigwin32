@@ -16,13 +16,13 @@ pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = @import("../zig.zig").Guid
 //--------------------------------------------------------------------------------
 // Section: Types (262)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
+pub const HwtsVirtualChannelHandle = ?*c_void;
+
 pub const WTSSESSION_NOTIFICATION = extern struct {
     cbSize: u32,
     dwSessionId: u32,
 };
-
-// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
-pub const HwtsVirtualChannelHandle = ?*c_void;
 
 pub const APO_BUFFER_FLAGS = extern enum(i32) {
     BUFFER_INVALID = 0,

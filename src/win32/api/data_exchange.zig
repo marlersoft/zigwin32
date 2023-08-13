@@ -6,10 +6,11 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-pub const COPYDATASTRUCT = extern struct {
-    dwData: ?*c_void,
-    cbData: u32,
-    lpData: *c_void,
+pub const METAFILEPICT = extern struct {
+    mm: i32,
+    xExt: i32,
+    yExt: i32,
+    hMF: HMETAFILE,
 };
 
 pub const HCONV = ?*c_void;
@@ -19,6 +20,12 @@ pub const HCONVLIST = ?*c_void;
 pub const HDDEDATA = ?*c_void;
 
 pub const HSZ = ?*c_void;
+
+pub const COPYDATASTRUCT = extern struct {
+    dwData: ?*c_void,
+    cbData: u32,
+    lpData: *c_void,
+};
 
 pub const DDEACK = extern struct {
     _bitfield: u16,
@@ -182,13 +189,6 @@ pub const MONCONVSTRUCT = extern struct {
     hszTopic: HSZ,
     hConvClient: HCONV,
     hConvServer: HCONV,
-};
-
-pub const METAFILEPICT = extern struct {
-    mm: i32,
-    xExt: i32,
-    yExt: i32,
-    hMF: HMETAFILE,
 };
 
 

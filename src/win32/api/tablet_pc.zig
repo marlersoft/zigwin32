@@ -43,6 +43,16 @@ pub const PfnRecoCallback = fn(
     param2: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub const HRECOALT = ?*c_void;
+
+pub const HRECOCONTEXT = ?*c_void;
+
+pub const HRECOGNIZER = ?*c_void;
+
+pub const HRECOLATTICE = ?*c_void;
+
+pub const HRECOWORDLIST = ?*c_void;
+
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
@@ -9080,16 +9090,6 @@ pub const ITipAutoCompleteClient = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const HRECOALT = ?*c_void;
-
-pub const HRECOCONTEXT = ?*c_void;
-
-pub const HRECOGNIZER = ?*c_void;
-
-pub const HRECOLATTICE = ?*c_void;
-
-pub const HRECOWORDLIST = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

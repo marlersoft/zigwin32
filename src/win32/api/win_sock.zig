@@ -16,13 +16,13 @@ pub const LM_HB2_FileServer : i32 = 2;
 //--------------------------------------------------------------------------------
 // Section: Types (299)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
-pub const HWSAEVENT = ?*c_void;
-
 pub const BLOB = extern struct {
     cbSize: u32,
     pBlobData: *u8,
 };
+
+// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
+pub const HWSAEVENT = ?*c_void;
 
 pub const in_addr = extern struct {
     S_un: in_addr._S_un_e__Union,

@@ -398,6 +398,9 @@ pub const UIA_SayAsInterpretAsMetadataId : i32 = 100000;
 //--------------------------------------------------------------------------------
 // Section: Types (250)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = ?*c_void;
+
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
     dwFlags: u32,
@@ -504,9 +507,6 @@ pub const WINEVENTPROC = fn(
     idEventThread: u32,
     dwmsEventTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = ?*c_void;
 
 const CLSID_MSAAControl_Value = @import("../zig.zig").Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
 pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;

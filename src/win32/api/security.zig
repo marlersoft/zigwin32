@@ -73,32 +73,6 @@ pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN.SECURE_PROMPT;
 pub const CREDUIWIN_PREPROMPTING = CREDUIWIN.PREPROMPTING;
 pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN.PACK_32_WOW;
 
-pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
-    User: *u16,
-    UserLength: u32,
-    Domain: *u16,
-    DomainLength: u32,
-    Password: *u16,
-    PasswordLength: u32,
-    Flags: u32,
-};
-
-pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
-    User: *u8,
-    UserLength: u32,
-    Domain: *u8,
-    DomainLength: u32,
-    Password: *u8,
-    PasswordLength: u32,
-    Flags: u32,
-};
-
-pub const UNICODE_STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: [*]u16,
-};
-
 // TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
 pub const HCERTCHAINENGINE = ?*c_void;
 
@@ -954,28 +928,31 @@ pub const MSA_INFO_0 = extern struct {
     State: MSA_INFO_STATE,
 };
 
-pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
-    ProcessMemoryPriority = 0,
-    ProcessMemoryExhaustionInfo = 1,
-    ProcessAppMemoryInfo = 2,
-    ProcessInPrivateInfo = 3,
-    ProcessPowerThrottling = 4,
-    ProcessReservedValue1 = 5,
-    ProcessTelemetryCoverageInfo = 6,
-    ProcessProtectionLevelInfo = 7,
-    ProcessLeapSecondInfo = 8,
-    ProcessInformationClassMax = 9,
+pub const UNICODE_STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: [*]u16,
 };
-pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.ProcessMemoryPriority;
-pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.ProcessMemoryExhaustionInfo;
-pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.ProcessAppMemoryInfo;
-pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.ProcessInPrivateInfo;
-pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.ProcessPowerThrottling;
-pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ProcessReservedValue1;
-pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.ProcessTelemetryCoverageInfo;
-pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProcessProtectionLevelInfo;
-pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.ProcessLeapSecondInfo;
-pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.ProcessInformationClassMax;
+
+pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
+    User: *u16,
+    UserLength: u32,
+    Domain: *u16,
+    DomainLength: u32,
+    Password: *u16,
+    PasswordLength: u32,
+    Flags: u32,
+};
+
+pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
+    User: *u8,
+    UserLength: u32,
+    Domain: *u8,
+    DomainLength: u32,
+    Password: *u8,
+    PasswordLength: u32,
+    Flags: u32,
+};
 
 pub const CMS_KEY_INFO = extern struct {
     dwVersion: u32,
@@ -11487,8 +11464,8 @@ pub const AUDIT_PARAM = extern struct {
     Flags: u32,
     Anonymous1: AUDIT_PARAM._Anonymous1_e__Union,
     Anonymous2: AUDIT_PARAM._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const AUDIT_PARAMS = extern struct {
@@ -30390,8 +30367,8 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_INFO = extern struct {
     pwszTimestampURL: [*:0]const u16,
     dwAdditionalCertChoice: u32,
     pSignExtInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT = extern struct {
@@ -33250,6 +33227,29 @@ pub const HDIAGNOSTIC_RECORD__ = extern struct {
     unused: i32,
 };
 
+pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
+    ProcessMemoryPriority = 0,
+    ProcessMemoryExhaustionInfo = 1,
+    ProcessAppMemoryInfo = 2,
+    ProcessInPrivateInfo = 3,
+    ProcessPowerThrottling = 4,
+    ProcessReservedValue1 = 5,
+    ProcessTelemetryCoverageInfo = 6,
+    ProcessProtectionLevelInfo = 7,
+    ProcessLeapSecondInfo = 8,
+    ProcessInformationClassMax = 9,
+};
+pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.ProcessMemoryPriority;
+pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.ProcessMemoryExhaustionInfo;
+pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.ProcessAppMemoryInfo;
+pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.ProcessInPrivateInfo;
+pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.ProcessPowerThrottling;
+pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ProcessReservedValue1;
+pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.ProcessTelemetryCoverageInfo;
+pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProcessProtectionLevelInfo;
+pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.ProcessLeapSecondInfo;
+pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.ProcessInformationClassMax;
+
 pub const NETRESOURCEA = extern struct {
     dwScope: u32,
     dwType: u32,
@@ -33304,20 +33304,6 @@ pub const NETCONNECTINFOSTRUCT = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (1169)
 //--------------------------------------------------------------------------------
-pub extern "USER32" fn SetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    pSID: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    pSID: ?[*]u8,
-    nLength: u32,
-    lpnLengthNeeded: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
     hNamedPipe: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -33362,313 +33348,19 @@ pub extern "ADVAPI32" fn SetServiceBits(
     bUpdateImmediately: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn SetThreadToken(
-    Thread: ?*HANDLE,
-    Token: HANDLE,
+pub extern "USER32" fn SetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    pSID: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "ADVAPI32" fn OpenProcessToken(
-    ProcessHandle: HANDLE,
-    DesiredAccess: u32,
-    TokenHandle: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn OpenThreadToken(
-    ThreadHandle: HANDLE,
-    DesiredAccess: u32,
-    OpenAsSelf: BOOL,
-    TokenHandle: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InstallELAMCertificateInfo(
-    ELAMFile: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: PSTR,
-    ObjectName: ?PSTR,
-    SecurityDescriptor: *c_void,
-    DesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: PSTR,
-    ObjectName: ?PSTR,
-    pSecurityDescriptor: *c_void,
-    ClientToken: HANDLE,
-    DesiredAccess: u32,
-    GrantedAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    ObjectCreation: BOOL,
-    AccessGranted: BOOL,
-    GenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    DesiredAccess: u32,
-    Privileges: *PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    ServiceName: [*:0]const u8,
-    ClientToken: HANDLE,
-    Privileges: *PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AddConditionalAce(
-    pAcl: *ACL,
-    dwAceRevision: u32,
-    AceFlags: u32,
-    AceType: u8,
-    AccessMask: u32,
-    pSid: *c_void,
-    ConditionStr: [*]u16,
-    ReturnLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn SetFileSecurityA(
-    lpFileName: [*:0]const u8,
-    SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn GetFileSecurityA(
-    lpFileName: [*:0]const u8,
-    RequestedInformation: u32,
-    pSecurityDescriptor: ?[*]u8,
+pub extern "USER32" fn GetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    pSID: ?[*]u8,
     nLength: u32,
     lpnLengthNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountSidA(
-    lpSystemName: ?[*:0]const u8,
-    Sid: *c_void,
-    Name: ?[*:0]u8,
-    cchName: *u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountSidW(
-    lpSystemName: ?[*:0]const u16,
-    Sid: *c_void,
-    Name: ?[*:0]u16,
-    cchName: *u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpAccountName: [*:0]const u8,
-    Sid: ?[*]u8,
-    cbSid: *u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpAccountName: [*:0]const u16,
-    Sid: ?[*]u8,
-    cbSid: *u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeValueA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
-    lpLuid: *LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeValueW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
-    lpLuid: *LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpLuid: *LUID,
-    lpName: ?[*:0]u8,
-    cchName: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpLuid: *LUID,
-    lpName: ?[*:0]u16,
-    cchName: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
-    lpDisplayName: ?[*:0]u8,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
-    lpDisplayName: ?[*:0]u16,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserA(
-    lpszUsername: [*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserW(
-    lpszUsername: [*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserExA(
-    lpszUsername: [*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*?*c_void,
-    ppProfileBuffer: ?[*]?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserExW(
-    lpszUsername: [*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*?*c_void,
-    ppProfileBuffer: ?[*]?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn RegGetKeySecurity(
-    hKey: HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?[*]u8,
-    lpcbSecurityDescriptor: *u32,
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
-
-pub extern "ADVAPI32" fn RegSetKeySecurity(
-    hKey: HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
-
-pub extern "ntdll" fn RtlConvertSidToUnicodeString(
-    UnicodeString: *UNICODE_STRING,
-    Sid: *c_void,
-    AllocateDestinationString: u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ADVAPI32" fn AccessCheck(
     pSecurityDescriptor: *c_void,
@@ -41588,6 +41280,314 @@ pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
     currentConfig: *DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub extern "ADVAPI32" fn SetThreadToken(
+    Thread: ?*HANDLE,
+    Token: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn OpenProcessToken(
+    ProcessHandle: HANDLE,
+    DesiredAccess: u32,
+    TokenHandle: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn OpenThreadToken(
+    ThreadHandle: HANDLE,
+    DesiredAccess: u32,
+    OpenAsSelf: BOOL,
+    TokenHandle: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InstallELAMCertificateInfo(
+    ELAMFile: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: PSTR,
+    ObjectName: ?PSTR,
+    SecurityDescriptor: *c_void,
+    DesiredAccess: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: *u32,
+    AccessStatus: *i32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: *u32,
+    AccessStatus: *i32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ClientToken: HANDLE,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: PSTR,
+    ObjectName: ?PSTR,
+    pSecurityDescriptor: *c_void,
+    ClientToken: HANDLE,
+    DesiredAccess: u32,
+    GrantedAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    ObjectCreation: BOOL,
+    AccessGranted: BOOL,
+    GenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ClientToken: HANDLE,
+    DesiredAccess: u32,
+    Privileges: *PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    ServiceName: [*:0]const u8,
+    ClientToken: HANDLE,
+    Privileges: *PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AddConditionalAce(
+    pAcl: *ACL,
+    dwAceRevision: u32,
+    AceFlags: u32,
+    AceType: u8,
+    AccessMask: u32,
+    pSid: *c_void,
+    ConditionStr: [*]u16,
+    ReturnLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn SetFileSecurityA(
+    lpFileName: [*:0]const u8,
+    SecurityInformation: u32,
+    pSecurityDescriptor: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn GetFileSecurityA(
+    lpFileName: [*:0]const u8,
+    RequestedInformation: u32,
+    pSecurityDescriptor: ?[*]u8,
+    nLength: u32,
+    lpnLengthNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountSidA(
+    lpSystemName: ?[*:0]const u8,
+    Sid: *c_void,
+    Name: ?[*:0]u8,
+    cchName: *u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountSidW(
+    lpSystemName: ?[*:0]const u16,
+    Sid: *c_void,
+    Name: ?[*:0]u16,
+    cchName: *u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpAccountName: [*:0]const u8,
+    Sid: ?[*]u8,
+    cbSid: *u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpAccountName: [*:0]const u16,
+    Sid: ?[*]u8,
+    cbSid: *u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeValueA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: [*:0]const u8,
+    lpLuid: *LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeValueW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: [*:0]const u16,
+    lpLuid: *LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpLuid: *LUID,
+    lpName: ?[*:0]u8,
+    cchName: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpLuid: *LUID,
+    lpName: ?[*:0]u16,
+    cchName: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: [*:0]const u8,
+    lpDisplayName: ?[*:0]u8,
+    cchDisplayName: *u32,
+    lpLanguageId: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: [*:0]const u16,
+    lpDisplayName: ?[*:0]u16,
+    cchDisplayName: *u32,
+    lpLanguageId: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserA(
+    lpszUsername: [*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserW(
+    lpszUsername: [*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserExA(
+    lpszUsername: [*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: ?*HANDLE,
+    ppLogonSid: ?*?*c_void,
+    ppProfileBuffer: ?[*]?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserExW(
+    lpszUsername: [*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: ?*HANDLE,
+    ppLogonSid: ?*?*c_void,
+    ppProfileBuffer: ?[*]?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn RegGetKeySecurity(
+    hKey: HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?[*]u8,
+    lpcbSecurityDescriptor: *u32,
+) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+
+pub extern "ADVAPI32" fn RegSetKeySecurity(
+    hKey: HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: *c_void,
+) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+
+pub extern "ntdll" fn RtlConvertSidToUnicodeString(
+    UnicodeString: *UNICODE_STRING,
+    Sid: *c_void,
+    AllocateDestinationString: u8,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (221)
@@ -41662,20 +41662,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleA;
-        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmA;
-        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmA;
+        pub const GetFileSecurity = GetFileSecurityA;
         pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmA;
         pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmA;
+        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmA;
+        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmA;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmA;
         pub const SetFileSecurity = SetFileSecurityA;
-        pub const GetFileSecurity = GetFileSecurityA;
-        pub const LookupAccountSid = LookupAccountSidA;
-        pub const LookupAccountName = LookupAccountNameA;
-        pub const LookupPrivilegeValue = LookupPrivilegeValueA;
-        pub const LookupPrivilegeName = LookupPrivilegeNameA;
-        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameA;
-        pub const LogonUser = LogonUserA;
-        pub const LogonUserEx = LogonUserExA;
         pub const CryptAcquireContext = CryptAcquireContextA;
         pub const CryptSignHash = CryptSignHashA;
         pub const CryptVerifySignature = CryptVerifySignatureA;
@@ -41815,6 +41808,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = ConvertStringSecurityDescriptorToSecurityDescriptorA;
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = ConvertSecurityDescriptorToStringSecurityDescriptorA;
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateA;
+        pub const LookupAccountSid = LookupAccountSidA;
+        pub const LookupAccountName = LookupAccountNameA;
+        pub const LookupPrivilegeValue = LookupPrivilegeValueA;
+        pub const LookupPrivilegeName = LookupPrivilegeNameA;
+        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameA;
+        pub const LogonUser = LogonUserA;
+        pub const LogonUserEx = LogonUserExA;
     },
     .wide => struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_W;
@@ -41885,20 +41885,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleW;
-        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW;
-        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmW;
+        pub const GetFileSecurity = GetFileSecurityW;
         pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmW;
         pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmW;
+        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW;
+        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmW;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmW;
         pub const SetFileSecurity = SetFileSecurityW;
-        pub const GetFileSecurity = GetFileSecurityW;
-        pub const LookupAccountSid = LookupAccountSidW;
-        pub const LookupAccountName = LookupAccountNameW;
-        pub const LookupPrivilegeValue = LookupPrivilegeValueW;
-        pub const LookupPrivilegeName = LookupPrivilegeNameW;
-        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameW;
-        pub const LogonUser = LogonUserW;
-        pub const LogonUserEx = LogonUserExW;
         pub const CryptAcquireContext = CryptAcquireContextW;
         pub const CryptSignHash = CryptSignHashW;
         pub const CryptVerifySignature = CryptVerifySignatureW;
@@ -42038,6 +42031,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = ConvertStringSecurityDescriptorToSecurityDescriptorW;
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = ConvertSecurityDescriptorToStringSecurityDescriptorW;
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateW;
+        pub const LookupAccountSid = LookupAccountSidW;
+        pub const LookupAccountName = LookupAccountNameW;
+        pub const LookupPrivilegeValue = LookupPrivilegeValueW;
+        pub const LookupPrivilegeName = LookupPrivilegeNameW;
+        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameW;
+        pub const LogonUser = LogonUserW;
+        pub const LogonUserEx = LogonUserExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
@@ -42108,20 +42108,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque{};
-        pub const ObjectOpenAuditAlarm = *opaque{};
-        pub const ObjectPrivilegeAuditAlarm = *opaque{};
+        pub const GetFileSecurity = *opaque{};
         pub const ObjectCloseAuditAlarm = *opaque{};
         pub const ObjectDeleteAuditAlarm = *opaque{};
+        pub const ObjectOpenAuditAlarm = *opaque{};
+        pub const ObjectPrivilegeAuditAlarm = *opaque{};
         pub const PrivilegedServiceAuditAlarm = *opaque{};
         pub const SetFileSecurity = *opaque{};
-        pub const GetFileSecurity = *opaque{};
-        pub const LookupAccountSid = *opaque{};
-        pub const LookupAccountName = *opaque{};
-        pub const LookupPrivilegeValue = *opaque{};
-        pub const LookupPrivilegeName = *opaque{};
-        pub const LookupPrivilegeDisplayName = *opaque{};
-        pub const LogonUser = *opaque{};
-        pub const LogonUserEx = *opaque{};
         pub const CryptAcquireContext = *opaque{};
         pub const CryptSignHash = *opaque{};
         pub const CryptVerifySignature = *opaque{};
@@ -42261,6 +42254,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = *opaque{};
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = *opaque{};
         pub const CryptUIDlgViewCertificate = *opaque{};
+        pub const LookupAccountSid = *opaque{};
+        pub const LookupAccountName = *opaque{};
+        pub const LookupPrivilegeValue = *opaque{};
+        pub const LookupPrivilegeName = *opaque{};
+        pub const LookupPrivilegeDisplayName = *opaque{};
+        pub const LogonUser = *opaque{};
+        pub const LogonUserEx = *opaque{};
     } else struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
         pub const CRYPT_PASSWORD_CREDENTIALS = @compileError("'CRYPT_PASSWORD_CREDENTIALS' requires that UNICODE be set to true or false in the root module");
@@ -42330,20 +42330,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarm = @compileError("'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = @compileError("'AccessCheckByTypeResultListAndAuditAlarmByHandle' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
         pub const ObjectCloseAuditAlarm = @compileError("'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const ObjectDeleteAuditAlarm = @compileError("'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const PrivilegedServiceAuditAlarm = @compileError("'PrivilegedServiceAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const SetFileSecurity = @compileError("'SetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeName = @compileError("'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeDisplayName = @compileError("'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUser = @compileError("'LogonUser' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUserEx = @compileError("'LogonUserEx' requires that UNICODE be set to true or false in the root module");
         pub const CryptAcquireContext = @compileError("'CryptAcquireContext' requires that UNICODE be set to true or false in the root module");
         pub const CryptSignHash = @compileError("'CryptSignHash' requires that UNICODE be set to true or false in the root module");
         pub const CryptVerifySignature = @compileError("'CryptVerifySignature' requires that UNICODE be set to true or false in the root module");
@@ -42483,6 +42476,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = @compileError("'ConvertStringSecurityDescriptorToSecurityDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = @compileError("'ConvertSecurityDescriptorToStringSecurityDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const CryptUIDlgViewCertificate = @compileError("'CryptUIDlgViewCertificate' requires that UNICODE be set to true or false in the root module");
+        pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
+        pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeName = @compileError("'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeDisplayName = @compileError("'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module");
+        pub const LogonUser = @compileError("'LogonUser' requires that UNICODE be set to true or false in the root module");
+        pub const LogonUserEx = @compileError("'LogonUserEx' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

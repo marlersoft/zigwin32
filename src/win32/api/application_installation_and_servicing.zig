@@ -100,267 +100,6 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     lpAppDirPath: [*:0]const u16,
 };
 
-pub const INFCONTEXT = extern struct {
-    Inf: *c_void,
-    CurrentInf: *c_void,
-    Section: u32,
-    Line: u32,
-};
-
-pub const SP_INF_INFORMATION = extern struct {
-    InfStyle: u32,
-    InfCount: u32,
-    VersionData: [1]u8,
-};
-
-pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: SP_ALTPLATFORM_INFO_V2._Anonymous_e__Union,
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Reserved: u16,
-};
-
-pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]i8,
-    OriginalCatalogName: [260]i8,
-};
-
-pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]u16,
-    OriginalCatalogName: [260]u16,
-};
-
-pub const PSP_FILE_CALLBACK_A = fn(
-    Context: *c_void,
-    Notification: u32,
-    Param1: ?*c_void,
-    Param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PSP_FILE_CALLBACK_W = fn(
-    Context: *c_void,
-    Notification: u32,
-    Param1: ?*c_void,
-    Param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const FILEPATHS_A = extern struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-pub const FILEPATHS_W = extern struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-pub const FILEPATHS_SIGNERINFO_A = extern struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u8,
-    Version: [*:0]const u8,
-    CatalogFile: [*:0]const u8,
-};
-
-pub const FILEPATHS_SIGNERINFO_W = extern struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u16,
-    Version: [*:0]const u16,
-    CatalogFile: [*:0]const u16,
-};
-
-pub const SOURCE_MEDIA_A = extern struct {
-    Reserved: [*:0]const u8,
-    Tagfile: [*:0]const u8,
-    Description: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFile: [*:0]const u8,
-    Flags: u32,
-};
-
-pub const SOURCE_MEDIA_W = extern struct {
-    Reserved: [*:0]const u16,
-    Tagfile: [*:0]const u16,
-    Description: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFile: [*:0]const u16,
-    Flags: u32,
-};
-
-pub const CABINET_INFO_A = extern struct {
-    CabinetPath: [*:0]const u8,
-    CabinetFile: [*:0]const u8,
-    DiskName: [*:0]const u8,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-pub const CABINET_INFO_W = extern struct {
-    CabinetPath: [*:0]const u16,
-    CabinetFile: [*:0]const u16,
-    DiskName: [*:0]const u16,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-pub const FILE_IN_CABINET_INFO_A = extern struct {
-    NameInCabinet: [*:0]const u8,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]i8,
-};
-
-pub const FILE_IN_CABINET_INFO_W = extern struct {
-    NameInCabinet: [*:0]const u16,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]u16,
-};
-
-pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
-    cbSize: u32,
-    FileName: [*:0]const u8,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
-    cbSize: u32,
-    FileName: [*:0]const u16,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-pub const SP_FILE_COPY_PARAMS_A = extern struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    SourceDescription: [*:0]const u8,
-    SourceTagfile: [*:0]const u8,
-    TargetDirectory: [*:0]const u8,
-    TargetFilename: [*:0]const u8,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u8,
-};
-
-pub const SP_FILE_COPY_PARAMS_W = extern struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    SourceDescription: [*:0]const u16,
-    SourceTagfile: [*:0]const u16,
-    TargetDirectory: [*:0]const u16,
-    TargetFilename: [*:0]const u16,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u16,
-};
-
-pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]i8,
-    DigitalSigner: [260]i8,
-    DigitalSignerVersion: [260]i8,
-};
-
-pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-};
-
-pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]i8,
-    DigitalSigner: [260]i8,
-    DigitalSignerVersion: [260]i8,
-    SignerScore: u32,
-};
-
-pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-    SignerScore: u32,
-};
-
-pub const ACTCTXA = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: [*:0]const u8,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u8,
-    lpResourceName: [*:0]const u8,
-    lpApplicationName: [*:0]const u8,
-    hModule: ?*c_void,
-};
-
-pub const ACTCTXW = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: [*:0]const u16,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: [*:0]const u16,
-    lpResourceName: [*:0]const u16,
-    lpApplicationName: [*:0]const u16,
-    hModule: ?*c_void,
-};
-
-pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
-    cbSize: u32,
-    ulDataFormatVersion: u32,
-    lpData: *c_void,
-    ulLength: u32,
-    lpSectionGlobalData: *c_void,
-    ulSectionGlobalDataLength: u32,
-    lpSectionBase: *c_void,
-    ulSectionTotalLength: u32,
-    hActCtx: HANDLE,
-    ulAssemblyRosterIndex: u32,
-    ulFlags: u32,
-    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
-};
-
 pub const RESULTTYPES = extern enum(i32) {
     ieUnknown = 0,
     ieError = 1,
@@ -1949,1389 +1688,271 @@ pub const PROTECTED_FILE_DATA = extern struct {
     FileNumber: u32,
 };
 
+pub const ACTCTXA = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: [*:0]const u8,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: [*:0]const u8,
+    lpResourceName: [*:0]const u8,
+    lpApplicationName: [*:0]const u8,
+    hModule: ?*c_void,
+};
+
+pub const ACTCTXW = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: [*:0]const u16,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: [*:0]const u16,
+    lpResourceName: [*:0]const u16,
+    lpApplicationName: [*:0]const u16,
+    hModule: ?*c_void,
+};
+
+pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
+    cbSize: u32,
+    ulDataFormatVersion: u32,
+    lpData: *c_void,
+    ulLength: u32,
+    lpSectionGlobalData: *c_void,
+    ulSectionGlobalDataLength: u32,
+    lpSectionBase: *c_void,
+    ulSectionTotalLength: u32,
+    hActCtx: HANDLE,
+    ulAssemblyRosterIndex: u32,
+    ulFlags: u32,
+    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
+};
+
+pub const INFCONTEXT = extern struct {
+    Inf: *c_void,
+    CurrentInf: *c_void,
+    Section: u32,
+    Line: u32,
+};
+
+pub const SP_INF_INFORMATION = extern struct {
+    InfStyle: u32,
+    InfCount: u32,
+    VersionData: [1]u8,
+};
+
+pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: SP_ALTPLATFORM_INFO_V2._Anonymous_e__Union,
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Reserved: u16,
+};
+
+pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]i8,
+    OriginalCatalogName: [260]i8,
+};
+
+pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]u16,
+    OriginalCatalogName: [260]u16,
+};
+
+pub const PSP_FILE_CALLBACK_A = fn(
+    Context: *c_void,
+    Notification: u32,
+    Param1: ?*c_void,
+    Param2: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PSP_FILE_CALLBACK_W = fn(
+    Context: *c_void,
+    Notification: u32,
+    Param1: ?*c_void,
+    Param2: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const FILEPATHS_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+pub const FILEPATHS_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+pub const FILEPATHS_SIGNERINFO_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u8,
+    Version: [*:0]const u8,
+    CatalogFile: [*:0]const u8,
+};
+
+pub const FILEPATHS_SIGNERINFO_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u16,
+    Version: [*:0]const u16,
+    CatalogFile: [*:0]const u16,
+};
+
+pub const SOURCE_MEDIA_A = extern struct {
+    Reserved: [*:0]const u8,
+    Tagfile: [*:0]const u8,
+    Description: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFile: [*:0]const u8,
+    Flags: u32,
+};
+
+pub const SOURCE_MEDIA_W = extern struct {
+    Reserved: [*:0]const u16,
+    Tagfile: [*:0]const u16,
+    Description: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFile: [*:0]const u16,
+    Flags: u32,
+};
+
+pub const CABINET_INFO_A = extern struct {
+    CabinetPath: [*:0]const u8,
+    CabinetFile: [*:0]const u8,
+    DiskName: [*:0]const u8,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+pub const CABINET_INFO_W = extern struct {
+    CabinetPath: [*:0]const u16,
+    CabinetFile: [*:0]const u16,
+    DiskName: [*:0]const u16,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+pub const FILE_IN_CABINET_INFO_A = extern struct {
+    NameInCabinet: [*:0]const u8,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]i8,
+};
+
+pub const FILE_IN_CABINET_INFO_W = extern struct {
+    NameInCabinet: [*:0]const u16,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]u16,
+};
+
+pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u8,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u16,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+pub const SP_FILE_COPY_PARAMS_A = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    SourceDescription: [*:0]const u8,
+    SourceTagfile: [*:0]const u8,
+    TargetDirectory: [*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u8,
+};
+
+pub const SP_FILE_COPY_PARAMS_W = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    SourceDescription: [*:0]const u16,
+    SourceTagfile: [*:0]const u16,
+    TargetDirectory: [*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u16,
+};
+
+pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]i8,
+    DigitalSigner: [260]i8,
+    DigitalSignerVersion: [260]i8,
+};
+
+pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+};
+
+pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]i8,
+    DigitalSigner: [260]i8,
+    DigitalSignerVersion: [260]i8,
+    SignerScore: u32,
+};
+
+pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+    SignerScore: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (453)
 //--------------------------------------------------------------------------------
-pub extern "SETUPAPI" fn SetupGetInfInformationA(
-    InfSpec: *const c_void,
-    SearchControl: u32,
-    ReturnBuffer: ?[*]SP_INF_INFORMATION,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetInfInformationW(
-    InfSpec: *const c_void,
-    SearchControl: u32,
-    ReturnBuffer: ?[*]SP_INF_INFORMATION,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfFileInformationA(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfFileInformationW(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationA(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationW(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfVersionInformationA(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    Key: ?[*:0]const u8,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryInfVersionInformationW(
-    InfInformation: *SP_INF_INFORMATION,
-    InfIndex: u32,
-    Key: ?[*:0]const u16,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetInfFileListA(
-    DirectoryPath: ?[*:0]const u8,
-    InfStyle: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetInfFileListW(
-    DirectoryPath: ?[*:0]const u16,
-    InfStyle: u32,
-    ReturnBuffer: [*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupOpenInfFileW(
-    FileName: [*:0]const u16,
-    InfClass: ?[*:0]const u16,
-    InfStyle: u32,
-    ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupOpenInfFileA(
-    FileName: [*:0]const u8,
-    InfClass: ?[*:0]const u8,
-    InfStyle: u32,
-    ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupOpenMasterInf(
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupOpenAppendInfFileW(
-    FileName: ?[*:0]const u16,
-    InfHandle: *c_void,
-    ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupOpenAppendInfFileA(
-    FileName: ?[*:0]const u8,
-    InfHandle: *c_void,
-    ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCloseInfFile(
-    InfHandle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "SETUPAPI" fn SetupFindFirstLineA(
-    InfHandle: *c_void,
-    Section: [*:0]const u8,
-    Key: ?[*:0]const u8,
-    Context: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFindFirstLineW(
-    InfHandle: *c_void,
-    Section: [*:0]const u16,
-    Key: ?[*:0]const u16,
-    Context: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFindNextLine(
-    ContextIn: *INFCONTEXT,
-    ContextOut: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFindNextMatchLineA(
-    ContextIn: *INFCONTEXT,
-    Key: ?[*:0]const u8,
-    ContextOut: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFindNextMatchLineW(
-    ContextIn: *INFCONTEXT,
-    Key: ?[*:0]const u16,
-    ContextOut: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetLineByIndexA(
-    InfHandle: *c_void,
-    Section: [*:0]const u8,
-    Index: u32,
-    Context: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetLineByIndexW(
-    InfHandle: *c_void,
-    Section: [*:0]const u16,
-    Index: u32,
-    Context: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetLineCountA(
-    InfHandle: *c_void,
-    Section: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "SETUPAPI" fn SetupGetLineCountW(
-    InfHandle: *c_void,
-    Section: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "SETUPAPI" fn SetupGetLineTextA(
-    Context: ?*INFCONTEXT,
-    InfHandle: ?*c_void,
-    Section: ?[*:0]const u8,
-    Key: ?[*:0]const u8,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetLineTextW(
-    Context: ?*INFCONTEXT,
-    InfHandle: ?*c_void,
-    Section: ?[*:0]const u16,
-    Key: ?[*:0]const u16,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetFieldCount(
-    Context: *INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupGetStringFieldA(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetStringFieldW(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetIntField(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    IntegerValue: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetMultiSzFieldA(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetMultiSzFieldW(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetBinaryField(
-    Context: *INFCONTEXT,
-    FieldIndex: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetFileCompressionInfoA(
-    SourceFileName: [*:0]const u8,
-    ActualSourceFileName: *PSTR,
-    SourceFileSize: *u32,
-    TargetFileSize: *u32,
-    CompressionType: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupGetFileCompressionInfoW(
-    SourceFileName: [*:0]const u16,
-    ActualSourceFileName: *PWSTR,
-    SourceFileSize: *u32,
-    TargetFileSize: *u32,
-    CompressionType: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExA(
-    SourceFileName: [*:0]const u8,
-    ActualSourceFileNameBuffer: ?[*:0]u8,
-    ActualSourceFileNameBufferLen: u32,
-    RequiredBufferLen: ?*u32,
-    SourceFileSize: *u32,
-    TargetFileSize: *u32,
-    CompressionType: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExW(
-    SourceFileName: [*:0]const u16,
-    ActualSourceFileNameBuffer: ?[*:0]u16,
-    ActualSourceFileNameBufferLen: u32,
-    RequiredBufferLen: ?*u32,
-    SourceFileSize: *u32,
-    TargetFileSize: *u32,
-    CompressionType: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupDecompressOrCopyFileA(
-    SourceFileName: [*:0]const u8,
-    TargetFileName: [*:0]const u8,
-    CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupDecompressOrCopyFileW(
-    SourceFileName: [*:0]const u16,
-    TargetFileName: [*:0]const u16,
-    CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupGetSourceFileLocationA(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    FileName: ?[*:0]const u8,
-    SourceId: *u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetSourceFileLocationW(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    FileName: ?[*:0]const u16,
-    SourceId: *u32,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetSourceFileSizeA(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    FileName: ?[*:0]const u8,
-    Section: ?[*:0]const u8,
-    FileSize: *u32,
-    RoundingFactor: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetSourceFileSizeW(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    FileName: ?[*:0]const u16,
-    Section: ?[*:0]const u16,
-    FileSize: *u32,
-    RoundingFactor: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetTargetPathA(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    Section: ?[*:0]const u8,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetTargetPathW(
-    InfHandle: *c_void,
-    InfContext: ?*INFCONTEXT,
-    Section: ?[*:0]const u16,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetSourceListA(
-    Flags: u32,
-    SourceList: [*]PSTR,
-    SourceCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetSourceListW(
-    Flags: u32,
-    SourceList: [*]PWSTR,
-    SourceCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCancelTemporarySourceList(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddToSourceListA(
-    Flags: u32,
-    Source: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddToSourceListW(
-    Flags: u32,
-    Source: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFromSourceListA(
-    Flags: u32,
-    Source: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFromSourceListW(
-    Flags: u32,
-    Source: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQuerySourceListA(
-    Flags: u32,
-    List: **PSTR,
-    Count: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQuerySourceListW(
-    Flags: u32,
-    List: **PWSTR,
-    Count: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFreeSourceListA(
-    List: [*]*PSTR,
-    Count: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupFreeSourceListW(
-    List: [*]*PWSTR,
-    Count: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupPromptForDiskA(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u8,
-    DiskName: ?[*:0]const u8,
-    PathToSource: ?[*:0]const u8,
-    FileSought: [*:0]const u8,
-    TagFile: ?[*:0]const u8,
-    DiskPromptStyle: u32,
-    PathBuffer: ?[*:0]u8,
-    PathBufferSize: u32,
-    PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupPromptForDiskW(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u16,
-    DiskName: ?[*:0]const u16,
-    PathToSource: ?[*:0]const u16,
-    FileSought: [*:0]const u16,
-    TagFile: ?[*:0]const u16,
-    DiskPromptStyle: u32,
-    PathBuffer: ?[*:0]u16,
-    PathBufferSize: u32,
-    PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupCopyErrorA(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u8,
-    DiskName: ?[*:0]const u8,
-    PathToSource: [*:0]const u8,
-    SourceFile: [*:0]const u8,
-    TargetPathFile: ?[*:0]const u8,
-    Win32ErrorCode: u32,
-    Style: u32,
-    PathBuffer: ?[*:0]u8,
-    PathBufferSize: u32,
-    PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupCopyErrorW(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u16,
-    DiskName: ?[*:0]const u16,
-    PathToSource: [*:0]const u16,
-    SourceFile: [*:0]const u16,
-    TargetPathFile: ?[*:0]const u16,
-    Win32ErrorCode: u32,
-    Style: u32,
-    PathBuffer: ?[*:0]u16,
-    PathBufferSize: u32,
-    PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupRenameErrorA(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u8,
-    SourceFile: [*:0]const u8,
-    TargetFile: [*:0]const u8,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupRenameErrorW(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u16,
-    SourceFile: [*:0]const u16,
-    TargetFile: [*:0]const u16,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupDeleteErrorA(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u8,
-    File: [*:0]const u8,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupDeleteErrorW(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u16,
-    File: [*:0]const u16,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupBackupErrorA(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u8,
-    SourceFile: [*:0]const u8,
-    TargetFile: ?[*:0]const u8,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupBackupErrorW(
-    hwndParent: HWND,
-    DialogTitle: ?[*:0]const u16,
-    SourceFile: [*:0]const u16,
-    TargetFile: ?[*:0]const u16,
-    Win32ErrorCode: u32,
-    Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupSetDirectoryIdA(
-    InfHandle: *c_void,
-    Id: u32,
-    Directory: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetDirectoryIdW(
-    InfHandle: *c_void,
-    Id: u32,
-    Directory: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetDirectoryIdExA(
-    InfHandle: *c_void,
-    Id: u32,
-    Directory: ?[*:0]const u8,
-    Flags: u32,
-    Reserved1: u32,
-    Reserved2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetDirectoryIdExW(
-    InfHandle: *c_void,
-    Id: u32,
-    Directory: ?[*:0]const u16,
-    Flags: u32,
-    Reserved1: u32,
-    Reserved2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetSourceInfoA(
-    InfHandle: *c_void,
-    SourceId: u32,
-    InfoDesired: u32,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetSourceInfoW(
-    InfHandle: *c_void,
-    SourceId: u32,
-    InfoDesired: u32,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFileA(
-    InfHandle: ?*c_void,
-    InfContext: ?*INFCONTEXT,
-    SourceFile: ?[*:0]const u8,
-    SourcePathRoot: ?[*:0]const u8,
-    DestinationName: ?[*:0]const u8,
-    CopyStyle: u32,
-    CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
-    Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFileW(
-    InfHandle: ?*c_void,
-    InfContext: ?*INFCONTEXT,
-    SourceFile: ?[*:0]const u16,
-    SourcePathRoot: ?[*:0]const u16,
-    DestinationName: ?[*:0]const u16,
-    CopyStyle: u32,
-    CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
-    Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFileExA(
-    InfHandle: ?*c_void,
-    InfContext: ?*INFCONTEXT,
-    SourceFile: ?[*:0]const u8,
-    SourcePathRoot: ?[*:0]const u8,
-    DestinationName: ?[*:0]const u8,
-    CopyStyle: u32,
-    CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
-    Context: ?*c_void,
-    FileWasInUse: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFileExW(
-    InfHandle: ?*c_void,
-    InfContext: ?*INFCONTEXT,
-    SourceFile: ?[*:0]const u16,
-    SourcePathRoot: ?[*:0]const u16,
-    DestinationName: ?[*:0]const u16,
-    CopyStyle: u32,
-    CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
-    Context: ?*c_void,
-    FileWasInUse: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupOpenFileQueue(
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupCloseFileQueue(
-    QueueHandle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformA(
-    QueueHandle: *c_void,
-    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    AlternateDefaultCatalogFile: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformW(
-    QueueHandle: *c_void,
-    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    AlternateDefaultCatalogFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideA(
-    Override: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideW(
-    Override: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopyA(
-    QueueHandle: *c_void,
-    SourceRootPath: ?[*:0]const u8,
-    SourcePath: ?[*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    SourceDescription: ?[*:0]const u8,
-    SourceTagfile: ?[*:0]const u8,
-    TargetDirectory: [*:0]const u8,
-    TargetFilename: ?[*:0]const u8,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopyW(
-    QueueHandle: *c_void,
-    SourceRootPath: ?[*:0]const u16,
-    SourcePath: ?[*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    SourceDescription: ?[*:0]const u16,
-    SourceTagfile: ?[*:0]const u16,
-    TargetDirectory: [*:0]const u16,
-    TargetFilename: ?[*:0]const u16,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopyIndirectA(
-    CopyParams: *SP_FILE_COPY_PARAMS_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopyIndirectW(
-    CopyParams: *SP_FILE_COPY_PARAMS_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDefaultCopyA(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    SourceRootPath: ?[*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    TargetFilename: ?[*:0]const u8,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDefaultCopyW(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    SourceRootPath: ?[*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    TargetFilename: ?[*:0]const u16,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopySectionA(
-    QueueHandle: *c_void,
-    SourceRootPath: ?[*:0]const u8,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u8,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueCopySectionW(
-    QueueHandle: *c_void,
-    SourceRootPath: ?[*:0]const u16,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u16,
-    CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDeleteA(
-    QueueHandle: *c_void,
-    PathPart1: [*:0]const u8,
-    PathPart2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDeleteW(
-    QueueHandle: *c_void,
-    PathPart1: [*:0]const u16,
-    PathPart2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDeleteSectionA(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueDeleteSectionW(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueRenameA(
-    QueueHandle: *c_void,
-    SourcePath: [*:0]const u8,
-    SourceFilename: ?[*:0]const u8,
-    TargetPath: ?[*:0]const u8,
-    TargetFilename: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueRenameW(
-    QueueHandle: *c_void,
-    SourcePath: [*:0]const u16,
-    SourceFilename: ?[*:0]const u16,
-    TargetPath: ?[*:0]const u16,
-    TargetFilename: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueRenameSectionA(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueueRenameSectionW(
-    QueueHandle: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    Section: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCommitFileQueueA(
-    Owner: HWND,
-    QueueHandle: *c_void,
-    MsgHandler: PSP_FILE_CALLBACK_A,
-    Context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCommitFileQueueW(
-    Owner: HWND,
-    QueueHandle: *c_void,
-    MsgHandler: PSP_FILE_CALLBACK_W,
-    Context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupScanFileQueueA(
-    FileQueue: *c_void,
-    Flags: u32,
-    Window: HWND,
-    CallbackRoutine: ?PSP_FILE_CALLBACK_A,
-    CallbackContext: ?*c_void,
-    Result: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupScanFileQueueW(
-    FileQueue: *c_void,
-    Flags: u32,
-    Window: HWND,
-    CallbackRoutine: ?PSP_FILE_CALLBACK_W,
-    CallbackContext: ?*c_void,
-    Result: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetFileQueueCount(
-    FileQueue: *c_void,
-    SubQueueFileOp: u32,
-    NumOperations: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupGetFileQueueFlags(
-    FileQueue: *c_void,
-    Flags: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupSetFileQueueFlags(
-    FileQueue: *c_void,
-    FlagMask: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCopyOEMInfA(
-    SourceInfFileName: [*:0]const u8,
-    OEMSourceMediaLocation: ?[*:0]const u8,
-    OEMSourceMediaType: u32,
-    CopyStyle: u32,
-    DestinationInfFileName: ?[*:0]u8,
-    DestinationInfFileNameSize: u32,
-    RequiredSize: ?*u32,
-    DestinationInfFileNameComponent: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCopyOEMInfW(
-    SourceInfFileName: [*:0]const u16,
-    OEMSourceMediaLocation: ?[*:0]const u16,
-    OEMSourceMediaType: u32,
-    CopyStyle: u32,
-    DestinationInfFileName: ?[*:0]u16,
-    DestinationInfFileNameSize: u32,
-    RequiredSize: ?*u32,
-    DestinationInfFileNameComponent: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupUninstallOEMInfA(
-    InfFileName: [*:0]const u8,
-    Flags: u32,
-    Reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupUninstallOEMInfW(
-    InfFileName: [*:0]const u16,
-    Flags: u32,
-    Reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupUninstallNewlyCopiedInfs(
-    FileQueue: *c_void,
-    Flags: u32,
-    Reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCreateDiskSpaceListA(
-    Reserved1: *c_void,
-    Reserved2: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupCreateDiskSpaceListW(
-    Reserved1: *c_void,
-    Reserved2: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListA(
-    DiskSpace: *c_void,
-    Reserved1: *c_void,
-    Reserved2: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListW(
-    DiskSpace: *c_void,
-    Reserved1: *c_void,
-    Reserved2: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupDestroyDiskSpaceList(
-    DiskSpace: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListA(
-    DiskSpace: *c_void,
-    ReturnBuffer: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListW(
-    DiskSpace: *c_void,
-    ReturnBuffer: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveA(
-    DiskSpace: *c_void,
-    DriveSpec: [*:0]const u8,
-    SpaceRequired: *i64,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveW(
-    DiskSpace: *c_void,
-    DriveSpec: [*:0]const u16,
-    SpaceRequired: *i64,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListA(
-    DiskSpace: *c_void,
-    DriveRoot: [*:0]const u8,
-    Amount: i64,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListW(
-    DiskSpace: *c_void,
-    DriveRoot: [*:0]const u16,
-    Amount: i64,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddToDiskSpaceListA(
-    DiskSpace: *c_void,
-    TargetFilespec: [*:0]const u8,
-    FileSize: i64,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddToDiskSpaceListW(
-    DiskSpace: *c_void,
-    TargetFilespec: [*:0]const u16,
-    FileSize: i64,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListA(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    SectionName: [*:0]const u8,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListW(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    SectionName: [*:0]const u16,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListA(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    SectionName: [*:0]const u8,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListW(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    SectionName: [*:0]const u16,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
-    DiskSpace: *c_void,
-    TargetFilespec: [*:0]const u8,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListW(
-    DiskSpace: *c_void,
-    TargetFilespec: [*:0]const u16,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListA(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    SectionName: [*:0]const u8,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListW(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    ListInfHandle: ?*c_void,
-    SectionName: [*:0]const u16,
-    Operation: u32,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListA(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    SectionName: [*:0]const u8,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListW(
-    DiskSpace: *c_void,
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    SectionName: [*:0]const u16,
-    Reserved1: *c_void,
-    Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupIterateCabinetA(
-    CabinetFile: [*:0]const u8,
-    Reserved: u32,
-    MsgHandler: PSP_FILE_CALLBACK_A,
-    Context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupIterateCabinetW(
-    CabinetFile: [*:0]const u16,
-    Reserved: u32,
-    MsgHandler: PSP_FILE_CALLBACK_W,
-    Context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupPromptReboot(
-    FileQueue: ?*c_void,
-    Owner: HWND,
-    ScanOnly: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "SETUPAPI" fn SetupInitDefaultQueueCallback(
-    OwnerWindow: HWND,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupInitDefaultQueueCallbackEx(
-    OwnerWindow: HWND,
-    AlternateProgressWindow: HWND,
-    ProgressMessage: u32,
-    Reserved1: u32,
-    Reserved2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupTermDefaultQueueCallback(
-    Context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "SETUPAPI" fn SetupDefaultQueueCallbackA(
-    Context: *c_void,
-    Notification: u32,
-    Param1: ?*c_void,
-    Param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupDefaultQueueCallbackW(
-    Context: *c_void,
-    Notification: u32,
-    Param1: ?*c_void,
-    Param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "SETUPAPI" fn SetupInstallFromInfSectionA(
-    Owner: HWND,
-    InfHandle: *c_void,
-    SectionName: [*:0]const u8,
-    Flags: u32,
-    RelativeKeyRoot: HKEY,
-    SourceRootPath: ?[*:0]const u8,
-    CopyFlags: u32,
-    MsgHandler: ?PSP_FILE_CALLBACK_A,
-    Context: ?*c_void,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFromInfSectionW(
-    Owner: HWND,
-    InfHandle: *c_void,
-    SectionName: [*:0]const u16,
-    Flags: u32,
-    RelativeKeyRoot: HKEY,
-    SourceRootPath: ?[*:0]const u16,
-    CopyFlags: u32,
-    MsgHandler: ?PSP_FILE_CALLBACK_W,
-    Context: ?*c_void,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionA(
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    FileQueue: *c_void,
-    SectionName: [*:0]const u8,
-    SourceRootPath: ?[*:0]const u8,
-    CopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionW(
-    InfHandle: *c_void,
-    LayoutInfHandle: ?*c_void,
-    FileQueue: *c_void,
-    SectionName: [*:0]const u16,
-    SourceRootPath: ?[*:0]const u16,
-    CopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionA(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionW(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExA(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u8,
-    Flags: u32,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
-    Reserved1: *c_void,
-    Reserved2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExW(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u16,
-    Flags: u32,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
-    Reserved1: *c_void,
-    Reserved2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn InstallHinfSectionA(
-    Window: HWND,
-    ModuleHandle: HINSTANCE,
-    CommandLine: [*:0]const u8,
-    ShowCommand: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "SETUPAPI" fn InstallHinfSectionW(
-    Window: HWND,
-    ModuleHandle: HINSTANCE,
-    CommandLine: [*:0]const u16,
-    ShowCommand: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "SETUPAPI" fn SetupInitializeFileLogA(
-    LogFileName: ?[*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupInitializeFileLogW(
-    LogFileName: ?[*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupTerminateFileLog(
-    FileLogHandle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupLogFileA(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    TargetFilename: [*:0]const u8,
-    Checksum: u32,
-    DiskTagfile: ?[*:0]const u8,
-    DiskDescription: ?[*:0]const u8,
-    OtherInfo: ?[*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupLogFileW(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    TargetFilename: [*:0]const u16,
-    Checksum: u32,
-    DiskTagfile: ?[*:0]const u16,
-    DiskDescription: ?[*:0]const u16,
-    OtherInfo: ?[*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFileLogEntryA(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u8,
-    TargetFilename: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupRemoveFileLogEntryW(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u16,
-    TargetFilename: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryFileLogA(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u8,
-    TargetFilename: [*:0]const u8,
-    DesiredInfo: SetupFileLogInfo,
-    DataOut: ?[*:0]u8,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupQueryFileLogW(
-    FileLogHandle: *c_void,
-    LogSectionName: ?[*:0]const u16,
-    TargetFilename: [*:0]const u16,
-    DesiredInfo: SetupFileLogInfo,
-    DataOut: ?[*:0]u16,
-    ReturnBufferSize: u32,
-    RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupOpenLog(
-    Erase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupLogErrorA(
-    MessageString: [*:0]const u8,
-    Severity: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupLogErrorW(
-    MessageString: [*:0]const u16,
-    Severity: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupCloseLog(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "SETUPAPI" fn SetupDiGetClassDevsA(
-    ClassGuid: ?*const Guid,
-    Enumerator: ?[*:0]const u8,
-    hwndParent: HWND,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "SETUPAPI" fn SetupEnumInfSectionsA(
-    InfHandle: *c_void,
-    Index: u32,
-    Buffer: ?[*:0]u8,
-    Size: u32,
-    SizeNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupEnumInfSectionsW(
-    InfHandle: *c_void,
-    Index: u32,
-    Buffer: ?[*:0]u16,
-    Size: u32,
-    SizeNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupVerifyInfFileA(
-    InfName: [*:0]const u8,
-    AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    InfSignerInfo: *SP_INF_SIGNER_INFO_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupVerifyInfFileW(
-    InfName: [*:0]const u16,
-    AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
-    InfSignerInfo: *SP_INF_SIGNER_INFO_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionA(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionW(
-    InfHandle: *c_void,
-    SectionName: [*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateActCtxA(
-    pActCtx: *ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateActCtxW(
-    pActCtx: *ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn AddRefActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ZombifyActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ActivateActCtx(
-    hActCtx: HANDLE,
-    lpCookie: *?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeactivateActCtx(
-    dwFlags: u32,
-    ulCookie: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetCurrentActCtx(
-    lphActCtx: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionStringA(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u8,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionStringW(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u16,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FindActCtxSectionGuid(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpGuidToFind: ?*const Guid,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryActCtxW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    pvSubInstance: ?*c_void,
-    ulInfoClass: u32,
-    pvBuffer: ?[*]u8,
-    cbBuffer: ?*c_void,
-    pcbWrittenOrRequired: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryActCtxSettingsW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    settingsNameSpace: ?[*:0]const u16,
-    settingName: [*:0]const u16,
-    pvBuffer: ?[*:0]u16,
-    dwBuffer: ?*c_void,
-    pdwWrittenOrRequired: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "msi" fn MsiCloseHandle(
     hAny: MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -5162,12 +3783,1394 @@ pub extern "sfc" fn SfpVerifyFile(
     dwErrSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "KERNEL32" fn CreateActCtxA(
+    pActCtx: *ACTCTXA,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateActCtxW(
+    pActCtx: *ACTCTXW,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn AddRefActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ReleaseActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ZombifyActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn ActivateActCtx(
+    hActCtx: HANDLE,
+    lpCookie: *?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeactivateActCtx(
+    dwFlags: u32,
+    ulCookie: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetCurrentActCtx(
+    lphActCtx: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FindActCtxSectionStringA(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u8,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FindActCtxSectionStringW(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u16,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FindActCtxSectionGuid(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpGuidToFind: ?*const Guid,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn QueryActCtxW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    pvSubInstance: ?*c_void,
+    ulInfoClass: u32,
+    pvBuffer: ?[*]u8,
+    cbBuffer: ?*c_void,
+    pcbWrittenOrRequired: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn QueryActCtxSettingsW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    settingsNameSpace: ?[*:0]const u16,
+    settingName: [*:0]const u16,
+    pvBuffer: ?[*:0]u16,
+    dwBuffer: ?*c_void,
+    pdwWrittenOrRequired: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetInfInformationA(
+    InfSpec: *const c_void,
+    SearchControl: u32,
+    ReturnBuffer: ?[*]SP_INF_INFORMATION,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetInfInformationW(
+    InfSpec: *const c_void,
+    SearchControl: u32,
+    ReturnBuffer: ?[*]SP_INF_INFORMATION,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfFileInformationA(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfFileInformationW(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationA(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_A,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfOriginalFileInformationW(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    OriginalFileInfo: *SP_ORIGINAL_FILE_INFO_W,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfVersionInformationA(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    Key: ?[*:0]const u8,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryInfVersionInformationW(
+    InfInformation: *SP_INF_INFORMATION,
+    InfIndex: u32,
+    Key: ?[*:0]const u16,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetInfFileListA(
+    DirectoryPath: ?[*:0]const u8,
+    InfStyle: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetInfFileListW(
+    DirectoryPath: ?[*:0]const u16,
+    InfStyle: u32,
+    ReturnBuffer: [*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupOpenInfFileW(
+    FileName: [*:0]const u16,
+    InfClass: ?[*:0]const u16,
+    InfStyle: u32,
+    ErrorLine: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupOpenInfFileA(
+    FileName: [*:0]const u8,
+    InfClass: ?[*:0]const u8,
+    InfStyle: u32,
+    ErrorLine: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupOpenMasterInf(
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupOpenAppendInfFileW(
+    FileName: ?[*:0]const u16,
+    InfHandle: *c_void,
+    ErrorLine: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupOpenAppendInfFileA(
+    FileName: ?[*:0]const u8,
+    InfHandle: *c_void,
+    ErrorLine: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCloseInfFile(
+    InfHandle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SETUPAPI" fn SetupFindFirstLineA(
+    InfHandle: *c_void,
+    Section: [*:0]const u8,
+    Key: ?[*:0]const u8,
+    Context: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFindFirstLineW(
+    InfHandle: *c_void,
+    Section: [*:0]const u16,
+    Key: ?[*:0]const u16,
+    Context: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFindNextLine(
+    ContextIn: *INFCONTEXT,
+    ContextOut: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFindNextMatchLineA(
+    ContextIn: *INFCONTEXT,
+    Key: ?[*:0]const u8,
+    ContextOut: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFindNextMatchLineW(
+    ContextIn: *INFCONTEXT,
+    Key: ?[*:0]const u16,
+    ContextOut: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetLineByIndexA(
+    InfHandle: *c_void,
+    Section: [*:0]const u8,
+    Index: u32,
+    Context: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetLineByIndexW(
+    InfHandle: *c_void,
+    Section: [*:0]const u16,
+    Index: u32,
+    Context: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetLineCountA(
+    InfHandle: *c_void,
+    Section: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "SETUPAPI" fn SetupGetLineCountW(
+    InfHandle: *c_void,
+    Section: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "SETUPAPI" fn SetupGetLineTextA(
+    Context: ?*INFCONTEXT,
+    InfHandle: ?*c_void,
+    Section: ?[*:0]const u8,
+    Key: ?[*:0]const u8,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetLineTextW(
+    Context: ?*INFCONTEXT,
+    InfHandle: ?*c_void,
+    Section: ?[*:0]const u16,
+    Key: ?[*:0]const u16,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetFieldCount(
+    Context: *INFCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupGetStringFieldA(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetStringFieldW(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetIntField(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    IntegerValue: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetMultiSzFieldA(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetMultiSzFieldW(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetBinaryField(
+    Context: *INFCONTEXT,
+    FieldIndex: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetFileCompressionInfoA(
+    SourceFileName: [*:0]const u8,
+    ActualSourceFileName: *PSTR,
+    SourceFileSize: *u32,
+    TargetFileSize: *u32,
+    CompressionType: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupGetFileCompressionInfoW(
+    SourceFileName: [*:0]const u16,
+    ActualSourceFileName: *PWSTR,
+    SourceFileSize: *u32,
+    TargetFileSize: *u32,
+    CompressionType: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExA(
+    SourceFileName: [*:0]const u8,
+    ActualSourceFileNameBuffer: ?[*:0]u8,
+    ActualSourceFileNameBufferLen: u32,
+    RequiredBufferLen: ?*u32,
+    SourceFileSize: *u32,
+    TargetFileSize: *u32,
+    CompressionType: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetFileCompressionInfoExW(
+    SourceFileName: [*:0]const u16,
+    ActualSourceFileNameBuffer: ?[*:0]u16,
+    ActualSourceFileNameBufferLen: u32,
+    RequiredBufferLen: ?*u32,
+    SourceFileSize: *u32,
+    TargetFileSize: *u32,
+    CompressionType: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupDecompressOrCopyFileA(
+    SourceFileName: [*:0]const u8,
+    TargetFileName: [*:0]const u8,
+    CompressionType: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupDecompressOrCopyFileW(
+    SourceFileName: [*:0]const u16,
+    TargetFileName: [*:0]const u16,
+    CompressionType: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupGetSourceFileLocationA(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    FileName: ?[*:0]const u8,
+    SourceId: *u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetSourceFileLocationW(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    FileName: ?[*:0]const u16,
+    SourceId: *u32,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetSourceFileSizeA(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    FileName: ?[*:0]const u8,
+    Section: ?[*:0]const u8,
+    FileSize: *u32,
+    RoundingFactor: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetSourceFileSizeW(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    FileName: ?[*:0]const u16,
+    Section: ?[*:0]const u16,
+    FileSize: *u32,
+    RoundingFactor: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetTargetPathA(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    Section: ?[*:0]const u8,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetTargetPathW(
+    InfHandle: *c_void,
+    InfContext: ?*INFCONTEXT,
+    Section: ?[*:0]const u16,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetSourceListA(
+    Flags: u32,
+    SourceList: [*]PSTR,
+    SourceCount: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetSourceListW(
+    Flags: u32,
+    SourceList: [*]PWSTR,
+    SourceCount: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCancelTemporarySourceList(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddToSourceListA(
+    Flags: u32,
+    Source: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddToSourceListW(
+    Flags: u32,
+    Source: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFromSourceListA(
+    Flags: u32,
+    Source: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFromSourceListW(
+    Flags: u32,
+    Source: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQuerySourceListA(
+    Flags: u32,
+    List: **PSTR,
+    Count: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQuerySourceListW(
+    Flags: u32,
+    List: **PWSTR,
+    Count: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFreeSourceListA(
+    List: [*]*PSTR,
+    Count: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupFreeSourceListW(
+    List: [*]*PWSTR,
+    Count: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupPromptForDiskA(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u8,
+    DiskName: ?[*:0]const u8,
+    PathToSource: ?[*:0]const u8,
+    FileSought: [*:0]const u8,
+    TagFile: ?[*:0]const u8,
+    DiskPromptStyle: u32,
+    PathBuffer: ?[*:0]u8,
+    PathBufferSize: u32,
+    PathRequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupPromptForDiskW(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u16,
+    DiskName: ?[*:0]const u16,
+    PathToSource: ?[*:0]const u16,
+    FileSought: [*:0]const u16,
+    TagFile: ?[*:0]const u16,
+    DiskPromptStyle: u32,
+    PathBuffer: ?[*:0]u16,
+    PathBufferSize: u32,
+    PathRequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupCopyErrorA(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u8,
+    DiskName: ?[*:0]const u8,
+    PathToSource: [*:0]const u8,
+    SourceFile: [*:0]const u8,
+    TargetPathFile: ?[*:0]const u8,
+    Win32ErrorCode: u32,
+    Style: u32,
+    PathBuffer: ?[*:0]u8,
+    PathBufferSize: u32,
+    PathRequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupCopyErrorW(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u16,
+    DiskName: ?[*:0]const u16,
+    PathToSource: [*:0]const u16,
+    SourceFile: [*:0]const u16,
+    TargetPathFile: ?[*:0]const u16,
+    Win32ErrorCode: u32,
+    Style: u32,
+    PathBuffer: ?[*:0]u16,
+    PathBufferSize: u32,
+    PathRequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupRenameErrorA(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u8,
+    SourceFile: [*:0]const u8,
+    TargetFile: [*:0]const u8,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupRenameErrorW(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u16,
+    SourceFile: [*:0]const u16,
+    TargetFile: [*:0]const u16,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupDeleteErrorA(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u8,
+    File: [*:0]const u8,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupDeleteErrorW(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u16,
+    File: [*:0]const u16,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupBackupErrorA(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u8,
+    SourceFile: [*:0]const u8,
+    TargetFile: ?[*:0]const u8,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupBackupErrorW(
+    hwndParent: HWND,
+    DialogTitle: ?[*:0]const u16,
+    SourceFile: [*:0]const u16,
+    TargetFile: ?[*:0]const u16,
+    Win32ErrorCode: u32,
+    Style: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupSetDirectoryIdA(
+    InfHandle: *c_void,
+    Id: u32,
+    Directory: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetDirectoryIdW(
+    InfHandle: *c_void,
+    Id: u32,
+    Directory: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetDirectoryIdExA(
+    InfHandle: *c_void,
+    Id: u32,
+    Directory: ?[*:0]const u8,
+    Flags: u32,
+    Reserved1: u32,
+    Reserved2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetDirectoryIdExW(
+    InfHandle: *c_void,
+    Id: u32,
+    Directory: ?[*:0]const u16,
+    Flags: u32,
+    Reserved1: u32,
+    Reserved2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetSourceInfoA(
+    InfHandle: *c_void,
+    SourceId: u32,
+    InfoDesired: u32,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetSourceInfoW(
+    InfHandle: *c_void,
+    SourceId: u32,
+    InfoDesired: u32,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFileA(
+    InfHandle: ?*c_void,
+    InfContext: ?*INFCONTEXT,
+    SourceFile: ?[*:0]const u8,
+    SourcePathRoot: ?[*:0]const u8,
+    DestinationName: ?[*:0]const u8,
+    CopyStyle: u32,
+    CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
+    Context: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFileW(
+    InfHandle: ?*c_void,
+    InfContext: ?*INFCONTEXT,
+    SourceFile: ?[*:0]const u16,
+    SourcePathRoot: ?[*:0]const u16,
+    DestinationName: ?[*:0]const u16,
+    CopyStyle: u32,
+    CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
+    Context: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFileExA(
+    InfHandle: ?*c_void,
+    InfContext: ?*INFCONTEXT,
+    SourceFile: ?[*:0]const u8,
+    SourcePathRoot: ?[*:0]const u8,
+    DestinationName: ?[*:0]const u8,
+    CopyStyle: u32,
+    CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
+    Context: ?*c_void,
+    FileWasInUse: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFileExW(
+    InfHandle: ?*c_void,
+    InfContext: ?*INFCONTEXT,
+    SourceFile: ?[*:0]const u16,
+    SourcePathRoot: ?[*:0]const u16,
+    DestinationName: ?[*:0]const u16,
+    CopyStyle: u32,
+    CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
+    Context: ?*c_void,
+    FileWasInUse: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupOpenFileQueue(
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupCloseFileQueue(
+    QueueHandle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformA(
+    QueueHandle: *c_void,
+    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    AlternateDefaultCatalogFile: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetFileQueueAlternatePlatformW(
+    QueueHandle: *c_void,
+    AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    AlternateDefaultCatalogFile: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideA(
+    Override: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetPlatformPathOverrideW(
+    Override: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopyA(
+    QueueHandle: *c_void,
+    SourceRootPath: ?[*:0]const u8,
+    SourcePath: ?[*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    SourceDescription: ?[*:0]const u8,
+    SourceTagfile: ?[*:0]const u8,
+    TargetDirectory: [*:0]const u8,
+    TargetFilename: ?[*:0]const u8,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopyW(
+    QueueHandle: *c_void,
+    SourceRootPath: ?[*:0]const u16,
+    SourcePath: ?[*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    SourceDescription: ?[*:0]const u16,
+    SourceTagfile: ?[*:0]const u16,
+    TargetDirectory: [*:0]const u16,
+    TargetFilename: ?[*:0]const u16,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopyIndirectA(
+    CopyParams: *SP_FILE_COPY_PARAMS_A,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopyIndirectW(
+    CopyParams: *SP_FILE_COPY_PARAMS_W,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDefaultCopyA(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    SourceRootPath: ?[*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    TargetFilename: ?[*:0]const u8,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDefaultCopyW(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    SourceRootPath: ?[*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    TargetFilename: ?[*:0]const u16,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopySectionA(
+    QueueHandle: *c_void,
+    SourceRootPath: ?[*:0]const u8,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u8,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueCopySectionW(
+    QueueHandle: *c_void,
+    SourceRootPath: ?[*:0]const u16,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u16,
+    CopyStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDeleteA(
+    QueueHandle: *c_void,
+    PathPart1: [*:0]const u8,
+    PathPart2: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDeleteW(
+    QueueHandle: *c_void,
+    PathPart1: [*:0]const u16,
+    PathPart2: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDeleteSectionA(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueDeleteSectionW(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueRenameA(
+    QueueHandle: *c_void,
+    SourcePath: [*:0]const u8,
+    SourceFilename: ?[*:0]const u8,
+    TargetPath: ?[*:0]const u8,
+    TargetFilename: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueRenameW(
+    QueueHandle: *c_void,
+    SourcePath: [*:0]const u16,
+    SourceFilename: ?[*:0]const u16,
+    TargetPath: ?[*:0]const u16,
+    TargetFilename: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueRenameSectionA(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueueRenameSectionW(
+    QueueHandle: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    Section: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCommitFileQueueA(
+    Owner: HWND,
+    QueueHandle: *c_void,
+    MsgHandler: PSP_FILE_CALLBACK_A,
+    Context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCommitFileQueueW(
+    Owner: HWND,
+    QueueHandle: *c_void,
+    MsgHandler: PSP_FILE_CALLBACK_W,
+    Context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupScanFileQueueA(
+    FileQueue: *c_void,
+    Flags: u32,
+    Window: HWND,
+    CallbackRoutine: ?PSP_FILE_CALLBACK_A,
+    CallbackContext: ?*c_void,
+    Result: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupScanFileQueueW(
+    FileQueue: *c_void,
+    Flags: u32,
+    Window: HWND,
+    CallbackRoutine: ?PSP_FILE_CALLBACK_W,
+    CallbackContext: ?*c_void,
+    Result: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetFileQueueCount(
+    FileQueue: *c_void,
+    SubQueueFileOp: u32,
+    NumOperations: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupGetFileQueueFlags(
+    FileQueue: *c_void,
+    Flags: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupSetFileQueueFlags(
+    FileQueue: *c_void,
+    FlagMask: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCopyOEMInfA(
+    SourceInfFileName: [*:0]const u8,
+    OEMSourceMediaLocation: ?[*:0]const u8,
+    OEMSourceMediaType: u32,
+    CopyStyle: u32,
+    DestinationInfFileName: ?[*:0]u8,
+    DestinationInfFileNameSize: u32,
+    RequiredSize: ?*u32,
+    DestinationInfFileNameComponent: ?*?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCopyOEMInfW(
+    SourceInfFileName: [*:0]const u16,
+    OEMSourceMediaLocation: ?[*:0]const u16,
+    OEMSourceMediaType: u32,
+    CopyStyle: u32,
+    DestinationInfFileName: ?[*:0]u16,
+    DestinationInfFileNameSize: u32,
+    RequiredSize: ?*u32,
+    DestinationInfFileNameComponent: ?*?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupUninstallOEMInfA(
+    InfFileName: [*:0]const u8,
+    Flags: u32,
+    Reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupUninstallOEMInfW(
+    InfFileName: [*:0]const u16,
+    Flags: u32,
+    Reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupUninstallNewlyCopiedInfs(
+    FileQueue: *c_void,
+    Flags: u32,
+    Reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCreateDiskSpaceListA(
+    Reserved1: *c_void,
+    Reserved2: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupCreateDiskSpaceListW(
+    Reserved1: *c_void,
+    Reserved2: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListA(
+    DiskSpace: *c_void,
+    Reserved1: *c_void,
+    Reserved2: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupDuplicateDiskSpaceListW(
+    DiskSpace: *c_void,
+    Reserved1: *c_void,
+    Reserved2: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupDestroyDiskSpaceList(
+    DiskSpace: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListA(
+    DiskSpace: *c_void,
+    ReturnBuffer: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryDrivesInDiskSpaceListW(
+    DiskSpace: *c_void,
+    ReturnBuffer: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveA(
+    DiskSpace: *c_void,
+    DriveSpec: [*:0]const u8,
+    SpaceRequired: *i64,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQuerySpaceRequiredOnDriveW(
+    DiskSpace: *c_void,
+    DriveSpec: [*:0]const u16,
+    SpaceRequired: *i64,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListA(
+    DiskSpace: *c_void,
+    DriveRoot: [*:0]const u8,
+    Amount: i64,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAdjustDiskSpaceListW(
+    DiskSpace: *c_void,
+    DriveRoot: [*:0]const u16,
+    Amount: i64,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddToDiskSpaceListA(
+    DiskSpace: *c_void,
+    TargetFilespec: [*:0]const u8,
+    FileSize: i64,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddToDiskSpaceListW(
+    DiskSpace: *c_void,
+    TargetFilespec: [*:0]const u16,
+    FileSize: i64,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListA(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    SectionName: [*:0]const u8,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListW(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    SectionName: [*:0]const u16,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListA(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    SectionName: [*:0]const u8,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListW(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    SectionName: [*:0]const u16,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
+    DiskSpace: *c_void,
+    TargetFilespec: [*:0]const u8,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListW(
+    DiskSpace: *c_void,
+    TargetFilespec: [*:0]const u16,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListA(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    SectionName: [*:0]const u8,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListW(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    ListInfHandle: ?*c_void,
+    SectionName: [*:0]const u16,
+    Operation: u32,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListA(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    SectionName: [*:0]const u8,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveInstallSectionFromDiskSpaceListW(
+    DiskSpace: *c_void,
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    SectionName: [*:0]const u16,
+    Reserved1: *c_void,
+    Reserved2: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupIterateCabinetA(
+    CabinetFile: [*:0]const u8,
+    Reserved: u32,
+    MsgHandler: PSP_FILE_CALLBACK_A,
+    Context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupIterateCabinetW(
+    CabinetFile: [*:0]const u16,
+    Reserved: u32,
+    MsgHandler: PSP_FILE_CALLBACK_W,
+    Context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupPromptReboot(
+    FileQueue: ?*c_void,
+    Owner: HWND,
+    ScanOnly: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "SETUPAPI" fn SetupInitDefaultQueueCallback(
+    OwnerWindow: HWND,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupInitDefaultQueueCallbackEx(
+    OwnerWindow: HWND,
+    AlternateProgressWindow: HWND,
+    ProgressMessage: u32,
+    Reserved1: u32,
+    Reserved2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupTermDefaultQueueCallback(
+    Context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SETUPAPI" fn SetupDefaultQueueCallbackA(
+    Context: *c_void,
+    Notification: u32,
+    Param1: ?*c_void,
+    Param2: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupDefaultQueueCallbackW(
+    Context: *c_void,
+    Notification: u32,
+    Param1: ?*c_void,
+    Param2: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "SETUPAPI" fn SetupInstallFromInfSectionA(
+    Owner: HWND,
+    InfHandle: *c_void,
+    SectionName: [*:0]const u8,
+    Flags: u32,
+    RelativeKeyRoot: HKEY,
+    SourceRootPath: ?[*:0]const u8,
+    CopyFlags: u32,
+    MsgHandler: ?PSP_FILE_CALLBACK_A,
+    Context: ?*c_void,
+    DeviceInfoSet: ?*c_void,
+    DeviceInfoData: ?*SP_DEVINFO_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFromInfSectionW(
+    Owner: HWND,
+    InfHandle: *c_void,
+    SectionName: [*:0]const u16,
+    Flags: u32,
+    RelativeKeyRoot: HKEY,
+    SourceRootPath: ?[*:0]const u16,
+    CopyFlags: u32,
+    MsgHandler: ?PSP_FILE_CALLBACK_W,
+    Context: ?*c_void,
+    DeviceInfoSet: ?*c_void,
+    DeviceInfoData: ?*SP_DEVINFO_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionA(
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    FileQueue: *c_void,
+    SectionName: [*:0]const u8,
+    SourceRootPath: ?[*:0]const u8,
+    CopyFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallFilesFromInfSectionW(
+    InfHandle: *c_void,
+    LayoutInfHandle: ?*c_void,
+    FileQueue: *c_void,
+    SectionName: [*:0]const u16,
+    SourceRootPath: ?[*:0]const u16,
+    CopyFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionA(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionW(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExA(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u8,
+    Flags: u32,
+    DeviceInfoSet: ?*c_void,
+    DeviceInfoData: ?*SP_DEVINFO_DATA,
+    Reserved1: *c_void,
+    Reserved2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupInstallServicesFromInfSectionExW(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u16,
+    Flags: u32,
+    DeviceInfoSet: ?*c_void,
+    DeviceInfoData: ?*SP_DEVINFO_DATA,
+    Reserved1: *c_void,
+    Reserved2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn InstallHinfSectionA(
+    Window: HWND,
+    ModuleHandle: HINSTANCE,
+    CommandLine: [*:0]const u8,
+    ShowCommand: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SETUPAPI" fn InstallHinfSectionW(
+    Window: HWND,
+    ModuleHandle: HINSTANCE,
+    CommandLine: [*:0]const u16,
+    ShowCommand: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SETUPAPI" fn SetupInitializeFileLogA(
+    LogFileName: ?[*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupInitializeFileLogW(
+    LogFileName: ?[*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupTerminateFileLog(
+    FileLogHandle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupLogFileA(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    Checksum: u32,
+    DiskTagfile: ?[*:0]const u8,
+    DiskDescription: ?[*:0]const u8,
+    OtherInfo: ?[*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupLogFileW(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    Checksum: u32,
+    DiskTagfile: ?[*:0]const u16,
+    DiskDescription: ?[*:0]const u16,
+    OtherInfo: ?[*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFileLogEntryA(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u8,
+    TargetFilename: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupRemoveFileLogEntryW(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u16,
+    TargetFilename: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryFileLogA(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    DesiredInfo: SetupFileLogInfo,
+    DataOut: ?[*:0]u8,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupQueryFileLogW(
+    FileLogHandle: *c_void,
+    LogSectionName: ?[*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    DesiredInfo: SetupFileLogInfo,
+    DataOut: ?[*:0]u16,
+    ReturnBufferSize: u32,
+    RequiredSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupOpenLog(
+    Erase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupLogErrorA(
+    MessageString: [*:0]const u8,
+    Severity: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupLogErrorW(
+    MessageString: [*:0]const u16,
+    Severity: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupCloseLog(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SETUPAPI" fn SetupDiGetClassDevsA(
+    ClassGuid: ?*const Guid,
+    Enumerator: ?[*:0]const u8,
+    hwndParent: HWND,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "SETUPAPI" fn SetupEnumInfSectionsA(
+    InfHandle: *c_void,
+    Index: u32,
+    Buffer: ?[*:0]u8,
+    Size: u32,
+    SizeNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupEnumInfSectionsW(
+    InfHandle: *c_void,
+    Index: u32,
+    Buffer: ?[*:0]u16,
+    Size: u32,
+    SizeNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupVerifyInfFileA(
+    InfName: [*:0]const u8,
+    AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    InfSignerInfo: *SP_INF_SIGNER_INFO_V2_A,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupVerifyInfFileW(
+    InfName: [*:0]const u16,
+    AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
+    InfSignerInfo: *SP_INF_SIGNER_INFO_V2_W,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionA(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionW(
+    InfHandle: *c_void,
+    SectionName: [*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (207)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERA;
+        pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOA;
+        pub const ACTCTX = ACTCTXA;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_A;
         pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_A;
         pub const FILEPATHS_ = FILEPATHS_A;
@@ -5179,86 +5182,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_A;
         pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_A;
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_A;
-        pub const ACTCTX = ACTCTXA;
-        pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERA;
-        pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOA;
-        pub const SetupGetInfInformation = SetupGetInfInformationA;
-        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationA;
-        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationA;
-        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationA;
-        pub const SetupGetInfFileList = SetupGetInfFileListA;
-        pub const SetupOpenInfFile = SetupOpenInfFileA;
-        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileA;
-        pub const SetupFindFirstLine = SetupFindFirstLineA;
-        pub const SetupFindNextMatchLine = SetupFindNextMatchLineA;
-        pub const SetupGetLineByIndex = SetupGetLineByIndexA;
-        pub const SetupGetLineCount = SetupGetLineCountA;
-        pub const SetupGetLineText = SetupGetLineTextA;
-        pub const SetupGetStringField = SetupGetStringFieldA;
-        pub const SetupGetMultiSzField = SetupGetMultiSzFieldA;
-        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoA;
-        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExA;
-        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileA;
-        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationA;
-        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeA;
-        pub const SetupGetTargetPath = SetupGetTargetPathA;
-        pub const SetupSetSourceList = SetupSetSourceListA;
-        pub const SetupAddToSourceList = SetupAddToSourceListA;
-        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListA;
-        pub const SetupQuerySourceList = SetupQuerySourceListA;
-        pub const SetupFreeSourceList = SetupFreeSourceListA;
-        pub const SetupPromptForDisk = SetupPromptForDiskA;
-        pub const SetupCopyError = SetupCopyErrorA;
-        pub const SetupRenameError = SetupRenameErrorA;
-        pub const SetupDeleteError = SetupDeleteErrorA;
-        pub const SetupBackupError = SetupBackupErrorA;
-        pub const SetupSetDirectoryId = SetupSetDirectoryIdA;
-        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExA;
-        pub const SetupGetSourceInfo = SetupGetSourceInfoA;
-        pub const SetupInstallFile = SetupInstallFileA;
-        pub const SetupInstallFileEx = SetupInstallFileExA;
-        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformA;
-        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideA;
-        pub const SetupQueueCopy = SetupQueueCopyA;
-        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectA;
-        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyA;
-        pub const SetupQueueCopySection = SetupQueueCopySectionA;
-        pub const SetupQueueDelete = SetupQueueDeleteA;
-        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionA;
-        pub const SetupQueueRename = SetupQueueRenameA;
-        pub const SetupQueueRenameSection = SetupQueueRenameSectionA;
-        pub const SetupCommitFileQueue = SetupCommitFileQueueA;
-        pub const SetupScanFileQueue = SetupScanFileQueueA;
-        pub const SetupCopyOEMInf = SetupCopyOEMInfA;
-        pub const SetupUninstallOEMInf = SetupUninstallOEMInfA;
-        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListA;
-        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListA;
-        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListA;
-        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveA;
-        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListA;
-        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListA;
-        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListA;
-        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListA;
-        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListA;
-        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListA;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListA;
-        pub const SetupIterateCabinet = SetupIterateCabinetA;
-        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackA;
-        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionA;
-        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExA;
-        pub const InstallHinfSection = InstallHinfSectionA;
-        pub const SetupInitializeFileLog = SetupInitializeFileLogA;
-        pub const SetupLogFile = SetupLogFileA;
-        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryA;
-        pub const SetupQueryFileLog = SetupQueryFileLogA;
-        pub const SetupLogError = SetupLogErrorA;
-        pub const SetupEnumInfSections = SetupEnumInfSectionsA;
-        pub const SetupVerifyInfFile = SetupVerifyInfFileA;
-        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionA;
-        pub const CreateActCtx = CreateActCtxA;
-        pub const FindActCtxSectionString = FindActCtxSectionStringA;
         pub const MsiSetExternalUI = MsiSetExternalUIA;
         pub const MsiEnableLog = MsiEnableLogA;
         pub const MsiQueryProductState = MsiQueryProductStateA;
@@ -5375,8 +5298,88 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathA;
         pub const MsiPreviewDialog = MsiPreviewDialogA;
         pub const MsiPreviewBillboard = MsiPreviewBillboardA;
+        pub const CreateActCtx = CreateActCtxA;
+        pub const FindActCtxSectionString = FindActCtxSectionStringA;
+        pub const SetupGetInfInformation = SetupGetInfInformationA;
+        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationA;
+        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationA;
+        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationA;
+        pub const SetupGetInfFileList = SetupGetInfFileListA;
+        pub const SetupOpenInfFile = SetupOpenInfFileA;
+        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileA;
+        pub const SetupFindFirstLine = SetupFindFirstLineA;
+        pub const SetupFindNextMatchLine = SetupFindNextMatchLineA;
+        pub const SetupGetLineByIndex = SetupGetLineByIndexA;
+        pub const SetupGetLineCount = SetupGetLineCountA;
+        pub const SetupGetLineText = SetupGetLineTextA;
+        pub const SetupGetStringField = SetupGetStringFieldA;
+        pub const SetupGetMultiSzField = SetupGetMultiSzFieldA;
+        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoA;
+        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExA;
+        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileA;
+        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationA;
+        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeA;
+        pub const SetupGetTargetPath = SetupGetTargetPathA;
+        pub const SetupSetSourceList = SetupSetSourceListA;
+        pub const SetupAddToSourceList = SetupAddToSourceListA;
+        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListA;
+        pub const SetupQuerySourceList = SetupQuerySourceListA;
+        pub const SetupFreeSourceList = SetupFreeSourceListA;
+        pub const SetupPromptForDisk = SetupPromptForDiskA;
+        pub const SetupCopyError = SetupCopyErrorA;
+        pub const SetupRenameError = SetupRenameErrorA;
+        pub const SetupDeleteError = SetupDeleteErrorA;
+        pub const SetupBackupError = SetupBackupErrorA;
+        pub const SetupSetDirectoryId = SetupSetDirectoryIdA;
+        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExA;
+        pub const SetupGetSourceInfo = SetupGetSourceInfoA;
+        pub const SetupInstallFile = SetupInstallFileA;
+        pub const SetupInstallFileEx = SetupInstallFileExA;
+        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformA;
+        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideA;
+        pub const SetupQueueCopy = SetupQueueCopyA;
+        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectA;
+        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyA;
+        pub const SetupQueueCopySection = SetupQueueCopySectionA;
+        pub const SetupQueueDelete = SetupQueueDeleteA;
+        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionA;
+        pub const SetupQueueRename = SetupQueueRenameA;
+        pub const SetupQueueRenameSection = SetupQueueRenameSectionA;
+        pub const SetupCommitFileQueue = SetupCommitFileQueueA;
+        pub const SetupScanFileQueue = SetupScanFileQueueA;
+        pub const SetupCopyOEMInf = SetupCopyOEMInfA;
+        pub const SetupUninstallOEMInf = SetupUninstallOEMInfA;
+        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListA;
+        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListA;
+        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListA;
+        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveA;
+        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListA;
+        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListA;
+        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListA;
+        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListA;
+        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListA;
+        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListA;
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListA;
+        pub const SetupIterateCabinet = SetupIterateCabinetA;
+        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackA;
+        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionA;
+        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionA;
+        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionA;
+        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExA;
+        pub const InstallHinfSection = InstallHinfSectionA;
+        pub const SetupInitializeFileLog = SetupInitializeFileLogA;
+        pub const SetupLogFile = SetupLogFileA;
+        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryA;
+        pub const SetupQueryFileLog = SetupQueryFileLogA;
+        pub const SetupLogError = SetupLogErrorA;
+        pub const SetupEnumInfSections = SetupEnumInfSectionsA;
+        pub const SetupVerifyInfFile = SetupVerifyInfFileA;
+        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionA;
     },
     .wide => struct {
+        pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERW;
+        pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOW;
+        pub const ACTCTX = ACTCTXW;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_W;
         pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_W;
         pub const FILEPATHS_ = FILEPATHS_W;
@@ -5388,86 +5391,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_W;
         pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_W;
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_W;
-        pub const ACTCTX = ACTCTXW;
-        pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERW;
-        pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOW;
-        pub const SetupGetInfInformation = SetupGetInfInformationW;
-        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationW;
-        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationW;
-        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationW;
-        pub const SetupGetInfFileList = SetupGetInfFileListW;
-        pub const SetupOpenInfFile = SetupOpenInfFileW;
-        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileW;
-        pub const SetupFindFirstLine = SetupFindFirstLineW;
-        pub const SetupFindNextMatchLine = SetupFindNextMatchLineW;
-        pub const SetupGetLineByIndex = SetupGetLineByIndexW;
-        pub const SetupGetLineCount = SetupGetLineCountW;
-        pub const SetupGetLineText = SetupGetLineTextW;
-        pub const SetupGetStringField = SetupGetStringFieldW;
-        pub const SetupGetMultiSzField = SetupGetMultiSzFieldW;
-        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoW;
-        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExW;
-        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileW;
-        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationW;
-        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeW;
-        pub const SetupGetTargetPath = SetupGetTargetPathW;
-        pub const SetupSetSourceList = SetupSetSourceListW;
-        pub const SetupAddToSourceList = SetupAddToSourceListW;
-        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListW;
-        pub const SetupQuerySourceList = SetupQuerySourceListW;
-        pub const SetupFreeSourceList = SetupFreeSourceListW;
-        pub const SetupPromptForDisk = SetupPromptForDiskW;
-        pub const SetupCopyError = SetupCopyErrorW;
-        pub const SetupRenameError = SetupRenameErrorW;
-        pub const SetupDeleteError = SetupDeleteErrorW;
-        pub const SetupBackupError = SetupBackupErrorW;
-        pub const SetupSetDirectoryId = SetupSetDirectoryIdW;
-        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExW;
-        pub const SetupGetSourceInfo = SetupGetSourceInfoW;
-        pub const SetupInstallFile = SetupInstallFileW;
-        pub const SetupInstallFileEx = SetupInstallFileExW;
-        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformW;
-        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideW;
-        pub const SetupQueueCopy = SetupQueueCopyW;
-        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectW;
-        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyW;
-        pub const SetupQueueCopySection = SetupQueueCopySectionW;
-        pub const SetupQueueDelete = SetupQueueDeleteW;
-        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionW;
-        pub const SetupQueueRename = SetupQueueRenameW;
-        pub const SetupQueueRenameSection = SetupQueueRenameSectionW;
-        pub const SetupCommitFileQueue = SetupCommitFileQueueW;
-        pub const SetupScanFileQueue = SetupScanFileQueueW;
-        pub const SetupCopyOEMInf = SetupCopyOEMInfW;
-        pub const SetupUninstallOEMInf = SetupUninstallOEMInfW;
-        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListW;
-        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListW;
-        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListW;
-        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveW;
-        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListW;
-        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListW;
-        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListW;
-        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListW;
-        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListW;
-        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListW;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListW;
-        pub const SetupIterateCabinet = SetupIterateCabinetW;
-        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackW;
-        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionW;
-        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExW;
-        pub const InstallHinfSection = InstallHinfSectionW;
-        pub const SetupInitializeFileLog = SetupInitializeFileLogW;
-        pub const SetupLogFile = SetupLogFileW;
-        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryW;
-        pub const SetupQueryFileLog = SetupQueryFileLogW;
-        pub const SetupLogError = SetupLogErrorW;
-        pub const SetupEnumInfSections = SetupEnumInfSectionsW;
-        pub const SetupVerifyInfFile = SetupVerifyInfFileW;
-        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionW;
-        pub const CreateActCtx = CreateActCtxW;
-        pub const FindActCtxSectionString = FindActCtxSectionStringW;
         pub const MsiSetExternalUI = MsiSetExternalUIW;
         pub const MsiEnableLog = MsiEnableLogW;
         pub const MsiQueryProductState = MsiQueryProductStateW;
@@ -5584,8 +5507,88 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathW;
         pub const MsiPreviewDialog = MsiPreviewDialogW;
         pub const MsiPreviewBillboard = MsiPreviewBillboardW;
+        pub const CreateActCtx = CreateActCtxW;
+        pub const FindActCtxSectionString = FindActCtxSectionStringW;
+        pub const SetupGetInfInformation = SetupGetInfInformationW;
+        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationW;
+        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationW;
+        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationW;
+        pub const SetupGetInfFileList = SetupGetInfFileListW;
+        pub const SetupOpenInfFile = SetupOpenInfFileW;
+        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileW;
+        pub const SetupFindFirstLine = SetupFindFirstLineW;
+        pub const SetupFindNextMatchLine = SetupFindNextMatchLineW;
+        pub const SetupGetLineByIndex = SetupGetLineByIndexW;
+        pub const SetupGetLineCount = SetupGetLineCountW;
+        pub const SetupGetLineText = SetupGetLineTextW;
+        pub const SetupGetStringField = SetupGetStringFieldW;
+        pub const SetupGetMultiSzField = SetupGetMultiSzFieldW;
+        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoW;
+        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExW;
+        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileW;
+        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationW;
+        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeW;
+        pub const SetupGetTargetPath = SetupGetTargetPathW;
+        pub const SetupSetSourceList = SetupSetSourceListW;
+        pub const SetupAddToSourceList = SetupAddToSourceListW;
+        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListW;
+        pub const SetupQuerySourceList = SetupQuerySourceListW;
+        pub const SetupFreeSourceList = SetupFreeSourceListW;
+        pub const SetupPromptForDisk = SetupPromptForDiskW;
+        pub const SetupCopyError = SetupCopyErrorW;
+        pub const SetupRenameError = SetupRenameErrorW;
+        pub const SetupDeleteError = SetupDeleteErrorW;
+        pub const SetupBackupError = SetupBackupErrorW;
+        pub const SetupSetDirectoryId = SetupSetDirectoryIdW;
+        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExW;
+        pub const SetupGetSourceInfo = SetupGetSourceInfoW;
+        pub const SetupInstallFile = SetupInstallFileW;
+        pub const SetupInstallFileEx = SetupInstallFileExW;
+        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformW;
+        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideW;
+        pub const SetupQueueCopy = SetupQueueCopyW;
+        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectW;
+        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyW;
+        pub const SetupQueueCopySection = SetupQueueCopySectionW;
+        pub const SetupQueueDelete = SetupQueueDeleteW;
+        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionW;
+        pub const SetupQueueRename = SetupQueueRenameW;
+        pub const SetupQueueRenameSection = SetupQueueRenameSectionW;
+        pub const SetupCommitFileQueue = SetupCommitFileQueueW;
+        pub const SetupScanFileQueue = SetupScanFileQueueW;
+        pub const SetupCopyOEMInf = SetupCopyOEMInfW;
+        pub const SetupUninstallOEMInf = SetupUninstallOEMInfW;
+        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListW;
+        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListW;
+        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListW;
+        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveW;
+        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListW;
+        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListW;
+        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListW;
+        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListW;
+        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListW;
+        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListW;
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListW;
+        pub const SetupIterateCabinet = SetupIterateCabinetW;
+        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackW;
+        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionW;
+        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionW;
+        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionW;
+        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExW;
+        pub const InstallHinfSection = InstallHinfSectionW;
+        pub const SetupInitializeFileLog = SetupInitializeFileLogW;
+        pub const SetupLogFile = SetupLogFileW;
+        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryW;
+        pub const SetupQueryFileLog = SetupQueryFileLogW;
+        pub const SetupLogError = SetupLogErrorW;
+        pub const SetupEnumInfSections = SetupEnumInfSectionsW;
+        pub const SetupVerifyInfFile = SetupVerifyInfFileW;
+        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const INSTALLUI_HANDLER = *opaque{};
+        pub const MSIPATCHSEQUENCEINFO = *opaque{};
+        pub const ACTCTX = *opaque{};
         pub const SP_ORIGINAL_FILE_INFO_ = *opaque{};
         pub const PSP_FILE_CALLBACK_ = *opaque{};
         pub const FILEPATHS_ = *opaque{};
@@ -5597,86 +5600,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = *opaque{};
         pub const SP_INF_SIGNER_INFO_V1_ = *opaque{};
         pub const SP_INF_SIGNER_INFO_V2_ = *opaque{};
-        pub const ACTCTX = *opaque{};
-        pub const INSTALLUI_HANDLER = *opaque{};
-        pub const MSIPATCHSEQUENCEINFO = *opaque{};
-        pub const SetupGetInfInformation = *opaque{};
-        pub const SetupQueryInfFileInformation = *opaque{};
-        pub const SetupQueryInfOriginalFileInformation = *opaque{};
-        pub const SetupQueryInfVersionInformation = *opaque{};
-        pub const SetupGetInfFileList = *opaque{};
-        pub const SetupOpenInfFile = *opaque{};
-        pub const SetupOpenAppendInfFile = *opaque{};
-        pub const SetupFindFirstLine = *opaque{};
-        pub const SetupFindNextMatchLine = *opaque{};
-        pub const SetupGetLineByIndex = *opaque{};
-        pub const SetupGetLineCount = *opaque{};
-        pub const SetupGetLineText = *opaque{};
-        pub const SetupGetStringField = *opaque{};
-        pub const SetupGetMultiSzField = *opaque{};
-        pub const SetupGetFileCompressionInfo = *opaque{};
-        pub const SetupGetFileCompressionInfoEx = *opaque{};
-        pub const SetupDecompressOrCopyFile = *opaque{};
-        pub const SetupGetSourceFileLocation = *opaque{};
-        pub const SetupGetSourceFileSize = *opaque{};
-        pub const SetupGetTargetPath = *opaque{};
-        pub const SetupSetSourceList = *opaque{};
-        pub const SetupAddToSourceList = *opaque{};
-        pub const SetupRemoveFromSourceList = *opaque{};
-        pub const SetupQuerySourceList = *opaque{};
-        pub const SetupFreeSourceList = *opaque{};
-        pub const SetupPromptForDisk = *opaque{};
-        pub const SetupCopyError = *opaque{};
-        pub const SetupRenameError = *opaque{};
-        pub const SetupDeleteError = *opaque{};
-        pub const SetupBackupError = *opaque{};
-        pub const SetupSetDirectoryId = *opaque{};
-        pub const SetupSetDirectoryIdEx = *opaque{};
-        pub const SetupGetSourceInfo = *opaque{};
-        pub const SetupInstallFile = *opaque{};
-        pub const SetupInstallFileEx = *opaque{};
-        pub const SetupSetFileQueueAlternatePlatform = *opaque{};
-        pub const SetupSetPlatformPathOverride = *opaque{};
-        pub const SetupQueueCopy = *opaque{};
-        pub const SetupQueueCopyIndirect = *opaque{};
-        pub const SetupQueueDefaultCopy = *opaque{};
-        pub const SetupQueueCopySection = *opaque{};
-        pub const SetupQueueDelete = *opaque{};
-        pub const SetupQueueDeleteSection = *opaque{};
-        pub const SetupQueueRename = *opaque{};
-        pub const SetupQueueRenameSection = *opaque{};
-        pub const SetupCommitFileQueue = *opaque{};
-        pub const SetupScanFileQueue = *opaque{};
-        pub const SetupCopyOEMInf = *opaque{};
-        pub const SetupUninstallOEMInf = *opaque{};
-        pub const SetupCreateDiskSpaceList = *opaque{};
-        pub const SetupDuplicateDiskSpaceList = *opaque{};
-        pub const SetupQueryDrivesInDiskSpaceList = *opaque{};
-        pub const SetupQuerySpaceRequiredOnDrive = *opaque{};
-        pub const SetupAdjustDiskSpaceList = *opaque{};
-        pub const SetupAddToDiskSpaceList = *opaque{};
-        pub const SetupAddSectionToDiskSpaceList = *opaque{};
-        pub const SetupAddInstallSectionToDiskSpaceList = *opaque{};
-        pub const SetupRemoveFromDiskSpaceList = *opaque{};
-        pub const SetupRemoveSectionFromDiskSpaceList = *opaque{};
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = *opaque{};
-        pub const SetupIterateCabinet = *opaque{};
-        pub const SetupDefaultQueueCallback = *opaque{};
-        pub const SetupInstallFromInfSection = *opaque{};
-        pub const SetupInstallFilesFromInfSection = *opaque{};
-        pub const SetupInstallServicesFromInfSection = *opaque{};
-        pub const SetupInstallServicesFromInfSectionEx = *opaque{};
-        pub const InstallHinfSection = *opaque{};
-        pub const SetupInitializeFileLog = *opaque{};
-        pub const SetupLogFile = *opaque{};
-        pub const SetupRemoveFileLogEntry = *opaque{};
-        pub const SetupQueryFileLog = *opaque{};
-        pub const SetupLogError = *opaque{};
-        pub const SetupEnumInfSections = *opaque{};
-        pub const SetupVerifyInfFile = *opaque{};
-        pub const SetupConfigureWmiFromInfSection = *opaque{};
-        pub const CreateActCtx = *opaque{};
-        pub const FindActCtxSectionString = *opaque{};
         pub const MsiSetExternalUI = *opaque{};
         pub const MsiEnableLog = *opaque{};
         pub const MsiQueryProductState = *opaque{};
@@ -5793,7 +5716,87 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = *opaque{};
         pub const MsiPreviewDialog = *opaque{};
         pub const MsiPreviewBillboard = *opaque{};
+        pub const CreateActCtx = *opaque{};
+        pub const FindActCtxSectionString = *opaque{};
+        pub const SetupGetInfInformation = *opaque{};
+        pub const SetupQueryInfFileInformation = *opaque{};
+        pub const SetupQueryInfOriginalFileInformation = *opaque{};
+        pub const SetupQueryInfVersionInformation = *opaque{};
+        pub const SetupGetInfFileList = *opaque{};
+        pub const SetupOpenInfFile = *opaque{};
+        pub const SetupOpenAppendInfFile = *opaque{};
+        pub const SetupFindFirstLine = *opaque{};
+        pub const SetupFindNextMatchLine = *opaque{};
+        pub const SetupGetLineByIndex = *opaque{};
+        pub const SetupGetLineCount = *opaque{};
+        pub const SetupGetLineText = *opaque{};
+        pub const SetupGetStringField = *opaque{};
+        pub const SetupGetMultiSzField = *opaque{};
+        pub const SetupGetFileCompressionInfo = *opaque{};
+        pub const SetupGetFileCompressionInfoEx = *opaque{};
+        pub const SetupDecompressOrCopyFile = *opaque{};
+        pub const SetupGetSourceFileLocation = *opaque{};
+        pub const SetupGetSourceFileSize = *opaque{};
+        pub const SetupGetTargetPath = *opaque{};
+        pub const SetupSetSourceList = *opaque{};
+        pub const SetupAddToSourceList = *opaque{};
+        pub const SetupRemoveFromSourceList = *opaque{};
+        pub const SetupQuerySourceList = *opaque{};
+        pub const SetupFreeSourceList = *opaque{};
+        pub const SetupPromptForDisk = *opaque{};
+        pub const SetupCopyError = *opaque{};
+        pub const SetupRenameError = *opaque{};
+        pub const SetupDeleteError = *opaque{};
+        pub const SetupBackupError = *opaque{};
+        pub const SetupSetDirectoryId = *opaque{};
+        pub const SetupSetDirectoryIdEx = *opaque{};
+        pub const SetupGetSourceInfo = *opaque{};
+        pub const SetupInstallFile = *opaque{};
+        pub const SetupInstallFileEx = *opaque{};
+        pub const SetupSetFileQueueAlternatePlatform = *opaque{};
+        pub const SetupSetPlatformPathOverride = *opaque{};
+        pub const SetupQueueCopy = *opaque{};
+        pub const SetupQueueCopyIndirect = *opaque{};
+        pub const SetupQueueDefaultCopy = *opaque{};
+        pub const SetupQueueCopySection = *opaque{};
+        pub const SetupQueueDelete = *opaque{};
+        pub const SetupQueueDeleteSection = *opaque{};
+        pub const SetupQueueRename = *opaque{};
+        pub const SetupQueueRenameSection = *opaque{};
+        pub const SetupCommitFileQueue = *opaque{};
+        pub const SetupScanFileQueue = *opaque{};
+        pub const SetupCopyOEMInf = *opaque{};
+        pub const SetupUninstallOEMInf = *opaque{};
+        pub const SetupCreateDiskSpaceList = *opaque{};
+        pub const SetupDuplicateDiskSpaceList = *opaque{};
+        pub const SetupQueryDrivesInDiskSpaceList = *opaque{};
+        pub const SetupQuerySpaceRequiredOnDrive = *opaque{};
+        pub const SetupAdjustDiskSpaceList = *opaque{};
+        pub const SetupAddToDiskSpaceList = *opaque{};
+        pub const SetupAddSectionToDiskSpaceList = *opaque{};
+        pub const SetupAddInstallSectionToDiskSpaceList = *opaque{};
+        pub const SetupRemoveFromDiskSpaceList = *opaque{};
+        pub const SetupRemoveSectionFromDiskSpaceList = *opaque{};
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = *opaque{};
+        pub const SetupIterateCabinet = *opaque{};
+        pub const SetupDefaultQueueCallback = *opaque{};
+        pub const SetupInstallFromInfSection = *opaque{};
+        pub const SetupInstallFilesFromInfSection = *opaque{};
+        pub const SetupInstallServicesFromInfSection = *opaque{};
+        pub const SetupInstallServicesFromInfSectionEx = *opaque{};
+        pub const InstallHinfSection = *opaque{};
+        pub const SetupInitializeFileLog = *opaque{};
+        pub const SetupLogFile = *opaque{};
+        pub const SetupRemoveFileLogEntry = *opaque{};
+        pub const SetupQueryFileLog = *opaque{};
+        pub const SetupLogError = *opaque{};
+        pub const SetupEnumInfSections = *opaque{};
+        pub const SetupVerifyInfFile = *opaque{};
+        pub const SetupConfigureWmiFromInfSection = *opaque{};
     } else struct {
+        pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
+        pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
+        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const SP_ORIGINAL_FILE_INFO_ = @compileError("'SP_ORIGINAL_FILE_INFO_' requires that UNICODE be set to true or false in the root module");
         pub const PSP_FILE_CALLBACK_ = @compileError("'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module");
         pub const FILEPATHS_ = @compileError("'FILEPATHS_' requires that UNICODE be set to true or false in the root module");
@@ -5805,86 +5808,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = @compileError("'SP_FILE_COPY_PARAMS_' requires that UNICODE be set to true or false in the root module");
         pub const SP_INF_SIGNER_INFO_V1_ = @compileError("'SP_INF_SIGNER_INFO_V1_' requires that UNICODE be set to true or false in the root module");
         pub const SP_INF_SIGNER_INFO_V2_ = @compileError("'SP_INF_SIGNER_INFO_V2_' requires that UNICODE be set to true or false in the root module");
-        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
-        pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
-        pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfInformation = @compileError("'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfFileInformation = @compileError("'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfOriginalFileInformation = @compileError("'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryInfVersionInformation = @compileError("'SetupQueryInfVersionInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetInfFileList = @compileError("'SetupGetInfFileList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupOpenInfFile = @compileError("'SetupOpenInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupOpenAppendInfFile = @compileError("'SetupOpenAppendInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFindFirstLine = @compileError("'SetupFindFirstLine' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFindNextMatchLine = @compileError("'SetupFindNextMatchLine' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineByIndex = @compileError("'SetupGetLineByIndex' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineCount = @compileError("'SetupGetLineCount' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetLineText = @compileError("'SetupGetLineText' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetStringField = @compileError("'SetupGetStringField' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetMultiSzField = @compileError("'SetupGetMultiSzField' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetFileCompressionInfo = @compileError("'SetupGetFileCompressionInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetFileCompressionInfoEx = @compileError("'SetupGetFileCompressionInfoEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDecompressOrCopyFile = @compileError("'SetupDecompressOrCopyFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceFileLocation = @compileError("'SetupGetSourceFileLocation' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceFileSize = @compileError("'SetupGetSourceFileSize' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetTargetPath = @compileError("'SetupGetTargetPath' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetSourceList = @compileError("'SetupSetSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddToSourceList = @compileError("'SetupAddToSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFromSourceList = @compileError("'SetupRemoveFromSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQuerySourceList = @compileError("'SetupQuerySourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupFreeSourceList = @compileError("'SetupFreeSourceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupPromptForDisk = @compileError("'SetupPromptForDisk' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCopyError = @compileError("'SetupCopyError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRenameError = @compileError("'SetupRenameError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDeleteError = @compileError("'SetupDeleteError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupBackupError = @compileError("'SetupBackupError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetDirectoryId = @compileError("'SetupSetDirectoryId' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetDirectoryIdEx = @compileError("'SetupSetDirectoryIdEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupGetSourceInfo = @compileError("'SetupGetSourceInfo' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFile = @compileError("'SetupInstallFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFileEx = @compileError("'SetupInstallFileEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetFileQueueAlternatePlatform = @compileError("'SetupSetFileQueueAlternatePlatform' requires that UNICODE be set to true or false in the root module");
-        pub const SetupSetPlatformPathOverride = @compileError("'SetupSetPlatformPathOverride' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopy = @compileError("'SetupQueueCopy' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopyIndirect = @compileError("'SetupQueueCopyIndirect' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDefaultCopy = @compileError("'SetupQueueDefaultCopy' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueCopySection = @compileError("'SetupQueueCopySection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDelete = @compileError("'SetupQueueDelete' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueDeleteSection = @compileError("'SetupQueueDeleteSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueRename = @compileError("'SetupQueueRename' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueueRenameSection = @compileError("'SetupQueueRenameSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCommitFileQueue = @compileError("'SetupCommitFileQueue' requires that UNICODE be set to true or false in the root module");
-        pub const SetupScanFileQueue = @compileError("'SetupScanFileQueue' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCopyOEMInf = @compileError("'SetupCopyOEMInf' requires that UNICODE be set to true or false in the root module");
-        pub const SetupUninstallOEMInf = @compileError("'SetupUninstallOEMInf' requires that UNICODE be set to true or false in the root module");
-        pub const SetupCreateDiskSpaceList = @compileError("'SetupCreateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDuplicateDiskSpaceList = @compileError("'SetupDuplicateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryDrivesInDiskSpaceList = @compileError("'SetupQueryDrivesInDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQuerySpaceRequiredOnDrive = @compileError("'SetupQuerySpaceRequiredOnDrive' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAdjustDiskSpaceList = @compileError("'SetupAdjustDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddToDiskSpaceList = @compileError("'SetupAddToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddSectionToDiskSpaceList = @compileError("'SetupAddSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupAddInstallSectionToDiskSpaceList = @compileError("'SetupAddInstallSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFromDiskSpaceList = @compileError("'SetupRemoveFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveSectionFromDiskSpaceList = @compileError("'SetupRemoveSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = @compileError("'SetupRemoveInstallSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
-        pub const SetupIterateCabinet = @compileError("'SetupIterateCabinet' requires that UNICODE be set to true or false in the root module");
-        pub const SetupDefaultQueueCallback = @compileError("'SetupDefaultQueueCallback' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFromInfSection = @compileError("'SetupInstallFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallFilesFromInfSection = @compileError("'SetupInstallFilesFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallServicesFromInfSection = @compileError("'SetupInstallServicesFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInstallServicesFromInfSectionEx = @compileError("'SetupInstallServicesFromInfSectionEx' requires that UNICODE be set to true or false in the root module");
-        pub const InstallHinfSection = @compileError("'InstallHinfSection' requires that UNICODE be set to true or false in the root module");
-        pub const SetupInitializeFileLog = @compileError("'SetupInitializeFileLog' requires that UNICODE be set to true or false in the root module");
-        pub const SetupLogFile = @compileError("'SetupLogFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupRemoveFileLogEntry = @compileError("'SetupRemoveFileLogEntry' requires that UNICODE be set to true or false in the root module");
-        pub const SetupQueryFileLog = @compileError("'SetupQueryFileLog' requires that UNICODE be set to true or false in the root module");
-        pub const SetupLogError = @compileError("'SetupLogError' requires that UNICODE be set to true or false in the root module");
-        pub const SetupEnumInfSections = @compileError("'SetupEnumInfSections' requires that UNICODE be set to true or false in the root module");
-        pub const SetupVerifyInfFile = @compileError("'SetupVerifyInfFile' requires that UNICODE be set to true or false in the root module");
-        pub const SetupConfigureWmiFromInfSection = @compileError("'SetupConfigureWmiFromInfSection' requires that UNICODE be set to true or false in the root module");
-        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
-        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
         pub const MsiSetExternalUI = @compileError("'MsiSetExternalUI' requires that UNICODE be set to true or false in the root module");
         pub const MsiEnableLog = @compileError("'MsiEnableLog' requires that UNICODE be set to true or false in the root module");
         pub const MsiQueryProductState = @compileError("'MsiQueryProductState' requires that UNICODE be set to true or false in the root module");
@@ -6001,6 +5924,83 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = @compileError("'MsiSetTargetPath' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewDialog = @compileError("'MsiPreviewDialog' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewBillboard = @compileError("'MsiPreviewBillboard' requires that UNICODE be set to true or false in the root module");
+        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
+        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetInfInformation = @compileError("'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueryInfFileInformation = @compileError("'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueryInfOriginalFileInformation = @compileError("'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueryInfVersionInformation = @compileError("'SetupQueryInfVersionInformation' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetInfFileList = @compileError("'SetupGetInfFileList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupOpenInfFile = @compileError("'SetupOpenInfFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupOpenAppendInfFile = @compileError("'SetupOpenAppendInfFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupFindFirstLine = @compileError("'SetupFindFirstLine' requires that UNICODE be set to true or false in the root module");
+        pub const SetupFindNextMatchLine = @compileError("'SetupFindNextMatchLine' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetLineByIndex = @compileError("'SetupGetLineByIndex' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetLineCount = @compileError("'SetupGetLineCount' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetLineText = @compileError("'SetupGetLineText' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetStringField = @compileError("'SetupGetStringField' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetMultiSzField = @compileError("'SetupGetMultiSzField' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetFileCompressionInfo = @compileError("'SetupGetFileCompressionInfo' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetFileCompressionInfoEx = @compileError("'SetupGetFileCompressionInfoEx' requires that UNICODE be set to true or false in the root module");
+        pub const SetupDecompressOrCopyFile = @compileError("'SetupDecompressOrCopyFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetSourceFileLocation = @compileError("'SetupGetSourceFileLocation' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetSourceFileSize = @compileError("'SetupGetSourceFileSize' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetTargetPath = @compileError("'SetupGetTargetPath' requires that UNICODE be set to true or false in the root module");
+        pub const SetupSetSourceList = @compileError("'SetupSetSourceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupAddToSourceList = @compileError("'SetupAddToSourceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRemoveFromSourceList = @compileError("'SetupRemoveFromSourceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQuerySourceList = @compileError("'SetupQuerySourceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupFreeSourceList = @compileError("'SetupFreeSourceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupPromptForDisk = @compileError("'SetupPromptForDisk' requires that UNICODE be set to true or false in the root module");
+        pub const SetupCopyError = @compileError("'SetupCopyError' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRenameError = @compileError("'SetupRenameError' requires that UNICODE be set to true or false in the root module");
+        pub const SetupDeleteError = @compileError("'SetupDeleteError' requires that UNICODE be set to true or false in the root module");
+        pub const SetupBackupError = @compileError("'SetupBackupError' requires that UNICODE be set to true or false in the root module");
+        pub const SetupSetDirectoryId = @compileError("'SetupSetDirectoryId' requires that UNICODE be set to true or false in the root module");
+        pub const SetupSetDirectoryIdEx = @compileError("'SetupSetDirectoryIdEx' requires that UNICODE be set to true or false in the root module");
+        pub const SetupGetSourceInfo = @compileError("'SetupGetSourceInfo' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallFile = @compileError("'SetupInstallFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallFileEx = @compileError("'SetupInstallFileEx' requires that UNICODE be set to true or false in the root module");
+        pub const SetupSetFileQueueAlternatePlatform = @compileError("'SetupSetFileQueueAlternatePlatform' requires that UNICODE be set to true or false in the root module");
+        pub const SetupSetPlatformPathOverride = @compileError("'SetupSetPlatformPathOverride' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueCopy = @compileError("'SetupQueueCopy' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueCopyIndirect = @compileError("'SetupQueueCopyIndirect' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueDefaultCopy = @compileError("'SetupQueueDefaultCopy' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueCopySection = @compileError("'SetupQueueCopySection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueDelete = @compileError("'SetupQueueDelete' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueDeleteSection = @compileError("'SetupQueueDeleteSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueRename = @compileError("'SetupQueueRename' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueueRenameSection = @compileError("'SetupQueueRenameSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupCommitFileQueue = @compileError("'SetupCommitFileQueue' requires that UNICODE be set to true or false in the root module");
+        pub const SetupScanFileQueue = @compileError("'SetupScanFileQueue' requires that UNICODE be set to true or false in the root module");
+        pub const SetupCopyOEMInf = @compileError("'SetupCopyOEMInf' requires that UNICODE be set to true or false in the root module");
+        pub const SetupUninstallOEMInf = @compileError("'SetupUninstallOEMInf' requires that UNICODE be set to true or false in the root module");
+        pub const SetupCreateDiskSpaceList = @compileError("'SetupCreateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupDuplicateDiskSpaceList = @compileError("'SetupDuplicateDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueryDrivesInDiskSpaceList = @compileError("'SetupQueryDrivesInDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQuerySpaceRequiredOnDrive = @compileError("'SetupQuerySpaceRequiredOnDrive' requires that UNICODE be set to true or false in the root module");
+        pub const SetupAdjustDiskSpaceList = @compileError("'SetupAdjustDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupAddToDiskSpaceList = @compileError("'SetupAddToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupAddSectionToDiskSpaceList = @compileError("'SetupAddSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupAddInstallSectionToDiskSpaceList = @compileError("'SetupAddInstallSectionToDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRemoveFromDiskSpaceList = @compileError("'SetupRemoveFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRemoveSectionFromDiskSpaceList = @compileError("'SetupRemoveSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = @compileError("'SetupRemoveInstallSectionFromDiskSpaceList' requires that UNICODE be set to true or false in the root module");
+        pub const SetupIterateCabinet = @compileError("'SetupIterateCabinet' requires that UNICODE be set to true or false in the root module");
+        pub const SetupDefaultQueueCallback = @compileError("'SetupDefaultQueueCallback' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallFromInfSection = @compileError("'SetupInstallFromInfSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallFilesFromInfSection = @compileError("'SetupInstallFilesFromInfSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallServicesFromInfSection = @compileError("'SetupInstallServicesFromInfSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInstallServicesFromInfSectionEx = @compileError("'SetupInstallServicesFromInfSectionEx' requires that UNICODE be set to true or false in the root module");
+        pub const InstallHinfSection = @compileError("'InstallHinfSection' requires that UNICODE be set to true or false in the root module");
+        pub const SetupInitializeFileLog = @compileError("'SetupInitializeFileLog' requires that UNICODE be set to true or false in the root module");
+        pub const SetupLogFile = @compileError("'SetupLogFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupRemoveFileLogEntry = @compileError("'SetupRemoveFileLogEntry' requires that UNICODE be set to true or false in the root module");
+        pub const SetupQueryFileLog = @compileError("'SetupQueryFileLog' requires that UNICODE be set to true or false in the root module");
+        pub const SetupLogError = @compileError("'SetupLogError' requires that UNICODE be set to true or false in the root module");
+        pub const SetupEnumInfSections = @compileError("'SetupEnumInfSections' requires that UNICODE be set to true or false in the root module");
+        pub const SetupVerifyInfFile = @compileError("'SetupVerifyInfFile' requires that UNICODE be set to true or false in the root module");
+        pub const SetupConfigureWmiFromInfSection = @compileError("'SetupConfigureWmiFromInfSection' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -6013,10 +6013,10 @@ const PWSTR = @import("system_services.zig").PWSTR;
 const IStream = @import("structured_storage.zig").IStream;
 const HKEY = @import("windows_programming.zig").HKEY;
 const IUnknown = @import("com.zig").IUnknown;
-const HINSTANCE = @import("system_services.zig").HINSTANCE;
-const HRESULT = @import("com.zig").HRESULT;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
+const HRESULT = @import("com.zig").HRESULT;
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const BSTR = @import("automation.zig").BSTR;
 const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
@@ -6029,14 +6029,14 @@ const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("windows_programming
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PSP_FILE_CALLBACK_A;
-    _ = PSP_FILE_CALLBACK_W;
     _ = LPDISPLAYVAL;
     _ = LPEVALCOMCALLBACK;
     _ = INSTALLUI_HANDLERA;
     _ = INSTALLUI_HANDLERW;
     _ = INSTALLUI_HANDLER_RECORD;
     _ = PINSTALLUI_HANDLER_RECORD;
+    _ = PSP_FILE_CALLBACK_A;
+    _ = PSP_FILE_CALLBACK_W;
 
     const constant_export_count = 0;
     const type_export_count = 105;

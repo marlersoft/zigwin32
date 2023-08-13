@@ -90,8 +90,8 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {

@@ -6104,12 +6104,6 @@ pub const kPTJobScope = EPrintTicketScope.kPTJobScope;
 //--------------------------------------------------------------------------------
 // Section: Functions (23)
 //--------------------------------------------------------------------------------
-pub extern "USER32" fn PrintWindow(
-    hwnd: HWND,
-    hdcBlt: HDC,
-    nFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "WINSPOOL" fn DeviceCapabilitiesA(
     pDevice: [*:0]const u8,
     pPort: ?[*:0]const u8,
@@ -6173,6 +6167,12 @@ pub extern "GDI32" fn SetAbortProc(
     hdc: HDC,
     proc: ABORTPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn PrintWindow(
+    hwnd: HWND,
+    hdcBlt: HDC,
+    nFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
     pszPrinterName: [*:0]const u16,

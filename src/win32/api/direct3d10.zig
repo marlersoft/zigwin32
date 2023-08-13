@@ -752,8 +752,8 @@ pub const ID3D10View = extern struct {
 pub const D3D10_BUFFER_SRV = extern struct {
     Anonymous1: D3D10_BUFFER_SRV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_SRV._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_SRV = extern struct {
@@ -830,8 +830,8 @@ pub const ID3D10ShaderResourceView = extern struct {
 pub const D3D10_BUFFER_RTV = extern struct {
     Anonymous1: D3D10_BUFFER_RTV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_RTV._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_RTV = extern struct {

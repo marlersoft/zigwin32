@@ -6,17 +6,17 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const USEROBJECTFLAGS = extern struct {
-    fInherit: BOOL,
-    fReserved: BOOL,
-    dwFlags: u32,
-};
-
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
 pub const HDESK = ?*c_void;
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
 pub const HWINSTA = ?*c_void;
+
+pub const USEROBJECTFLAGS = extern struct {
+    fInherit: BOOL,
+    fReserved: BOOL,
+    dwFlags: u32,
+};
 
 
 //--------------------------------------------------------------------------------

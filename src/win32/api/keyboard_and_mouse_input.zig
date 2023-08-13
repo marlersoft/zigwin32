@@ -6,6 +6,8 @@
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
+pub const HRAWINPUT = ?*c_void;
+
 pub const MOUSEMOVEPOINT = extern struct {
     x: i32,
     y: i32,
@@ -134,8 +136,6 @@ pub const RAWINPUTDEVICELIST = extern struct {
     hDevice: HANDLE,
     dwType: u32,
 };
-
-pub const HRAWINPUT = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

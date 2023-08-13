@@ -10083,3640 +10083,6 @@ pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY.ONLY_TOKEN;
 pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY.FILTER_TOKENS;
 pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY.VALID_FLAGS;
 
-pub const PROCESSOR_NUMBER = extern struct {
-    Group: u16,
-    Number: u8,
-    Reserved: u8,
-};
-
-pub const GROUP_AFFINITY = extern struct {
-    Mask: ?*c_void,
-    Group: u16,
-    Reserved: [3]u16,
-};
-
-pub const POWERBROADCAST_SETTING = extern struct {
-    PowerSetting: Guid,
-    DataLength: u32,
-    Data: [1]u8,
-};
-
-pub const AR_STATE = extern enum(i32) {
-    AR_ENABLED = 0,
-    AR_DISABLED = 1,
-    AR_SUPPRESSED = 2,
-    AR_REMOTESESSION = 4,
-    AR_MULTIMON = 8,
-    AR_NOSENSOR = 16,
-    AR_NOT_SUPPORTED = 32,
-    AR_DOCKED = 64,
-    AR_LAPTOP = 128,
-};
-pub const AR_ENABLED = AR_STATE.AR_ENABLED;
-pub const AR_DISABLED = AR_STATE.AR_DISABLED;
-pub const AR_SUPPRESSED = AR_STATE.AR_SUPPRESSED;
-pub const AR_REMOTESESSION = AR_STATE.AR_REMOTESESSION;
-pub const AR_MULTIMON = AR_STATE.AR_MULTIMON;
-pub const AR_NOSENSOR = AR_STATE.AR_NOSENSOR;
-pub const AR_NOT_SUPPORTED = AR_STATE.AR_NOT_SUPPORTED;
-pub const AR_DOCKED = AR_STATE.AR_DOCKED;
-pub const AR_LAPTOP = AR_STATE.AR_LAPTOP;
-
-pub const ORIENTATION_PREFERENCE = extern enum(i32) {
-    NONE = 0,
-    LANDSCAPE = 1,
-    PORTRAIT = 2,
-    LANDSCAPE_FLIPPED = 4,
-    PORTRAIT_FLIPPED = 8,
-};
-pub const ORIENTATION_PREFERENCE_NONE = ORIENTATION_PREFERENCE.NONE;
-pub const ORIENTATION_PREFERENCE_LANDSCAPE = ORIENTATION_PREFERENCE.LANDSCAPE;
-pub const ORIENTATION_PREFERENCE_PORTRAIT = ORIENTATION_PREFERENCE.PORTRAIT;
-pub const ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED = ORIENTATION_PREFERENCE.LANDSCAPE_FLIPPED;
-pub const ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED = ORIENTATION_PREFERENCE.PORTRAIT_FLIPPED;
-
-pub const BOOL = i32;
-
-// TODO: this type has a FreeFunc 'DeleteBoundaryDescriptor', what can Zig do with this information?
-pub const BoundaryDescriptorHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
-pub const EventLogHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
-pub const EventSourceHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
-pub const HANDLE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
-pub const HeapHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
-pub const HINSTANCE = ?*c_void;
-
-pub const HRSRC = ?*c_void;
-
-pub const HSURF = ?*c_void;
-
-pub const LRESULT = i32;
-
-pub const LSTATUS = i32;
-
-// TODO: this type has a FreeFunc 'ClosePrivateNamespace', what can Zig do with this information?
-pub const NamespaceHandle = ?*c_void;
-
-pub const NTSTATUS = i32;
-
-pub const PSTR = [*:0]u8;
-
-// TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
-pub const PTP_POOL = ?*c_void;
-
-pub const PWSTR = [*:0]u16;
-
-// TODO: this type has a FreeFunc 'DeleteTimerQueueEx', what can Zig do with this information?
-pub const TimerQueueHandle = ?*c_void;
-
-pub const FLOAT128 = extern struct {
-    LowPart: i64,
-    HighPart: i64,
-};
-
-pub const LARGE_INTEGER = u32; // TODO: implement StructOrUnion types?
-
-pub const ULARGE_INTEGER = u32; // TODO: implement StructOrUnion types?
-
-pub const M128A = extern struct {
-    Low: u64,
-    High: i64,
-};
-
-pub const XSAVE_FORMAT = extern struct {
-    ControlWord: u16,
-    StatusWord: u16,
-    TagWord: u8,
-    Reserved1: u8,
-    ErrorOpcode: u16,
-    ErrorOffset: u32,
-    ErrorSelector: u16,
-    Reserved2: u16,
-    DataOffset: u32,
-    DataSelector: u16,
-    Reserved3: u16,
-    MxCsr: u32,
-    MxCsr_Mask: u32,
-    FloatRegisters: [8]M128A,
-    XmmRegisters: [8]M128A,
-    Reserved4: [224]u8,
-};
-
-pub const XSAVE_CET_U_FORMAT = extern struct {
-    Ia32CetUMsr: u64,
-    Ia32Pl3SspMsr: u64,
-};
-
-pub const XSAVE_AREA_HEADER = extern struct {
-    Mask: u64,
-    CompactionMask: u64,
-    Reserved2: [6]u64,
-};
-
-pub const XSAVE_AREA = extern struct {
-    LegacyState: XSAVE_FORMAT,
-    Header: XSAVE_AREA_HEADER,
-};
-
-pub const XSTATE_CONTEXT = extern struct {
-    Mask: u64,
-    Length: u32,
-    Reserved1: u32,
-    Area: *XSAVE_AREA,
-    Reserved2: u32,
-    Buffer: *c_void,
-    Reserved3: u32,
-};
-
-pub const SCOPE_TABLE_AMD64 = extern struct {
-    Count: u32,
-    ScopeRecord: [1]SCOPE_TABLE_AMD64._Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const SCOPE_TABLE_ARM = extern struct {
-    Count: u32,
-    ScopeRecord: [1]SCOPE_TABLE_ARM._Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const SCOPE_TABLE_ARM64 = extern struct {
-    Count: u32,
-    ScopeRecord: [1]SCOPE_TABLE_ARM64._Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const KNONVOLATILE_CONTEXT_POINTERS_ARM64 = extern struct {
-    X19: *u64,
-    X20: *u64,
-    X21: *u64,
-    X22: *u64,
-    X23: *u64,
-    X24: *u64,
-    X25: *u64,
-    X26: *u64,
-    X27: *u64,
-    X28: *u64,
-    Fp: *u64,
-    Lr: *u64,
-    D8: *u64,
-    D9: *u64,
-    D10: *u64,
-    D11: *u64,
-    D12: *u64,
-    D13: *u64,
-    D14: *u64,
-    D15: *u64,
-};
-
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Spare0: u32,
-};
-
-pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
-    Dummy: u32,
-};
-
-pub const WOW64_DESCRIPTOR_TABLE_ENTRY = extern struct {
-    Selector: u32,
-    Descriptor: WOW64_LDT_ENTRY,
-};
-
-pub const EXCEPTION_RECORD32 = extern struct {
-    ExceptionCode: u32,
-    ExceptionFlags: u32,
-    ExceptionRecord: u32,
-    ExceptionAddress: u32,
-    NumberParameters: u32,
-    ExceptionInformation: [15]u32,
-};
-
-pub const SE_SID = u32; // TODO: implement StructOrUnion types?
-
-pub const SYSTEM_PROCESS_TRUST_LABEL_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ACCESS_FILTER_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SECURITY_DESCRIPTOR_RELATIVE = extern struct {
-    Revision: u8,
-    Sbz1: u8,
-    Control: u16,
-    Owner: u32,
-    Group: u32,
-    Sacl: u32,
-    Dacl: u32,
-};
-
-pub const SECURITY_OBJECT_AI_PARAMS = extern struct {
-    Size: u32,
-    ConstraintMask: u32,
-};
-
-pub const ACCESS_REASON_TYPE = extern enum(i32) {
-    AccessReasonNone = 0,
-    AccessReasonAllowedAce = 65536,
-    AccessReasonDeniedAce = 131072,
-    AccessReasonAllowedParentAce = 196608,
-    AccessReasonDeniedParentAce = 262144,
-    AccessReasonNotGrantedByCape = 327680,
-    AccessReasonNotGrantedByParentCape = 393216,
-    AccessReasonNotGrantedToAppContainer = 458752,
-    AccessReasonMissingPrivilege = 1048576,
-    AccessReasonFromPrivilege = 2097152,
-    AccessReasonIntegrityLevel = 3145728,
-    AccessReasonOwnership = 4194304,
-    AccessReasonNullDacl = 5242880,
-    AccessReasonEmptyDacl = 6291456,
-    AccessReasonNoSD = 7340032,
-    AccessReasonNoGrant = 8388608,
-    AccessReasonTrustLabel = 9437184,
-    AccessReasonFilterAce = 10485760,
-};
-pub const AccessReasonNone = ACCESS_REASON_TYPE.AccessReasonNone;
-pub const AccessReasonAllowedAce = ACCESS_REASON_TYPE.AccessReasonAllowedAce;
-pub const AccessReasonDeniedAce = ACCESS_REASON_TYPE.AccessReasonDeniedAce;
-pub const AccessReasonAllowedParentAce = ACCESS_REASON_TYPE.AccessReasonAllowedParentAce;
-pub const AccessReasonDeniedParentAce = ACCESS_REASON_TYPE.AccessReasonDeniedParentAce;
-pub const AccessReasonNotGrantedByCape = ACCESS_REASON_TYPE.AccessReasonNotGrantedByCape;
-pub const AccessReasonNotGrantedByParentCape = ACCESS_REASON_TYPE.AccessReasonNotGrantedByParentCape;
-pub const AccessReasonNotGrantedToAppContainer = ACCESS_REASON_TYPE.AccessReasonNotGrantedToAppContainer;
-pub const AccessReasonMissingPrivilege = ACCESS_REASON_TYPE.AccessReasonMissingPrivilege;
-pub const AccessReasonFromPrivilege = ACCESS_REASON_TYPE.AccessReasonFromPrivilege;
-pub const AccessReasonIntegrityLevel = ACCESS_REASON_TYPE.AccessReasonIntegrityLevel;
-pub const AccessReasonOwnership = ACCESS_REASON_TYPE.AccessReasonOwnership;
-pub const AccessReasonNullDacl = ACCESS_REASON_TYPE.AccessReasonNullDacl;
-pub const AccessReasonEmptyDacl = ACCESS_REASON_TYPE.AccessReasonEmptyDacl;
-pub const AccessReasonNoSD = ACCESS_REASON_TYPE.AccessReasonNoSD;
-pub const AccessReasonNoGrant = ACCESS_REASON_TYPE.AccessReasonNoGrant;
-pub const AccessReasonTrustLabel = ACCESS_REASON_TYPE.AccessReasonTrustLabel;
-pub const AccessReasonFilterAce = ACCESS_REASON_TYPE.AccessReasonFilterAce;
-
-pub const ACCESS_REASONS = extern struct {
-    Data: [32]u32,
-};
-
-pub const SE_SECURITY_DESCRIPTOR = extern struct {
-    Size: u32,
-    Flags: u32,
-    SecurityDescriptor: *c_void,
-};
-
-pub const SE_ACCESS_REQUEST = extern struct {
-    Size: u32,
-    SeSecurityDescriptor: *SE_SECURITY_DESCRIPTOR,
-    DesiredAccess: u32,
-    PreviouslyGrantedAccess: u32,
-    PrincipalSelfSid: *c_void,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectTypeListCount: u32,
-    ObjectTypeList: *OBJECT_TYPE_LIST,
-};
-
-pub const SE_ACCESS_REPLY = extern struct {
-    Size: u32,
-    ResultListCount: u32,
-    GrantedAccess: *u32,
-    AccessStatus: *u32,
-    AccessReason: *ACCESS_REASONS,
-    Privileges: **PRIVILEGE_SET,
-};
-
-pub const SE_TOKEN_USER = extern struct {
-    Anonymous1: SE_TOKEN_USER._Anonymous1_e__Union,
-    Anonymous2: SE_TOKEN_USER._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const TOKEN_SID_INFORMATION = extern struct {
-    Sid: *c_void,
-};
-
-pub const TOKEN_BNO_ISOLATION_INFORMATION = extern struct {
-    IsolationPrefix: PWSTR,
-    IsolationEnabled: u8,
-};
-
-pub const SE_IMPERSONATION_STATE = extern struct {
-    Token: *c_void,
-    CopyOnOpen: u8,
-    EffectiveOnly: u8,
-    Level: SECURITY_IMPERSONATION_LEVEL,
-};
-
-pub const SE_IMAGE_SIGNATURE_TYPE = extern enum(i32) {
-    SeImageSignatureNone = 0,
-    SeImageSignatureEmbedded = 1,
-    SeImageSignatureCache = 2,
-    SeImageSignatureCatalogCached = 3,
-    SeImageSignatureCatalogNotCached = 4,
-    SeImageSignatureCatalogHint = 5,
-    SeImageSignaturePackageCatalog = 6,
-};
-pub const SeImageSignatureNone = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureNone;
-pub const SeImageSignatureEmbedded = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureEmbedded;
-pub const SeImageSignatureCache = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCache;
-pub const SeImageSignatureCatalogCached = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogCached;
-pub const SeImageSignatureCatalogNotCached = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogNotCached;
-pub const SeImageSignatureCatalogHint = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogHint;
-pub const SeImageSignaturePackageCatalog = SE_IMAGE_SIGNATURE_TYPE.SeImageSignaturePackageCatalog;
-
-pub const SE_LEARNING_MODE_DATA_TYPE = extern enum(i32) {
-    SeLearningModeInvalidType = 0,
-    SeLearningModeSettings = 1,
-    SeLearningModeMax = 2,
-};
-pub const SeLearningModeInvalidType = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeInvalidType;
-pub const SeLearningModeSettings = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeSettings;
-pub const SeLearningModeMax = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeMax;
-
-pub const JOB_SET_ARRAY = extern struct {
-    JobHandle: HANDLE,
-    MemberLevel: u32,
-    Flags: u32,
-};
-
-pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
-    Next: *EXCEPTION_REGISTRATION_RECORD,
-    Handler: EXCEPTION_ROUTINE,
-};
-
-pub const NT_TIB = extern struct {
-    ExceptionList: *EXCEPTION_REGISTRATION_RECORD,
-    StackBase: *c_void,
-    StackLimit: *c_void,
-    SubSystemTib: *c_void,
-    Anonymous: NT_TIB._Anonymous_e__Union,
-    ArbitraryUserPointer: *c_void,
-    Self: *NT_TIB,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const NT_TIB32 = extern struct {
-    ExceptionList: u32,
-    StackBase: u32,
-    StackLimit: u32,
-    SubSystemTib: u32,
-    Anonymous: NT_TIB32._Anonymous_e__Union,
-    ArbitraryUserPointer: u32,
-    Self: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const NT_TIB64 = extern struct {
-    ExceptionList: u64,
-    StackBase: u64,
-    StackLimit: u64,
-    SubSystemTib: u64,
-    Anonymous: NT_TIB64._Anonymous_e__Union,
-    ArbitraryUserPointer: u64,
-    Self: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const UMS_CREATE_THREAD_ATTRIBUTES = extern struct {
-    UmsVersion: u32,
-    UmsContext: *c_void,
-    UmsCompletionList: *c_void,
-};
-
-pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
-    _bitfield: u32,
-};
-
-pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = extern struct {
-    TargetAddress: ?*c_void,
-    Flags: ?*c_void,
-};
-
-pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGETS_INFORMATION = extern struct {
-    NumberOfTargets: u16,
-    Reserved: u16,
-    Reserved2: u32,
-    Targets: *PROCESS_DYNAMIC_EH_CONTINUATION_TARGET,
-};
-
-pub const RATE_QUOTA_LIMIT = u32; // TODO: implement StructOrUnion types?
-
-pub const QUOTA_LIMITS_EX = extern struct {
-    PagedPoolLimit: ?*c_void,
-    NonPagedPoolLimit: ?*c_void,
-    MinimumWorkingSetSize: ?*c_void,
-    MaximumWorkingSetSize: ?*c_void,
-    PagefileLimit: ?*c_void,
-    TimeLimit: LARGE_INTEGER,
-    WorkingSetLimit: ?*c_void,
-    Reserved2: ?*c_void,
-    Reserved3: ?*c_void,
-    Reserved4: ?*c_void,
-    Flags: u32,
-    CpuRateLimit: RATE_QUOTA_LIMIT,
-};
-
-pub const IO_COUNTERS = extern struct {
-    ReadOperationCount: u64,
-    WriteOperationCount: u64,
-    OtherOperationCount: u64,
-    ReadTransferCount: u64,
-    WriteTransferCount: u64,
-    OtherTransferCount: u64,
-};
-
-pub const PROCESS_MITIGATION_POLICY = extern enum(i32) {
-    ProcessDEPPolicy = 0,
-    ProcessASLRPolicy = 1,
-    ProcessDynamicCodePolicy = 2,
-    ProcessStrictHandleCheckPolicy = 3,
-    ProcessSystemCallDisablePolicy = 4,
-    ProcessMitigationOptionsMask = 5,
-    ProcessExtensionPointDisablePolicy = 6,
-    ProcessControlFlowGuardPolicy = 7,
-    ProcessSignaturePolicy = 8,
-    ProcessFontDisablePolicy = 9,
-    ProcessImageLoadPolicy = 10,
-    ProcessSystemCallFilterPolicy = 11,
-    ProcessPayloadRestrictionPolicy = 12,
-    ProcessChildProcessPolicy = 13,
-    ProcessSideChannelIsolationPolicy = 14,
-    ProcessUserShadowStackPolicy = 15,
-    MaxProcessMitigationPolicy = 16,
-};
-pub const ProcessDEPPolicy = PROCESS_MITIGATION_POLICY.ProcessDEPPolicy;
-pub const ProcessASLRPolicy = PROCESS_MITIGATION_POLICY.ProcessASLRPolicy;
-pub const ProcessDynamicCodePolicy = PROCESS_MITIGATION_POLICY.ProcessDynamicCodePolicy;
-pub const ProcessStrictHandleCheckPolicy = PROCESS_MITIGATION_POLICY.ProcessStrictHandleCheckPolicy;
-pub const ProcessSystemCallDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessSystemCallDisablePolicy;
-pub const ProcessMitigationOptionsMask = PROCESS_MITIGATION_POLICY.ProcessMitigationOptionsMask;
-pub const ProcessExtensionPointDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessExtensionPointDisablePolicy;
-pub const ProcessControlFlowGuardPolicy = PROCESS_MITIGATION_POLICY.ProcessControlFlowGuardPolicy;
-pub const ProcessSignaturePolicy = PROCESS_MITIGATION_POLICY.ProcessSignaturePolicy;
-pub const ProcessFontDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessFontDisablePolicy;
-pub const ProcessImageLoadPolicy = PROCESS_MITIGATION_POLICY.ProcessImageLoadPolicy;
-pub const ProcessSystemCallFilterPolicy = PROCESS_MITIGATION_POLICY.ProcessSystemCallFilterPolicy;
-pub const ProcessPayloadRestrictionPolicy = PROCESS_MITIGATION_POLICY.ProcessPayloadRestrictionPolicy;
-pub const ProcessChildProcessPolicy = PROCESS_MITIGATION_POLICY.ProcessChildProcessPolicy;
-pub const ProcessSideChannelIsolationPolicy = PROCESS_MITIGATION_POLICY.ProcessSideChannelIsolationPolicy;
-pub const ProcessUserShadowStackPolicy = PROCESS_MITIGATION_POLICY.ProcessUserShadowStackPolicy;
-pub const MaxProcessMitigationPolicy = PROCESS_MITIGATION_POLICY.MaxProcessMitigationPolicy;
-
-pub const PROCESS_MITIGATION_ASLR_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_ASLR_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_DEP_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_DEP_POLICY._Anonymous_e__Union,
-    Permanent: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_DYNAMIC_CODE_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_DYNAMIC_CODE_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_FONT_DISABLE_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_FONT_DISABLE_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_IMAGE_LOAD_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_IMAGE_LOAD_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_CHILD_PROCESS_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_CHILD_PROCESS_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY = extern struct {
-    Anonymous: PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
-    TotalUserTime: LARGE_INTEGER,
-    TotalKernelTime: LARGE_INTEGER,
-    ThisPeriodTotalUserTime: LARGE_INTEGER,
-    ThisPeriodTotalKernelTime: LARGE_INTEGER,
-    TotalPageFaultCount: u32,
-    TotalProcesses: u32,
-    ActiveProcesses: u32,
-    TotalTerminatedProcesses: u32,
-};
-
-pub const JOBOBJECT_BASIC_LIMIT_INFORMATION = extern struct {
-    PerProcessUserTimeLimit: LARGE_INTEGER,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    LimitFlags: JOB_OBJECT_LIMIT,
-    MinimumWorkingSetSize: ?*c_void,
-    MaximumWorkingSetSize: ?*c_void,
-    ActiveProcessLimit: u32,
-    Affinity: ?*c_void,
-    PriorityClass: u32,
-    SchedulingClass: u32,
-};
-
-pub const JOBOBJECT_EXTENDED_LIMIT_INFORMATION = extern struct {
-    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION,
-    IoInfo: IO_COUNTERS,
-    ProcessMemoryLimit: ?*c_void,
-    JobMemoryLimit: ?*c_void,
-    PeakProcessMemoryUsed: ?*c_void,
-    PeakJobMemoryUsed: ?*c_void,
-};
-
-pub const JOBOBJECT_BASIC_PROCESS_ID_LIST = extern struct {
-    NumberOfAssignedProcesses: u32,
-    NumberOfProcessIdsInList: u32,
-    ProcessIdList: [1]?*c_void,
-};
-
-pub const JOBOBJECT_BASIC_UI_RESTRICTIONS = extern struct {
-    UIRestrictionsClass: JOB_OBJECT_UILIMIT,
-};
-
-pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
-    SecurityLimitFlags: JOB_OBJECT_SECURITY,
-    JobToken: HANDLE,
-    SidsToDisable: *TOKEN_GROUPS,
-    PrivilegesToDelete: *TOKEN_PRIVILEGES,
-    RestrictedSids: *TOKEN_GROUPS,
-};
-
-pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
-    EndOfJobTimeAction: u32,
-};
-
-pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
-    CompletionKey: *c_void,
-    CompletionPort: HANDLE,
-};
-
-pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
-    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
-    IoInfo: IO_COUNTERS,
-};
-
-pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
-    MemberLevel: u32,
-};
-
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = extern enum(i32) {
-    ToleranceLow = 1,
-    ToleranceMedium = 2,
-    ToleranceHigh = 3,
-};
-pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceLow;
-pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceMedium;
-pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceHigh;
-
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = extern enum(i32) {
-    ToleranceIntervalShort = 1,
-    ToleranceIntervalMedium = 2,
-    ToleranceIntervalLong = 3,
-};
-pub const ToleranceIntervalShort = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalShort;
-pub const ToleranceIntervalMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalMedium;
-pub const ToleranceIntervalLong = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalLong;
-
-pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = extern struct {
-    IoReadBytesLimit: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemoryLimit: u64,
-    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    LimitFlags: JOB_OBJECT_LIMIT,
-};
-
-pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
-    IoReadBytesLimit: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    Anonymous1: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous1_e__Union,
-    Anonymous2: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous2_e__Union,
-    Anonymous3: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous3_e__Union,
-    LimitFlags: JOB_OBJECT_LIMIT,
-    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    JobLowMemoryLimit: u64,
-    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
-    LimitFlags: JOB_OBJECT_LIMIT,
-    ViolationLimitFlags: JOB_OBJECT_LIMIT,
-    IoReadBytes: u64,
-    IoReadBytesLimit: u64,
-    IoWriteBytes: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTime: LARGE_INTEGER,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemory: u64,
-    JobMemoryLimit: u64,
-    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-};
-
-pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
-    LimitFlags: JOB_OBJECT_LIMIT,
-    ViolationLimitFlags: JOB_OBJECT_LIMIT,
-    IoReadBytes: u64,
-    IoReadBytesLimit: u64,
-    IoWriteBytes: u64,
-    IoWriteBytesLimit: u64,
-    PerJobUserTime: LARGE_INTEGER,
-    PerJobUserTimeLimit: LARGE_INTEGER,
-    JobMemory: u64,
-    Anonymous1: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous1_e__Union,
-    Anonymous2: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous2_e__Union,
-    Anonymous3: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous3_e__Union,
-    JobLowMemoryLimit: u64,
-    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
-    ControlFlags: u32,
-    Anonymous: JOBOBJECT_CPU_RATE_CONTROL_INFORMATION._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = extern enum(i32) {
-    JOB_OBJECT_NET_RATE_CONTROL_ENABLE = 1,
-    JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = 2,
-    JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = 4,
-    JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = 7,
-};
-pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_ENABLE;
-pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH;
-pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG;
-pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS;
-
-pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
-    MaxBandwidth: u64,
-    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS,
-    DscpTag: u8,
-};
-
-pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = extern enum(i32) {
-    JOB_OBJECT_IO_RATE_CONTROL_ENABLE = 1,
-    JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = 2,
-    JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = 4,
-    JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8,
-    JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = 15,
-};
-pub const JOB_OBJECT_IO_RATE_CONTROL_ENABLE = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_ENABLE;
-pub const JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME;
-pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL;
-pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP;
-pub const JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS;
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: PWSTR,
-    BaseIoSize: u32,
-    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-    VolumeNameLength: u16,
-};
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: PWSTR,
-    BaseIoSize: u32,
-    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-    VolumeNameLength: u16,
-    CriticalReservationIops: i64,
-    ReservationBandwidth: i64,
-    CriticalReservationBandwidth: i64,
-    MaxTimePercent: i64,
-    ReservationTimePercent: i64,
-    CriticalReservationTimePercent: i64,
-};
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: PWSTR,
-    BaseIoSize: u32,
-    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-    VolumeNameLength: u16,
-    CriticalReservationIops: i64,
-    ReservationBandwidth: i64,
-    CriticalReservationBandwidth: i64,
-    MaxTimePercent: i64,
-    ReservationTimePercent: i64,
-    CriticalReservationTimePercent: i64,
-    SoftMaxIops: i64,
-    SoftMaxBandwidth: i64,
-    SoftMaxTimePercent: i64,
-    LimitExcessNotifyIops: i64,
-    LimitExcessNotifyBandwidth: i64,
-    LimitExcessNotifyTimePercent: i64,
-};
-
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = extern enum(i32) {
-    JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = 1,
-    JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = 2,
-    JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = 3,
-};
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE;
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE;
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS;
-
-pub const JOBOBJECT_IO_ATTRIBUTION_STATS = extern struct {
-    IoCount: ?*c_void,
-    TotalNonOverlappedQueueTime: u64,
-    TotalNonOverlappedServiceTime: u64,
-    TotalSize: u64,
-};
-
-pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
-    ControlFlags: u32,
-    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
-    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
-};
-
-pub const JOBOBJECTINFOCLASS = extern enum(i32) {
-    JobObjectBasicAccountingInformation = 1,
-    JobObjectBasicLimitInformation = 2,
-    JobObjectBasicProcessIdList = 3,
-    JobObjectBasicUIRestrictions = 4,
-    JobObjectSecurityLimitInformation = 5,
-    JobObjectEndOfJobTimeInformation = 6,
-    JobObjectAssociateCompletionPortInformation = 7,
-    JobObjectBasicAndIoAccountingInformation = 8,
-    JobObjectExtendedLimitInformation = 9,
-    JobObjectJobSetInformation = 10,
-    JobObjectGroupInformation = 11,
-    JobObjectNotificationLimitInformation = 12,
-    JobObjectLimitViolationInformation = 13,
-    JobObjectGroupInformationEx = 14,
-    JobObjectCpuRateControlInformation = 15,
-    JobObjectCompletionFilter = 16,
-    JobObjectCompletionCounter = 17,
-    JobObjectReserved1Information = 18,
-    JobObjectReserved2Information = 19,
-    JobObjectReserved3Information = 20,
-    JobObjectReserved4Information = 21,
-    JobObjectReserved5Information = 22,
-    JobObjectReserved6Information = 23,
-    JobObjectReserved7Information = 24,
-    JobObjectReserved8Information = 25,
-    JobObjectReserved9Information = 26,
-    JobObjectReserved10Information = 27,
-    JobObjectReserved11Information = 28,
-    JobObjectReserved12Information = 29,
-    JobObjectReserved13Information = 30,
-    JobObjectReserved14Information = 31,
-    JobObjectNetRateControlInformation = 32,
-    JobObjectNotificationLimitInformation2 = 33,
-    JobObjectLimitViolationInformation2 = 34,
-    JobObjectCreateSilo = 35,
-    JobObjectSiloBasicInformation = 36,
-    JobObjectReserved15Information = 37,
-    JobObjectReserved16Information = 38,
-    JobObjectReserved17Information = 39,
-    JobObjectReserved18Information = 40,
-    JobObjectReserved19Information = 41,
-    JobObjectReserved20Information = 42,
-    JobObjectReserved21Information = 43,
-    JobObjectReserved22Information = 44,
-    JobObjectReserved23Information = 45,
-    JobObjectReserved24Information = 46,
-    JobObjectReserved25Information = 47,
-    MaxJobObjectInfoClass = 48,
-};
-pub const JobObjectBasicAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAccountingInformation;
-pub const JobObjectBasicLimitInformation = JOBOBJECTINFOCLASS.JobObjectBasicLimitInformation;
-pub const JobObjectBasicProcessIdList = JOBOBJECTINFOCLASS.JobObjectBasicProcessIdList;
-pub const JobObjectBasicUIRestrictions = JOBOBJECTINFOCLASS.JobObjectBasicUIRestrictions;
-pub const JobObjectSecurityLimitInformation = JOBOBJECTINFOCLASS.JobObjectSecurityLimitInformation;
-pub const JobObjectEndOfJobTimeInformation = JOBOBJECTINFOCLASS.JobObjectEndOfJobTimeInformation;
-pub const JobObjectAssociateCompletionPortInformation = JOBOBJECTINFOCLASS.JobObjectAssociateCompletionPortInformation;
-pub const JobObjectBasicAndIoAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAndIoAccountingInformation;
-pub const JobObjectExtendedLimitInformation = JOBOBJECTINFOCLASS.JobObjectExtendedLimitInformation;
-pub const JobObjectJobSetInformation = JOBOBJECTINFOCLASS.JobObjectJobSetInformation;
-pub const JobObjectGroupInformation = JOBOBJECTINFOCLASS.JobObjectGroupInformation;
-pub const JobObjectNotificationLimitInformation = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation;
-pub const JobObjectLimitViolationInformation = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation;
-pub const JobObjectGroupInformationEx = JOBOBJECTINFOCLASS.JobObjectGroupInformationEx;
-pub const JobObjectCpuRateControlInformation = JOBOBJECTINFOCLASS.JobObjectCpuRateControlInformation;
-pub const JobObjectCompletionFilter = JOBOBJECTINFOCLASS.JobObjectCompletionFilter;
-pub const JobObjectCompletionCounter = JOBOBJECTINFOCLASS.JobObjectCompletionCounter;
-pub const JobObjectReserved1Information = JOBOBJECTINFOCLASS.JobObjectReserved1Information;
-pub const JobObjectReserved2Information = JOBOBJECTINFOCLASS.JobObjectReserved2Information;
-pub const JobObjectReserved3Information = JOBOBJECTINFOCLASS.JobObjectReserved3Information;
-pub const JobObjectReserved4Information = JOBOBJECTINFOCLASS.JobObjectReserved4Information;
-pub const JobObjectReserved5Information = JOBOBJECTINFOCLASS.JobObjectReserved5Information;
-pub const JobObjectReserved6Information = JOBOBJECTINFOCLASS.JobObjectReserved6Information;
-pub const JobObjectReserved7Information = JOBOBJECTINFOCLASS.JobObjectReserved7Information;
-pub const JobObjectReserved8Information = JOBOBJECTINFOCLASS.JobObjectReserved8Information;
-pub const JobObjectReserved9Information = JOBOBJECTINFOCLASS.JobObjectReserved9Information;
-pub const JobObjectReserved10Information = JOBOBJECTINFOCLASS.JobObjectReserved10Information;
-pub const JobObjectReserved11Information = JOBOBJECTINFOCLASS.JobObjectReserved11Information;
-pub const JobObjectReserved12Information = JOBOBJECTINFOCLASS.JobObjectReserved12Information;
-pub const JobObjectReserved13Information = JOBOBJECTINFOCLASS.JobObjectReserved13Information;
-pub const JobObjectReserved14Information = JOBOBJECTINFOCLASS.JobObjectReserved14Information;
-pub const JobObjectNetRateControlInformation = JOBOBJECTINFOCLASS.JobObjectNetRateControlInformation;
-pub const JobObjectNotificationLimitInformation2 = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation2;
-pub const JobObjectLimitViolationInformation2 = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation2;
-pub const JobObjectCreateSilo = JOBOBJECTINFOCLASS.JobObjectCreateSilo;
-pub const JobObjectSiloBasicInformation = JOBOBJECTINFOCLASS.JobObjectSiloBasicInformation;
-pub const JobObjectReserved15Information = JOBOBJECTINFOCLASS.JobObjectReserved15Information;
-pub const JobObjectReserved16Information = JOBOBJECTINFOCLASS.JobObjectReserved16Information;
-pub const JobObjectReserved17Information = JOBOBJECTINFOCLASS.JobObjectReserved17Information;
-pub const JobObjectReserved18Information = JOBOBJECTINFOCLASS.JobObjectReserved18Information;
-pub const JobObjectReserved19Information = JOBOBJECTINFOCLASS.JobObjectReserved19Information;
-pub const JobObjectReserved20Information = JOBOBJECTINFOCLASS.JobObjectReserved20Information;
-pub const JobObjectReserved21Information = JOBOBJECTINFOCLASS.JobObjectReserved21Information;
-pub const JobObjectReserved22Information = JOBOBJECTINFOCLASS.JobObjectReserved22Information;
-pub const JobObjectReserved23Information = JOBOBJECTINFOCLASS.JobObjectReserved23Information;
-pub const JobObjectReserved24Information = JOBOBJECTINFOCLASS.JobObjectReserved24Information;
-pub const JobObjectReserved25Information = JOBOBJECTINFOCLASS.JobObjectReserved25Information;
-pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
-
-pub const SILOOBJECT_BASIC_INFORMATION = extern struct {
-    SiloId: u32,
-    SiloParentId: u32,
-    NumberOfProcesses: u32,
-    IsInServerSilo: u8,
-    Reserved: [3]u8,
-};
-
-pub const SERVERSILO_STATE = extern enum(i32) {
-    SERVERSILO_INITING = 0,
-    SERVERSILO_STARTED = 1,
-    SERVERSILO_SHUTTING_DOWN = 2,
-    SERVERSILO_TERMINATING = 3,
-    SERVERSILO_TERMINATED = 4,
-};
-pub const SERVERSILO_INITING = SERVERSILO_STATE.SERVERSILO_INITING;
-pub const SERVERSILO_STARTED = SERVERSILO_STATE.SERVERSILO_STARTED;
-pub const SERVERSILO_SHUTTING_DOWN = SERVERSILO_STATE.SERVERSILO_SHUTTING_DOWN;
-pub const SERVERSILO_TERMINATING = SERVERSILO_STATE.SERVERSILO_TERMINATING;
-pub const SERVERSILO_TERMINATED = SERVERSILO_STATE.SERVERSILO_TERMINATED;
-
-pub const SERVERSILO_BASIC_INFORMATION = extern struct {
-    ServiceSessionId: u32,
-    State: SERVERSILO_STATE,
-    ExitStatus: u32,
-    IsDownlevelContainer: u8,
-    ApiSetSchema: *c_void,
-    HostApiSetSchema: *c_void,
-};
-
-pub const LOGICAL_PROCESSOR_RELATIONSHIP = extern enum(i32) {
-    RelationProcessorCore = 0,
-    RelationNumaNode = 1,
-    RelationCache = 2,
-    RelationProcessorPackage = 3,
-    RelationGroup = 4,
-    RelationAll = 65535,
-};
-pub const RelationProcessorCore = LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorCore;
-pub const RelationNumaNode = LOGICAL_PROCESSOR_RELATIONSHIP.RelationNumaNode;
-pub const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP.RelationCache;
-pub const RelationProcessorPackage = LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorPackage;
-pub const RelationGroup = LOGICAL_PROCESSOR_RELATIONSHIP.RelationGroup;
-pub const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP.RelationAll;
-
-pub const PROCESSOR_CACHE_TYPE = extern enum(i32) {
-    CacheUnified = 0,
-    CacheInstruction = 1,
-    CacheData = 2,
-    CacheTrace = 3,
-};
-pub const CacheUnified = PROCESSOR_CACHE_TYPE.CacheUnified;
-pub const CacheInstruction = PROCESSOR_CACHE_TYPE.CacheInstruction;
-pub const CacheData = PROCESSOR_CACHE_TYPE.CacheData;
-pub const CacheTrace = PROCESSOR_CACHE_TYPE.CacheTrace;
-
-pub const CACHE_DESCRIPTOR = extern struct {
-    Level: u8,
-    Associativity: u8,
-    LineSize: u16,
-    Size: u32,
-    Type: PROCESSOR_CACHE_TYPE,
-};
-
-pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION = extern struct {
-    ProcessorMask: ?*c_void,
-    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
-    Anonymous: SYSTEM_LOGICAL_PROCESSOR_INFORMATION._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESSOR_RELATIONSHIP = extern struct {
-    Flags: u8,
-    EfficiencyClass: u8,
-    Reserved: [20]u8,
-    GroupCount: u16,
-    GroupMask: [1]GROUP_AFFINITY,
-};
-
-pub const NUMA_NODE_RELATIONSHIP = extern struct {
-    NodeNumber: u32,
-    Reserved: [20]u8,
-    GroupMask: GROUP_AFFINITY,
-};
-
-pub const CACHE_RELATIONSHIP = extern struct {
-    Level: u8,
-    Associativity: u8,
-    LineSize: u16,
-    CacheSize: u32,
-    Type: PROCESSOR_CACHE_TYPE,
-    Reserved: [20]u8,
-    GroupMask: GROUP_AFFINITY,
-};
-
-pub const PROCESSOR_GROUP_INFO = extern struct {
-    MaximumProcessorCount: u8,
-    ActiveProcessorCount: u8,
-    Reserved: [38]u8,
-    ActiveProcessorMask: ?*c_void,
-};
-
-pub const GROUP_RELATIONSHIP = extern struct {
-    MaximumGroupCount: u16,
-    ActiveGroupCount: u16,
-    Reserved: [20]u8,
-    GroupInfo: [1]PROCESSOR_GROUP_INFO,
-};
-
-pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = extern struct {
-    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
-    Size: u32,
-    Anonymous: SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const CPU_SET_INFORMATION_TYPE = extern enum(i32) {
-    CpuSetInformation = 0,
-};
-pub const CpuSetInformation = CPU_SET_INFORMATION_TYPE.CpuSetInformation;
-
-pub const SYSTEM_CPU_SET_INFORMATION = extern struct {
-    Size: u32,
-    Type: CPU_SET_INFORMATION_TYPE,
-    Anonymous: SYSTEM_CPU_SET_INFORMATION._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = extern struct {
-    CycleTime: u64,
-};
-
-pub const XSTATE_FEATURE = extern struct {
-    Offset: u32,
-    Size: u32,
-};
-
-pub const XSTATE_CONFIGURATION = extern struct {
-    EnabledFeatures: u64,
-    EnabledVolatileFeatures: u64,
-    Size: u32,
-    Anonymous: XSTATE_CONFIGURATION._Anonymous_e__Union,
-    Features: [64]XSTATE_FEATURE,
-    EnabledSupervisorFeatures: u64,
-    AlignedFeatures: u64,
-    AllFeatureSize: u32,
-    AllFeatures: [64]u32,
-    EnabledUserVisibleSupervisorFeatures: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: *c_void,
-    AllocationBase: *c_void,
-    AllocationProtect: u32,
-    RegionSize: ?*c_void,
-    State: u32,
-    Protect: u32,
-    Type: u32,
-};
-
-pub const MEMORY_BASIC_INFORMATION32 = extern struct {
-    BaseAddress: u32,
-    AllocationBase: u32,
-    AllocationProtect: u32,
-    RegionSize: u32,
-    State: u32,
-    Protect: u32,
-    Type: u32,
-};
-
-pub const MEMORY_BASIC_INFORMATION64 = extern struct {
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: u32,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: u32,
-    Protect: u32,
-    Type: u32,
-    __alignment2: u32,
-};
-
-pub const CFG_CALL_TARGET_INFO = extern struct {
-    Offset: ?*c_void,
-    Flags: ?*c_void,
-};
-
-pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
-    LowestStartingAddress: *c_void,
-    HighestEndingAddress: *c_void,
-    Alignment: ?*c_void,
-};
-
-pub const MEM_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
-    MemExtendedParameterInvalidType = 0,
-    MemExtendedParameterAddressRequirements = 1,
-    MemExtendedParameterNumaNode = 2,
-    MemExtendedParameterPartitionHandle = 3,
-    MemExtendedParameterUserPhysicalHandle = 4,
-    MemExtendedParameterAttributeFlags = 5,
-    MemExtendedParameterMax = 6,
-};
-pub const MemExtendedParameterInvalidType = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterInvalidType;
-pub const MemExtendedParameterAddressRequirements = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAddressRequirements;
-pub const MemExtendedParameterNumaNode = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterNumaNode;
-pub const MemExtendedParameterPartitionHandle = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterPartitionHandle;
-pub const MemExtendedParameterUserPhysicalHandle = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterUserPhysicalHandle;
-pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAttributeFlags;
-pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterMax;
-
-pub const MEM_EXTENDED_PARAMETER = extern struct {
-    Anonymous1: MEM_EXTENDED_PARAMETER._Anonymous1_e__Struct,
-    Anonymous2: MEM_EXTENDED_PARAMETER._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const MEM_SECTION_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
-    MemSectionExtendedParameterInvalidType = 0,
-    MemSectionExtendedParameterUserPhysicalFlags = 1,
-    MemSectionExtendedParameterNumaNode = 2,
-    MemSectionExtendedParameterMax = 3,
-};
-pub const MemSectionExtendedParameterInvalidType = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterInvalidType;
-pub const MemSectionExtendedParameterUserPhysicalFlags = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterUserPhysicalFlags;
-pub const MemSectionExtendedParameterNumaNode = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterNumaNode;
-pub const MemSectionExtendedParameterMax = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterMax;
-
-pub const ENCLAVE_CREATE_INFO_SGX = extern struct {
-    Secs: [4096]u8,
-};
-
-pub const ENCLAVE_INIT_INFO_SGX = extern struct {
-    SigStruct: [1808]u8,
-    Reserved1: [240]u8,
-    EInitToken: [304]u8,
-    Reserved2: [1744]u8,
-};
-
-pub const ENCLAVE_CREATE_INFO_VBS = extern struct {
-    Flags: u32,
-    OwnerID: [32]u8,
-};
-
-pub const ENCLAVE_CREATE_INFO_VBS_BASIC = extern struct {
-    Flags: u32,
-    OwnerID: [32]u8,
-};
-
-pub const ENCLAVE_LOAD_DATA_VBS_BASIC = extern struct {
-    PageType: u32,
-};
-
-pub const ENCLAVE_INIT_INFO_VBS_BASIC = extern struct {
-    FamilyId: [16]u8,
-    ImageId: [16]u8,
-    EnclaveSize: u64,
-    EnclaveSvn: u32,
-    Reserved: u32,
-    Anonymous: ENCLAVE_INIT_INFO_VBS_BASIC._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const ENCLAVE_INIT_INFO_VBS = extern struct {
-    Length: u32,
-    ThreadCount: u32,
-};
-
-pub const ENCLAVE_TARGET_FUNCTION = fn(
-    param0: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub const PENCLAVE_TARGET_FUNCTION = fn(
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub const LPENCLAVE_TARGET_FUNCTION = fn(
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub const FILE_SEGMENT_ELEMENT = u32; // TODO: implement StructOrUnion types?
-
-pub const SCRUB_DATA_INPUT = extern struct {
-    Size: u32,
-    Flags: u32,
-    MaximumIos: u32,
-    ObjectId: [4]u32,
-    Reserved: [25]u32,
-    ResumeContext: [816]u8,
-};
-
-pub const SCRUB_PARITY_EXTENT = extern struct {
-    Offset: i64,
-    Length: u64,
-};
-
-pub const SCRUB_PARITY_EXTENT_DATA = extern struct {
-    Size: u16,
-    Flags: u16,
-    NumberOfParityExtents: u16,
-    MaximumNumberOfParityExtents: u16,
-    ParityExtents: [1]SCRUB_PARITY_EXTENT,
-};
-
-pub const SCRUB_DATA_OUTPUT = extern struct {
-    Size: u32,
-    Flags: u32,
-    Status: u32,
-    ErrorFileOffset: u64,
-    ErrorLength: u64,
-    NumberOfBytesRepaired: u64,
-    NumberOfBytesFailed: u64,
-    InternalFileReference: u64,
-    ResumeContextLength: u16,
-    ParityExtentDataOffset: u16,
-    Reserved: [9]u32,
-    NumberOfMetadataBytesProcessed: u64,
-    NumberOfDataBytesProcessed: u64,
-    TotalNumberOfMetadataBytesInUse: u64,
-    TotalNumberOfDataBytesInUse: u64,
-    ResumeContext: [816]u8,
-};
-
-pub const SharedVirtualDiskSupportType = extern enum(i32) {
-    SharedVirtualDisksUnsupported = 0,
-    SharedVirtualDisksSupported = 1,
-    SharedVirtualDiskSnapshotsSupported = 3,
-    SharedVirtualDiskCDPSnapshotsSupported = 7,
-};
-pub const SharedVirtualDisksUnsupported = SharedVirtualDiskSupportType.SharedVirtualDisksUnsupported;
-pub const SharedVirtualDisksSupported = SharedVirtualDiskSupportType.SharedVirtualDisksSupported;
-pub const SharedVirtualDiskSnapshotsSupported = SharedVirtualDiskSupportType.SharedVirtualDiskSnapshotsSupported;
-pub const SharedVirtualDiskCDPSnapshotsSupported = SharedVirtualDiskSupportType.SharedVirtualDiskCDPSnapshotsSupported;
-
-pub const SharedVirtualDiskHandleState = extern enum(i32) {
-    SharedVirtualDiskHandleStateNone = 0,
-    SharedVirtualDiskHandleStateFileShared = 1,
-    SharedVirtualDiskHandleStateHandleShared = 3,
-};
-pub const SharedVirtualDiskHandleStateNone = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateNone;
-pub const SharedVirtualDiskHandleStateFileShared = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateFileShared;
-pub const SharedVirtualDiskHandleStateHandleShared = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateHandleShared;
-
-pub const SHARED_VIRTUAL_DISK_SUPPORT = extern struct {
-    SharedVirtualDiskSupport: SharedVirtualDiskSupportType,
-    HandleState: SharedVirtualDiskHandleState,
-};
-
-pub const REARRANGE_FILE_DATA = extern struct {
-    SourceStartingOffset: u64,
-    TargetOffset: u64,
-    SourceFileHandle: HANDLE,
-    Length: u32,
-    Flags: u32,
-};
-
-pub const SHUFFLE_FILE_DATA = extern struct {
-    StartingOffset: i64,
-    Length: i64,
-    Flags: u32,
-};
-
-pub const NETWORK_APP_INSTANCE_EA = extern struct {
-    AppInstanceID: Guid,
-    CsvFlags: u32,
-};
-
-pub const SYSTEM_POWER_STATE = extern enum(i32) {
-    PowerSystemUnspecified = 0,
-    PowerSystemWorking = 1,
-    PowerSystemSleeping1 = 2,
-    PowerSystemSleeping2 = 3,
-    PowerSystemSleeping3 = 4,
-    PowerSystemHibernate = 5,
-    PowerSystemShutdown = 6,
-    PowerSystemMaximum = 7,
-};
-pub const PowerSystemUnspecified = SYSTEM_POWER_STATE.PowerSystemUnspecified;
-pub const PowerSystemWorking = SYSTEM_POWER_STATE.PowerSystemWorking;
-pub const PowerSystemSleeping1 = SYSTEM_POWER_STATE.PowerSystemSleeping1;
-pub const PowerSystemSleeping2 = SYSTEM_POWER_STATE.PowerSystemSleeping2;
-pub const PowerSystemSleeping3 = SYSTEM_POWER_STATE.PowerSystemSleeping3;
-pub const PowerSystemHibernate = SYSTEM_POWER_STATE.PowerSystemHibernate;
-pub const PowerSystemShutdown = SYSTEM_POWER_STATE.PowerSystemShutdown;
-pub const PowerSystemMaximum = SYSTEM_POWER_STATE.PowerSystemMaximum;
-
-pub const POWER_ACTION = extern enum(i32) {
-    PowerActionNone = 0,
-    PowerActionReserved = 1,
-    PowerActionSleep = 2,
-    PowerActionHibernate = 3,
-    PowerActionShutdown = 4,
-    PowerActionShutdownReset = 5,
-    PowerActionShutdownOff = 6,
-    PowerActionWarmEject = 7,
-    PowerActionDisplayOff = 8,
-};
-pub const PowerActionNone = POWER_ACTION.PowerActionNone;
-pub const PowerActionReserved = POWER_ACTION.PowerActionReserved;
-pub const PowerActionSleep = POWER_ACTION.PowerActionSleep;
-pub const PowerActionHibernate = POWER_ACTION.PowerActionHibernate;
-pub const PowerActionShutdown = POWER_ACTION.PowerActionShutdown;
-pub const PowerActionShutdownReset = POWER_ACTION.PowerActionShutdownReset;
-pub const PowerActionShutdownOff = POWER_ACTION.PowerActionShutdownOff;
-pub const PowerActionWarmEject = POWER_ACTION.PowerActionWarmEject;
-pub const PowerActionDisplayOff = POWER_ACTION.PowerActionDisplayOff;
-
-pub const DEVICE_POWER_STATE = extern enum(i32) {
-    PowerDeviceUnspecified = 0,
-    PowerDeviceD0 = 1,
-    PowerDeviceD1 = 2,
-    PowerDeviceD2 = 3,
-    PowerDeviceD3 = 4,
-    PowerDeviceMaximum = 5,
-};
-pub const PowerDeviceUnspecified = DEVICE_POWER_STATE.PowerDeviceUnspecified;
-pub const PowerDeviceD0 = DEVICE_POWER_STATE.PowerDeviceD0;
-pub const PowerDeviceD1 = DEVICE_POWER_STATE.PowerDeviceD1;
-pub const PowerDeviceD2 = DEVICE_POWER_STATE.PowerDeviceD2;
-pub const PowerDeviceD3 = DEVICE_POWER_STATE.PowerDeviceD3;
-pub const PowerDeviceMaximum = DEVICE_POWER_STATE.PowerDeviceMaximum;
-
-pub const MONITOR_DISPLAY_STATE = extern enum(i32) {
-    PowerMonitorOff = 0,
-    PowerMonitorOn = 1,
-    PowerMonitorDim = 2,
-};
-pub const PowerMonitorOff = MONITOR_DISPLAY_STATE.PowerMonitorOff;
-pub const PowerMonitorOn = MONITOR_DISPLAY_STATE.PowerMonitorOn;
-pub const PowerMonitorDim = MONITOR_DISPLAY_STATE.PowerMonitorDim;
-
-pub const USER_ACTIVITY_PRESENCE = extern enum(i32) {
-    PowerUserPresent = 0,
-    PowerUserNotPresent = 1,
-    PowerUserInactive = 2,
-    PowerUserMaximum = 3,
-    PowerUserInvalid = 3,
-};
-pub const PowerUserPresent = USER_ACTIVITY_PRESENCE.PowerUserPresent;
-pub const PowerUserNotPresent = USER_ACTIVITY_PRESENCE.PowerUserNotPresent;
-pub const PowerUserInactive = USER_ACTIVITY_PRESENCE.PowerUserInactive;
-pub const PowerUserMaximum = USER_ACTIVITY_PRESENCE.PowerUserMaximum;
-pub const PowerUserInvalid = USER_ACTIVITY_PRESENCE.PowerUserInvalid;
-
-pub const LATENCY_TIME = extern enum(i32) {
-    LT_DONT_CARE = 0,
-    LT_LOWEST_LATENCY = 1,
-};
-pub const LT_DONT_CARE = LATENCY_TIME.LT_DONT_CARE;
-pub const LT_LOWEST_LATENCY = LATENCY_TIME.LT_LOWEST_LATENCY;
-
-pub const POWER_REQUEST_TYPE = extern enum(i32) {
-    PowerRequestDisplayRequired = 0,
-    PowerRequestSystemRequired = 1,
-    PowerRequestAwayModeRequired = 2,
-    PowerRequestExecutionRequired = 3,
-};
-pub const PowerRequestDisplayRequired = POWER_REQUEST_TYPE.PowerRequestDisplayRequired;
-pub const PowerRequestSystemRequired = POWER_REQUEST_TYPE.PowerRequestSystemRequired;
-pub const PowerRequestAwayModeRequired = POWER_REQUEST_TYPE.PowerRequestAwayModeRequired;
-pub const PowerRequestExecutionRequired = POWER_REQUEST_TYPE.PowerRequestExecutionRequired;
-
-pub const CM_Power_Data_s = extern struct {
-    PD_Size: u32,
-    PD_MostRecentPowerState: DEVICE_POWER_STATE,
-    PD_Capabilities: u32,
-    PD_D1Latency: u32,
-    PD_D2Latency: u32,
-    PD_D3Latency: u32,
-    PD_PowerStateMapping: [7]DEVICE_POWER_STATE,
-    PD_DeepestSystemWake: SYSTEM_POWER_STATE,
-};
-
-pub const POWER_INFORMATION_LEVEL = extern enum(i32) {
-    SystemPowerPolicyAc = 0,
-    SystemPowerPolicyDc = 1,
-    VerifySystemPolicyAc = 2,
-    VerifySystemPolicyDc = 3,
-    SystemPowerCapabilities = 4,
-    SystemBatteryState = 5,
-    SystemPowerStateHandler = 6,
-    ProcessorStateHandler = 7,
-    SystemPowerPolicyCurrent = 8,
-    AdministratorPowerPolicy = 9,
-    SystemReserveHiberFile = 10,
-    ProcessorInformation = 11,
-    SystemPowerInformation = 12,
-    ProcessorStateHandler2 = 13,
-    LastWakeTime = 14,
-    LastSleepTime = 15,
-    SystemExecutionState = 16,
-    SystemPowerStateNotifyHandler = 17,
-    ProcessorPowerPolicyAc = 18,
-    ProcessorPowerPolicyDc = 19,
-    VerifyProcessorPowerPolicyAc = 20,
-    VerifyProcessorPowerPolicyDc = 21,
-    ProcessorPowerPolicyCurrent = 22,
-    SystemPowerStateLogging = 23,
-    SystemPowerLoggingEntry = 24,
-    SetPowerSettingValue = 25,
-    NotifyUserPowerSetting = 26,
-    PowerInformationLevelUnused0 = 27,
-    SystemMonitorHiberBootPowerOff = 28,
-    SystemVideoState = 29,
-    TraceApplicationPowerMessage = 30,
-    TraceApplicationPowerMessageEnd = 31,
-    ProcessorPerfStates = 32,
-    ProcessorIdleStates = 33,
-    ProcessorCap = 34,
-    SystemWakeSource = 35,
-    SystemHiberFileInformation = 36,
-    TraceServicePowerMessage = 37,
-    ProcessorLoad = 38,
-    PowerShutdownNotification = 39,
-    MonitorCapabilities = 40,
-    SessionPowerInit = 41,
-    SessionDisplayState = 42,
-    PowerRequestCreate = 43,
-    PowerRequestAction = 44,
-    GetPowerRequestList = 45,
-    ProcessorInformationEx = 46,
-    NotifyUserModeLegacyPowerEvent = 47,
-    GroupPark = 48,
-    ProcessorIdleDomains = 49,
-    WakeTimerList = 50,
-    SystemHiberFileSize = 51,
-    ProcessorIdleStatesHv = 52,
-    ProcessorPerfStatesHv = 53,
-    ProcessorPerfCapHv = 54,
-    ProcessorSetIdle = 55,
-    LogicalProcessorIdling = 56,
-    UserPresence = 57,
-    PowerSettingNotificationName = 58,
-    GetPowerSettingValue = 59,
-    IdleResiliency = 60,
-    SessionRITState = 61,
-    SessionConnectNotification = 62,
-    SessionPowerCleanup = 63,
-    SessionLockState = 64,
-    SystemHiberbootState = 65,
-    PlatformInformation = 66,
-    PdcInvocation = 67,
-    MonitorInvocation = 68,
-    FirmwareTableInformationRegistered = 69,
-    SetShutdownSelectedTime = 70,
-    SuspendResumeInvocation = 71,
-    PlmPowerRequestCreate = 72,
-    ScreenOff = 73,
-    CsDeviceNotification = 74,
-    PlatformRole = 75,
-    LastResumePerformance = 76,
-    DisplayBurst = 77,
-    ExitLatencySamplingPercentage = 78,
-    RegisterSpmPowerSettings = 79,
-    PlatformIdleStates = 80,
-    ProcessorIdleVeto = 81,
-    PlatformIdleVeto = 82,
-    SystemBatteryStatePrecise = 83,
-    ThermalEvent = 84,
-    PowerRequestActionInternal = 85,
-    BatteryDeviceState = 86,
-    PowerInformationInternal = 87,
-    ThermalStandby = 88,
-    SystemHiberFileType = 89,
-    PhysicalPowerButtonPress = 90,
-    QueryPotentialDripsConstraint = 91,
-    EnergyTrackerCreate = 92,
-    EnergyTrackerQuery = 93,
-    UpdateBlackBoxRecorder = 94,
-    SessionAllowExternalDmaDevices = 95,
-    PowerInformationLevelMaximum = 96,
-};
-pub const SystemPowerPolicyAc = POWER_INFORMATION_LEVEL.SystemPowerPolicyAc;
-pub const SystemPowerPolicyDc = POWER_INFORMATION_LEVEL.SystemPowerPolicyDc;
-pub const VerifySystemPolicyAc = POWER_INFORMATION_LEVEL.VerifySystemPolicyAc;
-pub const VerifySystemPolicyDc = POWER_INFORMATION_LEVEL.VerifySystemPolicyDc;
-pub const SystemPowerCapabilities = POWER_INFORMATION_LEVEL.SystemPowerCapabilities;
-pub const SystemBatteryState = POWER_INFORMATION_LEVEL.SystemBatteryState;
-pub const SystemPowerStateHandler = POWER_INFORMATION_LEVEL.SystemPowerStateHandler;
-pub const ProcessorStateHandler = POWER_INFORMATION_LEVEL.ProcessorStateHandler;
-pub const SystemPowerPolicyCurrent = POWER_INFORMATION_LEVEL.SystemPowerPolicyCurrent;
-pub const AdministratorPowerPolicy = POWER_INFORMATION_LEVEL.AdministratorPowerPolicy;
-pub const SystemReserveHiberFile = POWER_INFORMATION_LEVEL.SystemReserveHiberFile;
-pub const ProcessorInformation = POWER_INFORMATION_LEVEL.ProcessorInformation;
-pub const SystemPowerInformation = POWER_INFORMATION_LEVEL.SystemPowerInformation;
-pub const ProcessorStateHandler2 = POWER_INFORMATION_LEVEL.ProcessorStateHandler2;
-pub const LastWakeTime = POWER_INFORMATION_LEVEL.LastWakeTime;
-pub const LastSleepTime = POWER_INFORMATION_LEVEL.LastSleepTime;
-pub const SystemExecutionState = POWER_INFORMATION_LEVEL.SystemExecutionState;
-pub const SystemPowerStateNotifyHandler = POWER_INFORMATION_LEVEL.SystemPowerStateNotifyHandler;
-pub const ProcessorPowerPolicyAc = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyAc;
-pub const ProcessorPowerPolicyDc = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyDc;
-pub const VerifyProcessorPowerPolicyAc = POWER_INFORMATION_LEVEL.VerifyProcessorPowerPolicyAc;
-pub const VerifyProcessorPowerPolicyDc = POWER_INFORMATION_LEVEL.VerifyProcessorPowerPolicyDc;
-pub const ProcessorPowerPolicyCurrent = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyCurrent;
-pub const SystemPowerStateLogging = POWER_INFORMATION_LEVEL.SystemPowerStateLogging;
-pub const SystemPowerLoggingEntry = POWER_INFORMATION_LEVEL.SystemPowerLoggingEntry;
-pub const SetPowerSettingValue = POWER_INFORMATION_LEVEL.SetPowerSettingValue;
-pub const NotifyUserPowerSetting = POWER_INFORMATION_LEVEL.NotifyUserPowerSetting;
-pub const PowerInformationLevelUnused0 = POWER_INFORMATION_LEVEL.PowerInformationLevelUnused0;
-pub const SystemMonitorHiberBootPowerOff = POWER_INFORMATION_LEVEL.SystemMonitorHiberBootPowerOff;
-pub const SystemVideoState = POWER_INFORMATION_LEVEL.SystemVideoState;
-pub const TraceApplicationPowerMessage = POWER_INFORMATION_LEVEL.TraceApplicationPowerMessage;
-pub const TraceApplicationPowerMessageEnd = POWER_INFORMATION_LEVEL.TraceApplicationPowerMessageEnd;
-pub const ProcessorPerfStates = POWER_INFORMATION_LEVEL.ProcessorPerfStates;
-pub const ProcessorIdleStates = POWER_INFORMATION_LEVEL.ProcessorIdleStates;
-pub const ProcessorCap = POWER_INFORMATION_LEVEL.ProcessorCap;
-pub const SystemWakeSource = POWER_INFORMATION_LEVEL.SystemWakeSource;
-pub const SystemHiberFileInformation = POWER_INFORMATION_LEVEL.SystemHiberFileInformation;
-pub const TraceServicePowerMessage = POWER_INFORMATION_LEVEL.TraceServicePowerMessage;
-pub const ProcessorLoad = POWER_INFORMATION_LEVEL.ProcessorLoad;
-pub const PowerShutdownNotification = POWER_INFORMATION_LEVEL.PowerShutdownNotification;
-pub const MonitorCapabilities = POWER_INFORMATION_LEVEL.MonitorCapabilities;
-pub const SessionPowerInit = POWER_INFORMATION_LEVEL.SessionPowerInit;
-pub const SessionDisplayState = POWER_INFORMATION_LEVEL.SessionDisplayState;
-pub const PowerRequestCreate = POWER_INFORMATION_LEVEL.PowerRequestCreate;
-pub const PowerRequestAction = POWER_INFORMATION_LEVEL.PowerRequestAction;
-pub const GetPowerRequestList = POWER_INFORMATION_LEVEL.GetPowerRequestList;
-pub const ProcessorInformationEx = POWER_INFORMATION_LEVEL.ProcessorInformationEx;
-pub const NotifyUserModeLegacyPowerEvent = POWER_INFORMATION_LEVEL.NotifyUserModeLegacyPowerEvent;
-pub const GroupPark = POWER_INFORMATION_LEVEL.GroupPark;
-pub const ProcessorIdleDomains = POWER_INFORMATION_LEVEL.ProcessorIdleDomains;
-pub const WakeTimerList = POWER_INFORMATION_LEVEL.WakeTimerList;
-pub const SystemHiberFileSize = POWER_INFORMATION_LEVEL.SystemHiberFileSize;
-pub const ProcessorIdleStatesHv = POWER_INFORMATION_LEVEL.ProcessorIdleStatesHv;
-pub const ProcessorPerfStatesHv = POWER_INFORMATION_LEVEL.ProcessorPerfStatesHv;
-pub const ProcessorPerfCapHv = POWER_INFORMATION_LEVEL.ProcessorPerfCapHv;
-pub const ProcessorSetIdle = POWER_INFORMATION_LEVEL.ProcessorSetIdle;
-pub const LogicalProcessorIdling = POWER_INFORMATION_LEVEL.LogicalProcessorIdling;
-pub const UserPresence = POWER_INFORMATION_LEVEL.UserPresence;
-pub const PowerSettingNotificationName = POWER_INFORMATION_LEVEL.PowerSettingNotificationName;
-pub const GetPowerSettingValue = POWER_INFORMATION_LEVEL.GetPowerSettingValue;
-pub const IdleResiliency = POWER_INFORMATION_LEVEL.IdleResiliency;
-pub const SessionRITState = POWER_INFORMATION_LEVEL.SessionRITState;
-pub const SessionConnectNotification = POWER_INFORMATION_LEVEL.SessionConnectNotification;
-pub const SessionPowerCleanup = POWER_INFORMATION_LEVEL.SessionPowerCleanup;
-pub const SessionLockState = POWER_INFORMATION_LEVEL.SessionLockState;
-pub const SystemHiberbootState = POWER_INFORMATION_LEVEL.SystemHiberbootState;
-pub const PlatformInformation = POWER_INFORMATION_LEVEL.PlatformInformation;
-pub const PdcInvocation = POWER_INFORMATION_LEVEL.PdcInvocation;
-pub const MonitorInvocation = POWER_INFORMATION_LEVEL.MonitorInvocation;
-pub const FirmwareTableInformationRegistered = POWER_INFORMATION_LEVEL.FirmwareTableInformationRegistered;
-pub const SetShutdownSelectedTime = POWER_INFORMATION_LEVEL.SetShutdownSelectedTime;
-pub const SuspendResumeInvocation = POWER_INFORMATION_LEVEL.SuspendResumeInvocation;
-pub const PlmPowerRequestCreate = POWER_INFORMATION_LEVEL.PlmPowerRequestCreate;
-pub const ScreenOff = POWER_INFORMATION_LEVEL.ScreenOff;
-pub const CsDeviceNotification = POWER_INFORMATION_LEVEL.CsDeviceNotification;
-pub const PlatformRole = POWER_INFORMATION_LEVEL.PlatformRole;
-pub const LastResumePerformance = POWER_INFORMATION_LEVEL.LastResumePerformance;
-pub const DisplayBurst = POWER_INFORMATION_LEVEL.DisplayBurst;
-pub const ExitLatencySamplingPercentage = POWER_INFORMATION_LEVEL.ExitLatencySamplingPercentage;
-pub const RegisterSpmPowerSettings = POWER_INFORMATION_LEVEL.RegisterSpmPowerSettings;
-pub const PlatformIdleStates = POWER_INFORMATION_LEVEL.PlatformIdleStates;
-pub const ProcessorIdleVeto = POWER_INFORMATION_LEVEL.ProcessorIdleVeto;
-pub const PlatformIdleVeto = POWER_INFORMATION_LEVEL.PlatformIdleVeto;
-pub const SystemBatteryStatePrecise = POWER_INFORMATION_LEVEL.SystemBatteryStatePrecise;
-pub const ThermalEvent = POWER_INFORMATION_LEVEL.ThermalEvent;
-pub const PowerRequestActionInternal = POWER_INFORMATION_LEVEL.PowerRequestActionInternal;
-pub const BatteryDeviceState = POWER_INFORMATION_LEVEL.BatteryDeviceState;
-pub const PowerInformationInternal = POWER_INFORMATION_LEVEL.PowerInformationInternal;
-pub const ThermalStandby = POWER_INFORMATION_LEVEL.ThermalStandby;
-pub const SystemHiberFileType = POWER_INFORMATION_LEVEL.SystemHiberFileType;
-pub const PhysicalPowerButtonPress = POWER_INFORMATION_LEVEL.PhysicalPowerButtonPress;
-pub const QueryPotentialDripsConstraint = POWER_INFORMATION_LEVEL.QueryPotentialDripsConstraint;
-pub const EnergyTrackerCreate = POWER_INFORMATION_LEVEL.EnergyTrackerCreate;
-pub const EnergyTrackerQuery = POWER_INFORMATION_LEVEL.EnergyTrackerQuery;
-pub const UpdateBlackBoxRecorder = POWER_INFORMATION_LEVEL.UpdateBlackBoxRecorder;
-pub const SessionAllowExternalDmaDevices = POWER_INFORMATION_LEVEL.SessionAllowExternalDmaDevices;
-pub const PowerInformationLevelMaximum = POWER_INFORMATION_LEVEL.PowerInformationLevelMaximum;
-
-pub const POWER_USER_PRESENCE_TYPE = extern enum(i32) {
-    UserNotPresent = 0,
-    UserPresent = 1,
-    UserUnknown = 255,
-};
-pub const UserNotPresent = POWER_USER_PRESENCE_TYPE.UserNotPresent;
-pub const UserPresent = POWER_USER_PRESENCE_TYPE.UserPresent;
-pub const UserUnknown = POWER_USER_PRESENCE_TYPE.UserUnknown;
-
-pub const POWER_USER_PRESENCE = extern struct {
-    UserPresence: POWER_USER_PRESENCE_TYPE,
-};
-
-pub const POWER_SESSION_CONNECT = extern struct {
-    Connected: u8,
-    Console: u8,
-};
-
-pub const POWER_SESSION_TIMEOUTS = extern struct {
-    InputTimeout: u32,
-    DisplayTimeout: u32,
-};
-
-pub const POWER_SESSION_RIT_STATE = extern struct {
-    Active: u8,
-    LastInputTime: u32,
-};
-
-pub const POWER_SESSION_WINLOGON = extern struct {
-    SessionId: u32,
-    Console: u8,
-    Locked: u8,
-};
-
-pub const POWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES = extern struct {
-    IsAllowed: u8,
-};
-
-pub const POWER_IDLE_RESILIENCY = extern struct {
-    CoalescingTimeout: u32,
-    IdleResiliencyPeriod: u32,
-};
-
-pub const POWER_MONITOR_REQUEST_REASON = extern enum(i32) {
-    MonitorRequestReasonUnknown = 0,
-    MonitorRequestReasonPowerButton = 1,
-    MonitorRequestReasonRemoteConnection = 2,
-    MonitorRequestReasonScMonitorpower = 3,
-    MonitorRequestReasonUserInput = 4,
-    MonitorRequestReasonAcDcDisplayBurst = 5,
-    MonitorRequestReasonUserDisplayBurst = 6,
-    MonitorRequestReasonPoSetSystemState = 7,
-    MonitorRequestReasonSetThreadExecutionState = 8,
-    MonitorRequestReasonFullWake = 9,
-    MonitorRequestReasonSessionUnlock = 10,
-    MonitorRequestReasonScreenOffRequest = 11,
-    MonitorRequestReasonIdleTimeout = 12,
-    MonitorRequestReasonPolicyChange = 13,
-    MonitorRequestReasonSleepButton = 14,
-    MonitorRequestReasonLid = 15,
-    MonitorRequestReasonBatteryCountChange = 16,
-    MonitorRequestReasonGracePeriod = 17,
-    MonitorRequestReasonPnP = 18,
-    MonitorRequestReasonDP = 19,
-    MonitorRequestReasonSxTransition = 20,
-    MonitorRequestReasonSystemIdle = 21,
-    MonitorRequestReasonNearProximity = 22,
-    MonitorRequestReasonThermalStandby = 23,
-    MonitorRequestReasonResumePdc = 24,
-    MonitorRequestReasonResumeS4 = 25,
-    MonitorRequestReasonTerminal = 26,
-    MonitorRequestReasonPdcSignal = 27,
-    MonitorRequestReasonAcDcDisplayBurstSuppressed = 28,
-    MonitorRequestReasonSystemStateEntered = 29,
-    MonitorRequestReasonWinrt = 30,
-    MonitorRequestReasonUserInputKeyboard = 31,
-    MonitorRequestReasonUserInputMouse = 32,
-    MonitorRequestReasonUserInputTouch = 33,
-    MonitorRequestReasonUserInputPen = 34,
-    MonitorRequestReasonUserInputAccelerometer = 35,
-    MonitorRequestReasonUserInputHid = 36,
-    MonitorRequestReasonUserInputPoUserPresent = 37,
-    MonitorRequestReasonUserInputSessionSwitch = 38,
-    MonitorRequestReasonUserInputInitialization = 39,
-    MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = 40,
-    MonitorRequestReasonPdcSignalWindowsMobileShell = 41,
-    MonitorRequestReasonPdcSignalHeyCortana = 42,
-    MonitorRequestReasonPdcSignalHolographicShell = 43,
-    MonitorRequestReasonPdcSignalFingerprint = 44,
-    MonitorRequestReasonDirectedDrips = 45,
-    MonitorRequestReasonDim = 46,
-    MonitorRequestReasonBuiltinPanel = 47,
-    MonitorRequestReasonDisplayRequiredUnDim = 48,
-    MonitorRequestReasonBatteryCountChangeSuppressed = 49,
-    MonitorRequestReasonResumeModernStandby = 50,
-    MonitorRequestReasonMax = 51,
-};
-pub const MonitorRequestReasonUnknown = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUnknown;
-pub const MonitorRequestReasonPowerButton = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPowerButton;
-pub const MonitorRequestReasonRemoteConnection = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonRemoteConnection;
-pub const MonitorRequestReasonScMonitorpower = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonScMonitorpower;
-pub const MonitorRequestReasonUserInput = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInput;
-pub const MonitorRequestReasonAcDcDisplayBurst = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonAcDcDisplayBurst;
-pub const MonitorRequestReasonUserDisplayBurst = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserDisplayBurst;
-pub const MonitorRequestReasonPoSetSystemState = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPoSetSystemState;
-pub const MonitorRequestReasonSetThreadExecutionState = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSetThreadExecutionState;
-pub const MonitorRequestReasonFullWake = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonFullWake;
-pub const MonitorRequestReasonSessionUnlock = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSessionUnlock;
-pub const MonitorRequestReasonScreenOffRequest = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonScreenOffRequest;
-pub const MonitorRequestReasonIdleTimeout = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonIdleTimeout;
-pub const MonitorRequestReasonPolicyChange = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPolicyChange;
-pub const MonitorRequestReasonSleepButton = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSleepButton;
-pub const MonitorRequestReasonLid = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonLid;
-pub const MonitorRequestReasonBatteryCountChange = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBatteryCountChange;
-pub const MonitorRequestReasonGracePeriod = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonGracePeriod;
-pub const MonitorRequestReasonPnP = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPnP;
-pub const MonitorRequestReasonDP = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDP;
-pub const MonitorRequestReasonSxTransition = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSxTransition;
-pub const MonitorRequestReasonSystemIdle = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSystemIdle;
-pub const MonitorRequestReasonNearProximity = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonNearProximity;
-pub const MonitorRequestReasonThermalStandby = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonThermalStandby;
-pub const MonitorRequestReasonResumePdc = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumePdc;
-pub const MonitorRequestReasonResumeS4 = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumeS4;
-pub const MonitorRequestReasonTerminal = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonTerminal;
-pub const MonitorRequestReasonPdcSignal = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignal;
-pub const MonitorRequestReasonAcDcDisplayBurstSuppressed = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonAcDcDisplayBurstSuppressed;
-pub const MonitorRequestReasonSystemStateEntered = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSystemStateEntered;
-pub const MonitorRequestReasonWinrt = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonWinrt;
-pub const MonitorRequestReasonUserInputKeyboard = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputKeyboard;
-pub const MonitorRequestReasonUserInputMouse = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputMouse;
-pub const MonitorRequestReasonUserInputTouch = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputTouch;
-pub const MonitorRequestReasonUserInputPen = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputPen;
-pub const MonitorRequestReasonUserInputAccelerometer = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputAccelerometer;
-pub const MonitorRequestReasonUserInputHid = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputHid;
-pub const MonitorRequestReasonUserInputPoUserPresent = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputPoUserPresent;
-pub const MonitorRequestReasonUserInputSessionSwitch = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputSessionSwitch;
-pub const MonitorRequestReasonUserInputInitialization = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputInitialization;
-pub const MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalWindowsMobilePwrNotif;
-pub const MonitorRequestReasonPdcSignalWindowsMobileShell = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalWindowsMobileShell;
-pub const MonitorRequestReasonPdcSignalHeyCortana = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalHeyCortana;
-pub const MonitorRequestReasonPdcSignalHolographicShell = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalHolographicShell;
-pub const MonitorRequestReasonPdcSignalFingerprint = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalFingerprint;
-pub const MonitorRequestReasonDirectedDrips = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDirectedDrips;
-pub const MonitorRequestReasonDim = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDim;
-pub const MonitorRequestReasonBuiltinPanel = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBuiltinPanel;
-pub const MonitorRequestReasonDisplayRequiredUnDim = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDisplayRequiredUnDim;
-pub const MonitorRequestReasonBatteryCountChangeSuppressed = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBatteryCountChangeSuppressed;
-pub const MonitorRequestReasonResumeModernStandby = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumeModernStandby;
-pub const MonitorRequestReasonMax = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonMax;
-
-pub const POWER_MONITOR_REQUEST_TYPE = extern enum(i32) {
-    MonitorRequestTypeOff = 0,
-    MonitorRequestTypeOnAndPresent = 1,
-    MonitorRequestTypeToggleOn = 2,
-};
-pub const MonitorRequestTypeOff = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOff;
-pub const MonitorRequestTypeOnAndPresent = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOnAndPresent;
-pub const MonitorRequestTypeToggleOn = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeToggleOn;
-
-pub const POWER_MONITOR_INVOCATION = extern struct {
-    Console: u8,
-    RequestReason: POWER_MONITOR_REQUEST_REASON,
-};
-
-pub const RESUME_PERFORMANCE = extern struct {
-    PostTimeMs: u32,
-    TotalResumeTimeMs: u64,
-    ResumeCompleteTimestamp: u64,
-};
-
-pub const SYSTEM_POWER_CONDITION = extern enum(i32) {
-    PoAc = 0,
-    PoDc = 1,
-    PoHot = 2,
-    PoConditionMaximum = 3,
-};
-pub const PoAc = SYSTEM_POWER_CONDITION.PoAc;
-pub const PoDc = SYSTEM_POWER_CONDITION.PoDc;
-pub const PoHot = SYSTEM_POWER_CONDITION.PoHot;
-pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.PoConditionMaximum;
-
-pub const SET_POWER_SETTING_VALUE = extern struct {
-    Version: u32,
-    Guid: Guid,
-    PowerCondition: SYSTEM_POWER_CONDITION,
-    DataLength: u32,
-    Data: [1]u8,
-};
-
-pub const NOTIFY_USER_POWER_SETTING = extern struct {
-    Guid: Guid,
-};
-
-pub const APPLICATIONLAUNCH_SETTING_VALUE = extern struct {
-    ActivationTime: LARGE_INTEGER,
-    Flags: u32,
-    ButtonInstanceID: u32,
-};
-
-pub const POWER_PLATFORM_ROLE = extern enum(i32) {
-    PlatformRoleUnspecified = 0,
-    PlatformRoleDesktop = 1,
-    PlatformRoleMobile = 2,
-    PlatformRoleWorkstation = 3,
-    PlatformRoleEnterpriseServer = 4,
-    PlatformRoleSOHOServer = 5,
-    PlatformRoleAppliancePC = 6,
-    PlatformRolePerformanceServer = 7,
-    PlatformRoleSlate = 8,
-    PlatformRoleMaximum = 9,
-};
-pub const PlatformRoleUnspecified = POWER_PLATFORM_ROLE.PlatformRoleUnspecified;
-pub const PlatformRoleDesktop = POWER_PLATFORM_ROLE.PlatformRoleDesktop;
-pub const PlatformRoleMobile = POWER_PLATFORM_ROLE.PlatformRoleMobile;
-pub const PlatformRoleWorkstation = POWER_PLATFORM_ROLE.PlatformRoleWorkstation;
-pub const PlatformRoleEnterpriseServer = POWER_PLATFORM_ROLE.PlatformRoleEnterpriseServer;
-pub const PlatformRoleSOHOServer = POWER_PLATFORM_ROLE.PlatformRoleSOHOServer;
-pub const PlatformRoleAppliancePC = POWER_PLATFORM_ROLE.PlatformRoleAppliancePC;
-pub const PlatformRolePerformanceServer = POWER_PLATFORM_ROLE.PlatformRolePerformanceServer;
-pub const PlatformRoleSlate = POWER_PLATFORM_ROLE.PlatformRoleSlate;
-pub const PlatformRoleMaximum = POWER_PLATFORM_ROLE.PlatformRoleMaximum;
-
-pub const POWER_PLATFORM_INFORMATION = extern struct {
-    AoAc: u8,
-};
-
-pub const BATTERY_REPORTING_SCALE = extern struct {
-    Granularity: u32,
-    Capacity: u32,
-};
-
-pub const PPM_WMI_LEGACY_PERFSTATE = extern struct {
-    Frequency: u32,
-    Flags: u32,
-    PercentFrequency: u32,
-};
-
-pub const PPM_WMI_IDLE_STATE = extern struct {
-    Latency: u32,
-    Power: u32,
-    TimeCheck: u32,
-    PromotePercent: u8,
-    DemotePercent: u8,
-    StateType: u8,
-    Reserved: u8,
-    StateFlags: u32,
-    Context: u32,
-    IdleHandler: u32,
-    Reserved1: u32,
-};
-
-pub const PPM_WMI_IDLE_STATES = extern struct {
-    Type: u32,
-    Count: u32,
-    TargetState: u32,
-    OldState: u32,
-    TargetProcessors: u64,
-    State: [1]PPM_WMI_IDLE_STATE,
-};
-
-pub const PPM_WMI_IDLE_STATES_EX = extern struct {
-    Type: u32,
-    Count: u32,
-    TargetState: u32,
-    OldState: u32,
-    TargetProcessors: *c_void,
-    State: [1]PPM_WMI_IDLE_STATE,
-};
-
-pub const PPM_WMI_PERF_STATE = extern struct {
-    Frequency: u32,
-    Power: u32,
-    PercentFrequency: u8,
-    IncreaseLevel: u8,
-    DecreaseLevel: u8,
-    Type: u8,
-    IncreaseTime: u32,
-    DecreaseTime: u32,
-    Control: u64,
-    Status: u64,
-    HitCount: u32,
-    Reserved1: u32,
-    Reserved2: u64,
-    Reserved3: u64,
-};
-
-pub const PPM_WMI_PERF_STATES = extern struct {
-    Count: u32,
-    MaxFrequency: u32,
-    CurrentState: u32,
-    MaxPerfState: u32,
-    MinPerfState: u32,
-    LowestPerfState: u32,
-    ThermalConstraint: u32,
-    BusyAdjThreshold: u8,
-    PolicyType: u8,
-    Type: u8,
-    Reserved: u8,
-    TimerInterval: u32,
-    TargetProcessors: u64,
-    PStateHandler: u32,
-    PStateContext: u32,
-    TStateHandler: u32,
-    TStateContext: u32,
-    FeedbackHandler: u32,
-    Reserved1: u32,
-    Reserved2: u64,
-    State: [1]PPM_WMI_PERF_STATE,
-};
-
-pub const PPM_WMI_PERF_STATES_EX = extern struct {
-    Count: u32,
-    MaxFrequency: u32,
-    CurrentState: u32,
-    MaxPerfState: u32,
-    MinPerfState: u32,
-    LowestPerfState: u32,
-    ThermalConstraint: u32,
-    BusyAdjThreshold: u8,
-    PolicyType: u8,
-    Type: u8,
-    Reserved: u8,
-    TimerInterval: u32,
-    TargetProcessors: *c_void,
-    PStateHandler: u32,
-    PStateContext: u32,
-    TStateHandler: u32,
-    TStateContext: u32,
-    FeedbackHandler: u32,
-    Reserved1: u32,
-    Reserved2: u64,
-    State: [1]PPM_WMI_PERF_STATE,
-};
-
-pub const PPM_IDLE_STATE_ACCOUNTING = extern struct {
-    IdleTransitions: u32,
-    FailedTransitions: u32,
-    InvalidBucketIndex: u32,
-    TotalTime: u64,
-    IdleTimeBuckets: [6]u32,
-};
-
-pub const PPM_IDLE_ACCOUNTING = extern struct {
-    StateCount: u32,
-    TotalTransitions: u32,
-    ResetCount: u32,
-    StartTime: u64,
-    State: [1]PPM_IDLE_STATE_ACCOUNTING,
-};
-
-pub const PPM_IDLE_STATE_BUCKET_EX = extern struct {
-    TotalTimeUs: u64,
-    MinTimeUs: u32,
-    MaxTimeUs: u32,
-    Count: u32,
-};
-
-pub const PPM_IDLE_STATE_ACCOUNTING_EX = extern struct {
-    TotalTime: u64,
-    IdleTransitions: u32,
-    FailedTransitions: u32,
-    InvalidBucketIndex: u32,
-    MinTimeUs: u32,
-    MaxTimeUs: u32,
-    CancelledTransitions: u32,
-    IdleTimeBuckets: [16]PPM_IDLE_STATE_BUCKET_EX,
-};
-
-pub const PPM_IDLE_ACCOUNTING_EX = extern struct {
-    StateCount: u32,
-    TotalTransitions: u32,
-    ResetCount: u32,
-    AbortCount: u32,
-    StartTime: u64,
-    State: [1]PPM_IDLE_STATE_ACCOUNTING_EX,
-};
-
-pub const PPM_PERFSTATE_EVENT = extern struct {
-    State: u32,
-    Status: u32,
-    Latency: u32,
-    Speed: u32,
-    Processor: u32,
-};
-
-pub const PPM_PERFSTATE_DOMAIN_EVENT = extern struct {
-    State: u32,
-    Latency: u32,
-    Speed: u32,
-    Processors: u64,
-};
-
-pub const PPM_IDLESTATE_EVENT = extern struct {
-    NewState: u32,
-    OldState: u32,
-    Processors: u64,
-};
-
-pub const PPM_THERMALCHANGE_EVENT = extern struct {
-    ThermalConstraint: u32,
-    Processors: u64,
-};
-
-pub const PPM_THERMAL_POLICY_EVENT = extern struct {
-    Mode: u8,
-    Processors: u64,
-};
-
-pub const POWER_ACTION_POLICY = extern struct {
-    Action: POWER_ACTION,
-    Flags: u32,
-    EventCode: u32,
-};
-
-pub const SYSTEM_POWER_LEVEL = extern struct {
-    Enable: u8,
-    Spare: [3]u8,
-    BatteryLevel: u32,
-    PowerPolicy: POWER_ACTION_POLICY,
-    MinSystemState: SYSTEM_POWER_STATE,
-};
-
-pub const SYSTEM_POWER_POLICY = extern struct {
-    Revision: u32,
-    PowerButton: POWER_ACTION_POLICY,
-    SleepButton: POWER_ACTION_POLICY,
-    LidClose: POWER_ACTION_POLICY,
-    LidOpenWake: SYSTEM_POWER_STATE,
-    Reserved: u32,
-    Idle: POWER_ACTION_POLICY,
-    IdleTimeout: u32,
-    IdleSensitivity: u8,
-    DynamicThrottle: u8,
-    Spare2: [2]u8,
-    MinSleep: SYSTEM_POWER_STATE,
-    MaxSleep: SYSTEM_POWER_STATE,
-    ReducedLatencySleep: SYSTEM_POWER_STATE,
-    WinLogonFlags: u32,
-    Spare3: u32,
-    DozeS4Timeout: u32,
-    BroadcastCapacityResolution: u32,
-    DischargePolicy: [4]SYSTEM_POWER_LEVEL,
-    VideoTimeout: u32,
-    VideoDimDisplay: u8,
-    VideoReserved: [3]u32,
-    SpindownTimeout: u32,
-    OptimizeForPower: u8,
-    FanThrottleTolerance: u8,
-    ForcedThrottle: u8,
-    MinThrottle: u8,
-    OverThrottled: POWER_ACTION_POLICY,
-};
-
-pub const PROCESSOR_IDLESTATE_INFO = extern struct {
-    TimeCheck: u32,
-    DemotePercent: u8,
-    PromotePercent: u8,
-    Spare: [2]u8,
-};
-
-pub const PROCESSOR_IDLESTATE_POLICY = extern struct {
-    Revision: u16,
-    Flags: PROCESSOR_IDLESTATE_POLICY._Flags_e__Union,
-    PolicyCount: u32,
-    Policy: [3]PROCESSOR_IDLESTATE_INFO,
-    const _Flags_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
-    TimeCheck: u32,
-    DemoteLimit: u32,
-    PromoteLimit: u32,
-    DemotePercent: u8,
-    PromotePercent: u8,
-    Spare: [2]u8,
-    _bitfield: u32,
-};
-
-pub const PROCESSOR_POWER_POLICY = extern struct {
-    Revision: u32,
-    DynamicThrottle: u8,
-    Spare: [3]u8,
-    _bitfield: u32,
-    PolicyCount: u32,
-    Policy: [3]PROCESSOR_POWER_POLICY_INFO,
-};
-
-pub const PROCESSOR_PERFSTATE_POLICY = extern struct {
-    Revision: u32,
-    MaxThrottle: u8,
-    MinThrottle: u8,
-    BusyAdjThreshold: u8,
-    Anonymous: PROCESSOR_PERFSTATE_POLICY._Anonymous_e__Union,
-    TimeCheck: u32,
-    IncreaseTime: u32,
-    DecreaseTime: u32,
-    IncreasePercent: u32,
-    DecreasePercent: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const ADMINISTRATOR_POWER_POLICY = extern struct {
-    MinSleep: SYSTEM_POWER_STATE,
-    MaxSleep: SYSTEM_POWER_STATE,
-    MinVideoTimeout: u32,
-    MaxVideoTimeout: u32,
-    MinSpindownTimeout: u32,
-    MaxSpindownTimeout: u32,
-};
-
-pub const HIBERFILE_BUCKET_SIZE = extern enum(i32) {
-    HiberFileBucket1GB = 0,
-    HiberFileBucket2GB = 1,
-    HiberFileBucket4GB = 2,
-    HiberFileBucket8GB = 3,
-    HiberFileBucket16GB = 4,
-    HiberFileBucket32GB = 5,
-    HiberFileBucketUnlimited = 6,
-    HiberFileBucketMax = 7,
-};
-pub const HiberFileBucket1GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket1GB;
-pub const HiberFileBucket2GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket2GB;
-pub const HiberFileBucket4GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket4GB;
-pub const HiberFileBucket8GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket8GB;
-pub const HiberFileBucket16GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket16GB;
-pub const HiberFileBucket32GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket32GB;
-pub const HiberFileBucketUnlimited = HIBERFILE_BUCKET_SIZE.HiberFileBucketUnlimited;
-pub const HiberFileBucketMax = HIBERFILE_BUCKET_SIZE.HiberFileBucketMax;
-
-pub const HIBERFILE_BUCKET = extern struct {
-    MaxPhysicalMemory: u64,
-    PhysicalMemoryPercent: [3]u32,
-};
-
-pub const SYSTEM_POWER_CAPABILITIES = extern struct {
-    PowerButtonPresent: u8,
-    SleepButtonPresent: u8,
-    LidPresent: u8,
-    SystemS1: u8,
-    SystemS2: u8,
-    SystemS3: u8,
-    SystemS4: u8,
-    SystemS5: u8,
-    HiberFilePresent: u8,
-    FullWake: u8,
-    VideoDimPresent: u8,
-    ApmPresent: u8,
-    UpsPresent: u8,
-    ThermalControl: u8,
-    ProcessorThrottle: u8,
-    ProcessorMinThrottle: u8,
-    ProcessorMaxThrottle: u8,
-    FastSystemS4: u8,
-    Hiberboot: u8,
-    WakeAlarmPresent: u8,
-    AoAc: u8,
-    DiskSpinDown: u8,
-    HiberFileType: u8,
-    AoAcConnectivitySupported: u8,
-    spare3: [6]u8,
-    SystemBatteriesPresent: u8,
-    BatteriesAreShortTerm: u8,
-    BatteryScale: [3]BATTERY_REPORTING_SCALE,
-    AcOnLineWake: SYSTEM_POWER_STATE,
-    SoftLidWake: SYSTEM_POWER_STATE,
-    RtcWake: SYSTEM_POWER_STATE,
-    MinDeviceWakeState: SYSTEM_POWER_STATE,
-    DefaultLowLatencyWake: SYSTEM_POWER_STATE,
-};
-
-pub const SYSTEM_BATTERY_STATE = extern struct {
-    AcOnLine: u8,
-    BatteryPresent: u8,
-    Charging: u8,
-    Discharging: u8,
-    Spare1: [3]u8,
-    Tag: u8,
-    MaxCapacity: u32,
-    RemainingCapacity: u32,
-    Rate: u32,
-    EstimatedTime: u32,
-    DefaultAlert1: u32,
-    DefaultAlert2: u32,
-};
-
-pub const IMAGE_DOS_HEADER = extern struct {
-    e_magic: u16,
-    e_cblp: u16,
-    e_cp: u16,
-    e_crlc: u16,
-    e_cparhdr: u16,
-    e_minalloc: u16,
-    e_maxalloc: u16,
-    e_ss: u16,
-    e_sp: u16,
-    e_csum: u16,
-    e_ip: u16,
-    e_cs: u16,
-    e_lfarlc: u16,
-    e_ovno: u16,
-    e_res: [4]u16,
-    e_oemid: u16,
-    e_oeminfo: u16,
-    e_res2: [10]u16,
-    e_lfanew: i32,
-};
-
-pub const IMAGE_OS2_HEADER = extern struct {
-    ne_magic: u16,
-    ne_ver: i8,
-    ne_rev: i8,
-    ne_enttab: u16,
-    ne_cbenttab: u16,
-    ne_crc: i32,
-    ne_flags: u16,
-    ne_autodata: u16,
-    ne_heap: u16,
-    ne_stack: u16,
-    ne_csip: i32,
-    ne_sssp: i32,
-    ne_cseg: u16,
-    ne_cmod: u16,
-    ne_cbnrestab: u16,
-    ne_segtab: u16,
-    ne_rsrctab: u16,
-    ne_restab: u16,
-    ne_modtab: u16,
-    ne_imptab: u16,
-    ne_nrestab: i32,
-    ne_cmovent: u16,
-    ne_align: u16,
-    ne_cres: u16,
-    ne_exetyp: u8,
-    ne_flagsothers: u8,
-    ne_pretthunks: u16,
-    ne_psegrefbytes: u16,
-    ne_swaparea: u16,
-    ne_expver: u16,
-};
-
-pub const IMAGE_VXD_HEADER = extern struct {
-    e32_magic: u16,
-    e32_border: u8,
-    e32_worder: u8,
-    e32_level: u32,
-    e32_cpu: u16,
-    e32_os: u16,
-    e32_ver: u32,
-    e32_mflags: u32,
-    e32_mpages: u32,
-    e32_startobj: u32,
-    e32_eip: u32,
-    e32_stackobj: u32,
-    e32_esp: u32,
-    e32_pagesize: u32,
-    e32_lastpagesize: u32,
-    e32_fixupsize: u32,
-    e32_fixupsum: u32,
-    e32_ldrsize: u32,
-    e32_ldrsum: u32,
-    e32_objtab: u32,
-    e32_objcnt: u32,
-    e32_objmap: u32,
-    e32_itermap: u32,
-    e32_rsrctab: u32,
-    e32_rsrccnt: u32,
-    e32_restab: u32,
-    e32_enttab: u32,
-    e32_dirtab: u32,
-    e32_dircnt: u32,
-    e32_fpagetab: u32,
-    e32_frectab: u32,
-    e32_impmod: u32,
-    e32_impmodcnt: u32,
-    e32_impproc: u32,
-    e32_pagesum: u32,
-    e32_datapage: u32,
-    e32_preload: u32,
-    e32_nrestab: u32,
-    e32_cbnrestab: u32,
-    e32_nressum: u32,
-    e32_autodata: u32,
-    e32_debuginfo: u32,
-    e32_debuglen: u32,
-    e32_instpreload: u32,
-    e32_instdemand: u32,
-    e32_heapsize: u32,
-    e32_res3: [12]u8,
-    e32_winresoff: u32,
-    e32_winreslen: u32,
-    e32_devid: u16,
-    e32_ddkver: u16,
-};
-
-pub const IMAGE_OPTIONAL_HEADER = extern struct {
-    Magic: u16,
-    MajorLinkerVersion: u8,
-    MinorLinkerVersion: u8,
-    SizeOfCode: u32,
-    SizeOfInitializedData: u32,
-    SizeOfUninitializedData: u32,
-    AddressOfEntryPoint: u32,
-    BaseOfCode: u32,
-    BaseOfData: u32,
-    ImageBase: u32,
-    SectionAlignment: u32,
-    FileAlignment: u32,
-    MajorOperatingSystemVersion: u16,
-    MinorOperatingSystemVersion: u16,
-    MajorImageVersion: u16,
-    MinorImageVersion: u16,
-    MajorSubsystemVersion: u16,
-    MinorSubsystemVersion: u16,
-    Win32VersionValue: u32,
-    SizeOfImage: u32,
-    SizeOfHeaders: u32,
-    CheckSum: u32,
-    Subsystem: u16,
-    DllCharacteristics: u16,
-    SizeOfStackReserve: u32,
-    SizeOfStackCommit: u32,
-    SizeOfHeapReserve: u32,
-    SizeOfHeapCommit: u32,
-    LoaderFlags: u32,
-    NumberOfRvaAndSizes: u32,
-    DataDirectory: [16]IMAGE_DATA_DIRECTORY,
-};
-
-pub const IMAGE_ROM_OPTIONAL_HEADER = extern struct {
-    Magic: u16,
-    MajorLinkerVersion: u8,
-    MinorLinkerVersion: u8,
-    SizeOfCode: u32,
-    SizeOfInitializedData: u32,
-    SizeOfUninitializedData: u32,
-    AddressOfEntryPoint: u32,
-    BaseOfCode: u32,
-    BaseOfData: u32,
-    BaseOfBss: u32,
-    GprMask: u32,
-    CprMask: [4]u32,
-    GpValue: u32,
-};
-
-pub const IMAGE_NT_HEADERS = extern struct {
-    Signature: u32,
-    FileHeader: IMAGE_FILE_HEADER,
-    OptionalHeader: IMAGE_OPTIONAL_HEADER,
-};
-
-pub const IMAGE_ROM_HEADERS = extern struct {
-    FileHeader: IMAGE_FILE_HEADER,
-    OptionalHeader: IMAGE_ROM_OPTIONAL_HEADER,
-};
-
-pub const ANON_OBJECT_HEADER = extern struct {
-    Sig1: u16,
-    Sig2: u16,
-    Version: u16,
-    Machine: u16,
-    TimeDateStamp: u32,
-    ClassID: Guid,
-    SizeOfData: u32,
-};
-
-pub const ANON_OBJECT_HEADER_V2 = extern struct {
-    Sig1: u16,
-    Sig2: u16,
-    Version: u16,
-    Machine: u16,
-    TimeDateStamp: u32,
-    ClassID: Guid,
-    SizeOfData: u32,
-    Flags: u32,
-    MetaDataSize: u32,
-    MetaDataOffset: u32,
-};
-
-pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
-    Sig1: u16,
-    Sig2: u16,
-    Version: u16,
-    Machine: u16,
-    TimeDateStamp: u32,
-    ClassID: Guid,
-    SizeOfData: u32,
-    Flags: u32,
-    MetaDataSize: u32,
-    MetaDataOffset: u32,
-    NumberOfSections: u32,
-    PointerToSymbolTable: u32,
-    NumberOfSymbols: u32,
-};
-
-pub const IMAGE_SYMBOL = extern struct {
-    N: IMAGE_SYMBOL._N_e__Union,
-    Value: u32,
-    SectionNumber: i16,
-    Type: u16,
-    StorageClass: u8,
-    NumberOfAuxSymbols: u8,
-    const _N_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_SYMBOL_EX = extern struct {
-    N: IMAGE_SYMBOL_EX._N_e__Union,
-    Value: u32,
-    SectionNumber: i32,
-    Type: u16,
-    StorageClass: u8,
-    NumberOfAuxSymbols: u8,
-    const _N_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
-    bAuxType: u8,
-    bReserved: u8,
-    SymbolTableIndex: u32,
-    rgbReserved: [12]u8,
-};
-
-pub const IMAGE_AUX_SYMBOL = u32; // TODO: implement StructOrUnion types?
-
-pub const IMAGE_AUX_SYMBOL_EX = u32; // TODO: implement StructOrUnion types?
-
-pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
-    TOKEN_DEF = 1,
-};
-pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.TOKEN_DEF;
-
-pub const IMAGE_RELOCATION = extern struct {
-    Anonymous: IMAGE_RELOCATION._Anonymous_e__Union,
-    SymbolTableIndex: u32,
-    Type: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_LINENUMBER = extern struct {
-    Type: IMAGE_LINENUMBER._Type_e__Union,
-    Linenumber: u16,
-    const _Type_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_BASE_RELOCATION = extern struct {
-    VirtualAddress: u32,
-    SizeOfBlock: u32,
-};
-
-pub const IMAGE_ARCHIVE_MEMBER_HEADER = extern struct {
-    Name: [16]u8,
-    Date: [12]u8,
-    UserID: [6]u8,
-    GroupID: [6]u8,
-    Mode: [8]u8,
-    Size: [10]u8,
-    EndHeader: [2]u8,
-};
-
-pub const IMAGE_EXPORT_DIRECTORY = extern struct {
-    Characteristics: u32,
-    TimeDateStamp: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    Name: u32,
-    Base: u32,
-    NumberOfFunctions: u32,
-    NumberOfNames: u32,
-    AddressOfFunctions: u32,
-    AddressOfNames: u32,
-    AddressOfNameOrdinals: u32,
-};
-
-pub const IMAGE_IMPORT_BY_NAME = extern struct {
-    Hint: u16,
-    Name: [1]i8,
-};
-
-pub const IMAGE_THUNK_DATA64 = extern struct {
-    u1: IMAGE_THUNK_DATA64._u1_e__Union,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_THUNK_DATA32 = extern struct {
-    u1: IMAGE_THUNK_DATA32._u1_e__Union,
-    const _u1_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PIMAGE_TLS_CALLBACK = fn(
-    DllHandle: *c_void,
-    Reason: u32,
-    Reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const IMAGE_TLS_DIRECTORY64 = extern struct {
-    StartAddressOfRawData: u64,
-    EndAddressOfRawData: u64,
-    AddressOfIndex: u64,
-    AddressOfCallBacks: u64,
-    SizeOfZeroFill: u32,
-    Anonymous: IMAGE_TLS_DIRECTORY64._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_TLS_DIRECTORY32 = extern struct {
-    StartAddressOfRawData: u32,
-    EndAddressOfRawData: u32,
-    AddressOfIndex: u32,
-    AddressOfCallBacks: u32,
-    SizeOfZeroFill: u32,
-    Anonymous: IMAGE_TLS_DIRECTORY32._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_IMPORT_DESCRIPTOR = extern struct {
-    Anonymous: IMAGE_IMPORT_DESCRIPTOR._Anonymous_e__Union,
-    TimeDateStamp: u32,
-    ForwarderChain: u32,
-    Name: u32,
-    FirstThunk: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_BOUND_IMPORT_DESCRIPTOR = extern struct {
-    TimeDateStamp: u32,
-    OffsetModuleName: u16,
-    NumberOfModuleForwarderRefs: u16,
-};
-
-pub const IMAGE_BOUND_FORWARDER_REF = extern struct {
-    TimeDateStamp: u32,
-    OffsetModuleName: u16,
-    Reserved: u16,
-};
-
-pub const IMAGE_DELAYLOAD_DESCRIPTOR = extern struct {
-    Attributes: IMAGE_DELAYLOAD_DESCRIPTOR._Attributes_e__Union,
-    DllNameRVA: u32,
-    ModuleHandleRVA: u32,
-    ImportAddressTableRVA: u32,
-    ImportNameTableRVA: u32,
-    BoundImportAddressTableRVA: u32,
-    UnloadInformationTableRVA: u32,
-    TimeDateStamp: u32,
-    const _Attributes_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_RESOURCE_DIRECTORY = extern struct {
-    Characteristics: u32,
-    TimeDateStamp: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    NumberOfNamedEntries: u16,
-    NumberOfIdEntries: u16,
-};
-
-pub const IMAGE_RESOURCE_DIRECTORY_ENTRY = extern struct {
-    Anonymous1: IMAGE_RESOURCE_DIRECTORY_ENTRY._Anonymous1_e__Union,
-    Anonymous2: IMAGE_RESOURCE_DIRECTORY_ENTRY._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_RESOURCE_DIRECTORY_STRING = extern struct {
-    Length: u16,
-    NameString: [1]i8,
-};
-
-pub const IMAGE_RESOURCE_DIR_STRING_U = extern struct {
-    Length: u16,
-    NameString: [1]u16,
-};
-
-pub const IMAGE_RESOURCE_DATA_ENTRY = extern struct {
-    OffsetToData: u32,
-    Size: u32,
-    CodePage: u32,
-    Reserved: u32,
-};
-
-pub const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = extern struct {
-    Flags: u16,
-    Catalog: u16,
-    CatalogOffset: u32,
-    Reserved: u32,
-};
-
-pub const IMAGE_DYNAMIC_RELOCATION_TABLE = extern struct {
-    Version: u32,
-    Size: u32,
-};
-
-pub const IMAGE_DYNAMIC_RELOCATION32 = extern struct {
-    Symbol: u32,
-    BaseRelocSize: u32,
-};
-
-pub const IMAGE_DYNAMIC_RELOCATION64 = extern struct {
-    Symbol: u64,
-    BaseRelocSize: u32,
-};
-
-pub const IMAGE_DYNAMIC_RELOCATION32_V2 = extern struct {
-    HeaderSize: u32,
-    FixupInfoSize: u32,
-    Symbol: u32,
-    SymbolGroup: u32,
-    Flags: u32,
-};
-
-pub const IMAGE_DYNAMIC_RELOCATION64_V2 = extern struct {
-    HeaderSize: u32,
-    FixupInfoSize: u32,
-    Symbol: u64,
-    SymbolGroup: u32,
-    Flags: u32,
-};
-
-pub const IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
-    PrologueByteCount: u8,
-};
-
-pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
-    EpilogueCount: u32,
-    EpilogueByteCount: u8,
-    BranchDescriptorElementSize: u8,
-    BranchDescriptorCount: u16,
-};
-
-pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
-    _bitfield: u32,
-};
-
-pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
-    _bitfield: u16,
-};
-
-pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = extern struct {
-    _bitfield: u16,
-};
-
-pub const IMAGE_HOT_PATCH_INFO = extern struct {
-    Version: u32,
-    Size: u32,
-    SequenceNumber: u32,
-    BaseImageList: u32,
-    BaseImageCount: u32,
-    BufferOffset: u32,
-    ExtraPatchSize: u32,
-};
-
-pub const IMAGE_HOT_PATCH_BASE = extern struct {
-    SequenceNumber: u32,
-    Flags: u32,
-    OriginalTimeDateStamp: u32,
-    OriginalCheckSum: u32,
-    CodeIntegrityInfo: u32,
-    CodeIntegritySize: u32,
-    PatchTable: u32,
-    BufferOffset: u32,
-};
-
-pub const IMAGE_HOT_PATCH_HASHES = extern struct {
-    SHA256: [32]u8,
-    SHA1: [20]u8,
-};
-
-pub const IMAGE_CE_RUNTIME_FUNCTION_ENTRY = extern struct {
-    FuncStart: u32,
-    _bitfield: u32,
-};
-
-pub const IMAGE_ARM_RUNTIME_FUNCTION_ENTRY = extern struct {
-    BeginAddress: u32,
-    Anonymous: IMAGE_ARM_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const ARM64_FNPDATA_FLAGS = extern enum(i32) {
-    PdataRefToFullXdata = 0,
-    PdataPackedUnwindFunction = 1,
-    PdataPackedUnwindFragment = 2,
-};
-pub const PdataRefToFullXdata = ARM64_FNPDATA_FLAGS.PdataRefToFullXdata;
-pub const PdataPackedUnwindFunction = ARM64_FNPDATA_FLAGS.PdataPackedUnwindFunction;
-pub const PdataPackedUnwindFragment = ARM64_FNPDATA_FLAGS.PdataPackedUnwindFragment;
-
-pub const ARM64_FNPDATA_CR = extern enum(i32) {
-    PdataCrUnchained = 0,
-    PdataCrUnchainedSavedLr = 1,
-    PdataCrChained = 3,
-};
-pub const PdataCrUnchained = ARM64_FNPDATA_CR.PdataCrUnchained;
-pub const PdataCrUnchainedSavedLr = ARM64_FNPDATA_CR.PdataCrUnchainedSavedLr;
-pub const PdataCrChained = ARM64_FNPDATA_CR.PdataCrChained;
-
-pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = extern struct {
-    BeginAddress: u32,
-    Anonymous: IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = u32; // TODO: implement StructOrUnion types?
-
-pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
-    BeginAddress: u64,
-    EndAddress: u64,
-    ExceptionHandler: u64,
-    HandlerData: u64,
-    PrologEndAddress: u64,
-};
-
-pub const IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = extern struct {
-    BeginAddress: u32,
-    EndAddress: u32,
-    ExceptionHandler: u32,
-    HandlerData: u32,
-    PrologEndAddress: u32,
-};
-
-pub const IMAGE_RUNTIME_FUNCTION_ENTRY = extern struct {
-    BeginAddress: u32,
-    EndAddress: u32,
-    Anonymous: IMAGE_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_ENCLAVE_CONFIG32 = extern struct {
-    Size: u32,
-    MinimumRequiredConfigSize: u32,
-    PolicyFlags: u32,
-    NumberOfImports: u32,
-    ImportList: u32,
-    ImportEntrySize: u32,
-    FamilyID: [16]u8,
-    ImageID: [16]u8,
-    ImageVersion: u32,
-    SecurityVersion: u32,
-    EnclaveSize: u32,
-    NumberOfThreads: u32,
-    EnclaveFlags: u32,
-};
-
-pub const IMAGE_ENCLAVE_CONFIG64 = extern struct {
-    Size: u32,
-    MinimumRequiredConfigSize: u32,
-    PolicyFlags: u32,
-    NumberOfImports: u32,
-    ImportList: u32,
-    ImportEntrySize: u32,
-    FamilyID: [16]u8,
-    ImageID: [16]u8,
-    ImageVersion: u32,
-    SecurityVersion: u32,
-    EnclaveSize: u64,
-    NumberOfThreads: u32,
-    EnclaveFlags: u32,
-};
-
-pub const IMAGE_ENCLAVE_IMPORT = extern struct {
-    MatchType: u32,
-    MinimumSecurityVersion: u32,
-    UniqueOrAuthorID: [32]u8,
-    FamilyID: [16]u8,
-    ImageID: [16]u8,
-    ImportName: u32,
-    Reserved: u32,
-};
-
-pub const IMAGE_DEBUG_MISC = extern struct {
-    DataType: u32,
-    Length: u32,
-    Unicode: u8,
-    Reserved: [3]u8,
-    Data: [1]u8,
-};
-
-pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
-    Signature: u16,
-    Flags: u16,
-    Machine: u16,
-    Characteristics: u16,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    ImageBase: u32,
-    SizeOfImage: u32,
-    NumberOfSections: u32,
-    ExportedNamesSize: u32,
-    DebugDirectorySize: u32,
-    SectionAlignment: u32,
-    Reserved: [2]u32,
-};
-
-pub const NON_PAGED_DEBUG_INFO = extern struct {
-    Signature: u16,
-    Flags: u16,
-    Size: u32,
-    Machine: u16,
-    Characteristics: u16,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    SizeOfImage: u32,
-    ImageBase: u64,
-};
-
-pub const IMAGE_ARCHITECTURE_HEADER = extern struct {
-    _bitfield: u32,
-    FirstEntryRVA: u32,
-};
-
-pub const IMAGE_ARCHITECTURE_ENTRY = extern struct {
-    FixupInstRVA: u32,
-    NewInst: u32,
-};
-
-pub const IMPORT_OBJECT_HEADER = extern struct {
-    Sig1: u16,
-    Sig2: u16,
-    Version: u16,
-    Machine: u16,
-    TimeDateStamp: u32,
-    SizeOfData: u32,
-    Anonymous: IMPORT_OBJECT_HEADER._Anonymous_e__Union,
-    _bitfield: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMPORT_OBJECT_TYPE = extern enum(i32) {
-    IMPORT_OBJECT_CODE = 0,
-    IMPORT_OBJECT_DATA = 1,
-    IMPORT_OBJECT_CONST = 2,
-};
-pub const IMPORT_OBJECT_CODE = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CODE;
-pub const IMPORT_OBJECT_DATA = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_DATA;
-pub const IMPORT_OBJECT_CONST = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CONST;
-
-pub const IMPORT_OBJECT_NAME_TYPE = extern enum(i32) {
-    IMPORT_OBJECT_ORDINAL = 0,
-    IMPORT_OBJECT_NAME = 1,
-    IMPORT_OBJECT_NAME_NO_PREFIX = 2,
-    IMPORT_OBJECT_NAME_UNDECORATE = 3,
-    IMPORT_OBJECT_NAME_EXPORTAS = 4,
-};
-pub const IMPORT_OBJECT_ORDINAL = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_ORDINAL;
-pub const IMPORT_OBJECT_NAME = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME;
-pub const IMPORT_OBJECT_NAME_NO_PREFIX = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_NO_PREFIX;
-pub const IMPORT_OBJECT_NAME_UNDECORATE = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_UNDECORATE;
-pub const IMPORT_OBJECT_NAME_EXPORTAS = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_EXPORTAS;
-
-pub const ReplacesCorHdrNumericDefines = extern enum(i32) {
-    COMIMAGE_FLAGS_ILONLY = 1,
-    COMIMAGE_FLAGS_32BITREQUIRED = 2,
-    COMIMAGE_FLAGS_IL_LIBRARY = 4,
-    COMIMAGE_FLAGS_STRONGNAMESIGNED = 8,
-    COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 16,
-    COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536,
-    COMIMAGE_FLAGS_32BITPREFERRED = 131072,
-    COR_VERSION_MAJOR_V2 = 2,
-    COR_VERSION_MAJOR = 2,
-    COR_VERSION_MINOR = 5,
-    COR_DELETED_NAME_LENGTH = 8,
-    COR_VTABLEGAP_NAME_LENGTH = 8,
-    NATIVE_TYPE_MAX_CB = 1,
-    COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255,
-    IMAGE_COR_MIH_METHODRVA = 1,
-    IMAGE_COR_MIH_EHRVA = 2,
-    IMAGE_COR_MIH_BASICBLOCK = 8,
-    COR_VTABLE_32BIT = 1,
-    COR_VTABLE_64BIT = 2,
-    COR_VTABLE_FROM_UNMANAGED = 4,
-    COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8,
-    COR_VTABLE_CALL_MOST_DERIVED = 16,
-    IMAGE_COR_EATJ_THUNK_SIZE = 32,
-    MAX_CLASS_NAME = 1024,
-    MAX_PACKAGE_NAME = 1024,
-};
-pub const COMIMAGE_FLAGS_ILONLY = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
-pub const COMIMAGE_FLAGS_32BITREQUIRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
-pub const COMIMAGE_FLAGS_IL_LIBRARY = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_IL_LIBRARY;
-pub const COMIMAGE_FLAGS_STRONGNAMESIGNED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
-pub const COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT;
-pub const COMIMAGE_FLAGS_TRACKDEBUGDATA = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_TRACKDEBUGDATA;
-pub const COMIMAGE_FLAGS_32BITPREFERRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITPREFERRED;
-pub const COR_VERSION_MAJOR_V2 = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR_V2;
-pub const COR_VERSION_MAJOR = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR;
-pub const COR_VERSION_MINOR = ReplacesCorHdrNumericDefines.COR_VERSION_MINOR;
-pub const COR_DELETED_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_DELETED_NAME_LENGTH;
-pub const COR_VTABLEGAP_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_VTABLEGAP_NAME_LENGTH;
-pub const NATIVE_TYPE_MAX_CB = ReplacesCorHdrNumericDefines.NATIVE_TYPE_MAX_CB;
-pub const COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = ReplacesCorHdrNumericDefines.COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE;
-pub const IMAGE_COR_MIH_METHODRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_METHODRVA;
-pub const IMAGE_COR_MIH_EHRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_EHRVA;
-pub const IMAGE_COR_MIH_BASICBLOCK = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_BASICBLOCK;
-pub const COR_VTABLE_32BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_32BIT;
-pub const COR_VTABLE_64BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_64BIT;
-pub const COR_VTABLE_FROM_UNMANAGED = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED;
-pub const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN;
-pub const COR_VTABLE_CALL_MOST_DERIVED = ReplacesCorHdrNumericDefines.COR_VTABLE_CALL_MOST_DERIVED;
-pub const IMAGE_COR_EATJ_THUNK_SIZE = ReplacesCorHdrNumericDefines.IMAGE_COR_EATJ_THUNK_SIZE;
-pub const MAX_CLASS_NAME = ReplacesCorHdrNumericDefines.MAX_CLASS_NAME;
-pub const MAX_PACKAGE_NAME = ReplacesCorHdrNumericDefines.MAX_PACKAGE_NAME;
-
-pub const IMAGE_COR20_HEADER = extern struct {
-    cb: u32,
-    MajorRuntimeVersion: u16,
-    MinorRuntimeVersion: u16,
-    MetaData: IMAGE_DATA_DIRECTORY,
-    Flags: u32,
-    Anonymous: IMAGE_COR20_HEADER._Anonymous_e__Union,
-    Resources: IMAGE_DATA_DIRECTORY,
-    StrongNameSignature: IMAGE_DATA_DIRECTORY,
-    CodeManagerTable: IMAGE_DATA_DIRECTORY,
-    VTableFixups: IMAGE_DATA_DIRECTORY,
-    ExportAddressTableJumps: IMAGE_DATA_DIRECTORY,
-    ManagedNativeHeader: IMAGE_DATA_DIRECTORY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SLIST_HEADER = u32; // TODO: implement StructOrUnion types?
-
-pub const RTL_RUN_ONCE = u32; // TODO: implement StructOrUnion types?
-
-pub const RTL_BARRIER = extern struct {
-    Reserved1: u32,
-    Reserved2: u32,
-    Reserved3: [2]?*c_void,
-    Reserved4: u32,
-    Reserved5: u32,
-};
-
-pub const RTL_UMS_THREAD_INFO_CLASS = extern enum(i32) {
-    UmsThreadInvalidInfoClass = 0,
-    UmsThreadUserContext = 1,
-    UmsThreadPriority = 2,
-    UmsThreadAffinity = 3,
-    UmsThreadTeb = 4,
-    UmsThreadIsSuspended = 5,
-    UmsThreadIsTerminated = 6,
-    UmsThreadMaxInfoClass = 7,
-};
-pub const UmsThreadInvalidInfoClass = RTL_UMS_THREAD_INFO_CLASS.UmsThreadInvalidInfoClass;
-pub const UmsThreadUserContext = RTL_UMS_THREAD_INFO_CLASS.UmsThreadUserContext;
-pub const UmsThreadPriority = RTL_UMS_THREAD_INFO_CLASS.UmsThreadPriority;
-pub const UmsThreadAffinity = RTL_UMS_THREAD_INFO_CLASS.UmsThreadAffinity;
-pub const UmsThreadTeb = RTL_UMS_THREAD_INFO_CLASS.UmsThreadTeb;
-pub const UmsThreadIsSuspended = RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsSuspended;
-pub const UmsThreadIsTerminated = RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsTerminated;
-pub const UmsThreadMaxInfoClass = RTL_UMS_THREAD_INFO_CLASS.UmsThreadMaxInfoClass;
-
-pub const RTL_UMS_SCHEDULER_REASON = extern enum(i32) {
-    UmsSchedulerStartup = 0,
-    UmsSchedulerThreadBlocked = 1,
-    UmsSchedulerThreadYield = 2,
-};
-pub const UmsSchedulerStartup = RTL_UMS_SCHEDULER_REASON.UmsSchedulerStartup;
-pub const UmsSchedulerThreadBlocked = RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadBlocked;
-pub const UmsSchedulerThreadYield = RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadYield;
-
-pub const RTL_UMS_SCHEDULER_ENTRY_POINT = fn(
-    Reason: RTL_UMS_SCHEDULER_REASON,
-    ActivationPayload: ?*c_void,
-    SchedulerParam: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const OS_DEPLOYEMENT_STATE_VALUES = extern enum(i32) {
-    OS_DEPLOYMENT_STANDARD = 1,
-    OS_DEPLOYMENT_COMPACT = 2,
-};
-pub const OS_DEPLOYMENT_STANDARD = OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_STANDARD;
-pub const OS_DEPLOYMENT_COMPACT = OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_COMPACT;
-
-pub const NV_MEMORY_RANGE = extern struct {
-    BaseAddress: *c_void,
-    Length: ?*c_void,
-};
-
-pub const CORRELATION_VECTOR = extern struct {
-    Version: i8,
-    Vector: [129]i8,
-};
-
-pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
-    Size: u32,
-    TriggerId: [*:0]const u16,
-};
-
-pub const IMAGE_POLICY_ENTRY_TYPE = extern enum(i32) {
-    ImagePolicyEntryTypeNone = 0,
-    ImagePolicyEntryTypeBool = 1,
-    ImagePolicyEntryTypeInt8 = 2,
-    ImagePolicyEntryTypeUInt8 = 3,
-    ImagePolicyEntryTypeInt16 = 4,
-    ImagePolicyEntryTypeUInt16 = 5,
-    ImagePolicyEntryTypeInt32 = 6,
-    ImagePolicyEntryTypeUInt32 = 7,
-    ImagePolicyEntryTypeInt64 = 8,
-    ImagePolicyEntryTypeUInt64 = 9,
-    ImagePolicyEntryTypeAnsiString = 10,
-    ImagePolicyEntryTypeUnicodeString = 11,
-    ImagePolicyEntryTypeOverride = 12,
-    ImagePolicyEntryTypeMaximum = 13,
-};
-pub const ImagePolicyEntryTypeNone = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeNone;
-pub const ImagePolicyEntryTypeBool = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeBool;
-pub const ImagePolicyEntryTypeInt8 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt8;
-pub const ImagePolicyEntryTypeUInt8 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt8;
-pub const ImagePolicyEntryTypeInt16 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt16;
-pub const ImagePolicyEntryTypeUInt16 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt16;
-pub const ImagePolicyEntryTypeInt32 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt32;
-pub const ImagePolicyEntryTypeUInt32 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt32;
-pub const ImagePolicyEntryTypeInt64 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt64;
-pub const ImagePolicyEntryTypeUInt64 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt64;
-pub const ImagePolicyEntryTypeAnsiString = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeAnsiString;
-pub const ImagePolicyEntryTypeUnicodeString = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUnicodeString;
-pub const ImagePolicyEntryTypeOverride = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeOverride;
-pub const ImagePolicyEntryTypeMaximum = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeMaximum;
-
-pub const IMAGE_POLICY_ID = extern enum(i32) {
-    ImagePolicyIdNone = 0,
-    ImagePolicyIdEtw = 1,
-    ImagePolicyIdDebug = 2,
-    ImagePolicyIdCrashDump = 3,
-    ImagePolicyIdCrashDumpKey = 4,
-    ImagePolicyIdCrashDumpKeyGuid = 5,
-    ImagePolicyIdParentSd = 6,
-    ImagePolicyIdParentSdRev = 7,
-    ImagePolicyIdSvn = 8,
-    ImagePolicyIdDeviceId = 9,
-    ImagePolicyIdCapability = 10,
-    ImagePolicyIdScenarioId = 11,
-    ImagePolicyIdMaximum = 12,
-};
-pub const ImagePolicyIdNone = IMAGE_POLICY_ID.ImagePolicyIdNone;
-pub const ImagePolicyIdEtw = IMAGE_POLICY_ID.ImagePolicyIdEtw;
-pub const ImagePolicyIdDebug = IMAGE_POLICY_ID.ImagePolicyIdDebug;
-pub const ImagePolicyIdCrashDump = IMAGE_POLICY_ID.ImagePolicyIdCrashDump;
-pub const ImagePolicyIdCrashDumpKey = IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKey;
-pub const ImagePolicyIdCrashDumpKeyGuid = IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKeyGuid;
-pub const ImagePolicyIdParentSd = IMAGE_POLICY_ID.ImagePolicyIdParentSd;
-pub const ImagePolicyIdParentSdRev = IMAGE_POLICY_ID.ImagePolicyIdParentSdRev;
-pub const ImagePolicyIdSvn = IMAGE_POLICY_ID.ImagePolicyIdSvn;
-pub const ImagePolicyIdDeviceId = IMAGE_POLICY_ID.ImagePolicyIdDeviceId;
-pub const ImagePolicyIdCapability = IMAGE_POLICY_ID.ImagePolicyIdCapability;
-pub const ImagePolicyIdScenarioId = IMAGE_POLICY_ID.ImagePolicyIdScenarioId;
-pub const ImagePolicyIdMaximum = IMAGE_POLICY_ID.ImagePolicyIdMaximum;
-
-pub const IMAGE_POLICY_ENTRY = extern struct {
-    Type: IMAGE_POLICY_ENTRY_TYPE,
-    PolicyId: IMAGE_POLICY_ID,
-    u: IMAGE_POLICY_ENTRY._u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const IMAGE_POLICY_METADATA = extern struct {
-    Version: u8,
-    Reserved0: [7]u8,
-    ApplicationId: u64,
-    Policies: IMAGE_POLICY_ENTRY,
-};
-
-pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
-    Type: u16,
-    CreatorBackTraceIndex: u16,
-    CriticalSection: *RTL_CRITICAL_SECTION,
-    ProcessLocksList: LIST_ENTRY,
-    EntryCount: u32,
-    ContentionCount: u32,
-    Flags: u32,
-    CreatorBackTraceIndexHigh: u16,
-    SpareWORD: u16,
-};
-
-pub const RTL_CRITICAL_SECTION = extern struct {
-    DebugInfo: *RTL_CRITICAL_SECTION_DEBUG,
-    LockCount: i32,
-    RecursionCount: i32,
-    OwningThread: HANDLE,
-    LockSemaphore: HANDLE,
-    SpinCount: ?*c_void,
-};
-
-pub const RTL_SRWLOCK = extern struct {
-    Ptr: *c_void,
-};
-
-pub const RTL_CONDITION_VARIABLE = extern struct {
-    Ptr: *c_void,
-};
-
-pub const PAPCFUNC = fn(
-    Parameter: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const HEAP_INFORMATION_CLASS = extern enum(i32) {
-    HeapCompatibilityInformation = 0,
-    HeapEnableTerminationOnCorruption = 1,
-    HeapOptimizeResources = 3,
-};
-pub const HeapCompatibilityInformation = HEAP_INFORMATION_CLASS.HeapCompatibilityInformation;
-pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.HeapEnableTerminationOnCorruption;
-pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.HeapOptimizeResources;
-
-pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
-    Version: u32,
-    Flags: u32,
-};
-
-pub const WAITORTIMERCALLBACKFUNC = fn(
-    param0: *c_void,
-    param1: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const WORKERCALLBACKFUNC = fn(
-    param0: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const APC_CALLBACK_FUNCTION = fn(
-    param0: u32,
-    param1: *c_void,
-    param2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const WAITORTIMERCALLBACK = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PFLS_CALLBACK_FUNCTION = fn(
-    lpFlsData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
-    Addr: [*]u8,
-    Range: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub const ACTIVATION_CONTEXT_INFO_CLASS = extern enum(i32) {
-    ActivationContextBasicInformation = 1,
-    ActivationContextDetailedInformation = 2,
-    AssemblyDetailedInformationInActivationContext = 3,
-    FileInformationInAssemblyOfAssemblyInActivationContext = 4,
-    RunlevelInformationInActivationContext = 5,
-    CompatibilityInformationInActivationContext = 6,
-    ActivationContextManifestResourceName = 7,
-    MaxActivationContextInfoClass = 8,
-    AssemblyDetailedInformationInActivationContxt = 3,
-    FileInformationInAssemblyOfAssemblyInActivationContxt = 4,
-};
-pub const ActivationContextBasicInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextBasicInformation;
-pub const ActivationContextDetailedInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextDetailedInformation;
-pub const AssemblyDetailedInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContext;
-pub const FileInformationInAssemblyOfAssemblyInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContext;
-pub const RunlevelInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.RunlevelInformationInActivationContext;
-pub const CompatibilityInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.CompatibilityInformationInActivationContext;
-pub const ActivationContextManifestResourceName = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextManifestResourceName;
-pub const MaxActivationContextInfoClass = ACTIVATION_CONTEXT_INFO_CLASS.MaxActivationContextInfoClass;
-pub const AssemblyDetailedInformationInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContxt;
-pub const FileInformationInAssemblyOfAssemblyInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContxt;
-
-pub const SUPPORTED_OS_INFO = extern struct {
-    MajorVersion: u16,
-    MinorVersion: u16,
-};
-
-pub const MAXVERSIONTESTED_INFO = extern struct {
-    MaxVersionTested: u64,
-};
-
-pub const EVENTLOGRECORD = extern struct {
-    Length: u32,
-    Reserved: u32,
-    RecordNumber: u32,
-    TimeGenerated: u32,
-    TimeWritten: u32,
-    EventID: u32,
-    EventType: u16,
-    NumStrings: u16,
-    EventCategory: u16,
-    ReservedFlags: u16,
-    ClosingRecordNumber: u32,
-    StringOffset: u32,
-    UserSidLength: u32,
-    UserSidOffset: u32,
-    DataLength: u32,
-    DataOffset: u32,
-};
-
-pub const EVENTSFORLOGFILE = extern struct {
-    ulSize: u32,
-    szLogicalLogFile: [256]u16,
-    ulNumRecords: u32,
-    pEventLogRecords: EVENTLOGRECORD,
-};
-
-pub const PACKEDEVENTINFO = extern struct {
-    ulSize: u32,
-    ulNumEventsForLogFile: u32,
-    ulOffsets: u32,
-};
-
-pub const CM_SERVICE_NODE_TYPE = extern enum(i32) {
-    DriverType = 1,
-    FileSystemType = 2,
-    Win32ServiceOwnProcess = 16,
-    Win32ServiceShareProcess = 32,
-    AdapterType = 4,
-    RecognizerType = 8,
-};
-pub const DriverType = CM_SERVICE_NODE_TYPE.DriverType;
-pub const FileSystemType = CM_SERVICE_NODE_TYPE.FileSystemType;
-pub const Win32ServiceOwnProcess = CM_SERVICE_NODE_TYPE.Win32ServiceOwnProcess;
-pub const Win32ServiceShareProcess = CM_SERVICE_NODE_TYPE.Win32ServiceShareProcess;
-pub const AdapterType = CM_SERVICE_NODE_TYPE.AdapterType;
-pub const RecognizerType = CM_SERVICE_NODE_TYPE.RecognizerType;
-
-pub const CM_SERVICE_LOAD_TYPE = extern enum(i32) {
-    BootLoad = 0,
-    SystemLoad = 1,
-    AutoLoad = 2,
-    DemandLoad = 3,
-    DisableLoad = 4,
-};
-pub const BootLoad = CM_SERVICE_LOAD_TYPE.BootLoad;
-pub const SystemLoad = CM_SERVICE_LOAD_TYPE.SystemLoad;
-pub const AutoLoad = CM_SERVICE_LOAD_TYPE.AutoLoad;
-pub const DemandLoad = CM_SERVICE_LOAD_TYPE.DemandLoad;
-pub const DisableLoad = CM_SERVICE_LOAD_TYPE.DisableLoad;
-
-pub const CM_ERROR_CONTROL_TYPE = extern enum(i32) {
-    IgnoreError = 0,
-    NormalError = 1,
-    SevereError = 2,
-    CriticalError = 3,
-};
-pub const IgnoreError = CM_ERROR_CONTROL_TYPE.IgnoreError;
-pub const NormalError = CM_ERROR_CONTROL_TYPE.NormalError;
-pub const SevereError = CM_ERROR_CONTROL_TYPE.SevereError;
-pub const CriticalError = CM_ERROR_CONTROL_TYPE.CriticalError;
-
-pub const TAPE_ERASE = extern struct {
-    Type: u32,
-    Immediate: u8,
-};
-
-pub const TAPE_PREPARE = extern struct {
-    Operation: u32,
-    Immediate: u8,
-};
-
-pub const TAPE_WRITE_MARKS = extern struct {
-    Type: u32,
-    Count: u32,
-    Immediate: u8,
-};
-
-pub const TAPE_GET_POSITION = extern struct {
-    Type: u32,
-    Partition: u32,
-    Offset: LARGE_INTEGER,
-};
-
-pub const TAPE_SET_POSITION = extern struct {
-    Method: u32,
-    Partition: u32,
-    Offset: LARGE_INTEGER,
-    Immediate: u8,
-};
-
-pub const TAPE_GET_DRIVE_PARAMETERS = extern struct {
-    ECC: u8,
-    Compression: u8,
-    DataPadding: u8,
-    ReportSetmarks: u8,
-    DefaultBlockSize: u32,
-    MaximumBlockSize: u32,
-    MinimumBlockSize: u32,
-    MaximumPartitionCount: u32,
-    FeaturesLow: u32,
-    FeaturesHigh: u32,
-    EOTWarningZoneSize: u32,
-};
-
-pub const TAPE_SET_DRIVE_PARAMETERS = extern struct {
-    ECC: u8,
-    Compression: u8,
-    DataPadding: u8,
-    ReportSetmarks: u8,
-    EOTWarningZoneSize: u32,
-};
-
-pub const TAPE_GET_MEDIA_PARAMETERS = extern struct {
-    Capacity: LARGE_INTEGER,
-    Remaining: LARGE_INTEGER,
-    BlockSize: u32,
-    PartitionCount: u32,
-    WriteProtected: u8,
-};
-
-pub const TAPE_SET_MEDIA_PARAMETERS = extern struct {
-    BlockSize: u32,
-};
-
-pub const TAPE_CREATE_PARTITION = extern struct {
-    Method: u32,
-    Count: u32,
-    Size: u32,
-};
-
-pub const TAPE_WMI_OPERATIONS = extern struct {
-    Method: u32,
-    DataBufferSize: u32,
-    DataBuffer: *c_void,
-};
-
-pub const TAPE_DRIVE_PROBLEM_TYPE = extern enum(i32) {
-    TapeDriveProblemNone = 0,
-    TapeDriveReadWriteWarning = 1,
-    TapeDriveReadWriteError = 2,
-    TapeDriveReadWarning = 3,
-    TapeDriveWriteWarning = 4,
-    TapeDriveReadError = 5,
-    TapeDriveWriteError = 6,
-    TapeDriveHardwareError = 7,
-    TapeDriveUnsupportedMedia = 8,
-    TapeDriveScsiConnectionError = 9,
-    TapeDriveTimetoClean = 10,
-    TapeDriveCleanDriveNow = 11,
-    TapeDriveMediaLifeExpired = 12,
-    TapeDriveSnappedTape = 13,
-};
-pub const TapeDriveProblemNone = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveProblemNone;
-pub const TapeDriveReadWriteWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteWarning;
-pub const TapeDriveReadWriteError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteError;
-pub const TapeDriveReadWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWarning;
-pub const TapeDriveWriteWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteWarning;
-pub const TapeDriveReadError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadError;
-pub const TapeDriveWriteError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteError;
-pub const TapeDriveHardwareError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveHardwareError;
-pub const TapeDriveUnsupportedMedia = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveUnsupportedMedia;
-pub const TapeDriveScsiConnectionError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveScsiConnectionError;
-pub const TapeDriveTimetoClean = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveTimetoClean;
-pub const TapeDriveCleanDriveNow = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveCleanDriveNow;
-pub const TapeDriveMediaLifeExpired = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveMediaLifeExpired;
-pub const TapeDriveSnappedTape = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveSnappedTape;
-
-pub const TRANSACTION_STATE = extern enum(i32) {
-    TransactionStateNormal = 1,
-    TransactionStateIndoubt = 2,
-    TransactionStateCommittedNotify = 3,
-};
-pub const TransactionStateNormal = TRANSACTION_STATE.TransactionStateNormal;
-pub const TransactionStateIndoubt = TRANSACTION_STATE.TransactionStateIndoubt;
-pub const TransactionStateCommittedNotify = TRANSACTION_STATE.TransactionStateCommittedNotify;
-
-pub const TRANSACTION_BASIC_INFORMATION = extern struct {
-    TransactionId: Guid,
-    State: u32,
-    Outcome: u32,
-};
-
-pub const TRANSACTIONMANAGER_BASIC_INFORMATION = extern struct {
-    TmIdentity: Guid,
-    VirtualClock: LARGE_INTEGER,
-};
-
-pub const TRANSACTIONMANAGER_LOG_INFORMATION = extern struct {
-    LogIdentity: Guid,
-};
-
-pub const TRANSACTIONMANAGER_LOGPATH_INFORMATION = extern struct {
-    LogPathLength: u32,
-    LogPath: [1]u16,
-};
-
-pub const TRANSACTIONMANAGER_RECOVERY_INFORMATION = extern struct {
-    LastRecoveredLsn: u64,
-};
-
-pub const TRANSACTIONMANAGER_OLDEST_INFORMATION = extern struct {
-    OldestTransactionGuid: Guid,
-};
-
-pub const TRANSACTION_PROPERTIES_INFORMATION = extern struct {
-    IsolationLevel: u32,
-    IsolationFlags: u32,
-    Timeout: LARGE_INTEGER,
-    Outcome: u32,
-    DescriptionLength: u32,
-    Description: [1]u16,
-};
-
-pub const TRANSACTION_BIND_INFORMATION = extern struct {
-    TmHandle: HANDLE,
-};
-
-pub const TRANSACTION_ENLISTMENT_PAIR = extern struct {
-    EnlistmentId: Guid,
-    ResourceManagerId: Guid,
-};
-
-pub const TRANSACTION_ENLISTMENTS_INFORMATION = extern struct {
-    NumberOfEnlistments: u32,
-    EnlistmentPair: [1]TRANSACTION_ENLISTMENT_PAIR,
-};
-
-pub const TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = extern struct {
-    SuperiorEnlistmentPair: TRANSACTION_ENLISTMENT_PAIR,
-};
-
-pub const RESOURCEMANAGER_BASIC_INFORMATION = extern struct {
-    ResourceManagerId: Guid,
-    DescriptionLength: u32,
-    Description: [1]u16,
-};
-
-pub const RESOURCEMANAGER_COMPLETION_INFORMATION = extern struct {
-    IoCompletionPortHandle: HANDLE,
-    CompletionKey: ?*c_void,
-};
-
-pub const TRANSACTION_INFORMATION_CLASS = extern enum(i32) {
-    TransactionBasicInformation = 0,
-    TransactionPropertiesInformation = 1,
-    TransactionEnlistmentInformation = 2,
-    TransactionSuperiorEnlistmentInformation = 3,
-    TransactionBindInformation = 4,
-    TransactionDTCPrivateInformation = 5,
-};
-pub const TransactionBasicInformation = TRANSACTION_INFORMATION_CLASS.TransactionBasicInformation;
-pub const TransactionPropertiesInformation = TRANSACTION_INFORMATION_CLASS.TransactionPropertiesInformation;
-pub const TransactionEnlistmentInformation = TRANSACTION_INFORMATION_CLASS.TransactionEnlistmentInformation;
-pub const TransactionSuperiorEnlistmentInformation = TRANSACTION_INFORMATION_CLASS.TransactionSuperiorEnlistmentInformation;
-pub const TransactionBindInformation = TRANSACTION_INFORMATION_CLASS.TransactionBindInformation;
-pub const TransactionDTCPrivateInformation = TRANSACTION_INFORMATION_CLASS.TransactionDTCPrivateInformation;
-
-pub const TRANSACTIONMANAGER_INFORMATION_CLASS = extern enum(i32) {
-    TransactionManagerBasicInformation = 0,
-    TransactionManagerLogInformation = 1,
-    TransactionManagerLogPathInformation = 2,
-    TransactionManagerRecoveryInformation = 4,
-    TransactionManagerOnlineProbeInformation = 3,
-    TransactionManagerOldestTransactionInformation = 5,
-};
-pub const TransactionManagerBasicInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerBasicInformation;
-pub const TransactionManagerLogInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerLogInformation;
-pub const TransactionManagerLogPathInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerLogPathInformation;
-pub const TransactionManagerRecoveryInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerRecoveryInformation;
-pub const TransactionManagerOnlineProbeInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerOnlineProbeInformation;
-pub const TransactionManagerOldestTransactionInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerOldestTransactionInformation;
-
-pub const RESOURCEMANAGER_INFORMATION_CLASS = extern enum(i32) {
-    ResourceManagerBasicInformation = 0,
-    ResourceManagerCompletionInformation = 1,
-};
-pub const ResourceManagerBasicInformation = RESOURCEMANAGER_INFORMATION_CLASS.ResourceManagerBasicInformation;
-pub const ResourceManagerCompletionInformation = RESOURCEMANAGER_INFORMATION_CLASS.ResourceManagerCompletionInformation;
-
-pub const ENLISTMENT_BASIC_INFORMATION = extern struct {
-    EnlistmentId: Guid,
-    TransactionId: Guid,
-    ResourceManagerId: Guid,
-};
-
-pub const ENLISTMENT_CRM_INFORMATION = extern struct {
-    CrmTransactionManagerId: Guid,
-    CrmResourceManagerId: Guid,
-    CrmEnlistmentId: Guid,
-};
-
-pub const ENLISTMENT_INFORMATION_CLASS = extern enum(i32) {
-    EnlistmentBasicInformation = 0,
-    EnlistmentRecoveryInformation = 1,
-    EnlistmentCrmInformation = 2,
-};
-pub const EnlistmentBasicInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentBasicInformation;
-pub const EnlistmentRecoveryInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentRecoveryInformation;
-pub const EnlistmentCrmInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentCrmInformation;
-
-pub const TRANSACTION_LIST_ENTRY = extern struct {
-    UOW: Guid,
-};
-
-pub const TRANSACTION_LIST_INFORMATION = extern struct {
-    NumberOfTransactions: u32,
-    TransactionInformation: [1]TRANSACTION_LIST_ENTRY,
-};
-
-pub const KTMOBJECT_TYPE = extern enum(i32) {
-    KTMOBJECT_TRANSACTION = 0,
-    KTMOBJECT_TRANSACTION_MANAGER = 1,
-    KTMOBJECT_RESOURCE_MANAGER = 2,
-    KTMOBJECT_ENLISTMENT = 3,
-    KTMOBJECT_INVALID = 4,
-};
-pub const KTMOBJECT_TRANSACTION = KTMOBJECT_TYPE.KTMOBJECT_TRANSACTION;
-pub const KTMOBJECT_TRANSACTION_MANAGER = KTMOBJECT_TYPE.KTMOBJECT_TRANSACTION_MANAGER;
-pub const KTMOBJECT_RESOURCE_MANAGER = KTMOBJECT_TYPE.KTMOBJECT_RESOURCE_MANAGER;
-pub const KTMOBJECT_ENLISTMENT = KTMOBJECT_TYPE.KTMOBJECT_ENLISTMENT;
-pub const KTMOBJECT_INVALID = KTMOBJECT_TYPE.KTMOBJECT_INVALID;
-
-pub const KTMOBJECT_CURSOR = extern struct {
-    LastQuery: Guid,
-    ObjectIdCount: u32,
-    ObjectIds: [1]Guid,
-};
-
-pub const TP_CALLBACK_INSTANCE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const PTP_SIMPLE_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
-    Context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const TP_POOL = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const TP_CALLBACK_PRIORITY = extern enum(i32) {
-    HIGH = 0,
-    NORMAL = 1,
-    LOW = 2,
-    INVALID = 3,
-    COUNT = 3,
-};
-pub const TP_CALLBACK_PRIORITY_HIGH = TP_CALLBACK_PRIORITY.HIGH;
-pub const TP_CALLBACK_PRIORITY_NORMAL = TP_CALLBACK_PRIORITY.NORMAL;
-pub const TP_CALLBACK_PRIORITY_LOW = TP_CALLBACK_PRIORITY.LOW;
-pub const TP_CALLBACK_PRIORITY_INVALID = TP_CALLBACK_PRIORITY.INVALID;
-pub const TP_CALLBACK_PRIORITY_COUNT = TP_CALLBACK_PRIORITY.COUNT;
-
-pub const TP_POOL_STACK_INFORMATION = extern struct {
-    StackReserve: ?*c_void,
-    StackCommit: ?*c_void,
-};
-
-pub const TP_CLEANUP_GROUP = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = fn(
-    ObjectContext: ?*c_void,
-    CleanupContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
-    Version: u32,
-    Pool: PTP_POOL,
-    CleanupGroup: ?*c_void,
-    CleanupGroupCancelCallback: PTP_CLEANUP_GROUP_CANCEL_CALLBACK,
-    RaceDll: *c_void,
-    ActivationContext: ?*c_void,
-    FinalizationCallback: PTP_SIMPLE_CALLBACK,
-    u: TP_CALLBACK_ENVIRON_V3._u_e__Union,
-    CallbackPriority: TP_CALLBACK_PRIORITY,
-    Size: u32,
-    const _u_e__Union = u32; // TODO: generate this nested type!
-    const _ACTIVATION_CONTEXT = u32; // TODO: generate this nested type!
-};
-
-pub const TP_WORK = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const PTP_WORK_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
-    Context: ?*c_void,
-    Work: *TP_WORK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const TP_TIMER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const PTP_TIMER_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
-    Context: ?*c_void,
-    Timer: *TP_TIMER,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const TP_WAIT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const PTP_WAIT_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
-    Context: ?*c_void,
-    Wait: *TP_WAIT,
-    WaitResult: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const TP_IO = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const TEB = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
-
-pub const FARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const NEARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const PROC = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const APP_LOCAL_DEVICE_ID = extern struct {
-    value: [32]u8,
-};
-
-pub const DPI_AWARENESS_CONTEXT__ = extern struct {
-    unused: i32,
-};
-
-pub const PINIT_ONCE_FN = fn(
-    InitOnce: *RTL_RUN_ONCE,
-    Parameter: ?*c_void,
-    Context: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PTIMERAPCROUTINE = fn(
-    lpArgToCompletionRoutine: ?*c_void,
-    dwTimerLowValue: u32,
-    dwTimerHighValue: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PTP_WIN32_IO_CALLBACK = fn(
-    Instance: *TP_CALLBACK_INSTANCE,
-    Context: ?*c_void,
-    Overlapped: ?*c_void,
-    IoResult: u32,
-    NumberOfBytesTransferred: ?*c_void,
-    Io: *TP_IO,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: [*:0]const u16,
-    BaseIoSize: u32,
-    ControlFlags: u32,
-};
-
 pub const SECURITY_ATTRIBUTES = extern struct {
     nLength: u32,
     lpSecurityDescriptor: *c_void,
@@ -28111,6 +24477,3640 @@ pub const MIPI_DSI_RESET = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+pub const BOOL = i32;
+
+// TODO: this type has a FreeFunc 'DeleteBoundaryDescriptor', what can Zig do with this information?
+pub const BoundaryDescriptorHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
+pub const EventLogHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
+pub const EventSourceHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
+pub const HANDLE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
+pub const HeapHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
+pub const HINSTANCE = ?*c_void;
+
+pub const HRSRC = ?*c_void;
+
+pub const HSURF = ?*c_void;
+
+pub const LRESULT = i32;
+
+pub const LSTATUS = i32;
+
+// TODO: this type has a FreeFunc 'ClosePrivateNamespace', what can Zig do with this information?
+pub const NamespaceHandle = ?*c_void;
+
+pub const NTSTATUS = i32;
+
+pub const PSTR = [*:0]u8;
+
+// TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
+pub const PTP_POOL = ?*c_void;
+
+pub const PWSTR = [*:0]u16;
+
+// TODO: this type has a FreeFunc 'DeleteTimerQueueEx', what can Zig do with this information?
+pub const TimerQueueHandle = ?*c_void;
+
+pub const FLOAT128 = extern struct {
+    LowPart: i64,
+    HighPart: i64,
+};
+
+pub const LARGE_INTEGER = u32; // TODO: implement StructOrUnion types?
+
+pub const ULARGE_INTEGER = u32; // TODO: implement StructOrUnion types?
+
+pub const M128A = extern struct {
+    Low: u64,
+    High: i64,
+};
+
+pub const XSAVE_FORMAT = extern struct {
+    ControlWord: u16,
+    StatusWord: u16,
+    TagWord: u8,
+    Reserved1: u8,
+    ErrorOpcode: u16,
+    ErrorOffset: u32,
+    ErrorSelector: u16,
+    Reserved2: u16,
+    DataOffset: u32,
+    DataSelector: u16,
+    Reserved3: u16,
+    MxCsr: u32,
+    MxCsr_Mask: u32,
+    FloatRegisters: [8]M128A,
+    XmmRegisters: [8]M128A,
+    Reserved4: [224]u8,
+};
+
+pub const XSAVE_CET_U_FORMAT = extern struct {
+    Ia32CetUMsr: u64,
+    Ia32Pl3SspMsr: u64,
+};
+
+pub const XSAVE_AREA_HEADER = extern struct {
+    Mask: u64,
+    CompactionMask: u64,
+    Reserved2: [6]u64,
+};
+
+pub const XSAVE_AREA = extern struct {
+    LegacyState: XSAVE_FORMAT,
+    Header: XSAVE_AREA_HEADER,
+};
+
+pub const XSTATE_CONTEXT = extern struct {
+    Mask: u64,
+    Length: u32,
+    Reserved1: u32,
+    Area: *XSAVE_AREA,
+    Reserved2: u32,
+    Buffer: *c_void,
+    Reserved3: u32,
+};
+
+pub const SCOPE_TABLE_AMD64 = extern struct {
+    Count: u32,
+    ScopeRecord: [1]SCOPE_TABLE_AMD64._Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const SCOPE_TABLE_ARM = extern struct {
+    Count: u32,
+    ScopeRecord: [1]SCOPE_TABLE_ARM._Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const SCOPE_TABLE_ARM64 = extern struct {
+    Count: u32,
+    ScopeRecord: [1]SCOPE_TABLE_ARM64._Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const KNONVOLATILE_CONTEXT_POINTERS_ARM64 = extern struct {
+    X19: *u64,
+    X20: *u64,
+    X21: *u64,
+    X22: *u64,
+    X23: *u64,
+    X24: *u64,
+    X25: *u64,
+    X26: *u64,
+    X27: *u64,
+    X28: *u64,
+    Fp: *u64,
+    Lr: *u64,
+    D8: *u64,
+    D9: *u64,
+    D10: *u64,
+    D11: *u64,
+    D12: *u64,
+    D13: *u64,
+    D14: *u64,
+    D15: *u64,
+};
+
+pub const FLOATING_SAVE_AREA = extern struct {
+    ControlWord: u32,
+    StatusWord: u32,
+    TagWord: u32,
+    ErrorOffset: u32,
+    ErrorSelector: u32,
+    DataOffset: u32,
+    DataSelector: u32,
+    RegisterArea: [80]u8,
+    Spare0: u32,
+};
+
+pub const KNONVOLATILE_CONTEXT_POINTERS = extern struct {
+    Dummy: u32,
+};
+
+pub const WOW64_DESCRIPTOR_TABLE_ENTRY = extern struct {
+    Selector: u32,
+    Descriptor: WOW64_LDT_ENTRY,
+};
+
+pub const EXCEPTION_RECORD32 = extern struct {
+    ExceptionCode: u32,
+    ExceptionFlags: u32,
+    ExceptionRecord: u32,
+    ExceptionAddress: u32,
+    NumberParameters: u32,
+    ExceptionInformation: [15]u32,
+};
+
+pub const SE_SID = u32; // TODO: implement StructOrUnion types?
+
+pub const SYSTEM_PROCESS_TRUST_LABEL_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ACCESS_FILTER_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SECURITY_DESCRIPTOR_RELATIVE = extern struct {
+    Revision: u8,
+    Sbz1: u8,
+    Control: u16,
+    Owner: u32,
+    Group: u32,
+    Sacl: u32,
+    Dacl: u32,
+};
+
+pub const SECURITY_OBJECT_AI_PARAMS = extern struct {
+    Size: u32,
+    ConstraintMask: u32,
+};
+
+pub const ACCESS_REASON_TYPE = extern enum(i32) {
+    AccessReasonNone = 0,
+    AccessReasonAllowedAce = 65536,
+    AccessReasonDeniedAce = 131072,
+    AccessReasonAllowedParentAce = 196608,
+    AccessReasonDeniedParentAce = 262144,
+    AccessReasonNotGrantedByCape = 327680,
+    AccessReasonNotGrantedByParentCape = 393216,
+    AccessReasonNotGrantedToAppContainer = 458752,
+    AccessReasonMissingPrivilege = 1048576,
+    AccessReasonFromPrivilege = 2097152,
+    AccessReasonIntegrityLevel = 3145728,
+    AccessReasonOwnership = 4194304,
+    AccessReasonNullDacl = 5242880,
+    AccessReasonEmptyDacl = 6291456,
+    AccessReasonNoSD = 7340032,
+    AccessReasonNoGrant = 8388608,
+    AccessReasonTrustLabel = 9437184,
+    AccessReasonFilterAce = 10485760,
+};
+pub const AccessReasonNone = ACCESS_REASON_TYPE.AccessReasonNone;
+pub const AccessReasonAllowedAce = ACCESS_REASON_TYPE.AccessReasonAllowedAce;
+pub const AccessReasonDeniedAce = ACCESS_REASON_TYPE.AccessReasonDeniedAce;
+pub const AccessReasonAllowedParentAce = ACCESS_REASON_TYPE.AccessReasonAllowedParentAce;
+pub const AccessReasonDeniedParentAce = ACCESS_REASON_TYPE.AccessReasonDeniedParentAce;
+pub const AccessReasonNotGrantedByCape = ACCESS_REASON_TYPE.AccessReasonNotGrantedByCape;
+pub const AccessReasonNotGrantedByParentCape = ACCESS_REASON_TYPE.AccessReasonNotGrantedByParentCape;
+pub const AccessReasonNotGrantedToAppContainer = ACCESS_REASON_TYPE.AccessReasonNotGrantedToAppContainer;
+pub const AccessReasonMissingPrivilege = ACCESS_REASON_TYPE.AccessReasonMissingPrivilege;
+pub const AccessReasonFromPrivilege = ACCESS_REASON_TYPE.AccessReasonFromPrivilege;
+pub const AccessReasonIntegrityLevel = ACCESS_REASON_TYPE.AccessReasonIntegrityLevel;
+pub const AccessReasonOwnership = ACCESS_REASON_TYPE.AccessReasonOwnership;
+pub const AccessReasonNullDacl = ACCESS_REASON_TYPE.AccessReasonNullDacl;
+pub const AccessReasonEmptyDacl = ACCESS_REASON_TYPE.AccessReasonEmptyDacl;
+pub const AccessReasonNoSD = ACCESS_REASON_TYPE.AccessReasonNoSD;
+pub const AccessReasonNoGrant = ACCESS_REASON_TYPE.AccessReasonNoGrant;
+pub const AccessReasonTrustLabel = ACCESS_REASON_TYPE.AccessReasonTrustLabel;
+pub const AccessReasonFilterAce = ACCESS_REASON_TYPE.AccessReasonFilterAce;
+
+pub const ACCESS_REASONS = extern struct {
+    Data: [32]u32,
+};
+
+pub const SE_SECURITY_DESCRIPTOR = extern struct {
+    Size: u32,
+    Flags: u32,
+    SecurityDescriptor: *c_void,
+};
+
+pub const SE_ACCESS_REQUEST = extern struct {
+    Size: u32,
+    SeSecurityDescriptor: *SE_SECURITY_DESCRIPTOR,
+    DesiredAccess: u32,
+    PreviouslyGrantedAccess: u32,
+    PrincipalSelfSid: *c_void,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectTypeListCount: u32,
+    ObjectTypeList: *OBJECT_TYPE_LIST,
+};
+
+pub const SE_ACCESS_REPLY = extern struct {
+    Size: u32,
+    ResultListCount: u32,
+    GrantedAccess: *u32,
+    AccessStatus: *u32,
+    AccessReason: *ACCESS_REASONS,
+    Privileges: **PRIVILEGE_SET,
+};
+
+pub const SE_TOKEN_USER = extern struct {
+    Anonymous1: SE_TOKEN_USER._Anonymous1_e__Union,
+    Anonymous2: SE_TOKEN_USER._Anonymous2_e__Union,
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const TOKEN_SID_INFORMATION = extern struct {
+    Sid: *c_void,
+};
+
+pub const TOKEN_BNO_ISOLATION_INFORMATION = extern struct {
+    IsolationPrefix: PWSTR,
+    IsolationEnabled: u8,
+};
+
+pub const SE_IMPERSONATION_STATE = extern struct {
+    Token: *c_void,
+    CopyOnOpen: u8,
+    EffectiveOnly: u8,
+    Level: SECURITY_IMPERSONATION_LEVEL,
+};
+
+pub const SE_IMAGE_SIGNATURE_TYPE = extern enum(i32) {
+    SeImageSignatureNone = 0,
+    SeImageSignatureEmbedded = 1,
+    SeImageSignatureCache = 2,
+    SeImageSignatureCatalogCached = 3,
+    SeImageSignatureCatalogNotCached = 4,
+    SeImageSignatureCatalogHint = 5,
+    SeImageSignaturePackageCatalog = 6,
+};
+pub const SeImageSignatureNone = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureNone;
+pub const SeImageSignatureEmbedded = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureEmbedded;
+pub const SeImageSignatureCache = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCache;
+pub const SeImageSignatureCatalogCached = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogCached;
+pub const SeImageSignatureCatalogNotCached = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogNotCached;
+pub const SeImageSignatureCatalogHint = SE_IMAGE_SIGNATURE_TYPE.SeImageSignatureCatalogHint;
+pub const SeImageSignaturePackageCatalog = SE_IMAGE_SIGNATURE_TYPE.SeImageSignaturePackageCatalog;
+
+pub const SE_LEARNING_MODE_DATA_TYPE = extern enum(i32) {
+    SeLearningModeInvalidType = 0,
+    SeLearningModeSettings = 1,
+    SeLearningModeMax = 2,
+};
+pub const SeLearningModeInvalidType = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeInvalidType;
+pub const SeLearningModeSettings = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeSettings;
+pub const SeLearningModeMax = SE_LEARNING_MODE_DATA_TYPE.SeLearningModeMax;
+
+pub const JOB_SET_ARRAY = extern struct {
+    JobHandle: HANDLE,
+    MemberLevel: u32,
+    Flags: u32,
+};
+
+pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
+    Next: *EXCEPTION_REGISTRATION_RECORD,
+    Handler: EXCEPTION_ROUTINE,
+};
+
+pub const NT_TIB = extern struct {
+    ExceptionList: *EXCEPTION_REGISTRATION_RECORD,
+    StackBase: *c_void,
+    StackLimit: *c_void,
+    SubSystemTib: *c_void,
+    Anonymous: NT_TIB._Anonymous_e__Union,
+    ArbitraryUserPointer: *c_void,
+    Self: *NT_TIB,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const NT_TIB32 = extern struct {
+    ExceptionList: u32,
+    StackBase: u32,
+    StackLimit: u32,
+    SubSystemTib: u32,
+    Anonymous: NT_TIB32._Anonymous_e__Union,
+    ArbitraryUserPointer: u32,
+    Self: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const NT_TIB64 = extern struct {
+    ExceptionList: u64,
+    StackBase: u64,
+    StackLimit: u64,
+    SubSystemTib: u64,
+    Anonymous: NT_TIB64._Anonymous_e__Union,
+    ArbitraryUserPointer: u64,
+    Self: u64,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const UMS_CREATE_THREAD_ATTRIBUTES = extern struct {
+    UmsVersion: u32,
+    UmsContext: *c_void,
+    UmsCompletionList: *c_void,
+};
+
+pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
+    _bitfield: u32,
+};
+
+pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = extern struct {
+    TargetAddress: ?*c_void,
+    Flags: ?*c_void,
+};
+
+pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGETS_INFORMATION = extern struct {
+    NumberOfTargets: u16,
+    Reserved: u16,
+    Reserved2: u32,
+    Targets: *PROCESS_DYNAMIC_EH_CONTINUATION_TARGET,
+};
+
+pub const RATE_QUOTA_LIMIT = u32; // TODO: implement StructOrUnion types?
+
+pub const QUOTA_LIMITS_EX = extern struct {
+    PagedPoolLimit: ?*c_void,
+    NonPagedPoolLimit: ?*c_void,
+    MinimumWorkingSetSize: ?*c_void,
+    MaximumWorkingSetSize: ?*c_void,
+    PagefileLimit: ?*c_void,
+    TimeLimit: LARGE_INTEGER,
+    WorkingSetLimit: ?*c_void,
+    Reserved2: ?*c_void,
+    Reserved3: ?*c_void,
+    Reserved4: ?*c_void,
+    Flags: u32,
+    CpuRateLimit: RATE_QUOTA_LIMIT,
+};
+
+pub const IO_COUNTERS = extern struct {
+    ReadOperationCount: u64,
+    WriteOperationCount: u64,
+    OtherOperationCount: u64,
+    ReadTransferCount: u64,
+    WriteTransferCount: u64,
+    OtherTransferCount: u64,
+};
+
+pub const PROCESS_MITIGATION_POLICY = extern enum(i32) {
+    ProcessDEPPolicy = 0,
+    ProcessASLRPolicy = 1,
+    ProcessDynamicCodePolicy = 2,
+    ProcessStrictHandleCheckPolicy = 3,
+    ProcessSystemCallDisablePolicy = 4,
+    ProcessMitigationOptionsMask = 5,
+    ProcessExtensionPointDisablePolicy = 6,
+    ProcessControlFlowGuardPolicy = 7,
+    ProcessSignaturePolicy = 8,
+    ProcessFontDisablePolicy = 9,
+    ProcessImageLoadPolicy = 10,
+    ProcessSystemCallFilterPolicy = 11,
+    ProcessPayloadRestrictionPolicy = 12,
+    ProcessChildProcessPolicy = 13,
+    ProcessSideChannelIsolationPolicy = 14,
+    ProcessUserShadowStackPolicy = 15,
+    MaxProcessMitigationPolicy = 16,
+};
+pub const ProcessDEPPolicy = PROCESS_MITIGATION_POLICY.ProcessDEPPolicy;
+pub const ProcessASLRPolicy = PROCESS_MITIGATION_POLICY.ProcessASLRPolicy;
+pub const ProcessDynamicCodePolicy = PROCESS_MITIGATION_POLICY.ProcessDynamicCodePolicy;
+pub const ProcessStrictHandleCheckPolicy = PROCESS_MITIGATION_POLICY.ProcessStrictHandleCheckPolicy;
+pub const ProcessSystemCallDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessSystemCallDisablePolicy;
+pub const ProcessMitigationOptionsMask = PROCESS_MITIGATION_POLICY.ProcessMitigationOptionsMask;
+pub const ProcessExtensionPointDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessExtensionPointDisablePolicy;
+pub const ProcessControlFlowGuardPolicy = PROCESS_MITIGATION_POLICY.ProcessControlFlowGuardPolicy;
+pub const ProcessSignaturePolicy = PROCESS_MITIGATION_POLICY.ProcessSignaturePolicy;
+pub const ProcessFontDisablePolicy = PROCESS_MITIGATION_POLICY.ProcessFontDisablePolicy;
+pub const ProcessImageLoadPolicy = PROCESS_MITIGATION_POLICY.ProcessImageLoadPolicy;
+pub const ProcessSystemCallFilterPolicy = PROCESS_MITIGATION_POLICY.ProcessSystemCallFilterPolicy;
+pub const ProcessPayloadRestrictionPolicy = PROCESS_MITIGATION_POLICY.ProcessPayloadRestrictionPolicy;
+pub const ProcessChildProcessPolicy = PROCESS_MITIGATION_POLICY.ProcessChildProcessPolicy;
+pub const ProcessSideChannelIsolationPolicy = PROCESS_MITIGATION_POLICY.ProcessSideChannelIsolationPolicy;
+pub const ProcessUserShadowStackPolicy = PROCESS_MITIGATION_POLICY.ProcessUserShadowStackPolicy;
+pub const MaxProcessMitigationPolicy = PROCESS_MITIGATION_POLICY.MaxProcessMitigationPolicy;
+
+pub const PROCESS_MITIGATION_ASLR_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_ASLR_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_DEP_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_DEP_POLICY._Anonymous_e__Union,
+    Permanent: u8,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_DYNAMIC_CODE_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_DYNAMIC_CODE_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_FONT_DISABLE_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_FONT_DISABLE_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_IMAGE_LOAD_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_IMAGE_LOAD_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_CHILD_PROCESS_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_CHILD_PROCESS_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY = extern struct {
+    Anonymous: PROCESS_MITIGATION_USER_SHADOW_STACK_POLICY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = extern struct {
+    TotalUserTime: LARGE_INTEGER,
+    TotalKernelTime: LARGE_INTEGER,
+    ThisPeriodTotalUserTime: LARGE_INTEGER,
+    ThisPeriodTotalKernelTime: LARGE_INTEGER,
+    TotalPageFaultCount: u32,
+    TotalProcesses: u32,
+    ActiveProcesses: u32,
+    TotalTerminatedProcesses: u32,
+};
+
+pub const JOBOBJECT_BASIC_LIMIT_INFORMATION = extern struct {
+    PerProcessUserTimeLimit: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    LimitFlags: JOB_OBJECT_LIMIT,
+    MinimumWorkingSetSize: ?*c_void,
+    MaximumWorkingSetSize: ?*c_void,
+    ActiveProcessLimit: u32,
+    Affinity: ?*c_void,
+    PriorityClass: u32,
+    SchedulingClass: u32,
+};
+
+pub const JOBOBJECT_EXTENDED_LIMIT_INFORMATION = extern struct {
+    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION,
+    IoInfo: IO_COUNTERS,
+    ProcessMemoryLimit: ?*c_void,
+    JobMemoryLimit: ?*c_void,
+    PeakProcessMemoryUsed: ?*c_void,
+    PeakJobMemoryUsed: ?*c_void,
+};
+
+pub const JOBOBJECT_BASIC_PROCESS_ID_LIST = extern struct {
+    NumberOfAssignedProcesses: u32,
+    NumberOfProcessIdsInList: u32,
+    ProcessIdList: [1]?*c_void,
+};
+
+pub const JOBOBJECT_BASIC_UI_RESTRICTIONS = extern struct {
+    UIRestrictionsClass: JOB_OBJECT_UILIMIT,
+};
+
+pub const JOBOBJECT_SECURITY_LIMIT_INFORMATION = extern struct {
+    SecurityLimitFlags: JOB_OBJECT_SECURITY,
+    JobToken: HANDLE,
+    SidsToDisable: *TOKEN_GROUPS,
+    PrivilegesToDelete: *TOKEN_PRIVILEGES,
+    RestrictedSids: *TOKEN_GROUPS,
+};
+
+pub const JOBOBJECT_END_OF_JOB_TIME_INFORMATION = extern struct {
+    EndOfJobTimeAction: u32,
+};
+
+pub const JOBOBJECT_ASSOCIATE_COMPLETION_PORT = extern struct {
+    CompletionKey: *c_void,
+    CompletionPort: HANDLE,
+};
+
+pub const JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = extern struct {
+    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION,
+    IoInfo: IO_COUNTERS,
+};
+
+pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
+    MemberLevel: u32,
+};
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = extern enum(i32) {
+    ToleranceLow = 1,
+    ToleranceMedium = 2,
+    ToleranceHigh = 3,
+};
+pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceLow;
+pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceMedium;
+pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.ToleranceHigh;
+
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = extern enum(i32) {
+    ToleranceIntervalShort = 1,
+    ToleranceIntervalMedium = 2,
+    ToleranceIntervalLong = 3,
+};
+pub const ToleranceIntervalShort = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalShort;
+pub const ToleranceIntervalMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalMedium;
+pub const ToleranceIntervalLong = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL.ToleranceIntervalLong;
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    LimitFlags: JOB_OBJECT_LIMIT,
+};
+
+pub const JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 = extern struct {
+    IoReadBytesLimit: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    Anonymous1: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous1_e__Union,
+    Anonymous2: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous2_e__Union,
+    Anonymous3: JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2._Anonymous3_e__Union,
+    LimitFlags: JOB_OBJECT_LIMIT,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    JobLowMemoryLimit: u64,
+    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL,
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    JobMemoryLimit: u64,
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+};
+
+pub const JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 = extern struct {
+    LimitFlags: JOB_OBJECT_LIMIT,
+    ViolationLimitFlags: JOB_OBJECT_LIMIT,
+    IoReadBytes: u64,
+    IoReadBytesLimit: u64,
+    IoWriteBytes: u64,
+    IoWriteBytesLimit: u64,
+    PerJobUserTime: LARGE_INTEGER,
+    PerJobUserTimeLimit: LARGE_INTEGER,
+    JobMemory: u64,
+    Anonymous1: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous1_e__Union,
+    Anonymous2: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous2_e__Union,
+    Anonymous3: JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2._Anonymous3_e__Union,
+    JobLowMemoryLimit: u64,
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
+    ControlFlags: u32,
+    Anonymous: JOBOBJECT_CPU_RATE_CONTROL_INFORMATION._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = extern enum(i32) {
+    JOB_OBJECT_NET_RATE_CONTROL_ENABLE = 1,
+    JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = 2,
+    JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = 4,
+    JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = 7,
+};
+pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_ENABLE;
+pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH;
+pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG;
+pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS;
+
+pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
+    MaxBandwidth: u64,
+    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS,
+    DscpTag: u8,
+};
+
+pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = extern enum(i32) {
+    JOB_OBJECT_IO_RATE_CONTROL_ENABLE = 1,
+    JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = 2,
+    JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = 4,
+    JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = 8,
+    JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = 15,
+};
+pub const JOB_OBJECT_IO_RATE_CONTROL_ENABLE = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_ENABLE;
+pub const JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL;
+pub const JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP;
+pub const JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_IO_RATE_CONTROL_FLAGS.JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS;
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+};
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+    CriticalReservationIops: i64,
+    ReservationBandwidth: i64,
+    CriticalReservationBandwidth: i64,
+    MaxTimePercent: i64,
+    ReservationTimePercent: i64,
+    CriticalReservationTimePercent: i64,
+};
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+    CriticalReservationIops: i64,
+    ReservationBandwidth: i64,
+    CriticalReservationBandwidth: i64,
+    MaxTimePercent: i64,
+    ReservationTimePercent: i64,
+    CriticalReservationTimePercent: i64,
+    SoftMaxIops: i64,
+    SoftMaxBandwidth: i64,
+    SoftMaxTimePercent: i64,
+    LimitExcessNotifyIops: i64,
+    LimitExcessNotifyBandwidth: i64,
+    LimitExcessNotifyTimePercent: i64,
+};
+
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = extern enum(i32) {
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = 1,
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = 2,
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = 3,
+};
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE;
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS.JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS;
+
+pub const JOBOBJECT_IO_ATTRIBUTION_STATS = extern struct {
+    IoCount: ?*c_void,
+    TotalNonOverlappedQueueTime: u64,
+    TotalNonOverlappedServiceTime: u64,
+    TotalSize: u64,
+};
+
+pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
+    ControlFlags: u32,
+    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
+};
+
+pub const JOBOBJECTINFOCLASS = extern enum(i32) {
+    JobObjectBasicAccountingInformation = 1,
+    JobObjectBasicLimitInformation = 2,
+    JobObjectBasicProcessIdList = 3,
+    JobObjectBasicUIRestrictions = 4,
+    JobObjectSecurityLimitInformation = 5,
+    JobObjectEndOfJobTimeInformation = 6,
+    JobObjectAssociateCompletionPortInformation = 7,
+    JobObjectBasicAndIoAccountingInformation = 8,
+    JobObjectExtendedLimitInformation = 9,
+    JobObjectJobSetInformation = 10,
+    JobObjectGroupInformation = 11,
+    JobObjectNotificationLimitInformation = 12,
+    JobObjectLimitViolationInformation = 13,
+    JobObjectGroupInformationEx = 14,
+    JobObjectCpuRateControlInformation = 15,
+    JobObjectCompletionFilter = 16,
+    JobObjectCompletionCounter = 17,
+    JobObjectReserved1Information = 18,
+    JobObjectReserved2Information = 19,
+    JobObjectReserved3Information = 20,
+    JobObjectReserved4Information = 21,
+    JobObjectReserved5Information = 22,
+    JobObjectReserved6Information = 23,
+    JobObjectReserved7Information = 24,
+    JobObjectReserved8Information = 25,
+    JobObjectReserved9Information = 26,
+    JobObjectReserved10Information = 27,
+    JobObjectReserved11Information = 28,
+    JobObjectReserved12Information = 29,
+    JobObjectReserved13Information = 30,
+    JobObjectReserved14Information = 31,
+    JobObjectNetRateControlInformation = 32,
+    JobObjectNotificationLimitInformation2 = 33,
+    JobObjectLimitViolationInformation2 = 34,
+    JobObjectCreateSilo = 35,
+    JobObjectSiloBasicInformation = 36,
+    JobObjectReserved15Information = 37,
+    JobObjectReserved16Information = 38,
+    JobObjectReserved17Information = 39,
+    JobObjectReserved18Information = 40,
+    JobObjectReserved19Information = 41,
+    JobObjectReserved20Information = 42,
+    JobObjectReserved21Information = 43,
+    JobObjectReserved22Information = 44,
+    JobObjectReserved23Information = 45,
+    JobObjectReserved24Information = 46,
+    JobObjectReserved25Information = 47,
+    MaxJobObjectInfoClass = 48,
+};
+pub const JobObjectBasicAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAccountingInformation;
+pub const JobObjectBasicLimitInformation = JOBOBJECTINFOCLASS.JobObjectBasicLimitInformation;
+pub const JobObjectBasicProcessIdList = JOBOBJECTINFOCLASS.JobObjectBasicProcessIdList;
+pub const JobObjectBasicUIRestrictions = JOBOBJECTINFOCLASS.JobObjectBasicUIRestrictions;
+pub const JobObjectSecurityLimitInformation = JOBOBJECTINFOCLASS.JobObjectSecurityLimitInformation;
+pub const JobObjectEndOfJobTimeInformation = JOBOBJECTINFOCLASS.JobObjectEndOfJobTimeInformation;
+pub const JobObjectAssociateCompletionPortInformation = JOBOBJECTINFOCLASS.JobObjectAssociateCompletionPortInformation;
+pub const JobObjectBasicAndIoAccountingInformation = JOBOBJECTINFOCLASS.JobObjectBasicAndIoAccountingInformation;
+pub const JobObjectExtendedLimitInformation = JOBOBJECTINFOCLASS.JobObjectExtendedLimitInformation;
+pub const JobObjectJobSetInformation = JOBOBJECTINFOCLASS.JobObjectJobSetInformation;
+pub const JobObjectGroupInformation = JOBOBJECTINFOCLASS.JobObjectGroupInformation;
+pub const JobObjectNotificationLimitInformation = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation;
+pub const JobObjectLimitViolationInformation = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation;
+pub const JobObjectGroupInformationEx = JOBOBJECTINFOCLASS.JobObjectGroupInformationEx;
+pub const JobObjectCpuRateControlInformation = JOBOBJECTINFOCLASS.JobObjectCpuRateControlInformation;
+pub const JobObjectCompletionFilter = JOBOBJECTINFOCLASS.JobObjectCompletionFilter;
+pub const JobObjectCompletionCounter = JOBOBJECTINFOCLASS.JobObjectCompletionCounter;
+pub const JobObjectReserved1Information = JOBOBJECTINFOCLASS.JobObjectReserved1Information;
+pub const JobObjectReserved2Information = JOBOBJECTINFOCLASS.JobObjectReserved2Information;
+pub const JobObjectReserved3Information = JOBOBJECTINFOCLASS.JobObjectReserved3Information;
+pub const JobObjectReserved4Information = JOBOBJECTINFOCLASS.JobObjectReserved4Information;
+pub const JobObjectReserved5Information = JOBOBJECTINFOCLASS.JobObjectReserved5Information;
+pub const JobObjectReserved6Information = JOBOBJECTINFOCLASS.JobObjectReserved6Information;
+pub const JobObjectReserved7Information = JOBOBJECTINFOCLASS.JobObjectReserved7Information;
+pub const JobObjectReserved8Information = JOBOBJECTINFOCLASS.JobObjectReserved8Information;
+pub const JobObjectReserved9Information = JOBOBJECTINFOCLASS.JobObjectReserved9Information;
+pub const JobObjectReserved10Information = JOBOBJECTINFOCLASS.JobObjectReserved10Information;
+pub const JobObjectReserved11Information = JOBOBJECTINFOCLASS.JobObjectReserved11Information;
+pub const JobObjectReserved12Information = JOBOBJECTINFOCLASS.JobObjectReserved12Information;
+pub const JobObjectReserved13Information = JOBOBJECTINFOCLASS.JobObjectReserved13Information;
+pub const JobObjectReserved14Information = JOBOBJECTINFOCLASS.JobObjectReserved14Information;
+pub const JobObjectNetRateControlInformation = JOBOBJECTINFOCLASS.JobObjectNetRateControlInformation;
+pub const JobObjectNotificationLimitInformation2 = JOBOBJECTINFOCLASS.JobObjectNotificationLimitInformation2;
+pub const JobObjectLimitViolationInformation2 = JOBOBJECTINFOCLASS.JobObjectLimitViolationInformation2;
+pub const JobObjectCreateSilo = JOBOBJECTINFOCLASS.JobObjectCreateSilo;
+pub const JobObjectSiloBasicInformation = JOBOBJECTINFOCLASS.JobObjectSiloBasicInformation;
+pub const JobObjectReserved15Information = JOBOBJECTINFOCLASS.JobObjectReserved15Information;
+pub const JobObjectReserved16Information = JOBOBJECTINFOCLASS.JobObjectReserved16Information;
+pub const JobObjectReserved17Information = JOBOBJECTINFOCLASS.JobObjectReserved17Information;
+pub const JobObjectReserved18Information = JOBOBJECTINFOCLASS.JobObjectReserved18Information;
+pub const JobObjectReserved19Information = JOBOBJECTINFOCLASS.JobObjectReserved19Information;
+pub const JobObjectReserved20Information = JOBOBJECTINFOCLASS.JobObjectReserved20Information;
+pub const JobObjectReserved21Information = JOBOBJECTINFOCLASS.JobObjectReserved21Information;
+pub const JobObjectReserved22Information = JOBOBJECTINFOCLASS.JobObjectReserved22Information;
+pub const JobObjectReserved23Information = JOBOBJECTINFOCLASS.JobObjectReserved23Information;
+pub const JobObjectReserved24Information = JOBOBJECTINFOCLASS.JobObjectReserved24Information;
+pub const JobObjectReserved25Information = JOBOBJECTINFOCLASS.JobObjectReserved25Information;
+pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
+
+pub const SILOOBJECT_BASIC_INFORMATION = extern struct {
+    SiloId: u32,
+    SiloParentId: u32,
+    NumberOfProcesses: u32,
+    IsInServerSilo: u8,
+    Reserved: [3]u8,
+};
+
+pub const SERVERSILO_STATE = extern enum(i32) {
+    SERVERSILO_INITING = 0,
+    SERVERSILO_STARTED = 1,
+    SERVERSILO_SHUTTING_DOWN = 2,
+    SERVERSILO_TERMINATING = 3,
+    SERVERSILO_TERMINATED = 4,
+};
+pub const SERVERSILO_INITING = SERVERSILO_STATE.SERVERSILO_INITING;
+pub const SERVERSILO_STARTED = SERVERSILO_STATE.SERVERSILO_STARTED;
+pub const SERVERSILO_SHUTTING_DOWN = SERVERSILO_STATE.SERVERSILO_SHUTTING_DOWN;
+pub const SERVERSILO_TERMINATING = SERVERSILO_STATE.SERVERSILO_TERMINATING;
+pub const SERVERSILO_TERMINATED = SERVERSILO_STATE.SERVERSILO_TERMINATED;
+
+pub const SERVERSILO_BASIC_INFORMATION = extern struct {
+    ServiceSessionId: u32,
+    State: SERVERSILO_STATE,
+    ExitStatus: u32,
+    IsDownlevelContainer: u8,
+    ApiSetSchema: *c_void,
+    HostApiSetSchema: *c_void,
+};
+
+pub const LOGICAL_PROCESSOR_RELATIONSHIP = extern enum(i32) {
+    RelationProcessorCore = 0,
+    RelationNumaNode = 1,
+    RelationCache = 2,
+    RelationProcessorPackage = 3,
+    RelationGroup = 4,
+    RelationAll = 65535,
+};
+pub const RelationProcessorCore = LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorCore;
+pub const RelationNumaNode = LOGICAL_PROCESSOR_RELATIONSHIP.RelationNumaNode;
+pub const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP.RelationCache;
+pub const RelationProcessorPackage = LOGICAL_PROCESSOR_RELATIONSHIP.RelationProcessorPackage;
+pub const RelationGroup = LOGICAL_PROCESSOR_RELATIONSHIP.RelationGroup;
+pub const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP.RelationAll;
+
+pub const PROCESSOR_CACHE_TYPE = extern enum(i32) {
+    CacheUnified = 0,
+    CacheInstruction = 1,
+    CacheData = 2,
+    CacheTrace = 3,
+};
+pub const CacheUnified = PROCESSOR_CACHE_TYPE.CacheUnified;
+pub const CacheInstruction = PROCESSOR_CACHE_TYPE.CacheInstruction;
+pub const CacheData = PROCESSOR_CACHE_TYPE.CacheData;
+pub const CacheTrace = PROCESSOR_CACHE_TYPE.CacheTrace;
+
+pub const CACHE_DESCRIPTOR = extern struct {
+    Level: u8,
+    Associativity: u8,
+    LineSize: u16,
+    Size: u32,
+    Type: PROCESSOR_CACHE_TYPE,
+};
+
+pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION = extern struct {
+    ProcessorMask: ?*c_void,
+    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
+    Anonymous: SYSTEM_LOGICAL_PROCESSOR_INFORMATION._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESSOR_RELATIONSHIP = extern struct {
+    Flags: u8,
+    EfficiencyClass: u8,
+    Reserved: [20]u8,
+    GroupCount: u16,
+    GroupMask: [1]GROUP_AFFINITY,
+};
+
+pub const NUMA_NODE_RELATIONSHIP = extern struct {
+    NodeNumber: u32,
+    Reserved: [20]u8,
+    GroupMask: GROUP_AFFINITY,
+};
+
+pub const CACHE_RELATIONSHIP = extern struct {
+    Level: u8,
+    Associativity: u8,
+    LineSize: u16,
+    CacheSize: u32,
+    Type: PROCESSOR_CACHE_TYPE,
+    Reserved: [20]u8,
+    GroupMask: GROUP_AFFINITY,
+};
+
+pub const PROCESSOR_GROUP_INFO = extern struct {
+    MaximumProcessorCount: u8,
+    ActiveProcessorCount: u8,
+    Reserved: [38]u8,
+    ActiveProcessorMask: ?*c_void,
+};
+
+pub const GROUP_RELATIONSHIP = extern struct {
+    MaximumGroupCount: u16,
+    ActiveGroupCount: u16,
+    Reserved: [20]u8,
+    GroupInfo: [1]PROCESSOR_GROUP_INFO,
+};
+
+pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = extern struct {
+    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP,
+    Size: u32,
+    Anonymous: SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const CPU_SET_INFORMATION_TYPE = extern enum(i32) {
+    CpuSetInformation = 0,
+};
+pub const CpuSetInformation = CPU_SET_INFORMATION_TYPE.CpuSetInformation;
+
+pub const SYSTEM_CPU_SET_INFORMATION = extern struct {
+    Size: u32,
+    Type: CPU_SET_INFORMATION_TYPE,
+    Anonymous: SYSTEM_CPU_SET_INFORMATION._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = extern struct {
+    CycleTime: u64,
+};
+
+pub const XSTATE_FEATURE = extern struct {
+    Offset: u32,
+    Size: u32,
+};
+
+pub const XSTATE_CONFIGURATION = extern struct {
+    EnabledFeatures: u64,
+    EnabledVolatileFeatures: u64,
+    Size: u32,
+    Anonymous: XSTATE_CONFIGURATION._Anonymous_e__Union,
+    Features: [64]XSTATE_FEATURE,
+    EnabledSupervisorFeatures: u64,
+    AlignedFeatures: u64,
+    AllFeatureSize: u32,
+    AllFeatures: [64]u32,
+    EnabledUserVisibleSupervisorFeatures: u64,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const MEMORY_BASIC_INFORMATION = extern struct {
+    BaseAddress: *c_void,
+    AllocationBase: *c_void,
+    AllocationProtect: u32,
+    RegionSize: ?*c_void,
+    State: u32,
+    Protect: u32,
+    Type: u32,
+};
+
+pub const MEMORY_BASIC_INFORMATION32 = extern struct {
+    BaseAddress: u32,
+    AllocationBase: u32,
+    AllocationProtect: u32,
+    RegionSize: u32,
+    State: u32,
+    Protect: u32,
+    Type: u32,
+};
+
+pub const MEMORY_BASIC_INFORMATION64 = extern struct {
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: u32,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: u32,
+    Protect: u32,
+    Type: u32,
+    __alignment2: u32,
+};
+
+pub const CFG_CALL_TARGET_INFO = extern struct {
+    Offset: ?*c_void,
+    Flags: ?*c_void,
+};
+
+pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
+    LowestStartingAddress: *c_void,
+    HighestEndingAddress: *c_void,
+    Alignment: ?*c_void,
+};
+
+pub const MEM_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
+    MemExtendedParameterInvalidType = 0,
+    MemExtendedParameterAddressRequirements = 1,
+    MemExtendedParameterNumaNode = 2,
+    MemExtendedParameterPartitionHandle = 3,
+    MemExtendedParameterUserPhysicalHandle = 4,
+    MemExtendedParameterAttributeFlags = 5,
+    MemExtendedParameterMax = 6,
+};
+pub const MemExtendedParameterInvalidType = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterInvalidType;
+pub const MemExtendedParameterAddressRequirements = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAddressRequirements;
+pub const MemExtendedParameterNumaNode = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterNumaNode;
+pub const MemExtendedParameterPartitionHandle = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterPartitionHandle;
+pub const MemExtendedParameterUserPhysicalHandle = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterUserPhysicalHandle;
+pub const MemExtendedParameterAttributeFlags = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterAttributeFlags;
+pub const MemExtendedParameterMax = MEM_EXTENDED_PARAMETER_TYPE.MemExtendedParameterMax;
+
+pub const MEM_EXTENDED_PARAMETER = extern struct {
+    Anonymous1: MEM_EXTENDED_PARAMETER._Anonymous1_e__Struct,
+    Anonymous2: MEM_EXTENDED_PARAMETER._Anonymous2_e__Union,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const MEM_SECTION_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
+    MemSectionExtendedParameterInvalidType = 0,
+    MemSectionExtendedParameterUserPhysicalFlags = 1,
+    MemSectionExtendedParameterNumaNode = 2,
+    MemSectionExtendedParameterMax = 3,
+};
+pub const MemSectionExtendedParameterInvalidType = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterInvalidType;
+pub const MemSectionExtendedParameterUserPhysicalFlags = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterUserPhysicalFlags;
+pub const MemSectionExtendedParameterNumaNode = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterNumaNode;
+pub const MemSectionExtendedParameterMax = MEM_SECTION_EXTENDED_PARAMETER_TYPE.MemSectionExtendedParameterMax;
+
+pub const ENCLAVE_CREATE_INFO_SGX = extern struct {
+    Secs: [4096]u8,
+};
+
+pub const ENCLAVE_INIT_INFO_SGX = extern struct {
+    SigStruct: [1808]u8,
+    Reserved1: [240]u8,
+    EInitToken: [304]u8,
+    Reserved2: [1744]u8,
+};
+
+pub const ENCLAVE_CREATE_INFO_VBS = extern struct {
+    Flags: u32,
+    OwnerID: [32]u8,
+};
+
+pub const ENCLAVE_CREATE_INFO_VBS_BASIC = extern struct {
+    Flags: u32,
+    OwnerID: [32]u8,
+};
+
+pub const ENCLAVE_LOAD_DATA_VBS_BASIC = extern struct {
+    PageType: u32,
+};
+
+pub const ENCLAVE_INIT_INFO_VBS_BASIC = extern struct {
+    FamilyId: [16]u8,
+    ImageId: [16]u8,
+    EnclaveSize: u64,
+    EnclaveSvn: u32,
+    Reserved: u32,
+    Anonymous: ENCLAVE_INIT_INFO_VBS_BASIC._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const ENCLAVE_INIT_INFO_VBS = extern struct {
+    Length: u32,
+    ThreadCount: u32,
+};
+
+pub const ENCLAVE_TARGET_FUNCTION = fn(
+    param0: *c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub const PENCLAVE_TARGET_FUNCTION = fn(
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub const LPENCLAVE_TARGET_FUNCTION = fn(
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub const FILE_SEGMENT_ELEMENT = u32; // TODO: implement StructOrUnion types?
+
+pub const SCRUB_DATA_INPUT = extern struct {
+    Size: u32,
+    Flags: u32,
+    MaximumIos: u32,
+    ObjectId: [4]u32,
+    Reserved: [25]u32,
+    ResumeContext: [816]u8,
+};
+
+pub const SCRUB_PARITY_EXTENT = extern struct {
+    Offset: i64,
+    Length: u64,
+};
+
+pub const SCRUB_PARITY_EXTENT_DATA = extern struct {
+    Size: u16,
+    Flags: u16,
+    NumberOfParityExtents: u16,
+    MaximumNumberOfParityExtents: u16,
+    ParityExtents: [1]SCRUB_PARITY_EXTENT,
+};
+
+pub const SCRUB_DATA_OUTPUT = extern struct {
+    Size: u32,
+    Flags: u32,
+    Status: u32,
+    ErrorFileOffset: u64,
+    ErrorLength: u64,
+    NumberOfBytesRepaired: u64,
+    NumberOfBytesFailed: u64,
+    InternalFileReference: u64,
+    ResumeContextLength: u16,
+    ParityExtentDataOffset: u16,
+    Reserved: [9]u32,
+    NumberOfMetadataBytesProcessed: u64,
+    NumberOfDataBytesProcessed: u64,
+    TotalNumberOfMetadataBytesInUse: u64,
+    TotalNumberOfDataBytesInUse: u64,
+    ResumeContext: [816]u8,
+};
+
+pub const SharedVirtualDiskSupportType = extern enum(i32) {
+    SharedVirtualDisksUnsupported = 0,
+    SharedVirtualDisksSupported = 1,
+    SharedVirtualDiskSnapshotsSupported = 3,
+    SharedVirtualDiskCDPSnapshotsSupported = 7,
+};
+pub const SharedVirtualDisksUnsupported = SharedVirtualDiskSupportType.SharedVirtualDisksUnsupported;
+pub const SharedVirtualDisksSupported = SharedVirtualDiskSupportType.SharedVirtualDisksSupported;
+pub const SharedVirtualDiskSnapshotsSupported = SharedVirtualDiskSupportType.SharedVirtualDiskSnapshotsSupported;
+pub const SharedVirtualDiskCDPSnapshotsSupported = SharedVirtualDiskSupportType.SharedVirtualDiskCDPSnapshotsSupported;
+
+pub const SharedVirtualDiskHandleState = extern enum(i32) {
+    SharedVirtualDiskHandleStateNone = 0,
+    SharedVirtualDiskHandleStateFileShared = 1,
+    SharedVirtualDiskHandleStateHandleShared = 3,
+};
+pub const SharedVirtualDiskHandleStateNone = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateNone;
+pub const SharedVirtualDiskHandleStateFileShared = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateFileShared;
+pub const SharedVirtualDiskHandleStateHandleShared = SharedVirtualDiskHandleState.SharedVirtualDiskHandleStateHandleShared;
+
+pub const SHARED_VIRTUAL_DISK_SUPPORT = extern struct {
+    SharedVirtualDiskSupport: SharedVirtualDiskSupportType,
+    HandleState: SharedVirtualDiskHandleState,
+};
+
+pub const REARRANGE_FILE_DATA = extern struct {
+    SourceStartingOffset: u64,
+    TargetOffset: u64,
+    SourceFileHandle: HANDLE,
+    Length: u32,
+    Flags: u32,
+};
+
+pub const SHUFFLE_FILE_DATA = extern struct {
+    StartingOffset: i64,
+    Length: i64,
+    Flags: u32,
+};
+
+pub const NETWORK_APP_INSTANCE_EA = extern struct {
+    AppInstanceID: Guid,
+    CsvFlags: u32,
+};
+
+pub const SYSTEM_POWER_STATE = extern enum(i32) {
+    PowerSystemUnspecified = 0,
+    PowerSystemWorking = 1,
+    PowerSystemSleeping1 = 2,
+    PowerSystemSleeping2 = 3,
+    PowerSystemSleeping3 = 4,
+    PowerSystemHibernate = 5,
+    PowerSystemShutdown = 6,
+    PowerSystemMaximum = 7,
+};
+pub const PowerSystemUnspecified = SYSTEM_POWER_STATE.PowerSystemUnspecified;
+pub const PowerSystemWorking = SYSTEM_POWER_STATE.PowerSystemWorking;
+pub const PowerSystemSleeping1 = SYSTEM_POWER_STATE.PowerSystemSleeping1;
+pub const PowerSystemSleeping2 = SYSTEM_POWER_STATE.PowerSystemSleeping2;
+pub const PowerSystemSleeping3 = SYSTEM_POWER_STATE.PowerSystemSleeping3;
+pub const PowerSystemHibernate = SYSTEM_POWER_STATE.PowerSystemHibernate;
+pub const PowerSystemShutdown = SYSTEM_POWER_STATE.PowerSystemShutdown;
+pub const PowerSystemMaximum = SYSTEM_POWER_STATE.PowerSystemMaximum;
+
+pub const POWER_ACTION = extern enum(i32) {
+    PowerActionNone = 0,
+    PowerActionReserved = 1,
+    PowerActionSleep = 2,
+    PowerActionHibernate = 3,
+    PowerActionShutdown = 4,
+    PowerActionShutdownReset = 5,
+    PowerActionShutdownOff = 6,
+    PowerActionWarmEject = 7,
+    PowerActionDisplayOff = 8,
+};
+pub const PowerActionNone = POWER_ACTION.PowerActionNone;
+pub const PowerActionReserved = POWER_ACTION.PowerActionReserved;
+pub const PowerActionSleep = POWER_ACTION.PowerActionSleep;
+pub const PowerActionHibernate = POWER_ACTION.PowerActionHibernate;
+pub const PowerActionShutdown = POWER_ACTION.PowerActionShutdown;
+pub const PowerActionShutdownReset = POWER_ACTION.PowerActionShutdownReset;
+pub const PowerActionShutdownOff = POWER_ACTION.PowerActionShutdownOff;
+pub const PowerActionWarmEject = POWER_ACTION.PowerActionWarmEject;
+pub const PowerActionDisplayOff = POWER_ACTION.PowerActionDisplayOff;
+
+pub const DEVICE_POWER_STATE = extern enum(i32) {
+    PowerDeviceUnspecified = 0,
+    PowerDeviceD0 = 1,
+    PowerDeviceD1 = 2,
+    PowerDeviceD2 = 3,
+    PowerDeviceD3 = 4,
+    PowerDeviceMaximum = 5,
+};
+pub const PowerDeviceUnspecified = DEVICE_POWER_STATE.PowerDeviceUnspecified;
+pub const PowerDeviceD0 = DEVICE_POWER_STATE.PowerDeviceD0;
+pub const PowerDeviceD1 = DEVICE_POWER_STATE.PowerDeviceD1;
+pub const PowerDeviceD2 = DEVICE_POWER_STATE.PowerDeviceD2;
+pub const PowerDeviceD3 = DEVICE_POWER_STATE.PowerDeviceD3;
+pub const PowerDeviceMaximum = DEVICE_POWER_STATE.PowerDeviceMaximum;
+
+pub const MONITOR_DISPLAY_STATE = extern enum(i32) {
+    PowerMonitorOff = 0,
+    PowerMonitorOn = 1,
+    PowerMonitorDim = 2,
+};
+pub const PowerMonitorOff = MONITOR_DISPLAY_STATE.PowerMonitorOff;
+pub const PowerMonitorOn = MONITOR_DISPLAY_STATE.PowerMonitorOn;
+pub const PowerMonitorDim = MONITOR_DISPLAY_STATE.PowerMonitorDim;
+
+pub const USER_ACTIVITY_PRESENCE = extern enum(i32) {
+    PowerUserPresent = 0,
+    PowerUserNotPresent = 1,
+    PowerUserInactive = 2,
+    PowerUserMaximum = 3,
+    PowerUserInvalid = 3,
+};
+pub const PowerUserPresent = USER_ACTIVITY_PRESENCE.PowerUserPresent;
+pub const PowerUserNotPresent = USER_ACTIVITY_PRESENCE.PowerUserNotPresent;
+pub const PowerUserInactive = USER_ACTIVITY_PRESENCE.PowerUserInactive;
+pub const PowerUserMaximum = USER_ACTIVITY_PRESENCE.PowerUserMaximum;
+pub const PowerUserInvalid = USER_ACTIVITY_PRESENCE.PowerUserInvalid;
+
+pub const LATENCY_TIME = extern enum(i32) {
+    LT_DONT_CARE = 0,
+    LT_LOWEST_LATENCY = 1,
+};
+pub const LT_DONT_CARE = LATENCY_TIME.LT_DONT_CARE;
+pub const LT_LOWEST_LATENCY = LATENCY_TIME.LT_LOWEST_LATENCY;
+
+pub const POWER_REQUEST_TYPE = extern enum(i32) {
+    PowerRequestDisplayRequired = 0,
+    PowerRequestSystemRequired = 1,
+    PowerRequestAwayModeRequired = 2,
+    PowerRequestExecutionRequired = 3,
+};
+pub const PowerRequestDisplayRequired = POWER_REQUEST_TYPE.PowerRequestDisplayRequired;
+pub const PowerRequestSystemRequired = POWER_REQUEST_TYPE.PowerRequestSystemRequired;
+pub const PowerRequestAwayModeRequired = POWER_REQUEST_TYPE.PowerRequestAwayModeRequired;
+pub const PowerRequestExecutionRequired = POWER_REQUEST_TYPE.PowerRequestExecutionRequired;
+
+pub const CM_Power_Data_s = extern struct {
+    PD_Size: u32,
+    PD_MostRecentPowerState: DEVICE_POWER_STATE,
+    PD_Capabilities: u32,
+    PD_D1Latency: u32,
+    PD_D2Latency: u32,
+    PD_D3Latency: u32,
+    PD_PowerStateMapping: [7]DEVICE_POWER_STATE,
+    PD_DeepestSystemWake: SYSTEM_POWER_STATE,
+};
+
+pub const POWER_INFORMATION_LEVEL = extern enum(i32) {
+    SystemPowerPolicyAc = 0,
+    SystemPowerPolicyDc = 1,
+    VerifySystemPolicyAc = 2,
+    VerifySystemPolicyDc = 3,
+    SystemPowerCapabilities = 4,
+    SystemBatteryState = 5,
+    SystemPowerStateHandler = 6,
+    ProcessorStateHandler = 7,
+    SystemPowerPolicyCurrent = 8,
+    AdministratorPowerPolicy = 9,
+    SystemReserveHiberFile = 10,
+    ProcessorInformation = 11,
+    SystemPowerInformation = 12,
+    ProcessorStateHandler2 = 13,
+    LastWakeTime = 14,
+    LastSleepTime = 15,
+    SystemExecutionState = 16,
+    SystemPowerStateNotifyHandler = 17,
+    ProcessorPowerPolicyAc = 18,
+    ProcessorPowerPolicyDc = 19,
+    VerifyProcessorPowerPolicyAc = 20,
+    VerifyProcessorPowerPolicyDc = 21,
+    ProcessorPowerPolicyCurrent = 22,
+    SystemPowerStateLogging = 23,
+    SystemPowerLoggingEntry = 24,
+    SetPowerSettingValue = 25,
+    NotifyUserPowerSetting = 26,
+    PowerInformationLevelUnused0 = 27,
+    SystemMonitorHiberBootPowerOff = 28,
+    SystemVideoState = 29,
+    TraceApplicationPowerMessage = 30,
+    TraceApplicationPowerMessageEnd = 31,
+    ProcessorPerfStates = 32,
+    ProcessorIdleStates = 33,
+    ProcessorCap = 34,
+    SystemWakeSource = 35,
+    SystemHiberFileInformation = 36,
+    TraceServicePowerMessage = 37,
+    ProcessorLoad = 38,
+    PowerShutdownNotification = 39,
+    MonitorCapabilities = 40,
+    SessionPowerInit = 41,
+    SessionDisplayState = 42,
+    PowerRequestCreate = 43,
+    PowerRequestAction = 44,
+    GetPowerRequestList = 45,
+    ProcessorInformationEx = 46,
+    NotifyUserModeLegacyPowerEvent = 47,
+    GroupPark = 48,
+    ProcessorIdleDomains = 49,
+    WakeTimerList = 50,
+    SystemHiberFileSize = 51,
+    ProcessorIdleStatesHv = 52,
+    ProcessorPerfStatesHv = 53,
+    ProcessorPerfCapHv = 54,
+    ProcessorSetIdle = 55,
+    LogicalProcessorIdling = 56,
+    UserPresence = 57,
+    PowerSettingNotificationName = 58,
+    GetPowerSettingValue = 59,
+    IdleResiliency = 60,
+    SessionRITState = 61,
+    SessionConnectNotification = 62,
+    SessionPowerCleanup = 63,
+    SessionLockState = 64,
+    SystemHiberbootState = 65,
+    PlatformInformation = 66,
+    PdcInvocation = 67,
+    MonitorInvocation = 68,
+    FirmwareTableInformationRegistered = 69,
+    SetShutdownSelectedTime = 70,
+    SuspendResumeInvocation = 71,
+    PlmPowerRequestCreate = 72,
+    ScreenOff = 73,
+    CsDeviceNotification = 74,
+    PlatformRole = 75,
+    LastResumePerformance = 76,
+    DisplayBurst = 77,
+    ExitLatencySamplingPercentage = 78,
+    RegisterSpmPowerSettings = 79,
+    PlatformIdleStates = 80,
+    ProcessorIdleVeto = 81,
+    PlatformIdleVeto = 82,
+    SystemBatteryStatePrecise = 83,
+    ThermalEvent = 84,
+    PowerRequestActionInternal = 85,
+    BatteryDeviceState = 86,
+    PowerInformationInternal = 87,
+    ThermalStandby = 88,
+    SystemHiberFileType = 89,
+    PhysicalPowerButtonPress = 90,
+    QueryPotentialDripsConstraint = 91,
+    EnergyTrackerCreate = 92,
+    EnergyTrackerQuery = 93,
+    UpdateBlackBoxRecorder = 94,
+    SessionAllowExternalDmaDevices = 95,
+    PowerInformationLevelMaximum = 96,
+};
+pub const SystemPowerPolicyAc = POWER_INFORMATION_LEVEL.SystemPowerPolicyAc;
+pub const SystemPowerPolicyDc = POWER_INFORMATION_LEVEL.SystemPowerPolicyDc;
+pub const VerifySystemPolicyAc = POWER_INFORMATION_LEVEL.VerifySystemPolicyAc;
+pub const VerifySystemPolicyDc = POWER_INFORMATION_LEVEL.VerifySystemPolicyDc;
+pub const SystemPowerCapabilities = POWER_INFORMATION_LEVEL.SystemPowerCapabilities;
+pub const SystemBatteryState = POWER_INFORMATION_LEVEL.SystemBatteryState;
+pub const SystemPowerStateHandler = POWER_INFORMATION_LEVEL.SystemPowerStateHandler;
+pub const ProcessorStateHandler = POWER_INFORMATION_LEVEL.ProcessorStateHandler;
+pub const SystemPowerPolicyCurrent = POWER_INFORMATION_LEVEL.SystemPowerPolicyCurrent;
+pub const AdministratorPowerPolicy = POWER_INFORMATION_LEVEL.AdministratorPowerPolicy;
+pub const SystemReserveHiberFile = POWER_INFORMATION_LEVEL.SystemReserveHiberFile;
+pub const ProcessorInformation = POWER_INFORMATION_LEVEL.ProcessorInformation;
+pub const SystemPowerInformation = POWER_INFORMATION_LEVEL.SystemPowerInformation;
+pub const ProcessorStateHandler2 = POWER_INFORMATION_LEVEL.ProcessorStateHandler2;
+pub const LastWakeTime = POWER_INFORMATION_LEVEL.LastWakeTime;
+pub const LastSleepTime = POWER_INFORMATION_LEVEL.LastSleepTime;
+pub const SystemExecutionState = POWER_INFORMATION_LEVEL.SystemExecutionState;
+pub const SystemPowerStateNotifyHandler = POWER_INFORMATION_LEVEL.SystemPowerStateNotifyHandler;
+pub const ProcessorPowerPolicyAc = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyAc;
+pub const ProcessorPowerPolicyDc = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyDc;
+pub const VerifyProcessorPowerPolicyAc = POWER_INFORMATION_LEVEL.VerifyProcessorPowerPolicyAc;
+pub const VerifyProcessorPowerPolicyDc = POWER_INFORMATION_LEVEL.VerifyProcessorPowerPolicyDc;
+pub const ProcessorPowerPolicyCurrent = POWER_INFORMATION_LEVEL.ProcessorPowerPolicyCurrent;
+pub const SystemPowerStateLogging = POWER_INFORMATION_LEVEL.SystemPowerStateLogging;
+pub const SystemPowerLoggingEntry = POWER_INFORMATION_LEVEL.SystemPowerLoggingEntry;
+pub const SetPowerSettingValue = POWER_INFORMATION_LEVEL.SetPowerSettingValue;
+pub const NotifyUserPowerSetting = POWER_INFORMATION_LEVEL.NotifyUserPowerSetting;
+pub const PowerInformationLevelUnused0 = POWER_INFORMATION_LEVEL.PowerInformationLevelUnused0;
+pub const SystemMonitorHiberBootPowerOff = POWER_INFORMATION_LEVEL.SystemMonitorHiberBootPowerOff;
+pub const SystemVideoState = POWER_INFORMATION_LEVEL.SystemVideoState;
+pub const TraceApplicationPowerMessage = POWER_INFORMATION_LEVEL.TraceApplicationPowerMessage;
+pub const TraceApplicationPowerMessageEnd = POWER_INFORMATION_LEVEL.TraceApplicationPowerMessageEnd;
+pub const ProcessorPerfStates = POWER_INFORMATION_LEVEL.ProcessorPerfStates;
+pub const ProcessorIdleStates = POWER_INFORMATION_LEVEL.ProcessorIdleStates;
+pub const ProcessorCap = POWER_INFORMATION_LEVEL.ProcessorCap;
+pub const SystemWakeSource = POWER_INFORMATION_LEVEL.SystemWakeSource;
+pub const SystemHiberFileInformation = POWER_INFORMATION_LEVEL.SystemHiberFileInformation;
+pub const TraceServicePowerMessage = POWER_INFORMATION_LEVEL.TraceServicePowerMessage;
+pub const ProcessorLoad = POWER_INFORMATION_LEVEL.ProcessorLoad;
+pub const PowerShutdownNotification = POWER_INFORMATION_LEVEL.PowerShutdownNotification;
+pub const MonitorCapabilities = POWER_INFORMATION_LEVEL.MonitorCapabilities;
+pub const SessionPowerInit = POWER_INFORMATION_LEVEL.SessionPowerInit;
+pub const SessionDisplayState = POWER_INFORMATION_LEVEL.SessionDisplayState;
+pub const PowerRequestCreate = POWER_INFORMATION_LEVEL.PowerRequestCreate;
+pub const PowerRequestAction = POWER_INFORMATION_LEVEL.PowerRequestAction;
+pub const GetPowerRequestList = POWER_INFORMATION_LEVEL.GetPowerRequestList;
+pub const ProcessorInformationEx = POWER_INFORMATION_LEVEL.ProcessorInformationEx;
+pub const NotifyUserModeLegacyPowerEvent = POWER_INFORMATION_LEVEL.NotifyUserModeLegacyPowerEvent;
+pub const GroupPark = POWER_INFORMATION_LEVEL.GroupPark;
+pub const ProcessorIdleDomains = POWER_INFORMATION_LEVEL.ProcessorIdleDomains;
+pub const WakeTimerList = POWER_INFORMATION_LEVEL.WakeTimerList;
+pub const SystemHiberFileSize = POWER_INFORMATION_LEVEL.SystemHiberFileSize;
+pub const ProcessorIdleStatesHv = POWER_INFORMATION_LEVEL.ProcessorIdleStatesHv;
+pub const ProcessorPerfStatesHv = POWER_INFORMATION_LEVEL.ProcessorPerfStatesHv;
+pub const ProcessorPerfCapHv = POWER_INFORMATION_LEVEL.ProcessorPerfCapHv;
+pub const ProcessorSetIdle = POWER_INFORMATION_LEVEL.ProcessorSetIdle;
+pub const LogicalProcessorIdling = POWER_INFORMATION_LEVEL.LogicalProcessorIdling;
+pub const UserPresence = POWER_INFORMATION_LEVEL.UserPresence;
+pub const PowerSettingNotificationName = POWER_INFORMATION_LEVEL.PowerSettingNotificationName;
+pub const GetPowerSettingValue = POWER_INFORMATION_LEVEL.GetPowerSettingValue;
+pub const IdleResiliency = POWER_INFORMATION_LEVEL.IdleResiliency;
+pub const SessionRITState = POWER_INFORMATION_LEVEL.SessionRITState;
+pub const SessionConnectNotification = POWER_INFORMATION_LEVEL.SessionConnectNotification;
+pub const SessionPowerCleanup = POWER_INFORMATION_LEVEL.SessionPowerCleanup;
+pub const SessionLockState = POWER_INFORMATION_LEVEL.SessionLockState;
+pub const SystemHiberbootState = POWER_INFORMATION_LEVEL.SystemHiberbootState;
+pub const PlatformInformation = POWER_INFORMATION_LEVEL.PlatformInformation;
+pub const PdcInvocation = POWER_INFORMATION_LEVEL.PdcInvocation;
+pub const MonitorInvocation = POWER_INFORMATION_LEVEL.MonitorInvocation;
+pub const FirmwareTableInformationRegistered = POWER_INFORMATION_LEVEL.FirmwareTableInformationRegistered;
+pub const SetShutdownSelectedTime = POWER_INFORMATION_LEVEL.SetShutdownSelectedTime;
+pub const SuspendResumeInvocation = POWER_INFORMATION_LEVEL.SuspendResumeInvocation;
+pub const PlmPowerRequestCreate = POWER_INFORMATION_LEVEL.PlmPowerRequestCreate;
+pub const ScreenOff = POWER_INFORMATION_LEVEL.ScreenOff;
+pub const CsDeviceNotification = POWER_INFORMATION_LEVEL.CsDeviceNotification;
+pub const PlatformRole = POWER_INFORMATION_LEVEL.PlatformRole;
+pub const LastResumePerformance = POWER_INFORMATION_LEVEL.LastResumePerformance;
+pub const DisplayBurst = POWER_INFORMATION_LEVEL.DisplayBurst;
+pub const ExitLatencySamplingPercentage = POWER_INFORMATION_LEVEL.ExitLatencySamplingPercentage;
+pub const RegisterSpmPowerSettings = POWER_INFORMATION_LEVEL.RegisterSpmPowerSettings;
+pub const PlatformIdleStates = POWER_INFORMATION_LEVEL.PlatformIdleStates;
+pub const ProcessorIdleVeto = POWER_INFORMATION_LEVEL.ProcessorIdleVeto;
+pub const PlatformIdleVeto = POWER_INFORMATION_LEVEL.PlatformIdleVeto;
+pub const SystemBatteryStatePrecise = POWER_INFORMATION_LEVEL.SystemBatteryStatePrecise;
+pub const ThermalEvent = POWER_INFORMATION_LEVEL.ThermalEvent;
+pub const PowerRequestActionInternal = POWER_INFORMATION_LEVEL.PowerRequestActionInternal;
+pub const BatteryDeviceState = POWER_INFORMATION_LEVEL.BatteryDeviceState;
+pub const PowerInformationInternal = POWER_INFORMATION_LEVEL.PowerInformationInternal;
+pub const ThermalStandby = POWER_INFORMATION_LEVEL.ThermalStandby;
+pub const SystemHiberFileType = POWER_INFORMATION_LEVEL.SystemHiberFileType;
+pub const PhysicalPowerButtonPress = POWER_INFORMATION_LEVEL.PhysicalPowerButtonPress;
+pub const QueryPotentialDripsConstraint = POWER_INFORMATION_LEVEL.QueryPotentialDripsConstraint;
+pub const EnergyTrackerCreate = POWER_INFORMATION_LEVEL.EnergyTrackerCreate;
+pub const EnergyTrackerQuery = POWER_INFORMATION_LEVEL.EnergyTrackerQuery;
+pub const UpdateBlackBoxRecorder = POWER_INFORMATION_LEVEL.UpdateBlackBoxRecorder;
+pub const SessionAllowExternalDmaDevices = POWER_INFORMATION_LEVEL.SessionAllowExternalDmaDevices;
+pub const PowerInformationLevelMaximum = POWER_INFORMATION_LEVEL.PowerInformationLevelMaximum;
+
+pub const POWER_USER_PRESENCE_TYPE = extern enum(i32) {
+    UserNotPresent = 0,
+    UserPresent = 1,
+    UserUnknown = 255,
+};
+pub const UserNotPresent = POWER_USER_PRESENCE_TYPE.UserNotPresent;
+pub const UserPresent = POWER_USER_PRESENCE_TYPE.UserPresent;
+pub const UserUnknown = POWER_USER_PRESENCE_TYPE.UserUnknown;
+
+pub const POWER_USER_PRESENCE = extern struct {
+    UserPresence: POWER_USER_PRESENCE_TYPE,
+};
+
+pub const POWER_SESSION_CONNECT = extern struct {
+    Connected: u8,
+    Console: u8,
+};
+
+pub const POWER_SESSION_TIMEOUTS = extern struct {
+    InputTimeout: u32,
+    DisplayTimeout: u32,
+};
+
+pub const POWER_SESSION_RIT_STATE = extern struct {
+    Active: u8,
+    LastInputTime: u32,
+};
+
+pub const POWER_SESSION_WINLOGON = extern struct {
+    SessionId: u32,
+    Console: u8,
+    Locked: u8,
+};
+
+pub const POWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES = extern struct {
+    IsAllowed: u8,
+};
+
+pub const POWER_IDLE_RESILIENCY = extern struct {
+    CoalescingTimeout: u32,
+    IdleResiliencyPeriod: u32,
+};
+
+pub const POWER_MONITOR_REQUEST_REASON = extern enum(i32) {
+    MonitorRequestReasonUnknown = 0,
+    MonitorRequestReasonPowerButton = 1,
+    MonitorRequestReasonRemoteConnection = 2,
+    MonitorRequestReasonScMonitorpower = 3,
+    MonitorRequestReasonUserInput = 4,
+    MonitorRequestReasonAcDcDisplayBurst = 5,
+    MonitorRequestReasonUserDisplayBurst = 6,
+    MonitorRequestReasonPoSetSystemState = 7,
+    MonitorRequestReasonSetThreadExecutionState = 8,
+    MonitorRequestReasonFullWake = 9,
+    MonitorRequestReasonSessionUnlock = 10,
+    MonitorRequestReasonScreenOffRequest = 11,
+    MonitorRequestReasonIdleTimeout = 12,
+    MonitorRequestReasonPolicyChange = 13,
+    MonitorRequestReasonSleepButton = 14,
+    MonitorRequestReasonLid = 15,
+    MonitorRequestReasonBatteryCountChange = 16,
+    MonitorRequestReasonGracePeriod = 17,
+    MonitorRequestReasonPnP = 18,
+    MonitorRequestReasonDP = 19,
+    MonitorRequestReasonSxTransition = 20,
+    MonitorRequestReasonSystemIdle = 21,
+    MonitorRequestReasonNearProximity = 22,
+    MonitorRequestReasonThermalStandby = 23,
+    MonitorRequestReasonResumePdc = 24,
+    MonitorRequestReasonResumeS4 = 25,
+    MonitorRequestReasonTerminal = 26,
+    MonitorRequestReasonPdcSignal = 27,
+    MonitorRequestReasonAcDcDisplayBurstSuppressed = 28,
+    MonitorRequestReasonSystemStateEntered = 29,
+    MonitorRequestReasonWinrt = 30,
+    MonitorRequestReasonUserInputKeyboard = 31,
+    MonitorRequestReasonUserInputMouse = 32,
+    MonitorRequestReasonUserInputTouch = 33,
+    MonitorRequestReasonUserInputPen = 34,
+    MonitorRequestReasonUserInputAccelerometer = 35,
+    MonitorRequestReasonUserInputHid = 36,
+    MonitorRequestReasonUserInputPoUserPresent = 37,
+    MonitorRequestReasonUserInputSessionSwitch = 38,
+    MonitorRequestReasonUserInputInitialization = 39,
+    MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = 40,
+    MonitorRequestReasonPdcSignalWindowsMobileShell = 41,
+    MonitorRequestReasonPdcSignalHeyCortana = 42,
+    MonitorRequestReasonPdcSignalHolographicShell = 43,
+    MonitorRequestReasonPdcSignalFingerprint = 44,
+    MonitorRequestReasonDirectedDrips = 45,
+    MonitorRequestReasonDim = 46,
+    MonitorRequestReasonBuiltinPanel = 47,
+    MonitorRequestReasonDisplayRequiredUnDim = 48,
+    MonitorRequestReasonBatteryCountChangeSuppressed = 49,
+    MonitorRequestReasonResumeModernStandby = 50,
+    MonitorRequestReasonMax = 51,
+};
+pub const MonitorRequestReasonUnknown = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUnknown;
+pub const MonitorRequestReasonPowerButton = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPowerButton;
+pub const MonitorRequestReasonRemoteConnection = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonRemoteConnection;
+pub const MonitorRequestReasonScMonitorpower = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonScMonitorpower;
+pub const MonitorRequestReasonUserInput = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInput;
+pub const MonitorRequestReasonAcDcDisplayBurst = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonAcDcDisplayBurst;
+pub const MonitorRequestReasonUserDisplayBurst = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserDisplayBurst;
+pub const MonitorRequestReasonPoSetSystemState = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPoSetSystemState;
+pub const MonitorRequestReasonSetThreadExecutionState = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSetThreadExecutionState;
+pub const MonitorRequestReasonFullWake = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonFullWake;
+pub const MonitorRequestReasonSessionUnlock = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSessionUnlock;
+pub const MonitorRequestReasonScreenOffRequest = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonScreenOffRequest;
+pub const MonitorRequestReasonIdleTimeout = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonIdleTimeout;
+pub const MonitorRequestReasonPolicyChange = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPolicyChange;
+pub const MonitorRequestReasonSleepButton = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSleepButton;
+pub const MonitorRequestReasonLid = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonLid;
+pub const MonitorRequestReasonBatteryCountChange = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBatteryCountChange;
+pub const MonitorRequestReasonGracePeriod = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonGracePeriod;
+pub const MonitorRequestReasonPnP = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPnP;
+pub const MonitorRequestReasonDP = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDP;
+pub const MonitorRequestReasonSxTransition = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSxTransition;
+pub const MonitorRequestReasonSystemIdle = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSystemIdle;
+pub const MonitorRequestReasonNearProximity = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonNearProximity;
+pub const MonitorRequestReasonThermalStandby = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonThermalStandby;
+pub const MonitorRequestReasonResumePdc = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumePdc;
+pub const MonitorRequestReasonResumeS4 = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumeS4;
+pub const MonitorRequestReasonTerminal = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonTerminal;
+pub const MonitorRequestReasonPdcSignal = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignal;
+pub const MonitorRequestReasonAcDcDisplayBurstSuppressed = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonAcDcDisplayBurstSuppressed;
+pub const MonitorRequestReasonSystemStateEntered = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonSystemStateEntered;
+pub const MonitorRequestReasonWinrt = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonWinrt;
+pub const MonitorRequestReasonUserInputKeyboard = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputKeyboard;
+pub const MonitorRequestReasonUserInputMouse = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputMouse;
+pub const MonitorRequestReasonUserInputTouch = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputTouch;
+pub const MonitorRequestReasonUserInputPen = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputPen;
+pub const MonitorRequestReasonUserInputAccelerometer = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputAccelerometer;
+pub const MonitorRequestReasonUserInputHid = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputHid;
+pub const MonitorRequestReasonUserInputPoUserPresent = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputPoUserPresent;
+pub const MonitorRequestReasonUserInputSessionSwitch = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputSessionSwitch;
+pub const MonitorRequestReasonUserInputInitialization = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonUserInputInitialization;
+pub const MonitorRequestReasonPdcSignalWindowsMobilePwrNotif = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalWindowsMobilePwrNotif;
+pub const MonitorRequestReasonPdcSignalWindowsMobileShell = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalWindowsMobileShell;
+pub const MonitorRequestReasonPdcSignalHeyCortana = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalHeyCortana;
+pub const MonitorRequestReasonPdcSignalHolographicShell = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalHolographicShell;
+pub const MonitorRequestReasonPdcSignalFingerprint = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonPdcSignalFingerprint;
+pub const MonitorRequestReasonDirectedDrips = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDirectedDrips;
+pub const MonitorRequestReasonDim = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDim;
+pub const MonitorRequestReasonBuiltinPanel = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBuiltinPanel;
+pub const MonitorRequestReasonDisplayRequiredUnDim = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonDisplayRequiredUnDim;
+pub const MonitorRequestReasonBatteryCountChangeSuppressed = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonBatteryCountChangeSuppressed;
+pub const MonitorRequestReasonResumeModernStandby = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonResumeModernStandby;
+pub const MonitorRequestReasonMax = POWER_MONITOR_REQUEST_REASON.MonitorRequestReasonMax;
+
+pub const POWER_MONITOR_REQUEST_TYPE = extern enum(i32) {
+    MonitorRequestTypeOff = 0,
+    MonitorRequestTypeOnAndPresent = 1,
+    MonitorRequestTypeToggleOn = 2,
+};
+pub const MonitorRequestTypeOff = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOff;
+pub const MonitorRequestTypeOnAndPresent = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeOnAndPresent;
+pub const MonitorRequestTypeToggleOn = POWER_MONITOR_REQUEST_TYPE.MonitorRequestTypeToggleOn;
+
+pub const POWER_MONITOR_INVOCATION = extern struct {
+    Console: u8,
+    RequestReason: POWER_MONITOR_REQUEST_REASON,
+};
+
+pub const RESUME_PERFORMANCE = extern struct {
+    PostTimeMs: u32,
+    TotalResumeTimeMs: u64,
+    ResumeCompleteTimestamp: u64,
+};
+
+pub const SYSTEM_POWER_CONDITION = extern enum(i32) {
+    PoAc = 0,
+    PoDc = 1,
+    PoHot = 2,
+    PoConditionMaximum = 3,
+};
+pub const PoAc = SYSTEM_POWER_CONDITION.PoAc;
+pub const PoDc = SYSTEM_POWER_CONDITION.PoDc;
+pub const PoHot = SYSTEM_POWER_CONDITION.PoHot;
+pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.PoConditionMaximum;
+
+pub const SET_POWER_SETTING_VALUE = extern struct {
+    Version: u32,
+    Guid: Guid,
+    PowerCondition: SYSTEM_POWER_CONDITION,
+    DataLength: u32,
+    Data: [1]u8,
+};
+
+pub const NOTIFY_USER_POWER_SETTING = extern struct {
+    Guid: Guid,
+};
+
+pub const APPLICATIONLAUNCH_SETTING_VALUE = extern struct {
+    ActivationTime: LARGE_INTEGER,
+    Flags: u32,
+    ButtonInstanceID: u32,
+};
+
+pub const POWER_PLATFORM_ROLE = extern enum(i32) {
+    PlatformRoleUnspecified = 0,
+    PlatformRoleDesktop = 1,
+    PlatformRoleMobile = 2,
+    PlatformRoleWorkstation = 3,
+    PlatformRoleEnterpriseServer = 4,
+    PlatformRoleSOHOServer = 5,
+    PlatformRoleAppliancePC = 6,
+    PlatformRolePerformanceServer = 7,
+    PlatformRoleSlate = 8,
+    PlatformRoleMaximum = 9,
+};
+pub const PlatformRoleUnspecified = POWER_PLATFORM_ROLE.PlatformRoleUnspecified;
+pub const PlatformRoleDesktop = POWER_PLATFORM_ROLE.PlatformRoleDesktop;
+pub const PlatformRoleMobile = POWER_PLATFORM_ROLE.PlatformRoleMobile;
+pub const PlatformRoleWorkstation = POWER_PLATFORM_ROLE.PlatformRoleWorkstation;
+pub const PlatformRoleEnterpriseServer = POWER_PLATFORM_ROLE.PlatformRoleEnterpriseServer;
+pub const PlatformRoleSOHOServer = POWER_PLATFORM_ROLE.PlatformRoleSOHOServer;
+pub const PlatformRoleAppliancePC = POWER_PLATFORM_ROLE.PlatformRoleAppliancePC;
+pub const PlatformRolePerformanceServer = POWER_PLATFORM_ROLE.PlatformRolePerformanceServer;
+pub const PlatformRoleSlate = POWER_PLATFORM_ROLE.PlatformRoleSlate;
+pub const PlatformRoleMaximum = POWER_PLATFORM_ROLE.PlatformRoleMaximum;
+
+pub const POWER_PLATFORM_INFORMATION = extern struct {
+    AoAc: u8,
+};
+
+pub const BATTERY_REPORTING_SCALE = extern struct {
+    Granularity: u32,
+    Capacity: u32,
+};
+
+pub const PPM_WMI_LEGACY_PERFSTATE = extern struct {
+    Frequency: u32,
+    Flags: u32,
+    PercentFrequency: u32,
+};
+
+pub const PPM_WMI_IDLE_STATE = extern struct {
+    Latency: u32,
+    Power: u32,
+    TimeCheck: u32,
+    PromotePercent: u8,
+    DemotePercent: u8,
+    StateType: u8,
+    Reserved: u8,
+    StateFlags: u32,
+    Context: u32,
+    IdleHandler: u32,
+    Reserved1: u32,
+};
+
+pub const PPM_WMI_IDLE_STATES = extern struct {
+    Type: u32,
+    Count: u32,
+    TargetState: u32,
+    OldState: u32,
+    TargetProcessors: u64,
+    State: [1]PPM_WMI_IDLE_STATE,
+};
+
+pub const PPM_WMI_IDLE_STATES_EX = extern struct {
+    Type: u32,
+    Count: u32,
+    TargetState: u32,
+    OldState: u32,
+    TargetProcessors: *c_void,
+    State: [1]PPM_WMI_IDLE_STATE,
+};
+
+pub const PPM_WMI_PERF_STATE = extern struct {
+    Frequency: u32,
+    Power: u32,
+    PercentFrequency: u8,
+    IncreaseLevel: u8,
+    DecreaseLevel: u8,
+    Type: u8,
+    IncreaseTime: u32,
+    DecreaseTime: u32,
+    Control: u64,
+    Status: u64,
+    HitCount: u32,
+    Reserved1: u32,
+    Reserved2: u64,
+    Reserved3: u64,
+};
+
+pub const PPM_WMI_PERF_STATES = extern struct {
+    Count: u32,
+    MaxFrequency: u32,
+    CurrentState: u32,
+    MaxPerfState: u32,
+    MinPerfState: u32,
+    LowestPerfState: u32,
+    ThermalConstraint: u32,
+    BusyAdjThreshold: u8,
+    PolicyType: u8,
+    Type: u8,
+    Reserved: u8,
+    TimerInterval: u32,
+    TargetProcessors: u64,
+    PStateHandler: u32,
+    PStateContext: u32,
+    TStateHandler: u32,
+    TStateContext: u32,
+    FeedbackHandler: u32,
+    Reserved1: u32,
+    Reserved2: u64,
+    State: [1]PPM_WMI_PERF_STATE,
+};
+
+pub const PPM_WMI_PERF_STATES_EX = extern struct {
+    Count: u32,
+    MaxFrequency: u32,
+    CurrentState: u32,
+    MaxPerfState: u32,
+    MinPerfState: u32,
+    LowestPerfState: u32,
+    ThermalConstraint: u32,
+    BusyAdjThreshold: u8,
+    PolicyType: u8,
+    Type: u8,
+    Reserved: u8,
+    TimerInterval: u32,
+    TargetProcessors: *c_void,
+    PStateHandler: u32,
+    PStateContext: u32,
+    TStateHandler: u32,
+    TStateContext: u32,
+    FeedbackHandler: u32,
+    Reserved1: u32,
+    Reserved2: u64,
+    State: [1]PPM_WMI_PERF_STATE,
+};
+
+pub const PPM_IDLE_STATE_ACCOUNTING = extern struct {
+    IdleTransitions: u32,
+    FailedTransitions: u32,
+    InvalidBucketIndex: u32,
+    TotalTime: u64,
+    IdleTimeBuckets: [6]u32,
+};
+
+pub const PPM_IDLE_ACCOUNTING = extern struct {
+    StateCount: u32,
+    TotalTransitions: u32,
+    ResetCount: u32,
+    StartTime: u64,
+    State: [1]PPM_IDLE_STATE_ACCOUNTING,
+};
+
+pub const PPM_IDLE_STATE_BUCKET_EX = extern struct {
+    TotalTimeUs: u64,
+    MinTimeUs: u32,
+    MaxTimeUs: u32,
+    Count: u32,
+};
+
+pub const PPM_IDLE_STATE_ACCOUNTING_EX = extern struct {
+    TotalTime: u64,
+    IdleTransitions: u32,
+    FailedTransitions: u32,
+    InvalidBucketIndex: u32,
+    MinTimeUs: u32,
+    MaxTimeUs: u32,
+    CancelledTransitions: u32,
+    IdleTimeBuckets: [16]PPM_IDLE_STATE_BUCKET_EX,
+};
+
+pub const PPM_IDLE_ACCOUNTING_EX = extern struct {
+    StateCount: u32,
+    TotalTransitions: u32,
+    ResetCount: u32,
+    AbortCount: u32,
+    StartTime: u64,
+    State: [1]PPM_IDLE_STATE_ACCOUNTING_EX,
+};
+
+pub const PPM_PERFSTATE_EVENT = extern struct {
+    State: u32,
+    Status: u32,
+    Latency: u32,
+    Speed: u32,
+    Processor: u32,
+};
+
+pub const PPM_PERFSTATE_DOMAIN_EVENT = extern struct {
+    State: u32,
+    Latency: u32,
+    Speed: u32,
+    Processors: u64,
+};
+
+pub const PPM_IDLESTATE_EVENT = extern struct {
+    NewState: u32,
+    OldState: u32,
+    Processors: u64,
+};
+
+pub const PPM_THERMALCHANGE_EVENT = extern struct {
+    ThermalConstraint: u32,
+    Processors: u64,
+};
+
+pub const PPM_THERMAL_POLICY_EVENT = extern struct {
+    Mode: u8,
+    Processors: u64,
+};
+
+pub const POWER_ACTION_POLICY = extern struct {
+    Action: POWER_ACTION,
+    Flags: u32,
+    EventCode: u32,
+};
+
+pub const SYSTEM_POWER_LEVEL = extern struct {
+    Enable: u8,
+    Spare: [3]u8,
+    BatteryLevel: u32,
+    PowerPolicy: POWER_ACTION_POLICY,
+    MinSystemState: SYSTEM_POWER_STATE,
+};
+
+pub const SYSTEM_POWER_POLICY = extern struct {
+    Revision: u32,
+    PowerButton: POWER_ACTION_POLICY,
+    SleepButton: POWER_ACTION_POLICY,
+    LidClose: POWER_ACTION_POLICY,
+    LidOpenWake: SYSTEM_POWER_STATE,
+    Reserved: u32,
+    Idle: POWER_ACTION_POLICY,
+    IdleTimeout: u32,
+    IdleSensitivity: u8,
+    DynamicThrottle: u8,
+    Spare2: [2]u8,
+    MinSleep: SYSTEM_POWER_STATE,
+    MaxSleep: SYSTEM_POWER_STATE,
+    ReducedLatencySleep: SYSTEM_POWER_STATE,
+    WinLogonFlags: u32,
+    Spare3: u32,
+    DozeS4Timeout: u32,
+    BroadcastCapacityResolution: u32,
+    DischargePolicy: [4]SYSTEM_POWER_LEVEL,
+    VideoTimeout: u32,
+    VideoDimDisplay: u8,
+    VideoReserved: [3]u32,
+    SpindownTimeout: u32,
+    OptimizeForPower: u8,
+    FanThrottleTolerance: u8,
+    ForcedThrottle: u8,
+    MinThrottle: u8,
+    OverThrottled: POWER_ACTION_POLICY,
+};
+
+pub const PROCESSOR_IDLESTATE_INFO = extern struct {
+    TimeCheck: u32,
+    DemotePercent: u8,
+    PromotePercent: u8,
+    Spare: [2]u8,
+};
+
+pub const PROCESSOR_IDLESTATE_POLICY = extern struct {
+    Revision: u16,
+    Flags: PROCESSOR_IDLESTATE_POLICY._Flags_e__Union,
+    PolicyCount: u32,
+    Policy: [3]PROCESSOR_IDLESTATE_INFO,
+    const _Flags_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
+    TimeCheck: u32,
+    DemoteLimit: u32,
+    PromoteLimit: u32,
+    DemotePercent: u8,
+    PromotePercent: u8,
+    Spare: [2]u8,
+    _bitfield: u32,
+};
+
+pub const PROCESSOR_POWER_POLICY = extern struct {
+    Revision: u32,
+    DynamicThrottle: u8,
+    Spare: [3]u8,
+    _bitfield: u32,
+    PolicyCount: u32,
+    Policy: [3]PROCESSOR_POWER_POLICY_INFO,
+};
+
+pub const PROCESSOR_PERFSTATE_POLICY = extern struct {
+    Revision: u32,
+    MaxThrottle: u8,
+    MinThrottle: u8,
+    BusyAdjThreshold: u8,
+    Anonymous: PROCESSOR_PERFSTATE_POLICY._Anonymous_e__Union,
+    TimeCheck: u32,
+    IncreaseTime: u32,
+    DecreaseTime: u32,
+    IncreasePercent: u32,
+    DecreasePercent: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const ADMINISTRATOR_POWER_POLICY = extern struct {
+    MinSleep: SYSTEM_POWER_STATE,
+    MaxSleep: SYSTEM_POWER_STATE,
+    MinVideoTimeout: u32,
+    MaxVideoTimeout: u32,
+    MinSpindownTimeout: u32,
+    MaxSpindownTimeout: u32,
+};
+
+pub const HIBERFILE_BUCKET_SIZE = extern enum(i32) {
+    HiberFileBucket1GB = 0,
+    HiberFileBucket2GB = 1,
+    HiberFileBucket4GB = 2,
+    HiberFileBucket8GB = 3,
+    HiberFileBucket16GB = 4,
+    HiberFileBucket32GB = 5,
+    HiberFileBucketUnlimited = 6,
+    HiberFileBucketMax = 7,
+};
+pub const HiberFileBucket1GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket1GB;
+pub const HiberFileBucket2GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket2GB;
+pub const HiberFileBucket4GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket4GB;
+pub const HiberFileBucket8GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket8GB;
+pub const HiberFileBucket16GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket16GB;
+pub const HiberFileBucket32GB = HIBERFILE_BUCKET_SIZE.HiberFileBucket32GB;
+pub const HiberFileBucketUnlimited = HIBERFILE_BUCKET_SIZE.HiberFileBucketUnlimited;
+pub const HiberFileBucketMax = HIBERFILE_BUCKET_SIZE.HiberFileBucketMax;
+
+pub const HIBERFILE_BUCKET = extern struct {
+    MaxPhysicalMemory: u64,
+    PhysicalMemoryPercent: [3]u32,
+};
+
+pub const SYSTEM_POWER_CAPABILITIES = extern struct {
+    PowerButtonPresent: u8,
+    SleepButtonPresent: u8,
+    LidPresent: u8,
+    SystemS1: u8,
+    SystemS2: u8,
+    SystemS3: u8,
+    SystemS4: u8,
+    SystemS5: u8,
+    HiberFilePresent: u8,
+    FullWake: u8,
+    VideoDimPresent: u8,
+    ApmPresent: u8,
+    UpsPresent: u8,
+    ThermalControl: u8,
+    ProcessorThrottle: u8,
+    ProcessorMinThrottle: u8,
+    ProcessorMaxThrottle: u8,
+    FastSystemS4: u8,
+    Hiberboot: u8,
+    WakeAlarmPresent: u8,
+    AoAc: u8,
+    DiskSpinDown: u8,
+    HiberFileType: u8,
+    AoAcConnectivitySupported: u8,
+    spare3: [6]u8,
+    SystemBatteriesPresent: u8,
+    BatteriesAreShortTerm: u8,
+    BatteryScale: [3]BATTERY_REPORTING_SCALE,
+    AcOnLineWake: SYSTEM_POWER_STATE,
+    SoftLidWake: SYSTEM_POWER_STATE,
+    RtcWake: SYSTEM_POWER_STATE,
+    MinDeviceWakeState: SYSTEM_POWER_STATE,
+    DefaultLowLatencyWake: SYSTEM_POWER_STATE,
+};
+
+pub const SYSTEM_BATTERY_STATE = extern struct {
+    AcOnLine: u8,
+    BatteryPresent: u8,
+    Charging: u8,
+    Discharging: u8,
+    Spare1: [3]u8,
+    Tag: u8,
+    MaxCapacity: u32,
+    RemainingCapacity: u32,
+    Rate: u32,
+    EstimatedTime: u32,
+    DefaultAlert1: u32,
+    DefaultAlert2: u32,
+};
+
+pub const IMAGE_DOS_HEADER = extern struct {
+    e_magic: u16,
+    e_cblp: u16,
+    e_cp: u16,
+    e_crlc: u16,
+    e_cparhdr: u16,
+    e_minalloc: u16,
+    e_maxalloc: u16,
+    e_ss: u16,
+    e_sp: u16,
+    e_csum: u16,
+    e_ip: u16,
+    e_cs: u16,
+    e_lfarlc: u16,
+    e_ovno: u16,
+    e_res: [4]u16,
+    e_oemid: u16,
+    e_oeminfo: u16,
+    e_res2: [10]u16,
+    e_lfanew: i32,
+};
+
+pub const IMAGE_OS2_HEADER = extern struct {
+    ne_magic: u16,
+    ne_ver: i8,
+    ne_rev: i8,
+    ne_enttab: u16,
+    ne_cbenttab: u16,
+    ne_crc: i32,
+    ne_flags: u16,
+    ne_autodata: u16,
+    ne_heap: u16,
+    ne_stack: u16,
+    ne_csip: i32,
+    ne_sssp: i32,
+    ne_cseg: u16,
+    ne_cmod: u16,
+    ne_cbnrestab: u16,
+    ne_segtab: u16,
+    ne_rsrctab: u16,
+    ne_restab: u16,
+    ne_modtab: u16,
+    ne_imptab: u16,
+    ne_nrestab: i32,
+    ne_cmovent: u16,
+    ne_align: u16,
+    ne_cres: u16,
+    ne_exetyp: u8,
+    ne_flagsothers: u8,
+    ne_pretthunks: u16,
+    ne_psegrefbytes: u16,
+    ne_swaparea: u16,
+    ne_expver: u16,
+};
+
+pub const IMAGE_VXD_HEADER = extern struct {
+    e32_magic: u16,
+    e32_border: u8,
+    e32_worder: u8,
+    e32_level: u32,
+    e32_cpu: u16,
+    e32_os: u16,
+    e32_ver: u32,
+    e32_mflags: u32,
+    e32_mpages: u32,
+    e32_startobj: u32,
+    e32_eip: u32,
+    e32_stackobj: u32,
+    e32_esp: u32,
+    e32_pagesize: u32,
+    e32_lastpagesize: u32,
+    e32_fixupsize: u32,
+    e32_fixupsum: u32,
+    e32_ldrsize: u32,
+    e32_ldrsum: u32,
+    e32_objtab: u32,
+    e32_objcnt: u32,
+    e32_objmap: u32,
+    e32_itermap: u32,
+    e32_rsrctab: u32,
+    e32_rsrccnt: u32,
+    e32_restab: u32,
+    e32_enttab: u32,
+    e32_dirtab: u32,
+    e32_dircnt: u32,
+    e32_fpagetab: u32,
+    e32_frectab: u32,
+    e32_impmod: u32,
+    e32_impmodcnt: u32,
+    e32_impproc: u32,
+    e32_pagesum: u32,
+    e32_datapage: u32,
+    e32_preload: u32,
+    e32_nrestab: u32,
+    e32_cbnrestab: u32,
+    e32_nressum: u32,
+    e32_autodata: u32,
+    e32_debuginfo: u32,
+    e32_debuglen: u32,
+    e32_instpreload: u32,
+    e32_instdemand: u32,
+    e32_heapsize: u32,
+    e32_res3: [12]u8,
+    e32_winresoff: u32,
+    e32_winreslen: u32,
+    e32_devid: u16,
+    e32_ddkver: u16,
+};
+
+pub const IMAGE_OPTIONAL_HEADER = extern struct {
+    Magic: u16,
+    MajorLinkerVersion: u8,
+    MinorLinkerVersion: u8,
+    SizeOfCode: u32,
+    SizeOfInitializedData: u32,
+    SizeOfUninitializedData: u32,
+    AddressOfEntryPoint: u32,
+    BaseOfCode: u32,
+    BaseOfData: u32,
+    ImageBase: u32,
+    SectionAlignment: u32,
+    FileAlignment: u32,
+    MajorOperatingSystemVersion: u16,
+    MinorOperatingSystemVersion: u16,
+    MajorImageVersion: u16,
+    MinorImageVersion: u16,
+    MajorSubsystemVersion: u16,
+    MinorSubsystemVersion: u16,
+    Win32VersionValue: u32,
+    SizeOfImage: u32,
+    SizeOfHeaders: u32,
+    CheckSum: u32,
+    Subsystem: u16,
+    DllCharacteristics: u16,
+    SizeOfStackReserve: u32,
+    SizeOfStackCommit: u32,
+    SizeOfHeapReserve: u32,
+    SizeOfHeapCommit: u32,
+    LoaderFlags: u32,
+    NumberOfRvaAndSizes: u32,
+    DataDirectory: [16]IMAGE_DATA_DIRECTORY,
+};
+
+pub const IMAGE_ROM_OPTIONAL_HEADER = extern struct {
+    Magic: u16,
+    MajorLinkerVersion: u8,
+    MinorLinkerVersion: u8,
+    SizeOfCode: u32,
+    SizeOfInitializedData: u32,
+    SizeOfUninitializedData: u32,
+    AddressOfEntryPoint: u32,
+    BaseOfCode: u32,
+    BaseOfData: u32,
+    BaseOfBss: u32,
+    GprMask: u32,
+    CprMask: [4]u32,
+    GpValue: u32,
+};
+
+pub const IMAGE_NT_HEADERS = extern struct {
+    Signature: u32,
+    FileHeader: IMAGE_FILE_HEADER,
+    OptionalHeader: IMAGE_OPTIONAL_HEADER,
+};
+
+pub const IMAGE_ROM_HEADERS = extern struct {
+    FileHeader: IMAGE_FILE_HEADER,
+    OptionalHeader: IMAGE_ROM_OPTIONAL_HEADER,
+};
+
+pub const ANON_OBJECT_HEADER = extern struct {
+    Sig1: u16,
+    Sig2: u16,
+    Version: u16,
+    Machine: u16,
+    TimeDateStamp: u32,
+    ClassID: Guid,
+    SizeOfData: u32,
+};
+
+pub const ANON_OBJECT_HEADER_V2 = extern struct {
+    Sig1: u16,
+    Sig2: u16,
+    Version: u16,
+    Machine: u16,
+    TimeDateStamp: u32,
+    ClassID: Guid,
+    SizeOfData: u32,
+    Flags: u32,
+    MetaDataSize: u32,
+    MetaDataOffset: u32,
+};
+
+pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
+    Sig1: u16,
+    Sig2: u16,
+    Version: u16,
+    Machine: u16,
+    TimeDateStamp: u32,
+    ClassID: Guid,
+    SizeOfData: u32,
+    Flags: u32,
+    MetaDataSize: u32,
+    MetaDataOffset: u32,
+    NumberOfSections: u32,
+    PointerToSymbolTable: u32,
+    NumberOfSymbols: u32,
+};
+
+pub const IMAGE_SYMBOL = extern struct {
+    N: IMAGE_SYMBOL._N_e__Union,
+    Value: u32,
+    SectionNumber: i16,
+    Type: u16,
+    StorageClass: u8,
+    NumberOfAuxSymbols: u8,
+    const _N_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_SYMBOL_EX = extern struct {
+    N: IMAGE_SYMBOL_EX._N_e__Union,
+    Value: u32,
+    SectionNumber: i32,
+    Type: u16,
+    StorageClass: u8,
+    NumberOfAuxSymbols: u8,
+    const _N_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
+    bAuxType: u8,
+    bReserved: u8,
+    SymbolTableIndex: u32,
+    rgbReserved: [12]u8,
+};
+
+pub const IMAGE_AUX_SYMBOL = u32; // TODO: implement StructOrUnion types?
+
+pub const IMAGE_AUX_SYMBOL_EX = u32; // TODO: implement StructOrUnion types?
+
+pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
+    TOKEN_DEF = 1,
+};
+pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.TOKEN_DEF;
+
+pub const IMAGE_RELOCATION = extern struct {
+    Anonymous: IMAGE_RELOCATION._Anonymous_e__Union,
+    SymbolTableIndex: u32,
+    Type: u16,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_LINENUMBER = extern struct {
+    Type: IMAGE_LINENUMBER._Type_e__Union,
+    Linenumber: u16,
+    const _Type_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_BASE_RELOCATION = extern struct {
+    VirtualAddress: u32,
+    SizeOfBlock: u32,
+};
+
+pub const IMAGE_ARCHIVE_MEMBER_HEADER = extern struct {
+    Name: [16]u8,
+    Date: [12]u8,
+    UserID: [6]u8,
+    GroupID: [6]u8,
+    Mode: [8]u8,
+    Size: [10]u8,
+    EndHeader: [2]u8,
+};
+
+pub const IMAGE_EXPORT_DIRECTORY = extern struct {
+    Characteristics: u32,
+    TimeDateStamp: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    Name: u32,
+    Base: u32,
+    NumberOfFunctions: u32,
+    NumberOfNames: u32,
+    AddressOfFunctions: u32,
+    AddressOfNames: u32,
+    AddressOfNameOrdinals: u32,
+};
+
+pub const IMAGE_IMPORT_BY_NAME = extern struct {
+    Hint: u16,
+    Name: [1]i8,
+};
+
+pub const IMAGE_THUNK_DATA64 = extern struct {
+    u1: IMAGE_THUNK_DATA64._u1_e__Union,
+    const _u1_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_THUNK_DATA32 = extern struct {
+    u1: IMAGE_THUNK_DATA32._u1_e__Union,
+    const _u1_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PIMAGE_TLS_CALLBACK = fn(
+    DllHandle: *c_void,
+    Reason: u32,
+    Reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const IMAGE_TLS_DIRECTORY64 = extern struct {
+    StartAddressOfRawData: u64,
+    EndAddressOfRawData: u64,
+    AddressOfIndex: u64,
+    AddressOfCallBacks: u64,
+    SizeOfZeroFill: u32,
+    Anonymous: IMAGE_TLS_DIRECTORY64._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_TLS_DIRECTORY32 = extern struct {
+    StartAddressOfRawData: u32,
+    EndAddressOfRawData: u32,
+    AddressOfIndex: u32,
+    AddressOfCallBacks: u32,
+    SizeOfZeroFill: u32,
+    Anonymous: IMAGE_TLS_DIRECTORY32._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_IMPORT_DESCRIPTOR = extern struct {
+    Anonymous: IMAGE_IMPORT_DESCRIPTOR._Anonymous_e__Union,
+    TimeDateStamp: u32,
+    ForwarderChain: u32,
+    Name: u32,
+    FirstThunk: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_BOUND_IMPORT_DESCRIPTOR = extern struct {
+    TimeDateStamp: u32,
+    OffsetModuleName: u16,
+    NumberOfModuleForwarderRefs: u16,
+};
+
+pub const IMAGE_BOUND_FORWARDER_REF = extern struct {
+    TimeDateStamp: u32,
+    OffsetModuleName: u16,
+    Reserved: u16,
+};
+
+pub const IMAGE_DELAYLOAD_DESCRIPTOR = extern struct {
+    Attributes: IMAGE_DELAYLOAD_DESCRIPTOR._Attributes_e__Union,
+    DllNameRVA: u32,
+    ModuleHandleRVA: u32,
+    ImportAddressTableRVA: u32,
+    ImportNameTableRVA: u32,
+    BoundImportAddressTableRVA: u32,
+    UnloadInformationTableRVA: u32,
+    TimeDateStamp: u32,
+    const _Attributes_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_RESOURCE_DIRECTORY = extern struct {
+    Characteristics: u32,
+    TimeDateStamp: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    NumberOfNamedEntries: u16,
+    NumberOfIdEntries: u16,
+};
+
+pub const IMAGE_RESOURCE_DIRECTORY_ENTRY = extern struct {
+    Anonymous1: IMAGE_RESOURCE_DIRECTORY_ENTRY._Anonymous1_e__Union,
+    Anonymous2: IMAGE_RESOURCE_DIRECTORY_ENTRY._Anonymous2_e__Union,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_RESOURCE_DIRECTORY_STRING = extern struct {
+    Length: u16,
+    NameString: [1]i8,
+};
+
+pub const IMAGE_RESOURCE_DIR_STRING_U = extern struct {
+    Length: u16,
+    NameString: [1]u16,
+};
+
+pub const IMAGE_RESOURCE_DATA_ENTRY = extern struct {
+    OffsetToData: u32,
+    Size: u32,
+    CodePage: u32,
+    Reserved: u32,
+};
+
+pub const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = extern struct {
+    Flags: u16,
+    Catalog: u16,
+    CatalogOffset: u32,
+    Reserved: u32,
+};
+
+pub const IMAGE_DYNAMIC_RELOCATION_TABLE = extern struct {
+    Version: u32,
+    Size: u32,
+};
+
+pub const IMAGE_DYNAMIC_RELOCATION32 = extern struct {
+    Symbol: u32,
+    BaseRelocSize: u32,
+};
+
+pub const IMAGE_DYNAMIC_RELOCATION64 = extern struct {
+    Symbol: u64,
+    BaseRelocSize: u32,
+};
+
+pub const IMAGE_DYNAMIC_RELOCATION32_V2 = extern struct {
+    HeaderSize: u32,
+    FixupInfoSize: u32,
+    Symbol: u32,
+    SymbolGroup: u32,
+    Flags: u32,
+};
+
+pub const IMAGE_DYNAMIC_RELOCATION64_V2 = extern struct {
+    HeaderSize: u32,
+    FixupInfoSize: u32,
+    Symbol: u64,
+    SymbolGroup: u32,
+    Flags: u32,
+};
+
+pub const IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
+    PrologueByteCount: u8,
+};
+
+pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
+    EpilogueCount: u32,
+    EpilogueByteCount: u8,
+    BranchDescriptorElementSize: u8,
+    BranchDescriptorCount: u16,
+};
+
+pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u32,
+};
+
+pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u16,
+};
+
+pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u16,
+};
+
+pub const IMAGE_HOT_PATCH_INFO = extern struct {
+    Version: u32,
+    Size: u32,
+    SequenceNumber: u32,
+    BaseImageList: u32,
+    BaseImageCount: u32,
+    BufferOffset: u32,
+    ExtraPatchSize: u32,
+};
+
+pub const IMAGE_HOT_PATCH_BASE = extern struct {
+    SequenceNumber: u32,
+    Flags: u32,
+    OriginalTimeDateStamp: u32,
+    OriginalCheckSum: u32,
+    CodeIntegrityInfo: u32,
+    CodeIntegritySize: u32,
+    PatchTable: u32,
+    BufferOffset: u32,
+};
+
+pub const IMAGE_HOT_PATCH_HASHES = extern struct {
+    SHA256: [32]u8,
+    SHA1: [20]u8,
+};
+
+pub const IMAGE_CE_RUNTIME_FUNCTION_ENTRY = extern struct {
+    FuncStart: u32,
+    _bitfield: u32,
+};
+
+pub const IMAGE_ARM_RUNTIME_FUNCTION_ENTRY = extern struct {
+    BeginAddress: u32,
+    Anonymous: IMAGE_ARM_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const ARM64_FNPDATA_FLAGS = extern enum(i32) {
+    PdataRefToFullXdata = 0,
+    PdataPackedUnwindFunction = 1,
+    PdataPackedUnwindFragment = 2,
+};
+pub const PdataRefToFullXdata = ARM64_FNPDATA_FLAGS.PdataRefToFullXdata;
+pub const PdataPackedUnwindFunction = ARM64_FNPDATA_FLAGS.PdataPackedUnwindFunction;
+pub const PdataPackedUnwindFragment = ARM64_FNPDATA_FLAGS.PdataPackedUnwindFragment;
+
+pub const ARM64_FNPDATA_CR = extern enum(i32) {
+    PdataCrUnchained = 0,
+    PdataCrUnchainedSavedLr = 1,
+    PdataCrChained = 3,
+};
+pub const PdataCrUnchained = ARM64_FNPDATA_CR.PdataCrUnchained;
+pub const PdataCrUnchainedSavedLr = ARM64_FNPDATA_CR.PdataCrUnchainedSavedLr;
+pub const PdataCrChained = ARM64_FNPDATA_CR.PdataCrChained;
+
+pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = extern struct {
+    BeginAddress: u32,
+    Anonymous: IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = u32; // TODO: implement StructOrUnion types?
+
+pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
+    BeginAddress: u64,
+    EndAddress: u64,
+    ExceptionHandler: u64,
+    HandlerData: u64,
+    PrologEndAddress: u64,
+};
+
+pub const IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = extern struct {
+    BeginAddress: u32,
+    EndAddress: u32,
+    ExceptionHandler: u32,
+    HandlerData: u32,
+    PrologEndAddress: u32,
+};
+
+pub const IMAGE_RUNTIME_FUNCTION_ENTRY = extern struct {
+    BeginAddress: u32,
+    EndAddress: u32,
+    Anonymous: IMAGE_RUNTIME_FUNCTION_ENTRY._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_ENCLAVE_CONFIG32 = extern struct {
+    Size: u32,
+    MinimumRequiredConfigSize: u32,
+    PolicyFlags: u32,
+    NumberOfImports: u32,
+    ImportList: u32,
+    ImportEntrySize: u32,
+    FamilyID: [16]u8,
+    ImageID: [16]u8,
+    ImageVersion: u32,
+    SecurityVersion: u32,
+    EnclaveSize: u32,
+    NumberOfThreads: u32,
+    EnclaveFlags: u32,
+};
+
+pub const IMAGE_ENCLAVE_CONFIG64 = extern struct {
+    Size: u32,
+    MinimumRequiredConfigSize: u32,
+    PolicyFlags: u32,
+    NumberOfImports: u32,
+    ImportList: u32,
+    ImportEntrySize: u32,
+    FamilyID: [16]u8,
+    ImageID: [16]u8,
+    ImageVersion: u32,
+    SecurityVersion: u32,
+    EnclaveSize: u64,
+    NumberOfThreads: u32,
+    EnclaveFlags: u32,
+};
+
+pub const IMAGE_ENCLAVE_IMPORT = extern struct {
+    MatchType: u32,
+    MinimumSecurityVersion: u32,
+    UniqueOrAuthorID: [32]u8,
+    FamilyID: [16]u8,
+    ImageID: [16]u8,
+    ImportName: u32,
+    Reserved: u32,
+};
+
+pub const IMAGE_DEBUG_MISC = extern struct {
+    DataType: u32,
+    Length: u32,
+    Unicode: u8,
+    Reserved: [3]u8,
+    Data: [1]u8,
+};
+
+pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
+    Signature: u16,
+    Flags: u16,
+    Machine: u16,
+    Characteristics: u16,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    ImageBase: u32,
+    SizeOfImage: u32,
+    NumberOfSections: u32,
+    ExportedNamesSize: u32,
+    DebugDirectorySize: u32,
+    SectionAlignment: u32,
+    Reserved: [2]u32,
+};
+
+pub const NON_PAGED_DEBUG_INFO = extern struct {
+    Signature: u16,
+    Flags: u16,
+    Size: u32,
+    Machine: u16,
+    Characteristics: u16,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    SizeOfImage: u32,
+    ImageBase: u64,
+};
+
+pub const IMAGE_ARCHITECTURE_HEADER = extern struct {
+    _bitfield: u32,
+    FirstEntryRVA: u32,
+};
+
+pub const IMAGE_ARCHITECTURE_ENTRY = extern struct {
+    FixupInstRVA: u32,
+    NewInst: u32,
+};
+
+pub const IMPORT_OBJECT_HEADER = extern struct {
+    Sig1: u16,
+    Sig2: u16,
+    Version: u16,
+    Machine: u16,
+    TimeDateStamp: u32,
+    SizeOfData: u32,
+    Anonymous: IMPORT_OBJECT_HEADER._Anonymous_e__Union,
+    _bitfield: u16,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMPORT_OBJECT_TYPE = extern enum(i32) {
+    IMPORT_OBJECT_CODE = 0,
+    IMPORT_OBJECT_DATA = 1,
+    IMPORT_OBJECT_CONST = 2,
+};
+pub const IMPORT_OBJECT_CODE = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CODE;
+pub const IMPORT_OBJECT_DATA = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_DATA;
+pub const IMPORT_OBJECT_CONST = IMPORT_OBJECT_TYPE.IMPORT_OBJECT_CONST;
+
+pub const IMPORT_OBJECT_NAME_TYPE = extern enum(i32) {
+    IMPORT_OBJECT_ORDINAL = 0,
+    IMPORT_OBJECT_NAME = 1,
+    IMPORT_OBJECT_NAME_NO_PREFIX = 2,
+    IMPORT_OBJECT_NAME_UNDECORATE = 3,
+    IMPORT_OBJECT_NAME_EXPORTAS = 4,
+};
+pub const IMPORT_OBJECT_ORDINAL = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_ORDINAL;
+pub const IMPORT_OBJECT_NAME = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME;
+pub const IMPORT_OBJECT_NAME_NO_PREFIX = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_NO_PREFIX;
+pub const IMPORT_OBJECT_NAME_UNDECORATE = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_UNDECORATE;
+pub const IMPORT_OBJECT_NAME_EXPORTAS = IMPORT_OBJECT_NAME_TYPE.IMPORT_OBJECT_NAME_EXPORTAS;
+
+pub const ReplacesCorHdrNumericDefines = extern enum(i32) {
+    COMIMAGE_FLAGS_ILONLY = 1,
+    COMIMAGE_FLAGS_32BITREQUIRED = 2,
+    COMIMAGE_FLAGS_IL_LIBRARY = 4,
+    COMIMAGE_FLAGS_STRONGNAMESIGNED = 8,
+    COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 16,
+    COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536,
+    COMIMAGE_FLAGS_32BITPREFERRED = 131072,
+    COR_VERSION_MAJOR_V2 = 2,
+    COR_VERSION_MAJOR = 2,
+    COR_VERSION_MINOR = 5,
+    COR_DELETED_NAME_LENGTH = 8,
+    COR_VTABLEGAP_NAME_LENGTH = 8,
+    NATIVE_TYPE_MAX_CB = 1,
+    COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255,
+    IMAGE_COR_MIH_METHODRVA = 1,
+    IMAGE_COR_MIH_EHRVA = 2,
+    IMAGE_COR_MIH_BASICBLOCK = 8,
+    COR_VTABLE_32BIT = 1,
+    COR_VTABLE_64BIT = 2,
+    COR_VTABLE_FROM_UNMANAGED = 4,
+    COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8,
+    COR_VTABLE_CALL_MOST_DERIVED = 16,
+    IMAGE_COR_EATJ_THUNK_SIZE = 32,
+    MAX_CLASS_NAME = 1024,
+    MAX_PACKAGE_NAME = 1024,
+};
+pub const COMIMAGE_FLAGS_ILONLY = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
+pub const COMIMAGE_FLAGS_32BITREQUIRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
+pub const COMIMAGE_FLAGS_IL_LIBRARY = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_IL_LIBRARY;
+pub const COMIMAGE_FLAGS_STRONGNAMESIGNED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
+pub const COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT;
+pub const COMIMAGE_FLAGS_TRACKDEBUGDATA = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_TRACKDEBUGDATA;
+pub const COMIMAGE_FLAGS_32BITPREFERRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITPREFERRED;
+pub const COR_VERSION_MAJOR_V2 = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR_V2;
+pub const COR_VERSION_MAJOR = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR;
+pub const COR_VERSION_MINOR = ReplacesCorHdrNumericDefines.COR_VERSION_MINOR;
+pub const COR_DELETED_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_DELETED_NAME_LENGTH;
+pub const COR_VTABLEGAP_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_VTABLEGAP_NAME_LENGTH;
+pub const NATIVE_TYPE_MAX_CB = ReplacesCorHdrNumericDefines.NATIVE_TYPE_MAX_CB;
+pub const COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = ReplacesCorHdrNumericDefines.COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE;
+pub const IMAGE_COR_MIH_METHODRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_METHODRVA;
+pub const IMAGE_COR_MIH_EHRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_EHRVA;
+pub const IMAGE_COR_MIH_BASICBLOCK = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_BASICBLOCK;
+pub const COR_VTABLE_32BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_32BIT;
+pub const COR_VTABLE_64BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_64BIT;
+pub const COR_VTABLE_FROM_UNMANAGED = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED;
+pub const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN;
+pub const COR_VTABLE_CALL_MOST_DERIVED = ReplacesCorHdrNumericDefines.COR_VTABLE_CALL_MOST_DERIVED;
+pub const IMAGE_COR_EATJ_THUNK_SIZE = ReplacesCorHdrNumericDefines.IMAGE_COR_EATJ_THUNK_SIZE;
+pub const MAX_CLASS_NAME = ReplacesCorHdrNumericDefines.MAX_CLASS_NAME;
+pub const MAX_PACKAGE_NAME = ReplacesCorHdrNumericDefines.MAX_PACKAGE_NAME;
+
+pub const IMAGE_COR20_HEADER = extern struct {
+    cb: u32,
+    MajorRuntimeVersion: u16,
+    MinorRuntimeVersion: u16,
+    MetaData: IMAGE_DATA_DIRECTORY,
+    Flags: u32,
+    Anonymous: IMAGE_COR20_HEADER._Anonymous_e__Union,
+    Resources: IMAGE_DATA_DIRECTORY,
+    StrongNameSignature: IMAGE_DATA_DIRECTORY,
+    CodeManagerTable: IMAGE_DATA_DIRECTORY,
+    VTableFixups: IMAGE_DATA_DIRECTORY,
+    ExportAddressTableJumps: IMAGE_DATA_DIRECTORY,
+    ManagedNativeHeader: IMAGE_DATA_DIRECTORY,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SLIST_HEADER = u32; // TODO: implement StructOrUnion types?
+
+pub const RTL_RUN_ONCE = u32; // TODO: implement StructOrUnion types?
+
+pub const RTL_BARRIER = extern struct {
+    Reserved1: u32,
+    Reserved2: u32,
+    Reserved3: [2]?*c_void,
+    Reserved4: u32,
+    Reserved5: u32,
+};
+
+pub const RTL_UMS_THREAD_INFO_CLASS = extern enum(i32) {
+    UmsThreadInvalidInfoClass = 0,
+    UmsThreadUserContext = 1,
+    UmsThreadPriority = 2,
+    UmsThreadAffinity = 3,
+    UmsThreadTeb = 4,
+    UmsThreadIsSuspended = 5,
+    UmsThreadIsTerminated = 6,
+    UmsThreadMaxInfoClass = 7,
+};
+pub const UmsThreadInvalidInfoClass = RTL_UMS_THREAD_INFO_CLASS.UmsThreadInvalidInfoClass;
+pub const UmsThreadUserContext = RTL_UMS_THREAD_INFO_CLASS.UmsThreadUserContext;
+pub const UmsThreadPriority = RTL_UMS_THREAD_INFO_CLASS.UmsThreadPriority;
+pub const UmsThreadAffinity = RTL_UMS_THREAD_INFO_CLASS.UmsThreadAffinity;
+pub const UmsThreadTeb = RTL_UMS_THREAD_INFO_CLASS.UmsThreadTeb;
+pub const UmsThreadIsSuspended = RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsSuspended;
+pub const UmsThreadIsTerminated = RTL_UMS_THREAD_INFO_CLASS.UmsThreadIsTerminated;
+pub const UmsThreadMaxInfoClass = RTL_UMS_THREAD_INFO_CLASS.UmsThreadMaxInfoClass;
+
+pub const RTL_UMS_SCHEDULER_REASON = extern enum(i32) {
+    UmsSchedulerStartup = 0,
+    UmsSchedulerThreadBlocked = 1,
+    UmsSchedulerThreadYield = 2,
+};
+pub const UmsSchedulerStartup = RTL_UMS_SCHEDULER_REASON.UmsSchedulerStartup;
+pub const UmsSchedulerThreadBlocked = RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadBlocked;
+pub const UmsSchedulerThreadYield = RTL_UMS_SCHEDULER_REASON.UmsSchedulerThreadYield;
+
+pub const RTL_UMS_SCHEDULER_ENTRY_POINT = fn(
+    Reason: RTL_UMS_SCHEDULER_REASON,
+    ActivationPayload: ?*c_void,
+    SchedulerParam: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const OS_DEPLOYEMENT_STATE_VALUES = extern enum(i32) {
+    OS_DEPLOYMENT_STANDARD = 1,
+    OS_DEPLOYMENT_COMPACT = 2,
+};
+pub const OS_DEPLOYMENT_STANDARD = OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_STANDARD;
+pub const OS_DEPLOYMENT_COMPACT = OS_DEPLOYEMENT_STATE_VALUES.OS_DEPLOYMENT_COMPACT;
+
+pub const NV_MEMORY_RANGE = extern struct {
+    BaseAddress: *c_void,
+    Length: ?*c_void,
+};
+
+pub const CORRELATION_VECTOR = extern struct {
+    Version: i8,
+    Vector: [129]i8,
+};
+
+pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
+    Size: u32,
+    TriggerId: [*:0]const u16,
+};
+
+pub const IMAGE_POLICY_ENTRY_TYPE = extern enum(i32) {
+    ImagePolicyEntryTypeNone = 0,
+    ImagePolicyEntryTypeBool = 1,
+    ImagePolicyEntryTypeInt8 = 2,
+    ImagePolicyEntryTypeUInt8 = 3,
+    ImagePolicyEntryTypeInt16 = 4,
+    ImagePolicyEntryTypeUInt16 = 5,
+    ImagePolicyEntryTypeInt32 = 6,
+    ImagePolicyEntryTypeUInt32 = 7,
+    ImagePolicyEntryTypeInt64 = 8,
+    ImagePolicyEntryTypeUInt64 = 9,
+    ImagePolicyEntryTypeAnsiString = 10,
+    ImagePolicyEntryTypeUnicodeString = 11,
+    ImagePolicyEntryTypeOverride = 12,
+    ImagePolicyEntryTypeMaximum = 13,
+};
+pub const ImagePolicyEntryTypeNone = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeNone;
+pub const ImagePolicyEntryTypeBool = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeBool;
+pub const ImagePolicyEntryTypeInt8 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt8;
+pub const ImagePolicyEntryTypeUInt8 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt8;
+pub const ImagePolicyEntryTypeInt16 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt16;
+pub const ImagePolicyEntryTypeUInt16 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt16;
+pub const ImagePolicyEntryTypeInt32 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt32;
+pub const ImagePolicyEntryTypeUInt32 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt32;
+pub const ImagePolicyEntryTypeInt64 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeInt64;
+pub const ImagePolicyEntryTypeUInt64 = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUInt64;
+pub const ImagePolicyEntryTypeAnsiString = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeAnsiString;
+pub const ImagePolicyEntryTypeUnicodeString = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeUnicodeString;
+pub const ImagePolicyEntryTypeOverride = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeOverride;
+pub const ImagePolicyEntryTypeMaximum = IMAGE_POLICY_ENTRY_TYPE.ImagePolicyEntryTypeMaximum;
+
+pub const IMAGE_POLICY_ID = extern enum(i32) {
+    ImagePolicyIdNone = 0,
+    ImagePolicyIdEtw = 1,
+    ImagePolicyIdDebug = 2,
+    ImagePolicyIdCrashDump = 3,
+    ImagePolicyIdCrashDumpKey = 4,
+    ImagePolicyIdCrashDumpKeyGuid = 5,
+    ImagePolicyIdParentSd = 6,
+    ImagePolicyIdParentSdRev = 7,
+    ImagePolicyIdSvn = 8,
+    ImagePolicyIdDeviceId = 9,
+    ImagePolicyIdCapability = 10,
+    ImagePolicyIdScenarioId = 11,
+    ImagePolicyIdMaximum = 12,
+};
+pub const ImagePolicyIdNone = IMAGE_POLICY_ID.ImagePolicyIdNone;
+pub const ImagePolicyIdEtw = IMAGE_POLICY_ID.ImagePolicyIdEtw;
+pub const ImagePolicyIdDebug = IMAGE_POLICY_ID.ImagePolicyIdDebug;
+pub const ImagePolicyIdCrashDump = IMAGE_POLICY_ID.ImagePolicyIdCrashDump;
+pub const ImagePolicyIdCrashDumpKey = IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKey;
+pub const ImagePolicyIdCrashDumpKeyGuid = IMAGE_POLICY_ID.ImagePolicyIdCrashDumpKeyGuid;
+pub const ImagePolicyIdParentSd = IMAGE_POLICY_ID.ImagePolicyIdParentSd;
+pub const ImagePolicyIdParentSdRev = IMAGE_POLICY_ID.ImagePolicyIdParentSdRev;
+pub const ImagePolicyIdSvn = IMAGE_POLICY_ID.ImagePolicyIdSvn;
+pub const ImagePolicyIdDeviceId = IMAGE_POLICY_ID.ImagePolicyIdDeviceId;
+pub const ImagePolicyIdCapability = IMAGE_POLICY_ID.ImagePolicyIdCapability;
+pub const ImagePolicyIdScenarioId = IMAGE_POLICY_ID.ImagePolicyIdScenarioId;
+pub const ImagePolicyIdMaximum = IMAGE_POLICY_ID.ImagePolicyIdMaximum;
+
+pub const IMAGE_POLICY_ENTRY = extern struct {
+    Type: IMAGE_POLICY_ENTRY_TYPE,
+    PolicyId: IMAGE_POLICY_ID,
+    u: IMAGE_POLICY_ENTRY._u_e__Union,
+    const _u_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const IMAGE_POLICY_METADATA = extern struct {
+    Version: u8,
+    Reserved0: [7]u8,
+    ApplicationId: u64,
+    Policies: IMAGE_POLICY_ENTRY,
+};
+
+pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
+    Type: u16,
+    CreatorBackTraceIndex: u16,
+    CriticalSection: *RTL_CRITICAL_SECTION,
+    ProcessLocksList: LIST_ENTRY,
+    EntryCount: u32,
+    ContentionCount: u32,
+    Flags: u32,
+    CreatorBackTraceIndexHigh: u16,
+    SpareWORD: u16,
+};
+
+pub const RTL_CRITICAL_SECTION = extern struct {
+    DebugInfo: *RTL_CRITICAL_SECTION_DEBUG,
+    LockCount: i32,
+    RecursionCount: i32,
+    OwningThread: HANDLE,
+    LockSemaphore: HANDLE,
+    SpinCount: ?*c_void,
+};
+
+pub const RTL_SRWLOCK = extern struct {
+    Ptr: *c_void,
+};
+
+pub const RTL_CONDITION_VARIABLE = extern struct {
+    Ptr: *c_void,
+};
+
+pub const PAPCFUNC = fn(
+    Parameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const HEAP_INFORMATION_CLASS = extern enum(i32) {
+    HeapCompatibilityInformation = 0,
+    HeapEnableTerminationOnCorruption = 1,
+    HeapOptimizeResources = 3,
+};
+pub const HeapCompatibilityInformation = HEAP_INFORMATION_CLASS.HeapCompatibilityInformation;
+pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.HeapEnableTerminationOnCorruption;
+pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.HeapOptimizeResources;
+
+pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
+    Version: u32,
+    Flags: u32,
+};
+
+pub const WAITORTIMERCALLBACKFUNC = fn(
+    param0: *c_void,
+    param1: u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const WORKERCALLBACKFUNC = fn(
+    param0: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const APC_CALLBACK_FUNCTION = fn(
+    param0: u32,
+    param1: *c_void,
+    param2: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const WAITORTIMERCALLBACK = fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFLS_CALLBACK_FUNCTION = fn(
+    lpFlsData: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
+    Addr: [*]u8,
+    Range: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub const ACTIVATION_CONTEXT_INFO_CLASS = extern enum(i32) {
+    ActivationContextBasicInformation = 1,
+    ActivationContextDetailedInformation = 2,
+    AssemblyDetailedInformationInActivationContext = 3,
+    FileInformationInAssemblyOfAssemblyInActivationContext = 4,
+    RunlevelInformationInActivationContext = 5,
+    CompatibilityInformationInActivationContext = 6,
+    ActivationContextManifestResourceName = 7,
+    MaxActivationContextInfoClass = 8,
+    AssemblyDetailedInformationInActivationContxt = 3,
+    FileInformationInAssemblyOfAssemblyInActivationContxt = 4,
+};
+pub const ActivationContextBasicInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextBasicInformation;
+pub const ActivationContextDetailedInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextDetailedInformation;
+pub const AssemblyDetailedInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContext;
+pub const FileInformationInAssemblyOfAssemblyInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContext;
+pub const RunlevelInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.RunlevelInformationInActivationContext;
+pub const CompatibilityInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.CompatibilityInformationInActivationContext;
+pub const ActivationContextManifestResourceName = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextManifestResourceName;
+pub const MaxActivationContextInfoClass = ACTIVATION_CONTEXT_INFO_CLASS.MaxActivationContextInfoClass;
+pub const AssemblyDetailedInformationInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContxt;
+pub const FileInformationInAssemblyOfAssemblyInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContxt;
+
+pub const SUPPORTED_OS_INFO = extern struct {
+    MajorVersion: u16,
+    MinorVersion: u16,
+};
+
+pub const MAXVERSIONTESTED_INFO = extern struct {
+    MaxVersionTested: u64,
+};
+
+pub const EVENTLOGRECORD = extern struct {
+    Length: u32,
+    Reserved: u32,
+    RecordNumber: u32,
+    TimeGenerated: u32,
+    TimeWritten: u32,
+    EventID: u32,
+    EventType: u16,
+    NumStrings: u16,
+    EventCategory: u16,
+    ReservedFlags: u16,
+    ClosingRecordNumber: u32,
+    StringOffset: u32,
+    UserSidLength: u32,
+    UserSidOffset: u32,
+    DataLength: u32,
+    DataOffset: u32,
+};
+
+pub const EVENTSFORLOGFILE = extern struct {
+    ulSize: u32,
+    szLogicalLogFile: [256]u16,
+    ulNumRecords: u32,
+    pEventLogRecords: EVENTLOGRECORD,
+};
+
+pub const PACKEDEVENTINFO = extern struct {
+    ulSize: u32,
+    ulNumEventsForLogFile: u32,
+    ulOffsets: u32,
+};
+
+pub const CM_SERVICE_NODE_TYPE = extern enum(i32) {
+    DriverType = 1,
+    FileSystemType = 2,
+    Win32ServiceOwnProcess = 16,
+    Win32ServiceShareProcess = 32,
+    AdapterType = 4,
+    RecognizerType = 8,
+};
+pub const DriverType = CM_SERVICE_NODE_TYPE.DriverType;
+pub const FileSystemType = CM_SERVICE_NODE_TYPE.FileSystemType;
+pub const Win32ServiceOwnProcess = CM_SERVICE_NODE_TYPE.Win32ServiceOwnProcess;
+pub const Win32ServiceShareProcess = CM_SERVICE_NODE_TYPE.Win32ServiceShareProcess;
+pub const AdapterType = CM_SERVICE_NODE_TYPE.AdapterType;
+pub const RecognizerType = CM_SERVICE_NODE_TYPE.RecognizerType;
+
+pub const CM_SERVICE_LOAD_TYPE = extern enum(i32) {
+    BootLoad = 0,
+    SystemLoad = 1,
+    AutoLoad = 2,
+    DemandLoad = 3,
+    DisableLoad = 4,
+};
+pub const BootLoad = CM_SERVICE_LOAD_TYPE.BootLoad;
+pub const SystemLoad = CM_SERVICE_LOAD_TYPE.SystemLoad;
+pub const AutoLoad = CM_SERVICE_LOAD_TYPE.AutoLoad;
+pub const DemandLoad = CM_SERVICE_LOAD_TYPE.DemandLoad;
+pub const DisableLoad = CM_SERVICE_LOAD_TYPE.DisableLoad;
+
+pub const CM_ERROR_CONTROL_TYPE = extern enum(i32) {
+    IgnoreError = 0,
+    NormalError = 1,
+    SevereError = 2,
+    CriticalError = 3,
+};
+pub const IgnoreError = CM_ERROR_CONTROL_TYPE.IgnoreError;
+pub const NormalError = CM_ERROR_CONTROL_TYPE.NormalError;
+pub const SevereError = CM_ERROR_CONTROL_TYPE.SevereError;
+pub const CriticalError = CM_ERROR_CONTROL_TYPE.CriticalError;
+
+pub const TAPE_ERASE = extern struct {
+    Type: u32,
+    Immediate: u8,
+};
+
+pub const TAPE_PREPARE = extern struct {
+    Operation: u32,
+    Immediate: u8,
+};
+
+pub const TAPE_WRITE_MARKS = extern struct {
+    Type: u32,
+    Count: u32,
+    Immediate: u8,
+};
+
+pub const TAPE_GET_POSITION = extern struct {
+    Type: u32,
+    Partition: u32,
+    Offset: LARGE_INTEGER,
+};
+
+pub const TAPE_SET_POSITION = extern struct {
+    Method: u32,
+    Partition: u32,
+    Offset: LARGE_INTEGER,
+    Immediate: u8,
+};
+
+pub const TAPE_GET_DRIVE_PARAMETERS = extern struct {
+    ECC: u8,
+    Compression: u8,
+    DataPadding: u8,
+    ReportSetmarks: u8,
+    DefaultBlockSize: u32,
+    MaximumBlockSize: u32,
+    MinimumBlockSize: u32,
+    MaximumPartitionCount: u32,
+    FeaturesLow: u32,
+    FeaturesHigh: u32,
+    EOTWarningZoneSize: u32,
+};
+
+pub const TAPE_SET_DRIVE_PARAMETERS = extern struct {
+    ECC: u8,
+    Compression: u8,
+    DataPadding: u8,
+    ReportSetmarks: u8,
+    EOTWarningZoneSize: u32,
+};
+
+pub const TAPE_GET_MEDIA_PARAMETERS = extern struct {
+    Capacity: LARGE_INTEGER,
+    Remaining: LARGE_INTEGER,
+    BlockSize: u32,
+    PartitionCount: u32,
+    WriteProtected: u8,
+};
+
+pub const TAPE_SET_MEDIA_PARAMETERS = extern struct {
+    BlockSize: u32,
+};
+
+pub const TAPE_CREATE_PARTITION = extern struct {
+    Method: u32,
+    Count: u32,
+    Size: u32,
+};
+
+pub const TAPE_WMI_OPERATIONS = extern struct {
+    Method: u32,
+    DataBufferSize: u32,
+    DataBuffer: *c_void,
+};
+
+pub const TAPE_DRIVE_PROBLEM_TYPE = extern enum(i32) {
+    TapeDriveProblemNone = 0,
+    TapeDriveReadWriteWarning = 1,
+    TapeDriveReadWriteError = 2,
+    TapeDriveReadWarning = 3,
+    TapeDriveWriteWarning = 4,
+    TapeDriveReadError = 5,
+    TapeDriveWriteError = 6,
+    TapeDriveHardwareError = 7,
+    TapeDriveUnsupportedMedia = 8,
+    TapeDriveScsiConnectionError = 9,
+    TapeDriveTimetoClean = 10,
+    TapeDriveCleanDriveNow = 11,
+    TapeDriveMediaLifeExpired = 12,
+    TapeDriveSnappedTape = 13,
+};
+pub const TapeDriveProblemNone = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveProblemNone;
+pub const TapeDriveReadWriteWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteWarning;
+pub const TapeDriveReadWriteError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWriteError;
+pub const TapeDriveReadWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadWarning;
+pub const TapeDriveWriteWarning = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteWarning;
+pub const TapeDriveReadError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveReadError;
+pub const TapeDriveWriteError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveWriteError;
+pub const TapeDriveHardwareError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveHardwareError;
+pub const TapeDriveUnsupportedMedia = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveUnsupportedMedia;
+pub const TapeDriveScsiConnectionError = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveScsiConnectionError;
+pub const TapeDriveTimetoClean = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveTimetoClean;
+pub const TapeDriveCleanDriveNow = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveCleanDriveNow;
+pub const TapeDriveMediaLifeExpired = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveMediaLifeExpired;
+pub const TapeDriveSnappedTape = TAPE_DRIVE_PROBLEM_TYPE.TapeDriveSnappedTape;
+
+pub const TRANSACTION_STATE = extern enum(i32) {
+    TransactionStateNormal = 1,
+    TransactionStateIndoubt = 2,
+    TransactionStateCommittedNotify = 3,
+};
+pub const TransactionStateNormal = TRANSACTION_STATE.TransactionStateNormal;
+pub const TransactionStateIndoubt = TRANSACTION_STATE.TransactionStateIndoubt;
+pub const TransactionStateCommittedNotify = TRANSACTION_STATE.TransactionStateCommittedNotify;
+
+pub const TRANSACTION_BASIC_INFORMATION = extern struct {
+    TransactionId: Guid,
+    State: u32,
+    Outcome: u32,
+};
+
+pub const TRANSACTIONMANAGER_BASIC_INFORMATION = extern struct {
+    TmIdentity: Guid,
+    VirtualClock: LARGE_INTEGER,
+};
+
+pub const TRANSACTIONMANAGER_LOG_INFORMATION = extern struct {
+    LogIdentity: Guid,
+};
+
+pub const TRANSACTIONMANAGER_LOGPATH_INFORMATION = extern struct {
+    LogPathLength: u32,
+    LogPath: [1]u16,
+};
+
+pub const TRANSACTIONMANAGER_RECOVERY_INFORMATION = extern struct {
+    LastRecoveredLsn: u64,
+};
+
+pub const TRANSACTIONMANAGER_OLDEST_INFORMATION = extern struct {
+    OldestTransactionGuid: Guid,
+};
+
+pub const TRANSACTION_PROPERTIES_INFORMATION = extern struct {
+    IsolationLevel: u32,
+    IsolationFlags: u32,
+    Timeout: LARGE_INTEGER,
+    Outcome: u32,
+    DescriptionLength: u32,
+    Description: [1]u16,
+};
+
+pub const TRANSACTION_BIND_INFORMATION = extern struct {
+    TmHandle: HANDLE,
+};
+
+pub const TRANSACTION_ENLISTMENT_PAIR = extern struct {
+    EnlistmentId: Guid,
+    ResourceManagerId: Guid,
+};
+
+pub const TRANSACTION_ENLISTMENTS_INFORMATION = extern struct {
+    NumberOfEnlistments: u32,
+    EnlistmentPair: [1]TRANSACTION_ENLISTMENT_PAIR,
+};
+
+pub const TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = extern struct {
+    SuperiorEnlistmentPair: TRANSACTION_ENLISTMENT_PAIR,
+};
+
+pub const RESOURCEMANAGER_BASIC_INFORMATION = extern struct {
+    ResourceManagerId: Guid,
+    DescriptionLength: u32,
+    Description: [1]u16,
+};
+
+pub const RESOURCEMANAGER_COMPLETION_INFORMATION = extern struct {
+    IoCompletionPortHandle: HANDLE,
+    CompletionKey: ?*c_void,
+};
+
+pub const TRANSACTION_INFORMATION_CLASS = extern enum(i32) {
+    TransactionBasicInformation = 0,
+    TransactionPropertiesInformation = 1,
+    TransactionEnlistmentInformation = 2,
+    TransactionSuperiorEnlistmentInformation = 3,
+    TransactionBindInformation = 4,
+    TransactionDTCPrivateInformation = 5,
+};
+pub const TransactionBasicInformation = TRANSACTION_INFORMATION_CLASS.TransactionBasicInformation;
+pub const TransactionPropertiesInformation = TRANSACTION_INFORMATION_CLASS.TransactionPropertiesInformation;
+pub const TransactionEnlistmentInformation = TRANSACTION_INFORMATION_CLASS.TransactionEnlistmentInformation;
+pub const TransactionSuperiorEnlistmentInformation = TRANSACTION_INFORMATION_CLASS.TransactionSuperiorEnlistmentInformation;
+pub const TransactionBindInformation = TRANSACTION_INFORMATION_CLASS.TransactionBindInformation;
+pub const TransactionDTCPrivateInformation = TRANSACTION_INFORMATION_CLASS.TransactionDTCPrivateInformation;
+
+pub const TRANSACTIONMANAGER_INFORMATION_CLASS = extern enum(i32) {
+    TransactionManagerBasicInformation = 0,
+    TransactionManagerLogInformation = 1,
+    TransactionManagerLogPathInformation = 2,
+    TransactionManagerRecoveryInformation = 4,
+    TransactionManagerOnlineProbeInformation = 3,
+    TransactionManagerOldestTransactionInformation = 5,
+};
+pub const TransactionManagerBasicInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerBasicInformation;
+pub const TransactionManagerLogInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerLogInformation;
+pub const TransactionManagerLogPathInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerLogPathInformation;
+pub const TransactionManagerRecoveryInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerRecoveryInformation;
+pub const TransactionManagerOnlineProbeInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerOnlineProbeInformation;
+pub const TransactionManagerOldestTransactionInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.TransactionManagerOldestTransactionInformation;
+
+pub const RESOURCEMANAGER_INFORMATION_CLASS = extern enum(i32) {
+    ResourceManagerBasicInformation = 0,
+    ResourceManagerCompletionInformation = 1,
+};
+pub const ResourceManagerBasicInformation = RESOURCEMANAGER_INFORMATION_CLASS.ResourceManagerBasicInformation;
+pub const ResourceManagerCompletionInformation = RESOURCEMANAGER_INFORMATION_CLASS.ResourceManagerCompletionInformation;
+
+pub const ENLISTMENT_BASIC_INFORMATION = extern struct {
+    EnlistmentId: Guid,
+    TransactionId: Guid,
+    ResourceManagerId: Guid,
+};
+
+pub const ENLISTMENT_CRM_INFORMATION = extern struct {
+    CrmTransactionManagerId: Guid,
+    CrmResourceManagerId: Guid,
+    CrmEnlistmentId: Guid,
+};
+
+pub const ENLISTMENT_INFORMATION_CLASS = extern enum(i32) {
+    EnlistmentBasicInformation = 0,
+    EnlistmentRecoveryInformation = 1,
+    EnlistmentCrmInformation = 2,
+};
+pub const EnlistmentBasicInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentBasicInformation;
+pub const EnlistmentRecoveryInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentRecoveryInformation;
+pub const EnlistmentCrmInformation = ENLISTMENT_INFORMATION_CLASS.EnlistmentCrmInformation;
+
+pub const TRANSACTION_LIST_ENTRY = extern struct {
+    UOW: Guid,
+};
+
+pub const TRANSACTION_LIST_INFORMATION = extern struct {
+    NumberOfTransactions: u32,
+    TransactionInformation: [1]TRANSACTION_LIST_ENTRY,
+};
+
+pub const KTMOBJECT_TYPE = extern enum(i32) {
+    KTMOBJECT_TRANSACTION = 0,
+    KTMOBJECT_TRANSACTION_MANAGER = 1,
+    KTMOBJECT_RESOURCE_MANAGER = 2,
+    KTMOBJECT_ENLISTMENT = 3,
+    KTMOBJECT_INVALID = 4,
+};
+pub const KTMOBJECT_TRANSACTION = KTMOBJECT_TYPE.KTMOBJECT_TRANSACTION;
+pub const KTMOBJECT_TRANSACTION_MANAGER = KTMOBJECT_TYPE.KTMOBJECT_TRANSACTION_MANAGER;
+pub const KTMOBJECT_RESOURCE_MANAGER = KTMOBJECT_TYPE.KTMOBJECT_RESOURCE_MANAGER;
+pub const KTMOBJECT_ENLISTMENT = KTMOBJECT_TYPE.KTMOBJECT_ENLISTMENT;
+pub const KTMOBJECT_INVALID = KTMOBJECT_TYPE.KTMOBJECT_INVALID;
+
+pub const KTMOBJECT_CURSOR = extern struct {
+    LastQuery: Guid,
+    ObjectIdCount: u32,
+    ObjectIds: [1]Guid,
+};
+
+pub const TP_CALLBACK_INSTANCE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const PTP_SIMPLE_CALLBACK = fn(
+    Instance: *TP_CALLBACK_INSTANCE,
+    Context: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const TP_POOL = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const TP_CALLBACK_PRIORITY = extern enum(i32) {
+    HIGH = 0,
+    NORMAL = 1,
+    LOW = 2,
+    INVALID = 3,
+    COUNT = 3,
+};
+pub const TP_CALLBACK_PRIORITY_HIGH = TP_CALLBACK_PRIORITY.HIGH;
+pub const TP_CALLBACK_PRIORITY_NORMAL = TP_CALLBACK_PRIORITY.NORMAL;
+pub const TP_CALLBACK_PRIORITY_LOW = TP_CALLBACK_PRIORITY.LOW;
+pub const TP_CALLBACK_PRIORITY_INVALID = TP_CALLBACK_PRIORITY.INVALID;
+pub const TP_CALLBACK_PRIORITY_COUNT = TP_CALLBACK_PRIORITY.COUNT;
+
+pub const TP_POOL_STACK_INFORMATION = extern struct {
+    StackReserve: ?*c_void,
+    StackCommit: ?*c_void,
+};
+
+pub const TP_CLEANUP_GROUP = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = fn(
+    ObjectContext: ?*c_void,
+    CleanupContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
+    Version: u32,
+    Pool: PTP_POOL,
+    CleanupGroup: ?*c_void,
+    CleanupGroupCancelCallback: PTP_CLEANUP_GROUP_CANCEL_CALLBACK,
+    RaceDll: *c_void,
+    ActivationContext: ?*c_void,
+    FinalizationCallback: PTP_SIMPLE_CALLBACK,
+    u: TP_CALLBACK_ENVIRON_V3._u_e__Union,
+    CallbackPriority: TP_CALLBACK_PRIORITY,
+    Size: u32,
+    const _u_e__Union = u32; // TODO: generate this nested type!
+    const _ACTIVATION_CONTEXT = u32; // TODO: generate this nested type!
+};
+
+pub const TP_WORK = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const PTP_WORK_CALLBACK = fn(
+    Instance: *TP_CALLBACK_INSTANCE,
+    Context: ?*c_void,
+    Work: *TP_WORK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const TP_TIMER = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const PTP_TIMER_CALLBACK = fn(
+    Instance: *TP_CALLBACK_INSTANCE,
+    Context: ?*c_void,
+    Timer: *TP_TIMER,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const TP_WAIT = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const PTP_WAIT_CALLBACK = fn(
+    Instance: *TP_CALLBACK_INSTANCE,
+    Context: ?*c_void,
+    Wait: *TP_WAIT,
+    WaitResult: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const TP_IO = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const TEB = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+
+pub const FARPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const NEARPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PROC = fn(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const APP_LOCAL_DEVICE_ID = extern struct {
+    value: [32]u8,
+};
+
+pub const DPI_AWARENESS_CONTEXT__ = extern struct {
+    unused: i32,
+};
+
+pub const PINIT_ONCE_FN = fn(
+    InitOnce: *RTL_RUN_ONCE,
+    Parameter: ?*c_void,
+    Context: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PTIMERAPCROUTINE = fn(
+    lpArgToCompletionRoutine: ?*c_void,
+    dwTimerLowValue: u32,
+    dwTimerHighValue: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PTP_WIN32_IO_CALLBACK = fn(
+    Instance: *TP_CALLBACK_INSTANCE,
+    Context: ?*c_void,
+    Overlapped: ?*c_void,
+    IoResult: u32,
+    NumberOfBytesTransferred: ?*c_void,
+    Io: *TP_IO,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: [*:0]const u16,
+    BaseIoSize: u32,
+    ControlFlags: u32,
+};
+
+pub const PROCESSOR_NUMBER = extern struct {
+    Group: u16,
+    Number: u8,
+    Reserved: u8,
+};
+
+pub const GROUP_AFFINITY = extern struct {
+    Mask: ?*c_void,
+    Group: u16,
+    Reserved: [3]u16,
+};
+
+pub const POWERBROADCAST_SETTING = extern struct {
+    PowerSetting: Guid,
+    DataLength: u32,
+    Data: [1]u8,
+};
+
+pub const AR_STATE = extern enum(i32) {
+    AR_ENABLED = 0,
+    AR_DISABLED = 1,
+    AR_SUPPRESSED = 2,
+    AR_REMOTESESSION = 4,
+    AR_MULTIMON = 8,
+    AR_NOSENSOR = 16,
+    AR_NOT_SUPPORTED = 32,
+    AR_DOCKED = 64,
+    AR_LAPTOP = 128,
+};
+pub const AR_ENABLED = AR_STATE.AR_ENABLED;
+pub const AR_DISABLED = AR_STATE.AR_DISABLED;
+pub const AR_SUPPRESSED = AR_STATE.AR_SUPPRESSED;
+pub const AR_REMOTESESSION = AR_STATE.AR_REMOTESESSION;
+pub const AR_MULTIMON = AR_STATE.AR_MULTIMON;
+pub const AR_NOSENSOR = AR_STATE.AR_NOSENSOR;
+pub const AR_NOT_SUPPORTED = AR_STATE.AR_NOT_SUPPORTED;
+pub const AR_DOCKED = AR_STATE.AR_DOCKED;
+pub const AR_LAPTOP = AR_STATE.AR_LAPTOP;
+
+pub const ORIENTATION_PREFERENCE = extern enum(i32) {
+    NONE = 0,
+    LANDSCAPE = 1,
+    PORTRAIT = 2,
+    LANDSCAPE_FLIPPED = 4,
+    PORTRAIT_FLIPPED = 8,
+};
+pub const ORIENTATION_PREFERENCE_NONE = ORIENTATION_PREFERENCE.NONE;
+pub const ORIENTATION_PREFERENCE_LANDSCAPE = ORIENTATION_PREFERENCE.LANDSCAPE;
+pub const ORIENTATION_PREFERENCE_PORTRAIT = ORIENTATION_PREFERENCE.PORTRAIT;
+pub const ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED = ORIENTATION_PREFERENCE.LANDSCAPE_FLIPPED;
+pub const ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED = ORIENTATION_PREFERENCE.PORTRAIT_FLIPPED;
+
 pub const PROCESS_INFORMATION = extern struct {
     hProcess: HANDLE,
     hThread: HANDLE,
@@ -28380,966 +28380,6 @@ pub const PEB = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (918)
 //--------------------------------------------------------------------------------
-pub extern "USER32" fn ExitWindowsEx(
-    uFlags: u32,
-    dwReason: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn IsWow64Message(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn RegisterDeviceNotificationA(
-    hRecipient: HANDLE,
-    NotificationFilter: *c_void,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "USER32" fn RegisterDeviceNotificationW(
-    hRecipient: HANDLE,
-    NotificationFilter: *c_void,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "USER32" fn UnregisterDeviceNotification(
-    Handle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn RegisterPowerSettingNotification(
-    hRecipient: HANDLE,
-    PowerSettingGuid: *Guid,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "USER32" fn UnregisterPowerSettingNotification(
-    Handle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn RegisterSuspendResumeNotification(
-    hRecipient: HANDLE,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "USER32" fn UnregisterSuspendResumeNotification(
-    Handle: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn AttachThreadInput(
-    idAttach: u32,
-    idAttachTo: u32,
-    fAttach: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn WaitForInputIdle(
-    hProcess: HANDLE,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn MsgWaitForMultipleObjects(
-    nCount: u32,
-    pHandles: ?[*]const HANDLE,
-    fWaitAll: BOOL,
-    dwMilliseconds: u32,
-    dwWakeMask: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn MsgWaitForMultipleObjectsEx(
-    nCount: u32,
-    pHandles: ?[*]const HANDLE,
-    dwMilliseconds: u32,
-    dwWakeMask: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn GetGuiResources(
-    hProcess: HANDLE,
-    uiFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn LockWorkStation(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn UserHandleGrantAccess(
-    hUserHandle: HANDLE,
-    hJob: HANDLE,
-    bGrant: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ShutdownBlockReasonCreate(
-    hWnd: HWND,
-    pwszReason: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ShutdownBlockReasonQuery(
-    hWnd: HWND,
-    pwszBuff: ?[*:0]u16,
-    pcchBuff: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ShutdownBlockReasonDestroy(
-    hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetAutoRotationState(
-    pState: *AR_STATE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetDisplayAutoRotationPreferences(
-    pOrientation: *ORIENTATION_PREFERENCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetDisplayAutoRotationPreferences(
-    orientation: ORIENTATION_PREFERENCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn IsImmersiveProcess(
-    hProcess: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetProcessRestrictionExemption(
-    fEnableExemption: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn RtlCompareMemory(
-    Source1: *const c_void,
-    Source2: *const c_void,
-    Length: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub extern "ntdll" fn RtlInitializeSListHead(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ntdll" fn RtlFirstEntrySList(
-    ListHead: *const SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "ntdll" fn RtlInterlockedPopEntrySList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "ntdll" fn RtlInterlockedPushEntrySList(
-    ListHead: *SLIST_HEADER,
-    ListEntry: *SINGLE_LIST_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "ntdll" fn RtlInterlockedPushListSListEx(
-    ListHead: *SLIST_HEADER,
-    List: *SINGLE_LIST_ENTRY,
-    ListEnd: *SINGLE_LIST_ENTRY,
-    Count: u32,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "ntdll" fn RtlInterlockedFlushSList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "ntdll" fn RtlQueryDepthSList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-pub extern "ntdll" fn RtlGetReturnAddressHijackTarget(
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub extern "ntdll" fn RtlGetProductInfo(
-    OSMajorVersion: u32,
-    OSMinorVersion: u32,
-    SpMajorVersion: u32,
-    SpMinorVersion: u32,
-    ReturnedProductType: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "ntdll" fn RtlCrc32(
-    Buffer: [*]const u8,
-    Size: ?*c_void,
-    InitialCrc: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlCrc64(
-    Buffer: [*]const u8,
-    Size: ?*c_void,
-    InitialCrc: u64,
-) callconv(@import("std").os.windows.WINAPI) u64;
-
-pub extern "ntdll" fn RtlOsDeploymentState(
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) OS_DEPLOYEMENT_STATE_VALUES;
-
-pub extern "ntdll" fn RtlInitializeCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
-    Version: i32,
-    Guid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlIncrementCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlExtendCorrelationVector(
-    CorrelationVector: *CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlValidateCorrelationVector(
-    Vector: *CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlRaiseCustomSystemEventTrigger(
-    TriggerConfig: *CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlIsZeroMemory(
-    Buffer: *c_void,
-    Length: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
-    SecurityDescriptor: **c_void,
-    SecurityDescriptorLength: u32,
-    NewSecurityDescriptor: ?*?*c_void,
-    NewSecurityDescriptorLength: ?*u32,
-    CheckOnly: u8,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "ntdll" fn RtlGetDeviceFamilyInfoEnum(
-    pullUAPInfo: ?*u64,
-    pulDeviceFamily: ?*u32,
-    pulDeviceForm: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ntdll" fn RtlConvertDeviceFamilyInfoToString(
-    pulDeviceFamilyBufferSize: *u32,
-    pulDeviceFormBufferSize: *u32,
-    DeviceFamily: [*:0]u16,
-    DeviceForm: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ntdll" fn RtlSwitchedVVI(
-    VersionInfo: *OSVERSIONINFOEXW,
-    TypeMask: u32,
-    ConditionMask: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn FlsAlloc(
-    lpCallback: ?PFLS_CALLBACK_FUNCTION,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn FlsGetValue(
-    dwFlsIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "KERNEL32" fn FlsSetValue(
-    dwFlsIndex: u32,
-    lpFlsData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FlsFree(
-    dwFlsIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn IsThreadAFiber(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitializeSRWLock(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseSRWLockExclusive(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseSRWLockShared(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn AcquireSRWLockExclusive(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn AcquireSRWLockShared(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn TryAcquireSRWLockExclusive(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "KERNEL32" fn TryAcquireSRWLockShared(
-    SRWLock: *RTL_SRWLOCK,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "KERNEL32" fn InitializeCriticalSection(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn LeaveCriticalSection(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn InitializeCriticalSectionAndSpinCount(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-    dwSpinCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitializeCriticalSectionEx(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-    dwSpinCount: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetCriticalSectionSpinCount(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-    dwSpinCount: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn TryEnterCriticalSection(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeleteCriticalSection(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn InitOnceInitialize(
-    InitOnce: *RTL_RUN_ONCE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn InitOnceExecuteOnce(
-    InitOnce: *RTL_RUN_ONCE,
-    InitFn: PINIT_ONCE_FN,
-    Parameter: ?*c_void,
-    Context: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitOnceBeginInitialize(
-    lpInitOnce: *RTL_RUN_ONCE,
-    dwFlags: u32,
-    fPending: *BOOL,
-    lpContext: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitOnceComplete(
-    lpInitOnce: *RTL_RUN_ONCE,
-    dwFlags: u32,
-    lpContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitializeConditionVariable(
-    ConditionVariable: *RTL_CONDITION_VARIABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WakeConditionVariable(
-    ConditionVariable: *RTL_CONDITION_VARIABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WakeAllConditionVariable(
-    ConditionVariable: *RTL_CONDITION_VARIABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn SleepConditionVariableCS(
-    ConditionVariable: *RTL_CONDITION_VARIABLE,
-    CriticalSection: *RTL_CRITICAL_SECTION,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SleepConditionVariableSRW(
-    ConditionVariable: *RTL_CONDITION_VARIABLE,
-    SRWLock: *RTL_SRWLOCK,
-    dwMilliseconds: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetEvent(
-    hEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ResetEvent(
-    hEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ReleaseSemaphore(
-    hSemaphore: HANDLE,
-    lReleaseCount: i32,
-    lpPreviousCount: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ReleaseMutex(
-    hMutex: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn WaitForSingleObject(
-    hHandle: HANDLE,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn SleepEx(
-    dwMilliseconds: u32,
-    bAlertable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn WaitForSingleObjectEx(
-    hHandle: HANDLE,
-    dwMilliseconds: u32,
-    bAlertable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn WaitForMultipleObjectsEx(
-    nCount: u32,
-    lpHandles: [*]const HANDLE,
-    bWaitAll: BOOL,
-    dwMilliseconds: u32,
-    bAlertable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn CreateMutexA(
-    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
-    bInitialOwner: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateMutexW(
-    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
-    bInitialOwner: BOOL,
-    lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn OpenMutexW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateEventA(
-    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
-    bManualReset: BOOL,
-    bInitialState: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateEventW(
-    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
-    bManualReset: BOOL,
-    bInitialState: BOOL,
-    lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn OpenEventA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn OpenEventW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn OpenSemaphoreW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn OpenWaitableTimerW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpTimerName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn SetWaitableTimerEx(
-    hTimer: HANDLE,
-    lpDueTime: *const LARGE_INTEGER,
-    lPeriod: i32,
-    pfnCompletionRoutine: ?PTIMERAPCROUTINE,
-    lpArgToCompletionRoutine: ?*c_void,
-    WakeContext: ?*REASON_CONTEXT,
-    TolerableDelay: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetWaitableTimer(
-    hTimer: HANDLE,
-    lpDueTime: *const LARGE_INTEGER,
-    lPeriod: i32,
-    pfnCompletionRoutine: ?PTIMERAPCROUTINE,
-    lpArgToCompletionRoutine: ?*c_void,
-    fResume: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CancelWaitableTimer(
-    hTimer: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateMutexExA(
-    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u8,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateMutexExW(
-    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u16,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateEventExA(
-    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u8,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateEventExW(
-    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u16,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateSemaphoreExW(
-    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
-    lInitialCount: i32,
-    lMaximumCount: i32,
-    lpName: ?[*:0]const u16,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateWaitableTimerExW(
-    lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
-    lpTimerName: ?[*:0]const u16,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn EnterSynchronizationBarrier(
-    lpBarrier: *RTL_BARRIER,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitializeSynchronizationBarrier(
-    lpBarrier: *RTL_BARRIER,
-    lTotalThreads: i32,
-    lSpinCount: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeleteSynchronizationBarrier(
-    lpBarrier: *RTL_BARRIER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn Sleep(
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "vertdll" fn WaitOnAddress(
-    Address: [*]u8,
-    CompareAddress: [*]u8,
-    AddressSize: ?*c_void,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "vertdll" fn WakeByAddressSingle(
-    Address: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "vertdll" fn WakeByAddressAll(
-    Address: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WaitForMultipleObjects(
-    nCount: u32,
-    lpHandles: [*]const HANDLE,
-    bWaitAll: BOOL,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn CreateSemaphoreW(
-    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
-    lInitialCount: i32,
-    lMaximumCount: i32,
-    lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateWaitableTimerW(
-    lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
-    bManualReset: BOOL,
-    lpTimerName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn InitializeSListHead(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn InterlockedPopEntrySList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "KERNEL32" fn InterlockedPushEntrySList(
-    ListHead: *SLIST_HEADER,
-    ListEntry: *SINGLE_LIST_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "KERNEL32" fn InterlockedPushListSListEx(
-    ListHead: *SLIST_HEADER,
-    List: *SINGLE_LIST_ENTRY,
-    ListEnd: *SINGLE_LIST_ENTRY,
-    Count: u32,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "KERNEL32" fn InterlockedFlushSList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
-
-pub extern "KERNEL32" fn QueryDepthSList(
-    ListHead: *SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-pub extern "KERNEL32" fn QueueUserWorkItem(
-    Function: LPTHREAD_START_ROUTINE,
-    Context: ?*c_void,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn UnregisterWaitEx(
-    WaitHandle: HANDLE,
-    CompletionEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateTimerQueue(
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn CreateTimerQueueTimer(
-    phNewTimer: *HANDLE,
-    TimerQueue: HANDLE,
-    Callback: WAITORTIMERCALLBACK,
-    Parameter: ?*c_void,
-    DueTime: u32,
-    Period: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn ChangeTimerQueueTimer(
-    TimerQueue: HANDLE,
-    Timer: HANDLE,
-    DueTime: u32,
-    Period: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeleteTimerQueueTimer(
-    TimerQueue: HANDLE,
-    Timer: HANDLE,
-    CompletionEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeleteTimerQueueEx(
-    TimerQueue: HANDLE,
-    CompletionEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateThreadpool(
-    reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) PTP_POOL;
-
-pub extern "KERNEL32" fn SetThreadpoolThreadMaximum(
-    ptpp: PTP_POOL,
-    cthrdMost: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn SetThreadpoolThreadMinimum(
-    ptpp: PTP_POOL,
-    cthrdMic: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetThreadpoolStackInformation(
-    ptpp: PTP_POOL,
-    ptpsi: *TP_POOL_STACK_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryThreadpoolStackInformation(
-    ptpp: PTP_POOL,
-    ptpsi: *TP_POOL_STACK_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CloseThreadpool(
-    ptpp: PTP_POOL,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CreateThreadpoolCleanupGroup(
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub extern "KERNEL32" fn CloseThreadpoolCleanupGroupMembers(
-    ptpcg: ?*c_void,
-    fCancelPendingCallbacks: BOOL,
-    pvCleanupContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CloseThreadpoolCleanupGroup(
-    ptpcg: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn SetEventWhenCallbackReturns(
-    pci: *TP_CALLBACK_INSTANCE,
-    evt: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseSemaphoreWhenCallbackReturns(
-    pci: *TP_CALLBACK_INSTANCE,
-    sem: HANDLE,
-    crel: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn ReleaseMutexWhenCallbackReturns(
-    pci: *TP_CALLBACK_INSTANCE,
-    mut: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn LeaveCriticalSectionWhenCallbackReturns(
-    pci: *TP_CALLBACK_INSTANCE,
-    pcs: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn FreeLibraryWhenCallbackReturns(
-    pci: *TP_CALLBACK_INSTANCE,
-    mod: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CallbackMayRunLong(
-    pci: *TP_CALLBACK_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DisassociateCurrentThreadFromCallback(
-    pci: *TP_CALLBACK_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn TrySubmitThreadpoolCallback(
-    pfns: PTP_SIMPLE_CALLBACK,
-    pv: ?*c_void,
-    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateThreadpoolWork(
-    pfnwk: PTP_WORK_CALLBACK,
-    pv: ?*c_void,
-    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(@import("std").os.windows.WINAPI) *TP_WORK;
-
-pub extern "KERNEL32" fn SubmitThreadpoolWork(
-    pwk: *TP_WORK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WaitForThreadpoolWorkCallbacks(
-    pwk: *TP_WORK,
-    fCancelPendingCallbacks: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CloseThreadpoolWork(
-    pwk: *TP_WORK,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CreateThreadpoolTimer(
-    pfnti: PTP_TIMER_CALLBACK,
-    pv: ?*c_void,
-    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(@import("std").os.windows.WINAPI) *TP_TIMER;
-
-pub extern "KERNEL32" fn SetThreadpoolTimer(
-    pti: *TP_TIMER,
-    pftDueTime: ?*FILETIME,
-    msPeriod: u32,
-    msWindowLength: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn IsThreadpoolTimerSet(
-    pti: *TP_TIMER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn WaitForThreadpoolTimerCallbacks(
-    pti: *TP_TIMER,
-    fCancelPendingCallbacks: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CloseThreadpoolTimer(
-    pti: *TP_TIMER,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CreateThreadpoolWait(
-    pfnwa: PTP_WAIT_CALLBACK,
-    pv: ?*c_void,
-    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(@import("std").os.windows.WINAPI) *TP_WAIT;
-
-pub extern "KERNEL32" fn SetThreadpoolWait(
-    pwa: *TP_WAIT,
-    h: HANDLE,
-    pftTimeout: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WaitForThreadpoolWaitCallbacks(
-    pwa: *TP_WAIT,
-    fCancelPendingCallbacks: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CloseThreadpoolWait(
-    pwa: *TP_WAIT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CreateThreadpoolIo(
-    fl: HANDLE,
-    pfnio: PTP_WIN32_IO_CALLBACK,
-    pv: ?*c_void,
-    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(@import("std").os.windows.WINAPI) *TP_IO;
-
-pub extern "KERNEL32" fn StartThreadpoolIo(
-    pio: *TP_IO,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CancelThreadpoolIo(
-    pio: *TP_IO,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn WaitForThreadpoolIoCallbacks(
-    pio: *TP_IO,
-    fCancelPendingCallbacks: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CloseThreadpoolIo(
-    pio: *TP_IO,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn SetThreadpoolTimerEx(
-    pti: *TP_TIMER,
-    pftDueTime: ?*FILETIME,
-    msPeriod: u32,
-    msWindowLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetThreadpoolWaitEx(
-    pwa: *TP_WAIT,
-    h: HANDLE,
-    pftTimeout: ?*FILETIME,
-    Reserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn IsProcessInJob(
-    ProcessHandle: HANDLE,
-    JobHandle: HANDLE,
-    Result: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn CreateJobObjectW(
-    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn FreeMemoryJobObject(
-    Buffer: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn OpenJobObjectW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "KERNEL32" fn AssignProcessToJobObject(
-    hJob: HANDLE,
-    hProcess: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn TerminateJobObject(
-    hJob: HANDLE,
-    uExitCode: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetInformationJobObject(
-    hJob: HANDLE,
-    JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    lpJobObjectInformation: [*]u8,
-    cbJobObjectInformationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetIoRateControlInformationJobObject(
-    hJob: HANDLE,
-    IoRateControlInfo: *JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn QueryInformationJobObject(
-    hJob: HANDLE,
-    JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    lpJobObjectInformation: [*]u8,
-    cbJobObjectInformationLength: u32,
-    lpReturnLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
-    hJob: HANDLE,
-    VolumeName: ?[*:0]const u16,
-    InfoBlocks: **JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-    InfoBlockCount: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn CreatePrivateNamespaceW(
-    lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
-    lpBoundaryDescriptor: *c_void,
-    lpAliasPrefix: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
-
-pub extern "KERNEL32" fn OpenPrivateNamespaceW(
-    lpBoundaryDescriptor: *c_void,
-    lpAliasPrefix: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
-
-pub extern "KERNEL32" fn ClosePrivateNamespace(
-    Handle: NamespaceHandle,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "KERNEL32" fn CreateBoundaryDescriptorW(
-    Name: [*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
-
-pub extern "KERNEL32" fn AddSIDToBoundaryDescriptor(
-    BoundaryDescriptor: *HANDLE,
-    RequiredSid: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DeleteBoundaryDescriptor(
-    BoundaryDescriptor: BoundaryDescriptorHandle,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn GetNumaHighestNodeNumber(
-    HighestNodeNumber: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetNumaNodeProcessorMaskEx(
-    Node: u16,
-    ProcessorMask: *GROUP_AFFINITY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetNumaProximityNodeEx(
-    ProximityId: u32,
-    NodeNumber: *u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetProcessGroupAffinity(
-    hProcess: HANDLE,
-    GroupCount: *u16,
-    GroupArray: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetThreadGroupAffinity(
-    hThread: HANDLE,
-    GroupAffinity: *GROUP_AFFINITY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetThreadGroupAffinity(
-    hThread: HANDLE,
-    GroupAffinity: *const GROUP_AFFINITY,
-    PreviousGroupAffinity: ?*GROUP_AFFINITY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "KERNEL32" fn CreatePipe(
     hReadPipe: *HANDLE,
     hWritePipe: *HANDLE,
@@ -32293,6 +31333,966 @@ pub extern "KERNEL32" fn IsWow64Process2(
     pNativeMachine: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "KERNEL32" fn RtlCompareMemory(
+    Source1: *const c_void,
+    Source2: *const c_void,
+    Length: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub extern "ntdll" fn RtlInitializeSListHead(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ntdll" fn RtlFirstEntrySList(
+    ListHead: *const SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "ntdll" fn RtlInterlockedPopEntrySList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "ntdll" fn RtlInterlockedPushEntrySList(
+    ListHead: *SLIST_HEADER,
+    ListEntry: *SINGLE_LIST_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "ntdll" fn RtlInterlockedPushListSListEx(
+    ListHead: *SLIST_HEADER,
+    List: *SINGLE_LIST_ENTRY,
+    ListEnd: *SINGLE_LIST_ENTRY,
+    Count: u32,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "ntdll" fn RtlInterlockedFlushSList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "ntdll" fn RtlQueryDepthSList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+pub extern "ntdll" fn RtlGetReturnAddressHijackTarget(
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub extern "ntdll" fn RtlGetProductInfo(
+    OSMajorVersion: u32,
+    OSMinorVersion: u32,
+    SpMajorVersion: u32,
+    SpMinorVersion: u32,
+    ReturnedProductType: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "ntdll" fn RtlCrc32(
+    Buffer: [*]const u8,
+    Size: ?*c_void,
+    InitialCrc: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlCrc64(
+    Buffer: [*]const u8,
+    Size: ?*c_void,
+    InitialCrc: u64,
+) callconv(@import("std").os.windows.WINAPI) u64;
+
+pub extern "ntdll" fn RtlOsDeploymentState(
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) OS_DEPLOYEMENT_STATE_VALUES;
+
+pub extern "ntdll" fn RtlInitializeCorrelationVector(
+    CorrelationVector: *CORRELATION_VECTOR,
+    Version: i32,
+    Guid: ?*const Guid,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlIncrementCorrelationVector(
+    CorrelationVector: *CORRELATION_VECTOR,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlExtendCorrelationVector(
+    CorrelationVector: *CORRELATION_VECTOR,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlValidateCorrelationVector(
+    Vector: *CORRELATION_VECTOR,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlRaiseCustomSystemEventTrigger(
+    TriggerConfig: *CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlIsZeroMemory(
+    Buffer: *c_void,
+    Length: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
+    SecurityDescriptor: **c_void,
+    SecurityDescriptorLength: u32,
+    NewSecurityDescriptor: ?*?*c_void,
+    NewSecurityDescriptorLength: ?*u32,
+    CheckOnly: u8,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "ntdll" fn RtlGetDeviceFamilyInfoEnum(
+    pullUAPInfo: ?*u64,
+    pulDeviceFamily: ?*u32,
+    pulDeviceForm: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ntdll" fn RtlConvertDeviceFamilyInfoToString(
+    pulDeviceFamilyBufferSize: *u32,
+    pulDeviceFormBufferSize: *u32,
+    DeviceFamily: [*:0]u16,
+    DeviceForm: [*:0]u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ntdll" fn RtlSwitchedVVI(
+    VersionInfo: *OSVERSIONINFOEXW,
+    TypeMask: u32,
+    ConditionMask: u64,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn FlsAlloc(
+    lpCallback: ?PFLS_CALLBACK_FUNCTION,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn FlsGetValue(
+    dwFlsIndex: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "KERNEL32" fn FlsSetValue(
+    dwFlsIndex: u32,
+    lpFlsData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FlsFree(
+    dwFlsIndex: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn IsThreadAFiber(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitializeSRWLock(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ReleaseSRWLockExclusive(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ReleaseSRWLockShared(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn AcquireSRWLockExclusive(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn AcquireSRWLockShared(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn TryAcquireSRWLockExclusive(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "KERNEL32" fn TryAcquireSRWLockShared(
+    SRWLock: *RTL_SRWLOCK,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "KERNEL32" fn InitializeCriticalSection(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn LeaveCriticalSection(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn InitializeCriticalSectionAndSpinCount(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+    dwSpinCount: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitializeCriticalSectionEx(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+    dwSpinCount: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetCriticalSectionSpinCount(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+    dwSpinCount: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn TryEnterCriticalSection(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeleteCriticalSection(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn InitOnceInitialize(
+    InitOnce: *RTL_RUN_ONCE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn InitOnceExecuteOnce(
+    InitOnce: *RTL_RUN_ONCE,
+    InitFn: PINIT_ONCE_FN,
+    Parameter: ?*c_void,
+    Context: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitOnceBeginInitialize(
+    lpInitOnce: *RTL_RUN_ONCE,
+    dwFlags: u32,
+    fPending: *BOOL,
+    lpContext: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitOnceComplete(
+    lpInitOnce: *RTL_RUN_ONCE,
+    dwFlags: u32,
+    lpContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitializeConditionVariable(
+    ConditionVariable: *RTL_CONDITION_VARIABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WakeConditionVariable(
+    ConditionVariable: *RTL_CONDITION_VARIABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WakeAllConditionVariable(
+    ConditionVariable: *RTL_CONDITION_VARIABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn SleepConditionVariableCS(
+    ConditionVariable: *RTL_CONDITION_VARIABLE,
+    CriticalSection: *RTL_CRITICAL_SECTION,
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SleepConditionVariableSRW(
+    ConditionVariable: *RTL_CONDITION_VARIABLE,
+    SRWLock: *RTL_SRWLOCK,
+    dwMilliseconds: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetEvent(
+    hEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn ResetEvent(
+    hEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn ReleaseSemaphore(
+    hSemaphore: HANDLE,
+    lReleaseCount: i32,
+    lpPreviousCount: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn ReleaseMutex(
+    hMutex: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn WaitForSingleObject(
+    hHandle: HANDLE,
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn SleepEx(
+    dwMilliseconds: u32,
+    bAlertable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn WaitForSingleObjectEx(
+    hHandle: HANDLE,
+    dwMilliseconds: u32,
+    bAlertable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn WaitForMultipleObjectsEx(
+    nCount: u32,
+    lpHandles: [*]const HANDLE,
+    bWaitAll: BOOL,
+    dwMilliseconds: u32,
+    bAlertable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn CreateMutexA(
+    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
+    bInitialOwner: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateMutexW(
+    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
+    bInitialOwner: BOOL,
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn OpenMutexW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateEventA(
+    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
+    bManualReset: BOOL,
+    bInitialState: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateEventW(
+    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
+    bManualReset: BOOL,
+    bInitialState: BOOL,
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn OpenEventA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn OpenEventW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn OpenSemaphoreW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn OpenWaitableTimerW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpTimerName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn SetWaitableTimerEx(
+    hTimer: HANDLE,
+    lpDueTime: *const LARGE_INTEGER,
+    lPeriod: i32,
+    pfnCompletionRoutine: ?PTIMERAPCROUTINE,
+    lpArgToCompletionRoutine: ?*c_void,
+    WakeContext: ?*REASON_CONTEXT,
+    TolerableDelay: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetWaitableTimer(
+    hTimer: HANDLE,
+    lpDueTime: *const LARGE_INTEGER,
+    lPeriod: i32,
+    pfnCompletionRoutine: ?PTIMERAPCROUTINE,
+    lpArgToCompletionRoutine: ?*c_void,
+    fResume: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CancelWaitableTimer(
+    hTimer: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CreateMutexExA(
+    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u8,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateMutexExW(
+    lpMutexAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u16,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateEventExA(
+    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u8,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateEventExW(
+    lpEventAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u16,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateSemaphoreExW(
+    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
+    lInitialCount: i32,
+    lMaximumCount: i32,
+    lpName: ?[*:0]const u16,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateWaitableTimerExW(
+    lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
+    lpTimerName: ?[*:0]const u16,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn EnterSynchronizationBarrier(
+    lpBarrier: *RTL_BARRIER,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitializeSynchronizationBarrier(
+    lpBarrier: *RTL_BARRIER,
+    lTotalThreads: i32,
+    lSpinCount: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeleteSynchronizationBarrier(
+    lpBarrier: *RTL_BARRIER,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn Sleep(
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "vertdll" fn WaitOnAddress(
+    Address: [*]u8,
+    CompareAddress: [*]u8,
+    AddressSize: ?*c_void,
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "vertdll" fn WakeByAddressSingle(
+    Address: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "vertdll" fn WakeByAddressAll(
+    Address: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WaitForMultipleObjects(
+    nCount: u32,
+    lpHandles: [*]const HANDLE,
+    bWaitAll: BOOL,
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn CreateSemaphoreW(
+    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
+    lInitialCount: i32,
+    lMaximumCount: i32,
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateWaitableTimerW(
+    lpTimerAttributes: ?*SECURITY_ATTRIBUTES,
+    bManualReset: BOOL,
+    lpTimerName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn InitializeSListHead(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn InterlockedPopEntrySList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "KERNEL32" fn InterlockedPushEntrySList(
+    ListHead: *SLIST_HEADER,
+    ListEntry: *SINGLE_LIST_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "KERNEL32" fn InterlockedPushListSListEx(
+    ListHead: *SLIST_HEADER,
+    List: *SINGLE_LIST_ENTRY,
+    ListEnd: *SINGLE_LIST_ENTRY,
+    Count: u32,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "KERNEL32" fn InterlockedFlushSList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) *SINGLE_LIST_ENTRY;
+
+pub extern "KERNEL32" fn QueryDepthSList(
+    ListHead: *SLIST_HEADER,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+pub extern "KERNEL32" fn QueueUserWorkItem(
+    Function: LPTHREAD_START_ROUTINE,
+    Context: ?*c_void,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn UnregisterWaitEx(
+    WaitHandle: HANDLE,
+    CompletionEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CreateTimerQueue(
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn CreateTimerQueueTimer(
+    phNewTimer: *HANDLE,
+    TimerQueue: HANDLE,
+    Callback: WAITORTIMERCALLBACK,
+    Parameter: ?*c_void,
+    DueTime: u32,
+    Period: u32,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn ChangeTimerQueueTimer(
+    TimerQueue: HANDLE,
+    Timer: HANDLE,
+    DueTime: u32,
+    Period: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeleteTimerQueueTimer(
+    TimerQueue: HANDLE,
+    Timer: HANDLE,
+    CompletionEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeleteTimerQueueEx(
+    TimerQueue: HANDLE,
+    CompletionEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CreateThreadpool(
+    reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) PTP_POOL;
+
+pub extern "KERNEL32" fn SetThreadpoolThreadMaximum(
+    ptpp: PTP_POOL,
+    cthrdMost: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn SetThreadpoolThreadMinimum(
+    ptpp: PTP_POOL,
+    cthrdMic: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetThreadpoolStackInformation(
+    ptpp: PTP_POOL,
+    ptpsi: *TP_POOL_STACK_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn QueryThreadpoolStackInformation(
+    ptpp: PTP_POOL,
+    ptpsi: *TP_POOL_STACK_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CloseThreadpool(
+    ptpp: PTP_POOL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CreateThreadpoolCleanupGroup(
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub extern "KERNEL32" fn CloseThreadpoolCleanupGroupMembers(
+    ptpcg: ?*c_void,
+    fCancelPendingCallbacks: BOOL,
+    pvCleanupContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CloseThreadpoolCleanupGroup(
+    ptpcg: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn SetEventWhenCallbackReturns(
+    pci: *TP_CALLBACK_INSTANCE,
+    evt: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ReleaseSemaphoreWhenCallbackReturns(
+    pci: *TP_CALLBACK_INSTANCE,
+    sem: HANDLE,
+    crel: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn ReleaseMutexWhenCallbackReturns(
+    pci: *TP_CALLBACK_INSTANCE,
+    mut: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn LeaveCriticalSectionWhenCallbackReturns(
+    pci: *TP_CALLBACK_INSTANCE,
+    pcs: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn FreeLibraryWhenCallbackReturns(
+    pci: *TP_CALLBACK_INSTANCE,
+    mod: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CallbackMayRunLong(
+    pci: *TP_CALLBACK_INSTANCE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DisassociateCurrentThreadFromCallback(
+    pci: *TP_CALLBACK_INSTANCE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn TrySubmitThreadpoolCallback(
+    pfns: PTP_SIMPLE_CALLBACK,
+    pv: ?*c_void,
+    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CreateThreadpoolWork(
+    pfnwk: PTP_WORK_CALLBACK,
+    pv: ?*c_void,
+    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
+) callconv(@import("std").os.windows.WINAPI) *TP_WORK;
+
+pub extern "KERNEL32" fn SubmitThreadpoolWork(
+    pwk: *TP_WORK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WaitForThreadpoolWorkCallbacks(
+    pwk: *TP_WORK,
+    fCancelPendingCallbacks: BOOL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CloseThreadpoolWork(
+    pwk: *TP_WORK,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CreateThreadpoolTimer(
+    pfnti: PTP_TIMER_CALLBACK,
+    pv: ?*c_void,
+    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
+) callconv(@import("std").os.windows.WINAPI) *TP_TIMER;
+
+pub extern "KERNEL32" fn SetThreadpoolTimer(
+    pti: *TP_TIMER,
+    pftDueTime: ?*FILETIME,
+    msPeriod: u32,
+    msWindowLength: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn IsThreadpoolTimerSet(
+    pti: *TP_TIMER,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn WaitForThreadpoolTimerCallbacks(
+    pti: *TP_TIMER,
+    fCancelPendingCallbacks: BOOL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CloseThreadpoolTimer(
+    pti: *TP_TIMER,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CreateThreadpoolWait(
+    pfnwa: PTP_WAIT_CALLBACK,
+    pv: ?*c_void,
+    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
+) callconv(@import("std").os.windows.WINAPI) *TP_WAIT;
+
+pub extern "KERNEL32" fn SetThreadpoolWait(
+    pwa: *TP_WAIT,
+    h: HANDLE,
+    pftTimeout: ?*FILETIME,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WaitForThreadpoolWaitCallbacks(
+    pwa: *TP_WAIT,
+    fCancelPendingCallbacks: BOOL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CloseThreadpoolWait(
+    pwa: *TP_WAIT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CreateThreadpoolIo(
+    fl: HANDLE,
+    pfnio: PTP_WIN32_IO_CALLBACK,
+    pv: ?*c_void,
+    pcbe: ?*TP_CALLBACK_ENVIRON_V3,
+) callconv(@import("std").os.windows.WINAPI) *TP_IO;
+
+pub extern "KERNEL32" fn StartThreadpoolIo(
+    pio: *TP_IO,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CancelThreadpoolIo(
+    pio: *TP_IO,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn WaitForThreadpoolIoCallbacks(
+    pio: *TP_IO,
+    fCancelPendingCallbacks: BOOL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn CloseThreadpoolIo(
+    pio: *TP_IO,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn SetThreadpoolTimerEx(
+    pti: *TP_TIMER,
+    pftDueTime: ?*FILETIME,
+    msPeriod: u32,
+    msWindowLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetThreadpoolWaitEx(
+    pwa: *TP_WAIT,
+    h: HANDLE,
+    pftTimeout: ?*FILETIME,
+    Reserved: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn IsProcessInJob(
+    ProcessHandle: HANDLE,
+    JobHandle: HANDLE,
+    Result: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn CreateJobObjectW(
+    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn FreeMemoryJobObject(
+    Buffer: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn OpenJobObjectW(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn AssignProcessToJobObject(
+    hJob: HANDLE,
+    hProcess: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn TerminateJobObject(
+    hJob: HANDLE,
+    uExitCode: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetInformationJobObject(
+    hJob: HANDLE,
+    JobObjectInformationClass: JOBOBJECTINFOCLASS,
+    lpJobObjectInformation: [*]u8,
+    cbJobObjectInformationLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetIoRateControlInformationJobObject(
+    hJob: HANDLE,
+    IoRateControlInfo: *JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn QueryInformationJobObject(
+    hJob: HANDLE,
+    JobObjectInformationClass: JOBOBJECTINFOCLASS,
+    lpJobObjectInformation: [*]u8,
+    cbJobObjectInformationLength: u32,
+    lpReturnLength: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
+    hJob: HANDLE,
+    VolumeName: ?[*:0]const u16,
+    InfoBlocks: **JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
+    InfoBlockCount: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn CreatePrivateNamespaceW(
+    lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
+    lpBoundaryDescriptor: *c_void,
+    lpAliasPrefix: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
+
+pub extern "KERNEL32" fn OpenPrivateNamespaceW(
+    lpBoundaryDescriptor: *c_void,
+    lpAliasPrefix: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
+
+pub extern "KERNEL32" fn ClosePrivateNamespace(
+    Handle: NamespaceHandle,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "KERNEL32" fn CreateBoundaryDescriptorW(
+    Name: [*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
+
+pub extern "KERNEL32" fn AddSIDToBoundaryDescriptor(
+    BoundaryDescriptor: *HANDLE,
+    RequiredSid: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DeleteBoundaryDescriptor(
+    BoundaryDescriptor: BoundaryDescriptorHandle,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn GetNumaHighestNodeNumber(
+    HighestNodeNumber: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetNumaNodeProcessorMaskEx(
+    Node: u16,
+    ProcessorMask: *GROUP_AFFINITY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetNumaProximityNodeEx(
+    ProximityId: u32,
+    NodeNumber: *u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetProcessGroupAffinity(
+    hProcess: HANDLE,
+    GroupCount: *u16,
+    GroupArray: [*:0]u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetThreadGroupAffinity(
+    hThread: HANDLE,
+    GroupAffinity: *GROUP_AFFINITY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetThreadGroupAffinity(
+    hThread: HANDLE,
+    GroupAffinity: *const GROUP_AFFINITY,
+    PreviousGroupAffinity: ?*GROUP_AFFINITY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ExitWindowsEx(
+    uFlags: u32,
+    dwReason: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn IsWow64Message(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn RegisterDeviceNotificationA(
+    hRecipient: HANDLE,
+    NotificationFilter: *c_void,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "USER32" fn RegisterDeviceNotificationW(
+    hRecipient: HANDLE,
+    NotificationFilter: *c_void,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "USER32" fn UnregisterDeviceNotification(
+    Handle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn RegisterPowerSettingNotification(
+    hRecipient: HANDLE,
+    PowerSettingGuid: *Guid,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "USER32" fn UnregisterPowerSettingNotification(
+    Handle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn RegisterSuspendResumeNotification(
+    hRecipient: HANDLE,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "USER32" fn UnregisterSuspendResumeNotification(
+    Handle: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn AttachThreadInput(
+    idAttach: u32,
+    idAttachTo: u32,
+    fAttach: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn WaitForInputIdle(
+    hProcess: HANDLE,
+    dwMilliseconds: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn MsgWaitForMultipleObjects(
+    nCount: u32,
+    pHandles: ?[*]const HANDLE,
+    fWaitAll: BOOL,
+    dwMilliseconds: u32,
+    dwWakeMask: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn MsgWaitForMultipleObjectsEx(
+    nCount: u32,
+    pHandles: ?[*]const HANDLE,
+    dwMilliseconds: u32,
+    dwWakeMask: u32,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn GetGuiResources(
+    hProcess: HANDLE,
+    uiFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn LockWorkStation(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn UserHandleGrantAccess(
+    hUserHandle: HANDLE,
+    hJob: HANDLE,
+    bGrant: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ShutdownBlockReasonCreate(
+    hWnd: HWND,
+    pwszReason: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ShutdownBlockReasonQuery(
+    hWnd: HWND,
+    pwszBuff: ?[*:0]u16,
+    pcchBuff: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ShutdownBlockReasonDestroy(
+    hWnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetAutoRotationState(
+    pState: *AR_STATE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetDisplayAutoRotationPreferences(
+    pOrientation: *ORIENTATION_PREFERENCE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetDisplayAutoRotationPreferences(
+    orientation: ORIENTATION_PREFERENCE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn IsImmersiveProcess(
+    hProcess: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetProcessRestrictionExemption(
+    fEnableExemption: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "KERNEL32" fn GetCommandLineA(
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
@@ -33883,17 +33883,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = DEV_BROADCAST_DEVICEINTERFACE_A;
         pub const STARTUPINFO = STARTUPINFOA;
         pub const STARTUPINFOEX = STARTUPINFOEXA;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationA;
-        pub const CreateMutex = CreateMutexA;
-        pub const CreateEvent = CreateEventA;
-        pub const OpenEvent = OpenEventA;
-        pub const CreateMutexEx = CreateMutexExA;
-        pub const CreateEventEx = CreateEventExA;
-        pub const CreateSemaphoreEx = CreateSemaphoreExA;
-        pub const CreateSemaphore = CreateSemaphoreA;
-        pub const CreateJobObject = CreateJobObjectA;
-        pub const OpenJobObject = OpenJobObjectA;
-        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorA;
         pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameA;
         pub const GetNamedPipeHandleState = GetNamedPipeHandleStateA;
         pub const CallNamedPipe = CallNamedPipeA;
@@ -33995,6 +33984,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetPrinterDriverPackagePath = GetPrinterDriverPackagePathA;
         pub const DeletePrinterDriverPackage = DeletePrinterDriverPackageA;
         pub const GetPrinterDriver2 = GetPrinterDriver2A;
+        pub const CreateMutex = CreateMutexA;
+        pub const CreateEvent = CreateEventA;
+        pub const OpenEvent = OpenEventA;
+        pub const CreateMutexEx = CreateMutexExA;
+        pub const CreateEventEx = CreateEventExA;
+        pub const CreateSemaphoreEx = CreateSemaphoreExA;
+        pub const CreateSemaphore = CreateSemaphoreA;
+        pub const CreateJobObject = CreateJobObjectA;
+        pub const OpenJobObject = OpenJobObjectA;
+        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorA;
+        pub const RegisterDeviceNotification = RegisterDeviceNotificationA;
         pub const GetCommandLine = GetCommandLineA;
         pub const FreeEnvironmentStrings = FreeEnvironmentStringsA;
         pub const GetEnvironmentVariable = GetEnvironmentVariableA;
@@ -34068,17 +34068,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = DEV_BROADCAST_DEVICEINTERFACE_W;
         pub const STARTUPINFO = STARTUPINFOW;
         pub const STARTUPINFOEX = STARTUPINFOEXW;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationW;
-        pub const CreateMutex = CreateMutexW;
-        pub const CreateEvent = CreateEventW;
-        pub const OpenEvent = OpenEventW;
-        pub const CreateMutexEx = CreateMutexExW;
-        pub const CreateEventEx = CreateEventExW;
-        pub const CreateSemaphoreEx = CreateSemaphoreExW;
-        pub const CreateSemaphore = CreateSemaphoreW;
-        pub const CreateJobObject = CreateJobObjectW;
-        pub const OpenJobObject = OpenJobObjectW;
-        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorW;
         pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameW;
         pub const GetNamedPipeHandleState = GetNamedPipeHandleStateW;
         pub const CallNamedPipe = CallNamedPipeW;
@@ -34180,6 +34169,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetPrinterDriverPackagePath = GetPrinterDriverPackagePathW;
         pub const DeletePrinterDriverPackage = DeletePrinterDriverPackageW;
         pub const GetPrinterDriver2 = GetPrinterDriver2W;
+        pub const CreateMutex = CreateMutexW;
+        pub const CreateEvent = CreateEventW;
+        pub const OpenEvent = OpenEventW;
+        pub const CreateMutexEx = CreateMutexExW;
+        pub const CreateEventEx = CreateEventExW;
+        pub const CreateSemaphoreEx = CreateSemaphoreExW;
+        pub const CreateSemaphore = CreateSemaphoreW;
+        pub const CreateJobObject = CreateJobObjectW;
+        pub const OpenJobObject = OpenJobObjectW;
+        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorW;
+        pub const RegisterDeviceNotification = RegisterDeviceNotificationW;
         pub const GetCommandLine = GetCommandLineW;
         pub const FreeEnvironmentStrings = FreeEnvironmentStringsW;
         pub const GetEnvironmentVariable = GetEnvironmentVariableW;
@@ -34253,17 +34253,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = *opaque{};
         pub const STARTUPINFO = *opaque{};
         pub const STARTUPINFOEX = *opaque{};
-        pub const RegisterDeviceNotification = *opaque{};
-        pub const CreateMutex = *opaque{};
-        pub const CreateEvent = *opaque{};
-        pub const OpenEvent = *opaque{};
-        pub const CreateMutexEx = *opaque{};
-        pub const CreateEventEx = *opaque{};
-        pub const CreateSemaphoreEx = *opaque{};
-        pub const CreateSemaphore = *opaque{};
-        pub const CreateJobObject = *opaque{};
-        pub const OpenJobObject = *opaque{};
-        pub const CreateBoundaryDescriptor = *opaque{};
         pub const GetNamedPipeClientComputerName = *opaque{};
         pub const GetNamedPipeHandleState = *opaque{};
         pub const CallNamedPipe = *opaque{};
@@ -34365,6 +34354,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetPrinterDriverPackagePath = *opaque{};
         pub const DeletePrinterDriverPackage = *opaque{};
         pub const GetPrinterDriver2 = *opaque{};
+        pub const CreateMutex = *opaque{};
+        pub const CreateEvent = *opaque{};
+        pub const OpenEvent = *opaque{};
+        pub const CreateMutexEx = *opaque{};
+        pub const CreateEventEx = *opaque{};
+        pub const CreateSemaphoreEx = *opaque{};
+        pub const CreateSemaphore = *opaque{};
+        pub const CreateJobObject = *opaque{};
+        pub const OpenJobObject = *opaque{};
+        pub const CreateBoundaryDescriptor = *opaque{};
+        pub const RegisterDeviceNotification = *opaque{};
         pub const GetCommandLine = *opaque{};
         pub const FreeEnvironmentStrings = *opaque{};
         pub const GetEnvironmentVariable = *opaque{};
@@ -34437,17 +34437,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = @compileError("'DEV_BROADCAST_DEVICEINTERFACE_' requires that UNICODE be set to true or false in the root module");
         pub const STARTUPINFO = @compileError("'STARTUPINFO' requires that UNICODE be set to true or false in the root module");
         pub const STARTUPINFOEX = @compileError("'STARTUPINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterDeviceNotification = @compileError("'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMutex = @compileError("'CreateMutex' requires that UNICODE be set to true or false in the root module");
-        pub const CreateEvent = @compileError("'CreateEvent' requires that UNICODE be set to true or false in the root module");
-        pub const OpenEvent = @compileError("'OpenEvent' requires that UNICODE be set to true or false in the root module");
-        pub const CreateMutexEx = @compileError("'CreateMutexEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateEventEx = @compileError("'CreateEventEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphoreEx = @compileError("'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphore = @compileError("'CreateSemaphore' requires that UNICODE be set to true or false in the root module");
-        pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
-        pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
-        pub const CreateBoundaryDescriptor = @compileError("'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const GetNamedPipeClientComputerName = @compileError("'GetNamedPipeClientComputerName' requires that UNICODE be set to true or false in the root module");
         pub const GetNamedPipeHandleState = @compileError("'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module");
         pub const CallNamedPipe = @compileError("'CallNamedPipe' requires that UNICODE be set to true or false in the root module");
@@ -34549,6 +34538,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetPrinterDriverPackagePath = @compileError("'GetPrinterDriverPackagePath' requires that UNICODE be set to true or false in the root module");
         pub const DeletePrinterDriverPackage = @compileError("'DeletePrinterDriverPackage' requires that UNICODE be set to true or false in the root module");
         pub const GetPrinterDriver2 = @compileError("'GetPrinterDriver2' requires that UNICODE be set to true or false in the root module");
+        pub const CreateMutex = @compileError("'CreateMutex' requires that UNICODE be set to true or false in the root module");
+        pub const CreateEvent = @compileError("'CreateEvent' requires that UNICODE be set to true or false in the root module");
+        pub const OpenEvent = @compileError("'OpenEvent' requires that UNICODE be set to true or false in the root module");
+        pub const CreateMutexEx = @compileError("'CreateMutexEx' requires that UNICODE be set to true or false in the root module");
+        pub const CreateEventEx = @compileError("'CreateEventEx' requires that UNICODE be set to true or false in the root module");
+        pub const CreateSemaphoreEx = @compileError("'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module");
+        pub const CreateSemaphore = @compileError("'CreateSemaphore' requires that UNICODE be set to true or false in the root module");
+        pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
+        pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
+        pub const CreateBoundaryDescriptor = @compileError("'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module");
+        pub const RegisterDeviceNotification = @compileError("'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module");
         pub const GetCommandLine = @compileError("'GetCommandLine' requires that UNICODE be set to true or false in the root module");
         pub const FreeEnvironmentStrings = @compileError("'FreeEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const GetEnvironmentVariable = @compileError("'GetEnvironmentVariable' requires that UNICODE be set to true or false in the root module");
@@ -34584,15 +34584,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const STORAGE_PROPERTY_ID = @import("file_system.zig").STORAGE_PROPERTY_ID;
-const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
+const RECTL = @import("display_devices.zig").RECTL;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const IXMLDOMDocument = @import("windows_programming.zig").IXMLDOMDocument;
-const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
 const DXGI_RGBA = @import("dxgi.zig").DXGI_RGBA;
 const TTPOLYGONHEADER = @import("gdi.zig").TTPOLYGONHEADER;
 const PIXELFORMATDESCRIPTOR = @import("open_gl.zig").PIXELFORMATDESCRIPTOR;
 const DD_CALLBACKS = @import("display_devices.zig").DD_CALLBACKS;
 const LOGCOLORSPACEW = @import("windows_color_system.zig").LOGCOLORSPACEW;
+const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
 const TOKEN_PRIVILEGES = @import("security.zig").TOKEN_PRIVILEGES;
 const PROCESS_CREATION_FLAGS = @import("windows_programming.zig").PROCESS_CREATION_FLAGS;
 const PROCESSINFOCLASS = @import("windows_programming.zig").PROCESSINFOCLASS;
@@ -34600,8 +34600,8 @@ const ENUMRESNAMEPROCW = @import("menus_and_resources.zig").ENUMRESNAMEPROCW;
 const DEVMODEA = @import("xps.zig").DEVMODEA;
 const THREAD_INFORMATION_CLASS = @import("windows_programming.zig").THREAD_INFORMATION_CLASS;
 const PERBANDINFO = @import("display_devices.zig").PERBANDINFO;
-const EXCEPTION_ROUTINE = @import("kernel.zig").EXCEPTION_ROUTINE;
 const VIRTUAL_STORAGE_TYPE = @import("virtual_storage.zig").VIRTUAL_STORAGE_TYPE;
+const EXCEPTION_ROUTINE = @import("kernel.zig").EXCEPTION_ROUTINE;
 const DD_PALETTECALLBACKS = @import("display_devices.zig").DD_PALETTECALLBACKS;
 const LIST_ENTRY = @import("kernel.zig").LIST_ENTRY;
 const SINGLE_LIST_ENTRY = @import("kernel.zig").SINGLE_LIST_ENTRY;
@@ -34612,11 +34612,11 @@ const DDVIDEOPORTCONNECT = @import("core_audio.zig").DDVIDEOPORTCONNECT;
 const UNICODE_STRING = @import("security.zig").UNICODE_STRING;
 const GLYPHDATA = @import("display_devices.zig").GLYPHDATA;
 const FONTOBJ = @import("display_devices.zig").FONTOBJ;
-const TOKEN_GROUPS = @import("security.zig").TOKEN_GROUPS;
-const BSTR = @import("automation.zig").BSTR;
-const IMAGE_FILE_HEADER = @import("debug.zig").IMAGE_FILE_HEADER;
-const RECT = @import("display_devices.zig").RECT;
 const PALOBJ = @import("display_devices.zig").PALOBJ;
+const BSTR = @import("automation.zig").BSTR;
+const RECT = @import("display_devices.zig").RECT;
+const TOKEN_GROUPS = @import("security.zig").TOKEN_GROUPS;
+const IMAGE_FILE_HEADER = @import("debug.zig").IMAGE_FILE_HEADER;
 const DEP_SYSTEM_POLICY_TYPE = @import("windows_programming.zig").DEP_SYSTEM_POLICY_TYPE;
 const ACE_HEADER = @import("security.zig").ACE_HEADER;
 const BRUSHOBJ = @import("display_devices.zig").BRUSHOBJ;
@@ -34637,9 +34637,9 @@ const HRESULT = @import("com.zig").HRESULT;
 const LPOVERLAPPED_COMPLETION_ROUTINE = @import("file_system.zig").LPOVERLAPPED_COMPLETION_ROUTINE;
 const RPC_BINDING_VECTOR = @import("rpc.zig").RPC_BINDING_VECTOR;
 const LUID = @import("kernel.zig").LUID;
-const PRIVILEGE_SET = @import("security.zig").PRIVILEGE_SET;
-const WOW64_LDT_ENTRY = @import("debug.zig").WOW64_LDT_ENTRY;
 const VIDEOMEMORY = @import("display_devices.zig").VIDEOMEMORY;
+const WOW64_LDT_ENTRY = @import("debug.zig").WOW64_LDT_ENTRY;
+const PRIVILEGE_SET = @import("security.zig").PRIVILEGE_SET;
 const BLENDOBJ = @import("display_devices.zig").BLENDOBJ;
 const DDSURFACEDESC = @import("direct_draw.zig").DDSURFACEDESC;
 const IMAGE_DATA_DIRECTORY = @import("debug.zig").IMAGE_DATA_DIRECTORY;
@@ -34659,52 +34659,28 @@ const IUnknown = @import("com.zig").IUnknown;
 const LINEATTRS = @import("display_devices.zig").LINEATTRS;
 const LPFIBER_START_ROUTINE = @import("windows_programming.zig").LPFIBER_START_ROUTINE;
 const WNDOBJ = @import("display_devices.zig").WNDOBJ;
-const GENERIC_MAPPING = @import("security.zig").GENERIC_MAPPING;
-const DD_SURFACE_LOCAL = @import("display_devices.zig").DD_SURFACE_LOCAL;
 const SURFOBJ = @import("display_devices.zig").SURFOBJ;
-const FILE_ID_128 = @import("file_system.zig").FILE_ID_128;
+const DD_SURFACE_LOCAL = @import("display_devices.zig").DD_SURFACE_LOCAL;
 const HBITMAP = @import("gdi.zig").HBITMAP;
+const FILE_ID_128 = @import("file_system.zig").FILE_ID_128;
 const DESIGNVECTOR = @import("gdi.zig").DESIGNVECTOR;
 const HWND = @import("windows_and_messaging.zig").HWND;
-const SECURITY_IMPERSONATION_LEVEL = @import("security.zig").SECURITY_IMPERSONATION_LEVEL;
+const GENERIC_MAPPING = @import("security.zig").GENERIC_MAPPING;
 const VARIANT = @import("automation.zig").VARIANT;
+const SECURITY_IMPERSONATION_LEVEL = @import("security.zig").SECURITY_IMPERSONATION_LEVEL;
 const DDPIXELFORMAT = @import("direct_draw.zig").DDPIXELFORMAT;
 const D3DMATRIX = @import("direct3d9.zig").D3DMATRIX;
 const PUMS_SCHEDULER_ENTRY_POINT = @import("windows_programming.zig").PUMS_SCHEDULER_ENTRY_POINT;
 const PATHOBJ = @import("display_devices.zig").PATHOBJ;
 const POINT = @import("display_devices.zig").POINT;
-const VIDEOMEMORYINFO = @import("display_devices.zig").VIDEOMEMORYINFO;
-const SIZE = @import("display_devices.zig").SIZE;
-const RECTL = @import("display_devices.zig").RECTL;
 const DD_BLTDATA = @import("display_devices.zig").DD_BLTDATA;
+const VIDEOMEMORYINFO = @import("display_devices.zig").VIDEOMEMORYINFO;
+const DDSCAPS = @import("direct_draw.zig").DDSCAPS;
+const SIZE = @import("display_devices.zig").SIZE;
 const DD_DIRECTDRAW_LOCAL = @import("display_devices.zig").DD_DIRECTDRAW_LOCAL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = ENCLAVE_TARGET_FUNCTION;
-    _ = PENCLAVE_TARGET_FUNCTION;
-    _ = LPENCLAVE_TARGET_FUNCTION;
-    _ = PIMAGE_TLS_CALLBACK;
-    _ = RTL_UMS_SCHEDULER_ENTRY_POINT;
-    _ = PRTL_UMS_SCHEDULER_ENTRY_POINT;
-    _ = PAPCFUNC;
-    _ = WAITORTIMERCALLBACKFUNC;
-    _ = WORKERCALLBACKFUNC;
-    _ = APC_CALLBACK_FUNCTION;
-    _ = WAITORTIMERCALLBACK;
-    _ = PFLS_CALLBACK_FUNCTION;
-    _ = PSECURE_MEMORY_CACHE_CALLBACK;
-    _ = PTP_SIMPLE_CALLBACK;
-    _ = PTP_CLEANUP_GROUP_CANCEL_CALLBACK;
-    _ = PTP_WORK_CALLBACK;
-    _ = PTP_TIMER_CALLBACK;
-    _ = PTP_WAIT_CALLBACK;
-    _ = FARPROC;
-    _ = NEARPROC;
-    _ = PROC;
-    _ = PINIT_ONCE_FN;
-    _ = PTIMERAPCROUTINE;
-    _ = PTP_WIN32_IO_CALLBACK;
     _ = PTHREAD_START_ROUTINE;
     _ = LPTHREAD_START_ROUTINE;
     _ = PENCLAVE_ROUTINE;
@@ -34862,6 +34838,30 @@ test {
     _ = DEVICE_NOTIFY_CALLBACK_ROUTINE;
     _ = PDEVICE_NOTIFY_CALLBACK_ROUTINE;
     _ = PVIDEO_WIN32K_CALLOUT;
+    _ = ENCLAVE_TARGET_FUNCTION;
+    _ = PENCLAVE_TARGET_FUNCTION;
+    _ = LPENCLAVE_TARGET_FUNCTION;
+    _ = PIMAGE_TLS_CALLBACK;
+    _ = RTL_UMS_SCHEDULER_ENTRY_POINT;
+    _ = PRTL_UMS_SCHEDULER_ENTRY_POINT;
+    _ = PAPCFUNC;
+    _ = WAITORTIMERCALLBACKFUNC;
+    _ = WORKERCALLBACKFUNC;
+    _ = APC_CALLBACK_FUNCTION;
+    _ = WAITORTIMERCALLBACK;
+    _ = PFLS_CALLBACK_FUNCTION;
+    _ = PSECURE_MEMORY_CACHE_CALLBACK;
+    _ = PTP_SIMPLE_CALLBACK;
+    _ = PTP_CLEANUP_GROUP_CANCEL_CALLBACK;
+    _ = PTP_WORK_CALLBACK;
+    _ = PTP_TIMER_CALLBACK;
+    _ = PTP_WAIT_CALLBACK;
+    _ = FARPROC;
+    _ = NEARPROC;
+    _ = PROC;
+    _ = PINIT_ONCE_FN;
+    _ = PTIMERAPCROUTINE;
+    _ = PTP_WIN32_IO_CALLBACK;
     _ = PFIBER_START_ROUTINE;
 
     const constant_export_count = 9877;

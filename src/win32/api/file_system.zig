@@ -203,70 +203,6 @@ pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS.FILE_GENERIC_READ;
 pub const FILE_GENERIC_WRITE = FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE;
 pub const FILE_GENERIC_EXECUTE = FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE;
 
-// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
-pub const FindChangeNotifcationHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileNameHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindStreamHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
-pub const FindVolumeHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
-pub const FindVolumeMointPointHandle = ?*c_void;
-
-pub const FILE_ID_128 = extern struct {
-    Identifier: [16]u8,
-};
-
-pub const FILE_NOTIFY_INFORMATION = extern struct {
-    NextEntryOffset: u32,
-    Action: u32,
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const FILE_NOTIFY_EXTENDED_INFORMATION = extern struct {
-    NextEntryOffset: u32,
-    Action: u32,
-    CreationTime: LARGE_INTEGER,
-    LastModificationTime: LARGE_INTEGER,
-    LastChangeTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    AllocatedLength: LARGE_INTEGER,
-    FileSize: LARGE_INTEGER,
-    FileAttributes: u32,
-    ReparsePointTag: u32,
-    FileId: LARGE_INTEGER,
-    ParentFileId: LARGE_INTEGER,
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const REPARSE_GUID_DATA_BUFFER = extern struct {
-    ReparseTag: u32,
-    ReparseDataLength: u16,
-    Reserved: u16,
-    ReparseGuid: Guid,
-    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER._GenericReparseBuffer_e__Struct,
-    const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const TRANSACTION_OUTCOME = extern enum(i32) {
-    TransactionOutcomeUndetermined = 1,
-    TransactionOutcomeCommitted = 2,
-    TransactionOutcomeAborted = 3,
-};
-pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.TransactionOutcomeUndetermined;
-pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.TransactionOutcomeCommitted;
-pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.TransactionOutcomeAborted;
-
 pub const OVERLAPPED_ENTRY = extern struct {
     lpCompletionKey: ?*c_void,
     lpOverlapped: *OVERLAPPED,
@@ -1559,8 +1495,8 @@ pub const NTFS_STATISTICS = extern struct {
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS_EX = extern struct {
@@ -1641,9 +1577,9 @@ pub const NTFS_STATISTICS_EX = extern struct {
     NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
     const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_OBJECTID_BUFFER = extern struct {
@@ -4461,6 +4397,70 @@ pub const STAT_SERVER_0 = extern struct {
     sts0_reqbufneed: u32,
     sts0_bigbufneed: u32,
 };
+
+// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
+pub const FindChangeNotifcationHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileNameHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindStreamHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
+pub const FindVolumeHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
+pub const FindVolumeMointPointHandle = ?*c_void;
+
+pub const FILE_ID_128 = extern struct {
+    Identifier: [16]u8,
+};
+
+pub const FILE_NOTIFY_INFORMATION = extern struct {
+    NextEntryOffset: u32,
+    Action: u32,
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const FILE_NOTIFY_EXTENDED_INFORMATION = extern struct {
+    NextEntryOffset: u32,
+    Action: u32,
+    CreationTime: LARGE_INTEGER,
+    LastModificationTime: LARGE_INTEGER,
+    LastChangeTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    AllocatedLength: LARGE_INTEGER,
+    FileSize: LARGE_INTEGER,
+    FileAttributes: u32,
+    ReparsePointTag: u32,
+    FileId: LARGE_INTEGER,
+    ParentFileId: LARGE_INTEGER,
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const REPARSE_GUID_DATA_BUFFER = extern struct {
+    ReparseTag: u32,
+    ReparseDataLength: u16,
+    Reserved: u16,
+    ReparseGuid: Guid,
+    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER._GenericReparseBuffer_e__Struct,
+    const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const TRANSACTION_OUTCOME = extern enum(i32) {
+    TransactionOutcomeUndetermined = 1,
+    TransactionOutcomeCommitted = 2,
+    TransactionOutcomeAborted = 3,
+};
+pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.TransactionOutcomeUndetermined;
+pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.TransactionOutcomeCommitted;
+pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.TransactionOutcomeAborted;
 
 pub const OFSTRUCT = extern struct {
     cBytes: u8,

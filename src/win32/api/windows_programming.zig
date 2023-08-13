@@ -136,77 +136,6 @@ pub const FORMAT_MESSAGE_FROM_SYSTEM = FORMAT_MESSAGE_OPTIONS.FORMAT_MESSAGE_FRO
 pub const FORMAT_MESSAGE_ARGUMENT_ARRAY = FORMAT_MESSAGE_OPTIONS.FORMAT_MESSAGE_ARGUMENT_ARRAY;
 pub const FORMAT_MESSAGE_MAX_WIDTH_MASK = FORMAT_MESSAGE_OPTIONS.FORMAT_MESSAGE_MAX_WIDTH_MASK;
 
-pub const STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: [*]u8,
-};
-
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*c_void;
-
-pub const FIRMWARE_TYPE = extern enum(i32) {
-    FirmwareTypeUnknown = 0,
-    FirmwareTypeBios = 1,
-    FirmwareTypeUefi = 2,
-    FirmwareTypeMax = 3,
-};
-pub const FirmwareTypeUnknown = FIRMWARE_TYPE.FirmwareTypeUnknown;
-pub const FirmwareTypeBios = FIRMWARE_TYPE.FirmwareTypeBios;
-pub const FirmwareTypeUefi = FIRMWARE_TYPE.FirmwareTypeUefi;
-pub const FirmwareTypeMax = FIRMWARE_TYPE.FirmwareTypeMax;
-
-pub const OSVERSIONINFOA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]i8,
-};
-
-pub const OSVERSIONINFOW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-};
-
-pub const OSVERSIONINFOEXA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]i8,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const OSVERSIONINFOEXW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const FILETIME = extern struct {
-    dwLowDateTime: u32,
-    dwHighDateTime: u32,
-};
-
 pub const SYSTEMTIME = extern struct {
     wYear: u16,
     wMonth: u16,
@@ -275,6 +204,71 @@ pub const OSUpdateAssessment = extern struct {
     upToDateOSReleaseTime: FILETIME,
 };
 
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = ?*c_void;
+
+pub const FIRMWARE_TYPE = extern enum(i32) {
+    FirmwareTypeUnknown = 0,
+    FirmwareTypeBios = 1,
+    FirmwareTypeUefi = 2,
+    FirmwareTypeMax = 3,
+};
+pub const FirmwareTypeUnknown = FIRMWARE_TYPE.FirmwareTypeUnknown;
+pub const FirmwareTypeBios = FIRMWARE_TYPE.FirmwareTypeBios;
+pub const FirmwareTypeUefi = FIRMWARE_TYPE.FirmwareTypeUefi;
+pub const FirmwareTypeMax = FIRMWARE_TYPE.FirmwareTypeMax;
+
+pub const OSVERSIONINFOA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]i8,
+};
+
+pub const OSVERSIONINFOW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+};
+
+pub const OSVERSIONINFOEXA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]i8,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const OSVERSIONINFOEXW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const FILETIME = extern struct {
+    dwLowDateTime: u32,
+    dwHighDateTime: u32,
+};
+
 pub const NETLOGON_INFO_1 = extern struct {
     netlog1_flags: u32,
     netlog1_pdc_connection_status: u32,
@@ -301,6 +295,39 @@ pub const NETLOGON_INFO_4 = extern struct {
     netlog4_trusted_dc_name: PWSTR,
     netlog4_trusted_domain_name: PWSTR,
 };
+
+pub const STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: [*]u8,
+};
+
+pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
+    NameUnknown = 0,
+    NameFullyQualifiedDN = 1,
+    NameSamCompatible = 2,
+    NameDisplay = 3,
+    NameUniqueId = 6,
+    NameCanonical = 7,
+    NameUserPrincipal = 8,
+    NameCanonicalEx = 9,
+    NameServicePrincipal = 10,
+    NameDnsDomain = 12,
+    NameGivenName = 13,
+    NameSurname = 14,
+};
+pub const NameUnknown = EXTENDED_NAME_FORMAT.NameUnknown;
+pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.NameFullyQualifiedDN;
+pub const NameSamCompatible = EXTENDED_NAME_FORMAT.NameSamCompatible;
+pub const NameDisplay = EXTENDED_NAME_FORMAT.NameDisplay;
+pub const NameUniqueId = EXTENDED_NAME_FORMAT.NameUniqueId;
+pub const NameCanonical = EXTENDED_NAME_FORMAT.NameCanonical;
+pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.NameUserPrincipal;
+pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.NameCanonicalEx;
+pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.NameServicePrincipal;
+pub const NameDnsDomain = EXTENDED_NAME_FORMAT.NameDnsDomain;
+pub const NameGivenName = EXTENDED_NAME_FORMAT.NameGivenName;
+pub const NameSurname = EXTENDED_NAME_FORMAT.NameSurname;
 
 pub const _PROC_THREAD_ATTRIBUTE_LIST = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
 
@@ -10236,37 +10263,78 @@ pub const _pfLogFrame = extern struct {
     bPacketData: [1]u8,
 };
 
-pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
-    NameUnknown = 0,
-    NameFullyQualifiedDN = 1,
-    NameSamCompatible = 2,
-    NameDisplay = 3,
-    NameUniqueId = 6,
-    NameCanonical = 7,
-    NameUserPrincipal = 8,
-    NameCanonicalEx = 9,
-    NameServicePrincipal = 10,
-    NameDnsDomain = 12,
-    NameGivenName = 13,
-    NameSurname = 14,
-};
-pub const NameUnknown = EXTENDED_NAME_FORMAT.NameUnknown;
-pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.NameFullyQualifiedDN;
-pub const NameSamCompatible = EXTENDED_NAME_FORMAT.NameSamCompatible;
-pub const NameDisplay = EXTENDED_NAME_FORMAT.NameDisplay;
-pub const NameUniqueId = EXTENDED_NAME_FORMAT.NameUniqueId;
-pub const NameCanonical = EXTENDED_NAME_FORMAT.NameCanonical;
-pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.NameUserPrincipal;
-pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.NameCanonicalEx;
-pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.NameServicePrincipal;
-pub const NameDnsDomain = EXTENDED_NAME_FORMAT.NameDnsDomain;
-pub const NameGivenName = EXTENDED_NAME_FORMAT.NameGivenName;
-pub const NameSurname = EXTENDED_NAME_FORMAT.NameSurname;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (474)
 //--------------------------------------------------------------------------------
+pub extern "KERNEL32" fn CompareFileTime(
+    lpFileTime1: *const FILETIME,
+    lpFileTime2: *const FILETIME,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "KERNEL32" fn FileTimeToLocalFileTime(
+    lpFileTime: *const FILETIME,
+    lpLocalFileTime: *FILETIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetFileTime(
+    hFile: HANDLE,
+    lpCreationTime: ?*FILETIME,
+    lpLastAccessTime: ?*FILETIME,
+    lpLastWriteTime: ?*FILETIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn LocalFileTimeToFileTime(
+    lpLocalFileTime: *const FILETIME,
+    lpFileTime: *FILETIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetFileTime(
+    hFile: HANDLE,
+    lpCreationTime: ?*const FILETIME,
+    lpLastAccessTime: ?*const FILETIME,
+    lpLastWriteTime: ?*const FILETIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetSystemWow64DirectoryA(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn GetSystemWow64DirectoryW(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+    ImageFileMachineType: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+    ImageFileMachineType: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
+    WowGuestMachine: u16,
+    MachineIsSupported: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "KERNEL32" fn RtlRaiseException(
+    ExceptionRecord: *EXCEPTION_RECORD,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "NETAPI32" fn I_NetLogonControl2(
+    ServerName: ?[*:0]const u16,
+    FunctionCode: u32,
+    QueryLevel: u32,
+    Data: *u8,
+    Buffer: **u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 pub extern "RPCRT4" fn NdrSimpleStructMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -10346,66 +10414,6 @@ pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
 pub extern "USER32" fn DisableProcessWindowsGhosting(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "KERNEL32" fn RtlRaiseException(
-    ExceptionRecord: *EXCEPTION_RECORD,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn CompareFileTime(
-    lpFileTime1: *const FILETIME,
-    lpFileTime2: *const FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn FileTimeToLocalFileTime(
-    lpFileTime: *const FILETIME,
-    lpLocalFileTime: *FILETIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetFileTime(
-    hFile: HANDLE,
-    lpCreationTime: ?*FILETIME,
-    lpLastAccessTime: ?*FILETIME,
-    lpLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn LocalFileTimeToFileTime(
-    lpLocalFileTime: *const FILETIME,
-    lpFileTime: *FILETIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetFileTime(
-    hFile: HANDLE,
-    lpCreationTime: ?*const FILETIME,
-    lpLastAccessTime: ?*const FILETIME,
-    lpLastWriteTime: ?*const FILETIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetSystemWow64DirectoryA(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn GetSystemWow64DirectoryW(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-    ImageFileMachineType: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-    ImageFileMachineType: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
-    WowGuestMachine: u16,
-    MachineIsSupported: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub extern "loadperf" fn InstallPerfDllW(
     szComputerName: ?[*:0]const u16,
     lpIniFile: [*:0]const u16,
@@ -10418,13 +10426,45 @@ pub extern "loadperf" fn InstallPerfDllA(
     dwFlags: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "NETAPI32" fn I_NetLogonControl2(
-    ServerName: ?[*:0]const u16,
-    FunctionCode: u32,
-    QueryLevel: u32,
-    Data: *u8,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "SspiCli" fn GetUserNameExA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SspiCli" fn GetUserNameExW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameA(
+    lpAccountName: [*:0]const u8,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameW(
+    lpAccountName: [*:0]const u16,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
     Contract: [*:0]const u8,
@@ -13232,46 +13272,6 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
-pub extern "SspiCli" fn GetUserNameExA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SspiCli" fn GetUserNameExW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn GetComputerObjectNameA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn GetComputerObjectNameW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameA(
-    lpAccountName: [*:0]const u8,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameW(
-    lpAccountName: [*:0]const u16,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
 pub extern "ole32" fn CoInstall(
     pbc: *IBindCtx,
     dwFlags: u32,
@@ -13300,6 +13300,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
         pub const InstallPerfDll = InstallPerfDllA;
+        pub const GetUserNameEx = GetUserNameExA;
+        pub const GetComputerObjectName = GetComputerObjectNameA;
+        pub const TranslateName = TranslateNameA;
         pub const SetEnvironmentStrings = SetEnvironmentStringsA;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsA;
         pub const SetCurrentDirectory = SetCurrentDirectoryA;
@@ -13392,9 +13395,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEA;
         pub const IMPQueryIME = IMPQueryIMEA;
         pub const IMPSetIME = IMPSetIMEA;
-        pub const GetUserNameEx = GetUserNameExA;
-        pub const GetComputerObjectName = GetComputerObjectNameA;
-        pub const TranslateName = TranslateNameA;
     },
     .wide => struct {
         pub const OSVERSIONINFO = OSVERSIONINFOW;
@@ -13411,6 +13411,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
         pub const InstallPerfDll = InstallPerfDllW;
+        pub const GetUserNameEx = GetUserNameExW;
+        pub const GetComputerObjectName = GetComputerObjectNameW;
+        pub const TranslateName = TranslateNameW;
         pub const SetEnvironmentStrings = SetEnvironmentStringsW;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsW;
         pub const SetCurrentDirectory = SetCurrentDirectoryW;
@@ -13503,9 +13506,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEW;
         pub const IMPQueryIME = IMPQueryIMEW;
         pub const IMPSetIME = IMPSetIMEW;
-        pub const GetUserNameEx = GetUserNameExW;
-        pub const GetComputerObjectName = GetComputerObjectNameW;
-        pub const TranslateName = TranslateNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const OSVERSIONINFO = *opaque{};
@@ -13522,6 +13522,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetSystemWow64Directory = *opaque{};
         pub const GetSystemWow64Directory2 = *opaque{};
         pub const InstallPerfDll = *opaque{};
+        pub const GetUserNameEx = *opaque{};
+        pub const GetComputerObjectName = *opaque{};
+        pub const TranslateName = *opaque{};
         pub const SetEnvironmentStrings = *opaque{};
         pub const ExpandEnvironmentStrings = *opaque{};
         pub const SetCurrentDirectory = *opaque{};
@@ -13614,9 +13617,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = *opaque{};
         pub const IMPQueryIME = *opaque{};
         pub const IMPSetIME = *opaque{};
-        pub const GetUserNameEx = *opaque{};
-        pub const GetComputerObjectName = *opaque{};
-        pub const TranslateName = *opaque{};
     } else struct {
         pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
         pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
@@ -13632,6 +13632,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
         pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
+        pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
+        pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
+        pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
         pub const SetEnvironmentStrings = @compileError("'SetEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const ExpandEnvironmentStrings = @compileError("'ExpandEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const SetCurrentDirectory = @compileError("'SetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
@@ -13724,9 +13727,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

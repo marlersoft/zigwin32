@@ -9,6 +9,10 @@ pub const NaN = @import("std").math.nan(f32);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const HGESTUREINFO = ?*c_void;
+
+pub const HTOUCHINPUT = ?*c_void;
+
 pub const TOUCHINPUT = extern struct {
     x: i32,
     y: i32,
@@ -47,10 +51,6 @@ pub const GESTURECONFIG = extern struct {
     dwWant: u32,
     dwBlock: u32,
 };
-
-pub const HGESTUREINFO = ?*c_void;
-
-pub const HTOUCHINPUT = ?*c_void;
 
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
