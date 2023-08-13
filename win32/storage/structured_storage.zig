@@ -3445,7 +3445,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const JET_OBJECTINFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbStruct: u32,
     objtyp: u32,
     dtCreate: f64,
@@ -3462,7 +3462,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const JET_THREADSTATS2 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbStruct: u32,
     cPageReferenced: u32,
     cPageRead: u32,
@@ -3481,7 +3481,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const JET_COMMIT_ID = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     signLog: JET_SIGNATURE,
     reserved: i32,
     commitId: i64,
@@ -3509,7 +3509,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const JET_RECSIZE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbData: u64,
     cbLongValueData: u64,
     cbOverhead: u64,
@@ -3526,7 +3526,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const JET_RECSIZE2 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbData: u64,
     cbLongValueData: u64,
     cbOverhead: u64,

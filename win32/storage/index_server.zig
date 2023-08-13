@@ -369,15 +369,15 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBID = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     uGuid: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         guid: Guid,
         pguid: *Guid,
     },
     eKind: u32,
     uName: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         pwszName: PWSTR,
         ulPropid: u32,
     },

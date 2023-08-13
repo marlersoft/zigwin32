@@ -1708,7 +1708,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const HIDP_LINK_COLLECTION_NODE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     LinkUsage: u16,
     LinkUsagePage: u16,
     Parent: u16,
@@ -1729,7 +1729,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     NumGlobalUnknowns: u8,
     Reserved: [3]u8,
     GlobalUnknowns: *HIDP_UNKNOWN_TOKEN,
@@ -1742,7 +1742,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const HIDD_CONFIGURATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cookie: *c_void,
     size: u32,
     RingBufferSize: u32,

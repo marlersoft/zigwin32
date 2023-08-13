@@ -4758,7 +4758,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DADAPTER_IDENTIFIER9 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Driver: [512]CHAR,
     Description: [512]CHAR,
     DeviceName: [32]CHAR,
@@ -4777,7 +4777,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DMEMORYPRESSURE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BytesEvictedFromProcess: u64,
     SizeOfInefficientAllocation: u64,
     LevelOfEfficiency: u32,
@@ -4789,7 +4789,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DPRESENTSTATS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     PresentCount: u32,
     PresentRefreshCount: u32,
     SyncRefreshCount: u32,
@@ -4803,7 +4803,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
     DeviceHandle: HANDLE,
     CryptoSessionHandle: HANDLE,
@@ -4817,7 +4817,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const D3DAES_CTR_IV = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     IV: u64,
     Count: u64,
 };

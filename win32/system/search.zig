@@ -9478,7 +9478,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBVECTOR = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     size: usize,
     ptr: *c_void,
 };
@@ -9489,7 +9489,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBTIMESTAMP = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     year: i16,
     month: u16,
     day: u16,
@@ -9505,7 +9505,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const SEC_OBJECT_ELEMENT = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     guidObjectType: Guid,
     ObjectID: DBID,
 };
@@ -9516,7 +9516,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const SEC_OBJECT = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cObjects: u32,
     prgObjects: *SEC_OBJECT_ELEMENT,
 };
@@ -9527,7 +9527,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBIMPLICITSESSION = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pUnkOuter: *IUnknown,
     piid: *Guid,
     pSession: *IUnknown,
@@ -9539,7 +9539,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBOBJECT = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwFlags: u32,
     iid: Guid,
 };
@@ -9550,7 +9550,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBBINDEXT = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pExtension: *u8,
     ulExtension: usize,
 };
@@ -9561,7 +9561,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBBINDING = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     iOrdinal: usize,
     obValue: usize,
     obLength: usize,
@@ -9585,7 +9585,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBFAILUREINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     hRow: usize,
     iColumn: usize,
     failure: HRESULT,
@@ -9597,7 +9597,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBCOLUMNINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pwszName: PWSTR,
     pTypeInfo: *ITypeInfo,
     iOrdinal: usize,
@@ -9615,7 +9615,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPARAMS = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pData: *c_void,
     cParamSets: usize,
     hAccessor: usize,
@@ -9627,7 +9627,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPARAMINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwFlags: u32,
     iOrdinal: usize,
     pwszName: PWSTR,
@@ -9644,7 +9644,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPROPIDSET = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     rgPropertyIDs: *u32,
     cPropertyIDs: u32,
     guidPropertySet: Guid,
@@ -9656,7 +9656,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPROPINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pwszDescription: PWSTR,
     dwPropertyID: u32,
     dwFlags: u32,
@@ -9670,7 +9670,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPROPINFOSET = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     rgPropertyInfos: *DBPROPINFO,
     cPropertyInfos: u32,
     guidPropertySet: Guid,
@@ -9682,7 +9682,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPROP = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwPropertyID: u32,
     dwOptions: u32,
     dwStatus: u32,
@@ -9696,7 +9696,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPROPSET = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     rgProperties: *DBPROP,
     cProperties: u32,
     guidPropertySet: Guid,
@@ -9708,7 +9708,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBINDEXCOLUMNDESC = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pColumnID: *DBID,
     eIndexColOrder: u32,
 };
@@ -9719,7 +9719,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBCOLUMNDESC = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pwszTypeName: PWSTR,
     pTypeInfo: *ITypeInfo,
     rgPropertySets: *DBPROPSET,
@@ -9738,7 +9738,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBCOLUMNACCESS = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pData: *c_void,
     columnid: DBID,
     cbDataLen: usize,
@@ -9756,7 +9756,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBCONSTRAINTDESC = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pConstraintID: *DBID,
     ConstraintType: u32,
     cColumns: usize,
@@ -9779,7 +9779,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const MDAXISINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbSize: usize,
     iAxis: usize,
     cDimensions: usize,
@@ -9794,7 +9794,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const RMTPACK = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pISeqStream: *ISequentialStream,
     cbData: u32,
     cBSTR: u32,
@@ -9817,7 +9817,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBPARAMBINDINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pwszDataSourceType: PWSTR,
     pwszName: PWSTR,
     ulParamSize: usize,
@@ -9832,7 +9832,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const DBLITERALINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     pwszLiteralValue: PWSTR,
     pwszInvalidChars: PWSTR,
     pwszInvalidStartingChars: PWSTR,
@@ -9847,7 +9847,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
 pub const ERRORINFO = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     hrError: HRESULT,
     dwMinor: u32,
     clsid: Guid,

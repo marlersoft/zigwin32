@@ -13565,7 +13565,7 @@ pub const SR_SECURITY_DESCRIPTOR = extern struct {
 };
 
 pub const USER_ALL_INFORMATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     LastLogon: LARGE_INTEGER,
     LastLogoff: LARGE_INTEGER,
     PasswordLastSet: LARGE_INTEGER,

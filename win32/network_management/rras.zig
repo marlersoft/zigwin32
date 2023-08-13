@@ -381,7 +381,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASCONNW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hrasconn: HRASCONN,
     szEntryName: [257]u16,
@@ -401,7 +401,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASCONNA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hrasconn: HRASCONN,
     szEntryName: [257]CHAR,
@@ -421,7 +421,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASDIALPARAMSW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     szEntryName: [257]u16,
     szPhoneNumber: [129]u16,
@@ -441,7 +441,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASDIALPARAMSA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     szEntryName: [257]CHAR,
     szPhoneNumber: [129]CHAR,
@@ -461,7 +461,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASEAPINFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSizeofEapInfo: u32,
     pbEapInfo: *u8,
 };
@@ -472,7 +472,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASDEVSPECIFICINFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     pbDevSpecificInfo: *u8,
 };
@@ -483,7 +483,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASDIALEXTENSIONS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     dwfOptions: u32,
     hwndParent: HWND,
@@ -500,7 +500,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwIPv4NegotiationError: u32,
     ipv4Address: IN_ADDR,
     ipv4ServerAddress: IN_ADDR,
@@ -524,7 +524,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASADPARAMS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -538,7 +538,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
 };
@@ -549,7 +549,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASPBDLGW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -568,7 +568,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASPBDLGA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -587,7 +587,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASENTRYDLGW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -605,7 +605,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASENTRYDLGA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,
@@ -623,7 +623,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RASDIALDLG = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     hwndOwner: HWND,
     dwFlags: u32,

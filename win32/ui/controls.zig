@@ -2081,7 +2081,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     xWidth: i32,
     yHeight: i32,
     Ascent: i32,
@@ -2096,7 +2096,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENDCOMPOSITIONNOTIFY = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     dwCode: ENDCOMPOSITIONNOTIFY_CODE,
 };
@@ -2107,7 +2107,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const TEXTRANGEA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: PSTR,
 };
@@ -2118,7 +2118,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const TEXTRANGEW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: PWSTR,
 };
@@ -2129,7 +2129,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const EDITSTREAM = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwCookie: usize,
     dwError: u32,
     pfnCallback: EDITSTREAMCALLBACK,
@@ -2141,7 +2141,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const FINDTEXTA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
 };
@@ -2152,7 +2152,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const FINDTEXTW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
 };
@@ -2163,7 +2163,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const FINDTEXTEXA = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
     chrgText: CHARRANGE,
@@ -2175,7 +2175,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const FINDTEXTEXW = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
     chrgText: CHARRANGE,
@@ -2187,7 +2187,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const FORMATRANGE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     hdc: HDC,
     hdcTarget: HDC,
     rc: RECT,
@@ -2201,7 +2201,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MSGFILTER = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2214,7 +2214,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const REQRESIZE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     rc: RECT,
 };
@@ -2225,7 +2225,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const SELCHANGE = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     chrg: CHARRANGE,
     seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
@@ -2237,7 +2237,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const _grouptypingchange = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     fGroupTyping: BOOL,
 };
@@ -2248,7 +2248,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const CLIPBOARDFORMAT = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     cf: u16,
 };
@@ -2259,7 +2259,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const GETCONTEXTMENUEX = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     chrg: CHARRANGE,
     dwFlags: u32,
     pt: POINT,
@@ -2272,7 +2272,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENDROPFILES = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     hDrop: HANDLE,
     cp: i32,
@@ -2285,7 +2285,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENPROTECTED = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2299,7 +2299,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENSAVECLIPBOARD = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     cObjectCount: i32,
     cch: i32,
@@ -2311,7 +2311,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENOLEOPFAILED = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     iob: i32,
     lOper: i32,
@@ -2324,7 +2324,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const OBJECTPOSITIONS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     cObjectCount: i32,
     pcpPositions: *i32,
@@ -2336,7 +2336,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENLINK = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2350,7 +2350,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENLOWFIRTF = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     szControl: PSTR,
 };
@@ -2361,7 +2361,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ENCORRECTTEXT = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     nmhdr: NMHDR,
     chrg: CHARRANGE,
     seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
@@ -2373,7 +2373,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const PUNCTUATION = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     iSize: u32,
     szPunctuation: PSTR,
 };
@@ -2384,7 +2384,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const REPASTESPECIAL = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwAspect: DVASPECT,
     dwParam: usize,
 };
@@ -2395,7 +2395,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const GETTEXTEX = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cb: u32,
     flags: GETTEXTEX_FLAGS,
     codepage: u32,
@@ -2409,7 +2409,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const HYPHENATEINFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     cbSize: i16,
     dxHyphenateZone: i16,
     pfnHyphenate: isize,

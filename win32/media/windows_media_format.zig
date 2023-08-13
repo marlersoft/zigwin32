@@ -998,7 +998,7 @@ pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
 pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
 
 pub const WM_STREAM_PRIORITY_RECORD = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     wStreamNumber: u16,
     fMandatory: BOOL,
 };
@@ -1257,7 +1257,7 @@ pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
 };
 
 pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     wRange: u16,
     dwTimecode: u32,
     dwUserbits: u32,

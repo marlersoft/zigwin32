@@ -13844,7 +13844,7 @@ pub const SYSTEM_BATTERY_STATE = extern struct {
 };
 
 pub const IMAGE_DOS_HEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     e_magic: u16,
     e_cblp: u16,
     e_cp: u16,
@@ -13867,7 +13867,7 @@ pub const IMAGE_DOS_HEADER = extern struct {
 };
 
 pub const IMAGE_OS2_HEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     ne_magic: u16,
     ne_ver: CHAR,
     ne_rev: CHAR,
@@ -13901,7 +13901,7 @@ pub const IMAGE_OS2_HEADER = extern struct {
 };
 
 pub const IMAGE_VXD_HEADER = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     e32_magic: u16,
     e32_border: u8,
     e32_worder: u8,
@@ -14016,12 +14016,12 @@ pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
 };
 
 pub const IMAGE_SYMBOL = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     N: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         ShortName: [8]u8,
         Name: extern struct {
-            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            // WARNING: unable to add field alignment because it's causing a compiler bug
             Short: u32,
             Long: u32,
         },
@@ -14035,12 +14035,12 @@ pub const IMAGE_SYMBOL = extern struct {
 };
 
 pub const IMAGE_SYMBOL_EX = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     N: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         ShortName: [8]u8,
         Name: extern struct {
-            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            // WARNING: unable to add field alignment because it's causing a compiler bug
             Short: u32,
             Long: u32,
         },
@@ -14054,7 +14054,7 @@ pub const IMAGE_SYMBOL_EX = extern struct {
 };
 
 pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     bAuxType: u8,
     bReserved: u8,
     SymbolTableIndex: u32,
@@ -14063,10 +14063,10 @@ pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
 
 pub const IMAGE_AUX_SYMBOL = extern union {
     Sym: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         TagIndex: u32,
         Misc: extern union {
-            // WARNING: this type has PackingSize=2, how to handle this in Zig?
+            // WARNING: unable to add field alignment because it's not implemented for unions
             LnSz: extern struct {
                 Linenumber: u16,
                 Size: u16,
@@ -14075,7 +14075,7 @@ pub const IMAGE_AUX_SYMBOL = extern union {
         },
         FcnAry: extern union {
             Function: extern struct {
-                // WARNING: this type has PackingSize=2, how to handle this in Zig?
+                // WARNING: unable to add field alignment because it's causing a compiler bug
                 PointerToLinenumber: u32,
                 PointerToNextFunction: u32,
             },
@@ -14089,7 +14089,7 @@ pub const IMAGE_AUX_SYMBOL = extern union {
         Name: [18]u8,
     },
     Section: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         Length: u32,
         NumberOfRelocations: u16,
         NumberOfLinenumbers: u16,
@@ -14101,7 +14101,7 @@ pub const IMAGE_AUX_SYMBOL = extern union {
     },
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF,
     CRC: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         crc: u32,
         rgbReserved: [14]u8,
     },
@@ -14109,7 +14109,7 @@ pub const IMAGE_AUX_SYMBOL = extern union {
 
 pub const IMAGE_AUX_SYMBOL_EX = extern union {
     Sym: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         WeakDefaultSymIndex: u32,
         WeakSearchType: u32,
         rgbReserved: [12]u8,
@@ -14118,7 +14118,7 @@ pub const IMAGE_AUX_SYMBOL_EX = extern union {
         Name: [20]u8,
     },
     Section: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         Length: u32,
         NumberOfRelocations: u16,
         NumberOfLinenumbers: u16,
@@ -14134,7 +14134,7 @@ pub const IMAGE_AUX_SYMBOL_EX = extern union {
         rgbReserved: [2]u8,
     },
     CRC: extern struct {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's causing a compiler bug
         crc: u32,
         rgbReserved: [16]u8,
     },
@@ -14146,9 +14146,9 @@ pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
 pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.F;
 
 pub const IMAGE_RELOCATION = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Anonymous: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         VirtualAddress: u32,
         RelocCount: u32,
     },
@@ -14158,7 +14158,7 @@ pub const IMAGE_RELOCATION = extern struct {
 
 pub const IMAGE_LINENUMBER = extern struct {
     Type: extern union {
-        // WARNING: this type has PackingSize=2, how to handle this in Zig?
+        // WARNING: unable to add field alignment because it's not implemented for unions
         SymbolTableIndex: u32,
         VirtualAddress: u32,
     },
@@ -14224,7 +14224,7 @@ pub const PIMAGE_TLS_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     StartAddressOfRawData: u64,
     EndAddressOfRawData: u64,
     AddressOfIndex: u64,
@@ -14471,7 +14471,7 @@ pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = extern union {
 };
 
 pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     BeginAddress: u64,
     EndAddress: u64,
     ExceptionHandler: u64,
@@ -14521,7 +14521,7 @@ pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
 };
 
 pub const NON_PAGED_DEBUG_INFO = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     Signature: u16,
     Flags: u16,
     Size: u32,

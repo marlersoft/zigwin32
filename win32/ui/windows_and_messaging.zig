@@ -2528,7 +2528,7 @@ pub const UPDATELAYEREDWINDOWINFO = extern struct {
 };
 
 pub const DLGTEMPLATE = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     style: u32,
     dwExtendedStyle: u32,
     cdit: u16,
@@ -2539,7 +2539,7 @@ pub const DLGTEMPLATE = extern struct {
 };
 
 pub const DLGITEMTEMPLATE = extern struct {
-    // WARNING: this type has PackingSize=2, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     style: u32,
     dwExtendedStyle: u32,
     x: i16,

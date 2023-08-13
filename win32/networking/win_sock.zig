@@ -862,7 +862,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const ATM_PVC_PARAMS = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     PvcConnectionId: ATM_CONNECTION_ID,
     PvcQos: QOS,
 };

@@ -1136,7 +1136,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const MODULEENTRY = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     szModule: [10]CHAR,
     hModule: HANDLE,
@@ -1151,7 +1151,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const GLOBALENTRY = extern struct {
-    // WARNING: this type has PackingSize=4, how to handle this in Zig?
+    // WARNING: unable to add field alignment because it's causing a compiler bug
     dwSize: u32,
     dwAddress: u32,
     dwBlockSize: u32,
