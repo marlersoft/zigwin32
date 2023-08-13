@@ -10851,12 +10851,6 @@ pub const IDontSupportEventSubscription = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn CoGetDefaultContext(
-    aptType: APTTYPE,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub extern "comsvcs" fn CoCreateActivity(
     pIUnknown: *IUnknown,
     riid: *const Guid,
@@ -10891,6 +10885,12 @@ pub extern "comsvcs" fn MTSCreateActivity(
 
 pub extern "MTxDM" fn GetDispenserManager(
     param0: **IDispenserManager,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "OLE32" fn CoGetDefaultContext(
+    aptType: APTTYPE,
+    riid: *const Guid,
+    ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

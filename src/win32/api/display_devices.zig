@@ -6,6 +6,43 @@
 //--------------------------------------------------------------------------------
 // Section: Types (243)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
+pub const HSEMAPHORE = ?*c_void;
+
+pub const RECT = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const RECTL = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const POINT = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const POINTL = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const SIZE = extern struct {
+    cx: i32,
+    cy: i32,
+};
+
+pub const POINTS = extern struct {
+    x: i16,
+    y: i16,
+};
+
 pub const DDVIDEOPORTCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -1929,43 +1966,6 @@ pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
-pub const HSEMAPHORE = ?*c_void;
-
-pub const RECT = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const RECTL = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const POINT = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const POINTL = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const SIZE = extern struct {
-    cx: i32,
-    cy: i32,
-};
-
-pub const POINTS = extern struct {
-    x: i16,
-    y: i16,
-};
-
 pub const VIDEOPARAMETERS = extern struct {
     Guid: Guid,
     dwOffset: u32,
@@ -2169,6 +2169,37 @@ pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (83)
 //--------------------------------------------------------------------------------
+pub extern "USER32" fn GetDisplayConfigBufferSizes(
+    flags: u32,
+    numPathArrayElements: *u32,
+    numModeInfoArrayElements: *u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn SetDisplayConfig(
+    numPathArrayElements: u32,
+    pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
+    numModeInfoArrayElements: u32,
+    modeInfoArray: ?[*]DISPLAYCONFIG_MODE_INFO,
+    flags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn QueryDisplayConfig(
+    flags: u32,
+    numPathArrayElements: *u32,
+    pathArray: [*]DISPLAYCONFIG_PATH_INFO,
+    numModeInfoArrayElements: *u32,
+    modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
+    currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DisplayConfigGetDeviceInfo(
+    requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DisplayConfigSetDeviceInfo(
+    setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 pub extern "GDI32" fn BRUSHOBJ_pvAllocRbrush(
     pbo: *BRUSHOBJ,
     cj: u32,
@@ -2676,37 +2707,6 @@ pub extern "GDI32" fn EngGetCurrentCodePage(
     OemCodePage: *u16,
     AnsiCodePage: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "USER32" fn GetDisplayConfigBufferSizes(
-    flags: u32,
-    numPathArrayElements: *u32,
-    numModeInfoArrayElements: *u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn SetDisplayConfig(
-    numPathArrayElements: u32,
-    pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
-    numModeInfoArrayElements: u32,
-    modeInfoArray: ?[*]DISPLAYCONFIG_MODE_INFO,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn QueryDisplayConfig(
-    flags: u32,
-    numPathArrayElements: *u32,
-    pathArray: [*]DISPLAYCONFIG_PATH_INFO,
-    numModeInfoArrayElements: *u32,
-    modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
-    currentTopologyId: *DISPLAYCONFIG_TOPOLOGY_ID,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DisplayConfigGetDeviceInfo(
-    requestPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DisplayConfigSetDeviceInfo(
-    setPacket: *DISPLAYCONFIG_DEVICE_INFO_HEADER,
-) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 //--------------------------------------------------------------------------------

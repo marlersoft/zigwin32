@@ -6,6 +6,8 @@
 //--------------------------------------------------------------------------------
 // Section: Types (486)
 //--------------------------------------------------------------------------------
+pub const HRESULT = i32;
+
 pub const DVASPECT = extern enum(i32) {
     CONTENT = 1,
     THUMBNAIL = 2,
@@ -48,6 +50,187 @@ pub const TYSPEC_FILENAME = TYSPEC.FILENAME;
 pub const TYSPEC_PROGID = TYSPEC.PROGID;
 pub const TYSPEC_PACKAGENAME = TYSPEC.PACKAGENAME;
 pub const TYSPEC_OBJECTID = TYSPEC.OBJECTID;
+
+const IID_IEventPublisher_Value = @import("../zig.zig").Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
+pub const IID_IEventPublisher = &IID_IEventPublisher_Value;
+pub const IEventPublisher = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_PublisherID: fn(
+            self: *const IEventPublisher,
+            pbstrPublisherID: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PublisherID: fn(
+            self: *const IEventPublisher,
+            bstrPublisherID: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PublisherName: fn(
+            self: *const IEventPublisher,
+            pbstrPublisherName: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PublisherName: fn(
+            self: *const IEventPublisher,
+            bstrPublisherName: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PublisherType: fn(
+            self: *const IEventPublisher,
+            pbstrPublisherType: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PublisherType: fn(
+            self: *const IEventPublisher,
+            bstrPublisherType: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_OwnerSID: fn(
+            self: *const IEventPublisher,
+            pbstrOwnerSID: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_OwnerSID: fn(
+            self: *const IEventPublisher,
+            bstrOwnerSID: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Description: fn(
+            self: *const IEventPublisher,
+            pbstrDescription: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Description: fn(
+            self: *const IEventPublisher,
+            bstrDescription: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultProperty: fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: BSTR,
+            propertyValue: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PutDefaultProperty: fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: BSTR,
+            propertyValue: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveDefaultProperty: fn(
+            self: *const IEventPublisher,
+            bstrPropertyName: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultPropertyCollection: fn(
+            self: *const IEventPublisher,
+            collection: **IEventObjectCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_get_PublisherID(self: *const T, pbstrPublisherID: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherID(@ptrCast(*const IEventPublisher, self), pbstrPublisherID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_put_PublisherID(self: *const T, bstrPublisherID: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherID(@ptrCast(*const IEventPublisher, self), bstrPublisherID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_get_PublisherName(self: *const T, pbstrPublisherName: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherName(@ptrCast(*const IEventPublisher, self), pbstrPublisherName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_put_PublisherName(self: *const T, bstrPublisherName: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherName(@ptrCast(*const IEventPublisher, self), bstrPublisherName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_get_PublisherType(self: *const T, pbstrPublisherType: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherType(@ptrCast(*const IEventPublisher, self), pbstrPublisherType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_put_PublisherType(self: *const T, bstrPublisherType: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherType(@ptrCast(*const IEventPublisher, self), bstrPublisherType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_get_OwnerSID(self: *const T, pbstrOwnerSID: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_OwnerSID(@ptrCast(*const IEventPublisher, self), pbstrOwnerSID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_put_OwnerSID(self: *const T, bstrOwnerSID: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_OwnerSID(@ptrCast(*const IEventPublisher, self), bstrOwnerSID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_Description(@ptrCast(*const IEventPublisher, self), pbstrDescription);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_Description(@ptrCast(*const IEventPublisher, self), bstrDescription);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_GetDefaultProperty(self: *const T, bstrPropertyName: BSTR, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_PutDefaultProperty(self: *const T, bstrPropertyName: BSTR, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).PutDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_RemoveDefaultProperty(self: *const T, bstrPropertyName: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).RemoveDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventPublisher_GetDefaultPropertyCollection(self: *const T, collection: **IEventObjectCollection) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultPropertyCollection(@ptrCast(*const IEventPublisher, self), collection);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const EOC_ChangeType = extern enum(i32) {
+    EOC_NewObject = 0,
+    EOC_ModifiedObject = 1,
+    EOC_DeletedObject = 2,
+};
+pub const EOC_NewObject = EOC_ChangeType.EOC_NewObject;
+pub const EOC_ModifiedObject = EOC_ChangeType.EOC_ModifiedObject;
+pub const EOC_DeletedObject = EOC_ChangeType.EOC_DeletedObject;
+
+const IID_IEventProperty_Value = @import("../zig.zig").Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
+pub const IID_IEventProperty = &IID_IEventProperty_Value;
+pub const IEventProperty = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Name: fn(
+            self: *const IEventProperty,
+            propertyName: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: fn(
+            self: *const IEventProperty,
+            propertyName: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: fn(
+            self: *const IEventProperty,
+            propertyValue: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: fn(
+            self: *const IEventProperty,
+            propertyValue: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventProperty_get_Name(self: *const T, propertyName: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Name(@ptrCast(*const IEventProperty, self), propertyName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventProperty_put_Name(self: *const T, propertyName: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Name(@ptrCast(*const IEventProperty, self), propertyName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventProperty_get_Value(self: *const T, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Value(@ptrCast(*const IEventProperty, self), propertyValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEventProperty_put_Value(self: *const T, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Value(@ptrCast(*const IEventProperty, self), propertyValue);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
 pub const COAUTHIDENTITY = extern struct {
     User: *u16,
@@ -14439,187 +14622,54 @@ pub const IMessageDispatcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HRESULT = i32;
-
-const IID_IEventPublisher_Value = @import("../zig.zig").Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
-pub const IID_IEventPublisher = &IID_IEventPublisher_Value;
-pub const IEventPublisher = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_PublisherID: fn(
-            self: *const IEventPublisher,
-            pbstrPublisherID: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_PublisherID: fn(
-            self: *const IEventPublisher,
-            bstrPublisherID: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_PublisherName: fn(
-            self: *const IEventPublisher,
-            pbstrPublisherName: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_PublisherName: fn(
-            self: *const IEventPublisher,
-            bstrPublisherName: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_PublisherType: fn(
-            self: *const IEventPublisher,
-            pbstrPublisherType: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_PublisherType: fn(
-            self: *const IEventPublisher,
-            bstrPublisherType: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_OwnerSID: fn(
-            self: *const IEventPublisher,
-            pbstrOwnerSID: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_OwnerSID: fn(
-            self: *const IEventPublisher,
-            bstrOwnerSID: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_Description: fn(
-            self: *const IEventPublisher,
-            pbstrDescription: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_Description: fn(
-            self: *const IEventPublisher,
-            bstrDescription: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultProperty: fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: BSTR,
-            propertyValue: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutDefaultProperty: fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: BSTR,
-            propertyValue: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveDefaultProperty: fn(
-            self: *const IEventPublisher,
-            bstrPropertyName: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultPropertyCollection: fn(
-            self: *const IEventPublisher,
-            collection: **IEventObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_get_PublisherID(self: *const T, pbstrPublisherID: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherID(@ptrCast(*const IEventPublisher, self), pbstrPublisherID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_put_PublisherID(self: *const T, bstrPublisherID: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherID(@ptrCast(*const IEventPublisher, self), bstrPublisherID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_get_PublisherName(self: *const T, pbstrPublisherName: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherName(@ptrCast(*const IEventPublisher, self), pbstrPublisherName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_put_PublisherName(self: *const T, bstrPublisherName: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherName(@ptrCast(*const IEventPublisher, self), bstrPublisherName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_get_PublisherType(self: *const T, pbstrPublisherType: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherType(@ptrCast(*const IEventPublisher, self), pbstrPublisherType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_put_PublisherType(self: *const T, bstrPublisherType: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherType(@ptrCast(*const IEventPublisher, self), bstrPublisherType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_get_OwnerSID(self: *const T, pbstrOwnerSID: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_OwnerSID(@ptrCast(*const IEventPublisher, self), pbstrOwnerSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_put_OwnerSID(self: *const T, bstrOwnerSID: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_OwnerSID(@ptrCast(*const IEventPublisher, self), bstrOwnerSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_Description(@ptrCast(*const IEventPublisher, self), pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_put_Description(self: *const T, bstrDescription: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_Description(@ptrCast(*const IEventPublisher, self), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_GetDefaultProperty(self: *const T, bstrPropertyName: BSTR, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_PutDefaultProperty(self: *const T, bstrPropertyName: BSTR, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).PutDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_RemoveDefaultProperty(self: *const T, bstrPropertyName: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).RemoveDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventPublisher_GetDefaultPropertyCollection(self: *const T, collection: **IEventObjectCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultPropertyCollection(@ptrCast(*const IEventPublisher, self), collection);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+pub const ACTRL_ACCESS_ENTRYA = extern struct {
+    Trustee: TRUSTEE_A,
+    fAccessFlags: u32,
+    Access: u32,
+    ProvSpecificAccess: u32,
+    Inheritance: u32,
+    lpInheritProperty: PSTR,
 };
 
-pub const EOC_ChangeType = extern enum(i32) {
-    EOC_NewObject = 0,
-    EOC_ModifiedObject = 1,
-    EOC_DeletedObject = 2,
+pub const ACTRL_ACCESS_ENTRYW = extern struct {
+    Trustee: TRUSTEE_W,
+    fAccessFlags: u32,
+    Access: u32,
+    ProvSpecificAccess: u32,
+    Inheritance: u32,
+    lpInheritProperty: PWSTR,
 };
-pub const EOC_NewObject = EOC_ChangeType.EOC_NewObject;
-pub const EOC_ModifiedObject = EOC_ChangeType.EOC_ModifiedObject;
-pub const EOC_DeletedObject = EOC_ChangeType.EOC_DeletedObject;
 
-const IID_IEventProperty_Value = @import("../zig.zig").Guid.initString("da538ee2-f4de-11d1-b6bb-00805fc79216");
-pub const IID_IEventProperty = &IID_IEventProperty_Value;
-pub const IEventProperty = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Name: fn(
-            self: *const IEventProperty,
-            propertyName: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_Name: fn(
-            self: *const IEventProperty,
-            propertyName: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_Value: fn(
-            self: *const IEventProperty,
-            propertyValue: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_Value: fn(
-            self: *const IEventProperty,
-            propertyValue: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventProperty_get_Name(self: *const T, propertyName: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Name(@ptrCast(*const IEventProperty, self), propertyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventProperty_put_Name(self: *const T, propertyName: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Name(@ptrCast(*const IEventProperty, self), propertyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventProperty_get_Value(self: *const T, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Value(@ptrCast(*const IEventProperty, self), propertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEventProperty_put_Value(self: *const T, propertyValue: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Value(@ptrCast(*const IEventProperty, self), propertyValue);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+pub const ACTRL_ACCESS_ENTRY_LISTA = extern struct {
+    cEntries: u32,
+    pAccessList: *ACTRL_ACCESS_ENTRYA,
+};
+
+pub const ACTRL_ACCESS_ENTRY_LISTW = extern struct {
+    cEntries: u32,
+    pAccessList: *ACTRL_ACCESS_ENTRYW,
+};
+
+pub const ACTRL_PROPERTY_ENTRYA = extern struct {
+    lpProperty: PSTR,
+    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTA,
+    fListFlags: u32,
+};
+
+pub const ACTRL_PROPERTY_ENTRYW = extern struct {
+    lpProperty: PWSTR,
+    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTW,
+    fListFlags: u32,
+};
+
+pub const ACTRL_ACCESSA = extern struct {
+    cEntries: u32,
+    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYA,
+};
+
+pub const ACTRL_ACCESSW = extern struct {
+    cEntries: u32,
+    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYW,
 };
 
 const IID_IAccessibilityDockingServiceCallback_Value = @import("../zig.zig").Guid.initString("157733fd-a592-42e5-b594-248468c5a81b");
@@ -14685,56 +14735,6 @@ pub const IAccessibilityDockingService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACTRL_ACCESS_ENTRYA = extern struct {
-    Trustee: TRUSTEE_A,
-    fAccessFlags: u32,
-    Access: u32,
-    ProvSpecificAccess: u32,
-    Inheritance: u32,
-    lpInheritProperty: PSTR,
-};
-
-pub const ACTRL_ACCESS_ENTRYW = extern struct {
-    Trustee: TRUSTEE_W,
-    fAccessFlags: u32,
-    Access: u32,
-    ProvSpecificAccess: u32,
-    Inheritance: u32,
-    lpInheritProperty: PWSTR,
-};
-
-pub const ACTRL_ACCESS_ENTRY_LISTA = extern struct {
-    cEntries: u32,
-    pAccessList: *ACTRL_ACCESS_ENTRYA,
-};
-
-pub const ACTRL_ACCESS_ENTRY_LISTW = extern struct {
-    cEntries: u32,
-    pAccessList: *ACTRL_ACCESS_ENTRYW,
-};
-
-pub const ACTRL_PROPERTY_ENTRYA = extern struct {
-    lpProperty: PSTR,
-    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTA,
-    fListFlags: u32,
-};
-
-pub const ACTRL_PROPERTY_ENTRYW = extern struct {
-    lpProperty: PWSTR,
-    pAccessEntryList: *ACTRL_ACCESS_ENTRY_LISTW,
-    fListFlags: u32,
-};
-
-pub const ACTRL_ACCESSA = extern struct {
-    cEntries: u32,
-    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYA,
-};
-
-pub const ACTRL_ACCESSW = extern struct {
-    cEntries: u32,
-    pPropertyAccessList: *ACTRL_PROPERTY_ENTRYW,
-};
-
 pub const COINIT = extern enum(i32) {
     APARTMENTTHREADED = 2,
     MULTITHREADED = 0,
@@ -14761,6 +14761,190 @@ pub const SD_ACCESSRESTRICTIONS = COMSD.SD_ACCESSRESTRICTIONS;
 //--------------------------------------------------------------------------------
 // Section: Functions (358)
 //--------------------------------------------------------------------------------
+pub extern "OLE32" fn HDC_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HDC_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserFree(
+    param0: *u32,
+    param1: *HDC,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HDC_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HDC_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserFree64(
+    param0: *u32,
+    param1: *HDC,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HBITMAP_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HBITMAP_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HBITMAP_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HBITMAP_UserFree(
+    param0: *u32,
+    param1: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HICON_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HICON_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HICON_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HICON_UserFree(
+    param0: *u32,
+    param1: *HICON,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HPALETTE_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HPALETTE_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HPALETTE_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HPALETTE_UserFree(
+    param0: *u32,
+    param1: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HBITMAP_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HBITMAP_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HBITMAP_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HBITMAP_UserFree64(
+    param0: *u32,
+    param1: *HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HICON_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HICON_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HICON_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HICON,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HICON_UserFree64(
+    param0: *u32,
+    param1: *HICON,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HPALETTE_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HPALETTE_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HPALETTE_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HPALETTE_UserFree64(
+    param0: *u32,
+    param1: *HPALETTE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLE32" fn CoGetMalloc(
     dwMemContext: u32,
     ppMalloc: **IMalloc,
@@ -15199,75 +15383,6 @@ pub extern "OLE32" fn CLIPFORMAT_UserFree(
     param1: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HBITMAP_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HBITMAP_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HBITMAP_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HBITMAP_UserFree(
-    param0: *u32,
-    param1: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HDC_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HDC_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserFree(
-    param0: *u32,
-    param1: *HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HICON_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HICON_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserFree(
-    param0: *u32,
-    param1: *HICON,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "ole32" fn SNB_UserSize(
     param0: *u32,
     param1: u32,
@@ -15312,75 +15427,6 @@ pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal64(
 pub extern "OLE32" fn CLIPFORMAT_UserFree64(
     param0: *u32,
     param1: *u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HBITMAP_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HBITMAP_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HBITMAP_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HBITMAP_UserFree64(
-    param0: *u32,
-    param1: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HDC_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HDC_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserFree64(
-    param0: *u32,
-    param1: *HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HICON_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HICON_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserFree64(
-    param0: *u32,
-    param1: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ole32" fn SNB_UserSize64(
@@ -16464,29 +16510,6 @@ pub extern "ole32" fn OleSetAutoConvert(
     clsidNew: *const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "OLE32" fn HPALETTE_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HPALETTE_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HPALETTE_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HPALETTE_UserFree(
-    param0: *u32,
-    param1: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "OLE32" fn HRGN_UserSize(
     param0: *u32,
     param1: u32,
@@ -16508,29 +16531,6 @@ pub extern "OLE32" fn HRGN_UserUnmarshal(
 pub extern "OLE32" fn HRGN_UserFree(
     param0: *u32,
     param1: *HRGN,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HPALETTE_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HPALETTE_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HPALETTE_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HPALETTE,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HPALETTE_UserFree64(
-    param0: *u32,
-    param1: *HPALETTE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn OleCreatePropertyFrame(

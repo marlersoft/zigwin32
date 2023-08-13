@@ -6,6 +6,481 @@
 //--------------------------------------------------------------------------------
 // Section: Types (87)
 //--------------------------------------------------------------------------------
+pub const DLGPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const TIMERPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: ?*c_void,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const HOOKPROC = fn(
+    code: i32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const SENDASYNCPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: ?*c_void,
+    param3: LRESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PROPENUMPROCA = fn(
+    param0: HWND,
+    param1: [*:0]const u8,
+    param2: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCW = fn(
+    param0: HWND,
+    param1: [*:0]const u16,
+    param2: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCEXA = fn(
+    param0: HWND,
+    param1: PSTR,
+    param2: HANDLE,
+    param3: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PROPENUMPROCEXW = fn(
+    param0: HWND,
+    param1: PWSTR,
+    param2: HANDLE,
+    param3: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const CBT_CREATEWNDA = extern struct {
+    lpcs: *CREATESTRUCTA,
+    hwndInsertAfter: HWND,
+};
+
+pub const CBT_CREATEWNDW = extern struct {
+    lpcs: *CREATESTRUCTW,
+    hwndInsertAfter: HWND,
+};
+
+pub const CBTACTIVATESTRUCT = extern struct {
+    fMouse: BOOL,
+    hWndActive: HWND,
+};
+
+pub const EVENTMSG = extern struct {
+    message: u32,
+    paramL: u32,
+    paramH: u32,
+    time: u32,
+    hwnd: HWND,
+};
+
+pub const CWPSTRUCT = extern struct {
+    lParam: LPARAM,
+    wParam: WPARAM,
+    message: u32,
+    hwnd: HWND,
+};
+
+pub const CWPRETSTRUCT = extern struct {
+    lResult: LRESULT,
+    lParam: LPARAM,
+    wParam: WPARAM,
+    message: u32,
+    hwnd: HWND,
+};
+
+pub const KBDLLHOOKSTRUCT = extern struct {
+    vkCode: u32,
+    scanCode: u32,
+    flags: u32,
+    time: u32,
+    dwExtraInfo: ?*c_void,
+};
+
+pub const MSLLHOOKSTRUCT = extern struct {
+    pt: POINT,
+    mouseData: u32,
+    flags: u32,
+    time: u32,
+    dwExtraInfo: ?*c_void,
+};
+
+pub const DEBUGHOOKINFO = extern struct {
+    idThread: u32,
+    idThreadInstaller: u32,
+    lParam: LPARAM,
+    wParam: WPARAM,
+    code: i32,
+};
+
+pub const MOUSEHOOKSTRUCT = extern struct {
+    pt: POINT,
+    hwnd: HWND,
+    wHitTestCode: u32,
+    dwExtraInfo: ?*c_void,
+};
+
+pub const MOUSEHOOKSTRUCTEX = extern struct {
+    __AnonymousBase_winuser_L1173_C46: MOUSEHOOKSTRUCT,
+    mouseData: u32,
+};
+
+pub const WNDCLASSEXA = extern struct {
+    cbSize: u32,
+    style: u32,
+    lpfnWndProc: WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: HINSTANCE,
+    hIcon: HICON,
+    hCursor: HCURSOR,
+    hbrBackground: HBRUSH,
+    lpszMenuName: [*:0]const u8,
+    lpszClassName: [*:0]const u8,
+    hIconSm: HICON,
+};
+
+pub const WNDCLASSEXW = extern struct {
+    cbSize: u32,
+    style: u32,
+    lpfnWndProc: WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: HINSTANCE,
+    hIcon: HICON,
+    hCursor: HCURSOR,
+    hbrBackground: HBRUSH,
+    lpszMenuName: [*:0]const u16,
+    lpszClassName: [*:0]const u16,
+    hIconSm: HICON,
+};
+
+pub const WNDCLASSA = extern struct {
+    style: u32,
+    lpfnWndProc: WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: HINSTANCE,
+    hIcon: HICON,
+    hCursor: HCURSOR,
+    hbrBackground: HBRUSH,
+    lpszMenuName: [*:0]const u8,
+    lpszClassName: [*:0]const u8,
+};
+
+pub const WNDCLASSW = extern struct {
+    style: u32,
+    lpfnWndProc: WNDPROC,
+    cbClsExtra: i32,
+    cbWndExtra: i32,
+    hInstance: HINSTANCE,
+    hIcon: HICON,
+    hCursor: HCURSOR,
+    hbrBackground: HBRUSH,
+    lpszMenuName: [*:0]const u16,
+    lpszClassName: [*:0]const u16,
+};
+
+pub const MSG = extern struct {
+    hwnd: HWND,
+    message: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    time: u32,
+    pt: POINT,
+};
+
+pub const MINMAXINFO = extern struct {
+    ptReserved: POINT,
+    ptMaxSize: POINT,
+    ptMaxPosition: POINT,
+    ptMinTrackSize: POINT,
+    ptMaxTrackSize: POINT,
+};
+
+pub const WINDOWPOS = extern struct {
+    hwnd: HWND,
+    hwndInsertAfter: HWND,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    flags: u32,
+};
+
+pub const NCCALCSIZE_PARAMS = extern struct {
+    rgrc: [3]RECT,
+    lppos: *WINDOWPOS,
+};
+
+pub const CREATESTRUCTA = extern struct {
+    lpCreateParams: *c_void,
+    hInstance: HINSTANCE,
+    hMenu: HMENU,
+    hwndParent: HWND,
+    cy: i32,
+    cx: i32,
+    y: i32,
+    x: i32,
+    style: i32,
+    lpszName: [*:0]const u8,
+    lpszClass: [*:0]const u8,
+    dwExStyle: u32,
+};
+
+pub const CREATESTRUCTW = extern struct {
+    lpCreateParams: *c_void,
+    hInstance: HINSTANCE,
+    hMenu: HMENU,
+    hwndParent: HWND,
+    cy: i32,
+    cx: i32,
+    y: i32,
+    x: i32,
+    style: i32,
+    lpszName: [*:0]const u16,
+    lpszClass: [*:0]const u16,
+    dwExStyle: u32,
+};
+
+pub const WINDOWPLACEMENT = extern struct {
+    length: u32,
+    flags: u32,
+    showCmd: u32,
+    ptMinPosition: POINT,
+    ptMaxPosition: POINT,
+    rcNormalPosition: RECT,
+};
+
+pub const STYLESTRUCT = extern struct {
+    styleOld: u32,
+    styleNew: u32,
+};
+
+pub const BSMINFO = extern struct {
+    cbSize: u32,
+    hdesk: HDESK,
+    hwnd: HWND,
+    luid: LUID,
+};
+
+pub const UPDATELAYEREDWINDOWINFO = extern struct {
+    cbSize: u32,
+    hdcDst: HDC,
+    pptDst: *const POINT,
+    psize: *const SIZE,
+    hdcSrc: HDC,
+    pptSrc: *const POINT,
+    crKey: u32,
+    pblend: *const BLENDFUNCTION,
+    dwFlags: u32,
+    prcDirty: *const RECT,
+};
+
+pub const DLGTEMPLATE = extern struct {
+    style: u32,
+    dwExtendedStyle: u32,
+    cdit: u16,
+    x: i16,
+    y: i16,
+    cx: i16,
+    cy: i16,
+};
+
+pub const DLGITEMTEMPLATE = extern struct {
+    style: u32,
+    dwExtendedStyle: u32,
+    x: i16,
+    y: i16,
+    cx: i16,
+    cy: i16,
+    id: u16,
+};
+
+pub const MSGBOXPARAMSA = extern struct {
+    cbSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpszText: [*:0]const u8,
+    lpszCaption: [*:0]const u8,
+    dwStyle: u32,
+    lpszIcon: [*:0]const u8,
+    dwContextHelpId: ?*c_void,
+    lpfnMsgBoxCallback: MSGBOXCALLBACK,
+    dwLanguageId: u32,
+};
+
+pub const MSGBOXPARAMSW = extern struct {
+    cbSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpszText: [*:0]const u16,
+    lpszCaption: [*:0]const u16,
+    dwStyle: u32,
+    lpszIcon: [*:0]const u16,
+    dwContextHelpId: ?*c_void,
+    lpfnMsgBoxCallback: MSGBOXCALLBACK,
+    dwLanguageId: u32,
+};
+
+pub const MDICREATESTRUCTA = extern struct {
+    szClass: [*:0]const u8,
+    szTitle: [*:0]const u8,
+    hOwner: HANDLE,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    style: u32,
+    lParam: LPARAM,
+};
+
+pub const MDICREATESTRUCTW = extern struct {
+    szClass: [*:0]const u16,
+    szTitle: [*:0]const u16,
+    hOwner: HANDLE,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    style: u32,
+    lParam: LPARAM,
+};
+
+pub const CLIENTCREATESTRUCT = extern struct {
+    hWindowMenu: HANDLE,
+    idFirstChild: u32,
+};
+
+pub const NONCLIENTMETRICSA = extern struct {
+    cbSize: u32,
+    iBorderWidth: i32,
+    iScrollWidth: i32,
+    iScrollHeight: i32,
+    iCaptionWidth: i32,
+    iCaptionHeight: i32,
+    lfCaptionFont: LOGFONTA,
+    iSmCaptionWidth: i32,
+    iSmCaptionHeight: i32,
+    lfSmCaptionFont: LOGFONTA,
+    iMenuWidth: i32,
+    iMenuHeight: i32,
+    lfMenuFont: LOGFONTA,
+    lfStatusFont: LOGFONTA,
+    lfMessageFont: LOGFONTA,
+    iPaddedBorderWidth: i32,
+};
+
+pub const NONCLIENTMETRICSW = extern struct {
+    cbSize: u32,
+    iBorderWidth: i32,
+    iScrollWidth: i32,
+    iScrollHeight: i32,
+    iCaptionWidth: i32,
+    iCaptionHeight: i32,
+    lfCaptionFont: LOGFONTW,
+    iSmCaptionWidth: i32,
+    iSmCaptionHeight: i32,
+    lfSmCaptionFont: LOGFONTW,
+    iMenuWidth: i32,
+    iMenuHeight: i32,
+    lfMenuFont: LOGFONTW,
+    lfStatusFont: LOGFONTW,
+    lfMessageFont: LOGFONTW,
+    iPaddedBorderWidth: i32,
+};
+
+pub const MINIMIZEDMETRICS = extern struct {
+    cbSize: u32,
+    iWidth: i32,
+    iHorzGap: i32,
+    iVertGap: i32,
+    iArrange: i32,
+};
+
+pub const ANIMATIONINFO = extern struct {
+    cbSize: u32,
+    iMinAnimate: i32,
+};
+
+pub const AUDIODESCRIPTION = extern struct {
+    cbSize: u32,
+    Enabled: BOOL,
+    Locale: u32,
+};
+
+pub const GUITHREADINFO = extern struct {
+    cbSize: u32,
+    flags: u32,
+    hwndActive: HWND,
+    hwndFocus: HWND,
+    hwndCapture: HWND,
+    hwndMenuOwner: HWND,
+    hwndMoveSize: HWND,
+    hwndCaret: HWND,
+    rcCaret: RECT,
+};
+
+pub const WINDOWINFO = extern struct {
+    cbSize: u32,
+    rcWindow: RECT,
+    rcClient: RECT,
+    dwStyle: u32,
+    dwExStyle: u32,
+    dwWindowStatus: u32,
+    cxWindowBorders: u32,
+    cyWindowBorders: u32,
+    atomWindowType: u16,
+    wCreatorVersion: u16,
+};
+
+pub const TITLEBARINFO = extern struct {
+    cbSize: u32,
+    rcTitleBar: RECT,
+    rgstate: [6]u32,
+};
+
+pub const TITLEBARINFOEX = extern struct {
+    cbSize: u32,
+    rcTitleBar: RECT,
+    rgstate: [6]u32,
+    rgrect: [6]RECT,
+};
+
+pub const ALTTABINFO = extern struct {
+    cbSize: u32,
+    cItems: i32,
+    cColumns: i32,
+    cRows: i32,
+    iColFocus: i32,
+    iRowFocus: i32,
+    cxItem: i32,
+    cyItem: i32,
+    ptStart: POINT,
+};
+
+pub const CHANGEFILTERSTRUCT = extern struct {
+    cbSize: u32,
+    ExtStatus: u32,
+};
+
+// TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
+pub const HHOOK = ?*c_void;
+
+pub const HWND = ?*c_void;
+
+pub const LPARAM = ?*c_void;
+
+pub const WPARAM = ?*c_void;
+
 pub const LPOFNHOOKPROC = fn(
     param0: HWND,
     param1: u32,
@@ -493,572 +968,10 @@ pub const PAGESETUPDLGW = extern struct {
     hPageSetupTemplate: ?*c_void,
 };
 
-// TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
-pub const HHOOK = ?*c_void;
-
-pub const HWND = ?*c_void;
-
-pub const LPARAM = ?*c_void;
-
-pub const WPARAM = ?*c_void;
-
-pub const DLGPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const TIMERPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: ?*c_void,
-    param3: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const HOOKPROC = fn(
-    code: i32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const SENDASYNCPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: ?*c_void,
-    param3: LRESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PROPENUMPROCA = fn(
-    param0: HWND,
-    param1: [*:0]const u8,
-    param2: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCW = fn(
-    param0: HWND,
-    param1: [*:0]const u16,
-    param2: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCEXA = fn(
-    param0: HWND,
-    param1: PSTR,
-    param2: HANDLE,
-    param3: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PROPENUMPROCEXW = fn(
-    param0: HWND,
-    param1: PWSTR,
-    param2: HANDLE,
-    param3: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const CBT_CREATEWNDA = extern struct {
-    lpcs: *CREATESTRUCTA,
-    hwndInsertAfter: HWND,
-};
-
-pub const CBT_CREATEWNDW = extern struct {
-    lpcs: *CREATESTRUCTW,
-    hwndInsertAfter: HWND,
-};
-
-pub const CBTACTIVATESTRUCT = extern struct {
-    fMouse: BOOL,
-    hWndActive: HWND,
-};
-
-pub const EVENTMSG = extern struct {
-    message: u32,
-    paramL: u32,
-    paramH: u32,
-    time: u32,
-    hwnd: HWND,
-};
-
-pub const CWPSTRUCT = extern struct {
-    lParam: LPARAM,
-    wParam: WPARAM,
-    message: u32,
-    hwnd: HWND,
-};
-
-pub const CWPRETSTRUCT = extern struct {
-    lResult: LRESULT,
-    lParam: LPARAM,
-    wParam: WPARAM,
-    message: u32,
-    hwnd: HWND,
-};
-
-pub const KBDLLHOOKSTRUCT = extern struct {
-    vkCode: u32,
-    scanCode: u32,
-    flags: u32,
-    time: u32,
-    dwExtraInfo: ?*c_void,
-};
-
-pub const MSLLHOOKSTRUCT = extern struct {
-    pt: POINT,
-    mouseData: u32,
-    flags: u32,
-    time: u32,
-    dwExtraInfo: ?*c_void,
-};
-
-pub const DEBUGHOOKINFO = extern struct {
-    idThread: u32,
-    idThreadInstaller: u32,
-    lParam: LPARAM,
-    wParam: WPARAM,
-    code: i32,
-};
-
-pub const MOUSEHOOKSTRUCT = extern struct {
-    pt: POINT,
-    hwnd: HWND,
-    wHitTestCode: u32,
-    dwExtraInfo: ?*c_void,
-};
-
-pub const MOUSEHOOKSTRUCTEX = extern struct {
-    __AnonymousBase_winuser_L1173_C46: MOUSEHOOKSTRUCT,
-    mouseData: u32,
-};
-
-pub const WNDCLASSEXA = extern struct {
-    cbSize: u32,
-    style: u32,
-    lpfnWndProc: WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u8,
-    lpszClassName: [*:0]const u8,
-    hIconSm: HICON,
-};
-
-pub const WNDCLASSEXW = extern struct {
-    cbSize: u32,
-    style: u32,
-    lpfnWndProc: WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u16,
-    lpszClassName: [*:0]const u16,
-    hIconSm: HICON,
-};
-
-pub const WNDCLASSA = extern struct {
-    style: u32,
-    lpfnWndProc: WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u8,
-    lpszClassName: [*:0]const u8,
-};
-
-pub const WNDCLASSW = extern struct {
-    style: u32,
-    lpfnWndProc: WNDPROC,
-    cbClsExtra: i32,
-    cbWndExtra: i32,
-    hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u16,
-    lpszClassName: [*:0]const u16,
-};
-
-pub const MSG = extern struct {
-    hwnd: HWND,
-    message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    time: u32,
-    pt: POINT,
-};
-
-pub const MINMAXINFO = extern struct {
-    ptReserved: POINT,
-    ptMaxSize: POINT,
-    ptMaxPosition: POINT,
-    ptMinTrackSize: POINT,
-    ptMaxTrackSize: POINT,
-};
-
-pub const WINDOWPOS = extern struct {
-    hwnd: HWND,
-    hwndInsertAfter: HWND,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    flags: u32,
-};
-
-pub const NCCALCSIZE_PARAMS = extern struct {
-    rgrc: [3]RECT,
-    lppos: *WINDOWPOS,
-};
-
-pub const CREATESTRUCTA = extern struct {
-    lpCreateParams: *c_void,
-    hInstance: HINSTANCE,
-    hMenu: HMENU,
-    hwndParent: HWND,
-    cy: i32,
-    cx: i32,
-    y: i32,
-    x: i32,
-    style: i32,
-    lpszName: [*:0]const u8,
-    lpszClass: [*:0]const u8,
-    dwExStyle: u32,
-};
-
-pub const CREATESTRUCTW = extern struct {
-    lpCreateParams: *c_void,
-    hInstance: HINSTANCE,
-    hMenu: HMENU,
-    hwndParent: HWND,
-    cy: i32,
-    cx: i32,
-    y: i32,
-    x: i32,
-    style: i32,
-    lpszName: [*:0]const u16,
-    lpszClass: [*:0]const u16,
-    dwExStyle: u32,
-};
-
-pub const WINDOWPLACEMENT = extern struct {
-    length: u32,
-    flags: u32,
-    showCmd: u32,
-    ptMinPosition: POINT,
-    ptMaxPosition: POINT,
-    rcNormalPosition: RECT,
-};
-
-pub const STYLESTRUCT = extern struct {
-    styleOld: u32,
-    styleNew: u32,
-};
-
-pub const BSMINFO = extern struct {
-    cbSize: u32,
-    hdesk: HDESK,
-    hwnd: HWND,
-    luid: LUID,
-};
-
-pub const UPDATELAYEREDWINDOWINFO = extern struct {
-    cbSize: u32,
-    hdcDst: HDC,
-    pptDst: *const POINT,
-    psize: *const SIZE,
-    hdcSrc: HDC,
-    pptSrc: *const POINT,
-    crKey: u32,
-    pblend: *const BLENDFUNCTION,
-    dwFlags: u32,
-    prcDirty: *const RECT,
-};
-
-pub const DLGTEMPLATE = extern struct {
-    style: u32,
-    dwExtendedStyle: u32,
-    cdit: u16,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
-};
-
-pub const DLGITEMTEMPLATE = extern struct {
-    style: u32,
-    dwExtendedStyle: u32,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
-    id: u16,
-};
-
-pub const MSGBOXPARAMSA = extern struct {
-    cbSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpszText: [*:0]const u8,
-    lpszCaption: [*:0]const u8,
-    dwStyle: u32,
-    lpszIcon: [*:0]const u8,
-    dwContextHelpId: ?*c_void,
-    lpfnMsgBoxCallback: MSGBOXCALLBACK,
-    dwLanguageId: u32,
-};
-
-pub const MSGBOXPARAMSW = extern struct {
-    cbSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpszText: [*:0]const u16,
-    lpszCaption: [*:0]const u16,
-    dwStyle: u32,
-    lpszIcon: [*:0]const u16,
-    dwContextHelpId: ?*c_void,
-    lpfnMsgBoxCallback: MSGBOXCALLBACK,
-    dwLanguageId: u32,
-};
-
-pub const MDICREATESTRUCTA = extern struct {
-    szClass: [*:0]const u8,
-    szTitle: [*:0]const u8,
-    hOwner: HANDLE,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    style: u32,
-    lParam: LPARAM,
-};
-
-pub const MDICREATESTRUCTW = extern struct {
-    szClass: [*:0]const u16,
-    szTitle: [*:0]const u16,
-    hOwner: HANDLE,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    style: u32,
-    lParam: LPARAM,
-};
-
-pub const CLIENTCREATESTRUCT = extern struct {
-    hWindowMenu: HANDLE,
-    idFirstChild: u32,
-};
-
-pub const NONCLIENTMETRICSA = extern struct {
-    cbSize: u32,
-    iBorderWidth: i32,
-    iScrollWidth: i32,
-    iScrollHeight: i32,
-    iCaptionWidth: i32,
-    iCaptionHeight: i32,
-    lfCaptionFont: LOGFONTA,
-    iSmCaptionWidth: i32,
-    iSmCaptionHeight: i32,
-    lfSmCaptionFont: LOGFONTA,
-    iMenuWidth: i32,
-    iMenuHeight: i32,
-    lfMenuFont: LOGFONTA,
-    lfStatusFont: LOGFONTA,
-    lfMessageFont: LOGFONTA,
-    iPaddedBorderWidth: i32,
-};
-
-pub const NONCLIENTMETRICSW = extern struct {
-    cbSize: u32,
-    iBorderWidth: i32,
-    iScrollWidth: i32,
-    iScrollHeight: i32,
-    iCaptionWidth: i32,
-    iCaptionHeight: i32,
-    lfCaptionFont: LOGFONTW,
-    iSmCaptionWidth: i32,
-    iSmCaptionHeight: i32,
-    lfSmCaptionFont: LOGFONTW,
-    iMenuWidth: i32,
-    iMenuHeight: i32,
-    lfMenuFont: LOGFONTW,
-    lfStatusFont: LOGFONTW,
-    lfMessageFont: LOGFONTW,
-    iPaddedBorderWidth: i32,
-};
-
-pub const MINIMIZEDMETRICS = extern struct {
-    cbSize: u32,
-    iWidth: i32,
-    iHorzGap: i32,
-    iVertGap: i32,
-    iArrange: i32,
-};
-
-pub const ANIMATIONINFO = extern struct {
-    cbSize: u32,
-    iMinAnimate: i32,
-};
-
-pub const AUDIODESCRIPTION = extern struct {
-    cbSize: u32,
-    Enabled: BOOL,
-    Locale: u32,
-};
-
-pub const GUITHREADINFO = extern struct {
-    cbSize: u32,
-    flags: u32,
-    hwndActive: HWND,
-    hwndFocus: HWND,
-    hwndCapture: HWND,
-    hwndMenuOwner: HWND,
-    hwndMoveSize: HWND,
-    hwndCaret: HWND,
-    rcCaret: RECT,
-};
-
-pub const WINDOWINFO = extern struct {
-    cbSize: u32,
-    rcWindow: RECT,
-    rcClient: RECT,
-    dwStyle: u32,
-    dwExStyle: u32,
-    dwWindowStatus: u32,
-    cxWindowBorders: u32,
-    cyWindowBorders: u32,
-    atomWindowType: u16,
-    wCreatorVersion: u16,
-};
-
-pub const TITLEBARINFO = extern struct {
-    cbSize: u32,
-    rcTitleBar: RECT,
-    rgstate: [6]u32,
-};
-
-pub const TITLEBARINFOEX = extern struct {
-    cbSize: u32,
-    rcTitleBar: RECT,
-    rgstate: [6]u32,
-    rgrect: [6]RECT,
-};
-
-pub const ALTTABINFO = extern struct {
-    cbSize: u32,
-    cItems: i32,
-    cColumns: i32,
-    cRows: i32,
-    iColFocus: i32,
-    iRowFocus: i32,
-    cxItem: i32,
-    cyItem: i32,
-    ptStart: POINT,
-};
-
-pub const CHANGEFILTERSTRUCT = extern struct {
-    cbSize: u32,
-    ExtStatus: u32,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (236)
 //--------------------------------------------------------------------------------
-pub extern "COMDLG32" fn GetOpenFileNameA(
-    param0: *OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetOpenFileNameW(
-    param0: *OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetSaveFileNameA(
-    param0: *OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetSaveFileNameW(
-    param0: *OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetFileTitleA(
-    param0: [*:0]const u8,
-    Buf: [*:0]u8,
-    cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
-
-pub extern "COMDLG32" fn GetFileTitleW(
-    param0: [*:0]const u16,
-    Buf: [*:0]u16,
-    cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
-
-pub extern "COMDLG32" fn ChooseColorA(
-    param0: *CHOOSECOLORA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn ChooseColorW(
-    param0: *CHOOSECOLORW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn FindTextA(
-    param0: *FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn FindTextW(
-    param0: *FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ReplaceTextA(
-    param0: *FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ReplaceTextW(
-    param0: *FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ChooseFontA(
-    param0: *CHOOSEFONTA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn ChooseFontW(
-    param0: *CHOOSEFONTW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgA(
-    pPD: *PRINTDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgW(
-    pPD: *PRINTDLGW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgExA(
-    pPD: *PRINTDLGEXA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "COMDLG32" fn PrintDlgExW(
-    pPD: *PRINTDLGEXW,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "COMDLG32" fn CommDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "COMDLG32" fn PageSetupDlgA(
-    param0: *PAGESETUPDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PageSetupDlgW(
-    param0: *PAGESETUPDLGW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "USER32" fn IsHungAppWindow(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -2314,12 +2227,108 @@ pub extern "USER32" fn ChangeWindowMessageFilterEx(
     pChangeFilterStruct: ?*CHANGEFILTERSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "COMDLG32" fn GetOpenFileNameA(
+    param0: *OPENFILENAMEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetOpenFileNameW(
+    param0: *OPENFILENAMEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetSaveFileNameA(
+    param0: *OPENFILENAMEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetSaveFileNameW(
+    param0: *OPENFILENAMEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetFileTitleA(
+    param0: [*:0]const u8,
+    Buf: [*:0]u8,
+    cchSize: u16,
+) callconv(@import("std").os.windows.WINAPI) i16;
+
+pub extern "COMDLG32" fn GetFileTitleW(
+    param0: [*:0]const u16,
+    Buf: [*:0]u16,
+    cchSize: u16,
+) callconv(@import("std").os.windows.WINAPI) i16;
+
+pub extern "COMDLG32" fn ChooseColorA(
+    param0: *CHOOSECOLORA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn ChooseColorW(
+    param0: *CHOOSECOLORW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn FindTextA(
+    param0: *FINDREPLACEA,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn FindTextW(
+    param0: *FINDREPLACEW,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ReplaceTextA(
+    param0: *FINDREPLACEA,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ReplaceTextW(
+    param0: *FINDREPLACEW,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ChooseFontA(
+    param0: *CHOOSEFONTA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn ChooseFontW(
+    param0: *CHOOSEFONTW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgA(
+    pPD: *PRINTDLGA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgW(
+    pPD: *PRINTDLGW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgExA(
+    pPD: *PRINTDLGEXA,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "COMDLG32" fn PrintDlgExW(
+    pPD: *PRINTDLGEXW,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "COMDLG32" fn CommDlgExtendedError(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "COMDLG32" fn PageSetupDlgA(
+    param0: *PAGESETUPDLGA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PageSetupDlgW(
+    param0: *PAGESETUPDLGW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (82)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const PROPENUMPROC = PROPENUMPROCA;
+        pub const PROPENUMPROCEX = PROPENUMPROCEXA;
+        pub const CBT_CREATEWND = CBT_CREATEWNDA;
+        pub const WNDCLASSEX = WNDCLASSEXA;
+        pub const WNDCLASS = WNDCLASSA;
+        pub const CREATESTRUCT = CREATESTRUCTA;
+        pub const MSGBOXPARAMS = MSGBOXPARAMSA;
+        pub const MDICREATESTRUCT = MDICREATESTRUCTA;
+        pub const NONCLIENTMETRICS = NONCLIENTMETRICSA;
         pub const OPENFILENAME_NT4 = OPENFILENAME_NT4A;
         pub const OPENFILENAME = OPENFILENAMEA;
         pub const OFNOTIFY = OFNOTIFYA;
@@ -2330,25 +2339,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = PRINTDLGA;
         pub const PRINTDLGEX = PRINTDLGEXA;
         pub const PAGESETUPDLG = PAGESETUPDLGA;
-        pub const PROPENUMPROC = PROPENUMPROCA;
-        pub const PROPENUMPROCEX = PROPENUMPROCEXA;
-        pub const CBT_CREATEWND = CBT_CREATEWNDA;
-        pub const WNDCLASSEX = WNDCLASSEXA;
-        pub const WNDCLASS = WNDCLASSA;
-        pub const CREATESTRUCT = CREATESTRUCTA;
-        pub const MSGBOXPARAMS = MSGBOXPARAMSA;
-        pub const MDICREATESTRUCT = MDICREATESTRUCTA;
-        pub const NONCLIENTMETRICS = NONCLIENTMETRICSA;
-        pub const GetOpenFileName = GetOpenFileNameA;
-        pub const GetSaveFileName = GetSaveFileNameA;
-        pub const GetFileTitle = GetFileTitleA;
-        pub const ChooseColor = ChooseColorA;
-        pub const FindText = FindTextA;
-        pub const ReplaceText = ReplaceTextA;
-        pub const ChooseFont = ChooseFontA;
-        pub const PrintDlg = PrintDlgA;
-        pub const PrintDlgEx = PrintDlgExA;
-        pub const PageSetupDlg = PageSetupDlgA;
         pub const RegisterWindowMessage = RegisterWindowMessageA;
         pub const GetMessage = GetMessageA;
         pub const DispatchMessage = DispatchMessageA;
@@ -2402,8 +2392,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SystemParametersInfo = SystemParametersInfoA;
         pub const GetWindowModuleFileName = GetWindowModuleFileNameA;
         pub const GetAltTabInfo = GetAltTabInfoA;
+        pub const GetOpenFileName = GetOpenFileNameA;
+        pub const GetSaveFileName = GetSaveFileNameA;
+        pub const GetFileTitle = GetFileTitleA;
+        pub const ChooseColor = ChooseColorA;
+        pub const FindText = FindTextA;
+        pub const ReplaceText = ReplaceTextA;
+        pub const ChooseFont = ChooseFontA;
+        pub const PrintDlg = PrintDlgA;
+        pub const PrintDlgEx = PrintDlgExA;
+        pub const PageSetupDlg = PageSetupDlgA;
     },
     .wide => struct {
+        pub const PROPENUMPROC = PROPENUMPROCW;
+        pub const PROPENUMPROCEX = PROPENUMPROCEXW;
+        pub const CBT_CREATEWND = CBT_CREATEWNDW;
+        pub const WNDCLASSEX = WNDCLASSEXW;
+        pub const WNDCLASS = WNDCLASSW;
+        pub const CREATESTRUCT = CREATESTRUCTW;
+        pub const MSGBOXPARAMS = MSGBOXPARAMSW;
+        pub const MDICREATESTRUCT = MDICREATESTRUCTW;
+        pub const NONCLIENTMETRICS = NONCLIENTMETRICSW;
         pub const OPENFILENAME_NT4 = OPENFILENAME_NT4W;
         pub const OPENFILENAME = OPENFILENAMEW;
         pub const OFNOTIFY = OFNOTIFYW;
@@ -2414,25 +2423,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = PRINTDLGW;
         pub const PRINTDLGEX = PRINTDLGEXW;
         pub const PAGESETUPDLG = PAGESETUPDLGW;
-        pub const PROPENUMPROC = PROPENUMPROCW;
-        pub const PROPENUMPROCEX = PROPENUMPROCEXW;
-        pub const CBT_CREATEWND = CBT_CREATEWNDW;
-        pub const WNDCLASSEX = WNDCLASSEXW;
-        pub const WNDCLASS = WNDCLASSW;
-        pub const CREATESTRUCT = CREATESTRUCTW;
-        pub const MSGBOXPARAMS = MSGBOXPARAMSW;
-        pub const MDICREATESTRUCT = MDICREATESTRUCTW;
-        pub const NONCLIENTMETRICS = NONCLIENTMETRICSW;
-        pub const GetOpenFileName = GetOpenFileNameW;
-        pub const GetSaveFileName = GetSaveFileNameW;
-        pub const GetFileTitle = GetFileTitleW;
-        pub const ChooseColor = ChooseColorW;
-        pub const FindText = FindTextW;
-        pub const ReplaceText = ReplaceTextW;
-        pub const ChooseFont = ChooseFontW;
-        pub const PrintDlg = PrintDlgW;
-        pub const PrintDlgEx = PrintDlgExW;
-        pub const PageSetupDlg = PageSetupDlgW;
         pub const RegisterWindowMessage = RegisterWindowMessageW;
         pub const GetMessage = GetMessageW;
         pub const DispatchMessage = DispatchMessageW;
@@ -2486,8 +2476,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SystemParametersInfo = SystemParametersInfoW;
         pub const GetWindowModuleFileName = GetWindowModuleFileNameW;
         pub const GetAltTabInfo = GetAltTabInfoW;
+        pub const GetOpenFileName = GetOpenFileNameW;
+        pub const GetSaveFileName = GetSaveFileNameW;
+        pub const GetFileTitle = GetFileTitleW;
+        pub const ChooseColor = ChooseColorW;
+        pub const FindText = FindTextW;
+        pub const ReplaceText = ReplaceTextW;
+        pub const ChooseFont = ChooseFontW;
+        pub const PrintDlg = PrintDlgW;
+        pub const PrintDlgEx = PrintDlgExW;
+        pub const PageSetupDlg = PageSetupDlgW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const PROPENUMPROC = *opaque{};
+        pub const PROPENUMPROCEX = *opaque{};
+        pub const CBT_CREATEWND = *opaque{};
+        pub const WNDCLASSEX = *opaque{};
+        pub const WNDCLASS = *opaque{};
+        pub const CREATESTRUCT = *opaque{};
+        pub const MSGBOXPARAMS = *opaque{};
+        pub const MDICREATESTRUCT = *opaque{};
+        pub const NONCLIENTMETRICS = *opaque{};
         pub const OPENFILENAME_NT4 = *opaque{};
         pub const OPENFILENAME = *opaque{};
         pub const OFNOTIFY = *opaque{};
@@ -2498,25 +2507,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = *opaque{};
         pub const PRINTDLGEX = *opaque{};
         pub const PAGESETUPDLG = *opaque{};
-        pub const PROPENUMPROC = *opaque{};
-        pub const PROPENUMPROCEX = *opaque{};
-        pub const CBT_CREATEWND = *opaque{};
-        pub const WNDCLASSEX = *opaque{};
-        pub const WNDCLASS = *opaque{};
-        pub const CREATESTRUCT = *opaque{};
-        pub const MSGBOXPARAMS = *opaque{};
-        pub const MDICREATESTRUCT = *opaque{};
-        pub const NONCLIENTMETRICS = *opaque{};
-        pub const GetOpenFileName = *opaque{};
-        pub const GetSaveFileName = *opaque{};
-        pub const GetFileTitle = *opaque{};
-        pub const ChooseColor = *opaque{};
-        pub const FindText = *opaque{};
-        pub const ReplaceText = *opaque{};
-        pub const ChooseFont = *opaque{};
-        pub const PrintDlg = *opaque{};
-        pub const PrintDlgEx = *opaque{};
-        pub const PageSetupDlg = *opaque{};
         pub const RegisterWindowMessage = *opaque{};
         pub const GetMessage = *opaque{};
         pub const DispatchMessage = *opaque{};
@@ -2570,7 +2560,26 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SystemParametersInfo = *opaque{};
         pub const GetWindowModuleFileName = *opaque{};
         pub const GetAltTabInfo = *opaque{};
+        pub const GetOpenFileName = *opaque{};
+        pub const GetSaveFileName = *opaque{};
+        pub const GetFileTitle = *opaque{};
+        pub const ChooseColor = *opaque{};
+        pub const FindText = *opaque{};
+        pub const ReplaceText = *opaque{};
+        pub const ChooseFont = *opaque{};
+        pub const PrintDlg = *opaque{};
+        pub const PrintDlgEx = *opaque{};
+        pub const PageSetupDlg = *opaque{};
     } else struct {
+        pub const PROPENUMPROC = @compileError("'PROPENUMPROC' requires that UNICODE be set to true or false in the root module");
+        pub const PROPENUMPROCEX = @compileError("'PROPENUMPROCEX' requires that UNICODE be set to true or false in the root module");
+        pub const CBT_CREATEWND = @compileError("'CBT_CREATEWND' requires that UNICODE be set to true or false in the root module");
+        pub const WNDCLASSEX = @compileError("'WNDCLASSEX' requires that UNICODE be set to true or false in the root module");
+        pub const WNDCLASS = @compileError("'WNDCLASS' requires that UNICODE be set to true or false in the root module");
+        pub const CREATESTRUCT = @compileError("'CREATESTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const MSGBOXPARAMS = @compileError("'MSGBOXPARAMS' requires that UNICODE be set to true or false in the root module");
+        pub const MDICREATESTRUCT = @compileError("'MDICREATESTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const NONCLIENTMETRICS = @compileError("'NONCLIENTMETRICS' requires that UNICODE be set to true or false in the root module");
         pub const OPENFILENAME_NT4 = @compileError("'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module");
         pub const OPENFILENAME = @compileError("'OPENFILENAME' requires that UNICODE be set to true or false in the root module");
         pub const OFNOTIFY = @compileError("'OFNOTIFY' requires that UNICODE be set to true or false in the root module");
@@ -2581,25 +2590,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = @compileError("'PRINTDLG' requires that UNICODE be set to true or false in the root module");
         pub const PRINTDLGEX = @compileError("'PRINTDLGEX' requires that UNICODE be set to true or false in the root module");
         pub const PAGESETUPDLG = @compileError("'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module");
-        pub const PROPENUMPROC = @compileError("'PROPENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const PROPENUMPROCEX = @compileError("'PROPENUMPROCEX' requires that UNICODE be set to true or false in the root module");
-        pub const CBT_CREATEWND = @compileError("'CBT_CREATEWND' requires that UNICODE be set to true or false in the root module");
-        pub const WNDCLASSEX = @compileError("'WNDCLASSEX' requires that UNICODE be set to true or false in the root module");
-        pub const WNDCLASS = @compileError("'WNDCLASS' requires that UNICODE be set to true or false in the root module");
-        pub const CREATESTRUCT = @compileError("'CREATESTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const MSGBOXPARAMS = @compileError("'MSGBOXPARAMS' requires that UNICODE be set to true or false in the root module");
-        pub const MDICREATESTRUCT = @compileError("'MDICREATESTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const NONCLIENTMETRICS = @compileError("'NONCLIENTMETRICS' requires that UNICODE be set to true or false in the root module");
-        pub const GetOpenFileName = @compileError("'GetOpenFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSaveFileName = @compileError("'GetSaveFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileTitle = @compileError("'GetFileTitle' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseColor = @compileError("'ChooseColor' requires that UNICODE be set to true or false in the root module");
-        pub const FindText = @compileError("'FindText' requires that UNICODE be set to true or false in the root module");
-        pub const ReplaceText = @compileError("'ReplaceText' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseFont = @compileError("'ChooseFont' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlg = @compileError("'PrintDlg' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlgEx = @compileError("'PrintDlgEx' requires that UNICODE be set to true or false in the root module");
-        pub const PageSetupDlg = @compileError("'PageSetupDlg' requires that UNICODE be set to true or false in the root module");
         pub const RegisterWindowMessage = @compileError("'RegisterWindowMessage' requires that UNICODE be set to true or false in the root module");
         pub const GetMessage = @compileError("'GetMessage' requires that UNICODE be set to true or false in the root module");
         pub const DispatchMessage = @compileError("'DispatchMessage' requires that UNICODE be set to true or false in the root module");
@@ -2653,6 +2643,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SystemParametersInfo = @compileError("'SystemParametersInfo' requires that UNICODE be set to true or false in the root module");
         pub const GetWindowModuleFileName = @compileError("'GetWindowModuleFileName' requires that UNICODE be set to true or false in the root module");
         pub const GetAltTabInfo = @compileError("'GetAltTabInfo' requires that UNICODE be set to true or false in the root module");
+        pub const GetOpenFileName = @compileError("'GetOpenFileName' requires that UNICODE be set to true or false in the root module");
+        pub const GetSaveFileName = @compileError("'GetSaveFileName' requires that UNICODE be set to true or false in the root module");
+        pub const GetFileTitle = @compileError("'GetFileTitle' requires that UNICODE be set to true or false in the root module");
+        pub const ChooseColor = @compileError("'ChooseColor' requires that UNICODE be set to true or false in the root module");
+        pub const FindText = @compileError("'FindText' requires that UNICODE be set to true or false in the root module");
+        pub const ReplaceText = @compileError("'ReplaceText' requires that UNICODE be set to true or false in the root module");
+        pub const ChooseFont = @compileError("'ChooseFont' requires that UNICODE be set to true or false in the root module");
+        pub const PrintDlg = @compileError("'PrintDlg' requires that UNICODE be set to true or false in the root module");
+        pub const PrintDlgEx = @compileError("'PrintDlgEx' requires that UNICODE be set to true or false in the root module");
+        pub const PageSetupDlg = @compileError("'PageSetupDlg' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -2662,12 +2662,12 @@ const HDC = @import("gdi.zig").HDC;
 const MSGBOXCALLBACK = @import("menus_and_resources.zig").MSGBOXCALLBACK;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const HRESULT = @import("com.zig").HRESULT;
-const NMHDR = @import("controls.zig").NMHDR;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
+const NMHDR = @import("controls.zig").NMHDR;
 const BOOL = @import("system_services.zig").BOOL;
-const DEVMODEA = @import("xps.zig").DEVMODEA;
 const HBRUSH = @import("gdi.zig").HBRUSH;
 const LUID = @import("kernel.zig").LUID;
+const DEVMODEA = @import("xps.zig").DEVMODEA;
 const LRESULT = @import("system_services.zig").LRESULT;
 const HMENU = @import("menus_and_resources.zig").HMENU;
 const WNDENUMPROC = @import("menus_and_resources.zig").WNDENUMPROC;
@@ -2676,26 +2676,18 @@ const WNDPROC = @import("menus_and_resources.zig").WNDPROC;
 const PWSTR = @import("system_services.zig").PWSTR;
 const HDESK = @import("windows_stations_and_desktops.zig").HDESK;
 const IUnknown = @import("com.zig").IUnknown;
-const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
+const PSTR = @import("system_services.zig").PSTR;
 const BLENDFUNCTION = @import("gdi.zig").BLENDFUNCTION;
+const HANDLE = @import("system_services.zig").HANDLE;
 const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
-const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 const LOGFONTA = @import("shell.zig").LOGFONTA;
-const HANDLE = @import("system_services.zig").HANDLE;
+const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 const HCURSOR = @import("menus_and_resources.zig").HCURSOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPOFNHOOKPROC;
-    _ = LPCCHOOKPROC;
-    _ = LPFRHOOKPROC;
-    _ = LPCFHOOKPROC;
-    _ = LPPRINTHOOKPROC;
-    _ = LPSETUPHOOKPROC;
-    _ = LPPAGEPAINTHOOK;
-    _ = LPPAGESETUPHOOK;
     _ = DLGPROC;
     _ = TIMERPROC;
     _ = HOOKPROC;
@@ -2704,6 +2696,14 @@ test {
     _ = PROPENUMPROCW;
     _ = PROPENUMPROCEXA;
     _ = PROPENUMPROCEXW;
+    _ = LPOFNHOOKPROC;
+    _ = LPCCHOOKPROC;
+    _ = LPFRHOOKPROC;
+    _ = LPCFHOOKPROC;
+    _ = LPPRINTHOOKPROC;
+    _ = LPSETUPHOOKPROC;
+    _ = LPPAGEPAINTHOOK;
+    _ = LPPAGESETUPHOOK;
 
     const constant_export_count = 0;
     const type_export_count = 87;

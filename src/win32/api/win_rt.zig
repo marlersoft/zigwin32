@@ -16,6 +16,9 @@ pub const EventRegistrationToken = extern struct {
     value: i64,
 };
 
+// TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
+pub const HSTRING = ?*c_void;
+
 pub const ACTIVATIONTYPE = extern enum(i32) {
     UNCATEGORIZED = 0,
     FROM_MONIKER = 1,
@@ -86,9 +89,6 @@ pub const IApartmentShutdown = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-// TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
-pub const HSTRING = ?*c_void;
 
 pub const HSTRING_HEADER = extern struct {
     Reserved: HSTRING_HEADER._Reserved_e__Union,
@@ -2059,19 +2059,6 @@ pub const BSOS_PREFERDESTINATIONSTREAM = BSOS_OPTIONS.BSOS_PREFERDESTINATIONSTRE
 //--------------------------------------------------------------------------------
 // Section: Functions (70)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn CoDecodeProxy(
-    dwClientPid: u32,
-    ui64ProxyAddress: u64,
-    pServerInformation: *ServerInformation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "OLE32" fn RoGetAgileReference(
-    options: AgileReferenceOptions,
-    riid: *const Guid,
-    pUnk: *IUnknown,
-    ppAgileReference: **IAgileReference,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: *u32,
     param1: u32,
@@ -2117,6 +2104,19 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree64(
     param0: *u32,
     param1: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn CoDecodeProxy(
+    dwClientPid: u32,
+    ui64ProxyAddress: u64,
+    pServerInformation: *ServerInformation,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "OLE32" fn RoGetAgileReference(
+    options: AgileReferenceOptions,
+    riid: *const Guid,
+    pUnk: *IUnknown,
+    ppAgileReference: **IAgileReference,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
     pDevice: *IDXGIDevice,

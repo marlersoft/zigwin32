@@ -2443,6 +2443,10 @@ pub const LPTASKCALLBACK = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (305)
 //--------------------------------------------------------------------------------
+pub extern "WINMM" fn joyConfigChanged(
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 pub extern "WINMM" fn CloseDriver(
     hDriver: ?*c_void,
     lParam1: LPARAM,
@@ -4258,10 +4262,6 @@ pub extern "WINMM" fn mmTaskYield(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WINMM" fn mmGetCurrentTask(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "WINMM" fn joyConfigChanged(
-    dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

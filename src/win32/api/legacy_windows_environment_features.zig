@@ -6,13 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-pub const _ColumnSortOrder = extern enum(i32) {
-    SortOrder_Ascending = 0,
-    SortOrder_Descending = 1,
-};
-pub const SortOrder_Ascending = _ColumnSortOrder.SortOrder_Ascending;
-pub const SortOrder_Descending = _ColumnSortOrder.SortOrder_Descending;
-
 const IID_IEmptyVolumeCacheCallBack_Value = @import("../zig.zig").Guid.initString("6e793361-73c6-11d0-8469-00aa00442901");
 pub const IID_IEmptyVolumeCacheCallBack = &IID_IEmptyVolumeCacheCallBack_Value;
 pub const IEmptyVolumeCacheCallBack = extern struct {
@@ -239,6 +232,13 @@ pub const IBriefcaseInitiator = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const _ColumnSortOrder = extern enum(i32) {
+    SortOrder_Ascending = 0,
+    SortOrder_Descending = 1,
+};
+pub const SortOrder_Ascending = _ColumnSortOrder.SortOrder_Ascending;
+pub const SortOrder_Descending = _ColumnSortOrder.SortOrder_Descending;
 
 const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
 pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;

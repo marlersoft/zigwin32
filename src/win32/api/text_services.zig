@@ -8,33 +8,6 @@
 //--------------------------------------------------------------------------------
 pub const HKL = ?*c_void;
 
-const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
-pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
-pub const ITfMSAAControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SystemEnableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SystemDisableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,
     dwStaticFlags: u32,
@@ -7606,6 +7579,33 @@ pub const ITfSpeechUIServer = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITfSpeechUIServer_UpdateBalloon(self: *const T, style: TfLBBalloonStyle, pch: [*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITfSpeechUIServer.VTable, self.vtable).UpdateBalloon(@ptrCast(*const ITfSpeechUIServer, self), style, pch, cch);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
+pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
+pub const ITfMSAAControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SystemEnableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SystemDisableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
         }
     };}
     pub usingnamespace MethodMixin(@This());

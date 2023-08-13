@@ -6,9 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (100)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
-pub const IcmpHandle = ?*c_void;
-
 pub const ip_option_information = extern struct {
     Ttl: u8,
     Tos: u8,
@@ -846,7 +843,8 @@ pub const NET_ADDRESS_DNS_NAME = NET_ADDRESS_FORMAT.NET_ADDRESS_DNS_NAME;
 pub const NET_ADDRESS_IPV4 = NET_ADDRESS_FORMAT.NET_ADDRESS_IPV4;
 pub const NET_ADDRESS_IPV6 = NET_ADDRESS_FORMAT.NET_ADDRESS_IPV6;
 
-pub const NET_ADDRESS_INFO = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
+// TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
+pub const IcmpHandle = ?*c_void;
 
 pub const SCOPE_LEVEL = extern enum(i32) {
     ScopeLevelInterface = 1,
@@ -980,6 +978,8 @@ pub const NL_BANDWIDTH_INFORMATION = extern struct {
     Instability: u64,
     BandwidthPeaked: u8,
 };
+
+pub const NET_ADDRESS_INFO = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
 
 
 //--------------------------------------------------------------------------------

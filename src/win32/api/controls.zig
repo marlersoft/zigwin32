@@ -6,14 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (357)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'ImageList_Destroy', what can Zig do with this information?
-pub const HIMAGELIST = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DestroyPropertySheetPage', what can Zig do with this information?
-pub const HPROPSHEETPAGE = ?*c_void;
-
-pub const HSYNTHETICPOINTERDEVICE = ?*c_void;
-
 pub const CRGB = extern struct {
     bRed: u8,
     bGreen: u8,
@@ -46,8 +38,8 @@ pub const PROPSHEETPAGEA_V1 = extern struct {
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKA,
     pcRefParent: *u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V2 = extern struct {
@@ -63,8 +55,8 @@ pub const PROPSHEETPAGEA_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V3 = extern struct {
@@ -81,8 +73,8 @@ pub const PROPSHEETPAGEA_V3 = extern struct {
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA = extern struct {
@@ -100,9 +92,9 @@ pub const PROPSHEETPAGEA = extern struct {
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
     Anonymous3: PROPSHEETPAGEA._Anonymous3_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V1 = extern struct {
@@ -116,8 +108,8 @@ pub const PROPSHEETPAGEW_V1 = extern struct {
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKW,
     pcRefParent: *u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V2 = extern struct {
@@ -133,8 +125,8 @@ pub const PROPSHEETPAGEW_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V3 = extern struct {
@@ -151,8 +143,8 @@ pub const PROPSHEETPAGEW_V3 = extern struct {
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW = extern struct {
@@ -170,9 +162,9 @@ pub const PROPSHEETPAGEW = extern struct {
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
     Anonymous3: PROPSHEETPAGEW._Anonymous3_e__Union,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFNPROPSHEETCALLBACK = fn(
@@ -192,9 +184,9 @@ pub const PROPSHEETHEADERA_V1 = extern struct {
     Anonymous2: PROPSHEETHEADERA_V1._Anonymous2_e__Union,
     Anonymous3: PROPSHEETHEADERA_V1._Anonymous3_e__Union,
     pfnCallback: PFNPROPSHEETCALLBACK,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERA_V2 = extern struct {
@@ -211,11 +203,11 @@ pub const PROPSHEETHEADERA_V2 = extern struct {
     Anonymous4: PROPSHEETHEADERA_V2._Anonymous4_e__Union,
     hplWatermark: HPALETTE,
     Anonymous5: PROPSHEETHEADERA_V2._Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERW_V1 = extern struct {
@@ -229,9 +221,9 @@ pub const PROPSHEETHEADERW_V1 = extern struct {
     Anonymous2: PROPSHEETHEADERW_V1._Anonymous2_e__Union,
     Anonymous3: PROPSHEETHEADERW_V1._Anonymous3_e__Union,
     pfnCallback: PFNPROPSHEETCALLBACK,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERW_V2 = extern struct {
@@ -248,11 +240,11 @@ pub const PROPSHEETHEADERW_V2 = extern struct {
     Anonymous4: PROPSHEETHEADERW_V2._Anonymous4_e__Union,
     hplWatermark: HPALETTE,
     Anonymous5: PROPSHEETHEADERW_V2._Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LPFNADDPROPSHEETPAGE = fn(
@@ -1887,8 +1879,8 @@ pub const TASKDIALOGCONFIG = extern struct {
     pfCallback: PFTASKDIALOGCALLBACK,
     lpCallbackData: ?*c_void,
     cxWidth: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFNDAENUMCALLBACK = fn(
@@ -9499,6 +9491,14 @@ pub const INPUT_MESSAGE_SOURCE = extern struct {
     deviceType: INPUT_MESSAGE_DEVICE_TYPE,
     originId: INPUT_MESSAGE_ORIGIN_ID,
 };
+
+// TODO: this type has a FreeFunc 'ImageList_Destroy', what can Zig do with this information?
+pub const HIMAGELIST = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyPropertySheetPage', what can Zig do with this information?
+pub const HPROPSHEETPAGE = ?*c_void;
+
+pub const HSYNTHETICPOINTERDEVICE = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

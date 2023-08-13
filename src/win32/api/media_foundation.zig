@@ -839,6 +839,159 @@ pub const IDirect3DCryptoSession9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const CodecAPIEventData = extern struct {
+    guid: Guid,
+    dataLength: u32,
+    reserved: [3]u32,
+};
+
+const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
+pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
+pub const ICodecAPI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSupported: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsModifiable: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterRange: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            ValueMin: *VARIANT,
+            ValueMax: *VARIANT,
+            SteppingDelta: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterValues: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Values: [*]*VARIANT,
+            ValuesCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            userData: ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaults: fn(
+            self: *const ICodecAPI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueWithNotify: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaultsWithNotify: fn(
+            self: *const ICodecAPI,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0000: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0001: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettingsWithNotify: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0002: *IStream,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 pub const D3D12_VIDEO_FIELD_TYPE = extern enum(i32) {
     NONE = 0,
     INTERLACED_TOP_FIELD_FIRST = 1,
@@ -24319,159 +24472,6 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CodecAPIEventData = extern struct {
-    guid: Guid,
-    dataLength: u32,
-    reserved: [3]u32,
-};
-
-const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
-pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
-pub const ICodecAPI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSupported: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsModifiable: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterRange: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            ValueMin: *VARIANT,
-            ValueMax: *VARIANT,
-            SteppingDelta: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterValues: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Values: [*]*VARIANT,
-            ValuesCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            userData: ?*c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaults: fn(
-            self: *const ICodecAPI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueWithNotify: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaultsWithNotify: fn(
-            self: *const ICodecAPI,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0000: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0001: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettingsWithNotify: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0002: *IStream,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const D3D11_VIDEO_DECODER_DESC = extern struct {
     Guid: Guid,
     SampleWidth: u32,
@@ -28098,10 +28098,10 @@ const IMFDeviceTransform = @import("streaming_media.zig").IMFDeviceTransform;
 const ISpatialAudioMetadataItems = @import("core_audio.zig").ISpatialAudioMetadataItems;
 const INamedPropertyStore = @import("shell.zig").INamedPropertyStore;
 const IPropertyStore = @import("audio.zig").IPropertyStore;
-const D3D12_QUERY_TYPE = @import("direct3d12.zig").D3D12_QUERY_TYPE;
 const IDirect3DSurface9 = @import("direct3d9.zig").IDirect3DSurface9;
 const D3DENCRYPTED_BLOCK_INFO = @import("direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
 const IStream = @import("structured_storage.zig").IStream;
+const D3D12_QUERY_TYPE = @import("direct3d12.zig").D3D12_QUERY_TYPE;
 const PWSTR = @import("system_services.zig").PWSTR;
 const D3DDEVTYPE = @import("direct3d9.zig").D3DDEVTYPE;
 const HMONITOR = @import("gdi.zig").HMONITOR;

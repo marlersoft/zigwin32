@@ -10,68 +10,12 @@ pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE : u32 = 4294967295;
 //--------------------------------------------------------------------------------
 // Section: Types (1702)
 //--------------------------------------------------------------------------------
-pub const EXCEPTION_DEBUG_INFO = extern struct {
-    ExceptionRecord: EXCEPTION_RECORD,
-    dwFirstChance: u32,
-};
-
-pub const CREATE_THREAD_DEBUG_INFO = extern struct {
-    hThread: HANDLE,
-    lpThreadLocalBase: *c_void,
-    lpStartAddress: LPTHREAD_START_ROUTINE,
-};
-
-pub const CREATE_PROCESS_DEBUG_INFO = extern struct {
-    hFile: HANDLE,
-    hProcess: HANDLE,
-    hThread: HANDLE,
-    lpBaseOfImage: *c_void,
-    dwDebugInfoFileOffset: u32,
-    nDebugInfoSize: u32,
-    lpThreadLocalBase: *c_void,
-    lpStartAddress: LPTHREAD_START_ROUTINE,
-    lpImageName: *c_void,
-    fUnicode: u16,
-};
-
-pub const EXIT_THREAD_DEBUG_INFO = extern struct {
-    dwExitCode: u32,
-};
-
-pub const EXIT_PROCESS_DEBUG_INFO = extern struct {
-    dwExitCode: u32,
-};
-
-pub const LOAD_DLL_DEBUG_INFO = extern struct {
-    hFile: HANDLE,
-    lpBaseOfDll: *c_void,
-    dwDebugInfoFileOffset: u32,
-    nDebugInfoSize: u32,
-    lpImageName: *c_void,
-    fUnicode: u16,
-};
-
-pub const UNLOAD_DLL_DEBUG_INFO = extern struct {
-    lpBaseOfDll: *c_void,
-};
-
-pub const OUTPUT_DEBUG_STRING_INFO = extern struct {
-    lpDebugStringData: PSTR,
-    fUnicode: u16,
-    nDebugStringLength: u16,
-};
-
-pub const RIP_INFO = extern struct {
-    dwError: u32,
-    dwType: u32,
-};
-
-pub const DEBUG_EVENT = extern struct {
-    dwDebugEventCode: u32,
-    dwProcessId: u32,
-    dwThreadId: u32,
-    u: DEBUG_EVENT._u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+pub const FLASHWINFO = extern struct {
+    cbSize: u32,
+    hwnd: HWND,
+    dwFlags: u32,
+    uCount: u32,
+    dwTimeout: u32,
 };
 
 pub const CONTEXT = extern struct {
@@ -389,12 +333,68 @@ pub const PVECTORED_EXCEPTION_HANDLER = fn(
     ExceptionInfo: *EXCEPTION_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const FLASHWINFO = extern struct {
-    cbSize: u32,
-    hwnd: HWND,
-    dwFlags: u32,
-    uCount: u32,
-    dwTimeout: u32,
+pub const EXCEPTION_DEBUG_INFO = extern struct {
+    ExceptionRecord: EXCEPTION_RECORD,
+    dwFirstChance: u32,
+};
+
+pub const CREATE_THREAD_DEBUG_INFO = extern struct {
+    hThread: HANDLE,
+    lpThreadLocalBase: *c_void,
+    lpStartAddress: LPTHREAD_START_ROUTINE,
+};
+
+pub const CREATE_PROCESS_DEBUG_INFO = extern struct {
+    hFile: HANDLE,
+    hProcess: HANDLE,
+    hThread: HANDLE,
+    lpBaseOfImage: *c_void,
+    dwDebugInfoFileOffset: u32,
+    nDebugInfoSize: u32,
+    lpThreadLocalBase: *c_void,
+    lpStartAddress: LPTHREAD_START_ROUTINE,
+    lpImageName: *c_void,
+    fUnicode: u16,
+};
+
+pub const EXIT_THREAD_DEBUG_INFO = extern struct {
+    dwExitCode: u32,
+};
+
+pub const EXIT_PROCESS_DEBUG_INFO = extern struct {
+    dwExitCode: u32,
+};
+
+pub const LOAD_DLL_DEBUG_INFO = extern struct {
+    hFile: HANDLE,
+    lpBaseOfDll: *c_void,
+    dwDebugInfoFileOffset: u32,
+    nDebugInfoSize: u32,
+    lpImageName: *c_void,
+    fUnicode: u16,
+};
+
+pub const UNLOAD_DLL_DEBUG_INFO = extern struct {
+    lpBaseOfDll: *c_void,
+};
+
+pub const OUTPUT_DEBUG_STRING_INFO = extern struct {
+    lpDebugStringData: PSTR,
+    fUnicode: u16,
+    nDebugStringLength: u16,
+};
+
+pub const RIP_INFO = extern struct {
+    dwError: u32,
+    dwType: u32,
+};
+
+pub const DEBUG_EVENT = extern struct {
+    dwDebugEventCode: u32,
+    dwProcessId: u32,
+    dwThreadId: u32,
+    u: DEBUG_EVENT._u_e__Union,
+    const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PTOP_LEVEL_EXCEPTION_FILTER = fn(
@@ -72789,6 +72789,40 @@ pub const UnregisterAuthoringClientFunctionType = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (68)
 //--------------------------------------------------------------------------------
+pub extern "USER32" fn FlashWindow(
+    hWnd: HWND,
+    bInvert: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn FlashWindowEx(
+    pfwi: *FLASHWINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn MessageBeep(
+    uType: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetLastErrorEx(
+    dwErrCode: u32,
+    dwType: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlCaptureContext(
+    ContextRecord: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlUnwind(
+    TargetFrame: ?*c_void,
+    TargetIp: ?*c_void,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    ReturnValue: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlPcToFileHeader(
+    PcValue: *c_void,
+    BaseOfImage: **c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
 pub extern "KERNEL32" fn ReadProcessMemory(
     hProcess: HANDLE,
     lpBaseAddress: *const c_void,
@@ -72814,136 +72848,6 @@ pub extern "KERNEL32" fn Wow64SetThreadContext(
     hThread: HANDLE,
     lpContext: *const WOW64_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn RtlCaptureContext(
-    ContextRecord: *CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn RtlUnwind(
-    TargetFrame: ?*c_void,
-    TargetIp: ?*c_void,
-    ExceptionRecord: ?*EXCEPTION_RECORD,
-    ReturnValue: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn RtlPcToFileHeader(
-    PcValue: *c_void,
-    BaseOfImage: **c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "USER32" fn FlashWindow(
-    hWnd: HWND,
-    bInvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn FlashWindowEx(
-    pfwi: *FLASHWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn MessageBeep(
-    uType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetLastErrorEx(
-    dwErrCode: u32,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn GetThreadContext(
-    hThread: HANDLE,
-    lpContext: *CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn SetThreadContext(
-    hThread: HANDLE,
-    lpContext: *const CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FlushInstructionCache(
-    hProcess: HANDLE,
-    lpBaseAddress: ?[*]const u8,
-    dwSize: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FatalExit(
-    ExitCode: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn GetThreadSelectorEntry(
-    hThread: HANDLE,
-    dwSelector: u32,
-    lpSelectorEntry: *LDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn Wow64GetThreadSelectorEntry(
-    hThread: HANDLE,
-    dwSelector: u32,
-    lpSelectorEntry: *WOW64_LDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DebugSetProcessKillOnExit(
-    KillOnExit: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn DebugBreakProcess(
-    Process: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn FormatMessageA(
-    dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
-    dwMessageId: u32,
-    dwLanguageId: u32,
-    lpBuffer: PSTR,
-    nSize: u32,
-    Arguments: ?*?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn FormatMessageW(
-    dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
-    dwMessageId: u32,
-    dwLanguageId: u32,
-    lpBuffer: PWSTR,
-    nSize: u32,
-    Arguments: ?*?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn CopyContext(
-    Destination: *CONTEXT,
-    ContextFlags: u32,
-    Source: *CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InitializeContext(
-    Buffer: ?[*]u8,
-    ContextFlags: u32,
-    Context: **CONTEXT,
-    ContextLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetEnabledXStateFeatures(
-) callconv(@import("std").os.windows.WINAPI) u64;
-
-pub extern "KERNEL32" fn GetXStateFeaturesMask(
-    Context: *CONTEXT,
-    FeatureMask: *u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn LocateXStateFeature(
-    Context: *CONTEXT,
-    FeatureId: u32,
-    Length: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "KERNEL32" fn SetXStateFeaturesMask(
-    Context: *CONTEXT,
-    FeatureMask: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ntdll" fn RtlNtStatusToDosError(
-    Status: NTSTATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn IsDebuggerPresent(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -73138,29 +73042,125 @@ pub extern "dbghelp" fn MiniDumpReadDumpStream(
     StreamSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "KERNEL32" fn GetThreadContext(
+    hThread: HANDLE,
+    lpContext: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetThreadContext(
+    hThread: HANDLE,
+    lpContext: *const CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FlushInstructionCache(
+    hProcess: HANDLE,
+    lpBaseAddress: ?[*]const u8,
+    dwSize: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FatalExit(
+    ExitCode: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn GetThreadSelectorEntry(
+    hThread: HANDLE,
+    dwSelector: u32,
+    lpSelectorEntry: *LDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn Wow64GetThreadSelectorEntry(
+    hThread: HANDLE,
+    dwSelector: u32,
+    lpSelectorEntry: *WOW64_LDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DebugSetProcessKillOnExit(
+    KillOnExit: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn DebugBreakProcess(
+    Process: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn FormatMessageA(
+    dwFlags: FORMAT_MESSAGE_OPTIONS,
+    lpSource: ?*const c_void,
+    dwMessageId: u32,
+    dwLanguageId: u32,
+    lpBuffer: PSTR,
+    nSize: u32,
+    Arguments: ?*?*i8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn FormatMessageW(
+    dwFlags: FORMAT_MESSAGE_OPTIONS,
+    lpSource: ?*const c_void,
+    dwMessageId: u32,
+    dwLanguageId: u32,
+    lpBuffer: PWSTR,
+    nSize: u32,
+    Arguments: ?*?*i8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn CopyContext(
+    Destination: *CONTEXT,
+    ContextFlags: u32,
+    Source: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InitializeContext(
+    Buffer: ?[*]u8,
+    ContextFlags: u32,
+    Context: **CONTEXT,
+    ContextLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetEnabledXStateFeatures(
+) callconv(@import("std").os.windows.WINAPI) u64;
+
+pub extern "KERNEL32" fn GetXStateFeaturesMask(
+    Context: *CONTEXT,
+    FeatureMask: *u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn LocateXStateFeature(
+    Context: *CONTEXT,
+    FeatureId: u32,
+    Length: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "KERNEL32" fn SetXStateFeaturesMask(
+    Context: *CONTEXT,
+    FeatureMask: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ntdll" fn RtlNtStatusToDosError(
+    Status: NTSTATUS,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const FormatMessage = FormatMessageA;
         pub const OutputDebugString = OutputDebugStringA;
         pub const FatalAppExit = FatalAppExitA;
+        pub const FormatMessage = FormatMessageA;
     },
     .wide => struct {
-        pub const FormatMessage = FormatMessageW;
         pub const OutputDebugString = OutputDebugStringW;
         pub const FatalAppExit = FatalAppExitW;
+        pub const FormatMessage = FormatMessageW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const FormatMessage = *opaque{};
         pub const OutputDebugString = *opaque{};
         pub const FatalAppExit = *opaque{};
+        pub const FormatMessage = *opaque{};
     } else struct {
-        pub const FormatMessage = @compileError("'FormatMessage' requires that UNICODE be set to true or false in the root module");
         pub const OutputDebugString = @compileError("'OutputDebugString' requires that UNICODE be set to true or false in the root module");
         pub const FatalAppExit = @compileError("'FatalAppExit' requires that UNICODE be set to true or false in the root module");
+        pub const FormatMessage = @compileError("'FormatMessage' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

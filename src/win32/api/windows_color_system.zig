@@ -6,6 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+pub const HCOLORSPACE = ?*c_void;
+
 pub const CIEXYZ = extern struct {
     ciexyzX: i32,
     ciexyzY: i32,
@@ -53,9 +56,6 @@ pub const ICMENUMPROCW = fn(
     param0: PWSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*c_void;
 
 pub const XYZColorF = extern struct {
     X: f32,

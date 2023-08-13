@@ -6,6 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
+pub const COMPRESSOR_HANDLE = ?*c_void;
+
 pub const PFN_COMPRESS_ALLOCATE = fn(
     UserContext: *c_void,
     Size: ?*c_void,
@@ -30,9 +33,6 @@ pub const COMPRESS_INFORMATION_CLASS = extern enum(i32) {
 pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALID;
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
-
-// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
-pub const COMPRESSOR_HANDLE = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

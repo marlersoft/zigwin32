@@ -6,6 +6,12 @@
 //--------------------------------------------------------------------------------
 // Section: Types (52)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
+pub const PerfProviderHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
+pub const PerfQueryHandle = ?*c_void;
+
 pub const PERF_DATA_BLOCK = extern struct {
     Signature: [4]u16,
     LittleEndian: u32,
@@ -75,12 +81,6 @@ pub const PM_COLLECT_PROC = fn(
 
 pub const PM_CLOSE_PROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
-pub const PerfProviderHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
-pub const PerfQueryHandle = ?*c_void;
 
 pub const PERF_COUNTERSET_INFO = extern struct {
     CounterSetGuid: Guid,

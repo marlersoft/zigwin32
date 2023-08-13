@@ -3100,20 +3100,6 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: HMIDI,
-    dwCallback: ?*c_void,
-    dwInstance: ?*c_void,
-    dnDevNode: ?*c_void,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
-};
-
 const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
@@ -3167,6 +3153,20 @@ pub const IPropertyStore = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = extern struct {
+    hMidi: HMIDI,
+    dwCallback: ?*c_void,
+    dwInstance: ?*c_void,
+    dnDevNode: ?*c_void,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
 };
 
 

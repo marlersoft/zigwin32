@@ -645,59 +645,6 @@ pub const SSF_ICONSONLY = SSF_MASK.SSF_ICONSONLY;
 pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SSF_SHOWTYPEOVERLAY;
 pub const SSF_SHOWSTATUSBAR = SSF_MASK.SSF_SHOWSTATUSBAR;
 
-pub const LOGFONTA = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]i8,
-};
-
-pub const LOGFONTW = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]u16,
-};
-
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: PWSTR,
-    szAbstract: PWSTR,
-    szHREF: PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
-};
-
-// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
-pub const ShFindChangeNotifcationHandle = ?*c_void;
-
 pub const SUBCLASSPROC = fn(
     hWnd: HWND,
     uMsg: u32,
@@ -768,6 +715,59 @@ pub const HELPWININFOW = extern struct {
     dy: i32,
     wMax: i32,
     rgchMember: [2]u16,
+};
+
+// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
+pub const ShFindChangeNotifcationHandle = ?*c_void;
+
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: PWSTR,
+    szAbstract: PWSTR,
+    szHREF: PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
+pub const LOGFONTA = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]i8,
+};
+
+pub const LOGFONTW = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]u16,
 };
 
 pub const APPCATEGORYINFO = extern struct {
@@ -1015,6 +1015,145 @@ pub const ICreateObject = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const ShellWindowTypeConstants = extern enum(i32) {
+    SWC_EXPLORER = 0,
+    SWC_BROWSER = 1,
+    SWC_3RDPARTY = 2,
+    SWC_CALLBACK = 4,
+    SWC_DESKTOP = 8,
+};
+pub const SWC_EXPLORER = ShellWindowTypeConstants.SWC_EXPLORER;
+pub const SWC_BROWSER = ShellWindowTypeConstants.SWC_BROWSER;
+pub const SWC_3RDPARTY = ShellWindowTypeConstants.SWC_3RDPARTY;
+pub const SWC_CALLBACK = ShellWindowTypeConstants.SWC_CALLBACK;
+pub const SWC_DESKTOP = ShellWindowTypeConstants.SWC_DESKTOP;
+
+pub const ShellWindowFindWindowOptions = extern enum(i32) {
+    SWFO_NEEDDISPATCH = 1,
+    SWFO_INCLUDEPENDING = 2,
+    SWFO_COOKIEPASSED = 4,
+};
+pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.SWFO_NEEDDISPATCH;
+pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.SWFO_INCLUDEPENDING;
+pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.SWFO_COOKIEPASSED;
+
+const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
+pub const IID_IShellWindows = &IID_IShellWindows_Value;
+pub const IShellWindows = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        get_Count: fn(
+            self: *const IShellWindows,
+            Count: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: fn(
+            self: *const IShellWindows,
+            index: VARIANT,
+            Folder: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        _NewEnum: fn(
+            self: *const IShellWindows,
+            ppunk: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: fn(
+            self: *const IShellWindows,
+            pid: *IDispatch,
+            hwnd: i32,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterPending: fn(
+            self: *const IShellWindows,
+            lThreadId: i32,
+            pvarloc: *VARIANT,
+            pvarlocRoot: *VARIANT,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Revoke: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnNavigate: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            pvarLoc: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnActivated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            fActive: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindWindowSW: fn(
+            self: *const IShellWindows,
+            pvarLoc: *VARIANT,
+            pvarLocRoot: *VARIANT,
+            swClass: i32,
+            phwnd: *i32,
+            swfwOptions: i32,
+            ppdispOut: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            punk: *IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessAttachDetach: fn(
+            self: *const IShellWindows,
+            fAttach: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -28850,145 +28989,6 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
-pub const ShellWindowTypeConstants = extern enum(i32) {
-    SWC_EXPLORER = 0,
-    SWC_BROWSER = 1,
-    SWC_3RDPARTY = 2,
-    SWC_CALLBACK = 4,
-    SWC_DESKTOP = 8,
-};
-pub const SWC_EXPLORER = ShellWindowTypeConstants.SWC_EXPLORER;
-pub const SWC_BROWSER = ShellWindowTypeConstants.SWC_BROWSER;
-pub const SWC_3RDPARTY = ShellWindowTypeConstants.SWC_3RDPARTY;
-pub const SWC_CALLBACK = ShellWindowTypeConstants.SWC_CALLBACK;
-pub const SWC_DESKTOP = ShellWindowTypeConstants.SWC_DESKTOP;
-
-pub const ShellWindowFindWindowOptions = extern enum(i32) {
-    SWFO_NEEDDISPATCH = 1,
-    SWFO_INCLUDEPENDING = 2,
-    SWFO_COOKIEPASSED = 4,
-};
-pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.SWFO_NEEDDISPATCH;
-pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.SWFO_INCLUDEPENDING;
-pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.SWFO_COOKIEPASSED;
-
-const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
-pub const IID_IShellWindows = &IID_IShellWindows_Value;
-pub const IShellWindows = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        get_Count: fn(
-            self: *const IShellWindows,
-            Count: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const IShellWindows,
-            index: VARIANT,
-            Folder: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        _NewEnum: fn(
-            self: *const IShellWindows,
-            ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Register: fn(
-            self: *const IShellWindows,
-            pid: *IDispatch,
-            hwnd: i32,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPending: fn(
-            self: *const IShellWindows,
-            lThreadId: i32,
-            pvarloc: *VARIANT,
-            pvarlocRoot: *VARIANT,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revoke: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnNavigate: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            pvarLoc: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnActivated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            fActive: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindWindowSW: fn(
-            self: *const IShellWindows,
-            pvarLoc: *VARIANT,
-            pvarLocRoot: *VARIANT,
-            swClass: i32,
-            phwnd: *i32,
-            swfwOptions: i32,
-            ppdispOut: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            punk: *IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessAttachDetach: fn(
-            self: *const IShellWindows,
-            fAttach: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const SERIALIZEDPROPERTYVALUE = extern struct {
     dwType: u32,
     rgb: [1]u8,
@@ -33130,9 +33130,9 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const LOGFONT = LOGFONTA;
         pub const MULTIKEYHELP = MULTIKEYHELPA;
         pub const HELPWININFO = HELPWININFOA;
+        pub const LOGFONT = LOGFONTA;
         pub const DRAGINFO = DRAGINFOA;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
@@ -33341,9 +33341,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHStripMneumonic = SHStripMneumonicA;
     },
     .wide => struct {
-        pub const LOGFONT = LOGFONTW;
         pub const MULTIKEYHELP = MULTIKEYHELPW;
         pub const HELPWININFO = HELPWININFOW;
+        pub const LOGFONT = LOGFONTW;
         pub const DRAGINFO = DRAGINFOW;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
@@ -33552,9 +33552,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHStripMneumonic = SHStripMneumonicW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const LOGFONT = *opaque{};
         pub const MULTIKEYHELP = *opaque{};
         pub const HELPWININFO = *opaque{};
+        pub const LOGFONT = *opaque{};
         pub const DRAGINFO = *opaque{};
         pub const SHFILEOPSTRUCT = *opaque{};
         pub const SHNAMEMAPPING = *opaque{};
@@ -33762,9 +33762,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
     } else struct {
-        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
         pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
         pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
+        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
         pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
         pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
         pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");

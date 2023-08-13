@@ -6,6 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
+pub const HGLRC = ?*c_void;
+
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
     nVersion: u16,
@@ -74,9 +77,6 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
     bReserved: u8,
     crTransparent: u32,
 };
-
-// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
-pub const HGLRC = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

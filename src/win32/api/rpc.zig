@@ -1394,20 +1394,6 @@ pub const MIDL_TYPE_PICKLING_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (491)
 //--------------------------------------------------------------------------------
-pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
-    This: *IUnknown,
-    riid: *const Guid,
-    ppvObject: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "RPCRT4" fn IUnknown_AddRef_Proxy(
-    This: *IUnknown,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "RPCRT4" fn IUnknown_Release_Proxy(
-    This: *IUnknown,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 pub extern "RPCRT4" fn RpcBindingCopy(
     SourceBinding: *c_void,
     DestinationBinding: **c_void,
@@ -4208,6 +4194,20 @@ pub extern "RPCRT4" fn RpcCertGeneratePrincipalNameA(
     pBuffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
+    This: *IUnknown,
+    riid: *const Guid,
+    ppvObject: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "RPCRT4" fn IUnknown_AddRef_Proxy(
+    This: *IUnknown,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "RPCRT4" fn IUnknown_Release_Proxy(
+    This: *IUnknown,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (75)
@@ -4528,8 +4528,8 @@ const Guid = @import("../zig.zig").Guid;
 const SEC_WINNT_AUTH_IDENTITY_A = @import("security.zig").SEC_WINNT_AUTH_IDENTITY_A;
 const PWSTR = @import("system_services.zig").PWSTR;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
-const IUnknown = @import("com.zig").IUnknown;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
+const IUnknown = @import("com.zig").IUnknown;
 const IRpcChannelBuffer = @import("com.zig").IRpcChannelBuffer;
 const HRESULT = @import("com.zig").HRESULT;
 const IRpcStubBuffer = @import("com.zig").IRpcStubBuffer;

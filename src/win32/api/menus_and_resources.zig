@@ -42,77 +42,6 @@ pub const DI_COMPAT = DI_FLAGS.DI_COMPAT;
 pub const DI_DEFAULTSIZE = DI_FLAGS.DI_DEFAULTSIZE;
 pub const DI_NOMIRROR = DI_FLAGS.DI_NOMIRROR;
 
-pub const ENUMRESNAMEPROCA = fn(
-    hModule: ?*c_void,
-    lpType: [*:0]const u8,
-    lpName: PSTR,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const ENUMRESNAMEPROCW = fn(
-    hModule: ?*c_void,
-    lpType: [*:0]const u16,
-    lpName: PWSTR,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const ENUMRESTYPEPROCA = fn(
-    hModule: ?*c_void,
-    lpType: PSTR,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const ENUMRESTYPEPROCW = fn(
-    hModule: ?*c_void,
-    lpType: PWSTR,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const VS_FIXEDFILEINFO = extern struct {
-    dwSignature: u32,
-    dwStrucVersion: u32,
-    dwFileVersionMS: u32,
-    dwFileVersionLS: u32,
-    dwProductVersionMS: u32,
-    dwProductVersionLS: u32,
-    dwFileFlagsMask: u32,
-    dwFileFlags: u32,
-    dwFileOS: u32,
-    dwFileType: u32,
-    dwFileSubtype: u32,
-    dwFileDateMS: u32,
-    dwFileDateLS: u32,
-};
-
-// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
-pub const HACCEL = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
-pub const HCURSOR = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
-pub const HICON = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
-pub const HMENU = ?*c_void;
-
-pub const MESSAGE_RESOURCE_ENTRY = extern struct {
-    Length: u16,
-    Flags: u16,
-    Text: [1]u8,
-};
-
-pub const MESSAGE_RESOURCE_BLOCK = extern struct {
-    LowId: u32,
-    HighId: u32,
-    OffsetToEntries: u32,
-};
-
-pub const MESSAGE_RESOURCE_DATA = extern struct {
-    NumberOfBlocks: u32,
-    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
-};
-
 pub const WNDPROC = fn(
     param0: HWND,
     param1: u32,
@@ -409,96 +338,81 @@ pub const MrmResourceIndexerMessage = extern struct {
     text: [*:0]const u16,
 };
 
+// TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
+pub const HACCEL = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
+pub const HCURSOR = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
+pub const HICON = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
+pub const HMENU = ?*c_void;
+
+pub const MESSAGE_RESOURCE_ENTRY = extern struct {
+    Length: u16,
+    Flags: u16,
+    Text: [1]u8,
+};
+
+pub const MESSAGE_RESOURCE_BLOCK = extern struct {
+    LowId: u32,
+    HighId: u32,
+    OffsetToEntries: u32,
+};
+
+pub const MESSAGE_RESOURCE_DATA = extern struct {
+    NumberOfBlocks: u32,
+    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
+};
+
+pub const ENUMRESNAMEPROCA = fn(
+    hModule: ?*c_void,
+    lpType: [*:0]const u8,
+    lpName: PSTR,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const ENUMRESNAMEPROCW = fn(
+    hModule: ?*c_void,
+    lpType: [*:0]const u16,
+    lpName: PWSTR,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const ENUMRESTYPEPROCA = fn(
+    hModule: ?*c_void,
+    lpType: PSTR,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const ENUMRESTYPEPROCW = fn(
+    hModule: ?*c_void,
+    lpType: PWSTR,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const VS_FIXEDFILEINFO = extern struct {
+    dwSignature: u32,
+    dwStrucVersion: u32,
+    dwFileVersionMS: u32,
+    dwFileVersionLS: u32,
+    dwProductVersionMS: u32,
+    dwProductVersionLS: u32,
+    dwFileFlagsMask: u32,
+    dwFileFlags: u32,
+    dwFileOS: u32,
+    dwFileType: u32,
+    dwFileSubtype: u32,
+    dwFileDateMS: u32,
+    dwFileDateLS: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (229)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn FreeResource(
-    hResData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn LoadResource(
-    hModule: ?*c_void,
-    hResInfo: HRSRC,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub extern "USER32" fn LoadStringA(
-    hInstance: HINSTANCE,
-    uID: u32,
-    lpBuffer: [*:0]u8,
-    cchBufferMax: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn LoadStringW(
-    hInstance: HINSTANCE,
-    uID: u32,
-    lpBuffer: [*:0]u16,
-    cchBufferMax: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn LockResource(
-    hResData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub extern "KERNEL32" fn SizeofResource(
-    hModule: ?*c_void,
-    hResInfo: HRSRC,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn EnumResourceLanguagesExA(
-    hModule: ?*c_void,
-    lpType: [*:0]const u8,
-    lpName: [*:0]const u8,
-    lpEnumFunc: ENUMRESLANGPROCA,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn EnumResourceLanguagesExW(
-    hModule: ?*c_void,
-    lpType: [*:0]const u16,
-    lpName: [*:0]const u16,
-    lpEnumFunc: ENUMRESLANGPROCW,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn EnumResourceNamesExA(
-    hModule: ?*c_void,
-    lpType: [*:0]const u8,
-    lpEnumFunc: ENUMRESNAMEPROCA,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn EnumResourceNamesExW(
-    hModule: ?*c_void,
-    lpType: [*:0]const u16,
-    lpEnumFunc: ENUMRESNAMEPROCW,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn EnumResourceTypesExA(
-    hModule: ?*c_void,
-    lpEnumFunc: ENUMRESTYPEPROCA,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn EnumResourceTypesExW(
-    hModule: ?*c_void,
-    lpEnumFunc: ENUMRESTYPEPROCW,
-    lParam: ?*c_void,
-    dwFlags: u32,
-    LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "USER32" fn wvsprintfA(
     param0: PSTR,
     param1: [*:0]const u8,
@@ -1635,6 +1549,92 @@ pub extern "MrmSupport" fn MrmCreateConfigInMemory(
     outputXmlSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub extern "KERNEL32" fn FreeResource(
+    hResData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn LoadResource(
+    hModule: ?*c_void,
+    hResInfo: HRSRC,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub extern "USER32" fn LoadStringA(
+    hInstance: HINSTANCE,
+    uID: u32,
+    lpBuffer: [*:0]u8,
+    cchBufferMax: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn LoadStringW(
+    hInstance: HINSTANCE,
+    uID: u32,
+    lpBuffer: [*:0]u16,
+    cchBufferMax: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "KERNEL32" fn LockResource(
+    hResData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub extern "KERNEL32" fn SizeofResource(
+    hModule: ?*c_void,
+    hResInfo: HRSRC,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn EnumResourceLanguagesExA(
+    hModule: ?*c_void,
+    lpType: [*:0]const u8,
+    lpName: [*:0]const u8,
+    lpEnumFunc: ENUMRESLANGPROCA,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn EnumResourceLanguagesExW(
+    hModule: ?*c_void,
+    lpType: [*:0]const u16,
+    lpName: [*:0]const u16,
+    lpEnumFunc: ENUMRESLANGPROCW,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn EnumResourceNamesExA(
+    hModule: ?*c_void,
+    lpType: [*:0]const u8,
+    lpEnumFunc: ENUMRESNAMEPROCA,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn EnumResourceNamesExW(
+    hModule: ?*c_void,
+    lpType: [*:0]const u16,
+    lpEnumFunc: ENUMRESNAMEPROCW,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn EnumResourceTypesExA(
+    hModule: ?*c_void,
+    lpEnumFunc: ENUMRESTYPEPROCA,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn EnumResourceTypesExW(
+    hModule: ?*c_void,
+    lpEnumFunc: ENUMRESTYPEPROCW,
+    lParam: ?*c_void,
+    dwFlags: u32,
+    LangId: u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "KERNEL32" fn lstrcmpA(
     lpString1: [*:0]const u8,
     lpString2: [*:0]const u8,
@@ -1789,16 +1789,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const WINSTAENUMPROC = WINSTAENUMPROCA;
         pub const DESKTOPENUMPROC = DESKTOPENUMPROCA;
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
         pub const NAMEENUMPROC = NAMEENUMPROCA;
         pub const MENUITEMINFO = MENUITEMINFOA;
         pub const ICONINFOEX = ICONINFOEXA;
         pub const ICONMETRICS = ICONMETRICSA;
-        pub const LoadString = LoadStringA;
-        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExA;
-        pub const EnumResourceNamesEx = EnumResourceNamesExA;
-        pub const EnumResourceTypesEx = EnumResourceTypesExA;
+        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
+        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
         pub const wvsprintf = wvsprintfA;
         pub const wsprintf = wsprintfA;
         pub const CharToOem = CharToOemA;
@@ -1843,6 +1839,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetFileVersionInfoEx = GetFileVersionInfoExA;
         pub const VerLanguageName = VerLanguageNameA;
         pub const VerQueryValue = VerQueryValueA;
+        pub const LoadString = LoadStringA;
+        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExA;
+        pub const EnumResourceNamesEx = EnumResourceNamesExA;
+        pub const EnumResourceTypesEx = EnumResourceTypesExA;
         pub const lstrcmp = lstrcmpA;
         pub const lstrcmpi = lstrcmpiA;
         pub const lstrcpyn = lstrcpynA;
@@ -1858,16 +1858,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .wide => struct {
         pub const WINSTAENUMPROC = WINSTAENUMPROCW;
         pub const DESKTOPENUMPROC = DESKTOPENUMPROCW;
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
         pub const NAMEENUMPROC = NAMEENUMPROCW;
         pub const MENUITEMINFO = MENUITEMINFOW;
         pub const ICONINFOEX = ICONINFOEXW;
         pub const ICONMETRICS = ICONMETRICSW;
-        pub const LoadString = LoadStringW;
-        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExW;
-        pub const EnumResourceNamesEx = EnumResourceNamesExW;
-        pub const EnumResourceTypesEx = EnumResourceTypesExW;
+        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
+        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
         pub const wvsprintf = wvsprintfW;
         pub const wsprintf = wsprintfW;
         pub const CharToOem = CharToOemW;
@@ -1912,6 +1908,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetFileVersionInfoEx = GetFileVersionInfoExW;
         pub const VerLanguageName = VerLanguageNameW;
         pub const VerQueryValue = VerQueryValueW;
+        pub const LoadString = LoadStringW;
+        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExW;
+        pub const EnumResourceNamesEx = EnumResourceNamesExW;
+        pub const EnumResourceTypesEx = EnumResourceTypesExW;
         pub const lstrcmp = lstrcmpW;
         pub const lstrcmpi = lstrcmpiW;
         pub const lstrcpyn = lstrcpynW;
@@ -1927,16 +1927,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .unspecified => if (@import("builtin").is_test) struct {
         pub const WINSTAENUMPROC = *opaque{};
         pub const DESKTOPENUMPROC = *opaque{};
-        pub const ENUMRESNAMEPROC = *opaque{};
-        pub const ENUMRESTYPEPROC = *opaque{};
         pub const NAMEENUMPROC = *opaque{};
         pub const MENUITEMINFO = *opaque{};
         pub const ICONINFOEX = *opaque{};
         pub const ICONMETRICS = *opaque{};
-        pub const LoadString = *opaque{};
-        pub const EnumResourceLanguagesEx = *opaque{};
-        pub const EnumResourceNamesEx = *opaque{};
-        pub const EnumResourceTypesEx = *opaque{};
+        pub const ENUMRESNAMEPROC = *opaque{};
+        pub const ENUMRESTYPEPROC = *opaque{};
         pub const wvsprintf = *opaque{};
         pub const wsprintf = *opaque{};
         pub const CharToOem = *opaque{};
@@ -1981,6 +1977,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetFileVersionInfoEx = *opaque{};
         pub const VerLanguageName = *opaque{};
         pub const VerQueryValue = *opaque{};
+        pub const LoadString = *opaque{};
+        pub const EnumResourceLanguagesEx = *opaque{};
+        pub const EnumResourceNamesEx = *opaque{};
+        pub const EnumResourceTypesEx = *opaque{};
         pub const lstrcmp = *opaque{};
         pub const lstrcmpi = *opaque{};
         pub const lstrcpyn = *opaque{};
@@ -1995,16 +1995,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     } else struct {
         pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
         pub const NAMEENUMPROC = @compileError("'NAMEENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const MENUITEMINFO = @compileError("'MENUITEMINFO' requires that UNICODE be set to true or false in the root module");
         pub const ICONINFOEX = @compileError("'ICONINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const ICONMETRICS = @compileError("'ICONMETRICS' requires that UNICODE be set to true or false in the root module");
-        pub const LoadString = @compileError("'LoadString' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
+        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
+        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
         pub const wvsprintf = @compileError("'wvsprintf' requires that UNICODE be set to true or false in the root module");
         pub const wsprintf = @compileError("'wsprintf' requires that UNICODE be set to true or false in the root module");
         pub const CharToOem = @compileError("'CharToOem' requires that UNICODE be set to true or false in the root module");
@@ -2049,6 +2045,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetFileVersionInfoEx = @compileError("'GetFileVersionInfoEx' requires that UNICODE be set to true or false in the root module");
         pub const VerLanguageName = @compileError("'VerLanguageName' requires that UNICODE be set to true or false in the root module");
         pub const VerQueryValue = @compileError("'VerQueryValue' requires that UNICODE be set to true or false in the root module");
+        pub const LoadString = @compileError("'LoadString' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
         pub const lstrcmp = @compileError("'lstrcmp' requires that UNICODE be set to true or false in the root module");
         pub const lstrcmpi = @compileError("'lstrcmpi' requires that UNICODE be set to true or false in the root module");
         pub const lstrcpyn = @compileError("'lstrcpyn' requires that UNICODE be set to true or false in the root module");
@@ -2082,9 +2082,9 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("system_services.zig").LRESULT;
 const HBRUSH = @import("gdi.zig").HBRUSH;
+const HOOKPROC = @import("windows_and_messaging.zig").HOOKPROC;
 const ENUMRESLANGPROCA = @import("system_services.zig").ENUMRESLANGPROCA;
 const ENUMRESLANGPROCW = @import("system_services.zig").ENUMRESLANGPROCW;
-const HOOKPROC = @import("windows_and_messaging.zig").HOOKPROC;
 const POINT = @import("display_devices.zig").POINT;
 const HANDLE = @import("system_services.zig").HANDLE;
 const LOGFONTA = @import("shell.zig").LOGFONTA;
@@ -2097,16 +2097,16 @@ test {
     _ = WINSTAENUMPROCW;
     _ = DESKTOPENUMPROCA;
     _ = DESKTOPENUMPROCW;
-    _ = ENUMRESNAMEPROCA;
-    _ = ENUMRESNAMEPROCW;
-    _ = ENUMRESTYPEPROCA;
-    _ = ENUMRESTYPEPROCW;
     _ = WNDPROC;
     _ = WNDENUMPROC;
     _ = NAMEENUMPROCA;
     _ = NAMEENUMPROCW;
     _ = PREGISTERCLASSNAMEW;
     _ = MSGBOXCALLBACK;
+    _ = ENUMRESNAMEPROCA;
+    _ = ENUMRESNAMEPROCW;
+    _ = ENUMRESTYPEPROCA;
+    _ = ENUMRESTYPEPROCW;
 
     const constant_export_count = 0;
     const type_export_count = 55;

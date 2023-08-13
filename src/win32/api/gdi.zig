@@ -157,6 +157,96 @@ pub const DIB_USAGE = extern enum(u32) {
 pub const DIB_RGB_COLORS = DIB_USAGE.DIB_RGB_COLORS;
 pub const DIB_PAL_COLORS = DIB_USAGE.DIB_PAL_COLORS;
 
+pub const GRAYSTRINGPROC = fn(
+    param0: HDC,
+    param1: LPARAM,
+    param2: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const DRAWSTATEPROC = fn(
+    hdc: HDC,
+    lData: LPARAM,
+    wData: WPARAM,
+    cx: i32,
+    cy: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PAINTSTRUCT = extern struct {
+    hdc: HDC,
+    fErase: BOOL,
+    rcPaint: RECT,
+    fRestore: BOOL,
+    fIncUpdate: BOOL,
+    rgbReserved: [32]u8,
+};
+
+pub const DRAWTEXTPARAMS = extern struct {
+    cbSize: u32,
+    iTabLength: i32,
+    iLeftMargin: i32,
+    iRightMargin: i32,
+    uiLengthDrawn: u32,
+};
+
+pub const MONITORINFO = extern struct {
+    cbSize: u32,
+    rcMonitor: RECT,
+    rcWork: RECT,
+    dwFlags: u32,
+};
+
+pub const MONITORINFOEXA = extern struct {
+    __AnonymousBase_winuser_L13554_C43: MONITORINFO,
+    szDevice: [32]i8,
+};
+
+pub const MONITORINFOEXW = extern struct {
+    __AnonymousBase_winuser_L13558_C43: MONITORINFO,
+    szDevice: [32]u16,
+};
+
+pub const MONITORENUMPROC = fn(
+    param0: HMONITOR,
+    param1: HDC,
+    param2: *RECT,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HBITMAP = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HBRUSH = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
+pub const HDC = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HdcMetdataEnhFileHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HdcMetdataFileHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HENHMETAFILE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HFONT = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HMETAFILE = ?*c_void;
+
+pub const HMONITOR = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HPALETTE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HPEN = ?*c_void;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+pub const HRGN = ?*c_void;
+
 pub const XFORM = extern struct {
     eM11: f32,
     eM12: f32,
@@ -1711,96 +1801,6 @@ pub const tagMxdcS0PageResourceEscape = extern struct {
     xpsS0PageResourcePassthrough: tagMxdcXpsS0PageResource,
 };
 
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HBITMAP = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HBRUSH = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
-pub const HDC = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HdcMetdataEnhFileHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HdcMetdataFileHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HFONT = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = ?*c_void;
-
-pub const HMONITOR = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HPALETTE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HPEN = ?*c_void;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HRGN = ?*c_void;
-
-pub const GRAYSTRINGPROC = fn(
-    param0: HDC,
-    param1: LPARAM,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DRAWSTATEPROC = fn(
-    hdc: HDC,
-    lData: LPARAM,
-    wData: WPARAM,
-    cx: i32,
-    cy: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PAINTSTRUCT = extern struct {
-    hdc: HDC,
-    fErase: BOOL,
-    rcPaint: RECT,
-    fRestore: BOOL,
-    fIncUpdate: BOOL,
-    rgbReserved: [32]u8,
-};
-
-pub const DRAWTEXTPARAMS = extern struct {
-    cbSize: u32,
-    iTabLength: i32,
-    iLeftMargin: i32,
-    iRightMargin: i32,
-    uiLengthDrawn: u32,
-};
-
-pub const MONITORINFO = extern struct {
-    cbSize: u32,
-    rcMonitor: RECT,
-    rcWork: RECT,
-    dwFlags: u32,
-};
-
-pub const MONITORINFOEXA = extern struct {
-    __AnonymousBase_winuser_L13554_C43: MONITORINFO,
-    szDevice: [32]i8,
-};
-
-pub const MONITORINFOEXW = extern struct {
-    __AnonymousBase_winuser_L13558_C43: MONITORINFO,
-    szDevice: [32]u16,
-};
-
-pub const MONITORENUMPROC = fn(
-    param0: HMONITOR,
-    param1: HDC,
-    param2: *RECT,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (395)
@@ -1810,6 +1810,475 @@ pub extern "GDI32" fn GetObjectA(
     c: i32,
     pv: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DrawEdge(
+    hdc: HDC,
+    qrc: *RECT,
+    edge: u32,
+    grfFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawFrameControl(
+    param0: HDC,
+    param1: *RECT,
+    param2: u32,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawCaption(
+    hwnd: HWND,
+    hdc: HDC,
+    lprect: *const RECT,
+    flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawAnimatedRects(
+    hwnd: HWND,
+    idAni: i32,
+    lprcFrom: *const RECT,
+    lprcTo: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawTextA(
+    hdc: HDC,
+    lpchText: [*:0]const u8,
+    cchText: i32,
+    lprc: *RECT,
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DrawTextW(
+    hdc: HDC,
+    lpchText: [*:0]const u16,
+    cchText: i32,
+    lprc: *RECT,
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DrawTextExA(
+    hdc: HDC,
+    lpchText: [*:0]u8,
+    cchText: i32,
+    lprc: *RECT,
+    format: u32,
+    lpdtp: ?*DRAWTEXTPARAMS,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn DrawTextExW(
+    hdc: HDC,
+    lpchText: [*:0]u16,
+    cchText: i32,
+    lprc: *RECT,
+    format: u32,
+    lpdtp: ?*DRAWTEXTPARAMS,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GrayStringA(
+    hDC: HDC,
+    hBrush: HBRUSH,
+    lpOutputFunc: ?GRAYSTRINGPROC,
+    lpData: LPARAM,
+    nCount: i32,
+    X: i32,
+    Y: i32,
+    nWidth: i32,
+    nHeight: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GrayStringW(
+    hDC: HDC,
+    hBrush: HBRUSH,
+    lpOutputFunc: ?GRAYSTRINGPROC,
+    lpData: LPARAM,
+    nCount: i32,
+    X: i32,
+    Y: i32,
+    nWidth: i32,
+    nHeight: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawStateA(
+    hdc: HDC,
+    hbrFore: HBRUSH,
+    qfnCallBack: ?DRAWSTATEPROC,
+    lData: LPARAM,
+    wData: WPARAM,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn DrawStateW(
+    hdc: HDC,
+    hbrFore: HBRUSH,
+    qfnCallBack: ?DRAWSTATEPROC,
+    lData: LPARAM,
+    wData: WPARAM,
+    x: i32,
+    y: i32,
+    cx: i32,
+    cy: i32,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn TabbedTextOutA(
+    hdc: HDC,
+    x: i32,
+    y: i32,
+    lpString: [*:0]const u8,
+    chCount: i32,
+    nTabPositions: i32,
+    lpnTabStopPositions: ?[*]const i32,
+    nTabOrigin: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn TabbedTextOutW(
+    hdc: HDC,
+    x: i32,
+    y: i32,
+    lpString: [*:0]const u16,
+    chCount: i32,
+    nTabPositions: i32,
+    lpnTabStopPositions: ?[*]const i32,
+    nTabOrigin: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetTabbedTextExtentA(
+    hdc: HDC,
+    lpString: [*:0]const u8,
+    chCount: i32,
+    nTabPositions: i32,
+    lpnTabStopPositions: ?[*]const i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn GetTabbedTextExtentW(
+    hdc: HDC,
+    lpString: [*:0]const u16,
+    chCount: i32,
+    nTabPositions: i32,
+    lpnTabStopPositions: ?[*]const i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn UpdateWindow(
+    hWnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn PaintDesktop(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn WindowFromDC(
+    hDC: HDC,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "USER32" fn GetDC(
+    hWnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) HDC;
+
+pub extern "USER32" fn GetDCEx(
+    hWnd: HWND,
+    hrgnClip: HRGN,
+    flags: u32,
+) callconv(@import("std").os.windows.WINAPI) HDC;
+
+pub extern "USER32" fn GetWindowDC(
+    hWnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) HDC;
+
+pub extern "USER32" fn ReleaseDC(
+    hWnd: HWND,
+    hDC: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn BeginPaint(
+    hWnd: HWND,
+    lpPaint: *PAINTSTRUCT,
+) callconv(@import("std").os.windows.WINAPI) HDC;
+
+pub extern "USER32" fn EndPaint(
+    hWnd: HWND,
+    lpPaint: *const PAINTSTRUCT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetUpdateRect(
+    hWnd: HWND,
+    lpRect: ?*RECT,
+    bErase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetUpdateRgn(
+    hWnd: HWND,
+    hRgn: HRGN,
+    bErase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn SetWindowRgn(
+    hWnd: HWND,
+    hRgn: HRGN,
+    bRedraw: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetWindowRgn(
+    hWnd: HWND,
+    hRgn: HRGN,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetWindowRgnBox(
+    hWnd: HWND,
+    lprc: *RECT,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn ExcludeUpdateRgn(
+    hDC: HDC,
+    hWnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn InvalidateRect(
+    hWnd: HWND,
+    lpRect: ?*const RECT,
+    bErase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ValidateRect(
+    hWnd: HWND,
+    lpRect: ?*const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn InvalidateRgn(
+    hWnd: HWND,
+    hRgn: HRGN,
+    bErase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ValidateRgn(
+    hWnd: HWND,
+    hRgn: HRGN,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn RedrawWindow(
+    hWnd: HWND,
+    lprcUpdate: ?*const RECT,
+    hrgnUpdate: HRGN,
+    flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn LockWindowUpdate(
+    hWndLock: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ClientToScreen(
+    hWnd: HWND,
+    lpPoint: *POINT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn ScreenToClient(
+    hWnd: HWND,
+    lpPoint: *POINT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn MapWindowPoints(
+    hWndFrom: HWND,
+    hWndTo: HWND,
+    lpPoints: [*]POINT,
+    cPoints: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetSysColorBrush(
+    nIndex: i32,
+) callconv(@import("std").os.windows.WINAPI) HBRUSH;
+
+pub extern "USER32" fn DrawFocusRect(
+    hDC: HDC,
+    lprc: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn FillRect(
+    hDC: HDC,
+    lprc: *const RECT,
+    hbr: HBRUSH,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn FrameRect(
+    hDC: HDC,
+    lprc: *const RECT,
+    hbr: HBRUSH,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn InvertRect(
+    hDC: HDC,
+    lprc: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetRect(
+    lprc: *RECT,
+    xLeft: i32,
+    yTop: i32,
+    xRight: i32,
+    yBottom: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetRectEmpty(
+    lprc: *RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn CopyRect(
+    lprcDst: *RECT,
+    lprcSrc: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn InflateRect(
+    lprc: *RECT,
+    dx: i32,
+    dy: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn IntersectRect(
+    lprcDst: *RECT,
+    lprcSrc1: *const RECT,
+    lprcSrc2: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn UnionRect(
+    lprcDst: *RECT,
+    lprcSrc1: *const RECT,
+    lprcSrc2: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SubtractRect(
+    lprcDst: *RECT,
+    lprcSrc1: *const RECT,
+    lprcSrc2: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn OffsetRect(
+    lprc: *RECT,
+    dx: i32,
+    dy: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn IsRectEmpty(
+    lprc: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EqualRect(
+    lprc1: *const RECT,
+    lprc2: *const RECT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn PtInRect(
+    lprc: *const RECT,
+    pt: POINT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn LoadBitmapA(
+    hInstance: HINSTANCE,
+    lpBitmapName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+
+pub extern "USER32" fn LoadBitmapW(
+    hInstance: HINSTANCE,
+    lpBitmapName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HBITMAP;
+
+pub extern "USER32" fn ChangeDisplaySettingsA(
+    lpDevMode: ?*DEVMODEA,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn ChangeDisplaySettingsW(
+    lpDevMode: ?*DEVMODEW,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn ChangeDisplaySettingsExA(
+    lpszDeviceName: ?[*:0]const u8,
+    lpDevMode: ?*DEVMODEA,
+    hwnd: HWND,
+    dwflags: u32,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn ChangeDisplaySettingsExW(
+    lpszDeviceName: ?[*:0]const u16,
+    lpDevMode: ?*DEVMODEW,
+    hwnd: HWND,
+    dwflags: u32,
+    lParam: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn EnumDisplaySettingsA(
+    lpszDeviceName: ?[*:0]const u8,
+    iModeNum: u32,
+    lpDevMode: *DEVMODEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplaySettingsW(
+    lpszDeviceName: ?[*:0]const u16,
+    iModeNum: u32,
+    lpDevMode: *DEVMODEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplaySettingsExA(
+    lpszDeviceName: ?[*:0]const u8,
+    iModeNum: u32,
+    lpDevMode: *DEVMODEA,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplaySettingsExW(
+    lpszDeviceName: ?[*:0]const u16,
+    iModeNum: u32,
+    lpDevMode: *DEVMODEW,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplayDevicesA(
+    lpDevice: ?[*:0]const u8,
+    iDevNum: u32,
+    lpDisplayDevice: *DISPLAY_DEVICEA,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplayDevicesW(
+    lpDevice: ?[*:0]const u16,
+    iDevNum: u32,
+    lpDisplayDevice: *DISPLAY_DEVICEW,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn MonitorFromPoint(
+    pt: POINT,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+
+pub extern "USER32" fn MonitorFromRect(
+    lprc: *RECT,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+
+pub extern "USER32" fn MonitorFromWindow(
+    hwnd: HWND,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) HMONITOR;
+
+pub extern "USER32" fn GetMonitorInfoA(
+    hMonitor: HMONITOR,
+    lpmi: *MONITORINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetMonitorInfoW(
+    hMonitor: HMONITOR,
+    lpmi: *MONITORINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn EnumDisplayMonitors(
+    hdc: HDC,
+    lprcClip: ?*RECT,
+    lpfnEnum: MONITORENUMPROC,
+    dwData: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "GDI32" fn AddFontResourceA(
     param0: [*:0]const u8,
@@ -3893,481 +4362,13 @@ pub extern "t2embed" fn TTGetNewFontName(
     cchMaxMacName: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "USER32" fn DrawEdge(
-    hdc: HDC,
-    qrc: *RECT,
-    edge: u32,
-    grfFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawFrameControl(
-    param0: HDC,
-    param1: *RECT,
-    param2: u32,
-    param3: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawCaption(
-    hwnd: HWND,
-    hdc: HDC,
-    lprect: *const RECT,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawAnimatedRects(
-    hwnd: HWND,
-    idAni: i32,
-    lprcFrom: *const RECT,
-    lprcTo: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawTextA(
-    hdc: HDC,
-    lpchText: [*:0]const u8,
-    cchText: i32,
-    lprc: *RECT,
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DrawTextW(
-    hdc: HDC,
-    lpchText: [*:0]const u16,
-    cchText: i32,
-    lprc: *RECT,
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DrawTextExA(
-    hdc: HDC,
-    lpchText: [*:0]u8,
-    cchText: i32,
-    lprc: *RECT,
-    format: u32,
-    lpdtp: ?*DRAWTEXTPARAMS,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn DrawTextExW(
-    hdc: HDC,
-    lpchText: [*:0]u16,
-    cchText: i32,
-    lprc: *RECT,
-    format: u32,
-    lpdtp: ?*DRAWTEXTPARAMS,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GrayStringA(
-    hDC: HDC,
-    hBrush: HBRUSH,
-    lpOutputFunc: ?GRAYSTRINGPROC,
-    lpData: LPARAM,
-    nCount: i32,
-    X: i32,
-    Y: i32,
-    nWidth: i32,
-    nHeight: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GrayStringW(
-    hDC: HDC,
-    hBrush: HBRUSH,
-    lpOutputFunc: ?GRAYSTRINGPROC,
-    lpData: LPARAM,
-    nCount: i32,
-    X: i32,
-    Y: i32,
-    nWidth: i32,
-    nHeight: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawStateA(
-    hdc: HDC,
-    hbrFore: HBRUSH,
-    qfnCallBack: ?DRAWSTATEPROC,
-    lData: LPARAM,
-    wData: WPARAM,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn DrawStateW(
-    hdc: HDC,
-    hbrFore: HBRUSH,
-    qfnCallBack: ?DRAWSTATEPROC,
-    lData: LPARAM,
-    wData: WPARAM,
-    x: i32,
-    y: i32,
-    cx: i32,
-    cy: i32,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn TabbedTextOutA(
-    hdc: HDC,
-    x: i32,
-    y: i32,
-    lpString: [*:0]const u8,
-    chCount: i32,
-    nTabPositions: i32,
-    lpnTabStopPositions: ?[*]const i32,
-    nTabOrigin: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn TabbedTextOutW(
-    hdc: HDC,
-    x: i32,
-    y: i32,
-    lpString: [*:0]const u16,
-    chCount: i32,
-    nTabPositions: i32,
-    lpnTabStopPositions: ?[*]const i32,
-    nTabOrigin: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetTabbedTextExtentA(
-    hdc: HDC,
-    lpString: [*:0]const u8,
-    chCount: i32,
-    nTabPositions: i32,
-    lpnTabStopPositions: ?[*]const i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn GetTabbedTextExtentW(
-    hdc: HDC,
-    lpString: [*:0]const u16,
-    chCount: i32,
-    nTabPositions: i32,
-    lpnTabStopPositions: ?[*]const i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn UpdateWindow(
-    hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn PaintDesktop(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn WindowFromDC(
-    hDC: HDC,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "USER32" fn GetDC(
-    hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) HDC;
-
-pub extern "USER32" fn GetDCEx(
-    hWnd: HWND,
-    hrgnClip: HRGN,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HDC;
-
-pub extern "USER32" fn GetWindowDC(
-    hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) HDC;
-
-pub extern "USER32" fn ReleaseDC(
-    hWnd: HWND,
-    hDC: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn BeginPaint(
-    hWnd: HWND,
-    lpPaint: *PAINTSTRUCT,
-) callconv(@import("std").os.windows.WINAPI) HDC;
-
-pub extern "USER32" fn EndPaint(
-    hWnd: HWND,
-    lpPaint: *const PAINTSTRUCT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetUpdateRect(
-    hWnd: HWND,
-    lpRect: ?*RECT,
-    bErase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetUpdateRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
-    bErase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn SetWindowRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
-    bRedraw: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetWindowRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetWindowRgnBox(
-    hWnd: HWND,
-    lprc: *RECT,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn ExcludeUpdateRgn(
-    hDC: HDC,
-    hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn InvalidateRect(
-    hWnd: HWND,
-    lpRect: ?*const RECT,
-    bErase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ValidateRect(
-    hWnd: HWND,
-    lpRect: ?*const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn InvalidateRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
-    bErase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ValidateRgn(
-    hWnd: HWND,
-    hRgn: HRGN,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn RedrawWindow(
-    hWnd: HWND,
-    lprcUpdate: ?*const RECT,
-    hrgnUpdate: HRGN,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn LockWindowUpdate(
-    hWndLock: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ClientToScreen(
-    hWnd: HWND,
-    lpPoint: *POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn ScreenToClient(
-    hWnd: HWND,
-    lpPoint: *POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn MapWindowPoints(
-    hWndFrom: HWND,
-    hWndTo: HWND,
-    lpPoints: [*]POINT,
-    cPoints: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetSysColorBrush(
-    nIndex: i32,
-) callconv(@import("std").os.windows.WINAPI) HBRUSH;
-
-pub extern "USER32" fn DrawFocusRect(
-    hDC: HDC,
-    lprc: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn FillRect(
-    hDC: HDC,
-    lprc: *const RECT,
-    hbr: HBRUSH,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn FrameRect(
-    hDC: HDC,
-    lprc: *const RECT,
-    hbr: HBRUSH,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn InvertRect(
-    hDC: HDC,
-    lprc: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetRect(
-    lprc: *RECT,
-    xLeft: i32,
-    yTop: i32,
-    xRight: i32,
-    yBottom: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetRectEmpty(
-    lprc: *RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn CopyRect(
-    lprcDst: *RECT,
-    lprcSrc: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn InflateRect(
-    lprc: *RECT,
-    dx: i32,
-    dy: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn IntersectRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn UnionRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SubtractRect(
-    lprcDst: *RECT,
-    lprcSrc1: *const RECT,
-    lprcSrc2: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn OffsetRect(
-    lprc: *RECT,
-    dx: i32,
-    dy: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn IsRectEmpty(
-    lprc: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EqualRect(
-    lprc1: *const RECT,
-    lprc2: *const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn PtInRect(
-    lprc: *const RECT,
-    pt: POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn LoadBitmapA(
-    hInstance: HINSTANCE,
-    lpBitmapName: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
-
-pub extern "USER32" fn LoadBitmapW(
-    hInstance: HINSTANCE,
-    lpBitmapName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HBITMAP;
-
-pub extern "USER32" fn ChangeDisplaySettingsA(
-    lpDevMode: ?*DEVMODEA,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn ChangeDisplaySettingsW(
-    lpDevMode: ?*DEVMODEW,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn ChangeDisplaySettingsExA(
-    lpszDeviceName: ?[*:0]const u8,
-    lpDevMode: ?*DEVMODEA,
-    hwnd: HWND,
-    dwflags: u32,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn ChangeDisplaySettingsExW(
-    lpszDeviceName: ?[*:0]const u16,
-    lpDevMode: ?*DEVMODEW,
-    hwnd: HWND,
-    dwflags: u32,
-    lParam: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn EnumDisplaySettingsA(
-    lpszDeviceName: ?[*:0]const u8,
-    iModeNum: u32,
-    lpDevMode: *DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplaySettingsW(
-    lpszDeviceName: ?[*:0]const u16,
-    iModeNum: u32,
-    lpDevMode: *DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplaySettingsExA(
-    lpszDeviceName: ?[*:0]const u8,
-    iModeNum: u32,
-    lpDevMode: *DEVMODEA,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplaySettingsExW(
-    lpszDeviceName: ?[*:0]const u16,
-    iModeNum: u32,
-    lpDevMode: *DEVMODEW,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplayDevicesA(
-    lpDevice: ?[*:0]const u8,
-    iDevNum: u32,
-    lpDisplayDevice: *DISPLAY_DEVICEA,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplayDevicesW(
-    lpDevice: ?[*:0]const u16,
-    iDevNum: u32,
-    lpDisplayDevice: *DISPLAY_DEVICEW,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn MonitorFromPoint(
-    pt: POINT,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
-
-pub extern "USER32" fn MonitorFromRect(
-    lprc: *RECT,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
-
-pub extern "USER32" fn MonitorFromWindow(
-    hwnd: HWND,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HMONITOR;
-
-pub extern "USER32" fn GetMonitorInfoA(
-    hMonitor: HMONITOR,
-    lpmi: *MONITORINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetMonitorInfoW(
-    hMonitor: HMONITOR,
-    lpmi: *MONITORINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn EnumDisplayMonitors(
-    hdc: HDC,
-    lprcClip: ?*RECT,
-    lpfnEnum: MONITORENUMPROC,
-    dwData: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (69)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const MONITORINFOEX = MONITORINFOEXA;
         pub const TEXTMETRIC = TEXTMETRICA;
         pub const NEWTEXTMETRIC = NEWTEXTMETRICA;
         pub const NEWTEXTMETRICEX = NEWTEXTMETRICEXA;
@@ -4383,8 +4384,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXESLIST = AXESLISTA;
         pub const ENUMLOGFONTEXDV = ENUMLOGFONTEXDVA;
         pub const ENUMTEXTMETRIC = ENUMTEXTMETRICA;
-        pub const MONITORINFOEX = MONITORINFOEXA;
         pub const GetObject = GetObjectA;
+        pub const DrawText = DrawTextA;
+        pub const DrawTextEx = DrawTextExA;
+        pub const GrayString = GrayStringA;
+        pub const DrawState = DrawStateA;
+        pub const TabbedTextOut = TabbedTextOutA;
+        pub const GetTabbedTextExtent = GetTabbedTextExtentA;
+        pub const LoadBitmap = LoadBitmapA;
+        pub const ChangeDisplaySettings = ChangeDisplaySettingsA;
+        pub const ChangeDisplaySettingsEx = ChangeDisplaySettingsExA;
+        pub const EnumDisplaySettings = EnumDisplaySettingsA;
+        pub const EnumDisplaySettingsEx = EnumDisplaySettingsExA;
+        pub const EnumDisplayDevices = EnumDisplayDevicesA;
+        pub const GetMonitorInfo = GetMonitorInfoA;
         pub const AddFontResource = AddFontResourceA;
         pub const CopyMetaFile = CopyMetaFileA;
         pub const CreateDC = CreateDCA;
@@ -4424,21 +4437,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PolyTextOut = PolyTextOutA;
         pub const GetTextFace = GetTextFaceA;
         pub const GetKerningPairs = GetKerningPairsA;
-        pub const DrawText = DrawTextA;
-        pub const DrawTextEx = DrawTextExA;
-        pub const GrayString = GrayStringA;
-        pub const DrawState = DrawStateA;
-        pub const TabbedTextOut = TabbedTextOutA;
-        pub const GetTabbedTextExtent = GetTabbedTextExtentA;
-        pub const LoadBitmap = LoadBitmapA;
-        pub const ChangeDisplaySettings = ChangeDisplaySettingsA;
-        pub const ChangeDisplaySettingsEx = ChangeDisplaySettingsExA;
-        pub const EnumDisplaySettings = EnumDisplaySettingsA;
-        pub const EnumDisplaySettingsEx = EnumDisplaySettingsExA;
-        pub const EnumDisplayDevices = EnumDisplayDevicesA;
-        pub const GetMonitorInfo = GetMonitorInfoA;
     },
     .wide => struct {
+        pub const MONITORINFOEX = MONITORINFOEXW;
         pub const TEXTMETRIC = TEXTMETRICW;
         pub const NEWTEXTMETRIC = NEWTEXTMETRICW;
         pub const NEWTEXTMETRICEX = NEWTEXTMETRICEXW;
@@ -4454,8 +4455,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXESLIST = AXESLISTW;
         pub const ENUMLOGFONTEXDV = ENUMLOGFONTEXDVW;
         pub const ENUMTEXTMETRIC = ENUMTEXTMETRICW;
-        pub const MONITORINFOEX = MONITORINFOEXW;
         pub const GetObject = GetObjectW;
+        pub const DrawText = DrawTextW;
+        pub const DrawTextEx = DrawTextExW;
+        pub const GrayString = GrayStringW;
+        pub const DrawState = DrawStateW;
+        pub const TabbedTextOut = TabbedTextOutW;
+        pub const GetTabbedTextExtent = GetTabbedTextExtentW;
+        pub const LoadBitmap = LoadBitmapW;
+        pub const ChangeDisplaySettings = ChangeDisplaySettingsW;
+        pub const ChangeDisplaySettingsEx = ChangeDisplaySettingsExW;
+        pub const EnumDisplaySettings = EnumDisplaySettingsW;
+        pub const EnumDisplaySettingsEx = EnumDisplaySettingsExW;
+        pub const EnumDisplayDevices = EnumDisplayDevicesW;
+        pub const GetMonitorInfo = GetMonitorInfoW;
         pub const AddFontResource = AddFontResourceW;
         pub const CopyMetaFile = CopyMetaFileW;
         pub const CreateDC = CreateDCW;
@@ -4495,21 +4508,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PolyTextOut = PolyTextOutW;
         pub const GetTextFace = GetTextFaceW;
         pub const GetKerningPairs = GetKerningPairsW;
-        pub const DrawText = DrawTextW;
-        pub const DrawTextEx = DrawTextExW;
-        pub const GrayString = GrayStringW;
-        pub const DrawState = DrawStateW;
-        pub const TabbedTextOut = TabbedTextOutW;
-        pub const GetTabbedTextExtent = GetTabbedTextExtentW;
-        pub const LoadBitmap = LoadBitmapW;
-        pub const ChangeDisplaySettings = ChangeDisplaySettingsW;
-        pub const ChangeDisplaySettingsEx = ChangeDisplaySettingsExW;
-        pub const EnumDisplaySettings = EnumDisplaySettingsW;
-        pub const EnumDisplaySettingsEx = EnumDisplaySettingsExW;
-        pub const EnumDisplayDevices = EnumDisplayDevicesW;
-        pub const GetMonitorInfo = GetMonitorInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const MONITORINFOEX = *opaque{};
         pub const TEXTMETRIC = *opaque{};
         pub const NEWTEXTMETRIC = *opaque{};
         pub const NEWTEXTMETRICEX = *opaque{};
@@ -4525,8 +4526,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXESLIST = *opaque{};
         pub const ENUMLOGFONTEXDV = *opaque{};
         pub const ENUMTEXTMETRIC = *opaque{};
-        pub const MONITORINFOEX = *opaque{};
         pub const GetObject = *opaque{};
+        pub const DrawText = *opaque{};
+        pub const DrawTextEx = *opaque{};
+        pub const GrayString = *opaque{};
+        pub const DrawState = *opaque{};
+        pub const TabbedTextOut = *opaque{};
+        pub const GetTabbedTextExtent = *opaque{};
+        pub const LoadBitmap = *opaque{};
+        pub const ChangeDisplaySettings = *opaque{};
+        pub const ChangeDisplaySettingsEx = *opaque{};
+        pub const EnumDisplaySettings = *opaque{};
+        pub const EnumDisplaySettingsEx = *opaque{};
+        pub const EnumDisplayDevices = *opaque{};
+        pub const GetMonitorInfo = *opaque{};
         pub const AddFontResource = *opaque{};
         pub const CopyMetaFile = *opaque{};
         pub const CreateDC = *opaque{};
@@ -4566,20 +4579,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PolyTextOut = *opaque{};
         pub const GetTextFace = *opaque{};
         pub const GetKerningPairs = *opaque{};
-        pub const DrawText = *opaque{};
-        pub const DrawTextEx = *opaque{};
-        pub const GrayString = *opaque{};
-        pub const DrawState = *opaque{};
-        pub const TabbedTextOut = *opaque{};
-        pub const GetTabbedTextExtent = *opaque{};
-        pub const LoadBitmap = *opaque{};
-        pub const ChangeDisplaySettings = *opaque{};
-        pub const ChangeDisplaySettingsEx = *opaque{};
-        pub const EnumDisplaySettings = *opaque{};
-        pub const EnumDisplaySettingsEx = *opaque{};
-        pub const EnumDisplayDevices = *opaque{};
-        pub const GetMonitorInfo = *opaque{};
     } else struct {
+        pub const MONITORINFOEX = @compileError("'MONITORINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const TEXTMETRIC = @compileError("'TEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRIC = @compileError("'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRICEX = @compileError("'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module");
@@ -4595,8 +4596,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AXESLIST = @compileError("'AXESLIST' requires that UNICODE be set to true or false in the root module");
         pub const ENUMLOGFONTEXDV = @compileError("'ENUMLOGFONTEXDV' requires that UNICODE be set to true or false in the root module");
         pub const ENUMTEXTMETRIC = @compileError("'ENUMTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
-        pub const MONITORINFOEX = @compileError("'MONITORINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const GetObject = @compileError("'GetObject' requires that UNICODE be set to true or false in the root module");
+        pub const DrawText = @compileError("'DrawText' requires that UNICODE be set to true or false in the root module");
+        pub const DrawTextEx = @compileError("'DrawTextEx' requires that UNICODE be set to true or false in the root module");
+        pub const GrayString = @compileError("'GrayString' requires that UNICODE be set to true or false in the root module");
+        pub const DrawState = @compileError("'DrawState' requires that UNICODE be set to true or false in the root module");
+        pub const TabbedTextOut = @compileError("'TabbedTextOut' requires that UNICODE be set to true or false in the root module");
+        pub const GetTabbedTextExtent = @compileError("'GetTabbedTextExtent' requires that UNICODE be set to true or false in the root module");
+        pub const LoadBitmap = @compileError("'LoadBitmap' requires that UNICODE be set to true or false in the root module");
+        pub const ChangeDisplaySettings = @compileError("'ChangeDisplaySettings' requires that UNICODE be set to true or false in the root module");
+        pub const ChangeDisplaySettingsEx = @compileError("'ChangeDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
+        pub const EnumDisplaySettings = @compileError("'EnumDisplaySettings' requires that UNICODE be set to true or false in the root module");
+        pub const EnumDisplaySettingsEx = @compileError("'EnumDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
+        pub const EnumDisplayDevices = @compileError("'EnumDisplayDevices' requires that UNICODE be set to true or false in the root module");
+        pub const GetMonitorInfo = @compileError("'GetMonitorInfo' requires that UNICODE be set to true or false in the root module");
         pub const AddFontResource = @compileError("'AddFontResource' requires that UNICODE be set to true or false in the root module");
         pub const CopyMetaFile = @compileError("'CopyMetaFile' requires that UNICODE be set to true or false in the root module");
         pub const CreateDC = @compileError("'CreateDC' requires that UNICODE be set to true or false in the root module");
@@ -4636,19 +4649,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PolyTextOut = @compileError("'PolyTextOut' requires that UNICODE be set to true or false in the root module");
         pub const GetTextFace = @compileError("'GetTextFace' requires that UNICODE be set to true or false in the root module");
         pub const GetKerningPairs = @compileError("'GetKerningPairs' requires that UNICODE be set to true or false in the root module");
-        pub const DrawText = @compileError("'DrawText' requires that UNICODE be set to true or false in the root module");
-        pub const DrawTextEx = @compileError("'DrawTextEx' requires that UNICODE be set to true or false in the root module");
-        pub const GrayString = @compileError("'GrayString' requires that UNICODE be set to true or false in the root module");
-        pub const DrawState = @compileError("'DrawState' requires that UNICODE be set to true or false in the root module");
-        pub const TabbedTextOut = @compileError("'TabbedTextOut' requires that UNICODE be set to true or false in the root module");
-        pub const GetTabbedTextExtent = @compileError("'GetTabbedTextExtent' requires that UNICODE be set to true or false in the root module");
-        pub const LoadBitmap = @compileError("'LoadBitmap' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeDisplaySettings = @compileError("'ChangeDisplaySettings' requires that UNICODE be set to true or false in the root module");
-        pub const ChangeDisplaySettingsEx = @compileError("'ChangeDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplaySettings = @compileError("'EnumDisplaySettings' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplaySettingsEx = @compileError("'EnumDisplaySettingsEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDisplayDevices = @compileError("'EnumDisplayDevices' requires that UNICODE be set to true or false in the root module");
-        pub const GetMonitorInfo = @compileError("'GetMonitorInfo' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -4661,9 +4661,9 @@ const POINTL = @import("display_devices.zig").POINTL;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const LOGFONTW = @import("shell.zig").LOGFONTW;
 const BITMAPINFOHEADER = @import("direct_show.zig").BITMAPINFOHEADER;
-const POINTS = @import("display_devices.zig").POINTS;
-const DEVMODEA = @import("xps.zig").DEVMODEA;
 const BOOL = @import("system_services.zig").BOOL;
+const DEVMODEA = @import("xps.zig").DEVMODEA;
+const POINTS = @import("display_devices.zig").POINTS;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const CIEXYZTRIPLE = @import("windows_color_system.zig").CIEXYZTRIPLE;
 const PWSTR = @import("system_services.zig").PWSTR;
@@ -4677,12 +4677,15 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 const LOGCOLORSPACEA = @import("windows_color_system.zig").LOGCOLORSPACEA;
 const POINT = @import("display_devices.zig").POINT;
 const RECTL = @import("display_devices.zig").RECTL;
-const SIZE = @import("display_devices.zig").SIZE;
 const LOGFONTA = @import("shell.zig").LOGFONTA;
+const SIZE = @import("display_devices.zig").SIZE;
 const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    _ = GRAYSTRINGPROC;
+    _ = DRAWSTATEPROC;
+    _ = MONITORENUMPROC;
     _ = OLDFONTENUMPROCA;
     _ = OLDFONTENUMPROCW;
     _ = FONTENUMPROCA;
@@ -4699,9 +4702,6 @@ test {
     _ = CFP_FREEPROC;
     _ = READEMBEDPROC;
     _ = WRITEEMBEDPROC;
-    _ = GRAYSTRINGPROC;
-    _ = DRAWSTATEPROC;
-    _ = MONITORENUMPROC;
 
     const constant_export_count = 0;
     const type_export_count = 206;

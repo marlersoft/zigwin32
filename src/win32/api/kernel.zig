@@ -17,18 +17,6 @@ pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ExceptionContinueSearc
 pub const ExceptionNestedException = EXCEPTION_DISPOSITION.ExceptionNestedException;
 pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.ExceptionCollidedUnwind;
 
-pub const COMPARTMENT_ID = extern enum(i32) {
-    UNSPECIFIED_COMPARTMENT_ID = 0,
-    DEFAULT_COMPARTMENT_ID = 1,
-};
-pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
-pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
-
-pub const LUID = extern struct {
-    LowPart: u32,
-    HighPart: i32,
-};
-
 pub const QUAD = extern struct {
     Anonymous: QUAD._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -190,6 +178,18 @@ pub const WHServer = SUITE_TYPE.WHServer;
 pub const PhoneNT = SUITE_TYPE.PhoneNT;
 pub const MultiUserTS = SUITE_TYPE.MultiUserTS;
 pub const MaxSuiteType = SUITE_TYPE.MaxSuiteType;
+
+pub const COMPARTMENT_ID = extern enum(i32) {
+    UNSPECIFIED_COMPARTMENT_ID = 0,
+    DEFAULT_COMPARTMENT_ID = 1,
+};
+pub const UNSPECIFIED_COMPARTMENT_ID = COMPARTMENT_ID.UNSPECIFIED_COMPARTMENT_ID;
+pub const DEFAULT_COMPARTMENT_ID = COMPARTMENT_ID.DEFAULT_COMPARTMENT_ID;
+
+pub const LUID = extern struct {
+    LowPart: u32,
+    HighPart: i32,
+};
 
 
 //--------------------------------------------------------------------------------

@@ -40,23 +40,6 @@ pub const UIDNA_ERROR_CONTEXTO_DIGITS : i32 = 16384;
 //--------------------------------------------------------------------------------
 // Section: Types (331)
 //--------------------------------------------------------------------------------
-pub const FONTSIGNATURE = extern struct {
-    fsUsb: [4]u32,
-    fsCsb: [2]u32,
-};
-
-pub const CHARSETINFO = extern struct {
-    ciCharset: u32,
-    ciACP: u32,
-    fs: FONTSIGNATURE,
-};
-
-pub const LOCALESIGNATURE = extern struct {
-    lsUsb: [4]u32,
-    lsCsbDefault: [2]u32,
-    lsCsbSupported: [2]u32,
-};
-
 pub const CPINFO = extern struct {
     MaxCharSize: u32,
     DefaultChar: [2]u8,
@@ -1189,8 +1172,8 @@ pub const MORRSLT = extern struct {
     pPrivate: *c_void,
     BLKBuff: u16,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IFELanguage = extern struct {
@@ -6341,35 +6324,27 @@ pub const UTransPosition = extern struct {
     limit: i32,
 };
 
+pub const FONTSIGNATURE = extern struct {
+    fsUsb: [4]u32,
+    fsCsb: [2]u32,
+};
+
+pub const CHARSETINFO = extern struct {
+    ciCharset: u32,
+    ciACP: u32,
+    fs: FONTSIGNATURE,
+};
+
+pub const LOCALESIGNATURE = extern struct {
+    lsUsb: [4]u32,
+    lsCsbDefault: [2]u32,
+    lsCsbSupported: [2]u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1225)
 //--------------------------------------------------------------------------------
-pub extern "KERNEL32" fn FindStringOrdinal(
-    dwFindStringOrdinalFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    bIgnoreCase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "GDI32" fn GetTextCharset(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "GDI32" fn GetTextCharsetInfo(
-    hdc: HDC,
-    lpSig: ?*FONTSIGNATURE,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "GDI32" fn TranslateCharsetInfo(
-    lpSrc: *u32,
-    lpCs: *CHARSETINFO,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "KERNEL32" fn GetDateFormatA(
     Locale: u32,
     dwFlags: u32,
@@ -14000,6 +13975,31 @@ pub extern "icu" fn utrans_getSourceSet(
     fillIn: *USet,
     status: *UErrorCode,
 ) callconv(@import("std").os.windows.WINAPI) *USet;
+
+pub extern "KERNEL32" fn FindStringOrdinal(
+    dwFindStringOrdinalFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    bIgnoreCase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "GDI32" fn GetTextCharset(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "GDI32" fn GetTextCharsetInfo(
+    hdc: HDC,
+    lpSig: ?*FONTSIGNATURE,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "GDI32" fn TranslateCharsetInfo(
+    lpSrc: *u32,
+    lpCs: *CHARSETINFO,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn IsTextUnicode(
     lpv: [*]const u8,
