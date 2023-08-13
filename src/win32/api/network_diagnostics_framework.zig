@@ -2,28 +2,28 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (22)
 //--------------------------------------------------------------------------------
-pub const NDF_ERROR_START : u32 = 63744;
-pub const RF_WORKAROUND : u32 = 536870912;
-pub const RF_USER_ACTION : u32 = 268435456;
-pub const RF_USER_CONFIRMATION : u32 = 134217728;
-pub const RF_INFORMATION_ONLY : u32 = 33554432;
-pub const RF_UI_ONLY : u32 = 16777216;
-pub const RF_SHOW_EVENTS : u32 = 8388608;
-pub const RF_VALIDATE_HELPTOPIC : u32 = 4194304;
-pub const RF_REPRO : u32 = 2097152;
-pub const RF_CONTACT_ADMIN : u32 = 131072;
-pub const RF_RESERVED : u32 = 1073741824;
-pub const RF_RESERVED_CA : u32 = 2147483648;
-pub const RF_RESERVED_LNI : u32 = 65536;
-pub const RCF_ISLEAF : u32 = 1;
-pub const RCF_ISCONFIRMED : u32 = 2;
-pub const RCF_ISTHIRDPARTY : u32 = 4;
-pub const DF_IMPERSONATION : u32 = 2147483648;
-pub const DF_TRACELESS : u32 = 1073741824;
-pub const NDF_INBOUND_FLAG_EDGETRAVERSAL : u32 = 1;
-pub const NDF_INBOUND_FLAG_HEALTHCHECK : u32 = 2;
-pub const NDF_ADD_CAPTURE_TRACE : u32 = 1;
-pub const NDF_APPLY_INCLUSION_LIST_FILTER : u32 = 2;
+pub const NDF_ERROR_START = @as(u32, 63744);
+pub const RF_WORKAROUND = @as(u32, 536870912);
+pub const RF_USER_ACTION = @as(u32, 268435456);
+pub const RF_USER_CONFIRMATION = @as(u32, 134217728);
+pub const RF_INFORMATION_ONLY = @as(u32, 33554432);
+pub const RF_UI_ONLY = @as(u32, 16777216);
+pub const RF_SHOW_EVENTS = @as(u32, 8388608);
+pub const RF_VALIDATE_HELPTOPIC = @as(u32, 4194304);
+pub const RF_REPRO = @as(u32, 2097152);
+pub const RF_CONTACT_ADMIN = @as(u32, 131072);
+pub const RF_RESERVED = @as(u32, 1073741824);
+pub const RF_RESERVED_CA = @as(u32, 2147483648);
+pub const RF_RESERVED_LNI = @as(u32, 65536);
+pub const RCF_ISLEAF = @as(u32, 1);
+pub const RCF_ISCONFIRMED = @as(u32, 2);
+pub const RCF_ISTHIRDPARTY = @as(u32, 4);
+pub const DF_IMPERSONATION = @as(u32, 2147483648);
+pub const DF_TRACELESS = @as(u32, 1073741824);
+pub const NDF_INBOUND_FLAG_EDGETRAVERSAL = @as(u32, 1);
+pub const NDF_INBOUND_FLAG_HEALTHCHECK = @as(u32, 2);
+pub const NDF_ADD_CAPTURE_TRACE = @as(u32, 1);
+pub const NDF_APPLY_INCLUSION_LIST_FILTER = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (25)

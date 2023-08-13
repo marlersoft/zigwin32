@@ -2,16 +2,16 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (10)
 //--------------------------------------------------------------------------------
-pub const SYNC_VERSION_FLAG_FROM_FEED : u32 = 1;
-pub const SYNC_VERSION_FLAG_HAS_BY : u32 = 2;
-pub const SYNC_SERIALIZE_REPLICA_KEY_MAP : u32 = 1;
-pub const SYNC_FILTER_INFO_FLAG_ITEM_LIST : u32 = 1;
-pub const SYNC_FILTER_INFO_FLAG_CHANGE_UNIT_LIST : u32 = 2;
-pub const SYNC_FILTER_INFO_FLAG_CUSTOM : u32 = 4;
-pub const SYNC_FILTER_INFO_COMBINED : u32 = 8;
-pub const SYNC_CHANGE_FLAG_DELETED : u32 = 1;
-pub const SYNC_CHANGE_FLAG_DOES_NOT_EXIST : u32 = 2;
-pub const SYNC_CHANGE_FLAG_GHOST : u32 = 4;
+pub const SYNC_VERSION_FLAG_FROM_FEED = @as(u32, 1);
+pub const SYNC_VERSION_FLAG_HAS_BY = @as(u32, 2);
+pub const SYNC_SERIALIZE_REPLICA_KEY_MAP = @as(u32, 1);
+pub const SYNC_FILTER_INFO_FLAG_ITEM_LIST = @as(u32, 1);
+pub const SYNC_FILTER_INFO_FLAG_CHANGE_UNIT_LIST = @as(u32, 2);
+pub const SYNC_FILTER_INFO_FLAG_CUSTOM = @as(u32, 4);
+pub const SYNC_FILTER_INFO_COMBINED = @as(u32, 8);
+pub const SYNC_CHANGE_FLAG_DELETED = @as(u32, 1);
+pub const SYNC_CHANGE_FLAG_DOES_NOT_EXIST = @as(u32, 2);
+pub const SYNC_CHANGE_FLAG_GHOST = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)

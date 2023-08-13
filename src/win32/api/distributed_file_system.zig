@@ -2,37 +2,37 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (31)
 //--------------------------------------------------------------------------------
-pub const DFS_VOLUME_STATES : u32 = 15;
-pub const DFS_VOLUME_STATE_OK : u32 = 1;
-pub const DFS_VOLUME_STATE_INCONSISTENT : u32 = 2;
-pub const DFS_VOLUME_STATE_OFFLINE : u32 = 3;
-pub const DFS_VOLUME_STATE_ONLINE : u32 = 4;
-pub const DFS_VOLUME_STATE_RESYNCHRONIZE : u32 = 16;
-pub const DFS_VOLUME_STATE_STANDBY : u32 = 32;
-pub const DFS_VOLUME_STATE_FORCE_SYNC : u32 = 64;
-pub const DFS_VOLUME_FLAVORS : u32 = 768;
-pub const DFS_VOLUME_FLAVOR_UNUSED1 : u32 = 0;
-pub const DFS_VOLUME_FLAVOR_STANDALONE : u32 = 256;
-pub const DFS_VOLUME_FLAVOR_AD_BLOB : u32 = 512;
-pub const DFS_STORAGE_FLAVOR_UNUSED2 : u32 = 768;
-pub const DFS_STORAGE_STATES : u32 = 15;
-pub const DFS_STORAGE_STATE_OFFLINE : u32 = 1;
-pub const DFS_STORAGE_STATE_ONLINE : u32 = 2;
-pub const DFS_STORAGE_STATE_ACTIVE : u32 = 4;
-pub const DFS_PROPERTY_FLAG_INSITE_REFERRALS : u32 = 1;
-pub const DFS_PROPERTY_FLAG_ROOT_SCALABILITY : u32 = 2;
-pub const DFS_PROPERTY_FLAG_SITE_COSTING : u32 = 4;
-pub const DFS_PROPERTY_FLAG_TARGET_FAILBACK : u32 = 8;
-pub const DFS_PROPERTY_FLAG_CLUSTER_ENABLED : u32 = 16;
-pub const DFS_PROPERTY_FLAG_ABDE : u32 = 32;
-pub const DFS_ADD_VOLUME : u32 = 1;
-pub const DFS_RESTORE_VOLUME : u32 = 2;
-pub const NET_DFS_SETDC_FLAGS : u32 = 0;
-pub const NET_DFS_SETDC_TIMEOUT : u32 = 1;
-pub const NET_DFS_SETDC_INITPKT : u32 = 2;
-pub const DFS_SITE_PRIMARY : u32 = 1;
-pub const DFS_MOVE_FLAG_REPLACE_IF_EXISTS : u32 = 1;
-pub const DFS_FORCE_REMOVE : u32 = 2147483648;
+pub const DFS_VOLUME_STATES = @as(u32, 15);
+pub const DFS_VOLUME_STATE_OK = @as(u32, 1);
+pub const DFS_VOLUME_STATE_INCONSISTENT = @as(u32, 2);
+pub const DFS_VOLUME_STATE_OFFLINE = @as(u32, 3);
+pub const DFS_VOLUME_STATE_ONLINE = @as(u32, 4);
+pub const DFS_VOLUME_STATE_RESYNCHRONIZE = @as(u32, 16);
+pub const DFS_VOLUME_STATE_STANDBY = @as(u32, 32);
+pub const DFS_VOLUME_STATE_FORCE_SYNC = @as(u32, 64);
+pub const DFS_VOLUME_FLAVORS = @as(u32, 768);
+pub const DFS_VOLUME_FLAVOR_UNUSED1 = @as(u32, 0);
+pub const DFS_VOLUME_FLAVOR_STANDALONE = @as(u32, 256);
+pub const DFS_VOLUME_FLAVOR_AD_BLOB = @as(u32, 512);
+pub const DFS_STORAGE_FLAVOR_UNUSED2 = @as(u32, 768);
+pub const DFS_STORAGE_STATES = @as(u32, 15);
+pub const DFS_STORAGE_STATE_OFFLINE = @as(u32, 1);
+pub const DFS_STORAGE_STATE_ONLINE = @as(u32, 2);
+pub const DFS_STORAGE_STATE_ACTIVE = @as(u32, 4);
+pub const DFS_PROPERTY_FLAG_INSITE_REFERRALS = @as(u32, 1);
+pub const DFS_PROPERTY_FLAG_ROOT_SCALABILITY = @as(u32, 2);
+pub const DFS_PROPERTY_FLAG_SITE_COSTING = @as(u32, 4);
+pub const DFS_PROPERTY_FLAG_TARGET_FAILBACK = @as(u32, 8);
+pub const DFS_PROPERTY_FLAG_CLUSTER_ENABLED = @as(u32, 16);
+pub const DFS_PROPERTY_FLAG_ABDE = @as(u32, 32);
+pub const DFS_ADD_VOLUME = @as(u32, 1);
+pub const DFS_RESTORE_VOLUME = @as(u32, 2);
+pub const NET_DFS_SETDC_FLAGS = @as(u32, 0);
+pub const NET_DFS_SETDC_TIMEOUT = @as(u32, 1);
+pub const NET_DFS_SETDC_INITPKT = @as(u32, 2);
+pub const DFS_SITE_PRIMARY = @as(u32, 1);
+pub const DFS_MOVE_FLAG_REPLACE_IF_EXISTS = @as(u32, 1);
+pub const DFS_FORCE_REMOVE = @as(u32, 2147483648);
 
 //--------------------------------------------------------------------------------
 // Section: Types (30)

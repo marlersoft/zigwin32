@@ -2,709 +2,709 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1281)
 //--------------------------------------------------------------------------------
-pub const DXVAp_ModeMPEG2_A = @import("../zig.zig").Guid.initString("1b81be0a-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVAp_ModeMPEG2_C = @import("../zig.zig").Guid.initString("1b81be0c-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVAp_NoEncrypt = @import("../zig.zig").Guid.initString("1b81bed0-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA_QUERYORREPLYFUNCFLAG_DECODER_PROBE_QUERY : u32 = 16777201;
-pub const DXVA_QUERYORREPLYFUNCFLAG_DECODER_LOCK_QUERY : u32 = 16777205;
-pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_OK_COPY : u32 = 16777208;
-pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_OK_PLUS : u32 = 16777209;
-pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_LOCK_OK_COPY : u32 = 16777212;
-pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_FALSE_PLUS : u32 = 16777211;
-pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_LOCK_FALSE_PLUS : u32 = 16777215;
-pub const DXVA_PICTURE_DECODE_BUFFER : u32 = 1;
-pub const DXVA_MACROBLOCK_CONTROL_BUFFER : u32 = 2;
-pub const DXVA_RESIDUAL_DIFFERENCE_BUFFER : u32 = 3;
-pub const DXVA_DEBLOCKING_CONTROL_BUFFER : u32 = 4;
-pub const DXVA_INVERSE_QUANTIZATION_MATRIX_BUFFER : u32 = 5;
-pub const DXVA_SLICE_CONTROL_BUFFER : u32 = 6;
-pub const DXVA_BITSTREAM_DATA_BUFFER : u32 = 7;
-pub const DXVA_AYUV_BUFFER : u32 = 8;
-pub const DXVA_IA44_SURFACE_BUFFER : u32 = 9;
-pub const DXVA_DPXD_SURFACE_BUFFER : u32 = 10;
-pub const DXVA_HIGHLIGHT_BUFFER : u32 = 11;
-pub const DXVA_DCCMD_SURFACE_BUFFER : u32 = 12;
-pub const DXVA_ALPHA_BLEND_COMBINATION_BUFFER : u32 = 13;
-pub const DXVA_PICTURE_RESAMPLE_BUFFER : u32 = 14;
-pub const DXVA_READ_BACK_BUFFER : u32 = 15;
-pub const DXVA_ExtColorData_ShiftBase : u32 = 8;
-pub const DXVAp_DeinterlaceBobDevice = @import("../zig.zig").Guid.initString("335aa36e-7884-43a4-9c91-7f87faf3e37e");
-pub const DXVAp_DeinterlaceContainerDevice = @import("../zig.zig").Guid.initString("0e85cb93-3046-4ff0-aecc-d58cb5f035fd");
-pub const MAX_DEINTERLACE_SURFACES : u32 = 32;
-pub const DXVA_DeinterlaceBltFnCode : u32 = 1;
-pub const DXVA_DeinterlaceBltExFnCode : u32 = 2;
-pub const MAX_DEINTERLACE_DEVICE_GUIDS : u32 = 32;
-pub const DXVA_DeinterlaceQueryAvailableModesFnCode : u32 = 1;
-pub const DXVA_DeinterlaceQueryModeCapsFnCode : u32 = 2;
-pub const DXVA_ProcAmpControlDevice = @import("../zig.zig").Guid.initString("9f200913-2ffd-4056-9f1e-e1b508f22dcf");
-pub const DXVA_ProcAmpControlQueryCapsFnCode : u32 = 3;
-pub const DXVA_ProcAmpControlQueryRangeFnCode : u32 = 4;
-pub const DXVA_ProcAmpControlBltFnCode : u32 = 1;
-pub const DXVA_COPPDevice = @import("../zig.zig").Guid.initString("d2457add-8999-45ed-8a8a-d1aa047ba4d5");
-pub const DXVA_COPPGetCertificateLengthFnCode : u32 = 1;
-pub const DXVA_COPPKeyExchangeFnCode : u32 = 2;
-pub const DXVA_COPPSequenceStartFnCode : u32 = 3;
-pub const DXVA_COPPCommandFnCode : u32 = 4;
-pub const DXVA_COPPSetProtectionLevel = @import("../zig.zig").Guid.initString("9bb9327c-4eb5-4727-9f00-b42b0919c0da");
-pub const COPP_NoProtectionLevelAvailable : i32 = -1;
-pub const COPP_DefaultProtectionLevel : u32 = 0;
-pub const DXVA_COPPSetSignaling = @import("../zig.zig").Guid.initString("09a631a5-d684-4c60-8e4d-d3bb0f0be3ee");
-pub const COPP_ImageAspectRatio_EN300294_Mask : u32 = 7;
-pub const DXVA_COPPQueryStatusFnCode : u32 = 5;
-pub const DXVA_COPPQueryConnectorType = @import("../zig.zig").Guid.initString("81d0bfd5-6afe-48c2-99c0-95a08f97c5da");
-pub const DXVA_COPPQueryProtectionType = @import("../zig.zig").Guid.initString("38f2a801-9a6c-48bb-9107-b6696e6f1797");
-pub const DXVA_COPPQueryLocalProtectionLevel = @import("../zig.zig").Guid.initString("b2075857-3eda-4d5d-88db-748f8c1a0549");
-pub const DXVA_COPPQueryGlobalProtectionLevel = @import("../zig.zig").Guid.initString("1957210a-7766-452a-b99a-d27aed54f03a");
-pub const DXVA_COPPQueryDisplayData = @import("../zig.zig").Guid.initString("d7bf1ba3-ad13-4f8e-af98-0dcb3ca204cc");
-pub const DXVA_COPPQueryHDCPKeyData = @import("../zig.zig").Guid.initString("0db59d74-a992-492e-a0bd-c23fda564e00");
-pub const DXVA_COPPQueryBusData = @import("../zig.zig").Guid.initString("c6f4d673-6174-4184-8e35-f6db5200bcba");
-pub const DXVA_COPPQuerySignaling = @import("../zig.zig").Guid.initString("6629a591-3b79-4cf3-924a-11e8e7811671");
-pub const D3D12_VIDEO_DECODE_PROFILE_MPEG2 = @import("../zig.zig").Guid.initString("ee27417f-5e28-4e65-beea-1d26b508adc9");
-pub const D3D12_VIDEO_DECODE_PROFILE_MPEG1_AND_MPEG2 = @import("../zig.zig").Guid.initString("86695f12-340e-4f04-9fd3-9253dd327460");
-pub const D3D12_VIDEO_DECODE_PROFILE_H264 = @import("../zig.zig").Guid.initString("1b81be68-a0c7-11d3-b984-00c04f2e73c5");
-pub const D3D12_VIDEO_DECODE_PROFILE_H264_STEREO_PROGRESSIVE = @import("../zig.zig").Guid.initString("d79be8da-0cf1-4c81-b82a-69a4e236f43d");
-pub const D3D12_VIDEO_DECODE_PROFILE_H264_STEREO = @import("../zig.zig").Guid.initString("f9aaccbb-c2b6-4cfc-8779-5707b1760552");
-pub const D3D12_VIDEO_DECODE_PROFILE_H264_MULTIVIEW = @import("../zig.zig").Guid.initString("705b9d82-76cf-49d6-b7e6-ac8872db013c");
-pub const D3D12_VIDEO_DECODE_PROFILE_VC1 = @import("../zig.zig").Guid.initString("1b81bea3-a0c7-11d3-b984-00c04f2e73c5");
-pub const D3D12_VIDEO_DECODE_PROFILE_VC1_D2010 = @import("../zig.zig").Guid.initString("1b81bea4-a0c7-11d3-b984-00c04f2e73c5");
-pub const D3D12_VIDEO_DECODE_PROFILE_MPEG4PT2_SIMPLE = @import("../zig.zig").Guid.initString("efd64d74-c9e8-41d7-a5e9-e9b0e39fa319");
-pub const D3D12_VIDEO_DECODE_PROFILE_MPEG4PT2_ADVSIMPLE_NOGMC = @import("../zig.zig").Guid.initString("ed418a9f-010d-4eda-9ae3-9a65358d8d2e");
-pub const D3D12_VIDEO_DECODE_PROFILE_HEVC_MAIN = @import("../zig.zig").Guid.initString("5b11d51b-2f4c-4452-bcc3-09f2a1160cc0");
-pub const D3D12_VIDEO_DECODE_PROFILE_HEVC_MAIN10 = @import("../zig.zig").Guid.initString("107af0e0-ef1a-4d19-aba8-67a163073d13");
-pub const D3D12_VIDEO_DECODE_PROFILE_VP9 = @import("../zig.zig").Guid.initString("463707f8-a1d0-4585-876d-83aa6d60b89e");
-pub const D3D12_VIDEO_DECODE_PROFILE_VP9_10BIT_PROFILE2 = @import("../zig.zig").Guid.initString("a4c749ef-6ecf-48aa-8448-50a7a1165ff7");
-pub const D3D12_VIDEO_DECODE_PROFILE_VP8 = @import("../zig.zig").Guid.initString("90b899ea-3a62-4705-88b3-8df04b2744e7");
-pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE0 = @import("../zig.zig").Guid.initString("b8be4ccb-cf53-46ba-8d59-d6b8a6da5d2a");
-pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE1 = @import("../zig.zig").Guid.initString("6936ff0f-45b1-4163-9cc1-646ef6946108");
-pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE2 = @import("../zig.zig").Guid.initString("0c5f2aa1-e541-4089-bb7b-98110a19d7c8");
-pub const D3D12_VIDEO_DECODE_PROFILE_AV1_12BIT_PROFILE2 = @import("../zig.zig").Guid.initString("17127009-a00f-4ce1-994e-bf4081f6f3f0");
-pub const D3D12_VIDEO_DECODE_PROFILE_AV1_12BIT_PROFILE2_420 = @import("../zig.zig").Guid.initString("2d80bed6-9cac-4835-9e91-327bbc4f9ee8");
-pub const WM_CODEC_ONEPASS_CBR : u32 = 1;
-pub const WM_CODEC_ONEPASS_VBR : u32 = 2;
-pub const WM_CODEC_TWOPASS_CBR : u32 = 4;
-pub const WM_CODEC_TWOPASS_VBR_UNCONSTRAINED : u32 = 8;
-pub const WM_CODEC_TWOPASS_VBR_PEAKCONSTRAINED : u32 = 16;
-pub const SYSFXUI_DONOTSHOW_LOUDNESSEQUALIZATION : u32 = 1;
-pub const SYSFXUI_DONOTSHOW_ROOMCORRECTION : u32 = 2;
-pub const SYSFXUI_DONOTSHOW_BASSMANAGEMENT : u32 = 4;
-pub const SYSFXUI_DONOTSHOW_BASSBOOST : u32 = 8;
-pub const SYSFXUI_DONOTSHOW_HEADPHONEVIRTUALIZATION : u32 = 16;
-pub const SYSFXUI_DONOTSHOW_VIRTUALSURROUND : u32 = 32;
-pub const SYSFXUI_DONOTSHOW_SPEAKERFILLING : u32 = 64;
-pub const SYSFXUI_DONOTSHOW_CHANNELPHANTOMING : u32 = 128;
-pub const AEC_MAX_SYSTEM_MODES : u32 = 6;
-pub const WMAAECMA_E_NO_ACTIVE_RENDER_STREAM : u32 = 2278293514;
-pub const MEDIASUBTYPE_Y41T = @import("../zig.zig").Guid.initString("54313459-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_Y42T = @import("../zig.zig").Guid.initString("54323459-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_NV11 = @import("../zig.zig").Guid.initString("3131564e-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_V216 = @import("../zig.zig").Guid.initString("36313256-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_V410 = @import("../zig.zig").Guid.initString("30313456-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_v210 = @import("../zig.zig").Guid.initString("30313276-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_I420 = @import("../zig.zig").Guid.initString("30323449-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WVC1 = @import("../zig.zig").Guid.initString("31435657-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wvc1 = @import("../zig.zig").Guid.initString("31637677-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMVA = @import("../zig.zig").Guid.initString("41564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmva = @import("../zig.zig").Guid.initString("61766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMVB = @import("../zig.zig").Guid.initString("42564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmvb = @import("../zig.zig").Guid.initString("62766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMVR = @import("../zig.zig").Guid.initString("52564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmvr = @import("../zig.zig").Guid.initString("72766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMVP = @import("../zig.zig").Guid.initString("50564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmvp = @import("../zig.zig").Guid.initString("70766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WVP2 = @import("../zig.zig").Guid.initString("32505657-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wvp2 = @import("../zig.zig").Guid.initString("32707677-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMV3 = @import("../zig.zig").Guid.initString("33564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmv3 = @import("../zig.zig").Guid.initString("33766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMV2 = @import("../zig.zig").Guid.initString("32564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmv2 = @import("../zig.zig").Guid.initString("32766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMV1 = @import("../zig.zig").Guid.initString("31564d57-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_wmv1 = @import("../zig.zig").Guid.initString("31766d77-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MPG4 = @import("../zig.zig").Guid.initString("3447504d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_mpg4 = @import("../zig.zig").Guid.initString("3467706d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MP42 = @import("../zig.zig").Guid.initString("3234504d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_mp42 = @import("../zig.zig").Guid.initString("3234706d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MP43 = @import("../zig.zig").Guid.initString("3334504d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_mp43 = @import("../zig.zig").Guid.initString("3334706d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MP4S = @import("../zig.zig").Guid.initString("5334504d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_mp4s = @import("../zig.zig").Guid.initString("7334706d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_M4S2 = @import("../zig.zig").Guid.initString("3253344d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_m4s2 = @import("../zig.zig").Guid.initString("3273346d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MSS1 = @import("../zig.zig").Guid.initString("3153534d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MSS2 = @import("../zig.zig").Guid.initString("3253534d-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MSAUDIO1 = @import("../zig.zig").Guid.initString("00000160-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMAUDIO2 = @import("../zig.zig").Guid.initString("00000161-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMAUDIO3 = @import("../zig.zig").Guid.initString("00000162-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMAUDIO_LOSSLESS = @import("../zig.zig").Guid.initString("00000163-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMASPDIF = @import("../zig.zig").Guid.initString("00000164-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_WMAUDIO4 = @import("../zig.zig").Guid.initString("00000168-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MPEG_ADTS_AAC = @import("../zig.zig").Guid.initString("00001600-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MPEG_RAW_AAC = @import("../zig.zig").Guid.initString("00001601-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MPEG_LOAS = @import("../zig.zig").Guid.initString("00001602-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_NOKIA_MPEG_ADTS_AAC = @import("../zig.zig").Guid.initString("00001608-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_NOKIA_MPEG_RAW_AAC = @import("../zig.zig").Guid.initString("00001609-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_VODAFONE_MPEG_ADTS_AAC = @import("../zig.zig").Guid.initString("0000160a-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_VODAFONE_MPEG_RAW_AAC = @import("../zig.zig").Guid.initString("0000160b-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_MPEG_HEAAC = @import("../zig.zig").Guid.initString("00001610-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_RAW_AAC1 = @import("../zig.zig").Guid.initString("000000ff-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_DVM = @import("../zig.zig").Guid.initString("00002000-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_DTS2 = @import("../zig.zig").Guid.initString("00002001-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_DOLBY_DDPLUS = @import("../zig.zig").Guid.initString("a7fb87af-2d02-42fb-a4d4-05cd93843bdd");
-pub const MEDIASUBTYPE_DOLBY_TRUEHD = @import("../zig.zig").Guid.initString("eb27cec4-163e-4ca3-8b74-8e25f91b517e");
-pub const MEDIASUBTYPE_DTS_HD = @import("../zig.zig").Guid.initString("a2e58eb7-0fa9-48bb-a40c-fa0e156d0645");
-pub const MEDIASUBTYPE_DTS_HD_HRA = @import("../zig.zig").Guid.initString("a61ac364-ad0e-4744-89ff-213ce0df8804");
-pub const MEDIASUBTYPE_h264 = @import("../zig.zig").Guid.initString("34363268-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_AVC1 = @import("../zig.zig").Guid.initString("31435641-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_X264 = @import("../zig.zig").Guid.initString("34363258-0000-0010-8000-00aa00389b71");
-pub const MEDIASUBTYPE_x264 = @import("../zig.zig").Guid.initString("34363278-0000-0010-8000-00aa00389b71");
-pub const MF_VIDEODSP_MODE = @import("../zig.zig").Guid.initString("16d720f0-768c-11de-8a39-0800200c9a66");
-pub const MFSampleExtension_VideoDSPMode = @import("../zig.zig").Guid.initString("c12d55cb-d7d9-476d-81f3-69117f163ea0");
-pub const CLSID_CTocEntry = @import("../zig.zig").Guid.initString("f22f5e05-585c-4def-8523-6555cfbc0cb3");
-pub const CLSID_CTocEntryList = @import("../zig.zig").Guid.initString("3a8cccbc-0efd-43a3-b838-f38a552ba237");
-pub const CLSID_CToc = @import("../zig.zig").Guid.initString("4fe24495-28ce-4920-a4c4-e556e1f0df2a");
-pub const CLSID_CTocCollection = @import("../zig.zig").Guid.initString("5058292d-a244-4840-ab44-480975c4ffe4");
-pub const CLSID_CTocParser = @import("../zig.zig").Guid.initString("499eaeea-2737-4849-8bb6-47f107eaf358");
-pub const CLSID_CAsfTocParser = @import("../zig.zig").Guid.initString("9b77c0f2-8735-46c5-b90f-5f0b303ef6ab");
-pub const CLSID_CAviTocParser = @import("../zig.zig").Guid.initString("3adce5cc-13c8-4573-b328-ed438eb694f9");
-pub const CLSID_CFileIo = @import("../zig.zig").Guid.initString("11993195-1244-4840-ab44-480975c4ffe4");
-pub const CLSID_CFileClient = @import("../zig.zig").Guid.initString("bfccd195-1244-4840-ab44-480975c4ffe4");
-pub const CLSID_CClusterDetectorEx = @import("../zig.zig").Guid.initString("47354492-827e-4b8a-b318-c80eba1381f0");
-pub const E_TOCPARSER_INVALIDASFFILE : i32 = -1728053247;
-pub const E_TOCPARSER_INVALIDRIFFFILE : i32 = -1728053246;
-pub const TOC_MAX_DESCRIPTION_SIZE : u32 = 65535;
-pub const TOC_ENTRY_MAX_TITLE_SIZE : u32 = 65535;
-pub const DXVAHD_STREAM_STATE_PRIVATE_IVTC = @import("../zig.zig").Guid.initString("9c601e3c-0f33-414c-a739-99540ee42da5");
-pub const DXVAHDControlGuid = @import("../zig.zig").Guid.initString("a0386e75-f70c-464c-a9ce-33c44e091623");
-pub const DXVAHDETWGUID_CREATEVIDEOPROCESSOR = @import("../zig.zig").Guid.initString("681e3d1e-5674-4fb3-a503-2f2055e91f60");
-pub const DXVAHDETWGUID_VIDEOPROCESSBLTSTATE = @import("../zig.zig").Guid.initString("76c94b5a-193f-4692-9484-a4d999da81a8");
-pub const DXVAHDETWGUID_VIDEOPROCESSSTREAMSTATE = @import("../zig.zig").Guid.initString("262c0b02-209d-47ed-94d8-82ae02b84aa7");
-pub const DXVAHDETWGUID_VIDEOPROCESSBLTHD = @import("../zig.zig").Guid.initString("bef3d435-78c7-4de3-9707-cd1b083b160a");
-pub const DXVAHDETWGUID_VIDEOPROCESSBLTHD_STREAM = @import("../zig.zig").Guid.initString("27ae473e-a5fc-4be5-b4e3-f24994d3c495");
-pub const DXVAHDETWGUID_DESTROYVIDEOPROCESSOR = @import("../zig.zig").Guid.initString("f943f0a0-3f16-43e0-8093-105a986aa5f1");
-pub const OPM_GET_CURRENT_HDCP_SRM_VERSION = @import("../zig.zig").Guid.initString("99c5ceff-5f1d-4879-81c1-c52443c9482b");
-pub const OPM_GET_CONNECTED_HDCP_DEVICE_INFORMATION = @import("../zig.zig").Guid.initString("0db59d74-a992-492e-a0bd-c23fda564e00");
-pub const OPM_GET_ACP_AND_CGMSA_SIGNALING = @import("../zig.zig").Guid.initString("6629a591-3b79-4cf3-924a-11e8e7811671");
-pub const OPM_GET_CONNECTOR_TYPE = @import("../zig.zig").Guid.initString("81d0bfd5-6afe-48c2-99c0-95a08f97c5da");
-pub const OPM_GET_SUPPORTED_PROTECTION_TYPES = @import("../zig.zig").Guid.initString("38f2a801-9a6c-48bb-9107-b6696e6f1797");
-pub const OPM_GET_VIRTUAL_PROTECTION_LEVEL = @import("../zig.zig").Guid.initString("b2075857-3eda-4d5d-88db-748f8c1a0549");
-pub const OPM_GET_ACTUAL_PROTECTION_LEVEL = @import("../zig.zig").Guid.initString("1957210a-7766-452a-b99a-d27aed54f03a");
-pub const OPM_GET_ACTUAL_OUTPUT_FORMAT = @import("../zig.zig").Guid.initString("d7bf1ba3-ad13-4f8e-af98-0dcb3ca204cc");
-pub const OPM_GET_ADAPTER_BUS_TYPE = @import("../zig.zig").Guid.initString("c6f4d673-6174-4184-8e35-f6db5200bcba");
-pub const OPM_GET_OUTPUT_ID = @import("../zig.zig").Guid.initString("72cb6df3-244f-40ce-b09e-20506af6302f");
-pub const OPM_GET_DVI_CHARACTERISTICS = @import("../zig.zig").Guid.initString("a470b3bb-5dd7-4172-839c-3d3776e0ebf5");
-pub const OPM_GET_CODEC_INFO = @import("../zig.zig").Guid.initString("4f374491-8f5f-4445-9dba-95588f6b58b4");
-pub const OPM_GET_OUTPUT_HARDWARE_PROTECTION_SUPPORT = @import("../zig.zig").Guid.initString("3b129589-2af8-4ef0-96a2-704a845a218e");
-pub const OPM_SET_PROTECTION_LEVEL = @import("../zig.zig").Guid.initString("9bb9327c-4eb5-4727-9f00-b42b0919c0da");
-pub const OPM_SET_ACP_AND_CGMSA_SIGNALING = @import("../zig.zig").Guid.initString("09a631a5-d684-4c60-8e4d-d3bb0f0be3ee");
-pub const OPM_SET_HDCP_SRM = @import("../zig.zig").Guid.initString("8b5ef5d1-c30d-44ff-84a5-ea71dce78f13");
-pub const OPM_SET_PROTECTION_LEVEL_ACCORDING_TO_CSS_DVD = @import("../zig.zig").Guid.initString("39ce333e-4cc0-44ae-bfcc-da50b5f82e72");
-pub const MEDIASINK_FIXED_STREAMS : u32 = 1;
-pub const MEDIASINK_CANNOT_MATCH_CLOCK : u32 = 2;
-pub const MEDIASINK_RATELESS : u32 = 4;
-pub const MEDIASINK_CLOCK_REQUIRED : u32 = 8;
-pub const MEDIASINK_CAN_PREROLL : u32 = 16;
-pub const MEDIASINK_REQUIRE_REFERENCE_MEDIATYPE : u32 = 32;
-pub const MFCLOCK_FREQUENCY_HNS : u32 = 10000000;
-pub const MFCLOCK_TOLERANCE_UNKNOWN : u32 = 50000;
-pub const MFCLOCK_JITTER_ISR : u32 = 1000;
-pub const MFCLOCK_JITTER_DPC : u32 = 4000;
-pub const MFCLOCK_JITTER_PASSIVE : u32 = 10000;
-pub const PRESENTATION_CURRENT_POSITION : u64 = 9223372036854775807;
-pub const MF_PD_ADAPTIVE_STREAMING = @import("../zig.zig").Guid.initString("ea0d5d97-29f9-488b-ae6b-7d6b4136112b");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_CROSSPROCESS : u32 = 1;
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_NOPERSIST : u32 = 2;
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_DONT_ALLOW_FORMAT_CHANGES : u32 = 4;
-pub const MFRR_INFO_VERSION : u32 = 0;
-pub const MF_USER_MODE_COMPONENT_LOAD : u32 = 1;
-pub const MF_KERNEL_MODE_COMPONENT_LOAD : u32 = 2;
-pub const MF_GRL_LOAD_FAILED : u32 = 16;
-pub const MF_INVALID_GRL_SIGNATURE : u32 = 32;
-pub const MF_GRL_ABSENT : u32 = 4096;
-pub const MF_COMPONENT_REVOKED : u32 = 8192;
-pub const MF_COMPONENT_INVALID_EKU : u32 = 16384;
-pub const MF_COMPONENT_CERT_REVOKED : u32 = 32768;
-pub const MF_COMPONENT_INVALID_ROOT : u32 = 65536;
-pub const MF_COMPONENT_HS_CERT_REVOKED : u32 = 131072;
-pub const MF_COMPONENT_LS_CERT_REVOKED : u32 = 262144;
-pub const MF_BOOT_DRIVER_VERIFICATION_FAILED : u32 = 1048576;
-pub const MF_TEST_SIGNED_COMPONENT_LOADING : u32 = 16777216;
-pub const MF_MINCRYPT_FAILURE : u32 = 268435456;
-pub const SHA_HASH_LEN : u32 = 20;
-pub const MFSEQUENCER_INVALID_ELEMENT_ID : u32 = 4294967295;
-pub const MF_WRAPPED_BUFFER_SERVICE = @import("../zig.zig").Guid.initString("ab544072-c269-4ebc-a552-1c3b32bed5ca");
-pub const CLSID_MPEG2ByteStreamPlugin = @import("../zig.zig").Guid.initString("40871c59-ab40-471f-8dc3-1f259d862479");
-pub const MFCONTENTPROTECTIONDEVICE_FUNCTIONID_START : u32 = 67108864;
-pub const MF_UNKNOWN_DURATION : u32 = 0;
-pub const MFStreamExtension_ExtendedCameraIntrinsics = @import("../zig.zig").Guid.initString("aa74b3df-9a2c-48d6-8393-5bd1c1a81e6e");
-pub const MFSampleExtension_ExtendedCameraIntrinsics = @import("../zig.zig").Guid.initString("560bc4a5-4de0-4113-9cdc-832db9740f3d");
-pub const MFASFINDEXER_PER_ENTRY_BYTES_DYNAMIC : u32 = 65535;
-pub const MFASFINDEXER_NO_FIXED_INTERVAL : u32 = 4294967295;
-pub const MFASFINDEXER_READ_FOR_REVERSEPLAYBACK_OUTOFDATASEGMENT : u64 = 18446744073709551615;
-pub const MFASFINDEXER_APPROX_SEEK_TIME_UNKNOWN : u64 = 18446744073709551615;
-pub const MFASF_MAX_STREAM_NUMBER : u32 = 127;
-pub const MFASF_PAYLOADEXTENSION_MAX_SIZE : u32 = 255;
-pub const MFASF_PAYLOADEXTENSION_VARIABLE_SIZE : u32 = 65535;
-pub const MFASF_DEFAULT_BUFFER_WINDOW_MS : u32 = 3000;
-pub const MF_MEDIATYPE_EQUAL_MAJOR_TYPES : u32 = 1;
-pub const MF_MEDIATYPE_EQUAL_FORMAT_TYPES : u32 = 2;
-pub const MF_MEDIATYPE_EQUAL_FORMAT_DATA : u32 = 4;
-pub const MF_MEDIATYPE_EQUAL_FORMAT_USER_DATA : u32 = 8;
-pub const MFASYNC_FAST_IO_PROCESSING_CALLBACK : u32 = 1;
-pub const MFASYNC_SIGNAL_CALLBACK : u32 = 2;
-pub const MFASYNC_BLOCKING_CALLBACK : u32 = 4;
-pub const MFASYNC_REPLY_CALLBACK : u32 = 8;
-pub const MFASYNC_LOCALIZE_REMOTE_CALLBACK : u32 = 16;
-pub const MFASYNC_CALLBACK_QUEUE_UNDEFINED : u32 = 0;
-pub const MFASYNC_CALLBACK_QUEUE_STANDARD : u32 = 1;
-pub const MFASYNC_CALLBACK_QUEUE_RT : u32 = 2;
-pub const MFASYNC_CALLBACK_QUEUE_IO : u32 = 3;
-pub const MFASYNC_CALLBACK_QUEUE_TIMER : u32 = 4;
-pub const MFASYNC_CALLBACK_QUEUE_MULTITHREADED : u32 = 5;
-pub const MFASYNC_CALLBACK_QUEUE_LONG_FUNCTION : u32 = 7;
-pub const MFASYNC_CALLBACK_QUEUE_PRIVATE_MASK : u32 = 4294901760;
-pub const MFASYNC_CALLBACK_QUEUE_ALL : u32 = 4294967295;
-pub const MFBYTESTREAM_IS_READABLE : u32 = 1;
-pub const MFBYTESTREAM_IS_WRITABLE : u32 = 2;
-pub const MFBYTESTREAM_IS_SEEKABLE : u32 = 4;
-pub const MFBYTESTREAM_IS_REMOTE : u32 = 8;
-pub const MFBYTESTREAM_IS_DIRECTORY : u32 = 128;
-pub const MFBYTESTREAM_HAS_SLOW_SEEK : u32 = 256;
-pub const MFBYTESTREAM_IS_PARTIALLY_DOWNLOADED : u32 = 512;
-pub const MFBYTESTREAM_SHARE_WRITE : u32 = 1024;
-pub const MFBYTESTREAM_DOES_NOT_USE_NETWORK : u32 = 2048;
-pub const MFBYTESTREAM_SEEK_FLAG_CANCEL_PENDING_IO : u32 = 1;
-pub const MF_SDK_VERSION : u32 = 2;
-pub const MF_API_VERSION : u32 = 112;
-pub const MFSTARTUP_NOSOCKET : u32 = 1;
-pub const MFSTARTUP_FULL : u32 = 0;
-pub const MF_E_DXGI_DEVICE_NOT_INITIALIZED : i32 = -2147217408;
-pub const MF_E_DXGI_NEW_VIDEO_DEVICE : i32 = -2147217407;
-pub const MF_E_DXGI_VIDEO_DEVICE_LOCKED : i32 = -2147217406;
-pub const MF_1_BYTE_ALIGNMENT : u32 = 0;
-pub const MF_2_BYTE_ALIGNMENT : u32 = 1;
-pub const MF_4_BYTE_ALIGNMENT : u32 = 3;
-pub const MF_8_BYTE_ALIGNMENT : u32 = 7;
-pub const MF_16_BYTE_ALIGNMENT : u32 = 15;
-pub const MF_32_BYTE_ALIGNMENT : u32 = 31;
-pub const MF_64_BYTE_ALIGNMENT : u32 = 63;
-pub const MF_128_BYTE_ALIGNMENT : u32 = 127;
-pub const MF_256_BYTE_ALIGNMENT : u32 = 255;
-pub const MF_512_BYTE_ALIGNMENT : u32 = 511;
-pub const MF_1024_BYTE_ALIGNMENT : u32 = 1023;
-pub const MF_2048_BYTE_ALIGNMENT : u32 = 2047;
-pub const MF_4096_BYTE_ALIGNMENT : u32 = 4095;
-pub const MF_8192_BYTE_ALIGNMENT : u32 = 8191;
-pub const MF_EVENT_SESSIONCAPS = @import("../zig.zig").Guid.initString("7e5ebcd0-11b8-4abe-afad-10f6599a7f42");
-pub const MF_EVENT_SESSIONCAPS_DELTA = @import("../zig.zig").Guid.initString("7e5ebcd1-11b8-4abe-afad-10f6599a7f42");
-pub const MFSESSIONCAP_START : u32 = 1;
-pub const MFSESSIONCAP_SEEK : u32 = 2;
-pub const MFSESSIONCAP_PAUSE : u32 = 4;
-pub const MFSESSIONCAP_RATE_FORWARD : u32 = 16;
-pub const MFSESSIONCAP_RATE_REVERSE : u32 = 32;
-pub const MFSESSIONCAP_DOES_NOT_USE_NETWORK : u32 = 64;
-pub const MF_EVENT_TOPOLOGY_STATUS = @import("../zig.zig").Guid.initString("30c5018d-9a53-454b-ad9e-6d5f8fa7c43b");
-pub const MF_EVENT_START_PRESENTATION_TIME = @import("../zig.zig").Guid.initString("5ad914d0-9b45-4a8d-a2c0-81d1e50bfb07");
-pub const MF_EVENT_PRESENTATION_TIME_OFFSET = @import("../zig.zig").Guid.initString("5ad914d1-9b45-4a8d-a2c0-81d1e50bfb07");
-pub const MF_EVENT_START_PRESENTATION_TIME_AT_OUTPUT = @import("../zig.zig").Guid.initString("5ad914d2-9b45-4a8d-a2c0-81d1e50bfb07");
-pub const MF_EVENT_SOURCE_FAKE_START = @import("../zig.zig").Guid.initString("a8cc55a7-6b31-419f-845d-ffb351a2434b");
-pub const MF_EVENT_SOURCE_PROJECTSTART = @import("../zig.zig").Guid.initString("a8cc55a8-6b31-419f-845d-ffb351a2434b");
-pub const MF_EVENT_SOURCE_ACTUAL_START = @import("../zig.zig").Guid.initString("a8cc55a9-6b31-419f-845d-ffb351a2434b");
-pub const MF_EVENT_SOURCE_TOPOLOGY_CANCELED = @import("../zig.zig").Guid.initString("db62f650-9a5e-4704-acf3-563bc6a73364");
-pub const MF_EVENT_SOURCE_CHARACTERISTICS = @import("../zig.zig").Guid.initString("47db8490-8b22-4f52-afda-9ce1b2d3cfa8");
-pub const MF_EVENT_SOURCE_CHARACTERISTICS_OLD = @import("../zig.zig").Guid.initString("47db8491-8b22-4f52-afda-9ce1b2d3cfa8");
-pub const MF_EVENT_DO_THINNING = @import("../zig.zig").Guid.initString("321ea6fb-dad9-46e4-b31d-d2eae7090e30");
-pub const MF_EVENT_SCRUBSAMPLE_TIME = @import("../zig.zig").Guid.initString("9ac712b3-dcb8-44d5-8d0c-37455a2782e3");
-pub const MF_EVENT_OUTPUT_NODE = @import("../zig.zig").Guid.initString("830f1a8b-c060-46dd-a801-1c95dec9b107");
-pub const MF_EVENT_MFT_INPUT_STREAM_ID = @import("../zig.zig").Guid.initString("f29c2cca-7ae6-42d2-b284-bf837cc874e2");
-pub const MF_EVENT_MFT_CONTEXT = @import("../zig.zig").Guid.initString("b7cd31f1-899e-4b41-80c9-26a896d32977");
-pub const MF_EVENT_STREAM_METADATA_KEYDATA = @import("../zig.zig").Guid.initString("cd59a4a1-4a3b-4bbd-8665-72a40fbea776");
-pub const MF_EVENT_STREAM_METADATA_CONTENT_KEYIDS = @import("../zig.zig").Guid.initString("5063449d-cc29-4fc6-a75a-d247b35af85c");
-pub const MF_EVENT_STREAM_METADATA_SYSTEMID = @import("../zig.zig").Guid.initString("1ea2ef64-ba16-4a36-8719-fe7560ba32ad");
-pub const MFSampleExtension_MaxDecodeFrameSize = @import("../zig.zig").Guid.initString("d3cc654f-f9f3-4a13-889f-f04eb2b5b957");
-pub const MFSampleExtension_AccumulatedNonRefPicPercent = @import("../zig.zig").Guid.initString("79ea74df-a740-445b-bc98-c9ed1f260eee");
-pub const MFSampleExtension_Encryption_ProtectionScheme = @import("../zig.zig").Guid.initString("d054d096-28bb-45da-87ec-74f351871406");
-pub const MFSampleExtension_Encryption_CryptByteBlock = @import("../zig.zig").Guid.initString("9d84289b-0c7f-4713-ab95-108ab42ad801");
-pub const MFSampleExtension_Encryption_SkipByteBlock = @import("../zig.zig").Guid.initString("0d550548-8317-4ab1-845f-d06306e293e3");
-pub const MFSampleExtension_Encryption_SubSample_Mapping = @import("../zig.zig").Guid.initString("8444f27a-69a1-48da-bd08-11cef36830d2");
-pub const MFSampleExtension_Encryption_ClearSliceHeaderData = @import("../zig.zig").Guid.initString("5509a4f4-320d-4e6c-8d1a-94c66dd20cb0");
-pub const MFSampleExtension_Encryption_HardwareProtection_KeyInfoID = @import("../zig.zig").Guid.initString("8cbfcceb-94a5-4de1-8231-a85e47cf81e7");
-pub const MFSampleExtension_Encryption_HardwareProtection_KeyInfo = @import("../zig.zig").Guid.initString("b2372080-455b-4dd7-9989-1a955784b754");
-pub const MFSampleExtension_Encryption_HardwareProtection_VideoDecryptorContext = @import("../zig.zig").Guid.initString("693470c8-e837-47a0-88cb-535b905e3582");
-pub const MFSampleExtension_Encryption_Opaque_Data = @import("../zig.zig").Guid.initString("224d77e5-1391-4ffb-9f41-b432f68c611d");
-pub const MFSampleExtension_NALULengthInfo = @import("../zig.zig").Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
-pub const MFSampleExtension_Encryption_ResumeVideoOutput = @import("../zig.zig").Guid.initString("a435aba5-afde-4cf5-bc1c-f6acaf13949d");
-pub const MFSampleExtension_Encryption_NALUTypes = @import("../zig.zig").Guid.initString("b0f067c7-714c-416c-8d59-5f4ddf8913b6");
-pub const MFSampleExtension_Encryption_SPSPPSData = @import("../zig.zig").Guid.initString("aede0fa2-0e0c-453c-b7f3-de8693364d11");
-pub const MFSampleExtension_Encryption_SEIData = @import("../zig.zig").Guid.initString("3cf0e972-4542-4687-9999-585f565fba7d");
-pub const MFSampleExtension_Encryption_HardwareProtection = @import("../zig.zig").Guid.initString("9a2b2d2b-8270-43e3-8448-994f426e8886");
-pub const MFSampleExtension_CleanPoint = @import("../zig.zig").Guid.initString("9cdf01d8-a0f0-43ba-b077-eaa06cbd728a");
-pub const MFSampleExtension_Discontinuity = @import("../zig.zig").Guid.initString("9cdf01d9-a0f0-43ba-b077-eaa06cbd728a");
-pub const MFSampleExtension_Token = @import("../zig.zig").Guid.initString("8294da66-f328-4805-b551-00deb4c57a61");
-pub const MFSampleExtension_ClosedCaption_CEA708 = @import("../zig.zig").Guid.initString("26f09068-e744-47dc-aa03-dbf20403bde6");
-pub const MFSampleExtension_ClosedCaption_CEA708_MAX_SIZE : u32 = 256;
-pub const MFSampleExtension_DecodeTimestamp = @import("../zig.zig").Guid.initString("73a954d4-09e2-4861-befc-94bd97c08e6e");
-pub const MFSampleExtension_VideoEncodeQP = @import("../zig.zig").Guid.initString("b2efe478-f979-4c66-b95e-ee2b82c82f36");
-pub const MFSampleExtension_VideoEncodePictureType = @import("../zig.zig").Guid.initString("973704e6-cd14-483c-8f20-c9fc0928bad5");
-pub const MFSampleExtension_FrameCorruption = @import("../zig.zig").Guid.initString("b4dd4a8c-0beb-44c4-8b75-b02b913b04f0");
-pub const MFSampleExtension_DirtyRects = @import("../zig.zig").Guid.initString("9ba70225-b342-4e97-9126-0b566ab7ea7e");
-pub const MFSampleExtension_MoveRegions = @import("../zig.zig").Guid.initString("e2a6c693-3a8b-4b8d-95d0-f60281a12fb7");
-pub const MFSampleExtension_HDCP_OptionalHeader = @import("../zig.zig").Guid.initString("9a2e7390-121f-455f-8376-c97428e0b540");
-pub const MFSampleExtension_HDCP_FrameCounter = @import("../zig.zig").Guid.initString("9d389c60-f507-4aa6-a40a-71027a02f3de");
-pub const MFSampleExtension_HDCP_StreamID = @import("../zig.zig").Guid.initString("177e5d74-c370-4a7a-95a2-36833c01d0af");
-pub const MFSampleExtension_Timestamp = @import("../zig.zig").Guid.initString("1e436999-69be-4c7a-9369-70068c0260cb");
-pub const MFSampleExtension_RepeatFrame = @import("../zig.zig").Guid.initString("88be738f-0711-4f42-b458-344aed42ec2f");
-pub const MFT_ENCODER_ERROR = @import("../zig.zig").Guid.initString("c8d1eda4-98e4-41d5-9297-44f53852f90e");
-pub const MFT_GFX_DRIVER_VERSION_ID_Attribute = @import("../zig.zig").Guid.initString("f34b9093-05e0-4b16-993d-3e2a2cde6ad3");
-pub const MFSampleExtension_DescrambleData = @import("../zig.zig").Guid.initString("43483be6-4903-4314-b032-2951365936fc");
-pub const MFSampleExtension_SampleKeyID = @import("../zig.zig").Guid.initString("9ed713c8-9b87-4b26-8297-a93b0c5a8acc");
-pub const MFSampleExtension_GenKeyFunc = @import("../zig.zig").Guid.initString("441ca1ee-6b1f-4501-903a-de87df42f6ed");
-pub const MFSampleExtension_GenKeyCtx = @import("../zig.zig").Guid.initString("188120cb-d7da-4b59-9b3e-9252fd37301c");
-pub const MFSampleExtension_PacketCrossOffsets = @import("../zig.zig").Guid.initString("2789671d-389f-40bb-90d9-c282f77f9abd");
-pub const MFSampleExtension_Encryption_SampleID = @import("../zig.zig").Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
-pub const MFSampleExtension_Encryption_KeyID = @import("../zig.zig").Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
-pub const MFSampleExtension_Content_KeyID = @import("../zig.zig").Guid.initString("c6c7f5b0-acca-415b-87d9-10441469efc6");
-pub const MFSampleExtension_Encryption_SubSampleMappingSplit = @import("../zig.zig").Guid.initString("fe0254b9-2aa5-4edc-99f7-17e89dbf9174");
-pub const MFSampleExtension_Interlaced = @import("../zig.zig").Guid.initString("b1d5830a-deb8-40e3-90fa-389943716461");
-pub const MFSampleExtension_BottomFieldFirst = @import("../zig.zig").Guid.initString("941ce0a3-6ae3-4dda-9a08-a64298340617");
-pub const MFSampleExtension_RepeatFirstField = @import("../zig.zig").Guid.initString("304d257c-7493-4fbd-b149-9228de8d9a99");
-pub const MFSampleExtension_SingleField = @import("../zig.zig").Guid.initString("9d85f816-658b-455a-bde0-9fa7e15ab8f9");
-pub const MFSampleExtension_DerivedFromTopField = @import("../zig.zig").Guid.initString("6852465a-ae1c-4553-8e9b-c3420fcb1637");
-pub const MFSampleExtension_MeanAbsoluteDifference = @import("../zig.zig").Guid.initString("1cdbde11-08b4-4311-a6dd-0f9f371907aa");
-pub const MFSampleExtension_LongTermReferenceFrameInfo = @import("../zig.zig").Guid.initString("9154733f-e1bd-41bf-81d3-fcd918f71332");
-pub const MFSampleExtension_ROIRectangle = @import("../zig.zig").Guid.initString("3414a438-4998-4d2c-be82-be3ca0b24d43");
-pub const MFSampleExtension_LastSlice = @import("../zig.zig").Guid.initString("2b5d5457-5547-4f07-b8c8-b4a3a9a1daac");
-pub const MACROBLOCK_FLAG_SKIP : u32 = 1;
-pub const MACROBLOCK_FLAG_DIRTY : u32 = 2;
-pub const MACROBLOCK_FLAG_MOTION : u32 = 4;
-pub const MACROBLOCK_FLAG_VIDEO : u32 = 8;
-pub const MACROBLOCK_FLAG_HAS_MOTION_VECTOR : u32 = 16;
-pub const MACROBLOCK_FLAG_HAS_QP : u32 = 32;
-pub const MFSampleExtension_FeatureMap = @import("../zig.zig").Guid.initString("a032d165-46fc-400a-b449-49de53e62a6e");
-pub const MFSampleExtension_ChromaOnly = @import("../zig.zig").Guid.initString("1eb9179c-a01f-4845-8c04-0e65a26eb04f");
-pub const MFSampleExtension_PhotoThumbnail = @import("../zig.zig").Guid.initString("74bbc85c-c8bb-42dc-b586-da17ffd35dcc");
-pub const MFSampleExtension_PhotoThumbnailMediaType = @import("../zig.zig").Guid.initString("61ad5420-ebf8-4143-89af-6bf25f672def");
-pub const MFSampleExtension_CaptureMetadata = @import("../zig.zig").Guid.initString("2ebe23a8-faf5-444a-a6a2-eb810880ab5d");
-pub const MFSampleExtension_MDLCacheCookie = @import("../zig.zig").Guid.initString("5f002af9-d8f9-41a3-b6c3-a2ad43f647ad");
-pub const MF_CAPTURE_METADATA_PHOTO_FRAME_FLASH = @import("../zig.zig").Guid.initString("0f9dd6c6-6003-45d8-bd59-f1f53e3d04e8");
-pub const MF_CAPTURE_METADATA_FRAME_RAWSTREAM = @import("../zig.zig").Guid.initString("9252077b-2680-49b9-ae02-b19075973b70");
-pub const MF_CAPTURE_METADATA_FOCUSSTATE = @import("../zig.zig").Guid.initString("a87ee154-997f-465d-b91f-29d53b982b88");
-pub const MF_CAPTURE_METADATA_REQUESTED_FRAME_SETTING_ID = @import("../zig.zig").Guid.initString("bb3716d9-8a61-47a4-8197-459c7ff174d5");
-pub const MF_CAPTURE_METADATA_EXPOSURE_TIME = @import("../zig.zig").Guid.initString("16b9ae99-cd84-4063-879d-a28c7633729e");
-pub const MF_CAPTURE_METADATA_EXPOSURE_COMPENSATION = @import("../zig.zig").Guid.initString("d198aa75-4b62-4345-abf3-3c31fa12c299");
-pub const MF_CAPTURE_METADATA_ISO_SPEED = @import("../zig.zig").Guid.initString("e528a68f-b2e3-44fe-8b65-07bf4b5a13ff");
-pub const MF_CAPTURE_METADATA_LENS_POSITION = @import("../zig.zig").Guid.initString("b5fc8e86-11d1-4e70-819b-723a89fa4520");
-pub const MF_CAPTURE_METADATA_SCENE_MODE = @import("../zig.zig").Guid.initString("9cc3b54d-5ed3-4bae-b388-7670aef59e13");
-pub const MF_CAPTURE_METADATA_FLASH = @import("../zig.zig").Guid.initString("4a51520b-fb36-446c-9df2-68171b9a0389");
-pub const MF_CAPTURE_METADATA_FLASH_POWER = @import("../zig.zig").Guid.initString("9c0e0d49-0205-491a-bc9d-2d6e1f4d5684");
-pub const MF_CAPTURE_METADATA_WHITEBALANCE = @import("../zig.zig").Guid.initString("c736fd77-0fb9-4e2e-97a2-fcd490739ee9");
-pub const MF_CAPTURE_METADATA_ZOOMFACTOR = @import("../zig.zig").Guid.initString("e50b0b81-e501-42c2-abf2-857ecb13fa5c");
-pub const MF_CAPTURE_METADATA_FACEROIS = @import("../zig.zig").Guid.initString("864f25a6-349f-46b1-a30e-54cc22928a47");
-pub const MF_CAPTURE_METADATA_FACEROITIMESTAMPS = @import("../zig.zig").Guid.initString("e94d50cc-3da0-44d4-bb34-83198a741868");
-pub const MF_CAPTURE_METADATA_FACEROICHARACTERIZATIONS = @import("../zig.zig").Guid.initString("b927a1a8-18ef-46d3-b3af-69372f94d9b2");
-pub const MF_CAPTURE_METADATA_ISO_GAINS = @import("../zig.zig").Guid.initString("05802ac9-0e1d-41c7-a8c8-7e7369f84e1e");
-pub const MF_CAPTURE_METADATA_SENSORFRAMERATE = @import("../zig.zig").Guid.initString("db51357e-9d3d-4962-b06d-07ce650d9a0a");
-pub const MF_CAPTURE_METADATA_WHITEBALANCE_GAINS = @import("../zig.zig").Guid.initString("e7570c8f-2dcb-4c7c-aace-22ece7cce647");
-pub const MF_CAPTURE_METADATA_HISTOGRAM = @import("../zig.zig").Guid.initString("85358432-2ef6-4ba9-a3fb-06d82974b895");
-pub const MF_CAPTURE_METADATA_EXIF = @import("../zig.zig").Guid.initString("2e9575b8-8c31-4a02-8575-42b197b71592");
-pub const MF_CAPTURE_METADATA_FRAME_ILLUMINATION = @import("../zig.zig").Guid.initString("6d688ffc-63d3-46fe-bada-5b947db0d080");
-pub const MF_CAPTURE_METADATA_UVC_PAYLOADHEADER = @import("../zig.zig").Guid.initString("f9f88a87-e1dd-441e-95cb-42e21a64f1d9");
-pub const MFSampleExtension_Depth_MinReliableDepth = @import("../zig.zig").Guid.initString("5f8582b2-e36b-47c8-9b87-fee1ca72c5b0");
-pub const MFSampleExtension_Depth_MaxReliableDepth = @import("../zig.zig").Guid.initString("e45545d1-1f0f-4a32-a8a7-6101a24ea8be");
-pub const MF_CAPTURE_METADATA_FIRST_SCANLINE_START_TIME_QPC = @import("../zig.zig").Guid.initString("6a2c49f1-e052-46b6-b2d9-73c1558709af");
-pub const MF_CAPTURE_METADATA_LAST_SCANLINE_END_TIME_QPC = @import("../zig.zig").Guid.initString("dccadecb-c4d4-400d-b418-10e88525e1f6");
-pub const MF_CAPTURE_METADATA_SCANLINE_TIME_QPC_ACCURACY = @import("../zig.zig").Guid.initString("4cd79c51-f765-4b09-b1e1-27d1f7ebea09");
-pub const MF_CAPTURE_METADATA_SCANLINE_DIRECTION = @import("../zig.zig").Guid.initString("6496a3ba-1907-49e6-b0c3-123795f380a9");
-pub const MFCAPTURE_METADATA_SCAN_RIGHT_LEFT : u32 = 1;
-pub const MFCAPTURE_METADATA_SCAN_BOTTOM_TOP : u32 = 2;
-pub const MFCAPTURE_METADATA_SCANLINE_VERTICAL : u32 = 4;
-pub const MF_METADATAFACIALEXPRESSION_SMILE : u32 = 1;
-pub const MF_METADATATIMESTAMPS_DEVICE : u32 = 1;
-pub const MF_METADATATIMESTAMPS_PRESENTATION : u32 = 2;
-pub const MF_HISTOGRAM_CHANNEL_Y : u32 = 1;
-pub const MF_HISTOGRAM_CHANNEL_R : u32 = 2;
-pub const MF_HISTOGRAM_CHANNEL_G : u32 = 4;
-pub const MF_HISTOGRAM_CHANNEL_B : u32 = 8;
-pub const MF_HISTOGRAM_CHANNEL_Cb : u32 = 16;
-pub const MF_HISTOGRAM_CHANNEL_Cr : u32 = 32;
-pub const MFT_CATEGORY_VIDEO_DECODER = @import("../zig.zig").Guid.initString("d6c02d4b-6833-45b4-971a-05a4b04bab91");
-pub const MFT_CATEGORY_VIDEO_ENCODER = @import("../zig.zig").Guid.initString("f79eac7d-e545-4387-bdee-d647d7bde42a");
-pub const MFT_CATEGORY_VIDEO_EFFECT = @import("../zig.zig").Guid.initString("12e17c21-532c-4a6e-8a1c-40825a736397");
-pub const MFT_CATEGORY_MULTIPLEXER = @import("../zig.zig").Guid.initString("059c561e-05ae-4b61-b69d-55b61ee54a7b");
-pub const MFT_CATEGORY_DEMULTIPLEXER = @import("../zig.zig").Guid.initString("a8700a7a-939b-44c5-99d7-76226b23b3f1");
-pub const MFT_CATEGORY_AUDIO_DECODER = @import("../zig.zig").Guid.initString("9ea73fb4-ef7a-4559-8d5d-719d8f0426c7");
-pub const MFT_CATEGORY_AUDIO_ENCODER = @import("../zig.zig").Guid.initString("91c64bd0-f91e-4d8c-9276-db248279d975");
-pub const MFT_CATEGORY_AUDIO_EFFECT = @import("../zig.zig").Guid.initString("11064c48-3648-4ed0-932e-05ce8ac811b7");
-pub const MFT_CATEGORY_VIDEO_PROCESSOR = @import("../zig.zig").Guid.initString("302ea3fc-aa5f-47f9-9f7a-c2188bb16302");
-pub const MFT_CATEGORY_OTHER = @import("../zig.zig").Guid.initString("90175d57-b7ea-4901-aeb3-933a8747756f");
-pub const MFT_CATEGORY_ENCRYPTOR = @import("../zig.zig").Guid.initString("b0c687be-01cd-44b5-b8b2-7c1d7e058b1f");
-pub const MFT_CATEGORY_VIDEO_RENDERER_EFFECT = @import("../zig.zig").Guid.initString("145cd8b4-92f4-4b23-8ae7-e0df06c2da95");
-pub const MFT_ENUM_VIDEO_RENDERER_EXTENSION_PROFILE = @import("../zig.zig").Guid.initString("62c56928-9a4e-443b-b9dc-cac830c24100");
-pub const MFT_ENUM_ADAPTER_LUID = @import("../zig.zig").Guid.initString("1d39518c-e220-4da8-a07f-ba172552d6b1");
-pub const MFT_SUPPORT_DYNAMIC_FORMAT_CHANGE = @import("../zig.zig").Guid.initString("53476a11-3f13-49fb-ac42-ee2733c96741");
-pub const D3DFMT_R8G8B8 : u32 = 20;
-pub const D3DFMT_A8R8G8B8 : u32 = 21;
-pub const D3DFMT_X8R8G8B8 : u32 = 22;
-pub const D3DFMT_R5G6B5 : u32 = 23;
-pub const D3DFMT_X1R5G5B5 : u32 = 24;
-pub const D3DFMT_A2B10G10R10 : u32 = 31;
-pub const D3DFMT_P8 : u32 = 41;
-pub const D3DFMT_L8 : u32 = 50;
-pub const D3DFMT_D16 : u32 = 80;
-pub const D3DFMT_L16 : u32 = 81;
-pub const D3DFMT_A16B16G16R16F : u32 = 113;
-pub const LOCAL_D3DFMT_DEFINES : u32 = 1;
-pub const MFVideoFormat_H264_ES = @import("../zig.zig").Guid.initString("3f40f4f0-5622-4ff8-b6d8-a17a584bee5e");
-pub const MFVideoFormat_MPEG2 = @import("../zig.zig").Guid.initString("e06d8026-db46-11cf-b4d1-00805f6cbbea");
-pub const MFAudioFormat_Dolby_AC3 = @import("../zig.zig").Guid.initString("e06d802c-db46-11cf-b4d1-00805f6cbbea");
-pub const MFAudioFormat_Dolby_DDPlus = @import("../zig.zig").Guid.initString("a7fb87af-2d02-42fb-a4d4-05cd93843bdd");
-pub const MFAudioFormat_Vorbis = @import("../zig.zig").Guid.initString("8d2fd10b-5841-4a6b-8905-588fec1aded9");
-pub const MFAudioFormat_DTS_RAW = @import("../zig.zig").Guid.initString("e06d8033-db46-11cf-b4d1-00805f6cbbea");
-pub const MFAudioFormat_DTS_HD = @import("../zig.zig").Guid.initString("a2e58eb7-0fa9-48bb-a40c-fa0e156d0645");
-pub const MFAudioFormat_DTS_XLL = @import("../zig.zig").Guid.initString("45b37c1b-8c70-4e59-a7be-a1e42c81c80d");
-pub const MFAudioFormat_DTS_LBR = @import("../zig.zig").Guid.initString("c2fe6f0a-4e3c-4df1-9b60-50863091e4b9");
-pub const MFAudioFormat_DTS_UHD = @import("../zig.zig").Guid.initString("87020117-ace3-42de-b73e-c656706263f8");
-pub const MFAudioFormat_DTS_UHDY = @import("../zig.zig").Guid.initString("9b9cca00-91b9-4ccc-883a-8f787ac3cc86");
-pub const MFAudioFormat_Float_SpatialObjects = @import("../zig.zig").Guid.initString("fa39cd94-bc64-4ab1-9b71-dcd09d5a7e7a");
-pub const MFAudioFormat_LPCM = @import("../zig.zig").Guid.initString("e06d8032-db46-11cf-b4d1-00805f6cbbea");
-pub const MFAudioFormat_PCM_HDCP = @import("../zig.zig").Guid.initString("a5e7ff01-8411-4acc-a865-5f4941288d80");
-pub const MFAudioFormat_Dolby_AC3_HDCP = @import("../zig.zig").Guid.initString("97663a80-8ffb-4445-a6ba-792d908f497f");
-pub const MFAudioFormat_AAC_HDCP = @import("../zig.zig").Guid.initString("419bce76-8b72-400f-adeb-84b57d63484d");
-pub const MFAudioFormat_ADTS_HDCP = @import("../zig.zig").Guid.initString("da4963a3-14d8-4dcf-92b7-193eb84363db");
-pub const MFAudioFormat_Base_HDCP = @import("../zig.zig").Guid.initString("3884b5bc-e277-43fd-983d-038aa8d9b605");
-pub const MFVideoFormat_H264_HDCP = @import("../zig.zig").Guid.initString("5d0ce9dd-9817-49da-bdfd-f5f5b98f18a6");
-pub const MFVideoFormat_HEVC_HDCP = @import("../zig.zig").Guid.initString("3cfe0fe6-05c4-47dc-9d70-4bdb2959720f");
-pub const MFVideoFormat_Base_HDCP = @import("../zig.zig").Guid.initString("eac3b9d5-bd14-4237-8f1f-bab428e49312");
-pub const MFMPEG4Format_Base = @import("../zig.zig").Guid.initString("00000000-767a-494d-b478-f29d25dc9037");
-pub const MFSubtitleFormat_XML = @import("../zig.zig").Guid.initString("2006f94f-29ca-4195-b8db-00ded8ff0c97");
-pub const MFSubtitleFormat_TTML = @import("../zig.zig").Guid.initString("73e73992-9a10-4356-9557-7194e91e3e54");
-pub const MFSubtitleFormat_ATSC = @import("../zig.zig").Guid.initString("7fa7faa3-feae-4e16-aedf-36b9acfbb099");
-pub const MFSubtitleFormat_WebVTT = @import("../zig.zig").Guid.initString("c886d215-f485-40bb-8db6-fadbc619a45d");
-pub const MFSubtitleFormat_SRT = @import("../zig.zig").Guid.initString("5e467f2e-77ca-4ca5-8391-d142ed4b76c8");
-pub const MFSubtitleFormat_SSA = @import("../zig.zig").Guid.initString("57176a1b-1a9e-4eea-abef-c61760198ac4");
-pub const MFSubtitleFormat_CustomUserData = @import("../zig.zig").Guid.initString("1bb3d849-6614-4d80-8882-ed24aa82da92");
-pub const MFSubtitleFormat_PGS = @import("../zig.zig").Guid.initString("71f40e4a-1278-4442-b30d-39dd1d7722bc");
-pub const MFSubtitleFormat_VobSub = @import("../zig.zig").Guid.initString("6b8e40f4-8d2c-4ced-ad91-5960e45b4433");
-pub const MF_MT_MAJOR_TYPE = @import("../zig.zig").Guid.initString("48eba18e-f8c9-4687-bf11-0a74c9f96a8f");
-pub const MF_MT_SUBTYPE = @import("../zig.zig").Guid.initString("f7e34c9a-42e8-4714-b74b-cb29d72c35e5");
-pub const MF_MT_ALL_SAMPLES_INDEPENDENT = @import("../zig.zig").Guid.initString("c9173739-5e56-461c-b713-46fb995cb95f");
-pub const MF_MT_FIXED_SIZE_SAMPLES = @import("../zig.zig").Guid.initString("b8ebefaf-b718-4e04-b0a9-116775e3321b");
-pub const MF_MT_COMPRESSED = @import("../zig.zig").Guid.initString("3afd0cee-18f2-4ba5-a110-8bea502e1f92");
-pub const MF_MT_SAMPLE_SIZE = @import("../zig.zig").Guid.initString("dad3ab78-1990-408b-bce2-eba673dacc10");
-pub const MF_MT_WRAPPED_TYPE = @import("../zig.zig").Guid.initString("4d3f7b23-d02f-4e6c-9bee-e4bf2c6c695d");
-pub const MF_MT_VIDEO_3D = @import("../zig.zig").Guid.initString("cb5e88cf-7b5b-476b-85aa-1ca5ae187555");
-pub const MF_MT_VIDEO_3D_FORMAT = @import("../zig.zig").Guid.initString("5315d8a0-87c5-4697-b793-6606c67c049b");
-pub const MF_MT_VIDEO_3D_NUM_VIEWS = @import("../zig.zig").Guid.initString("bb077e8a-dcbf-42eb-af60-418df98aa495");
-pub const MF_MT_VIDEO_3D_LEFT_IS_BASE = @import("../zig.zig").Guid.initString("6d4b7bff-5629-4404-948c-c634f4ce26d4");
-pub const MF_MT_VIDEO_3D_FIRST_IS_LEFT = @import("../zig.zig").Guid.initString("ec298493-0ada-4ea1-a4fe-cbbd36ce9331");
-pub const MFSampleExtension_3DVideo = @import("../zig.zig").Guid.initString("f86f97a4-dd54-4e2e-9a5e-55fc2d74a005");
-pub const MFSampleExtension_3DVideo_SampleFormat = @import("../zig.zig").Guid.initString("08671772-e36f-4cff-97b3-d72e20987a48");
-pub const MF_MT_VIDEO_ROTATION = @import("../zig.zig").Guid.initString("c380465d-2271-428c-9b83-ecea3b4a85c1");
-pub const MF_DEVICESTREAM_MULTIPLEXED_MANAGER = @import("../zig.zig").Guid.initString("6ea542b0-281f-4231-a464-fe2f5022501c");
-pub const MF_MEDIATYPE_MULTIPLEXED_MANAGER = @import("../zig.zig").Guid.initString("13c78fb5-f275-4ea0-bb5f-0249832b0d6e");
-pub const MFSampleExtension_MULTIPLEXED_MANAGER = @import("../zig.zig").Guid.initString("8dcdee79-6b5a-4c45-8db9-20b395f02fcf");
-pub const MF_MT_SECURE = @import("../zig.zig").Guid.initString("c5acc4fd-0304-4ecf-809f-47bc97ff63bd");
-pub const MF_DEVICESTREAM_ATTRIBUTE_FRAMESOURCE_TYPES = @import("../zig.zig").Guid.initString("17145fd1-1b2b-423c-8001-2b6833ed3588");
-pub const MF_MT_ALPHA_MODE = @import("../zig.zig").Guid.initString("5d959b0d-4cbf-4d04-919f-3f5f7f284211");
-pub const MF_MT_DEPTH_MEASUREMENT = @import("../zig.zig").Guid.initString("fd5ac489-0917-4bb6-9d54-3122bf70144b");
-pub const MF_MT_DEPTH_VALUE_UNIT = @import("../zig.zig").Guid.initString("21a800f5-3189-4797-beba-f13cd9a31a5e");
-pub const MF_MT_VIDEO_NO_FRAME_ORDERING = @import("../zig.zig").Guid.initString("3f5b106f-6bc2-4ee3-b7ed-8902c18f5351");
-pub const MF_MT_VIDEO_H264_NO_FMOASO = @import("../zig.zig").Guid.initString("ed461cd6-ec9f-416a-a8a3-26d7d31018d7");
-pub const MFSampleExtension_ForwardedDecodeUnits = @import("../zig.zig").Guid.initString("424c754c-97c8-48d6-8777-fc41f7b60879");
-pub const MFSampleExtension_TargetGlobalLuminance = @import("../zig.zig").Guid.initString("3f60ef36-31ef-4daf-8360-940397e41ef3");
-pub const MFSampleExtension_ForwardedDecodeUnitType = @import("../zig.zig").Guid.initString("089e57c7-47d3-4a26-bf9c-4b64fafb5d1e");
-pub const MF_MT_FORWARD_CUSTOM_NALU = @import("../zig.zig").Guid.initString("ed336efd-244f-428d-9153-28f399458890");
-pub const MF_MT_FORWARD_CUSTOM_SEI = @import("../zig.zig").Guid.initString("e27362f1-b136-41d1-9594-3a7e4febf2d1");
-pub const MF_MT_VIDEO_RENDERER_EXTENSION_PROFILE = @import("../zig.zig").Guid.initString("8437d4b9-d448-4fcd-9b6b-839bf96c7798");
-pub const MF_DECODER_FWD_CUSTOM_SEI_DECODE_ORDER = @import("../zig.zig").Guid.initString("f13bbe3c-36d4-410a-b985-7a951a1e6294");
-pub const MF_VIDEO_RENDERER_EFFECT_APP_SERVICE_NAME = @import("../zig.zig").Guid.initString("c6052a80-6d9c-40a3-9db8-f027a25c9ab9");
-pub const MF_MT_AUDIO_NUM_CHANNELS = @import("../zig.zig").Guid.initString("37e48bf5-645e-4c5b-89de-ada9e29b696a");
-pub const MF_MT_AUDIO_SAMPLES_PER_SECOND = @import("../zig.zig").Guid.initString("5faeeae7-0290-4c31-9e8a-c534f68d9dba");
-pub const MF_MT_AUDIO_FLOAT_SAMPLES_PER_SECOND = @import("../zig.zig").Guid.initString("fb3b724a-cfb5-4319-aefe-6e42b2406132");
-pub const MF_MT_AUDIO_AVG_BYTES_PER_SECOND = @import("../zig.zig").Guid.initString("1aab75c8-cfef-451c-ab95-ac034b8e1731");
-pub const MF_MT_AUDIO_BLOCK_ALIGNMENT = @import("../zig.zig").Guid.initString("322de230-9eeb-43bd-ab7a-ff412251541d");
-pub const MF_MT_AUDIO_BITS_PER_SAMPLE = @import("../zig.zig").Guid.initString("f2deb57f-40fa-4764-aa33-ed4f2d1ff669");
-pub const MF_MT_AUDIO_VALID_BITS_PER_SAMPLE = @import("../zig.zig").Guid.initString("d9bf8d6a-9530-4b7c-9ddf-ff6fd58bbd06");
-pub const MF_MT_AUDIO_SAMPLES_PER_BLOCK = @import("../zig.zig").Guid.initString("aab15aac-e13a-4995-9222-501ea15c6877");
-pub const MF_MT_AUDIO_CHANNEL_MASK = @import("../zig.zig").Guid.initString("55fb5765-644a-4caf-8479-938983bb1588");
-pub const MF_MT_AUDIO_FOLDDOWN_MATRIX = @import("../zig.zig").Guid.initString("9d62927c-36be-4cf2-b5c4-a3926e3e8711");
-pub const MF_MT_AUDIO_WMADRC_PEAKREF = @import("../zig.zig").Guid.initString("9d62927d-36be-4cf2-b5c4-a3926e3e8711");
-pub const MF_MT_AUDIO_WMADRC_PEAKTARGET = @import("../zig.zig").Guid.initString("9d62927e-36be-4cf2-b5c4-a3926e3e8711");
-pub const MF_MT_AUDIO_WMADRC_AVGREF = @import("../zig.zig").Guid.initString("9d62927f-36be-4cf2-b5c4-a3926e3e8711");
-pub const MF_MT_AUDIO_WMADRC_AVGTARGET = @import("../zig.zig").Guid.initString("9d629280-36be-4cf2-b5c4-a3926e3e8711");
-pub const MF_MT_AUDIO_PREFER_WAVEFORMATEX = @import("../zig.zig").Guid.initString("a901aaba-e037-458a-bdf6-545be2074042");
-pub const MF_MT_AAC_PAYLOAD_TYPE = @import("../zig.zig").Guid.initString("bfbabe79-7434-4d1c-94f0-72a3b9e17188");
-pub const MF_MT_AAC_AUDIO_PROFILE_LEVEL_INDICATION = @import("../zig.zig").Guid.initString("7632f0e6-9538-4d61-acda-ea29c8c14456");
-pub const MF_MT_AUDIO_FLAC_MAX_BLOCK_SIZE = @import("../zig.zig").Guid.initString("8b81adae-4b5a-4d40-8022-f38d09ca3c5c");
-pub const MF_MT_SPATIAL_AUDIO_MAX_DYNAMIC_OBJECTS = @import("../zig.zig").Guid.initString("dcfba24a-2609-4240-a721-3faea76a4df9");
-pub const MF_MT_SPATIAL_AUDIO_OBJECT_METADATA_FORMAT_ID = @import("../zig.zig").Guid.initString("2ab71bc0-6223-4ba7-ad64-7b94b47ae792");
-pub const MF_MT_SPATIAL_AUDIO_OBJECT_METADATA_LENGTH = @import("../zig.zig").Guid.initString("094ba8be-d723-489f-92fa-766777b34726");
-pub const MF_MT_SPATIAL_AUDIO_MAX_METADATA_ITEMS = @import("../zig.zig").Guid.initString("11aa80b4-e0da-47c6-8060-96c1259ae50d");
-pub const MF_MT_SPATIAL_AUDIO_MIN_METADATA_ITEM_OFFSET_SPACING = @import("../zig.zig").Guid.initString("83e96ec9-1184-417e-8254-9f269158fc06");
-pub const MF_MT_SPATIAL_AUDIO_DATA_PRESENT = @import("../zig.zig").Guid.initString("6842f6e7-d43e-4ebb-9c9c-c96f41784863");
-pub const MF_MT_FRAME_SIZE = @import("../zig.zig").Guid.initString("1652c33d-d6b2-4012-b834-72030849a37d");
-pub const MF_MT_FRAME_RATE = @import("../zig.zig").Guid.initString("c459a2e8-3d2c-4e44-b132-fee5156c7bb0");
-pub const MF_MT_PIXEL_ASPECT_RATIO = @import("../zig.zig").Guid.initString("c6376a1e-8d0a-4027-be45-6d9a0ad39bb6");
-pub const MF_MT_DRM_FLAGS = @import("../zig.zig").Guid.initString("8772f323-355a-4cc7-bb78-6d61a048ae82");
-pub const MF_MT_TIMESTAMP_CAN_BE_DTS = @import("../zig.zig").Guid.initString("24974215-1b7b-41e4-8625-ac469f2dedaa");
-pub const MF_MT_PAD_CONTROL_FLAGS = @import("../zig.zig").Guid.initString("4d0e73e5-80ea-4354-a9d0-1176ceb028ea");
-pub const MF_MT_SOURCE_CONTENT_HINT = @import("../zig.zig").Guid.initString("68aca3cc-22d0-44e6-85f8-28167197fa38");
-pub const MF_MT_VIDEO_CHROMA_SITING = @import("../zig.zig").Guid.initString("65df2370-c773-4c33-aa64-843e068efb0c");
-pub const MF_MT_INTERLACE_MODE = @import("../zig.zig").Guid.initString("e2724bb8-e676-4806-b4b2-a8d6efb44ccd");
-pub const MF_MT_TRANSFER_FUNCTION = @import("../zig.zig").Guid.initString("5fb0fce9-be5c-4935-a811-ec838f8eed93");
-pub const MF_MT_VIDEO_PRIMARIES = @import("../zig.zig").Guid.initString("dbfbe4d7-0740-4ee0-8192-850ab0e21935");
-pub const MF_MT_MAX_LUMINANCE_LEVEL = @import("../zig.zig").Guid.initString("50253128-c110-4de4-98ae-46a324fae6da");
-pub const MF_MT_MAX_FRAME_AVERAGE_LUMINANCE_LEVEL = @import("../zig.zig").Guid.initString("58d4bf57-6f52-4733-a195-a9e29ecf9e27");
-pub const MF_MT_MAX_MASTERING_LUMINANCE = @import("../zig.zig").Guid.initString("d6c6b997-272f-4ca1-8d00-8042111a0ff6");
-pub const MF_MT_MIN_MASTERING_LUMINANCE = @import("../zig.zig").Guid.initString("839a4460-4e7e-4b4f-ae79-cc08905c7b27");
-pub const MF_MT_DECODER_USE_MAX_RESOLUTION = @import("../zig.zig").Guid.initString("4c547c24-af9a-4f38-96ad-978773cf53e7");
-pub const MF_MT_DECODER_MAX_DPB_COUNT = @import("../zig.zig").Guid.initString("67be144c-88b7-4ca9-9628-c808d5262217");
-pub const MF_MT_CUSTOM_VIDEO_PRIMARIES = @import("../zig.zig").Guid.initString("47537213-8cfb-4722-aa34-fbc9e24d77b8");
-pub const MF_MT_YUV_MATRIX = @import("../zig.zig").Guid.initString("3e23d450-2c75-4d25-a00e-b91670d12327");
-pub const MF_MT_VIDEO_LIGHTING = @import("../zig.zig").Guid.initString("53a0529c-890b-4216-8bf9-599367ad6d20");
-pub const MF_MT_VIDEO_NOMINAL_RANGE = @import("../zig.zig").Guid.initString("c21b8ee5-b956-4071-8daf-325edf5cab11");
-pub const MF_MT_GEOMETRIC_APERTURE = @import("../zig.zig").Guid.initString("66758743-7e5f-400d-980a-aa8596c85696");
-pub const MF_MT_MINIMUM_DISPLAY_APERTURE = @import("../zig.zig").Guid.initString("d7388766-18fe-48c6-a177-ee894867c8c4");
-pub const MF_MT_PAN_SCAN_APERTURE = @import("../zig.zig").Guid.initString("79614dde-9187-48fb-b8c7-4d52689de649");
-pub const MF_MT_PAN_SCAN_ENABLED = @import("../zig.zig").Guid.initString("4b7f6bc3-8b13-40b2-a993-abf630b8204e");
-pub const MF_MT_AVG_BITRATE = @import("../zig.zig").Guid.initString("20332624-fb0d-4d9e-bd0d-cbf6786c102e");
-pub const MF_MT_AVG_BIT_ERROR_RATE = @import("../zig.zig").Guid.initString("799cabd6-3508-4db4-a3c7-569cd533deb1");
-pub const MF_MT_MAX_KEYFRAME_SPACING = @import("../zig.zig").Guid.initString("c16eb52b-73a1-476f-8d62-839d6a020652");
-pub const MF_MT_USER_DATA = @import("../zig.zig").Guid.initString("b6bc765f-4c3b-40a4-bd51-2535b66fe09d");
-pub const MF_MT_OUTPUT_BUFFER_NUM = @import("../zig.zig").Guid.initString("a505d3ac-f930-436e-8ede-93a509ce23b2");
-pub const MF_MT_REALTIME_CONTENT = @import("../zig.zig").Guid.initString("bb12d222-2bdb-425e-91ec-2308e189a58f");
-pub const MF_MT_DEFAULT_STRIDE = @import("../zig.zig").Guid.initString("644b4e48-1e02-4516-b0eb-c01ca9d49ac6");
-pub const MF_MT_PALETTE = @import("../zig.zig").Guid.initString("6d283f42-9846-4410-afd9-654d503b1a54");
-pub const MF_MT_AM_FORMAT_TYPE = @import("../zig.zig").Guid.initString("73d1072d-1870-4174-a063-29ff4ff6c11e");
-pub const MF_MT_VIDEO_PROFILE = @import("../zig.zig").Guid.initString("ad76a80b-2d5c-4e0b-b375-64e520137036");
-pub const MF_MT_VIDEO_LEVEL = @import("../zig.zig").Guid.initString("96f66574-11c5-4015-8666-bff516436da7");
-pub const MF_MT_MPEG_START_TIME_CODE = @import("../zig.zig").Guid.initString("91f67885-4333-4280-97cd-bd5a6c03a06e");
-pub const MF_MT_MPEG2_PROFILE = @import("../zig.zig").Guid.initString("ad76a80b-2d5c-4e0b-b375-64e520137036");
-pub const MF_MT_MPEG2_LEVEL = @import("../zig.zig").Guid.initString("96f66574-11c5-4015-8666-bff516436da7");
-pub const MF_MT_MPEG2_FLAGS = @import("../zig.zig").Guid.initString("31e3991d-f701-4b2f-b426-8ae3bda9e04b");
-pub const MF_MT_MPEG_SEQUENCE_HEADER = @import("../zig.zig").Guid.initString("3c036de7-3ad0-4c9e-9216-ee6d6ac21cb3");
-pub const MF_MT_MPEG2_STANDARD = @import("../zig.zig").Guid.initString("a20af9e8-928a-4b26-aaa9-f05c74cac47c");
-pub const MF_MT_MPEG2_TIMECODE = @import("../zig.zig").Guid.initString("5229ba10-e29d-4f80-a59c-df4f180207d2");
-pub const MF_MT_MPEG2_CONTENT_PACKET = @import("../zig.zig").Guid.initString("825d55e4-4f12-4197-9eb3-59b6e4710f06");
-pub const MF_MT_MPEG2_ONE_FRAME_PER_PACKET = @import("../zig.zig").Guid.initString("91a49eb5-1d20-4b42-ace8-804269bf95ed");
-pub const MF_MT_MPEG2_HDCP = @import("../zig.zig").Guid.initString("168f1b4a-3e91-450f-aea7-e4baeadae5ba");
-pub const MF_MT_H264_MAX_CODEC_CONFIG_DELAY = @import("../zig.zig").Guid.initString("f5929986-4c45-4fbb-bb49-6cc534d05b9b");
-pub const MF_MT_H264_SUPPORTED_SLICE_MODES = @import("../zig.zig").Guid.initString("c8be1937-4d64-4549-8343-a8086c0bfda5");
-pub const MF_MT_H264_SUPPORTED_SYNC_FRAME_TYPES = @import("../zig.zig").Guid.initString("89a52c01-f282-48d2-b522-22e6ae633199");
-pub const MF_MT_H264_RESOLUTION_SCALING = @import("../zig.zig").Guid.initString("e3854272-f715-4757-ba90-1b696c773457");
-pub const MF_MT_H264_SIMULCAST_SUPPORT = @import("../zig.zig").Guid.initString("9ea2d63d-53f0-4a34-b94e-9de49a078cb3");
-pub const MF_MT_H264_SUPPORTED_RATE_CONTROL_MODES = @import("../zig.zig").Guid.initString("6a8ac47e-519c-4f18-9bb3-7eeaaea5594d");
-pub const MF_MT_H264_MAX_MB_PER_SEC = @import("../zig.zig").Guid.initString("45256d30-7215-4576-9336-b0f1bcd59bb2");
-pub const MF_MT_H264_SUPPORTED_USAGES = @import("../zig.zig").Guid.initString("60b1a998-dc01-40ce-9736-aba845a2dbdc");
-pub const MF_MT_H264_CAPABILITIES = @import("../zig.zig").Guid.initString("bb3bd508-490a-11e0-99e4-1316dfd72085");
-pub const MF_MT_H264_SVC_CAPABILITIES = @import("../zig.zig").Guid.initString("f8993abe-d937-4a8f-bbca-6966fe9e1152");
-pub const MF_MT_H264_USAGE = @import("../zig.zig").Guid.initString("359ce3a5-af00-49ca-a2f4-2ac94ca82b61");
-pub const MF_MT_H264_RATE_CONTROL_MODES = @import("../zig.zig").Guid.initString("705177d8-45cb-11e0-ac7d-b91ce0d72085");
-pub const MF_MT_H264_LAYOUT_PER_STREAM = @import("../zig.zig").Guid.initString("85e299b2-90e3-4fe8-b2f5-c067e0bfe57a");
-pub const MF_MT_IN_BAND_PARAMETER_SET = @import("../zig.zig").Guid.initString("75da5090-910b-4a03-896c-7b898feea5af");
-pub const MF_MT_MPEG4_TRACK_TYPE = @import("../zig.zig").Guid.initString("54f486dd-9327-4f6d-80ab-6f709ebb4cce");
-pub const MF_MT_CONTAINER_RATE_SCALING = @import("../zig.zig").Guid.initString("83877f5e-0444-4e28-8479-6db0989b8c09");
-pub const MF_MT_DV_AAUX_SRC_PACK_0 = @import("../zig.zig").Guid.initString("84bd5d88-0fb8-4ac8-be4b-a8848bef98f3");
-pub const MF_MT_DV_AAUX_CTRL_PACK_0 = @import("../zig.zig").Guid.initString("f731004e-1dd1-4515-aabe-f0c06aa536ac");
-pub const MF_MT_DV_AAUX_SRC_PACK_1 = @import("../zig.zig").Guid.initString("720e6544-0225-4003-a651-0196563a958e");
-pub const MF_MT_DV_AAUX_CTRL_PACK_1 = @import("../zig.zig").Guid.initString("cd1f470d-1f04-4fe0-bfb9-d07ae0386ad8");
-pub const MF_MT_DV_VAUX_SRC_PACK = @import("../zig.zig").Guid.initString("41402d9d-7b57-43c6-b129-2cb997f15009");
-pub const MF_MT_DV_VAUX_CTRL_PACK = @import("../zig.zig").Guid.initString("2f84e1c4-0da1-4788-938e-0dfbfbb34b48");
-pub const MF_MT_ARBITRARY_HEADER = @import("../zig.zig").Guid.initString("9e6bd6f5-0109-4f95-84ac-9309153a19fc");
-pub const MF_MT_ARBITRARY_FORMAT = @import("../zig.zig").Guid.initString("5a75b249-0d7d-49a1-a1c3-e0d87f0cade5");
-pub const MF_MT_IMAGE_LOSS_TOLERANT = @import("../zig.zig").Guid.initString("ed062cf4-e34e-4922-be99-934032133d7c");
-pub const MF_MT_MPEG4_SAMPLE_DESCRIPTION = @import("../zig.zig").Guid.initString("261e9d83-9529-4b8f-a111-8b9c950a81a9");
-pub const MF_MT_MPEG4_CURRENT_SAMPLE_ENTRY = @import("../zig.zig").Guid.initString("9aa7e155-b64a-4c1d-a500-455d600b6560");
-pub const MF_SD_AMBISONICS_SAMPLE3D_DESCRIPTION = @import("../zig.zig").Guid.initString("f715cf3e-a964-4c3f-94ae-9d6ba7264641");
-pub const MF_MT_ORIGINAL_4CC = @import("../zig.zig").Guid.initString("d7be3fe0-2bc7-492d-b843-61a1919b70c3");
-pub const MF_MT_ORIGINAL_WAVE_FORMAT_TAG = @import("../zig.zig").Guid.initString("8cbbc843-9fd9-49c2-882f-a72586c408ad");
-pub const MF_MT_FRAME_RATE_RANGE_MIN = @import("../zig.zig").Guid.initString("d2e7558c-dc1f-403f-9a72-d28bb1eb3b5e");
-pub const MF_MT_FRAME_RATE_RANGE_MAX = @import("../zig.zig").Guid.initString("e3371d41-b4cf-4a05-bd4e-20b88bb2c4d6");
-pub const MF_LOW_LATENCY = @import("../zig.zig").Guid.initString("9c27891a-ed7a-40e1-88e8-b22727a024ee");
-pub const MF_VIDEO_MAX_MB_PER_SEC = @import("../zig.zig").Guid.initString("e3f2e203-d445-4b8c-9211-ae390d3ba017");
-pub const MF_DISABLE_FRAME_CORRUPTION_INFO = @import("../zig.zig").Guid.initString("7086e16c-49c5-4201-882a-8538f38cf13a");
-pub const MFStreamExtension_CameraExtrinsics = @import("../zig.zig").Guid.initString("686196d0-13e2-41d9-9638-ef032c272a52");
-pub const MFSampleExtension_CameraExtrinsics = @import("../zig.zig").Guid.initString("6b761658-b7ec-4c3b-8225-8623cabec31d");
-pub const MFStreamExtension_PinholeCameraIntrinsics = @import("../zig.zig").Guid.initString("dbac0455-0ec8-4aef-9c32-7a3ee3456f53");
-pub const MFSampleExtension_PinholeCameraIntrinsics = @import("../zig.zig").Guid.initString("4ee3b6c5-6a15-4e72-9761-70c1db8b9fe3");
-pub const MFMediaType_Default = @import("../zig.zig").Guid.initString("81a412e6-8103-4b06-857f-1862781024ac");
-pub const MFMediaType_Audio = @import("../zig.zig").Guid.initString("73647561-0000-0010-8000-00aa00389b71");
-pub const MFMediaType_Video = @import("../zig.zig").Guid.initString("73646976-0000-0010-8000-00aa00389b71");
-pub const MFMediaType_Protected = @import("../zig.zig").Guid.initString("7b4b6fe6-9d04-4494-be14-7e0bd076c8e4");
-pub const MFMediaType_SAMI = @import("../zig.zig").Guid.initString("e69669a0-3dcd-40cb-9e2e-3708387c0616");
-pub const MFMediaType_Script = @import("../zig.zig").Guid.initString("72178c22-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFMediaType_Image = @import("../zig.zig").Guid.initString("72178c23-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFMediaType_HTML = @import("../zig.zig").Guid.initString("72178c24-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFMediaType_Binary = @import("../zig.zig").Guid.initString("72178c25-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFMediaType_FileTransfer = @import("../zig.zig").Guid.initString("72178c26-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFMediaType_Stream = @import("../zig.zig").Guid.initString("e436eb83-524f-11ce-9f53-0020af0ba770");
-pub const MFMediaType_MultiplexedFrames = @import("../zig.zig").Guid.initString("6ea542b0-281f-4231-a464-fe2f5022501c");
-pub const MFMediaType_Subtitle = @import("../zig.zig").Guid.initString("a6d13581-ed50-4e65-ae08-26065576aacc");
-pub const MFMediaType_Perception = @import("../zig.zig").Guid.initString("597ff6f9-6ea2-4670-85b4-ea84073fe940");
-pub const MFImageFormat_JPEG = @import("../zig.zig").Guid.initString("19e4a5aa-5662-4fc5-a0c0-1758028e1057");
-pub const MFImageFormat_RGB32 = @import("../zig.zig").Guid.initString("00000016-0000-0010-8000-00aa00389b71");
-pub const MFStreamFormat_MPEG2Transport = @import("../zig.zig").Guid.initString("e06d8023-db46-11cf-b4d1-00805f6cbbea");
-pub const MFStreamFormat_MPEG2Program = @import("../zig.zig").Guid.initString("263067d1-d330-45dc-b669-34d986e4e3e1");
-pub const AM_MEDIA_TYPE_REPRESENTATION = @import("../zig.zig").Guid.initString("e2e42ad2-132c-491e-a268-3c7c2dca181f");
-pub const FORMAT_MFVideoFormat = @import("../zig.zig").Guid.initString("aed4ab2d-7326-43cb-9464-c879cab9c43d");
-pub const CLSID_MFSourceResolver = @import("../zig.zig").Guid.initString("90eab60f-e43a-4188-bcc4-e47fdf04868c");
-pub const MF_DEVICESTREAM_ATTRIBUTE_FACEAUTH_CAPABILITY = @import("../zig.zig").Guid.initString("cb6fd12a-2248-4e41-ad46-e78bb90ab9fc");
-pub const MF_DEVICESTREAM_ATTRIBUTE_SECURE_CAPABILITY = @import("../zig.zig").Guid.initString("940fd626-ea6e-4684-9840-36bd6ec9fbef");
-pub const MFT_STREAMS_UNLIMITED : u32 = 4294967295;
-pub const MF_INVALID_PRESENTATION_TIME : u64 = 9223372036854775808;
-pub const MR_VIDEO_RENDER_SERVICE = @import("../zig.zig").Guid.initString("1092a86c-ab1a-459a-a336-831fbc4d11ff");
-pub const MR_VIDEO_MIXER_SERVICE = @import("../zig.zig").Guid.initString("073cd2fc-6cf4-40b7-8859-e89552c841f8");
-pub const MR_VIDEO_ACCELERATION_SERVICE = @import("../zig.zig").Guid.initString("efef5175-5c7d-4ce2-bbbd-34ff8bca6554");
-pub const MR_BUFFER_SERVICE = @import("../zig.zig").Guid.initString("a562248c-9ac6-4ffc-9fba-3af8f8ad1a4d");
-pub const VIDEO_ZOOM_RECT = @import("../zig.zig").Guid.initString("7aaa1638-1b7f-4c93-bd89-5b9c9fb6fcf0");
-pub const MFEVRDLL : u32 = 0;
-pub const DXVA2_ModeMPEG2_MoComp = @import("../zig.zig").Guid.initString("e6a9f44b-61b0-4563-9ea4-63d2a3c6fe66");
-pub const DXVA2_ModeMPEG2_IDCT = @import("../zig.zig").Guid.initString("bf22ad00-03ea-4690-8077-473346209b7e");
-pub const DXVA2_ModeMPEG2_VLD = @import("../zig.zig").Guid.initString("ee27417f-5e28-4e65-beea-1d26b508adc9");
-pub const DXVA2_ModeMPEG1_VLD = @import("../zig.zig").Guid.initString("6f3ec719-3735-42cc-8063-65cc3cb36616");
-pub const DXVA2_ModeMPEG2and1_VLD = @import("../zig.zig").Guid.initString("86695f12-340e-4f04-9fd3-9253dd327460");
-pub const DXVA2_ModeH264_A = @import("../zig.zig").Guid.initString("1b81be64-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_B = @import("../zig.zig").Guid.initString("1b81be65-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_C = @import("../zig.zig").Guid.initString("1b81be66-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_D = @import("../zig.zig").Guid.initString("1b81be67-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_E = @import("../zig.zig").Guid.initString("1b81be68-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_F = @import("../zig.zig").Guid.initString("1b81be69-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeH264_VLD_WithFMOASO_NoFGT = @import("../zig.zig").Guid.initString("d5f04ff9-3418-45d8-9561-32a76aae2ddd");
-pub const DXVA2_ModeH264_VLD_Stereo_Progressive_NoFGT = @import("../zig.zig").Guid.initString("d79be8da-0cf1-4c81-b82a-69a4e236f43d");
-pub const DXVA2_ModeH264_VLD_Stereo_NoFGT = @import("../zig.zig").Guid.initString("f9aaccbb-c2b6-4cfc-8779-5707b1760552");
-pub const DXVA2_ModeH264_VLD_Multiview_NoFGT = @import("../zig.zig").Guid.initString("705b9d82-76cf-49d6-b7e6-ac8872db013c");
-pub const DXVA2_ModeWMV8_A = @import("../zig.zig").Guid.initString("1b81be80-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeWMV8_B = @import("../zig.zig").Guid.initString("1b81be81-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeWMV9_A = @import("../zig.zig").Guid.initString("1b81be90-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeWMV9_B = @import("../zig.zig").Guid.initString("1b81be91-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeWMV9_C = @import("../zig.zig").Guid.initString("1b81be94-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeVC1_A = @import("../zig.zig").Guid.initString("1b81bea0-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeVC1_B = @import("../zig.zig").Guid.initString("1b81bea1-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeVC1_C = @import("../zig.zig").Guid.initString("1b81bea2-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeVC1_D = @import("../zig.zig").Guid.initString("1b81bea3-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_ModeVC1_D2010 = @import("../zig.zig").Guid.initString("1b81bea4-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_NoEncrypt = @import("../zig.zig").Guid.initString("1b81bed0-a0c7-11d3-b984-00c04f2e73c5");
-pub const DXVA2_VideoProcProgressiveDevice = @import("../zig.zig").Guid.initString("5a54a0c9-c7ec-4bd9-8ede-f3c75dc4393b");
-pub const DXVA2_VideoProcBobDevice = @import("../zig.zig").Guid.initString("335aa36e-7884-43a4-9c91-7f87faf3e37e");
-pub const DXVA2_VideoProcSoftwareDevice = @import("../zig.zig").Guid.initString("4553d47f-ee7e-4e3f-9475-dbf1376c4810");
-pub const DXVA2_ModeMPEG4pt2_VLD_Simple = @import("../zig.zig").Guid.initString("efd64d74-c9e8-41d7-a5e9-e9b0e39fa319");
-pub const DXVA2_ModeMPEG4pt2_VLD_AdvSimple_NoGMC = @import("../zig.zig").Guid.initString("ed418a9f-010d-4eda-9ae3-9a65358d8d2e");
-pub const DXVA2_ModeMPEG4pt2_VLD_AdvSimple_GMC = @import("../zig.zig").Guid.initString("ab998b5b-4258-44a9-9feb-94e597a6baae");
-pub const DXVA2_ModeHEVC_VLD_Main = @import("../zig.zig").Guid.initString("5b11d51b-2f4c-4452-bcc3-09f2a1160cc0");
-pub const DXVA2_ModeHEVC_VLD_Main10 = @import("../zig.zig").Guid.initString("107af0e0-ef1a-4d19-aba8-67a163073d13");
-pub const DXVA2_ModeVP9_VLD_Profile0 = @import("../zig.zig").Guid.initString("463707f8-a1d0-4585-876d-83aa6d60b89e");
-pub const DXVA2_ModeVP9_VLD_10bit_Profile2 = @import("../zig.zig").Guid.initString("a4c749ef-6ecf-48aa-8448-50a7a1165ff7");
-pub const DXVA2_ModeVP8_VLD = @import("../zig.zig").Guid.initString("90b899ea-3a62-4705-88b3-8df04b2744e7");
-pub const DXVA2_E_NOT_INITIALIZED : i32 = -2147217408;
-pub const DXVA2_E_NEW_VIDEO_DEVICE : i32 = -2147217407;
-pub const DXVA2_E_VIDEO_DEVICE_LOCKED : i32 = -2147217406;
-pub const DXVA2_E_NOT_AVAILABLE : i32 = -2147217405;
-pub const MAX_SUBSTREAMS : u32 = 15;
-pub const DXVA2_DECODE_GET_DRIVER_HANDLE : u32 = 1829;
-pub const DXVA2_DECODE_SPECIFY_ENCRYPTED_BLOCKS : u32 = 1828;
-pub const MF_MEDIA_SHARING_ENGINE_INITIAL_SEEK_TIME = @import("../zig.zig").Guid.initString("6f3497f5-d528-4a4f-8dd7-db36657ec4c9");
-pub const MF_SHUTDOWN_RENDERER_ON_ENGINE_SHUTDOWN = @import("../zig.zig").Guid.initString("c112d94d-6b9c-48f8-b6f9-7950ff9ab71e");
-pub const MF_PREFERRED_SOURCE_URI = @import("../zig.zig").Guid.initString("5fc85488-436a-4db8-90af-4db402ae5c57");
-pub const MF_SHARING_ENGINE_SHAREDRENDERER = @import("../zig.zig").Guid.initString("efa446a0-73e7-404e-8ae2-fef60af5a32b");
-pub const MF_SHARING_ENGINE_CALLBACK = @import("../zig.zig").Guid.initString("57dc1e95-d252-43fa-9bbc-180070eefe6d");
+pub const DXVAp_ModeMPEG2_A = Guid.initString("1b81be0a-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVAp_ModeMPEG2_C = Guid.initString("1b81be0c-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVAp_NoEncrypt = Guid.initString("1b81bed0-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA_QUERYORREPLYFUNCFLAG_DECODER_PROBE_QUERY = @as(u32, 16777201);
+pub const DXVA_QUERYORREPLYFUNCFLAG_DECODER_LOCK_QUERY = @as(u32, 16777205);
+pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_OK_COPY = @as(u32, 16777208);
+pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_OK_PLUS = @as(u32, 16777209);
+pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_LOCK_OK_COPY = @as(u32, 16777212);
+pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_PROBE_FALSE_PLUS = @as(u32, 16777211);
+pub const DXVA_QUERYORREPLYFUNCFLAG_ACCEL_LOCK_FALSE_PLUS = @as(u32, 16777215);
+pub const DXVA_PICTURE_DECODE_BUFFER = @as(u32, 1);
+pub const DXVA_MACROBLOCK_CONTROL_BUFFER = @as(u32, 2);
+pub const DXVA_RESIDUAL_DIFFERENCE_BUFFER = @as(u32, 3);
+pub const DXVA_DEBLOCKING_CONTROL_BUFFER = @as(u32, 4);
+pub const DXVA_INVERSE_QUANTIZATION_MATRIX_BUFFER = @as(u32, 5);
+pub const DXVA_SLICE_CONTROL_BUFFER = @as(u32, 6);
+pub const DXVA_BITSTREAM_DATA_BUFFER = @as(u32, 7);
+pub const DXVA_AYUV_BUFFER = @as(u32, 8);
+pub const DXVA_IA44_SURFACE_BUFFER = @as(u32, 9);
+pub const DXVA_DPXD_SURFACE_BUFFER = @as(u32, 10);
+pub const DXVA_HIGHLIGHT_BUFFER = @as(u32, 11);
+pub const DXVA_DCCMD_SURFACE_BUFFER = @as(u32, 12);
+pub const DXVA_ALPHA_BLEND_COMBINATION_BUFFER = @as(u32, 13);
+pub const DXVA_PICTURE_RESAMPLE_BUFFER = @as(u32, 14);
+pub const DXVA_READ_BACK_BUFFER = @as(u32, 15);
+pub const DXVA_ExtColorData_ShiftBase = @as(u32, 8);
+pub const DXVAp_DeinterlaceBobDevice = Guid.initString("335aa36e-7884-43a4-9c91-7f87faf3e37e");
+pub const DXVAp_DeinterlaceContainerDevice = Guid.initString("0e85cb93-3046-4ff0-aecc-d58cb5f035fd");
+pub const MAX_DEINTERLACE_SURFACES = @as(u32, 32);
+pub const DXVA_DeinterlaceBltFnCode = @as(u32, 1);
+pub const DXVA_DeinterlaceBltExFnCode = @as(u32, 2);
+pub const MAX_DEINTERLACE_DEVICE_GUIDS = @as(u32, 32);
+pub const DXVA_DeinterlaceQueryAvailableModesFnCode = @as(u32, 1);
+pub const DXVA_DeinterlaceQueryModeCapsFnCode = @as(u32, 2);
+pub const DXVA_ProcAmpControlDevice = Guid.initString("9f200913-2ffd-4056-9f1e-e1b508f22dcf");
+pub const DXVA_ProcAmpControlQueryCapsFnCode = @as(u32, 3);
+pub const DXVA_ProcAmpControlQueryRangeFnCode = @as(u32, 4);
+pub const DXVA_ProcAmpControlBltFnCode = @as(u32, 1);
+pub const DXVA_COPPDevice = Guid.initString("d2457add-8999-45ed-8a8a-d1aa047ba4d5");
+pub const DXVA_COPPGetCertificateLengthFnCode = @as(u32, 1);
+pub const DXVA_COPPKeyExchangeFnCode = @as(u32, 2);
+pub const DXVA_COPPSequenceStartFnCode = @as(u32, 3);
+pub const DXVA_COPPCommandFnCode = @as(u32, 4);
+pub const DXVA_COPPSetProtectionLevel = Guid.initString("9bb9327c-4eb5-4727-9f00-b42b0919c0da");
+pub const COPP_NoProtectionLevelAvailable = @as(i32, -1);
+pub const COPP_DefaultProtectionLevel = @as(u32, 0);
+pub const DXVA_COPPSetSignaling = Guid.initString("09a631a5-d684-4c60-8e4d-d3bb0f0be3ee");
+pub const COPP_ImageAspectRatio_EN300294_Mask = @as(u32, 7);
+pub const DXVA_COPPQueryStatusFnCode = @as(u32, 5);
+pub const DXVA_COPPQueryConnectorType = Guid.initString("81d0bfd5-6afe-48c2-99c0-95a08f97c5da");
+pub const DXVA_COPPQueryProtectionType = Guid.initString("38f2a801-9a6c-48bb-9107-b6696e6f1797");
+pub const DXVA_COPPQueryLocalProtectionLevel = Guid.initString("b2075857-3eda-4d5d-88db-748f8c1a0549");
+pub const DXVA_COPPQueryGlobalProtectionLevel = Guid.initString("1957210a-7766-452a-b99a-d27aed54f03a");
+pub const DXVA_COPPQueryDisplayData = Guid.initString("d7bf1ba3-ad13-4f8e-af98-0dcb3ca204cc");
+pub const DXVA_COPPQueryHDCPKeyData = Guid.initString("0db59d74-a992-492e-a0bd-c23fda564e00");
+pub const DXVA_COPPQueryBusData = Guid.initString("c6f4d673-6174-4184-8e35-f6db5200bcba");
+pub const DXVA_COPPQuerySignaling = Guid.initString("6629a591-3b79-4cf3-924a-11e8e7811671");
+pub const D3D12_VIDEO_DECODE_PROFILE_MPEG2 = Guid.initString("ee27417f-5e28-4e65-beea-1d26b508adc9");
+pub const D3D12_VIDEO_DECODE_PROFILE_MPEG1_AND_MPEG2 = Guid.initString("86695f12-340e-4f04-9fd3-9253dd327460");
+pub const D3D12_VIDEO_DECODE_PROFILE_H264 = Guid.initString("1b81be68-a0c7-11d3-b984-00c04f2e73c5");
+pub const D3D12_VIDEO_DECODE_PROFILE_H264_STEREO_PROGRESSIVE = Guid.initString("d79be8da-0cf1-4c81-b82a-69a4e236f43d");
+pub const D3D12_VIDEO_DECODE_PROFILE_H264_STEREO = Guid.initString("f9aaccbb-c2b6-4cfc-8779-5707b1760552");
+pub const D3D12_VIDEO_DECODE_PROFILE_H264_MULTIVIEW = Guid.initString("705b9d82-76cf-49d6-b7e6-ac8872db013c");
+pub const D3D12_VIDEO_DECODE_PROFILE_VC1 = Guid.initString("1b81bea3-a0c7-11d3-b984-00c04f2e73c5");
+pub const D3D12_VIDEO_DECODE_PROFILE_VC1_D2010 = Guid.initString("1b81bea4-a0c7-11d3-b984-00c04f2e73c5");
+pub const D3D12_VIDEO_DECODE_PROFILE_MPEG4PT2_SIMPLE = Guid.initString("efd64d74-c9e8-41d7-a5e9-e9b0e39fa319");
+pub const D3D12_VIDEO_DECODE_PROFILE_MPEG4PT2_ADVSIMPLE_NOGMC = Guid.initString("ed418a9f-010d-4eda-9ae3-9a65358d8d2e");
+pub const D3D12_VIDEO_DECODE_PROFILE_HEVC_MAIN = Guid.initString("5b11d51b-2f4c-4452-bcc3-09f2a1160cc0");
+pub const D3D12_VIDEO_DECODE_PROFILE_HEVC_MAIN10 = Guid.initString("107af0e0-ef1a-4d19-aba8-67a163073d13");
+pub const D3D12_VIDEO_DECODE_PROFILE_VP9 = Guid.initString("463707f8-a1d0-4585-876d-83aa6d60b89e");
+pub const D3D12_VIDEO_DECODE_PROFILE_VP9_10BIT_PROFILE2 = Guid.initString("a4c749ef-6ecf-48aa-8448-50a7a1165ff7");
+pub const D3D12_VIDEO_DECODE_PROFILE_VP8 = Guid.initString("90b899ea-3a62-4705-88b3-8df04b2744e7");
+pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE0 = Guid.initString("b8be4ccb-cf53-46ba-8d59-d6b8a6da5d2a");
+pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE1 = Guid.initString("6936ff0f-45b1-4163-9cc1-646ef6946108");
+pub const D3D12_VIDEO_DECODE_PROFILE_AV1_PROFILE2 = Guid.initString("0c5f2aa1-e541-4089-bb7b-98110a19d7c8");
+pub const D3D12_VIDEO_DECODE_PROFILE_AV1_12BIT_PROFILE2 = Guid.initString("17127009-a00f-4ce1-994e-bf4081f6f3f0");
+pub const D3D12_VIDEO_DECODE_PROFILE_AV1_12BIT_PROFILE2_420 = Guid.initString("2d80bed6-9cac-4835-9e91-327bbc4f9ee8");
+pub const WM_CODEC_ONEPASS_CBR = @as(u32, 1);
+pub const WM_CODEC_ONEPASS_VBR = @as(u32, 2);
+pub const WM_CODEC_TWOPASS_CBR = @as(u32, 4);
+pub const WM_CODEC_TWOPASS_VBR_UNCONSTRAINED = @as(u32, 8);
+pub const WM_CODEC_TWOPASS_VBR_PEAKCONSTRAINED = @as(u32, 16);
+pub const SYSFXUI_DONOTSHOW_LOUDNESSEQUALIZATION = @as(u32, 1);
+pub const SYSFXUI_DONOTSHOW_ROOMCORRECTION = @as(u32, 2);
+pub const SYSFXUI_DONOTSHOW_BASSMANAGEMENT = @as(u32, 4);
+pub const SYSFXUI_DONOTSHOW_BASSBOOST = @as(u32, 8);
+pub const SYSFXUI_DONOTSHOW_HEADPHONEVIRTUALIZATION = @as(u32, 16);
+pub const SYSFXUI_DONOTSHOW_VIRTUALSURROUND = @as(u32, 32);
+pub const SYSFXUI_DONOTSHOW_SPEAKERFILLING = @as(u32, 64);
+pub const SYSFXUI_DONOTSHOW_CHANNELPHANTOMING = @as(u32, 128);
+pub const AEC_MAX_SYSTEM_MODES = @as(u32, 6);
+pub const WMAAECMA_E_NO_ACTIVE_RENDER_STREAM = @as(u32, 2278293514);
+pub const MEDIASUBTYPE_Y41T = Guid.initString("54313459-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_Y42T = Guid.initString("54323459-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_NV11 = Guid.initString("3131564e-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_V216 = Guid.initString("36313256-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_V410 = Guid.initString("30313456-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_v210 = Guid.initString("30313276-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_I420 = Guid.initString("30323449-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WVC1 = Guid.initString("31435657-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wvc1 = Guid.initString("31637677-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMVA = Guid.initString("41564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmva = Guid.initString("61766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMVB = Guid.initString("42564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmvb = Guid.initString("62766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMVR = Guid.initString("52564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmvr = Guid.initString("72766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMVP = Guid.initString("50564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmvp = Guid.initString("70766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WVP2 = Guid.initString("32505657-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wvp2 = Guid.initString("32707677-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMV3 = Guid.initString("33564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmv3 = Guid.initString("33766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMV2 = Guid.initString("32564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmv2 = Guid.initString("32766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMV1 = Guid.initString("31564d57-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_wmv1 = Guid.initString("31766d77-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MPG4 = Guid.initString("3447504d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_mpg4 = Guid.initString("3467706d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MP42 = Guid.initString("3234504d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_mp42 = Guid.initString("3234706d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MP43 = Guid.initString("3334504d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_mp43 = Guid.initString("3334706d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MP4S = Guid.initString("5334504d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_mp4s = Guid.initString("7334706d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_M4S2 = Guid.initString("3253344d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_m4s2 = Guid.initString("3273346d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MSS1 = Guid.initString("3153534d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MSS2 = Guid.initString("3253534d-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MSAUDIO1 = Guid.initString("00000160-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMAUDIO2 = Guid.initString("00000161-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMAUDIO3 = Guid.initString("00000162-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMAUDIO_LOSSLESS = Guid.initString("00000163-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMASPDIF = Guid.initString("00000164-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_WMAUDIO4 = Guid.initString("00000168-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MPEG_ADTS_AAC = Guid.initString("00001600-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MPEG_RAW_AAC = Guid.initString("00001601-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MPEG_LOAS = Guid.initString("00001602-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_NOKIA_MPEG_ADTS_AAC = Guid.initString("00001608-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_NOKIA_MPEG_RAW_AAC = Guid.initString("00001609-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_VODAFONE_MPEG_ADTS_AAC = Guid.initString("0000160a-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_VODAFONE_MPEG_RAW_AAC = Guid.initString("0000160b-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_MPEG_HEAAC = Guid.initString("00001610-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_RAW_AAC1 = Guid.initString("000000ff-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_DVM = Guid.initString("00002000-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_DTS2 = Guid.initString("00002001-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_DOLBY_DDPLUS = Guid.initString("a7fb87af-2d02-42fb-a4d4-05cd93843bdd");
+pub const MEDIASUBTYPE_DOLBY_TRUEHD = Guid.initString("eb27cec4-163e-4ca3-8b74-8e25f91b517e");
+pub const MEDIASUBTYPE_DTS_HD = Guid.initString("a2e58eb7-0fa9-48bb-a40c-fa0e156d0645");
+pub const MEDIASUBTYPE_DTS_HD_HRA = Guid.initString("a61ac364-ad0e-4744-89ff-213ce0df8804");
+pub const MEDIASUBTYPE_h264 = Guid.initString("34363268-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_AVC1 = Guid.initString("31435641-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_X264 = Guid.initString("34363258-0000-0010-8000-00aa00389b71");
+pub const MEDIASUBTYPE_x264 = Guid.initString("34363278-0000-0010-8000-00aa00389b71");
+pub const MF_VIDEODSP_MODE = Guid.initString("16d720f0-768c-11de-8a39-0800200c9a66");
+pub const MFSampleExtension_VideoDSPMode = Guid.initString("c12d55cb-d7d9-476d-81f3-69117f163ea0");
+pub const CLSID_CTocEntry = Guid.initString("f22f5e05-585c-4def-8523-6555cfbc0cb3");
+pub const CLSID_CTocEntryList = Guid.initString("3a8cccbc-0efd-43a3-b838-f38a552ba237");
+pub const CLSID_CToc = Guid.initString("4fe24495-28ce-4920-a4c4-e556e1f0df2a");
+pub const CLSID_CTocCollection = Guid.initString("5058292d-a244-4840-ab44-480975c4ffe4");
+pub const CLSID_CTocParser = Guid.initString("499eaeea-2737-4849-8bb6-47f107eaf358");
+pub const CLSID_CAsfTocParser = Guid.initString("9b77c0f2-8735-46c5-b90f-5f0b303ef6ab");
+pub const CLSID_CAviTocParser = Guid.initString("3adce5cc-13c8-4573-b328-ed438eb694f9");
+pub const CLSID_CFileIo = Guid.initString("11993195-1244-4840-ab44-480975c4ffe4");
+pub const CLSID_CFileClient = Guid.initString("bfccd195-1244-4840-ab44-480975c4ffe4");
+pub const CLSID_CClusterDetectorEx = Guid.initString("47354492-827e-4b8a-b318-c80eba1381f0");
+pub const E_TOCPARSER_INVALIDASFFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1728053247));
+pub const E_TOCPARSER_INVALIDRIFFFILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -1728053246));
+pub const TOC_MAX_DESCRIPTION_SIZE = @as(u32, 65535);
+pub const TOC_ENTRY_MAX_TITLE_SIZE = @as(u32, 65535);
+pub const DXVAHD_STREAM_STATE_PRIVATE_IVTC = Guid.initString("9c601e3c-0f33-414c-a739-99540ee42da5");
+pub const DXVAHDControlGuid = Guid.initString("a0386e75-f70c-464c-a9ce-33c44e091623");
+pub const DXVAHDETWGUID_CREATEVIDEOPROCESSOR = Guid.initString("681e3d1e-5674-4fb3-a503-2f2055e91f60");
+pub const DXVAHDETWGUID_VIDEOPROCESSBLTSTATE = Guid.initString("76c94b5a-193f-4692-9484-a4d999da81a8");
+pub const DXVAHDETWGUID_VIDEOPROCESSSTREAMSTATE = Guid.initString("262c0b02-209d-47ed-94d8-82ae02b84aa7");
+pub const DXVAHDETWGUID_VIDEOPROCESSBLTHD = Guid.initString("bef3d435-78c7-4de3-9707-cd1b083b160a");
+pub const DXVAHDETWGUID_VIDEOPROCESSBLTHD_STREAM = Guid.initString("27ae473e-a5fc-4be5-b4e3-f24994d3c495");
+pub const DXVAHDETWGUID_DESTROYVIDEOPROCESSOR = Guid.initString("f943f0a0-3f16-43e0-8093-105a986aa5f1");
+pub const OPM_GET_CURRENT_HDCP_SRM_VERSION = Guid.initString("99c5ceff-5f1d-4879-81c1-c52443c9482b");
+pub const OPM_GET_CONNECTED_HDCP_DEVICE_INFORMATION = Guid.initString("0db59d74-a992-492e-a0bd-c23fda564e00");
+pub const OPM_GET_ACP_AND_CGMSA_SIGNALING = Guid.initString("6629a591-3b79-4cf3-924a-11e8e7811671");
+pub const OPM_GET_CONNECTOR_TYPE = Guid.initString("81d0bfd5-6afe-48c2-99c0-95a08f97c5da");
+pub const OPM_GET_SUPPORTED_PROTECTION_TYPES = Guid.initString("38f2a801-9a6c-48bb-9107-b6696e6f1797");
+pub const OPM_GET_VIRTUAL_PROTECTION_LEVEL = Guid.initString("b2075857-3eda-4d5d-88db-748f8c1a0549");
+pub const OPM_GET_ACTUAL_PROTECTION_LEVEL = Guid.initString("1957210a-7766-452a-b99a-d27aed54f03a");
+pub const OPM_GET_ACTUAL_OUTPUT_FORMAT = Guid.initString("d7bf1ba3-ad13-4f8e-af98-0dcb3ca204cc");
+pub const OPM_GET_ADAPTER_BUS_TYPE = Guid.initString("c6f4d673-6174-4184-8e35-f6db5200bcba");
+pub const OPM_GET_OUTPUT_ID = Guid.initString("72cb6df3-244f-40ce-b09e-20506af6302f");
+pub const OPM_GET_DVI_CHARACTERISTICS = Guid.initString("a470b3bb-5dd7-4172-839c-3d3776e0ebf5");
+pub const OPM_GET_CODEC_INFO = Guid.initString("4f374491-8f5f-4445-9dba-95588f6b58b4");
+pub const OPM_GET_OUTPUT_HARDWARE_PROTECTION_SUPPORT = Guid.initString("3b129589-2af8-4ef0-96a2-704a845a218e");
+pub const OPM_SET_PROTECTION_LEVEL = Guid.initString("9bb9327c-4eb5-4727-9f00-b42b0919c0da");
+pub const OPM_SET_ACP_AND_CGMSA_SIGNALING = Guid.initString("09a631a5-d684-4c60-8e4d-d3bb0f0be3ee");
+pub const OPM_SET_HDCP_SRM = Guid.initString("8b5ef5d1-c30d-44ff-84a5-ea71dce78f13");
+pub const OPM_SET_PROTECTION_LEVEL_ACCORDING_TO_CSS_DVD = Guid.initString("39ce333e-4cc0-44ae-bfcc-da50b5f82e72");
+pub const MEDIASINK_FIXED_STREAMS = @as(u32, 1);
+pub const MEDIASINK_CANNOT_MATCH_CLOCK = @as(u32, 2);
+pub const MEDIASINK_RATELESS = @as(u32, 4);
+pub const MEDIASINK_CLOCK_REQUIRED = @as(u32, 8);
+pub const MEDIASINK_CAN_PREROLL = @as(u32, 16);
+pub const MEDIASINK_REQUIRE_REFERENCE_MEDIATYPE = @as(u32, 32);
+pub const MFCLOCK_FREQUENCY_HNS = @as(u32, 10000000);
+pub const MFCLOCK_TOLERANCE_UNKNOWN = @as(u32, 50000);
+pub const MFCLOCK_JITTER_ISR = @as(u32, 1000);
+pub const MFCLOCK_JITTER_DPC = @as(u32, 4000);
+pub const MFCLOCK_JITTER_PASSIVE = @as(u32, 10000);
+pub const PRESENTATION_CURRENT_POSITION = @as(u64, 9223372036854775807);
+pub const MF_PD_ADAPTIVE_STREAMING = Guid.initString("ea0d5d97-29f9-488b-ae6b-7d6b4136112b");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_CROSSPROCESS = @as(u32, 1);
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_NOPERSIST = @as(u32, 2);
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS_DONT_ALLOW_FORMAT_CHANGES = @as(u32, 4);
+pub const MFRR_INFO_VERSION = @as(u32, 0);
+pub const MF_USER_MODE_COMPONENT_LOAD = @as(u32, 1);
+pub const MF_KERNEL_MODE_COMPONENT_LOAD = @as(u32, 2);
+pub const MF_GRL_LOAD_FAILED = @as(u32, 16);
+pub const MF_INVALID_GRL_SIGNATURE = @as(u32, 32);
+pub const MF_GRL_ABSENT = @as(u32, 4096);
+pub const MF_COMPONENT_REVOKED = @as(u32, 8192);
+pub const MF_COMPONENT_INVALID_EKU = @as(u32, 16384);
+pub const MF_COMPONENT_CERT_REVOKED = @as(u32, 32768);
+pub const MF_COMPONENT_INVALID_ROOT = @as(u32, 65536);
+pub const MF_COMPONENT_HS_CERT_REVOKED = @as(u32, 131072);
+pub const MF_COMPONENT_LS_CERT_REVOKED = @as(u32, 262144);
+pub const MF_BOOT_DRIVER_VERIFICATION_FAILED = @as(u32, 1048576);
+pub const MF_TEST_SIGNED_COMPONENT_LOADING = @as(u32, 16777216);
+pub const MF_MINCRYPT_FAILURE = @as(u32, 268435456);
+pub const SHA_HASH_LEN = @as(u32, 20);
+pub const MFSEQUENCER_INVALID_ELEMENT_ID = @as(u32, 4294967295);
+pub const MF_WRAPPED_BUFFER_SERVICE = Guid.initString("ab544072-c269-4ebc-a552-1c3b32bed5ca");
+pub const CLSID_MPEG2ByteStreamPlugin = Guid.initString("40871c59-ab40-471f-8dc3-1f259d862479");
+pub const MFCONTENTPROTECTIONDEVICE_FUNCTIONID_START = @as(u32, 67108864);
+pub const MF_UNKNOWN_DURATION = @as(u32, 0);
+pub const MFStreamExtension_ExtendedCameraIntrinsics = Guid.initString("aa74b3df-9a2c-48d6-8393-5bd1c1a81e6e");
+pub const MFSampleExtension_ExtendedCameraIntrinsics = Guid.initString("560bc4a5-4de0-4113-9cdc-832db9740f3d");
+pub const MFASFINDEXER_PER_ENTRY_BYTES_DYNAMIC = @as(u32, 65535);
+pub const MFASFINDEXER_NO_FIXED_INTERVAL = @as(u32, 4294967295);
+pub const MFASFINDEXER_READ_FOR_REVERSEPLAYBACK_OUTOFDATASEGMENT = @as(u64, 18446744073709551615);
+pub const MFASFINDEXER_APPROX_SEEK_TIME_UNKNOWN = @as(u64, 18446744073709551615);
+pub const MFASF_MAX_STREAM_NUMBER = @as(u32, 127);
+pub const MFASF_PAYLOADEXTENSION_MAX_SIZE = @as(u32, 255);
+pub const MFASF_PAYLOADEXTENSION_VARIABLE_SIZE = @as(u32, 65535);
+pub const MFASF_DEFAULT_BUFFER_WINDOW_MS = @as(u32, 3000);
+pub const MF_MEDIATYPE_EQUAL_MAJOR_TYPES = @as(u32, 1);
+pub const MF_MEDIATYPE_EQUAL_FORMAT_TYPES = @as(u32, 2);
+pub const MF_MEDIATYPE_EQUAL_FORMAT_DATA = @as(u32, 4);
+pub const MF_MEDIATYPE_EQUAL_FORMAT_USER_DATA = @as(u32, 8);
+pub const MFASYNC_FAST_IO_PROCESSING_CALLBACK = @as(u32, 1);
+pub const MFASYNC_SIGNAL_CALLBACK = @as(u32, 2);
+pub const MFASYNC_BLOCKING_CALLBACK = @as(u32, 4);
+pub const MFASYNC_REPLY_CALLBACK = @as(u32, 8);
+pub const MFASYNC_LOCALIZE_REMOTE_CALLBACK = @as(u32, 16);
+pub const MFASYNC_CALLBACK_QUEUE_UNDEFINED = @as(u32, 0);
+pub const MFASYNC_CALLBACK_QUEUE_STANDARD = @as(u32, 1);
+pub const MFASYNC_CALLBACK_QUEUE_RT = @as(u32, 2);
+pub const MFASYNC_CALLBACK_QUEUE_IO = @as(u32, 3);
+pub const MFASYNC_CALLBACK_QUEUE_TIMER = @as(u32, 4);
+pub const MFASYNC_CALLBACK_QUEUE_MULTITHREADED = @as(u32, 5);
+pub const MFASYNC_CALLBACK_QUEUE_LONG_FUNCTION = @as(u32, 7);
+pub const MFASYNC_CALLBACK_QUEUE_PRIVATE_MASK = @as(u32, 4294901760);
+pub const MFASYNC_CALLBACK_QUEUE_ALL = @as(u32, 4294967295);
+pub const MFBYTESTREAM_IS_READABLE = @as(u32, 1);
+pub const MFBYTESTREAM_IS_WRITABLE = @as(u32, 2);
+pub const MFBYTESTREAM_IS_SEEKABLE = @as(u32, 4);
+pub const MFBYTESTREAM_IS_REMOTE = @as(u32, 8);
+pub const MFBYTESTREAM_IS_DIRECTORY = @as(u32, 128);
+pub const MFBYTESTREAM_HAS_SLOW_SEEK = @as(u32, 256);
+pub const MFBYTESTREAM_IS_PARTIALLY_DOWNLOADED = @as(u32, 512);
+pub const MFBYTESTREAM_SHARE_WRITE = @as(u32, 1024);
+pub const MFBYTESTREAM_DOES_NOT_USE_NETWORK = @as(u32, 2048);
+pub const MFBYTESTREAM_SEEK_FLAG_CANCEL_PENDING_IO = @as(u32, 1);
+pub const MF_SDK_VERSION = @as(u32, 2);
+pub const MF_API_VERSION = @as(u32, 112);
+pub const MFSTARTUP_NOSOCKET = @as(u32, 1);
+pub const MFSTARTUP_FULL = @as(u32, 0);
+pub const MF_E_DXGI_DEVICE_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217408));
+pub const MF_E_DXGI_NEW_VIDEO_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217407));
+pub const MF_E_DXGI_VIDEO_DEVICE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217406));
+pub const MF_1_BYTE_ALIGNMENT = @as(u32, 0);
+pub const MF_2_BYTE_ALIGNMENT = @as(u32, 1);
+pub const MF_4_BYTE_ALIGNMENT = @as(u32, 3);
+pub const MF_8_BYTE_ALIGNMENT = @as(u32, 7);
+pub const MF_16_BYTE_ALIGNMENT = @as(u32, 15);
+pub const MF_32_BYTE_ALIGNMENT = @as(u32, 31);
+pub const MF_64_BYTE_ALIGNMENT = @as(u32, 63);
+pub const MF_128_BYTE_ALIGNMENT = @as(u32, 127);
+pub const MF_256_BYTE_ALIGNMENT = @as(u32, 255);
+pub const MF_512_BYTE_ALIGNMENT = @as(u32, 511);
+pub const MF_1024_BYTE_ALIGNMENT = @as(u32, 1023);
+pub const MF_2048_BYTE_ALIGNMENT = @as(u32, 2047);
+pub const MF_4096_BYTE_ALIGNMENT = @as(u32, 4095);
+pub const MF_8192_BYTE_ALIGNMENT = @as(u32, 8191);
+pub const MF_EVENT_SESSIONCAPS = Guid.initString("7e5ebcd0-11b8-4abe-afad-10f6599a7f42");
+pub const MF_EVENT_SESSIONCAPS_DELTA = Guid.initString("7e5ebcd1-11b8-4abe-afad-10f6599a7f42");
+pub const MFSESSIONCAP_START = @as(u32, 1);
+pub const MFSESSIONCAP_SEEK = @as(u32, 2);
+pub const MFSESSIONCAP_PAUSE = @as(u32, 4);
+pub const MFSESSIONCAP_RATE_FORWARD = @as(u32, 16);
+pub const MFSESSIONCAP_RATE_REVERSE = @as(u32, 32);
+pub const MFSESSIONCAP_DOES_NOT_USE_NETWORK = @as(u32, 64);
+pub const MF_EVENT_TOPOLOGY_STATUS = Guid.initString("30c5018d-9a53-454b-ad9e-6d5f8fa7c43b");
+pub const MF_EVENT_START_PRESENTATION_TIME = Guid.initString("5ad914d0-9b45-4a8d-a2c0-81d1e50bfb07");
+pub const MF_EVENT_PRESENTATION_TIME_OFFSET = Guid.initString("5ad914d1-9b45-4a8d-a2c0-81d1e50bfb07");
+pub const MF_EVENT_START_PRESENTATION_TIME_AT_OUTPUT = Guid.initString("5ad914d2-9b45-4a8d-a2c0-81d1e50bfb07");
+pub const MF_EVENT_SOURCE_FAKE_START = Guid.initString("a8cc55a7-6b31-419f-845d-ffb351a2434b");
+pub const MF_EVENT_SOURCE_PROJECTSTART = Guid.initString("a8cc55a8-6b31-419f-845d-ffb351a2434b");
+pub const MF_EVENT_SOURCE_ACTUAL_START = Guid.initString("a8cc55a9-6b31-419f-845d-ffb351a2434b");
+pub const MF_EVENT_SOURCE_TOPOLOGY_CANCELED = Guid.initString("db62f650-9a5e-4704-acf3-563bc6a73364");
+pub const MF_EVENT_SOURCE_CHARACTERISTICS = Guid.initString("47db8490-8b22-4f52-afda-9ce1b2d3cfa8");
+pub const MF_EVENT_SOURCE_CHARACTERISTICS_OLD = Guid.initString("47db8491-8b22-4f52-afda-9ce1b2d3cfa8");
+pub const MF_EVENT_DO_THINNING = Guid.initString("321ea6fb-dad9-46e4-b31d-d2eae7090e30");
+pub const MF_EVENT_SCRUBSAMPLE_TIME = Guid.initString("9ac712b3-dcb8-44d5-8d0c-37455a2782e3");
+pub const MF_EVENT_OUTPUT_NODE = Guid.initString("830f1a8b-c060-46dd-a801-1c95dec9b107");
+pub const MF_EVENT_MFT_INPUT_STREAM_ID = Guid.initString("f29c2cca-7ae6-42d2-b284-bf837cc874e2");
+pub const MF_EVENT_MFT_CONTEXT = Guid.initString("b7cd31f1-899e-4b41-80c9-26a896d32977");
+pub const MF_EVENT_STREAM_METADATA_KEYDATA = Guid.initString("cd59a4a1-4a3b-4bbd-8665-72a40fbea776");
+pub const MF_EVENT_STREAM_METADATA_CONTENT_KEYIDS = Guid.initString("5063449d-cc29-4fc6-a75a-d247b35af85c");
+pub const MF_EVENT_STREAM_METADATA_SYSTEMID = Guid.initString("1ea2ef64-ba16-4a36-8719-fe7560ba32ad");
+pub const MFSampleExtension_MaxDecodeFrameSize = Guid.initString("d3cc654f-f9f3-4a13-889f-f04eb2b5b957");
+pub const MFSampleExtension_AccumulatedNonRefPicPercent = Guid.initString("79ea74df-a740-445b-bc98-c9ed1f260eee");
+pub const MFSampleExtension_Encryption_ProtectionScheme = Guid.initString("d054d096-28bb-45da-87ec-74f351871406");
+pub const MFSampleExtension_Encryption_CryptByteBlock = Guid.initString("9d84289b-0c7f-4713-ab95-108ab42ad801");
+pub const MFSampleExtension_Encryption_SkipByteBlock = Guid.initString("0d550548-8317-4ab1-845f-d06306e293e3");
+pub const MFSampleExtension_Encryption_SubSample_Mapping = Guid.initString("8444f27a-69a1-48da-bd08-11cef36830d2");
+pub const MFSampleExtension_Encryption_ClearSliceHeaderData = Guid.initString("5509a4f4-320d-4e6c-8d1a-94c66dd20cb0");
+pub const MFSampleExtension_Encryption_HardwareProtection_KeyInfoID = Guid.initString("8cbfcceb-94a5-4de1-8231-a85e47cf81e7");
+pub const MFSampleExtension_Encryption_HardwareProtection_KeyInfo = Guid.initString("b2372080-455b-4dd7-9989-1a955784b754");
+pub const MFSampleExtension_Encryption_HardwareProtection_VideoDecryptorContext = Guid.initString("693470c8-e837-47a0-88cb-535b905e3582");
+pub const MFSampleExtension_Encryption_Opaque_Data = Guid.initString("224d77e5-1391-4ffb-9f41-b432f68c611d");
+pub const MFSampleExtension_NALULengthInfo = Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
+pub const MFSampleExtension_Encryption_ResumeVideoOutput = Guid.initString("a435aba5-afde-4cf5-bc1c-f6acaf13949d");
+pub const MFSampleExtension_Encryption_NALUTypes = Guid.initString("b0f067c7-714c-416c-8d59-5f4ddf8913b6");
+pub const MFSampleExtension_Encryption_SPSPPSData = Guid.initString("aede0fa2-0e0c-453c-b7f3-de8693364d11");
+pub const MFSampleExtension_Encryption_SEIData = Guid.initString("3cf0e972-4542-4687-9999-585f565fba7d");
+pub const MFSampleExtension_Encryption_HardwareProtection = Guid.initString("9a2b2d2b-8270-43e3-8448-994f426e8886");
+pub const MFSampleExtension_CleanPoint = Guid.initString("9cdf01d8-a0f0-43ba-b077-eaa06cbd728a");
+pub const MFSampleExtension_Discontinuity = Guid.initString("9cdf01d9-a0f0-43ba-b077-eaa06cbd728a");
+pub const MFSampleExtension_Token = Guid.initString("8294da66-f328-4805-b551-00deb4c57a61");
+pub const MFSampleExtension_ClosedCaption_CEA708 = Guid.initString("26f09068-e744-47dc-aa03-dbf20403bde6");
+pub const MFSampleExtension_ClosedCaption_CEA708_MAX_SIZE = @as(u32, 256);
+pub const MFSampleExtension_DecodeTimestamp = Guid.initString("73a954d4-09e2-4861-befc-94bd97c08e6e");
+pub const MFSampleExtension_VideoEncodeQP = Guid.initString("b2efe478-f979-4c66-b95e-ee2b82c82f36");
+pub const MFSampleExtension_VideoEncodePictureType = Guid.initString("973704e6-cd14-483c-8f20-c9fc0928bad5");
+pub const MFSampleExtension_FrameCorruption = Guid.initString("b4dd4a8c-0beb-44c4-8b75-b02b913b04f0");
+pub const MFSampleExtension_DirtyRects = Guid.initString("9ba70225-b342-4e97-9126-0b566ab7ea7e");
+pub const MFSampleExtension_MoveRegions = Guid.initString("e2a6c693-3a8b-4b8d-95d0-f60281a12fb7");
+pub const MFSampleExtension_HDCP_OptionalHeader = Guid.initString("9a2e7390-121f-455f-8376-c97428e0b540");
+pub const MFSampleExtension_HDCP_FrameCounter = Guid.initString("9d389c60-f507-4aa6-a40a-71027a02f3de");
+pub const MFSampleExtension_HDCP_StreamID = Guid.initString("177e5d74-c370-4a7a-95a2-36833c01d0af");
+pub const MFSampleExtension_Timestamp = Guid.initString("1e436999-69be-4c7a-9369-70068c0260cb");
+pub const MFSampleExtension_RepeatFrame = Guid.initString("88be738f-0711-4f42-b458-344aed42ec2f");
+pub const MFT_ENCODER_ERROR = Guid.initString("c8d1eda4-98e4-41d5-9297-44f53852f90e");
+pub const MFT_GFX_DRIVER_VERSION_ID_Attribute = Guid.initString("f34b9093-05e0-4b16-993d-3e2a2cde6ad3");
+pub const MFSampleExtension_DescrambleData = Guid.initString("43483be6-4903-4314-b032-2951365936fc");
+pub const MFSampleExtension_SampleKeyID = Guid.initString("9ed713c8-9b87-4b26-8297-a93b0c5a8acc");
+pub const MFSampleExtension_GenKeyFunc = Guid.initString("441ca1ee-6b1f-4501-903a-de87df42f6ed");
+pub const MFSampleExtension_GenKeyCtx = Guid.initString("188120cb-d7da-4b59-9b3e-9252fd37301c");
+pub const MFSampleExtension_PacketCrossOffsets = Guid.initString("2789671d-389f-40bb-90d9-c282f77f9abd");
+pub const MFSampleExtension_Encryption_SampleID = Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
+pub const MFSampleExtension_Encryption_KeyID = Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
+pub const MFSampleExtension_Content_KeyID = Guid.initString("c6c7f5b0-acca-415b-87d9-10441469efc6");
+pub const MFSampleExtension_Encryption_SubSampleMappingSplit = Guid.initString("fe0254b9-2aa5-4edc-99f7-17e89dbf9174");
+pub const MFSampleExtension_Interlaced = Guid.initString("b1d5830a-deb8-40e3-90fa-389943716461");
+pub const MFSampleExtension_BottomFieldFirst = Guid.initString("941ce0a3-6ae3-4dda-9a08-a64298340617");
+pub const MFSampleExtension_RepeatFirstField = Guid.initString("304d257c-7493-4fbd-b149-9228de8d9a99");
+pub const MFSampleExtension_SingleField = Guid.initString("9d85f816-658b-455a-bde0-9fa7e15ab8f9");
+pub const MFSampleExtension_DerivedFromTopField = Guid.initString("6852465a-ae1c-4553-8e9b-c3420fcb1637");
+pub const MFSampleExtension_MeanAbsoluteDifference = Guid.initString("1cdbde11-08b4-4311-a6dd-0f9f371907aa");
+pub const MFSampleExtension_LongTermReferenceFrameInfo = Guid.initString("9154733f-e1bd-41bf-81d3-fcd918f71332");
+pub const MFSampleExtension_ROIRectangle = Guid.initString("3414a438-4998-4d2c-be82-be3ca0b24d43");
+pub const MFSampleExtension_LastSlice = Guid.initString("2b5d5457-5547-4f07-b8c8-b4a3a9a1daac");
+pub const MACROBLOCK_FLAG_SKIP = @as(u32, 1);
+pub const MACROBLOCK_FLAG_DIRTY = @as(u32, 2);
+pub const MACROBLOCK_FLAG_MOTION = @as(u32, 4);
+pub const MACROBLOCK_FLAG_VIDEO = @as(u32, 8);
+pub const MACROBLOCK_FLAG_HAS_MOTION_VECTOR = @as(u32, 16);
+pub const MACROBLOCK_FLAG_HAS_QP = @as(u32, 32);
+pub const MFSampleExtension_FeatureMap = Guid.initString("a032d165-46fc-400a-b449-49de53e62a6e");
+pub const MFSampleExtension_ChromaOnly = Guid.initString("1eb9179c-a01f-4845-8c04-0e65a26eb04f");
+pub const MFSampleExtension_PhotoThumbnail = Guid.initString("74bbc85c-c8bb-42dc-b586-da17ffd35dcc");
+pub const MFSampleExtension_PhotoThumbnailMediaType = Guid.initString("61ad5420-ebf8-4143-89af-6bf25f672def");
+pub const MFSampleExtension_CaptureMetadata = Guid.initString("2ebe23a8-faf5-444a-a6a2-eb810880ab5d");
+pub const MFSampleExtension_MDLCacheCookie = Guid.initString("5f002af9-d8f9-41a3-b6c3-a2ad43f647ad");
+pub const MF_CAPTURE_METADATA_PHOTO_FRAME_FLASH = Guid.initString("0f9dd6c6-6003-45d8-bd59-f1f53e3d04e8");
+pub const MF_CAPTURE_METADATA_FRAME_RAWSTREAM = Guid.initString("9252077b-2680-49b9-ae02-b19075973b70");
+pub const MF_CAPTURE_METADATA_FOCUSSTATE = Guid.initString("a87ee154-997f-465d-b91f-29d53b982b88");
+pub const MF_CAPTURE_METADATA_REQUESTED_FRAME_SETTING_ID = Guid.initString("bb3716d9-8a61-47a4-8197-459c7ff174d5");
+pub const MF_CAPTURE_METADATA_EXPOSURE_TIME = Guid.initString("16b9ae99-cd84-4063-879d-a28c7633729e");
+pub const MF_CAPTURE_METADATA_EXPOSURE_COMPENSATION = Guid.initString("d198aa75-4b62-4345-abf3-3c31fa12c299");
+pub const MF_CAPTURE_METADATA_ISO_SPEED = Guid.initString("e528a68f-b2e3-44fe-8b65-07bf4b5a13ff");
+pub const MF_CAPTURE_METADATA_LENS_POSITION = Guid.initString("b5fc8e86-11d1-4e70-819b-723a89fa4520");
+pub const MF_CAPTURE_METADATA_SCENE_MODE = Guid.initString("9cc3b54d-5ed3-4bae-b388-7670aef59e13");
+pub const MF_CAPTURE_METADATA_FLASH = Guid.initString("4a51520b-fb36-446c-9df2-68171b9a0389");
+pub const MF_CAPTURE_METADATA_FLASH_POWER = Guid.initString("9c0e0d49-0205-491a-bc9d-2d6e1f4d5684");
+pub const MF_CAPTURE_METADATA_WHITEBALANCE = Guid.initString("c736fd77-0fb9-4e2e-97a2-fcd490739ee9");
+pub const MF_CAPTURE_METADATA_ZOOMFACTOR = Guid.initString("e50b0b81-e501-42c2-abf2-857ecb13fa5c");
+pub const MF_CAPTURE_METADATA_FACEROIS = Guid.initString("864f25a6-349f-46b1-a30e-54cc22928a47");
+pub const MF_CAPTURE_METADATA_FACEROITIMESTAMPS = Guid.initString("e94d50cc-3da0-44d4-bb34-83198a741868");
+pub const MF_CAPTURE_METADATA_FACEROICHARACTERIZATIONS = Guid.initString("b927a1a8-18ef-46d3-b3af-69372f94d9b2");
+pub const MF_CAPTURE_METADATA_ISO_GAINS = Guid.initString("05802ac9-0e1d-41c7-a8c8-7e7369f84e1e");
+pub const MF_CAPTURE_METADATA_SENSORFRAMERATE = Guid.initString("db51357e-9d3d-4962-b06d-07ce650d9a0a");
+pub const MF_CAPTURE_METADATA_WHITEBALANCE_GAINS = Guid.initString("e7570c8f-2dcb-4c7c-aace-22ece7cce647");
+pub const MF_CAPTURE_METADATA_HISTOGRAM = Guid.initString("85358432-2ef6-4ba9-a3fb-06d82974b895");
+pub const MF_CAPTURE_METADATA_EXIF = Guid.initString("2e9575b8-8c31-4a02-8575-42b197b71592");
+pub const MF_CAPTURE_METADATA_FRAME_ILLUMINATION = Guid.initString("6d688ffc-63d3-46fe-bada-5b947db0d080");
+pub const MF_CAPTURE_METADATA_UVC_PAYLOADHEADER = Guid.initString("f9f88a87-e1dd-441e-95cb-42e21a64f1d9");
+pub const MFSampleExtension_Depth_MinReliableDepth = Guid.initString("5f8582b2-e36b-47c8-9b87-fee1ca72c5b0");
+pub const MFSampleExtension_Depth_MaxReliableDepth = Guid.initString("e45545d1-1f0f-4a32-a8a7-6101a24ea8be");
+pub const MF_CAPTURE_METADATA_FIRST_SCANLINE_START_TIME_QPC = Guid.initString("6a2c49f1-e052-46b6-b2d9-73c1558709af");
+pub const MF_CAPTURE_METADATA_LAST_SCANLINE_END_TIME_QPC = Guid.initString("dccadecb-c4d4-400d-b418-10e88525e1f6");
+pub const MF_CAPTURE_METADATA_SCANLINE_TIME_QPC_ACCURACY = Guid.initString("4cd79c51-f765-4b09-b1e1-27d1f7ebea09");
+pub const MF_CAPTURE_METADATA_SCANLINE_DIRECTION = Guid.initString("6496a3ba-1907-49e6-b0c3-123795f380a9");
+pub const MFCAPTURE_METADATA_SCAN_RIGHT_LEFT = @as(u32, 1);
+pub const MFCAPTURE_METADATA_SCAN_BOTTOM_TOP = @as(u32, 2);
+pub const MFCAPTURE_METADATA_SCANLINE_VERTICAL = @as(u32, 4);
+pub const MF_METADATAFACIALEXPRESSION_SMILE = @as(u32, 1);
+pub const MF_METADATATIMESTAMPS_DEVICE = @as(u32, 1);
+pub const MF_METADATATIMESTAMPS_PRESENTATION = @as(u32, 2);
+pub const MF_HISTOGRAM_CHANNEL_Y = @as(u32, 1);
+pub const MF_HISTOGRAM_CHANNEL_R = @as(u32, 2);
+pub const MF_HISTOGRAM_CHANNEL_G = @as(u32, 4);
+pub const MF_HISTOGRAM_CHANNEL_B = @as(u32, 8);
+pub const MF_HISTOGRAM_CHANNEL_Cb = @as(u32, 16);
+pub const MF_HISTOGRAM_CHANNEL_Cr = @as(u32, 32);
+pub const MFT_CATEGORY_VIDEO_DECODER = Guid.initString("d6c02d4b-6833-45b4-971a-05a4b04bab91");
+pub const MFT_CATEGORY_VIDEO_ENCODER = Guid.initString("f79eac7d-e545-4387-bdee-d647d7bde42a");
+pub const MFT_CATEGORY_VIDEO_EFFECT = Guid.initString("12e17c21-532c-4a6e-8a1c-40825a736397");
+pub const MFT_CATEGORY_MULTIPLEXER = Guid.initString("059c561e-05ae-4b61-b69d-55b61ee54a7b");
+pub const MFT_CATEGORY_DEMULTIPLEXER = Guid.initString("a8700a7a-939b-44c5-99d7-76226b23b3f1");
+pub const MFT_CATEGORY_AUDIO_DECODER = Guid.initString("9ea73fb4-ef7a-4559-8d5d-719d8f0426c7");
+pub const MFT_CATEGORY_AUDIO_ENCODER = Guid.initString("91c64bd0-f91e-4d8c-9276-db248279d975");
+pub const MFT_CATEGORY_AUDIO_EFFECT = Guid.initString("11064c48-3648-4ed0-932e-05ce8ac811b7");
+pub const MFT_CATEGORY_VIDEO_PROCESSOR = Guid.initString("302ea3fc-aa5f-47f9-9f7a-c2188bb16302");
+pub const MFT_CATEGORY_OTHER = Guid.initString("90175d57-b7ea-4901-aeb3-933a8747756f");
+pub const MFT_CATEGORY_ENCRYPTOR = Guid.initString("b0c687be-01cd-44b5-b8b2-7c1d7e058b1f");
+pub const MFT_CATEGORY_VIDEO_RENDERER_EFFECT = Guid.initString("145cd8b4-92f4-4b23-8ae7-e0df06c2da95");
+pub const MFT_ENUM_VIDEO_RENDERER_EXTENSION_PROFILE = Guid.initString("62c56928-9a4e-443b-b9dc-cac830c24100");
+pub const MFT_ENUM_ADAPTER_LUID = Guid.initString("1d39518c-e220-4da8-a07f-ba172552d6b1");
+pub const MFT_SUPPORT_DYNAMIC_FORMAT_CHANGE = Guid.initString("53476a11-3f13-49fb-ac42-ee2733c96741");
+pub const D3DFMT_R8G8B8 = @as(u32, 20);
+pub const D3DFMT_A8R8G8B8 = @as(u32, 21);
+pub const D3DFMT_X8R8G8B8 = @as(u32, 22);
+pub const D3DFMT_R5G6B5 = @as(u32, 23);
+pub const D3DFMT_X1R5G5B5 = @as(u32, 24);
+pub const D3DFMT_A2B10G10R10 = @as(u32, 31);
+pub const D3DFMT_P8 = @as(u32, 41);
+pub const D3DFMT_L8 = @as(u32, 50);
+pub const D3DFMT_D16 = @as(u32, 80);
+pub const D3DFMT_L16 = @as(u32, 81);
+pub const D3DFMT_A16B16G16R16F = @as(u32, 113);
+pub const LOCAL_D3DFMT_DEFINES = @as(u32, 1);
+pub const MFVideoFormat_H264_ES = Guid.initString("3f40f4f0-5622-4ff8-b6d8-a17a584bee5e");
+pub const MFVideoFormat_MPEG2 = Guid.initString("e06d8026-db46-11cf-b4d1-00805f6cbbea");
+pub const MFAudioFormat_Dolby_AC3 = Guid.initString("e06d802c-db46-11cf-b4d1-00805f6cbbea");
+pub const MFAudioFormat_Dolby_DDPlus = Guid.initString("a7fb87af-2d02-42fb-a4d4-05cd93843bdd");
+pub const MFAudioFormat_Vorbis = Guid.initString("8d2fd10b-5841-4a6b-8905-588fec1aded9");
+pub const MFAudioFormat_DTS_RAW = Guid.initString("e06d8033-db46-11cf-b4d1-00805f6cbbea");
+pub const MFAudioFormat_DTS_HD = Guid.initString("a2e58eb7-0fa9-48bb-a40c-fa0e156d0645");
+pub const MFAudioFormat_DTS_XLL = Guid.initString("45b37c1b-8c70-4e59-a7be-a1e42c81c80d");
+pub const MFAudioFormat_DTS_LBR = Guid.initString("c2fe6f0a-4e3c-4df1-9b60-50863091e4b9");
+pub const MFAudioFormat_DTS_UHD = Guid.initString("87020117-ace3-42de-b73e-c656706263f8");
+pub const MFAudioFormat_DTS_UHDY = Guid.initString("9b9cca00-91b9-4ccc-883a-8f787ac3cc86");
+pub const MFAudioFormat_Float_SpatialObjects = Guid.initString("fa39cd94-bc64-4ab1-9b71-dcd09d5a7e7a");
+pub const MFAudioFormat_LPCM = Guid.initString("e06d8032-db46-11cf-b4d1-00805f6cbbea");
+pub const MFAudioFormat_PCM_HDCP = Guid.initString("a5e7ff01-8411-4acc-a865-5f4941288d80");
+pub const MFAudioFormat_Dolby_AC3_HDCP = Guid.initString("97663a80-8ffb-4445-a6ba-792d908f497f");
+pub const MFAudioFormat_AAC_HDCP = Guid.initString("419bce76-8b72-400f-adeb-84b57d63484d");
+pub const MFAudioFormat_ADTS_HDCP = Guid.initString("da4963a3-14d8-4dcf-92b7-193eb84363db");
+pub const MFAudioFormat_Base_HDCP = Guid.initString("3884b5bc-e277-43fd-983d-038aa8d9b605");
+pub const MFVideoFormat_H264_HDCP = Guid.initString("5d0ce9dd-9817-49da-bdfd-f5f5b98f18a6");
+pub const MFVideoFormat_HEVC_HDCP = Guid.initString("3cfe0fe6-05c4-47dc-9d70-4bdb2959720f");
+pub const MFVideoFormat_Base_HDCP = Guid.initString("eac3b9d5-bd14-4237-8f1f-bab428e49312");
+pub const MFMPEG4Format_Base = Guid.initString("00000000-767a-494d-b478-f29d25dc9037");
+pub const MFSubtitleFormat_XML = Guid.initString("2006f94f-29ca-4195-b8db-00ded8ff0c97");
+pub const MFSubtitleFormat_TTML = Guid.initString("73e73992-9a10-4356-9557-7194e91e3e54");
+pub const MFSubtitleFormat_ATSC = Guid.initString("7fa7faa3-feae-4e16-aedf-36b9acfbb099");
+pub const MFSubtitleFormat_WebVTT = Guid.initString("c886d215-f485-40bb-8db6-fadbc619a45d");
+pub const MFSubtitleFormat_SRT = Guid.initString("5e467f2e-77ca-4ca5-8391-d142ed4b76c8");
+pub const MFSubtitleFormat_SSA = Guid.initString("57176a1b-1a9e-4eea-abef-c61760198ac4");
+pub const MFSubtitleFormat_CustomUserData = Guid.initString("1bb3d849-6614-4d80-8882-ed24aa82da92");
+pub const MFSubtitleFormat_PGS = Guid.initString("71f40e4a-1278-4442-b30d-39dd1d7722bc");
+pub const MFSubtitleFormat_VobSub = Guid.initString("6b8e40f4-8d2c-4ced-ad91-5960e45b4433");
+pub const MF_MT_MAJOR_TYPE = Guid.initString("48eba18e-f8c9-4687-bf11-0a74c9f96a8f");
+pub const MF_MT_SUBTYPE = Guid.initString("f7e34c9a-42e8-4714-b74b-cb29d72c35e5");
+pub const MF_MT_ALL_SAMPLES_INDEPENDENT = Guid.initString("c9173739-5e56-461c-b713-46fb995cb95f");
+pub const MF_MT_FIXED_SIZE_SAMPLES = Guid.initString("b8ebefaf-b718-4e04-b0a9-116775e3321b");
+pub const MF_MT_COMPRESSED = Guid.initString("3afd0cee-18f2-4ba5-a110-8bea502e1f92");
+pub const MF_MT_SAMPLE_SIZE = Guid.initString("dad3ab78-1990-408b-bce2-eba673dacc10");
+pub const MF_MT_WRAPPED_TYPE = Guid.initString("4d3f7b23-d02f-4e6c-9bee-e4bf2c6c695d");
+pub const MF_MT_VIDEO_3D = Guid.initString("cb5e88cf-7b5b-476b-85aa-1ca5ae187555");
+pub const MF_MT_VIDEO_3D_FORMAT = Guid.initString("5315d8a0-87c5-4697-b793-6606c67c049b");
+pub const MF_MT_VIDEO_3D_NUM_VIEWS = Guid.initString("bb077e8a-dcbf-42eb-af60-418df98aa495");
+pub const MF_MT_VIDEO_3D_LEFT_IS_BASE = Guid.initString("6d4b7bff-5629-4404-948c-c634f4ce26d4");
+pub const MF_MT_VIDEO_3D_FIRST_IS_LEFT = Guid.initString("ec298493-0ada-4ea1-a4fe-cbbd36ce9331");
+pub const MFSampleExtension_3DVideo = Guid.initString("f86f97a4-dd54-4e2e-9a5e-55fc2d74a005");
+pub const MFSampleExtension_3DVideo_SampleFormat = Guid.initString("08671772-e36f-4cff-97b3-d72e20987a48");
+pub const MF_MT_VIDEO_ROTATION = Guid.initString("c380465d-2271-428c-9b83-ecea3b4a85c1");
+pub const MF_DEVICESTREAM_MULTIPLEXED_MANAGER = Guid.initString("6ea542b0-281f-4231-a464-fe2f5022501c");
+pub const MF_MEDIATYPE_MULTIPLEXED_MANAGER = Guid.initString("13c78fb5-f275-4ea0-bb5f-0249832b0d6e");
+pub const MFSampleExtension_MULTIPLEXED_MANAGER = Guid.initString("8dcdee79-6b5a-4c45-8db9-20b395f02fcf");
+pub const MF_MT_SECURE = Guid.initString("c5acc4fd-0304-4ecf-809f-47bc97ff63bd");
+pub const MF_DEVICESTREAM_ATTRIBUTE_FRAMESOURCE_TYPES = Guid.initString("17145fd1-1b2b-423c-8001-2b6833ed3588");
+pub const MF_MT_ALPHA_MODE = Guid.initString("5d959b0d-4cbf-4d04-919f-3f5f7f284211");
+pub const MF_MT_DEPTH_MEASUREMENT = Guid.initString("fd5ac489-0917-4bb6-9d54-3122bf70144b");
+pub const MF_MT_DEPTH_VALUE_UNIT = Guid.initString("21a800f5-3189-4797-beba-f13cd9a31a5e");
+pub const MF_MT_VIDEO_NO_FRAME_ORDERING = Guid.initString("3f5b106f-6bc2-4ee3-b7ed-8902c18f5351");
+pub const MF_MT_VIDEO_H264_NO_FMOASO = Guid.initString("ed461cd6-ec9f-416a-a8a3-26d7d31018d7");
+pub const MFSampleExtension_ForwardedDecodeUnits = Guid.initString("424c754c-97c8-48d6-8777-fc41f7b60879");
+pub const MFSampleExtension_TargetGlobalLuminance = Guid.initString("3f60ef36-31ef-4daf-8360-940397e41ef3");
+pub const MFSampleExtension_ForwardedDecodeUnitType = Guid.initString("089e57c7-47d3-4a26-bf9c-4b64fafb5d1e");
+pub const MF_MT_FORWARD_CUSTOM_NALU = Guid.initString("ed336efd-244f-428d-9153-28f399458890");
+pub const MF_MT_FORWARD_CUSTOM_SEI = Guid.initString("e27362f1-b136-41d1-9594-3a7e4febf2d1");
+pub const MF_MT_VIDEO_RENDERER_EXTENSION_PROFILE = Guid.initString("8437d4b9-d448-4fcd-9b6b-839bf96c7798");
+pub const MF_DECODER_FWD_CUSTOM_SEI_DECODE_ORDER = Guid.initString("f13bbe3c-36d4-410a-b985-7a951a1e6294");
+pub const MF_VIDEO_RENDERER_EFFECT_APP_SERVICE_NAME = Guid.initString("c6052a80-6d9c-40a3-9db8-f027a25c9ab9");
+pub const MF_MT_AUDIO_NUM_CHANNELS = Guid.initString("37e48bf5-645e-4c5b-89de-ada9e29b696a");
+pub const MF_MT_AUDIO_SAMPLES_PER_SECOND = Guid.initString("5faeeae7-0290-4c31-9e8a-c534f68d9dba");
+pub const MF_MT_AUDIO_FLOAT_SAMPLES_PER_SECOND = Guid.initString("fb3b724a-cfb5-4319-aefe-6e42b2406132");
+pub const MF_MT_AUDIO_AVG_BYTES_PER_SECOND = Guid.initString("1aab75c8-cfef-451c-ab95-ac034b8e1731");
+pub const MF_MT_AUDIO_BLOCK_ALIGNMENT = Guid.initString("322de230-9eeb-43bd-ab7a-ff412251541d");
+pub const MF_MT_AUDIO_BITS_PER_SAMPLE = Guid.initString("f2deb57f-40fa-4764-aa33-ed4f2d1ff669");
+pub const MF_MT_AUDIO_VALID_BITS_PER_SAMPLE = Guid.initString("d9bf8d6a-9530-4b7c-9ddf-ff6fd58bbd06");
+pub const MF_MT_AUDIO_SAMPLES_PER_BLOCK = Guid.initString("aab15aac-e13a-4995-9222-501ea15c6877");
+pub const MF_MT_AUDIO_CHANNEL_MASK = Guid.initString("55fb5765-644a-4caf-8479-938983bb1588");
+pub const MF_MT_AUDIO_FOLDDOWN_MATRIX = Guid.initString("9d62927c-36be-4cf2-b5c4-a3926e3e8711");
+pub const MF_MT_AUDIO_WMADRC_PEAKREF = Guid.initString("9d62927d-36be-4cf2-b5c4-a3926e3e8711");
+pub const MF_MT_AUDIO_WMADRC_PEAKTARGET = Guid.initString("9d62927e-36be-4cf2-b5c4-a3926e3e8711");
+pub const MF_MT_AUDIO_WMADRC_AVGREF = Guid.initString("9d62927f-36be-4cf2-b5c4-a3926e3e8711");
+pub const MF_MT_AUDIO_WMADRC_AVGTARGET = Guid.initString("9d629280-36be-4cf2-b5c4-a3926e3e8711");
+pub const MF_MT_AUDIO_PREFER_WAVEFORMATEX = Guid.initString("a901aaba-e037-458a-bdf6-545be2074042");
+pub const MF_MT_AAC_PAYLOAD_TYPE = Guid.initString("bfbabe79-7434-4d1c-94f0-72a3b9e17188");
+pub const MF_MT_AAC_AUDIO_PROFILE_LEVEL_INDICATION = Guid.initString("7632f0e6-9538-4d61-acda-ea29c8c14456");
+pub const MF_MT_AUDIO_FLAC_MAX_BLOCK_SIZE = Guid.initString("8b81adae-4b5a-4d40-8022-f38d09ca3c5c");
+pub const MF_MT_SPATIAL_AUDIO_MAX_DYNAMIC_OBJECTS = Guid.initString("dcfba24a-2609-4240-a721-3faea76a4df9");
+pub const MF_MT_SPATIAL_AUDIO_OBJECT_METADATA_FORMAT_ID = Guid.initString("2ab71bc0-6223-4ba7-ad64-7b94b47ae792");
+pub const MF_MT_SPATIAL_AUDIO_OBJECT_METADATA_LENGTH = Guid.initString("094ba8be-d723-489f-92fa-766777b34726");
+pub const MF_MT_SPATIAL_AUDIO_MAX_METADATA_ITEMS = Guid.initString("11aa80b4-e0da-47c6-8060-96c1259ae50d");
+pub const MF_MT_SPATIAL_AUDIO_MIN_METADATA_ITEM_OFFSET_SPACING = Guid.initString("83e96ec9-1184-417e-8254-9f269158fc06");
+pub const MF_MT_SPATIAL_AUDIO_DATA_PRESENT = Guid.initString("6842f6e7-d43e-4ebb-9c9c-c96f41784863");
+pub const MF_MT_FRAME_SIZE = Guid.initString("1652c33d-d6b2-4012-b834-72030849a37d");
+pub const MF_MT_FRAME_RATE = Guid.initString("c459a2e8-3d2c-4e44-b132-fee5156c7bb0");
+pub const MF_MT_PIXEL_ASPECT_RATIO = Guid.initString("c6376a1e-8d0a-4027-be45-6d9a0ad39bb6");
+pub const MF_MT_DRM_FLAGS = Guid.initString("8772f323-355a-4cc7-bb78-6d61a048ae82");
+pub const MF_MT_TIMESTAMP_CAN_BE_DTS = Guid.initString("24974215-1b7b-41e4-8625-ac469f2dedaa");
+pub const MF_MT_PAD_CONTROL_FLAGS = Guid.initString("4d0e73e5-80ea-4354-a9d0-1176ceb028ea");
+pub const MF_MT_SOURCE_CONTENT_HINT = Guid.initString("68aca3cc-22d0-44e6-85f8-28167197fa38");
+pub const MF_MT_VIDEO_CHROMA_SITING = Guid.initString("65df2370-c773-4c33-aa64-843e068efb0c");
+pub const MF_MT_INTERLACE_MODE = Guid.initString("e2724bb8-e676-4806-b4b2-a8d6efb44ccd");
+pub const MF_MT_TRANSFER_FUNCTION = Guid.initString("5fb0fce9-be5c-4935-a811-ec838f8eed93");
+pub const MF_MT_VIDEO_PRIMARIES = Guid.initString("dbfbe4d7-0740-4ee0-8192-850ab0e21935");
+pub const MF_MT_MAX_LUMINANCE_LEVEL = Guid.initString("50253128-c110-4de4-98ae-46a324fae6da");
+pub const MF_MT_MAX_FRAME_AVERAGE_LUMINANCE_LEVEL = Guid.initString("58d4bf57-6f52-4733-a195-a9e29ecf9e27");
+pub const MF_MT_MAX_MASTERING_LUMINANCE = Guid.initString("d6c6b997-272f-4ca1-8d00-8042111a0ff6");
+pub const MF_MT_MIN_MASTERING_LUMINANCE = Guid.initString("839a4460-4e7e-4b4f-ae79-cc08905c7b27");
+pub const MF_MT_DECODER_USE_MAX_RESOLUTION = Guid.initString("4c547c24-af9a-4f38-96ad-978773cf53e7");
+pub const MF_MT_DECODER_MAX_DPB_COUNT = Guid.initString("67be144c-88b7-4ca9-9628-c808d5262217");
+pub const MF_MT_CUSTOM_VIDEO_PRIMARIES = Guid.initString("47537213-8cfb-4722-aa34-fbc9e24d77b8");
+pub const MF_MT_YUV_MATRIX = Guid.initString("3e23d450-2c75-4d25-a00e-b91670d12327");
+pub const MF_MT_VIDEO_LIGHTING = Guid.initString("53a0529c-890b-4216-8bf9-599367ad6d20");
+pub const MF_MT_VIDEO_NOMINAL_RANGE = Guid.initString("c21b8ee5-b956-4071-8daf-325edf5cab11");
+pub const MF_MT_GEOMETRIC_APERTURE = Guid.initString("66758743-7e5f-400d-980a-aa8596c85696");
+pub const MF_MT_MINIMUM_DISPLAY_APERTURE = Guid.initString("d7388766-18fe-48c6-a177-ee894867c8c4");
+pub const MF_MT_PAN_SCAN_APERTURE = Guid.initString("79614dde-9187-48fb-b8c7-4d52689de649");
+pub const MF_MT_PAN_SCAN_ENABLED = Guid.initString("4b7f6bc3-8b13-40b2-a993-abf630b8204e");
+pub const MF_MT_AVG_BITRATE = Guid.initString("20332624-fb0d-4d9e-bd0d-cbf6786c102e");
+pub const MF_MT_AVG_BIT_ERROR_RATE = Guid.initString("799cabd6-3508-4db4-a3c7-569cd533deb1");
+pub const MF_MT_MAX_KEYFRAME_SPACING = Guid.initString("c16eb52b-73a1-476f-8d62-839d6a020652");
+pub const MF_MT_USER_DATA = Guid.initString("b6bc765f-4c3b-40a4-bd51-2535b66fe09d");
+pub const MF_MT_OUTPUT_BUFFER_NUM = Guid.initString("a505d3ac-f930-436e-8ede-93a509ce23b2");
+pub const MF_MT_REALTIME_CONTENT = Guid.initString("bb12d222-2bdb-425e-91ec-2308e189a58f");
+pub const MF_MT_DEFAULT_STRIDE = Guid.initString("644b4e48-1e02-4516-b0eb-c01ca9d49ac6");
+pub const MF_MT_PALETTE = Guid.initString("6d283f42-9846-4410-afd9-654d503b1a54");
+pub const MF_MT_AM_FORMAT_TYPE = Guid.initString("73d1072d-1870-4174-a063-29ff4ff6c11e");
+pub const MF_MT_VIDEO_PROFILE = Guid.initString("ad76a80b-2d5c-4e0b-b375-64e520137036");
+pub const MF_MT_VIDEO_LEVEL = Guid.initString("96f66574-11c5-4015-8666-bff516436da7");
+pub const MF_MT_MPEG_START_TIME_CODE = Guid.initString("91f67885-4333-4280-97cd-bd5a6c03a06e");
+pub const MF_MT_MPEG2_PROFILE = Guid.initString("ad76a80b-2d5c-4e0b-b375-64e520137036");
+pub const MF_MT_MPEG2_LEVEL = Guid.initString("96f66574-11c5-4015-8666-bff516436da7");
+pub const MF_MT_MPEG2_FLAGS = Guid.initString("31e3991d-f701-4b2f-b426-8ae3bda9e04b");
+pub const MF_MT_MPEG_SEQUENCE_HEADER = Guid.initString("3c036de7-3ad0-4c9e-9216-ee6d6ac21cb3");
+pub const MF_MT_MPEG2_STANDARD = Guid.initString("a20af9e8-928a-4b26-aaa9-f05c74cac47c");
+pub const MF_MT_MPEG2_TIMECODE = Guid.initString("5229ba10-e29d-4f80-a59c-df4f180207d2");
+pub const MF_MT_MPEG2_CONTENT_PACKET = Guid.initString("825d55e4-4f12-4197-9eb3-59b6e4710f06");
+pub const MF_MT_MPEG2_ONE_FRAME_PER_PACKET = Guid.initString("91a49eb5-1d20-4b42-ace8-804269bf95ed");
+pub const MF_MT_MPEG2_HDCP = Guid.initString("168f1b4a-3e91-450f-aea7-e4baeadae5ba");
+pub const MF_MT_H264_MAX_CODEC_CONFIG_DELAY = Guid.initString("f5929986-4c45-4fbb-bb49-6cc534d05b9b");
+pub const MF_MT_H264_SUPPORTED_SLICE_MODES = Guid.initString("c8be1937-4d64-4549-8343-a8086c0bfda5");
+pub const MF_MT_H264_SUPPORTED_SYNC_FRAME_TYPES = Guid.initString("89a52c01-f282-48d2-b522-22e6ae633199");
+pub const MF_MT_H264_RESOLUTION_SCALING = Guid.initString("e3854272-f715-4757-ba90-1b696c773457");
+pub const MF_MT_H264_SIMULCAST_SUPPORT = Guid.initString("9ea2d63d-53f0-4a34-b94e-9de49a078cb3");
+pub const MF_MT_H264_SUPPORTED_RATE_CONTROL_MODES = Guid.initString("6a8ac47e-519c-4f18-9bb3-7eeaaea5594d");
+pub const MF_MT_H264_MAX_MB_PER_SEC = Guid.initString("45256d30-7215-4576-9336-b0f1bcd59bb2");
+pub const MF_MT_H264_SUPPORTED_USAGES = Guid.initString("60b1a998-dc01-40ce-9736-aba845a2dbdc");
+pub const MF_MT_H264_CAPABILITIES = Guid.initString("bb3bd508-490a-11e0-99e4-1316dfd72085");
+pub const MF_MT_H264_SVC_CAPABILITIES = Guid.initString("f8993abe-d937-4a8f-bbca-6966fe9e1152");
+pub const MF_MT_H264_USAGE = Guid.initString("359ce3a5-af00-49ca-a2f4-2ac94ca82b61");
+pub const MF_MT_H264_RATE_CONTROL_MODES = Guid.initString("705177d8-45cb-11e0-ac7d-b91ce0d72085");
+pub const MF_MT_H264_LAYOUT_PER_STREAM = Guid.initString("85e299b2-90e3-4fe8-b2f5-c067e0bfe57a");
+pub const MF_MT_IN_BAND_PARAMETER_SET = Guid.initString("75da5090-910b-4a03-896c-7b898feea5af");
+pub const MF_MT_MPEG4_TRACK_TYPE = Guid.initString("54f486dd-9327-4f6d-80ab-6f709ebb4cce");
+pub const MF_MT_CONTAINER_RATE_SCALING = Guid.initString("83877f5e-0444-4e28-8479-6db0989b8c09");
+pub const MF_MT_DV_AAUX_SRC_PACK_0 = Guid.initString("84bd5d88-0fb8-4ac8-be4b-a8848bef98f3");
+pub const MF_MT_DV_AAUX_CTRL_PACK_0 = Guid.initString("f731004e-1dd1-4515-aabe-f0c06aa536ac");
+pub const MF_MT_DV_AAUX_SRC_PACK_1 = Guid.initString("720e6544-0225-4003-a651-0196563a958e");
+pub const MF_MT_DV_AAUX_CTRL_PACK_1 = Guid.initString("cd1f470d-1f04-4fe0-bfb9-d07ae0386ad8");
+pub const MF_MT_DV_VAUX_SRC_PACK = Guid.initString("41402d9d-7b57-43c6-b129-2cb997f15009");
+pub const MF_MT_DV_VAUX_CTRL_PACK = Guid.initString("2f84e1c4-0da1-4788-938e-0dfbfbb34b48");
+pub const MF_MT_ARBITRARY_HEADER = Guid.initString("9e6bd6f5-0109-4f95-84ac-9309153a19fc");
+pub const MF_MT_ARBITRARY_FORMAT = Guid.initString("5a75b249-0d7d-49a1-a1c3-e0d87f0cade5");
+pub const MF_MT_IMAGE_LOSS_TOLERANT = Guid.initString("ed062cf4-e34e-4922-be99-934032133d7c");
+pub const MF_MT_MPEG4_SAMPLE_DESCRIPTION = Guid.initString("261e9d83-9529-4b8f-a111-8b9c950a81a9");
+pub const MF_MT_MPEG4_CURRENT_SAMPLE_ENTRY = Guid.initString("9aa7e155-b64a-4c1d-a500-455d600b6560");
+pub const MF_SD_AMBISONICS_SAMPLE3D_DESCRIPTION = Guid.initString("f715cf3e-a964-4c3f-94ae-9d6ba7264641");
+pub const MF_MT_ORIGINAL_4CC = Guid.initString("d7be3fe0-2bc7-492d-b843-61a1919b70c3");
+pub const MF_MT_ORIGINAL_WAVE_FORMAT_TAG = Guid.initString("8cbbc843-9fd9-49c2-882f-a72586c408ad");
+pub const MF_MT_FRAME_RATE_RANGE_MIN = Guid.initString("d2e7558c-dc1f-403f-9a72-d28bb1eb3b5e");
+pub const MF_MT_FRAME_RATE_RANGE_MAX = Guid.initString("e3371d41-b4cf-4a05-bd4e-20b88bb2c4d6");
+pub const MF_LOW_LATENCY = Guid.initString("9c27891a-ed7a-40e1-88e8-b22727a024ee");
+pub const MF_VIDEO_MAX_MB_PER_SEC = Guid.initString("e3f2e203-d445-4b8c-9211-ae390d3ba017");
+pub const MF_DISABLE_FRAME_CORRUPTION_INFO = Guid.initString("7086e16c-49c5-4201-882a-8538f38cf13a");
+pub const MFStreamExtension_CameraExtrinsics = Guid.initString("686196d0-13e2-41d9-9638-ef032c272a52");
+pub const MFSampleExtension_CameraExtrinsics = Guid.initString("6b761658-b7ec-4c3b-8225-8623cabec31d");
+pub const MFStreamExtension_PinholeCameraIntrinsics = Guid.initString("dbac0455-0ec8-4aef-9c32-7a3ee3456f53");
+pub const MFSampleExtension_PinholeCameraIntrinsics = Guid.initString("4ee3b6c5-6a15-4e72-9761-70c1db8b9fe3");
+pub const MFMediaType_Default = Guid.initString("81a412e6-8103-4b06-857f-1862781024ac");
+pub const MFMediaType_Audio = Guid.initString("73647561-0000-0010-8000-00aa00389b71");
+pub const MFMediaType_Video = Guid.initString("73646976-0000-0010-8000-00aa00389b71");
+pub const MFMediaType_Protected = Guid.initString("7b4b6fe6-9d04-4494-be14-7e0bd076c8e4");
+pub const MFMediaType_SAMI = Guid.initString("e69669a0-3dcd-40cb-9e2e-3708387c0616");
+pub const MFMediaType_Script = Guid.initString("72178c22-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFMediaType_Image = Guid.initString("72178c23-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFMediaType_HTML = Guid.initString("72178c24-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFMediaType_Binary = Guid.initString("72178c25-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFMediaType_FileTransfer = Guid.initString("72178c26-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFMediaType_Stream = Guid.initString("e436eb83-524f-11ce-9f53-0020af0ba770");
+pub const MFMediaType_MultiplexedFrames = Guid.initString("6ea542b0-281f-4231-a464-fe2f5022501c");
+pub const MFMediaType_Subtitle = Guid.initString("a6d13581-ed50-4e65-ae08-26065576aacc");
+pub const MFMediaType_Perception = Guid.initString("597ff6f9-6ea2-4670-85b4-ea84073fe940");
+pub const MFImageFormat_JPEG = Guid.initString("19e4a5aa-5662-4fc5-a0c0-1758028e1057");
+pub const MFImageFormat_RGB32 = Guid.initString("00000016-0000-0010-8000-00aa00389b71");
+pub const MFStreamFormat_MPEG2Transport = Guid.initString("e06d8023-db46-11cf-b4d1-00805f6cbbea");
+pub const MFStreamFormat_MPEG2Program = Guid.initString("263067d1-d330-45dc-b669-34d986e4e3e1");
+pub const AM_MEDIA_TYPE_REPRESENTATION = Guid.initString("e2e42ad2-132c-491e-a268-3c7c2dca181f");
+pub const FORMAT_MFVideoFormat = Guid.initString("aed4ab2d-7326-43cb-9464-c879cab9c43d");
+pub const CLSID_MFSourceResolver = Guid.initString("90eab60f-e43a-4188-bcc4-e47fdf04868c");
+pub const MF_DEVICESTREAM_ATTRIBUTE_FACEAUTH_CAPABILITY = Guid.initString("cb6fd12a-2248-4e41-ad46-e78bb90ab9fc");
+pub const MF_DEVICESTREAM_ATTRIBUTE_SECURE_CAPABILITY = Guid.initString("940fd626-ea6e-4684-9840-36bd6ec9fbef");
+pub const MFT_STREAMS_UNLIMITED = @as(u32, 4294967295);
+pub const MF_INVALID_PRESENTATION_TIME = @as(u64, 9223372036854775808);
+pub const MR_VIDEO_RENDER_SERVICE = Guid.initString("1092a86c-ab1a-459a-a336-831fbc4d11ff");
+pub const MR_VIDEO_MIXER_SERVICE = Guid.initString("073cd2fc-6cf4-40b7-8859-e89552c841f8");
+pub const MR_VIDEO_ACCELERATION_SERVICE = Guid.initString("efef5175-5c7d-4ce2-bbbd-34ff8bca6554");
+pub const MR_BUFFER_SERVICE = Guid.initString("a562248c-9ac6-4ffc-9fba-3af8f8ad1a4d");
+pub const VIDEO_ZOOM_RECT = Guid.initString("7aaa1638-1b7f-4c93-bd89-5b9c9fb6fcf0");
+pub const MFEVRDLL = @as(u32, 0);
+pub const DXVA2_ModeMPEG2_MoComp = Guid.initString("e6a9f44b-61b0-4563-9ea4-63d2a3c6fe66");
+pub const DXVA2_ModeMPEG2_IDCT = Guid.initString("bf22ad00-03ea-4690-8077-473346209b7e");
+pub const DXVA2_ModeMPEG2_VLD = Guid.initString("ee27417f-5e28-4e65-beea-1d26b508adc9");
+pub const DXVA2_ModeMPEG1_VLD = Guid.initString("6f3ec719-3735-42cc-8063-65cc3cb36616");
+pub const DXVA2_ModeMPEG2and1_VLD = Guid.initString("86695f12-340e-4f04-9fd3-9253dd327460");
+pub const DXVA2_ModeH264_A = Guid.initString("1b81be64-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_B = Guid.initString("1b81be65-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_C = Guid.initString("1b81be66-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_D = Guid.initString("1b81be67-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_E = Guid.initString("1b81be68-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_F = Guid.initString("1b81be69-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeH264_VLD_WithFMOASO_NoFGT = Guid.initString("d5f04ff9-3418-45d8-9561-32a76aae2ddd");
+pub const DXVA2_ModeH264_VLD_Stereo_Progressive_NoFGT = Guid.initString("d79be8da-0cf1-4c81-b82a-69a4e236f43d");
+pub const DXVA2_ModeH264_VLD_Stereo_NoFGT = Guid.initString("f9aaccbb-c2b6-4cfc-8779-5707b1760552");
+pub const DXVA2_ModeH264_VLD_Multiview_NoFGT = Guid.initString("705b9d82-76cf-49d6-b7e6-ac8872db013c");
+pub const DXVA2_ModeWMV8_A = Guid.initString("1b81be80-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeWMV8_B = Guid.initString("1b81be81-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeWMV9_A = Guid.initString("1b81be90-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeWMV9_B = Guid.initString("1b81be91-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeWMV9_C = Guid.initString("1b81be94-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeVC1_A = Guid.initString("1b81bea0-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeVC1_B = Guid.initString("1b81bea1-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeVC1_C = Guid.initString("1b81bea2-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeVC1_D = Guid.initString("1b81bea3-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_ModeVC1_D2010 = Guid.initString("1b81bea4-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_NoEncrypt = Guid.initString("1b81bed0-a0c7-11d3-b984-00c04f2e73c5");
+pub const DXVA2_VideoProcProgressiveDevice = Guid.initString("5a54a0c9-c7ec-4bd9-8ede-f3c75dc4393b");
+pub const DXVA2_VideoProcBobDevice = Guid.initString("335aa36e-7884-43a4-9c91-7f87faf3e37e");
+pub const DXVA2_VideoProcSoftwareDevice = Guid.initString("4553d47f-ee7e-4e3f-9475-dbf1376c4810");
+pub const DXVA2_ModeMPEG4pt2_VLD_Simple = Guid.initString("efd64d74-c9e8-41d7-a5e9-e9b0e39fa319");
+pub const DXVA2_ModeMPEG4pt2_VLD_AdvSimple_NoGMC = Guid.initString("ed418a9f-010d-4eda-9ae3-9a65358d8d2e");
+pub const DXVA2_ModeMPEG4pt2_VLD_AdvSimple_GMC = Guid.initString("ab998b5b-4258-44a9-9feb-94e597a6baae");
+pub const DXVA2_ModeHEVC_VLD_Main = Guid.initString("5b11d51b-2f4c-4452-bcc3-09f2a1160cc0");
+pub const DXVA2_ModeHEVC_VLD_Main10 = Guid.initString("107af0e0-ef1a-4d19-aba8-67a163073d13");
+pub const DXVA2_ModeVP9_VLD_Profile0 = Guid.initString("463707f8-a1d0-4585-876d-83aa6d60b89e");
+pub const DXVA2_ModeVP9_VLD_10bit_Profile2 = Guid.initString("a4c749ef-6ecf-48aa-8448-50a7a1165ff7");
+pub const DXVA2_ModeVP8_VLD = Guid.initString("90b899ea-3a62-4705-88b3-8df04b2744e7");
+pub const DXVA2_E_NOT_INITIALIZED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217408));
+pub const DXVA2_E_NEW_VIDEO_DEVICE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217407));
+pub const DXVA2_E_VIDEO_DEVICE_LOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217406));
+pub const DXVA2_E_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147217405));
+pub const MAX_SUBSTREAMS = @as(u32, 15);
+pub const DXVA2_DECODE_GET_DRIVER_HANDLE = @as(u32, 1829);
+pub const DXVA2_DECODE_SPECIFY_ENCRYPTED_BLOCKS = @as(u32, 1828);
+pub const MF_MEDIA_SHARING_ENGINE_INITIAL_SEEK_TIME = Guid.initString("6f3497f5-d528-4a4f-8dd7-db36657ec4c9");
+pub const MF_SHUTDOWN_RENDERER_ON_ENGINE_SHUTDOWN = Guid.initString("c112d94d-6b9c-48f8-b6f9-7950ff9ab71e");
+pub const MF_PREFERRED_SOURCE_URI = Guid.initString("5fc85488-436a-4db8-90af-4db402ae5c57");
+pub const MF_SHARING_ENGINE_SHAREDRENDERER = Guid.initString("efa446a0-73e7-404e-8ae2-fef60af5a32b");
+pub const MF_SHARING_ENGINE_CALLBACK = Guid.initString("57dc1e95-d252-43fa-9bbc-180070eefe6d");
 pub const g_wszSpeechFormatCaps = "SpeechFormatCap";
 pub const g_wszWMCPCodecName = "_CODECNAME";
 pub const g_wszWMCPSupportedVBRModes = "_SUPPORTEDVBRMODES";
@@ -712,592 +712,581 @@ pub const g_wszWMCPAudioVBRSupported = "_VBRENABLED";
 pub const g_wszWMCPAudioVBRQuality = "_VBRQUALITY";
 pub const g_wszWMCPMaxPasses = "_PASSESRECOMMENDED";
 pub const g_wszWMCPDefaultCrisp = "_DEFAULTCRISP";
-pub const COPP_ProtectionType_Unknown : i32 = -2147483648;
-pub const COPP_ProtectionType_None : i32 = 0;
-pub const COPP_ProtectionType_HDCP : i32 = 1;
-pub const COPP_ProtectionType_ACP : i32 = 2;
-pub const COPP_ProtectionType_CGMSA : i32 = 4;
-pub const COPP_ProtectionType_Mask : i32 = -2147483641;
-pub const COPP_ProtectionType_Reserved : i32 = 2147483640;
-pub const MF_BYTESTREAM_ORIGIN_NAME = @import("../zig.zig").Guid.initString("fc358288-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_CONTENT_TYPE = @import("../zig.zig").Guid.initString("fc358289-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_DURATION = @import("../zig.zig").Guid.initString("fc35828a-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_LAST_MODIFIED_TIME = @import("../zig.zig").Guid.initString("fc35828b-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_IFO_FILE_URI = @import("../zig.zig").Guid.initString("fc35828c-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_DLNA_PROFILE_ID = @import("../zig.zig").Guid.initString("fc35828d-3cb6-460c-a424-b6681260375a");
-pub const MF_BYTESTREAM_EFFECTIVE_URL = @import("../zig.zig").Guid.initString("9afa0209-89d1-42af-8456-1de6b562d691");
-pub const MF_BYTESTREAM_TRANSCODED = @import("../zig.zig").Guid.initString("b6c5c282-4dc9-4db9-ab48-cf3b6d8bc5e0");
-pub const CLSID_MFByteStreamProxyClassFactory = @import("../zig.zig").Guid.initString("770e8e77-4916-441c-a9a7-b342d0eebc71");
-pub const MEDeviceStreamCreated = @import("../zig.zig").Guid.initString("0252a1cf-3540-43b4-9164-d72eb405fa40");
-pub const MF_SA_D3D_AWARE = @import("../zig.zig").Guid.initString("eaa35c29-775e-488e-9b61-b3283e49583b");
-pub const MF_SA_REQUIRED_SAMPLE_COUNT = @import("../zig.zig").Guid.initString("18802c61-324b-4952-abd0-176ff5c696ff");
-pub const MFT_END_STREAMING_AWARE = @import("../zig.zig").Guid.initString("70fbc845-b07e-4089-b064-399dc6110f29");
-pub const MF_SA_AUDIO_ENDPOINT_AWARE = @import("../zig.zig").Guid.initString("c0381701-805c-42b2-ac8d-e2b4bf21f4f8");
-pub const MFT_AUDIO_DECODER_AUDIO_ENDPOINT_ID = @import("../zig.zig").Guid.initString("c7ccdd6e-5398-4695-8be7-51b3e95111bd");
-pub const MFT_AUDIO_DECODER_SPATIAL_METADATA_CLIENT = @import("../zig.zig").Guid.initString("05987df4-1270-4999-925f-8e939a7c0af7");
-pub const MF_DMFT_FRAME_BUFFER_INFO = @import("../zig.zig").Guid.initString("396ce1c9-67a9-454c-8797-95a45799d804");
-pub const MF_SA_REQUIRED_SAMPLE_COUNT_PROGRESSIVE = @import("../zig.zig").Guid.initString("b172d58e-fa77-4e48-8d2a-1df2d850eac2");
-pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT = @import("../zig.zig").Guid.initString("851745d5-c3d6-476d-9527-498ef2d10d18");
-pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT_PROGRESSIVE = @import("../zig.zig").Guid.initString("0f5523a5-1cb2-47c5-a550-2eeb84b4d14a");
-pub const MFT_SUPPORT_3DVIDEO = @import("../zig.zig").Guid.initString("093f81b1-4f2e-4631-8168-7934032a01d3");
-pub const MF_ENABLE_3DVIDEO_OUTPUT = @import("../zig.zig").Guid.initString("bdad7bca-0e5f-4b10-ab16-26de381b6293");
-pub const MF_SA_D3D11_BINDFLAGS = @import("../zig.zig").Guid.initString("eacf97ad-065c-4408-bee3-fdcbfd128be2");
-pub const MF_SA_D3D11_USAGE = @import("../zig.zig").Guid.initString("e85fe442-2ca3-486e-a9c7-109dda609880");
-pub const MF_SA_D3D11_AWARE = @import("../zig.zig").Guid.initString("206b4fc8-fcf9-4c51-afe3-9764369e33a0");
-pub const MF_SA_D3D11_SHARED = @import("../zig.zig").Guid.initString("7b8f32c3-6d96-4b89-9203-dd38b61414f3");
-pub const MF_SA_D3D11_SHARED_WITHOUT_MUTEX = @import("../zig.zig").Guid.initString("39dbd44d-2e44-4931-a4c8-352d3dc42115");
-pub const MF_SA_D3D11_ALLOW_DYNAMIC_YUV_TEXTURE = @import("../zig.zig").Guid.initString("ce06d49f-0613-4b9d-86a6-d8c4f9c10075");
-pub const MF_SA_D3D11_HW_PROTECTED = @import("../zig.zig").Guid.initString("3a8ba9d9-92ca-4307-a391-6999dbf3b6ce");
-pub const MF_SA_BUFFERS_PER_SAMPLE = @import("../zig.zig").Guid.initString("873c5171-1e3d-4e25-988d-b433ce041983");
-pub const MFT_DECODER_EXPOSE_OUTPUT_TYPES_IN_NATIVE_ORDER = @import("../zig.zig").Guid.initString("ef80833f-f8fa-44d9-80d8-41ed6232670c");
-pub const MFT_DECODER_QUALITY_MANAGEMENT_CUSTOM_CONTROL = @import("../zig.zig").Guid.initString("a24e30d7-de25-4558-bbfb-71070a2d332e");
-pub const MFT_DECODER_QUALITY_MANAGEMENT_RECOVERY_WITHOUT_ARTIFACTS = @import("../zig.zig").Guid.initString("d8980deb-0a48-425f-8623-611db41d3810");
-pub const MFT_REMUX_MARK_I_PICTURE_AS_CLEAN_POINT = @import("../zig.zig").Guid.initString("364e8f85-3f2e-436c-b2a2-4440a012a9e8");
-pub const MFT_DECODER_FINAL_VIDEO_RESOLUTION_HINT = @import("../zig.zig").Guid.initString("dc2f8496-15c4-407a-b6f0-1b66ab5fbf53");
-pub const MFT_ENCODER_SUPPORTS_CONFIG_EVENT = @import("../zig.zig").Guid.initString("86a355ae-3a77-4ec4-9f31-01149a4e92de");
-pub const MFT_ENUM_HARDWARE_VENDOR_ID_Attribute = @import("../zig.zig").Guid.initString("3aecb0cc-035b-4bcc-8185-2b8d551ef3af");
-pub const MF_TRANSFORM_ASYNC = @import("../zig.zig").Guid.initString("f81a699a-649a-497d-8c73-29f8fed6ad7a");
-pub const MF_TRANSFORM_ASYNC_UNLOCK = @import("../zig.zig").Guid.initString("e5666d6b-3422-4eb6-a421-da7db1f8e207");
-pub const MF_TRANSFORM_FLAGS_Attribute = @import("../zig.zig").Guid.initString("9359bb7e-6275-46c4-a025-1c01e45f1a86");
-pub const MF_TRANSFORM_CATEGORY_Attribute = @import("../zig.zig").Guid.initString("ceabba49-506d-4757-a6ff-66c184987e4e");
-pub const MFT_TRANSFORM_CLSID_Attribute = @import("../zig.zig").Guid.initString("6821c42b-65a4-4e82-99bc-9a88205ecd0c");
-pub const MFT_INPUT_TYPES_Attributes = @import("../zig.zig").Guid.initString("4276c9b1-759d-4bf3-9cd0-0d723d138f96");
-pub const MFT_OUTPUT_TYPES_Attributes = @import("../zig.zig").Guid.initString("8eae8cf3-a44f-4306-ba5c-bf5dda242818");
-pub const MFT_ENUM_HARDWARE_URL_Attribute = @import("../zig.zig").Guid.initString("2fb866ac-b078-4942-ab6c-003d05cda674");
-pub const MFT_FRIENDLY_NAME_Attribute = @import("../zig.zig").Guid.initString("314ffbae-5b41-4c95-9c19-4e7d586face3");
-pub const MFT_CONNECTED_STREAM_ATTRIBUTE = @import("../zig.zig").Guid.initString("71eeb820-a59f-4de2-bcec-38db1dd611a4");
-pub const MFT_CONNECTED_TO_HW_STREAM = @import("../zig.zig").Guid.initString("34e6e728-06d6-4491-a553-4795650db912");
-pub const MFT_PREFERRED_OUTPUTTYPE_Attribute = @import("../zig.zig").Guid.initString("7e700499-396a-49ee-b1b4-f628021e8c9d");
-pub const MFT_PROCESS_LOCAL_Attribute = @import("../zig.zig").Guid.initString("543186e4-4649-4e65-b588-4aa352aff379");
-pub const MFT_PREFERRED_ENCODER_PROFILE = @import("../zig.zig").Guid.initString("53004909-1ef5-46d7-a18e-5a75f8b5905f");
-pub const MFT_HW_TIMESTAMP_WITH_QPC_Attribute = @import("../zig.zig").Guid.initString("8d030fb8-cc43-4258-a22e-9210bef89be4");
-pub const MFT_FIELDOFUSE_UNLOCK_Attribute = @import("../zig.zig").Guid.initString("8ec2e9fd-9148-410d-831e-702439461a8e");
-pub const MFT_CODEC_MERIT_Attribute = @import("../zig.zig").Guid.initString("88a7cb15-7b07-4a34-9128-e64c6703c4d3");
-pub const MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = @import("../zig.zig").Guid.initString("111ea8cd-b62a-4bdb-89f6-67ffcdc2458b");
-pub const MFT_AUDIO_DECODER_DEGRADATION_INFO_ATTRIBUTE = @import("../zig.zig").Guid.initString("6c3386ad-ec20-430d-b2a5-505c7178d9c4");
-pub const MFT_POLICY_SET_AWARE = @import("../zig.zig").Guid.initString("5a633b19-cc39-4fa8-8ca5-59981b7a0018");
-pub const MFT_USING_HARDWARE_DRM = @import("../zig.zig").Guid.initString("34faa77d-d79e-4957-b8ce-362b2684996c");
-pub const MF_WVC1_PROG_SINGLE_SLICE_CONTENT = @import("../zig.zig").Guid.initString("67ec2559-0f2f-4420-a4dd-2f8ee7a5738b");
-pub const MF_PROGRESSIVE_CODING_CONTENT = @import("../zig.zig").Guid.initString("8f020eea-1508-471f-9da6-507d7cfa40db");
-pub const MF_NALU_LENGTH_SET = @import("../zig.zig").Guid.initString("a7911d53-12a4-4965-ae70-6eadd6ff0551");
-pub const MF_NALU_LENGTH_INFORMATION = @import("../zig.zig").Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
-pub const MF_USER_DATA_PAYLOAD = @import("../zig.zig").Guid.initString("d1d4985d-dc92-457a-b3a0-651a33a31047");
-pub const MF_MPEG4SINK_SPSPPS_PASSTHROUGH = @import("../zig.zig").Guid.initString("5601a134-2005-4ad2-b37d-22a6c554deb2");
-pub const MF_MPEG4SINK_MOOV_BEFORE_MDAT = @import("../zig.zig").Guid.initString("f672e3ac-e1e6-4f10-b5ec-5f3b30828816");
-pub const MF_MPEG4SINK_MINIMUM_PROPERTIES_SIZE = @import("../zig.zig").Guid.initString("dca1ed52-450e-4a22-8c62-4ed452f7a187");
-pub const MF_MPEG4SINK_MIN_FRAGMENT_DURATION = @import("../zig.zig").Guid.initString("a30b570c-8efd-45e8-94fe-27c84b5bdff6");
-pub const MF_MPEG4SINK_MAX_CODED_SEQUENCES_PER_FRAGMENT = @import("../zig.zig").Guid.initString("fc1b3bd6-692d-4ce5-9299-738aa5463e9a");
-pub const MF_SESSION_TOPOLOADER = @import("../zig.zig").Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f71");
-pub const MF_SESSION_GLOBAL_TIME = @import("../zig.zig").Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f72");
-pub const MF_SESSION_QUALITY_MANAGER = @import("../zig.zig").Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f73");
-pub const MF_SESSION_CONTENT_PROTECTION_MANAGER = @import("../zig.zig").Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f74");
-pub const MF_SESSION_SERVER_CONTEXT = @import("../zig.zig").Guid.initString("afe5b291-50fa-46e8-b9be-0c0c3ce4b3a5");
-pub const MF_SESSION_REMOTE_SOURCE_MODE = @import("../zig.zig").Guid.initString("f4033ef4-9bb3-4378-941f-85a0856bc244");
-pub const MF_SESSION_APPROX_EVENT_OCCURRENCE_TIME = @import("../zig.zig").Guid.initString("190e852f-6238-42d1-b5af-69ea338ef850");
-pub const MF_PMP_SERVER_CONTEXT = @import("../zig.zig").Guid.initString("2f00c910-d2cf-4278-8b6a-d077fac3a25f");
-pub const MF_TIME_FORMAT_ENTRY_RELATIVE = @import("../zig.zig").Guid.initString("4399f178-46d3-4504-afda-20d32e9ba360");
-pub const MF_SOURCE_STREAM_SUPPORTS_HW_CONNECTION = @import("../zig.zig").Guid.initString("a38253aa-6314-42fd-a3ce-bb27b6859946");
-pub const MF_STREAM_SINK_SUPPORTS_HW_CONNECTION = @import("../zig.zig").Guid.initString("9b465cbf-0597-4f9e-9f3c-b97eeef90359");
-pub const MF_STREAM_SINK_SUPPORTS_ROTATION = @import("../zig.zig").Guid.initString("b3e96280-bd05-41a5-97ad-8a7fee24b912");
-pub const MF_SINK_VIDEO_PTS = @import("../zig.zig").Guid.initString("2162bde7-421e-4b90-9b33-e58fbf1d58b6");
-pub const MF_SINK_VIDEO_NATIVE_WIDTH = @import("../zig.zig").Guid.initString("e6d6a707-1505-4747-9b10-72d2d158cb3a");
-pub const MF_SINK_VIDEO_NATIVE_HEIGHT = @import("../zig.zig").Guid.initString("f0ca6705-490c-43e8-941c-c0b3206b9a65");
-pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_NUMERATOR = @import("../zig.zig").Guid.initString("d0f33b22-b78a-4879-b455-f03ef3fa82cd");
-pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_DENOMINATOR = @import("../zig.zig").Guid.initString("6ea1eb97-1fe0-4f10-a6e4-1f4f661564e0");
-pub const MF_BD_MVC_PLANE_OFFSET_METADATA = @import("../zig.zig").Guid.initString("62a654e4-b76c-4901-9823-2cb615d47318");
-pub const MF_LUMA_KEY_ENABLE = @import("../zig.zig").Guid.initString("7369820f-76de-43ca-9284-47b8f37e0649");
-pub const MF_LUMA_KEY_LOWER = @import("../zig.zig").Guid.initString("93d7b8d5-0b81-4715-aea0-8725871621e9");
-pub const MF_LUMA_KEY_UPPER = @import("../zig.zig").Guid.initString("d09f39bb-4602-4c31-a706-a12171a5110a");
-pub const MF_USER_EXTENDED_ATTRIBUTES = @import("../zig.zig").Guid.initString("c02abac6-feb2-4541-922f-920b43702722");
-pub const MF_INDEPENDENT_STILL_IMAGE = @import("../zig.zig").Guid.initString("ea12af41-0710-42c9-a127-daa3e78483a5");
-pub const MF_XVP_SAMPLE_LOCK_TIMEOUT = @import("../zig.zig").Guid.initString("aa4ddb29-5134-4363-ac72-83ec4bc10426");
-pub const MF_TOPOLOGY_PROJECTSTART = @import("../zig.zig").Guid.initString("7ed3f802-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_PROJECTSTOP = @import("../zig.zig").Guid.initString("7ed3f803-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_NO_MARKIN_MARKOUT = @import("../zig.zig").Guid.initString("7ed3f804-86bb-4b3f-b7e4-7cb43afd4b80");
-pub const MF_TOPOLOGY_DXVA_MODE = @import("../zig.zig").Guid.initString("1e8d34f6-f5ab-4e23-bb88-874aa3a1a74d");
-pub const MF_TOPOLOGY_ENABLE_XVP_FOR_PLAYBACK = @import("../zig.zig").Guid.initString("1967731f-cd78-42fc-b026-0992a56e5693");
-pub const MF_TOPOLOGY_STATIC_PLAYBACK_OPTIMIZATIONS = @import("../zig.zig").Guid.initString("b86cac42-41a6-4b79-897a-1ab0e52b4a1b");
-pub const MF_TOPOLOGY_PLAYBACK_MAX_DIMS = @import("../zig.zig").Guid.initString("5715cf19-5768-44aa-ad6e-8721f1b0f9bb");
-pub const MF_TOPOLOGY_HARDWARE_MODE = @import("../zig.zig").Guid.initString("d2d362fd-4e4f-4191-a579-c618b66706af");
-pub const MF_TOPOLOGY_PLAYBACK_FRAMERATE = @import("../zig.zig").Guid.initString("c164737a-c2b1-4553-83bb-5a526072448f");
-pub const MF_TOPOLOGY_DYNAMIC_CHANGE_NOT_ALLOWED = @import("../zig.zig").Guid.initString("d529950b-d484-4527-a9cd-b1909532b5b0");
-pub const MF_TOPOLOGY_ENUMERATE_SOURCE_TYPES = @import("../zig.zig").Guid.initString("6248c36d-5d0b-4f40-a0bb-b0b305f77698");
-pub const MF_TOPOLOGY_START_TIME_ON_PRESENTATION_SWITCH = @import("../zig.zig").Guid.initString("c8cc113f-7951-4548-aad6-9ed6202e62b3");
-pub const MF_DISABLE_LOCALLY_REGISTERED_PLUGINS = @import("../zig.zig").Guid.initString("66b16da9-add4-47e0-a16b-5af1fb483634");
-pub const MF_LOCAL_PLUGIN_CONTROL_POLICY = @import("../zig.zig").Guid.initString("d91b0085-c86d-4f81-8822-8c68e1d7fa04");
-pub const MF_TOPONODE_FLUSH = @import("../zig.zig").Guid.initString("494bbce8-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DRAIN = @import("../zig.zig").Guid.initString("494bbce9-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_D3DAWARE = @import("../zig.zig").Guid.initString("494bbced-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPOLOGY_RESOLUTION_STATUS = @import("../zig.zig").Guid.initString("494bbcde-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERRORCODE = @import("../zig.zig").Guid.initString("494bbcee-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_CONNECT_METHOD = @import("../zig.zig").Guid.initString("494bbcf1-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_LOCKED = @import("../zig.zig").Guid.initString("494bbcf7-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_ID = @import("../zig.zig").Guid.initString("494bbcf8-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_CLASS = @import("../zig.zig").Guid.initString("494bbcf9-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DECRYPTOR = @import("../zig.zig").Guid.initString("494bbcfa-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DISCARDABLE = @import("../zig.zig").Guid.initString("494bbcfb-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERROR_MAJORTYPE = @import("../zig.zig").Guid.initString("494bbcfd-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_ERROR_SUBTYPE = @import("../zig.zig").Guid.initString("494bbcfe-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_TASKID = @import("../zig.zig").Guid.initString("494bbcff-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_WORKQUEUE_MMCSS_PRIORITY = @import("../zig.zig").Guid.initString("5001f840-2816-48f4-9364-ad1ef661a123");
-pub const MF_TOPONODE_WORKQUEUE_ITEM_PRIORITY = @import("../zig.zig").Guid.initString("a1ff99be-5e97-4a53-b494-568c642c0ff3");
-pub const MF_TOPONODE_MARKIN_HERE = @import("../zig.zig").Guid.initString("494bbd00-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_MARKOUT_HERE = @import("../zig.zig").Guid.initString("494bbd01-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_DECODER = @import("../zig.zig").Guid.initString("494bbd02-b031-4e38-97c4-d5422dd618dc");
-pub const MF_TOPONODE_MEDIASTART = @import("../zig.zig").Guid.initString("835c58ea-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_MEDIASTOP = @import("../zig.zig").Guid.initString("835c58eb-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_SOURCE = @import("../zig.zig").Guid.initString("835c58ec-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_PRESENTATION_DESCRIPTOR = @import("../zig.zig").Guid.initString("835c58ed-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_STREAM_DESCRIPTOR = @import("../zig.zig").Guid.initString("835c58ee-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_SEQUENCE_ELEMENTID = @import("../zig.zig").Guid.initString("835c58ef-e075-4bc7-bcba-4de000df9ae6");
-pub const MF_TOPONODE_TRANSFORM_OBJECTID = @import("../zig.zig").Guid.initString("88dcc0c9-293e-4e8b-9aeb-0ad64cc016b0");
-pub const MF_TOPONODE_STREAMID = @import("../zig.zig").Guid.initString("14932f9b-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_NOSHUTDOWN_ON_REMOVE = @import("../zig.zig").Guid.initString("14932f9c-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_RATELESS = @import("../zig.zig").Guid.initString("14932f9d-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_DISABLE_PREROLL = @import("../zig.zig").Guid.initString("14932f9e-9087-4bb4-8412-5167145cbe04");
-pub const MF_TOPONODE_PRIMARYOUTPUT = @import("../zig.zig").Guid.initString("6304ef99-16b2-4ebe-9d67-e4c539b3a259");
-pub const MF_PD_PMPHOST_CONTEXT = @import("../zig.zig").Guid.initString("6c990d31-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_APP_CONTEXT = @import("../zig.zig").Guid.initString("6c990d32-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_DURATION = @import("../zig.zig").Guid.initString("6c990d33-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_TOTAL_FILE_SIZE = @import("../zig.zig").Guid.initString("6c990d34-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_AUDIO_ENCODING_BITRATE = @import("../zig.zig").Guid.initString("6c990d35-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_VIDEO_ENCODING_BITRATE = @import("../zig.zig").Guid.initString("6c990d36-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_MIME_TYPE = @import("../zig.zig").Guid.initString("6c990d37-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_LAST_MODIFIED_TIME = @import("../zig.zig").Guid.initString("6c990d38-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PLAYBACK_ELEMENT_ID = @import("../zig.zig").Guid.initString("6c990d39-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PREFERRED_LANGUAGE = @import("../zig.zig").Guid.initString("6c990d3a-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_PLAYBACK_BOUNDARY_TIME = @import("../zig.zig").Guid.initString("6c990d3b-bb8e-477a-8598-0d5d96fcd88a");
-pub const MF_PD_AUDIO_ISVARIABLEBITRATE = @import("../zig.zig").Guid.initString("33026ee0-e387-4582-ae0a-34a2ad3baa18");
-pub const MF_SD_LANGUAGE = @import("../zig.zig").Guid.initString("00af2180-bdc2-423c-abca-f503593bc121");
-pub const MF_SD_PROTECTED = @import("../zig.zig").Guid.initString("00af2181-bdc2-423c-abca-f503593bc121");
-pub const MF_SD_STREAM_NAME = @import("../zig.zig").Guid.initString("4f1b099d-d314-41e5-a781-7fefaa4c501f");
-pub const MF_SD_MUTUALLY_EXCLUSIVE = @import("../zig.zig").Guid.initString("023ef79c-388d-487f-ac17-696cd6e3c6f5");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_CLSID = @import("../zig.zig").Guid.initString("ba491360-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_ACTIVATE = @import("../zig.zig").Guid.initString("ba491361-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_FLAGS = @import("../zig.zig").Guid.initString("ba491362-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_CLSID = @import("../zig.zig").Guid.initString("ba491364-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_ACTIVATE = @import("../zig.zig").Guid.initString("ba491365-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_FLAGS = @import("../zig.zig").Guid.initString("ba491366-be50-451e-95ab-6d4accc7dad8");
-pub const MF_ACTIVATE_MFT_LOCKED = @import("../zig.zig").Guid.initString("c1f6093c-7f65-4fbd-9e39-5faec3c4fbd7");
-pub const MF_ACTIVATE_VIDEO_WINDOW = @import("../zig.zig").Guid.initString("9a2dbbdd-f57e-4162-82b9-6831377682d3");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS = @import("../zig.zig").Guid.initString("ede4b5e0-f805-4d6c-99b3-db01bf95dfab");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_SESSION_ID = @import("../zig.zig").Guid.initString("ede4b5e3-f805-4d6c-99b3-db01bf95dfab");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID = @import("../zig.zig").Guid.initString("b10aaec3-ef71-4cc3-b873-05a9a08b9f8e");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ROLE = @import("../zig.zig").Guid.initString("6ba644ff-27c5-4d02-9887-c28619fdb91b");
-pub const MF_AUDIO_RENDERER_ATTRIBUTE_STREAM_CATEGORY = @import("../zig.zig").Guid.initString("a9770471-92ec-4df4-94fe-81c36f0c3a7a");
-pub const MFENABLETYPE_WMDRMV1_LicenseAcquisition = @import("../zig.zig").Guid.initString("4ff6eeaf-0b43-4797-9b85-abf31815e7b0");
-pub const MFENABLETYPE_WMDRMV7_LicenseAcquisition = @import("../zig.zig").Guid.initString("003306df-4a06-4884-a097-ef6d22ec84a3");
-pub const MFENABLETYPE_WMDRMV7_Individualization = @import("../zig.zig").Guid.initString("acd2c84a-b303-4f65-bc2c-2c848d01a989");
-pub const MFENABLETYPE_MF_UpdateRevocationInformation = @import("../zig.zig").Guid.initString("e558b0b5-b3c4-44a0-924c-50d178932385");
-pub const MFENABLETYPE_MF_UpdateUntrustedComponent = @import("../zig.zig").Guid.initString("9879f3d6-cee2-48e6-b573-9767ab172f16");
-pub const MFENABLETYPE_MF_RebootRequired = @import("../zig.zig").Guid.initString("6d4d3d4b-0ece-4652-8b3a-f2d24260d887");
-pub const MF_METADATA_PROVIDER_SERVICE = @import("../zig.zig").Guid.initString("db214084-58a4-4d2e-b84f-6f755b2f7a0d");
-pub const MF_PROPERTY_HANDLER_SERVICE = @import("../zig.zig").Guid.initString("a3face02-32b8-41dd-90e7-5fef7c8991b5");
-pub const MF_RATE_CONTROL_SERVICE = @import("../zig.zig").Guid.initString("866fa297-b802-4bf8-9dc9-5e3b6a9f53c9");
-pub const MF_TIMECODE_SERVICE = @import("../zig.zig").Guid.initString("a0d502a7-0eb3-4885-b1b9-9feb0d083454");
-pub const MR_POLICY_VOLUME_SERVICE = @import("../zig.zig").Guid.initString("1abaa2ac-9d3b-47c6-ab48-c59506de784d");
-pub const MR_CAPTURE_POLICY_VOLUME_SERVICE = @import("../zig.zig").Guid.initString("24030acd-107a-4265-975c-414e33e65f2a");
-pub const MR_STREAM_VOLUME_SERVICE = @import("../zig.zig").Guid.initString("f8b5fa2f-32ef-46f5-b172-1321212fb2c4");
-pub const MR_AUDIO_POLICY_SERVICE = @import("../zig.zig").Guid.initString("911fd737-6775-4ab0-a614-297862fdac88");
-pub const MF_SAMPLEGRABBERSINK_SAMPLE_TIME_OFFSET = @import("../zig.zig").Guid.initString("62e3d776-8100-4e03-a6e8-bd3857ac9c47");
-pub const MF_SAMPLEGRABBERSINK_IGNORE_CLOCK = @import("../zig.zig").Guid.initString("0efda2c0-2b69-4e2e-ab8d-46dcbff7d25d");
-pub const MF_QUALITY_SERVICES = @import("../zig.zig").Guid.initString("b7e2be11-2f96-4640-b52c-282365bdf16c");
-pub const MF_WORKQUEUE_SERVICES = @import("../zig.zig").Guid.initString("8e37d489-41e0-413a-9068-287c886d8dda");
-pub const MF_QUALITY_NOTIFY_PROCESSING_LATENCY = @import("../zig.zig").Guid.initString("f6b44af8-604d-46fe-a95d-45479b10c9bc");
-pub const MF_QUALITY_NOTIFY_SAMPLE_LAG = @import("../zig.zig").Guid.initString("30d15206-ed2a-4760-be17-eb4a9f12295c");
-pub const MF_TIME_FORMAT_SEGMENT_OFFSET = @import("../zig.zig").Guid.initString("c8b8be77-869c-431d-812e-169693f65a39");
-pub const MF_SOURCE_PRESENTATION_PROVIDER_SERVICE = @import("../zig.zig").Guid.initString("e002aadc-f4af-4ee5-9847-053edf840426");
-pub const MF_TOPONODE_ATTRIBUTE_EDITOR_SERVICE = @import("../zig.zig").Guid.initString("65656e1a-077f-4472-83ef-316f11d5087a");
-pub const MFNETSOURCE_SSLCERTIFICATE_MANAGER = @import("../zig.zig").Guid.initString("55e6cb27-e69b-4267-940c-2d7ec5bb8a0f");
-pub const MFNETSOURCE_RESOURCE_FILTER = @import("../zig.zig").Guid.initString("815d0ff6-265a-4477-9e46-7b80ad80b5fb");
-pub const MFNET_SAVEJOB_SERVICE = @import("../zig.zig").Guid.initString("b85a587f-3d02-4e52-9565-55d3ec1e7ff7");
-pub const MFNETSOURCE_STATISTICS_SERVICE = @import("../zig.zig").Guid.initString("3cb1f275-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_STATISTICS = @import("../zig.zig").Guid.initString("3cb1f274-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BUFFERINGTIME = @import("../zig.zig").Guid.initString("3cb1f276-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ACCELERATEDSTREAMINGDURATION = @import("../zig.zig").Guid.initString("3cb1f277-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_MAXUDPACCELERATEDSTREAMINGDURATION = @import("../zig.zig").Guid.initString("4aab2879-bbe1-4994-9ff0-5495bd250129");
-pub const MFNETSOURCE_MAXBUFFERTIMEMS = @import("../zig.zig").Guid.initString("408b24e6-4038-4401-b5b2-fe701a9ebf10");
-pub const MFNETSOURCE_CONNECTIONBANDWIDTH = @import("../zig.zig").Guid.initString("3cb1f278-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CACHEENABLED = @import("../zig.zig").Guid.initString("3cb1f279-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_AUTORECONNECTLIMIT = @import("../zig.zig").Guid.initString("3cb1f27a-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_RESENDSENABLED = @import("../zig.zig").Guid.initString("3cb1f27b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_THINNINGENABLED = @import("../zig.zig").Guid.initString("3cb1f27c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROTOCOL = @import("../zig.zig").Guid.initString("3cb1f27d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_TRANSPORT = @import("../zig.zig").Guid.initString("3cb1f27e-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PREVIEWMODEENABLED = @import("../zig.zig").Guid.initString("3cb1f27f-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CREDENTIAL_MANAGER = @import("../zig.zig").Guid.initString("3cb1f280-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PPBANDWIDTH = @import("../zig.zig").Guid.initString("3cb1f281-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_AUTORECONNECTPROGRESS = @import("../zig.zig").Guid.initString("3cb1f282-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYLOCATORFACTORY = @import("../zig.zig").Guid.initString("3cb1f283-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BROWSERUSERAGENT = @import("../zig.zig").Guid.initString("3cb1f28b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_BROWSERWEBPAGE = @import("../zig.zig").Guid.initString("3cb1f28c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERVERSION = @import("../zig.zig").Guid.initString("3cb1f28d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERID = @import("../zig.zig").Guid.initString("3cb1f28e-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_HOSTEXE = @import("../zig.zig").Guid.initString("3cb1f28f-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_HOSTVERSION = @import("../zig.zig").Guid.initString("3cb1f291-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PLAYERUSERAGENT = @import("../zig.zig").Guid.initString("3cb1f292-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_CLIENTGUID = @import("../zig.zig").Guid.initString("60a2c4a6-f197-4c14-a5bf-88830d2458af");
-pub const MFNETSOURCE_LOGURL = @import("../zig.zig").Guid.initString("3cb1f293-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_UDP = @import("../zig.zig").Guid.initString("3cb1f294-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_TCP = @import("../zig.zig").Guid.initString("3cb1f295-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_MSB = @import("../zig.zig").Guid.initString("3cb1f296-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_RTSP = @import("../zig.zig").Guid.initString("3cb1f298-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_HTTP = @import("../zig.zig").Guid.initString("3cb1f299-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_STREAMING = @import("../zig.zig").Guid.initString("3cb1f29c-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_DOWNLOAD = @import("../zig.zig").Guid.initString("3cb1f29d-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_ENABLE_PRIVATEMODE = @import("../zig.zig").Guid.initString("824779d8-f18b-4405-8cf1-464fb5aa8f71");
-pub const MFNETSOURCE_UDP_PORT_RANGE = @import("../zig.zig").Guid.initString("3cb1f29a-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYINFO = @import("../zig.zig").Guid.initString("3cb1f29b-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_DRMNET_LICENSE_REPRESENTATION = @import("../zig.zig").Guid.initString("47eae1bd-bdfe-42e2-82f3-54a48c17962d");
-pub const MFNETSOURCE_PROXYSETTINGS = @import("../zig.zig").Guid.initString("3cb1f287-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYHOSTNAME = @import("../zig.zig").Guid.initString("3cb1f284-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYPORT = @import("../zig.zig").Guid.initString("3cb1f288-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYEXCEPTIONLIST = @import("../zig.zig").Guid.initString("3cb1f285-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYBYPASSFORLOCAL = @import("../zig.zig").Guid.initString("3cb1f286-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_PROXYRERUNAUTODETECTION = @import("../zig.zig").Guid.initString("3cb1f289-0505-4c5d-ae71-0a556344efa1");
-pub const MFNETSOURCE_STREAM_LANGUAGE = @import("../zig.zig").Guid.initString("9ab44318-f7cd-4f2d-8d6d-fa35b492cecb");
-pub const MFNETSOURCE_LOGPARAMS = @import("../zig.zig").Guid.initString("64936ae8-9418-453a-8cda-3e0a668b353b");
-pub const MFNETSOURCE_PEERMANAGER = @import("../zig.zig").Guid.initString("48b29adb-febf-45ee-a9bf-efb81c492efc");
-pub const MFNETSOURCE_FRIENDLYNAME = @import("../zig.zig").Guid.initString("5b2a7757-bc6b-447e-aa06-0dda1c646e2f");
-pub const MF_BYTESTREAMHANDLER_ACCEPTS_SHARE_WRITE = @import("../zig.zig").Guid.initString("a6e1f733-3001-4915-8150-1558a2180ec8");
-pub const MF_BYTESTREAM_SERVICE = @import("../zig.zig").Guid.initString("ab025e2b-16d9-4180-a127-ba6c70156161");
-pub const MF_MEDIA_PROTECTION_MANAGER_PROPERTIES = @import("../zig.zig").Guid.initString("38bd81a9-acea-4c73-89b2-5532c0aeca79");
-pub const MFCONNECTOR_SPDIF = @import("../zig.zig").Guid.initString("0b94a712-ad3e-4cee-83ce-ce32e3db6522");
-pub const MFCONNECTOR_UNKNOWN = @import("../zig.zig").Guid.initString("ac3aef5c-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCI = @import("../zig.zig").Guid.initString("ac3aef5d-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCIX = @import("../zig.zig").Guid.initString("ac3aef5e-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_PCI_Express = @import("../zig.zig").Guid.initString("ac3aef5f-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_AGP = @import("../zig.zig").Guid.initString("ac3aef60-ce43-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_VGA = @import("../zig.zig").Guid.initString("57cd5968-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_SVIDEO = @import("../zig.zig").Guid.initString("57cd5969-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_COMPOSITE = @import("../zig.zig").Guid.initString("57cd596a-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_COMPONENT = @import("../zig.zig").Guid.initString("57cd596b-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DVI = @import("../zig.zig").Guid.initString("57cd596c-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_HDMI = @import("../zig.zig").Guid.initString("57cd596d-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_LVDS = @import("../zig.zig").Guid.initString("57cd596e-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_D_JPN = @import("../zig.zig").Guid.initString("57cd5970-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_SDI = @import("../zig.zig").Guid.initString("57cd5971-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DISPLAYPORT_EXTERNAL = @import("../zig.zig").Guid.initString("57cd5972-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_DISPLAYPORT_EMBEDDED = @import("../zig.zig").Guid.initString("57cd5973-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_UDI_EXTERNAL = @import("../zig.zig").Guid.initString("57cd5974-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_UDI_EMBEDDED = @import("../zig.zig").Guid.initString("57cd5975-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_MIRACAST = @import("../zig.zig").Guid.initString("57cd5977-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = @import("../zig.zig").Guid.initString("57cd5978-ce47-11d9-92db-000bdb28ff98");
-pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = @import("../zig.zig").Guid.initString("57cd5979-ce47-11d9-92db-000bdb28ff98");
-pub const MF_POLICY_ID = @import("../zig.zig").Guid.initString("b160c24d-c059-48f1-a901-9ee298a9a8c3");
-pub const MFPROTECTION_DISABLE = @import("../zig.zig").Guid.initString("8cc6d81b-fec6-4d8f-964b-cfba0b0dad0d");
-pub const MFPROTECTION_CONSTRICTVIDEO = @import("../zig.zig").Guid.initString("193370ce-c5e4-4c3a-8a66-6959b4da4442");
-pub const MFPROTECTION_CONSTRICTVIDEO_NOOPM = @import("../zig.zig").Guid.initString("a580e8cd-c247-4957-b983-3c2eebd1ff59");
-pub const MFPROTECTION_CONSTRICTAUDIO = @import("../zig.zig").Guid.initString("ffc99b44-df48-4e16-8e66-096892c1578a");
-pub const MFPROTECTION_TRUSTEDAUDIODRIVERS = @import("../zig.zig").Guid.initString("65bdf3d2-0168-4816-a533-55d47b027101");
-pub const MFPROTECTION_HDCP = @import("../zig.zig").Guid.initString("ae7cc03d-c828-4021-acb7-d578d27aaf13");
-pub const MFPROTECTION_CGMSA = @import("../zig.zig").Guid.initString("e57e69e9-226b-4d31-b4e3-d3db008736dd");
-pub const MFPROTECTION_ACP = @import("../zig.zig").Guid.initString("c3fd11c6-f8b7-4d20-b008-1db17d61f2da");
-pub const MFPROTECTION_WMDRMOTA = @import("../zig.zig").Guid.initString("a267a6a1-362e-47d0-8805-4628598a23e4");
-pub const MFPROTECTION_FFT = @import("../zig.zig").Guid.initString("462a56b2-2866-4bb6-980d-6d8d9edb1a8c");
-pub const MFPROTECTION_PROTECTED_SURFACE = @import("../zig.zig").Guid.initString("4f5d9566-e742-4a25-8d1f-d287b5fa0ade");
-pub const MFPROTECTION_DISABLE_SCREEN_SCRAPE = @import("../zig.zig").Guid.initString("a21179a4-b7cd-40d8-9614-8ef2371ba78d");
-pub const MFPROTECTION_VIDEO_FRAMES = @import("../zig.zig").Guid.initString("36a59cbc-7401-4a8c-bc20-46a7c9e597f0");
-pub const MFPROTECTION_HARDWARE = @import("../zig.zig").Guid.initString("4ee7f0c1-9ed7-424f-b6be-996b33528856");
-pub const MFPROTECTION_HDCP_WITH_TYPE_ENFORCEMENT = @import("../zig.zig").Guid.initString("a4a585e8-ed60-442d-814d-db4d4220a06d");
-pub const MFPROTECTIONATTRIBUTE_BEST_EFFORT = @import("../zig.zig").Guid.initString("c8e06331-75f0-4ec1-8e77-17578f773b46");
-pub const MFPROTECTIONATTRIBUTE_FAIL_OVER = @import("../zig.zig").Guid.initString("8536abc5-38f1-4151-9cce-f55d941229ac");
-pub const MFPROTECTION_GRAPHICS_TRANSFER_AES_ENCRYPTION = @import("../zig.zig").Guid.initString("c873de64-d8a5-49e6-88bb-fb963fd3d4ce");
-pub const MFPROTECTIONATTRIBUTE_CONSTRICTVIDEO_IMAGESIZE = @import("../zig.zig").Guid.initString("008476fc-4b58-4d80-a790-e7297673161d");
-pub const MFPROTECTIONATTRIBUTE_HDCP_SRM = @import("../zig.zig").Guid.initString("6f302107-3477-4468-8a08-eef9db10e20f");
-pub const MF_SampleProtectionSalt = @import("../zig.zig").Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
-pub const MF_REMOTE_PROXY = @import("../zig.zig").Guid.initString("2f00c90e-d2cf-4278-8b6a-d077fac3a25f");
-pub const CLSID_CreateMediaExtensionObject = @import("../zig.zig").Guid.initString("ef65a54d-0788-45b8-8b14-bc0f6a6b5137");
-pub const MF_SAMI_SERVICE = @import("../zig.zig").Guid.initString("49a89ae7-b4d9-4ef2-aa5c-f65a3e05ae4e");
-pub const MF_PD_SAMI_STYLELIST = @import("../zig.zig").Guid.initString("e0b73c7f-486d-484e-9872-4de5192a7bf8");
-pub const MF_SD_SAMI_LANGUAGE = @import("../zig.zig").Guid.initString("36fcb98a-6cd0-44cb-acb9-a8f5600dd0bb");
-pub const MF_TRANSCODE_CONTAINERTYPE = @import("../zig.zig").Guid.initString("150ff23f-4abc-478b-ac4f-e1916fba1cca");
-pub const MFTranscodeContainerType_ASF = @import("../zig.zig").Guid.initString("430f6f6e-b6bf-4fc1-a0bd-9ee46eee2afb");
-pub const MFTranscodeContainerType_MPEG4 = @import("../zig.zig").Guid.initString("dc6cd05d-b9d0-40ef-bd35-fa622c1ab28a");
-pub const MFTranscodeContainerType_MP3 = @import("../zig.zig").Guid.initString("e438b912-83f1-4de6-9e3a-9ffbc6dd24d1");
-pub const MFTranscodeContainerType_FLAC = @import("../zig.zig").Guid.initString("31344aa3-05a9-42b5-901b-8e9d4257f75e");
-pub const MFTranscodeContainerType_3GP = @import("../zig.zig").Guid.initString("34c50167-4472-4f34-9ea0-c49fbacf037d");
-pub const MFTranscodeContainerType_AC3 = @import("../zig.zig").Guid.initString("6d8d91c3-8c91-4ed1-8742-8c347d5b44d0");
-pub const MFTranscodeContainerType_ADTS = @import("../zig.zig").Guid.initString("132fd27d-0f02-43de-a301-38fbbbb3834e");
-pub const MFTranscodeContainerType_MPEG2 = @import("../zig.zig").Guid.initString("bfc2dbf9-7bb4-4f8f-afde-e112c44ba882");
-pub const MFTranscodeContainerType_WAVE = @import("../zig.zig").Guid.initString("64c3453c-0f26-4741-be63-87bdf8bb935b");
-pub const MFTranscodeContainerType_AVI = @import("../zig.zig").Guid.initString("7edfe8af-402f-4d76-a33c-619fd157d0f1");
-pub const MFTranscodeContainerType_FMPEG4 = @import("../zig.zig").Guid.initString("9ba876f1-419f-4b77-a1e0-35959d9d4004");
-pub const MFTranscodeContainerType_AMR = @import("../zig.zig").Guid.initString("025d5ad3-621a-475b-964d-66b1c824f079");
-pub const MF_TRANSCODE_SKIP_METADATA_TRANSFER = @import("../zig.zig").Guid.initString("4e4469ef-b571-4959-8f83-3dcfba33a393");
-pub const MF_TRANSCODE_TOPOLOGYMODE = @import("../zig.zig").Guid.initString("3e3df610-394a-40b2-9dea-3bab650bebf2");
-pub const MF_TRANSCODE_ADJUST_PROFILE = @import("../zig.zig").Guid.initString("9c37c21b-060f-487c-a690-80d7f50d1c72");
-pub const MF_TRANSCODE_ENCODINGPROFILE = @import("../zig.zig").Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
-pub const MF_TRANSCODE_QUALITYVSSPEED = @import("../zig.zig").Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
-pub const MF_TRANSCODE_DONOT_INSERT_ENCODER = @import("../zig.zig").Guid.initString("f45aa7ce-ab24-4012-a11b-dc8220201410");
-pub const MF_VIDEO_PROCESSOR_ALGORITHM = @import("../zig.zig").Guid.initString("4a0a1e1f-272c-4fb6-9eb1-db330cbc97ca");
-pub const MF_XVP_DISABLE_FRC = @import("../zig.zig").Guid.initString("2c0afa19-7a97-4d5a-9ee8-16d4fc518d8c");
-pub const MF_XVP_CALLER_ALLOCATES_OUTPUT = @import("../zig.zig").Guid.initString("04a2cabc-0cab-40b1-a1b9-75bc3658f000");
-pub const MF_LOCAL_MFT_REGISTRATION_SERVICE = @import("../zig.zig").Guid.initString("ddf5cf9c-4506-45aa-abf0-6d5d94dd1b4a");
-pub const MF_WRAPPED_SAMPLE_SERVICE = @import("../zig.zig").Guid.initString("31f52bf2-d03e-4048-80d0-9c1046d87c61");
-pub const MF_WRAPPED_OBJECT = @import("../zig.zig").Guid.initString("2b182c4c-d6ac-49f4-8915-f71887db70cd");
-pub const CLSID_HttpSchemePlugin = @import("../zig.zig").Guid.initString("44cb442b-9da9-49df-b3fd-023777b16e50");
-pub const CLSID_UrlmonSchemePlugin = @import("../zig.zig").Guid.initString("9ec4b4f9-3029-45ad-947b-344de2a249e2");
-pub const CLSID_NetSchemePlugin = @import("../zig.zig").Guid.initString("e9f4ebab-d97b-463e-a2b1-c54ee3f9414d");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE = @import("../zig.zig").Guid.initString("c60ac5fe-252a-478f-a0ef-bc8fa5f7cad3");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_HW_SOURCE = @import("../zig.zig").Guid.initString("de7046ba-54d6-4487-a2a4-ec7c0d1bd163");
-pub const MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME = @import("../zig.zig").Guid.initString("60d0e559-52f8-4fa2-bbce-acdb34a8ec01");
-pub const MF_DEVSOURCE_ATTRIBUTE_MEDIA_TYPE = @import("../zig.zig").Guid.initString("56a819ca-0c78-4de4-a0a7-3ddaba0f24d4");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_CATEGORY = @import("../zig.zig").Guid.initString("77f0ae69-c3bd-4509-941d-467e4d24899e");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK = @import("../zig.zig").Guid.initString("58f0aad8-22bf-4f8a-bb3d-d2c4978c6e2f");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_SYMBOLIC_LINK = @import("../zig.zig").Guid.initString("98d24b5e-5930-4614-b5a1-f600f9355a78");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_MAX_BUFFERS = @import("../zig.zig").Guid.initString("7dd9b730-4f2d-41d5-8f95-0cc9a912ba26");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ENDPOINT_ID = @import("../zig.zig").Guid.initString("30da9258-feb9-47a7-a453-763a7a8e1c5f");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ROLE = @import("../zig.zig").Guid.initString("bc9d118e-8c67-4a18-85d4-12d300400552");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_PROVIDER_DEVICE_ID = @import("../zig.zig").Guid.initString("36689d42-a06c-40ae-84cf-f5a034067cc4");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_XADDRESS = @import("../zig.zig").Guid.initString("bca0be52-c327-44c7-9b7d-7fa8d9b5bcda");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_STREAM_URL = @import("../zig.zig").Guid.initString("9d7b40d2-3617-4043-93e3-8d6da9bb3492");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_USERNAME = @import("../zig.zig").Guid.initString("05d01add-949f-46eb-bc8e-8b0d2b32d79d");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_PASSWORD = @import("../zig.zig").Guid.initString("a0fd7e16-42d9-49df-84c0-e82c5eab8874");
-pub const CLSID_FrameServerNetworkCameraSource = @import("../zig.zig").Guid.initString("7a213aa7-866f-414a-8c1a-275c7283a395");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_GUID = @import("../zig.zig").Guid.initString("14dd9a1c-7cff-41be-b1b9-ba1ac6ecb571");
-pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID = @import("../zig.zig").Guid.initString("8ac3587a-4ae7-42d8-99e0-0a6013eef90f");
-pub const MF_DEVICESTREAM_IMAGE_STREAM = @import("../zig.zig").Guid.initString("a7ffb865-e7b2-43b0-9f6f-9af2a0e50fc0");
-pub const MF_DEVICESTREAM_INDEPENDENT_IMAGE_STREAM = @import("../zig.zig").Guid.initString("03eeec7e-d605-4576-8b29-6580b490d7d3");
-pub const MF_DEVICESTREAM_STREAM_ID = @import("../zig.zig").Guid.initString("11bd5120-d124-446b-88e6-17060257fff9");
-pub const MF_DEVICESTREAM_STREAM_CATEGORY = @import("../zig.zig").Guid.initString("2939e7b8-a62e-4579-b674-d4073dfabbba");
-pub const MF_DEVICESTREAM_FRAMESERVER_SHARED = @import("../zig.zig").Guid.initString("1cb378e9-b279-41d4-af97-34a243e68320");
-pub const MF_DEVICESTREAM_TRANSFORM_STREAM_ID = @import("../zig.zig").Guid.initString("e63937b7-daaf-4d49-815f-d826f8ad31e7");
-pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CLSID = @import("../zig.zig").Guid.initString("048e6558-60c4-4173-bd5b-6a3ca2896aee");
-pub const MF_DEVICEMFT_EXTENSION_PLUGIN_CLSID = @import("../zig.zig").Guid.initString("0844dbae-34fa-48a0-a783-8e696fb1c9a8");
-pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CONNECTION_POINT = @import("../zig.zig").Guid.initString("37f9375c-e664-4ea4-aae4-cb6d1daca1f4");
-pub const MF_DEVICESTREAM_TAKEPHOTO_TRIGGER = @import("../zig.zig").Guid.initString("1d180e34-538c-4fbb-a75a-859af7d261a6");
-pub const MF_DEVICESTREAM_MAX_FRAME_BUFFERS = @import("../zig.zig").Guid.initString("1684cebe-3175-4985-882c-0efd3e8ac11e");
-pub const MF_DEVICEMFT_CONNECTED_FILTER_KSCONTROL = @import("../zig.zig").Guid.initString("6a2c4fa6-d179-41cd-9523-822371ea40e5");
-pub const MF_DEVICEMFT_CONNECTED_PIN_KSCONTROL = @import("../zig.zig").Guid.initString("e63310f7-b244-4ef8-9a7d-24c74e32ebd0");
-pub const MF_DEVICE_THERMAL_STATE_CHANGED = @import("../zig.zig").Guid.initString("70ccd0af-fc9f-4deb-a875-9fecd16c5bd4");
-pub const MFSampleExtension_DeviceTimestamp = @import("../zig.zig").Guid.initString("8f3e35e7-2dcd-4887-8622-2a58baa652b0");
-pub const MFSampleExtension_Spatial_CameraViewTransform = @import("../zig.zig").Guid.initString("4e251fa4-830f-4770-859a-4b8d99aa809b");
-pub const MFSampleExtension_Spatial_CameraCoordinateSystem = @import("../zig.zig").Guid.initString("9d13c82f-2199-4e67-91cd-d1a4181f2534");
-pub const MFSampleExtension_Spatial_CameraProjectionTransform = @import("../zig.zig").Guid.initString("47f9fcb5-2a02-4f26-a477-792fdf95886a");
-pub const MF_MEDIASOURCE_SERVICE = @import("../zig.zig").Guid.initString("f09992f7-9fba-4c4a-a37f-8c47b4e1dfe7");
-pub const MF_ACCESS_CONTROLLED_MEDIASOURCE_SERVICE = @import("../zig.zig").Guid.initString("014a5031-2f05-4c6a-9f9c-7d0dc4eda5f4");
-pub const MF_CONTENT_DECRYPTOR_SERVICE = @import("../zig.zig").Guid.initString("68a72927-fc7b-44ee-85f4-7c51bd55a659");
-pub const MF_CONTENT_PROTECTION_DEVICE_SERVICE = @import("../zig.zig").Guid.initString("ff58436f-76a0-41fe-b566-10cc53962edd");
-pub const MF_SD_AUDIO_ENCODER_DELAY = @import("../zig.zig").Guid.initString("8e85422c-73de-403f-9a35-550ad6e8b951");
-pub const MF_SD_AUDIO_ENCODER_PADDING = @import("../zig.zig").Guid.initString("529c7f2c-ac4b-4e3f-bfc3-0902194982cb");
-pub const CLSID_MSH264DecoderMFT = @import("../zig.zig").Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
-pub const CLSID_MSH264EncoderMFT = @import("../zig.zig").Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
-pub const CLSID_MSDDPlusDecMFT = @import("../zig.zig").Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
-pub const CLSID_MP3DecMediaObject = @import("../zig.zig").Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
-pub const CLSID_MSAACDecMFT = @import("../zig.zig").Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
-pub const CLSID_MSH265DecoderMFT = @import("../zig.zig").Guid.initString("420a51a3-d605-430c-b4fc-45274fa6c562");
-pub const CLSID_WMVDecoderMFT = @import("../zig.zig").Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
-pub const CLSID_WMADecMediaObject = @import("../zig.zig").Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
-pub const CLSID_MSMPEGAudDecMFT = @import("../zig.zig").Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
-pub const CLSID_MSMPEGDecoderMFT = @import("../zig.zig").Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
-pub const CLSID_AudioResamplerMediaObject = @import("../zig.zig").Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
-pub const CLSID_MSVPxDecoder = @import("../zig.zig").Guid.initString("e3aaf548-c9a4-4c6e-234d-5ada374b0000");
-pub const CLSID_MSOpusDecoder = @import("../zig.zig").Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
-pub const CLSID_VideoProcessorMFT = @import("../zig.zig").Guid.initString("88753b26-5b24-49bd-b2e7-0c445c78c982");
-pub const MFNETSOURCE_CROSS_ORIGIN_SUPPORT = @import("../zig.zig").Guid.initString("9842207c-b02c-4271-a2fc-72e49308e5c2");
-pub const MFNETSOURCE_HTTP_DOWNLOAD_SESSION_PROVIDER = @import("../zig.zig").Guid.initString("7d55081e-307d-4d6d-a663-a93be97c4b5c");
-pub const MF_SD_MEDIASOURCE_STATUS = @import("../zig.zig").Guid.initString("1913678b-fc0f-44da-8f43-1ba3b526f4ae");
-pub const MF_SD_VIDEO_SPHERICAL = @import("../zig.zig").Guid.initString("a51da449-3fdc-478c-bcb5-30be76595f55");
-pub const MF_SD_VIDEO_SPHERICAL_FORMAT = @import("../zig.zig").Guid.initString("4a8fc407-6ea1-46c8-b567-6971d4a139c3");
-pub const MF_SD_VIDEO_SPHERICAL_INITIAL_VIEWDIRECTION = @import("../zig.zig").Guid.initString("11d25a49-bb62-467f-9db1-c17165716c49");
-pub const MF_MEDIASOURCE_EXPOSE_ALL_STREAMS = @import("../zig.zig").Guid.initString("e7f250b8-8fd9-4a09-b6c1-6a315c7c720e");
-pub const MF_ST_MEDIASOURCE_COLLECTION = @import("../zig.zig").Guid.initString("616de972-83ad-4950-8170-630d19cbe307");
-pub const MF_DEVICESTREAM_FILTER_KSCONTROL = @import("../zig.zig").Guid.initString("46783cca-3df5-4923-a9ef-36b7223edde0");
-pub const MF_DEVICESTREAM_PIN_KSCONTROL = @import("../zig.zig").Guid.initString("ef3ef9a7-87f2-48ca-be02-674878918e98");
-pub const MF_DEVICESTREAM_SOURCE_ATTRIBUTES = @import("../zig.zig").Guid.initString("2f8cb617-361b-434f-85ea-99a03e1ce4e0");
-pub const MF_DEVICESTREAM_FRAMESERVER_HIDDEN = @import("../zig.zig").Guid.initString("f402567b-4d91-4179-96d1-74c8480c2034");
-pub const MF_STF_VERSION_INFO = @import("../zig.zig").Guid.initString("6770bd39-ef82-44ee-a49b-934beb24aef7");
-pub const MF_STF_VERSION_DATE = @import("../zig.zig").Guid.initString("31a165d5-df67-4095-8e44-8868fc20dbfd");
-pub const MF_DEVICESTREAM_REQUIRED_CAPABILITIES = @import("../zig.zig").Guid.initString("6d8b957e-7cf6-43f4-af56-9c0e1e4fcbe1");
-pub const MF_DEVICESTREAM_REQUIRED_SDDL = @import("../zig.zig").Guid.initString("331ae85d-c0d3-49ba-83ba-82a12d63cdd6");
-pub const MF_DEVICEMFT_SENSORPROFILE_COLLECTION = @import("../zig.zig").Guid.initString("36ebdc44-b12c-441b-89f4-08b2f41a9cfc");
-pub const MF_DEVICESTREAM_SENSORSTREAM_ID = @import("../zig.zig").Guid.initString("e35b9fe4-0659-4cad-bb51-33160be7e413");
-pub const MF_PD_ASF_FILEPROPERTIES_FILE_ID = @import("../zig.zig").Guid.initString("3de649b4-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_CREATION_TIME = @import("../zig.zig").Guid.initString("3de649b6-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PACKETS = @import("../zig.zig").Guid.initString("3de649b7-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PLAY_DURATION = @import("../zig.zig").Guid.initString("3de649b8-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_SEND_DURATION = @import("../zig.zig").Guid.initString("3de649b9-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_PREROLL = @import("../zig.zig").Guid.initString("3de649ba-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_FLAGS = @import("../zig.zig").Guid.initString("3de649bb-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MIN_PACKET_SIZE = @import("../zig.zig").Guid.initString("3de649bc-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MAX_PACKET_SIZE = @import("../zig.zig").Guid.initString("3de649bd-d76d-4e66-9ec9-78120fb4c7e3");
-pub const MF_PD_ASF_FILEPROPERTIES_MAX_BITRATE = @import("../zig.zig").Guid.initString("3de649be-d76d-4e66-9ec9-78120fb4c7e3");
-pub const CLSID_WMDRMSystemID = @import("../zig.zig").Guid.initString("8948bb22-11bd-4796-93e3-974d1b575678");
-pub const MF_PD_ASF_CONTENTENCRYPTION_TYPE = @import("../zig.zig").Guid.initString("8520fe3d-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_KEYID = @import("../zig.zig").Guid.initString("8520fe3e-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_SECRET_DATA = @import("../zig.zig").Guid.initString("8520fe3f-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTION_LICENSE_URL = @import("../zig.zig").Guid.initString("8520fe40-277e-46ea-99e4-e30a86db12be");
-pub const MF_PD_ASF_CONTENTENCRYPTIONEX_ENCRYPTION_DATA = @import("../zig.zig").Guid.initString("62508be5-ecdf-4924-a359-72bab3397b9d");
-pub const MF_PD_ASF_LANGLIST = @import("../zig.zig").Guid.initString("f23de43c-9977-460d-a6ec-32937f160f7d");
-pub const MF_PD_ASF_LANGLIST_LEGACYORDER = @import("../zig.zig").Guid.initString("f23de43d-9977-460d-a6ec-32937f160f7d");
-pub const MF_PD_ASF_MARKER = @import("../zig.zig").Guid.initString("5134330e-83a6-475e-a9d5-4fb875fb2e31");
-pub const MF_PD_ASF_SCRIPT = @import("../zig.zig").Guid.initString("e29cd0d7-d602-4923-a7fe-73fd97ecc650");
-pub const MF_PD_ASF_CODECLIST = @import("../zig.zig").Guid.initString("e4bb3509-c18d-4df1-bb99-7a36b3cc4119");
-pub const MF_PD_ASF_METADATA_IS_VBR = @import("../zig.zig").Guid.initString("5fc6947a-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_V8_VBRPEAK = @import("../zig.zig").Guid.initString("5fc6947b-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_V8_BUFFERAVERAGE = @import("../zig.zig").Guid.initString("5fc6947c-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_METADATA_LEAKY_BUCKET_PAIRS = @import("../zig.zig").Guid.initString("5fc6947d-ef60-445d-b449-442ecc78b4c1");
-pub const MF_PD_ASF_DATA_START_OFFSET = @import("../zig.zig").Guid.initString("e7d5b3e7-1f29-45d3-8822-3e78fae272ed");
-pub const MF_PD_ASF_DATA_LENGTH = @import("../zig.zig").Guid.initString("e7d5b3e8-1f29-45d3-8822-3e78fae272ed");
-pub const MF_SD_ASF_EXTSTRMPROP_LANGUAGE_ID_INDEX = @import("../zig.zig").Guid.initString("48f8a522-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_AVG_DATA_BITRATE = @import("../zig.zig").Guid.initString("48f8a523-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_AVG_BUFFERSIZE = @import("../zig.zig").Guid.initString("48f8a524-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_MAX_DATA_BITRATE = @import("../zig.zig").Guid.initString("48f8a525-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_EXTSTRMPROP_MAX_BUFFERSIZE = @import("../zig.zig").Guid.initString("48f8a526-305d-422d-8524-2502dda33680");
-pub const MF_SD_ASF_STREAMBITRATES_BITRATE = @import("../zig.zig").Guid.initString("a8e182ed-afc8-43d0-b0d1-f65bad9da558");
-pub const MF_SD_ASF_METADATA_DEVICE_CONFORMANCE_TEMPLATE = @import("../zig.zig").Guid.initString("245e929d-c44e-4f7e-bb3c-77d4dfd27f8a");
-pub const MF_PD_ASF_INFO_HAS_AUDIO = @import("../zig.zig").Guid.initString("80e62295-2296-4a44-b31c-d103c6fed23c");
-pub const MF_PD_ASF_INFO_HAS_VIDEO = @import("../zig.zig").Guid.initString("80e62296-2296-4a44-b31c-d103c6fed23c");
-pub const MF_PD_ASF_INFO_HAS_NON_AUDIO_VIDEO = @import("../zig.zig").Guid.initString("80e62297-2296-4a44-b31c-d103c6fed23c");
-pub const MF_ASFPROFILE_MINPACKETSIZE = @import("../zig.zig").Guid.initString("22587626-47de-4168-87f5-b5aa9b12a8f0");
-pub const MF_ASFPROFILE_MAXPACKETSIZE = @import("../zig.zig").Guid.initString("22587627-47de-4168-87f5-b5aa9b12a8f0");
-pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET1 = @import("../zig.zig").Guid.initString("c69b5901-ea1a-4c9b-b692-e2a0d29a8add");
-pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET2 = @import("../zig.zig").Guid.initString("c69b5902-ea1a-4c9b-b692-e2a0d29a8add");
-pub const MFASFSampleExtension_SampleDuration = @import("../zig.zig").Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
-pub const MFASFSampleExtension_OutputCleanPoint = @import("../zig.zig").Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
-pub const MFASFSampleExtension_SMPTE = @import("../zig.zig").Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
-pub const MFASFSampleExtension_FileName = @import("../zig.zig").Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
-pub const MFASFSampleExtension_ContentType = @import("../zig.zig").Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
-pub const MFASFSampleExtension_PixelAspectRatio = @import("../zig.zig").Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
-pub const MFASFSampleExtension_Encryption_SampleID = @import("../zig.zig").Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
-pub const MFASFSampleExtension_Encryption_KeyID = @import("../zig.zig").Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
-pub const MFASFMutexType_Language = @import("../zig.zig").Guid.initString("72178c2b-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Bitrate = @import("../zig.zig").Guid.initString("72178c2c-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Presentation = @import("../zig.zig").Guid.initString("72178c2d-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFMutexType_Unknown = @import("../zig.zig").Guid.initString("72178c2e-e45b-11d5-bc2a-00b0d0f3f4ab");
-pub const MFASFSPLITTER_PACKET_BOUNDARY = @import("../zig.zig").Guid.initString("fe584a05-e8d6-42e3-b176-f1211705fb6f");
-pub const MFASFINDEXER_TYPE_TIMECODE = @import("../zig.zig").Guid.initString("49815231-6bad-44fd-810a-3f60984ec7fd");
-pub const MF_CAPTURE_ENGINE_INITIALIZED = @import("../zig.zig").Guid.initString("219992bc-cf92-4531-a1ae-96e1e886c8f1");
-pub const MF_CAPTURE_ENGINE_PREVIEW_STARTED = @import("../zig.zig").Guid.initString("a416df21-f9d3-4a74-991b-b817298952c4");
-pub const MF_CAPTURE_ENGINE_PREVIEW_STOPPED = @import("../zig.zig").Guid.initString("13d5143c-1edd-4e50-a2ef-350a47678060");
-pub const MF_CAPTURE_ENGINE_RECORD_STARTED = @import("../zig.zig").Guid.initString("ac2b027b-ddf9-48a0-89be-38ab35ef45c0");
-pub const MF_CAPTURE_ENGINE_RECORD_STOPPED = @import("../zig.zig").Guid.initString("55e5200a-f98f-4c0d-a9ec-9eb25ed3d773");
-pub const MF_CAPTURE_ENGINE_PHOTO_TAKEN = @import("../zig.zig").Guid.initString("3c50c445-7304-48eb-865d-bba19ba3af5c");
-pub const MF_CAPTURE_SOURCE_CURRENT_DEVICE_MEDIA_TYPE_SET = @import("../zig.zig").Guid.initString("e7e75e4c-039c-4410-815b-8741307b63aa");
-pub const MF_CAPTURE_ENGINE_ERROR = @import("../zig.zig").Guid.initString("46b89fc6-33cc-4399-9dad-784de77d587c");
-pub const MF_CAPTURE_ENGINE_EFFECT_ADDED = @import("../zig.zig").Guid.initString("aa8dc7b5-a048-4e13-8ebe-f23c46c830c1");
-pub const MF_CAPTURE_ENGINE_EFFECT_REMOVED = @import("../zig.zig").Guid.initString("c6e8db07-fb09-4a48-89c6-bf92a04222c9");
-pub const MF_CAPTURE_ENGINE_ALL_EFFECTS_REMOVED = @import("../zig.zig").Guid.initString("fded7521-8ed8-431a-a96b-f3e2565e981c");
-pub const MF_CAPTURE_SINK_PREPARED = @import("../zig.zig").Guid.initString("7bfce257-12b1-4409-8c34-d445daab7578");
-pub const MF_CAPTURE_ENGINE_OUTPUT_MEDIA_TYPE_SET = @import("../zig.zig").Guid.initString("caaad994-83ec-45e9-a30a-1f20aadb9831");
-pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_BLOCKED = @import("../zig.zig").Guid.initString("a4209417-8d39-46f3-b759-5912528f4207");
-pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_UNBLOCKED = @import("../zig.zig").Guid.initString("9be9eef0-cdaf-4717-8564-834aae66415c");
-pub const MF_CAPTURE_ENGINE_D3D_MANAGER = @import("../zig.zig").Guid.initString("76e25e7b-d595-4283-962c-c594afd78ddf");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_UNPROCESSED_SAMPLES = @import("../zig.zig").Guid.initString("b467f705-7913-4894-9d42-a215fea23da9");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_UNPROCESSED_SAMPLES = @import("../zig.zig").Guid.initString("1cddb141-a7f4-4d58-9896-4d15a53c4efe");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_PROCESSED_SAMPLES = @import("../zig.zig").Guid.initString("e7b4a49e-382c-4aef-a946-aed5490b7111");
-pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_PROCESSED_SAMPLES = @import("../zig.zig").Guid.initString("9896e12a-f707-4500-b6bd-db8eb810b50f");
-pub const MF_CAPTURE_ENGINE_USE_AUDIO_DEVICE_ONLY = @import("../zig.zig").Guid.initString("1c8077da-8466-4dc4-8b8e-276b3f85923b");
-pub const MF_CAPTURE_ENGINE_USE_VIDEO_DEVICE_ONLY = @import("../zig.zig").Guid.initString("7e025171-cf32-4f2e-8f19-410577b73a66");
-pub const MF_CAPTURE_ENGINE_DISABLE_HARDWARE_TRANSFORMS = @import("../zig.zig").Guid.initString("b7c42a6b-3207-4495-b4e7-81f9c35d5991");
-pub const MF_CAPTURE_ENGINE_DISABLE_DXVA = @import("../zig.zig").Guid.initString("f9818862-179d-433f-a32f-74cbcf74466d");
-pub const MF_CAPTURE_ENGINE_MEDIASOURCE_CONFIG = @import("../zig.zig").Guid.initString("bc6989d2-0fc1-46e1-a74f-efd36bc788de");
-pub const MF_CAPTURE_ENGINE_DECODER_MFT_FIELDOFUSE_UNLOCK_Attribute = @import("../zig.zig").Guid.initString("2b8ad2e8-7acb-4321-a606-325c4249f4fc");
-pub const MF_CAPTURE_ENGINE_ENCODER_MFT_FIELDOFUSE_UNLOCK_Attribute = @import("../zig.zig").Guid.initString("54c63a00-78d5-422f-aa3e-5e99ac649269");
-pub const MF_CAPTURE_ENGINE_ENABLE_CAMERA_STREAMSTATE_NOTIFICATION = @import("../zig.zig").Guid.initString("4c808e9d-aaed-4713-90fb-cb24064ab8da");
-pub const MF_CAPTURE_ENGINE_MEDIA_CATEGORY = @import("../zig.zig").Guid.initString("8e3f5bd5-dbbf-42f0-8542-d07a3971762a");
-pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING = @import("../zig.zig").Guid.initString("10f1be5e-7e11-410b-973d-f4b6109000fe");
-pub const MF_CAPTURE_ENGINE_EVENT_GENERATOR_GUID = @import("../zig.zig").Guid.initString("abfa8ad5-fc6d-4911-87e0-961945f8f7ce");
-pub const MF_CAPTURE_ENGINE_EVENT_STREAM_INDEX = @import("../zig.zig").Guid.initString("82697f44-b1cf-42eb-9753-f86d649c8865");
-pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE = @import("../zig.zig").Guid.initString("03160b7e-1c6f-4db2-ad56-a7c430f82392");
-pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE_INDEX = @import("../zig.zig").Guid.initString("3ce88613-2214-46c3-b417-82f8a313c9c3");
-pub const CLSID_MFCaptureEngine = @import("../zig.zig").Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
-pub const CLSID_MFCaptureEngineClassFactory = @import("../zig.zig").Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
-pub const MFSampleExtension_DeviceReferenceSystemTime = @import("../zig.zig").Guid.initString("6523775a-ba2d-405f-b2c5-01ff88e2e8f6");
-pub const MF_MSE_CALLBACK = @import("../zig.zig").Guid.initString("9063a7c0-42c5-4ffd-a8a8-6fcf9ea3d00c");
-pub const MF_MSE_ACTIVELIST_CALLBACK = @import("../zig.zig").Guid.initString("949bda0f-4549-46d5-ad7f-b846e1ab1652");
-pub const MF_MSE_BUFFERLIST_CALLBACK = @import("../zig.zig").Guid.initString("42e669b0-d60e-4afb-a85b-d8e5fe6bdab5");
-pub const MF_MSE_VP9_SUPPORT = @import("../zig.zig").Guid.initString("92d78429-d88b-4ff0-8322-803efa6e9626");
-pub const MF_MSE_OPUS_SUPPORT = @import("../zig.zig").Guid.initString("4d224cc1-8cc4-48a3-a7a7-e4c16ce6388a");
-pub const MF_MEDIA_ENGINE_NEEDKEY_CALLBACK = @import("../zig.zig").Guid.initString("7ea80843-b6e4-432c-8ea4-7848ffe4220e");
-pub const MF_MEDIA_ENGINE_CALLBACK = @import("../zig.zig").Guid.initString("c60381b8-83a4-41f8-a3d0-de05076849a9");
-pub const MF_MEDIA_ENGINE_DXGI_MANAGER = @import("../zig.zig").Guid.initString("065702da-1094-486d-8617-ee7cc4ee4648");
-pub const MF_MEDIA_ENGINE_EXTENSION = @import("../zig.zig").Guid.initString("3109fd46-060d-4b62-8dcf-faff811318d2");
-pub const MF_MEDIA_ENGINE_PLAYBACK_HWND = @import("../zig.zig").Guid.initString("d988879b-67c9-4d92-baa7-6eadd446039d");
-pub const MF_MEDIA_ENGINE_OPM_HWND = @import("../zig.zig").Guid.initString("a0be8ee7-0572-4f2c-a801-2a151bd3e726");
-pub const MF_MEDIA_ENGINE_PLAYBACK_VISUAL = @import("../zig.zig").Guid.initString("6debd26f-6ab9-4d7e-b0ee-c61a73ffad15");
-pub const MF_MEDIA_ENGINE_COREWINDOW = @import("../zig.zig").Guid.initString("fccae4dc-0b7f-41c2-9f96-4659948acddc");
-pub const MF_MEDIA_ENGINE_VIDEO_OUTPUT_FORMAT = @import("../zig.zig").Guid.initString("5066893c-8cf9-42bc-8b8a-472212e52726");
-pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_FLAGS = @import("../zig.zig").Guid.initString("e0350223-5aaf-4d76-a7c3-06de70894db4");
-pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_MANAGER = @import("../zig.zig").Guid.initString("fdd6dfaa-bd85-4af3-9e0f-a01d539d876a");
-pub const MF_MEDIA_ENGINE_AUDIO_ENDPOINT_ROLE = @import("../zig.zig").Guid.initString("d2cb93d1-116a-44f2-9385-f7d0fda2fb46");
-pub const MF_MEDIA_ENGINE_AUDIO_CATEGORY = @import("../zig.zig").Guid.initString("c8d4c51d-350e-41f2-ba46-faebbb0857f6");
-pub const MF_MEDIA_ENGINE_STREAM_CONTAINS_ALPHA_CHANNEL = @import("../zig.zig").Guid.initString("5cbfaf44-d2b2-4cfb-80a7-d429c74c789d");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE = @import("../zig.zig").Guid.initString("4e0212e2-e18f-41e1-95e5-c0e7e9235bc3");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE9 = @import("../zig.zig").Guid.initString("052c2d39-40c0-4188-ab86-f828273b7522");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE10 = @import("../zig.zig").Guid.initString("11a47afd-6589-4124-b312-6158ec517fc3");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE11 = @import("../zig.zig").Guid.initString("1cf1315f-ce3f-4035-9391-16142f775189");
-pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE_EDGE = @import("../zig.zig").Guid.initString("a6f3e465-3aca-442c-a3f0-ad6ddad839ae");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE = @import("../zig.zig").Guid.initString("3ef26ad4-dc54-45de-b9af-76c8c66bfa8e");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WWA_EDGE = @import("../zig.zig").Guid.initString("15b29098-9f01-4e4d-b65a-c06c6c89da2a");
-pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WIN10 = @import("../zig.zig").Guid.initString("5b25e089-6ca7-4139-a2cb-fcaab39552a3");
-pub const MF_MEDIA_ENGINE_SOURCE_RESOLVER_CONFIG_STORE = @import("../zig.zig").Guid.initString("0ac0c497-b3c4-48c9-9cde-bb8ca2442ca3");
-pub const MF_MEDIA_ENGINE_TRACK_ID = @import("../zig.zig").Guid.initString("65bea312-4043-4815-8eab-44dce2ef8f2a");
-pub const MF_MEDIA_ENGINE_TELEMETRY_APPLICATION_ID = @import("../zig.zig").Guid.initString("1e7b273b-a7e4-402a-8f51-c48e88a2cabc");
-pub const MF_MEDIA_ENGINE_SYNCHRONOUS_CLOSE = @import("../zig.zig").Guid.initString("c3c2e12f-7e0e-4e43-b91c-dc992ccdfa5e");
-pub const MF_MEDIA_ENGINE_MEDIA_PLAYER_MODE = @import("../zig.zig").Guid.initString("3ddd8d45-5aa1-4112-82e5-36f6a2197e6e");
-pub const CLSID_MFMediaEngineClassFactory = @import("../zig.zig").Guid.initString("b44392da-499b-446b-a4cb-005fead0e6d5");
-pub const MF_MEDIA_ENGINE_TIMEDTEXT = @import("../zig.zig").Guid.initString("805ea411-92e0-4e59-9b6e-5c7d7915e64f");
-pub const MF_MEDIA_ENGINE_CONTINUE_ON_CODEC_ERROR = @import("../zig.zig").Guid.initString("dbcdb7f9-48e4-4295-b70d-d518234eeb38");
-pub const MF_MEDIA_ENGINE_EME_CALLBACK = @import("../zig.zig").Guid.initString("494553a7-a481-4cb7-bec5-380903513731");
-pub const CLSID_MPEG2DLNASink = @import("../zig.zig").Guid.initString("fa5fe7c5-6a1d-4b11-b41f-f959d6c76500");
-pub const MF_MP2DLNA_USE_MMCSS = @import("../zig.zig").Guid.initString("54f3e2ee-a2a2-497d-9834-973afde521eb");
-pub const MF_MP2DLNA_VIDEO_BIT_RATE = @import("../zig.zig").Guid.initString("e88548de-73b4-42d7-9c75-adfa0a2a6e4c");
-pub const MF_MP2DLNA_AUDIO_BIT_RATE = @import("../zig.zig").Guid.initString("2d1c070e-2b5f-4ab3-a7e6-8d943ba8d00a");
-pub const MF_MP2DLNA_ENCODE_QUALITY = @import("../zig.zig").Guid.initString("b52379d7-1d46-4fb6-a317-a4a5f60959f8");
-pub const MF_MP2DLNA_STATISTICS = @import("../zig.zig").Guid.initString("75e488a3-d5ad-4898-85e0-bcce24a722d7");
-pub const CLSID_MFReadWriteClassFactory = @import("../zig.zig").Guid.initString("48e2ed0f-98c2-4a37-bed5-166312ddd83f");
-pub const CLSID_MFSourceReader = @import("../zig.zig").Guid.initString("1777133c-0881-411b-a577-ad545f0714c4");
-pub const MF_SOURCE_READER_ASYNC_CALLBACK = @import("../zig.zig").Guid.initString("1e3dbeac-bb43-4c35-b507-cd644464c965");
-pub const MF_SOURCE_READER_D3D_MANAGER = @import("../zig.zig").Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
-pub const MF_SOURCE_READER_DISABLE_DXVA = @import("../zig.zig").Guid.initString("aa456cfd-3943-4a1e-a77d-1838c0ea2e35");
-pub const MF_SOURCE_READER_MEDIASOURCE_CONFIG = @import("../zig.zig").Guid.initString("9085abeb-0354-48f9-abb5-200df838c68e");
-pub const MF_SOURCE_READER_MEDIASOURCE_CHARACTERISTICS = @import("../zig.zig").Guid.initString("6d23f5c8-c5d7-4a9b-9971-5d11f8bca880");
-pub const MF_SOURCE_READER_ENABLE_VIDEO_PROCESSING = @import("../zig.zig").Guid.initString("fb394f3d-ccf1-42ee-bbb3-f9b845d5681d");
-pub const MF_SOURCE_READER_ENABLE_ADVANCED_VIDEO_PROCESSING = @import("../zig.zig").Guid.initString("0f81da2c-b537-4672-a8b2-a681b17307a3");
-pub const MF_SOURCE_READER_DISABLE_CAMERA_PLUGINS = @import("../zig.zig").Guid.initString("9d3365dd-058f-4cfb-9f97-b314cc99c8ad");
-pub const MF_SOURCE_READER_DISCONNECT_MEDIASOURCE_ON_SHUTDOWN = @import("../zig.zig").Guid.initString("56b67165-219e-456d-a22e-2d3004c7fe56");
-pub const MF_SOURCE_READER_ENABLE_TRANSCODE_ONLY_TRANSFORMS = @import("../zig.zig").Guid.initString("dfd4f008-b5fd-4e78-ae44-62a1e67bbe27");
-pub const MF_SOURCE_READER_D3D11_BIND_FLAGS = @import("../zig.zig").Guid.initString("33f3197b-f73a-4e14-8d85-0e4c4368788d");
-pub const CLSID_MFSinkWriter = @import("../zig.zig").Guid.initString("a3bbfb17-8273-4e52-9e0e-9739dc887990");
-pub const MF_SINK_WRITER_ASYNC_CALLBACK = @import("../zig.zig").Guid.initString("48cb183e-7b0b-46f4-822e-5e1d2dda4354");
-pub const MF_SINK_WRITER_DISABLE_THROTTLING = @import("../zig.zig").Guid.initString("08b845d8-2b74-4afe-9d53-be16d2d5ae4f");
-pub const MF_SINK_WRITER_D3D_MANAGER = @import("../zig.zig").Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
-pub const MF_SINK_WRITER_ENCODER_CONFIG = @import("../zig.zig").Guid.initString("ad91cd04-a7cc-4ac7-99b6-a57b9a4a7c70");
-pub const MF_READWRITE_DISABLE_CONVERTERS = @import("../zig.zig").Guid.initString("98d5b065-1374-4847-8d5d-31520fee7156");
-pub const MF_READWRITE_ENABLE_HARDWARE_TRANSFORMS = @import("../zig.zig").Guid.initString("a634a91c-822b-41b9-a494-4de4643612b0");
-pub const MF_READWRITE_MMCSS_CLASS = @import("../zig.zig").Guid.initString("39384300-d0eb-40b1-87a0-3318871b5a53");
-pub const MF_READWRITE_MMCSS_PRIORITY = @import("../zig.zig").Guid.initString("43ad19ce-f33f-4ba9-a580-e4cd12f2d144");
-pub const MF_READWRITE_MMCSS_CLASS_AUDIO = @import("../zig.zig").Guid.initString("430847da-0890-4b0e-938c-054332c547e1");
-pub const MF_READWRITE_MMCSS_PRIORITY_AUDIO = @import("../zig.zig").Guid.initString("273db885-2de2-4db2-a6a7-fdb66fb40b61");
-pub const MF_READWRITE_D3D_OPTIONAL = @import("../zig.zig").Guid.initString("216479d9-3071-42ca-bb6c-4c22102e1d18");
-pub const MF_MEDIASINK_AUTOFINALIZE_SUPPORTED = @import("../zig.zig").Guid.initString("48c131be-135a-41cb-8290-03652509c999");
-pub const MF_MEDIASINK_ENABLE_AUTOFINALIZE = @import("../zig.zig").Guid.initString("34014265-cb7e-4cde-ac7c-effd3b3c2530");
-pub const MF_READWRITE_ENABLE_AUTOFINALIZE = @import("../zig.zig").Guid.initString("dd7ca129-8cd1-4dc5-9dde-ce168675de61");
-pub const MF_MEDIA_SHARING_ENGINE_DEVICE_NAME = @import("../zig.zig").Guid.initString("771e05d1-862f-4299-95ac-ae81fd14f3e7");
-pub const MF_MEDIA_SHARING_ENGINE_DEVICE = @import("../zig.zig").Guid.initString("b461c58a-7a08-4b98-99a8-70fd5f3badfd");
-pub const CLSID_MFMediaSharingEngineClassFactory = @import("../zig.zig").Guid.initString("f8e307fb-6d45-4ad3-9993-66cd5a529659");
-pub const CLSID_MFImageSharingEngineClassFactory = @import("../zig.zig").Guid.initString("b22c3339-87f3-4059-a0c5-037aa9707eaf");
-pub const CLSID_PlayToSourceClassFactory = @import("../zig.zig").Guid.initString("da17539a-3dc3-42c1-a749-a183b51f085e");
-pub const GUID_PlayToService = @import("../zig.zig").Guid.initString("f6a8ff9d-9e14-41c9-bf0f-120a2b3ce120");
-pub const GUID_NativeDeviceService = @import("../zig.zig").Guid.initString("ef71e53c-52f4-43c5-b86a-ad6cb216a61e");
-pub const MF_CONTENTDECRYPTIONMODULE_SERVICE = @import("../zig.zig").Guid.initString("15320c45-ff80-484a-9dcb-0df894e69a01");
+pub const COPP_ProtectionType_Unknown = @as(i32, -2147483648);
+pub const COPP_ProtectionType_None = @as(i32, 0);
+pub const COPP_ProtectionType_HDCP = @as(i32, 1);
+pub const COPP_ProtectionType_ACP = @as(i32, 2);
+pub const COPP_ProtectionType_CGMSA = @as(i32, 4);
+pub const COPP_ProtectionType_Mask = @as(i32, -2147483641);
+pub const COPP_ProtectionType_Reserved = @as(i32, 2147483640);
+pub const MF_BYTESTREAM_ORIGIN_NAME = Guid.initString("fc358288-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_CONTENT_TYPE = Guid.initString("fc358289-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_DURATION = Guid.initString("fc35828a-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_LAST_MODIFIED_TIME = Guid.initString("fc35828b-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_IFO_FILE_URI = Guid.initString("fc35828c-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_DLNA_PROFILE_ID = Guid.initString("fc35828d-3cb6-460c-a424-b6681260375a");
+pub const MF_BYTESTREAM_EFFECTIVE_URL = Guid.initString("9afa0209-89d1-42af-8456-1de6b562d691");
+pub const MF_BYTESTREAM_TRANSCODED = Guid.initString("b6c5c282-4dc9-4db9-ab48-cf3b6d8bc5e0");
+pub const CLSID_MFByteStreamProxyClassFactory = Guid.initString("770e8e77-4916-441c-a9a7-b342d0eebc71");
+pub const MEDeviceStreamCreated = Guid.initString("0252a1cf-3540-43b4-9164-d72eb405fa40");
+pub const MF_SA_D3D_AWARE = Guid.initString("eaa35c29-775e-488e-9b61-b3283e49583b");
+pub const MF_SA_REQUIRED_SAMPLE_COUNT = Guid.initString("18802c61-324b-4952-abd0-176ff5c696ff");
+pub const MFT_END_STREAMING_AWARE = Guid.initString("70fbc845-b07e-4089-b064-399dc6110f29");
+pub const MF_SA_AUDIO_ENDPOINT_AWARE = Guid.initString("c0381701-805c-42b2-ac8d-e2b4bf21f4f8");
+pub const MFT_AUDIO_DECODER_AUDIO_ENDPOINT_ID = Guid.initString("c7ccdd6e-5398-4695-8be7-51b3e95111bd");
+pub const MFT_AUDIO_DECODER_SPATIAL_METADATA_CLIENT = Guid.initString("05987df4-1270-4999-925f-8e939a7c0af7");
+pub const MF_DMFT_FRAME_BUFFER_INFO = Guid.initString("396ce1c9-67a9-454c-8797-95a45799d804");
+pub const MF_SA_REQUIRED_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("b172d58e-fa77-4e48-8d2a-1df2d850eac2");
+pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT = Guid.initString("851745d5-c3d6-476d-9527-498ef2d10d18");
+pub const MF_SA_MINIMUM_OUTPUT_SAMPLE_COUNT_PROGRESSIVE = Guid.initString("0f5523a5-1cb2-47c5-a550-2eeb84b4d14a");
+pub const MFT_SUPPORT_3DVIDEO = Guid.initString("093f81b1-4f2e-4631-8168-7934032a01d3");
+pub const MF_ENABLE_3DVIDEO_OUTPUT = Guid.initString("bdad7bca-0e5f-4b10-ab16-26de381b6293");
+pub const MF_SA_D3D11_BINDFLAGS = Guid.initString("eacf97ad-065c-4408-bee3-fdcbfd128be2");
+pub const MF_SA_D3D11_USAGE = Guid.initString("e85fe442-2ca3-486e-a9c7-109dda609880");
+pub const MF_SA_D3D11_AWARE = Guid.initString("206b4fc8-fcf9-4c51-afe3-9764369e33a0");
+pub const MF_SA_D3D11_SHARED = Guid.initString("7b8f32c3-6d96-4b89-9203-dd38b61414f3");
+pub const MF_SA_D3D11_SHARED_WITHOUT_MUTEX = Guid.initString("39dbd44d-2e44-4931-a4c8-352d3dc42115");
+pub const MF_SA_D3D11_ALLOW_DYNAMIC_YUV_TEXTURE = Guid.initString("ce06d49f-0613-4b9d-86a6-d8c4f9c10075");
+pub const MF_SA_D3D11_HW_PROTECTED = Guid.initString("3a8ba9d9-92ca-4307-a391-6999dbf3b6ce");
+pub const MF_SA_BUFFERS_PER_SAMPLE = Guid.initString("873c5171-1e3d-4e25-988d-b433ce041983");
+pub const MFT_DECODER_EXPOSE_OUTPUT_TYPES_IN_NATIVE_ORDER = Guid.initString("ef80833f-f8fa-44d9-80d8-41ed6232670c");
+pub const MFT_DECODER_QUALITY_MANAGEMENT_CUSTOM_CONTROL = Guid.initString("a24e30d7-de25-4558-bbfb-71070a2d332e");
+pub const MFT_DECODER_QUALITY_MANAGEMENT_RECOVERY_WITHOUT_ARTIFACTS = Guid.initString("d8980deb-0a48-425f-8623-611db41d3810");
+pub const MFT_REMUX_MARK_I_PICTURE_AS_CLEAN_POINT = Guid.initString("364e8f85-3f2e-436c-b2a2-4440a012a9e8");
+pub const MFT_DECODER_FINAL_VIDEO_RESOLUTION_HINT = Guid.initString("dc2f8496-15c4-407a-b6f0-1b66ab5fbf53");
+pub const MFT_ENCODER_SUPPORTS_CONFIG_EVENT = Guid.initString("86a355ae-3a77-4ec4-9f31-01149a4e92de");
+pub const MFT_ENUM_HARDWARE_VENDOR_ID_Attribute = Guid.initString("3aecb0cc-035b-4bcc-8185-2b8d551ef3af");
+pub const MF_TRANSFORM_ASYNC = Guid.initString("f81a699a-649a-497d-8c73-29f8fed6ad7a");
+pub const MF_TRANSFORM_ASYNC_UNLOCK = Guid.initString("e5666d6b-3422-4eb6-a421-da7db1f8e207");
+pub const MF_TRANSFORM_FLAGS_Attribute = Guid.initString("9359bb7e-6275-46c4-a025-1c01e45f1a86");
+pub const MF_TRANSFORM_CATEGORY_Attribute = Guid.initString("ceabba49-506d-4757-a6ff-66c184987e4e");
+pub const MFT_TRANSFORM_CLSID_Attribute = Guid.initString("6821c42b-65a4-4e82-99bc-9a88205ecd0c");
+pub const MFT_INPUT_TYPES_Attributes = Guid.initString("4276c9b1-759d-4bf3-9cd0-0d723d138f96");
+pub const MFT_OUTPUT_TYPES_Attributes = Guid.initString("8eae8cf3-a44f-4306-ba5c-bf5dda242818");
+pub const MFT_ENUM_HARDWARE_URL_Attribute = Guid.initString("2fb866ac-b078-4942-ab6c-003d05cda674");
+pub const MFT_FRIENDLY_NAME_Attribute = Guid.initString("314ffbae-5b41-4c95-9c19-4e7d586face3");
+pub const MFT_CONNECTED_STREAM_ATTRIBUTE = Guid.initString("71eeb820-a59f-4de2-bcec-38db1dd611a4");
+pub const MFT_CONNECTED_TO_HW_STREAM = Guid.initString("34e6e728-06d6-4491-a553-4795650db912");
+pub const MFT_PREFERRED_OUTPUTTYPE_Attribute = Guid.initString("7e700499-396a-49ee-b1b4-f628021e8c9d");
+pub const MFT_PROCESS_LOCAL_Attribute = Guid.initString("543186e4-4649-4e65-b588-4aa352aff379");
+pub const MFT_PREFERRED_ENCODER_PROFILE = Guid.initString("53004909-1ef5-46d7-a18e-5a75f8b5905f");
+pub const MFT_HW_TIMESTAMP_WITH_QPC_Attribute = Guid.initString("8d030fb8-cc43-4258-a22e-9210bef89be4");
+pub const MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("8ec2e9fd-9148-410d-831e-702439461a8e");
+pub const MFT_CODEC_MERIT_Attribute = Guid.initString("88a7cb15-7b07-4a34-9128-e64c6703c4d3");
+pub const MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = Guid.initString("111ea8cd-b62a-4bdb-89f6-67ffcdc2458b");
+pub const MFT_AUDIO_DECODER_DEGRADATION_INFO_ATTRIBUTE = Guid.initString("6c3386ad-ec20-430d-b2a5-505c7178d9c4");
+pub const MFT_POLICY_SET_AWARE = Guid.initString("5a633b19-cc39-4fa8-8ca5-59981b7a0018");
+pub const MFT_USING_HARDWARE_DRM = Guid.initString("34faa77d-d79e-4957-b8ce-362b2684996c");
+pub const MF_WVC1_PROG_SINGLE_SLICE_CONTENT = Guid.initString("67ec2559-0f2f-4420-a4dd-2f8ee7a5738b");
+pub const MF_PROGRESSIVE_CODING_CONTENT = Guid.initString("8f020eea-1508-471f-9da6-507d7cfa40db");
+pub const MF_NALU_LENGTH_SET = Guid.initString("a7911d53-12a4-4965-ae70-6eadd6ff0551");
+pub const MF_NALU_LENGTH_INFORMATION = Guid.initString("19124e7c-ad4b-465f-bb18-20186287b6af");
+pub const MF_USER_DATA_PAYLOAD = Guid.initString("d1d4985d-dc92-457a-b3a0-651a33a31047");
+pub const MF_MPEG4SINK_SPSPPS_PASSTHROUGH = Guid.initString("5601a134-2005-4ad2-b37d-22a6c554deb2");
+pub const MF_MPEG4SINK_MOOV_BEFORE_MDAT = Guid.initString("f672e3ac-e1e6-4f10-b5ec-5f3b30828816");
+pub const MF_MPEG4SINK_MINIMUM_PROPERTIES_SIZE = Guid.initString("dca1ed52-450e-4a22-8c62-4ed452f7a187");
+pub const MF_MPEG4SINK_MIN_FRAGMENT_DURATION = Guid.initString("a30b570c-8efd-45e8-94fe-27c84b5bdff6");
+pub const MF_MPEG4SINK_MAX_CODED_SEQUENCES_PER_FRAGMENT = Guid.initString("fc1b3bd6-692d-4ce5-9299-738aa5463e9a");
+pub const MF_SESSION_TOPOLOADER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f71");
+pub const MF_SESSION_GLOBAL_TIME = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f72");
+pub const MF_SESSION_QUALITY_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f73");
+pub const MF_SESSION_CONTENT_PROTECTION_MANAGER = Guid.initString("1e83d482-1f1c-4571-8405-88f4b2181f74");
+pub const MF_SESSION_SERVER_CONTEXT = Guid.initString("afe5b291-50fa-46e8-b9be-0c0c3ce4b3a5");
+pub const MF_SESSION_REMOTE_SOURCE_MODE = Guid.initString("f4033ef4-9bb3-4378-941f-85a0856bc244");
+pub const MF_SESSION_APPROX_EVENT_OCCURRENCE_TIME = Guid.initString("190e852f-6238-42d1-b5af-69ea338ef850");
+pub const MF_PMP_SERVER_CONTEXT = Guid.initString("2f00c910-d2cf-4278-8b6a-d077fac3a25f");
+pub const MF_TIME_FORMAT_ENTRY_RELATIVE = Guid.initString("4399f178-46d3-4504-afda-20d32e9ba360");
+pub const MF_SOURCE_STREAM_SUPPORTS_HW_CONNECTION = Guid.initString("a38253aa-6314-42fd-a3ce-bb27b6859946");
+pub const MF_STREAM_SINK_SUPPORTS_HW_CONNECTION = Guid.initString("9b465cbf-0597-4f9e-9f3c-b97eeef90359");
+pub const MF_STREAM_SINK_SUPPORTS_ROTATION = Guid.initString("b3e96280-bd05-41a5-97ad-8a7fee24b912");
+pub const MF_SINK_VIDEO_PTS = Guid.initString("2162bde7-421e-4b90-9b33-e58fbf1d58b6");
+pub const MF_SINK_VIDEO_NATIVE_WIDTH = Guid.initString("e6d6a707-1505-4747-9b10-72d2d158cb3a");
+pub const MF_SINK_VIDEO_NATIVE_HEIGHT = Guid.initString("f0ca6705-490c-43e8-941c-c0b3206b9a65");
+pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_NUMERATOR = Guid.initString("d0f33b22-b78a-4879-b455-f03ef3fa82cd");
+pub const MF_SINK_VIDEO_DISPLAY_ASPECT_RATIO_DENOMINATOR = Guid.initString("6ea1eb97-1fe0-4f10-a6e4-1f4f661564e0");
+pub const MF_BD_MVC_PLANE_OFFSET_METADATA = Guid.initString("62a654e4-b76c-4901-9823-2cb615d47318");
+pub const MF_LUMA_KEY_ENABLE = Guid.initString("7369820f-76de-43ca-9284-47b8f37e0649");
+pub const MF_LUMA_KEY_LOWER = Guid.initString("93d7b8d5-0b81-4715-aea0-8725871621e9");
+pub const MF_LUMA_KEY_UPPER = Guid.initString("d09f39bb-4602-4c31-a706-a12171a5110a");
+pub const MF_USER_EXTENDED_ATTRIBUTES = Guid.initString("c02abac6-feb2-4541-922f-920b43702722");
+pub const MF_INDEPENDENT_STILL_IMAGE = Guid.initString("ea12af41-0710-42c9-a127-daa3e78483a5");
+pub const MF_XVP_SAMPLE_LOCK_TIMEOUT = Guid.initString("aa4ddb29-5134-4363-ac72-83ec4bc10426");
+pub const MF_TOPOLOGY_PROJECTSTART = Guid.initString("7ed3f802-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_PROJECTSTOP = Guid.initString("7ed3f803-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_NO_MARKIN_MARKOUT = Guid.initString("7ed3f804-86bb-4b3f-b7e4-7cb43afd4b80");
+pub const MF_TOPOLOGY_DXVA_MODE = Guid.initString("1e8d34f6-f5ab-4e23-bb88-874aa3a1a74d");
+pub const MF_TOPOLOGY_ENABLE_XVP_FOR_PLAYBACK = Guid.initString("1967731f-cd78-42fc-b026-0992a56e5693");
+pub const MF_TOPOLOGY_STATIC_PLAYBACK_OPTIMIZATIONS = Guid.initString("b86cac42-41a6-4b79-897a-1ab0e52b4a1b");
+pub const MF_TOPOLOGY_PLAYBACK_MAX_DIMS = Guid.initString("5715cf19-5768-44aa-ad6e-8721f1b0f9bb");
+pub const MF_TOPOLOGY_HARDWARE_MODE = Guid.initString("d2d362fd-4e4f-4191-a579-c618b66706af");
+pub const MF_TOPOLOGY_PLAYBACK_FRAMERATE = Guid.initString("c164737a-c2b1-4553-83bb-5a526072448f");
+pub const MF_TOPOLOGY_DYNAMIC_CHANGE_NOT_ALLOWED = Guid.initString("d529950b-d484-4527-a9cd-b1909532b5b0");
+pub const MF_TOPOLOGY_ENUMERATE_SOURCE_TYPES = Guid.initString("6248c36d-5d0b-4f40-a0bb-b0b305f77698");
+pub const MF_TOPOLOGY_START_TIME_ON_PRESENTATION_SWITCH = Guid.initString("c8cc113f-7951-4548-aad6-9ed6202e62b3");
+pub const MF_DISABLE_LOCALLY_REGISTERED_PLUGINS = Guid.initString("66b16da9-add4-47e0-a16b-5af1fb483634");
+pub const MF_LOCAL_PLUGIN_CONTROL_POLICY = Guid.initString("d91b0085-c86d-4f81-8822-8c68e1d7fa04");
+pub const MF_TOPONODE_FLUSH = Guid.initString("494bbce8-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DRAIN = Guid.initString("494bbce9-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_D3DAWARE = Guid.initString("494bbced-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPOLOGY_RESOLUTION_STATUS = Guid.initString("494bbcde-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERRORCODE = Guid.initString("494bbcee-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_CONNECT_METHOD = Guid.initString("494bbcf1-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_LOCKED = Guid.initString("494bbcf7-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_ID = Guid.initString("494bbcf8-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_CLASS = Guid.initString("494bbcf9-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DECRYPTOR = Guid.initString("494bbcfa-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DISCARDABLE = Guid.initString("494bbcfb-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERROR_MAJORTYPE = Guid.initString("494bbcfd-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_ERROR_SUBTYPE = Guid.initString("494bbcfe-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_TASKID = Guid.initString("494bbcff-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_WORKQUEUE_MMCSS_PRIORITY = Guid.initString("5001f840-2816-48f4-9364-ad1ef661a123");
+pub const MF_TOPONODE_WORKQUEUE_ITEM_PRIORITY = Guid.initString("a1ff99be-5e97-4a53-b494-568c642c0ff3");
+pub const MF_TOPONODE_MARKIN_HERE = Guid.initString("494bbd00-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_MARKOUT_HERE = Guid.initString("494bbd01-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_DECODER = Guid.initString("494bbd02-b031-4e38-97c4-d5422dd618dc");
+pub const MF_TOPONODE_MEDIASTART = Guid.initString("835c58ea-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_MEDIASTOP = Guid.initString("835c58eb-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_SOURCE = Guid.initString("835c58ec-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_PRESENTATION_DESCRIPTOR = Guid.initString("835c58ed-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_STREAM_DESCRIPTOR = Guid.initString("835c58ee-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_SEQUENCE_ELEMENTID = Guid.initString("835c58ef-e075-4bc7-bcba-4de000df9ae6");
+pub const MF_TOPONODE_TRANSFORM_OBJECTID = Guid.initString("88dcc0c9-293e-4e8b-9aeb-0ad64cc016b0");
+pub const MF_TOPONODE_STREAMID = Guid.initString("14932f9b-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_NOSHUTDOWN_ON_REMOVE = Guid.initString("14932f9c-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_RATELESS = Guid.initString("14932f9d-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_DISABLE_PREROLL = Guid.initString("14932f9e-9087-4bb4-8412-5167145cbe04");
+pub const MF_TOPONODE_PRIMARYOUTPUT = Guid.initString("6304ef99-16b2-4ebe-9d67-e4c539b3a259");
+pub const MF_PD_PMPHOST_CONTEXT = Guid.initString("6c990d31-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_APP_CONTEXT = Guid.initString("6c990d32-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_DURATION = Guid.initString("6c990d33-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_TOTAL_FILE_SIZE = Guid.initString("6c990d34-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_AUDIO_ENCODING_BITRATE = Guid.initString("6c990d35-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_VIDEO_ENCODING_BITRATE = Guid.initString("6c990d36-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_MIME_TYPE = Guid.initString("6c990d37-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_LAST_MODIFIED_TIME = Guid.initString("6c990d38-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PLAYBACK_ELEMENT_ID = Guid.initString("6c990d39-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PREFERRED_LANGUAGE = Guid.initString("6c990d3a-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_PLAYBACK_BOUNDARY_TIME = Guid.initString("6c990d3b-bb8e-477a-8598-0d5d96fcd88a");
+pub const MF_PD_AUDIO_ISVARIABLEBITRATE = Guid.initString("33026ee0-e387-4582-ae0a-34a2ad3baa18");
+pub const MF_SD_LANGUAGE = Guid.initString("00af2180-bdc2-423c-abca-f503593bc121");
+pub const MF_SD_PROTECTED = Guid.initString("00af2181-bdc2-423c-abca-f503593bc121");
+pub const MF_SD_STREAM_NAME = Guid.initString("4f1b099d-d314-41e5-a781-7fefaa4c501f");
+pub const MF_SD_MUTUALLY_EXCLUSIVE = Guid.initString("023ef79c-388d-487f-ac17-696cd6e3c6f5");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_CLSID = Guid.initString("ba491360-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_ACTIVATE = Guid.initString("ba491361-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_MIXER_FLAGS = Guid.initString("ba491362-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_CLSID = Guid.initString("ba491364-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_ACTIVATE = Guid.initString("ba491365-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_CUSTOM_VIDEO_PRESENTER_FLAGS = Guid.initString("ba491366-be50-451e-95ab-6d4accc7dad8");
+pub const MF_ACTIVATE_MFT_LOCKED = Guid.initString("c1f6093c-7f65-4fbd-9e39-5faec3c4fbd7");
+pub const MF_ACTIVATE_VIDEO_WINDOW = Guid.initString("9a2dbbdd-f57e-4162-82b9-6831377682d3");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_FLAGS = Guid.initString("ede4b5e0-f805-4d6c-99b3-db01bf95dfab");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_SESSION_ID = Guid.initString("ede4b5e3-f805-4d6c-99b3-db01bf95dfab");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID = Guid.initString("b10aaec3-ef71-4cc3-b873-05a9a08b9f8e");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ROLE = Guid.initString("6ba644ff-27c5-4d02-9887-c28619fdb91b");
+pub const MF_AUDIO_RENDERER_ATTRIBUTE_STREAM_CATEGORY = Guid.initString("a9770471-92ec-4df4-94fe-81c36f0c3a7a");
+pub const MFENABLETYPE_WMDRMV1_LicenseAcquisition = Guid.initString("4ff6eeaf-0b43-4797-9b85-abf31815e7b0");
+pub const MFENABLETYPE_WMDRMV7_LicenseAcquisition = Guid.initString("003306df-4a06-4884-a097-ef6d22ec84a3");
+pub const MFENABLETYPE_WMDRMV7_Individualization = Guid.initString("acd2c84a-b303-4f65-bc2c-2c848d01a989");
+pub const MFENABLETYPE_MF_UpdateRevocationInformation = Guid.initString("e558b0b5-b3c4-44a0-924c-50d178932385");
+pub const MFENABLETYPE_MF_UpdateUntrustedComponent = Guid.initString("9879f3d6-cee2-48e6-b573-9767ab172f16");
+pub const MFENABLETYPE_MF_RebootRequired = Guid.initString("6d4d3d4b-0ece-4652-8b3a-f2d24260d887");
+pub const MF_METADATA_PROVIDER_SERVICE = Guid.initString("db214084-58a4-4d2e-b84f-6f755b2f7a0d");
+pub const MF_PROPERTY_HANDLER_SERVICE = Guid.initString("a3face02-32b8-41dd-90e7-5fef7c8991b5");
+pub const MF_RATE_CONTROL_SERVICE = Guid.initString("866fa297-b802-4bf8-9dc9-5e3b6a9f53c9");
+pub const MF_TIMECODE_SERVICE = Guid.initString("a0d502a7-0eb3-4885-b1b9-9feb0d083454");
+pub const MR_POLICY_VOLUME_SERVICE = Guid.initString("1abaa2ac-9d3b-47c6-ab48-c59506de784d");
+pub const MR_CAPTURE_POLICY_VOLUME_SERVICE = Guid.initString("24030acd-107a-4265-975c-414e33e65f2a");
+pub const MR_STREAM_VOLUME_SERVICE = Guid.initString("f8b5fa2f-32ef-46f5-b172-1321212fb2c4");
+pub const MR_AUDIO_POLICY_SERVICE = Guid.initString("911fd737-6775-4ab0-a614-297862fdac88");
+pub const MF_SAMPLEGRABBERSINK_SAMPLE_TIME_OFFSET = Guid.initString("62e3d776-8100-4e03-a6e8-bd3857ac9c47");
+pub const MF_SAMPLEGRABBERSINK_IGNORE_CLOCK = Guid.initString("0efda2c0-2b69-4e2e-ab8d-46dcbff7d25d");
+pub const MF_QUALITY_SERVICES = Guid.initString("b7e2be11-2f96-4640-b52c-282365bdf16c");
+pub const MF_WORKQUEUE_SERVICES = Guid.initString("8e37d489-41e0-413a-9068-287c886d8dda");
+pub const MF_QUALITY_NOTIFY_PROCESSING_LATENCY = Guid.initString("f6b44af8-604d-46fe-a95d-45479b10c9bc");
+pub const MF_QUALITY_NOTIFY_SAMPLE_LAG = Guid.initString("30d15206-ed2a-4760-be17-eb4a9f12295c");
+pub const MF_TIME_FORMAT_SEGMENT_OFFSET = Guid.initString("c8b8be77-869c-431d-812e-169693f65a39");
+pub const MF_SOURCE_PRESENTATION_PROVIDER_SERVICE = Guid.initString("e002aadc-f4af-4ee5-9847-053edf840426");
+pub const MF_TOPONODE_ATTRIBUTE_EDITOR_SERVICE = Guid.initString("65656e1a-077f-4472-83ef-316f11d5087a");
+pub const MFNETSOURCE_SSLCERTIFICATE_MANAGER = Guid.initString("55e6cb27-e69b-4267-940c-2d7ec5bb8a0f");
+pub const MFNETSOURCE_RESOURCE_FILTER = Guid.initString("815d0ff6-265a-4477-9e46-7b80ad80b5fb");
+pub const MFNET_SAVEJOB_SERVICE = Guid.initString("b85a587f-3d02-4e52-9565-55d3ec1e7ff7");
+pub const MFNETSOURCE_STATISTICS_SERVICE = Guid.initString("3cb1f275-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_STATISTICS = Guid.initString("3cb1f274-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BUFFERINGTIME = Guid.initString("3cb1f276-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ACCELERATEDSTREAMINGDURATION = Guid.initString("3cb1f277-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_MAXUDPACCELERATEDSTREAMINGDURATION = Guid.initString("4aab2879-bbe1-4994-9ff0-5495bd250129");
+pub const MFNETSOURCE_MAXBUFFERTIMEMS = Guid.initString("408b24e6-4038-4401-b5b2-fe701a9ebf10");
+pub const MFNETSOURCE_CONNECTIONBANDWIDTH = Guid.initString("3cb1f278-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CACHEENABLED = Guid.initString("3cb1f279-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_AUTORECONNECTLIMIT = Guid.initString("3cb1f27a-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_RESENDSENABLED = Guid.initString("3cb1f27b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_THINNINGENABLED = Guid.initString("3cb1f27c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROTOCOL = Guid.initString("3cb1f27d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_TRANSPORT = Guid.initString("3cb1f27e-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PREVIEWMODEENABLED = Guid.initString("3cb1f27f-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CREDENTIAL_MANAGER = Guid.initString("3cb1f280-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PPBANDWIDTH = Guid.initString("3cb1f281-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_AUTORECONNECTPROGRESS = Guid.initString("3cb1f282-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYLOCATORFACTORY = Guid.initString("3cb1f283-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BROWSERUSERAGENT = Guid.initString("3cb1f28b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_BROWSERWEBPAGE = Guid.initString("3cb1f28c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERVERSION = Guid.initString("3cb1f28d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERID = Guid.initString("3cb1f28e-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_HOSTEXE = Guid.initString("3cb1f28f-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_HOSTVERSION = Guid.initString("3cb1f291-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PLAYERUSERAGENT = Guid.initString("3cb1f292-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_CLIENTGUID = Guid.initString("60a2c4a6-f197-4c14-a5bf-88830d2458af");
+pub const MFNETSOURCE_LOGURL = Guid.initString("3cb1f293-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_UDP = Guid.initString("3cb1f294-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_TCP = Guid.initString("3cb1f295-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_MSB = Guid.initString("3cb1f296-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_RTSP = Guid.initString("3cb1f298-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_HTTP = Guid.initString("3cb1f299-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_STREAMING = Guid.initString("3cb1f29c-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_DOWNLOAD = Guid.initString("3cb1f29d-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_ENABLE_PRIVATEMODE = Guid.initString("824779d8-f18b-4405-8cf1-464fb5aa8f71");
+pub const MFNETSOURCE_UDP_PORT_RANGE = Guid.initString("3cb1f29a-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYINFO = Guid.initString("3cb1f29b-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_DRMNET_LICENSE_REPRESENTATION = Guid.initString("47eae1bd-bdfe-42e2-82f3-54a48c17962d");
+pub const MFNETSOURCE_PROXYSETTINGS = Guid.initString("3cb1f287-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYHOSTNAME = Guid.initString("3cb1f284-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYPORT = Guid.initString("3cb1f288-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYEXCEPTIONLIST = Guid.initString("3cb1f285-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYBYPASSFORLOCAL = Guid.initString("3cb1f286-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_PROXYRERUNAUTODETECTION = Guid.initString("3cb1f289-0505-4c5d-ae71-0a556344efa1");
+pub const MFNETSOURCE_STREAM_LANGUAGE = Guid.initString("9ab44318-f7cd-4f2d-8d6d-fa35b492cecb");
+pub const MFNETSOURCE_LOGPARAMS = Guid.initString("64936ae8-9418-453a-8cda-3e0a668b353b");
+pub const MFNETSOURCE_PEERMANAGER = Guid.initString("48b29adb-febf-45ee-a9bf-efb81c492efc");
+pub const MFNETSOURCE_FRIENDLYNAME = Guid.initString("5b2a7757-bc6b-447e-aa06-0dda1c646e2f");
+pub const MF_BYTESTREAMHANDLER_ACCEPTS_SHARE_WRITE = Guid.initString("a6e1f733-3001-4915-8150-1558a2180ec8");
+pub const MF_BYTESTREAM_SERVICE = Guid.initString("ab025e2b-16d9-4180-a127-ba6c70156161");
+pub const MF_MEDIA_PROTECTION_MANAGER_PROPERTIES = Guid.initString("38bd81a9-acea-4c73-89b2-5532c0aeca79");
+pub const MFCONNECTOR_SPDIF = Guid.initString("0b94a712-ad3e-4cee-83ce-ce32e3db6522");
+pub const MFCONNECTOR_UNKNOWN = Guid.initString("ac3aef5c-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCI = Guid.initString("ac3aef5d-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCIX = Guid.initString("ac3aef5e-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_PCI_Express = Guid.initString("ac3aef5f-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_AGP = Guid.initString("ac3aef60-ce43-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_VGA = Guid.initString("57cd5968-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_SVIDEO = Guid.initString("57cd5969-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_COMPOSITE = Guid.initString("57cd596a-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_COMPONENT = Guid.initString("57cd596b-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DVI = Guid.initString("57cd596c-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_HDMI = Guid.initString("57cd596d-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_LVDS = Guid.initString("57cd596e-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_D_JPN = Guid.initString("57cd5970-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_SDI = Guid.initString("57cd5971-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DISPLAYPORT_EXTERNAL = Guid.initString("57cd5972-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_DISPLAYPORT_EMBEDDED = Guid.initString("57cd5973-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_UDI_EXTERNAL = Guid.initString("57cd5974-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_UDI_EMBEDDED = Guid.initString("57cd5975-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_MIRACAST = Guid.initString("57cd5977-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = Guid.initString("57cd5978-ce47-11d9-92db-000bdb28ff98");
+pub const MFCONNECTOR_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = Guid.initString("57cd5979-ce47-11d9-92db-000bdb28ff98");
+pub const MF_POLICY_ID = Guid.initString("b160c24d-c059-48f1-a901-9ee298a9a8c3");
+pub const MFPROTECTION_DISABLE = Guid.initString("8cc6d81b-fec6-4d8f-964b-cfba0b0dad0d");
+pub const MFPROTECTION_CONSTRICTVIDEO = Guid.initString("193370ce-c5e4-4c3a-8a66-6959b4da4442");
+pub const MFPROTECTION_CONSTRICTVIDEO_NOOPM = Guid.initString("a580e8cd-c247-4957-b983-3c2eebd1ff59");
+pub const MFPROTECTION_CONSTRICTAUDIO = Guid.initString("ffc99b44-df48-4e16-8e66-096892c1578a");
+pub const MFPROTECTION_TRUSTEDAUDIODRIVERS = Guid.initString("65bdf3d2-0168-4816-a533-55d47b027101");
+pub const MFPROTECTION_HDCP = Guid.initString("ae7cc03d-c828-4021-acb7-d578d27aaf13");
+pub const MFPROTECTION_CGMSA = Guid.initString("e57e69e9-226b-4d31-b4e3-d3db008736dd");
+pub const MFPROTECTION_ACP = Guid.initString("c3fd11c6-f8b7-4d20-b008-1db17d61f2da");
+pub const MFPROTECTION_WMDRMOTA = Guid.initString("a267a6a1-362e-47d0-8805-4628598a23e4");
+pub const MFPROTECTION_FFT = Guid.initString("462a56b2-2866-4bb6-980d-6d8d9edb1a8c");
+pub const MFPROTECTION_PROTECTED_SURFACE = Guid.initString("4f5d9566-e742-4a25-8d1f-d287b5fa0ade");
+pub const MFPROTECTION_DISABLE_SCREEN_SCRAPE = Guid.initString("a21179a4-b7cd-40d8-9614-8ef2371ba78d");
+pub const MFPROTECTION_VIDEO_FRAMES = Guid.initString("36a59cbc-7401-4a8c-bc20-46a7c9e597f0");
+pub const MFPROTECTION_HARDWARE = Guid.initString("4ee7f0c1-9ed7-424f-b6be-996b33528856");
+pub const MFPROTECTION_HDCP_WITH_TYPE_ENFORCEMENT = Guid.initString("a4a585e8-ed60-442d-814d-db4d4220a06d");
+pub const MFPROTECTIONATTRIBUTE_BEST_EFFORT = Guid.initString("c8e06331-75f0-4ec1-8e77-17578f773b46");
+pub const MFPROTECTIONATTRIBUTE_FAIL_OVER = Guid.initString("8536abc5-38f1-4151-9cce-f55d941229ac");
+pub const MFPROTECTION_GRAPHICS_TRANSFER_AES_ENCRYPTION = Guid.initString("c873de64-d8a5-49e6-88bb-fb963fd3d4ce");
+pub const MFPROTECTIONATTRIBUTE_CONSTRICTVIDEO_IMAGESIZE = Guid.initString("008476fc-4b58-4d80-a790-e7297673161d");
+pub const MFPROTECTIONATTRIBUTE_HDCP_SRM = Guid.initString("6f302107-3477-4468-8a08-eef9db10e20f");
+pub const MF_SampleProtectionSalt = Guid.initString("5403deee-b9ee-438f-aa83-3804997e569d");
+pub const MF_REMOTE_PROXY = Guid.initString("2f00c90e-d2cf-4278-8b6a-d077fac3a25f");
+pub const CLSID_CreateMediaExtensionObject = Guid.initString("ef65a54d-0788-45b8-8b14-bc0f6a6b5137");
+pub const MF_SAMI_SERVICE = Guid.initString("49a89ae7-b4d9-4ef2-aa5c-f65a3e05ae4e");
+pub const MF_PD_SAMI_STYLELIST = Guid.initString("e0b73c7f-486d-484e-9872-4de5192a7bf8");
+pub const MF_SD_SAMI_LANGUAGE = Guid.initString("36fcb98a-6cd0-44cb-acb9-a8f5600dd0bb");
+pub const MF_TRANSCODE_CONTAINERTYPE = Guid.initString("150ff23f-4abc-478b-ac4f-e1916fba1cca");
+pub const MFTranscodeContainerType_ASF = Guid.initString("430f6f6e-b6bf-4fc1-a0bd-9ee46eee2afb");
+pub const MFTranscodeContainerType_MPEG4 = Guid.initString("dc6cd05d-b9d0-40ef-bd35-fa622c1ab28a");
+pub const MFTranscodeContainerType_MP3 = Guid.initString("e438b912-83f1-4de6-9e3a-9ffbc6dd24d1");
+pub const MFTranscodeContainerType_FLAC = Guid.initString("31344aa3-05a9-42b5-901b-8e9d4257f75e");
+pub const MFTranscodeContainerType_3GP = Guid.initString("34c50167-4472-4f34-9ea0-c49fbacf037d");
+pub const MFTranscodeContainerType_AC3 = Guid.initString("6d8d91c3-8c91-4ed1-8742-8c347d5b44d0");
+pub const MFTranscodeContainerType_ADTS = Guid.initString("132fd27d-0f02-43de-a301-38fbbbb3834e");
+pub const MFTranscodeContainerType_MPEG2 = Guid.initString("bfc2dbf9-7bb4-4f8f-afde-e112c44ba882");
+pub const MFTranscodeContainerType_WAVE = Guid.initString("64c3453c-0f26-4741-be63-87bdf8bb935b");
+pub const MFTranscodeContainerType_AVI = Guid.initString("7edfe8af-402f-4d76-a33c-619fd157d0f1");
+pub const MFTranscodeContainerType_FMPEG4 = Guid.initString("9ba876f1-419f-4b77-a1e0-35959d9d4004");
+pub const MFTranscodeContainerType_AMR = Guid.initString("025d5ad3-621a-475b-964d-66b1c824f079");
+pub const MF_TRANSCODE_SKIP_METADATA_TRANSFER = Guid.initString("4e4469ef-b571-4959-8f83-3dcfba33a393");
+pub const MF_TRANSCODE_TOPOLOGYMODE = Guid.initString("3e3df610-394a-40b2-9dea-3bab650bebf2");
+pub const MF_TRANSCODE_ADJUST_PROFILE = Guid.initString("9c37c21b-060f-487c-a690-80d7f50d1c72");
+pub const MF_TRANSCODE_ENCODINGPROFILE = Guid.initString("6947787c-f508-4ea9-b1e9-a1fe3a49fbc9");
+pub const MF_TRANSCODE_QUALITYVSSPEED = Guid.initString("98332df8-03cd-476b-89fa-3f9e442dec9f");
+pub const MF_TRANSCODE_DONOT_INSERT_ENCODER = Guid.initString("f45aa7ce-ab24-4012-a11b-dc8220201410");
+pub const MF_VIDEO_PROCESSOR_ALGORITHM = Guid.initString("4a0a1e1f-272c-4fb6-9eb1-db330cbc97ca");
+pub const MF_XVP_DISABLE_FRC = Guid.initString("2c0afa19-7a97-4d5a-9ee8-16d4fc518d8c");
+pub const MF_XVP_CALLER_ALLOCATES_OUTPUT = Guid.initString("04a2cabc-0cab-40b1-a1b9-75bc3658f000");
+pub const MF_LOCAL_MFT_REGISTRATION_SERVICE = Guid.initString("ddf5cf9c-4506-45aa-abf0-6d5d94dd1b4a");
+pub const MF_WRAPPED_SAMPLE_SERVICE = Guid.initString("31f52bf2-d03e-4048-80d0-9c1046d87c61");
+pub const MF_WRAPPED_OBJECT = Guid.initString("2b182c4c-d6ac-49f4-8915-f71887db70cd");
+pub const CLSID_HttpSchemePlugin = Guid.initString("44cb442b-9da9-49df-b3fd-023777b16e50");
+pub const CLSID_UrlmonSchemePlugin = Guid.initString("9ec4b4f9-3029-45ad-947b-344de2a249e2");
+pub const CLSID_NetSchemePlugin = Guid.initString("e9f4ebab-d97b-463e-a2b1-c54ee3f9414d");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE = Guid.initString("c60ac5fe-252a-478f-a0ef-bc8fa5f7cad3");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_HW_SOURCE = Guid.initString("de7046ba-54d6-4487-a2a4-ec7c0d1bd163");
+pub const MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME = Guid.initString("60d0e559-52f8-4fa2-bbce-acdb34a8ec01");
+pub const MF_DEVSOURCE_ATTRIBUTE_MEDIA_TYPE = Guid.initString("56a819ca-0c78-4de4-a0a7-3ddaba0f24d4");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_CATEGORY = Guid.initString("77f0ae69-c3bd-4509-941d-467e4d24899e");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK = Guid.initString("58f0aad8-22bf-4f8a-bb3d-d2c4978c6e2f");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_SYMBOLIC_LINK = Guid.initString("98d24b5e-5930-4614-b5a1-f600f9355a78");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_MAX_BUFFERS = Guid.initString("7dd9b730-4f2d-41d5-8f95-0cc9a912ba26");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ENDPOINT_ID = Guid.initString("30da9258-feb9-47a7-a453-763a7a8e1c5f");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_ROLE = Guid.initString("bc9d118e-8c67-4a18-85d4-12d300400552");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_PROVIDER_DEVICE_ID = Guid.initString("36689d42-a06c-40ae-84cf-f5a034067cc4");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_XADDRESS = Guid.initString("bca0be52-c327-44c7-9b7d-7fa8d9b5bcda");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_STREAM_URL = Guid.initString("9d7b40d2-3617-4043-93e3-8d6da9bb3492");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_USERNAME = Guid.initString("05d01add-949f-46eb-bc8e-8b0d2b32d79d");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_PASSWORD = Guid.initString("a0fd7e16-42d9-49df-84c0-e82c5eab8874");
+pub const CLSID_FrameServerNetworkCameraSource = Guid.initString("7a213aa7-866f-414a-8c1a-275c7283a395");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_AUDCAP_GUID = Guid.initString("14dd9a1c-7cff-41be-b1b9-ba1ac6ecb571");
+pub const MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_GUID = Guid.initString("8ac3587a-4ae7-42d8-99e0-0a6013eef90f");
+pub const MF_DEVICESTREAM_IMAGE_STREAM = Guid.initString("a7ffb865-e7b2-43b0-9f6f-9af2a0e50fc0");
+pub const MF_DEVICESTREAM_INDEPENDENT_IMAGE_STREAM = Guid.initString("03eeec7e-d605-4576-8b29-6580b490d7d3");
+pub const MF_DEVICESTREAM_STREAM_ID = Guid.initString("11bd5120-d124-446b-88e6-17060257fff9");
+pub const MF_DEVICESTREAM_STREAM_CATEGORY = Guid.initString("2939e7b8-a62e-4579-b674-d4073dfabbba");
+pub const MF_DEVICESTREAM_FRAMESERVER_SHARED = Guid.initString("1cb378e9-b279-41d4-af97-34a243e68320");
+pub const MF_DEVICESTREAM_TRANSFORM_STREAM_ID = Guid.initString("e63937b7-daaf-4d49-815f-d826f8ad31e7");
+pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CLSID = Guid.initString("048e6558-60c4-4173-bd5b-6a3ca2896aee");
+pub const MF_DEVICEMFT_EXTENSION_PLUGIN_CLSID = Guid.initString("0844dbae-34fa-48a0-a783-8e696fb1c9a8");
+pub const MF_DEVICESTREAM_EXTENSION_PLUGIN_CONNECTION_POINT = Guid.initString("37f9375c-e664-4ea4-aae4-cb6d1daca1f4");
+pub const MF_DEVICESTREAM_TAKEPHOTO_TRIGGER = Guid.initString("1d180e34-538c-4fbb-a75a-859af7d261a6");
+pub const MF_DEVICESTREAM_MAX_FRAME_BUFFERS = Guid.initString("1684cebe-3175-4985-882c-0efd3e8ac11e");
+pub const MF_DEVICEMFT_CONNECTED_FILTER_KSCONTROL = Guid.initString("6a2c4fa6-d179-41cd-9523-822371ea40e5");
+pub const MF_DEVICEMFT_CONNECTED_PIN_KSCONTROL = Guid.initString("e63310f7-b244-4ef8-9a7d-24c74e32ebd0");
+pub const MF_DEVICE_THERMAL_STATE_CHANGED = Guid.initString("70ccd0af-fc9f-4deb-a875-9fecd16c5bd4");
+pub const MFSampleExtension_DeviceTimestamp = Guid.initString("8f3e35e7-2dcd-4887-8622-2a58baa652b0");
+pub const MFSampleExtension_Spatial_CameraViewTransform = Guid.initString("4e251fa4-830f-4770-859a-4b8d99aa809b");
+pub const MFSampleExtension_Spatial_CameraCoordinateSystem = Guid.initString("9d13c82f-2199-4e67-91cd-d1a4181f2534");
+pub const MFSampleExtension_Spatial_CameraProjectionTransform = Guid.initString("47f9fcb5-2a02-4f26-a477-792fdf95886a");
+pub const MF_MEDIASOURCE_SERVICE = Guid.initString("f09992f7-9fba-4c4a-a37f-8c47b4e1dfe7");
+pub const MF_ACCESS_CONTROLLED_MEDIASOURCE_SERVICE = Guid.initString("014a5031-2f05-4c6a-9f9c-7d0dc4eda5f4");
+pub const MF_CONTENT_DECRYPTOR_SERVICE = Guid.initString("68a72927-fc7b-44ee-85f4-7c51bd55a659");
+pub const MF_CONTENT_PROTECTION_DEVICE_SERVICE = Guid.initString("ff58436f-76a0-41fe-b566-10cc53962edd");
+pub const MF_SD_AUDIO_ENCODER_DELAY = Guid.initString("8e85422c-73de-403f-9a35-550ad6e8b951");
+pub const MF_SD_AUDIO_ENCODER_PADDING = Guid.initString("529c7f2c-ac4b-4e3f-bfc3-0902194982cb");
+pub const CLSID_MSH264DecoderMFT = Guid.initString("62ce7e72-4c71-4d20-b15d-452831a87d9d");
+pub const CLSID_MSH264EncoderMFT = Guid.initString("6ca50344-051a-4ded-9779-a43305165e35");
+pub const CLSID_MSDDPlusDecMFT = Guid.initString("177c0afe-900b-48d4-9e4c-57add250b3d4");
+pub const CLSID_MP3DecMediaObject = Guid.initString("bbeea841-0a63-4f52-a7ab-a9b3a84ed38a");
+pub const CLSID_MSAACDecMFT = Guid.initString("32d186a7-218f-4c75-8876-dd77273a8999");
+pub const CLSID_MSH265DecoderMFT = Guid.initString("420a51a3-d605-430c-b4fc-45274fa6c562");
+pub const CLSID_WMVDecoderMFT = Guid.initString("82d353df-90bd-4382-8bc2-3f6192b76e34");
+pub const CLSID_WMADecMediaObject = Guid.initString("2eeb4adf-4578-4d10-bca7-bb955f56320a");
+pub const CLSID_MSMPEGAudDecMFT = Guid.initString("70707b39-b2ca-4015-abea-f8447d22d88b");
+pub const CLSID_MSMPEGDecoderMFT = Guid.initString("2d709e52-123f-49b5-9cbc-9af5cde28fb9");
+pub const CLSID_AudioResamplerMediaObject = Guid.initString("f447b69e-1884-4a7e-8055-346f74d6edb3");
+pub const CLSID_MSVPxDecoder = Guid.initString("e3aaf548-c9a4-4c6e-234d-5ada374b0000");
+pub const CLSID_MSOpusDecoder = Guid.initString("63e17c10-2d43-4c42-8fe3-8d8b63e46a6a");
+pub const CLSID_VideoProcessorMFT = Guid.initString("88753b26-5b24-49bd-b2e7-0c445c78c982");
+pub const MFNETSOURCE_CROSS_ORIGIN_SUPPORT = Guid.initString("9842207c-b02c-4271-a2fc-72e49308e5c2");
+pub const MFNETSOURCE_HTTP_DOWNLOAD_SESSION_PROVIDER = Guid.initString("7d55081e-307d-4d6d-a663-a93be97c4b5c");
+pub const MF_SD_MEDIASOURCE_STATUS = Guid.initString("1913678b-fc0f-44da-8f43-1ba3b526f4ae");
+pub const MF_SD_VIDEO_SPHERICAL = Guid.initString("a51da449-3fdc-478c-bcb5-30be76595f55");
+pub const MF_SD_VIDEO_SPHERICAL_FORMAT = Guid.initString("4a8fc407-6ea1-46c8-b567-6971d4a139c3");
+pub const MF_SD_VIDEO_SPHERICAL_INITIAL_VIEWDIRECTION = Guid.initString("11d25a49-bb62-467f-9db1-c17165716c49");
+pub const MF_MEDIASOURCE_EXPOSE_ALL_STREAMS = Guid.initString("e7f250b8-8fd9-4a09-b6c1-6a315c7c720e");
+pub const MF_ST_MEDIASOURCE_COLLECTION = Guid.initString("616de972-83ad-4950-8170-630d19cbe307");
+pub const MF_DEVICESTREAM_FILTER_KSCONTROL = Guid.initString("46783cca-3df5-4923-a9ef-36b7223edde0");
+pub const MF_DEVICESTREAM_PIN_KSCONTROL = Guid.initString("ef3ef9a7-87f2-48ca-be02-674878918e98");
+pub const MF_DEVICESTREAM_SOURCE_ATTRIBUTES = Guid.initString("2f8cb617-361b-434f-85ea-99a03e1ce4e0");
+pub const MF_DEVICESTREAM_FRAMESERVER_HIDDEN = Guid.initString("f402567b-4d91-4179-96d1-74c8480c2034");
+pub const MF_STF_VERSION_INFO = Guid.initString("6770bd39-ef82-44ee-a49b-934beb24aef7");
+pub const MF_STF_VERSION_DATE = Guid.initString("31a165d5-df67-4095-8e44-8868fc20dbfd");
+pub const MF_DEVICESTREAM_REQUIRED_CAPABILITIES = Guid.initString("6d8b957e-7cf6-43f4-af56-9c0e1e4fcbe1");
+pub const MF_DEVICESTREAM_REQUIRED_SDDL = Guid.initString("331ae85d-c0d3-49ba-83ba-82a12d63cdd6");
+pub const MF_DEVICEMFT_SENSORPROFILE_COLLECTION = Guid.initString("36ebdc44-b12c-441b-89f4-08b2f41a9cfc");
+pub const MF_DEVICESTREAM_SENSORSTREAM_ID = Guid.initString("e35b9fe4-0659-4cad-bb51-33160be7e413");
+pub const MF_PD_ASF_FILEPROPERTIES_FILE_ID = Guid.initString("3de649b4-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_CREATION_TIME = Guid.initString("3de649b6-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PACKETS = Guid.initString("3de649b7-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PLAY_DURATION = Guid.initString("3de649b8-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_SEND_DURATION = Guid.initString("3de649b9-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_PREROLL = Guid.initString("3de649ba-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_FLAGS = Guid.initString("3de649bb-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MIN_PACKET_SIZE = Guid.initString("3de649bc-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MAX_PACKET_SIZE = Guid.initString("3de649bd-d76d-4e66-9ec9-78120fb4c7e3");
+pub const MF_PD_ASF_FILEPROPERTIES_MAX_BITRATE = Guid.initString("3de649be-d76d-4e66-9ec9-78120fb4c7e3");
+pub const CLSID_WMDRMSystemID = Guid.initString("8948bb22-11bd-4796-93e3-974d1b575678");
+pub const MF_PD_ASF_CONTENTENCRYPTION_TYPE = Guid.initString("8520fe3d-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_KEYID = Guid.initString("8520fe3e-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_SECRET_DATA = Guid.initString("8520fe3f-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTION_LICENSE_URL = Guid.initString("8520fe40-277e-46ea-99e4-e30a86db12be");
+pub const MF_PD_ASF_CONTENTENCRYPTIONEX_ENCRYPTION_DATA = Guid.initString("62508be5-ecdf-4924-a359-72bab3397b9d");
+pub const MF_PD_ASF_LANGLIST = Guid.initString("f23de43c-9977-460d-a6ec-32937f160f7d");
+pub const MF_PD_ASF_LANGLIST_LEGACYORDER = Guid.initString("f23de43d-9977-460d-a6ec-32937f160f7d");
+pub const MF_PD_ASF_MARKER = Guid.initString("5134330e-83a6-475e-a9d5-4fb875fb2e31");
+pub const MF_PD_ASF_SCRIPT = Guid.initString("e29cd0d7-d602-4923-a7fe-73fd97ecc650");
+pub const MF_PD_ASF_CODECLIST = Guid.initString("e4bb3509-c18d-4df1-bb99-7a36b3cc4119");
+pub const MF_PD_ASF_METADATA_IS_VBR = Guid.initString("5fc6947a-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_V8_VBRPEAK = Guid.initString("5fc6947b-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_V8_BUFFERAVERAGE = Guid.initString("5fc6947c-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_METADATA_LEAKY_BUCKET_PAIRS = Guid.initString("5fc6947d-ef60-445d-b449-442ecc78b4c1");
+pub const MF_PD_ASF_DATA_START_OFFSET = Guid.initString("e7d5b3e7-1f29-45d3-8822-3e78fae272ed");
+pub const MF_PD_ASF_DATA_LENGTH = Guid.initString("e7d5b3e8-1f29-45d3-8822-3e78fae272ed");
+pub const MF_SD_ASF_EXTSTRMPROP_LANGUAGE_ID_INDEX = Guid.initString("48f8a522-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_AVG_DATA_BITRATE = Guid.initString("48f8a523-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_AVG_BUFFERSIZE = Guid.initString("48f8a524-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_MAX_DATA_BITRATE = Guid.initString("48f8a525-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_EXTSTRMPROP_MAX_BUFFERSIZE = Guid.initString("48f8a526-305d-422d-8524-2502dda33680");
+pub const MF_SD_ASF_STREAMBITRATES_BITRATE = Guid.initString("a8e182ed-afc8-43d0-b0d1-f65bad9da558");
+pub const MF_SD_ASF_METADATA_DEVICE_CONFORMANCE_TEMPLATE = Guid.initString("245e929d-c44e-4f7e-bb3c-77d4dfd27f8a");
+pub const MF_PD_ASF_INFO_HAS_AUDIO = Guid.initString("80e62295-2296-4a44-b31c-d103c6fed23c");
+pub const MF_PD_ASF_INFO_HAS_VIDEO = Guid.initString("80e62296-2296-4a44-b31c-d103c6fed23c");
+pub const MF_PD_ASF_INFO_HAS_NON_AUDIO_VIDEO = Guid.initString("80e62297-2296-4a44-b31c-d103c6fed23c");
+pub const MF_ASFPROFILE_MINPACKETSIZE = Guid.initString("22587626-47de-4168-87f5-b5aa9b12a8f0");
+pub const MF_ASFPROFILE_MAXPACKETSIZE = Guid.initString("22587627-47de-4168-87f5-b5aa9b12a8f0");
+pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET1 = Guid.initString("c69b5901-ea1a-4c9b-b692-e2a0d29a8add");
+pub const MF_ASFSTREAMCONFIG_LEAKYBUCKET2 = Guid.initString("c69b5902-ea1a-4c9b-b692-e2a0d29a8add");
+pub const MFASFSampleExtension_SampleDuration = Guid.initString("c6bd9450-867f-4907-83a3-c77921b733ad");
+pub const MFASFSampleExtension_OutputCleanPoint = Guid.initString("f72a3c6f-6eb4-4ebc-b192-09ad9759e828");
+pub const MFASFSampleExtension_SMPTE = Guid.initString("399595ec-8667-4e2d-8fdb-98814ce76c1e");
+pub const MFASFSampleExtension_FileName = Guid.initString("e165ec0e-19ed-45d7-b4a7-25cbd1e28e9b");
+pub const MFASFSampleExtension_ContentType = Guid.initString("d590dc20-07bc-436c-9cf7-f3bbfbf1a4dc");
+pub const MFASFSampleExtension_PixelAspectRatio = Guid.initString("1b1ee554-f9ea-4bc8-821a-376b74e4c4b8");
+pub const MFASFSampleExtension_Encryption_SampleID = Guid.initString("6698b84e-0afa-4330-aeb2-1c0a98d7a44d");
+pub const MFASFSampleExtension_Encryption_KeyID = Guid.initString("76376591-795f-4da1-86ed-9d46eca109a9");
+pub const MFASFMutexType_Language = Guid.initString("72178c2b-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Bitrate = Guid.initString("72178c2c-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Presentation = Guid.initString("72178c2d-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFMutexType_Unknown = Guid.initString("72178c2e-e45b-11d5-bc2a-00b0d0f3f4ab");
+pub const MFASFSPLITTER_PACKET_BOUNDARY = Guid.initString("fe584a05-e8d6-42e3-b176-f1211705fb6f");
+pub const MFASFINDEXER_TYPE_TIMECODE = Guid.initString("49815231-6bad-44fd-810a-3f60984ec7fd");
+pub const MF_CAPTURE_ENGINE_INITIALIZED = Guid.initString("219992bc-cf92-4531-a1ae-96e1e886c8f1");
+pub const MF_CAPTURE_ENGINE_PREVIEW_STARTED = Guid.initString("a416df21-f9d3-4a74-991b-b817298952c4");
+pub const MF_CAPTURE_ENGINE_PREVIEW_STOPPED = Guid.initString("13d5143c-1edd-4e50-a2ef-350a47678060");
+pub const MF_CAPTURE_ENGINE_RECORD_STARTED = Guid.initString("ac2b027b-ddf9-48a0-89be-38ab35ef45c0");
+pub const MF_CAPTURE_ENGINE_RECORD_STOPPED = Guid.initString("55e5200a-f98f-4c0d-a9ec-9eb25ed3d773");
+pub const MF_CAPTURE_ENGINE_PHOTO_TAKEN = Guid.initString("3c50c445-7304-48eb-865d-bba19ba3af5c");
+pub const MF_CAPTURE_SOURCE_CURRENT_DEVICE_MEDIA_TYPE_SET = Guid.initString("e7e75e4c-039c-4410-815b-8741307b63aa");
+pub const MF_CAPTURE_ENGINE_ERROR = Guid.initString("46b89fc6-33cc-4399-9dad-784de77d587c");
+pub const MF_CAPTURE_ENGINE_EFFECT_ADDED = Guid.initString("aa8dc7b5-a048-4e13-8ebe-f23c46c830c1");
+pub const MF_CAPTURE_ENGINE_EFFECT_REMOVED = Guid.initString("c6e8db07-fb09-4a48-89c6-bf92a04222c9");
+pub const MF_CAPTURE_ENGINE_ALL_EFFECTS_REMOVED = Guid.initString("fded7521-8ed8-431a-a96b-f3e2565e981c");
+pub const MF_CAPTURE_SINK_PREPARED = Guid.initString("7bfce257-12b1-4409-8c34-d445daab7578");
+pub const MF_CAPTURE_ENGINE_OUTPUT_MEDIA_TYPE_SET = Guid.initString("caaad994-83ec-45e9-a30a-1f20aadb9831");
+pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_BLOCKED = Guid.initString("a4209417-8d39-46f3-b759-5912528f4207");
+pub const MF_CAPTURE_ENGINE_CAMERA_STREAM_UNBLOCKED = Guid.initString("9be9eef0-cdaf-4717-8564-834aae66415c");
+pub const MF_CAPTURE_ENGINE_D3D_MANAGER = Guid.initString("76e25e7b-d595-4283-962c-c594afd78ddf");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_UNPROCESSED_SAMPLES = Guid.initString("b467f705-7913-4894-9d42-a215fea23da9");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_UNPROCESSED_SAMPLES = Guid.initString("1cddb141-a7f4-4d58-9896-4d15a53c4efe");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_VIDEO_MAX_PROCESSED_SAMPLES = Guid.initString("e7b4a49e-382c-4aef-a946-aed5490b7111");
+pub const MF_CAPTURE_ENGINE_RECORD_SINK_AUDIO_MAX_PROCESSED_SAMPLES = Guid.initString("9896e12a-f707-4500-b6bd-db8eb810b50f");
+pub const MF_CAPTURE_ENGINE_USE_AUDIO_DEVICE_ONLY = Guid.initString("1c8077da-8466-4dc4-8b8e-276b3f85923b");
+pub const MF_CAPTURE_ENGINE_USE_VIDEO_DEVICE_ONLY = Guid.initString("7e025171-cf32-4f2e-8f19-410577b73a66");
+pub const MF_CAPTURE_ENGINE_DISABLE_HARDWARE_TRANSFORMS = Guid.initString("b7c42a6b-3207-4495-b4e7-81f9c35d5991");
+pub const MF_CAPTURE_ENGINE_DISABLE_DXVA = Guid.initString("f9818862-179d-433f-a32f-74cbcf74466d");
+pub const MF_CAPTURE_ENGINE_MEDIASOURCE_CONFIG = Guid.initString("bc6989d2-0fc1-46e1-a74f-efd36bc788de");
+pub const MF_CAPTURE_ENGINE_DECODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("2b8ad2e8-7acb-4321-a606-325c4249f4fc");
+pub const MF_CAPTURE_ENGINE_ENCODER_MFT_FIELDOFUSE_UNLOCK_Attribute = Guid.initString("54c63a00-78d5-422f-aa3e-5e99ac649269");
+pub const MF_CAPTURE_ENGINE_ENABLE_CAMERA_STREAMSTATE_NOTIFICATION = Guid.initString("4c808e9d-aaed-4713-90fb-cb24064ab8da");
+pub const MF_CAPTURE_ENGINE_MEDIA_CATEGORY = Guid.initString("8e3f5bd5-dbbf-42f0-8542-d07a3971762a");
+pub const MF_CAPTURE_ENGINE_AUDIO_PROCESSING = Guid.initString("10f1be5e-7e11-410b-973d-f4b6109000fe");
+pub const MF_CAPTURE_ENGINE_EVENT_GENERATOR_GUID = Guid.initString("abfa8ad5-fc6d-4911-87e0-961945f8f7ce");
+pub const MF_CAPTURE_ENGINE_EVENT_STREAM_INDEX = Guid.initString("82697f44-b1cf-42eb-9753-f86d649c8865");
+pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE = Guid.initString("03160b7e-1c6f-4db2-ad56-a7c430f82392");
+pub const MF_CAPTURE_ENGINE_SELECTEDCAMERAPROFILE_INDEX = Guid.initString("3ce88613-2214-46c3-b417-82f8a313c9c3");
+pub const CLSID_MFCaptureEngine = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
+pub const CLSID_MFCaptureEngineClassFactory = Guid.initString("efce38d3-8914-4674-a7df-ae1b3d654b8a");
+pub const MFSampleExtension_DeviceReferenceSystemTime = Guid.initString("6523775a-ba2d-405f-b2c5-01ff88e2e8f6");
+pub const MF_MSE_CALLBACK = Guid.initString("9063a7c0-42c5-4ffd-a8a8-6fcf9ea3d00c");
+pub const MF_MSE_ACTIVELIST_CALLBACK = Guid.initString("949bda0f-4549-46d5-ad7f-b846e1ab1652");
+pub const MF_MSE_BUFFERLIST_CALLBACK = Guid.initString("42e669b0-d60e-4afb-a85b-d8e5fe6bdab5");
+pub const MF_MSE_VP9_SUPPORT = Guid.initString("92d78429-d88b-4ff0-8322-803efa6e9626");
+pub const MF_MSE_OPUS_SUPPORT = Guid.initString("4d224cc1-8cc4-48a3-a7a7-e4c16ce6388a");
+pub const MF_MEDIA_ENGINE_NEEDKEY_CALLBACK = Guid.initString("7ea80843-b6e4-432c-8ea4-7848ffe4220e");
+pub const MF_MEDIA_ENGINE_CALLBACK = Guid.initString("c60381b8-83a4-41f8-a3d0-de05076849a9");
+pub const MF_MEDIA_ENGINE_DXGI_MANAGER = Guid.initString("065702da-1094-486d-8617-ee7cc4ee4648");
+pub const MF_MEDIA_ENGINE_EXTENSION = Guid.initString("3109fd46-060d-4b62-8dcf-faff811318d2");
+pub const MF_MEDIA_ENGINE_PLAYBACK_HWND = Guid.initString("d988879b-67c9-4d92-baa7-6eadd446039d");
+pub const MF_MEDIA_ENGINE_OPM_HWND = Guid.initString("a0be8ee7-0572-4f2c-a801-2a151bd3e726");
+pub const MF_MEDIA_ENGINE_PLAYBACK_VISUAL = Guid.initString("6debd26f-6ab9-4d7e-b0ee-c61a73ffad15");
+pub const MF_MEDIA_ENGINE_COREWINDOW = Guid.initString("fccae4dc-0b7f-41c2-9f96-4659948acddc");
+pub const MF_MEDIA_ENGINE_VIDEO_OUTPUT_FORMAT = Guid.initString("5066893c-8cf9-42bc-8b8a-472212e52726");
+pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_FLAGS = Guid.initString("e0350223-5aaf-4d76-a7c3-06de70894db4");
+pub const MF_MEDIA_ENGINE_CONTENT_PROTECTION_MANAGER = Guid.initString("fdd6dfaa-bd85-4af3-9e0f-a01d539d876a");
+pub const MF_MEDIA_ENGINE_AUDIO_ENDPOINT_ROLE = Guid.initString("d2cb93d1-116a-44f2-9385-f7d0fda2fb46");
+pub const MF_MEDIA_ENGINE_AUDIO_CATEGORY = Guid.initString("c8d4c51d-350e-41f2-ba46-faebbb0857f6");
+pub const MF_MEDIA_ENGINE_STREAM_CONTAINS_ALPHA_CHANNEL = Guid.initString("5cbfaf44-d2b2-4cfb-80a7-d429c74c789d");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE = Guid.initString("4e0212e2-e18f-41e1-95e5-c0e7e9235bc3");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE9 = Guid.initString("052c2d39-40c0-4188-ab86-f828273b7522");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE10 = Guid.initString("11a47afd-6589-4124-b312-6158ec517fc3");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE11 = Guid.initString("1cf1315f-ce3f-4035-9391-16142f775189");
+pub const MF_MEDIA_ENGINE_BROWSER_COMPATIBILITY_MODE_IE_EDGE = Guid.initString("a6f3e465-3aca-442c-a3f0-ad6ddad839ae");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE = Guid.initString("3ef26ad4-dc54-45de-b9af-76c8c66bfa8e");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WWA_EDGE = Guid.initString("15b29098-9f01-4e4d-b65a-c06c6c89da2a");
+pub const MF_MEDIA_ENGINE_COMPATIBILITY_MODE_WIN10 = Guid.initString("5b25e089-6ca7-4139-a2cb-fcaab39552a3");
+pub const MF_MEDIA_ENGINE_SOURCE_RESOLVER_CONFIG_STORE = Guid.initString("0ac0c497-b3c4-48c9-9cde-bb8ca2442ca3");
+pub const MF_MEDIA_ENGINE_TRACK_ID = Guid.initString("65bea312-4043-4815-8eab-44dce2ef8f2a");
+pub const MF_MEDIA_ENGINE_TELEMETRY_APPLICATION_ID = Guid.initString("1e7b273b-a7e4-402a-8f51-c48e88a2cabc");
+pub const MF_MEDIA_ENGINE_SYNCHRONOUS_CLOSE = Guid.initString("c3c2e12f-7e0e-4e43-b91c-dc992ccdfa5e");
+pub const MF_MEDIA_ENGINE_MEDIA_PLAYER_MODE = Guid.initString("3ddd8d45-5aa1-4112-82e5-36f6a2197e6e");
+pub const CLSID_MFMediaEngineClassFactory = Guid.initString("b44392da-499b-446b-a4cb-005fead0e6d5");
+pub const MF_MEDIA_ENGINE_TIMEDTEXT = Guid.initString("805ea411-92e0-4e59-9b6e-5c7d7915e64f");
+pub const MF_MEDIA_ENGINE_CONTINUE_ON_CODEC_ERROR = Guid.initString("dbcdb7f9-48e4-4295-b70d-d518234eeb38");
+pub const MF_MEDIA_ENGINE_EME_CALLBACK = Guid.initString("494553a7-a481-4cb7-bec5-380903513731");
+pub const CLSID_MPEG2DLNASink = Guid.initString("fa5fe7c5-6a1d-4b11-b41f-f959d6c76500");
+pub const MF_MP2DLNA_USE_MMCSS = Guid.initString("54f3e2ee-a2a2-497d-9834-973afde521eb");
+pub const MF_MP2DLNA_VIDEO_BIT_RATE = Guid.initString("e88548de-73b4-42d7-9c75-adfa0a2a6e4c");
+pub const MF_MP2DLNA_AUDIO_BIT_RATE = Guid.initString("2d1c070e-2b5f-4ab3-a7e6-8d943ba8d00a");
+pub const MF_MP2DLNA_ENCODE_QUALITY = Guid.initString("b52379d7-1d46-4fb6-a317-a4a5f60959f8");
+pub const MF_MP2DLNA_STATISTICS = Guid.initString("75e488a3-d5ad-4898-85e0-bcce24a722d7");
+pub const CLSID_MFReadWriteClassFactory = Guid.initString("48e2ed0f-98c2-4a37-bed5-166312ddd83f");
+pub const CLSID_MFSourceReader = Guid.initString("1777133c-0881-411b-a577-ad545f0714c4");
+pub const MF_SOURCE_READER_ASYNC_CALLBACK = Guid.initString("1e3dbeac-bb43-4c35-b507-cd644464c965");
+pub const MF_SOURCE_READER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
+pub const MF_SOURCE_READER_DISABLE_DXVA = Guid.initString("aa456cfd-3943-4a1e-a77d-1838c0ea2e35");
+pub const MF_SOURCE_READER_MEDIASOURCE_CONFIG = Guid.initString("9085abeb-0354-48f9-abb5-200df838c68e");
+pub const MF_SOURCE_READER_MEDIASOURCE_CHARACTERISTICS = Guid.initString("6d23f5c8-c5d7-4a9b-9971-5d11f8bca880");
+pub const MF_SOURCE_READER_ENABLE_VIDEO_PROCESSING = Guid.initString("fb394f3d-ccf1-42ee-bbb3-f9b845d5681d");
+pub const MF_SOURCE_READER_ENABLE_ADVANCED_VIDEO_PROCESSING = Guid.initString("0f81da2c-b537-4672-a8b2-a681b17307a3");
+pub const MF_SOURCE_READER_DISABLE_CAMERA_PLUGINS = Guid.initString("9d3365dd-058f-4cfb-9f97-b314cc99c8ad");
+pub const MF_SOURCE_READER_DISCONNECT_MEDIASOURCE_ON_SHUTDOWN = Guid.initString("56b67165-219e-456d-a22e-2d3004c7fe56");
+pub const MF_SOURCE_READER_ENABLE_TRANSCODE_ONLY_TRANSFORMS = Guid.initString("dfd4f008-b5fd-4e78-ae44-62a1e67bbe27");
+pub const MF_SOURCE_READER_D3D11_BIND_FLAGS = Guid.initString("33f3197b-f73a-4e14-8d85-0e4c4368788d");
+pub const CLSID_MFSinkWriter = Guid.initString("a3bbfb17-8273-4e52-9e0e-9739dc887990");
+pub const MF_SINK_WRITER_ASYNC_CALLBACK = Guid.initString("48cb183e-7b0b-46f4-822e-5e1d2dda4354");
+pub const MF_SINK_WRITER_DISABLE_THROTTLING = Guid.initString("08b845d8-2b74-4afe-9d53-be16d2d5ae4f");
+pub const MF_SINK_WRITER_D3D_MANAGER = Guid.initString("ec822da2-e1e9-4b29-a0d8-563c719f5269");
+pub const MF_SINK_WRITER_ENCODER_CONFIG = Guid.initString("ad91cd04-a7cc-4ac7-99b6-a57b9a4a7c70");
+pub const MF_READWRITE_DISABLE_CONVERTERS = Guid.initString("98d5b065-1374-4847-8d5d-31520fee7156");
+pub const MF_READWRITE_ENABLE_HARDWARE_TRANSFORMS = Guid.initString("a634a91c-822b-41b9-a494-4de4643612b0");
+pub const MF_READWRITE_MMCSS_CLASS = Guid.initString("39384300-d0eb-40b1-87a0-3318871b5a53");
+pub const MF_READWRITE_MMCSS_PRIORITY = Guid.initString("43ad19ce-f33f-4ba9-a580-e4cd12f2d144");
+pub const MF_READWRITE_MMCSS_CLASS_AUDIO = Guid.initString("430847da-0890-4b0e-938c-054332c547e1");
+pub const MF_READWRITE_MMCSS_PRIORITY_AUDIO = Guid.initString("273db885-2de2-4db2-a6a7-fdb66fb40b61");
+pub const MF_READWRITE_D3D_OPTIONAL = Guid.initString("216479d9-3071-42ca-bb6c-4c22102e1d18");
+pub const MF_MEDIASINK_AUTOFINALIZE_SUPPORTED = Guid.initString("48c131be-135a-41cb-8290-03652509c999");
+pub const MF_MEDIASINK_ENABLE_AUTOFINALIZE = Guid.initString("34014265-cb7e-4cde-ac7c-effd3b3c2530");
+pub const MF_READWRITE_ENABLE_AUTOFINALIZE = Guid.initString("dd7ca129-8cd1-4dc5-9dde-ce168675de61");
+pub const MF_MEDIA_SHARING_ENGINE_DEVICE_NAME = Guid.initString("771e05d1-862f-4299-95ac-ae81fd14f3e7");
+pub const MF_MEDIA_SHARING_ENGINE_DEVICE = Guid.initString("b461c58a-7a08-4b98-99a8-70fd5f3badfd");
+pub const CLSID_MFMediaSharingEngineClassFactory = Guid.initString("f8e307fb-6d45-4ad3-9993-66cd5a529659");
+pub const CLSID_MFImageSharingEngineClassFactory = Guid.initString("b22c3339-87f3-4059-a0c5-037aa9707eaf");
+pub const CLSID_PlayToSourceClassFactory = Guid.initString("da17539a-3dc3-42c1-a749-a183b51f085e");
+pub const GUID_PlayToService = Guid.initString("f6a8ff9d-9e14-41c9-bf0f-120a2b3ce120");
+pub const GUID_NativeDeviceService = Guid.initString("ef71e53c-52f4-43c5-b86a-ad6cb216a61e");
+pub const MF_CONTENTDECRYPTIONMODULE_SERVICE = Guid.initString("15320c45-ff80-484a-9dcb-0df894e69a01");
 
 //--------------------------------------------------------------------------------
 // Section: Types (1100)
 //--------------------------------------------------------------------------------
-pub const MF_Plugin_Type = extern enum(i32) {
-    MFT = 0,
-    MediaSource = 1,
-    MFT_MatchOutputType = 2,
-    Other = -1,
-};
-pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
-pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
-pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
-pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
-
 pub const D3D11_VIDEO_DECODER_DESC = extern struct {
     Guid: Guid,
     SampleWidth: u32,
@@ -3535,6 +3524,159 @@ pub const D3D11_FEATURE_VIDEO = extern enum(i32) {
 };
 pub const D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM = D3D11_FEATURE_VIDEO.M;
 
+pub const CodecAPIEventData = extern struct {
+    guid: Guid,
+    dataLength: u32,
+    reserved: [3]u32,
+};
+
+const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
+pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
+pub const ICodecAPI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSupported: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsModifiable: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterRange: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            ValueMin: *VARIANT,
+            ValueMax: *VARIANT,
+            SteppingDelta: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterValues: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Values: [*]*VARIANT,
+            ValuesCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            userData: ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaults: fn(
+            self: *const ICodecAPI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueWithNotify: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaultsWithNotify: fn(
+            self: *const ICodecAPI,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0000: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0001: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettingsWithNotify: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0002: *IStream,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 pub const D3DOVERLAYCAPS = extern struct {
     Caps: u32,
     MaxOverlayDisplayWidth: u32,
@@ -3778,158 +3920,16 @@ pub const IDirect3DCryptoSession9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CodecAPIEventData = extern struct {
-    guid: Guid,
-    dataLength: u32,
-    reserved: [3]u32,
+pub const MF_Plugin_Type = extern enum(i32) {
+    MFT = 0,
+    MediaSource = 1,
+    MFT_MatchOutputType = 2,
+    Other = -1,
 };
-
-const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
-pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
-pub const ICodecAPI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSupported: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsModifiable: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterRange: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            ValueMin: *VARIANT,
-            ValueMax: *VARIANT,
-            SteppingDelta: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterValues: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Values: [*]*VARIANT,
-            ValuesCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            userData: ?*c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaults: fn(
-            self: *const ICodecAPI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueWithNotify: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaultsWithNotify: fn(
-            self: *const ICodecAPI,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0000: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0001: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettingsWithNotify: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0002: *IStream,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: ?*c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
+pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
+pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
+pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
+pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
 
 pub const IMFMediaEventGenerator_GetEventFlags = extern enum(u32) {
     None = 0,

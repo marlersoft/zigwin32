@@ -2,231 +2,234 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (221)
 //--------------------------------------------------------------------------------
-pub const WTS_DOMAIN_LENGTH : u32 = 255;
-pub const WTS_USERNAME_LENGTH : u32 = 255;
-pub const WTS_PASSWORD_LENGTH : u32 = 255;
-pub const WTS_DIRECTORY_LENGTH : u32 = 256;
-pub const WTS_INITIALPROGRAM_LENGTH : u32 = 256;
-pub const WTS_PROTOCOL_NAME_LENGTH : u32 = 8;
-pub const WTS_DRIVER_NAME_LENGTH : u32 = 8;
-pub const WTS_DEVICE_NAME_LENGTH : u32 = 19;
-pub const WTS_IMEFILENAME_LENGTH : u32 = 32;
-pub const WTS_CLIENTNAME_LENGTH : u32 = 20;
-pub const WTS_CLIENTADDRESS_LENGTH : u32 = 30;
-pub const WTS_CLIENT_PRODUCT_ID_LENGTH : u32 = 32;
-pub const WTS_MAX_PROTOCOL_CACHE : u32 = 4;
-pub const WTS_MAX_CACHE_RESERVED : u32 = 20;
-pub const WTS_MAX_RESERVED : u32 = 100;
-pub const WTS_MAX_COUNTERS : u32 = 100;
-pub const WTS_MAX_DISPLAY_IOCTL_DATA : u32 = 256;
-pub const WTS_PERF_DISABLE_NOTHING : u32 = 0;
-pub const WTS_PERF_DISABLE_WALLPAPER : u32 = 1;
-pub const WTS_PERF_DISABLE_FULLWINDOWDRAG : u32 = 2;
-pub const WTS_PERF_DISABLE_MENUANIMATIONS : u32 = 4;
-pub const WTS_PERF_DISABLE_THEMING : u32 = 8;
-pub const WTS_PERF_ENABLE_ENHANCED_GRAPHICS : u32 = 16;
-pub const WTS_PERF_DISABLE_CURSOR_SHADOW : u32 = 32;
-pub const WTS_PERF_DISABLE_CURSORSETTINGS : u32 = 64;
-pub const WTS_PERF_ENABLE_FONT_SMOOTHING : u32 = 128;
-pub const WTS_PERF_ENABLE_DESKTOP_COMPOSITION : u32 = 256;
-pub const WTS_VALUE_TYPE_ULONG : u32 = 1;
-pub const WTS_VALUE_TYPE_STRING : u32 = 2;
-pub const WTS_VALUE_TYPE_BINARY : u32 = 3;
-pub const WTS_VALUE_TYPE_GUID : u32 = 4;
-pub const WTS_KEY_EXCHANGE_ALG_RSA : u32 = 1;
-pub const WTS_KEY_EXCHANGE_ALG_DH : u32 = 2;
-pub const WTS_LICENSE_PROTOCOL_VERSION : u32 = 65536;
-pub const WTS_LICENSE_PREAMBLE_VERSION : u32 = 3;
-pub const SINGLE_SESSION : u32 = 1;
-pub const FORCE_REJOIN : u32 = 2;
-pub const FORCE_REJOIN_IN_CLUSTERMODE : u32 = 3;
-pub const RESERVED_FOR_LEGACY : u32 = 4;
-pub const KEEP_EXISTING_SESSIONS : u32 = 8;
-pub const CHANNEL_EVENT_INITIALIZED : u32 = 0;
-pub const CHANNEL_EVENT_CONNECTED : u32 = 1;
-pub const CHANNEL_EVENT_V1_CONNECTED : u32 = 2;
-pub const CHANNEL_EVENT_DISCONNECTED : u32 = 3;
-pub const CHANNEL_EVENT_TERMINATED : u32 = 4;
-pub const CHANNEL_EVENT_DATA_RECEIVED : u32 = 10;
-pub const CHANNEL_EVENT_WRITE_COMPLETE : u32 = 11;
-pub const CHANNEL_EVENT_WRITE_CANCELLED : u32 = 12;
-pub const CHANNEL_RC_OK : u32 = 0;
-pub const CHANNEL_RC_ALREADY_INITIALIZED : u32 = 1;
-pub const CHANNEL_RC_NOT_INITIALIZED : u32 = 2;
-pub const CHANNEL_RC_ALREADY_CONNECTED : u32 = 3;
-pub const CHANNEL_RC_NOT_CONNECTED : u32 = 4;
-pub const CHANNEL_RC_TOO_MANY_CHANNELS : u32 = 5;
-pub const CHANNEL_RC_BAD_CHANNEL : u32 = 6;
-pub const CHANNEL_RC_BAD_CHANNEL_HANDLE : u32 = 7;
-pub const CHANNEL_RC_NO_BUFFER : u32 = 8;
-pub const CHANNEL_RC_BAD_INIT_HANDLE : u32 = 9;
-pub const CHANNEL_RC_NOT_OPEN : u32 = 10;
-pub const CHANNEL_RC_BAD_PROC : u32 = 11;
-pub const CHANNEL_RC_NO_MEMORY : u32 = 12;
-pub const CHANNEL_RC_UNKNOWN_CHANNEL_NAME : u32 = 13;
-pub const CHANNEL_RC_ALREADY_OPEN : u32 = 14;
-pub const CHANNEL_RC_NOT_IN_VIRTUALCHANNELENTRY : u32 = 15;
-pub const CHANNEL_RC_NULL_DATA : u32 = 16;
-pub const CHANNEL_RC_ZERO_LENGTH : u32 = 17;
-pub const CHANNEL_RC_INVALID_INSTANCE : u32 = 18;
-pub const CHANNEL_RC_UNSUPPORTED_VERSION : u32 = 19;
-pub const CHANNEL_RC_INITIALIZATION_ERROR : u32 = 20;
-pub const VIRTUAL_CHANNEL_VERSION_WIN2000 : u32 = 1;
-pub const CHANNEL_CHUNK_LENGTH : u32 = 1600;
-pub const CHANNEL_BUFFER_SIZE : u32 = 65535;
-pub const CHANNEL_FLAG_FIRST : u32 = 1;
-pub const CHANNEL_FLAG_LAST : u32 = 2;
-pub const CHANNEL_FLAG_MIDDLE : u32 = 0;
-pub const CHANNEL_FLAG_FAIL : u32 = 256;
-pub const CHANNEL_OPTION_INITIALIZED : u32 = 2147483648;
-pub const CHANNEL_OPTION_ENCRYPT_RDP : u32 = 1073741824;
-pub const CHANNEL_OPTION_ENCRYPT_SC : u32 = 536870912;
-pub const CHANNEL_OPTION_ENCRYPT_CS : u32 = 268435456;
-pub const CHANNEL_OPTION_PRI_HIGH : u32 = 134217728;
-pub const CHANNEL_OPTION_PRI_MED : u32 = 67108864;
-pub const CHANNEL_OPTION_PRI_LOW : u32 = 33554432;
-pub const CHANNEL_OPTION_COMPRESS_RDP : u32 = 8388608;
-pub const CHANNEL_OPTION_COMPRESS : u32 = 4194304;
-pub const CHANNEL_OPTION_SHOW_PROTOCOL : u32 = 2097152;
-pub const CHANNEL_OPTION_REMOTE_CONTROL_PERSISTENT : u32 = 1048576;
-pub const CHANNEL_MAX_COUNT : u32 = 30;
-pub const CHANNEL_NAME_LEN : u32 = 7;
-pub const MAX_POLICY_ATTRIBUTES : u32 = 20;
-pub const IDASYNC : u32 = 32001;
-pub const USERNAME_LENGTH : u32 = 20;
-pub const CLIENTNAME_LENGTH : u32 = 20;
-pub const CLIENTADDRESS_LENGTH : u32 = 30;
-pub const WTS_WSD_LOGOFF : u32 = 1;
-pub const WTS_WSD_SHUTDOWN : u32 = 2;
-pub const WTS_WSD_REBOOT : u32 = 4;
-pub const WTS_WSD_POWEROFF : u32 = 8;
-pub const WTS_WSD_FASTREBOOT : u32 = 16;
-pub const MAX_ELAPSED_TIME_LENGTH : u32 = 15;
-pub const MAX_DATE_TIME_LENGTH : u32 = 56;
-pub const WINSTATIONNAME_LENGTH : u32 = 32;
-pub const DOMAIN_LENGTH : u32 = 17;
-pub const WTS_DRIVE_LENGTH : u32 = 3;
-pub const WTS_LISTENER_NAME_LENGTH : u32 = 32;
-pub const WTS_COMMENT_LENGTH : u32 = 60;
-pub const WTS_LISTENER_CREATE : u32 = 1;
-pub const WTS_LISTENER_UPDATE : u32 = 16;
-pub const WTS_SECURITY_QUERY_INFORMATION : u32 = 1;
-pub const WTS_SECURITY_SET_INFORMATION : u32 = 2;
-pub const WTS_SECURITY_RESET : u32 = 4;
-pub const WTS_SECURITY_VIRTUAL_CHANNELS : u32 = 8;
-pub const WTS_SECURITY_REMOTE_CONTROL : u32 = 16;
-pub const WTS_SECURITY_LOGON : u32 = 32;
-pub const WTS_SECURITY_LOGOFF : u32 = 64;
-pub const WTS_SECURITY_MESSAGE : u32 = 128;
-pub const WTS_SECURITY_CONNECT : u32 = 256;
-pub const WTS_SECURITY_DISCONNECT : u32 = 512;
-pub const WTS_PROTOCOL_TYPE_CONSOLE : u32 = 0;
-pub const WTS_PROTOCOL_TYPE_ICA : u32 = 1;
-pub const WTS_PROTOCOL_TYPE_RDP : u32 = 2;
-pub const WTS_SESSIONSTATE_UNKNOWN : u32 = 4294967295;
-pub const WTS_SESSIONSTATE_LOCK : u32 = 0;
-pub const WTS_SESSIONSTATE_UNLOCK : u32 = 1;
-pub const PRODUCTINFO_COMPANYNAME_LENGTH : u32 = 256;
-pub const PRODUCTINFO_PRODUCTID_LENGTH : u32 = 4;
-pub const VALIDATIONINFORMATION_LICENSE_LENGTH : u32 = 16384;
-pub const VALIDATIONINFORMATION_HARDWAREID_LENGTH : u32 = 20;
-pub const WTS_EVENT_NONE : u32 = 0;
-pub const WTS_EVENT_CREATE : u32 = 1;
-pub const WTS_EVENT_DELETE : u32 = 2;
-pub const WTS_EVENT_RENAME : u32 = 4;
-pub const WTS_EVENT_CONNECT : u32 = 8;
-pub const WTS_EVENT_DISCONNECT : u32 = 16;
-pub const WTS_EVENT_LOGON : u32 = 32;
-pub const WTS_EVENT_LOGOFF : u32 = 64;
-pub const WTS_EVENT_STATECHANGE : u32 = 128;
-pub const WTS_EVENT_LICENSE : u32 = 256;
-pub const WTS_EVENT_ALL : u32 = 2147483647;
-pub const WTS_EVENT_FLUSH : u32 = 2147483648;
-pub const REMOTECONTROL_KBDSHIFT_HOTKEY : u32 = 1;
-pub const REMOTECONTROL_KBDCTRL_HOTKEY : u32 = 2;
-pub const REMOTECONTROL_KBDALT_HOTKEY : u32 = 4;
-pub const WTS_CHANNEL_OPTION_DYNAMIC : u32 = 1;
-pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_LOW : u32 = 0;
-pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_MED : u32 = 2;
-pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_HIGH : u32 = 4;
-pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_REAL : u32 = 6;
-pub const WTS_CHANNEL_OPTION_DYNAMIC_NO_COMPRESS : u32 = 8;
-pub const NOTIFY_FOR_ALL_SESSIONS : u32 = 1;
-pub const NOTIFY_FOR_THIS_SESSION : u32 = 0;
-pub const WTS_PROCESS_INFO_LEVEL_0 : u32 = 0;
-pub const WTS_PROCESS_INFO_LEVEL_1 : u32 = 1;
-pub const PLUGIN_CAPABILITY_EXTERNAL_REDIRECTION : u32 = 1;
-pub const MaxFQDN_Len : u32 = 256;
-pub const MaxNetBiosName_Len : u32 = 16;
-pub const MaxNumOfExposed_IPs : u32 = 12;
-pub const MaxUserName_Len : u32 = 104;
-pub const MaxDomainName_Len : u32 = 256;
-pub const MaxFarm_Len : u32 = 256;
-pub const MaxAppName_Len : u32 = 256;
-pub const WKS_FLAG_CLEAR_CREDS_ON_LAST_RESOURCE : u32 = 1;
-pub const WKS_FLAG_PASSWORD_ENCRYPTED : u32 = 2;
-pub const WKS_FLAG_CREDS_AUTHENTICATED : u32 = 4;
-pub const SB_SYNCH_CONFLICT_MAX_WRITE_ATTEMPTS : u32 = 100;
-pub const ACQUIRE_TARGET_LOCK_TIMEOUT : u32 = 300000;
-pub const RENDER_HINT_CLEAR : u32 = 0;
-pub const RENDER_HINT_VIDEO : u32 = 1;
-pub const RENDER_HINT_MAPPEDWINDOW : u32 = 2;
-pub const TS_VC_LISTENER_STATIC_CHANNEL : u32 = 1;
-pub const WRdsGraphicsChannels_LossyChannelMaxMessageSize : u32 = 988;
-pub const RFX_RDP_MSG_PREFIX : u32 = 0;
-pub const RFX_GFX_MSG_PREFIX : u32 = 48;
-pub const RFX_GFX_MSG_PREFIX_MASK : u32 = 48;
-pub const RFX_GFX_MAX_SUPPORTED_MONITORS : u32 = 16;
-pub const RFX_CLIENT_ID_LENGTH : u32 = 32;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_CONNECT : u32 = 701;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DISCONNECT : u32 = 702;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RECONNECT : u32 = 703;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DELETE_SAVED_CREDENTIALS : u32 = 704;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_UPDATE_SESSION_DISPLAYSETTINGS : u32 = 705;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_ATTACH_EVENT : u32 = 706;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DETACH_EVENT : u32 = 707;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_SETTINGS : u32 = 710;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_ACTIONS : u32 = 711;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCH_POINTER : u32 = 712;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_SET_RDPPROPERTY : u32 = 720;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_GET_RDPPROPERTY : u32 = 721;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_APPLY_SETTINGS : u32 = 722;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RETRIEVE_SETTINGS : u32 = 723;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_SUSPEND_SCREEN_UPDATES : u32 = 730;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RESUME_SCREEN_UPDATES : u32 = 731;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_EXECUTE_REMOTE_ACTION : u32 = 732;
-pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_GET_SNAPSHOT : u32 = 733;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_ENABLED : u32 = 740;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_EVENTSENABLED : u32 = 741;
-pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_POINTERSPEED : u32 = 742;
-pub const DISPID_AX_CONNECTING : u32 = 750;
-pub const DISPID_AX_CONNECTED : u32 = 751;
-pub const DISPID_AX_LOGINCOMPLETED : u32 = 752;
-pub const DISPID_AX_DISCONNECTED : u32 = 753;
-pub const DISPID_AX_STATUSCHANGED : u32 = 754;
-pub const DISPID_AX_AUTORECONNECTING : u32 = 755;
-pub const DISPID_AX_AUTORECONNECTED : u32 = 756;
-pub const DISPID_AX_DIALOGDISPLAYING : u32 = 757;
-pub const DISPID_AX_DIALOGDISMISSED : u32 = 758;
-pub const DISPID_AX_NETWORKSTATUSCHANGED : u32 = 759;
-pub const DISPID_AX_ADMINMESSAGERECEIVED : u32 = 760;
-pub const DISPID_AX_KEYCOMBINATIONPRESSED : u32 = 761;
-pub const DISPID_AX_REMOTEDESKTOPSIZECHANGED : u32 = 762;
-pub const DISPID_AX_TOUCHPOINTERCURSORMOVED : u32 = 800;
-pub const RDCLIENT_BITMAP_RENDER_SERVICE = @import("../zig.zig").Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
-pub const WTS_QUERY_ALLOWED_INITIAL_APP = @import("../zig.zig").Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
-pub const WTS_QUERY_LOGON_SCREEN_SIZE = @import("../zig.zig").Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
-pub const WTS_QUERY_AUDIOENUM_DLL = @import("../zig.zig").Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
-pub const WTS_QUERY_MF_FORMAT_SUPPORT = @import("../zig.zig").Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
-pub const WRDS_SERVICE_ID_GRAPHICS_GUID = @import("../zig.zig").Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
-pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = @import("../zig.zig").Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
-pub const PROPERTY_TYPE_GET_FAST_RECONNECT = @import("../zig.zig").Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
-pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = @import("../zig.zig").Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
-pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = @import("../zig.zig").Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
+pub const WTS_DOMAIN_LENGTH = @as(u32, 255);
+pub const WTS_USERNAME_LENGTH = @as(u32, 255);
+pub const WTS_PASSWORD_LENGTH = @as(u32, 255);
+pub const WTS_DIRECTORY_LENGTH = @as(u32, 256);
+pub const WTS_INITIALPROGRAM_LENGTH = @as(u32, 256);
+pub const WTS_PROTOCOL_NAME_LENGTH = @as(u32, 8);
+pub const WTS_DRIVER_NAME_LENGTH = @as(u32, 8);
+pub const WTS_DEVICE_NAME_LENGTH = @as(u32, 19);
+pub const WTS_IMEFILENAME_LENGTH = @as(u32, 32);
+pub const WTS_CLIENTNAME_LENGTH = @as(u32, 20);
+pub const WTS_CLIENTADDRESS_LENGTH = @as(u32, 30);
+pub const WTS_CLIENT_PRODUCT_ID_LENGTH = @as(u32, 32);
+pub const WTS_MAX_PROTOCOL_CACHE = @as(u32, 4);
+pub const WTS_MAX_CACHE_RESERVED = @as(u32, 20);
+pub const WTS_MAX_RESERVED = @as(u32, 100);
+pub const WTS_MAX_COUNTERS = @as(u32, 100);
+pub const WTS_MAX_DISPLAY_IOCTL_DATA = @as(u32, 256);
+pub const WTS_PERF_DISABLE_NOTHING = @as(u32, 0);
+pub const WTS_PERF_DISABLE_WALLPAPER = @as(u32, 1);
+pub const WTS_PERF_DISABLE_FULLWINDOWDRAG = @as(u32, 2);
+pub const WTS_PERF_DISABLE_MENUANIMATIONS = @as(u32, 4);
+pub const WTS_PERF_DISABLE_THEMING = @as(u32, 8);
+pub const WTS_PERF_ENABLE_ENHANCED_GRAPHICS = @as(u32, 16);
+pub const WTS_PERF_DISABLE_CURSOR_SHADOW = @as(u32, 32);
+pub const WTS_PERF_DISABLE_CURSORSETTINGS = @as(u32, 64);
+pub const WTS_PERF_ENABLE_FONT_SMOOTHING = @as(u32, 128);
+pub const WTS_PERF_ENABLE_DESKTOP_COMPOSITION = @as(u32, 256);
+pub const WTS_VALUE_TYPE_ULONG = @as(u32, 1);
+pub const WTS_VALUE_TYPE_STRING = @as(u32, 2);
+pub const WTS_VALUE_TYPE_BINARY = @as(u32, 3);
+pub const WTS_VALUE_TYPE_GUID = @as(u32, 4);
+pub const WTS_KEY_EXCHANGE_ALG_RSA = @as(u32, 1);
+pub const WTS_KEY_EXCHANGE_ALG_DH = @as(u32, 2);
+pub const WTS_LICENSE_PROTOCOL_VERSION = @as(u32, 65536);
+pub const WTS_LICENSE_PREAMBLE_VERSION = @as(u32, 3);
+pub const SINGLE_SESSION = @as(u32, 1);
+pub const FORCE_REJOIN = @as(u32, 2);
+pub const FORCE_REJOIN_IN_CLUSTERMODE = @as(u32, 3);
+pub const RESERVED_FOR_LEGACY = @as(u32, 4);
+pub const KEEP_EXISTING_SESSIONS = @as(u32, 8);
+pub const CHANNEL_EVENT_INITIALIZED = @as(u32, 0);
+pub const CHANNEL_EVENT_CONNECTED = @as(u32, 1);
+pub const CHANNEL_EVENT_V1_CONNECTED = @as(u32, 2);
+pub const CHANNEL_EVENT_DISCONNECTED = @as(u32, 3);
+pub const CHANNEL_EVENT_TERMINATED = @as(u32, 4);
+pub const CHANNEL_EVENT_DATA_RECEIVED = @as(u32, 10);
+pub const CHANNEL_EVENT_WRITE_COMPLETE = @as(u32, 11);
+pub const CHANNEL_EVENT_WRITE_CANCELLED = @as(u32, 12);
+pub const CHANNEL_RC_OK = @as(u32, 0);
+pub const CHANNEL_RC_ALREADY_INITIALIZED = @as(u32, 1);
+pub const CHANNEL_RC_NOT_INITIALIZED = @as(u32, 2);
+pub const CHANNEL_RC_ALREADY_CONNECTED = @as(u32, 3);
+pub const CHANNEL_RC_NOT_CONNECTED = @as(u32, 4);
+pub const CHANNEL_RC_TOO_MANY_CHANNELS = @as(u32, 5);
+pub const CHANNEL_RC_BAD_CHANNEL = @as(u32, 6);
+pub const CHANNEL_RC_BAD_CHANNEL_HANDLE = @as(u32, 7);
+pub const CHANNEL_RC_NO_BUFFER = @as(u32, 8);
+pub const CHANNEL_RC_BAD_INIT_HANDLE = @as(u32, 9);
+pub const CHANNEL_RC_NOT_OPEN = @as(u32, 10);
+pub const CHANNEL_RC_BAD_PROC = @as(u32, 11);
+pub const CHANNEL_RC_NO_MEMORY = @as(u32, 12);
+pub const CHANNEL_RC_UNKNOWN_CHANNEL_NAME = @as(u32, 13);
+pub const CHANNEL_RC_ALREADY_OPEN = @as(u32, 14);
+pub const CHANNEL_RC_NOT_IN_VIRTUALCHANNELENTRY = @as(u32, 15);
+pub const CHANNEL_RC_NULL_DATA = @as(u32, 16);
+pub const CHANNEL_RC_ZERO_LENGTH = @as(u32, 17);
+pub const CHANNEL_RC_INVALID_INSTANCE = @as(u32, 18);
+pub const CHANNEL_RC_UNSUPPORTED_VERSION = @as(u32, 19);
+pub const CHANNEL_RC_INITIALIZATION_ERROR = @as(u32, 20);
+pub const VIRTUAL_CHANNEL_VERSION_WIN2000 = @as(u32, 1);
+pub const CHANNEL_CHUNK_LENGTH = @as(u32, 1600);
+pub const CHANNEL_BUFFER_SIZE = @as(u32, 65535);
+pub const CHANNEL_FLAG_FIRST = @as(u32, 1);
+pub const CHANNEL_FLAG_LAST = @as(u32, 2);
+pub const CHANNEL_FLAG_MIDDLE = @as(u32, 0);
+pub const CHANNEL_FLAG_FAIL = @as(u32, 256);
+pub const CHANNEL_OPTION_INITIALIZED = @as(u32, 2147483648);
+pub const CHANNEL_OPTION_ENCRYPT_RDP = @as(u32, 1073741824);
+pub const CHANNEL_OPTION_ENCRYPT_SC = @as(u32, 536870912);
+pub const CHANNEL_OPTION_ENCRYPT_CS = @as(u32, 268435456);
+pub const CHANNEL_OPTION_PRI_HIGH = @as(u32, 134217728);
+pub const CHANNEL_OPTION_PRI_MED = @as(u32, 67108864);
+pub const CHANNEL_OPTION_PRI_LOW = @as(u32, 33554432);
+pub const CHANNEL_OPTION_COMPRESS_RDP = @as(u32, 8388608);
+pub const CHANNEL_OPTION_COMPRESS = @as(u32, 4194304);
+pub const CHANNEL_OPTION_SHOW_PROTOCOL = @as(u32, 2097152);
+pub const CHANNEL_OPTION_REMOTE_CONTROL_PERSISTENT = @as(u32, 1048576);
+pub const CHANNEL_MAX_COUNT = @as(u32, 30);
+pub const CHANNEL_NAME_LEN = @as(u32, 7);
+pub const MAX_POLICY_ATTRIBUTES = @as(u32, 20);
+pub const IDASYNC = @as(u32, 32001);
+pub const USERNAME_LENGTH = @as(u32, 20);
+pub const CLIENTNAME_LENGTH = @as(u32, 20);
+pub const CLIENTADDRESS_LENGTH = @as(u32, 30);
+pub const WTS_WSD_LOGOFF = @as(u32, 1);
+pub const WTS_WSD_SHUTDOWN = @as(u32, 2);
+pub const WTS_WSD_REBOOT = @as(u32, 4);
+pub const WTS_WSD_POWEROFF = @as(u32, 8);
+pub const WTS_WSD_FASTREBOOT = @as(u32, 16);
+pub const MAX_ELAPSED_TIME_LENGTH = @as(u32, 15);
+pub const MAX_DATE_TIME_LENGTH = @as(u32, 56);
+pub const WINSTATIONNAME_LENGTH = @as(u32, 32);
+pub const DOMAIN_LENGTH = @as(u32, 17);
+pub const WTS_DRIVE_LENGTH = @as(u32, 3);
+pub const WTS_LISTENER_NAME_LENGTH = @as(u32, 32);
+pub const WTS_COMMENT_LENGTH = @as(u32, 60);
+pub const WTS_LISTENER_CREATE = @as(u32, 1);
+pub const WTS_LISTENER_UPDATE = @as(u32, 16);
+pub const WTS_SECURITY_QUERY_INFORMATION = @as(u32, 1);
+pub const WTS_SECURITY_SET_INFORMATION = @as(u32, 2);
+pub const WTS_SECURITY_RESET = @as(u32, 4);
+pub const WTS_SECURITY_VIRTUAL_CHANNELS = @as(u32, 8);
+pub const WTS_SECURITY_REMOTE_CONTROL = @as(u32, 16);
+pub const WTS_SECURITY_LOGON = @as(u32, 32);
+pub const WTS_SECURITY_LOGOFF = @as(u32, 64);
+pub const WTS_SECURITY_MESSAGE = @as(u32, 128);
+pub const WTS_SECURITY_CONNECT = @as(u32, 256);
+pub const WTS_SECURITY_DISCONNECT = @as(u32, 512);
+pub const WTS_PROTOCOL_TYPE_CONSOLE = @as(u32, 0);
+pub const WTS_PROTOCOL_TYPE_ICA = @as(u32, 1);
+pub const WTS_PROTOCOL_TYPE_RDP = @as(u32, 2);
+pub const WTS_SESSIONSTATE_UNKNOWN = @as(u32, 4294967295);
+pub const WTS_SESSIONSTATE_LOCK = @as(u32, 0);
+pub const WTS_SESSIONSTATE_UNLOCK = @as(u32, 1);
+pub const PRODUCTINFO_COMPANYNAME_LENGTH = @as(u32, 256);
+pub const PRODUCTINFO_PRODUCTID_LENGTH = @as(u32, 4);
+pub const VALIDATIONINFORMATION_LICENSE_LENGTH = @as(u32, 16384);
+pub const VALIDATIONINFORMATION_HARDWAREID_LENGTH = @as(u32, 20);
+pub const WTS_EVENT_NONE = @as(u32, 0);
+pub const WTS_EVENT_CREATE = @as(u32, 1);
+pub const WTS_EVENT_DELETE = @as(u32, 2);
+pub const WTS_EVENT_RENAME = @as(u32, 4);
+pub const WTS_EVENT_CONNECT = @as(u32, 8);
+pub const WTS_EVENT_DISCONNECT = @as(u32, 16);
+pub const WTS_EVENT_LOGON = @as(u32, 32);
+pub const WTS_EVENT_LOGOFF = @as(u32, 64);
+pub const WTS_EVENT_STATECHANGE = @as(u32, 128);
+pub const WTS_EVENT_LICENSE = @as(u32, 256);
+pub const WTS_EVENT_ALL = @as(u32, 2147483647);
+pub const WTS_EVENT_FLUSH = @as(u32, 2147483648);
+pub const REMOTECONTROL_KBDSHIFT_HOTKEY = @as(u32, 1);
+pub const REMOTECONTROL_KBDCTRL_HOTKEY = @as(u32, 2);
+pub const REMOTECONTROL_KBDALT_HOTKEY = @as(u32, 4);
+pub const WTS_CHANNEL_OPTION_DYNAMIC = @as(u32, 1);
+pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_LOW = @as(u32, 0);
+pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_MED = @as(u32, 2);
+pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_HIGH = @as(u32, 4);
+pub const WTS_CHANNEL_OPTION_DYNAMIC_PRI_REAL = @as(u32, 6);
+pub const WTS_CHANNEL_OPTION_DYNAMIC_NO_COMPRESS = @as(u32, 8);
+pub const NOTIFY_FOR_ALL_SESSIONS = @as(u32, 1);
+pub const NOTIFY_FOR_THIS_SESSION = @as(u32, 0);
+pub const WTS_PROCESS_INFO_LEVEL_0 = @as(u32, 0);
+pub const WTS_PROCESS_INFO_LEVEL_1 = @as(u32, 1);
+pub const PLUGIN_CAPABILITY_EXTERNAL_REDIRECTION = @as(u32, 1);
+pub const MaxFQDN_Len = @as(u32, 256);
+pub const MaxNetBiosName_Len = @as(u32, 16);
+pub const MaxNumOfExposed_IPs = @as(u32, 12);
+pub const MaxUserName_Len = @as(u32, 104);
+pub const MaxDomainName_Len = @as(u32, 256);
+pub const MaxFarm_Len = @as(u32, 256);
+pub const MaxAppName_Len = @as(u32, 256);
+pub const WKS_FLAG_CLEAR_CREDS_ON_LAST_RESOURCE = @as(u32, 1);
+pub const WKS_FLAG_PASSWORD_ENCRYPTED = @as(u32, 2);
+pub const WKS_FLAG_CREDS_AUTHENTICATED = @as(u32, 4);
+pub const SB_SYNCH_CONFLICT_MAX_WRITE_ATTEMPTS = @as(u32, 100);
+pub const ACQUIRE_TARGET_LOCK_TIMEOUT = @as(u32, 300000);
+pub const RENDER_HINT_CLEAR = @as(u32, 0);
+pub const RENDER_HINT_VIDEO = @as(u32, 1);
+pub const RENDER_HINT_MAPPEDWINDOW = @as(u32, 2);
+pub const TS_VC_LISTENER_STATIC_CHANNEL = @as(u32, 1);
+pub const WRdsGraphicsChannels_LossyChannelMaxMessageSize = @as(u32, 988);
+pub const RFX_RDP_MSG_PREFIX = @as(u32, 0);
+pub const RFX_GFX_MSG_PREFIX = @as(u32, 48);
+pub const RFX_GFX_MSG_PREFIX_MASK = @as(u32, 48);
+pub const RFX_GFX_MAX_SUPPORTED_MONITORS = @as(u32, 16);
+pub const RFX_CLIENT_ID_LENGTH = @as(u32, 32);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_CONNECT = @as(u32, 701);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DISCONNECT = @as(u32, 702);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RECONNECT = @as(u32, 703);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DELETE_SAVED_CREDENTIALS = @as(u32, 704);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_UPDATE_SESSION_DISPLAYSETTINGS = @as(u32, 705);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_ATTACH_EVENT = @as(u32, 706);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_DETACH_EVENT = @as(u32, 707);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_SETTINGS = @as(u32, 710);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_ACTIONS = @as(u32, 711);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCH_POINTER = @as(u32, 712);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_SET_RDPPROPERTY = @as(u32, 720);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_GET_RDPPROPERTY = @as(u32, 721);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_APPLY_SETTINGS = @as(u32, 722);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RETRIEVE_SETTINGS = @as(u32, 723);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_SUSPEND_SCREEN_UPDATES = @as(u32, 730);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_RESUME_SCREEN_UPDATES = @as(u32, 731);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_EXECUTE_REMOTE_ACTION = @as(u32, 732);
+pub const DISPID_METHOD_REMOTEDESKTOPCLIENT_GET_SNAPSHOT = @as(u32, 733);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_ENABLED = @as(u32, 740);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_EVENTSENABLED = @as(u32, 741);
+pub const DISPID_PROP_REMOTEDESKTOPCLIENT_TOUCHPOINTER_POINTERSPEED = @as(u32, 742);
+pub const DISPID_AX_CONNECTING = @as(u32, 750);
+pub const DISPID_AX_CONNECTED = @as(u32, 751);
+pub const DISPID_AX_LOGINCOMPLETED = @as(u32, 752);
+pub const DISPID_AX_DISCONNECTED = @as(u32, 753);
+pub const DISPID_AX_STATUSCHANGED = @as(u32, 754);
+pub const DISPID_AX_AUTORECONNECTING = @as(u32, 755);
+pub const DISPID_AX_AUTORECONNECTED = @as(u32, 756);
+pub const DISPID_AX_DIALOGDISPLAYING = @as(u32, 757);
+pub const DISPID_AX_DIALOGDISMISSED = @as(u32, 758);
+pub const DISPID_AX_NETWORKSTATUSCHANGED = @as(u32, 759);
+pub const DISPID_AX_ADMINMESSAGERECEIVED = @as(u32, 760);
+pub const DISPID_AX_KEYCOMBINATIONPRESSED = @as(u32, 761);
+pub const DISPID_AX_REMOTEDESKTOPSIZECHANGED = @as(u32, 762);
+pub const DISPID_AX_TOUCHPOINTERCURSORMOVED = @as(u32, 800);
+pub const RDCLIENT_BITMAP_RENDER_SERVICE = Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
+pub const WTS_QUERY_ALLOWED_INITIAL_APP = Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
+pub const WTS_QUERY_LOGON_SCREEN_SIZE = Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
+pub const WTS_QUERY_AUDIOENUM_DLL = Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
+pub const WTS_QUERY_MF_FORMAT_SUPPORT = Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
+pub const WRDS_SERVICE_ID_GRAPHICS_GUID = Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
+pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
+pub const PROPERTY_TYPE_GET_FAST_RECONNECT = Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
+pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
+pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
 
 //--------------------------------------------------------------------------------
-// Section: Types (262)
+// Section: Types (255)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
+pub const HwtsVirtualChannelHandle = ?*c_void;
+
 pub const APO_BUFFER_FLAGS = extern enum(i32) {
     INVALID = 0,
     VALID = 1,
@@ -518,9 +521,6 @@ pub const IAudioEndpointControl = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
-pub const HwtsVirtualChannelHandle = ?*c_void;
 
 const CLSID_TSUserExInterfaces_Value = @import("../zig.zig").Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");
 pub const CLSID_TSUserExInterfaces = &CLSID_TSUserExInterfaces_Value;
@@ -1828,17 +1828,14 @@ pub const CHANNEL_PDU_HEADER = extern struct {
     flags: u32,
 };
 
-pub const CHANNEL_INIT_EVENT_FN = fn(
+pub const PCHANNEL_INIT_EVENT_FN = fn(
     pInitHandle: *c_void,
     event: u32,
     pData: *c_void,
     dataLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PCHANNEL_INIT_EVENT_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const CHANNEL_OPEN_EVENT_FN = fn(
+pub const PCHANNEL_OPEN_EVENT_FN = fn(
     openHandle: u32,
     event: u32,
     pData: *c_void,
@@ -1847,10 +1844,7 @@ pub const CHANNEL_OPEN_EVENT_FN = fn(
     dataFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PCHANNEL_OPEN_EVENT_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const VIRTUALCHANNELINIT = fn(
+pub const PVIRTUALCHANNELINIT = fn(
     ppInitHandle: **c_void,
     pChannel: *CHANNEL_DEF,
     channelCount: i32,
@@ -1858,34 +1852,22 @@ pub const VIRTUALCHANNELINIT = fn(
     pChannelInitEventProc: PCHANNEL_INIT_EVENT_FN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PVIRTUALCHANNELINIT = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const VIRTUALCHANNELOPEN = fn(
+pub const PVIRTUALCHANNELOPEN = fn(
     pInitHandle: *c_void,
     pOpenHandle: *u32,
     pChannelName: [*]u8,
     pChannelOpenEventProc: PCHANNEL_OPEN_EVENT_FN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PVIRTUALCHANNELOPEN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const VIRTUALCHANNELCLOSE = fn(
+pub const PVIRTUALCHANNELCLOSE = fn(
     openHandle: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PVIRTUALCHANNELCLOSE = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const VIRTUALCHANNELWRITE = fn(
+pub const PVIRTUALCHANNELWRITE = fn(
     openHandle: u32,
     pData: *c_void,
     dataLength: u32,
     pUserData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PVIRTUALCHANNELWRITE = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CHANNEL_ENTRY_POINTS = extern struct {
@@ -1897,11 +1879,8 @@ pub const CHANNEL_ENTRY_POINTS = extern struct {
     pVirtualChannelWrite: PVIRTUALCHANNELWRITE,
 };
 
-pub const VIRTUALCHANNELENTRY = fn(
-    pEntryPoints: *CHANNEL_ENTRY_POINTS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub const PVIRTUALCHANNELENTRY = fn(
+    pEntryPoints: *CHANNEL_ENTRY_POINTS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const CLSID_Workspace_Value = @import("../zig.zig").Guid.initString("4f1dfca6-3aad-48e1-8406-4bc21a501d7c");
@@ -7716,23 +7695,16 @@ const WAVEFORMATEX = @import("multimedia.zig").WAVEFORMATEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = CHANNEL_INIT_EVENT_FN;
     _ = PCHANNEL_INIT_EVENT_FN;
-    _ = CHANNEL_OPEN_EVENT_FN;
     _ = PCHANNEL_OPEN_EVENT_FN;
-    _ = VIRTUALCHANNELINIT;
     _ = PVIRTUALCHANNELINIT;
-    _ = VIRTUALCHANNELOPEN;
     _ = PVIRTUALCHANNELOPEN;
-    _ = VIRTUALCHANNELCLOSE;
     _ = PVIRTUALCHANNELCLOSE;
-    _ = VIRTUALCHANNELWRITE;
     _ = PVIRTUALCHANNELWRITE;
-    _ = VIRTUALCHANNELENTRY;
     _ = PVIRTUALCHANNELENTRY;
 
     const constant_export_count = 221;
-    const type_export_count = 259;
+    const type_export_count = 252;
     const enum_value_export_count = 276;
     const com_iface_id_export_count = 100;
     const com_class_id_export_count = 3;

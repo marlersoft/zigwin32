@@ -2,15 +2,17 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
-pub const CF_REQUEST_KEY_DEFAULT : u32 = 0;
-pub const CF_PLACEHOLDER_MAX_FILE_IDENTITY_LENGTH : u32 = 4096;
-pub const CF_MAX_PRIORITY_HINT : u32 = 15;
-pub const CF_MAX_PROVIDER_NAME_LENGTH : u32 = 255;
-pub const CF_MAX_PROVIDER_VERSION_LENGTH : u32 = 255;
+pub const CF_REQUEST_KEY_DEFAULT = @as(u32, 0);
+pub const CF_PLACEHOLDER_MAX_FILE_IDENTITY_LENGTH = @as(u32, 4096);
+pub const CF_MAX_PRIORITY_HINT = @as(u32, 15);
+pub const CF_MAX_PROVIDER_NAME_LENGTH = @as(u32, 255);
+pub const CF_MAX_PROVIDER_VERSION_LENGTH = @as(u32, 255);
 
 //--------------------------------------------------------------------------------
 // Section: Types (75)
 //--------------------------------------------------------------------------------
+pub const CF_CONNECTION_KEY = ?*c_void;
+
 pub const CF_FS_METADATA = extern struct {
     BasicInfo: FILE_BASIC_INFO,
     FileSize: LARGE_INTEGER,
@@ -705,8 +707,6 @@ pub const CF_PLACEHOLDER_RANGE_INFO_CLASS = extern enum(i32) {
 pub const CF_PLACEHOLDER_RANGE_INFO_ONDISK = CF_PLACEHOLDER_RANGE_INFO_CLASS.ONDISK;
 pub const CF_PLACEHOLDER_RANGE_INFO_VALIDATED = CF_PLACEHOLDER_RANGE_INFO_CLASS.VALIDATED;
 pub const CF_PLACEHOLDER_RANGE_INFO_MODIFIED = CF_PLACEHOLDER_RANGE_INFO_CLASS.MODIFIED;
-
-pub const CF_CONNECTION_KEY = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

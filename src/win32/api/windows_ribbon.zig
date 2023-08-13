@@ -2,9 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const UI_ALL_COMMANDS : u32 = 0;
-pub const UI_COLLECTION_INVALIDINDEX : u32 = 4294967295;
-pub const LIBID_UIRibbon = @import("../zig.zig").Guid.initString("942f35c2-e83b-45ef-b085-ac295dd63d5b");
+pub const UI_ALL_COMMANDS = @as(u32, 0);
+pub const UI_COLLECTION_INVALIDINDEX = @as(u32, 4294967295);
+pub const LIBID_UIRibbon = Guid.initString("942f35c2-e83b-45ef-b085-ac295dd63d5b");
 
 //--------------------------------------------------------------------------------
 // Section: Types (33)

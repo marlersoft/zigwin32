@@ -2,100 +2,217 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (90)
 //--------------------------------------------------------------------------------
-pub const ASN_UNIVERSAL : u32 = 0;
-pub const ASN_APPLICATION : u32 = 64;
-pub const ASN_CONTEXT : u32 = 128;
-pub const ASN_PRIVATE : u32 = 192;
-pub const ASN_PRIMITIVE : u32 = 0;
-pub const ASN_CONSTRUCTOR : u32 = 32;
-pub const SNMP_ACCESS_NONE : u32 = 0;
-pub const SNMP_ACCESS_NOTIFY : u32 = 1;
-pub const SNMP_ACCESS_READ_ONLY : u32 = 2;
-pub const SNMP_ACCESS_READ_WRITE : u32 = 3;
-pub const SNMP_ACCESS_READ_CREATE : u32 = 4;
-pub const SNMPAPI_NOERROR : u32 = 1;
-pub const SNMPAPI_ERROR : u32 = 0;
-pub const SNMP_OUTPUT_TO_EVENTLOG : u32 = 4;
-pub const DEFAULT_SNMP_PORT_UDP : u32 = 161;
-pub const DEFAULT_SNMP_PORT_IPX : u32 = 36879;
-pub const DEFAULT_SNMPTRAP_PORT_UDP : u32 = 162;
-pub const DEFAULT_SNMPTRAP_PORT_IPX : u32 = 36880;
-pub const SNMP_MAX_OID_LEN : u32 = 128;
-pub const SNMP_MEM_ALLOC_ERROR : u32 = 1;
-pub const SNMP_BERAPI_INVALID_LENGTH : u32 = 10;
-pub const SNMP_BERAPI_INVALID_TAG : u32 = 11;
-pub const SNMP_BERAPI_OVERFLOW : u32 = 12;
-pub const SNMP_BERAPI_SHORT_BUFFER : u32 = 13;
-pub const SNMP_BERAPI_INVALID_OBJELEM : u32 = 14;
-pub const SNMP_PDUAPI_UNRECOGNIZED_PDU : u32 = 20;
-pub const SNMP_PDUAPI_INVALID_ES : u32 = 21;
-pub const SNMP_PDUAPI_INVALID_GT : u32 = 22;
-pub const SNMP_AUTHAPI_INVALID_VERSION : u32 = 30;
-pub const SNMP_AUTHAPI_INVALID_MSG_TYPE : u32 = 31;
-pub const SNMP_AUTHAPI_TRIV_AUTH_FAILED : u32 = 32;
-pub const SNMP_MGMTAPI_TIMEOUT : u32 = 40;
-pub const SNMP_MGMTAPI_SELECT_FDERRORS : u32 = 41;
-pub const SNMP_MGMTAPI_TRAP_ERRORS : u32 = 42;
-pub const SNMP_MGMTAPI_TRAP_DUPINIT : u32 = 43;
-pub const SNMP_MGMTAPI_NOTRAPS : u32 = 44;
-pub const SNMP_MGMTAPI_AGAIN : u32 = 45;
-pub const SNMP_MGMTAPI_INVALID_CTL : u32 = 46;
-pub const SNMP_MGMTAPI_INVALID_SESSION : u32 = 47;
-pub const SNMP_MGMTAPI_INVALID_BUFFER : u32 = 48;
-pub const MGMCTL_SETAGENTPORT : u32 = 1;
-pub const MAXOBJIDSIZE : u32 = 128;
-pub const MAXOBJIDSTRSIZE : u32 = 1408;
-pub const SNMPLISTEN_USEENTITY_ADDR : u32 = 0;
-pub const SNMPLISTEN_ALL_ADDR : u32 = 1;
-pub const SNMP_TRAP_COLDSTART : u32 = 0;
-pub const SNMP_TRAP_WARMSTART : u32 = 1;
-pub const SNMP_TRAP_LINKDOWN : u32 = 2;
-pub const SNMP_TRAP_LINKUP : u32 = 3;
-pub const SNMP_TRAP_AUTHFAIL : u32 = 4;
-pub const SNMP_TRAP_EGPNEIGHBORLOSS : u32 = 5;
-pub const SNMP_TRAP_ENTERPRISESPECIFIC : u32 = 6;
-pub const SNMPAPI_NO_SUPPORT : u32 = 0;
-pub const SNMPAPI_V1_SUPPORT : u32 = 1;
-pub const SNMPAPI_V2_SUPPORT : u32 = 2;
-pub const SNMPAPI_M2M_SUPPORT : u32 = 3;
-pub const SNMPAPI_FAILURE : u32 = 0;
-pub const SNMPAPI_SUCCESS : u32 = 1;
-pub const SNMPAPI_ALLOC_ERROR : u32 = 2;
-pub const SNMPAPI_CONTEXT_INVALID : u32 = 3;
-pub const SNMPAPI_CONTEXT_UNKNOWN : u32 = 4;
-pub const SNMPAPI_ENTITY_INVALID : u32 = 5;
-pub const SNMPAPI_ENTITY_UNKNOWN : u32 = 6;
-pub const SNMPAPI_INDEX_INVALID : u32 = 7;
-pub const SNMPAPI_NOOP : u32 = 8;
-pub const SNMPAPI_OID_INVALID : u32 = 9;
-pub const SNMPAPI_OPERATION_INVALID : u32 = 10;
-pub const SNMPAPI_OUTPUT_TRUNCATED : u32 = 11;
-pub const SNMPAPI_PDU_INVALID : u32 = 12;
-pub const SNMPAPI_SESSION_INVALID : u32 = 13;
-pub const SNMPAPI_SYNTAX_INVALID : u32 = 14;
-pub const SNMPAPI_VBL_INVALID : u32 = 15;
-pub const SNMPAPI_MODE_INVALID : u32 = 16;
-pub const SNMPAPI_SIZE_INVALID : u32 = 17;
-pub const SNMPAPI_NOT_INITIALIZED : u32 = 18;
-pub const SNMPAPI_MESSAGE_INVALID : u32 = 19;
-pub const SNMPAPI_HWND_INVALID : u32 = 20;
-pub const SNMPAPI_OTHER_ERROR : u32 = 99;
-pub const SNMPAPI_TL_NOT_INITIALIZED : u32 = 100;
-pub const SNMPAPI_TL_NOT_SUPPORTED : u32 = 101;
-pub const SNMPAPI_TL_NOT_AVAILABLE : u32 = 102;
-pub const SNMPAPI_TL_RESOURCE_ERROR : u32 = 103;
-pub const SNMPAPI_TL_UNDELIVERABLE : u32 = 104;
-pub const SNMPAPI_TL_SRC_INVALID : u32 = 105;
-pub const SNMPAPI_TL_INVALID_PARAM : u32 = 106;
-pub const SNMPAPI_TL_IN_USE : u32 = 107;
-pub const SNMPAPI_TL_TIMEOUT : u32 = 108;
-pub const SNMPAPI_TL_PDU_TOO_BIG : u32 = 109;
-pub const SNMPAPI_TL_OTHER : u32 = 199;
-pub const MAXVENDORINFO : u32 = 32;
+pub const ASN_UNIVERSAL = @as(u32, 0);
+pub const ASN_APPLICATION = @as(u32, 64);
+pub const ASN_CONTEXT = @as(u32, 128);
+pub const ASN_PRIVATE = @as(u32, 192);
+pub const ASN_PRIMITIVE = @as(u32, 0);
+pub const ASN_CONSTRUCTOR = @as(u32, 32);
+pub const SNMP_ACCESS_NONE = @as(u32, 0);
+pub const SNMP_ACCESS_NOTIFY = @as(u32, 1);
+pub const SNMP_ACCESS_READ_ONLY = @as(u32, 2);
+pub const SNMP_ACCESS_READ_WRITE = @as(u32, 3);
+pub const SNMP_ACCESS_READ_CREATE = @as(u32, 4);
+pub const SNMPAPI_NOERROR = @as(u32, 1);
+pub const SNMPAPI_ERROR = @as(u32, 0);
+pub const SNMP_OUTPUT_TO_EVENTLOG = @as(u32, 4);
+pub const DEFAULT_SNMP_PORT_UDP = @as(u32, 161);
+pub const DEFAULT_SNMP_PORT_IPX = @as(u32, 36879);
+pub const DEFAULT_SNMPTRAP_PORT_UDP = @as(u32, 162);
+pub const DEFAULT_SNMPTRAP_PORT_IPX = @as(u32, 36880);
+pub const SNMP_MAX_OID_LEN = @as(u32, 128);
+pub const SNMP_MEM_ALLOC_ERROR = @as(u32, 1);
+pub const SNMP_BERAPI_INVALID_LENGTH = @as(u32, 10);
+pub const SNMP_BERAPI_INVALID_TAG = @as(u32, 11);
+pub const SNMP_BERAPI_OVERFLOW = @as(u32, 12);
+pub const SNMP_BERAPI_SHORT_BUFFER = @as(u32, 13);
+pub const SNMP_BERAPI_INVALID_OBJELEM = @as(u32, 14);
+pub const SNMP_PDUAPI_UNRECOGNIZED_PDU = @as(u32, 20);
+pub const SNMP_PDUAPI_INVALID_ES = @as(u32, 21);
+pub const SNMP_PDUAPI_INVALID_GT = @as(u32, 22);
+pub const SNMP_AUTHAPI_INVALID_VERSION = @as(u32, 30);
+pub const SNMP_AUTHAPI_INVALID_MSG_TYPE = @as(u32, 31);
+pub const SNMP_AUTHAPI_TRIV_AUTH_FAILED = @as(u32, 32);
+pub const SNMP_MGMTAPI_TIMEOUT = @as(u32, 40);
+pub const SNMP_MGMTAPI_SELECT_FDERRORS = @as(u32, 41);
+pub const SNMP_MGMTAPI_TRAP_ERRORS = @as(u32, 42);
+pub const SNMP_MGMTAPI_TRAP_DUPINIT = @as(u32, 43);
+pub const SNMP_MGMTAPI_NOTRAPS = @as(u32, 44);
+pub const SNMP_MGMTAPI_AGAIN = @as(u32, 45);
+pub const SNMP_MGMTAPI_INVALID_CTL = @as(u32, 46);
+pub const SNMP_MGMTAPI_INVALID_SESSION = @as(u32, 47);
+pub const SNMP_MGMTAPI_INVALID_BUFFER = @as(u32, 48);
+pub const MGMCTL_SETAGENTPORT = @as(u32, 1);
+pub const MAXOBJIDSIZE = @as(u32, 128);
+pub const MAXOBJIDSTRSIZE = @as(u32, 1408);
+pub const SNMPLISTEN_USEENTITY_ADDR = @as(u32, 0);
+pub const SNMPLISTEN_ALL_ADDR = @as(u32, 1);
+pub const SNMP_TRAP_COLDSTART = @as(u32, 0);
+pub const SNMP_TRAP_WARMSTART = @as(u32, 1);
+pub const SNMP_TRAP_LINKDOWN = @as(u32, 2);
+pub const SNMP_TRAP_LINKUP = @as(u32, 3);
+pub const SNMP_TRAP_AUTHFAIL = @as(u32, 4);
+pub const SNMP_TRAP_EGPNEIGHBORLOSS = @as(u32, 5);
+pub const SNMP_TRAP_ENTERPRISESPECIFIC = @as(u32, 6);
+pub const SNMPAPI_NO_SUPPORT = @as(u32, 0);
+pub const SNMPAPI_V1_SUPPORT = @as(u32, 1);
+pub const SNMPAPI_V2_SUPPORT = @as(u32, 2);
+pub const SNMPAPI_M2M_SUPPORT = @as(u32, 3);
+pub const SNMPAPI_FAILURE = @as(u32, 0);
+pub const SNMPAPI_SUCCESS = @as(u32, 1);
+pub const SNMPAPI_ALLOC_ERROR = @as(u32, 2);
+pub const SNMPAPI_CONTEXT_INVALID = @as(u32, 3);
+pub const SNMPAPI_CONTEXT_UNKNOWN = @as(u32, 4);
+pub const SNMPAPI_ENTITY_INVALID = @as(u32, 5);
+pub const SNMPAPI_ENTITY_UNKNOWN = @as(u32, 6);
+pub const SNMPAPI_INDEX_INVALID = @as(u32, 7);
+pub const SNMPAPI_NOOP = @as(u32, 8);
+pub const SNMPAPI_OID_INVALID = @as(u32, 9);
+pub const SNMPAPI_OPERATION_INVALID = @as(u32, 10);
+pub const SNMPAPI_OUTPUT_TRUNCATED = @as(u32, 11);
+pub const SNMPAPI_PDU_INVALID = @as(u32, 12);
+pub const SNMPAPI_SESSION_INVALID = @as(u32, 13);
+pub const SNMPAPI_SYNTAX_INVALID = @as(u32, 14);
+pub const SNMPAPI_VBL_INVALID = @as(u32, 15);
+pub const SNMPAPI_MODE_INVALID = @as(u32, 16);
+pub const SNMPAPI_SIZE_INVALID = @as(u32, 17);
+pub const SNMPAPI_NOT_INITIALIZED = @as(u32, 18);
+pub const SNMPAPI_MESSAGE_INVALID = @as(u32, 19);
+pub const SNMPAPI_HWND_INVALID = @as(u32, 20);
+pub const SNMPAPI_OTHER_ERROR = @as(u32, 99);
+pub const SNMPAPI_TL_NOT_INITIALIZED = @as(u32, 100);
+pub const SNMPAPI_TL_NOT_SUPPORTED = @as(u32, 101);
+pub const SNMPAPI_TL_NOT_AVAILABLE = @as(u32, 102);
+pub const SNMPAPI_TL_RESOURCE_ERROR = @as(u32, 103);
+pub const SNMPAPI_TL_UNDELIVERABLE = @as(u32, 104);
+pub const SNMPAPI_TL_SRC_INVALID = @as(u32, 105);
+pub const SNMPAPI_TL_INVALID_PARAM = @as(u32, 106);
+pub const SNMPAPI_TL_IN_USE = @as(u32, 107);
+pub const SNMPAPI_TL_TIMEOUT = @as(u32, 108);
+pub const SNMPAPI_TL_PDU_TOO_BIG = @as(u32, 109);
+pub const SNMPAPI_TL_OTHER = @as(u32, 199);
+pub const MAXVENDORINFO = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
+pub const AsnOctetString = extern struct {
+    stream: *u8,
+    length: u32,
+    dynamic: BOOL,
+};
+
+pub const AsnObjectIdentifier = extern struct {
+    idLength: u32,
+    ids: *u32,
+};
+
+pub const AsnAny = extern struct {
+    asnType: AS_ANY_TYPE,
+    asnValue: AsnAny._asnValue_e__Union,
+    const _asnValue_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SnmpVarBind = extern struct {
+    name: AsnObjectIdentifier,
+    value: AsnAny,
+};
+
+pub const SnmpVarBindList = extern struct {
+    list: *SnmpVarBind,
+    len: u32,
+};
+
+pub const PFNSNMPEXTENSIONINIT = fn(
+    dwUpTimeReference: u32,
+    phSubagentTrapEvent: *HANDLE,
+    pFirstSupportedRegion: *AsnObjectIdentifier,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONINITEX = fn(
+    pNextSupportedRegion: *AsnObjectIdentifier,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONMONITOR = fn(
+    pAgentMgmtData: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONQUERY = fn(
+    bPduType: u8,
+    pVarBindList: *SnmpVarBindList,
+    pErrorStatus: *i32,
+    pErrorIndex: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONQUERYEX = fn(
+    nRequestType: u32,
+    nTransactionId: u32,
+    pVarBindList: *SnmpVarBindList,
+    pContextInfo: *AsnOctetString,
+    pErrorStatus: *i32,
+    pErrorIndex: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONTRAP = fn(
+    pEnterpriseOid: *AsnObjectIdentifier,
+    pGenericTrapId: *i32,
+    pSpecificTrapId: *i32,
+    pTimeStamp: *u32,
+    pVarBindList: *SnmpVarBindList,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONCLOSE = fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const smiOCTETS = extern struct {
+    len: u32,
+    ptr: *u8,
+};
+
+pub const smiOID = extern struct {
+    len: u32,
+    ptr: *u32,
+};
+
+pub const smiCNTR64 = extern struct {
+    hipart: u32,
+    lopart: u32,
+};
+
+pub const smiVALUE = extern struct {
+    syntax: u32,
+    value: smiVALUE._value_e__Union,
+    const _value_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const smiVENDORINFO = extern struct {
+    vendorName: [64]i8,
+    vendorContact: [64]i8,
+    vendorVersionId: [32]i8,
+    vendorVersionDate: [32]i8,
+    vendorEnterprise: u32,
+};
+
+pub const SNMPAPI_CALLBACK = fn(
+    hSession: ?*c_void,
+    hWnd: HWND,
+    wMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    lpClientData: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFNSNMPSTARTUPEX = fn(
+    param0: *u32,
+    param1: *u32,
+    param2: *u32,
+    param3: *u32,
+    param4: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFNSNMPCLEANUPEX = fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 pub const SNMP_PDU_TYPE = extern enum(u32) {
     GET = 160,
     GETNEXT = 161,
@@ -285,123 +402,6 @@ pub const SNMP_ERROR_UNDOFAILED = SnmpGetPduData_error_statusFlags.UNDOFAILED;
 pub const SNMP_ERROR_AUTHORIZATIONERROR = SnmpGetPduData_error_statusFlags.AUTHORIZATIONERROR;
 pub const SNMP_ERROR_NOTWRITABLE = SnmpGetPduData_error_statusFlags.NOTWRITABLE;
 pub const SNMP_ERROR_INCONSISTENTNAME = SnmpGetPduData_error_statusFlags.INCONSISTENTNAME;
-
-pub const AsnOctetString = extern struct {
-    stream: *u8,
-    length: u32,
-    dynamic: BOOL,
-};
-
-pub const AsnObjectIdentifier = extern struct {
-    idLength: u32,
-    ids: *u32,
-};
-
-pub const AsnAny = extern struct {
-    asnType: AS_ANY_TYPE,
-    asnValue: AsnAny._asnValue_e__Union,
-    const _asnValue_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SnmpVarBind = extern struct {
-    name: AsnObjectIdentifier,
-    value: AsnAny,
-};
-
-pub const SnmpVarBindList = extern struct {
-    list: *SnmpVarBind,
-    len: u32,
-};
-
-pub const PFNSNMPEXTENSIONINIT = fn(
-    dwUpTimeReference: u32,
-    phSubagentTrapEvent: *HANDLE,
-    pFirstSupportedRegion: *AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONINITEX = fn(
-    pNextSupportedRegion: *AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONMONITOR = fn(
-    pAgentMgmtData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONQUERY = fn(
-    bPduType: u8,
-    pVarBindList: *SnmpVarBindList,
-    pErrorStatus: *i32,
-    pErrorIndex: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONQUERYEX = fn(
-    nRequestType: u32,
-    nTransactionId: u32,
-    pVarBindList: *SnmpVarBindList,
-    pContextInfo: *AsnOctetString,
-    pErrorStatus: *i32,
-    pErrorIndex: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONTRAP = fn(
-    pEnterpriseOid: *AsnObjectIdentifier,
-    pGenericTrapId: *i32,
-    pSpecificTrapId: *i32,
-    pTimeStamp: *u32,
-    pVarBindList: *SnmpVarBindList,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONCLOSE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const smiOCTETS = extern struct {
-    len: u32,
-    ptr: *u8,
-};
-
-pub const smiOID = extern struct {
-    len: u32,
-    ptr: *u32,
-};
-
-pub const smiCNTR64 = extern struct {
-    hipart: u32,
-    lopart: u32,
-};
-
-pub const smiVALUE = extern struct {
-    syntax: u32,
-    value: smiVALUE._value_e__Union,
-    const _value_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const smiVENDORINFO = extern struct {
-    vendorName: [64]i8,
-    vendorContact: [64]i8,
-    vendorVersionId: [32]i8,
-    vendorVersionDate: [32]i8,
-    vendorEnterprise: u32,
-};
-
-pub const SNMPAPI_CALLBACK = fn(
-    hSession: ?*c_void,
-    hWnd: HWND,
-    wMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    lpClientData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PFNSNMPSTARTUPEX = fn(
-    param0: *u32,
-    param1: *u32,
-    param2: *u32,
-    param3: *u32,
-    param4: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PFNSNMPCLEANUPEX = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

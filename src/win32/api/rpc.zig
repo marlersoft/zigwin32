@@ -2,251 +2,251 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (242)
 //--------------------------------------------------------------------------------
-pub const RPC_C_BINDING_INFINITE_TIMEOUT : u32 = 10;
-pub const RPC_C_BINDING_MIN_TIMEOUT : u32 = 0;
-pub const RPC_C_BINDING_DEFAULT_TIMEOUT : u32 = 5;
-pub const RPC_C_BINDING_MAX_TIMEOUT : u32 = 9;
-pub const RPC_C_CANCEL_INFINITE_TIMEOUT : i32 = -1;
-pub const RPC_C_LISTEN_MAX_CALLS_DEFAULT : u32 = 1234;
-pub const RPC_C_PROTSEQ_MAX_REQS_DEFAULT : u32 = 10;
-pub const RPC_C_BIND_TO_ALL_NICS : u32 = 1;
-pub const RPC_C_USE_INTERNET_PORT : u32 = 1;
-pub const RPC_C_USE_INTRANET_PORT : u32 = 2;
-pub const RPC_C_DONT_FAIL : u32 = 4;
-pub const RPC_C_RPCHTTP_USE_LOAD_BALANCE : u32 = 8;
-pub const RPC_C_MQ_TEMPORARY : u32 = 0;
-pub const RPC_C_MQ_PERMANENT : u32 = 1;
-pub const RPC_C_MQ_CLEAR_ON_OPEN : u32 = 2;
-pub const RPC_C_MQ_USE_EXISTING_SECURITY : u32 = 4;
-pub const RPC_C_MQ_AUTHN_LEVEL_NONE : u32 = 0;
-pub const RPC_C_MQ_AUTHN_LEVEL_PKT_INTEGRITY : u32 = 8;
-pub const RPC_C_MQ_AUTHN_LEVEL_PKT_PRIVACY : u32 = 16;
-pub const RPC_C_MQ_EXPRESS : u32 = 0;
-pub const RPC_C_MQ_RECOVERABLE : u32 = 1;
-pub const RPC_C_MQ_JOURNAL_NONE : u32 = 0;
-pub const RPC_C_MQ_JOURNAL_DEADLETTER : u32 = 1;
-pub const RPC_C_MQ_JOURNAL_ALWAYS : u32 = 2;
-pub const RPC_C_OPT_MQ_DELIVERY : u32 = 1;
-pub const RPC_C_OPT_MQ_PRIORITY : u32 = 2;
-pub const RPC_C_OPT_MQ_JOURNAL : u32 = 3;
-pub const RPC_C_OPT_MQ_ACKNOWLEDGE : u32 = 4;
-pub const RPC_C_OPT_MQ_AUTHN_SERVICE : u32 = 5;
-pub const RPC_C_OPT_MQ_AUTHN_LEVEL : u32 = 6;
-pub const RPC_C_OPT_MQ_TIME_TO_REACH_QUEUE : u32 = 7;
-pub const RPC_C_OPT_MQ_TIME_TO_BE_RECEIVED : u32 = 8;
-pub const RPC_C_OPT_BINDING_NONCAUSAL : u32 = 9;
-pub const RPC_C_OPT_SECURITY_CALLBACK : u32 = 10;
-pub const RPC_C_OPT_UNIQUE_BINDING : u32 = 11;
-pub const RPC_C_OPT_MAX_OPTIONS : u32 = 12;
-pub const RPC_C_OPT_CALL_TIMEOUT : u32 = 12;
-pub const RPC_C_OPT_DONT_LINGER : u32 = 13;
-pub const RPC_C_OPT_TRANS_SEND_BUFFER_SIZE : u32 = 5;
-pub const RPC_C_OPT_TRUST_PEER : u32 = 14;
-pub const RPC_C_OPT_ASYNC_BLOCK : u32 = 15;
-pub const RPC_C_OPT_OPTIMIZE_TIME : u32 = 16;
-pub const RPC_C_FULL_CERT_CHAIN : u32 = 1;
-pub const RPC_C_STATS_CALLS_IN : u32 = 0;
-pub const RPC_C_STATS_CALLS_OUT : u32 = 1;
-pub const RPC_C_STATS_PKTS_IN : u32 = 2;
-pub const RPC_C_STATS_PKTS_OUT : u32 = 3;
-pub const RPC_C_AUTHN_LEVEL_DEFAULT : u32 = 0;
-pub const RPC_C_AUTHN_LEVEL_NONE : u32 = 1;
-pub const RPC_C_AUTHN_LEVEL_CONNECT : u32 = 2;
-pub const RPC_C_AUTHN_LEVEL_CALL : u32 = 3;
-pub const RPC_C_AUTHN_LEVEL_PKT : u32 = 4;
-pub const RPC_C_AUTHN_LEVEL_PKT_INTEGRITY : u32 = 5;
-pub const RPC_C_AUTHN_LEVEL_PKT_PRIVACY : u32 = 6;
-pub const RPC_C_IMP_LEVEL_DEFAULT : u32 = 0;
-pub const RPC_C_IMP_LEVEL_ANONYMOUS : u32 = 1;
-pub const RPC_C_IMP_LEVEL_IDENTIFY : u32 = 2;
-pub const RPC_C_IMP_LEVEL_IMPERSONATE : u32 = 3;
-pub const RPC_C_IMP_LEVEL_DELEGATE : u32 = 4;
-pub const RPC_C_QOS_CAPABILITIES_DEFAULT : u32 = 0;
-pub const RPC_C_QOS_CAPABILITIES_MUTUAL_AUTH : u32 = 1;
-pub const RPC_C_QOS_CAPABILITIES_MAKE_FULLSIC : u32 = 2;
-pub const RPC_C_QOS_CAPABILITIES_ANY_AUTHORITY : u32 = 4;
-pub const RPC_C_QOS_CAPABILITIES_IGNORE_DELEGATE_FAILURE : u32 = 8;
-pub const RPC_C_QOS_CAPABILITIES_LOCAL_MA_HINT : u32 = 16;
-pub const RPC_C_QOS_CAPABILITIES_SCHANNEL_FULL_AUTH_IDENTITY : u32 = 32;
-pub const RPC_C_AUTHN_NONE : u32 = 0;
-pub const RPC_C_AUTHN_DCE_PRIVATE : u32 = 1;
-pub const RPC_C_AUTHN_DCE_PUBLIC : u32 = 2;
-pub const RPC_C_AUTHN_DEC_PUBLIC : u32 = 4;
-pub const RPC_C_AUTHN_GSS_NEGOTIATE : u32 = 9;
-pub const RPC_C_AUTHN_WINNT : u32 = 10;
-pub const RPC_C_AUTHN_GSS_SCHANNEL : u32 = 14;
-pub const RPC_C_AUTHN_GSS_KERBEROS : u32 = 16;
-pub const RPC_C_AUTHN_DPA : u32 = 17;
-pub const RPC_C_AUTHN_MSN : u32 = 18;
-pub const RPC_C_AUTHN_DIGEST : u32 = 21;
-pub const RPC_C_AUTHN_KERNEL : u32 = 20;
-pub const RPC_C_AUTHN_NEGO_EXTENDER : u32 = 30;
-pub const RPC_C_AUTHN_PKU2U : u32 = 31;
-pub const RPC_C_AUTHN_LIVE_SSP : u32 = 32;
-pub const RPC_C_AUTHN_LIVEXP_SSP : u32 = 35;
-pub const RPC_C_AUTHN_CLOUD_AP : u32 = 36;
-pub const RPC_C_AUTHN_MSONLINE : u32 = 82;
-pub const RPC_C_AUTHN_MQ : u32 = 100;
-pub const RPC_C_AUTHN_DEFAULT : i32 = -1;
-pub const RPC_C_SECURITY_QOS_VERSION : i32 = 1;
-pub const RPC_C_SECURITY_QOS_VERSION_1 : i32 = 1;
-pub const RPC_C_SECURITY_QOS_VERSION_2 : i32 = 2;
-pub const RPC_C_AUTHN_INFO_TYPE_HTTP : u32 = 1;
-pub const RPC_C_HTTP_AUTHN_SCHEME_BASIC : u32 = 1;
-pub const RPC_C_HTTP_AUTHN_SCHEME_NTLM : u32 = 2;
-pub const RPC_C_HTTP_AUTHN_SCHEME_PASSPORT : u32 = 4;
-pub const RPC_C_HTTP_AUTHN_SCHEME_DIGEST : u32 = 8;
-pub const RPC_C_HTTP_AUTHN_SCHEME_NEGOTIATE : u32 = 16;
-pub const RPC_C_HTTP_AUTHN_SCHEME_CERT : u32 = 65536;
-pub const RPC_C_HTTP_FLAG_USE_SSL : u32 = 1;
-pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME : u32 = 2;
-pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID : u32 = 8;
-pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK : u32 = 16;
-pub const RPC_C_SECURITY_QOS_VERSION_3 : i32 = 3;
-pub const RPC_C_SECURITY_QOS_VERSION_4 : i32 = 4;
-pub const RPC_C_SECURITY_QOS_VERSION_5 : i32 = 5;
-pub const RPC_PROTSEQ_TCP : u32 = 1;
-pub const RPC_PROTSEQ_NMP : u32 = 2;
-pub const RPC_PROTSEQ_LRPC : u32 = 3;
-pub const RPC_PROTSEQ_HTTP : u32 = 4;
-pub const RPC_BHT_OBJECT_UUID_VALID : u32 = 1;
-pub const RPC_BHO_EXCLUSIVE_AND_GUARANTEED : u32 = 4;
-pub const RPC_C_AUTHZ_NONE : u32 = 0;
-pub const RPC_C_AUTHZ_NAME : u32 = 1;
-pub const RPC_C_AUTHZ_DCE : u32 = 2;
-pub const RPC_C_AUTHZ_DEFAULT : u32 = 4294967295;
-pub const DCE_C_ERROR_STRING_LEN : u32 = 256;
-pub const RPC_C_EP_ALL_ELTS : u32 = 0;
-pub const RPC_C_EP_MATCH_BY_IF : u32 = 1;
-pub const RPC_C_EP_MATCH_BY_OBJ : u32 = 2;
-pub const RPC_C_EP_MATCH_BY_BOTH : u32 = 3;
-pub const RPC_C_VERS_ALL : u32 = 1;
-pub const RPC_C_VERS_COMPATIBLE : u32 = 2;
-pub const RPC_C_VERS_EXACT : u32 = 3;
-pub const RPC_C_VERS_MAJOR_ONLY : u32 = 4;
-pub const RPC_C_VERS_UPTO : u32 = 5;
-pub const RPC_C_MGMT_INQ_IF_IDS : u32 = 0;
-pub const RPC_C_MGMT_INQ_PRINC_NAME : u32 = 1;
-pub const RPC_C_MGMT_INQ_STATS : u32 = 2;
-pub const RPC_C_MGMT_IS_SERVER_LISTEN : u32 = 3;
-pub const RPC_C_MGMT_STOP_SERVER_LISTEN : u32 = 4;
-pub const RPC_C_PARM_MAX_PACKET_LENGTH : u32 = 1;
-pub const RPC_C_PARM_BUFFER_LENGTH : u32 = 2;
-pub const RPC_IF_AUTOLISTEN : u32 = 1;
-pub const RPC_IF_OLE : u32 = 2;
-pub const RPC_IF_ALLOW_UNKNOWN_AUTHORITY : u32 = 4;
-pub const RPC_IF_ALLOW_SECURE_ONLY : u32 = 8;
-pub const RPC_IF_ALLOW_CALLBACKS_WITH_NO_AUTH : u32 = 16;
-pub const RPC_IF_ALLOW_LOCAL_ONLY : u32 = 32;
-pub const RPC_IF_SEC_NO_CACHE : u32 = 64;
-pub const RPC_IF_SEC_CACHE_PER_PROC : u32 = 128;
-pub const RPC_IF_ASYNC_CALLBACK : u32 = 256;
-pub const RPC_FW_IF_FLAG_DCOM : u32 = 1;
-pub const RPC_C_NOTIFY_ON_SEND_COMPLETE : u32 = 1;
-pub const MaxNumberOfEEInfoParams : u32 = 4;
-pub const RPC_EEINFO_VERSION : u32 = 1;
-pub const EEInfoPreviousRecordsMissing : u32 = 1;
-pub const EEInfoNextRecordsMissing : u32 = 2;
-pub const EEInfoUseFileTime : u32 = 4;
-pub const EEInfoGCCOM : u32 = 11;
-pub const EEInfoGCFRS : u32 = 12;
-pub const RPC_CALL_ATTRIBUTES_VERSION : u32 = 2;
-pub const RPC_QUERY_SERVER_PRINCIPAL_NAME : u32 = 2;
-pub const RPC_QUERY_CLIENT_PRINCIPAL_NAME : u32 = 4;
-pub const RPC_QUERY_CALL_LOCAL_ADDRESS : u32 = 8;
-pub const RPC_QUERY_CLIENT_PID : u32 = 16;
-pub const RPC_QUERY_IS_CLIENT_LOCAL : u32 = 32;
-pub const RPC_QUERY_NO_AUTH_REQUIRED : u32 = 64;
-pub const RPC_QUERY_CLIENT_ID : u32 = 128;
-pub const RPC_CALL_STATUS_CANCELLED : u32 = 1;
-pub const RPC_CALL_STATUS_DISCONNECTED : u32 = 2;
-pub const RPC_CONTEXT_HANDLE_DEFAULT_FLAGS : u32 = 0;
-pub const RPC_CONTEXT_HANDLE_FLAGS : u32 = 805306368;
-pub const RPC_CONTEXT_HANDLE_SERIALIZE : u32 = 268435456;
-pub const RPC_CONTEXT_HANDLE_DONT_SERIALIZE : u32 = 536870912;
-pub const RPC_TYPE_STRICT_CONTEXT_HANDLE : u32 = 1073741824;
-pub const RPC_TYPE_DISCONNECT_EVENT_CONTEXT_HANDLE : u32 = 2147483648;
-pub const RPC_NCA_FLAGS_DEFAULT : u32 = 0;
-pub const RPC_NCA_FLAGS_IDEMPOTENT : u32 = 1;
-pub const RPC_NCA_FLAGS_BROADCAST : u32 = 2;
-pub const RPC_NCA_FLAGS_MAYBE : u32 = 4;
-pub const RPCFLG_HAS_GUARANTEE : u32 = 16;
-pub const RPCFLG_WINRT_REMOTE_ASYNC : u32 = 32;
-pub const RPC_BUFFER_COMPLETE : u32 = 4096;
-pub const RPC_BUFFER_PARTIAL : u32 = 8192;
-pub const RPC_BUFFER_EXTRA : u32 = 16384;
-pub const RPC_BUFFER_ASYNC : u32 = 32768;
-pub const RPC_BUFFER_NONOTIFY : u32 = 65536;
-pub const RPCFLG_MESSAGE : u32 = 16777216;
-pub const RPCFLG_AUTO_COMPLETE : u32 = 134217728;
-pub const RPCFLG_LOCAL_CALL : u32 = 268435456;
-pub const RPCFLG_INPUT_SYNCHRONOUS : u32 = 536870912;
-pub const RPCFLG_ASYNCHRONOUS : u32 = 1073741824;
-pub const RPCFLG_NON_NDR : u32 = 2147483648;
-pub const RPCFLG_HAS_MULTI_SYNTAXES : u32 = 33554432;
-pub const RPCFLG_HAS_CALLBACK : u32 = 67108864;
-pub const RPCFLG_ACCESSIBILITY_BIT1 : u32 = 1048576;
-pub const RPCFLG_ACCESSIBILITY_BIT2 : u32 = 2097152;
-pub const RPCFLG_ACCESS_LOCAL : u32 = 4194304;
-pub const NDR_CUSTOM_OR_DEFAULT_ALLOCATOR : u32 = 268435456;
-pub const NDR_DEFAULT_ALLOCATOR : u32 = 536870912;
-pub const RPCFLG_NDR64_CONTAINS_ARM_LAYOUT : u32 = 67108864;
-pub const RPCFLG_SENDER_WAITING_FOR_REPLY : u32 = 8388608;
-pub const RPC_FLAGS_VALID_BIT : u32 = 32768;
-pub const NT351_INTERFACE_SIZE : u32 = 64;
-pub const RPC_INTERFACE_HAS_PIPES : u32 = 1;
-pub const RPC_SYSTEM_HANDLE_FREE_UNRETRIEVED : u32 = 1;
-pub const RPC_SYSTEM_HANDLE_FREE_RETRIEVED : u32 = 2;
-pub const RPC_SYSTEM_HANDLE_FREE_ALL : u32 = 3;
-pub const RPC_SYSTEM_HANDLE_FREE_ERROR_ON_CLOSE : u32 = 4;
-pub const TRANSPORT_TYPE_CN : u32 = 1;
-pub const TRANSPORT_TYPE_DG : u32 = 2;
-pub const TRANSPORT_TYPE_LPC : u32 = 4;
-pub const TRANSPORT_TYPE_WMSG : u32 = 8;
-pub const RPC_P_ADDR_FORMAT_TCP_IPV4 : u32 = 1;
-pub const RPC_P_ADDR_FORMAT_TCP_IPV6 : u32 = 2;
-pub const RPC_C_OPT_SESSION_ID : u32 = 6;
-pub const RPC_C_OPT_COOKIE_AUTH : u32 = 7;
-pub const RPC_C_OPT_RESOURCE_TYPE_UUID : u32 = 8;
-pub const RPC_PROXY_CONNECTION_TYPE_IN_PROXY : u32 = 0;
-pub const RPC_PROXY_CONNECTION_TYPE_OUT_PROXY : u32 = 1;
-pub const RPC_C_OPT_PRIVATE_SUPPRESS_WAKE : u32 = 1;
-pub const RPC_C_OPT_PRIVATE_DO_NOT_DISTURB : u32 = 2;
-pub const RPC_C_OPT_PRIVATE_BREAK_ON_SUSPEND : u32 = 3;
-pub const RPC_C_PROFILE_DEFAULT_ELT : u32 = 0;
-pub const RPC_C_PROFILE_ALL_ELT : u32 = 1;
-pub const RPC_C_PROFILE_MATCH_BY_IF : u32 = 2;
-pub const RPC_C_PROFILE_MATCH_BY_MBR : u32 = 3;
-pub const RPC_C_PROFILE_MATCH_BY_BOTH : u32 = 4;
-pub const RPC_C_NS_DEFAULT_EXP_AGE : i32 = -1;
-pub const TARGET_IS_NT100_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT63_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT62_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT61_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT60_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT51_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT50_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT40_OR_LATER : u32 = 1;
-pub const TARGET_IS_NT351_OR_WIN95_OR_LATER : u32 = 1;
-pub const USER_CALL_IS_ASYNC : u32 = 256;
-pub const USER_CALL_NEW_CORRELATION_DESC : u32 = 512;
-pub const USER_MARSHAL_FC_BYTE : u32 = 1;
-pub const USER_MARSHAL_FC_CHAR : u32 = 2;
-pub const USER_MARSHAL_FC_SMALL : u32 = 3;
-pub const USER_MARSHAL_FC_USMALL : u32 = 4;
-pub const USER_MARSHAL_FC_WCHAR : u32 = 5;
-pub const USER_MARSHAL_FC_SHORT : u32 = 6;
-pub const USER_MARSHAL_FC_USHORT : u32 = 7;
-pub const USER_MARSHAL_FC_LONG : u32 = 8;
-pub const USER_MARSHAL_FC_ULONG : u32 = 9;
-pub const USER_MARSHAL_FC_FLOAT : u32 = 10;
-pub const USER_MARSHAL_FC_HYPER : u32 = 11;
-pub const USER_MARSHAL_FC_DOUBLE : u32 = 12;
-pub const MidlInterceptionInfoVersionOne : i32 = 1;
-pub const MidlWinrtTypeSerializationInfoVersionOne : i32 = 1;
+pub const RPC_C_BINDING_INFINITE_TIMEOUT = @as(u32, 10);
+pub const RPC_C_BINDING_MIN_TIMEOUT = @as(u32, 0);
+pub const RPC_C_BINDING_DEFAULT_TIMEOUT = @as(u32, 5);
+pub const RPC_C_BINDING_MAX_TIMEOUT = @as(u32, 9);
+pub const RPC_C_CANCEL_INFINITE_TIMEOUT = @as(i32, -1);
+pub const RPC_C_LISTEN_MAX_CALLS_DEFAULT = @as(u32, 1234);
+pub const RPC_C_PROTSEQ_MAX_REQS_DEFAULT = @as(u32, 10);
+pub const RPC_C_BIND_TO_ALL_NICS = @as(u32, 1);
+pub const RPC_C_USE_INTERNET_PORT = @as(u32, 1);
+pub const RPC_C_USE_INTRANET_PORT = @as(u32, 2);
+pub const RPC_C_DONT_FAIL = @as(u32, 4);
+pub const RPC_C_RPCHTTP_USE_LOAD_BALANCE = @as(u32, 8);
+pub const RPC_C_MQ_TEMPORARY = @as(u32, 0);
+pub const RPC_C_MQ_PERMANENT = @as(u32, 1);
+pub const RPC_C_MQ_CLEAR_ON_OPEN = @as(u32, 2);
+pub const RPC_C_MQ_USE_EXISTING_SECURITY = @as(u32, 4);
+pub const RPC_C_MQ_AUTHN_LEVEL_NONE = @as(u32, 0);
+pub const RPC_C_MQ_AUTHN_LEVEL_PKT_INTEGRITY = @as(u32, 8);
+pub const RPC_C_MQ_AUTHN_LEVEL_PKT_PRIVACY = @as(u32, 16);
+pub const RPC_C_MQ_EXPRESS = @as(u32, 0);
+pub const RPC_C_MQ_RECOVERABLE = @as(u32, 1);
+pub const RPC_C_MQ_JOURNAL_NONE = @as(u32, 0);
+pub const RPC_C_MQ_JOURNAL_DEADLETTER = @as(u32, 1);
+pub const RPC_C_MQ_JOURNAL_ALWAYS = @as(u32, 2);
+pub const RPC_C_OPT_MQ_DELIVERY = @as(u32, 1);
+pub const RPC_C_OPT_MQ_PRIORITY = @as(u32, 2);
+pub const RPC_C_OPT_MQ_JOURNAL = @as(u32, 3);
+pub const RPC_C_OPT_MQ_ACKNOWLEDGE = @as(u32, 4);
+pub const RPC_C_OPT_MQ_AUTHN_SERVICE = @as(u32, 5);
+pub const RPC_C_OPT_MQ_AUTHN_LEVEL = @as(u32, 6);
+pub const RPC_C_OPT_MQ_TIME_TO_REACH_QUEUE = @as(u32, 7);
+pub const RPC_C_OPT_MQ_TIME_TO_BE_RECEIVED = @as(u32, 8);
+pub const RPC_C_OPT_BINDING_NONCAUSAL = @as(u32, 9);
+pub const RPC_C_OPT_SECURITY_CALLBACK = @as(u32, 10);
+pub const RPC_C_OPT_UNIQUE_BINDING = @as(u32, 11);
+pub const RPC_C_OPT_MAX_OPTIONS = @as(u32, 12);
+pub const RPC_C_OPT_CALL_TIMEOUT = @as(u32, 12);
+pub const RPC_C_OPT_DONT_LINGER = @as(u32, 13);
+pub const RPC_C_OPT_TRANS_SEND_BUFFER_SIZE = @as(u32, 5);
+pub const RPC_C_OPT_TRUST_PEER = @as(u32, 14);
+pub const RPC_C_OPT_ASYNC_BLOCK = @as(u32, 15);
+pub const RPC_C_OPT_OPTIMIZE_TIME = @as(u32, 16);
+pub const RPC_C_FULL_CERT_CHAIN = @as(u32, 1);
+pub const RPC_C_STATS_CALLS_IN = @as(u32, 0);
+pub const RPC_C_STATS_CALLS_OUT = @as(u32, 1);
+pub const RPC_C_STATS_PKTS_IN = @as(u32, 2);
+pub const RPC_C_STATS_PKTS_OUT = @as(u32, 3);
+pub const RPC_C_AUTHN_LEVEL_DEFAULT = @as(u32, 0);
+pub const RPC_C_AUTHN_LEVEL_NONE = @as(u32, 1);
+pub const RPC_C_AUTHN_LEVEL_CONNECT = @as(u32, 2);
+pub const RPC_C_AUTHN_LEVEL_CALL = @as(u32, 3);
+pub const RPC_C_AUTHN_LEVEL_PKT = @as(u32, 4);
+pub const RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = @as(u32, 5);
+pub const RPC_C_AUTHN_LEVEL_PKT_PRIVACY = @as(u32, 6);
+pub const RPC_C_IMP_LEVEL_DEFAULT = @as(u32, 0);
+pub const RPC_C_IMP_LEVEL_ANONYMOUS = @as(u32, 1);
+pub const RPC_C_IMP_LEVEL_IDENTIFY = @as(u32, 2);
+pub const RPC_C_IMP_LEVEL_IMPERSONATE = @as(u32, 3);
+pub const RPC_C_IMP_LEVEL_DELEGATE = @as(u32, 4);
+pub const RPC_C_QOS_CAPABILITIES_DEFAULT = @as(u32, 0);
+pub const RPC_C_QOS_CAPABILITIES_MUTUAL_AUTH = @as(u32, 1);
+pub const RPC_C_QOS_CAPABILITIES_MAKE_FULLSIC = @as(u32, 2);
+pub const RPC_C_QOS_CAPABILITIES_ANY_AUTHORITY = @as(u32, 4);
+pub const RPC_C_QOS_CAPABILITIES_IGNORE_DELEGATE_FAILURE = @as(u32, 8);
+pub const RPC_C_QOS_CAPABILITIES_LOCAL_MA_HINT = @as(u32, 16);
+pub const RPC_C_QOS_CAPABILITIES_SCHANNEL_FULL_AUTH_IDENTITY = @as(u32, 32);
+pub const RPC_C_AUTHN_NONE = @as(u32, 0);
+pub const RPC_C_AUTHN_DCE_PRIVATE = @as(u32, 1);
+pub const RPC_C_AUTHN_DCE_PUBLIC = @as(u32, 2);
+pub const RPC_C_AUTHN_DEC_PUBLIC = @as(u32, 4);
+pub const RPC_C_AUTHN_GSS_NEGOTIATE = @as(u32, 9);
+pub const RPC_C_AUTHN_WINNT = @as(u32, 10);
+pub const RPC_C_AUTHN_GSS_SCHANNEL = @as(u32, 14);
+pub const RPC_C_AUTHN_GSS_KERBEROS = @as(u32, 16);
+pub const RPC_C_AUTHN_DPA = @as(u32, 17);
+pub const RPC_C_AUTHN_MSN = @as(u32, 18);
+pub const RPC_C_AUTHN_DIGEST = @as(u32, 21);
+pub const RPC_C_AUTHN_KERNEL = @as(u32, 20);
+pub const RPC_C_AUTHN_NEGO_EXTENDER = @as(u32, 30);
+pub const RPC_C_AUTHN_PKU2U = @as(u32, 31);
+pub const RPC_C_AUTHN_LIVE_SSP = @as(u32, 32);
+pub const RPC_C_AUTHN_LIVEXP_SSP = @as(u32, 35);
+pub const RPC_C_AUTHN_CLOUD_AP = @as(u32, 36);
+pub const RPC_C_AUTHN_MSONLINE = @as(u32, 82);
+pub const RPC_C_AUTHN_MQ = @as(u32, 100);
+pub const RPC_C_AUTHN_DEFAULT = @as(i32, -1);
+pub const RPC_C_SECURITY_QOS_VERSION = @as(i32, 1);
+pub const RPC_C_SECURITY_QOS_VERSION_1 = @as(i32, 1);
+pub const RPC_C_SECURITY_QOS_VERSION_2 = @as(i32, 2);
+pub const RPC_C_AUTHN_INFO_TYPE_HTTP = @as(u32, 1);
+pub const RPC_C_HTTP_AUTHN_SCHEME_BASIC = @as(u32, 1);
+pub const RPC_C_HTTP_AUTHN_SCHEME_NTLM = @as(u32, 2);
+pub const RPC_C_HTTP_AUTHN_SCHEME_PASSPORT = @as(u32, 4);
+pub const RPC_C_HTTP_AUTHN_SCHEME_DIGEST = @as(u32, 8);
+pub const RPC_C_HTTP_AUTHN_SCHEME_NEGOTIATE = @as(u32, 16);
+pub const RPC_C_HTTP_AUTHN_SCHEME_CERT = @as(u32, 65536);
+pub const RPC_C_HTTP_FLAG_USE_SSL = @as(u32, 1);
+pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME = @as(u32, 2);
+pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID = @as(u32, 8);
+pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = @as(u32, 16);
+pub const RPC_C_SECURITY_QOS_VERSION_3 = @as(i32, 3);
+pub const RPC_C_SECURITY_QOS_VERSION_4 = @as(i32, 4);
+pub const RPC_C_SECURITY_QOS_VERSION_5 = @as(i32, 5);
+pub const RPC_PROTSEQ_TCP = @as(u32, 1);
+pub const RPC_PROTSEQ_NMP = @as(u32, 2);
+pub const RPC_PROTSEQ_LRPC = @as(u32, 3);
+pub const RPC_PROTSEQ_HTTP = @as(u32, 4);
+pub const RPC_BHT_OBJECT_UUID_VALID = @as(u32, 1);
+pub const RPC_BHO_EXCLUSIVE_AND_GUARANTEED = @as(u32, 4);
+pub const RPC_C_AUTHZ_NONE = @as(u32, 0);
+pub const RPC_C_AUTHZ_NAME = @as(u32, 1);
+pub const RPC_C_AUTHZ_DCE = @as(u32, 2);
+pub const RPC_C_AUTHZ_DEFAULT = @as(u32, 4294967295);
+pub const DCE_C_ERROR_STRING_LEN = @as(u32, 256);
+pub const RPC_C_EP_ALL_ELTS = @as(u32, 0);
+pub const RPC_C_EP_MATCH_BY_IF = @as(u32, 1);
+pub const RPC_C_EP_MATCH_BY_OBJ = @as(u32, 2);
+pub const RPC_C_EP_MATCH_BY_BOTH = @as(u32, 3);
+pub const RPC_C_VERS_ALL = @as(u32, 1);
+pub const RPC_C_VERS_COMPATIBLE = @as(u32, 2);
+pub const RPC_C_VERS_EXACT = @as(u32, 3);
+pub const RPC_C_VERS_MAJOR_ONLY = @as(u32, 4);
+pub const RPC_C_VERS_UPTO = @as(u32, 5);
+pub const RPC_C_MGMT_INQ_IF_IDS = @as(u32, 0);
+pub const RPC_C_MGMT_INQ_PRINC_NAME = @as(u32, 1);
+pub const RPC_C_MGMT_INQ_STATS = @as(u32, 2);
+pub const RPC_C_MGMT_IS_SERVER_LISTEN = @as(u32, 3);
+pub const RPC_C_MGMT_STOP_SERVER_LISTEN = @as(u32, 4);
+pub const RPC_C_PARM_MAX_PACKET_LENGTH = @as(u32, 1);
+pub const RPC_C_PARM_BUFFER_LENGTH = @as(u32, 2);
+pub const RPC_IF_AUTOLISTEN = @as(u32, 1);
+pub const RPC_IF_OLE = @as(u32, 2);
+pub const RPC_IF_ALLOW_UNKNOWN_AUTHORITY = @as(u32, 4);
+pub const RPC_IF_ALLOW_SECURE_ONLY = @as(u32, 8);
+pub const RPC_IF_ALLOW_CALLBACKS_WITH_NO_AUTH = @as(u32, 16);
+pub const RPC_IF_ALLOW_LOCAL_ONLY = @as(u32, 32);
+pub const RPC_IF_SEC_NO_CACHE = @as(u32, 64);
+pub const RPC_IF_SEC_CACHE_PER_PROC = @as(u32, 128);
+pub const RPC_IF_ASYNC_CALLBACK = @as(u32, 256);
+pub const RPC_FW_IF_FLAG_DCOM = @as(u32, 1);
+pub const RPC_C_NOTIFY_ON_SEND_COMPLETE = @as(u32, 1);
+pub const MaxNumberOfEEInfoParams = @as(u32, 4);
+pub const RPC_EEINFO_VERSION = @as(u32, 1);
+pub const EEInfoPreviousRecordsMissing = @as(u32, 1);
+pub const EEInfoNextRecordsMissing = @as(u32, 2);
+pub const EEInfoUseFileTime = @as(u32, 4);
+pub const EEInfoGCCOM = @as(u32, 11);
+pub const EEInfoGCFRS = @as(u32, 12);
+pub const RPC_CALL_ATTRIBUTES_VERSION = @as(u32, 2);
+pub const RPC_QUERY_SERVER_PRINCIPAL_NAME = @as(u32, 2);
+pub const RPC_QUERY_CLIENT_PRINCIPAL_NAME = @as(u32, 4);
+pub const RPC_QUERY_CALL_LOCAL_ADDRESS = @as(u32, 8);
+pub const RPC_QUERY_CLIENT_PID = @as(u32, 16);
+pub const RPC_QUERY_IS_CLIENT_LOCAL = @as(u32, 32);
+pub const RPC_QUERY_NO_AUTH_REQUIRED = @as(u32, 64);
+pub const RPC_QUERY_CLIENT_ID = @as(u32, 128);
+pub const RPC_CALL_STATUS_CANCELLED = @as(u32, 1);
+pub const RPC_CALL_STATUS_DISCONNECTED = @as(u32, 2);
+pub const RPC_CONTEXT_HANDLE_DEFAULT_FLAGS = @as(u32, 0);
+pub const RPC_CONTEXT_HANDLE_FLAGS = @as(u32, 805306368);
+pub const RPC_CONTEXT_HANDLE_SERIALIZE = @as(u32, 268435456);
+pub const RPC_CONTEXT_HANDLE_DONT_SERIALIZE = @as(u32, 536870912);
+pub const RPC_TYPE_STRICT_CONTEXT_HANDLE = @as(u32, 1073741824);
+pub const RPC_TYPE_DISCONNECT_EVENT_CONTEXT_HANDLE = @as(u32, 2147483648);
+pub const RPC_NCA_FLAGS_DEFAULT = @as(u32, 0);
+pub const RPC_NCA_FLAGS_IDEMPOTENT = @as(u32, 1);
+pub const RPC_NCA_FLAGS_BROADCAST = @as(u32, 2);
+pub const RPC_NCA_FLAGS_MAYBE = @as(u32, 4);
+pub const RPCFLG_HAS_GUARANTEE = @as(u32, 16);
+pub const RPCFLG_WINRT_REMOTE_ASYNC = @as(u32, 32);
+pub const RPC_BUFFER_COMPLETE = @as(u32, 4096);
+pub const RPC_BUFFER_PARTIAL = @as(u32, 8192);
+pub const RPC_BUFFER_EXTRA = @as(u32, 16384);
+pub const RPC_BUFFER_ASYNC = @as(u32, 32768);
+pub const RPC_BUFFER_NONOTIFY = @as(u32, 65536);
+pub const RPCFLG_MESSAGE = @as(u32, 16777216);
+pub const RPCFLG_AUTO_COMPLETE = @as(u32, 134217728);
+pub const RPCFLG_LOCAL_CALL = @as(u32, 268435456);
+pub const RPCFLG_INPUT_SYNCHRONOUS = @as(u32, 536870912);
+pub const RPCFLG_ASYNCHRONOUS = @as(u32, 1073741824);
+pub const RPCFLG_NON_NDR = @as(u32, 2147483648);
+pub const RPCFLG_HAS_MULTI_SYNTAXES = @as(u32, 33554432);
+pub const RPCFLG_HAS_CALLBACK = @as(u32, 67108864);
+pub const RPCFLG_ACCESSIBILITY_BIT1 = @as(u32, 1048576);
+pub const RPCFLG_ACCESSIBILITY_BIT2 = @as(u32, 2097152);
+pub const RPCFLG_ACCESS_LOCAL = @as(u32, 4194304);
+pub const NDR_CUSTOM_OR_DEFAULT_ALLOCATOR = @as(u32, 268435456);
+pub const NDR_DEFAULT_ALLOCATOR = @as(u32, 536870912);
+pub const RPCFLG_NDR64_CONTAINS_ARM_LAYOUT = @as(u32, 67108864);
+pub const RPCFLG_SENDER_WAITING_FOR_REPLY = @as(u32, 8388608);
+pub const RPC_FLAGS_VALID_BIT = @as(u32, 32768);
+pub const NT351_INTERFACE_SIZE = @as(u32, 64);
+pub const RPC_INTERFACE_HAS_PIPES = @as(u32, 1);
+pub const RPC_SYSTEM_HANDLE_FREE_UNRETRIEVED = @as(u32, 1);
+pub const RPC_SYSTEM_HANDLE_FREE_RETRIEVED = @as(u32, 2);
+pub const RPC_SYSTEM_HANDLE_FREE_ALL = @as(u32, 3);
+pub const RPC_SYSTEM_HANDLE_FREE_ERROR_ON_CLOSE = @as(u32, 4);
+pub const TRANSPORT_TYPE_CN = @as(u32, 1);
+pub const TRANSPORT_TYPE_DG = @as(u32, 2);
+pub const TRANSPORT_TYPE_LPC = @as(u32, 4);
+pub const TRANSPORT_TYPE_WMSG = @as(u32, 8);
+pub const RPC_P_ADDR_FORMAT_TCP_IPV4 = @as(u32, 1);
+pub const RPC_P_ADDR_FORMAT_TCP_IPV6 = @as(u32, 2);
+pub const RPC_C_OPT_SESSION_ID = @as(u32, 6);
+pub const RPC_C_OPT_COOKIE_AUTH = @as(u32, 7);
+pub const RPC_C_OPT_RESOURCE_TYPE_UUID = @as(u32, 8);
+pub const RPC_PROXY_CONNECTION_TYPE_IN_PROXY = @as(u32, 0);
+pub const RPC_PROXY_CONNECTION_TYPE_OUT_PROXY = @as(u32, 1);
+pub const RPC_C_OPT_PRIVATE_SUPPRESS_WAKE = @as(u32, 1);
+pub const RPC_C_OPT_PRIVATE_DO_NOT_DISTURB = @as(u32, 2);
+pub const RPC_C_OPT_PRIVATE_BREAK_ON_SUSPEND = @as(u32, 3);
+pub const RPC_C_PROFILE_DEFAULT_ELT = @as(u32, 0);
+pub const RPC_C_PROFILE_ALL_ELT = @as(u32, 1);
+pub const RPC_C_PROFILE_MATCH_BY_IF = @as(u32, 2);
+pub const RPC_C_PROFILE_MATCH_BY_MBR = @as(u32, 3);
+pub const RPC_C_PROFILE_MATCH_BY_BOTH = @as(u32, 4);
+pub const RPC_C_NS_DEFAULT_EXP_AGE = @as(i32, -1);
+pub const TARGET_IS_NT100_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT63_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT62_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT61_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT60_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT51_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT50_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT40_OR_LATER = @as(u32, 1);
+pub const TARGET_IS_NT351_OR_WIN95_OR_LATER = @as(u32, 1);
+pub const USER_CALL_IS_ASYNC = @as(u32, 256);
+pub const USER_CALL_NEW_CORRELATION_DESC = @as(u32, 512);
+pub const USER_MARSHAL_FC_BYTE = @as(u32, 1);
+pub const USER_MARSHAL_FC_CHAR = @as(u32, 2);
+pub const USER_MARSHAL_FC_SMALL = @as(u32, 3);
+pub const USER_MARSHAL_FC_USMALL = @as(u32, 4);
+pub const USER_MARSHAL_FC_WCHAR = @as(u32, 5);
+pub const USER_MARSHAL_FC_SHORT = @as(u32, 6);
+pub const USER_MARSHAL_FC_USHORT = @as(u32, 7);
+pub const USER_MARSHAL_FC_LONG = @as(u32, 8);
+pub const USER_MARSHAL_FC_ULONG = @as(u32, 9);
+pub const USER_MARSHAL_FC_FLOAT = @as(u32, 10);
+pub const USER_MARSHAL_FC_HYPER = @as(u32, 11);
+pub const USER_MARSHAL_FC_DOUBLE = @as(u32, 12);
+pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
+pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (165)
+// Section: Types (164)
 //--------------------------------------------------------------------------------
 pub const RPC_BINDING_VECTOR = extern struct {
     Count: u32,
@@ -594,7 +594,7 @@ pub const RPC_INTERFACE_TEMPLATEA = extern struct {
     Flags: u32,
     MaxCalls: u32,
     MaxRpcSize: u32,
-    IfCallback: *RPC_IF_CALLBACK_FN,
+    IfCallback: RPC_IF_CALLBACK_FN,
     UuidVector: *UUID_VECTOR,
     Annotation: *u8,
     SecurityDescriptor: *c_void,
@@ -608,7 +608,7 @@ pub const RPC_INTERFACE_TEMPLATEW = extern struct {
     Flags: u32,
     MaxCalls: u32,
     MaxRpcSize: u32,
-    IfCallback: *RPC_IF_CALLBACK_FN,
+    IfCallback: RPC_IF_CALLBACK_FN,
     UuidVector: *UUID_VECTOR,
     Annotation: *u16,
     SecurityDescriptor: *c_void,
@@ -671,7 +671,7 @@ pub const RPC_DISPATCH_FUNCTION = fn(
 
 pub const RPC_DISPATCH_TABLE = extern struct {
     DispatchTableCount: u32,
-    DispatchTable: *RPC_DISPATCH_FUNCTION,
+    DispatchTable: RPC_DISPATCH_FUNCTION,
     Reserved: ?*c_void,
 };
 
@@ -884,13 +884,10 @@ pub const RpcReceiveComplete = RPC_ASYNC_EVENT.ReceiveComplete;
 pub const RpcClientDisconnect = RPC_ASYNC_EVENT.ClientDisconnect;
 pub const RpcClientCancel = RPC_ASYNC_EVENT.ClientCancel;
 
-pub const RPCNOTIFICATION_ROUTINE = fn(
+pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
     pAsync: *RPC_ASYNC_STATE,
     Context: *c_void,
     Event: RPC_ASYNC_EVENT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RPC_ASYNC_NOTIFICATION_INFO = u32; // TODO: implement StructOrUnion types?
@@ -1440,7 +1437,7 @@ pub const MIDL_INTERFACE_METHOD_PROPERTIES = extern struct {
     MethodProperties: *const *const MIDL_METHOD_PROPERTY_MAP,
 };
 
-pub const _MIDL_SERVER_INFO_ = extern struct {
+pub const MIDL_SERVER_INFO = extern struct {
     pStubDesc: *MIDL_STUB_DESC,
     DispatchTable: *const SERVER_ROUTINE,
     ProcString: *u8,
@@ -1666,6 +1663,20 @@ pub const NDR_SCONTEXT_1 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (491)
 //--------------------------------------------------------------------------------
+pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
+    This: *IUnknown,
+    riid: *const Guid,
+    ppvObject: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "RPCRT4" fn IUnknown_AddRef_Proxy(
+    This: *IUnknown,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "RPCRT4" fn IUnknown_Release_Proxy(
+    This: *IUnknown,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 pub extern "RPCRT4" fn RpcBindingCopy(
     SourceBinding: *c_void,
     DestinationBinding: **c_void,
@@ -1820,7 +1831,7 @@ pub extern "RPCRT4" fn RpcObjectInqType(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcObjectSetInqFn(
-    InquiryFn: *RPC_OBJECT_INQ_FN,
+    InquiryFn: RPC_OBJECT_INQ_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcObjectSetType(
@@ -1869,7 +1880,7 @@ pub extern "RPCRT4" fn RpcServerRegisterIfEx(
     MgrEpv: ?*c_void,
     Flags: u32,
     MaxCalls: u32,
-    IfCallback: ?*?RPC_IF_CALLBACK_FN,
+    IfCallback: ?RPC_IF_CALLBACK_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcServerRegisterIf2(
@@ -1879,7 +1890,7 @@ pub extern "RPCRT4" fn RpcServerRegisterIf2(
     Flags: u32,
     MaxCalls: u32,
     MaxRpcSize: u32,
-    IfCallbackFn: ?*?RPC_IF_CALLBACK_FN,
+    IfCallbackFn: ?RPC_IF_CALLBACK_FN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcServerRegisterIf3(
@@ -1889,7 +1900,7 @@ pub extern "RPCRT4" fn RpcServerRegisterIf3(
     Flags: u32,
     MaxCalls: u32,
     MaxRpcSize: u32,
-    IfCallback: ?*?RPC_IF_CALLBACK_FN,
+    IfCallback: ?RPC_IF_CALLBACK_FN,
     SecurityDescriptor: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4051,8 +4062,8 @@ pub extern "RPCRT4" fn RpcSsGetThreadHandle(
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "RPCRT4" fn RpcSsSetClientAllocFree(
-    ClientAlloc: *RPC_CLIENT_ALLOC,
-    ClientFree: *RPC_CLIENT_FREE,
+    ClientAlloc: RPC_CLIENT_ALLOC,
+    ClientFree: RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn RpcSsSetThreadHandle(
@@ -4060,10 +4071,10 @@ pub extern "RPCRT4" fn RpcSsSetThreadHandle(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn RpcSsSwapClientAllocFree(
-    ClientAlloc: *RPC_CLIENT_ALLOC,
-    ClientFree: *RPC_CLIENT_FREE,
-    OldClientAlloc: **RPC_CLIENT_ALLOC,
-    OldClientFree: **RPC_CLIENT_FREE,
+    ClientAlloc: RPC_CLIENT_ALLOC,
+    ClientFree: RPC_CLIENT_FREE,
+    OldClientAlloc: *RPC_CLIENT_ALLOC,
+    OldClientFree: *RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn RpcSmAllocate(
@@ -4094,8 +4105,8 @@ pub extern "RPCRT4" fn RpcSmGetThreadHandle(
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "RPCRT4" fn RpcSmSetClientAllocFree(
-    ClientAlloc: *RPC_CLIENT_ALLOC,
-    ClientFree: *RPC_CLIENT_FREE,
+    ClientAlloc: RPC_CLIENT_ALLOC,
+    ClientFree: RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcSmSetThreadHandle(
@@ -4103,10 +4114,10 @@ pub extern "RPCRT4" fn RpcSmSetThreadHandle(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn RpcSmSwapClientAllocFree(
-    ClientAlloc: *RPC_CLIENT_ALLOC,
-    ClientFree: *RPC_CLIENT_FREE,
-    OldClientAlloc: **RPC_CLIENT_ALLOC,
-    OldClientFree: **RPC_CLIENT_FREE,
+    ClientAlloc: RPC_CLIENT_ALLOC,
+    ClientFree: RPC_CLIENT_FREE,
+    OldClientAlloc: *RPC_CLIENT_ALLOC,
+    OldClientFree: *RPC_CLIENT_FREE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "RPCRT4" fn NdrRpcSsEnableAllocate(
@@ -4466,20 +4477,6 @@ pub extern "RPCRT4" fn RpcCertGeneratePrincipalNameA(
     pBuffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
-    This: *IUnknown,
-    riid: *const Guid,
-    ppvObject: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "RPCRT4" fn IUnknown_AddRef_Proxy(
-    This: *IUnknown,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "RPCRT4" fn IUnknown_Release_Proxy(
-    This: *IUnknown,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (75)
@@ -4800,8 +4797,8 @@ const Guid = @import("../zig.zig").Guid;
 const SEC_WINNT_AUTH_IDENTITY_A = @import("security.zig").SEC_WINNT_AUTH_IDENTITY_A;
 const PWSTR = @import("system_services.zig").PWSTR;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
-const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const IUnknown = @import("com.zig").IUnknown;
+const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const IRpcChannelBuffer = @import("com.zig").IRpcChannelBuffer;
 const HRESULT = @import("com.zig").HRESULT;
 const IRpcStubBuffer = @import("com.zig").IRpcStubBuffer;
@@ -4836,7 +4833,6 @@ test {
     _ = I_RpcProxyFilterIfFn;
     _ = I_RpcProxyUpdatePerfCounterFn;
     _ = I_RpcProxyUpdatePerfCounterBackendServerFn;
-    _ = RPCNOTIFICATION_ROUTINE;
     _ = PFN_RPCNOTIFICATION_ROUTINE;
     _ = NDR_RUNDOWN;
     _ = NDR_NOTIFY_ROUTINE;
@@ -4863,7 +4859,7 @@ test {
     _ = MIDL_ES_READ;
 
     const constant_export_count = 242;
-    const type_export_count = 165;
+    const type_export_count = 164;
     const enum_value_export_count = 101;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

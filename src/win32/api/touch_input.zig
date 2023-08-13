@@ -9,10 +9,6 @@ pub const NaN = @import("std").math.nan(f32);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const HGESTUREINFO = ?*c_void;
-
-pub const HTOUCHINPUT = ?*c_void;
-
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
@@ -687,6 +683,10 @@ pub const IManipulationProcessor = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const HGESTUREINFO = ?*c_void;
+
+pub const HTOUCHINPUT = ?*c_void;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GESTURECONFIG_ID = extern enum(u32) {

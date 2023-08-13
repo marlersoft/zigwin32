@@ -6,15 +6,15 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
+pub const HGLRC = ?*c_void;
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const wglSwapLayerBuffers_arg2Flags = extern enum(u32) {
     E = 1,
     _,
 };
 pub const WGL_SWAP_MAIN_PLANE = wglSwapLayerBuffers_arg2Flags.E;
-
-// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
-pub const HGLRC = ?*c_void;
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,

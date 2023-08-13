@@ -2,15 +2,15 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (9)
 //--------------------------------------------------------------------------------
-pub const GUID_STRING_SIZE : u32 = 40;
-pub const DATA_NOT_AVAILABLE : u32 = 4294967295;
-pub const MTXDM_E_ENLISTRESOURCEFAILED : u32 = 2147803392;
-pub const CRR_NO_REASON_SUPPLIED : u32 = 0;
-pub const CRR_LIFETIME_LIMIT : u32 = 4294967295;
-pub const CRR_ACTIVATION_LIMIT : u32 = 4294967294;
-pub const CRR_CALL_LIMIT : u32 = 4294967293;
-pub const CRR_MEMORY_LIMIT : u32 = 4294967292;
-pub const CRR_RECYCLED_FROM_UI : u32 = 4294967291;
+pub const GUID_STRING_SIZE = @as(u32, 40);
+pub const DATA_NOT_AVAILABLE = @as(u32, 4294967295);
+pub const MTXDM_E_ENLISTRESOURCEFAILED = @as(u32, 2147803392);
+pub const CRR_NO_REASON_SUPPLIED = @as(u32, 0);
+pub const CRR_LIFETIME_LIMIT = @as(u32, 4294967295);
+pub const CRR_ACTIVATION_LIMIT = @as(u32, 4294967294);
+pub const CRR_CALL_LIMIT = @as(u32, 4294967293);
+pub const CRR_MEMORY_LIMIT = @as(u32, 4294967292);
+pub const CRR_RECYCLED_FROM_UI = @as(u32, 4294967291);
 
 //--------------------------------------------------------------------------------
 // Section: Types (325)

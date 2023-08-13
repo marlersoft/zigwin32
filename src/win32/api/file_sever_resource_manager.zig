@@ -2,27 +2,27 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (21)
 //--------------------------------------------------------------------------------
-pub const FSRM_DISPID_FEATURE_MASK : u32 = 251658240;
-pub const FSRM_DISPID_INTERFACE_A_MASK : u32 = 15728640;
-pub const FSRM_DISPID_INTERFACE_B_MASK : u32 = 983040;
-pub const FSRM_DISPID_INTERFACE_C_MASK : u32 = 61440;
-pub const FSRM_DISPID_INTERFACE_D_MASK : u32 = 3840;
-pub const FSRM_DISPID_IS_PROPERTY : u32 = 128;
-pub const FSRM_DISPID_METHOD_NUM_MASK : u32 = 127;
-pub const FSRM_DISPID_FEATURE_GENERAL : u32 = 16777216;
-pub const FSRM_DISPID_FEATURE_QUOTA : u32 = 33554432;
-pub const FSRM_DISPID_FEATURE_FILESCREEN : u32 = 50331648;
-pub const FSRM_DISPID_FEATURE_REPORTS : u32 = 67108864;
-pub const FSRM_DISPID_FEATURE_CLASSIFICATION : u32 = 83886080;
-pub const FSRM_DISPID_FEATURE_PIPELINE : u32 = 100663296;
-pub const FsrmMaxNumberThresholds : u32 = 16;
-pub const FsrmMinThresholdValue : u32 = 1;
-pub const FsrmMaxThresholdValue : u32 = 250;
-pub const FsrmMinQuotaLimit : u32 = 1024;
-pub const FsrmMaxExcludeFolders : u32 = 32;
-pub const FsrmMaxNumberPropertyDefinitions : u32 = 100;
-pub const MessageSizeLimit : u32 = 4096;
-pub const FsrmDaysNotSpecified : i32 = -1;
+pub const FSRM_DISPID_FEATURE_MASK = @as(u32, 251658240);
+pub const FSRM_DISPID_INTERFACE_A_MASK = @as(u32, 15728640);
+pub const FSRM_DISPID_INTERFACE_B_MASK = @as(u32, 983040);
+pub const FSRM_DISPID_INTERFACE_C_MASK = @as(u32, 61440);
+pub const FSRM_DISPID_INTERFACE_D_MASK = @as(u32, 3840);
+pub const FSRM_DISPID_IS_PROPERTY = @as(u32, 128);
+pub const FSRM_DISPID_METHOD_NUM_MASK = @as(u32, 127);
+pub const FSRM_DISPID_FEATURE_GENERAL = @as(u32, 16777216);
+pub const FSRM_DISPID_FEATURE_QUOTA = @as(u32, 33554432);
+pub const FSRM_DISPID_FEATURE_FILESCREEN = @as(u32, 50331648);
+pub const FSRM_DISPID_FEATURE_REPORTS = @as(u32, 67108864);
+pub const FSRM_DISPID_FEATURE_CLASSIFICATION = @as(u32, 83886080);
+pub const FSRM_DISPID_FEATURE_PIPELINE = @as(u32, 100663296);
+pub const FsrmMaxNumberThresholds = @as(u32, 16);
+pub const FsrmMinThresholdValue = @as(u32, 1);
+pub const FsrmMaxThresholdValue = @as(u32, 250);
+pub const FsrmMinQuotaLimit = @as(u32, 1024);
+pub const FsrmMaxExcludeFolders = @as(u32, 32);
+pub const FsrmMaxNumberPropertyDefinitions = @as(u32, 100);
+pub const MessageSizeLimit = @as(u32, 4096);
+pub const FsrmDaysNotSpecified = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (117)

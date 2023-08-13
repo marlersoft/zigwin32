@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const LIBID_WUApiLib = @import("../zig.zig").Guid.initString("b596cc9f-56e5-419e-a622-e01bb457431e");
-pub const UPDATE_LOCKDOWN_WEBSITE_ACCESS : u32 = 1;
+pub const LIBID_WUApiLib = Guid.initString("b596cc9f-56e5-419e-a622-e01bb457431e");
+pub const UPDATE_LOCKDOWN_WEBSITE_ACCESS = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (109)
@@ -4148,8 +4148,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const DECIMAL = @import("system_services.zig").DECIMAL;
 const VARIANT = @import("automation.zig").VARIANT;
@@ -4166,7 +4167,7 @@ test {
     const com_class_id_export_count = 12;
     const func_export_count = 0;
     const unicode_alias_count = 0;
-    const import_count = 7;
+    const import_count = 8;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

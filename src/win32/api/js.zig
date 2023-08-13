@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const JS_SOURCE_CONTEXT_NONE : u64 = 18446744073709551615;
-pub const JsRuntimeVersionEdge : i32 = -1;
+pub const JS_SOURCE_CONTEXT_NONE = @as(u64, 18446744073709551615);
+pub const JsRuntimeVersionEdge = @import("../zig.zig").typedConst(JsRuntimeVersion, @as(i32, -1));
 
 //--------------------------------------------------------------------------------
 // Section: Types (11)

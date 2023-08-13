@@ -6,6 +6,14 @@
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
+pub const L2_NOTIFICATION_DATA = extern struct {
+    NotificationSource: u32,
+    NotificationCode: u32,
+    InterfaceGuid: Guid,
+    dwDataSize: u32,
+    pData: *c_void,
+};
+
 pub const SOCKET_ADDRESS_LIST = extern struct {
     iAddressCount: i32,
     Address: [1]SOCKET_ADDRESS,
@@ -224,14 +232,6 @@ pub const RouterDiscoveryDisabled = NL_ROUTER_DISCOVERY_BEHAVIOR.Disabled;
 pub const RouterDiscoveryEnabled = NL_ROUTER_DISCOVERY_BEHAVIOR.Enabled;
 pub const RouterDiscoveryDhcp = NL_ROUTER_DISCOVERY_BEHAVIOR.Dhcp;
 pub const RouterDiscoveryUnchanged = NL_ROUTER_DISCOVERY_BEHAVIOR.Unchanged;
-
-pub const L2_NOTIFICATION_DATA = extern struct {
-    NotificationSource: u32,
-    NotificationCode: u32,
-    InterfaceGuid: Guid,
-    dwDataSize: u32,
-    pData: *c_void,
-};
 
 pub const NET_IF_OPER_STATUS = extern enum(i32) {
     UP = 1,

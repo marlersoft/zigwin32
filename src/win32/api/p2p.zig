@@ -2,31 +2,31 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (26)
 //--------------------------------------------------------------------------------
-pub const NS_PNRPNAME : u32 = 38;
-pub const NS_PNRPCLOUD : u32 = 39;
-pub const PNRPINFO_HINT : u32 = 1;
-pub const NS_PROVIDER_PNRPNAME = @import("../zig.zig").Guid.initString("03fe89cd-766d-4976-b9c1-bb9bc42c7b4d");
-pub const NS_PROVIDER_PNRPCLOUD = @import("../zig.zig").Guid.initString("03fe89ce-766d-4976-b9c1-bb9bc42c7b4d");
-pub const SVCID_PNRPCLOUD = @import("../zig.zig").Guid.initString("c2239ce6-00c0-4fbf-bad6-18139385a49a");
-pub const SVCID_PNRPNAME_V1 = @import("../zig.zig").Guid.initString("c2239ce5-00c0-4fbf-bad6-18139385a49a");
-pub const SVCID_PNRPNAME_V2 = @import("../zig.zig").Guid.initString("c2239ce7-00c0-4fbf-bad6-18139385a49a");
-pub const PNRP_MAX_ENDPOINT_ADDRESSES : u32 = 10;
-pub const PNRP_MAX_EXTENDED_PAYLOAD_BYTES : u32 = 4096;
-pub const WSA_PNRP_ERROR_BASE : u32 = 11500;
-pub const PEER_GROUP_ROLE_ADMIN = @import("../zig.zig").Guid.initString("04387127-aa56-450a-8ce5-4f565c6790f4");
-pub const PEER_GROUP_ROLE_MEMBER = @import("../zig.zig").Guid.initString("f12dc4c7-0857-4ca0-93fc-b1bb19a3d8c2");
-pub const PEER_GROUP_ROLE_INVITING_MEMBER = @import("../zig.zig").Guid.initString("4370fd89-dc18-4cfb-8dbf-9853a8a9f905");
-pub const PEER_COLLAB_OBJECTID_USER_PICTURE = @import("../zig.zig").Guid.initString("dd15f41f-fc4e-4922-b035-4c06a754d01d");
-pub const FACILITY_DRT : u32 = 98;
-pub const DRT_PAYLOAD_REVOKED : u32 = 1;
-pub const DRT_MIN_ROUTING_ADDRESSES : u32 = 1;
-pub const DRT_MAX_ROUTING_ADDRESSES : u32 = 20;
-pub const DRT_MAX_PAYLOAD_SIZE : u32 = 5120;
-pub const DRT_MAX_INSTANCE_PREFIX_LEN : u32 = 128;
-pub const DRT_LINK_LOCAL_ISATAP_SCOPEID : u32 = 4294967295;
-pub const PEERDIST_PUBLICATION_OPTIONS_VERSION_1 : i32 = 1;
-pub const PEERDIST_READ_TIMEOUT_LOCAL_CACHE_ONLY : u32 = 0;
-pub const PEERDIST_READ_TIMEOUT_DEFAULT : u32 = 4294967294;
+pub const NS_PNRPNAME = @as(u32, 38);
+pub const NS_PNRPCLOUD = @as(u32, 39);
+pub const PNRPINFO_HINT = @as(u32, 1);
+pub const NS_PROVIDER_PNRPNAME = Guid.initString("03fe89cd-766d-4976-b9c1-bb9bc42c7b4d");
+pub const NS_PROVIDER_PNRPCLOUD = Guid.initString("03fe89ce-766d-4976-b9c1-bb9bc42c7b4d");
+pub const SVCID_PNRPCLOUD = Guid.initString("c2239ce6-00c0-4fbf-bad6-18139385a49a");
+pub const SVCID_PNRPNAME_V1 = Guid.initString("c2239ce5-00c0-4fbf-bad6-18139385a49a");
+pub const SVCID_PNRPNAME_V2 = Guid.initString("c2239ce7-00c0-4fbf-bad6-18139385a49a");
+pub const PNRP_MAX_ENDPOINT_ADDRESSES = @as(u32, 10);
+pub const PNRP_MAX_EXTENDED_PAYLOAD_BYTES = @as(u32, 4096);
+pub const WSA_PNRP_ERROR_BASE = @as(u32, 11500);
+pub const PEER_GROUP_ROLE_ADMIN = Guid.initString("04387127-aa56-450a-8ce5-4f565c6790f4");
+pub const PEER_GROUP_ROLE_MEMBER = Guid.initString("f12dc4c7-0857-4ca0-93fc-b1bb19a3d8c2");
+pub const PEER_GROUP_ROLE_INVITING_MEMBER = Guid.initString("4370fd89-dc18-4cfb-8dbf-9853a8a9f905");
+pub const PEER_COLLAB_OBJECTID_USER_PICTURE = Guid.initString("dd15f41f-fc4e-4922-b035-4c06a754d01d");
+pub const FACILITY_DRT = @as(u32, 98);
+pub const DRT_PAYLOAD_REVOKED = @as(u32, 1);
+pub const DRT_MIN_ROUTING_ADDRESSES = @as(u32, 1);
+pub const DRT_MAX_ROUTING_ADDRESSES = @as(u32, 20);
+pub const DRT_MAX_PAYLOAD_SIZE = @as(u32, 5120);
+pub const DRT_MAX_INSTANCE_PREFIX_LEN = @as(u32, 128);
+pub const DRT_LINK_LOCAL_ISATAP_SCOPEID = @as(u32, 4294967295);
+pub const PEERDIST_PUBLICATION_OPTIONS_VERSION_1 = @as(i32, 1);
+pub const PEERDIST_READ_TIMEOUT_LOCAL_CACHE_ONLY = @as(u32, 0);
+pub const PEERDIST_READ_TIMEOUT_DEFAULT = @as(u32, 4294967294);
 // skipped 'PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION'
 
 //--------------------------------------------------------------------------------

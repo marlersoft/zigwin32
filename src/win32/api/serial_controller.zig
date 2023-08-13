@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const COMDB_MIN_PORTS_ARBITRATED : u32 = 256;
-pub const COMDB_MAX_PORTS_ARBITRATED : u32 = 4096;
-pub const CDB_REPORT_BITS : u32 = 0;
-pub const CDB_REPORT_BYTES : u32 = 1;
+pub const COMDB_MIN_PORTS_ARBITRATED = @as(u32, 256);
+pub const COMDB_MAX_PORTS_ARBITRATED = @as(u32, 4096);
+pub const CDB_REPORT_BITS = @as(u32, 0);
+pub const CDB_REPORT_BYTES = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1)

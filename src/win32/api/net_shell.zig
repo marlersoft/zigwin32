@@ -2,15 +2,15 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const NETSH_ERROR_BASE : u32 = 15000;
-pub const MAX_NAME_LEN : u32 = 48;
-pub const NETSH_VERSION_50 : u32 = 20480;
-pub const NETSH_MAX_TOKEN_LENGTH : u32 = 64;
-pub const NETSH_MAX_CMD_TOKEN_LENGTH : u32 = 128;
-pub const DEFAULT_CONTEXT_PRIORITY : u32 = 100;
+pub const NETSH_ERROR_BASE = @as(u32, 15000);
+pub const MAX_NAME_LEN = @as(u32, 48);
+pub const NETSH_VERSION_50 = @as(u32, 20480);
+pub const NETSH_MAX_TOKEN_LENGTH = @as(u32, 64);
+pub const NETSH_MAX_CMD_TOKEN_LENGTH = @as(u32, 128);
+pub const DEFAULT_CONTEXT_PRIORITY = @as(u32, 100);
 
 //--------------------------------------------------------------------------------
-// Section: Types (30)
+// Section: Types (20)
 //--------------------------------------------------------------------------------
 pub const NS_CMD_FLAGS = extern enum(i32) {
     PRIVATE = 1,
@@ -71,62 +71,41 @@ pub const TOKEN_VALUE = extern struct {
     dwValue: u32,
 };
 
-pub const GET_RESOURCE_STRING_FN = fn(
+pub const PGET_RESOURCE_STRING_FN = fn(
     dwMsgID: u32,
     lpBuffer: PWSTR,
     nBufferMax: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PGET_RESOURCE_STRING_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_CONTEXT_COMMIT_FN = fn(
+pub const PNS_CONTEXT_COMMIT_FN = fn(
     dwAction: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_COMMIT_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_CONTEXT_CONNECT_FN = fn(
+pub const PNS_CONTEXT_CONNECT_FN = fn(
     pwszMachine: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_CONNECT_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_CONTEXT_DUMP_FN = fn(
+pub const PNS_CONTEXT_DUMP_FN = fn(
     pwszRouter: [*:0]const u16,
     ppwcArguments: [*]PWSTR,
     dwArgCount: u32,
     pvData: *const c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_DUMP_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_DLL_STOP_FN = fn(
+pub const PNS_DLL_STOP_FN = fn(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_DLL_STOP_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_HELPER_START_FN = fn(
+pub const PNS_HELPER_START_FN = fn(
     pguidParent: *const Guid,
     dwVersion: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_HELPER_START_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_HELPER_STOP_FN = fn(
+pub const PNS_HELPER_STOP_FN = fn(
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_HELPER_STOP_FN = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const FN_HANDLE_CMD = fn(
+pub const PFN_HANDLE_CMD = fn(
     pwszMachine: [*:0]const u16,
     ppwcArguments: [*]PWSTR,
     dwCurrentIndex: u32,
@@ -136,10 +115,7 @@ pub const FN_HANDLE_CMD = fn(
     pbDone: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_HANDLE_CMD = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const NS_OSVERSIONCHECK = fn(
+pub const PNS_OSVERSIONCHECK = fn(
     CIMOSType: u32,
     CIMOSProductSuite: u32,
     CIMOSVersion: [*:0]const u16,
@@ -148,9 +124,6 @@ pub const NS_OSVERSIONCHECK = fn(
     CIMServicePackMinorVersion: [*:0]const u16,
     uiReserved: u32,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PNS_OSVERSIONCHECK = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NS_HELPER_ATTRIBUTES = extern struct {
@@ -203,12 +176,9 @@ pub const TAG_TYPE = extern struct {
     bPresent: BOOL,
 };
 
-pub const NS_DLL_INIT_FN = fn(
+pub const PNS_DLL_INIT_FN = fn(
     dwNetshVersion: u32,
     pReserved: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PNS_DLL_INIT_FN = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 
@@ -286,29 +256,19 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = GET_RESOURCE_STRING_FN;
     _ = PGET_RESOURCE_STRING_FN;
-    _ = NS_CONTEXT_COMMIT_FN;
     _ = PNS_CONTEXT_COMMIT_FN;
-    _ = NS_CONTEXT_CONNECT_FN;
     _ = PNS_CONTEXT_CONNECT_FN;
-    _ = NS_CONTEXT_DUMP_FN;
     _ = PNS_CONTEXT_DUMP_FN;
-    _ = NS_DLL_STOP_FN;
     _ = PNS_DLL_STOP_FN;
-    _ = NS_HELPER_START_FN;
     _ = PNS_HELPER_START_FN;
-    _ = NS_HELPER_STOP_FN;
     _ = PNS_HELPER_STOP_FN;
-    _ = FN_HANDLE_CMD;
     _ = PFN_HANDLE_CMD;
-    _ = NS_OSVERSIONCHECK;
     _ = PNS_OSVERSIONCHECK;
-    _ = NS_DLL_INIT_FN;
     _ = PNS_DLL_INIT_FN;
 
     const constant_export_count = 6;
-    const type_export_count = 30;
+    const type_export_count = 20;
     const enum_value_export_count = 21;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

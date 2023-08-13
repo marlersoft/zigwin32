@@ -2,92 +2,92 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (83)
 //--------------------------------------------------------------------------------
-pub const CATID_WcsPlugin = @import("../zig.zig").Guid.initString("a0b402e0-8240-405f-8a16-8a5b4df2f0dd");
-pub const MAX_COLOR_CHANNELS : u32 = 8;
-pub const INTENT_PERCEPTUAL : u32 = 0;
-pub const INTENT_RELATIVE_COLORIMETRIC : u32 = 1;
-pub const INTENT_SATURATION : u32 = 2;
-pub const INTENT_ABSOLUTE_COLORIMETRIC : u32 = 3;
-pub const FLAG_EMBEDDEDPROFILE : u32 = 1;
-pub const FLAG_DEPENDENTONDATA : u32 = 2;
-pub const FLAG_ENABLE_CHROMATIC_ADAPTATION : u32 = 33554432;
-pub const ATTRIB_TRANSPARENCY : u32 = 1;
-pub const ATTRIB_MATTE : u32 = 2;
-pub const PROFILE_FILENAME : u32 = 1;
-pub const PROFILE_MEMBUFFER : u32 = 2;
-pub const PROFILE_READ : u32 = 1;
-pub const PROFILE_READWRITE : u32 = 2;
-pub const INDEX_DONT_CARE : u32 = 0;
-pub const ENUM_TYPE_VERSION : u32 = 768;
-pub const ET_DEVICENAME : u32 = 1;
-pub const ET_MEDIATYPE : u32 = 2;
-pub const ET_DITHERMODE : u32 = 4;
-pub const ET_RESOLUTION : u32 = 8;
-pub const ET_CMMTYPE : u32 = 16;
-pub const ET_CLASS : u32 = 32;
-pub const ET_DATACOLORSPACE : u32 = 64;
-pub const ET_CONNECTIONSPACE : u32 = 128;
-pub const ET_SIGNATURE : u32 = 256;
-pub const ET_PLATFORM : u32 = 512;
-pub const ET_PROFILEFLAGS : u32 = 1024;
-pub const ET_MANUFACTURER : u32 = 2048;
-pub const ET_MODEL : u32 = 4096;
-pub const ET_ATTRIBUTES : u32 = 8192;
-pub const ET_RENDERINGINTENT : u32 = 16384;
-pub const ET_CREATOR : u32 = 32768;
-pub const ET_DEVICECLASS : u32 = 65536;
-pub const ET_STANDARDDISPLAYCOLOR : u32 = 131072;
-pub const ET_EXTENDEDDISPLAYCOLOR : u32 = 262144;
-pub const PROOF_MODE : u32 = 1;
-pub const NORMAL_MODE : u32 = 2;
-pub const BEST_MODE : u32 = 3;
-pub const ENABLE_GAMUT_CHECKING : u32 = 65536;
-pub const USE_RELATIVE_COLORIMETRIC : u32 = 131072;
-pub const FAST_TRANSLATE : u32 = 262144;
-pub const PRESERVEBLACK : u32 = 1048576;
-pub const WCS_ALWAYS : u32 = 2097152;
-pub const SEQUENTIAL_TRANSFORM : u32 = 2155872256;
-pub const RESERVED : u32 = 2147483648;
-pub const CSA_A : u32 = 1;
-pub const CSA_ABC : u32 = 2;
-pub const CSA_DEF : u32 = 3;
-pub const CSA_DEFG : u32 = 4;
-pub const CSA_GRAY : u32 = 5;
-pub const CSA_RGB : u32 = 6;
-pub const CSA_CMYK : u32 = 7;
-pub const CSA_Lab : u32 = 8;
-pub const CMM_WIN_VERSION : u32 = 0;
-pub const CMM_IDENT : u32 = 1;
-pub const CMM_DRIVER_VERSION : u32 = 2;
-pub const CMM_DLL_VERSION : u32 = 3;
-pub const CMM_VERSION : u32 = 4;
-pub const CMM_DESCRIPTION : u32 = 5;
-pub const CMM_LOGOICON : u32 = 6;
-pub const CMS_FORWARD : u32 = 0;
-pub const CMS_BACKWARD : u32 = 1;
-pub const COLOR_MATCH_VERSION : u32 = 512;
-pub const CMS_DISABLEICM : u32 = 1;
-pub const CMS_ENABLEPROOFING : u32 = 2;
-pub const CMS_SETRENDERINTENT : u32 = 4;
-pub const CMS_SETPROOFINTENT : u32 = 8;
-pub const CMS_SETMONITORPROFILE : u32 = 16;
-pub const CMS_SETPRINTERPROFILE : u32 = 32;
-pub const CMS_SETTARGETPROFILE : u32 = 64;
-pub const CMS_USEHOOK : u32 = 128;
-pub const CMS_USEAPPLYCALLBACK : u32 = 256;
-pub const CMS_USEDESCRIPTION : u32 = 512;
-pub const CMS_DISABLEINTENT : u32 = 1024;
-pub const CMS_DISABLERENDERINTENT : u32 = 2048;
-pub const CMS_MONITOROVERFLOW : i32 = -2147483648;
-pub const CMS_PRINTEROVERFLOW : i32 = 1073741824;
-pub const CMS_TARGETOVERFLOW : i32 = 536870912;
-pub const DONT_USE_EMBEDDED_WCS_PROFILES : i32 = 1;
-pub const WCS_DEFAULT : i32 = 0;
-pub const WCS_ICCONLY : i32 = 65536;
-pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH : u32 = 80;
+pub const CATID_WcsPlugin = Guid.initString("a0b402e0-8240-405f-8a16-8a5b4df2f0dd");
+pub const MAX_COLOR_CHANNELS = @as(u32, 8);
+pub const INTENT_PERCEPTUAL = @as(u32, 0);
+pub const INTENT_RELATIVE_COLORIMETRIC = @as(u32, 1);
+pub const INTENT_SATURATION = @as(u32, 2);
+pub const INTENT_ABSOLUTE_COLORIMETRIC = @as(u32, 3);
+pub const FLAG_EMBEDDEDPROFILE = @as(u32, 1);
+pub const FLAG_DEPENDENTONDATA = @as(u32, 2);
+pub const FLAG_ENABLE_CHROMATIC_ADAPTATION = @as(u32, 33554432);
+pub const ATTRIB_TRANSPARENCY = @as(u32, 1);
+pub const ATTRIB_MATTE = @as(u32, 2);
+pub const PROFILE_FILENAME = @as(u32, 1);
+pub const PROFILE_MEMBUFFER = @as(u32, 2);
+pub const PROFILE_READ = @as(u32, 1);
+pub const PROFILE_READWRITE = @as(u32, 2);
+pub const INDEX_DONT_CARE = @as(u32, 0);
+pub const ENUM_TYPE_VERSION = @as(u32, 768);
+pub const ET_DEVICENAME = @as(u32, 1);
+pub const ET_MEDIATYPE = @as(u32, 2);
+pub const ET_DITHERMODE = @as(u32, 4);
+pub const ET_RESOLUTION = @as(u32, 8);
+pub const ET_CMMTYPE = @as(u32, 16);
+pub const ET_CLASS = @as(u32, 32);
+pub const ET_DATACOLORSPACE = @as(u32, 64);
+pub const ET_CONNECTIONSPACE = @as(u32, 128);
+pub const ET_SIGNATURE = @as(u32, 256);
+pub const ET_PLATFORM = @as(u32, 512);
+pub const ET_PROFILEFLAGS = @as(u32, 1024);
+pub const ET_MANUFACTURER = @as(u32, 2048);
+pub const ET_MODEL = @as(u32, 4096);
+pub const ET_ATTRIBUTES = @as(u32, 8192);
+pub const ET_RENDERINGINTENT = @as(u32, 16384);
+pub const ET_CREATOR = @as(u32, 32768);
+pub const ET_DEVICECLASS = @as(u32, 65536);
+pub const ET_STANDARDDISPLAYCOLOR = @as(u32, 131072);
+pub const ET_EXTENDEDDISPLAYCOLOR = @as(u32, 262144);
+pub const PROOF_MODE = @as(u32, 1);
+pub const NORMAL_MODE = @as(u32, 2);
+pub const BEST_MODE = @as(u32, 3);
+pub const ENABLE_GAMUT_CHECKING = @as(u32, 65536);
+pub const USE_RELATIVE_COLORIMETRIC = @as(u32, 131072);
+pub const FAST_TRANSLATE = @as(u32, 262144);
+pub const PRESERVEBLACK = @as(u32, 1048576);
+pub const WCS_ALWAYS = @as(u32, 2097152);
+pub const SEQUENTIAL_TRANSFORM = @as(u32, 2155872256);
+pub const RESERVED = @as(u32, 2147483648);
+pub const CSA_A = @as(u32, 1);
+pub const CSA_ABC = @as(u32, 2);
+pub const CSA_DEF = @as(u32, 3);
+pub const CSA_DEFG = @as(u32, 4);
+pub const CSA_GRAY = @as(u32, 5);
+pub const CSA_RGB = @as(u32, 6);
+pub const CSA_CMYK = @as(u32, 7);
+pub const CSA_Lab = @as(u32, 8);
+pub const CMM_WIN_VERSION = @as(u32, 0);
+pub const CMM_IDENT = @as(u32, 1);
+pub const CMM_DRIVER_VERSION = @as(u32, 2);
+pub const CMM_DLL_VERSION = @as(u32, 3);
+pub const CMM_VERSION = @as(u32, 4);
+pub const CMM_DESCRIPTION = @as(u32, 5);
+pub const CMM_LOGOICON = @as(u32, 6);
+pub const CMS_FORWARD = @as(u32, 0);
+pub const CMS_BACKWARD = @as(u32, 1);
+pub const COLOR_MATCH_VERSION = @as(u32, 512);
+pub const CMS_DISABLEICM = @as(u32, 1);
+pub const CMS_ENABLEPROOFING = @as(u32, 2);
+pub const CMS_SETRENDERINTENT = @as(u32, 4);
+pub const CMS_SETPROOFINTENT = @as(u32, 8);
+pub const CMS_SETMONITORPROFILE = @as(u32, 16);
+pub const CMS_SETPRINTERPROFILE = @as(u32, 32);
+pub const CMS_SETTARGETPROFILE = @as(u32, 64);
+pub const CMS_USEHOOK = @as(u32, 128);
+pub const CMS_USEAPPLYCALLBACK = @as(u32, 256);
+pub const CMS_USEDESCRIPTION = @as(u32, 512);
+pub const CMS_DISABLEINTENT = @as(u32, 1024);
+pub const CMS_DISABLERENDERINTENT = @as(u32, 2048);
+pub const CMS_MONITOROVERFLOW = @as(i32, -2147483648);
+pub const CMS_PRINTEROVERFLOW = @as(i32, 1073741824);
+pub const CMS_TARGETOVERFLOW = @as(i32, 536870912);
+pub const DONT_USE_EMBEDDED_WCS_PROFILES = @as(i32, 1);
+pub const WCS_DEFAULT = @as(i32, 0);
+pub const WCS_ICCONLY = @as(i32, 65536);
+pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 
 //--------------------------------------------------------------------------------
-// Section: Types (52)
+// Section: Types (51)
 //--------------------------------------------------------------------------------
 pub const UpdateICMRegKey_command = extern enum(u32) {
     ADDPROFILE = 1,
@@ -560,13 +560,10 @@ pub const BM_R10G10B10A2 = BMFORMAT.R10G10B10A2;
 pub const BM_R10G10B10A2_XR = BMFORMAT.R10G10B10A2_XR;
 pub const BM_R16G16B16A16_FLOAT = BMFORMAT.R16G16B16A16_FLOAT;
 
-pub const PBMCALLBACKFN = fn(
+pub const LPBMCALLBACKFN = fn(
     param0: u32,
     param1: u32,
     param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const LPBMCALLBACKFN = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PROFILEHEADER = extern struct {
@@ -968,7 +965,7 @@ pub extern "mscms" fn TranslateBitmapBits(
     pDestBits: *c_void,
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
-    pfnCallBack: ?PBMCALLBACKFN,
+    pfnCallBack: ?LPBMCALLBACKFN,
     ulCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -980,7 +977,7 @@ pub extern "mscms" fn CheckBitmapBits(
     dwHeight: u32,
     dwStride: u32,
     paResult: *u8,
-    pfnCallback: ?PBMCALLBACKFN,
+    pfnCallback: ?LPBMCALLBACKFN,
     lpCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1255,7 +1252,7 @@ pub extern "ICM32" fn CMCheckRGBs(
     dwHeight: u32,
     dwStride: u32,
     lpaResult: *u8,
-    pfnCallback: PBMCALLBACKFN,
+    pfnCallback: LPBMCALLBACKFN,
     ulCallbackData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1765,8 +1762,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
+const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const HDC = @import("gdi.zig").HDC;
 const PWSTR = @import("system_services.zig").PWSTR;
@@ -1784,7 +1782,6 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PBMCALLBACKFN;
     _ = LPBMCALLBACKFN;
     _ = PCMSCALLBACKW;
     _ = PCMSCALLBACKA;
@@ -1792,13 +1789,13 @@ test {
     _ = ICMENUMPROCW;
 
     const constant_export_count = 83;
-    const type_export_count = 52;
+    const type_export_count = 51;
     const enum_value_export_count = 85;
     const com_iface_id_export_count = 2;
     const com_class_id_export_count = 0;
     const func_export_count = 131;
     const unicode_alias_count = 26;
-    const import_count = 14;
+    const import_count = 15;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

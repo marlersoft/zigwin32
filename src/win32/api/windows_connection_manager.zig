@@ -2,9 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const WCM_API_VERSION_1_0 : u32 = 1;
-pub const WCM_UNKNOWN_DATAPLAN_STATUS : u32 = 4294967295;
-pub const WCM_MAX_PROFILE_NAME : u32 = 256;
+pub const WCM_API_VERSION_1_0 = @as(u32, 1);
+pub const WCM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
+pub const WCM_MAX_PROFILE_NAME = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (12)

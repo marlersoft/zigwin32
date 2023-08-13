@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (19)
+// Section: Types (20)
 //--------------------------------------------------------------------------------
 pub const MapiFileDesc = extern struct {
     ulReserved: u32,
@@ -80,7 +80,7 @@ pub const MapiMessageW = extern struct {
     lpFiles: *MapiFileDescW,
 };
 
-pub const MAPILOGON = fn(
+pub const LPMAPILOGON = fn(
     ulUIParam: ?*c_void,
     lpszProfileName: ?PSTR,
     lpszPassword: ?PSTR,
@@ -89,14 +89,14 @@ pub const MAPILOGON = fn(
     lplhSession: *?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPILOGOFF = fn(
+pub const LPMAPILOGOFF = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPISENDMAIL = fn(
+pub const LPMAPISENDMAIL = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpMessage: *MapiMessage,
@@ -104,7 +104,7 @@ pub const MAPISENDMAIL = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPISENDMAILW = fn(
+pub const LPMAPISENDMAILW = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpMessage: *MapiMessageW,
@@ -112,7 +112,7 @@ pub const MAPISENDMAILW = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPISENDDOCUMENTS = fn(
+pub const LPMAPISENDDOCUMENTS = fn(
     ulUIParam: ?*c_void,
     lpszDelimChar: PSTR,
     lpszFilePaths: PSTR,
@@ -120,7 +120,7 @@ pub const MAPISENDDOCUMENTS = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIFINDNEXT = fn(
+pub const LPMAPIFINDNEXT = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpszMessageType: PSTR,
@@ -130,7 +130,7 @@ pub const MAPIFINDNEXT = fn(
     lpszMessageID: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIREADMAIL = fn(
+pub const LPMAPIREADMAIL = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpszMessageID: PSTR,
@@ -139,7 +139,7 @@ pub const MAPIREADMAIL = fn(
     lppMessage: **MapiMessage,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPISAVEMAIL = fn(
+pub const LPMAPISAVEMAIL = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpMessage: *MapiMessage,
@@ -148,7 +148,7 @@ pub const MAPISAVEMAIL = fn(
     lpszMessageID: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIDELETEMAIL = fn(
+pub const LPMAPIDELETEMAIL = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpszMessageID: PSTR,
@@ -156,7 +156,11 @@ pub const MAPIDELETEMAIL = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIADDRESS = fn(
+pub const LPMAPIFREEBUFFER = fn(
+    pv: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const LPMAPIADDRESS = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpszCaption: PSTR,
@@ -170,7 +174,7 @@ pub const MAPIADDRESS = fn(
     lppNewRecips: **MapiRecipDesc,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIDETAILS = fn(
+pub const LPMAPIDETAILS = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpRecip: *MapiRecipDesc,
@@ -178,7 +182,7 @@ pub const MAPIDETAILS = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const MAPIRESOLVENAME = fn(
+pub const LPMAPIRESOLVENAME = fn(
     lhSession: ?*c_void,
     ulUIParam: ?*c_void,
     lpszName: PSTR,
@@ -216,21 +220,22 @@ const PSTR = @import("system_services.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = MAPILOGON;
-    _ = MAPILOGOFF;
-    _ = MAPISENDMAIL;
-    _ = MAPISENDMAILW;
-    _ = MAPISENDDOCUMENTS;
-    _ = MAPIFINDNEXT;
-    _ = MAPIREADMAIL;
-    _ = MAPISAVEMAIL;
-    _ = MAPIDELETEMAIL;
-    _ = MAPIADDRESS;
-    _ = MAPIDETAILS;
-    _ = MAPIRESOLVENAME;
+    _ = LPMAPILOGON;
+    _ = LPMAPILOGOFF;
+    _ = LPMAPISENDMAIL;
+    _ = LPMAPISENDMAILW;
+    _ = LPMAPISENDDOCUMENTS;
+    _ = LPMAPIFINDNEXT;
+    _ = LPMAPIREADMAIL;
+    _ = LPMAPISAVEMAIL;
+    _ = LPMAPIDELETEMAIL;
+    _ = LPMAPIFREEBUFFER;
+    _ = LPMAPIADDRESS;
+    _ = LPMAPIDETAILS;
+    _ = LPMAPIRESOLVENAME;
 
     const constant_export_count = 0;
-    const type_export_count = 19;
+    const type_export_count = 20;
     const enum_value_export_count = 0;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

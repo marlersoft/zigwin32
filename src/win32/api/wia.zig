@@ -6,147 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
-const CLSID_WiaVideo_Value = @import("../zig.zig").Guid.initString("3908c3cd-4478-4536-af2f-10c25d4ef89a");
-pub const CLSID_WiaVideo = &CLSID_WiaVideo_Value;
-
-pub const WIAVIDEO_STATE = extern enum(i32) {
-    NO_VIDEO = 1,
-    CREATING_VIDEO = 2,
-    VIDEO_CREATED = 3,
-    VIDEO_PLAYING = 4,
-    VIDEO_PAUSED = 5,
-    DESTROYING_VIDEO = 6,
-};
-pub const WIAVIDEO_NO_VIDEO = WIAVIDEO_STATE.NO_VIDEO;
-pub const WIAVIDEO_CREATING_VIDEO = WIAVIDEO_STATE.CREATING_VIDEO;
-pub const WIAVIDEO_VIDEO_CREATED = WIAVIDEO_STATE.VIDEO_CREATED;
-pub const WIAVIDEO_VIDEO_PLAYING = WIAVIDEO_STATE.VIDEO_PLAYING;
-pub const WIAVIDEO_VIDEO_PAUSED = WIAVIDEO_STATE.VIDEO_PAUSED;
-pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
-
-const IID_IWiaVideo_Value = @import("../zig.zig").Guid.initString("d52920aa-db88-41f0-946c-e00dc0a19cfa");
-pub const IID_IWiaVideo = &IID_IWiaVideo_Value;
-pub const IWiaVideo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        get_PreviewVisible: fn(
-            self: *const IWiaVideo,
-            pbPreviewVisible: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_PreviewVisible: fn(
-            self: *const IWiaVideo,
-            bPreviewVisible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        get_ImagesDirectory: fn(
-            self: *const IWiaVideo,
-            pbstrImageDirectory: ?*BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        put_ImagesDirectory: fn(
-            self: *const IWiaVideo,
-            bstrImageDirectory: BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByWiaDevID: fn(
-            self: *const IWiaVideo,
-            bstrWiaDeviceID: BSTR,
-            hwndParent: HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByDevNum: fn(
-            self: *const IWiaVideo,
-            uiDeviceNumber: u32,
-            hwndParent: HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByName: fn(
-            self: *const IWiaVideo,
-            bstrFriendlyName: BSTR,
-            hwndParent: HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DestroyVideo: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Play: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TakePicture: fn(
-            self: *const IWiaVideo,
-            pbstrNewImageFilename: ?*BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResizeVideo: fn(
-            self: *const IWiaVideo,
-            bStretchToFitParent: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentState: fn(
-            self: *const IWiaVideo,
-            pState: *WIAVIDEO_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_put_PreviewVisible(self: *const T, bPreviewVisible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_DestroyVideo(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).DestroyVideo(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_Play(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Play(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_ResizeVideo(self: *const T, bStretchToFitParent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_GetCurrentState(self: *const T, pState: *WIAVIDEO_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const WIA_DITHER_PATTERN_DATA = extern struct {
     lSize: i32,
     bstrPatternName: BSTR,
@@ -1107,6 +966,147 @@ pub const IWiaItemExtras = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWiaItemExtras_CancelPendingIO(self: *const T) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).CancelPendingIO(@ptrCast(*const IWiaItemExtras, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const CLSID_WiaVideo_Value = @import("../zig.zig").Guid.initString("3908c3cd-4478-4536-af2f-10c25d4ef89a");
+pub const CLSID_WiaVideo = &CLSID_WiaVideo_Value;
+
+pub const WIAVIDEO_STATE = extern enum(i32) {
+    NO_VIDEO = 1,
+    CREATING_VIDEO = 2,
+    VIDEO_CREATED = 3,
+    VIDEO_PLAYING = 4,
+    VIDEO_PAUSED = 5,
+    DESTROYING_VIDEO = 6,
+};
+pub const WIAVIDEO_NO_VIDEO = WIAVIDEO_STATE.NO_VIDEO;
+pub const WIAVIDEO_CREATING_VIDEO = WIAVIDEO_STATE.CREATING_VIDEO;
+pub const WIAVIDEO_VIDEO_CREATED = WIAVIDEO_STATE.VIDEO_CREATED;
+pub const WIAVIDEO_VIDEO_PLAYING = WIAVIDEO_STATE.VIDEO_PLAYING;
+pub const WIAVIDEO_VIDEO_PAUSED = WIAVIDEO_STATE.VIDEO_PAUSED;
+pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
+
+const IID_IWiaVideo_Value = @import("../zig.zig").Guid.initString("d52920aa-db88-41f0-946c-e00dc0a19cfa");
+pub const IID_IWiaVideo = &IID_IWiaVideo_Value;
+pub const IWiaVideo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        get_PreviewVisible: fn(
+            self: *const IWiaVideo,
+            pbPreviewVisible: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreviewVisible: fn(
+            self: *const IWiaVideo,
+            bPreviewVisible: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ImagesDirectory: fn(
+            self: *const IWiaVideo,
+            pbstrImageDirectory: ?*BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ImagesDirectory: fn(
+            self: *const IWiaVideo,
+            bstrImageDirectory: BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoByWiaDevID: fn(
+            self: *const IWiaVideo,
+            bstrWiaDeviceID: BSTR,
+            hwndParent: HWND,
+            bStretchToFitParent: BOOL,
+            bAutoBeginPlayback: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoByDevNum: fn(
+            self: *const IWiaVideo,
+            uiDeviceNumber: u32,
+            hwndParent: HWND,
+            bStretchToFitParent: BOOL,
+            bAutoBeginPlayback: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoByName: fn(
+            self: *const IWiaVideo,
+            bstrFriendlyName: BSTR,
+            hwndParent: HWND,
+            bStretchToFitParent: BOOL,
+            bAutoBeginPlayback: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyVideo: fn(
+            self: *const IWiaVideo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Play: fn(
+            self: *const IWiaVideo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pause: fn(
+            self: *const IWiaVideo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TakePicture: fn(
+            self: *const IWiaVideo,
+            pbstrNewImageFilename: ?*BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResizeVideo: fn(
+            self: *const IWiaVideo,
+            bStretchToFitParent: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentState: fn(
+            self: *const IWiaVideo,
+            pState: *WIAVIDEO_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_put_PreviewVisible(self: *const T, bPreviewVisible: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: BSTR, hwndParent: HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_DestroyVideo(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).DestroyVideo(@ptrCast(*const IWiaVideo, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_Play(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Play(@ptrCast(*const IWiaVideo, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_Pause(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_ResizeVideo(self: *const T, bStretchToFitParent: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWiaVideo_GetCurrentState(self: *const T, pState: *WIAVIDEO_STATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
         }
     };}
     pub usingnamespace MethodMixin(@This());

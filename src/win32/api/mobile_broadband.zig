@@ -2,102 +2,62 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (52)
 //--------------------------------------------------------------------------------
-pub const MAPI_OLE : u32 = 1;
-pub const MAPI_OLE_STATIC : u32 = 2;
-pub const MAPI_ORIG : u32 = 0;
-pub const MAPI_TO : u32 = 1;
-pub const MAPI_CC : u32 = 2;
-pub const MAPI_BCC : u32 = 3;
-pub const MAPI_UNREAD : u32 = 1;
-pub const MAPI_RECEIPT_REQUESTED : u32 = 2;
-pub const MAPI_SENT : u32 = 4;
-pub const MAPI_LOGON_UI : u32 = 1;
-pub const MAPI_PASSWORD_UI : u32 = 131072;
-pub const MAPI_NEW_SESSION : u32 = 2;
-pub const MAPI_FORCE_DOWNLOAD : u32 = 4096;
-pub const MAPI_EXTENDED : u32 = 32;
-pub const MAPI_DIALOG : u32 = 8;
-pub const MAPI_FORCE_UNICODE : u32 = 262144;
-pub const MAPI_UNREAD_ONLY : u32 = 32;
-pub const MAPI_GUARANTEE_FIFO : u32 = 256;
-pub const MAPI_LONG_MSGID : u32 = 16384;
-pub const MAPI_PEEK : u32 = 128;
-pub const MAPI_SUPPRESS_ATTACH : u32 = 2048;
-pub const MAPI_ENVELOPE_ONLY : u32 = 64;
-pub const MAPI_BODY_AS_FILE : u32 = 512;
-pub const MAPI_AB_NOMODIFY : u32 = 1024;
-pub const SUCCESS_SUCCESS : u32 = 0;
-pub const MAPI_USER_ABORT : u32 = 1;
-pub const MAPI_E_FAILURE : u32 = 2;
-pub const MAPI_E_LOGON_FAILURE : u32 = 3;
-pub const MAPI_E_DISK_FULL : u32 = 4;
-pub const MAPI_E_INSUFFICIENT_MEMORY : u32 = 5;
-pub const MAPI_E_ACCESS_DENIED : u32 = 6;
-pub const MAPI_E_TOO_MANY_SESSIONS : u32 = 8;
-pub const MAPI_E_TOO_MANY_FILES : u32 = 9;
-pub const MAPI_E_TOO_MANY_RECIPIENTS : u32 = 10;
-pub const MAPI_E_ATTACHMENT_NOT_FOUND : u32 = 11;
-pub const MAPI_E_ATTACHMENT_OPEN_FAILURE : u32 = 12;
-pub const MAPI_E_ATTACHMENT_WRITE_FAILURE : u32 = 13;
-pub const MAPI_E_UNKNOWN_RECIPIENT : u32 = 14;
-pub const MAPI_E_BAD_RECIPTYPE : u32 = 15;
-pub const MAPI_E_NO_MESSAGES : u32 = 16;
-pub const MAPI_E_INVALID_MESSAGE : u32 = 17;
-pub const MAPI_E_TEXT_TOO_LARGE : u32 = 18;
-pub const MAPI_E_INVALID_SESSION : u32 = 19;
-pub const MAPI_E_TYPE_NOT_SUPPORTED : u32 = 20;
-pub const MAPI_E_AMBIGUOUS_RECIPIENT : u32 = 21;
-pub const MAPI_E_MESSAGE_IN_USE : u32 = 22;
-pub const MAPI_E_NETWORK_FAILURE : u32 = 23;
-pub const MAPI_E_INVALID_EDITFIELDS : u32 = 24;
-pub const MAPI_E_INVALID_RECIPS : u32 = 25;
-pub const MAPI_E_NOT_SUPPORTED : u32 = 26;
-pub const MAPI_E_UNICODE_NOT_SUPPORTED : u32 = 27;
-pub const MAPI_E_ATTACHMENT_TOO_LARGE : u32 = 28;
+pub const MAPI_OLE = @as(u32, 1);
+pub const MAPI_OLE_STATIC = @as(u32, 2);
+pub const MAPI_ORIG = @as(u32, 0);
+pub const MAPI_TO = @as(u32, 1);
+pub const MAPI_CC = @as(u32, 2);
+pub const MAPI_BCC = @as(u32, 3);
+pub const MAPI_UNREAD = @as(u32, 1);
+pub const MAPI_RECEIPT_REQUESTED = @as(u32, 2);
+pub const MAPI_SENT = @as(u32, 4);
+pub const MAPI_LOGON_UI = @as(u32, 1);
+pub const MAPI_PASSWORD_UI = @as(u32, 131072);
+pub const MAPI_NEW_SESSION = @as(u32, 2);
+pub const MAPI_FORCE_DOWNLOAD = @as(u32, 4096);
+pub const MAPI_EXTENDED = @as(u32, 32);
+pub const MAPI_DIALOG = @as(u32, 8);
+pub const MAPI_FORCE_UNICODE = @as(u32, 262144);
+pub const MAPI_UNREAD_ONLY = @as(u32, 32);
+pub const MAPI_GUARANTEE_FIFO = @as(u32, 256);
+pub const MAPI_LONG_MSGID = @as(u32, 16384);
+pub const MAPI_PEEK = @as(u32, 128);
+pub const MAPI_SUPPRESS_ATTACH = @as(u32, 2048);
+pub const MAPI_ENVELOPE_ONLY = @as(u32, 64);
+pub const MAPI_BODY_AS_FILE = @as(u32, 512);
+pub const MAPI_AB_NOMODIFY = @as(u32, 1024);
+pub const SUCCESS_SUCCESS = @as(u32, 0);
+pub const MAPI_USER_ABORT = @as(u32, 1);
+pub const MAPI_E_FAILURE = @as(u32, 2);
+pub const MAPI_E_LOGON_FAILURE = @as(u32, 3);
+pub const MAPI_E_DISK_FULL = @as(u32, 4);
+pub const MAPI_E_INSUFFICIENT_MEMORY = @as(u32, 5);
+pub const MAPI_E_ACCESS_DENIED = @as(u32, 6);
+pub const MAPI_E_TOO_MANY_SESSIONS = @as(u32, 8);
+pub const MAPI_E_TOO_MANY_FILES = @as(u32, 9);
+pub const MAPI_E_TOO_MANY_RECIPIENTS = @as(u32, 10);
+pub const MAPI_E_ATTACHMENT_NOT_FOUND = @as(u32, 11);
+pub const MAPI_E_ATTACHMENT_OPEN_FAILURE = @as(u32, 12);
+pub const MAPI_E_ATTACHMENT_WRITE_FAILURE = @as(u32, 13);
+pub const MAPI_E_UNKNOWN_RECIPIENT = @as(u32, 14);
+pub const MAPI_E_BAD_RECIPTYPE = @as(u32, 15);
+pub const MAPI_E_NO_MESSAGES = @as(u32, 16);
+pub const MAPI_E_INVALID_MESSAGE = @as(u32, 17);
+pub const MAPI_E_TEXT_TOO_LARGE = @as(u32, 18);
+pub const MAPI_E_INVALID_SESSION = @as(u32, 19);
+pub const MAPI_E_TYPE_NOT_SUPPORTED = @as(u32, 20);
+pub const MAPI_E_AMBIGUOUS_RECIPIENT = @as(u32, 21);
+pub const MAPI_E_MESSAGE_IN_USE = @as(u32, 22);
+pub const MAPI_E_NETWORK_FAILURE = @as(u32, 23);
+pub const MAPI_E_INVALID_EDITFIELDS = @as(u32, 24);
+pub const MAPI_E_INVALID_RECIPS = @as(u32, 25);
+pub const MAPI_E_NOT_SUPPORTED = @as(u32, 26);
+pub const MAPI_E_UNICODE_NOT_SUPPORTED = @as(u32, 27);
+pub const MAPI_E_ATTACHMENT_TOO_LARGE = @as(u32, 28);
 
 //--------------------------------------------------------------------------------
-// Section: Types (96)
+// Section: Types (83)
 //--------------------------------------------------------------------------------
-pub const LPMAPILOGON = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPILOGOFF = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPISENDMAIL = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPISENDMAILW = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPISENDDOCUMENTS = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIFINDNEXT = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIREADMAIL = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPISAVEMAIL = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIDELETEMAIL = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIFREEBUFFER = fn(
-    pv: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIADDRESS = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIDETAILS = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPMAPIRESOLVENAME = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 pub const MBN_SIGNAL_CONSTANTS = extern enum(i32) {
     RSSI_DEFAULT = -1,
     RSSI_DISABLE = 0,
@@ -2702,23 +2662,8 @@ const BOOL = @import("system_services.zig").BOOL;
 const HRESULT = @import("com.zig").HRESULT;
 
 test {
-    // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPMAPILOGON;
-    _ = LPMAPILOGOFF;
-    _ = LPMAPISENDMAIL;
-    _ = LPMAPISENDMAILW;
-    _ = LPMAPISENDDOCUMENTS;
-    _ = LPMAPIFINDNEXT;
-    _ = LPMAPIREADMAIL;
-    _ = LPMAPISAVEMAIL;
-    _ = LPMAPIDELETEMAIL;
-    _ = LPMAPIFREEBUFFER;
-    _ = LPMAPIADDRESS;
-    _ = LPMAPIDETAILS;
-    _ = LPMAPIRESOLVENAME;
-
     const constant_export_count = 52;
-    const type_export_count = 96;
+    const type_export_count = 83;
     const enum_value_export_count = 185;
     const com_iface_id_export_count = 40;
     const com_class_id_export_count = 0;

@@ -6,6 +6,12 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
+pub const HDESK = ?*c_void;
+
+// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
+pub const HWINSTA = ?*c_void;
+
 pub const GetUserObjectInformation_nIndex = extern enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
@@ -20,12 +26,6 @@ pub const UOI_IO = GetUserObjectInformation_nIndex.IO;
 pub const UOI_NAME = GetUserObjectInformation_nIndex.NAME;
 pub const UOI_TYPE = GetUserObjectInformation_nIndex.TYPE;
 pub const UOI_USER_SID = GetUserObjectInformation_nIndex.USER_SID;
-
-// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = ?*c_void;
-
-// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = ?*c_void;
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,

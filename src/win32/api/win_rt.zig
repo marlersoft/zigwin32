@@ -2,14 +2,14 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (8)
 //--------------------------------------------------------------------------------
+pub const E_SURFACE_CONTENTS_LOST = @as(u32, 2150301728);
+pub const MAX_ERROR_MESSAGE_CHARS = @as(u32, 512);
 pub const CastingSourceInfo_Property_PreferredSourceUriScheme = "PreferredSourceUriScheme";
 pub const CastingSourceInfo_Property_CastingTypes = "CastingTypes";
 pub const CastingSourceInfo_Property_ProtectedMedia = "ProtectedMedia";
-pub const CLSID_SoftwareBitmapNativeFactory = @import("../zig.zig").Guid.initString("84e65691-8602-4a84-be46-708be9cd4b74");
-pub const CLSID_AudioFrameNativeFactory = @import("../zig.zig").Guid.initString("16a0a3b9-9f65-4102-9367-2cda3a4f372a");
-pub const CLSID_VideoFrameNativeFactory = @import("../zig.zig").Guid.initString("d194386a-04e3-4814-8100-b2b0ae6d78c7");
-pub const E_SURFACE_CONTENTS_LOST : u32 = 2150301728;
-pub const MAX_ERROR_MESSAGE_CHARS : u32 = 512;
+pub const CLSID_SoftwareBitmapNativeFactory = Guid.initString("84e65691-8602-4a84-be46-708be9cd4b74");
+pub const CLSID_AudioFrameNativeFactory = Guid.initString("16a0a3b9-9f65-4102-9367-2cda3a4f372a");
+pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-8100-b2b0ae6d78c7");
 
 //--------------------------------------------------------------------------------
 // Section: Types (82)

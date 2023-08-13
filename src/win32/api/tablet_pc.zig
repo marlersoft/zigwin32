@@ -2,90 +2,90 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (88)
 //--------------------------------------------------------------------------------
-pub const SAFE_PARTIAL : u32 = 1;
-pub const BEST_COMPLETE : u32 = 2;
-pub const MAX_VENDORNAME : u32 = 32;
-pub const MAX_FRIENDLYNAME : u32 = 64;
-pub const MAX_LANGUAGES : u32 = 64;
-pub const CAC_FULL : u32 = 0;
-pub const CAC_PREFIX : u32 = 1;
-pub const CAC_RANDOM : u32 = 2;
-pub const ASYNC_RECO_INTERRUPTED : u32 = 1;
-pub const ASYNC_RECO_PROCESS_FAILED : u32 = 2;
-pub const ASYNC_RECO_ADDSTROKE_FAILED : u32 = 4;
-pub const ASYNC_RECO_SETCACMODE_FAILED : u32 = 8;
-pub const ASYNC_RECO_RESETCONTEXT_FAILED : u32 = 16;
-pub const ASYNC_RECO_SETGUIDE_FAILED : u32 = 32;
-pub const ASYNC_RECO_SETFLAGS_FAILED : u32 = 64;
-pub const ASYNC_RECO_SETFACTOID_FAILED : u32 = 128;
-pub const ASYNC_RECO_SETTEXTCONTEXT_FAILED : u32 = 256;
-pub const ASYNC_RECO_SETWORDLIST_FAILED : u32 = 512;
-pub const RF_DONTCARE : i32 = 1;
-pub const RF_OBJECT : i32 = 2;
-pub const RF_FREE_INPUT : i32 = 4;
-pub const RF_LINED_INPUT : i32 = 8;
-pub const RF_BOXED_INPUT : i32 = 16;
-pub const RF_CAC_INPUT : i32 = 32;
-pub const RF_RIGHT_AND_DOWN : i32 = 64;
-pub const RF_LEFT_AND_DOWN : i32 = 128;
-pub const RF_DOWN_AND_LEFT : i32 = 256;
-pub const RF_DOWN_AND_RIGHT : i32 = 512;
-pub const RF_ARBITRARY_ANGLE : i32 = 1024;
-pub const RF_LATTICE : i32 = 2048;
-pub const RF_ADVISEINKCHANGE : i32 = 4096;
-pub const RF_STROKEREORDER : i32 = 8192;
-pub const RF_PERSONALIZABLE : i32 = 16384;
-pub const RF_PERFORMSLINEBREAKING : i32 = 65536;
-pub const RF_REQUIRESSEGMENTATIONBREAKING : i32 = 131072;
-pub const FLICK_WM_HANDLED_MASK : u32 = 1;
-pub const NUM_FLICK_DIRECTIONS : u32 = 8;
-pub const WM_TABLET_DEFBASE : u32 = 704;
-pub const WM_TABLET_MAXOFFSET : u32 = 32;
-pub const TABLET_DISABLE_PRESSANDHOLD : u32 = 1;
-pub const TABLET_DISABLE_PENTAPFEEDBACK : u32 = 8;
-pub const TABLET_DISABLE_PENBARRELFEEDBACK : u32 = 16;
-pub const TABLET_DISABLE_TOUCHUIFORCEON : u32 = 256;
-pub const TABLET_DISABLE_TOUCHUIFORCEOFF : u32 = 512;
-pub const TABLET_DISABLE_TOUCHSWITCH : u32 = 32768;
-pub const TABLET_DISABLE_FLICKS : u32 = 65536;
-pub const TABLET_ENABLE_FLICKSONCONTEXT : u32 = 131072;
-pub const TABLET_ENABLE_FLICKLEARNINGMODE : u32 = 262144;
-pub const TABLET_DISABLE_SMOOTHSCROLLING : u32 = 524288;
-pub const TABLET_DISABLE_FLICKFALLBACKKEYS : u32 = 1048576;
-pub const TABLET_ENABLE_MULTITOUCHDATA : u32 = 16777216;
-pub const MAX_PACKET_PROPERTY_COUNT : u32 = 32;
-pub const MAX_PACKET_BUTTON_COUNT : u32 = 32;
-pub const IP_CURSOR_DOWN : u32 = 1;
-pub const IP_INVERTED : u32 = 2;
-pub const IP_MARGIN : u32 = 4;
-pub const IECN__BASE : u32 = 2048;
-pub const GUID_PACKETPROPERTY_GUID_X = @import("../zig.zig").Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
-pub const GUID_PACKETPROPERTY_GUID_Y = @import("../zig.zig").Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
-pub const GUID_PACKETPROPERTY_GUID_Z = @import("../zig.zig").Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
-pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = @import("../zig.zig").Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
-pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = @import("../zig.zig").Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
-pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = @import("../zig.zig").Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
-pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = @import("../zig.zig").Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
-pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = @import("../zig.zig").Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
-pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = @import("../zig.zig").Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
-pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = @import("../zig.zig").Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
-pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = @import("../zig.zig").Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
-pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = @import("../zig.zig").Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
-pub const GUID_PACKETPROPERTY_GUID_ALTITUDE_ORIENTATION = @import("../zig.zig").Guid.initString("82dec5c7-f6ba-4906-894f-66d68dfc456c");
-pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = @import("../zig.zig").Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
-pub const GUID_PACKETPROPERTY_GUID_PITCH_ROTATION = @import("../zig.zig").Guid.initString("7f7e57b7-be37-4be1-a356-7a84160e1893");
-pub const GUID_PACKETPROPERTY_GUID_ROLL_ROTATION = @import("../zig.zig").Guid.initString("5d5d5e56-6ba9-4c5b-9fb0-851c91714e56");
-pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = @import("../zig.zig").Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
-pub const GUID_PACKETPROPERTY_GUID_WIDTH = @import("../zig.zig").Guid.initString("baabe94d-2712-48f5-be9d-8f8b5ea0711a");
-pub const GUID_PACKETPROPERTY_GUID_HEIGHT = @import("../zig.zig").Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
-pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = @import("../zig.zig").Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
-pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = @import("../zig.zig").Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
-pub const InkMinTransparencyValue : i32 = 0;
-pub const InkMaxTransparencyValue : i32 = 255;
-pub const InkCollectorClipInkToMargin : i32 = 0;
-pub const InkCollectorDefaultMargin : i32 = -2147483648;
-pub const GUID_GESTURE_DATA = @import("../zig.zig").Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
-pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = @import("../zig.zig").Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
+pub const SAFE_PARTIAL = @as(u32, 1);
+pub const BEST_COMPLETE = @as(u32, 2);
+pub const MAX_VENDORNAME = @as(u32, 32);
+pub const MAX_FRIENDLYNAME = @as(u32, 64);
+pub const MAX_LANGUAGES = @as(u32, 64);
+pub const CAC_FULL = @as(u32, 0);
+pub const CAC_PREFIX = @as(u32, 1);
+pub const CAC_RANDOM = @as(u32, 2);
+pub const ASYNC_RECO_INTERRUPTED = @as(u32, 1);
+pub const ASYNC_RECO_PROCESS_FAILED = @as(u32, 2);
+pub const ASYNC_RECO_ADDSTROKE_FAILED = @as(u32, 4);
+pub const ASYNC_RECO_SETCACMODE_FAILED = @as(u32, 8);
+pub const ASYNC_RECO_RESETCONTEXT_FAILED = @as(u32, 16);
+pub const ASYNC_RECO_SETGUIDE_FAILED = @as(u32, 32);
+pub const ASYNC_RECO_SETFLAGS_FAILED = @as(u32, 64);
+pub const ASYNC_RECO_SETFACTOID_FAILED = @as(u32, 128);
+pub const ASYNC_RECO_SETTEXTCONTEXT_FAILED = @as(u32, 256);
+pub const ASYNC_RECO_SETWORDLIST_FAILED = @as(u32, 512);
+pub const RF_DONTCARE = @as(i32, 1);
+pub const RF_OBJECT = @as(i32, 2);
+pub const RF_FREE_INPUT = @as(i32, 4);
+pub const RF_LINED_INPUT = @as(i32, 8);
+pub const RF_BOXED_INPUT = @as(i32, 16);
+pub const RF_CAC_INPUT = @as(i32, 32);
+pub const RF_RIGHT_AND_DOWN = @as(i32, 64);
+pub const RF_LEFT_AND_DOWN = @as(i32, 128);
+pub const RF_DOWN_AND_LEFT = @as(i32, 256);
+pub const RF_DOWN_AND_RIGHT = @as(i32, 512);
+pub const RF_ARBITRARY_ANGLE = @as(i32, 1024);
+pub const RF_LATTICE = @as(i32, 2048);
+pub const RF_ADVISEINKCHANGE = @as(i32, 4096);
+pub const RF_STROKEREORDER = @as(i32, 8192);
+pub const RF_PERSONALIZABLE = @as(i32, 16384);
+pub const RF_PERFORMSLINEBREAKING = @as(i32, 65536);
+pub const RF_REQUIRESSEGMENTATIONBREAKING = @as(i32, 131072);
+pub const FLICK_WM_HANDLED_MASK = @as(u32, 1);
+pub const NUM_FLICK_DIRECTIONS = @as(u32, 8);
+pub const WM_TABLET_DEFBASE = @as(u32, 704);
+pub const WM_TABLET_MAXOFFSET = @as(u32, 32);
+pub const TABLET_DISABLE_PRESSANDHOLD = @as(u32, 1);
+pub const TABLET_DISABLE_PENTAPFEEDBACK = @as(u32, 8);
+pub const TABLET_DISABLE_PENBARRELFEEDBACK = @as(u32, 16);
+pub const TABLET_DISABLE_TOUCHUIFORCEON = @as(u32, 256);
+pub const TABLET_DISABLE_TOUCHUIFORCEOFF = @as(u32, 512);
+pub const TABLET_DISABLE_TOUCHSWITCH = @as(u32, 32768);
+pub const TABLET_DISABLE_FLICKS = @as(u32, 65536);
+pub const TABLET_ENABLE_FLICKSONCONTEXT = @as(u32, 131072);
+pub const TABLET_ENABLE_FLICKLEARNINGMODE = @as(u32, 262144);
+pub const TABLET_DISABLE_SMOOTHSCROLLING = @as(u32, 524288);
+pub const TABLET_DISABLE_FLICKFALLBACKKEYS = @as(u32, 1048576);
+pub const TABLET_ENABLE_MULTITOUCHDATA = @as(u32, 16777216);
+pub const MAX_PACKET_PROPERTY_COUNT = @as(u32, 32);
+pub const MAX_PACKET_BUTTON_COUNT = @as(u32, 32);
+pub const IP_CURSOR_DOWN = @as(u32, 1);
+pub const IP_INVERTED = @as(u32, 2);
+pub const IP_MARGIN = @as(u32, 4);
+pub const IECN__BASE = @as(u32, 2048);
+pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
+pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
+pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
+pub const GUID_PACKETPROPERTY_GUID_PACKET_STATUS = Guid.initString("6e0e07bf-afe7-4cf7-87d1-af6446208418");
+pub const GUID_PACKETPROPERTY_GUID_TIMER_TICK = Guid.initString("436510c5-fed3-45d1-8b76-71d3ea7a829d");
+pub const GUID_PACKETPROPERTY_GUID_SERIAL_NUMBER = Guid.initString("78a81b56-0935-4493-baae-00541a8a16c4");
+pub const GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE = Guid.initString("7307502d-f9f4-4e18-b3f2-2ce1b1a3610c");
+pub const GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE = Guid.initString("6da4488b-5244-41ec-905b-32d89ab80809");
+pub const GUID_PACKETPROPERTY_GUID_BUTTON_PRESSURE = Guid.initString("8b7fefc4-96aa-4bfe-ac26-8a5f0be07bf5");
+pub const GUID_PACKETPROPERTY_GUID_X_TILT_ORIENTATION = Guid.initString("a8d07b3a-8bf0-40b0-95a9-b80a6bb787bf");
+pub const GUID_PACKETPROPERTY_GUID_Y_TILT_ORIENTATION = Guid.initString("0e932389-1d77-43af-ac00-5b950d6d4b2d");
+pub const GUID_PACKETPROPERTY_GUID_AZIMUTH_ORIENTATION = Guid.initString("029123b4-8828-410b-b250-a0536595e5dc");
+pub const GUID_PACKETPROPERTY_GUID_ALTITUDE_ORIENTATION = Guid.initString("82dec5c7-f6ba-4906-894f-66d68dfc456c");
+pub const GUID_PACKETPROPERTY_GUID_TWIST_ORIENTATION = Guid.initString("0d324960-13b2-41e4-ace6-7ae9d43d2d3b");
+pub const GUID_PACKETPROPERTY_GUID_PITCH_ROTATION = Guid.initString("7f7e57b7-be37-4be1-a356-7a84160e1893");
+pub const GUID_PACKETPROPERTY_GUID_ROLL_ROTATION = Guid.initString("5d5d5e56-6ba9-4c5b-9fb0-851c91714e56");
+pub const GUID_PACKETPROPERTY_GUID_YAW_ROTATION = Guid.initString("6a849980-7c3a-45b7-aa82-90a262950e89");
+pub const GUID_PACKETPROPERTY_GUID_WIDTH = Guid.initString("baabe94d-2712-48f5-be9d-8f8b5ea0711a");
+pub const GUID_PACKETPROPERTY_GUID_HEIGHT = Guid.initString("e61858d2-e447-4218-9d3f-18865c203df4");
+pub const GUID_PACKETPROPERTY_GUID_FINGERCONTACTCONFIDENCE = Guid.initString("e706c804-57f0-4f00-8a0c-853d57789be9");
+pub const GUID_PACKETPROPERTY_GUID_DEVICE_CONTACT_ID = Guid.initString("02585b91-049b-4750-9615-df8948ab3c9c");
+pub const InkMinTransparencyValue = @as(i32, 0);
+pub const InkMaxTransparencyValue = @as(i32, 255);
+pub const InkCollectorClipInkToMargin = @as(i32, 0);
+pub const InkCollectorDefaultMargin = @as(i32, -2147483648);
+pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
+pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
 pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
 pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
 pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
@@ -94,16 +94,6 @@ pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-pub const HRECOALT = ?*c_void;
-
-pub const HRECOCONTEXT = ?*c_void;
-
-pub const HRECOGNIZER = ?*c_void;
-
-pub const HRECOLATTICE = ?*c_void;
-
-pub const HRECOWORDLIST = ?*c_void;
-
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
@@ -9141,6 +9131,16 @@ pub const ITipAutoCompleteClient = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const HRECOALT = ?*c_void;
+
+pub const HRECOCONTEXT = ?*c_void;
+
+pub const HRECOGNIZER = ?*c_void;
+
+pub const HRECOLATTICE = ?*c_void;
+
+pub const HRECOWORDLIST = ?*c_void;
 
 pub const PfnRecoCallback = fn(
     param0: u32,

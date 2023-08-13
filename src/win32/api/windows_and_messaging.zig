@@ -2,1490 +2,1994 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1480)
 //--------------------------------------------------------------------------------
-pub const OFN_READONLY : u32 = 1;
-pub const OFN_OVERWRITEPROMPT : u32 = 2;
-pub const OFN_HIDEREADONLY : u32 = 4;
-pub const OFN_NOCHANGEDIR : u32 = 8;
-pub const OFN_SHOWHELP : u32 = 16;
-pub const OFN_ENABLEHOOK : u32 = 32;
-pub const OFN_ENABLETEMPLATE : u32 = 64;
-pub const OFN_ENABLETEMPLATEHANDLE : u32 = 128;
-pub const OFN_NOVALIDATE : u32 = 256;
-pub const OFN_ALLOWMULTISELECT : u32 = 512;
-pub const OFN_EXTENSIONDIFFERENT : u32 = 1024;
-pub const OFN_PATHMUSTEXIST : u32 = 2048;
-pub const OFN_FILEMUSTEXIST : u32 = 4096;
-pub const OFN_CREATEPROMPT : u32 = 8192;
-pub const OFN_SHAREAWARE : u32 = 16384;
-pub const OFN_NOREADONLYRETURN : u32 = 32768;
-pub const OFN_NOTESTFILECREATE : u32 = 65536;
-pub const OFN_NONETWORKBUTTON : u32 = 131072;
-pub const OFN_NOLONGNAMES : u32 = 262144;
-pub const OFN_EXPLORER : u32 = 524288;
-pub const OFN_NODEREFERENCELINKS : u32 = 1048576;
-pub const OFN_LONGNAMES : u32 = 2097152;
-pub const OFN_ENABLEINCLUDENOTIFY : u32 = 4194304;
-pub const OFN_ENABLESIZING : u32 = 8388608;
-pub const OFN_DONTADDTORECENT : u32 = 33554432;
-pub const OFN_FORCESHOWHIDDEN : u32 = 268435456;
-pub const OFN_EX_NOPLACESBAR : u32 = 1;
-pub const OFN_SHAREFALLTHROUGH : u32 = 2;
-pub const OFN_SHARENOWARN : u32 = 1;
-pub const OFN_SHAREWARN : u32 = 0;
-pub const FR_RAW : u32 = 131072;
-pub const FR_SHOWWRAPAROUND : u32 = 262144;
-pub const FR_NOWRAPAROUND : u32 = 524288;
-pub const FR_WRAPAROUND : u32 = 1048576;
-pub const PS_OPENTYPE_FONTTYPE : u32 = 65536;
-pub const TT_OPENTYPE_FONTTYPE : u32 = 131072;
-pub const TYPE1_FONTTYPE : u32 = 262144;
-pub const SYMBOL_FONTTYPE : u32 = 524288;
-pub const CD_LBSELNOITEMS : i32 = -1;
-pub const CD_LBSELCHANGE : u32 = 0;
-pub const CD_LBSELSUB : u32 = 1;
-pub const CD_LBSELADD : u32 = 2;
-pub const START_PAGE_GENERAL : u32 = 4294967295;
-pub const PD_RESULT_CANCEL : u32 = 0;
-pub const PD_RESULT_PRINT : u32 = 1;
-pub const PD_RESULT_APPLY : u32 = 2;
-pub const DN_DEFAULTPRN : u32 = 1;
-pub const RT_CURSOR : i32 = 1;
-pub const RT_BITMAP : i32 = 2;
-pub const RT_ICON : i32 = 3;
-pub const RT_MENU : i32 = 4;
-pub const RT_DIALOG : i32 = 5;
-pub const RT_FONTDIR : i32 = 7;
-pub const RT_FONT : i32 = 8;
-pub const RT_ACCELERATOR : i32 = 9;
-pub const RT_MESSAGETABLE : i32 = 11;
-pub const DIFFERENCE : u32 = 11;
-pub const RT_VERSION : i32 = 16;
-pub const RT_DLGINCLUDE : i32 = 17;
-pub const RT_PLUGPLAY : i32 = 19;
-pub const RT_VXD : i32 = 20;
-pub const RT_ANICURSOR : i32 = 21;
-pub const RT_ANIICON : i32 = 22;
-pub const RT_HTML : i32 = 23;
-pub const RT_MANIFEST : u32 = 24;
-pub const CREATEPROCESS_MANIFEST_RESOURCE_ID : u32 = 1;
-pub const ISOLATIONAWARE_MANIFEST_RESOURCE_ID : u32 = 2;
-pub const ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID : u32 = 3;
-pub const ISOLATIONPOLICY_MANIFEST_RESOURCE_ID : u32 = 4;
-pub const ISOLATIONPOLICY_BROWSER_MANIFEST_RESOURCE_ID : u32 = 5;
-pub const MINIMUM_RESERVED_MANIFEST_RESOURCE_ID : u32 = 1;
-pub const MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID : u32 = 16;
-pub const SB_LINEUP : u32 = 0;
-pub const SB_LINELEFT : u32 = 0;
-pub const SB_LINEDOWN : u32 = 1;
-pub const SB_LINERIGHT : u32 = 1;
-pub const SB_PAGEUP : u32 = 2;
-pub const SB_PAGELEFT : u32 = 2;
-pub const SB_PAGEDOWN : u32 = 3;
-pub const SB_PAGERIGHT : u32 = 3;
-pub const SB_THUMBPOSITION : u32 = 4;
-pub const SB_THUMBTRACK : u32 = 5;
-pub const SB_TOP : u32 = 6;
-pub const SB_LEFT : u32 = 6;
-pub const SB_BOTTOM : u32 = 7;
-pub const SB_RIGHT : u32 = 7;
-pub const SB_ENDSCROLL : u32 = 8;
-pub const HIDE_WINDOW : u32 = 0;
-pub const SHOW_OPENWINDOW : u32 = 1;
-pub const SHOW_ICONWINDOW : u32 = 2;
-pub const SHOW_FULLSCREEN : u32 = 3;
-pub const SHOW_OPENNOACTIVATE : u32 = 4;
-pub const KF_EXTENDED : u32 = 256;
-pub const KF_DLGMODE : u32 = 2048;
-pub const KF_MENUMODE : u32 = 4096;
-pub const KF_ALTDOWN : u32 = 8192;
-pub const KF_REPEAT : u32 = 16384;
-pub const KF_UP : u32 = 32768;
-pub const VK_LBUTTON : u32 = 1;
-pub const VK_RBUTTON : u32 = 2;
-pub const VK_CANCEL : u32 = 3;
-pub const VK_MBUTTON : u32 = 4;
-pub const VK_XBUTTON1 : u32 = 5;
-pub const VK_XBUTTON2 : u32 = 6;
-pub const VK_BACK : u32 = 8;
-pub const VK_TAB : u32 = 9;
-pub const VK_CLEAR : u32 = 12;
-pub const VK_RETURN : u32 = 13;
-pub const VK_SHIFT : u32 = 16;
-pub const VK_CONTROL : u32 = 17;
-pub const VK_MENU : u32 = 18;
-pub const VK_PAUSE : u32 = 19;
-pub const VK_CAPITAL : u32 = 20;
-pub const VK_KANA : u32 = 21;
-pub const VK_HANGEUL : u32 = 21;
-pub const VK_HANGUL : u32 = 21;
-pub const VK_JUNJA : u32 = 23;
-pub const VK_FINAL : u32 = 24;
-pub const VK_HANJA : u32 = 25;
-pub const VK_KANJI : u32 = 25;
-pub const VK_ESCAPE : u32 = 27;
-pub const VK_CONVERT : u32 = 28;
-pub const VK_NONCONVERT : u32 = 29;
-pub const VK_ACCEPT : u32 = 30;
-pub const VK_MODECHANGE : u32 = 31;
-pub const VK_SPACE : u32 = 32;
-pub const VK_PRIOR : u32 = 33;
-pub const VK_NEXT : u32 = 34;
-pub const VK_END : u32 = 35;
-pub const VK_HOME : u32 = 36;
-pub const VK_LEFT : u32 = 37;
-pub const VK_UP : u32 = 38;
-pub const VK_RIGHT : u32 = 39;
-pub const VK_DOWN : u32 = 40;
-pub const VK_SELECT : u32 = 41;
-pub const VK_PRINT : u32 = 42;
-pub const VK_EXECUTE : u32 = 43;
-pub const VK_SNAPSHOT : u32 = 44;
-pub const VK_INSERT : u32 = 45;
-pub const VK_DELETE : u32 = 46;
-pub const VK_HELP : u32 = 47;
-pub const VK_LWIN : u32 = 91;
-pub const VK_RWIN : u32 = 92;
-pub const VK_APPS : u32 = 93;
-pub const VK_SLEEP : u32 = 95;
-pub const VK_NUMPAD0 : u32 = 96;
-pub const VK_NUMPAD1 : u32 = 97;
-pub const VK_NUMPAD2 : u32 = 98;
-pub const VK_NUMPAD3 : u32 = 99;
-pub const VK_NUMPAD4 : u32 = 100;
-pub const VK_NUMPAD5 : u32 = 101;
-pub const VK_NUMPAD6 : u32 = 102;
-pub const VK_NUMPAD7 : u32 = 103;
-pub const VK_NUMPAD8 : u32 = 104;
-pub const VK_NUMPAD9 : u32 = 105;
-pub const VK_MULTIPLY : u32 = 106;
-pub const VK_ADD : u32 = 107;
-pub const VK_SEPARATOR : u32 = 108;
-pub const VK_SUBTRACT : u32 = 109;
-pub const VK_DECIMAL : u32 = 110;
-pub const VK_DIVIDE : u32 = 111;
-pub const VK_F1 : u32 = 112;
-pub const VK_F2 : u32 = 113;
-pub const VK_F3 : u32 = 114;
-pub const VK_F4 : u32 = 115;
-pub const VK_F5 : u32 = 116;
-pub const VK_F6 : u32 = 117;
-pub const VK_F7 : u32 = 118;
-pub const VK_F8 : u32 = 119;
-pub const VK_F9 : u32 = 120;
-pub const VK_F10 : u32 = 121;
-pub const VK_F11 : u32 = 122;
-pub const VK_F12 : u32 = 123;
-pub const VK_F13 : u32 = 124;
-pub const VK_F14 : u32 = 125;
-pub const VK_F15 : u32 = 126;
-pub const VK_F16 : u32 = 127;
-pub const VK_F17 : u32 = 128;
-pub const VK_F18 : u32 = 129;
-pub const VK_F19 : u32 = 130;
-pub const VK_F20 : u32 = 131;
-pub const VK_F21 : u32 = 132;
-pub const VK_F22 : u32 = 133;
-pub const VK_F23 : u32 = 134;
-pub const VK_F24 : u32 = 135;
-pub const VK_NAVIGATION_VIEW : u32 = 136;
-pub const VK_NAVIGATION_MENU : u32 = 137;
-pub const VK_NAVIGATION_UP : u32 = 138;
-pub const VK_NAVIGATION_DOWN : u32 = 139;
-pub const VK_NAVIGATION_LEFT : u32 = 140;
-pub const VK_NAVIGATION_RIGHT : u32 = 141;
-pub const VK_NAVIGATION_ACCEPT : u32 = 142;
-pub const VK_NAVIGATION_CANCEL : u32 = 143;
-pub const VK_NUMLOCK : u32 = 144;
-pub const VK_SCROLL : u32 = 145;
-pub const VK_OEM_NEC_EQUAL : u32 = 146;
-pub const VK_OEM_FJ_JISHO : u32 = 146;
-pub const VK_OEM_FJ_MASSHOU : u32 = 147;
-pub const VK_OEM_FJ_TOUROKU : u32 = 148;
-pub const VK_OEM_FJ_LOYA : u32 = 149;
-pub const VK_OEM_FJ_ROYA : u32 = 150;
-pub const VK_LSHIFT : u32 = 160;
-pub const VK_RSHIFT : u32 = 161;
-pub const VK_LCONTROL : u32 = 162;
-pub const VK_RCONTROL : u32 = 163;
-pub const VK_LMENU : u32 = 164;
-pub const VK_RMENU : u32 = 165;
-pub const VK_BROWSER_BACK : u32 = 166;
-pub const VK_BROWSER_FORWARD : u32 = 167;
-pub const VK_BROWSER_REFRESH : u32 = 168;
-pub const VK_BROWSER_STOP : u32 = 169;
-pub const VK_BROWSER_SEARCH : u32 = 170;
-pub const VK_BROWSER_FAVORITES : u32 = 171;
-pub const VK_BROWSER_HOME : u32 = 172;
-pub const VK_VOLUME_MUTE : u32 = 173;
-pub const VK_VOLUME_DOWN : u32 = 174;
-pub const VK_VOLUME_UP : u32 = 175;
-pub const VK_MEDIA_NEXT_TRACK : u32 = 176;
-pub const VK_MEDIA_PREV_TRACK : u32 = 177;
-pub const VK_MEDIA_STOP : u32 = 178;
-pub const VK_MEDIA_PLAY_PAUSE : u32 = 179;
-pub const VK_LAUNCH_MAIL : u32 = 180;
-pub const VK_LAUNCH_MEDIA_SELECT : u32 = 181;
-pub const VK_LAUNCH_APP1 : u32 = 182;
-pub const VK_LAUNCH_APP2 : u32 = 183;
-pub const VK_OEM_1 : u32 = 186;
-pub const VK_OEM_PLUS : u32 = 187;
-pub const VK_OEM_COMMA : u32 = 188;
-pub const VK_OEM_MINUS : u32 = 189;
-pub const VK_OEM_PERIOD : u32 = 190;
-pub const VK_OEM_2 : u32 = 191;
-pub const VK_OEM_3 : u32 = 192;
-pub const VK_GAMEPAD_A : u32 = 195;
-pub const VK_GAMEPAD_B : u32 = 196;
-pub const VK_GAMEPAD_X : u32 = 197;
-pub const VK_GAMEPAD_Y : u32 = 198;
-pub const VK_GAMEPAD_RIGHT_SHOULDER : u32 = 199;
-pub const VK_GAMEPAD_LEFT_SHOULDER : u32 = 200;
-pub const VK_GAMEPAD_LEFT_TRIGGER : u32 = 201;
-pub const VK_GAMEPAD_RIGHT_TRIGGER : u32 = 202;
-pub const VK_GAMEPAD_DPAD_UP : u32 = 203;
-pub const VK_GAMEPAD_DPAD_DOWN : u32 = 204;
-pub const VK_GAMEPAD_DPAD_LEFT : u32 = 205;
-pub const VK_GAMEPAD_DPAD_RIGHT : u32 = 206;
-pub const VK_GAMEPAD_MENU : u32 = 207;
-pub const VK_GAMEPAD_VIEW : u32 = 208;
-pub const VK_GAMEPAD_LEFT_THUMBSTICK_BUTTON : u32 = 209;
-pub const VK_GAMEPAD_RIGHT_THUMBSTICK_BUTTON : u32 = 210;
-pub const VK_GAMEPAD_LEFT_THUMBSTICK_UP : u32 = 211;
-pub const VK_GAMEPAD_LEFT_THUMBSTICK_DOWN : u32 = 212;
-pub const VK_GAMEPAD_LEFT_THUMBSTICK_RIGHT : u32 = 213;
-pub const VK_GAMEPAD_LEFT_THUMBSTICK_LEFT : u32 = 214;
-pub const VK_GAMEPAD_RIGHT_THUMBSTICK_UP : u32 = 215;
-pub const VK_GAMEPAD_RIGHT_THUMBSTICK_DOWN : u32 = 216;
-pub const VK_GAMEPAD_RIGHT_THUMBSTICK_RIGHT : u32 = 217;
-pub const VK_GAMEPAD_RIGHT_THUMBSTICK_LEFT : u32 = 218;
-pub const VK_OEM_4 : u32 = 219;
-pub const VK_OEM_5 : u32 = 220;
-pub const VK_OEM_6 : u32 = 221;
-pub const VK_OEM_7 : u32 = 222;
-pub const VK_OEM_8 : u32 = 223;
-pub const VK_OEM_AX : u32 = 225;
-pub const VK_OEM_102 : u32 = 226;
-pub const VK_ICO_HELP : u32 = 227;
-pub const VK_ICO_00 : u32 = 228;
-pub const VK_PROCESSKEY : u32 = 229;
-pub const VK_ICO_CLEAR : u32 = 230;
-pub const VK_PACKET : u32 = 231;
-pub const VK_OEM_RESET : u32 = 233;
-pub const VK_OEM_JUMP : u32 = 234;
-pub const VK_OEM_PA1 : u32 = 235;
-pub const VK_OEM_PA2 : u32 = 236;
-pub const VK_OEM_PA3 : u32 = 237;
-pub const VK_OEM_WSCTRL : u32 = 238;
-pub const VK_OEM_CUSEL : u32 = 239;
-pub const VK_OEM_ATTN : u32 = 240;
-pub const VK_OEM_FINISH : u32 = 241;
-pub const VK_OEM_COPY : u32 = 242;
-pub const VK_OEM_AUTO : u32 = 243;
-pub const VK_OEM_ENLW : u32 = 244;
-pub const VK_OEM_BACKTAB : u32 = 245;
-pub const VK_ATTN : u32 = 246;
-pub const VK_CRSEL : u32 = 247;
-pub const VK_EXSEL : u32 = 248;
-pub const VK_EREOF : u32 = 249;
-pub const VK_PLAY : u32 = 250;
-pub const VK_ZOOM : u32 = 251;
-pub const VK_NONAME : u32 = 252;
-pub const VK_PA1 : u32 = 253;
-pub const VK_OEM_CLEAR : u32 = 254;
-pub const WH_MIN : i32 = -1;
-pub const WH_HARDWARE : u32 = 8;
-pub const WH_MAX : u32 = 14;
-pub const HC_ACTION : u32 = 0;
-pub const HC_GETNEXT : u32 = 1;
-pub const HC_SKIP : u32 = 2;
-pub const HC_NOREMOVE : u32 = 3;
-pub const HC_SYSMODALON : u32 = 4;
-pub const HC_SYSMODALOFF : u32 = 5;
-pub const HCBT_MOVESIZE : u32 = 0;
-pub const HCBT_MINMAX : u32 = 1;
-pub const HCBT_QS : u32 = 2;
-pub const HCBT_CREATEWND : u32 = 3;
-pub const HCBT_DESTROYWND : u32 = 4;
-pub const HCBT_ACTIVATE : u32 = 5;
-pub const HCBT_CLICKSKIPPED : u32 = 6;
-pub const HCBT_KEYSKIPPED : u32 = 7;
-pub const HCBT_SYSCOMMAND : u32 = 8;
-pub const HCBT_SETFOCUS : u32 = 9;
-pub const WTS_CONSOLE_CONNECT : u32 = 1;
-pub const WTS_CONSOLE_DISCONNECT : u32 = 2;
-pub const WTS_REMOTE_CONNECT : u32 = 3;
-pub const WTS_REMOTE_DISCONNECT : u32 = 4;
-pub const WTS_SESSION_LOGON : u32 = 5;
-pub const WTS_SESSION_LOGOFF : u32 = 6;
-pub const WTS_SESSION_LOCK : u32 = 7;
-pub const WTS_SESSION_UNLOCK : u32 = 8;
-pub const WTS_SESSION_REMOTE_CONTROL : u32 = 9;
-pub const WTS_SESSION_CREATE : u32 = 10;
-pub const WTS_SESSION_TERMINATE : u32 = 11;
-pub const MSGF_DIALOGBOX : u32 = 0;
-pub const MSGF_MESSAGEBOX : u32 = 1;
-pub const MSGF_MENU : u32 = 2;
-pub const MSGF_SCROLLBAR : u32 = 5;
-pub const MSGF_NEXTWINDOW : u32 = 6;
-pub const MSGF_MAX : u32 = 8;
-pub const MSGF_USER : u32 = 4096;
-pub const HSHELL_WINDOWCREATED : u32 = 1;
-pub const HSHELL_WINDOWDESTROYED : u32 = 2;
-pub const HSHELL_ACTIVATESHELLWINDOW : u32 = 3;
-pub const HSHELL_WINDOWACTIVATED : u32 = 4;
-pub const HSHELL_GETMINRECT : u32 = 5;
-pub const HSHELL_REDRAW : u32 = 6;
-pub const HSHELL_TASKMAN : u32 = 7;
-pub const HSHELL_LANGUAGE : u32 = 8;
-pub const HSHELL_SYSMENU : u32 = 9;
-pub const HSHELL_ENDTASK : u32 = 10;
-pub const HSHELL_ACCESSIBILITYSTATE : u32 = 11;
-pub const HSHELL_APPCOMMAND : u32 = 12;
-pub const HSHELL_WINDOWREPLACED : u32 = 13;
-pub const HSHELL_WINDOWREPLACING : u32 = 14;
-pub const HSHELL_MONITORCHANGED : u32 = 16;
-pub const HSHELL_HIGHBIT : u32 = 32768;
-pub const FAPPCOMMAND_MOUSE : u32 = 32768;
-pub const FAPPCOMMAND_KEY : u32 = 0;
-pub const FAPPCOMMAND_OEM : u32 = 4096;
-pub const FAPPCOMMAND_MASK : u32 = 61440;
-pub const LLKHF_INJECTED : u32 = 16;
-pub const LLKHF_LOWER_IL_INJECTED : u32 = 2;
-pub const LLMHF_INJECTED : u32 = 1;
-pub const LLMHF_LOWER_IL_INJECTED : u32 = 2;
-pub const INPUTLANGCHANGE_SYSCHARSET : u32 = 1;
-pub const INPUTLANGCHANGE_FORWARD : u32 = 2;
-pub const INPUTLANGCHANGE_BACKWARD : u32 = 4;
-pub const KL_NAMELENGTH : u32 = 9;
-pub const DESKTOP_READOBJECTS : i32 = 1;
-pub const DESKTOP_CREATEWINDOW : i32 = 2;
-pub const DESKTOP_CREATEMENU : i32 = 4;
-pub const DESKTOP_HOOKCONTROL : i32 = 8;
-pub const DESKTOP_JOURNALRECORD : i32 = 16;
-pub const DESKTOP_JOURNALPLAYBACK : i32 = 32;
-pub const DESKTOP_ENUMERATE : i32 = 64;
-pub const DESKTOP_WRITEOBJECTS : i32 = 128;
-pub const DESKTOP_SWITCHDESKTOP : i32 = 256;
-pub const DF_ALLOWOTHERACCOUNTHOOK : i32 = 1;
-pub const WINSTA_ENUMDESKTOPS : i32 = 1;
-pub const WINSTA_READATTRIBUTES : i32 = 2;
-pub const WINSTA_ACCESSCLIPBOARD : i32 = 4;
-pub const WINSTA_CREATEDESKTOP : i32 = 8;
-pub const WINSTA_WRITEATTRIBUTES : i32 = 16;
-pub const WINSTA_ACCESSGLOBALATOMS : i32 = 32;
-pub const WINSTA_EXITWINDOWS : i32 = 64;
-pub const WINSTA_ENUMERATE : i32 = 256;
-pub const WINSTA_READSCREEN : i32 = 512;
-pub const CWF_CREATE_ONLY : u32 = 1;
-pub const WSF_VISIBLE : i32 = 1;
-pub const UOI_TIMERPROC_EXCEPTION_SUPPRESSION : u32 = 7;
-pub const WM_NULL : u32 = 0;
-pub const WM_CREATE : u32 = 1;
-pub const WM_DESTROY : u32 = 2;
-pub const WM_MOVE : u32 = 3;
-pub const WM_SIZE : u32 = 5;
-pub const WM_ACTIVATE : u32 = 6;
-pub const WA_INACTIVE : u32 = 0;
-pub const WA_ACTIVE : u32 = 1;
-pub const WA_CLICKACTIVE : u32 = 2;
-pub const WM_SETFOCUS : u32 = 7;
-pub const WM_KILLFOCUS : u32 = 8;
-pub const WM_ENABLE : u32 = 10;
-pub const WM_SETREDRAW : u32 = 11;
-pub const WM_SETTEXT : u32 = 12;
-pub const WM_GETTEXT : u32 = 13;
-pub const WM_GETTEXTLENGTH : u32 = 14;
-pub const WM_PAINT : u32 = 15;
-pub const WM_CLOSE : u32 = 16;
-pub const WM_QUERYENDSESSION : u32 = 17;
-pub const WM_QUERYOPEN : u32 = 19;
-pub const WM_ENDSESSION : u32 = 22;
-pub const WM_QUIT : u32 = 18;
-pub const WM_ERASEBKGND : u32 = 20;
-pub const WM_SYSCOLORCHANGE : u32 = 21;
-pub const WM_SHOWWINDOW : u32 = 24;
-pub const WM_WININICHANGE : u32 = 26;
-pub const WM_DEVMODECHANGE : u32 = 27;
-pub const WM_ACTIVATEAPP : u32 = 28;
-pub const WM_FONTCHANGE : u32 = 29;
-pub const WM_TIMECHANGE : u32 = 30;
-pub const WM_CANCELMODE : u32 = 31;
-pub const WM_SETCURSOR : u32 = 32;
-pub const WM_MOUSEACTIVATE : u32 = 33;
-pub const WM_CHILDACTIVATE : u32 = 34;
-pub const WM_QUEUESYNC : u32 = 35;
-pub const WM_GETMINMAXINFO : u32 = 36;
-pub const WM_PAINTICON : u32 = 38;
-pub const WM_ICONERASEBKGND : u32 = 39;
-pub const WM_NEXTDLGCTL : u32 = 40;
-pub const WM_SPOOLERSTATUS : u32 = 42;
-pub const WM_DRAWITEM : u32 = 43;
-pub const WM_MEASUREITEM : u32 = 44;
-pub const WM_DELETEITEM : u32 = 45;
-pub const WM_VKEYTOITEM : u32 = 46;
-pub const WM_CHARTOITEM : u32 = 47;
-pub const WM_SETFONT : u32 = 48;
-pub const WM_GETFONT : u32 = 49;
-pub const WM_SETHOTKEY : u32 = 50;
-pub const WM_GETHOTKEY : u32 = 51;
-pub const WM_QUERYDRAGICON : u32 = 55;
-pub const WM_COMPAREITEM : u32 = 57;
-pub const WM_GETOBJECT : u32 = 61;
-pub const WM_COMPACTING : u32 = 65;
-pub const WM_COMMNOTIFY : u32 = 68;
-pub const WM_WINDOWPOSCHANGING : u32 = 70;
-pub const WM_WINDOWPOSCHANGED : u32 = 71;
-pub const WM_POWER : u32 = 72;
-pub const PWR_OK : u32 = 1;
-pub const PWR_FAIL : i32 = -1;
-pub const PWR_SUSPENDREQUEST : u32 = 1;
-pub const PWR_SUSPENDRESUME : u32 = 2;
-pub const PWR_CRITICALRESUME : u32 = 3;
-pub const WM_COPYDATA : u32 = 74;
-pub const WM_CANCELJOURNAL : u32 = 75;
-pub const WM_INPUTLANGCHANGEREQUEST : u32 = 80;
-pub const WM_INPUTLANGCHANGE : u32 = 81;
-pub const WM_TCARD : u32 = 82;
-pub const WM_HELP : u32 = 83;
-pub const WM_USERCHANGED : u32 = 84;
-pub const WM_NOTIFYFORMAT : u32 = 85;
-pub const NFR_ANSI : u32 = 1;
-pub const NFR_UNICODE : u32 = 2;
-pub const NF_QUERY : u32 = 3;
-pub const NF_REQUERY : u32 = 4;
-pub const WM_STYLECHANGING : u32 = 124;
-pub const WM_STYLECHANGED : u32 = 125;
-pub const WM_DISPLAYCHANGE : u32 = 126;
-pub const WM_GETICON : u32 = 127;
-pub const WM_SETICON : u32 = 128;
-pub const WM_NCCREATE : u32 = 129;
-pub const WM_NCDESTROY : u32 = 130;
-pub const WM_NCCALCSIZE : u32 = 131;
-pub const WM_NCHITTEST : u32 = 132;
-pub const WM_NCPAINT : u32 = 133;
-pub const WM_NCACTIVATE : u32 = 134;
-pub const WM_GETDLGCODE : u32 = 135;
-pub const WM_SYNCPAINT : u32 = 136;
-pub const WM_NCMOUSEMOVE : u32 = 160;
-pub const WM_NCLBUTTONDOWN : u32 = 161;
-pub const WM_NCLBUTTONUP : u32 = 162;
-pub const WM_NCLBUTTONDBLCLK : u32 = 163;
-pub const WM_NCRBUTTONDOWN : u32 = 164;
-pub const WM_NCRBUTTONUP : u32 = 165;
-pub const WM_NCRBUTTONDBLCLK : u32 = 166;
-pub const WM_NCMBUTTONDOWN : u32 = 167;
-pub const WM_NCMBUTTONUP : u32 = 168;
-pub const WM_NCMBUTTONDBLCLK : u32 = 169;
-pub const WM_NCXBUTTONDOWN : u32 = 171;
-pub const WM_NCXBUTTONUP : u32 = 172;
-pub const WM_NCXBUTTONDBLCLK : u32 = 173;
-pub const WM_INPUT_DEVICE_CHANGE : u32 = 254;
-pub const WM_INPUT : u32 = 255;
-pub const WM_KEYFIRST : u32 = 256;
-pub const WM_KEYDOWN : u32 = 256;
-pub const WM_KEYUP : u32 = 257;
-pub const WM_CHAR : u32 = 258;
-pub const WM_DEADCHAR : u32 = 259;
-pub const WM_SYSKEYDOWN : u32 = 260;
-pub const WM_SYSKEYUP : u32 = 261;
-pub const WM_SYSCHAR : u32 = 262;
-pub const WM_SYSDEADCHAR : u32 = 263;
-pub const WM_KEYLAST : u32 = 265;
-pub const UNICODE_NOCHAR : u32 = 65535;
-pub const WM_IME_STARTCOMPOSITION : u32 = 269;
-pub const WM_IME_ENDCOMPOSITION : u32 = 270;
-pub const WM_IME_COMPOSITION : u32 = 271;
-pub const WM_IME_KEYLAST : u32 = 271;
-pub const WM_INITDIALOG : u32 = 272;
-pub const WM_COMMAND : u32 = 273;
-pub const WM_SYSCOMMAND : u32 = 274;
-pub const WM_TIMER : u32 = 275;
-pub const WM_HSCROLL : u32 = 276;
-pub const WM_VSCROLL : u32 = 277;
-pub const WM_INITMENU : u32 = 278;
-pub const WM_INITMENUPOPUP : u32 = 279;
-pub const WM_GESTURE : u32 = 281;
-pub const WM_GESTURENOTIFY : u32 = 282;
-pub const WM_MENUSELECT : u32 = 287;
-pub const WM_MENUCHAR : u32 = 288;
-pub const WM_ENTERIDLE : u32 = 289;
-pub const WM_MENURBUTTONUP : u32 = 290;
-pub const WM_MENUDRAG : u32 = 291;
-pub const WM_MENUGETOBJECT : u32 = 292;
-pub const WM_UNINITMENUPOPUP : u32 = 293;
-pub const WM_MENUCOMMAND : u32 = 294;
-pub const WM_CHANGEUISTATE : u32 = 295;
-pub const WM_UPDATEUISTATE : u32 = 296;
-pub const WM_QUERYUISTATE : u32 = 297;
-pub const UIS_SET : u32 = 1;
-pub const UIS_CLEAR : u32 = 2;
-pub const UIS_INITIALIZE : u32 = 3;
-pub const UISF_HIDEFOCUS : u32 = 1;
-pub const UISF_HIDEACCEL : u32 = 2;
-pub const UISF_ACTIVE : u32 = 4;
-pub const WM_CTLCOLORMSGBOX : u32 = 306;
-pub const WM_CTLCOLOREDIT : u32 = 307;
-pub const WM_CTLCOLORLISTBOX : u32 = 308;
-pub const WM_CTLCOLORBTN : u32 = 309;
-pub const WM_CTLCOLORDLG : u32 = 310;
-pub const WM_CTLCOLORSCROLLBAR : u32 = 311;
-pub const WM_CTLCOLORSTATIC : u32 = 312;
-pub const MN_GETHMENU : u32 = 481;
-pub const WM_MOUSEFIRST : u32 = 512;
-pub const WM_MOUSEMOVE : u32 = 512;
-pub const WM_LBUTTONDOWN : u32 = 513;
-pub const WM_LBUTTONUP : u32 = 514;
-pub const WM_LBUTTONDBLCLK : u32 = 515;
-pub const WM_RBUTTONDOWN : u32 = 516;
-pub const WM_RBUTTONUP : u32 = 517;
-pub const WM_RBUTTONDBLCLK : u32 = 518;
-pub const WM_MBUTTONDOWN : u32 = 519;
-pub const WM_MBUTTONUP : u32 = 520;
-pub const WM_MBUTTONDBLCLK : u32 = 521;
-pub const WM_MOUSEWHEEL : u32 = 522;
-pub const WM_XBUTTONDOWN : u32 = 523;
-pub const WM_XBUTTONUP : u32 = 524;
-pub const WM_XBUTTONDBLCLK : u32 = 525;
-pub const WM_MOUSEHWHEEL : u32 = 526;
-pub const WM_MOUSELAST : u32 = 526;
-pub const WHEEL_DELTA : u32 = 120;
-pub const WM_PARENTNOTIFY : u32 = 528;
-pub const WM_ENTERMENULOOP : u32 = 529;
-pub const WM_EXITMENULOOP : u32 = 530;
-pub const WM_NEXTMENU : u32 = 531;
-pub const WM_SIZING : u32 = 532;
-pub const WM_CAPTURECHANGED : u32 = 533;
-pub const WM_MOVING : u32 = 534;
-pub const WM_POWERBROADCAST : u32 = 536;
-pub const PBT_APMQUERYSUSPEND : u32 = 0;
-pub const PBT_APMQUERYSTANDBY : u32 = 1;
-pub const PBT_APMQUERYSUSPENDFAILED : u32 = 2;
-pub const PBT_APMQUERYSTANDBYFAILED : u32 = 3;
-pub const PBT_APMSUSPEND : u32 = 4;
-pub const PBT_APMSTANDBY : u32 = 5;
-pub const PBT_APMRESUMECRITICAL : u32 = 6;
-pub const PBT_APMRESUMESUSPEND : u32 = 7;
-pub const PBT_APMRESUMESTANDBY : u32 = 8;
-pub const PBTF_APMRESUMEFROMFAILURE : u32 = 1;
-pub const PBT_APMBATTERYLOW : u32 = 9;
-pub const PBT_APMPOWERSTATUSCHANGE : u32 = 10;
-pub const PBT_APMOEMEVENT : u32 = 11;
-pub const PBT_APMRESUMEAUTOMATIC : u32 = 18;
-pub const PBT_POWERSETTINGCHANGE : u32 = 32787;
-pub const WM_DEVICECHANGE : u32 = 537;
-pub const WM_MDICREATE : u32 = 544;
-pub const WM_MDIDESTROY : u32 = 545;
-pub const WM_MDIACTIVATE : u32 = 546;
-pub const WM_MDIRESTORE : u32 = 547;
-pub const WM_MDINEXT : u32 = 548;
-pub const WM_MDIMAXIMIZE : u32 = 549;
-pub const WM_MDITILE : u32 = 550;
-pub const WM_MDICASCADE : u32 = 551;
-pub const WM_MDIICONARRANGE : u32 = 552;
-pub const WM_MDIGETACTIVE : u32 = 553;
-pub const WM_MDISETMENU : u32 = 560;
-pub const WM_ENTERSIZEMOVE : u32 = 561;
-pub const WM_EXITSIZEMOVE : u32 = 562;
-pub const WM_DROPFILES : u32 = 563;
-pub const WM_MDIREFRESHMENU : u32 = 564;
-pub const WM_POINTERDEVICECHANGE : u32 = 568;
-pub const WM_POINTERDEVICEINRANGE : u32 = 569;
-pub const WM_POINTERDEVICEOUTOFRANGE : u32 = 570;
-pub const WM_TOUCH : u32 = 576;
-pub const WM_NCPOINTERUPDATE : u32 = 577;
-pub const WM_NCPOINTERDOWN : u32 = 578;
-pub const WM_NCPOINTERUP : u32 = 579;
-pub const WM_POINTERUPDATE : u32 = 581;
-pub const WM_POINTERDOWN : u32 = 582;
-pub const WM_POINTERUP : u32 = 583;
-pub const WM_POINTERENTER : u32 = 585;
-pub const WM_POINTERLEAVE : u32 = 586;
-pub const WM_POINTERACTIVATE : u32 = 587;
-pub const WM_POINTERCAPTURECHANGED : u32 = 588;
-pub const WM_TOUCHHITTESTING : u32 = 589;
-pub const WM_POINTERWHEEL : u32 = 590;
-pub const WM_POINTERHWHEEL : u32 = 591;
-pub const DM_POINTERHITTEST : u32 = 592;
-pub const WM_POINTERROUTEDTO : u32 = 593;
-pub const WM_POINTERROUTEDAWAY : u32 = 594;
-pub const WM_POINTERROUTEDRELEASED : u32 = 595;
-pub const WM_IME_SETCONTEXT : u32 = 641;
-pub const WM_IME_NOTIFY : u32 = 642;
-pub const WM_IME_CONTROL : u32 = 643;
-pub const WM_IME_COMPOSITIONFULL : u32 = 644;
-pub const WM_IME_SELECT : u32 = 645;
-pub const WM_IME_CHAR : u32 = 646;
-pub const WM_IME_REQUEST : u32 = 648;
-pub const WM_IME_KEYDOWN : u32 = 656;
-pub const WM_IME_KEYUP : u32 = 657;
-pub const WM_NCMOUSEHOVER : u32 = 672;
-pub const WM_NCMOUSELEAVE : u32 = 674;
-pub const WM_WTSSESSION_CHANGE : u32 = 689;
-pub const WM_TABLET_FIRST : u32 = 704;
-pub const WM_TABLET_LAST : u32 = 735;
-pub const WM_DPICHANGED : u32 = 736;
-pub const WM_DPICHANGED_BEFOREPARENT : u32 = 738;
-pub const WM_DPICHANGED_AFTERPARENT : u32 = 739;
-pub const WM_GETDPISCALEDSIZE : u32 = 740;
-pub const WM_CUT : u32 = 768;
-pub const WM_COPY : u32 = 769;
-pub const WM_PASTE : u32 = 770;
-pub const WM_CLEAR : u32 = 771;
-pub const WM_UNDO : u32 = 772;
-pub const WM_RENDERFORMAT : u32 = 773;
-pub const WM_RENDERALLFORMATS : u32 = 774;
-pub const WM_DESTROYCLIPBOARD : u32 = 775;
-pub const WM_DRAWCLIPBOARD : u32 = 776;
-pub const WM_PAINTCLIPBOARD : u32 = 777;
-pub const WM_VSCROLLCLIPBOARD : u32 = 778;
-pub const WM_SIZECLIPBOARD : u32 = 779;
-pub const WM_ASKCBFORMATNAME : u32 = 780;
-pub const WM_CHANGECBCHAIN : u32 = 781;
-pub const WM_HSCROLLCLIPBOARD : u32 = 782;
-pub const WM_QUERYNEWPALETTE : u32 = 783;
-pub const WM_PALETTEISCHANGING : u32 = 784;
-pub const WM_PALETTECHANGED : u32 = 785;
-pub const WM_HOTKEY : u32 = 786;
-pub const WM_PRINT : u32 = 791;
-pub const WM_APPCOMMAND : u32 = 793;
-pub const WM_THEMECHANGED : u32 = 794;
-pub const WM_CLIPBOARDUPDATE : u32 = 797;
-pub const WM_DWMCOMPOSITIONCHANGED : u32 = 798;
-pub const WM_DWMNCRENDERINGCHANGED : u32 = 799;
-pub const WM_DWMCOLORIZATIONCOLORCHANGED : u32 = 800;
-pub const WM_DWMWINDOWMAXIMIZEDCHANGE : u32 = 801;
-pub const WM_DWMSENDICONICTHUMBNAIL : u32 = 803;
-pub const WM_DWMSENDICONICLIVEPREVIEWBITMAP : u32 = 806;
-pub const WM_GETTITLEBARINFOEX : u32 = 831;
-pub const WM_HANDHELDFIRST : u32 = 856;
-pub const WM_HANDHELDLAST : u32 = 863;
-pub const WM_AFXFIRST : u32 = 864;
-pub const WM_AFXLAST : u32 = 895;
-pub const WM_PENWINFIRST : u32 = 896;
-pub const WM_PENWINLAST : u32 = 911;
-pub const WM_APP : u32 = 32768;
-pub const WM_USER : u32 = 1024;
-pub const WMSZ_LEFT : u32 = 1;
-pub const WMSZ_RIGHT : u32 = 2;
-pub const WMSZ_TOP : u32 = 3;
-pub const WMSZ_TOPLEFT : u32 = 4;
-pub const WMSZ_TOPRIGHT : u32 = 5;
-pub const WMSZ_BOTTOM : u32 = 6;
-pub const WMSZ_BOTTOMLEFT : u32 = 7;
-pub const WMSZ_BOTTOMRIGHT : u32 = 8;
-pub const HTERROR : i32 = -2;
-pub const HTTRANSPARENT : i32 = -1;
-pub const HTNOWHERE : u32 = 0;
-pub const HTCLIENT : u32 = 1;
-pub const HTCAPTION : u32 = 2;
-pub const HTSYSMENU : u32 = 3;
-pub const HTGROWBOX : u32 = 4;
-pub const HTMENU : u32 = 5;
-pub const HTHSCROLL : u32 = 6;
-pub const HTVSCROLL : u32 = 7;
-pub const HTMINBUTTON : u32 = 8;
-pub const HTMAXBUTTON : u32 = 9;
-pub const HTLEFT : u32 = 10;
-pub const HTRIGHT : u32 = 11;
-pub const HTTOP : u32 = 12;
-pub const HTTOPLEFT : u32 = 13;
-pub const HTTOPRIGHT : u32 = 14;
-pub const HTBOTTOM : u32 = 15;
-pub const HTBOTTOMLEFT : u32 = 16;
-pub const HTBOTTOMRIGHT : u32 = 17;
-pub const HTBORDER : u32 = 18;
-pub const HTOBJECT : u32 = 19;
-pub const HTCLOSE : u32 = 20;
-pub const HTHELP : u32 = 21;
-pub const MA_ACTIVATE : u32 = 1;
-pub const MA_ACTIVATEANDEAT : u32 = 2;
-pub const MA_NOACTIVATE : u32 = 3;
-pub const MA_NOACTIVATEANDEAT : u32 = 4;
-pub const ICON_SMALL : u32 = 0;
-pub const ICON_BIG : u32 = 1;
-pub const ICON_SMALL2 : u32 = 2;
-pub const SIZE_RESTORED : u32 = 0;
-pub const SIZE_MINIMIZED : u32 = 1;
-pub const SIZE_MAXIMIZED : u32 = 2;
-pub const SIZE_MAXSHOW : u32 = 3;
-pub const SIZE_MAXHIDE : u32 = 4;
-pub const WVR_ALIGNTOP : u32 = 16;
-pub const WVR_ALIGNLEFT : u32 = 32;
-pub const WVR_ALIGNBOTTOM : u32 = 64;
-pub const WVR_ALIGNRIGHT : u32 = 128;
-pub const WVR_HREDRAW : u32 = 256;
-pub const WVR_VREDRAW : u32 = 512;
-pub const WVR_VALIDRECTS : u32 = 1024;
-pub const MK_LBUTTON : u32 = 1;
-pub const MK_RBUTTON : u32 = 2;
-pub const MK_SHIFT : u32 = 4;
-pub const MK_CONTROL : u32 = 8;
-pub const MK_MBUTTON : u32 = 16;
-pub const MK_XBUTTON1 : u32 = 32;
-pub const MK_XBUTTON2 : u32 = 64;
-pub const PRF_CHECKVISIBLE : i32 = 1;
-pub const PRF_NONCLIENT : i32 = 2;
-pub const PRF_CLIENT : i32 = 4;
-pub const PRF_ERASEBKGND : i32 = 8;
-pub const PRF_CHILDREN : i32 = 16;
-pub const PRF_OWNED : i32 = 32;
-pub const IDANI_OPEN : u32 = 1;
-pub const IDANI_CAPTION : u32 = 3;
-pub const ODA_DRAWENTIRE : u32 = 1;
-pub const ODA_SELECT : u32 = 2;
-pub const ODA_FOCUS : u32 = 4;
-pub const ODS_SELECTED : u32 = 1;
-pub const ODS_GRAYED : u32 = 2;
-pub const ODS_DISABLED : u32 = 4;
-pub const ODS_CHECKED : u32 = 8;
-pub const ODS_FOCUS : u32 = 16;
-pub const ODS_DEFAULT : u32 = 32;
-pub const ODS_COMBOBOXEDIT : u32 = 4096;
-pub const ODS_HOTLIGHT : u32 = 64;
-pub const ODS_INACTIVE : u32 = 128;
-pub const ODS_NOACCEL : u32 = 256;
-pub const ODS_NOFOCUSRECT : u32 = 512;
-pub const IDHOT_SNAPWINDOW : i32 = -1;
-pub const IDHOT_SNAPDESKTOP : i32 = -2;
-pub const ENDSESSION_CLOSEAPP : u32 = 1;
-pub const ENDSESSION_CRITICAL : u32 = 1073741824;
-pub const ENDSESSION_LOGOFF : u32 = 2147483648;
-pub const EWX_FORCE : u32 = 4;
-pub const EWX_FORCEIFHUNG : u32 = 16;
-pub const EWX_QUICKRESOLVE : u32 = 32;
-pub const EWX_BOOTOPTIONS : u32 = 16777216;
-pub const EWX_ARSO : u32 = 67108864;
-pub const BSM_VXDS : u32 = 1;
-pub const BSM_NETDRIVER : u32 = 2;
-pub const BSM_INSTALLABLEDRIVERS : u32 = 4;
-pub const BROADCAST_QUERY_DENY : u32 = 1112363332;
-pub const DEVICE_NOTIFY_ALL_INTERFACE_CLASSES : u32 = 4;
-pub const HWND_MESSAGE : i32 = -3;
-pub const ISMEX_NOSEND : u32 = 0;
-pub const ISMEX_SEND : u32 = 1;
-pub const ISMEX_NOTIFY : u32 = 2;
-pub const ISMEX_CALLBACK : u32 = 4;
-pub const ISMEX_REPLIED : u32 = 8;
-pub const HWND_DESKTOP : i32 = 0;
-pub const PW_RENDERFULLCONTENT : u32 = 2;
-pub const HWND_TOP : i32 = 0;
-pub const HWND_BOTTOM : i32 = 1;
-pub const HWND_TOPMOST : i32 = -1;
-pub const HWND_NOTOPMOST : i32 = -2;
-pub const DLGWINDOWEXTRA : u32 = 30;
-pub const POINTER_MOD_SHIFT : u32 = 4;
-pub const POINTER_MOD_CTRL : u32 = 8;
-pub const TOUCH_FLAG_NONE : u32 = 0;
-pub const TOUCH_MASK_NONE : u32 = 0;
-pub const TOUCH_MASK_CONTACTAREA : u32 = 1;
-pub const TOUCH_MASK_ORIENTATION : u32 = 2;
-pub const TOUCH_MASK_PRESSURE : u32 = 4;
-pub const PEN_FLAG_NONE : u32 = 0;
-pub const PEN_FLAG_BARREL : u32 = 1;
-pub const PEN_FLAG_INVERTED : u32 = 2;
-pub const PEN_FLAG_ERASER : u32 = 4;
-pub const PEN_MASK_NONE : u32 = 0;
-pub const PEN_MASK_PRESSURE : u32 = 1;
-pub const PEN_MASK_ROTATION : u32 = 2;
-pub const PEN_MASK_TILT_X : u32 = 4;
-pub const PEN_MASK_TILT_Y : u32 = 8;
-pub const POINTER_MESSAGE_FLAG_NEW : u32 = 1;
-pub const POINTER_MESSAGE_FLAG_INRANGE : u32 = 2;
-pub const POINTER_MESSAGE_FLAG_INCONTACT : u32 = 4;
-pub const POINTER_MESSAGE_FLAG_FIRSTBUTTON : u32 = 16;
-pub const POINTER_MESSAGE_FLAG_SECONDBUTTON : u32 = 32;
-pub const POINTER_MESSAGE_FLAG_THIRDBUTTON : u32 = 64;
-pub const POINTER_MESSAGE_FLAG_FOURTHBUTTON : u32 = 128;
-pub const POINTER_MESSAGE_FLAG_FIFTHBUTTON : u32 = 256;
-pub const POINTER_MESSAGE_FLAG_PRIMARY : u32 = 8192;
-pub const POINTER_MESSAGE_FLAG_CONFIDENCE : u32 = 16384;
-pub const POINTER_MESSAGE_FLAG_CANCELED : u32 = 32768;
-pub const MAX_TOUCH_COUNT : u32 = 256;
-pub const TOUCH_HIT_TESTING_DEFAULT : u32 = 0;
-pub const TOUCH_HIT_TESTING_CLIENT : u32 = 1;
-pub const TOUCH_HIT_TESTING_NONE : u32 = 2;
-pub const TOUCH_HIT_TESTING_PROXIMITY_CLOSEST : u32 = 0;
-pub const TOUCH_HIT_TESTING_PROXIMITY_FARTHEST : u32 = 4095;
-pub const GWFS_INCLUDE_ANCESTORS : u32 = 1;
-pub const MAPVK_VK_TO_VSC : u32 = 0;
-pub const MAPVK_VSC_TO_VK : u32 = 1;
-pub const MAPVK_VK_TO_CHAR : u32 = 2;
-pub const MAPVK_VSC_TO_VK_EX : u32 = 3;
-pub const MAPVK_VK_TO_VSC_EX : u32 = 4;
-pub const QS_TOUCH : u32 = 2048;
-pub const QS_POINTER : u32 = 4096;
-pub const USER_TIMER_MAXIMUM : u32 = 2147483647;
-pub const USER_TIMER_MINIMUM : u32 = 10;
-pub const TIMERV_COALESCING_MIN : u32 = 1;
-pub const TIMERV_COALESCING_MAX : u32 = 2147483637;
-pub const SM_RESERVED1 : u32 = 24;
-pub const SM_RESERVED2 : u32 = 25;
-pub const SM_RESERVED3 : u32 = 26;
-pub const SM_RESERVED4 : u32 = 27;
-pub const SM_CMETRICS : u32 = 76;
-pub const SM_CARETBLINKINGENABLED : u32 = 8194;
-pub const SM_SYSTEMDOCKED : u32 = 8196;
-pub const PMB_ACTIVE : u32 = 1;
-pub const MNC_IGNORE : u32 = 0;
-pub const MNC_CLOSE : u32 = 1;
-pub const MNC_EXECUTE : u32 = 2;
-pub const MNC_SELECT : u32 = 3;
-pub const MND_CONTINUE : u32 = 0;
-pub const MND_ENDMENU : u32 = 1;
-pub const MNGO_NOINTERFACE : u32 = 0;
-pub const MNGO_NOERROR : u32 = 1;
-pub const DOF_EXECUTABLE : u32 = 32769;
-pub const DOF_DOCUMENT : u32 = 32770;
-pub const DOF_DIRECTORY : u32 = 32771;
-pub const DOF_MULTIPLE : u32 = 32772;
-pub const DOF_PROGMAN : u32 = 1;
-pub const DOF_SHELLDATA : u32 = 2;
-pub const DO_DROPFILE : i32 = 1162627398;
-pub const DO_PRINTFILE : i32 = 1414419024;
-pub const DCX_EXCLUDEUPDATE : i32 = 256;
-pub const HELPINFO_WINDOW : u32 = 1;
-pub const HELPINFO_MENUITEM : u32 = 2;
-pub const CTLCOLOR_MSGBOX : u32 = 0;
-pub const CTLCOLOR_EDIT : u32 = 1;
-pub const CTLCOLOR_LISTBOX : u32 = 2;
-pub const CTLCOLOR_BTN : u32 = 3;
-pub const CTLCOLOR_DLG : u32 = 4;
-pub const CTLCOLOR_SCROLLBAR : u32 = 5;
-pub const CTLCOLOR_STATIC : u32 = 6;
-pub const CTLCOLOR_MAX : u32 = 7;
-pub const COLOR_BTNHIGHLIGHT : u32 = 20;
-pub const GW_MAX : u32 = 5;
-pub const MFS_GRAYED : i32 = 3;
-pub const SC_SIZE : u32 = 61440;
-pub const SC_MOVE : u32 = 61456;
-pub const SC_MINIMIZE : u32 = 61472;
-pub const SC_MAXIMIZE : u32 = 61488;
-pub const SC_NEXTWINDOW : u32 = 61504;
-pub const SC_PREVWINDOW : u32 = 61520;
-pub const SC_CLOSE : u32 = 61536;
-pub const SC_VSCROLL : u32 = 61552;
-pub const SC_HSCROLL : u32 = 61568;
-pub const SC_MOUSEMENU : u32 = 61584;
-pub const SC_KEYMENU : u32 = 61696;
-pub const SC_ARRANGE : u32 = 61712;
-pub const SC_RESTORE : u32 = 61728;
-pub const SC_TASKLIST : u32 = 61744;
-pub const SC_SCREENSAVE : u32 = 61760;
-pub const SC_HOTKEY : u32 = 61776;
-pub const SC_DEFAULT : u32 = 61792;
-pub const SC_MONITORPOWER : u32 = 61808;
-pub const SC_CONTEXTHELP : u32 = 61824;
-pub const SC_SEPARATOR : u32 = 61455;
-pub const SCF_ISSECURE : u32 = 1;
-pub const IDC_ARROW : i32 = 32512;
-pub const IDC_IBEAM : i32 = 32513;
-pub const IDC_WAIT : i32 = 32514;
-pub const IDC_CROSS : i32 = 32515;
-pub const IDC_UPARROW : i32 = 32516;
-pub const IDC_SIZE : i32 = 32640;
-pub const IDC_ICON : i32 = 32641;
-pub const IDC_SIZENWSE : i32 = 32642;
-pub const IDC_SIZENESW : i32 = 32643;
-pub const IDC_SIZEWE : i32 = 32644;
-pub const IDC_SIZENS : i32 = 32645;
-pub const IDC_SIZEALL : i32 = 32646;
-pub const IDC_NO : i32 = 32648;
-pub const IDC_HAND : i32 = 32649;
-pub const IDC_APPSTARTING : i32 = 32650;
-pub const IDC_HELP : i32 = 32651;
-pub const IDC_PIN : i32 = 32671;
-pub const IDC_PERSON : i32 = 32672;
-pub const IMAGE_ENHMETAFILE : u32 = 3;
-pub const LR_COLOR : u32 = 2;
-pub const RES_ICON : u32 = 1;
-pub const RES_CURSOR : u32 = 2;
-pub const OBM_CLOSE : u32 = 32754;
-pub const OBM_UPARROW : u32 = 32753;
-pub const OBM_DNARROW : u32 = 32752;
-pub const OBM_RGARROW : u32 = 32751;
-pub const OBM_LFARROW : u32 = 32750;
-pub const OBM_REDUCE : u32 = 32749;
-pub const OBM_ZOOM : u32 = 32748;
-pub const OBM_RESTORE : u32 = 32747;
-pub const OBM_REDUCED : u32 = 32746;
-pub const OBM_ZOOMD : u32 = 32745;
-pub const OBM_RESTORED : u32 = 32744;
-pub const OBM_UPARROWD : u32 = 32743;
-pub const OBM_DNARROWD : u32 = 32742;
-pub const OBM_RGARROWD : u32 = 32741;
-pub const OBM_LFARROWD : u32 = 32740;
-pub const OBM_MNARROW : u32 = 32739;
-pub const OBM_COMBO : u32 = 32738;
-pub const OBM_UPARROWI : u32 = 32737;
-pub const OBM_DNARROWI : u32 = 32736;
-pub const OBM_RGARROWI : u32 = 32735;
-pub const OBM_LFARROWI : u32 = 32734;
-pub const OBM_OLD_CLOSE : u32 = 32767;
-pub const OBM_SIZE : u32 = 32766;
-pub const OBM_OLD_UPARROW : u32 = 32765;
-pub const OBM_OLD_DNARROW : u32 = 32764;
-pub const OBM_OLD_RGARROW : u32 = 32763;
-pub const OBM_OLD_LFARROW : u32 = 32762;
-pub const OBM_BTSIZE : u32 = 32761;
-pub const OBM_CHECK : u32 = 32760;
-pub const OBM_CHECKBOXES : u32 = 32759;
-pub const OBM_BTNCORNERS : u32 = 32758;
-pub const OBM_OLD_REDUCE : u32 = 32757;
-pub const OBM_OLD_ZOOM : u32 = 32756;
-pub const OBM_OLD_RESTORE : u32 = 32755;
-pub const OCR_SIZE : u32 = 32640;
-pub const OCR_ICON : u32 = 32641;
-pub const OCR_ICOCUR : u32 = 32647;
-pub const OIC_SAMPLE : u32 = 32512;
-pub const OIC_HAND : u32 = 32513;
-pub const OIC_QUES : u32 = 32514;
-pub const OIC_BANG : u32 = 32515;
-pub const OIC_NOTE : u32 = 32516;
-pub const OIC_WINLOGO : u32 = 32517;
-pub const OIC_SHIELD : u32 = 32518;
-pub const ORD_LANGDRIVER : u32 = 1;
-pub const IDI_APPLICATION : i32 = 32512;
-pub const IDI_HAND : i32 = 32513;
-pub const IDI_QUESTION : i32 = 32514;
-pub const IDI_EXCLAMATION : i32 = 32515;
-pub const IDI_ASTERISK : i32 = 32516;
-pub const IDI_WINLOGO : i32 = 32517;
-pub const IDI_SHIELD : i32 = 32518;
-pub const IDOK : u32 = 1;
-pub const IDCANCEL : u32 = 2;
-pub const IDABORT : u32 = 3;
-pub const IDRETRY : u32 = 4;
-pub const IDIGNORE : u32 = 5;
-pub const IDYES : u32 = 6;
-pub const IDNO : u32 = 7;
-pub const IDCLOSE : u32 = 8;
-pub const IDHELP : u32 = 9;
-pub const IDTRYAGAIN : u32 = 10;
-pub const IDCONTINUE : u32 = 11;
-pub const IDTIMEOUT : u32 = 32000;
-pub const EN_SETFOCUS : u32 = 256;
-pub const EN_KILLFOCUS : u32 = 512;
-pub const EN_CHANGE : u32 = 768;
-pub const EN_UPDATE : u32 = 1024;
-pub const EN_ERRSPACE : u32 = 1280;
-pub const EN_MAXTEXT : u32 = 1281;
-pub const EN_HSCROLL : u32 = 1537;
-pub const EN_VSCROLL : u32 = 1538;
-pub const EN_ALIGN_LTR_EC : u32 = 1792;
-pub const EN_ALIGN_RTL_EC : u32 = 1793;
-pub const EN_BEFORE_PASTE : u32 = 2048;
-pub const EN_AFTER_PASTE : u32 = 2049;
-pub const EC_LEFTMARGIN : u32 = 1;
-pub const EC_RIGHTMARGIN : u32 = 2;
-pub const EC_USEFONTINFO : u32 = 65535;
-pub const EMSIS_COMPOSITIONSTRING : u32 = 1;
-pub const EIMES_GETCOMPSTRATONCE : u32 = 1;
-pub const EIMES_CANCELCOMPSTRINFOCUS : u32 = 2;
-pub const EIMES_COMPLETECOMPSTRKILLFOCUS : u32 = 4;
-pub const EM_GETSEL : u32 = 176;
-pub const EM_SETSEL : u32 = 177;
-pub const EM_GETRECT : u32 = 178;
-pub const EM_SETRECT : u32 = 179;
-pub const EM_SETRECTNP : u32 = 180;
-pub const EM_SCROLL : u32 = 181;
-pub const EM_LINESCROLL : u32 = 182;
-pub const EM_SCROLLCARET : u32 = 183;
-pub const EM_GETMODIFY : u32 = 184;
-pub const EM_SETMODIFY : u32 = 185;
-pub const EM_GETLINECOUNT : u32 = 186;
-pub const EM_LINEINDEX : u32 = 187;
-pub const EM_SETHANDLE : u32 = 188;
-pub const EM_GETHANDLE : u32 = 189;
-pub const EM_GETTHUMB : u32 = 190;
-pub const EM_LINELENGTH : u32 = 193;
-pub const EM_REPLACESEL : u32 = 194;
-pub const EM_GETLINE : u32 = 196;
-pub const EM_LIMITTEXT : u32 = 197;
-pub const EM_CANUNDO : u32 = 198;
-pub const EM_UNDO : u32 = 199;
-pub const EM_FMTLINES : u32 = 200;
-pub const EM_LINEFROMCHAR : u32 = 201;
-pub const EM_SETTABSTOPS : u32 = 203;
-pub const EM_SETPASSWORDCHAR : u32 = 204;
-pub const EM_EMPTYUNDOBUFFER : u32 = 205;
-pub const EM_GETFIRSTVISIBLELINE : u32 = 206;
-pub const EM_SETREADONLY : u32 = 207;
-pub const EM_SETWORDBREAKPROC : u32 = 208;
-pub const EM_GETWORDBREAKPROC : u32 = 209;
-pub const EM_GETPASSWORDCHAR : u32 = 210;
-pub const EM_SETMARGINS : u32 = 211;
-pub const EM_GETMARGINS : u32 = 212;
-pub const EM_GETLIMITTEXT : u32 = 213;
-pub const EM_POSFROMCHAR : u32 = 214;
-pub const EM_CHARFROMPOS : u32 = 215;
-pub const EM_SETIMESTATUS : u32 = 216;
-pub const EM_GETIMESTATUS : u32 = 217;
-pub const EM_ENABLEFEATURE : u32 = 218;
-pub const BN_CLICKED : u32 = 0;
-pub const BN_PAINT : u32 = 1;
-pub const BN_HILITE : u32 = 2;
-pub const BN_UNHILITE : u32 = 3;
-pub const BN_DISABLE : u32 = 4;
-pub const BN_DOUBLECLICKED : u32 = 5;
-pub const BN_SETFOCUS : u32 = 6;
-pub const BN_KILLFOCUS : u32 = 7;
-pub const BM_GETCHECK : u32 = 240;
-pub const BM_SETCHECK : u32 = 241;
-pub const BM_GETSTATE : u32 = 242;
-pub const BM_SETSTATE : u32 = 243;
-pub const BM_SETSTYLE : u32 = 244;
-pub const BM_CLICK : u32 = 245;
-pub const BM_GETIMAGE : u32 = 246;
-pub const BM_SETIMAGE : u32 = 247;
-pub const BM_SETDONTCLICK : u32 = 248;
-pub const BST_PUSHED : u32 = 4;
-pub const BST_FOCUS : u32 = 8;
-pub const STM_SETICON : u32 = 368;
-pub const STM_GETICON : u32 = 369;
-pub const STM_SETIMAGE : u32 = 370;
-pub const STM_GETIMAGE : u32 = 371;
-pub const STN_CLICKED : u32 = 0;
-pub const STN_DBLCLK : u32 = 1;
-pub const STN_ENABLE : u32 = 2;
-pub const STN_DISABLE : u32 = 3;
-pub const STM_MSGMAX : u32 = 372;
-pub const DWL_MSGRESULT : u32 = 0;
-pub const DWL_DLGPROC : u32 = 4;
-pub const DWL_USER : u32 = 8;
-pub const DWLP_MSGRESULT : u32 = 0;
-pub const DC_HASDEFID : u32 = 21323;
-pub const DLGC_WANTARROWS : u32 = 1;
-pub const DLGC_WANTTAB : u32 = 2;
-pub const DLGC_WANTALLKEYS : u32 = 4;
-pub const DLGC_WANTMESSAGE : u32 = 4;
-pub const DLGC_HASSETSEL : u32 = 8;
-pub const DLGC_DEFPUSHBUTTON : u32 = 16;
-pub const DLGC_UNDEFPUSHBUTTON : u32 = 32;
-pub const DLGC_RADIOBUTTON : u32 = 64;
-pub const DLGC_WANTCHARS : u32 = 128;
-pub const DLGC_STATIC : u32 = 256;
-pub const DLGC_BUTTON : u32 = 8192;
-pub const LB_CTLCODE : i32 = 0;
-pub const LB_OKAY : u32 = 0;
-pub const LB_ERR : i32 = -1;
-pub const LB_ERRSPACE : i32 = -2;
-pub const LBN_ERRSPACE : i32 = -2;
-pub const LBN_SELCHANGE : u32 = 1;
-pub const LBN_DBLCLK : u32 = 2;
-pub const LBN_SELCANCEL : u32 = 3;
-pub const LBN_SETFOCUS : u32 = 4;
-pub const LBN_KILLFOCUS : u32 = 5;
-pub const LB_ADDSTRING : u32 = 384;
-pub const LB_INSERTSTRING : u32 = 385;
-pub const LB_DELETESTRING : u32 = 386;
-pub const LB_SELITEMRANGEEX : u32 = 387;
-pub const LB_RESETCONTENT : u32 = 388;
-pub const LB_SETSEL : u32 = 389;
-pub const LB_SETCURSEL : u32 = 390;
-pub const LB_GETSEL : u32 = 391;
-pub const LB_GETCURSEL : u32 = 392;
-pub const LB_GETTEXT : u32 = 393;
-pub const LB_GETTEXTLEN : u32 = 394;
-pub const LB_GETCOUNT : u32 = 395;
-pub const LB_SELECTSTRING : u32 = 396;
-pub const LB_DIR : u32 = 397;
-pub const LB_GETTOPINDEX : u32 = 398;
-pub const LB_FINDSTRING : u32 = 399;
-pub const LB_GETSELCOUNT : u32 = 400;
-pub const LB_GETSELITEMS : u32 = 401;
-pub const LB_SETTABSTOPS : u32 = 402;
-pub const LB_GETHORIZONTALEXTENT : u32 = 403;
-pub const LB_SETHORIZONTALEXTENT : u32 = 404;
-pub const LB_SETCOLUMNWIDTH : u32 = 405;
-pub const LB_ADDFILE : u32 = 406;
-pub const LB_SETTOPINDEX : u32 = 407;
-pub const LB_GETITEMRECT : u32 = 408;
-pub const LB_GETITEMDATA : u32 = 409;
-pub const LB_SETITEMDATA : u32 = 410;
-pub const LB_SELITEMRANGE : u32 = 411;
-pub const LB_SETANCHORINDEX : u32 = 412;
-pub const LB_GETANCHORINDEX : u32 = 413;
-pub const LB_SETCARETINDEX : u32 = 414;
-pub const LB_GETCARETINDEX : u32 = 415;
-pub const LB_SETITEMHEIGHT : u32 = 416;
-pub const LB_GETITEMHEIGHT : u32 = 417;
-pub const LB_FINDSTRINGEXACT : u32 = 418;
-pub const LB_SETLOCALE : u32 = 421;
-pub const LB_GETLOCALE : u32 = 422;
-pub const LB_SETCOUNT : u32 = 423;
-pub const LB_INITSTORAGE : u32 = 424;
-pub const LB_ITEMFROMPOINT : u32 = 425;
-pub const LB_MULTIPLEADDSTRING : u32 = 433;
-pub const LB_GETLISTBOXINFO : u32 = 434;
-pub const LB_MSGMAX : u32 = 435;
-pub const CB_OKAY : u32 = 0;
-pub const CB_ERR : i32 = -1;
-pub const CB_ERRSPACE : i32 = -2;
-pub const CBN_ERRSPACE : i32 = -1;
-pub const CBN_SELCHANGE : u32 = 1;
-pub const CBN_DBLCLK : u32 = 2;
-pub const CBN_SETFOCUS : u32 = 3;
-pub const CBN_KILLFOCUS : u32 = 4;
-pub const CBN_EDITCHANGE : u32 = 5;
-pub const CBN_EDITUPDATE : u32 = 6;
-pub const CBN_DROPDOWN : u32 = 7;
-pub const CBN_CLOSEUP : u32 = 8;
-pub const CBN_SELENDOK : u32 = 9;
-pub const CBN_SELENDCANCEL : u32 = 10;
-pub const CB_GETEDITSEL : u32 = 320;
-pub const CB_LIMITTEXT : u32 = 321;
-pub const CB_SETEDITSEL : u32 = 322;
-pub const CB_ADDSTRING : u32 = 323;
-pub const CB_DELETESTRING : u32 = 324;
-pub const CB_DIR : u32 = 325;
-pub const CB_GETCOUNT : u32 = 326;
-pub const CB_GETCURSEL : u32 = 327;
-pub const CB_GETLBTEXT : u32 = 328;
-pub const CB_GETLBTEXTLEN : u32 = 329;
-pub const CB_INSERTSTRING : u32 = 330;
-pub const CB_RESETCONTENT : u32 = 331;
-pub const CB_FINDSTRING : u32 = 332;
-pub const CB_SELECTSTRING : u32 = 333;
-pub const CB_SETCURSEL : u32 = 334;
-pub const CB_SHOWDROPDOWN : u32 = 335;
-pub const CB_GETITEMDATA : u32 = 336;
-pub const CB_SETITEMDATA : u32 = 337;
-pub const CB_GETDROPPEDCONTROLRECT : u32 = 338;
-pub const CB_SETITEMHEIGHT : u32 = 339;
-pub const CB_GETITEMHEIGHT : u32 = 340;
-pub const CB_SETEXTENDEDUI : u32 = 341;
-pub const CB_GETEXTENDEDUI : u32 = 342;
-pub const CB_GETDROPPEDSTATE : u32 = 343;
-pub const CB_FINDSTRINGEXACT : u32 = 344;
-pub const CB_SETLOCALE : u32 = 345;
-pub const CB_GETLOCALE : u32 = 346;
-pub const CB_GETTOPINDEX : u32 = 347;
-pub const CB_SETTOPINDEX : u32 = 348;
-pub const CB_GETHORIZONTALEXTENT : u32 = 349;
-pub const CB_SETHORIZONTALEXTENT : u32 = 350;
-pub const CB_GETDROPPEDWIDTH : u32 = 351;
-pub const CB_SETDROPPEDWIDTH : u32 = 352;
-pub const CB_INITSTORAGE : u32 = 353;
-pub const CB_MULTIPLEADDSTRING : u32 = 355;
-pub const CB_GETCOMBOBOXINFO : u32 = 356;
-pub const CB_MSGMAX : u32 = 357;
-pub const SBM_SETPOS : u32 = 224;
-pub const SBM_GETPOS : u32 = 225;
-pub const SBM_SETRANGE : u32 = 226;
-pub const SBM_SETRANGEREDRAW : u32 = 230;
-pub const SBM_GETRANGE : u32 = 227;
-pub const SBM_ENABLE_ARROWS : u32 = 228;
-pub const SBM_SETSCROLLINFO : u32 = 233;
-pub const SBM_GETSCROLLINFO : u32 = 234;
-pub const SBM_GETSCROLLBARINFO : u32 = 235;
-pub const MDIS_ALLCHILDSTYLES : u32 = 1;
-pub const HELP_CONTEXT : i32 = 1;
-pub const HELP_QUIT : i32 = 2;
-pub const HELP_INDEX : i32 = 3;
-pub const HELP_CONTENTS : i32 = 3;
-pub const HELP_HELPONHELP : i32 = 4;
-pub const HELP_SETINDEX : i32 = 5;
-pub const HELP_SETCONTENTS : i32 = 5;
-pub const HELP_CONTEXTPOPUP : i32 = 8;
-pub const HELP_FORCEFILE : i32 = 9;
-pub const HELP_KEY : i32 = 257;
-pub const HELP_COMMAND : i32 = 258;
-pub const HELP_PARTIALKEY : i32 = 261;
-pub const HELP_MULTIKEY : i32 = 513;
-pub const HELP_SETWINPOS : i32 = 515;
-pub const HELP_CONTEXTMENU : u32 = 10;
-pub const HELP_FINDER : u32 = 11;
-pub const HELP_WM_HELP : u32 = 12;
-pub const HELP_SETPOPUP_POS : u32 = 13;
-pub const HELP_TCARD : u32 = 32768;
-pub const HELP_TCARD_DATA : u32 = 16;
-pub const HELP_TCARD_OTHER_CALLER : u32 = 17;
-pub const IDH_NO_HELP : u32 = 28440;
-pub const IDH_MISSING_CONTEXT : u32 = 28441;
-pub const IDH_GENERIC_HELP_BUTTON : u32 = 28442;
-pub const IDH_OK : u32 = 28443;
-pub const IDH_CANCEL : u32 = 28444;
-pub const IDH_HELP : u32 = 28445;
-pub const MAX_TOUCH_PREDICTION_FILTER_TAPS : u32 = 3;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_LATENCY : u32 = 8;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_SAMPLETIME : u32 = 8;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_USE_HW_TIMESTAMP : u32 = 1;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_DELTA : f32 = 1.0e-03;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_MIN : f32 = 9.0e-01;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_MAX : f32 = 9.99e-01;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_LEARNING_RATE : f32 = 1.0e-03;
-pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_EXPO_SMOOTH_ALPHA : f32 = 9.9e-01;
-pub const MAX_LOGICALDPIOVERRIDE : u32 = 2;
-pub const MIN_LOGICALDPIOVERRIDE : i32 = -2;
-pub const FE_FONTSMOOTHINGSTANDARD : u32 = 1;
-pub const FE_FONTSMOOTHINGCLEARTYPE : u32 = 2;
-pub const FE_FONTSMOOTHINGORIENTATIONBGR : u32 = 0;
-pub const FE_FONTSMOOTHINGORIENTATIONRGB : u32 = 1;
-pub const CONTACTVISUALIZATION_OFF : u32 = 0;
-pub const CONTACTVISUALIZATION_ON : u32 = 1;
-pub const CONTACTVISUALIZATION_PRESENTATIONMODE : u32 = 2;
-pub const GESTUREVISUALIZATION_OFF : u32 = 0;
-pub const GESTUREVISUALIZATION_ON : u32 = 31;
-pub const GESTUREVISUALIZATION_TAP : u32 = 1;
-pub const GESTUREVISUALIZATION_DOUBLETAP : u32 = 2;
-pub const GESTUREVISUALIZATION_PRESSANDTAP : u32 = 4;
-pub const GESTUREVISUALIZATION_PRESSANDHOLD : u32 = 8;
-pub const GESTUREVISUALIZATION_RIGHTTAP : u32 = 16;
-pub const MOUSEWHEEL_ROUTING_FOCUS : u32 = 0;
-pub const MOUSEWHEEL_ROUTING_HYBRID : u32 = 1;
-pub const MOUSEWHEEL_ROUTING_MOUSE_POS : u32 = 2;
-pub const PENVISUALIZATION_ON : u32 = 35;
-pub const PENVISUALIZATION_OFF : u32 = 0;
-pub const PENVISUALIZATION_TAP : u32 = 1;
-pub const PENVISUALIZATION_DOUBLETAP : u32 = 2;
-pub const PENVISUALIZATION_CURSOR : u32 = 32;
-pub const PENARBITRATIONTYPE_NONE : u32 = 0;
-pub const PENARBITRATIONTYPE_WIN8 : u32 = 1;
-pub const PENARBITRATIONTYPE_FIS : u32 = 2;
-pub const PENARBITRATIONTYPE_SPT : u32 = 3;
-pub const PENARBITRATIONTYPE_MAX : u32 = 4;
-pub const METRICS_USEDEFAULT : i32 = -1;
-pub const ARW_STARTMASK : i32 = 3;
-pub const ARW_STARTRIGHT : i32 = 1;
-pub const ARW_STARTTOP : i32 = 2;
-pub const ARW_LEFT : i32 = 0;
-pub const ARW_RIGHT : i32 = 0;
-pub const ARW_UP : i32 = 4;
-pub const ARW_DOWN : i32 = 4;
-pub const ARW_HIDE : i32 = 8;
-pub const HCF_LOGONDESKTOP : u32 = 256;
-pub const HCF_DEFAULTDESKTOP : u32 = 512;
-pub const EDS_RAWMODE : u32 = 2;
-pub const EDS_ROTATEDMODE : u32 = 4;
-pub const EDD_GET_DEVICE_INTERFACE_NAME : u32 = 1;
-pub const FKF_FILTERKEYSON : u32 = 1;
-pub const FKF_AVAILABLE : u32 = 2;
-pub const FKF_HOTKEYACTIVE : u32 = 4;
-pub const FKF_CONFIRMHOTKEY : u32 = 8;
-pub const FKF_HOTKEYSOUND : u32 = 16;
-pub const FKF_INDICATOR : u32 = 32;
-pub const FKF_CLICKON : u32 = 64;
-pub const MKF_MOUSEKEYSON : u32 = 1;
-pub const MKF_AVAILABLE : u32 = 2;
-pub const MKF_HOTKEYACTIVE : u32 = 4;
-pub const MKF_CONFIRMHOTKEY : u32 = 8;
-pub const MKF_HOTKEYSOUND : u32 = 16;
-pub const MKF_INDICATOR : u32 = 32;
-pub const MKF_MODIFIERS : u32 = 64;
-pub const MKF_REPLACENUMBERS : u32 = 128;
-pub const MKF_LEFTBUTTONSEL : u32 = 268435456;
-pub const MKF_RIGHTBUTTONSEL : u32 = 536870912;
-pub const MKF_LEFTBUTTONDOWN : u32 = 16777216;
-pub const MKF_RIGHTBUTTONDOWN : u32 = 33554432;
-pub const MKF_MOUSEMODE : u32 = 2147483648;
-pub const TKF_TOGGLEKEYSON : u32 = 1;
-pub const TKF_AVAILABLE : u32 = 2;
-pub const TKF_HOTKEYACTIVE : u32 = 4;
-pub const TKF_CONFIRMHOTKEY : u32 = 8;
-pub const TKF_HOTKEYSOUND : u32 = 16;
-pub const TKF_INDICATOR : u32 = 32;
-pub const MONITORINFOF_PRIMARY : u32 = 1;
-pub const WINEVENT_OUTOFCONTEXT : u32 = 0;
-pub const WINEVENT_SKIPOWNTHREAD : u32 = 1;
-pub const WINEVENT_SKIPOWNPROCESS : u32 = 2;
-pub const WINEVENT_INCONTEXT : u32 = 4;
-pub const CHILDID_SELF : u32 = 0;
-pub const INDEXID_OBJECT : u32 = 0;
-pub const INDEXID_CONTAINER : u32 = 0;
-pub const EVENT_MIN : u32 = 1;
-pub const EVENT_MAX : u32 = 2147483647;
-pub const EVENT_SYSTEM_SOUND : u32 = 1;
-pub const EVENT_SYSTEM_ALERT : u32 = 2;
-pub const EVENT_SYSTEM_FOREGROUND : u32 = 3;
-pub const EVENT_SYSTEM_MENUSTART : u32 = 4;
-pub const EVENT_SYSTEM_MENUEND : u32 = 5;
-pub const EVENT_SYSTEM_MENUPOPUPSTART : u32 = 6;
-pub const EVENT_SYSTEM_MENUPOPUPEND : u32 = 7;
-pub const EVENT_SYSTEM_CAPTURESTART : u32 = 8;
-pub const EVENT_SYSTEM_CAPTUREEND : u32 = 9;
-pub const EVENT_SYSTEM_MOVESIZESTART : u32 = 10;
-pub const EVENT_SYSTEM_MOVESIZEEND : u32 = 11;
-pub const EVENT_SYSTEM_CONTEXTHELPSTART : u32 = 12;
-pub const EVENT_SYSTEM_CONTEXTHELPEND : u32 = 13;
-pub const EVENT_SYSTEM_DRAGDROPSTART : u32 = 14;
-pub const EVENT_SYSTEM_DRAGDROPEND : u32 = 15;
-pub const EVENT_SYSTEM_DIALOGSTART : u32 = 16;
-pub const EVENT_SYSTEM_DIALOGEND : u32 = 17;
-pub const EVENT_SYSTEM_SCROLLINGSTART : u32 = 18;
-pub const EVENT_SYSTEM_SCROLLINGEND : u32 = 19;
-pub const EVENT_SYSTEM_SWITCHSTART : u32 = 20;
-pub const EVENT_SYSTEM_SWITCHEND : u32 = 21;
-pub const EVENT_SYSTEM_MINIMIZESTART : u32 = 22;
-pub const EVENT_SYSTEM_MINIMIZEEND : u32 = 23;
-pub const EVENT_SYSTEM_DESKTOPSWITCH : u32 = 32;
-pub const EVENT_SYSTEM_SWITCHER_APPGRABBED : u32 = 36;
-pub const EVENT_SYSTEM_SWITCHER_APPOVERTARGET : u32 = 37;
-pub const EVENT_SYSTEM_SWITCHER_APPDROPPED : u32 = 38;
-pub const EVENT_SYSTEM_SWITCHER_CANCELLED : u32 = 39;
-pub const EVENT_SYSTEM_IME_KEY_NOTIFICATION : u32 = 41;
-pub const EVENT_SYSTEM_END : u32 = 255;
-pub const EVENT_OEM_DEFINED_START : u32 = 257;
-pub const EVENT_OEM_DEFINED_END : u32 = 511;
-pub const EVENT_UIA_EVENTID_START : u32 = 19968;
-pub const EVENT_UIA_EVENTID_END : u32 = 20223;
-pub const EVENT_UIA_PROPID_START : u32 = 29952;
-pub const EVENT_UIA_PROPID_END : u32 = 30207;
-pub const EVENT_CONSOLE_CARET : u32 = 16385;
-pub const EVENT_CONSOLE_UPDATE_REGION : u32 = 16386;
-pub const EVENT_CONSOLE_UPDATE_SIMPLE : u32 = 16387;
-pub const EVENT_CONSOLE_UPDATE_SCROLL : u32 = 16388;
-pub const EVENT_CONSOLE_LAYOUT : u32 = 16389;
-pub const EVENT_CONSOLE_START_APPLICATION : u32 = 16390;
-pub const EVENT_CONSOLE_END_APPLICATION : u32 = 16391;
-pub const CONSOLE_APPLICATION_16BIT : u32 = 0;
-pub const CONSOLE_CARET_SELECTION : u32 = 1;
-pub const CONSOLE_CARET_VISIBLE : u32 = 2;
-pub const EVENT_CONSOLE_END : u32 = 16639;
-pub const EVENT_OBJECT_CREATE : u32 = 32768;
-pub const EVENT_OBJECT_DESTROY : u32 = 32769;
-pub const EVENT_OBJECT_SHOW : u32 = 32770;
-pub const EVENT_OBJECT_HIDE : u32 = 32771;
-pub const EVENT_OBJECT_REORDER : u32 = 32772;
-pub const EVENT_OBJECT_FOCUS : u32 = 32773;
-pub const EVENT_OBJECT_SELECTION : u32 = 32774;
-pub const EVENT_OBJECT_SELECTIONADD : u32 = 32775;
-pub const EVENT_OBJECT_SELECTIONREMOVE : u32 = 32776;
-pub const EVENT_OBJECT_SELECTIONWITHIN : u32 = 32777;
-pub const EVENT_OBJECT_STATECHANGE : u32 = 32778;
-pub const EVENT_OBJECT_LOCATIONCHANGE : u32 = 32779;
-pub const EVENT_OBJECT_NAMECHANGE : u32 = 32780;
-pub const EVENT_OBJECT_DESCRIPTIONCHANGE : u32 = 32781;
-pub const EVENT_OBJECT_VALUECHANGE : u32 = 32782;
-pub const EVENT_OBJECT_PARENTCHANGE : u32 = 32783;
-pub const EVENT_OBJECT_HELPCHANGE : u32 = 32784;
-pub const EVENT_OBJECT_DEFACTIONCHANGE : u32 = 32785;
-pub const EVENT_OBJECT_ACCELERATORCHANGE : u32 = 32786;
-pub const EVENT_OBJECT_INVOKED : u32 = 32787;
-pub const EVENT_OBJECT_TEXTSELECTIONCHANGED : u32 = 32788;
-pub const EVENT_OBJECT_CONTENTSCROLLED : u32 = 32789;
-pub const EVENT_SYSTEM_ARRANGMENTPREVIEW : u32 = 32790;
-pub const EVENT_OBJECT_CLOAKED : u32 = 32791;
-pub const EVENT_OBJECT_UNCLOAKED : u32 = 32792;
-pub const EVENT_OBJECT_LIVEREGIONCHANGED : u32 = 32793;
-pub const EVENT_OBJECT_HOSTEDOBJECTSINVALIDATED : u32 = 32800;
-pub const EVENT_OBJECT_DRAGSTART : u32 = 32801;
-pub const EVENT_OBJECT_DRAGCANCEL : u32 = 32802;
-pub const EVENT_OBJECT_DRAGCOMPLETE : u32 = 32803;
-pub const EVENT_OBJECT_DRAGENTER : u32 = 32804;
-pub const EVENT_OBJECT_DRAGLEAVE : u32 = 32805;
-pub const EVENT_OBJECT_DRAGDROPPED : u32 = 32806;
-pub const EVENT_OBJECT_IME_SHOW : u32 = 32807;
-pub const EVENT_OBJECT_IME_HIDE : u32 = 32808;
-pub const EVENT_OBJECT_IME_CHANGE : u32 = 32809;
-pub const EVENT_OBJECT_TEXTEDIT_CONVERSIONTARGETCHANGED : u32 = 32816;
-pub const EVENT_OBJECT_END : u32 = 33023;
-pub const EVENT_AIA_START : u32 = 40960;
-pub const EVENT_AIA_END : u32 = 45055;
-pub const SOUND_SYSTEM_STARTUP : u32 = 1;
-pub const SOUND_SYSTEM_SHUTDOWN : u32 = 2;
-pub const SOUND_SYSTEM_BEEP : u32 = 3;
-pub const SOUND_SYSTEM_ERROR : u32 = 4;
-pub const SOUND_SYSTEM_QUESTION : u32 = 5;
-pub const SOUND_SYSTEM_WARNING : u32 = 6;
-pub const SOUND_SYSTEM_INFORMATION : u32 = 7;
-pub const SOUND_SYSTEM_MAXIMIZE : u32 = 8;
-pub const SOUND_SYSTEM_MINIMIZE : u32 = 9;
-pub const SOUND_SYSTEM_RESTOREUP : u32 = 10;
-pub const SOUND_SYSTEM_RESTOREDOWN : u32 = 11;
-pub const SOUND_SYSTEM_APPSTART : u32 = 12;
-pub const SOUND_SYSTEM_FAULT : u32 = 13;
-pub const SOUND_SYSTEM_APPEND : u32 = 14;
-pub const SOUND_SYSTEM_MENUCOMMAND : u32 = 15;
-pub const SOUND_SYSTEM_MENUPOPUP : u32 = 16;
-pub const CSOUND_SYSTEM : u32 = 16;
-pub const CALERT_SYSTEM : u32 = 6;
-pub const GUI_16BITTASK : u32 = 0;
-pub const USER_DEFAULT_SCREEN_DPI : u32 = 96;
-pub const STATE_SYSTEM_SELECTED : u32 = 2;
-pub const STATE_SYSTEM_FOCUSED : u32 = 4;
-pub const STATE_SYSTEM_CHECKED : u32 = 16;
-pub const STATE_SYSTEM_MIXED : u32 = 32;
-pub const STATE_SYSTEM_READONLY : u32 = 64;
-pub const STATE_SYSTEM_HOTTRACKED : u32 = 128;
-pub const STATE_SYSTEM_DEFAULT : u32 = 256;
-pub const STATE_SYSTEM_EXPANDED : u32 = 512;
-pub const STATE_SYSTEM_COLLAPSED : u32 = 1024;
-pub const STATE_SYSTEM_BUSY : u32 = 2048;
-pub const STATE_SYSTEM_FLOATING : u32 = 4096;
-pub const STATE_SYSTEM_MARQUEED : u32 = 8192;
-pub const STATE_SYSTEM_ANIMATED : u32 = 16384;
-pub const STATE_SYSTEM_SIZEABLE : u32 = 131072;
-pub const STATE_SYSTEM_MOVEABLE : u32 = 262144;
-pub const STATE_SYSTEM_SELFVOICING : u32 = 524288;
-pub const STATE_SYSTEM_SELECTABLE : u32 = 2097152;
-pub const STATE_SYSTEM_LINKED : u32 = 4194304;
-pub const STATE_SYSTEM_TRAVERSED : u32 = 8388608;
-pub const STATE_SYSTEM_MULTISELECTABLE : u32 = 16777216;
-pub const STATE_SYSTEM_EXTSELECTABLE : u32 = 33554432;
-pub const STATE_SYSTEM_ALERT_LOW : u32 = 67108864;
-pub const STATE_SYSTEM_ALERT_MEDIUM : u32 = 134217728;
-pub const STATE_SYSTEM_ALERT_HIGH : u32 = 268435456;
-pub const STATE_SYSTEM_PROTECTED : u32 = 536870912;
-pub const STATE_SYSTEM_VALID : u32 = 1073741823;
-pub const CCHILDREN_TITLEBAR : u32 = 5;
-pub const CCHILDREN_SCROLLBAR : u32 = 5;
-pub const RIM_INPUT : u32 = 0;
-pub const RIM_INPUTSINK : u32 = 1;
-pub const RIM_TYPEMAX : u32 = 2;
-pub const RI_KEY_MAKE : u32 = 0;
-pub const RI_KEY_BREAK : u32 = 1;
-pub const RI_KEY_E0 : u32 = 2;
-pub const RI_KEY_E1 : u32 = 4;
-pub const RI_KEY_TERMSRV_SET_LED : u32 = 8;
-pub const RI_KEY_TERMSRV_SHADOW : u32 = 16;
-pub const RIDEV_EXMODEMASK : u32 = 240;
-pub const GIDC_ARRIVAL : u32 = 1;
-pub const GIDC_REMOVAL : u32 = 2;
-pub const POINTER_DEVICE_PRODUCT_STRING_MAX : u32 = 520;
-pub const PDC_ARRIVAL : u32 = 1;
-pub const PDC_REMOVAL : u32 = 2;
-pub const PDC_ORIENTATION_0 : u32 = 4;
-pub const PDC_ORIENTATION_90 : u32 = 8;
-pub const PDC_ORIENTATION_180 : u32 = 16;
-pub const PDC_ORIENTATION_270 : u32 = 32;
-pub const PDC_MODE_DEFAULT : u32 = 64;
-pub const PDC_MODE_CENTERED : u32 = 128;
-pub const PDC_MAPPING_CHANGE : u32 = 256;
-pub const PDC_RESOLUTION : u32 = 512;
-pub const PDC_ORIGIN : u32 = 1024;
-pub const PDC_MODE_ASPECTRATIOPRESERVED : u32 = 2048;
-pub const GF_BEGIN : u32 = 1;
-pub const GF_INERTIA : u32 = 2;
-pub const GF_END : u32 = 4;
-pub const GESTURECONFIGMAXCOUNT : u32 = 256;
-pub const GCF_INCLUDE_ANCESTORS : u32 = 1;
-pub const NID_INTEGRATED_TOUCH : u32 = 1;
-pub const NID_EXTERNAL_TOUCH : u32 = 2;
-pub const NID_INTEGRATED_PEN : u32 = 4;
-pub const NID_EXTERNAL_PEN : u32 = 8;
-pub const NID_MULTI_INPUT : u32 = 64;
-pub const NID_READY : u32 = 128;
-pub const MAX_STR_BLOCKREASON : u32 = 256;
-pub const STRSAFE_USE_SECURE_CRT : u32 = 0;
-pub const STRSAFE_MAX_CCH : u32 = 2147483647;
-pub const STRSAFE_E_INSUFFICIENT_BUFFER : i32 = -2147024774;
-pub const STRSAFE_E_INVALID_PARAMETER : i32 = -2147024809;
-pub const STRSAFE_E_END_OF_FILE : i32 = -2147024858;
-pub const HBMMENU_CALLBACK : i32 = -1;
-pub const HBMMENU_SYSTEM : i32 = 1;
-pub const HBMMENU_MBAR_RESTORE : i32 = 2;
-pub const HBMMENU_MBAR_MINIMIZE : i32 = 3;
-pub const HBMMENU_MBAR_CLOSE : i32 = 5;
-pub const HBMMENU_MBAR_CLOSE_D : i32 = 6;
-pub const HBMMENU_MBAR_MINIMIZE_D : i32 = 7;
-pub const HBMMENU_POPUP_CLOSE : i32 = 8;
-pub const HBMMENU_POPUP_RESTORE : i32 = 9;
-pub const HBMMENU_POPUP_MAXIMIZE : i32 = 10;
-pub const HBMMENU_POPUP_MINIMIZE : i32 = 11;
+pub const OFN_READONLY = @as(u32, 1);
+pub const OFN_OVERWRITEPROMPT = @as(u32, 2);
+pub const OFN_HIDEREADONLY = @as(u32, 4);
+pub const OFN_NOCHANGEDIR = @as(u32, 8);
+pub const OFN_SHOWHELP = @as(u32, 16);
+pub const OFN_ENABLEHOOK = @as(u32, 32);
+pub const OFN_ENABLETEMPLATE = @as(u32, 64);
+pub const OFN_ENABLETEMPLATEHANDLE = @as(u32, 128);
+pub const OFN_NOVALIDATE = @as(u32, 256);
+pub const OFN_ALLOWMULTISELECT = @as(u32, 512);
+pub const OFN_EXTENSIONDIFFERENT = @as(u32, 1024);
+pub const OFN_PATHMUSTEXIST = @as(u32, 2048);
+pub const OFN_FILEMUSTEXIST = @as(u32, 4096);
+pub const OFN_CREATEPROMPT = @as(u32, 8192);
+pub const OFN_SHAREAWARE = @as(u32, 16384);
+pub const OFN_NOREADONLYRETURN = @as(u32, 32768);
+pub const OFN_NOTESTFILECREATE = @as(u32, 65536);
+pub const OFN_NONETWORKBUTTON = @as(u32, 131072);
+pub const OFN_NOLONGNAMES = @as(u32, 262144);
+pub const OFN_EXPLORER = @as(u32, 524288);
+pub const OFN_NODEREFERENCELINKS = @as(u32, 1048576);
+pub const OFN_LONGNAMES = @as(u32, 2097152);
+pub const OFN_ENABLEINCLUDENOTIFY = @as(u32, 4194304);
+pub const OFN_ENABLESIZING = @as(u32, 8388608);
+pub const OFN_DONTADDTORECENT = @as(u32, 33554432);
+pub const OFN_FORCESHOWHIDDEN = @as(u32, 268435456);
+pub const OFN_EX_NOPLACESBAR = @as(u32, 1);
+pub const OFN_SHAREFALLTHROUGH = @as(u32, 2);
+pub const OFN_SHARENOWARN = @as(u32, 1);
+pub const OFN_SHAREWARN = @as(u32, 0);
+pub const FR_RAW = @as(u32, 131072);
+pub const FR_SHOWWRAPAROUND = @as(u32, 262144);
+pub const FR_NOWRAPAROUND = @as(u32, 524288);
+pub const FR_WRAPAROUND = @as(u32, 1048576);
+pub const PS_OPENTYPE_FONTTYPE = @as(u32, 65536);
+pub const TT_OPENTYPE_FONTTYPE = @as(u32, 131072);
+pub const TYPE1_FONTTYPE = @as(u32, 262144);
+pub const SYMBOL_FONTTYPE = @as(u32, 524288);
+pub const CD_LBSELNOITEMS = @as(i32, -1);
+pub const CD_LBSELCHANGE = @as(u32, 0);
+pub const CD_LBSELSUB = @as(u32, 1);
+pub const CD_LBSELADD = @as(u32, 2);
+pub const START_PAGE_GENERAL = @as(u32, 4294967295);
+pub const PD_RESULT_CANCEL = @as(u32, 0);
+pub const PD_RESULT_PRINT = @as(u32, 1);
+pub const PD_RESULT_APPLY = @as(u32, 2);
+pub const DN_DEFAULTPRN = @as(u32, 1);
+// skipped 'RT_CURSOR'
+// skipped 'RT_BITMAP'
+// skipped 'RT_ICON'
+// skipped 'RT_MENU'
+// skipped 'RT_DIALOG'
+// skipped 'RT_FONTDIR'
+// skipped 'RT_FONT'
+// skipped 'RT_ACCELERATOR'
+// skipped 'RT_MESSAGETABLE'
+pub const DIFFERENCE = @as(u32, 11);
+// skipped 'RT_VERSION'
+// skipped 'RT_DLGINCLUDE'
+// skipped 'RT_PLUGPLAY'
+// skipped 'RT_VXD'
+// skipped 'RT_ANICURSOR'
+// skipped 'RT_ANIICON'
+// skipped 'RT_HTML'
+pub const RT_MANIFEST = @as(u32, 24);
+pub const CREATEPROCESS_MANIFEST_RESOURCE_ID = @as(u32, 1);
+pub const ISOLATIONAWARE_MANIFEST_RESOURCE_ID = @as(u32, 2);
+pub const ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID = @as(u32, 3);
+pub const ISOLATIONPOLICY_MANIFEST_RESOURCE_ID = @as(u32, 4);
+pub const ISOLATIONPOLICY_BROWSER_MANIFEST_RESOURCE_ID = @as(u32, 5);
+pub const MINIMUM_RESERVED_MANIFEST_RESOURCE_ID = @as(u32, 1);
+pub const MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID = @as(u32, 16);
+pub const SB_LINEUP = @as(u32, 0);
+pub const SB_LINELEFT = @as(u32, 0);
+pub const SB_LINEDOWN = @as(u32, 1);
+pub const SB_LINERIGHT = @as(u32, 1);
+pub const SB_PAGEUP = @as(u32, 2);
+pub const SB_PAGELEFT = @as(u32, 2);
+pub const SB_PAGEDOWN = @as(u32, 3);
+pub const SB_PAGERIGHT = @as(u32, 3);
+pub const SB_THUMBPOSITION = @as(u32, 4);
+pub const SB_THUMBTRACK = @as(u32, 5);
+pub const SB_TOP = @as(u32, 6);
+pub const SB_LEFT = @as(u32, 6);
+pub const SB_BOTTOM = @as(u32, 7);
+pub const SB_RIGHT = @as(u32, 7);
+pub const SB_ENDSCROLL = @as(u32, 8);
+pub const HIDE_WINDOW = @as(u32, 0);
+pub const SHOW_OPENWINDOW = @as(u32, 1);
+pub const SHOW_ICONWINDOW = @as(u32, 2);
+pub const SHOW_FULLSCREEN = @as(u32, 3);
+pub const SHOW_OPENNOACTIVATE = @as(u32, 4);
+pub const KF_EXTENDED = @as(u32, 256);
+pub const KF_DLGMODE = @as(u32, 2048);
+pub const KF_MENUMODE = @as(u32, 4096);
+pub const KF_ALTDOWN = @as(u32, 8192);
+pub const KF_REPEAT = @as(u32, 16384);
+pub const KF_UP = @as(u32, 32768);
+pub const VK_LBUTTON = @as(u32, 1);
+pub const VK_RBUTTON = @as(u32, 2);
+pub const VK_CANCEL = @as(u32, 3);
+pub const VK_MBUTTON = @as(u32, 4);
+pub const VK_XBUTTON1 = @as(u32, 5);
+pub const VK_XBUTTON2 = @as(u32, 6);
+pub const VK_BACK = @as(u32, 8);
+pub const VK_TAB = @as(u32, 9);
+pub const VK_CLEAR = @as(u32, 12);
+pub const VK_RETURN = @as(u32, 13);
+pub const VK_SHIFT = @as(u32, 16);
+pub const VK_CONTROL = @as(u32, 17);
+pub const VK_MENU = @as(u32, 18);
+pub const VK_PAUSE = @as(u32, 19);
+pub const VK_CAPITAL = @as(u32, 20);
+pub const VK_KANA = @as(u32, 21);
+pub const VK_HANGEUL = @as(u32, 21);
+pub const VK_HANGUL = @as(u32, 21);
+pub const VK_JUNJA = @as(u32, 23);
+pub const VK_FINAL = @as(u32, 24);
+pub const VK_HANJA = @as(u32, 25);
+pub const VK_KANJI = @as(u32, 25);
+pub const VK_ESCAPE = @as(u32, 27);
+pub const VK_CONVERT = @as(u32, 28);
+pub const VK_NONCONVERT = @as(u32, 29);
+pub const VK_ACCEPT = @as(u32, 30);
+pub const VK_MODECHANGE = @as(u32, 31);
+pub const VK_SPACE = @as(u32, 32);
+pub const VK_PRIOR = @as(u32, 33);
+pub const VK_NEXT = @as(u32, 34);
+pub const VK_END = @as(u32, 35);
+pub const VK_HOME = @as(u32, 36);
+pub const VK_LEFT = @as(u32, 37);
+pub const VK_UP = @as(u32, 38);
+pub const VK_RIGHT = @as(u32, 39);
+pub const VK_DOWN = @as(u32, 40);
+pub const VK_SELECT = @as(u32, 41);
+pub const VK_PRINT = @as(u32, 42);
+pub const VK_EXECUTE = @as(u32, 43);
+pub const VK_SNAPSHOT = @as(u32, 44);
+pub const VK_INSERT = @as(u32, 45);
+pub const VK_DELETE = @as(u32, 46);
+pub const VK_HELP = @as(u32, 47);
+pub const VK_LWIN = @as(u32, 91);
+pub const VK_RWIN = @as(u32, 92);
+pub const VK_APPS = @as(u32, 93);
+pub const VK_SLEEP = @as(u32, 95);
+pub const VK_NUMPAD0 = @as(u32, 96);
+pub const VK_NUMPAD1 = @as(u32, 97);
+pub const VK_NUMPAD2 = @as(u32, 98);
+pub const VK_NUMPAD3 = @as(u32, 99);
+pub const VK_NUMPAD4 = @as(u32, 100);
+pub const VK_NUMPAD5 = @as(u32, 101);
+pub const VK_NUMPAD6 = @as(u32, 102);
+pub const VK_NUMPAD7 = @as(u32, 103);
+pub const VK_NUMPAD8 = @as(u32, 104);
+pub const VK_NUMPAD9 = @as(u32, 105);
+pub const VK_MULTIPLY = @as(u32, 106);
+pub const VK_ADD = @as(u32, 107);
+pub const VK_SEPARATOR = @as(u32, 108);
+pub const VK_SUBTRACT = @as(u32, 109);
+pub const VK_DECIMAL = @as(u32, 110);
+pub const VK_DIVIDE = @as(u32, 111);
+pub const VK_F1 = @as(u32, 112);
+pub const VK_F2 = @as(u32, 113);
+pub const VK_F3 = @as(u32, 114);
+pub const VK_F4 = @as(u32, 115);
+pub const VK_F5 = @as(u32, 116);
+pub const VK_F6 = @as(u32, 117);
+pub const VK_F7 = @as(u32, 118);
+pub const VK_F8 = @as(u32, 119);
+pub const VK_F9 = @as(u32, 120);
+pub const VK_F10 = @as(u32, 121);
+pub const VK_F11 = @as(u32, 122);
+pub const VK_F12 = @as(u32, 123);
+pub const VK_F13 = @as(u32, 124);
+pub const VK_F14 = @as(u32, 125);
+pub const VK_F15 = @as(u32, 126);
+pub const VK_F16 = @as(u32, 127);
+pub const VK_F17 = @as(u32, 128);
+pub const VK_F18 = @as(u32, 129);
+pub const VK_F19 = @as(u32, 130);
+pub const VK_F20 = @as(u32, 131);
+pub const VK_F21 = @as(u32, 132);
+pub const VK_F22 = @as(u32, 133);
+pub const VK_F23 = @as(u32, 134);
+pub const VK_F24 = @as(u32, 135);
+pub const VK_NAVIGATION_VIEW = @as(u32, 136);
+pub const VK_NAVIGATION_MENU = @as(u32, 137);
+pub const VK_NAVIGATION_UP = @as(u32, 138);
+pub const VK_NAVIGATION_DOWN = @as(u32, 139);
+pub const VK_NAVIGATION_LEFT = @as(u32, 140);
+pub const VK_NAVIGATION_RIGHT = @as(u32, 141);
+pub const VK_NAVIGATION_ACCEPT = @as(u32, 142);
+pub const VK_NAVIGATION_CANCEL = @as(u32, 143);
+pub const VK_NUMLOCK = @as(u32, 144);
+pub const VK_SCROLL = @as(u32, 145);
+pub const VK_OEM_NEC_EQUAL = @as(u32, 146);
+pub const VK_OEM_FJ_JISHO = @as(u32, 146);
+pub const VK_OEM_FJ_MASSHOU = @as(u32, 147);
+pub const VK_OEM_FJ_TOUROKU = @as(u32, 148);
+pub const VK_OEM_FJ_LOYA = @as(u32, 149);
+pub const VK_OEM_FJ_ROYA = @as(u32, 150);
+pub const VK_LSHIFT = @as(u32, 160);
+pub const VK_RSHIFT = @as(u32, 161);
+pub const VK_LCONTROL = @as(u32, 162);
+pub const VK_RCONTROL = @as(u32, 163);
+pub const VK_LMENU = @as(u32, 164);
+pub const VK_RMENU = @as(u32, 165);
+pub const VK_BROWSER_BACK = @as(u32, 166);
+pub const VK_BROWSER_FORWARD = @as(u32, 167);
+pub const VK_BROWSER_REFRESH = @as(u32, 168);
+pub const VK_BROWSER_STOP = @as(u32, 169);
+pub const VK_BROWSER_SEARCH = @as(u32, 170);
+pub const VK_BROWSER_FAVORITES = @as(u32, 171);
+pub const VK_BROWSER_HOME = @as(u32, 172);
+pub const VK_VOLUME_MUTE = @as(u32, 173);
+pub const VK_VOLUME_DOWN = @as(u32, 174);
+pub const VK_VOLUME_UP = @as(u32, 175);
+pub const VK_MEDIA_NEXT_TRACK = @as(u32, 176);
+pub const VK_MEDIA_PREV_TRACK = @as(u32, 177);
+pub const VK_MEDIA_STOP = @as(u32, 178);
+pub const VK_MEDIA_PLAY_PAUSE = @as(u32, 179);
+pub const VK_LAUNCH_MAIL = @as(u32, 180);
+pub const VK_LAUNCH_MEDIA_SELECT = @as(u32, 181);
+pub const VK_LAUNCH_APP1 = @as(u32, 182);
+pub const VK_LAUNCH_APP2 = @as(u32, 183);
+pub const VK_OEM_1 = @as(u32, 186);
+pub const VK_OEM_PLUS = @as(u32, 187);
+pub const VK_OEM_COMMA = @as(u32, 188);
+pub const VK_OEM_MINUS = @as(u32, 189);
+pub const VK_OEM_PERIOD = @as(u32, 190);
+pub const VK_OEM_2 = @as(u32, 191);
+pub const VK_OEM_3 = @as(u32, 192);
+pub const VK_GAMEPAD_A = @as(u32, 195);
+pub const VK_GAMEPAD_B = @as(u32, 196);
+pub const VK_GAMEPAD_X = @as(u32, 197);
+pub const VK_GAMEPAD_Y = @as(u32, 198);
+pub const VK_GAMEPAD_RIGHT_SHOULDER = @as(u32, 199);
+pub const VK_GAMEPAD_LEFT_SHOULDER = @as(u32, 200);
+pub const VK_GAMEPAD_LEFT_TRIGGER = @as(u32, 201);
+pub const VK_GAMEPAD_RIGHT_TRIGGER = @as(u32, 202);
+pub const VK_GAMEPAD_DPAD_UP = @as(u32, 203);
+pub const VK_GAMEPAD_DPAD_DOWN = @as(u32, 204);
+pub const VK_GAMEPAD_DPAD_LEFT = @as(u32, 205);
+pub const VK_GAMEPAD_DPAD_RIGHT = @as(u32, 206);
+pub const VK_GAMEPAD_MENU = @as(u32, 207);
+pub const VK_GAMEPAD_VIEW = @as(u32, 208);
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_BUTTON = @as(u32, 209);
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_BUTTON = @as(u32, 210);
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_UP = @as(u32, 211);
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_DOWN = @as(u32, 212);
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_RIGHT = @as(u32, 213);
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_LEFT = @as(u32, 214);
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_UP = @as(u32, 215);
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_DOWN = @as(u32, 216);
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_RIGHT = @as(u32, 217);
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_LEFT = @as(u32, 218);
+pub const VK_OEM_4 = @as(u32, 219);
+pub const VK_OEM_5 = @as(u32, 220);
+pub const VK_OEM_6 = @as(u32, 221);
+pub const VK_OEM_7 = @as(u32, 222);
+pub const VK_OEM_8 = @as(u32, 223);
+pub const VK_OEM_AX = @as(u32, 225);
+pub const VK_OEM_102 = @as(u32, 226);
+pub const VK_ICO_HELP = @as(u32, 227);
+pub const VK_ICO_00 = @as(u32, 228);
+pub const VK_PROCESSKEY = @as(u32, 229);
+pub const VK_ICO_CLEAR = @as(u32, 230);
+pub const VK_PACKET = @as(u32, 231);
+pub const VK_OEM_RESET = @as(u32, 233);
+pub const VK_OEM_JUMP = @as(u32, 234);
+pub const VK_OEM_PA1 = @as(u32, 235);
+pub const VK_OEM_PA2 = @as(u32, 236);
+pub const VK_OEM_PA3 = @as(u32, 237);
+pub const VK_OEM_WSCTRL = @as(u32, 238);
+pub const VK_OEM_CUSEL = @as(u32, 239);
+pub const VK_OEM_ATTN = @as(u32, 240);
+pub const VK_OEM_FINISH = @as(u32, 241);
+pub const VK_OEM_COPY = @as(u32, 242);
+pub const VK_OEM_AUTO = @as(u32, 243);
+pub const VK_OEM_ENLW = @as(u32, 244);
+pub const VK_OEM_BACKTAB = @as(u32, 245);
+pub const VK_ATTN = @as(u32, 246);
+pub const VK_CRSEL = @as(u32, 247);
+pub const VK_EXSEL = @as(u32, 248);
+pub const VK_EREOF = @as(u32, 249);
+pub const VK_PLAY = @as(u32, 250);
+pub const VK_ZOOM = @as(u32, 251);
+pub const VK_NONAME = @as(u32, 252);
+pub const VK_PA1 = @as(u32, 253);
+pub const VK_OEM_CLEAR = @as(u32, 254);
+pub const WH_MIN = @as(i32, -1);
+pub const WH_HARDWARE = @as(u32, 8);
+pub const WH_MAX = @as(u32, 14);
+pub const HC_ACTION = @as(u32, 0);
+pub const HC_GETNEXT = @as(u32, 1);
+pub const HC_SKIP = @as(u32, 2);
+pub const HC_NOREMOVE = @as(u32, 3);
+pub const HC_SYSMODALON = @as(u32, 4);
+pub const HC_SYSMODALOFF = @as(u32, 5);
+pub const HCBT_MOVESIZE = @as(u32, 0);
+pub const HCBT_MINMAX = @as(u32, 1);
+pub const HCBT_QS = @as(u32, 2);
+pub const HCBT_CREATEWND = @as(u32, 3);
+pub const HCBT_DESTROYWND = @as(u32, 4);
+pub const HCBT_ACTIVATE = @as(u32, 5);
+pub const HCBT_CLICKSKIPPED = @as(u32, 6);
+pub const HCBT_KEYSKIPPED = @as(u32, 7);
+pub const HCBT_SYSCOMMAND = @as(u32, 8);
+pub const HCBT_SETFOCUS = @as(u32, 9);
+pub const WTS_CONSOLE_CONNECT = @as(u32, 1);
+pub const WTS_CONSOLE_DISCONNECT = @as(u32, 2);
+pub const WTS_REMOTE_CONNECT = @as(u32, 3);
+pub const WTS_REMOTE_DISCONNECT = @as(u32, 4);
+pub const WTS_SESSION_LOGON = @as(u32, 5);
+pub const WTS_SESSION_LOGOFF = @as(u32, 6);
+pub const WTS_SESSION_LOCK = @as(u32, 7);
+pub const WTS_SESSION_UNLOCK = @as(u32, 8);
+pub const WTS_SESSION_REMOTE_CONTROL = @as(u32, 9);
+pub const WTS_SESSION_CREATE = @as(u32, 10);
+pub const WTS_SESSION_TERMINATE = @as(u32, 11);
+pub const MSGF_DIALOGBOX = @as(u32, 0);
+pub const MSGF_MESSAGEBOX = @as(u32, 1);
+pub const MSGF_MENU = @as(u32, 2);
+pub const MSGF_SCROLLBAR = @as(u32, 5);
+pub const MSGF_NEXTWINDOW = @as(u32, 6);
+pub const MSGF_MAX = @as(u32, 8);
+pub const MSGF_USER = @as(u32, 4096);
+pub const HSHELL_WINDOWCREATED = @as(u32, 1);
+pub const HSHELL_WINDOWDESTROYED = @as(u32, 2);
+pub const HSHELL_ACTIVATESHELLWINDOW = @as(u32, 3);
+pub const HSHELL_WINDOWACTIVATED = @as(u32, 4);
+pub const HSHELL_GETMINRECT = @as(u32, 5);
+pub const HSHELL_REDRAW = @as(u32, 6);
+pub const HSHELL_TASKMAN = @as(u32, 7);
+pub const HSHELL_LANGUAGE = @as(u32, 8);
+pub const HSHELL_SYSMENU = @as(u32, 9);
+pub const HSHELL_ENDTASK = @as(u32, 10);
+pub const HSHELL_ACCESSIBILITYSTATE = @as(u32, 11);
+pub const HSHELL_APPCOMMAND = @as(u32, 12);
+pub const HSHELL_WINDOWREPLACED = @as(u32, 13);
+pub const HSHELL_WINDOWREPLACING = @as(u32, 14);
+pub const HSHELL_MONITORCHANGED = @as(u32, 16);
+pub const HSHELL_HIGHBIT = @as(u32, 32768);
+pub const FAPPCOMMAND_MOUSE = @as(u32, 32768);
+pub const FAPPCOMMAND_KEY = @as(u32, 0);
+pub const FAPPCOMMAND_OEM = @as(u32, 4096);
+pub const FAPPCOMMAND_MASK = @as(u32, 61440);
+pub const LLKHF_INJECTED = @as(u32, 16);
+pub const LLKHF_LOWER_IL_INJECTED = @as(u32, 2);
+pub const LLMHF_INJECTED = @as(u32, 1);
+pub const LLMHF_LOWER_IL_INJECTED = @as(u32, 2);
+pub const INPUTLANGCHANGE_SYSCHARSET = @as(u32, 1);
+pub const INPUTLANGCHANGE_FORWARD = @as(u32, 2);
+pub const INPUTLANGCHANGE_BACKWARD = @as(u32, 4);
+pub const KL_NAMELENGTH = @as(u32, 9);
+pub const DESKTOP_READOBJECTS = @as(i32, 1);
+pub const DESKTOP_CREATEWINDOW = @as(i32, 2);
+pub const DESKTOP_CREATEMENU = @as(i32, 4);
+pub const DESKTOP_HOOKCONTROL = @as(i32, 8);
+pub const DESKTOP_JOURNALRECORD = @as(i32, 16);
+pub const DESKTOP_JOURNALPLAYBACK = @as(i32, 32);
+pub const DESKTOP_ENUMERATE = @as(i32, 64);
+pub const DESKTOP_WRITEOBJECTS = @as(i32, 128);
+pub const DESKTOP_SWITCHDESKTOP = @as(i32, 256);
+pub const DF_ALLOWOTHERACCOUNTHOOK = @as(i32, 1);
+pub const WINSTA_ENUMDESKTOPS = @as(i32, 1);
+pub const WINSTA_READATTRIBUTES = @as(i32, 2);
+pub const WINSTA_ACCESSCLIPBOARD = @as(i32, 4);
+pub const WINSTA_CREATEDESKTOP = @as(i32, 8);
+pub const WINSTA_WRITEATTRIBUTES = @as(i32, 16);
+pub const WINSTA_ACCESSGLOBALATOMS = @as(i32, 32);
+pub const WINSTA_EXITWINDOWS = @as(i32, 64);
+pub const WINSTA_ENUMERATE = @as(i32, 256);
+pub const WINSTA_READSCREEN = @as(i32, 512);
+pub const CWF_CREATE_ONLY = @as(u32, 1);
+pub const WSF_VISIBLE = @as(i32, 1);
+pub const UOI_TIMERPROC_EXCEPTION_SUPPRESSION = @as(u32, 7);
+pub const WM_NULL = @as(u32, 0);
+pub const WM_CREATE = @as(u32, 1);
+pub const WM_DESTROY = @as(u32, 2);
+pub const WM_MOVE = @as(u32, 3);
+pub const WM_SIZE = @as(u32, 5);
+pub const WM_ACTIVATE = @as(u32, 6);
+pub const WA_INACTIVE = @as(u32, 0);
+pub const WA_ACTIVE = @as(u32, 1);
+pub const WA_CLICKACTIVE = @as(u32, 2);
+pub const WM_SETFOCUS = @as(u32, 7);
+pub const WM_KILLFOCUS = @as(u32, 8);
+pub const WM_ENABLE = @as(u32, 10);
+pub const WM_SETREDRAW = @as(u32, 11);
+pub const WM_SETTEXT = @as(u32, 12);
+pub const WM_GETTEXT = @as(u32, 13);
+pub const WM_GETTEXTLENGTH = @as(u32, 14);
+pub const WM_PAINT = @as(u32, 15);
+pub const WM_CLOSE = @as(u32, 16);
+pub const WM_QUERYENDSESSION = @as(u32, 17);
+pub const WM_QUERYOPEN = @as(u32, 19);
+pub const WM_ENDSESSION = @as(u32, 22);
+pub const WM_QUIT = @as(u32, 18);
+pub const WM_ERASEBKGND = @as(u32, 20);
+pub const WM_SYSCOLORCHANGE = @as(u32, 21);
+pub const WM_SHOWWINDOW = @as(u32, 24);
+pub const WM_WININICHANGE = @as(u32, 26);
+pub const WM_DEVMODECHANGE = @as(u32, 27);
+pub const WM_ACTIVATEAPP = @as(u32, 28);
+pub const WM_FONTCHANGE = @as(u32, 29);
+pub const WM_TIMECHANGE = @as(u32, 30);
+pub const WM_CANCELMODE = @as(u32, 31);
+pub const WM_SETCURSOR = @as(u32, 32);
+pub const WM_MOUSEACTIVATE = @as(u32, 33);
+pub const WM_CHILDACTIVATE = @as(u32, 34);
+pub const WM_QUEUESYNC = @as(u32, 35);
+pub const WM_GETMINMAXINFO = @as(u32, 36);
+pub const WM_PAINTICON = @as(u32, 38);
+pub const WM_ICONERASEBKGND = @as(u32, 39);
+pub const WM_NEXTDLGCTL = @as(u32, 40);
+pub const WM_SPOOLERSTATUS = @as(u32, 42);
+pub const WM_DRAWITEM = @as(u32, 43);
+pub const WM_MEASUREITEM = @as(u32, 44);
+pub const WM_DELETEITEM = @as(u32, 45);
+pub const WM_VKEYTOITEM = @as(u32, 46);
+pub const WM_CHARTOITEM = @as(u32, 47);
+pub const WM_SETFONT = @as(u32, 48);
+pub const WM_GETFONT = @as(u32, 49);
+pub const WM_SETHOTKEY = @as(u32, 50);
+pub const WM_GETHOTKEY = @as(u32, 51);
+pub const WM_QUERYDRAGICON = @as(u32, 55);
+pub const WM_COMPAREITEM = @as(u32, 57);
+pub const WM_GETOBJECT = @as(u32, 61);
+pub const WM_COMPACTING = @as(u32, 65);
+pub const WM_COMMNOTIFY = @as(u32, 68);
+pub const WM_WINDOWPOSCHANGING = @as(u32, 70);
+pub const WM_WINDOWPOSCHANGED = @as(u32, 71);
+pub const WM_POWER = @as(u32, 72);
+pub const PWR_OK = @as(u32, 1);
+pub const PWR_FAIL = @as(i32, -1);
+pub const PWR_SUSPENDREQUEST = @as(u32, 1);
+pub const PWR_SUSPENDRESUME = @as(u32, 2);
+pub const PWR_CRITICALRESUME = @as(u32, 3);
+pub const WM_COPYDATA = @as(u32, 74);
+pub const WM_CANCELJOURNAL = @as(u32, 75);
+pub const WM_INPUTLANGCHANGEREQUEST = @as(u32, 80);
+pub const WM_INPUTLANGCHANGE = @as(u32, 81);
+pub const WM_TCARD = @as(u32, 82);
+pub const WM_HELP = @as(u32, 83);
+pub const WM_USERCHANGED = @as(u32, 84);
+pub const WM_NOTIFYFORMAT = @as(u32, 85);
+pub const NFR_ANSI = @as(u32, 1);
+pub const NFR_UNICODE = @as(u32, 2);
+pub const NF_QUERY = @as(u32, 3);
+pub const NF_REQUERY = @as(u32, 4);
+pub const WM_STYLECHANGING = @as(u32, 124);
+pub const WM_STYLECHANGED = @as(u32, 125);
+pub const WM_DISPLAYCHANGE = @as(u32, 126);
+pub const WM_GETICON = @as(u32, 127);
+pub const WM_SETICON = @as(u32, 128);
+pub const WM_NCCREATE = @as(u32, 129);
+pub const WM_NCDESTROY = @as(u32, 130);
+pub const WM_NCCALCSIZE = @as(u32, 131);
+pub const WM_NCHITTEST = @as(u32, 132);
+pub const WM_NCPAINT = @as(u32, 133);
+pub const WM_NCACTIVATE = @as(u32, 134);
+pub const WM_GETDLGCODE = @as(u32, 135);
+pub const WM_SYNCPAINT = @as(u32, 136);
+pub const WM_NCMOUSEMOVE = @as(u32, 160);
+pub const WM_NCLBUTTONDOWN = @as(u32, 161);
+pub const WM_NCLBUTTONUP = @as(u32, 162);
+pub const WM_NCLBUTTONDBLCLK = @as(u32, 163);
+pub const WM_NCRBUTTONDOWN = @as(u32, 164);
+pub const WM_NCRBUTTONUP = @as(u32, 165);
+pub const WM_NCRBUTTONDBLCLK = @as(u32, 166);
+pub const WM_NCMBUTTONDOWN = @as(u32, 167);
+pub const WM_NCMBUTTONUP = @as(u32, 168);
+pub const WM_NCMBUTTONDBLCLK = @as(u32, 169);
+pub const WM_NCXBUTTONDOWN = @as(u32, 171);
+pub const WM_NCXBUTTONUP = @as(u32, 172);
+pub const WM_NCXBUTTONDBLCLK = @as(u32, 173);
+pub const WM_INPUT_DEVICE_CHANGE = @as(u32, 254);
+pub const WM_INPUT = @as(u32, 255);
+pub const WM_KEYFIRST = @as(u32, 256);
+pub const WM_KEYDOWN = @as(u32, 256);
+pub const WM_KEYUP = @as(u32, 257);
+pub const WM_CHAR = @as(u32, 258);
+pub const WM_DEADCHAR = @as(u32, 259);
+pub const WM_SYSKEYDOWN = @as(u32, 260);
+pub const WM_SYSKEYUP = @as(u32, 261);
+pub const WM_SYSCHAR = @as(u32, 262);
+pub const WM_SYSDEADCHAR = @as(u32, 263);
+pub const WM_KEYLAST = @as(u32, 265);
+pub const UNICODE_NOCHAR = @as(u32, 65535);
+pub const WM_IME_STARTCOMPOSITION = @as(u32, 269);
+pub const WM_IME_ENDCOMPOSITION = @as(u32, 270);
+pub const WM_IME_COMPOSITION = @as(u32, 271);
+pub const WM_IME_KEYLAST = @as(u32, 271);
+pub const WM_INITDIALOG = @as(u32, 272);
+pub const WM_COMMAND = @as(u32, 273);
+pub const WM_SYSCOMMAND = @as(u32, 274);
+pub const WM_TIMER = @as(u32, 275);
+pub const WM_HSCROLL = @as(u32, 276);
+pub const WM_VSCROLL = @as(u32, 277);
+pub const WM_INITMENU = @as(u32, 278);
+pub const WM_INITMENUPOPUP = @as(u32, 279);
+pub const WM_GESTURE = @as(u32, 281);
+pub const WM_GESTURENOTIFY = @as(u32, 282);
+pub const WM_MENUSELECT = @as(u32, 287);
+pub const WM_MENUCHAR = @as(u32, 288);
+pub const WM_ENTERIDLE = @as(u32, 289);
+pub const WM_MENURBUTTONUP = @as(u32, 290);
+pub const WM_MENUDRAG = @as(u32, 291);
+pub const WM_MENUGETOBJECT = @as(u32, 292);
+pub const WM_UNINITMENUPOPUP = @as(u32, 293);
+pub const WM_MENUCOMMAND = @as(u32, 294);
+pub const WM_CHANGEUISTATE = @as(u32, 295);
+pub const WM_UPDATEUISTATE = @as(u32, 296);
+pub const WM_QUERYUISTATE = @as(u32, 297);
+pub const UIS_SET = @as(u32, 1);
+pub const UIS_CLEAR = @as(u32, 2);
+pub const UIS_INITIALIZE = @as(u32, 3);
+pub const UISF_HIDEFOCUS = @as(u32, 1);
+pub const UISF_HIDEACCEL = @as(u32, 2);
+pub const UISF_ACTIVE = @as(u32, 4);
+pub const WM_CTLCOLORMSGBOX = @as(u32, 306);
+pub const WM_CTLCOLOREDIT = @as(u32, 307);
+pub const WM_CTLCOLORLISTBOX = @as(u32, 308);
+pub const WM_CTLCOLORBTN = @as(u32, 309);
+pub const WM_CTLCOLORDLG = @as(u32, 310);
+pub const WM_CTLCOLORSCROLLBAR = @as(u32, 311);
+pub const WM_CTLCOLORSTATIC = @as(u32, 312);
+pub const MN_GETHMENU = @as(u32, 481);
+pub const WM_MOUSEFIRST = @as(u32, 512);
+pub const WM_MOUSEMOVE = @as(u32, 512);
+pub const WM_LBUTTONDOWN = @as(u32, 513);
+pub const WM_LBUTTONUP = @as(u32, 514);
+pub const WM_LBUTTONDBLCLK = @as(u32, 515);
+pub const WM_RBUTTONDOWN = @as(u32, 516);
+pub const WM_RBUTTONUP = @as(u32, 517);
+pub const WM_RBUTTONDBLCLK = @as(u32, 518);
+pub const WM_MBUTTONDOWN = @as(u32, 519);
+pub const WM_MBUTTONUP = @as(u32, 520);
+pub const WM_MBUTTONDBLCLK = @as(u32, 521);
+pub const WM_MOUSEWHEEL = @as(u32, 522);
+pub const WM_XBUTTONDOWN = @as(u32, 523);
+pub const WM_XBUTTONUP = @as(u32, 524);
+pub const WM_XBUTTONDBLCLK = @as(u32, 525);
+pub const WM_MOUSEHWHEEL = @as(u32, 526);
+pub const WM_MOUSELAST = @as(u32, 526);
+pub const WHEEL_DELTA = @as(u32, 120);
+pub const WM_PARENTNOTIFY = @as(u32, 528);
+pub const WM_ENTERMENULOOP = @as(u32, 529);
+pub const WM_EXITMENULOOP = @as(u32, 530);
+pub const WM_NEXTMENU = @as(u32, 531);
+pub const WM_SIZING = @as(u32, 532);
+pub const WM_CAPTURECHANGED = @as(u32, 533);
+pub const WM_MOVING = @as(u32, 534);
+pub const WM_POWERBROADCAST = @as(u32, 536);
+pub const PBT_APMQUERYSUSPEND = @as(u32, 0);
+pub const PBT_APMQUERYSTANDBY = @as(u32, 1);
+pub const PBT_APMQUERYSUSPENDFAILED = @as(u32, 2);
+pub const PBT_APMQUERYSTANDBYFAILED = @as(u32, 3);
+pub const PBT_APMSUSPEND = @as(u32, 4);
+pub const PBT_APMSTANDBY = @as(u32, 5);
+pub const PBT_APMRESUMECRITICAL = @as(u32, 6);
+pub const PBT_APMRESUMESUSPEND = @as(u32, 7);
+pub const PBT_APMRESUMESTANDBY = @as(u32, 8);
+pub const PBTF_APMRESUMEFROMFAILURE = @as(u32, 1);
+pub const PBT_APMBATTERYLOW = @as(u32, 9);
+pub const PBT_APMPOWERSTATUSCHANGE = @as(u32, 10);
+pub const PBT_APMOEMEVENT = @as(u32, 11);
+pub const PBT_APMRESUMEAUTOMATIC = @as(u32, 18);
+pub const PBT_POWERSETTINGCHANGE = @as(u32, 32787);
+pub const WM_DEVICECHANGE = @as(u32, 537);
+pub const WM_MDICREATE = @as(u32, 544);
+pub const WM_MDIDESTROY = @as(u32, 545);
+pub const WM_MDIACTIVATE = @as(u32, 546);
+pub const WM_MDIRESTORE = @as(u32, 547);
+pub const WM_MDINEXT = @as(u32, 548);
+pub const WM_MDIMAXIMIZE = @as(u32, 549);
+pub const WM_MDITILE = @as(u32, 550);
+pub const WM_MDICASCADE = @as(u32, 551);
+pub const WM_MDIICONARRANGE = @as(u32, 552);
+pub const WM_MDIGETACTIVE = @as(u32, 553);
+pub const WM_MDISETMENU = @as(u32, 560);
+pub const WM_ENTERSIZEMOVE = @as(u32, 561);
+pub const WM_EXITSIZEMOVE = @as(u32, 562);
+pub const WM_DROPFILES = @as(u32, 563);
+pub const WM_MDIREFRESHMENU = @as(u32, 564);
+pub const WM_POINTERDEVICECHANGE = @as(u32, 568);
+pub const WM_POINTERDEVICEINRANGE = @as(u32, 569);
+pub const WM_POINTERDEVICEOUTOFRANGE = @as(u32, 570);
+pub const WM_TOUCH = @as(u32, 576);
+pub const WM_NCPOINTERUPDATE = @as(u32, 577);
+pub const WM_NCPOINTERDOWN = @as(u32, 578);
+pub const WM_NCPOINTERUP = @as(u32, 579);
+pub const WM_POINTERUPDATE = @as(u32, 581);
+pub const WM_POINTERDOWN = @as(u32, 582);
+pub const WM_POINTERUP = @as(u32, 583);
+pub const WM_POINTERENTER = @as(u32, 585);
+pub const WM_POINTERLEAVE = @as(u32, 586);
+pub const WM_POINTERACTIVATE = @as(u32, 587);
+pub const WM_POINTERCAPTURECHANGED = @as(u32, 588);
+pub const WM_TOUCHHITTESTING = @as(u32, 589);
+pub const WM_POINTERWHEEL = @as(u32, 590);
+pub const WM_POINTERHWHEEL = @as(u32, 591);
+pub const DM_POINTERHITTEST = @as(u32, 592);
+pub const WM_POINTERROUTEDTO = @as(u32, 593);
+pub const WM_POINTERROUTEDAWAY = @as(u32, 594);
+pub const WM_POINTERROUTEDRELEASED = @as(u32, 595);
+pub const WM_IME_SETCONTEXT = @as(u32, 641);
+pub const WM_IME_NOTIFY = @as(u32, 642);
+pub const WM_IME_CONTROL = @as(u32, 643);
+pub const WM_IME_COMPOSITIONFULL = @as(u32, 644);
+pub const WM_IME_SELECT = @as(u32, 645);
+pub const WM_IME_CHAR = @as(u32, 646);
+pub const WM_IME_REQUEST = @as(u32, 648);
+pub const WM_IME_KEYDOWN = @as(u32, 656);
+pub const WM_IME_KEYUP = @as(u32, 657);
+pub const WM_NCMOUSEHOVER = @as(u32, 672);
+pub const WM_NCMOUSELEAVE = @as(u32, 674);
+pub const WM_WTSSESSION_CHANGE = @as(u32, 689);
+pub const WM_TABLET_FIRST = @as(u32, 704);
+pub const WM_TABLET_LAST = @as(u32, 735);
+pub const WM_DPICHANGED = @as(u32, 736);
+pub const WM_DPICHANGED_BEFOREPARENT = @as(u32, 738);
+pub const WM_DPICHANGED_AFTERPARENT = @as(u32, 739);
+pub const WM_GETDPISCALEDSIZE = @as(u32, 740);
+pub const WM_CUT = @as(u32, 768);
+pub const WM_COPY = @as(u32, 769);
+pub const WM_PASTE = @as(u32, 770);
+pub const WM_CLEAR = @as(u32, 771);
+pub const WM_UNDO = @as(u32, 772);
+pub const WM_RENDERFORMAT = @as(u32, 773);
+pub const WM_RENDERALLFORMATS = @as(u32, 774);
+pub const WM_DESTROYCLIPBOARD = @as(u32, 775);
+pub const WM_DRAWCLIPBOARD = @as(u32, 776);
+pub const WM_PAINTCLIPBOARD = @as(u32, 777);
+pub const WM_VSCROLLCLIPBOARD = @as(u32, 778);
+pub const WM_SIZECLIPBOARD = @as(u32, 779);
+pub const WM_ASKCBFORMATNAME = @as(u32, 780);
+pub const WM_CHANGECBCHAIN = @as(u32, 781);
+pub const WM_HSCROLLCLIPBOARD = @as(u32, 782);
+pub const WM_QUERYNEWPALETTE = @as(u32, 783);
+pub const WM_PALETTEISCHANGING = @as(u32, 784);
+pub const WM_PALETTECHANGED = @as(u32, 785);
+pub const WM_HOTKEY = @as(u32, 786);
+pub const WM_PRINT = @as(u32, 791);
+pub const WM_APPCOMMAND = @as(u32, 793);
+pub const WM_THEMECHANGED = @as(u32, 794);
+pub const WM_CLIPBOARDUPDATE = @as(u32, 797);
+pub const WM_DWMCOMPOSITIONCHANGED = @as(u32, 798);
+pub const WM_DWMNCRENDERINGCHANGED = @as(u32, 799);
+pub const WM_DWMCOLORIZATIONCOLORCHANGED = @as(u32, 800);
+pub const WM_DWMWINDOWMAXIMIZEDCHANGE = @as(u32, 801);
+pub const WM_DWMSENDICONICTHUMBNAIL = @as(u32, 803);
+pub const WM_DWMSENDICONICLIVEPREVIEWBITMAP = @as(u32, 806);
+pub const WM_GETTITLEBARINFOEX = @as(u32, 831);
+pub const WM_HANDHELDFIRST = @as(u32, 856);
+pub const WM_HANDHELDLAST = @as(u32, 863);
+pub const WM_AFXFIRST = @as(u32, 864);
+pub const WM_AFXLAST = @as(u32, 895);
+pub const WM_PENWINFIRST = @as(u32, 896);
+pub const WM_PENWINLAST = @as(u32, 911);
+pub const WM_APP = @as(u32, 32768);
+pub const WM_USER = @as(u32, 1024);
+pub const WMSZ_LEFT = @as(u32, 1);
+pub const WMSZ_RIGHT = @as(u32, 2);
+pub const WMSZ_TOP = @as(u32, 3);
+pub const WMSZ_TOPLEFT = @as(u32, 4);
+pub const WMSZ_TOPRIGHT = @as(u32, 5);
+pub const WMSZ_BOTTOM = @as(u32, 6);
+pub const WMSZ_BOTTOMLEFT = @as(u32, 7);
+pub const WMSZ_BOTTOMRIGHT = @as(u32, 8);
+pub const HTERROR = @as(i32, -2);
+pub const HTTRANSPARENT = @as(i32, -1);
+pub const HTNOWHERE = @as(u32, 0);
+pub const HTCLIENT = @as(u32, 1);
+pub const HTCAPTION = @as(u32, 2);
+pub const HTSYSMENU = @as(u32, 3);
+pub const HTGROWBOX = @as(u32, 4);
+pub const HTMENU = @as(u32, 5);
+pub const HTHSCROLL = @as(u32, 6);
+pub const HTVSCROLL = @as(u32, 7);
+pub const HTMINBUTTON = @as(u32, 8);
+pub const HTMAXBUTTON = @as(u32, 9);
+pub const HTLEFT = @as(u32, 10);
+pub const HTRIGHT = @as(u32, 11);
+pub const HTTOP = @as(u32, 12);
+pub const HTTOPLEFT = @as(u32, 13);
+pub const HTTOPRIGHT = @as(u32, 14);
+pub const HTBOTTOM = @as(u32, 15);
+pub const HTBOTTOMLEFT = @as(u32, 16);
+pub const HTBOTTOMRIGHT = @as(u32, 17);
+pub const HTBORDER = @as(u32, 18);
+pub const HTOBJECT = @as(u32, 19);
+pub const HTCLOSE = @as(u32, 20);
+pub const HTHELP = @as(u32, 21);
+pub const MA_ACTIVATE = @as(u32, 1);
+pub const MA_ACTIVATEANDEAT = @as(u32, 2);
+pub const MA_NOACTIVATE = @as(u32, 3);
+pub const MA_NOACTIVATEANDEAT = @as(u32, 4);
+pub const ICON_SMALL = @as(u32, 0);
+pub const ICON_BIG = @as(u32, 1);
+pub const ICON_SMALL2 = @as(u32, 2);
+pub const SIZE_RESTORED = @as(u32, 0);
+pub const SIZE_MINIMIZED = @as(u32, 1);
+pub const SIZE_MAXIMIZED = @as(u32, 2);
+pub const SIZE_MAXSHOW = @as(u32, 3);
+pub const SIZE_MAXHIDE = @as(u32, 4);
+pub const WVR_ALIGNTOP = @as(u32, 16);
+pub const WVR_ALIGNLEFT = @as(u32, 32);
+pub const WVR_ALIGNBOTTOM = @as(u32, 64);
+pub const WVR_ALIGNRIGHT = @as(u32, 128);
+pub const WVR_HREDRAW = @as(u32, 256);
+pub const WVR_VREDRAW = @as(u32, 512);
+pub const WVR_VALIDRECTS = @as(u32, 1024);
+pub const MK_LBUTTON = @as(u32, 1);
+pub const MK_RBUTTON = @as(u32, 2);
+pub const MK_SHIFT = @as(u32, 4);
+pub const MK_CONTROL = @as(u32, 8);
+pub const MK_MBUTTON = @as(u32, 16);
+pub const MK_XBUTTON1 = @as(u32, 32);
+pub const MK_XBUTTON2 = @as(u32, 64);
+pub const PRF_CHECKVISIBLE = @as(i32, 1);
+pub const PRF_NONCLIENT = @as(i32, 2);
+pub const PRF_CLIENT = @as(i32, 4);
+pub const PRF_ERASEBKGND = @as(i32, 8);
+pub const PRF_CHILDREN = @as(i32, 16);
+pub const PRF_OWNED = @as(i32, 32);
+pub const IDANI_OPEN = @as(u32, 1);
+pub const IDANI_CAPTION = @as(u32, 3);
+pub const ODA_DRAWENTIRE = @as(u32, 1);
+pub const ODA_SELECT = @as(u32, 2);
+pub const ODA_FOCUS = @as(u32, 4);
+pub const ODS_SELECTED = @as(u32, 1);
+pub const ODS_GRAYED = @as(u32, 2);
+pub const ODS_DISABLED = @as(u32, 4);
+pub const ODS_CHECKED = @as(u32, 8);
+pub const ODS_FOCUS = @as(u32, 16);
+pub const ODS_DEFAULT = @as(u32, 32);
+pub const ODS_COMBOBOXEDIT = @as(u32, 4096);
+pub const ODS_HOTLIGHT = @as(u32, 64);
+pub const ODS_INACTIVE = @as(u32, 128);
+pub const ODS_NOACCEL = @as(u32, 256);
+pub const ODS_NOFOCUSRECT = @as(u32, 512);
+pub const IDHOT_SNAPWINDOW = @as(i32, -1);
+pub const IDHOT_SNAPDESKTOP = @as(i32, -2);
+pub const ENDSESSION_CLOSEAPP = @as(u32, 1);
+pub const ENDSESSION_CRITICAL = @as(u32, 1073741824);
+pub const ENDSESSION_LOGOFF = @as(u32, 2147483648);
+pub const EWX_FORCE = @as(u32, 4);
+pub const EWX_FORCEIFHUNG = @as(u32, 16);
+pub const EWX_QUICKRESOLVE = @as(u32, 32);
+pub const EWX_BOOTOPTIONS = @as(u32, 16777216);
+pub const EWX_ARSO = @as(u32, 67108864);
+pub const BSM_VXDS = @as(u32, 1);
+pub const BSM_NETDRIVER = @as(u32, 2);
+pub const BSM_INSTALLABLEDRIVERS = @as(u32, 4);
+pub const BROADCAST_QUERY_DENY = @as(u32, 1112363332);
+pub const DEVICE_NOTIFY_ALL_INTERFACE_CLASSES = @as(u32, 4);
+pub const HWND_MESSAGE = @import("../zig.zig").typedConst(HWND, @as(i32, -3));
+pub const ISMEX_NOSEND = @as(u32, 0);
+pub const ISMEX_SEND = @as(u32, 1);
+pub const ISMEX_NOTIFY = @as(u32, 2);
+pub const ISMEX_CALLBACK = @as(u32, 4);
+pub const ISMEX_REPLIED = @as(u32, 8);
+pub const HWND_DESKTOP = @import("../zig.zig").typedConst(HWND, @as(i32, 0));
+pub const PW_RENDERFULLCONTENT = @as(u32, 2);
+pub const HWND_TOP = @import("../zig.zig").typedConst(HWND, @as(i32, 0));
+pub const HWND_BOTTOM = @import("../zig.zig").typedConst(HWND, @as(i32, 1));
+pub const HWND_TOPMOST = @import("../zig.zig").typedConst(HWND, @as(i32, -1));
+pub const HWND_NOTOPMOST = @import("../zig.zig").typedConst(HWND, @as(i32, -2));
+pub const DLGWINDOWEXTRA = @as(u32, 30);
+pub const POINTER_MOD_SHIFT = @as(u32, 4);
+pub const POINTER_MOD_CTRL = @as(u32, 8);
+pub const TOUCH_FLAG_NONE = @as(u32, 0);
+pub const TOUCH_MASK_NONE = @as(u32, 0);
+pub const TOUCH_MASK_CONTACTAREA = @as(u32, 1);
+pub const TOUCH_MASK_ORIENTATION = @as(u32, 2);
+pub const TOUCH_MASK_PRESSURE = @as(u32, 4);
+pub const PEN_FLAG_NONE = @as(u32, 0);
+pub const PEN_FLAG_BARREL = @as(u32, 1);
+pub const PEN_FLAG_INVERTED = @as(u32, 2);
+pub const PEN_FLAG_ERASER = @as(u32, 4);
+pub const PEN_MASK_NONE = @as(u32, 0);
+pub const PEN_MASK_PRESSURE = @as(u32, 1);
+pub const PEN_MASK_ROTATION = @as(u32, 2);
+pub const PEN_MASK_TILT_X = @as(u32, 4);
+pub const PEN_MASK_TILT_Y = @as(u32, 8);
+pub const POINTER_MESSAGE_FLAG_NEW = @as(u32, 1);
+pub const POINTER_MESSAGE_FLAG_INRANGE = @as(u32, 2);
+pub const POINTER_MESSAGE_FLAG_INCONTACT = @as(u32, 4);
+pub const POINTER_MESSAGE_FLAG_FIRSTBUTTON = @as(u32, 16);
+pub const POINTER_MESSAGE_FLAG_SECONDBUTTON = @as(u32, 32);
+pub const POINTER_MESSAGE_FLAG_THIRDBUTTON = @as(u32, 64);
+pub const POINTER_MESSAGE_FLAG_FOURTHBUTTON = @as(u32, 128);
+pub const POINTER_MESSAGE_FLAG_FIFTHBUTTON = @as(u32, 256);
+pub const POINTER_MESSAGE_FLAG_PRIMARY = @as(u32, 8192);
+pub const POINTER_MESSAGE_FLAG_CONFIDENCE = @as(u32, 16384);
+pub const POINTER_MESSAGE_FLAG_CANCELED = @as(u32, 32768);
+pub const MAX_TOUCH_COUNT = @as(u32, 256);
+pub const TOUCH_HIT_TESTING_DEFAULT = @as(u32, 0);
+pub const TOUCH_HIT_TESTING_CLIENT = @as(u32, 1);
+pub const TOUCH_HIT_TESTING_NONE = @as(u32, 2);
+pub const TOUCH_HIT_TESTING_PROXIMITY_CLOSEST = @as(u32, 0);
+pub const TOUCH_HIT_TESTING_PROXIMITY_FARTHEST = @as(u32, 4095);
+pub const GWFS_INCLUDE_ANCESTORS = @as(u32, 1);
+pub const MAPVK_VK_TO_VSC = @as(u32, 0);
+pub const MAPVK_VSC_TO_VK = @as(u32, 1);
+pub const MAPVK_VK_TO_CHAR = @as(u32, 2);
+pub const MAPVK_VSC_TO_VK_EX = @as(u32, 3);
+pub const MAPVK_VK_TO_VSC_EX = @as(u32, 4);
+pub const QS_TOUCH = @as(u32, 2048);
+pub const QS_POINTER = @as(u32, 4096);
+pub const USER_TIMER_MAXIMUM = @as(u32, 2147483647);
+pub const USER_TIMER_MINIMUM = @as(u32, 10);
+pub const TIMERV_COALESCING_MIN = @as(u32, 1);
+pub const TIMERV_COALESCING_MAX = @as(u32, 2147483637);
+pub const SM_RESERVED1 = @as(u32, 24);
+pub const SM_RESERVED2 = @as(u32, 25);
+pub const SM_RESERVED3 = @as(u32, 26);
+pub const SM_RESERVED4 = @as(u32, 27);
+pub const SM_CMETRICS = @as(u32, 76);
+pub const SM_CARETBLINKINGENABLED = @as(u32, 8194);
+pub const SM_SYSTEMDOCKED = @as(u32, 8196);
+pub const PMB_ACTIVE = @as(u32, 1);
+pub const MNC_IGNORE = @as(u32, 0);
+pub const MNC_CLOSE = @as(u32, 1);
+pub const MNC_EXECUTE = @as(u32, 2);
+pub const MNC_SELECT = @as(u32, 3);
+pub const MND_CONTINUE = @as(u32, 0);
+pub const MND_ENDMENU = @as(u32, 1);
+pub const MNGO_NOINTERFACE = @as(u32, 0);
+pub const MNGO_NOERROR = @as(u32, 1);
+pub const DOF_EXECUTABLE = @as(u32, 32769);
+pub const DOF_DOCUMENT = @as(u32, 32770);
+pub const DOF_DIRECTORY = @as(u32, 32771);
+pub const DOF_MULTIPLE = @as(u32, 32772);
+pub const DOF_PROGMAN = @as(u32, 1);
+pub const DOF_SHELLDATA = @as(u32, 2);
+pub const DO_DROPFILE = @as(i32, 1162627398);
+pub const DO_PRINTFILE = @as(i32, 1414419024);
+pub const DCX_EXCLUDEUPDATE = @as(i32, 256);
+pub const HELPINFO_WINDOW = @as(u32, 1);
+pub const HELPINFO_MENUITEM = @as(u32, 2);
+pub const CTLCOLOR_MSGBOX = @as(u32, 0);
+pub const CTLCOLOR_EDIT = @as(u32, 1);
+pub const CTLCOLOR_LISTBOX = @as(u32, 2);
+pub const CTLCOLOR_BTN = @as(u32, 3);
+pub const CTLCOLOR_DLG = @as(u32, 4);
+pub const CTLCOLOR_SCROLLBAR = @as(u32, 5);
+pub const CTLCOLOR_STATIC = @as(u32, 6);
+pub const CTLCOLOR_MAX = @as(u32, 7);
+pub const COLOR_BTNHIGHLIGHT = @as(u32, 20);
+pub const GW_MAX = @as(u32, 5);
+pub const MFS_GRAYED = @as(i32, 3);
+pub const SC_SIZE = @as(u32, 61440);
+pub const SC_MOVE = @as(u32, 61456);
+pub const SC_MINIMIZE = @as(u32, 61472);
+pub const SC_MAXIMIZE = @as(u32, 61488);
+pub const SC_NEXTWINDOW = @as(u32, 61504);
+pub const SC_PREVWINDOW = @as(u32, 61520);
+pub const SC_CLOSE = @as(u32, 61536);
+pub const SC_VSCROLL = @as(u32, 61552);
+pub const SC_HSCROLL = @as(u32, 61568);
+pub const SC_MOUSEMENU = @as(u32, 61584);
+pub const SC_KEYMENU = @as(u32, 61696);
+pub const SC_ARRANGE = @as(u32, 61712);
+pub const SC_RESTORE = @as(u32, 61728);
+pub const SC_TASKLIST = @as(u32, 61744);
+pub const SC_SCREENSAVE = @as(u32, 61760);
+pub const SC_HOTKEY = @as(u32, 61776);
+pub const SC_DEFAULT = @as(u32, 61792);
+pub const SC_MONITORPOWER = @as(u32, 61808);
+pub const SC_CONTEXTHELP = @as(u32, 61824);
+pub const SC_SEPARATOR = @as(u32, 61455);
+pub const SCF_ISSECURE = @as(u32, 1);
+// skipped 'IDC_ARROW'
+// skipped 'IDC_IBEAM'
+// skipped 'IDC_WAIT'
+// skipped 'IDC_CROSS'
+// skipped 'IDC_UPARROW'
+// skipped 'IDC_SIZE'
+// skipped 'IDC_ICON'
+// skipped 'IDC_SIZENWSE'
+// skipped 'IDC_SIZENESW'
+// skipped 'IDC_SIZEWE'
+// skipped 'IDC_SIZENS'
+// skipped 'IDC_SIZEALL'
+// skipped 'IDC_NO'
+// skipped 'IDC_HAND'
+// skipped 'IDC_APPSTARTING'
+// skipped 'IDC_HELP'
+// skipped 'IDC_PIN'
+// skipped 'IDC_PERSON'
+pub const IMAGE_ENHMETAFILE = @as(u32, 3);
+pub const LR_COLOR = @as(u32, 2);
+pub const RES_ICON = @as(u32, 1);
+pub const RES_CURSOR = @as(u32, 2);
+pub const OBM_CLOSE = @as(u32, 32754);
+pub const OBM_UPARROW = @as(u32, 32753);
+pub const OBM_DNARROW = @as(u32, 32752);
+pub const OBM_RGARROW = @as(u32, 32751);
+pub const OBM_LFARROW = @as(u32, 32750);
+pub const OBM_REDUCE = @as(u32, 32749);
+pub const OBM_ZOOM = @as(u32, 32748);
+pub const OBM_RESTORE = @as(u32, 32747);
+pub const OBM_REDUCED = @as(u32, 32746);
+pub const OBM_ZOOMD = @as(u32, 32745);
+pub const OBM_RESTORED = @as(u32, 32744);
+pub const OBM_UPARROWD = @as(u32, 32743);
+pub const OBM_DNARROWD = @as(u32, 32742);
+pub const OBM_RGARROWD = @as(u32, 32741);
+pub const OBM_LFARROWD = @as(u32, 32740);
+pub const OBM_MNARROW = @as(u32, 32739);
+pub const OBM_COMBO = @as(u32, 32738);
+pub const OBM_UPARROWI = @as(u32, 32737);
+pub const OBM_DNARROWI = @as(u32, 32736);
+pub const OBM_RGARROWI = @as(u32, 32735);
+pub const OBM_LFARROWI = @as(u32, 32734);
+pub const OBM_OLD_CLOSE = @as(u32, 32767);
+pub const OBM_SIZE = @as(u32, 32766);
+pub const OBM_OLD_UPARROW = @as(u32, 32765);
+pub const OBM_OLD_DNARROW = @as(u32, 32764);
+pub const OBM_OLD_RGARROW = @as(u32, 32763);
+pub const OBM_OLD_LFARROW = @as(u32, 32762);
+pub const OBM_BTSIZE = @as(u32, 32761);
+pub const OBM_CHECK = @as(u32, 32760);
+pub const OBM_CHECKBOXES = @as(u32, 32759);
+pub const OBM_BTNCORNERS = @as(u32, 32758);
+pub const OBM_OLD_REDUCE = @as(u32, 32757);
+pub const OBM_OLD_ZOOM = @as(u32, 32756);
+pub const OBM_OLD_RESTORE = @as(u32, 32755);
+pub const OCR_SIZE = @as(u32, 32640);
+pub const OCR_ICON = @as(u32, 32641);
+pub const OCR_ICOCUR = @as(u32, 32647);
+pub const OIC_SAMPLE = @as(u32, 32512);
+pub const OIC_HAND = @as(u32, 32513);
+pub const OIC_QUES = @as(u32, 32514);
+pub const OIC_BANG = @as(u32, 32515);
+pub const OIC_NOTE = @as(u32, 32516);
+pub const OIC_WINLOGO = @as(u32, 32517);
+pub const OIC_SHIELD = @as(u32, 32518);
+pub const ORD_LANGDRIVER = @as(u32, 1);
+// skipped 'IDI_APPLICATION'
+// skipped 'IDI_HAND'
+// skipped 'IDI_QUESTION'
+// skipped 'IDI_EXCLAMATION'
+// skipped 'IDI_ASTERISK'
+// skipped 'IDI_WINLOGO'
+// skipped 'IDI_SHIELD'
+pub const IDOK = @as(u32, 1);
+pub const IDCANCEL = @as(u32, 2);
+pub const IDABORT = @as(u32, 3);
+pub const IDRETRY = @as(u32, 4);
+pub const IDIGNORE = @as(u32, 5);
+pub const IDYES = @as(u32, 6);
+pub const IDNO = @as(u32, 7);
+pub const IDCLOSE = @as(u32, 8);
+pub const IDHELP = @as(u32, 9);
+pub const IDTRYAGAIN = @as(u32, 10);
+pub const IDCONTINUE = @as(u32, 11);
+pub const IDTIMEOUT = @as(u32, 32000);
+pub const EN_SETFOCUS = @as(u32, 256);
+pub const EN_KILLFOCUS = @as(u32, 512);
+pub const EN_CHANGE = @as(u32, 768);
+pub const EN_UPDATE = @as(u32, 1024);
+pub const EN_ERRSPACE = @as(u32, 1280);
+pub const EN_MAXTEXT = @as(u32, 1281);
+pub const EN_HSCROLL = @as(u32, 1537);
+pub const EN_VSCROLL = @as(u32, 1538);
+pub const EN_ALIGN_LTR_EC = @as(u32, 1792);
+pub const EN_ALIGN_RTL_EC = @as(u32, 1793);
+pub const EN_BEFORE_PASTE = @as(u32, 2048);
+pub const EN_AFTER_PASTE = @as(u32, 2049);
+pub const EC_LEFTMARGIN = @as(u32, 1);
+pub const EC_RIGHTMARGIN = @as(u32, 2);
+pub const EC_USEFONTINFO = @as(u32, 65535);
+pub const EMSIS_COMPOSITIONSTRING = @as(u32, 1);
+pub const EIMES_GETCOMPSTRATONCE = @as(u32, 1);
+pub const EIMES_CANCELCOMPSTRINFOCUS = @as(u32, 2);
+pub const EIMES_COMPLETECOMPSTRKILLFOCUS = @as(u32, 4);
+pub const EM_GETSEL = @as(u32, 176);
+pub const EM_SETSEL = @as(u32, 177);
+pub const EM_GETRECT = @as(u32, 178);
+pub const EM_SETRECT = @as(u32, 179);
+pub const EM_SETRECTNP = @as(u32, 180);
+pub const EM_SCROLL = @as(u32, 181);
+pub const EM_LINESCROLL = @as(u32, 182);
+pub const EM_SCROLLCARET = @as(u32, 183);
+pub const EM_GETMODIFY = @as(u32, 184);
+pub const EM_SETMODIFY = @as(u32, 185);
+pub const EM_GETLINECOUNT = @as(u32, 186);
+pub const EM_LINEINDEX = @as(u32, 187);
+pub const EM_SETHANDLE = @as(u32, 188);
+pub const EM_GETHANDLE = @as(u32, 189);
+pub const EM_GETTHUMB = @as(u32, 190);
+pub const EM_LINELENGTH = @as(u32, 193);
+pub const EM_REPLACESEL = @as(u32, 194);
+pub const EM_GETLINE = @as(u32, 196);
+pub const EM_LIMITTEXT = @as(u32, 197);
+pub const EM_CANUNDO = @as(u32, 198);
+pub const EM_UNDO = @as(u32, 199);
+pub const EM_FMTLINES = @as(u32, 200);
+pub const EM_LINEFROMCHAR = @as(u32, 201);
+pub const EM_SETTABSTOPS = @as(u32, 203);
+pub const EM_SETPASSWORDCHAR = @as(u32, 204);
+pub const EM_EMPTYUNDOBUFFER = @as(u32, 205);
+pub const EM_GETFIRSTVISIBLELINE = @as(u32, 206);
+pub const EM_SETREADONLY = @as(u32, 207);
+pub const EM_SETWORDBREAKPROC = @as(u32, 208);
+pub const EM_GETWORDBREAKPROC = @as(u32, 209);
+pub const EM_GETPASSWORDCHAR = @as(u32, 210);
+pub const EM_SETMARGINS = @as(u32, 211);
+pub const EM_GETMARGINS = @as(u32, 212);
+pub const EM_GETLIMITTEXT = @as(u32, 213);
+pub const EM_POSFROMCHAR = @as(u32, 214);
+pub const EM_CHARFROMPOS = @as(u32, 215);
+pub const EM_SETIMESTATUS = @as(u32, 216);
+pub const EM_GETIMESTATUS = @as(u32, 217);
+pub const EM_ENABLEFEATURE = @as(u32, 218);
+pub const BN_CLICKED = @as(u32, 0);
+pub const BN_PAINT = @as(u32, 1);
+pub const BN_HILITE = @as(u32, 2);
+pub const BN_UNHILITE = @as(u32, 3);
+pub const BN_DISABLE = @as(u32, 4);
+pub const BN_DOUBLECLICKED = @as(u32, 5);
+pub const BN_SETFOCUS = @as(u32, 6);
+pub const BN_KILLFOCUS = @as(u32, 7);
+pub const BM_GETCHECK = @as(u32, 240);
+pub const BM_SETCHECK = @as(u32, 241);
+pub const BM_GETSTATE = @as(u32, 242);
+pub const BM_SETSTATE = @as(u32, 243);
+pub const BM_SETSTYLE = @as(u32, 244);
+pub const BM_CLICK = @as(u32, 245);
+pub const BM_GETIMAGE = @as(u32, 246);
+pub const BM_SETIMAGE = @as(u32, 247);
+pub const BM_SETDONTCLICK = @as(u32, 248);
+pub const BST_PUSHED = @as(u32, 4);
+pub const BST_FOCUS = @as(u32, 8);
+pub const STM_SETICON = @as(u32, 368);
+pub const STM_GETICON = @as(u32, 369);
+pub const STM_SETIMAGE = @as(u32, 370);
+pub const STM_GETIMAGE = @as(u32, 371);
+pub const STN_CLICKED = @as(u32, 0);
+pub const STN_DBLCLK = @as(u32, 1);
+pub const STN_ENABLE = @as(u32, 2);
+pub const STN_DISABLE = @as(u32, 3);
+pub const STM_MSGMAX = @as(u32, 372);
+pub const DWL_MSGRESULT = @as(u32, 0);
+pub const DWL_DLGPROC = @as(u32, 4);
+pub const DWL_USER = @as(u32, 8);
+pub const DWLP_MSGRESULT = @as(u32, 0);
+pub const DC_HASDEFID = @as(u32, 21323);
+pub const DLGC_WANTARROWS = @as(u32, 1);
+pub const DLGC_WANTTAB = @as(u32, 2);
+pub const DLGC_WANTALLKEYS = @as(u32, 4);
+pub const DLGC_WANTMESSAGE = @as(u32, 4);
+pub const DLGC_HASSETSEL = @as(u32, 8);
+pub const DLGC_DEFPUSHBUTTON = @as(u32, 16);
+pub const DLGC_UNDEFPUSHBUTTON = @as(u32, 32);
+pub const DLGC_RADIOBUTTON = @as(u32, 64);
+pub const DLGC_WANTCHARS = @as(u32, 128);
+pub const DLGC_STATIC = @as(u32, 256);
+pub const DLGC_BUTTON = @as(u32, 8192);
+pub const LB_CTLCODE = @as(i32, 0);
+pub const LB_OKAY = @as(u32, 0);
+pub const LB_ERR = @as(i32, -1);
+pub const LB_ERRSPACE = @as(i32, -2);
+pub const LBN_ERRSPACE = @as(i32, -2);
+pub const LBN_SELCHANGE = @as(u32, 1);
+pub const LBN_DBLCLK = @as(u32, 2);
+pub const LBN_SELCANCEL = @as(u32, 3);
+pub const LBN_SETFOCUS = @as(u32, 4);
+pub const LBN_KILLFOCUS = @as(u32, 5);
+pub const LB_ADDSTRING = @as(u32, 384);
+pub const LB_INSERTSTRING = @as(u32, 385);
+pub const LB_DELETESTRING = @as(u32, 386);
+pub const LB_SELITEMRANGEEX = @as(u32, 387);
+pub const LB_RESETCONTENT = @as(u32, 388);
+pub const LB_SETSEL = @as(u32, 389);
+pub const LB_SETCURSEL = @as(u32, 390);
+pub const LB_GETSEL = @as(u32, 391);
+pub const LB_GETCURSEL = @as(u32, 392);
+pub const LB_GETTEXT = @as(u32, 393);
+pub const LB_GETTEXTLEN = @as(u32, 394);
+pub const LB_GETCOUNT = @as(u32, 395);
+pub const LB_SELECTSTRING = @as(u32, 396);
+pub const LB_DIR = @as(u32, 397);
+pub const LB_GETTOPINDEX = @as(u32, 398);
+pub const LB_FINDSTRING = @as(u32, 399);
+pub const LB_GETSELCOUNT = @as(u32, 400);
+pub const LB_GETSELITEMS = @as(u32, 401);
+pub const LB_SETTABSTOPS = @as(u32, 402);
+pub const LB_GETHORIZONTALEXTENT = @as(u32, 403);
+pub const LB_SETHORIZONTALEXTENT = @as(u32, 404);
+pub const LB_SETCOLUMNWIDTH = @as(u32, 405);
+pub const LB_ADDFILE = @as(u32, 406);
+pub const LB_SETTOPINDEX = @as(u32, 407);
+pub const LB_GETITEMRECT = @as(u32, 408);
+pub const LB_GETITEMDATA = @as(u32, 409);
+pub const LB_SETITEMDATA = @as(u32, 410);
+pub const LB_SELITEMRANGE = @as(u32, 411);
+pub const LB_SETANCHORINDEX = @as(u32, 412);
+pub const LB_GETANCHORINDEX = @as(u32, 413);
+pub const LB_SETCARETINDEX = @as(u32, 414);
+pub const LB_GETCARETINDEX = @as(u32, 415);
+pub const LB_SETITEMHEIGHT = @as(u32, 416);
+pub const LB_GETITEMHEIGHT = @as(u32, 417);
+pub const LB_FINDSTRINGEXACT = @as(u32, 418);
+pub const LB_SETLOCALE = @as(u32, 421);
+pub const LB_GETLOCALE = @as(u32, 422);
+pub const LB_SETCOUNT = @as(u32, 423);
+pub const LB_INITSTORAGE = @as(u32, 424);
+pub const LB_ITEMFROMPOINT = @as(u32, 425);
+pub const LB_MULTIPLEADDSTRING = @as(u32, 433);
+pub const LB_GETLISTBOXINFO = @as(u32, 434);
+pub const LB_MSGMAX = @as(u32, 435);
+pub const CB_OKAY = @as(u32, 0);
+pub const CB_ERR = @as(i32, -1);
+pub const CB_ERRSPACE = @as(i32, -2);
+pub const CBN_ERRSPACE = @as(i32, -1);
+pub const CBN_SELCHANGE = @as(u32, 1);
+pub const CBN_DBLCLK = @as(u32, 2);
+pub const CBN_SETFOCUS = @as(u32, 3);
+pub const CBN_KILLFOCUS = @as(u32, 4);
+pub const CBN_EDITCHANGE = @as(u32, 5);
+pub const CBN_EDITUPDATE = @as(u32, 6);
+pub const CBN_DROPDOWN = @as(u32, 7);
+pub const CBN_CLOSEUP = @as(u32, 8);
+pub const CBN_SELENDOK = @as(u32, 9);
+pub const CBN_SELENDCANCEL = @as(u32, 10);
+pub const CB_GETEDITSEL = @as(u32, 320);
+pub const CB_LIMITTEXT = @as(u32, 321);
+pub const CB_SETEDITSEL = @as(u32, 322);
+pub const CB_ADDSTRING = @as(u32, 323);
+pub const CB_DELETESTRING = @as(u32, 324);
+pub const CB_DIR = @as(u32, 325);
+pub const CB_GETCOUNT = @as(u32, 326);
+pub const CB_GETCURSEL = @as(u32, 327);
+pub const CB_GETLBTEXT = @as(u32, 328);
+pub const CB_GETLBTEXTLEN = @as(u32, 329);
+pub const CB_INSERTSTRING = @as(u32, 330);
+pub const CB_RESETCONTENT = @as(u32, 331);
+pub const CB_FINDSTRING = @as(u32, 332);
+pub const CB_SELECTSTRING = @as(u32, 333);
+pub const CB_SETCURSEL = @as(u32, 334);
+pub const CB_SHOWDROPDOWN = @as(u32, 335);
+pub const CB_GETITEMDATA = @as(u32, 336);
+pub const CB_SETITEMDATA = @as(u32, 337);
+pub const CB_GETDROPPEDCONTROLRECT = @as(u32, 338);
+pub const CB_SETITEMHEIGHT = @as(u32, 339);
+pub const CB_GETITEMHEIGHT = @as(u32, 340);
+pub const CB_SETEXTENDEDUI = @as(u32, 341);
+pub const CB_GETEXTENDEDUI = @as(u32, 342);
+pub const CB_GETDROPPEDSTATE = @as(u32, 343);
+pub const CB_FINDSTRINGEXACT = @as(u32, 344);
+pub const CB_SETLOCALE = @as(u32, 345);
+pub const CB_GETLOCALE = @as(u32, 346);
+pub const CB_GETTOPINDEX = @as(u32, 347);
+pub const CB_SETTOPINDEX = @as(u32, 348);
+pub const CB_GETHORIZONTALEXTENT = @as(u32, 349);
+pub const CB_SETHORIZONTALEXTENT = @as(u32, 350);
+pub const CB_GETDROPPEDWIDTH = @as(u32, 351);
+pub const CB_SETDROPPEDWIDTH = @as(u32, 352);
+pub const CB_INITSTORAGE = @as(u32, 353);
+pub const CB_MULTIPLEADDSTRING = @as(u32, 355);
+pub const CB_GETCOMBOBOXINFO = @as(u32, 356);
+pub const CB_MSGMAX = @as(u32, 357);
+pub const SBM_SETPOS = @as(u32, 224);
+pub const SBM_GETPOS = @as(u32, 225);
+pub const SBM_SETRANGE = @as(u32, 226);
+pub const SBM_SETRANGEREDRAW = @as(u32, 230);
+pub const SBM_GETRANGE = @as(u32, 227);
+pub const SBM_ENABLE_ARROWS = @as(u32, 228);
+pub const SBM_SETSCROLLINFO = @as(u32, 233);
+pub const SBM_GETSCROLLINFO = @as(u32, 234);
+pub const SBM_GETSCROLLBARINFO = @as(u32, 235);
+pub const MDIS_ALLCHILDSTYLES = @as(u32, 1);
+pub const HELP_CONTEXT = @as(i32, 1);
+pub const HELP_QUIT = @as(i32, 2);
+pub const HELP_INDEX = @as(i32, 3);
+pub const HELP_CONTENTS = @as(i32, 3);
+pub const HELP_HELPONHELP = @as(i32, 4);
+pub const HELP_SETINDEX = @as(i32, 5);
+pub const HELP_SETCONTENTS = @as(i32, 5);
+pub const HELP_CONTEXTPOPUP = @as(i32, 8);
+pub const HELP_FORCEFILE = @as(i32, 9);
+pub const HELP_KEY = @as(i32, 257);
+pub const HELP_COMMAND = @as(i32, 258);
+pub const HELP_PARTIALKEY = @as(i32, 261);
+pub const HELP_MULTIKEY = @as(i32, 513);
+pub const HELP_SETWINPOS = @as(i32, 515);
+pub const HELP_CONTEXTMENU = @as(u32, 10);
+pub const HELP_FINDER = @as(u32, 11);
+pub const HELP_WM_HELP = @as(u32, 12);
+pub const HELP_SETPOPUP_POS = @as(u32, 13);
+pub const HELP_TCARD = @as(u32, 32768);
+pub const HELP_TCARD_DATA = @as(u32, 16);
+pub const HELP_TCARD_OTHER_CALLER = @as(u32, 17);
+pub const IDH_NO_HELP = @as(u32, 28440);
+pub const IDH_MISSING_CONTEXT = @as(u32, 28441);
+pub const IDH_GENERIC_HELP_BUTTON = @as(u32, 28442);
+pub const IDH_OK = @as(u32, 28443);
+pub const IDH_CANCEL = @as(u32, 28444);
+pub const IDH_HELP = @as(u32, 28445);
+pub const MAX_TOUCH_PREDICTION_FILTER_TAPS = @as(u32, 3);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_LATENCY = @as(u32, 8);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_SAMPLETIME = @as(u32, 8);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_USE_HW_TIMESTAMP = @as(u32, 1);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_DELTA = @as(f32, 1.0e-03);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_MIN = @as(f32, 9.0e-01);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_MAX = @as(f32, 9.99e-01);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_LAMBDA_LEARNING_RATE = @as(f32, 1.0e-03);
+pub const TOUCHPREDICTIONPARAMETERS_DEFAULT_RLS_EXPO_SMOOTH_ALPHA = @as(f32, 9.9e-01);
+pub const MAX_LOGICALDPIOVERRIDE = @as(u32, 2);
+pub const MIN_LOGICALDPIOVERRIDE = @as(i32, -2);
+pub const FE_FONTSMOOTHINGSTANDARD = @as(u32, 1);
+pub const FE_FONTSMOOTHINGCLEARTYPE = @as(u32, 2);
+pub const FE_FONTSMOOTHINGORIENTATIONBGR = @as(u32, 0);
+pub const FE_FONTSMOOTHINGORIENTATIONRGB = @as(u32, 1);
+pub const CONTACTVISUALIZATION_OFF = @as(u32, 0);
+pub const CONTACTVISUALIZATION_ON = @as(u32, 1);
+pub const CONTACTVISUALIZATION_PRESENTATIONMODE = @as(u32, 2);
+pub const GESTUREVISUALIZATION_OFF = @as(u32, 0);
+pub const GESTUREVISUALIZATION_ON = @as(u32, 31);
+pub const GESTUREVISUALIZATION_TAP = @as(u32, 1);
+pub const GESTUREVISUALIZATION_DOUBLETAP = @as(u32, 2);
+pub const GESTUREVISUALIZATION_PRESSANDTAP = @as(u32, 4);
+pub const GESTUREVISUALIZATION_PRESSANDHOLD = @as(u32, 8);
+pub const GESTUREVISUALIZATION_RIGHTTAP = @as(u32, 16);
+pub const MOUSEWHEEL_ROUTING_FOCUS = @as(u32, 0);
+pub const MOUSEWHEEL_ROUTING_HYBRID = @as(u32, 1);
+pub const MOUSEWHEEL_ROUTING_MOUSE_POS = @as(u32, 2);
+pub const PENVISUALIZATION_ON = @as(u32, 35);
+pub const PENVISUALIZATION_OFF = @as(u32, 0);
+pub const PENVISUALIZATION_TAP = @as(u32, 1);
+pub const PENVISUALIZATION_DOUBLETAP = @as(u32, 2);
+pub const PENVISUALIZATION_CURSOR = @as(u32, 32);
+pub const PENARBITRATIONTYPE_NONE = @as(u32, 0);
+pub const PENARBITRATIONTYPE_WIN8 = @as(u32, 1);
+pub const PENARBITRATIONTYPE_FIS = @as(u32, 2);
+pub const PENARBITRATIONTYPE_SPT = @as(u32, 3);
+pub const PENARBITRATIONTYPE_MAX = @as(u32, 4);
+pub const METRICS_USEDEFAULT = @as(i32, -1);
+pub const ARW_STARTMASK = @as(i32, 3);
+pub const ARW_STARTRIGHT = @as(i32, 1);
+pub const ARW_STARTTOP = @as(i32, 2);
+pub const ARW_LEFT = @as(i32, 0);
+pub const ARW_RIGHT = @as(i32, 0);
+pub const ARW_UP = @as(i32, 4);
+pub const ARW_DOWN = @as(i32, 4);
+pub const ARW_HIDE = @as(i32, 8);
+pub const HCF_LOGONDESKTOP = @as(u32, 256);
+pub const HCF_DEFAULTDESKTOP = @as(u32, 512);
+pub const EDS_RAWMODE = @as(u32, 2);
+pub const EDS_ROTATEDMODE = @as(u32, 4);
+pub const EDD_GET_DEVICE_INTERFACE_NAME = @as(u32, 1);
+pub const FKF_FILTERKEYSON = @as(u32, 1);
+pub const FKF_AVAILABLE = @as(u32, 2);
+pub const FKF_HOTKEYACTIVE = @as(u32, 4);
+pub const FKF_CONFIRMHOTKEY = @as(u32, 8);
+pub const FKF_HOTKEYSOUND = @as(u32, 16);
+pub const FKF_INDICATOR = @as(u32, 32);
+pub const FKF_CLICKON = @as(u32, 64);
+pub const MKF_MOUSEKEYSON = @as(u32, 1);
+pub const MKF_AVAILABLE = @as(u32, 2);
+pub const MKF_HOTKEYACTIVE = @as(u32, 4);
+pub const MKF_CONFIRMHOTKEY = @as(u32, 8);
+pub const MKF_HOTKEYSOUND = @as(u32, 16);
+pub const MKF_INDICATOR = @as(u32, 32);
+pub const MKF_MODIFIERS = @as(u32, 64);
+pub const MKF_REPLACENUMBERS = @as(u32, 128);
+pub const MKF_LEFTBUTTONSEL = @as(u32, 268435456);
+pub const MKF_RIGHTBUTTONSEL = @as(u32, 536870912);
+pub const MKF_LEFTBUTTONDOWN = @as(u32, 16777216);
+pub const MKF_RIGHTBUTTONDOWN = @as(u32, 33554432);
+pub const MKF_MOUSEMODE = @as(u32, 2147483648);
+pub const TKF_TOGGLEKEYSON = @as(u32, 1);
+pub const TKF_AVAILABLE = @as(u32, 2);
+pub const TKF_HOTKEYACTIVE = @as(u32, 4);
+pub const TKF_CONFIRMHOTKEY = @as(u32, 8);
+pub const TKF_HOTKEYSOUND = @as(u32, 16);
+pub const TKF_INDICATOR = @as(u32, 32);
+pub const MONITORINFOF_PRIMARY = @as(u32, 1);
+pub const WINEVENT_OUTOFCONTEXT = @as(u32, 0);
+pub const WINEVENT_SKIPOWNTHREAD = @as(u32, 1);
+pub const WINEVENT_SKIPOWNPROCESS = @as(u32, 2);
+pub const WINEVENT_INCONTEXT = @as(u32, 4);
+pub const CHILDID_SELF = @as(u32, 0);
+pub const INDEXID_OBJECT = @as(u32, 0);
+pub const INDEXID_CONTAINER = @as(u32, 0);
+pub const EVENT_MIN = @as(u32, 1);
+pub const EVENT_MAX = @as(u32, 2147483647);
+pub const EVENT_SYSTEM_SOUND = @as(u32, 1);
+pub const EVENT_SYSTEM_ALERT = @as(u32, 2);
+pub const EVENT_SYSTEM_FOREGROUND = @as(u32, 3);
+pub const EVENT_SYSTEM_MENUSTART = @as(u32, 4);
+pub const EVENT_SYSTEM_MENUEND = @as(u32, 5);
+pub const EVENT_SYSTEM_MENUPOPUPSTART = @as(u32, 6);
+pub const EVENT_SYSTEM_MENUPOPUPEND = @as(u32, 7);
+pub const EVENT_SYSTEM_CAPTURESTART = @as(u32, 8);
+pub const EVENT_SYSTEM_CAPTUREEND = @as(u32, 9);
+pub const EVENT_SYSTEM_MOVESIZESTART = @as(u32, 10);
+pub const EVENT_SYSTEM_MOVESIZEEND = @as(u32, 11);
+pub const EVENT_SYSTEM_CONTEXTHELPSTART = @as(u32, 12);
+pub const EVENT_SYSTEM_CONTEXTHELPEND = @as(u32, 13);
+pub const EVENT_SYSTEM_DRAGDROPSTART = @as(u32, 14);
+pub const EVENT_SYSTEM_DRAGDROPEND = @as(u32, 15);
+pub const EVENT_SYSTEM_DIALOGSTART = @as(u32, 16);
+pub const EVENT_SYSTEM_DIALOGEND = @as(u32, 17);
+pub const EVENT_SYSTEM_SCROLLINGSTART = @as(u32, 18);
+pub const EVENT_SYSTEM_SCROLLINGEND = @as(u32, 19);
+pub const EVENT_SYSTEM_SWITCHSTART = @as(u32, 20);
+pub const EVENT_SYSTEM_SWITCHEND = @as(u32, 21);
+pub const EVENT_SYSTEM_MINIMIZESTART = @as(u32, 22);
+pub const EVENT_SYSTEM_MINIMIZEEND = @as(u32, 23);
+pub const EVENT_SYSTEM_DESKTOPSWITCH = @as(u32, 32);
+pub const EVENT_SYSTEM_SWITCHER_APPGRABBED = @as(u32, 36);
+pub const EVENT_SYSTEM_SWITCHER_APPOVERTARGET = @as(u32, 37);
+pub const EVENT_SYSTEM_SWITCHER_APPDROPPED = @as(u32, 38);
+pub const EVENT_SYSTEM_SWITCHER_CANCELLED = @as(u32, 39);
+pub const EVENT_SYSTEM_IME_KEY_NOTIFICATION = @as(u32, 41);
+pub const EVENT_SYSTEM_END = @as(u32, 255);
+pub const EVENT_OEM_DEFINED_START = @as(u32, 257);
+pub const EVENT_OEM_DEFINED_END = @as(u32, 511);
+pub const EVENT_UIA_EVENTID_START = @as(u32, 19968);
+pub const EVENT_UIA_EVENTID_END = @as(u32, 20223);
+pub const EVENT_UIA_PROPID_START = @as(u32, 29952);
+pub const EVENT_UIA_PROPID_END = @as(u32, 30207);
+pub const EVENT_CONSOLE_CARET = @as(u32, 16385);
+pub const EVENT_CONSOLE_UPDATE_REGION = @as(u32, 16386);
+pub const EVENT_CONSOLE_UPDATE_SIMPLE = @as(u32, 16387);
+pub const EVENT_CONSOLE_UPDATE_SCROLL = @as(u32, 16388);
+pub const EVENT_CONSOLE_LAYOUT = @as(u32, 16389);
+pub const EVENT_CONSOLE_START_APPLICATION = @as(u32, 16390);
+pub const EVENT_CONSOLE_END_APPLICATION = @as(u32, 16391);
+pub const CONSOLE_APPLICATION_16BIT = @as(u32, 0);
+pub const CONSOLE_CARET_SELECTION = @as(u32, 1);
+pub const CONSOLE_CARET_VISIBLE = @as(u32, 2);
+pub const EVENT_CONSOLE_END = @as(u32, 16639);
+pub const EVENT_OBJECT_CREATE = @as(u32, 32768);
+pub const EVENT_OBJECT_DESTROY = @as(u32, 32769);
+pub const EVENT_OBJECT_SHOW = @as(u32, 32770);
+pub const EVENT_OBJECT_HIDE = @as(u32, 32771);
+pub const EVENT_OBJECT_REORDER = @as(u32, 32772);
+pub const EVENT_OBJECT_FOCUS = @as(u32, 32773);
+pub const EVENT_OBJECT_SELECTION = @as(u32, 32774);
+pub const EVENT_OBJECT_SELECTIONADD = @as(u32, 32775);
+pub const EVENT_OBJECT_SELECTIONREMOVE = @as(u32, 32776);
+pub const EVENT_OBJECT_SELECTIONWITHIN = @as(u32, 32777);
+pub const EVENT_OBJECT_STATECHANGE = @as(u32, 32778);
+pub const EVENT_OBJECT_LOCATIONCHANGE = @as(u32, 32779);
+pub const EVENT_OBJECT_NAMECHANGE = @as(u32, 32780);
+pub const EVENT_OBJECT_DESCRIPTIONCHANGE = @as(u32, 32781);
+pub const EVENT_OBJECT_VALUECHANGE = @as(u32, 32782);
+pub const EVENT_OBJECT_PARENTCHANGE = @as(u32, 32783);
+pub const EVENT_OBJECT_HELPCHANGE = @as(u32, 32784);
+pub const EVENT_OBJECT_DEFACTIONCHANGE = @as(u32, 32785);
+pub const EVENT_OBJECT_ACCELERATORCHANGE = @as(u32, 32786);
+pub const EVENT_OBJECT_INVOKED = @as(u32, 32787);
+pub const EVENT_OBJECT_TEXTSELECTIONCHANGED = @as(u32, 32788);
+pub const EVENT_OBJECT_CONTENTSCROLLED = @as(u32, 32789);
+pub const EVENT_SYSTEM_ARRANGMENTPREVIEW = @as(u32, 32790);
+pub const EVENT_OBJECT_CLOAKED = @as(u32, 32791);
+pub const EVENT_OBJECT_UNCLOAKED = @as(u32, 32792);
+pub const EVENT_OBJECT_LIVEREGIONCHANGED = @as(u32, 32793);
+pub const EVENT_OBJECT_HOSTEDOBJECTSINVALIDATED = @as(u32, 32800);
+pub const EVENT_OBJECT_DRAGSTART = @as(u32, 32801);
+pub const EVENT_OBJECT_DRAGCANCEL = @as(u32, 32802);
+pub const EVENT_OBJECT_DRAGCOMPLETE = @as(u32, 32803);
+pub const EVENT_OBJECT_DRAGENTER = @as(u32, 32804);
+pub const EVENT_OBJECT_DRAGLEAVE = @as(u32, 32805);
+pub const EVENT_OBJECT_DRAGDROPPED = @as(u32, 32806);
+pub const EVENT_OBJECT_IME_SHOW = @as(u32, 32807);
+pub const EVENT_OBJECT_IME_HIDE = @as(u32, 32808);
+pub const EVENT_OBJECT_IME_CHANGE = @as(u32, 32809);
+pub const EVENT_OBJECT_TEXTEDIT_CONVERSIONTARGETCHANGED = @as(u32, 32816);
+pub const EVENT_OBJECT_END = @as(u32, 33023);
+pub const EVENT_AIA_START = @as(u32, 40960);
+pub const EVENT_AIA_END = @as(u32, 45055);
+pub const SOUND_SYSTEM_STARTUP = @as(u32, 1);
+pub const SOUND_SYSTEM_SHUTDOWN = @as(u32, 2);
+pub const SOUND_SYSTEM_BEEP = @as(u32, 3);
+pub const SOUND_SYSTEM_ERROR = @as(u32, 4);
+pub const SOUND_SYSTEM_QUESTION = @as(u32, 5);
+pub const SOUND_SYSTEM_WARNING = @as(u32, 6);
+pub const SOUND_SYSTEM_INFORMATION = @as(u32, 7);
+pub const SOUND_SYSTEM_MAXIMIZE = @as(u32, 8);
+pub const SOUND_SYSTEM_MINIMIZE = @as(u32, 9);
+pub const SOUND_SYSTEM_RESTOREUP = @as(u32, 10);
+pub const SOUND_SYSTEM_RESTOREDOWN = @as(u32, 11);
+pub const SOUND_SYSTEM_APPSTART = @as(u32, 12);
+pub const SOUND_SYSTEM_FAULT = @as(u32, 13);
+pub const SOUND_SYSTEM_APPEND = @as(u32, 14);
+pub const SOUND_SYSTEM_MENUCOMMAND = @as(u32, 15);
+pub const SOUND_SYSTEM_MENUPOPUP = @as(u32, 16);
+pub const CSOUND_SYSTEM = @as(u32, 16);
+pub const CALERT_SYSTEM = @as(u32, 6);
+pub const GUI_16BITTASK = @as(u32, 0);
+pub const USER_DEFAULT_SCREEN_DPI = @as(u32, 96);
+pub const STATE_SYSTEM_SELECTED = @as(u32, 2);
+pub const STATE_SYSTEM_FOCUSED = @as(u32, 4);
+pub const STATE_SYSTEM_CHECKED = @as(u32, 16);
+pub const STATE_SYSTEM_MIXED = @as(u32, 32);
+pub const STATE_SYSTEM_READONLY = @as(u32, 64);
+pub const STATE_SYSTEM_HOTTRACKED = @as(u32, 128);
+pub const STATE_SYSTEM_DEFAULT = @as(u32, 256);
+pub const STATE_SYSTEM_EXPANDED = @as(u32, 512);
+pub const STATE_SYSTEM_COLLAPSED = @as(u32, 1024);
+pub const STATE_SYSTEM_BUSY = @as(u32, 2048);
+pub const STATE_SYSTEM_FLOATING = @as(u32, 4096);
+pub const STATE_SYSTEM_MARQUEED = @as(u32, 8192);
+pub const STATE_SYSTEM_ANIMATED = @as(u32, 16384);
+pub const STATE_SYSTEM_SIZEABLE = @as(u32, 131072);
+pub const STATE_SYSTEM_MOVEABLE = @as(u32, 262144);
+pub const STATE_SYSTEM_SELFVOICING = @as(u32, 524288);
+pub const STATE_SYSTEM_SELECTABLE = @as(u32, 2097152);
+pub const STATE_SYSTEM_LINKED = @as(u32, 4194304);
+pub const STATE_SYSTEM_TRAVERSED = @as(u32, 8388608);
+pub const STATE_SYSTEM_MULTISELECTABLE = @as(u32, 16777216);
+pub const STATE_SYSTEM_EXTSELECTABLE = @as(u32, 33554432);
+pub const STATE_SYSTEM_ALERT_LOW = @as(u32, 67108864);
+pub const STATE_SYSTEM_ALERT_MEDIUM = @as(u32, 134217728);
+pub const STATE_SYSTEM_ALERT_HIGH = @as(u32, 268435456);
+pub const STATE_SYSTEM_PROTECTED = @as(u32, 536870912);
+pub const STATE_SYSTEM_VALID = @as(u32, 1073741823);
+pub const CCHILDREN_TITLEBAR = @as(u32, 5);
+pub const CCHILDREN_SCROLLBAR = @as(u32, 5);
+pub const RIM_INPUT = @as(u32, 0);
+pub const RIM_INPUTSINK = @as(u32, 1);
+pub const RIM_TYPEMAX = @as(u32, 2);
+pub const RI_KEY_MAKE = @as(u32, 0);
+pub const RI_KEY_BREAK = @as(u32, 1);
+pub const RI_KEY_E0 = @as(u32, 2);
+pub const RI_KEY_E1 = @as(u32, 4);
+pub const RI_KEY_TERMSRV_SET_LED = @as(u32, 8);
+pub const RI_KEY_TERMSRV_SHADOW = @as(u32, 16);
+pub const RIDEV_EXMODEMASK = @as(u32, 240);
+pub const GIDC_ARRIVAL = @as(u32, 1);
+pub const GIDC_REMOVAL = @as(u32, 2);
+pub const POINTER_DEVICE_PRODUCT_STRING_MAX = @as(u32, 520);
+pub const PDC_ARRIVAL = @as(u32, 1);
+pub const PDC_REMOVAL = @as(u32, 2);
+pub const PDC_ORIENTATION_0 = @as(u32, 4);
+pub const PDC_ORIENTATION_90 = @as(u32, 8);
+pub const PDC_ORIENTATION_180 = @as(u32, 16);
+pub const PDC_ORIENTATION_270 = @as(u32, 32);
+pub const PDC_MODE_DEFAULT = @as(u32, 64);
+pub const PDC_MODE_CENTERED = @as(u32, 128);
+pub const PDC_MAPPING_CHANGE = @as(u32, 256);
+pub const PDC_RESOLUTION = @as(u32, 512);
+pub const PDC_ORIGIN = @as(u32, 1024);
+pub const PDC_MODE_ASPECTRATIOPRESERVED = @as(u32, 2048);
+pub const GF_BEGIN = @as(u32, 1);
+pub const GF_INERTIA = @as(u32, 2);
+pub const GF_END = @as(u32, 4);
+pub const GESTURECONFIGMAXCOUNT = @as(u32, 256);
+pub const GCF_INCLUDE_ANCESTORS = @as(u32, 1);
+pub const NID_INTEGRATED_TOUCH = @as(u32, 1);
+pub const NID_EXTERNAL_TOUCH = @as(u32, 2);
+pub const NID_INTEGRATED_PEN = @as(u32, 4);
+pub const NID_EXTERNAL_PEN = @as(u32, 8);
+pub const NID_MULTI_INPUT = @as(u32, 64);
+pub const NID_READY = @as(u32, 128);
+pub const MAX_STR_BLOCKREASON = @as(u32, 256);
+pub const STRSAFE_USE_SECURE_CRT = @as(u32, 0);
+pub const STRSAFE_MAX_CCH = @as(u32, 2147483647);
+pub const STRSAFE_E_INSUFFICIENT_BUFFER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147024774));
+pub const STRSAFE_E_INVALID_PARAMETER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147024809));
+pub const STRSAFE_E_END_OF_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147024858));
+pub const HBMMENU_CALLBACK = @import("../zig.zig").typedConst(HBITMAP, @as(i32, -1));
+pub const HBMMENU_SYSTEM = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 1));
+pub const HBMMENU_MBAR_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 2));
+pub const HBMMENU_MBAR_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 3));
+pub const HBMMENU_MBAR_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 5));
+pub const HBMMENU_MBAR_CLOSE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 6));
+pub const HBMMENU_MBAR_MINIMIZE_D = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 7));
+pub const HBMMENU_POPUP_CLOSE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 8));
+pub const HBMMENU_POPUP_RESTORE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 9));
+pub const HBMMENU_POPUP_MAXIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 10));
+pub const HBMMENU_POPUP_MINIMIZE = @import("../zig.zig").typedConst(HBITMAP, @as(i32, 11));
 
 //--------------------------------------------------------------------------------
 // Section: Types (197)
 //--------------------------------------------------------------------------------
+pub const LPOFNHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const OPENFILENAME_NT4A = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpstrFilter: [*:0]const u8,
+    lpstrCustomFilter: PSTR,
+    nMaxCustFilter: u32,
+    nFilterIndex: u32,
+    lpstrFile: PSTR,
+    nMaxFile: u32,
+    lpstrFileTitle: PSTR,
+    nMaxFileTitle: u32,
+    lpstrInitialDir: [*:0]const u8,
+    lpstrTitle: [*:0]const u8,
+    Flags: u32,
+    nFileOffset: u16,
+    nFileExtension: u16,
+    lpstrDefExt: [*:0]const u8,
+    lCustData: LPARAM,
+    lpfnHook: LPOFNHOOKPROC,
+    lpTemplateName: [*:0]const u8,
+};
+
+pub const OPENFILENAME_NT4W = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpstrFilter: [*:0]const u16,
+    lpstrCustomFilter: PWSTR,
+    nMaxCustFilter: u32,
+    nFilterIndex: u32,
+    lpstrFile: PWSTR,
+    nMaxFile: u32,
+    lpstrFileTitle: PWSTR,
+    nMaxFileTitle: u32,
+    lpstrInitialDir: [*:0]const u16,
+    lpstrTitle: [*:0]const u16,
+    Flags: u32,
+    nFileOffset: u16,
+    nFileExtension: u16,
+    lpstrDefExt: [*:0]const u16,
+    lCustData: LPARAM,
+    lpfnHook: LPOFNHOOKPROC,
+    lpTemplateName: [*:0]const u16,
+};
+
+pub const OPENFILENAMEA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpstrFilter: [*:0]const u8,
+    lpstrCustomFilter: PSTR,
+    nMaxCustFilter: u32,
+    nFilterIndex: u32,
+    lpstrFile: PSTR,
+    nMaxFile: u32,
+    lpstrFileTitle: PSTR,
+    nMaxFileTitle: u32,
+    lpstrInitialDir: [*:0]const u8,
+    lpstrTitle: [*:0]const u8,
+    Flags: u32,
+    nFileOffset: u16,
+    nFileExtension: u16,
+    lpstrDefExt: [*:0]const u8,
+    lCustData: LPARAM,
+    lpfnHook: LPOFNHOOKPROC,
+    lpTemplateName: [*:0]const u8,
+    pvReserved: *c_void,
+    dwReserved: u32,
+    FlagsEx: u32,
+};
+
+pub const OPENFILENAMEW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    lpstrFilter: [*:0]const u16,
+    lpstrCustomFilter: PWSTR,
+    nMaxCustFilter: u32,
+    nFilterIndex: u32,
+    lpstrFile: PWSTR,
+    nMaxFile: u32,
+    lpstrFileTitle: PWSTR,
+    nMaxFileTitle: u32,
+    lpstrInitialDir: [*:0]const u16,
+    lpstrTitle: [*:0]const u16,
+    Flags: u32,
+    nFileOffset: u16,
+    nFileExtension: u16,
+    lpstrDefExt: [*:0]const u16,
+    lCustData: LPARAM,
+    lpfnHook: LPOFNHOOKPROC,
+    lpTemplateName: [*:0]const u16,
+    pvReserved: *c_void,
+    dwReserved: u32,
+    FlagsEx: u32,
+};
+
+pub const LPCCHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const OFNOTIFYA = extern struct {
+    hdr: NMHDR,
+    lpOFN: *OPENFILENAMEA,
+    pszFile: PSTR,
+};
+
+pub const OFNOTIFYW = extern struct {
+    hdr: NMHDR,
+    lpOFN: *OPENFILENAMEW,
+    pszFile: PWSTR,
+};
+
+pub const OFNOTIFYEXA = extern struct {
+    hdr: NMHDR,
+    lpOFN: *OPENFILENAMEA,
+    psf: *c_void,
+    pidl: *c_void,
+};
+
+pub const OFNOTIFYEXW = extern struct {
+    hdr: NMHDR,
+    lpOFN: *OPENFILENAMEW,
+    psf: *c_void,
+    pidl: *c_void,
+};
+
+pub const CHOOSECOLORA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HWND,
+    rgbResult: u32,
+    lpCustColors: *u32,
+    Flags: u32,
+    lCustData: LPARAM,
+    lpfnHook: LPCCHOOKPROC,
+    lpTemplateName: [*:0]const u8,
+};
+
+pub const CHOOSECOLORW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HWND,
+    rgbResult: u32,
+    lpCustColors: *u32,
+    Flags: u32,
+    lCustData: LPARAM,
+    lpfnHook: LPCCHOOKPROC,
+    lpTemplateName: [*:0]const u16,
+};
+
+pub const LPFRHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const FINDREPLACEA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    Flags: FINDREPLACEW_Flags,
+    lpstrFindWhat: PSTR,
+    lpstrReplaceWith: PSTR,
+    wFindWhatLen: u16,
+    wReplaceWithLen: u16,
+    lCustData: LPARAM,
+    lpfnHook: LPFRHOOKPROC,
+    lpTemplateName: [*:0]const u8,
+};
+
+pub const FINDREPLACEW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hInstance: HINSTANCE,
+    Flags: FINDREPLACEW_Flags,
+    lpstrFindWhat: PWSTR,
+    lpstrReplaceWith: PWSTR,
+    wFindWhatLen: u16,
+    wReplaceWithLen: u16,
+    lCustData: LPARAM,
+    lpfnHook: LPFRHOOKPROC,
+    lpTemplateName: [*:0]const u16,
+};
+
+pub const LPCFHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const CHOOSEFONTA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDC: HDC,
+    lpLogFont: *LOGFONTA,
+    iPointSize: i32,
+    Flags: CHOOSEFONTW_Flags,
+    rgbColors: u32,
+    lCustData: LPARAM,
+    lpfnHook: LPCFHOOKPROC,
+    lpTemplateName: [*:0]const u8,
+    hInstance: HINSTANCE,
+    lpszStyle: PSTR,
+    nFontType: CHOOSEFONTA_nFontType,
+    ___MISSING_ALIGNMENT__: u16,
+    nSizeMin: i32,
+    nSizeMax: i32,
+};
+
+pub const CHOOSEFONTW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDC: HDC,
+    lpLogFont: *LOGFONTW,
+    iPointSize: i32,
+    Flags: CHOOSEFONTW_Flags,
+    rgbColors: u32,
+    lCustData: LPARAM,
+    lpfnHook: LPCFHOOKPROC,
+    lpTemplateName: [*:0]const u16,
+    hInstance: HINSTANCE,
+    lpszStyle: PWSTR,
+    nFontType: CHOOSEFONTA_nFontType,
+    ___MISSING_ALIGNMENT__: u16,
+    nSizeMin: i32,
+    nSizeMax: i32,
+};
+
+pub const LPPRINTHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const LPSETUPHOOKPROC = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const PRINTDLGA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    hDC: HDC,
+    Flags: PRINTDLGEXA_Flags,
+    nFromPage: u16,
+    nToPage: u16,
+    nMinPage: u16,
+    nMaxPage: u16,
+    nCopies: u16,
+    hInstance: HINSTANCE,
+    lCustData: LPARAM,
+    lpfnPrintHook: LPPRINTHOOKPROC,
+    lpfnSetupHook: LPSETUPHOOKPROC,
+    lpPrintTemplateName: [*:0]const u8,
+    lpSetupTemplateName: [*:0]const u8,
+    hPrintTemplate: ?*c_void,
+    hSetupTemplate: ?*c_void,
+};
+
+pub const PRINTDLGW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    hDC: HDC,
+    Flags: PRINTDLGEXA_Flags,
+    nFromPage: u16,
+    nToPage: u16,
+    nMinPage: u16,
+    nMaxPage: u16,
+    nCopies: u16,
+    hInstance: HINSTANCE,
+    lCustData: LPARAM,
+    lpfnPrintHook: LPPRINTHOOKPROC,
+    lpfnSetupHook: LPSETUPHOOKPROC,
+    lpPrintTemplateName: [*:0]const u16,
+    lpSetupTemplateName: [*:0]const u16,
+    hPrintTemplate: ?*c_void,
+    hSetupTemplate: ?*c_void,
+};
+
+const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
+pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
+pub const IPrintDialogCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitDone: fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SelectionChange: fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleMessage: fn(
+            self: *const IPrintDialogCallback,
+            hDlg: HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pResult: *LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: *LRESULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
+pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
+pub const IPrintDialogServices = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentDevMode: fn(
+            self: *const IPrintDialogServices,
+            pDevMode: *DEVMODEA,
+            pcbSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPrinterName: fn(
+            self: *const IPrintDialogServices,
+            pPrinterName: ?[*:0]u16,
+            pcchSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPortName: fn(
+            self: *const IPrintDialogServices,
+            pPortName: ?[*:0]u16,
+            pcchSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: *DEVMODEA, pcbSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PRINTPAGERANGE = extern struct {
+    nFromPage: u32,
+    nToPage: u32,
+};
+
+pub const PRINTDLGEXA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    hDC: HDC,
+    Flags: PRINTDLGEXA_Flags,
+    Flags2: u32,
+    ExclusionFlags: u32,
+    nPageRanges: u32,
+    nMaxPageRanges: u32,
+    lpPageRanges: *PRINTPAGERANGE,
+    nMinPage: u32,
+    nMaxPage: u32,
+    nCopies: u32,
+    hInstance: HINSTANCE,
+    lpPrintTemplateName: [*:0]const u8,
+    lpCallback: *IUnknown,
+    nPropertyPages: u32,
+    lphPropertyPages: *HPROPSHEETPAGE,
+    nStartPage: u32,
+    dwResultAction: u32,
+};
+
+pub const PRINTDLGEXW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    hDC: HDC,
+    Flags: PRINTDLGEXA_Flags,
+    Flags2: u32,
+    ExclusionFlags: u32,
+    nPageRanges: u32,
+    nMaxPageRanges: u32,
+    lpPageRanges: *PRINTPAGERANGE,
+    nMinPage: u32,
+    nMaxPage: u32,
+    nCopies: u32,
+    hInstance: HINSTANCE,
+    lpPrintTemplateName: [*:0]const u16,
+    lpCallback: *IUnknown,
+    nPropertyPages: u32,
+    lphPropertyPages: *HPROPSHEETPAGE,
+    nStartPage: u32,
+    dwResultAction: u32,
+};
+
+pub const DEVNAMES = extern struct {
+    wDriverOffset: u16,
+    wDeviceOffset: u16,
+    wOutputOffset: u16,
+    wDefault: u16,
+};
+
+pub const LPPAGEPAINTHOOK = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const LPPAGESETUPHOOK = fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const PAGESETUPDLGA = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    Flags: PAGESETUPDLGA_Flags,
+    ptPaperSize: POINT,
+    rtMinMargin: RECT,
+    rtMargin: RECT,
+    hInstance: HINSTANCE,
+    lCustData: LPARAM,
+    lpfnPageSetupHook: LPPAGESETUPHOOK,
+    lpfnPagePaintHook: LPPAGEPAINTHOOK,
+    lpPageSetupTemplateName: [*:0]const u8,
+    hPageSetupTemplate: ?*c_void,
+};
+
+pub const PAGESETUPDLGW = extern struct {
+    lStructSize: u32,
+    hwndOwner: HWND,
+    hDevMode: ?*c_void,
+    hDevNames: ?*c_void,
+    Flags: PAGESETUPDLGA_Flags,
+    ptPaperSize: POINT,
+    rtMinMargin: RECT,
+    rtMargin: RECT,
+    hInstance: HINSTANCE,
+    lCustData: LPARAM,
+    lpfnPageSetupHook: LPPAGESETUPHOOK,
+    lpfnPagePaintHook: LPPAGEPAINTHOOK,
+    lpPageSetupTemplateName: [*:0]const u16,
+    hPageSetupTemplate: ?*c_void,
+};
+
+pub const MESSAGE_RESOURCE_ENTRY = extern struct {
+    Length: u16,
+    Flags: u16,
+    Text: [1]u8,
+};
+
+pub const MESSAGE_RESOURCE_BLOCK = extern struct {
+    LowId: u32,
+    HighId: u32,
+    OffsetToEntries: u32,
+};
+
+pub const MESSAGE_RESOURCE_DATA = extern struct {
+    NumberOfBlocks: u32,
+    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CWP_FLAGS = extern enum(u32) {
     ALL = 0,
@@ -3541,23 +4045,6 @@ pub const LPARAM = ?*c_void;
 
 pub const WPARAM = ?*c_void;
 
-pub const MESSAGE_RESOURCE_ENTRY = extern struct {
-    Length: u16,
-    Flags: u16,
-    Text: [1]u8,
-};
-
-pub const MESSAGE_RESOURCE_BLOCK = extern struct {
-    LowId: u32,
-    HighId: u32,
-    OffsetToEntries: u32,
-};
-
-pub const MESSAGE_RESOURCE_DATA = extern struct {
-    NumberOfBlocks: u32,
-    Blocks: [1]MESSAGE_RESOURCE_BLOCK,
-};
-
 pub const ENUMRESNAMEPROCA = fn(
     hModule: ?*c_void,
     lpType: [*:0]const u8,
@@ -3636,493 +4123,6 @@ pub const DI_NORMAL = DI_FLAGS.NORMAL;
 pub const DI_COMPAT = DI_FLAGS.COMPAT;
 pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
 pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
-
-pub const LPOFNHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const OPENFILENAME_NT4A = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-};
-
-pub const OPENFILENAME_NT4W = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-};
-
-pub const OPENFILENAMEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: u32,
-};
-
-pub const OPENFILENAMEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: u32,
-};
-
-pub const LPCCHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const OFNOTIFYA = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    pszFile: PSTR,
-};
-
-pub const OFNOTIFYW = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    pszFile: PWSTR,
-};
-
-pub const OFNOTIFYEXA = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    psf: *c_void,
-    pidl: *c_void,
-};
-
-pub const OFNOTIFYEXW = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    psf: *c_void,
-    pidl: *c_void,
-};
-
-pub const CHOOSECOLORA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-};
-
-pub const CHOOSECOLORW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-};
-
-pub const LPFRHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const FINDREPLACEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACEW_Flags,
-    lpstrFindWhat: PSTR,
-    lpstrReplaceWith: PSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-};
-
-pub const FINDREPLACEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACEW_Flags,
-    lpstrFindWhat: PWSTR,
-    lpstrReplaceWith: PWSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-};
-
-pub const LPCFHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const CHOOSEFONTA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTA,
-    iPointSize: i32,
-    Flags: CHOOSEFONTW_Flags,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    hInstance: HINSTANCE,
-    lpszStyle: PSTR,
-    nFontType: CHOOSEFONTA_nFontType,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
-};
-
-pub const CHOOSEFONTW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTW,
-    iPointSize: i32,
-    Flags: CHOOSEFONTW_Flags,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    hInstance: HINSTANCE,
-    lpszStyle: PWSTR,
-    nFontType: CHOOSEFONTA_nFontType,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
-};
-
-pub const LPPRINTHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const LPSETUPHOOKPROC = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const PRINTDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    hDC: HDC,
-    Flags: PRINTDLGEXA_Flags,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u8,
-    lpSetupTemplateName: [*:0]const u8,
-    hPrintTemplate: ?*c_void,
-    hSetupTemplate: ?*c_void,
-};
-
-pub const PRINTDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    hDC: HDC,
-    Flags: PRINTDLGEXA_Flags,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u16,
-    lpSetupTemplateName: [*:0]const u16,
-    hPrintTemplate: ?*c_void,
-    hSetupTemplate: ?*c_void,
-};
-
-const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
-pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
-pub const IPrintDialogCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitDone: fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectionChange: fn(
-            self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleMessage: fn(
-            self: *const IPrintDialogCallback,
-            hDlg: HWND,
-            uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pResult: *LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: *LRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
-pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
-pub const IPrintDialogServices = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentDevMode: fn(
-            self: *const IPrintDialogServices,
-            pDevMode: *DEVMODEA,
-            pcbSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPrinterName: fn(
-            self: *const IPrintDialogServices,
-            pPrinterName: ?[*:0]u16,
-            pcchSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPortName: fn(
-            self: *const IPrintDialogServices,
-            pPortName: ?[*:0]u16,
-            pcchSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: *DEVMODEA, pcbSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PRINTPAGERANGE = extern struct {
-    nFromPage: u32,
-    nToPage: u32,
-};
-
-pub const PRINTDLGEXA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    hDC: HDC,
-    Flags: PRINTDLGEXA_Flags,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u8,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
-};
-
-pub const PRINTDLGEXW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    hDC: HDC,
-    Flags: PRINTDLGEXA_Flags,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u16,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
-};
-
-pub const DEVNAMES = extern struct {
-    wDriverOffset: u16,
-    wDeviceOffset: u16,
-    wOutputOffset: u16,
-    wDefault: u16,
-};
-
-pub const LPPAGEPAINTHOOK = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const LPPAGESETUPHOOK = fn(
-    param0: HWND,
-    param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const PAGESETUPDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    Flags: PAGESETUPDLGA_Flags,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u8,
-    hPageSetupTemplate: ?*c_void,
-};
-
-pub const PAGESETUPDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: ?*c_void,
-    hDevNames: ?*c_void,
-    Flags: PAGESETUPDLGA_Flags,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u16,
-    hPageSetupTemplate: ?*c_void,
-};
 
 pub const WNDPROC = fn(
     param0: HWND,
@@ -4890,6 +4890,93 @@ pub const MrmResourceIndexerMessage = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (465)
 //--------------------------------------------------------------------------------
+pub extern "COMDLG32" fn GetOpenFileNameA(
+    param0: *OPENFILENAMEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetOpenFileNameW(
+    param0: *OPENFILENAMEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetSaveFileNameA(
+    param0: *OPENFILENAMEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetSaveFileNameW(
+    param0: *OPENFILENAMEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn GetFileTitleA(
+    param0: [*:0]const u8,
+    Buf: [*:0]u8,
+    cchSize: u16,
+) callconv(@import("std").os.windows.WINAPI) i16;
+
+pub extern "COMDLG32" fn GetFileTitleW(
+    param0: [*:0]const u16,
+    Buf: [*:0]u16,
+    cchSize: u16,
+) callconv(@import("std").os.windows.WINAPI) i16;
+
+pub extern "COMDLG32" fn ChooseColorA(
+    param0: *CHOOSECOLORA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn ChooseColorW(
+    param0: *CHOOSECOLORW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn FindTextA(
+    param0: *FINDREPLACEA,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn FindTextW(
+    param0: *FINDREPLACEW,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ReplaceTextA(
+    param0: *FINDREPLACEA,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ReplaceTextW(
+    param0: *FINDREPLACEW,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "COMDLG32" fn ChooseFontA(
+    param0: *CHOOSEFONTA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn ChooseFontW(
+    param0: *CHOOSEFONTW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgA(
+    pPD: *PRINTDLGA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgW(
+    pPD: *PRINTDLGW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PrintDlgExA(
+    pPD: *PRINTDLGEXA,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "COMDLG32" fn PrintDlgExW(
+    pPD: *PRINTDLGEXW,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "COMDLG32" fn CommDlgExtendedError(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "COMDLG32" fn PageSetupDlgA(
+    param0: *PAGESETUPDLGA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "COMDLG32" fn PageSetupDlgW(
+    param0: *PAGESETUPDLGW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "KERNEL32" fn lstrcmpA(
     lpString1: [*:0]const u8,
     lpString2: [*:0]const u8,
@@ -5120,93 +5207,6 @@ pub extern "KERNEL32" fn EnumResourceTypesExW(
     lParam: ?*c_void,
     dwFlags: u32,
     LangId: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetOpenFileNameA(
-    param0: *OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetOpenFileNameW(
-    param0: *OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetSaveFileNameA(
-    param0: *OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetSaveFileNameW(
-    param0: *OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn GetFileTitleA(
-    param0: [*:0]const u8,
-    Buf: [*:0]u8,
-    cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
-
-pub extern "COMDLG32" fn GetFileTitleW(
-    param0: [*:0]const u16,
-    Buf: [*:0]u16,
-    cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
-
-pub extern "COMDLG32" fn ChooseColorA(
-    param0: *CHOOSECOLORA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn ChooseColorW(
-    param0: *CHOOSECOLORW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn FindTextA(
-    param0: *FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn FindTextW(
-    param0: *FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ReplaceTextA(
-    param0: *FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ReplaceTextW(
-    param0: *FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "COMDLG32" fn ChooseFontA(
-    param0: *CHOOSEFONTA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn ChooseFontW(
-    param0: *CHOOSEFONTW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgA(
-    pPD: *PRINTDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgW(
-    pPD: *PRINTDLGW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PrintDlgExA(
-    pPD: *PRINTDLGEXA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "COMDLG32" fn PrintDlgExW(
-    pPD: *PRINTDLGEXW,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "COMDLG32" fn CommDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "COMDLG32" fn PageSetupDlgA(
-    param0: *PAGESETUPDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "COMDLG32" fn PageSetupDlgW(
-    param0: *PAGESETUPDLGW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn wvsprintfA(
@@ -7606,10 +7606,6 @@ pub extern "MrmSupport" fn MrmCreateConfigInMemory(
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
-        pub const WINSTAENUMPROC = WINSTAENUMPROCA;
-        pub const DESKTOPENUMPROC = DESKTOPENUMPROCA;
         pub const OPENFILENAME_NT4 = OPENFILENAME_NT4A;
         pub const OPENFILENAME = OPENFILENAMEA;
         pub const OFNOTIFY = OFNOTIFYA;
@@ -7620,6 +7616,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = PRINTDLGA;
         pub const PRINTDLGEX = PRINTDLGEXA;
         pub const PAGESETUPDLG = PAGESETUPDLGA;
+        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
+        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
+        pub const WINSTAENUMPROC = WINSTAENUMPROCA;
+        pub const DESKTOPENUMPROC = DESKTOPENUMPROCA;
         pub const PROPENUMPROC = PROPENUMPROCA;
         pub const PROPENUMPROCEX = PROPENUMPROCEXA;
         pub const NAMEENUMPROC = NAMEENUMPROCA;
@@ -7633,6 +7633,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MDICREATESTRUCT = MDICREATESTRUCTA;
         pub const NONCLIENTMETRICS = NONCLIENTMETRICSA;
         pub const ICONMETRICS = ICONMETRICSA;
+        pub const GetOpenFileName = GetOpenFileNameA;
+        pub const GetSaveFileName = GetSaveFileNameA;
+        pub const GetFileTitle = GetFileTitleA;
+        pub const ChooseColor = ChooseColorA;
+        pub const FindText = FindTextA;
+        pub const ReplaceText = ReplaceTextA;
+        pub const ChooseFont = ChooseFontA;
+        pub const PrintDlg = PrintDlgA;
+        pub const PrintDlgEx = PrintDlgExA;
+        pub const PageSetupDlg = PageSetupDlgA;
         pub const lstrcmp = lstrcmpA;
         pub const lstrcmpi = lstrcmpiA;
         pub const lstrcpyn = lstrcpynA;
@@ -7648,16 +7658,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = EnumResourceLanguagesExA;
         pub const EnumResourceNamesEx = EnumResourceNamesExA;
         pub const EnumResourceTypesEx = EnumResourceTypesExA;
-        pub const GetOpenFileName = GetOpenFileNameA;
-        pub const GetSaveFileName = GetSaveFileNameA;
-        pub const GetFileTitle = GetFileTitleA;
-        pub const ChooseColor = ChooseColorA;
-        pub const FindText = FindTextA;
-        pub const ReplaceText = ReplaceTextA;
-        pub const ChooseFont = ChooseFontA;
-        pub const PrintDlg = PrintDlgA;
-        pub const PrintDlgEx = PrintDlgExA;
-        pub const PageSetupDlg = PageSetupDlgA;
         pub const wvsprintf = wvsprintfA;
         pub const wsprintf = wsprintfA;
         pub const RegisterWindowMessage = RegisterWindowMessageA;
@@ -7760,10 +7760,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const VerQueryValue = VerQueryValueA;
     },
     .wide => struct {
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
-        pub const WINSTAENUMPROC = WINSTAENUMPROCW;
-        pub const DESKTOPENUMPROC = DESKTOPENUMPROCW;
         pub const OPENFILENAME_NT4 = OPENFILENAME_NT4W;
         pub const OPENFILENAME = OPENFILENAMEW;
         pub const OFNOTIFY = OFNOTIFYW;
@@ -7774,6 +7770,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = PRINTDLGW;
         pub const PRINTDLGEX = PRINTDLGEXW;
         pub const PAGESETUPDLG = PAGESETUPDLGW;
+        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
+        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
+        pub const WINSTAENUMPROC = WINSTAENUMPROCW;
+        pub const DESKTOPENUMPROC = DESKTOPENUMPROCW;
         pub const PROPENUMPROC = PROPENUMPROCW;
         pub const PROPENUMPROCEX = PROPENUMPROCEXW;
         pub const NAMEENUMPROC = NAMEENUMPROCW;
@@ -7787,6 +7787,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MDICREATESTRUCT = MDICREATESTRUCTW;
         pub const NONCLIENTMETRICS = NONCLIENTMETRICSW;
         pub const ICONMETRICS = ICONMETRICSW;
+        pub const GetOpenFileName = GetOpenFileNameW;
+        pub const GetSaveFileName = GetSaveFileNameW;
+        pub const GetFileTitle = GetFileTitleW;
+        pub const ChooseColor = ChooseColorW;
+        pub const FindText = FindTextW;
+        pub const ReplaceText = ReplaceTextW;
+        pub const ChooseFont = ChooseFontW;
+        pub const PrintDlg = PrintDlgW;
+        pub const PrintDlgEx = PrintDlgExW;
+        pub const PageSetupDlg = PageSetupDlgW;
         pub const lstrcmp = lstrcmpW;
         pub const lstrcmpi = lstrcmpiW;
         pub const lstrcpyn = lstrcpynW;
@@ -7802,16 +7812,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = EnumResourceLanguagesExW;
         pub const EnumResourceNamesEx = EnumResourceNamesExW;
         pub const EnumResourceTypesEx = EnumResourceTypesExW;
-        pub const GetOpenFileName = GetOpenFileNameW;
-        pub const GetSaveFileName = GetSaveFileNameW;
-        pub const GetFileTitle = GetFileTitleW;
-        pub const ChooseColor = ChooseColorW;
-        pub const FindText = FindTextW;
-        pub const ReplaceText = ReplaceTextW;
-        pub const ChooseFont = ChooseFontW;
-        pub const PrintDlg = PrintDlgW;
-        pub const PrintDlgEx = PrintDlgExW;
-        pub const PageSetupDlg = PageSetupDlgW;
         pub const wvsprintf = wvsprintfW;
         pub const wsprintf = wsprintfW;
         pub const RegisterWindowMessage = RegisterWindowMessageW;
@@ -7914,10 +7914,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const VerQueryValue = VerQueryValueW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ENUMRESNAMEPROC = *opaque{};
-        pub const ENUMRESTYPEPROC = *opaque{};
-        pub const WINSTAENUMPROC = *opaque{};
-        pub const DESKTOPENUMPROC = *opaque{};
         pub const OPENFILENAME_NT4 = *opaque{};
         pub const OPENFILENAME = *opaque{};
         pub const OFNOTIFY = *opaque{};
@@ -7928,6 +7924,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = *opaque{};
         pub const PRINTDLGEX = *opaque{};
         pub const PAGESETUPDLG = *opaque{};
+        pub const ENUMRESNAMEPROC = *opaque{};
+        pub const ENUMRESTYPEPROC = *opaque{};
+        pub const WINSTAENUMPROC = *opaque{};
+        pub const DESKTOPENUMPROC = *opaque{};
         pub const PROPENUMPROC = *opaque{};
         pub const PROPENUMPROCEX = *opaque{};
         pub const NAMEENUMPROC = *opaque{};
@@ -7941,6 +7941,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MDICREATESTRUCT = *opaque{};
         pub const NONCLIENTMETRICS = *opaque{};
         pub const ICONMETRICS = *opaque{};
+        pub const GetOpenFileName = *opaque{};
+        pub const GetSaveFileName = *opaque{};
+        pub const GetFileTitle = *opaque{};
+        pub const ChooseColor = *opaque{};
+        pub const FindText = *opaque{};
+        pub const ReplaceText = *opaque{};
+        pub const ChooseFont = *opaque{};
+        pub const PrintDlg = *opaque{};
+        pub const PrintDlgEx = *opaque{};
+        pub const PageSetupDlg = *opaque{};
         pub const lstrcmp = *opaque{};
         pub const lstrcmpi = *opaque{};
         pub const lstrcpyn = *opaque{};
@@ -7956,16 +7966,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = *opaque{};
         pub const EnumResourceNamesEx = *opaque{};
         pub const EnumResourceTypesEx = *opaque{};
-        pub const GetOpenFileName = *opaque{};
-        pub const GetSaveFileName = *opaque{};
-        pub const GetFileTitle = *opaque{};
-        pub const ChooseColor = *opaque{};
-        pub const FindText = *opaque{};
-        pub const ReplaceText = *opaque{};
-        pub const ChooseFont = *opaque{};
-        pub const PrintDlg = *opaque{};
-        pub const PrintDlgEx = *opaque{};
-        pub const PageSetupDlg = *opaque{};
         pub const wvsprintf = *opaque{};
         pub const wsprintf = *opaque{};
         pub const RegisterWindowMessage = *opaque{};
@@ -8067,10 +8067,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const VerLanguageName = *opaque{};
         pub const VerQueryValue = *opaque{};
     } else struct {
-        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const OPENFILENAME_NT4 = @compileError("'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module");
         pub const OPENFILENAME = @compileError("'OPENFILENAME' requires that UNICODE be set to true or false in the root module");
         pub const OFNOTIFY = @compileError("'OFNOTIFY' requires that UNICODE be set to true or false in the root module");
@@ -8081,6 +8077,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PRINTDLG = @compileError("'PRINTDLG' requires that UNICODE be set to true or false in the root module");
         pub const PRINTDLGEX = @compileError("'PRINTDLGEX' requires that UNICODE be set to true or false in the root module");
         pub const PAGESETUPDLG = @compileError("'PAGESETUPDLG' requires that UNICODE be set to true or false in the root module");
+        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
+        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
+        pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
+        pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const PROPENUMPROC = @compileError("'PROPENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const PROPENUMPROCEX = @compileError("'PROPENUMPROCEX' requires that UNICODE be set to true or false in the root module");
         pub const NAMEENUMPROC = @compileError("'NAMEENUMPROC' requires that UNICODE be set to true or false in the root module");
@@ -8094,6 +8094,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MDICREATESTRUCT = @compileError("'MDICREATESTRUCT' requires that UNICODE be set to true or false in the root module");
         pub const NONCLIENTMETRICS = @compileError("'NONCLIENTMETRICS' requires that UNICODE be set to true or false in the root module");
         pub const ICONMETRICS = @compileError("'ICONMETRICS' requires that UNICODE be set to true or false in the root module");
+        pub const GetOpenFileName = @compileError("'GetOpenFileName' requires that UNICODE be set to true or false in the root module");
+        pub const GetSaveFileName = @compileError("'GetSaveFileName' requires that UNICODE be set to true or false in the root module");
+        pub const GetFileTitle = @compileError("'GetFileTitle' requires that UNICODE be set to true or false in the root module");
+        pub const ChooseColor = @compileError("'ChooseColor' requires that UNICODE be set to true or false in the root module");
+        pub const FindText = @compileError("'FindText' requires that UNICODE be set to true or false in the root module");
+        pub const ReplaceText = @compileError("'ReplaceText' requires that UNICODE be set to true or false in the root module");
+        pub const ChooseFont = @compileError("'ChooseFont' requires that UNICODE be set to true or false in the root module");
+        pub const PrintDlg = @compileError("'PrintDlg' requires that UNICODE be set to true or false in the root module");
+        pub const PrintDlgEx = @compileError("'PrintDlgEx' requires that UNICODE be set to true or false in the root module");
+        pub const PageSetupDlg = @compileError("'PageSetupDlg' requires that UNICODE be set to true or false in the root module");
         pub const lstrcmp = @compileError("'lstrcmp' requires that UNICODE be set to true or false in the root module");
         pub const lstrcmpi = @compileError("'lstrcmpi' requires that UNICODE be set to true or false in the root module");
         pub const lstrcpyn = @compileError("'lstrcpyn' requires that UNICODE be set to true or false in the root module");
@@ -8109,16 +8119,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
         pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
         pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetOpenFileName = @compileError("'GetOpenFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSaveFileName = @compileError("'GetSaveFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileTitle = @compileError("'GetFileTitle' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseColor = @compileError("'ChooseColor' requires that UNICODE be set to true or false in the root module");
-        pub const FindText = @compileError("'FindText' requires that UNICODE be set to true or false in the root module");
-        pub const ReplaceText = @compileError("'ReplaceText' requires that UNICODE be set to true or false in the root module");
-        pub const ChooseFont = @compileError("'ChooseFont' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlg = @compileError("'PrintDlg' requires that UNICODE be set to true or false in the root module");
-        pub const PrintDlgEx = @compileError("'PrintDlgEx' requires that UNICODE be set to true or false in the root module");
-        pub const PageSetupDlg = @compileError("'PageSetupDlg' requires that UNICODE be set to true or false in the root module");
         pub const wvsprintf = @compileError("'wvsprintf' requires that UNICODE be set to true or false in the root module");
         pub const wsprintf = @compileError("'wsprintf' requires that UNICODE be set to true or false in the root module");
         pub const RegisterWindowMessage = @compileError("'RegisterWindowMessage' requires that UNICODE be set to true or false in the root module");
@@ -8244,9 +8244,9 @@ const PWSTR = @import("system_services.zig").PWSTR;
 const HDESK = @import("windows_stations_and_desktops.zig").HDESK;
 const IUnknown = @import("com.zig").IUnknown;
 const SCROLLBAR_OBJID = @import("controls.zig").SCROLLBAR_OBJID;
+const HBITMAP = @import("gdi.zig").HBITMAP;
 const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
-const HBITMAP = @import("gdi.zig").HBITMAP;
 const DPI_AWARENESS_CONTEXT = @import("system_services.zig").DPI_AWARENESS_CONTEXT;
 const ENUMRESLANGPROCA = @import("system_services.zig").ENUMRESLANGPROCA;
 const ENUMRESLANGPROCW = @import("system_services.zig").ENUMRESLANGPROCW;
@@ -8260,14 +8260,6 @@ const HCURSOR = @import("menus_and_resources.zig").HCURSOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = ENUMRESNAMEPROCA;
-    _ = ENUMRESNAMEPROCW;
-    _ = ENUMRESTYPEPROCA;
-    _ = ENUMRESTYPEPROCW;
-    _ = WINSTAENUMPROCA;
-    _ = WINSTAENUMPROCW;
-    _ = DESKTOPENUMPROCA;
-    _ = DESKTOPENUMPROCW;
     _ = LPOFNHOOKPROC;
     _ = LPCCHOOKPROC;
     _ = LPFRHOOKPROC;
@@ -8276,6 +8268,14 @@ test {
     _ = LPSETUPHOOKPROC;
     _ = LPPAGEPAINTHOOK;
     _ = LPPAGESETUPHOOK;
+    _ = ENUMRESNAMEPROCA;
+    _ = ENUMRESNAMEPROCW;
+    _ = ENUMRESTYPEPROCA;
+    _ = ENUMRESTYPEPROCW;
+    _ = WINSTAENUMPROCA;
+    _ = WINSTAENUMPROCW;
+    _ = DESKTOPENUMPROCA;
+    _ = DESKTOPENUMPROCW;
     _ = WNDPROC;
     _ = DLGPROC;
     _ = TIMERPROC;

@@ -2,30 +2,30 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (24)
 //--------------------------------------------------------------------------------
-pub const RDCE_TABLE_FULL : u32 = 2147745793;
-pub const RDCE_TABLE_CORRUPT : u32 = 2147745794;
-pub const MSRDC_SIGNATURE_HASHSIZE : u32 = 16;
-pub const SimilarityFileIdMinSize : u32 = 4;
-pub const SimilarityFileIdMaxSize : u32 = 32;
-pub const MSRDC_VERSION : u32 = 65536;
-pub const MSRDC_MINIMUM_COMPATIBLE_APP_VERSION : u32 = 65536;
-pub const MSRDC_MINIMUM_DEPTH : u32 = 1;
-pub const MSRDC_MAXIMUM_DEPTH : u32 = 8;
-pub const MSRDC_MINIMUM_COMPAREBUFFER : u32 = 100000;
-pub const MSRDC_MAXIMUM_COMPAREBUFFER : u32 = 1073741824;
-pub const MSRDC_DEFAULT_COMPAREBUFFER : u32 = 3200000;
-pub const MSRDC_MINIMUM_INPUTBUFFERSIZE : u32 = 1024;
-pub const MSRDC_MINIMUM_HORIZONSIZE : u32 = 128;
-pub const MSRDC_MAXIMUM_HORIZONSIZE : u32 = 16384;
-pub const MSRDC_MINIMUM_HASHWINDOWSIZE : u32 = 2;
-pub const MSRDC_MAXIMUM_HASHWINDOWSIZE : u32 = 96;
-pub const MSRDC_DEFAULT_HASHWINDOWSIZE_1 : u32 = 48;
-pub const MSRDC_DEFAULT_HORIZONSIZE_1 : u32 = 1024;
-pub const MSRDC_DEFAULT_HASHWINDOWSIZE_N : u32 = 2;
-pub const MSRDC_DEFAULT_HORIZONSIZE_N : u32 = 128;
-pub const MSRDC_MAXIMUM_TRAITVALUE : u32 = 63;
-pub const MSRDC_MINIMUM_MATCHESREQUIRED : u32 = 1;
-pub const MSRDC_MAXIMUM_MATCHESREQUIRED : u32 = 16;
+pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
+pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
+pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
+pub const SimilarityFileIdMinSize = @as(u32, 4);
+pub const SimilarityFileIdMaxSize = @as(u32, 32);
+pub const MSRDC_VERSION = @as(u32, 65536);
+pub const MSRDC_MINIMUM_COMPATIBLE_APP_VERSION = @as(u32, 65536);
+pub const MSRDC_MINIMUM_DEPTH = @as(u32, 1);
+pub const MSRDC_MAXIMUM_DEPTH = @as(u32, 8);
+pub const MSRDC_MINIMUM_COMPAREBUFFER = @as(u32, 100000);
+pub const MSRDC_MAXIMUM_COMPAREBUFFER = @as(u32, 1073741824);
+pub const MSRDC_DEFAULT_COMPAREBUFFER = @as(u32, 3200000);
+pub const MSRDC_MINIMUM_INPUTBUFFERSIZE = @as(u32, 1024);
+pub const MSRDC_MINIMUM_HORIZONSIZE = @as(u32, 128);
+pub const MSRDC_MAXIMUM_HORIZONSIZE = @as(u32, 16384);
+pub const MSRDC_MINIMUM_HASHWINDOWSIZE = @as(u32, 2);
+pub const MSRDC_MAXIMUM_HASHWINDOWSIZE = @as(u32, 96);
+pub const MSRDC_DEFAULT_HASHWINDOWSIZE_1 = @as(u32, 48);
+pub const MSRDC_DEFAULT_HORIZONSIZE_1 = @as(u32, 1024);
+pub const MSRDC_DEFAULT_HASHWINDOWSIZE_N = @as(u32, 2);
+pub const MSRDC_DEFAULT_HORIZONSIZE_N = @as(u32, 128);
+pub const MSRDC_MAXIMUM_TRAITVALUE = @as(u32, 63);
+pub const MSRDC_MINIMUM_MATCHESREQUIRED = @as(u32, 1);
+pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (48)

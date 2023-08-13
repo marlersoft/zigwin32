@@ -2,16 +2,16 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (10)
 //--------------------------------------------------------------------------------
-pub const VIRTUAL_STORAGE_TYPE_VENDOR_MICROSOFT = @import("../zig.zig").Guid.initString("ec984aec-a0f9-47e9-901f-71415a66345b");
-pub const VIRTUAL_STORAGE_TYPE_DEVICE_UNKNOWN : u32 = 0;
-pub const VIRTUAL_STORAGE_TYPE_DEVICE_ISO : u32 = 1;
-pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHD : u32 = 2;
-pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHDX : u32 = 3;
-pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHDSET : u32 = 4;
-pub const OPEN_VIRTUAL_DISK_RW_DEPTH_DEFAULT : u32 = 1;
-pub const CREATE_VIRTUAL_DISK_PARAMETERS_DEFAULT_SECTOR_SIZE : u32 = 0;
-pub const VIRTUAL_DISK_MAXIMUM_CHANGE_TRACKING_ID_LENGTH : u32 = 256;
-pub const MERGE_VIRTUAL_DISK_DEFAULT_MERGE_DEPTH : u32 = 1;
+pub const VIRTUAL_STORAGE_TYPE_VENDOR_MICROSOFT = Guid.initString("ec984aec-a0f9-47e9-901f-71415a66345b");
+pub const VIRTUAL_STORAGE_TYPE_DEVICE_UNKNOWN = @as(u32, 0);
+pub const VIRTUAL_STORAGE_TYPE_DEVICE_ISO = @as(u32, 1);
+pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHD = @as(u32, 2);
+pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHDX = @as(u32, 3);
+pub const VIRTUAL_STORAGE_TYPE_DEVICE_VHDSET = @as(u32, 4);
+pub const OPEN_VIRTUAL_DISK_RW_DEPTH_DEFAULT = @as(u32, 1);
+pub const CREATE_VIRTUAL_DISK_PARAMETERS_DEFAULT_SECTOR_SIZE = @as(u32, 0);
+pub const VIRTUAL_DISK_MAXIMUM_CHANGE_TRACKING_ID_LENGTH = @as(u32, 256);
+pub const MERGE_VIRTUAL_DISK_DEFAULT_MERGE_DEPTH = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (60)

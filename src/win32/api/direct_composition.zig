@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const COMPOSITIONOBJECT_READ : i32 = 1;
-pub const COMPOSITIONOBJECT_WRITE : i32 = 2;
+pub const COMPOSITIONOBJECT_READ = @as(i32, 1);
+pub const COMPOSITIONOBJECT_WRITE = @as(i32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (50)

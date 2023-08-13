@@ -2,112 +2,21 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (11)
 //--------------------------------------------------------------------------------
-pub const EVCF_HASSETTINGS : u32 = 1;
-pub const EVCF_ENABLEBYDEFAULT : u32 = 2;
-pub const EVCF_REMOVEFROMLIST : u32 = 4;
-pub const EVCF_ENABLEBYDEFAULT_AUTO : u32 = 8;
-pub const EVCF_DONTSHOWIFZERO : u32 = 16;
-pub const EVCF_SETTINGSMODE : u32 = 32;
-pub const EVCF_OUTOFDISKSPACE : u32 = 64;
-pub const EVCF_USERCONSENTOBTAINED : u32 = 128;
-pub const EVCF_SYSTEMAUTORUN : u32 = 256;
-pub const EVCCBF_LASTNOTIFICATION : u32 = 1;
-pub const STATEBITS_FLAT : u32 = 1;
+pub const EVCF_HASSETTINGS = @as(u32, 1);
+pub const EVCF_ENABLEBYDEFAULT = @as(u32, 2);
+pub const EVCF_REMOVEFROMLIST = @as(u32, 4);
+pub const EVCF_ENABLEBYDEFAULT_AUTO = @as(u32, 8);
+pub const EVCF_DONTSHOWIFZERO = @as(u32, 16);
+pub const EVCF_SETTINGSMODE = @as(u32, 32);
+pub const EVCF_OUTOFDISKSPACE = @as(u32, 64);
+pub const EVCF_USERCONSENTOBTAINED = @as(u32, 128);
+pub const EVCF_SYSTEMAUTORUN = @as(u32, 256);
+pub const EVCCBF_LASTNOTIFICATION = @as(u32, 1);
+pub const STATEBITS_FLAT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
-pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
-pub const IActiveDesktopP = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetSafeMode: fn(
-            self: *const IActiveDesktopP,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnsureUpdateHTML: fn(
-            self: *const IActiveDesktopP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetScheme: fn(
-            self: *const IActiveDesktopP,
-            pwszSchemeName: [*:0]const u16,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScheme: fn(
-            self: *const IActiveDesktopP,
-            pwszSchemeName: [*:0]u16,
-            pdwcchBuffer: *u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetSafeMode(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetSafeMode(@ptrCast(*const IActiveDesktopP, self), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_EnsureUpdateHTML(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).EnsureUpdateHTML(@ptrCast(*const IActiveDesktopP, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetScheme(self: *const T, pwszSchemeName: [*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_GetScheme(self: *const T, pwszSchemeName: [*:0]u16, pdwcchBuffer: *u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).GetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, pdwcchBuffer, dwFlags);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IADesktopP2_Value = @import("../zig.zig").Guid.initString("b22754e2-4574-11d1-9888-006097deacf9");
-pub const IID_IADesktopP2 = &IID_IADesktopP2_Value;
-pub const IADesktopP2 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReReadWallpaper: fn(
-            self: *const IADesktopP2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetADObjectFlags: fn(
-            self: *const IADesktopP2,
-            pdwFlags: *u32,
-            dwMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateAllDesktopSubscriptions: fn(
-            self: *const IADesktopP2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MakeDynamicChanges: fn(
-            self: *const IADesktopP2,
-            pOleObj: *IOleObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_ReReadWallpaper(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).ReReadWallpaper(@ptrCast(*const IADesktopP2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_GetADObjectFlags(self: *const T, pdwFlags: *u32, dwMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).GetADObjectFlags(@ptrCast(*const IADesktopP2, self), pdwFlags, dwMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_UpdateAllDesktopSubscriptions(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).UpdateAllDesktopSubscriptions(@ptrCast(*const IADesktopP2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_MakeDynamicChanges(self: *const T, pOleObj: *IOleObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).MakeDynamicChanges(@ptrCast(*const IADesktopP2, self), pOleObj);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 const IID_IEmptyVolumeCacheCallBack_Value = @import("../zig.zig").Guid.initString("6e793361-73c6-11d0-8469-00aa00442901");
 pub const IID_IEmptyVolumeCacheCallBack = &IID_IEmptyVolumeCacheCallBack_Value;
 pub const IEmptyVolumeCacheCallBack = extern struct {
@@ -341,6 +250,97 @@ pub const _ColumnSortOrder = extern enum(i32) {
 };
 pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
 pub const SortOrder_Descending = _ColumnSortOrder.Descending;
+
+const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
+pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
+pub const IActiveDesktopP = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetSafeMode: fn(
+            self: *const IActiveDesktopP,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnsureUpdateHTML: fn(
+            self: *const IActiveDesktopP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScheme: fn(
+            self: *const IActiveDesktopP,
+            pwszSchemeName: [*:0]const u16,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScheme: fn(
+            self: *const IActiveDesktopP,
+            pwszSchemeName: [*:0]u16,
+            pdwcchBuffer: *u32,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveDesktopP_SetSafeMode(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetSafeMode(@ptrCast(*const IActiveDesktopP, self), dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveDesktopP_EnsureUpdateHTML(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).EnsureUpdateHTML(@ptrCast(*const IActiveDesktopP, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveDesktopP_SetScheme(self: *const T, pwszSchemeName: [*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveDesktopP_GetScheme(self: *const T, pwszSchemeName: [*:0]u16, pdwcchBuffer: *u32, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).GetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, pdwcchBuffer, dwFlags);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IADesktopP2_Value = @import("../zig.zig").Guid.initString("b22754e2-4574-11d1-9888-006097deacf9");
+pub const IID_IADesktopP2 = &IID_IADesktopP2_Value;
+pub const IADesktopP2 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReReadWallpaper: fn(
+            self: *const IADesktopP2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetADObjectFlags: fn(
+            self: *const IADesktopP2,
+            pdwFlags: *u32,
+            dwMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateAllDesktopSubscriptions: fn(
+            self: *const IADesktopP2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MakeDynamicChanges: fn(
+            self: *const IADesktopP2,
+            pOleObj: *IOleObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IADesktopP2_ReReadWallpaper(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IADesktopP2.VTable, self.vtable).ReReadWallpaper(@ptrCast(*const IADesktopP2, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IADesktopP2_GetADObjectFlags(self: *const T, pdwFlags: *u32, dwMask: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IADesktopP2.VTable, self.vtable).GetADObjectFlags(@ptrCast(*const IADesktopP2, self), pdwFlags, dwMask);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IADesktopP2_UpdateAllDesktopSubscriptions(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IADesktopP2.VTable, self.vtable).UpdateAllDesktopSubscriptions(@ptrCast(*const IADesktopP2, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IADesktopP2_MakeDynamicChanges(self: *const T, pOleObj: *IOleObject) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IADesktopP2.VTable, self.vtable).MakeDynamicChanges(@ptrCast(*const IADesktopP2, self), pOleObj);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
 
 //--------------------------------------------------------------------------------

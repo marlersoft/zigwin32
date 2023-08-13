@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const NETCON_MAX_NAME_LEN : u32 = 256;
-pub const S_OBJECT_NO_LONGER_VALID : i32 = 2;
-pub const NETISO_GEID_FOR_WDAG : u32 = 1;
-pub const NETISO_GEID_FOR_NEUTRAL_AWARE : u32 = 2;
+pub const NETCON_MAX_NAME_LEN = @as(u32, 256);
+pub const S_OBJECT_NO_LONGER_VALID = @import("../zig.zig").typedConst(HRESULT, @as(i32, 2));
+pub const NETISO_GEID_FOR_WDAG = @as(u32, 1);
+pub const NETISO_GEID_FOR_NEUTRAL_AWARE = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (86)

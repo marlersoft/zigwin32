@@ -2,19 +2,19 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (13)
 //--------------------------------------------------------------------------------
-pub const GPM_USE_PDC : u32 = 0;
-pub const GPM_USE_ANYDC : u32 = 1;
-pub const GPM_DONOTUSE_W2KDC : u32 = 2;
-pub const GPM_DONOT_VALIDATEDC : u32 = 1;
-pub const GPM_MIGRATIONTABLE_ONLY : u32 = 1;
-pub const GPM_PROCESS_SECURITY : u32 = 2;
-pub const RSOP_NO_COMPUTER : u32 = 65536;
-pub const RSOP_NO_USER : u32 = 131072;
-pub const RSOP_PLANNING_ASSUME_SLOW_LINK : u32 = 1;
-pub const RSOP_PLANNING_ASSUME_LOOPBACK_MERGE : u32 = 2;
-pub const RSOP_PLANNING_ASSUME_LOOPBACK_REPLACE : u32 = 4;
-pub const RSOP_PLANNING_ASSUME_USER_WQLFILTER_TRUE : u32 = 8;
-pub const RSOP_PLANNING_ASSUME_COMP_WQLFILTER_TRUE : u32 = 16;
+pub const GPM_USE_PDC = @as(u32, 0);
+pub const GPM_USE_ANYDC = @as(u32, 1);
+pub const GPM_DONOTUSE_W2KDC = @as(u32, 2);
+pub const GPM_DONOT_VALIDATEDC = @as(u32, 1);
+pub const GPM_MIGRATIONTABLE_ONLY = @as(u32, 1);
+pub const GPM_PROCESS_SECURITY = @as(u32, 2);
+pub const RSOP_NO_COMPUTER = @as(u32, 65536);
+pub const RSOP_NO_USER = @as(u32, 131072);
+pub const RSOP_PLANNING_ASSUME_SLOW_LINK = @as(u32, 1);
+pub const RSOP_PLANNING_ASSUME_LOOPBACK_MERGE = @as(u32, 2);
+pub const RSOP_PLANNING_ASSUME_LOOPBACK_REPLACE = @as(u32, 4);
+pub const RSOP_PLANNING_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 8);
+pub const RSOP_PLANNING_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (86)

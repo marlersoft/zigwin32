@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const FILTER_NAME_MAX_CHARS : u32 = 255;
-pub const VOLUME_NAME_MAX_CHARS : u32 = 1024;
-pub const INSTANCE_NAME_MAX_CHARS : u32 = 255;
-pub const FLT_PORT_FLAG_SYNC_HANDLE : u32 = 1;
+pub const FILTER_NAME_MAX_CHARS = @as(u32, 255);
+pub const VOLUME_NAME_MAX_CHARS = @as(u32, 1024);
+pub const INSTANCE_NAME_MAX_CHARS = @as(u32, 255);
+pub const FLT_PORT_FLAG_SYNC_HANDLE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (21)

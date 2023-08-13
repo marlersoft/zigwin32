@@ -2,22 +2,22 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (16)
 //--------------------------------------------------------------------------------
-pub const PACKAGE_PROPERTY_FRAMEWORK : u32 = 1;
-pub const PACKAGE_PROPERTY_RESOURCE : u32 = 2;
-pub const PACKAGE_PROPERTY_BUNDLE : u32 = 4;
-pub const PACKAGE_PROPERTY_OPTIONAL : u32 = 8;
-pub const PACKAGE_FILTER_HEAD : u32 = 16;
-pub const PACKAGE_FILTER_DIRECT : u32 = 32;
-pub const PACKAGE_FILTER_RESOURCE : u32 = 64;
-pub const PACKAGE_FILTER_BUNDLE : u32 = 128;
-pub const PACKAGE_INFORMATION_BASIC : u32 = 0;
-pub const PACKAGE_INFORMATION_FULL : u32 = 256;
-pub const PACKAGE_PROPERTY_DEVELOPMENT_MODE : u32 = 65536;
-pub const PACKAGE_FILTER_OPTIONAL : u32 = 131072;
-pub const PACKAGE_PROPERTY_IS_IN_RELATED_SET : u32 = 262144;
-pub const PACKAGE_PROPERTY_STATIC : u32 = 524288;
-pub const PACKAGE_PROPERTY_DYNAMIC : u32 = 1048576;
-pub const PACKAGE_FILTER_ALL_LOADED : u32 = 0;
+pub const PACKAGE_PROPERTY_FRAMEWORK = @as(u32, 1);
+pub const PACKAGE_PROPERTY_RESOURCE = @as(u32, 2);
+pub const PACKAGE_PROPERTY_BUNDLE = @as(u32, 4);
+pub const PACKAGE_PROPERTY_OPTIONAL = @as(u32, 8);
+pub const PACKAGE_FILTER_HEAD = @as(u32, 16);
+pub const PACKAGE_FILTER_DIRECT = @as(u32, 32);
+pub const PACKAGE_FILTER_RESOURCE = @as(u32, 64);
+pub const PACKAGE_FILTER_BUNDLE = @as(u32, 128);
+pub const PACKAGE_INFORMATION_BASIC = @as(u32, 0);
+pub const PACKAGE_INFORMATION_FULL = @as(u32, 256);
+pub const PACKAGE_PROPERTY_DEVELOPMENT_MODE = @as(u32, 65536);
+pub const PACKAGE_FILTER_OPTIONAL = @as(u32, 131072);
+pub const PACKAGE_PROPERTY_IS_IN_RELATED_SET = @as(u32, 262144);
+pub const PACKAGE_PROPERTY_STATIC = @as(u32, 524288);
+pub const PACKAGE_PROPERTY_DYNAMIC = @as(u32, 1048576);
+pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (118)

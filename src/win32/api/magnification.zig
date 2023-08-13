@@ -2,11 +2,11 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (5)
 //--------------------------------------------------------------------------------
-pub const MS_SHOWMAGNIFIEDCURSOR : i32 = 1;
-pub const MS_CLIPAROUNDCURSOR : i32 = 2;
-pub const MS_INVERTCOLORS : i32 = 4;
-pub const MW_FILTERMODE_EXCLUDE : u32 = 0;
-pub const MW_FILTERMODE_INCLUDE : u32 = 1;
+pub const MS_SHOWMAGNIFIEDCURSOR = @as(i32, 1);
+pub const MS_CLIPAROUNDCURSOR = @as(i32, 2);
+pub const MS_INVERTCOLORS = @as(i32, 4);
+pub const MW_FILTERMODE_EXCLUDE = @as(u32, 0);
+pub const MW_FILTERMODE_INCLUDE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (4)

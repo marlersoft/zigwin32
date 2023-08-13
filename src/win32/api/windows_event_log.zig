@@ -2,12 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const EVT_VARIANT_TYPE_MASK : u32 = 127;
-pub const EVT_VARIANT_TYPE_ARRAY : u32 = 128;
-pub const EVT_READ_ACCESS : u32 = 1;
-pub const EVT_WRITE_ACCESS : u32 = 2;
-pub const EVT_CLEAR_ACCESS : u32 = 4;
-pub const EVT_ALL_ACCESS : u32 = 7;
+pub const EVT_VARIANT_TYPE_MASK = @as(u32, 127);
+pub const EVT_VARIANT_TYPE_ARRAY = @as(u32, 128);
+pub const EVT_READ_ACCESS = @as(u32, 1);
+pub const EVT_WRITE_ACCESS = @as(u32, 2);
+pub const EVT_CLEAR_ACCESS = @as(u32, 4);
+pub const EVT_ALL_ACCESS = @as(u32, 7);
 
 //--------------------------------------------------------------------------------
 // Section: Types (27)

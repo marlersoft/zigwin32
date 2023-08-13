@@ -2,12 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const E_XML_NOTWF : i32 = -1072897501;
-pub const E_XML_NODTD : i32 = -1072897500;
-pub const E_XML_INVALID : i32 = -1072897499;
-pub const E_XML_BUFFERTOOSMALL : i32 = -1072897498;
-pub const XHR_PROP_ONDATA_ALWAYS : u32 = 0;
-pub const XHR_PROP_ONDATA_NEVER : u64 = 18446744073709551615;
+pub const E_XML_NOTWF = @as(i32, -1072897501);
+pub const E_XML_NODTD = @as(i32, -1072897500);
+pub const E_XML_INVALID = @as(i32, -1072897499);
+pub const E_XML_BUFFERTOOSMALL = @as(i32, -1072897498);
+pub const XHR_PROP_ONDATA_ALWAYS = @as(u32, 0);
+pub const XHR_PROP_ONDATA_NEVER = @as(u64, 18446744073709551615);
 
 //--------------------------------------------------------------------------------
 // Section: Types (90)

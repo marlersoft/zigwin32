@@ -2,297 +2,297 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (288)
 //--------------------------------------------------------------------------------
-pub const CATID_ActiveScript = @import("../zig.zig").Guid.initString("f0b7a1a1-9847-11cf-8f20-00805f2cd064");
-pub const CATID_ActiveScriptParse = @import("../zig.zig").Guid.initString("f0b7a1a2-9847-11cf-8f20-00805f2cd064");
-pub const CATID_ActiveScriptEncode = @import("../zig.zig").Guid.initString("f0b7a1a3-9847-11cf-8f20-00805f2cd064");
-pub const OID_VBSSIP = @import("../zig.zig").Guid.initString("1629f04e-2799-4db5-8fe5-ace10f17ebab");
-pub const OID_JSSIP = @import("../zig.zig").Guid.initString("06c9e010-38ce-11d4-a2a3-00104bd35090");
-pub const OID_WSFSIP = @import("../zig.zig").Guid.initString("1a610570-38ce-11d4-a2a3-00104bd35090");
-pub const SCRIPTITEM_ISVISIBLE : u32 = 2;
-pub const SCRIPTITEM_ISSOURCE : u32 = 4;
-pub const SCRIPTITEM_GLOBALMEMBERS : u32 = 8;
-pub const SCRIPTITEM_ISPERSISTENT : u32 = 64;
-pub const SCRIPTITEM_CODEONLY : u32 = 512;
-pub const SCRIPTITEM_NOCODE : u32 = 1024;
-pub const SCRIPTTYPELIB_ISCONTROL : u32 = 16;
-pub const SCRIPTTYPELIB_ISPERSISTENT : u32 = 64;
-pub const SCRIPTTEXT_DELAYEXECUTION : u32 = 1;
-pub const SCRIPTTEXT_ISVISIBLE : u32 = 2;
-pub const SCRIPTTEXT_ISEXPRESSION : u32 = 32;
-pub const SCRIPTTEXT_ISPERSISTENT : u32 = 64;
-pub const SCRIPTTEXT_HOSTMANAGESSOURCE : u32 = 128;
-pub const SCRIPTTEXT_ISXDOMAIN : u32 = 256;
-pub const SCRIPTTEXT_ISNONUSERCODE : u32 = 512;
-pub const SCRIPTPROC_ISEXPRESSION : u32 = 32;
-pub const SCRIPTPROC_HOSTMANAGESSOURCE : u32 = 128;
-pub const SCRIPTPROC_IMPLICIT_THIS : u32 = 256;
-pub const SCRIPTPROC_IMPLICIT_PARENTS : u32 = 512;
-pub const SCRIPTPROC_ISXDOMAIN : u32 = 1024;
-pub const SCRIPTINFO_IUNKNOWN : u32 = 1;
-pub const SCRIPTINFO_ITYPEINFO : u32 = 2;
-pub const SCRIPTINTERRUPT_DEBUG : u32 = 1;
-pub const SCRIPTINTERRUPT_RAISEEXCEPTION : u32 = 2;
-pub const SCRIPTSTAT_STATEMENT_COUNT : u32 = 1;
-pub const SCRIPTSTAT_INSTRUCTION_COUNT : u32 = 2;
-pub const SCRIPTSTAT_INTSTRUCTION_TIME : u32 = 3;
-pub const SCRIPTSTAT_TOTAL_TIME : u32 = 4;
-pub const SCRIPT_ENCODE_SECTION : u32 = 1;
-pub const SCRIPT_ENCODE_DEFAULT_LANGUAGE : u32 = 1;
-pub const SCRIPT_ENCODE_NO_ASP_LANGUAGE : u32 = 2;
-pub const SCRIPTPROP_NAME : u32 = 0;
-pub const SCRIPTPROP_MAJORVERSION : u32 = 1;
-pub const SCRIPTPROP_MINORVERSION : u32 = 2;
-pub const SCRIPTPROP_BUILDNUMBER : u32 = 3;
-pub const SCRIPTPROP_DELAYEDEVENTSINKING : u32 = 4096;
-pub const SCRIPTPROP_CATCHEXCEPTION : u32 = 4097;
-pub const SCRIPTPROP_CONVERSIONLCID : u32 = 4098;
-pub const SCRIPTPROP_HOSTSTACKREQUIRED : u32 = 4099;
-pub const SCRIPTPROP_SCRIPTSAREFULLYTRUSTED : u32 = 4100;
-pub const SCRIPTPROP_DEBUGGER : u32 = 4352;
-pub const SCRIPTPROP_JITDEBUG : u32 = 4353;
-pub const SCRIPTPROP_GCCONTROLSOFTCLOSE : u32 = 8192;
-pub const SCRIPTPROP_INTEGERMODE : u32 = 12288;
-pub const SCRIPTPROP_STRINGCOMPAREINSTANCE : u32 = 12289;
-pub const SCRIPTPROP_INVOKEVERSIONING : u32 = 16384;
-pub const SCRIPTPROP_HACK_FIBERSUPPORT : u32 = 1879048192;
-pub const SCRIPTPROP_HACK_TRIDENTEVENTSINK : u32 = 1879048193;
-pub const SCRIPTPROP_ABBREVIATE_GLOBALNAME_RESOLUTION : u32 = 1879048194;
-pub const SCRIPTPROP_HOSTKEEPALIVE : u32 = 1879048196;
-pub const SCRIPT_E_RECORDED : i32 = -2040119292;
-pub const SCRIPT_E_REPORTED : i32 = -2147352319;
-pub const SCRIPT_E_PROPAGATE : i32 = -2147352318;
-pub const SID_SEditCommandTarget = @import("../zig.zig").Guid.initString("3050f4b5-98b5-11cf-bb82-00aa00bdce0b");
-pub const CGID_EditStateCommands = @import("../zig.zig").Guid.initString("3050f4b6-98b5-11cf-bb82-00aa00bdce0b");
-pub const SID_SHTMLEditHost = @import("../zig.zig").Guid.initString("3050f6a0-98b5-11cf-bb82-00aa00bdce0b");
-pub const SID_SHTMLEditServices = @import("../zig.zig").Guid.initString("3050f7f9-98b5-11cf-bb82-00aa00bdce0b");
-pub const COOKIEACTION_NONE : u32 = 0;
-pub const COOKIEACTION_ACCEPT : u32 = 1;
-pub const COOKIEACTION_REJECT : u32 = 2;
-pub const COOKIEACTION_DOWNGRADE : u32 = 4;
-pub const COOKIEACTION_LEASH : u32 = 8;
-pub const COOKIEACTION_SUPPRESS : u32 = 16;
-pub const COOKIEACTION_READ : u32 = 32;
-pub const PRIVACY_URLISTOPLEVEL : u32 = 65536;
-pub const PRIVACY_URLHASCOMPACTPOLICY : u32 = 131072;
-pub const PRIVACY_URLHASPOSTDATA : u32 = 524288;
-pub const PRIVACY_URLHASPOLICYREFLINK : u32 = 1048576;
-pub const PRIVACY_URLHASPOLICYREFHEADER : u32 = 2097152;
-pub const PRIVACY_URLHASP3PHEADER : u32 = 4194304;
-pub const DEBUGCALLBACKNOTIFICATION_TIMEOUT : u32 = 1;
-pub const DEBUGCALLBACKNOTIFICATION_INTERVAL : u32 = 2;
-pub const DEBUGCALLBACKNOTIFICATION_IMMEDIATE : u32 = 4;
-pub const DEBUGCALLBACKNOTIFICATION_ANIMATIONFRAME : u32 = 8;
-pub const DEBUGCALLBACKNOTIFICATION_DOMEVENT : u32 = 16;
-pub const DEBUGDOMEVENTPROPAGATIONSTATUS_DEFAULTCANCELED : u32 = 1;
-pub const DEBUGDOMEVENTPROPAGATIONSTATUS_STOPIMMEDIATEPROPAGATION : u32 = 2;
-pub const DEBUGDOMEVENTPROPAGATIONSTATUS_STOPPROPAGATION : u32 = 4;
-pub const MINIDUMP_VERSION : u32 = 42899;
-pub const MINIDUMP_MISC1_PROCESSOR_POWER_INFO : u32 = 4;
-pub const MINIDUMP_MISC3_PROCESS_INTEGRITY : u32 = 16;
-pub const MINIDUMP_MISC3_PROCESS_EXECUTE_FLAGS : u32 = 32;
-pub const MINIDUMP_MISC3_TIMEZONE : u32 = 64;
-pub const MINIDUMP_MISC3_PROTECTED_PROCESS : u32 = 128;
-pub const MINIDUMP_MISC4_BUILDSTRING : u32 = 256;
-pub const MINIDUMP_MISC5_PROCESS_COOKIE : u32 = 512;
-pub const MINIDUMP_SYSMEMINFO1_FILECACHE_TRANSITIONREPURPOSECOUNT_FLAGS : u32 = 1;
-pub const MINIDUMP_SYSMEMINFO1_BASICPERF : u32 = 2;
-pub const MINIDUMP_SYSMEMINFO1_PERF_CCTOTALDIRTYPAGES_CCDIRTYPAGETHRESHOLD : u32 = 4;
-pub const MINIDUMP_SYSMEMINFO1_PERF_RESIDENTAVAILABLEPAGES_SHAREDCOMMITPAGES : u32 = 8;
-pub const MINIDUMP_PROCESS_VM_COUNTERS : u32 = 1;
-pub const MINIDUMP_PROCESS_VM_COUNTERS_VIRTUALSIZE : u32 = 2;
-pub const MINIDUMP_PROCESS_VM_COUNTERS_EX : u32 = 4;
-pub const MINIDUMP_PROCESS_VM_COUNTERS_EX2 : u32 = 8;
-pub const MINIDUMP_PROCESS_VM_COUNTERS_JOB : u32 = 16;
-pub const MAX_SYM_NAME : u32 = 2000;
-pub const ERROR_IMAGE_NOT_STRIPPED : u32 = 34816;
-pub const ERROR_NO_DBG_POINTER : u32 = 34817;
-pub const ERROR_NO_PDB_POINTER : u32 = 34818;
-pub const UNDNAME_COMPLETE : u32 = 0;
-pub const UNDNAME_NO_LEADING_UNDERSCORES : u32 = 1;
-pub const UNDNAME_NO_MS_KEYWORDS : u32 = 2;
-pub const UNDNAME_NO_FUNCTION_RETURNS : u32 = 4;
-pub const UNDNAME_NO_ALLOCATION_MODEL : u32 = 8;
-pub const UNDNAME_NO_ALLOCATION_LANGUAGE : u32 = 16;
-pub const UNDNAME_NO_MS_THISTYPE : u32 = 32;
-pub const UNDNAME_NO_CV_THISTYPE : u32 = 64;
-pub const UNDNAME_NO_THISTYPE : u32 = 96;
-pub const UNDNAME_NO_ACCESS_SPECIFIERS : u32 = 128;
-pub const UNDNAME_NO_THROW_SIGNATURES : u32 = 256;
-pub const UNDNAME_NO_MEMBER_TYPE : u32 = 512;
-pub const UNDNAME_NO_RETURN_UDT_MODEL : u32 = 1024;
-pub const UNDNAME_32_BIT_DECODE : u32 = 2048;
-pub const UNDNAME_NAME_ONLY : u32 = 4096;
-pub const UNDNAME_NO_ARGUMENTS : u32 = 8192;
-pub const UNDNAME_NO_SPECIAL_SYMS : u32 = 16384;
-pub const DBHHEADER_PDBGUID : u32 = 3;
-pub const INLINE_FRAME_CONTEXT_INIT : u32 = 0;
-pub const INLINE_FRAME_CONTEXT_IGNORE : u32 = 4294967295;
-pub const SYM_STKWALK_DEFAULT : u32 = 0;
-pub const SYM_STKWALK_FORCE_FRAMEPTR : u32 = 1;
-pub const API_VERSION_NUMBER : u32 = 12;
-pub const SYMFLAG_NULL : u32 = 524288;
-pub const SYMFLAG_FUNC_NO_RETURN : u32 = 1048576;
-pub const SYMFLAG_SYNTHETIC_ZEROBASE : u32 = 2097152;
-pub const SYMFLAG_PUBLIC_CODE : u32 = 4194304;
-pub const SYMFLAG_REGREL_ALIASINDIR : u32 = 8388608;
-pub const SYMFLAG_RESET : u32 = 2147483648;
-pub const CBA_DEFERRED_SYMBOL_LOAD_START : u32 = 1;
-pub const CBA_DEFERRED_SYMBOL_LOAD_COMPLETE : u32 = 2;
-pub const CBA_DEFERRED_SYMBOL_LOAD_FAILURE : u32 = 3;
-pub const CBA_SYMBOLS_UNLOADED : u32 = 4;
-pub const CBA_DUPLICATE_SYMBOL : u32 = 5;
-pub const CBA_READ_MEMORY : u32 = 6;
-pub const CBA_DEFERRED_SYMBOL_LOAD_CANCEL : u32 = 7;
-pub const CBA_SET_OPTIONS : u32 = 8;
-pub const CBA_EVENT : u32 = 16;
-pub const CBA_DEFERRED_SYMBOL_LOAD_PARTIAL : u32 = 32;
-pub const CBA_DEBUG_INFO : u32 = 268435456;
-pub const CBA_SRCSRV_INFO : u32 = 536870912;
-pub const CBA_SRCSRV_EVENT : u32 = 1073741824;
-pub const CBA_UPDATE_STATUS_BAR : u32 = 1342177280;
-pub const CBA_ENGINE_PRESENT : u32 = 1610612736;
-pub const CBA_CHECK_ENGOPT_DISALLOW_NETWORK_PATHS : u32 = 1879048192;
-pub const CBA_CHECK_ARM_MACHINE_THUMB_TYPE_OVERRIDE : u32 = 2147483648;
-pub const CBA_XML_LOG : u32 = 2415919104;
-pub const EVENT_SRCSPEW_START : u32 = 100;
-pub const EVENT_SRCSPEW : u32 = 100;
-pub const EVENT_SRCSPEW_END : u32 = 199;
-pub const DSLFLAG_MISMATCHED_PDB : u32 = 1;
-pub const DSLFLAG_MISMATCHED_DBG : u32 = 2;
-pub const FLAG_ENGINE_PRESENT : u32 = 4;
-pub const FLAG_ENGOPT_DISALLOW_NETWORK_PATHS : u32 = 8;
-pub const FLAG_OVERRIDE_ARM_MACHINE_TYPE : u32 = 16;
-pub const SYM_INLINE_COMP_ERROR : u32 = 0;
-pub const SYM_INLINE_COMP_IDENTICAL : u32 = 1;
-pub const SYM_INLINE_COMP_STEPIN : u32 = 2;
-pub const SYM_INLINE_COMP_STEPOUT : u32 = 3;
-pub const SYM_INLINE_COMP_STEPOVER : u32 = 4;
-pub const SYM_INLINE_COMP_DIFFERENT : u32 = 5;
-pub const ESLFLAG_FULLPATH : u32 = 1;
-pub const ESLFLAG_NEAREST : u32 = 2;
-pub const ESLFLAG_PREV : u32 = 4;
-pub const ESLFLAG_NEXT : u32 = 8;
-pub const ESLFLAG_INLINE_SITE : u32 = 16;
-pub const SLMFLAG_ALT_INDEX : u32 = 2;
-pub const SYMENUM_OPTIONS_DEFAULT : u32 = 1;
-pub const SYMENUM_OPTIONS_INLINE : u32 = 2;
-pub const SYMSEARCH_MASKOBJS : u32 = 1;
-pub const SYMSEARCH_RECURSE : u32 = 2;
-pub const SYMSEARCH_GLOBALSONLY : u32 = 4;
-pub const SYMSEARCH_ALLITEMS : u32 = 8;
-pub const EXT_OUTPUT_VER : u32 = 1;
-pub const SYMSRV_VERSION : u32 = 2;
-pub const SSRVOPT_CALLBACK : u32 = 1;
-pub const SSRVOPT_OLDGUIDPTR : u32 = 16;
-pub const SSRVOPT_UNATTENDED : u32 = 32;
-pub const SSRVOPT_NOCOPY : u32 = 64;
-pub const SSRVOPT_GETPATH : u32 = 64;
-pub const SSRVOPT_PARENTWIN : u32 = 128;
-pub const SSRVOPT_PARAMTYPE : u32 = 256;
-pub const SSRVOPT_SECURE : u32 = 512;
-pub const SSRVOPT_TRACE : u32 = 1024;
-pub const SSRVOPT_SETCONTEXT : u32 = 2048;
-pub const SSRVOPT_PROXY : u32 = 4096;
-pub const SSRVOPT_DOWNSTREAM_STORE : u32 = 8192;
-pub const SSRVOPT_OVERWRITE : u32 = 16384;
-pub const SSRVOPT_RESETTOU : u32 = 32768;
-pub const SSRVOPT_CALLBACKW : u32 = 65536;
-pub const SSRVOPT_FLAT_DEFAULT_STORE : u32 = 131072;
-pub const SSRVOPT_PROXYW : u32 = 262144;
-pub const SSRVOPT_MESSAGE : u32 = 524288;
-pub const SSRVOPT_SERVICE : u32 = 1048576;
-pub const SSRVOPT_FAVOR_COMPRESSED : u32 = 2097152;
-pub const SSRVOPT_STRING : u32 = 4194304;
-pub const SSRVOPT_WINHTTP : u32 = 8388608;
-pub const SSRVOPT_WININET : u32 = 16777216;
-pub const SSRVOPT_DONT_UNCOMPRESS : u32 = 33554432;
-pub const SSRVOPT_DISABLE_PING_HOST : u32 = 67108864;
-pub const SSRVOPT_DISABLE_TIMEOUT : u32 = 134217728;
-pub const SSRVOPT_ENABLE_COMM_MSG : u32 = 268435456;
-pub const SSRVOPT_URI_FILTER : u32 = 536870912;
-pub const SSRVOPT_URI_TIERS : u32 = 1073741824;
-pub const SSRVOPT_RETRY_APP_HANG : u32 = 2147483648;
-pub const SSRVOPT_MAX : u32 = 2147483648;
-pub const NUM_SSRVOPTS : u32 = 32;
-pub const SSRVURI_HTTP_NORMAL : u32 = 1;
-pub const SSRVURI_HTTP_COMPRESSED : u32 = 2;
-pub const SSRVURI_HTTP_FILEPTR : u32 = 4;
-pub const SSRVURI_UNC_NORMAL : u32 = 16;
-pub const SSRVURI_UNC_COMPRESSED : u32 = 32;
-pub const SSRVURI_UNC_FILEPTR : u32 = 64;
-pub const SSRVURI_HTTP_MASK : u32 = 15;
-pub const SSRVURI_UNC_MASK : u32 = 240;
-pub const SSRVURI_ALL : u32 = 255;
-pub const SSRVACTION_TRACE : u32 = 1;
-pub const SSRVACTION_QUERYCANCEL : u32 = 2;
-pub const SSRVACTION_EVENT : u32 = 3;
-pub const SSRVACTION_EVENTW : u32 = 4;
-pub const SSRVACTION_SIZE : u32 = 5;
-pub const SSRVACTION_HTTPSTATUS : u32 = 6;
-pub const SSRVACTION_XMLOUTPUT : u32 = 7;
-pub const SSRVACTION_CHECKSUMSTATUS : u32 = 8;
-pub const SYMF_OMAP_GENERATED : u32 = 1;
-pub const SYMF_OMAP_MODIFIED : u32 = 2;
-pub const SYMF_REGISTER : u32 = 8;
-pub const SYMF_REGREL : u32 = 16;
-pub const SYMF_FRAMEREL : u32 = 32;
-pub const SYMF_PARAMETER : u32 = 64;
-pub const SYMF_LOCAL : u32 = 128;
-pub const SYMF_CONSTANT : u32 = 256;
-pub const SYMF_EXPORT : u32 = 512;
-pub const SYMF_FORWARDER : u32 = 1024;
-pub const SYMF_FUNCTION : u32 = 2048;
-pub const SYMF_VIRTUAL : u32 = 4096;
-pub const SYMF_THUNK : u32 = 8192;
-pub const SYMF_TLSREL : u32 = 16384;
-pub const IMAGEHLP_SYMBOL_INFO_VALUEPRESENT : u32 = 1;
-pub const IMAGEHLP_RMAP_MAPPED_FLAT : u32 = 1;
-pub const IMAGEHLP_RMAP_BIG_ENDIAN : u32 = 2;
-pub const IMAGEHLP_RMAP_IGNORE_MISCOMPARE : u32 = 4;
-pub const IMAGEHLP_RMAP_LOAD_RW_DATA_SECTIONS : u32 = 536870912;
-pub const IMAGEHLP_RMAP_OMIT_SHARED_RW_DATA_SECTIONS : u32 = 1073741824;
-pub const IMAGEHLP_RMAP_FIXUP_IMAGEBASE : u32 = 2147483648;
-pub const WCT_MAX_NODE_COUNT : u32 = 16;
-pub const WCT_OBJNAME_LENGTH : u32 = 128;
-pub const WCT_NETWORK_IO_FLAG : u32 = 8;
-pub const APPBREAKFLAG_DEBUGGER_BLOCK : u32 = 1;
-pub const APPBREAKFLAG_DEBUGGER_HALT : u32 = 2;
-pub const APPBREAKFLAG_STEP : u32 = 65536;
-pub const APPBREAKFLAG_NESTED : u32 = 131072;
-pub const APPBREAKFLAG_STEPTYPE_SOURCE : u32 = 0;
-pub const APPBREAKFLAG_STEPTYPE_BYTECODE : u32 = 1048576;
-pub const APPBREAKFLAG_STEPTYPE_MACHINE : u32 = 2097152;
-pub const APPBREAKFLAG_STEPTYPE_MASK : u32 = 15728640;
-pub const APPBREAKFLAG_IN_BREAKPOINT : u32 = 2147483648;
-pub const SOURCETEXT_ATTR_KEYWORD : u32 = 1;
-pub const SOURCETEXT_ATTR_COMMENT : u32 = 2;
-pub const SOURCETEXT_ATTR_NONSOURCE : u32 = 4;
-pub const SOURCETEXT_ATTR_OPERATOR : u32 = 8;
-pub const SOURCETEXT_ATTR_NUMBER : u32 = 16;
-pub const SOURCETEXT_ATTR_STRING : u32 = 32;
-pub const SOURCETEXT_ATTR_FUNCTION_START : u32 = 64;
-pub const TEXT_DOC_ATTR_READONLY : u32 = 1;
-pub const TEXT_DOC_ATTR_TYPE_PRIMARY : u32 = 2;
-pub const TEXT_DOC_ATTR_TYPE_WORKER : u32 = 4;
-pub const TEXT_DOC_ATTR_TYPE_SCRIPT : u32 = 8;
-pub const DEBUG_TEXT_ISEXPRESSION : u32 = 1;
-pub const DEBUG_TEXT_RETURNVALUE : u32 = 2;
-pub const DEBUG_TEXT_NOSIDEEFFECTS : u32 = 4;
-pub const DEBUG_TEXT_ALLOWBREAKPOINTS : u32 = 8;
-pub const DEBUG_TEXT_ALLOWERRORREPORT : u32 = 16;
-pub const DEBUG_TEXT_EVALUATETOCODECONTEXT : u32 = 32;
-pub const DEBUG_TEXT_ISNONUSERCODE : u32 = 64;
-pub const THREAD_STATE_RUNNING : u32 = 1;
-pub const THREAD_STATE_SUSPENDED : u32 = 2;
-pub const THREAD_BLOCKED : u32 = 4;
-pub const THREAD_OUT_OF_CONTEXT : u32 = 8;
-pub const ACTIVPROF_E_PROFILER_PRESENT : i32 = -2147220992;
-pub const ACTIVPROF_E_PROFILER_ABSENT : i32 = -2147220991;
-pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION : i32 = -2147220990;
-pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE : u32 = 4294967295;
+pub const CATID_ActiveScript = Guid.initString("f0b7a1a1-9847-11cf-8f20-00805f2cd064");
+pub const CATID_ActiveScriptParse = Guid.initString("f0b7a1a2-9847-11cf-8f20-00805f2cd064");
+pub const CATID_ActiveScriptEncode = Guid.initString("f0b7a1a3-9847-11cf-8f20-00805f2cd064");
+pub const OID_VBSSIP = Guid.initString("1629f04e-2799-4db5-8fe5-ace10f17ebab");
+pub const OID_JSSIP = Guid.initString("06c9e010-38ce-11d4-a2a3-00104bd35090");
+pub const OID_WSFSIP = Guid.initString("1a610570-38ce-11d4-a2a3-00104bd35090");
+pub const SCRIPTITEM_ISVISIBLE = @as(u32, 2);
+pub const SCRIPTITEM_ISSOURCE = @as(u32, 4);
+pub const SCRIPTITEM_GLOBALMEMBERS = @as(u32, 8);
+pub const SCRIPTITEM_ISPERSISTENT = @as(u32, 64);
+pub const SCRIPTITEM_CODEONLY = @as(u32, 512);
+pub const SCRIPTITEM_NOCODE = @as(u32, 1024);
+pub const SCRIPTTYPELIB_ISCONTROL = @as(u32, 16);
+pub const SCRIPTTYPELIB_ISPERSISTENT = @as(u32, 64);
+pub const SCRIPTTEXT_DELAYEXECUTION = @as(u32, 1);
+pub const SCRIPTTEXT_ISVISIBLE = @as(u32, 2);
+pub const SCRIPTTEXT_ISEXPRESSION = @as(u32, 32);
+pub const SCRIPTTEXT_ISPERSISTENT = @as(u32, 64);
+pub const SCRIPTTEXT_HOSTMANAGESSOURCE = @as(u32, 128);
+pub const SCRIPTTEXT_ISXDOMAIN = @as(u32, 256);
+pub const SCRIPTTEXT_ISNONUSERCODE = @as(u32, 512);
+pub const SCRIPTPROC_ISEXPRESSION = @as(u32, 32);
+pub const SCRIPTPROC_HOSTMANAGESSOURCE = @as(u32, 128);
+pub const SCRIPTPROC_IMPLICIT_THIS = @as(u32, 256);
+pub const SCRIPTPROC_IMPLICIT_PARENTS = @as(u32, 512);
+pub const SCRIPTPROC_ISXDOMAIN = @as(u32, 1024);
+pub const SCRIPTINFO_IUNKNOWN = @as(u32, 1);
+pub const SCRIPTINFO_ITYPEINFO = @as(u32, 2);
+pub const SCRIPTINTERRUPT_DEBUG = @as(u32, 1);
+pub const SCRIPTINTERRUPT_RAISEEXCEPTION = @as(u32, 2);
+pub const SCRIPTSTAT_STATEMENT_COUNT = @as(u32, 1);
+pub const SCRIPTSTAT_INSTRUCTION_COUNT = @as(u32, 2);
+pub const SCRIPTSTAT_INTSTRUCTION_TIME = @as(u32, 3);
+pub const SCRIPTSTAT_TOTAL_TIME = @as(u32, 4);
+pub const SCRIPT_ENCODE_SECTION = @as(u32, 1);
+pub const SCRIPT_ENCODE_DEFAULT_LANGUAGE = @as(u32, 1);
+pub const SCRIPT_ENCODE_NO_ASP_LANGUAGE = @as(u32, 2);
+pub const SCRIPTPROP_NAME = @as(u32, 0);
+pub const SCRIPTPROP_MAJORVERSION = @as(u32, 1);
+pub const SCRIPTPROP_MINORVERSION = @as(u32, 2);
+pub const SCRIPTPROP_BUILDNUMBER = @as(u32, 3);
+pub const SCRIPTPROP_DELAYEDEVENTSINKING = @as(u32, 4096);
+pub const SCRIPTPROP_CATCHEXCEPTION = @as(u32, 4097);
+pub const SCRIPTPROP_CONVERSIONLCID = @as(u32, 4098);
+pub const SCRIPTPROP_HOSTSTACKREQUIRED = @as(u32, 4099);
+pub const SCRIPTPROP_SCRIPTSAREFULLYTRUSTED = @as(u32, 4100);
+pub const SCRIPTPROP_DEBUGGER = @as(u32, 4352);
+pub const SCRIPTPROP_JITDEBUG = @as(u32, 4353);
+pub const SCRIPTPROP_GCCONTROLSOFTCLOSE = @as(u32, 8192);
+pub const SCRIPTPROP_INTEGERMODE = @as(u32, 12288);
+pub const SCRIPTPROP_STRINGCOMPAREINSTANCE = @as(u32, 12289);
+pub const SCRIPTPROP_INVOKEVERSIONING = @as(u32, 16384);
+pub const SCRIPTPROP_HACK_FIBERSUPPORT = @as(u32, 1879048192);
+pub const SCRIPTPROP_HACK_TRIDENTEVENTSINK = @as(u32, 1879048193);
+pub const SCRIPTPROP_ABBREVIATE_GLOBALNAME_RESOLUTION = @as(u32, 1879048194);
+pub const SCRIPTPROP_HOSTKEEPALIVE = @as(u32, 1879048196);
+pub const SCRIPT_E_RECORDED = @as(i32, -2040119292);
+pub const SCRIPT_E_REPORTED = @as(i32, -2147352319);
+pub const SCRIPT_E_PROPAGATE = @as(i32, -2147352318);
+pub const SID_SEditCommandTarget = Guid.initString("3050f4b5-98b5-11cf-bb82-00aa00bdce0b");
+pub const CGID_EditStateCommands = Guid.initString("3050f4b6-98b5-11cf-bb82-00aa00bdce0b");
+pub const SID_SHTMLEditHost = Guid.initString("3050f6a0-98b5-11cf-bb82-00aa00bdce0b");
+pub const SID_SHTMLEditServices = Guid.initString("3050f7f9-98b5-11cf-bb82-00aa00bdce0b");
+pub const COOKIEACTION_NONE = @as(u32, 0);
+pub const COOKIEACTION_ACCEPT = @as(u32, 1);
+pub const COOKIEACTION_REJECT = @as(u32, 2);
+pub const COOKIEACTION_DOWNGRADE = @as(u32, 4);
+pub const COOKIEACTION_LEASH = @as(u32, 8);
+pub const COOKIEACTION_SUPPRESS = @as(u32, 16);
+pub const COOKIEACTION_READ = @as(u32, 32);
+pub const PRIVACY_URLISTOPLEVEL = @as(u32, 65536);
+pub const PRIVACY_URLHASCOMPACTPOLICY = @as(u32, 131072);
+pub const PRIVACY_URLHASPOSTDATA = @as(u32, 524288);
+pub const PRIVACY_URLHASPOLICYREFLINK = @as(u32, 1048576);
+pub const PRIVACY_URLHASPOLICYREFHEADER = @as(u32, 2097152);
+pub const PRIVACY_URLHASP3PHEADER = @as(u32, 4194304);
+pub const DEBUGCALLBACKNOTIFICATION_TIMEOUT = @as(u32, 1);
+pub const DEBUGCALLBACKNOTIFICATION_INTERVAL = @as(u32, 2);
+pub const DEBUGCALLBACKNOTIFICATION_IMMEDIATE = @as(u32, 4);
+pub const DEBUGCALLBACKNOTIFICATION_ANIMATIONFRAME = @as(u32, 8);
+pub const DEBUGCALLBACKNOTIFICATION_DOMEVENT = @as(u32, 16);
+pub const DEBUGDOMEVENTPROPAGATIONSTATUS_DEFAULTCANCELED = @as(u32, 1);
+pub const DEBUGDOMEVENTPROPAGATIONSTATUS_STOPIMMEDIATEPROPAGATION = @as(u32, 2);
+pub const DEBUGDOMEVENTPROPAGATIONSTATUS_STOPPROPAGATION = @as(u32, 4);
+pub const MINIDUMP_VERSION = @as(u32, 42899);
+pub const MINIDUMP_MISC1_PROCESSOR_POWER_INFO = @as(u32, 4);
+pub const MINIDUMP_MISC3_PROCESS_INTEGRITY = @as(u32, 16);
+pub const MINIDUMP_MISC3_PROCESS_EXECUTE_FLAGS = @as(u32, 32);
+pub const MINIDUMP_MISC3_TIMEZONE = @as(u32, 64);
+pub const MINIDUMP_MISC3_PROTECTED_PROCESS = @as(u32, 128);
+pub const MINIDUMP_MISC4_BUILDSTRING = @as(u32, 256);
+pub const MINIDUMP_MISC5_PROCESS_COOKIE = @as(u32, 512);
+pub const MINIDUMP_SYSMEMINFO1_FILECACHE_TRANSITIONREPURPOSECOUNT_FLAGS = @as(u32, 1);
+pub const MINIDUMP_SYSMEMINFO1_BASICPERF = @as(u32, 2);
+pub const MINIDUMP_SYSMEMINFO1_PERF_CCTOTALDIRTYPAGES_CCDIRTYPAGETHRESHOLD = @as(u32, 4);
+pub const MINIDUMP_SYSMEMINFO1_PERF_RESIDENTAVAILABLEPAGES_SHAREDCOMMITPAGES = @as(u32, 8);
+pub const MINIDUMP_PROCESS_VM_COUNTERS = @as(u32, 1);
+pub const MINIDUMP_PROCESS_VM_COUNTERS_VIRTUALSIZE = @as(u32, 2);
+pub const MINIDUMP_PROCESS_VM_COUNTERS_EX = @as(u32, 4);
+pub const MINIDUMP_PROCESS_VM_COUNTERS_EX2 = @as(u32, 8);
+pub const MINIDUMP_PROCESS_VM_COUNTERS_JOB = @as(u32, 16);
+pub const MAX_SYM_NAME = @as(u32, 2000);
+pub const ERROR_IMAGE_NOT_STRIPPED = @as(u32, 34816);
+pub const ERROR_NO_DBG_POINTER = @as(u32, 34817);
+pub const ERROR_NO_PDB_POINTER = @as(u32, 34818);
+pub const UNDNAME_COMPLETE = @as(u32, 0);
+pub const UNDNAME_NO_LEADING_UNDERSCORES = @as(u32, 1);
+pub const UNDNAME_NO_MS_KEYWORDS = @as(u32, 2);
+pub const UNDNAME_NO_FUNCTION_RETURNS = @as(u32, 4);
+pub const UNDNAME_NO_ALLOCATION_MODEL = @as(u32, 8);
+pub const UNDNAME_NO_ALLOCATION_LANGUAGE = @as(u32, 16);
+pub const UNDNAME_NO_MS_THISTYPE = @as(u32, 32);
+pub const UNDNAME_NO_CV_THISTYPE = @as(u32, 64);
+pub const UNDNAME_NO_THISTYPE = @as(u32, 96);
+pub const UNDNAME_NO_ACCESS_SPECIFIERS = @as(u32, 128);
+pub const UNDNAME_NO_THROW_SIGNATURES = @as(u32, 256);
+pub const UNDNAME_NO_MEMBER_TYPE = @as(u32, 512);
+pub const UNDNAME_NO_RETURN_UDT_MODEL = @as(u32, 1024);
+pub const UNDNAME_32_BIT_DECODE = @as(u32, 2048);
+pub const UNDNAME_NAME_ONLY = @as(u32, 4096);
+pub const UNDNAME_NO_ARGUMENTS = @as(u32, 8192);
+pub const UNDNAME_NO_SPECIAL_SYMS = @as(u32, 16384);
+pub const DBHHEADER_PDBGUID = @as(u32, 3);
+pub const INLINE_FRAME_CONTEXT_INIT = @as(u32, 0);
+pub const INLINE_FRAME_CONTEXT_IGNORE = @as(u32, 4294967295);
+pub const SYM_STKWALK_DEFAULT = @as(u32, 0);
+pub const SYM_STKWALK_FORCE_FRAMEPTR = @as(u32, 1);
+pub const API_VERSION_NUMBER = @as(u32, 12);
+pub const SYMFLAG_NULL = @as(u32, 524288);
+pub const SYMFLAG_FUNC_NO_RETURN = @as(u32, 1048576);
+pub const SYMFLAG_SYNTHETIC_ZEROBASE = @as(u32, 2097152);
+pub const SYMFLAG_PUBLIC_CODE = @as(u32, 4194304);
+pub const SYMFLAG_REGREL_ALIASINDIR = @as(u32, 8388608);
+pub const SYMFLAG_RESET = @as(u32, 2147483648);
+pub const CBA_DEFERRED_SYMBOL_LOAD_START = @as(u32, 1);
+pub const CBA_DEFERRED_SYMBOL_LOAD_COMPLETE = @as(u32, 2);
+pub const CBA_DEFERRED_SYMBOL_LOAD_FAILURE = @as(u32, 3);
+pub const CBA_SYMBOLS_UNLOADED = @as(u32, 4);
+pub const CBA_DUPLICATE_SYMBOL = @as(u32, 5);
+pub const CBA_READ_MEMORY = @as(u32, 6);
+pub const CBA_DEFERRED_SYMBOL_LOAD_CANCEL = @as(u32, 7);
+pub const CBA_SET_OPTIONS = @as(u32, 8);
+pub const CBA_EVENT = @as(u32, 16);
+pub const CBA_DEFERRED_SYMBOL_LOAD_PARTIAL = @as(u32, 32);
+pub const CBA_DEBUG_INFO = @as(u32, 268435456);
+pub const CBA_SRCSRV_INFO = @as(u32, 536870912);
+pub const CBA_SRCSRV_EVENT = @as(u32, 1073741824);
+pub const CBA_UPDATE_STATUS_BAR = @as(u32, 1342177280);
+pub const CBA_ENGINE_PRESENT = @as(u32, 1610612736);
+pub const CBA_CHECK_ENGOPT_DISALLOW_NETWORK_PATHS = @as(u32, 1879048192);
+pub const CBA_CHECK_ARM_MACHINE_THUMB_TYPE_OVERRIDE = @as(u32, 2147483648);
+pub const CBA_XML_LOG = @as(u32, 2415919104);
+pub const EVENT_SRCSPEW_START = @as(u32, 100);
+pub const EVENT_SRCSPEW = @as(u32, 100);
+pub const EVENT_SRCSPEW_END = @as(u32, 199);
+pub const DSLFLAG_MISMATCHED_PDB = @as(u32, 1);
+pub const DSLFLAG_MISMATCHED_DBG = @as(u32, 2);
+pub const FLAG_ENGINE_PRESENT = @as(u32, 4);
+pub const FLAG_ENGOPT_DISALLOW_NETWORK_PATHS = @as(u32, 8);
+pub const FLAG_OVERRIDE_ARM_MACHINE_TYPE = @as(u32, 16);
+pub const SYM_INLINE_COMP_ERROR = @as(u32, 0);
+pub const SYM_INLINE_COMP_IDENTICAL = @as(u32, 1);
+pub const SYM_INLINE_COMP_STEPIN = @as(u32, 2);
+pub const SYM_INLINE_COMP_STEPOUT = @as(u32, 3);
+pub const SYM_INLINE_COMP_STEPOVER = @as(u32, 4);
+pub const SYM_INLINE_COMP_DIFFERENT = @as(u32, 5);
+pub const ESLFLAG_FULLPATH = @as(u32, 1);
+pub const ESLFLAG_NEAREST = @as(u32, 2);
+pub const ESLFLAG_PREV = @as(u32, 4);
+pub const ESLFLAG_NEXT = @as(u32, 8);
+pub const ESLFLAG_INLINE_SITE = @as(u32, 16);
+pub const SLMFLAG_ALT_INDEX = @as(u32, 2);
+pub const SYMENUM_OPTIONS_DEFAULT = @as(u32, 1);
+pub const SYMENUM_OPTIONS_INLINE = @as(u32, 2);
+pub const SYMSEARCH_MASKOBJS = @as(u32, 1);
+pub const SYMSEARCH_RECURSE = @as(u32, 2);
+pub const SYMSEARCH_GLOBALSONLY = @as(u32, 4);
+pub const SYMSEARCH_ALLITEMS = @as(u32, 8);
+pub const EXT_OUTPUT_VER = @as(u32, 1);
+pub const SYMSRV_VERSION = @as(u32, 2);
+pub const SSRVOPT_CALLBACK = @as(u32, 1);
+pub const SSRVOPT_OLDGUIDPTR = @as(u32, 16);
+pub const SSRVOPT_UNATTENDED = @as(u32, 32);
+pub const SSRVOPT_NOCOPY = @as(u32, 64);
+pub const SSRVOPT_GETPATH = @as(u32, 64);
+pub const SSRVOPT_PARENTWIN = @as(u32, 128);
+pub const SSRVOPT_PARAMTYPE = @as(u32, 256);
+pub const SSRVOPT_SECURE = @as(u32, 512);
+pub const SSRVOPT_TRACE = @as(u32, 1024);
+pub const SSRVOPT_SETCONTEXT = @as(u32, 2048);
+pub const SSRVOPT_PROXY = @as(u32, 4096);
+pub const SSRVOPT_DOWNSTREAM_STORE = @as(u32, 8192);
+pub const SSRVOPT_OVERWRITE = @as(u32, 16384);
+pub const SSRVOPT_RESETTOU = @as(u32, 32768);
+pub const SSRVOPT_CALLBACKW = @as(u32, 65536);
+pub const SSRVOPT_FLAT_DEFAULT_STORE = @as(u32, 131072);
+pub const SSRVOPT_PROXYW = @as(u32, 262144);
+pub const SSRVOPT_MESSAGE = @as(u32, 524288);
+pub const SSRVOPT_SERVICE = @as(u32, 1048576);
+pub const SSRVOPT_FAVOR_COMPRESSED = @as(u32, 2097152);
+pub const SSRVOPT_STRING = @as(u32, 4194304);
+pub const SSRVOPT_WINHTTP = @as(u32, 8388608);
+pub const SSRVOPT_WININET = @as(u32, 16777216);
+pub const SSRVOPT_DONT_UNCOMPRESS = @as(u32, 33554432);
+pub const SSRVOPT_DISABLE_PING_HOST = @as(u32, 67108864);
+pub const SSRVOPT_DISABLE_TIMEOUT = @as(u32, 134217728);
+pub const SSRVOPT_ENABLE_COMM_MSG = @as(u32, 268435456);
+pub const SSRVOPT_URI_FILTER = @as(u32, 536870912);
+pub const SSRVOPT_URI_TIERS = @as(u32, 1073741824);
+pub const SSRVOPT_RETRY_APP_HANG = @as(u32, 2147483648);
+pub const SSRVOPT_MAX = @as(u32, 2147483648);
+pub const NUM_SSRVOPTS = @as(u32, 32);
+pub const SSRVURI_HTTP_NORMAL = @as(u32, 1);
+pub const SSRVURI_HTTP_COMPRESSED = @as(u32, 2);
+pub const SSRVURI_HTTP_FILEPTR = @as(u32, 4);
+pub const SSRVURI_UNC_NORMAL = @as(u32, 16);
+pub const SSRVURI_UNC_COMPRESSED = @as(u32, 32);
+pub const SSRVURI_UNC_FILEPTR = @as(u32, 64);
+pub const SSRVURI_HTTP_MASK = @as(u32, 15);
+pub const SSRVURI_UNC_MASK = @as(u32, 240);
+pub const SSRVURI_ALL = @as(u32, 255);
+pub const SSRVACTION_TRACE = @as(u32, 1);
+pub const SSRVACTION_QUERYCANCEL = @as(u32, 2);
+pub const SSRVACTION_EVENT = @as(u32, 3);
+pub const SSRVACTION_EVENTW = @as(u32, 4);
+pub const SSRVACTION_SIZE = @as(u32, 5);
+pub const SSRVACTION_HTTPSTATUS = @as(u32, 6);
+pub const SSRVACTION_XMLOUTPUT = @as(u32, 7);
+pub const SSRVACTION_CHECKSUMSTATUS = @as(u32, 8);
+pub const SYMF_OMAP_GENERATED = @as(u32, 1);
+pub const SYMF_OMAP_MODIFIED = @as(u32, 2);
+pub const SYMF_REGISTER = @as(u32, 8);
+pub const SYMF_REGREL = @as(u32, 16);
+pub const SYMF_FRAMEREL = @as(u32, 32);
+pub const SYMF_PARAMETER = @as(u32, 64);
+pub const SYMF_LOCAL = @as(u32, 128);
+pub const SYMF_CONSTANT = @as(u32, 256);
+pub const SYMF_EXPORT = @as(u32, 512);
+pub const SYMF_FORWARDER = @as(u32, 1024);
+pub const SYMF_FUNCTION = @as(u32, 2048);
+pub const SYMF_VIRTUAL = @as(u32, 4096);
+pub const SYMF_THUNK = @as(u32, 8192);
+pub const SYMF_TLSREL = @as(u32, 16384);
+pub const IMAGEHLP_SYMBOL_INFO_VALUEPRESENT = @as(u32, 1);
+pub const IMAGEHLP_RMAP_MAPPED_FLAT = @as(u32, 1);
+pub const IMAGEHLP_RMAP_BIG_ENDIAN = @as(u32, 2);
+pub const IMAGEHLP_RMAP_IGNORE_MISCOMPARE = @as(u32, 4);
+pub const IMAGEHLP_RMAP_LOAD_RW_DATA_SECTIONS = @as(u32, 536870912);
+pub const IMAGEHLP_RMAP_OMIT_SHARED_RW_DATA_SECTIONS = @as(u32, 1073741824);
+pub const IMAGEHLP_RMAP_FIXUP_IMAGEBASE = @as(u32, 2147483648);
+pub const WCT_MAX_NODE_COUNT = @as(u32, 16);
+pub const WCT_OBJNAME_LENGTH = @as(u32, 128);
+pub const WCT_NETWORK_IO_FLAG = @as(u32, 8);
+pub const APPBREAKFLAG_DEBUGGER_BLOCK = @as(u32, 1);
+pub const APPBREAKFLAG_DEBUGGER_HALT = @as(u32, 2);
+pub const APPBREAKFLAG_STEP = @as(u32, 65536);
+pub const APPBREAKFLAG_NESTED = @as(u32, 131072);
+pub const APPBREAKFLAG_STEPTYPE_SOURCE = @as(u32, 0);
+pub const APPBREAKFLAG_STEPTYPE_BYTECODE = @as(u32, 1048576);
+pub const APPBREAKFLAG_STEPTYPE_MACHINE = @as(u32, 2097152);
+pub const APPBREAKFLAG_STEPTYPE_MASK = @as(u32, 15728640);
+pub const APPBREAKFLAG_IN_BREAKPOINT = @as(u32, 2147483648);
+pub const SOURCETEXT_ATTR_KEYWORD = @as(u32, 1);
+pub const SOURCETEXT_ATTR_COMMENT = @as(u32, 2);
+pub const SOURCETEXT_ATTR_NONSOURCE = @as(u32, 4);
+pub const SOURCETEXT_ATTR_OPERATOR = @as(u32, 8);
+pub const SOURCETEXT_ATTR_NUMBER = @as(u32, 16);
+pub const SOURCETEXT_ATTR_STRING = @as(u32, 32);
+pub const SOURCETEXT_ATTR_FUNCTION_START = @as(u32, 64);
+pub const TEXT_DOC_ATTR_READONLY = @as(u32, 1);
+pub const TEXT_DOC_ATTR_TYPE_PRIMARY = @as(u32, 2);
+pub const TEXT_DOC_ATTR_TYPE_WORKER = @as(u32, 4);
+pub const TEXT_DOC_ATTR_TYPE_SCRIPT = @as(u32, 8);
+pub const DEBUG_TEXT_ISEXPRESSION = @as(u32, 1);
+pub const DEBUG_TEXT_RETURNVALUE = @as(u32, 2);
+pub const DEBUG_TEXT_NOSIDEEFFECTS = @as(u32, 4);
+pub const DEBUG_TEXT_ALLOWBREAKPOINTS = @as(u32, 8);
+pub const DEBUG_TEXT_ALLOWERRORREPORT = @as(u32, 16);
+pub const DEBUG_TEXT_EVALUATETOCODECONTEXT = @as(u32, 32);
+pub const DEBUG_TEXT_ISNONUSERCODE = @as(u32, 64);
+pub const THREAD_STATE_RUNNING = @as(u32, 1);
+pub const THREAD_STATE_SUSPENDED = @as(u32, 2);
+pub const THREAD_BLOCKED = @as(u32, 4);
+pub const THREAD_OUT_OF_CONTEXT = @as(u32, 8);
+pub const ACTIVPROF_E_PROFILER_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const ACTIVPROF_E_PROFILER_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (1733)
+// Section: Types (1732)
 //--------------------------------------------------------------------------------
 pub const CONTEXT = extern struct {
     ContextFlags: u32,
@@ -681,11 +681,8 @@ pub const FLASHWINFO = extern struct {
     dwTimeout: u32,
 };
 
-pub const PTOP_LEVEL_EXCEPTION_FILTER = fn(
-    ExceptionInfo: *EXCEPTION_POINTERS,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
+    ExceptionInfo: *EXCEPTION_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const WCT_OBJECT_TYPE = extern enum(i32) {
@@ -73526,6 +73523,22 @@ pub const DBHHEADER_CVMISC = MODLOAD_DATA_ssigFlags.CVMISC;
 //--------------------------------------------------------------------------------
 // Section: Functions (68)
 //--------------------------------------------------------------------------------
+pub extern "KERNEL32" fn RtlCaptureContext(
+    ContextRecord: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlUnwind(
+    TargetFrame: ?*c_void,
+    TargetIp: ?*c_void,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    ReturnValue: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "KERNEL32" fn RtlPcToFileHeader(
+    PcValue: *c_void,
+    BaseOfImage: **c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
 pub extern "KERNEL32" fn GetThreadContext(
     hThread: HANDLE,
     lpContext: *CONTEXT,
@@ -73622,22 +73635,6 @@ pub extern "ntdll" fn RtlNtStatusToDosError(
     Status: NTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "KERNEL32" fn RtlCaptureContext(
-    ContextRecord: *CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn RtlUnwind(
-    TargetFrame: ?*c_void,
-    TargetIp: ?*c_void,
-    ExceptionRecord: ?*EXCEPTION_RECORD,
-    ReturnValue: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "KERNEL32" fn RtlPcToFileHeader(
-    PcValue: *c_void,
-    BaseOfImage: **c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
 pub extern "KERNEL32" fn ReadProcessMemory(
     hProcess: HANDLE,
     lpBaseAddress: *const c_void,
@@ -73652,6 +73649,16 @@ pub extern "KERNEL32" fn WriteProcessMemory(
     lpBuffer: [*]const u8,
     nSize: ?*c_void,
     lpNumberOfBytesWritten: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn Wow64GetThreadContext(
+    hThread: HANDLE,
+    lpContext: *WOW64_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn Wow64SetThreadContext(
+    hThread: HANDLE,
+    lpContext: *const WOW64_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn FlashWindow(
@@ -73865,16 +73872,6 @@ pub extern "dbghelp" fn MiniDumpReadDumpStream(
     StreamSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn Wow64GetThreadContext(
-    hThread: HANDLE,
-    lpContext: *WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn Wow64SetThreadContext(
-    hThread: HANDLE,
-    lpContext: *const WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
@@ -73946,7 +73943,6 @@ const FLOATING_SAVE_AREA = @import("system_services.zig").FLOATING_SAVE_AREA;
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     _ = PVECTORED_EXCEPTION_HANDLER;
-    _ = PTOP_LEVEL_EXCEPTION_FILTER;
     _ = LPTOP_LEVEL_EXCEPTION_FILTER;
     _ = PWAITCHAINCALLBACK;
     _ = PCOGETCALLSTATE;
@@ -73956,7 +73952,7 @@ test {
     _ = UnregisterAuthoringClientFunctionType;
 
     const constant_export_count = 288;
-    const type_export_count = 1438;
+    const type_export_count = 1437;
     const enum_value_export_count = 2438;
     const com_iface_id_export_count = 988;
     const com_class_id_export_count = 295;

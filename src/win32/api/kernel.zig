@@ -2,23 +2,23 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (17)
 //--------------------------------------------------------------------------------
-pub const OBJ_HANDLE_TAGBITS : i32 = 3;
-pub const RTL_BALANCED_NODE_RESERVED_PARENT_MASK : u32 = 3;
-pub const OBJ_INHERIT : i32 = 2;
-pub const OBJ_PERMANENT : i32 = 16;
-pub const OBJ_EXCLUSIVE : i32 = 32;
-pub const OBJ_CASE_INSENSITIVE : i32 = 64;
-pub const OBJ_OPENIF : i32 = 128;
-pub const OBJ_OPENLINK : i32 = 256;
-pub const OBJ_KERNEL_HANDLE : i32 = 512;
-pub const OBJ_FORCE_ACCESS_CHECK : i32 = 1024;
-pub const OBJ_IGNORE_IMPERSONATED_DEVICEMAP : i32 = 2048;
-pub const OBJ_DONT_REPARSE : i32 = 4096;
-pub const OBJ_VALID_ATTRIBUTES : i32 = 8178;
-pub const NULL64 : u32 = 0;
-pub const MAXUCHAR : u32 = 255;
-pub const MAXUSHORT : u32 = 65535;
-pub const MAXULONG : u32 = 4294967295;
+pub const OBJ_HANDLE_TAGBITS = @as(i32, 3);
+pub const RTL_BALANCED_NODE_RESERVED_PARENT_MASK = @as(u32, 3);
+pub const OBJ_INHERIT = @as(i32, 2);
+pub const OBJ_PERMANENT = @as(i32, 16);
+pub const OBJ_EXCLUSIVE = @as(i32, 32);
+pub const OBJ_CASE_INSENSITIVE = @as(i32, 64);
+pub const OBJ_OPENIF = @as(i32, 128);
+pub const OBJ_OPENLINK = @as(i32, 256);
+pub const OBJ_KERNEL_HANDLE = @as(i32, 512);
+pub const OBJ_FORCE_ACCESS_CHECK = @as(i32, 1024);
+pub const OBJ_IGNORE_IMPERSONATED_DEVICEMAP = @as(i32, 2048);
+pub const OBJ_DONT_REPARSE = @as(i32, 4096);
+pub const OBJ_VALID_ATTRIBUTES = @as(i32, 8178);
+pub const NULL64 = @as(u32, 0);
+pub const MAXUCHAR = @as(u32, 255);
+pub const MAXUSHORT = @as(u32, 65535);
+pub const MAXULONG = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)

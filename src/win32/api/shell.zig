@@ -2,1401 +2,1417 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1391)
 //--------------------------------------------------------------------------------
-pub const CPL_DYNAMIC_RES : u32 = 0;
-pub const CPL_INIT : u32 = 1;
-pub const CPL_GETCOUNT : u32 = 2;
-pub const CPL_INQUIRE : u32 = 3;
-pub const CPL_SELECT : u32 = 4;
-pub const CPL_DBLCLK : u32 = 5;
-pub const CPL_STOP : u32 = 6;
-pub const CPL_EXIT : u32 = 7;
-pub const CPL_NEWINQUIRE : u32 = 8;
-pub const CPL_STARTWPARMSA : u32 = 9;
-pub const CPL_STARTWPARMSW : u32 = 10;
-pub const CPL_SETUP : u32 = 200;
-pub const PERCEIVEDFLAG_UNDEFINED : u32 = 0;
-pub const PERCEIVEDFLAG_SOFTCODED : u32 = 1;
-pub const PERCEIVEDFLAG_HARDCODED : u32 = 2;
-pub const PERCEIVEDFLAG_NATIVESUPPORT : u32 = 4;
-pub const PERCEIVEDFLAG_GDIPLUS : u32 = 16;
-pub const PERCEIVEDFLAG_WMSDK : u32 = 32;
-pub const PERCEIVEDFLAG_ZIPFOLDER : u32 = 64;
-pub const FOLDERID_NetworkFolder = @import("../zig.zig").Guid.initString("d20beec4-5ca8-4905-ae3b-bf251ea09b53");
-pub const FOLDERID_ComputerFolder = @import("../zig.zig").Guid.initString("0ac0837c-bbf8-452a-850d-79d08e667ca7");
-pub const FOLDERID_InternetFolder = @import("../zig.zig").Guid.initString("4d9f7874-4e0c-4904-967b-40b0d20c3e4b");
-pub const FOLDERID_ControlPanelFolder = @import("../zig.zig").Guid.initString("82a74aeb-aeb4-465c-a014-d097ee346d63");
-pub const FOLDERID_PrintersFolder = @import("../zig.zig").Guid.initString("76fc4e2d-d6ad-4519-a663-37bd56068185");
-pub const FOLDERID_SyncManagerFolder = @import("../zig.zig").Guid.initString("43668bf8-c14e-49b2-97c9-747784d784b7");
-pub const FOLDERID_SyncSetupFolder = @import("../zig.zig").Guid.initString("0f214138-b1d3-4a90-bba9-27cbc0c5389a");
-pub const FOLDERID_ConflictFolder = @import("../zig.zig").Guid.initString("4bfefb45-347d-4006-a5be-ac0cb0567192");
-pub const FOLDERID_SyncResultsFolder = @import("../zig.zig").Guid.initString("289a9a43-be44-4057-a41b-587a76d7e7f9");
-pub const FOLDERID_RecycleBinFolder = @import("../zig.zig").Guid.initString("b7534046-3ecb-4c18-be4e-64cd4cb7d6ac");
-pub const FOLDERID_ConnectionsFolder = @import("../zig.zig").Guid.initString("6f0cd92b-2e97-45d1-88ff-b0d186b8dedd");
-pub const FOLDERID_Fonts = @import("../zig.zig").Guid.initString("fd228cb7-ae11-4ae3-864c-16f3910ab8fe");
-pub const FOLDERID_Desktop = @import("../zig.zig").Guid.initString("b4bfcc3a-db2c-424c-b029-7fe99a87c641");
-pub const FOLDERID_Startup = @import("../zig.zig").Guid.initString("b97d20bb-f46a-4c97-ba10-5e3608430854");
-pub const FOLDERID_Programs = @import("../zig.zig").Guid.initString("a77f5d77-2e2b-44c3-a6a2-aba601054a51");
-pub const FOLDERID_StartMenu = @import("../zig.zig").Guid.initString("625b53c3-ab48-4ec1-ba1f-a1ef4146fc19");
-pub const FOLDERID_Recent = @import("../zig.zig").Guid.initString("ae50c081-ebd2-438a-8655-8a092e34987a");
-pub const FOLDERID_SendTo = @import("../zig.zig").Guid.initString("8983036c-27c0-404b-8f08-102d10dcfd74");
-pub const FOLDERID_Documents = @import("../zig.zig").Guid.initString("fdd39ad0-238f-46af-adb4-6c85480369c7");
-pub const FOLDERID_Favorites = @import("../zig.zig").Guid.initString("1777f761-68ad-4d8a-87bd-30b759fa33dd");
-pub const FOLDERID_NetHood = @import("../zig.zig").Guid.initString("c5abbf53-e17f-4121-8900-86626fc2c973");
-pub const FOLDERID_PrintHood = @import("../zig.zig").Guid.initString("9274bd8d-cfd1-41c3-b35e-b13f55a758f4");
-pub const FOLDERID_Templates = @import("../zig.zig").Guid.initString("a63293e8-664e-48db-a079-df759e0509f7");
-pub const FOLDERID_CommonStartup = @import("../zig.zig").Guid.initString("82a5ea35-d9cd-47c5-9629-e15d2f714e6e");
-pub const FOLDERID_CommonPrograms = @import("../zig.zig").Guid.initString("0139d44e-6afe-49f2-8690-3dafcae6ffb8");
-pub const FOLDERID_CommonStartMenu = @import("../zig.zig").Guid.initString("a4115719-d62e-491d-aa7c-e74b8be3b067");
-pub const FOLDERID_PublicDesktop = @import("../zig.zig").Guid.initString("c4aa340d-f20f-4863-afef-f87ef2e6ba25");
-pub const FOLDERID_ProgramData = @import("../zig.zig").Guid.initString("62ab5d82-fdc1-4dc3-a9dd-070d1d495d97");
-pub const FOLDERID_CommonTemplates = @import("../zig.zig").Guid.initString("b94237e7-57ac-4347-9151-b08c6c32d1f7");
-pub const FOLDERID_PublicDocuments = @import("../zig.zig").Guid.initString("ed4824af-dce4-45a8-81e2-fc7965083634");
-pub const FOLDERID_RoamingAppData = @import("../zig.zig").Guid.initString("3eb685db-65f9-4cf6-a03a-e3ef65729f3d");
-pub const FOLDERID_LocalAppData = @import("../zig.zig").Guid.initString("f1b32785-6fba-4fcf-9d55-7b8e7f157091");
-pub const FOLDERID_LocalAppDataLow = @import("../zig.zig").Guid.initString("a520a1a4-1780-4ff6-bd18-167343c5af16");
-pub const FOLDERID_InternetCache = @import("../zig.zig").Guid.initString("352481e8-33be-4251-ba85-6007caedcf9d");
-pub const FOLDERID_Cookies = @import("../zig.zig").Guid.initString("2b0f765d-c0e9-4171-908e-08a611b84ff6");
-pub const FOLDERID_History = @import("../zig.zig").Guid.initString("d9dc8a3b-b784-432e-a781-5a1130a75963");
-pub const FOLDERID_System = @import("../zig.zig").Guid.initString("1ac14e77-02e7-4e5d-b744-2eb1ae5198b7");
-pub const FOLDERID_SystemX86 = @import("../zig.zig").Guid.initString("d65231b0-b2f1-4857-a4ce-a8e7c6ea7d27");
-pub const FOLDERID_Windows = @import("../zig.zig").Guid.initString("f38bf404-1d43-42f2-9305-67de0b28fc23");
-pub const FOLDERID_Profile = @import("../zig.zig").Guid.initString("5e6c858f-0e22-4760-9afe-ea3317b67173");
-pub const FOLDERID_Pictures = @import("../zig.zig").Guid.initString("33e28130-4e1e-4676-835a-98395c3bc3bb");
-pub const FOLDERID_ProgramFilesX86 = @import("../zig.zig").Guid.initString("7c5a40ef-a0fb-4bfc-874a-c0f2e0b9fa8e");
-pub const FOLDERID_ProgramFilesCommonX86 = @import("../zig.zig").Guid.initString("de974d24-d9c6-4d3e-bf91-f4455120b917");
-pub const FOLDERID_ProgramFilesX64 = @import("../zig.zig").Guid.initString("6d809377-6af0-444b-8957-a3773f02200e");
-pub const FOLDERID_ProgramFilesCommonX64 = @import("../zig.zig").Guid.initString("6365d5a7-0f0d-45e5-87f6-0da56b6a4f7d");
-pub const FOLDERID_ProgramFiles = @import("../zig.zig").Guid.initString("905e63b6-c1bf-494e-b29c-65b732d3d21a");
-pub const FOLDERID_ProgramFilesCommon = @import("../zig.zig").Guid.initString("f7f1ed05-9f6d-47a2-aaae-29d317c6f066");
-pub const FOLDERID_UserProgramFiles = @import("../zig.zig").Guid.initString("5cd7aee2-2219-4a67-b85d-6c9ce15660cb");
-pub const FOLDERID_UserProgramFilesCommon = @import("../zig.zig").Guid.initString("bcbd3057-ca5c-4622-b42d-bc56db0ae516");
-pub const FOLDERID_AdminTools = @import("../zig.zig").Guid.initString("724ef170-a42d-4fef-9f26-b60e846fba4f");
-pub const FOLDERID_CommonAdminTools = @import("../zig.zig").Guid.initString("d0384e7d-bac3-4797-8f14-cba229b392b5");
-pub const FOLDERID_Music = @import("../zig.zig").Guid.initString("4bd8d571-6d19-48d3-be97-422220080e43");
-pub const FOLDERID_Videos = @import("../zig.zig").Guid.initString("18989b1d-99b5-455b-841c-ab7c74e4ddfc");
-pub const FOLDERID_Ringtones = @import("../zig.zig").Guid.initString("c870044b-f49e-4126-a9c3-b52a1ff411e8");
-pub const FOLDERID_PublicPictures = @import("../zig.zig").Guid.initString("b6ebfb86-6907-413c-9af7-4fc2abf07cc5");
-pub const FOLDERID_PublicMusic = @import("../zig.zig").Guid.initString("3214fab5-9757-4298-bb61-92a9deaa44ff");
-pub const FOLDERID_PublicVideos = @import("../zig.zig").Guid.initString("2400183a-6185-49fb-a2d8-4a392a602ba3");
-pub const FOLDERID_PublicRingtones = @import("../zig.zig").Guid.initString("e555ab60-153b-4d17-9f04-a5fe99fc15ec");
-pub const FOLDERID_ResourceDir = @import("../zig.zig").Guid.initString("8ad10c31-2adb-4296-a8f7-e4701232c972");
-pub const FOLDERID_LocalizedResourcesDir = @import("../zig.zig").Guid.initString("2a00375e-224c-49de-b8d1-440df7ef3ddc");
-pub const FOLDERID_CommonOEMLinks = @import("../zig.zig").Guid.initString("c1bae2d0-10df-4334-bedd-7aa20b227a9d");
-pub const FOLDERID_CDBurning = @import("../zig.zig").Guid.initString("9e52ab10-f80d-49df-acb8-4330f5687855");
-pub const FOLDERID_UserProfiles = @import("../zig.zig").Guid.initString("0762d272-c50a-4bb0-a382-697dcd729b80");
-pub const FOLDERID_Playlists = @import("../zig.zig").Guid.initString("de92c1c7-837f-4f69-a3bb-86e631204a23");
-pub const FOLDERID_SamplePlaylists = @import("../zig.zig").Guid.initString("15ca69b3-30ee-49c1-ace1-6b5ec372afb5");
-pub const FOLDERID_SampleMusic = @import("../zig.zig").Guid.initString("b250c668-f57d-4ee1-a63c-290ee7d1aa1f");
-pub const FOLDERID_SamplePictures = @import("../zig.zig").Guid.initString("c4900540-2379-4c75-844b-64e6faf8716b");
-pub const FOLDERID_SampleVideos = @import("../zig.zig").Guid.initString("859ead94-2e85-48ad-a71a-0969cb56a6cd");
-pub const FOLDERID_PhotoAlbums = @import("../zig.zig").Guid.initString("69d2cf90-fc33-4fb7-9a0c-ebb0f0fcb43c");
-pub const FOLDERID_Public = @import("../zig.zig").Guid.initString("dfdf76a2-c82a-4d63-906a-5644ac457385");
-pub const FOLDERID_ChangeRemovePrograms = @import("../zig.zig").Guid.initString("df7266ac-9274-4867-8d55-3bd661de872d");
-pub const FOLDERID_AppUpdates = @import("../zig.zig").Guid.initString("a305ce99-f527-492b-8b1a-7e76fa98d6e4");
-pub const FOLDERID_AddNewPrograms = @import("../zig.zig").Guid.initString("de61d971-5ebc-4f02-a3a9-6c82895e5c04");
-pub const FOLDERID_Downloads = @import("../zig.zig").Guid.initString("374de290-123f-4565-9164-39c4925e467b");
-pub const FOLDERID_PublicDownloads = @import("../zig.zig").Guid.initString("3d644c9b-1fb8-4f30-9b45-f670235f79c0");
-pub const FOLDERID_SavedSearches = @import("../zig.zig").Guid.initString("7d1d3a04-debb-4115-95cf-2f29da2920da");
-pub const FOLDERID_QuickLaunch = @import("../zig.zig").Guid.initString("52a4f021-7b75-48a9-9f6b-4b87a210bc8f");
-pub const FOLDERID_Contacts = @import("../zig.zig").Guid.initString("56784854-c6cb-462b-8169-88e350acb882");
-pub const FOLDERID_SidebarParts = @import("../zig.zig").Guid.initString("a75d362e-50fc-4fb7-ac2c-a8beaa314493");
-pub const FOLDERID_SidebarDefaultParts = @import("../zig.zig").Guid.initString("7b396e54-9ec5-4300-be0a-2482ebae1a26");
-pub const FOLDERID_PublicGameTasks = @import("../zig.zig").Guid.initString("debf2536-e1a8-4c59-b6a2-414586476aea");
-pub const FOLDERID_GameTasks = @import("../zig.zig").Guid.initString("054fae61-4dd8-4787-80b6-090220c4b700");
-pub const FOLDERID_SavedGames = @import("../zig.zig").Guid.initString("4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4");
-pub const FOLDERID_Games = @import("../zig.zig").Guid.initString("cac52c1a-b53d-4edc-92d7-6b2e8ac19434");
-pub const FOLDERID_SEARCH_MAPI = @import("../zig.zig").Guid.initString("98ec0e18-2098-4d44-8644-66979315a281");
-pub const FOLDERID_SEARCH_CSC = @import("../zig.zig").Guid.initString("ee32e446-31ca-4aba-814f-a5ebd2fd6d5e");
-pub const FOLDERID_Links = @import("../zig.zig").Guid.initString("bfb9d5e0-c6a9-404c-b2b2-ae6db6af4968");
-pub const FOLDERID_UsersFiles = @import("../zig.zig").Guid.initString("f3ce0f7c-4901-4acc-8648-d5d44b04ef8f");
-pub const FOLDERID_UsersLibraries = @import("../zig.zig").Guid.initString("a302545d-deff-464b-abe8-61c8648d939b");
-pub const FOLDERID_SearchHome = @import("../zig.zig").Guid.initString("190337d1-b8ca-4121-a639-6d472d16972a");
-pub const FOLDERID_OriginalImages = @import("../zig.zig").Guid.initString("2c36c0aa-5812-4b87-bfd0-4cd0dfb19b39");
-pub const FOLDERID_DocumentsLibrary = @import("../zig.zig").Guid.initString("7b0db17d-9cd2-4a93-9733-46cc89022e7c");
-pub const FOLDERID_MusicLibrary = @import("../zig.zig").Guid.initString("2112ab0a-c86a-4ffe-a368-0de96e47012e");
-pub const FOLDERID_PicturesLibrary = @import("../zig.zig").Guid.initString("a990ae9f-a03b-4e80-94bc-9912d7504104");
-pub const FOLDERID_VideosLibrary = @import("../zig.zig").Guid.initString("491e922f-5643-4af4-a7eb-4e7a138d8174");
-pub const FOLDERID_RecordedTVLibrary = @import("../zig.zig").Guid.initString("1a6fdba2-f42d-4358-a798-b74d745926c5");
-pub const FOLDERID_HomeGroup = @import("../zig.zig").Guid.initString("52528a6b-b9e3-4add-b60d-588c2dba842d");
-pub const FOLDERID_HomeGroupCurrentUser = @import("../zig.zig").Guid.initString("9b74b6a3-0dfd-4f11-9e78-5f7800f2e772");
-pub const FOLDERID_DeviceMetadataStore = @import("../zig.zig").Guid.initString("5ce4a5e9-e4eb-479d-b89f-130c02886155");
-pub const FOLDERID_Libraries = @import("../zig.zig").Guid.initString("1b3ea5dc-b587-4786-b4ef-bd1dc332aeae");
-pub const FOLDERID_PublicLibraries = @import("../zig.zig").Guid.initString("48daf80b-e6cf-4f4e-b800-0e69d84ee384");
-pub const FOLDERID_UserPinned = @import("../zig.zig").Guid.initString("9e3995ab-1f9c-4f13-b827-48b24b6c7174");
-pub const FOLDERID_ImplicitAppShortcuts = @import("../zig.zig").Guid.initString("bcb5256f-79f6-4cee-b725-dc34e402fd46");
-pub const FOLDERID_AccountPictures = @import("../zig.zig").Guid.initString("008ca0b1-55b4-4c56-b8a8-4de4b299d3be");
-pub const FOLDERID_PublicUserTiles = @import("../zig.zig").Guid.initString("0482af6c-08f1-4c34-8c90-e17ec98b1e17");
-pub const FOLDERID_AppsFolder = @import("../zig.zig").Guid.initString("1e87508d-89c2-42f0-8a7e-645a0f50ca58");
-pub const FOLDERID_StartMenuAllPrograms = @import("../zig.zig").Guid.initString("f26305ef-6948-40b9-b255-81453d09c785");
-pub const FOLDERID_CommonStartMenuPlaces = @import("../zig.zig").Guid.initString("a440879f-87a0-4f7d-b700-0207b966194a");
-pub const FOLDERID_ApplicationShortcuts = @import("../zig.zig").Guid.initString("a3918781-e5f2-4890-b3d9-a7e54332328c");
-pub const FOLDERID_RoamingTiles = @import("../zig.zig").Guid.initString("00bcfc5a-ed94-4e48-96a1-3f6217f21990");
-pub const FOLDERID_RoamedTileImages = @import("../zig.zig").Guid.initString("aaa8d5a5-f1d6-4259-baa8-78e7ef60835e");
-pub const FOLDERID_Screenshots = @import("../zig.zig").Guid.initString("b7bede81-df94-4682-a7d8-57a52620b86f");
-pub const FOLDERID_CameraRoll = @import("../zig.zig").Guid.initString("ab5fb87b-7ce2-4f83-915d-550846c9537b");
-pub const FOLDERID_SkyDrive = @import("../zig.zig").Guid.initString("a52bba46-e9e1-435f-b3d9-28daa648c0f6");
-pub const FOLDERID_OneDrive = @import("../zig.zig").Guid.initString("a52bba46-e9e1-435f-b3d9-28daa648c0f6");
-pub const FOLDERID_SkyDriveDocuments = @import("../zig.zig").Guid.initString("24d89e24-2f19-4534-9dde-6a6671fbb8fe");
-pub const FOLDERID_SkyDrivePictures = @import("../zig.zig").Guid.initString("339719b5-8c47-4894-94c2-d8f77add44a6");
-pub const FOLDERID_SkyDriveMusic = @import("../zig.zig").Guid.initString("c3f2459e-80d6-45dc-bfef-1f769f2be730");
-pub const FOLDERID_SkyDriveCameraRoll = @import("../zig.zig").Guid.initString("767e6811-49cb-4273-87c2-20f355e1085b");
-pub const FOLDERID_SearchHistory = @import("../zig.zig").Guid.initString("0d4c3db6-03a3-462f-a0e6-08924c41b5d4");
-pub const FOLDERID_SearchTemplates = @import("../zig.zig").Guid.initString("7e636bfe-dfa9-4d5e-b456-d7b39851d8a9");
-pub const FOLDERID_CameraRollLibrary = @import("../zig.zig").Guid.initString("2b20df75-1eda-4039-8097-38798227d5b7");
-pub const FOLDERID_SavedPictures = @import("../zig.zig").Guid.initString("3b193882-d3ad-4eab-965a-69829d1fb59f");
-pub const FOLDERID_SavedPicturesLibrary = @import("../zig.zig").Guid.initString("e25b5812-be88-4bd9-94b0-29233477b6c3");
-pub const FOLDERID_RetailDemo = @import("../zig.zig").Guid.initString("12d4c69e-24ad-4923-be19-31321c43a767");
-pub const FOLDERID_Device = @import("../zig.zig").Guid.initString("1c2ac1dc-4358-4b6c-9733-af21156576f0");
-pub const FOLDERID_DevelopmentFiles = @import("../zig.zig").Guid.initString("dbe8e08e-3053-4bbc-b183-2a7b2b191e59");
-pub const FOLDERID_Objects3D = @import("../zig.zig").Guid.initString("31c0dd25-9439-4f12-bf41-7ff4eda38722");
-pub const FOLDERID_AppCaptures = @import("../zig.zig").Guid.initString("edc0fe71-98d8-4f4a-b920-c8dc133cb165");
-pub const FOLDERID_LocalDocuments = @import("../zig.zig").Guid.initString("f42ee2d3-909f-4907-8871-4c22fc0bf756");
-pub const FOLDERID_LocalPictures = @import("../zig.zig").Guid.initString("0ddd015d-b06c-45d5-8c4c-f59713854639");
-pub const FOLDERID_LocalVideos = @import("../zig.zig").Guid.initString("35286a68-3c57-41a1-bbb1-0eae73d76c95");
-pub const FOLDERID_LocalMusic = @import("../zig.zig").Guid.initString("a0c69a99-21c8-4671-8703-7934162fcf1d");
-pub const FOLDERID_LocalDownloads = @import("../zig.zig").Guid.initString("7d83ee9b-2244-4e70-b1f5-5393042af1e4");
-pub const FOLDERID_RecordedCalls = @import("../zig.zig").Guid.initString("2f8b40c2-83ed-48ee-b383-a1f157ec6f9a");
-pub const FOLDERID_AllAppMods = @import("../zig.zig").Guid.initString("7ad67899-66af-43ba-9156-6aad42e6c596");
-pub const FOLDERID_CurrentAppMods = @import("../zig.zig").Guid.initString("3db40b20-2a30-4dbe-917e-771dd21dd099");
-pub const FOLDERID_AppDataDesktop = @import("../zig.zig").Guid.initString("b2c5e279-7add-439f-b28c-c41fe1bbf672");
-pub const FOLDERID_AppDataDocuments = @import("../zig.zig").Guid.initString("7be16610-1f7f-44ac-bff0-83e15f2ffca1");
-pub const FOLDERID_AppDataFavorites = @import("../zig.zig").Guid.initString("7cfbefbc-de1f-45aa-b843-a542ac536cc9");
-pub const FOLDERID_AppDataProgramData = @import("../zig.zig").Guid.initString("559d40a3-a036-40fa-af61-84cb430a4d34");
-pub const CLSID_InternetShortcut = @import("../zig.zig").Guid.initString("fbf23b40-e3f0-101b-8488-00aa003e56f8");
-pub const CLSID_NetworkDomain = @import("../zig.zig").Guid.initString("46e06680-4bf0-11d1-83ee-00a0c90dc849");
-pub const CLSID_NetworkServer = @import("../zig.zig").Guid.initString("c0542a90-4bf0-11d1-83ee-00a0c90dc849");
-pub const CLSID_NetworkShare = @import("../zig.zig").Guid.initString("54a754c0-4bf0-11d1-83ee-00a0c90dc849");
-pub const CLSID_MyComputer = @import("../zig.zig").Guid.initString("20d04fe0-3aea-1069-a2d8-08002b30309d");
-pub const CLSID_Internet = @import("../zig.zig").Guid.initString("871c5380-42a0-1069-a2ea-08002b30309d");
-pub const CLSID_RecycleBin = @import("../zig.zig").Guid.initString("645ff040-5081-101b-9f08-00aa002f954e");
-pub const CLSID_ControlPanel = @import("../zig.zig").Guid.initString("21ec2020-3aea-1069-a2dd-08002b30309d");
-pub const CLSID_Printers = @import("../zig.zig").Guid.initString("2227a280-3aea-1069-a2de-08002b30309d");
-pub const CLSID_MyDocuments = @import("../zig.zig").Guid.initString("450d8fba-ad25-11d0-98a8-0800361b1103");
-pub const CATID_BrowsableShellExt = @import("../zig.zig").Guid.initString("00021490-0000-0000-c000-000000000046");
-pub const CATID_BrowseInPlace = @import("../zig.zig").Guid.initString("00021491-0000-0000-c000-000000000046");
-pub const CATID_DeskBand = @import("../zig.zig").Guid.initString("00021492-0000-0000-c000-000000000046");
-pub const CATID_InfoBand = @import("../zig.zig").Guid.initString("00021493-0000-0000-c000-000000000046");
-pub const CATID_CommBand = @import("../zig.zig").Guid.initString("00021494-0000-0000-c000-000000000046");
-pub const FMTID_Intshcut = @import("../zig.zig").Guid.initString("000214a0-0000-0000-c000-000000000046");
-pub const FMTID_InternetSite = @import("../zig.zig").Guid.initString("000214a1-0000-0000-c000-000000000046");
-pub const CGID_Explorer = @import("../zig.zig").Guid.initString("000214d0-0000-0000-c000-000000000046");
-pub const CGID_ShellDocView = @import("../zig.zig").Guid.initString("000214d1-0000-0000-c000-000000000046");
-pub const CGID_ShellServiceObject = @import("../zig.zig").Guid.initString("000214d2-0000-0000-c000-000000000046");
-pub const CGID_ExplorerBarDoc = @import("../zig.zig").Guid.initString("000214d3-0000-0000-c000-000000000046");
-pub const CLSID_FolderShortcut = @import("../zig.zig").Guid.initString("0afaced1-e828-11d1-9187-b532f1e9575d");
-pub const CLSID_CFSIconOverlayManager = @import("../zig.zig").Guid.initString("63b51f81-c868-11d0-999c-00c04fd655e1");
-pub const CLSID_ShellThumbnailDiskCache = @import("../zig.zig").Guid.initString("1ebdcf80-a200-11d0-a3a4-00c04fd706ec");
-pub const SID_DefView = @import("../zig.zig").Guid.initString("6d12fe80-7911-11cf-9534-0000c05bae0b");
-pub const CGID_DefView = @import("../zig.zig").Guid.initString("4af07f10-d231-11d0-b942-00a0c90312e1");
-pub const CLSID_MenuBand = @import("../zig.zig").Guid.initString("5b4dae26-b807-11d0-9815-00c04fd91972");
-pub const VID_LargeIcons = @import("../zig.zig").Guid.initString("0057d0e0-3573-11cf-ae69-08002b2e1262");
-pub const VID_SmallIcons = @import("../zig.zig").Guid.initString("089000c0-3573-11cf-ae69-08002b2e1262");
-pub const VID_List = @import("../zig.zig").Guid.initString("0e1fa5e0-3573-11cf-ae69-08002b2e1262");
-pub const VID_Details = @import("../zig.zig").Guid.initString("137e7700-3573-11cf-ae69-08002b2e1262");
-pub const VID_Tile = @import("../zig.zig").Guid.initString("65f125e5-7be1-4810-ba9d-d271c8432ce3");
-pub const VID_Content = @import("../zig.zig").Guid.initString("30c2c434-0889-4c8d-985d-a9f71830b0a9");
-pub const VID_Thumbnails = @import("../zig.zig").Guid.initString("8bebb290-52d0-11d0-b7f4-00c04fd706ec");
-pub const VID_ThumbStrip = @import("../zig.zig").Guid.initString("8eefa624-d1e9-445b-94b7-74fbce2ea11a");
-pub const SID_SInPlaceBrowser = @import("../zig.zig").Guid.initString("1d2ae02b-3655-46cc-b63a-285988153bca");
-pub const SID_SSearchBoxInfo = @import("../zig.zig").Guid.initString("142daa61-516b-4713-b49c-fb985ef82998");
-pub const SID_CommandsPropertyBag = @import("../zig.zig").Guid.initString("6e043250-4416-485c-b143-e62a760d9fe5");
-pub const CLSID_CUrlHistory = @import("../zig.zig").Guid.initString("3c374a40-bae4-11cf-bf7d-00aa006946ee");
-pub const CLSID_CURLSearchHook = @import("../zig.zig").Guid.initString("cfbfae00-17a6-11d0-99cb-00c04fd64497");
-pub const CLSID_AutoComplete = @import("../zig.zig").Guid.initString("00bb2763-6a77-11d0-a535-00c04fd7d062");
-pub const CLSID_ACLHistory = @import("../zig.zig").Guid.initString("00bb2764-6a77-11d0-a535-00c04fd7d062");
-pub const CLSID_ACListISF = @import("../zig.zig").Guid.initString("03c036f1-a186-11d0-824a-00aa005b4383");
-pub const CLSID_ACLMRU = @import("../zig.zig").Guid.initString("6756a641-de71-11d0-831b-00aa005b4383");
-pub const CLSID_ACLMulti = @import("../zig.zig").Guid.initString("00bb2765-6a77-11d0-a535-00c04fd7d062");
-pub const CLSID_ACLCustomMRU = @import("../zig.zig").Guid.initString("6935db93-21e8-4ccc-beb9-9fe3c77a297a");
-pub const CLSID_ProgressDialog = @import("../zig.zig").Guid.initString("f8383852-fcd3-11d1-a6b9-006097df5bd4");
-pub const SID_STopLevelBrowser = @import("../zig.zig").Guid.initString("4c96be40-915c-11cf-99d3-00aa004ae837");
-pub const CLSID_FileTypes = @import("../zig.zig").Guid.initString("b091e540-83e3-11cf-a713-0020afd79762");
-pub const CLSID_ActiveDesktop = @import("../zig.zig").Guid.initString("75048700-ef1f-11d0-9888-006097deacf9");
-pub const CLSID_QueryAssociations = @import("../zig.zig").Guid.initString("a07034fd-6caa-4954-ac3f-97a27216f98a");
-pub const CLSID_LinkColumnProvider = @import("../zig.zig").Guid.initString("24f14f02-7b1c-11d1-838f-0000f80461cf");
-pub const CGID_ShortCut = @import("../zig.zig").Guid.initString("93a68750-951a-11d1-946f-000000000000");
-pub const CLSID_InternetButtons = @import("../zig.zig").Guid.initString("1e796980-9cc5-11d1-a83f-00c04fc99d61");
-pub const CLSID_MSOButtons = @import("../zig.zig").Guid.initString("178f34b8-a282-11d2-86c5-00c04f8eea99");
-pub const CLSID_ToolbarExtButtons = @import("../zig.zig").Guid.initString("2ce4b5d8-a28f-11d2-86c5-00c04f8eea99");
-pub const CLSID_DarwinAppPublisher = @import("../zig.zig").Guid.initString("cfccc7a0-a282-11d1-9082-006008059382");
-pub const CLSID_DocHostUIHandler = @import("../zig.zig").Guid.initString("7057e952-bd1b-11d1-8919-00c04fc2c836");
-pub const FMTID_ShellDetails = @import("../zig.zig").Guid.initString("28636aa6-953d-11d2-b5d6-00c04fd918d0");
-pub const PID_FINDDATA : u32 = 0;
-pub const PID_NETRESOURCE : u32 = 1;
-pub const PID_DESCRIPTIONID : u32 = 2;
-pub const PID_WHICHFOLDER : u32 = 3;
-pub const PID_NETWORKLOCATION : u32 = 4;
-pub const PID_COMPUTERNAME : u32 = 5;
-pub const FMTID_Storage = @import("../zig.zig").Guid.initString("b725f130-47ef-101a-a5f1-02608c9eebac");
-pub const FMTID_ImageProperties = @import("../zig.zig").Guid.initString("14b81da1-0135-4d31-96d9-6cbfc9671a99");
-pub const FMTID_CustomImageProperties = @import("../zig.zig").Guid.initString("7ecd8b0e-c136-4a9b-9411-4ebd6673ccc3");
-pub const FMTID_LibraryProperties = @import("../zig.zig").Guid.initString("5d76b67f-9b3d-44bb-b6ae-25da4f638a67");
-pub const FMTID_Displaced = @import("../zig.zig").Guid.initString("9b174b33-40ff-11d2-a27e-00c04fc30871");
-pub const PID_DISPLACED_FROM : u32 = 2;
-pub const PID_DISPLACED_DATE : u32 = 3;
-pub const FMTID_Briefcase = @import("../zig.zig").Guid.initString("328d8b21-7729-4bfc-954c-902b329d56b0");
-pub const PID_SYNC_COPY_IN : u32 = 2;
-pub const FMTID_Misc = @import("../zig.zig").Guid.initString("9b174b34-40ff-11d2-a27e-00c04fc30871");
-pub const PID_MISC_STATUS : u32 = 2;
-pub const PID_MISC_ACCESSCOUNT : u32 = 3;
-pub const PID_MISC_OWNER : u32 = 4;
-pub const PID_HTMLINFOTIPFILE : u32 = 5;
-pub const PID_MISC_PICS : u32 = 6;
-pub const FMTID_WebView = @import("../zig.zig").Guid.initString("f2275480-f782-4291-bd94-f13693513aec");
-pub const PID_DISPLAY_PROPERTIES : u32 = 0;
-pub const PID_INTROTEXT : u32 = 1;
-pub const FMTID_MUSIC = @import("../zig.zig").Guid.initString("56a3372e-ce9c-11d2-9f0e-006097c686f6");
-pub const PIDSI_ARTIST : u32 = 2;
-pub const PIDSI_SONGTITLE : u32 = 3;
-pub const PIDSI_ALBUM : u32 = 4;
-pub const PIDSI_YEAR : u32 = 5;
-pub const PIDSI_COMMENT : u32 = 6;
-pub const PIDSI_TRACK : u32 = 7;
-pub const PIDSI_GENRE : u32 = 11;
-pub const PIDSI_LYRICS : u32 = 12;
-pub const FMTID_DRM = @import("../zig.zig").Guid.initString("aeac19e4-89ae-4508-b9b7-bb867abee2ed");
-pub const PIDDRSI_PROTECTED : u32 = 2;
-pub const PIDDRSI_DESCRIPTION : u32 = 3;
-pub const PIDDRSI_PLAYCOUNT : u32 = 4;
-pub const PIDDRSI_PLAYSTARTS : u32 = 5;
-pub const PIDDRSI_PLAYEXPIRES : u32 = 6;
-pub const PIDVSI_STREAM_NAME : u32 = 2;
-pub const PIDVSI_FRAME_WIDTH : u32 = 3;
-pub const PIDVSI_FRAME_HEIGHT : u32 = 4;
-pub const PIDVSI_TIMELENGTH : u32 = 7;
-pub const PIDVSI_FRAME_COUNT : u32 = 5;
-pub const PIDVSI_FRAME_RATE : u32 = 6;
-pub const PIDVSI_DATA_RATE : u32 = 8;
-pub const PIDVSI_SAMPLE_SIZE : u32 = 9;
-pub const PIDVSI_COMPRESSION : u32 = 10;
-pub const PIDVSI_STREAM_NUMBER : u32 = 11;
-pub const PIDASI_FORMAT : u32 = 2;
-pub const PIDASI_TIMELENGTH : u32 = 3;
-pub const PIDASI_AVG_DATA_RATE : u32 = 4;
-pub const PIDASI_SAMPLE_RATE : u32 = 5;
-pub const PIDASI_SAMPLE_SIZE : u32 = 6;
-pub const PIDASI_CHANNEL_COUNT : u32 = 7;
-pub const PIDASI_STREAM_NUMBER : u32 = 8;
-pub const PIDASI_STREAM_NAME : u32 = 9;
-pub const PIDASI_COMPRESSION : u32 = 10;
-pub const PID_CONTROLPANEL_CATEGORY : u32 = 2;
-pub const FMTID_Volume = @import("../zig.zig").Guid.initString("9b174b35-40ff-11d2-a27e-00c04fc30871");
-pub const PID_VOLUME_FREE : u32 = 2;
-pub const PID_VOLUME_CAPACITY : u32 = 3;
-pub const PID_VOLUME_FILESYSTEM : u32 = 4;
-pub const PID_SHARE_CSC_STATUS : u32 = 2;
-pub const PID_LINK_TARGET : u32 = 2;
-pub const PID_LINK_TARGET_TYPE : u32 = 3;
-pub const FMTID_Query = @import("../zig.zig").Guid.initString("49691c90-7e17-101a-a91c-08002b2ecda9");
-pub const PID_QUERY_RANK : u32 = 2;
-pub const CLSID_HWShellExecute = @import("../zig.zig").Guid.initString("ffb8655f-81b9-4fce-b89c-9a6ba76d13e7");
-pub const CLSID_DragDropHelper = @import("../zig.zig").Guid.initString("4657278a-411b-11d2-839a-00c04fd918d0");
-pub const CLSID_CAnchorBrowsePropertyPage = @import("../zig.zig").Guid.initString("3050f3bb-98b5-11cf-bb82-00aa00bdce0b");
-pub const CLSID_CImageBrowsePropertyPage = @import("../zig.zig").Guid.initString("3050f3b3-98b5-11cf-bb82-00aa00bdce0b");
-pub const CLSID_CDocBrowsePropertyPage = @import("../zig.zig").Guid.initString("3050f3b4-98b5-11cf-bb82-00aa00bdce0b");
-pub const SID_STopWindow = @import("../zig.zig").Guid.initString("49e1b500-4636-11d3-97f7-00c04f45d0b3");
-pub const SID_SGetViewFromViewDual = @import("../zig.zig").Guid.initString("889a935d-971e-4b12-b90c-24dfc9e1e5e8");
-pub const CLSID_FolderItemsMultiLevel = @import("../zig.zig").Guid.initString("53c74826-ab99-4d33-aca4-3117f51d3788");
-pub const CLSID_NewMenu = @import("../zig.zig").Guid.initString("d969a300-e7ff-11d0-a93b-00a0c90f2719");
-pub const BHID_SFObject = @import("../zig.zig").Guid.initString("3981e224-f559-11d3-8e3a-00c04f6837d5");
-pub const BHID_SFUIObject = @import("../zig.zig").Guid.initString("3981e225-f559-11d3-8e3a-00c04f6837d5");
-pub const BHID_SFViewObject = @import("../zig.zig").Guid.initString("3981e226-f559-11d3-8e3a-00c04f6837d5");
-pub const BHID_Storage = @import("../zig.zig").Guid.initString("3981e227-f559-11d3-8e3a-00c04f6837d5");
-pub const BHID_Stream = @import("../zig.zig").Guid.initString("1cebb3ab-7c10-499a-a417-92ca16c4cb83");
-pub const BHID_RandomAccessStream = @import("../zig.zig").Guid.initString("f16fc93b-77ae-4cfe-bda7-a866eea6878d");
-pub const BHID_LinkTargetItem = @import("../zig.zig").Guid.initString("3981e228-f559-11d3-8e3a-00c04f6837d5");
-pub const BHID_StorageEnum = @import("../zig.zig").Guid.initString("4621a4e3-f0d6-4773-8a9c-46e77b174840");
-pub const BHID_Transfer = @import("../zig.zig").Guid.initString("d5e346a1-f753-4932-b403-4574800e2498");
-pub const BHID_PropertyStore = @import("../zig.zig").Guid.initString("0384e1a4-1523-439c-a4c8-ab911052f586");
-pub const BHID_ThumbnailHandler = @import("../zig.zig").Guid.initString("7b2e650a-8e20-4f4a-b09e-6597afc72fb0");
-pub const BHID_EnumItems = @import("../zig.zig").Guid.initString("94f60519-2850-4924-aa5a-d15e84868039");
-pub const BHID_DataObject = @import("../zig.zig").Guid.initString("b8c0bd9f-ed24-455c-83e6-d5390c4fe8c4");
-pub const BHID_AssociationArray = @import("../zig.zig").Guid.initString("bea9ef17-82f1-4f60-9284-4f8db75c3be9");
-pub const BHID_Filter = @import("../zig.zig").Guid.initString("38d08778-f557-4690-9ebf-ba54706ad8f7");
-pub const BHID_EnumAssocHandlers = @import("../zig.zig").Guid.initString("b8ab0b9c-c2ec-4f7a-918d-314900e6280a");
-pub const BHID_StorageItem = @import("../zig.zig").Guid.initString("404e2109-77d2-4699-a5a0-4fdf10db9837");
-pub const BHID_FilePlaceholder = @import("../zig.zig").Guid.initString("8677dceb-aae0-4005-8d3d-547fa852f825");
-pub const CATID_FilePlaceholderMergeHandler = @import("../zig.zig").Guid.initString("3e9c9a51-d4aa-4870-b47c-7424b491f1cc");
-pub const SID_CtxQueryAssociations = @import("../zig.zig").Guid.initString("faadfc40-b777-4b69-aa81-77035ef0e6e8");
-pub const CLSID_QuickLinks = @import("../zig.zig").Guid.initString("0e5cbf21-d15f-11d0-8301-00aa005b4383");
-pub const CLSID_ISFBand = @import("../zig.zig").Guid.initString("d82be2b0-5764-11d0-a96e-00c04fd705a2");
-pub const CLSID_ShellFldSetExt = @import("../zig.zig").Guid.initString("6d5313c0-8c62-11d1-b2cd-006097df8c11");
-pub const SID_SMenuBandChild = @import("../zig.zig").Guid.initString("ed9cc020-08b9-11d1-9823-00c04fd91972");
-pub const SID_SMenuBandParent = @import("../zig.zig").Guid.initString("8c278eec-3eab-11d1-8cb0-00c04fd918d0");
-pub const SID_SMenuPopup = @import("../zig.zig").Guid.initString("d1e7afeb-6a2e-11d0-8c78-00c04fd918b4");
-pub const SID_SMenuBandBottomSelected = @import("../zig.zig").Guid.initString("165ebaf4-6d51-11d2-83ad-00c04fd918d0");
-pub const SID_SMenuBandBottom = @import("../zig.zig").Guid.initString("743ca664-0deb-11d1-9825-00c04fd91972");
-pub const SID_MenuShellFolder = @import("../zig.zig").Guid.initString("a6c17eb4-2d65-11d2-838f-00c04fd918d0");
-pub const SID_SMenuBandContextMenuModifier = @import("../zig.zig").Guid.initString("39545874-7162-465e-b783-2aa1874fef81");
-pub const SID_SMenuBandBKContextMenu = @import("../zig.zig").Guid.initString("164bbd86-1d0d-4de0-9a3b-d9729647c2b8");
-pub const CGID_MENUDESKBAR = @import("../zig.zig").Guid.initString("5c9f0a12-959e-11d0-a3a4-00a0c9082636");
-pub const SID_SMenuBandTop = @import("../zig.zig").Guid.initString("9493a810-ec38-11d0-bc46-00aa006ce2f5");
-pub const CLSID_MenuToolbarBase = @import("../zig.zig").Guid.initString("40b96610-b522-11d1-b3b4-00aa006efde7");
-pub const CLSID_MenuBandSite = @import("../zig.zig").Guid.initString("e13ef4e4-d2f2-11d0-9816-00c04fd91972");
-pub const SID_SCommDlgBrowser = @import("../zig.zig").Guid.initString("80f30233-b7df-11d2-a33b-006097df5bd4");
-pub const CPFG_LOGON_USERNAME = @import("../zig.zig").Guid.initString("da15bbe8-954d-4fd3-b0f4-1fb5b90b174b");
-pub const CPFG_LOGON_PASSWORD = @import("../zig.zig").Guid.initString("60624cfa-a477-47b1-8a8e-3a4a19981827");
-pub const CPFG_SMARTCARD_USERNAME = @import("../zig.zig").Guid.initString("3e1ecf69-568c-4d96-9d59-46444174e2d6");
-pub const CPFG_SMARTCARD_PIN = @import("../zig.zig").Guid.initString("4fe5263b-9181-46c1-b0a4-9dedd4db7dea");
-pub const CPFG_CREDENTIAL_PROVIDER_LOGO = @import("../zig.zig").Guid.initString("2d837775-f6cd-464e-a745-482fd0b47493");
-pub const CPFG_CREDENTIAL_PROVIDER_LABEL = @import("../zig.zig").Guid.initString("286bbff3-bad4-438f-b007-79b7267c3d48");
-pub const CPFG_STANDALONE_SUBMIT_BUTTON = @import("../zig.zig").Guid.initString("0b7b0ad8-cc36-4d59-802b-82f714fa7022");
-pub const CPFG_STYLE_LINK_AS_BUTTON = @import("../zig.zig").Guid.initString("088fa508-94a6-4430-a4cb-6fc6e3c0b9e2");
-pub const FOLDERTYPEID_Invalid = @import("../zig.zig").Guid.initString("57807898-8c4f-4462-bb63-71042380b109");
-pub const FOLDERTYPEID_Generic = @import("../zig.zig").Guid.initString("5c4f28b5-f869-4e84-8e60-f11db97c5cc7");
-pub const FOLDERTYPEID_GenericSearchResults = @import("../zig.zig").Guid.initString("7fde1a1e-8b31-49a5-93b8-6be14cfa4943");
-pub const FOLDERTYPEID_GenericLibrary = @import("../zig.zig").Guid.initString("5f4eab9a-6833-4f61-899d-31cf46979d49");
-pub const FOLDERTYPEID_Documents = @import("../zig.zig").Guid.initString("7d49d726-3c21-4f05-99aa-fdc2c9474656");
-pub const FOLDERTYPEID_Pictures = @import("../zig.zig").Guid.initString("b3690e58-e961-423b-b687-386ebfd83239");
-pub const FOLDERTYPEID_Music = @import("../zig.zig").Guid.initString("94d6ddcc-4a68-4175-a374-bd584a510b78");
-pub const FOLDERTYPEID_Videos = @import("../zig.zig").Guid.initString("5fa96407-7e77-483c-ac93-691d05850de8");
-pub const FOLDERTYPEID_Downloads = @import("../zig.zig").Guid.initString("885a186e-a440-4ada-812b-db871b942259");
-pub const FOLDERTYPEID_UserFiles = @import("../zig.zig").Guid.initString("cd0fc69b-71e2-46e5-9690-5bcd9f57aab3");
-pub const FOLDERTYPEID_UsersLibraries = @import("../zig.zig").Guid.initString("c4d98f09-6124-4fe0-9942-826416082da9");
-pub const FOLDERTYPEID_OtherUsers = @import("../zig.zig").Guid.initString("b337fd00-9dd5-4635-a6d4-da33fd102b7a");
-pub const FOLDERTYPEID_PublishedItems = @import("../zig.zig").Guid.initString("7f2f5b96-ff74-41da-afd8-1c78a5f3aea2");
-pub const FOLDERTYPEID_Communications = @import("../zig.zig").Guid.initString("91475fe5-586b-4eba-8d75-d17434b8cdf6");
-pub const FOLDERTYPEID_Contacts = @import("../zig.zig").Guid.initString("de2b70ec-9bf7-4a93-bd3d-243f7881d492");
-pub const FOLDERTYPEID_StartMenu = @import("../zig.zig").Guid.initString("ef87b4cb-f2ce-4785-8658-4ca6c63e38c6");
-pub const FOLDERTYPEID_RecordedTV = @import("../zig.zig").Guid.initString("5557a28f-5da6-4f83-8809-c2c98a11a6fa");
-pub const FOLDERTYPEID_SavedGames = @import("../zig.zig").Guid.initString("d0363307-28cb-4106-9f23-2956e3e5e0e7");
-pub const FOLDERTYPEID_OpenSearch = @import("../zig.zig").Guid.initString("8faf9629-1980-46ff-8023-9dceab9c3ee3");
-pub const FOLDERTYPEID_SearchConnector = @import("../zig.zig").Guid.initString("982725ee-6f47-479e-b447-812bfa7d2e8f");
-pub const FOLDERTYPEID_AccountPictures = @import("../zig.zig").Guid.initString("db2a5d8f-06e6-4007-aba6-af877d526ea6");
-pub const FOLDERTYPEID_Games = @import("../zig.zig").Guid.initString("b689b0d0-76d3-4cbb-87f7-585d0e0ce070");
-pub const FOLDERTYPEID_ControlPanelCategory = @import("../zig.zig").Guid.initString("de4f0660-fa10-4b8f-a494-068b20b22307");
-pub const FOLDERTYPEID_ControlPanelClassic = @import("../zig.zig").Guid.initString("0c3794f3-b545-43aa-a329-c37430c58d2a");
-pub const FOLDERTYPEID_Printers = @import("../zig.zig").Guid.initString("2c7bbec6-c844-4a0a-91fa-cef6f59cfda1");
-pub const FOLDERTYPEID_RecycleBin = @import("../zig.zig").Guid.initString("d6d9e004-cd87-442b-9d57-5e0aeb4f6f72");
-pub const FOLDERTYPEID_SoftwareExplorer = @import("../zig.zig").Guid.initString("d674391b-52d9-4e07-834e-67c98610f39d");
-pub const FOLDERTYPEID_CompressedFolder = @import("../zig.zig").Guid.initString("80213e82-bcfd-4c4f-8817-bb27601267a9");
-pub const FOLDERTYPEID_NetworkExplorer = @import("../zig.zig").Guid.initString("25cc242b-9a7c-4f51-80e0-7a2928febe42");
-pub const FOLDERTYPEID_Searches = @import("../zig.zig").Guid.initString("0b0ba2e3-405f-415e-a6ee-cad625207853");
-pub const FOLDERTYPEID_SearchHome = @import("../zig.zig").Guid.initString("834d8a44-0974-4ed6-866e-f203d80b3810");
-pub const FOLDERTYPEID_StorageProviderGeneric = @import("../zig.zig").Guid.initString("4f01ebc5-2385-41f2-a28e-2c5c91fb56e0");
-pub const FOLDERTYPEID_StorageProviderDocuments = @import("../zig.zig").Guid.initString("dd61bd66-70e8-48dd-9655-65c5e1aac2d1");
-pub const FOLDERTYPEID_StorageProviderPictures = @import("../zig.zig").Guid.initString("71d642a9-f2b1-42cd-ad92-eb9300c7cc0a");
-pub const FOLDERTYPEID_StorageProviderMusic = @import("../zig.zig").Guid.initString("672ecd7e-af04-4399-875c-0290845b6247");
-pub const FOLDERTYPEID_StorageProviderVideos = @import("../zig.zig").Guid.initString("51294da1-d7b1-485b-9e9a-17cffe33e187");
-pub const SYNCMGR_OBJECTID_Icon = @import("../zig.zig").Guid.initString("6dbc85c3-5d07-4c72-a777-7fec78072c06");
-pub const SYNCMGR_OBJECTID_EventStore = @import("../zig.zig").Guid.initString("4bef34b9-a786-4075-ba88-0c2b9d89a98f");
-pub const SYNCMGR_OBJECTID_ConflictStore = @import("../zig.zig").Guid.initString("d78181f4-2389-47e4-a960-60bcc2ed930b");
-pub const SYNCMGR_OBJECTID_BrowseContent = @import("../zig.zig").Guid.initString("57cbb584-e9b4-47ae-a120-c4df3335dee2");
-pub const SYNCMGR_OBJECTID_ShowSchedule = @import("../zig.zig").Guid.initString("edc6f3e3-8441-4109-adf3-6c1ca0b7de47");
-pub const SYNCMGR_OBJECTID_QueryBeforeActivate = @import("../zig.zig").Guid.initString("d882d80b-e7aa-49ed-86b7-e6e1f714cdfe");
-pub const SYNCMGR_OBJECTID_QueryBeforeDeactivate = @import("../zig.zig").Guid.initString("a0efc282-60e0-460e-9374-ea88513cfc80");
-pub const SYNCMGR_OBJECTID_QueryBeforeEnable = @import("../zig.zig").Guid.initString("04cbf7f0-5beb-4de1-bc90-908345c480f6");
-pub const SYNCMGR_OBJECTID_QueryBeforeDisable = @import("../zig.zig").Guid.initString("bb5f64aa-f004-4eb5-8e4d-26751966344c");
-pub const SYNCMGR_OBJECTID_QueryBeforeDelete = @import("../zig.zig").Guid.initString("f76c3397-afb3-45d7-a59f-5a49e905437e");
-pub const SYNCMGR_OBJECTID_EventLinkClick = @import("../zig.zig").Guid.initString("2203bdc1-1af1-4082-8c30-28399f41384c");
-pub const EP_NavPane = @import("../zig.zig").Guid.initString("cb316b22-25f7-42b8-8a09-540d23a43c2f");
-pub const EP_Commands = @import("../zig.zig").Guid.initString("d9745868-ca5f-4a76-91cd-f5a129fbb076");
-pub const EP_Commands_Organize = @import("../zig.zig").Guid.initString("72e81700-e3ec-4660-bf24-3c3b7b648806");
-pub const EP_Commands_View = @import("../zig.zig").Guid.initString("21f7c32d-eeaa-439b-bb51-37b96fd6a943");
-pub const EP_DetailsPane = @import("../zig.zig").Guid.initString("43abf98b-89b8-472d-b9ce-e69b8229f019");
-pub const EP_PreviewPane = @import("../zig.zig").Guid.initString("893c63d1-45c8-4d17-be19-223be71be365");
-pub const EP_QueryPane = @import("../zig.zig").Guid.initString("65bcde4f-4f07-4f27-83a7-1afca4df7ddd");
-pub const EP_AdvQueryPane = @import("../zig.zig").Guid.initString("b4e9db8b-34ba-4c39-b5cc-16a1bd2c411c");
-pub const EP_StatusBar = @import("../zig.zig").Guid.initString("65fe56ce-5cfe-4bc4-ad8a-7ae3fe7e8f7c");
-pub const EP_Ribbon = @import("../zig.zig").Guid.initString("d27524a8-c9f2-4834-a106-df8889fd4f37");
-pub const CATID_LocationFactory = @import("../zig.zig").Guid.initString("965c4d51-8b76-4e57-80b7-564d2ea4b55e");
-pub const CATID_LocationProvider = @import("../zig.zig").Guid.initString("1b3ca474-2614-414b-b813-1aceca3e3dd8");
-pub const ItemCount_Property_GUID = @import("../zig.zig").Guid.initString("abbf5c45-5ccc-47b7-bb4e-87cb87bbd162");
-pub const SelectedItemCount_Property_GUID = @import("../zig.zig").Guid.initString("8fe316d2-0e52-460a-9c1e-48f273d470a3");
-pub const ItemIndex_Property_GUID = @import("../zig.zig").Guid.initString("92a053da-2969-4021-bf27-514cfc2e4a69");
-pub const CATID_SearchableApplication = @import("../zig.zig").Guid.initString("366c292a-d9b3-4dbf-bb70-e62ec3d0bbbf");
-pub const IDD_WIZEXTN_FIRST : u32 = 20480;
-pub const IDD_WIZEXTN_LAST : u32 = 20736;
-pub const SHPWHF_NORECOMPRESS : u32 = 1;
-pub const SHPWHF_NONETPLACECREATE : u32 = 2;
-pub const SHPWHF_NOFILESELECTOR : u32 = 4;
-pub const SHPWHF_USEMRU : u32 = 8;
-pub const SHPWHF_ANYLOCATION : u32 = 256;
-pub const SHPWHF_VALIDATEVIAWEBFOLDERS : u32 = 65536;
-pub const ACDD_VISIBLE : u32 = 1;
-pub const SID_SCommandBarState = @import("../zig.zig").Guid.initString("b99eaa5c-3850-4400-bc33-2ce534048bf8");
-pub const NSTCDHPOS_ONTOP : i32 = -1;
-pub const FVSIF_RECT : u32 = 1;
-pub const FVSIF_PINNED : u32 = 2;
-pub const FVSIF_NEWFAILED : u32 = 134217728;
-pub const FVSIF_NEWFILE : u32 = 2147483648;
-pub const FVSIF_CANVIEWIT : u32 = 1073741824;
-pub const IDC_OFFLINE_HAND : u32 = 103;
-pub const IDC_PANTOOL_HAND_OPEN : u32 = 104;
-pub const IDC_PANTOOL_HAND_CLOSED : u32 = 105;
-pub const PANE_ZONE : u32 = 1;
-pub const PANE_OFFLINE : u32 = 2;
-pub const PANE_PRINTER : u32 = 3;
-pub const PANE_SSL : u32 = 4;
-pub const PANE_NAVIGATION : u32 = 5;
-pub const PANE_PROGRESS : u32 = 6;
-pub const PANE_PRIVACY : u32 = 7;
-pub const DWFRF_NORMAL : u32 = 0;
-pub const DWFRF_DELETECONFIGDATA : u32 = 1;
-pub const DWFAF_HIDDEN : u32 = 1;
-pub const DWFAF_GROUP1 : u32 = 2;
-pub const DWFAF_GROUP2 : u32 = 4;
-pub const DWFAF_AUTOHIDE : u32 = 16;
-pub const SHIMSTCAPFLAG_LOCKABLE : u32 = 1;
-pub const SHIMSTCAPFLAG_PURGEABLE : u32 = 2;
-pub const ISFB_MASK_STATE : u32 = 1;
-pub const ISFB_MASK_BKCOLOR : u32 = 2;
-pub const ISFB_MASK_VIEWMODE : u32 = 4;
-pub const ISFB_MASK_SHELLFOLDER : u32 = 8;
-pub const ISFB_MASK_IDLIST : u32 = 16;
-pub const ISFB_MASK_COLORS : u32 = 32;
-pub const ISFB_STATE_DEFAULT : u32 = 0;
-pub const ISFB_STATE_DEBOSSED : u32 = 1;
-pub const ISFB_STATE_ALLOWRENAME : u32 = 2;
-pub const ISFB_STATE_NOSHOWTEXT : u32 = 4;
-pub const ISFB_STATE_CHANNELBAR : u32 = 16;
-pub const ISFB_STATE_QLINKSMODE : u32 = 32;
-pub const ISFB_STATE_FULLOPEN : u32 = 64;
-pub const ISFB_STATE_NONAMESORT : u32 = 128;
-pub const ISFB_STATE_BTNMINSIZE : u32 = 256;
-pub const ISFBVIEWMODE_SMALLICONS : u32 = 1;
-pub const ISFBVIEWMODE_LARGEICONS : u32 = 2;
-pub const ISFBVIEWMODE_LOGOS : u32 = 3;
-pub const DBC_GS_IDEAL : u32 = 0;
-pub const DBC_GS_SIZEDOWN : u32 = 1;
-pub const DBC_HIDE : u32 = 0;
-pub const DBC_SHOW : u32 = 1;
-pub const DBC_SHOWOBSCURE : u32 = 2;
-pub const SSM_CLEAR : u32 = 0;
-pub const SSM_SET : u32 = 1;
-pub const SSM_REFRESH : u32 = 2;
-pub const SSM_UPDATE : u32 = 4;
-pub const SCHEME_DISPLAY : u32 = 1;
-pub const SCHEME_EDIT : u32 = 2;
-pub const SCHEME_LOCAL : u32 = 4;
-pub const SCHEME_GLOBAL : u32 = 8;
-pub const SCHEME_REFRESH : u32 = 16;
-pub const SCHEME_UPDATE : u32 = 32;
-pub const SCHEME_DONOTUSE : u32 = 64;
-pub const SCHEME_CREATE : u32 = 128;
-pub const GADOF_DIRTY : u32 = 1;
-pub const SHCDF_UPDATEITEM : u32 = 1;
-pub const PPCF_ADDQUOTES : u32 = 1;
-pub const PPCF_ADDARGUMENTS : u32 = 3;
-pub const PPCF_NODIRECTORIES : u32 = 16;
-pub const PPCF_FORCEQUALIFY : u32 = 64;
-pub const PPCF_LONGESTPOSSIBLE : u32 = 128;
-pub const OPENPROPS_NONE : u32 = 0;
-pub const OPENPROPS_INHIBITPIF : u32 = 32768;
-pub const GETPROPS_NONE : u32 = 0;
-pub const SETPROPS_NONE : u32 = 0;
-pub const CLOSEPROPS_NONE : u32 = 0;
-pub const CLOSEPROPS_DISCARD : u32 = 1;
-pub const TBIF_APPEND : u32 = 0;
-pub const TBIF_PREPEND : u32 = 1;
-pub const TBIF_REPLACE : u32 = 2;
-pub const TBIF_DEFAULT : u32 = 0;
-pub const TBIF_INTERNETBAR : u32 = 65536;
-pub const TBIF_STANDARDTOOLBAR : u32 = 131072;
-pub const TBIF_NOTOOLBAR : u32 = 196608;
-pub const SFVM_REARRANGE : u32 = 1;
-pub const SFVM_ADDOBJECT : u32 = 3;
-pub const SFVM_REMOVEOBJECT : u32 = 6;
-pub const SFVM_UPDATEOBJECT : u32 = 7;
-pub const SFVM_GETSELECTEDOBJECTS : u32 = 9;
-pub const SFVM_SETITEMPOS : u32 = 14;
-pub const SFVM_SETCLIPBOARD : u32 = 16;
-pub const SFVM_SETPOINTS : u32 = 23;
-pub const GIL_OPENICON : u32 = 1;
-pub const GIL_FORSHELL : u32 = 2;
-pub const GIL_ASYNC : u32 = 32;
-pub const GIL_DEFAULTICON : u32 = 64;
-pub const GIL_FORSHORTCUT : u32 = 128;
-pub const GIL_CHECKSHIELD : u32 = 512;
-pub const GIL_SIMULATEDOC : u32 = 1;
-pub const GIL_PERINSTANCE : u32 = 2;
-pub const GIL_PERCLASS : u32 = 4;
-pub const GIL_NOTFILENAME : u32 = 8;
-pub const GIL_DONTCACHE : u32 = 16;
-pub const GIL_SHIELD : u32 = 512;
-pub const GIL_FORCENOSHIELD : u32 = 1024;
-pub const SIOM_OVERLAYINDEX : u32 = 1;
-pub const SIOM_ICONINDEX : u32 = 2;
-pub const SIOM_RESERVED_SHARED : u32 = 0;
-pub const SIOM_RESERVED_LINK : u32 = 1;
-pub const SIOM_RESERVED_SLOWFILE : u32 = 2;
-pub const SIOM_RESERVED_DEFAULT : u32 = 3;
-pub const OI_DEFAULT : u32 = 0;
-pub const OI_ASYNC : u32 = 4294962926;
-pub const IDO_SHGIOI_SHARE : u32 = 268435455;
-pub const IDO_SHGIOI_LINK : u32 = 268435454;
-pub const IDO_SHGIOI_SLOWFILE : u64 = 4294967293;
-pub const IDO_SHGIOI_DEFAULT : u64 = 4294967292;
-pub const NT_CONSOLE_PROPS_SIG : u32 = 2684354562;
-pub const NT_FE_CONSOLE_PROPS_SIG : u32 = 2684354564;
-pub const EXP_DARWIN_ID_SIG : u32 = 2684354566;
-pub const EXP_SPECIAL_FOLDER_SIG : u32 = 2684354565;
-pub const EXP_SZ_LINK_SIG : u32 = 2684354561;
-pub const EXP_SZ_ICON_SIG : u32 = 2684354567;
-pub const EXP_PROPERTYSTORAGE_SIG : u32 = 2684354569;
-pub const FCIDM_SHVIEWFIRST : u32 = 0;
-pub const FCIDM_SHVIEWLAST : u32 = 32767;
-pub const FCIDM_BROWSERFIRST : u32 = 40960;
-pub const FCIDM_BROWSERLAST : u32 = 48896;
-pub const FCIDM_GLOBALFIRST : u32 = 32768;
-pub const FCIDM_GLOBALLAST : u32 = 40959;
-pub const OFASI_EDIT : u32 = 1;
-pub const OFASI_OPENDESKTOP : u32 = 2;
-pub const CSIDL_DESKTOP : u32 = 0;
-pub const CSIDL_INTERNET : u32 = 1;
-pub const CSIDL_PROGRAMS : u32 = 2;
-pub const CSIDL_CONTROLS : u32 = 3;
-pub const CSIDL_PRINTERS : u32 = 4;
-pub const CSIDL_PERSONAL : u32 = 5;
-pub const CSIDL_FAVORITES : u32 = 6;
-pub const CSIDL_STARTUP : u32 = 7;
-pub const CSIDL_RECENT : u32 = 8;
-pub const CSIDL_SENDTO : u32 = 9;
-pub const CSIDL_BITBUCKET : u32 = 10;
-pub const CSIDL_STARTMENU : u32 = 11;
-pub const CSIDL_MYMUSIC : u32 = 13;
-pub const CSIDL_MYVIDEO : u32 = 14;
-pub const CSIDL_DESKTOPDIRECTORY : u32 = 16;
-pub const CSIDL_DRIVES : u32 = 17;
-pub const CSIDL_NETWORK : u32 = 18;
-pub const CSIDL_NETHOOD : u32 = 19;
-pub const CSIDL_FONTS : u32 = 20;
-pub const CSIDL_TEMPLATES : u32 = 21;
-pub const CSIDL_COMMON_STARTMENU : u32 = 22;
-pub const CSIDL_COMMON_PROGRAMS : u32 = 23;
-pub const CSIDL_COMMON_STARTUP : u32 = 24;
-pub const CSIDL_COMMON_DESKTOPDIRECTORY : u32 = 25;
-pub const CSIDL_APPDATA : u32 = 26;
-pub const CSIDL_PRINTHOOD : u32 = 27;
-pub const CSIDL_LOCAL_APPDATA : u32 = 28;
-pub const CSIDL_ALTSTARTUP : u32 = 29;
-pub const CSIDL_COMMON_ALTSTARTUP : u32 = 30;
-pub const CSIDL_COMMON_FAVORITES : u32 = 31;
-pub const CSIDL_INTERNET_CACHE : u32 = 32;
-pub const CSIDL_COOKIES : u32 = 33;
-pub const CSIDL_HISTORY : u32 = 34;
-pub const CSIDL_COMMON_APPDATA : u32 = 35;
-pub const CSIDL_WINDOWS : u32 = 36;
-pub const CSIDL_SYSTEM : u32 = 37;
-pub const CSIDL_PROGRAM_FILES : u32 = 38;
-pub const CSIDL_MYPICTURES : u32 = 39;
-pub const CSIDL_PROFILE : u32 = 40;
-pub const CSIDL_SYSTEMX86 : u32 = 41;
-pub const CSIDL_PROGRAM_FILESX86 : u32 = 42;
-pub const CSIDL_PROGRAM_FILES_COMMON : u32 = 43;
-pub const CSIDL_PROGRAM_FILES_COMMONX86 : u32 = 44;
-pub const CSIDL_COMMON_TEMPLATES : u32 = 45;
-pub const CSIDL_COMMON_DOCUMENTS : u32 = 46;
-pub const CSIDL_COMMON_ADMINTOOLS : u32 = 47;
-pub const CSIDL_ADMINTOOLS : u32 = 48;
-pub const CSIDL_CONNECTIONS : u32 = 49;
-pub const CSIDL_COMMON_MUSIC : u32 = 53;
-pub const CSIDL_COMMON_PICTURES : u32 = 54;
-pub const CSIDL_COMMON_VIDEO : u32 = 55;
-pub const CSIDL_RESOURCES : u32 = 56;
-pub const CSIDL_RESOURCES_LOCALIZED : u32 = 57;
-pub const CSIDL_COMMON_OEM_LINKS : u32 = 58;
-pub const CSIDL_CDBURN_AREA : u32 = 59;
-pub const CSIDL_COMPUTERSNEARME : u32 = 61;
-pub const CSIDL_FLAG_CREATE : u32 = 32768;
-pub const CSIDL_FLAG_DONT_VERIFY : u32 = 16384;
-pub const CSIDL_FLAG_DONT_UNEXPAND : u32 = 8192;
-pub const CSIDL_FLAG_NO_ALIAS : u32 = 4096;
-pub const CSIDL_FLAG_PER_USER_INIT : u32 = 2048;
-pub const CSIDL_FLAG_MASK : u32 = 65280;
-pub const FCS_READ : u32 = 1;
-pub const FCS_FORCEWRITE : u32 = 2;
-pub const FCS_FLAG_DRAGDROP : u32 = 2;
-pub const FCSM_VIEWID : u32 = 1;
-pub const FCSM_WEBVIEWTEMPLATE : u32 = 2;
-pub const FCSM_INFOTIP : u32 = 4;
-pub const FCSM_CLSID : u32 = 8;
-pub const FCSM_ICONFILE : u32 = 16;
-pub const FCSM_LOGO : u32 = 32;
-pub const FCSM_FLAGS : u32 = 64;
-pub const BIF_RETURNONLYFSDIRS : u32 = 1;
-pub const BIF_DONTGOBELOWDOMAIN : u32 = 2;
-pub const BIF_STATUSTEXT : u32 = 4;
-pub const BIF_RETURNFSANCESTORS : u32 = 8;
-pub const BIF_EDITBOX : u32 = 16;
-pub const BIF_VALIDATE : u32 = 32;
-pub const BIF_NEWDIALOGSTYLE : u32 = 64;
-pub const BIF_BROWSEINCLUDEURLS : u32 = 128;
-pub const BIF_UAHINT : u32 = 256;
-pub const BIF_NONEWFOLDERBUTTON : u32 = 512;
-pub const BIF_NOTRANSLATETARGETS : u32 = 1024;
-pub const BIF_BROWSEFORCOMPUTER : u32 = 4096;
-pub const BIF_BROWSEFORPRINTER : u32 = 8192;
-pub const BIF_BROWSEINCLUDEFILES : u32 = 16384;
-pub const BIF_SHAREABLE : u32 = 32768;
-pub const BIF_BROWSEFILEJUNCTIONS : u32 = 65536;
-pub const BFFM_INITIALIZED : u32 = 1;
-pub const BFFM_SELCHANGED : u32 = 2;
-pub const BFFM_VALIDATEFAILEDA : u32 = 3;
-pub const BFFM_VALIDATEFAILEDW : u32 = 4;
-pub const BFFM_IUNKNOWN : u32 = 5;
-pub const PROGDLG_NORMAL : u32 = 0;
-pub const PROGDLG_MODAL : u32 = 1;
-pub const PROGDLG_AUTOTIME : u32 = 2;
-pub const PROGDLG_NOTIME : u32 = 4;
-pub const PROGDLG_NOMINIMIZE : u32 = 8;
-pub const PROGDLG_NOPROGRESSBAR : u32 = 16;
-pub const PROGDLG_MARQUEEPROGRESS : u32 = 32;
-pub const PROGDLG_NOCANCEL : u32 = 64;
-pub const PDTIMER_RESET : u32 = 1;
-pub const PDTIMER_PAUSE : u32 = 2;
-pub const PDTIMER_RESUME : u32 = 3;
-pub const COMPONENT_TOP : u32 = 1073741823;
-pub const COMP_TYPE_HTMLDOC : u32 = 0;
-pub const COMP_TYPE_PICTURE : u32 = 1;
-pub const COMP_TYPE_WEBSITE : u32 = 2;
-pub const COMP_TYPE_CONTROL : u32 = 3;
-pub const COMP_TYPE_CFHTML : u32 = 4;
-pub const COMP_TYPE_MAX : u32 = 4;
-pub const IS_NORMAL : u32 = 1;
-pub const IS_FULLSCREEN : u32 = 2;
-pub const IS_SPLIT : u32 = 4;
-pub const AD_APPLY_SAVE : u32 = 1;
-pub const AD_APPLY_HTMLGEN : u32 = 2;
-pub const AD_APPLY_REFRESH : u32 = 4;
-pub const AD_APPLY_FORCE : u32 = 8;
-pub const AD_APPLY_BUFFERED_REFRESH : u32 = 16;
-pub const AD_APPLY_DYNAMICREFRESH : u32 = 32;
-pub const AD_GETWP_BMP : u32 = 0;
-pub const AD_GETWP_IMAGE : u32 = 1;
-pub const AD_GETWP_LAST_APPLIED : u32 = 2;
-pub const WPSTYLE_CENTER : u32 = 0;
-pub const WPSTYLE_TILE : u32 = 1;
-pub const WPSTYLE_STRETCH : u32 = 2;
-pub const WPSTYLE_KEEPASPECT : u32 = 3;
-pub const WPSTYLE_CROPTOFIT : u32 = 4;
-pub const WPSTYLE_SPAN : u32 = 5;
-pub const WPSTYLE_MAX : u32 = 6;
-pub const COMP_ELEM_TYPE : u32 = 1;
-pub const COMP_ELEM_CHECKED : u32 = 2;
-pub const COMP_ELEM_DIRTY : u32 = 4;
-pub const COMP_ELEM_NOSCROLL : u32 = 8;
-pub const COMP_ELEM_POS_LEFT : u32 = 16;
-pub const COMP_ELEM_POS_TOP : u32 = 32;
-pub const COMP_ELEM_SIZE_WIDTH : u32 = 64;
-pub const COMP_ELEM_SIZE_HEIGHT : u32 = 128;
-pub const COMP_ELEM_POS_ZINDEX : u32 = 256;
-pub const COMP_ELEM_SOURCE : u32 = 512;
-pub const COMP_ELEM_FRIENDLYNAME : u32 = 1024;
-pub const COMP_ELEM_SUBSCRIBEDURL : u32 = 2048;
-pub const COMP_ELEM_ORIGINAL_CSI : u32 = 4096;
-pub const COMP_ELEM_RESTORED_CSI : u32 = 8192;
-pub const COMP_ELEM_CURITEMSTATE : u32 = 16384;
-pub const ADDURL_SILENT : u32 = 1;
-pub const COMPONENT_DEFAULT_LEFT : u32 = 65535;
-pub const COMPONENT_DEFAULT_TOP : u32 = 65535;
-pub const MAX_COLUMN_NAME_LEN : u32 = 80;
-pub const MAX_COLUMN_DESC_LEN : u32 = 128;
-pub const DVASPECT_SHORTNAME : u32 = 2;
-pub const DVASPECT_COPY : u32 = 3;
-pub const DVASPECT_LINK : u32 = 4;
-pub const SHCNEE_ORDERCHANGED : i32 = 2;
-pub const SHCNEE_MSI_CHANGE : i32 = 4;
-pub const SHCNEE_MSI_UNINSTALL : i32 = 5;
-pub const NUM_POINTS : u32 = 3;
-pub const CABINETSTATE_VERSION : u32 = 2;
-pub const PIFNAMESIZE : u32 = 30;
-pub const PIFSTARTLOCSIZE : u32 = 63;
-pub const PIFDEFPATHSIZE : u32 = 64;
-pub const PIFPARAMSSIZE : u32 = 64;
-pub const PIFSHPROGSIZE : u32 = 64;
-pub const PIFSHDATASIZE : u32 = 64;
-pub const PIFDEFFILESIZE : u32 = 80;
-pub const PIFMAXFILEPATH : u32 = 260;
-pub const QCMINFO_PLACE_BEFORE : u32 = 0;
-pub const QCMINFO_PLACE_AFTER : u32 = 1;
-pub const SFVSOC_INVALIDATE_ALL : u32 = 1;
-pub const SHELLSTATEVERSION_IE4 : u32 = 9;
-pub const SHELLSTATEVERSION_WIN2K : u32 = 10;
-pub const SHPPFW_NONE : u32 = 0;
-pub const SHPPFW_DIRCREATE : u32 = 1;
-pub const SHPPFW_ASKDIRCREATE : u32 = 2;
-pub const SHPPFW_IGNOREFILENAME : u32 = 4;
-pub const SHPPFW_NOWRITECHECK : u32 = 8;
-pub const SHPPFW_MEDIACHECKONLY : u32 = 16;
-pub const CMF_NORMAL : u32 = 0;
-pub const CMF_DEFAULTONLY : u32 = 1;
-pub const CMF_VERBSONLY : u32 = 2;
-pub const CMF_EXPLORE : u32 = 4;
-pub const CMF_NOVERBS : u32 = 8;
-pub const CMF_CANRENAME : u32 = 16;
-pub const CMF_NODEFAULT : u32 = 32;
-pub const CMF_INCLUDESTATIC : u32 = 64;
-pub const CMF_ITEMMENU : u32 = 128;
-pub const CMF_EXTENDEDVERBS : u32 = 256;
-pub const CMF_DISABLEDVERBS : u32 = 512;
-pub const CMF_ASYNCVERBSTATE : u32 = 1024;
-pub const CMF_OPTIMIZEFORINVOKE : u32 = 2048;
-pub const CMF_SYNCCASCADEMENU : u32 = 4096;
-pub const CMF_DONOTPICKDEFAULT : u32 = 8192;
-pub const CMF_RESERVED : u32 = 4294901760;
-pub const GCS_VERBA : u32 = 0;
-pub const GCS_HELPTEXTA : u32 = 1;
-pub const GCS_VALIDATEA : u32 = 2;
-pub const GCS_VERBW : u32 = 4;
-pub const GCS_HELPTEXTW : u32 = 5;
-pub const GCS_VALIDATEW : u32 = 6;
-pub const GCS_VERBICONW : u32 = 20;
-pub const GCS_UNICODE : u32 = 4;
-pub const CMIC_MASK_SHIFT_DOWN : u32 = 268435456;
-pub const CMIC_MASK_CONTROL_DOWN : u32 = 1073741824;
-pub const CMIC_MASK_PTINVOKE : u32 = 536870912;
-pub const IRTIR_TASK_NOT_RUNNING : u32 = 0;
-pub const IRTIR_TASK_RUNNING : u32 = 1;
-pub const IRTIR_TASK_SUSPENDED : u32 = 2;
-pub const IRTIR_TASK_PENDING : u32 = 3;
-pub const IRTIR_TASK_FINISHED : u32 = 4;
-pub const ITSAT_DEFAULT_PRIORITY : u32 = 268435456;
-pub const ITSAT_MAX_PRIORITY : u32 = 2147483647;
-pub const ITSAT_MIN_PRIORITY : u32 = 0;
-pub const ITSSFLAG_COMPLETE_ON_DESTROY : u32 = 0;
-pub const ITSSFLAG_KILL_ON_DESTROY : u32 = 1;
-pub const ITSSFLAG_FLAGS_MASK : u32 = 3;
-pub const SHCIDS_ALLFIELDS : i32 = -2147483648;
-pub const SHCIDS_CANONICALONLY : i32 = 268435456;
-pub const SHCIDS_BITMASK : i32 = -65536;
-pub const SHCIDS_COLUMNMASK : i32 = 65535;
-pub const SFGAO_STORAGE : i32 = 8;
-pub const SFGAO_CANRENAME : i32 = 16;
-pub const SFGAO_CANDELETE : i32 = 32;
-pub const SFGAO_HASPROPSHEET : i32 = 64;
-pub const SFGAO_DROPTARGET : i32 = 256;
-pub const SFGAO_CAPABILITYMASK : i32 = 375;
-pub const SFGAO_PLACEHOLDER : i32 = 2048;
-pub const SFGAO_SYSTEM : i32 = 4096;
-pub const SFGAO_ENCRYPTED : i32 = 8192;
-pub const SFGAO_ISSLOW : i32 = 16384;
-pub const SFGAO_GHOSTED : i32 = 32768;
-pub const SFGAO_LINK : i32 = 65536;
-pub const SFGAO_SHARE : i32 = 131072;
-pub const SFGAO_READONLY : i32 = 262144;
-pub const SFGAO_HIDDEN : i32 = 524288;
-pub const SFGAO_DISPLAYATTRMASK : i32 = 1032192;
-pub const SFGAO_FILESYSANCESTOR : i32 = 268435456;
-pub const SFGAO_FOLDER : i32 = 536870912;
-pub const SFGAO_FILESYSTEM : i32 = 1073741824;
-pub const SFGAO_HASSUBFOLDER : i32 = -2147483648;
-pub const SFGAO_CONTENTSMASK : i32 = -2147483648;
-pub const SFGAO_VALIDATE : i32 = 16777216;
-pub const SFGAO_REMOVABLE : i32 = 33554432;
-pub const SFGAO_COMPRESSED : i32 = 67108864;
-pub const SFGAO_BROWSABLE : i32 = 134217728;
-pub const SFGAO_NONENUMERATED : i32 = 1048576;
-pub const SFGAO_NEWCONTENT : i32 = 2097152;
-pub const SFGAO_CANMONIKER : i32 = 4194304;
-pub const SFGAO_HASSTORAGE : i32 = 4194304;
-pub const SFGAO_STREAM : i32 = 4194304;
-pub const SFGAO_STORAGEANCESTOR : i32 = 8388608;
-pub const SFGAO_STORAGECAPMASK : i32 = 1891958792;
-pub const SFGAO_PKEYSFGAOMASK : i32 = -2130427904;
-pub const BIND_INTERRUPTABLE : u32 = 4294967295;
-pub const CDBOSC_SETFOCUS : u32 = 0;
-pub const CDBOSC_KILLFOCUS : u32 = 1;
-pub const CDBOSC_SELCHANGE : u32 = 2;
-pub const CDBOSC_RENAME : u32 = 3;
-pub const CDBOSC_STATECHANGE : u32 = 4;
-pub const CDB2N_CONTEXTMENU_DONE : u32 = 1;
-pub const CDB2N_CONTEXTMENU_START : u32 = 2;
-pub const CDB2GVF_SHOWALLFILES : u32 = 1;
-pub const CDB2GVF_ISFILESAVE : u32 = 2;
-pub const CDB2GVF_ALLOWPREVIEWPANE : u32 = 4;
-pub const CDB2GVF_NOSELECTVERB : u32 = 8;
-pub const CDB2GVF_NOINCLUDEITEM : u32 = 16;
-pub const CDB2GVF_ISFOLDERPICKER : u32 = 32;
-pub const CDB2GVF_ADDSHIELD : u32 = 64;
-pub const SBSP_DEFBROWSER : u32 = 0;
-pub const SBSP_SAMEBROWSER : u32 = 1;
-pub const SBSP_NEWBROWSER : u32 = 2;
-pub const SBSP_DEFMODE : u32 = 0;
-pub const SBSP_OPENMODE : u32 = 16;
-pub const SBSP_EXPLOREMODE : u32 = 32;
-pub const SBSP_HELPMODE : u32 = 64;
-pub const SBSP_NOTRANSFERHIST : u32 = 128;
-pub const SBSP_ABSOLUTE : u32 = 0;
-pub const SBSP_RELATIVE : u32 = 4096;
-pub const SBSP_PARENT : u32 = 8192;
-pub const SBSP_NAVIGATEBACK : u32 = 16384;
-pub const SBSP_NAVIGATEFORWARD : u32 = 32768;
-pub const SBSP_ALLOW_AUTONAVIGATE : u32 = 65536;
-pub const SBSP_KEEPSAMETEMPLATE : u32 = 131072;
-pub const SBSP_KEEPWORDWHEELTEXT : u32 = 262144;
-pub const SBSP_ACTIVATE_NOFOCUS : u32 = 524288;
-pub const SBSP_CREATENOHISTORY : u32 = 1048576;
-pub const SBSP_PLAYNOSOUND : u32 = 2097152;
-pub const SBSP_CALLERUNTRUSTED : u32 = 8388608;
-pub const SBSP_TRUSTFIRSTDOWNLOAD : u32 = 16777216;
-pub const SBSP_UNTRUSTEDFORDOWNLOAD : u32 = 33554432;
-pub const SBSP_NOAUTOSELECT : u32 = 67108864;
-pub const SBSP_WRITENOHISTORY : u32 = 134217728;
-pub const SBSP_TRUSTEDFORACTIVEX : u32 = 268435456;
-pub const SBSP_FEEDNAVIGATION : u32 = 536870912;
-pub const SBSP_REDIRECT : u32 = 1073741824;
-pub const SBSP_INITIATEDBYHLINKFRAME : u32 = 2147483648;
-pub const FCW_STATUS : u32 = 1;
-pub const FCW_TOOLBAR : u32 = 2;
-pub const FCW_TREE : u32 = 3;
-pub const FCW_INTERNETBAR : u32 = 6;
-pub const FCW_PROGRESS : u32 = 8;
-pub const FCT_MERGE : u32 = 1;
-pub const FCT_CONFIGABLE : u32 = 2;
-pub const FCT_ADDTOEND : u32 = 4;
-pub const ARCONTENT_AUTORUNINF : u32 = 2;
-pub const ARCONTENT_AUDIOCD : u32 = 4;
-pub const ARCONTENT_DVDMOVIE : u32 = 8;
-pub const ARCONTENT_BLANKCD : u32 = 16;
-pub const ARCONTENT_BLANKDVD : u32 = 32;
-pub const ARCONTENT_UNKNOWNCONTENT : u32 = 64;
-pub const ARCONTENT_AUTOPLAYPIX : u32 = 128;
-pub const ARCONTENT_AUTOPLAYMUSIC : u32 = 256;
-pub const ARCONTENT_AUTOPLAYVIDEO : u32 = 512;
-pub const ARCONTENT_VCD : u32 = 1024;
-pub const ARCONTENT_SVCD : u32 = 2048;
-pub const ARCONTENT_DVDAUDIO : u32 = 4096;
-pub const ARCONTENT_BLANKBD : u32 = 8192;
-pub const ARCONTENT_BLURAY : u32 = 16384;
-pub const ARCONTENT_CAMERASTORAGE : u32 = 32768;
-pub const ARCONTENT_CUSTOMEVENT : u32 = 65536;
-pub const ARCONTENT_NONE : u32 = 0;
-pub const ARCONTENT_MASK : u32 = 131070;
-pub const ARCONTENT_PHASE_UNKNOWN : u32 = 0;
-pub const ARCONTENT_PHASE_PRESNIFF : u32 = 268435456;
-pub const ARCONTENT_PHASE_SNIFFING : u32 = 536870912;
-pub const ARCONTENT_PHASE_FINAL : u32 = 1073741824;
-pub const ARCONTENT_PHASE_MASK : u32 = 1879048192;
-pub const IEIFLAG_ASYNC : u32 = 1;
-pub const IEIFLAG_CACHE : u32 = 2;
-pub const IEIFLAG_ASPECT : u32 = 4;
-pub const IEIFLAG_OFFLINE : u32 = 8;
-pub const IEIFLAG_GLEAM : u32 = 16;
-pub const IEIFLAG_SCREEN : u32 = 32;
-pub const IEIFLAG_ORIGSIZE : u32 = 64;
-pub const IEIFLAG_NOSTAMP : u32 = 128;
-pub const IEIFLAG_NOBORDER : u32 = 256;
-pub const IEIFLAG_QUALITY : u32 = 512;
-pub const IEIFLAG_REFRESH : u32 = 1024;
-pub const DBIM_MINSIZE : u32 = 1;
-pub const DBIM_MAXSIZE : u32 = 2;
-pub const DBIM_INTEGRAL : u32 = 4;
-pub const DBIM_ACTUAL : u32 = 8;
-pub const DBIM_TITLE : u32 = 16;
-pub const DBIM_MODEFLAGS : u32 = 32;
-pub const DBIM_BKCOLOR : u32 = 64;
-pub const DBIMF_NORMAL : u32 = 0;
-pub const DBIMF_FIXED : u32 = 1;
-pub const DBIMF_FIXEDBMP : u32 = 4;
-pub const DBIMF_VARIABLEHEIGHT : u32 = 8;
-pub const DBIMF_UNDELETEABLE : u32 = 16;
-pub const DBIMF_DEBOSSED : u32 = 32;
-pub const DBIMF_BKCOLOR : u32 = 64;
-pub const DBIMF_USECHEVRON : u32 = 128;
-pub const DBIMF_BREAK : u32 = 256;
-pub const DBIMF_ADDTOFRONT : u32 = 512;
-pub const DBIMF_TOPALIGN : u32 = 1024;
-pub const DBIMF_NOGRIPPER : u32 = 2048;
-pub const DBIMF_ALWAYSGRIPPER : u32 = 4096;
-pub const DBIMF_NOMARGINS : u32 = 8192;
-pub const DBIF_VIEWMODE_NORMAL : u32 = 0;
-pub const DBIF_VIEWMODE_VERTICAL : u32 = 1;
-pub const DBIF_VIEWMODE_FLOATING : u32 = 2;
-pub const DBIF_VIEWMODE_TRANSPARENT : u32 = 4;
-pub const THBN_CLICKED : u32 = 6144;
-pub const FOFX_NOSKIPJUNCTIONS : u32 = 65536;
-pub const FOFX_PREFERHARDLINK : u32 = 131072;
-pub const FOFX_SHOWELEVATIONPROMPT : u32 = 262144;
-pub const FOFX_RECYCLEONDELETE : u32 = 524288;
-pub const FOFX_EARLYFAILURE : u32 = 1048576;
-pub const FOFX_PRESERVEFILEEXTENSIONS : u32 = 2097152;
-pub const FOFX_KEEPNEWERFILE : u32 = 4194304;
-pub const FOFX_NOCOPYHOOKS : u32 = 8388608;
-pub const FOFX_NOMINIMIZEBOX : u32 = 16777216;
-pub const FOFX_MOVEACLSACROSSVOLUMES : u32 = 33554432;
-pub const FOFX_DONTDISPLAYSOURCEPATH : u32 = 67108864;
-pub const FOFX_DONTDISPLAYDESTPATH : u32 = 134217728;
-pub const FOFX_REQUIREELEVATION : u32 = 268435456;
-pub const FOFX_ADDUNDORECORD : u32 = 536870912;
-pub const FOFX_COPYASDOWNLOAD : u32 = 1073741824;
-pub const FOFX_DONTDISPLAYLOCATIONS : u32 = 2147483648;
-pub const BSIM_STATE : u32 = 1;
-pub const BSIM_STYLE : u32 = 2;
-pub const BSSF_VISIBLE : u32 = 1;
-pub const BSSF_NOTITLE : u32 = 2;
-pub const BSSF_UNDELETEABLE : u32 = 4096;
-pub const BSIS_AUTOGRIPPER : u32 = 0;
-pub const BSIS_NOGRIPPER : u32 = 1;
-pub const BSIS_ALWAYSGRIPPER : u32 = 2;
-pub const BSIS_LEFTALIGN : u32 = 4;
-pub const BSIS_SINGLECLICK : u32 = 8;
-pub const BSIS_NOCONTEXTMENU : u32 = 16;
-pub const BSIS_NODROPTARGET : u32 = 32;
-pub const BSIS_NOCAPTION : u32 = 64;
-pub const BSIS_PREFERNOLINEBREAK : u32 = 128;
-pub const BSIS_LOCKED : u32 = 256;
-pub const BSIS_PRESERVEORDERDURINGLAYOUT : u32 = 512;
-pub const BSIS_FIXEDORDER : u32 = 1024;
-pub const OF_CAP_CANSWITCHTO : u32 = 1;
-pub const OF_CAP_CANCLOSE : u32 = 2;
-pub const SMDM_SHELLFOLDER : u32 = 1;
-pub const SMDM_HMENU : u32 = 2;
-pub const SMDM_TOOLBAR : u32 = 4;
-pub const SMC_INITMENU : u32 = 1;
-pub const SMC_CREATE : u32 = 2;
-pub const SMC_EXITMENU : u32 = 3;
-pub const SMC_GETINFO : u32 = 5;
-pub const SMC_GETSFINFO : u32 = 6;
-pub const SMC_GETOBJECT : u32 = 7;
-pub const SMC_GETSFOBJECT : u32 = 8;
-pub const SMC_SFEXEC : u32 = 9;
-pub const SMC_SFSELECTITEM : u32 = 10;
-pub const SMC_REFRESH : u32 = 16;
-pub const SMC_DEMOTE : u32 = 17;
-pub const SMC_PROMOTE : u32 = 18;
-pub const SMC_DEFAULTICON : u32 = 22;
-pub const SMC_NEWITEM : u32 = 23;
-pub const SMC_CHEVRONEXPAND : u32 = 25;
-pub const SMC_DISPLAYCHEVRONTIP : u32 = 42;
-pub const SMC_SETSFOBJECT : u32 = 45;
-pub const SMC_SHCHANGENOTIFY : u32 = 46;
-pub const SMC_CHEVRONGETTIP : u32 = 47;
-pub const SMC_SFDDRESTRICTED : u32 = 48;
-pub const SMC_SFEXEC_MIDDLE : u32 = 49;
-pub const SMC_GETAUTOEXPANDSTATE : u32 = 65;
-pub const SMC_AUTOEXPANDCHANGE : u32 = 66;
-pub const SMC_GETCONTEXTMENUMODIFIER : u32 = 67;
-pub const SMC_GETBKCONTEXTMENU : u32 = 68;
-pub const SMC_OPEN : u32 = 69;
-pub const SMAE_EXPANDED : u32 = 1;
-pub const SMAE_CONTRACTED : u32 = 2;
-pub const SMAE_USER : u32 = 4;
-pub const SMAE_VALID : u32 = 7;
-pub const SMINIT_DEFAULT : u32 = 0;
-pub const SMINIT_RESTRICT_DRAGDROP : u32 = 2;
-pub const SMINIT_TOPLEVEL : u32 = 4;
-pub const SMINIT_CACHED : u32 = 16;
-pub const SMINIT_AUTOEXPAND : u32 = 256;
-pub const SMINIT_AUTOTOOLTIP : u32 = 512;
-pub const SMINIT_DROPONCONTAINER : u32 = 1024;
-pub const SMINIT_VERTICAL : u32 = 268435456;
-pub const SMINIT_HORIZONTAL : u32 = 536870912;
-pub const SMSET_TOP : u32 = 268435456;
-pub const SMSET_BOTTOM : u32 = 536870912;
-pub const SMSET_DONTOWN : u32 = 1;
-pub const SMINV_REFRESH : u32 = 1;
-pub const SMINV_ID : u32 = 8;
-pub const E_PREVIEWHANDLER_DRM_FAIL : i32 = -2042494975;
-pub const E_PREVIEWHANDLER_NOAUTH : i32 = -2042494974;
-pub const E_PREVIEWHANDLER_NOTFOUND : i32 = -2042494973;
-pub const E_PREVIEWHANDLER_CORRUPT : i32 = -2042494972;
-pub const SID_URLExecutionContext = @import("../zig.zig").Guid.initString("fb5f8ebc-bbb6-4d10-a461-777291a09030");
-pub const SID_LaunchSourceViewSizePreference = @import("../zig.zig").Guid.initString("80605492-67d9-414f-af89-a1cdf1242bc1");
-pub const SID_LaunchTargetViewSizePreference = @import("../zig.zig").Guid.initString("26db2472-b7b7-406b-9702-730a4e20d3bf");
-pub const SID_LaunchSourceAppUserModelId = @import("../zig.zig").Guid.initString("2ce78010-74db-48bc-9c6a-10f372495723");
-pub const SID_ShellExecuteNamedPropertyStore = @import("../zig.zig").Guid.initString("eb84ada2-00ff-4992-8324-ed5ce061cb29");
-pub const ISIOI_ICONFILE : u32 = 1;
-pub const ISIOI_ICONINDEX : u32 = 2;
-pub const ABM_NEW : u32 = 0;
-pub const ABM_REMOVE : u32 = 1;
-pub const ABM_QUERYPOS : u32 = 2;
-pub const ABM_SETPOS : u32 = 3;
-pub const ABM_GETSTATE : u32 = 4;
-pub const ABM_GETTASKBARPOS : u32 = 5;
-pub const ABM_ACTIVATE : u32 = 6;
-pub const ABM_GETAUTOHIDEBAR : u32 = 7;
-pub const ABM_SETAUTOHIDEBAR : u32 = 8;
-pub const ABM_WINDOWPOSCHANGED : u32 = 9;
-pub const ABM_SETSTATE : u32 = 10;
-pub const ABM_GETAUTOHIDEBAREX : u32 = 11;
-pub const ABM_SETAUTOHIDEBAREX : u32 = 12;
-pub const ABN_STATECHANGE : u32 = 0;
-pub const ABN_POSCHANGED : u32 = 1;
-pub const ABN_FULLSCREENAPP : u32 = 2;
-pub const ABN_WINDOWARRANGE : u32 = 3;
-pub const ABS_AUTOHIDE : u32 = 1;
-pub const ABS_ALWAYSONTOP : u32 = 2;
-pub const ABE_LEFT : u32 = 0;
-pub const ABE_TOP : u32 = 1;
-pub const ABE_RIGHT : u32 = 2;
-pub const ABE_BOTTOM : u32 = 3;
-pub const FO_MOVE : u32 = 1;
-pub const FO_COPY : u32 = 2;
-pub const FO_DELETE : u32 = 3;
-pub const FO_RENAME : u32 = 4;
-pub const FOF_MULTIDESTFILES : u32 = 1;
-pub const FOF_CONFIRMMOUSE : u32 = 2;
-pub const FOF_SILENT : u32 = 4;
-pub const FOF_RENAMEONCOLLISION : u32 = 8;
-pub const FOF_NOCONFIRMATION : u32 = 16;
-pub const FOF_WANTMAPPINGHANDLE : u32 = 32;
-pub const FOF_ALLOWUNDO : u32 = 64;
-pub const FOF_FILESONLY : u32 = 128;
-pub const FOF_SIMPLEPROGRESS : u32 = 256;
-pub const FOF_NOCONFIRMMKDIR : u32 = 512;
-pub const FOF_NOERRORUI : u32 = 1024;
-pub const FOF_NOCOPYSECURITYATTRIBS : u32 = 2048;
-pub const FOF_NORECURSION : u32 = 4096;
-pub const FOF_NO_CONNECTED_ELEMENTS : u32 = 8192;
-pub const FOF_WANTNUKEWARNING : u32 = 16384;
-pub const FOF_NORECURSEREPARSE : u32 = 32768;
-pub const PO_DELETE : u32 = 19;
-pub const PO_RENAME : u32 = 20;
-pub const PO_PORTCHANGE : u32 = 32;
-pub const PO_REN_PORT : u32 = 52;
-pub const SE_ERR_FNF : u32 = 2;
-pub const SE_ERR_PNF : u32 = 3;
-pub const SE_ERR_ACCESSDENIED : u32 = 5;
-pub const SE_ERR_OOM : u32 = 8;
-pub const SE_ERR_DLLNOTFOUND : u32 = 32;
-pub const SE_ERR_SHARE : u32 = 26;
-pub const SE_ERR_ASSOCINCOMPLETE : u32 = 27;
-pub const SE_ERR_DDETIMEOUT : u32 = 28;
-pub const SE_ERR_DDEFAIL : u32 = 29;
-pub const SE_ERR_DDEBUSY : u32 = 30;
-pub const SE_ERR_NOASSOC : u32 = 31;
-pub const SEE_MASK_DEFAULT : u32 = 0;
-pub const SEE_MASK_CLASSNAME : u32 = 1;
-pub const SEE_MASK_CLASSKEY : u32 = 3;
-pub const SEE_MASK_IDLIST : u32 = 4;
-pub const SEE_MASK_INVOKEIDLIST : u32 = 12;
-pub const SEE_MASK_ICON : u32 = 16;
-pub const SEE_MASK_HOTKEY : u32 = 32;
-pub const SEE_MASK_NOCLOSEPROCESS : u32 = 64;
-pub const SEE_MASK_CONNECTNETDRV : u32 = 128;
-pub const SEE_MASK_NOASYNC : u32 = 256;
-pub const SEE_MASK_DOENVSUBST : u32 = 512;
-pub const SEE_MASK_FLAG_NO_UI : u32 = 1024;
-pub const SEE_MASK_UNICODE : u32 = 16384;
-pub const SEE_MASK_NO_CONSOLE : u32 = 32768;
-pub const SEE_MASK_ASYNCOK : u32 = 1048576;
-pub const SEE_MASK_HMONITOR : u32 = 2097152;
-pub const SEE_MASK_NOZONECHECKS : u32 = 8388608;
-pub const SEE_MASK_NOQUERYCLASSSTORE : u32 = 16777216;
-pub const SEE_MASK_WAITFORINPUTIDLE : u32 = 33554432;
-pub const SEE_MASK_FLAG_LOG_USAGE : u32 = 67108864;
-pub const SEE_MASK_FLAG_HINST_IS_SITE : u32 = 134217728;
-pub const SHERB_NOCONFIRMATION : u32 = 1;
-pub const SHERB_NOPROGRESSUI : u32 = 2;
-pub const SHERB_NOSOUND : u32 = 4;
-pub const NINF_KEY : u32 = 1;
-pub const NIM_ADD : u32 = 0;
-pub const NIM_MODIFY : u32 = 1;
-pub const NIM_DELETE : u32 = 2;
-pub const NIM_SETFOCUS : u32 = 3;
-pub const NIM_SETVERSION : u32 = 4;
-pub const NOTIFYICON_VERSION : u32 = 3;
-pub const NOTIFYICON_VERSION_4 : u32 = 4;
-pub const NIF_MESSAGE : u32 = 1;
-pub const NIF_ICON : u32 = 2;
-pub const NIF_TIP : u32 = 4;
-pub const NIF_STATE : u32 = 8;
-pub const NIF_INFO : u32 = 16;
-pub const NIF_GUID : u32 = 32;
-pub const NIF_REALTIME : u32 = 64;
-pub const NIF_SHOWTIP : u32 = 128;
-pub const NIS_HIDDEN : u32 = 1;
-pub const NIS_SHAREDICON : u32 = 2;
-pub const NIIF_NONE : u32 = 0;
-pub const NIIF_INFO : u32 = 1;
-pub const NIIF_WARNING : u32 = 2;
-pub const NIIF_ERROR : u32 = 3;
-pub const NIIF_USER : u32 = 4;
-pub const NIIF_ICON_MASK : u32 = 15;
-pub const NIIF_NOSOUND : u32 = 16;
-pub const NIIF_LARGE_ICON : u32 = 32;
-pub const NIIF_RESPECT_QUIET_TIME : u32 = 128;
-pub const SHGSI_ICONLOCATION : u32 = 0;
-pub const SHGNLI_PIDL : u64 = 1;
-pub const SHGNLI_PREFIXNAME : u64 = 2;
-pub const SHGNLI_NOUNIQUE : u64 = 4;
-pub const SHGNLI_NOLNK : u64 = 8;
-pub const SHGNLI_NOLOCNAME : u64 = 16;
-pub const SHGNLI_USEURLEXT : u64 = 32;
-pub const PRINTACTION_OPEN : u32 = 0;
-pub const PRINTACTION_PROPERTIES : u32 = 1;
-pub const PRINTACTION_NETINSTALL : u32 = 2;
-pub const PRINTACTION_NETINSTALLLINK : u32 = 3;
-pub const PRINTACTION_TESTPAGE : u32 = 4;
-pub const PRINTACTION_OPENNETPRN : u32 = 5;
-pub const PRINTACTION_DOCUMENTDEFAULTS : u32 = 6;
-pub const PRINTACTION_SERVERPROPERTIES : u32 = 7;
-pub const PRINT_PROP_FORCE_NAME : u32 = 1;
-pub const OFFLINE_STATUS_LOCAL : u32 = 1;
-pub const OFFLINE_STATUS_REMOTE : u32 = 2;
-pub const OFFLINE_STATUS_INCOMPLETE : u32 = 4;
-pub const SHIL_LARGE : u32 = 0;
-pub const SHIL_SMALL : u32 = 1;
-pub const SHIL_EXTRALARGE : u32 = 2;
-pub const SHIL_SYSSMALL : u32 = 3;
-pub const SHIL_JUMBO : u32 = 4;
-pub const Identity_LocalUserProvider = @import("../zig.zig").Guid.initString("a198529b-730f-4089-b646-a12557f5665e");
-pub const MAX_SYNCMGR_ID : u32 = 64;
-pub const MAX_SYNCMGR_PROGRESSTEXT : u32 = 260;
-pub const MAX_SYNCMGR_NAME : u32 = 128;
-pub const STIF_DEFAULT : i32 = 0;
-pub const STIF_SUPPORT_HEX : i32 = 1;
-pub const GCT_INVALID : u32 = 0;
-pub const GCT_LFNCHAR : u32 = 1;
-pub const GCT_SHORTCHAR : u32 = 2;
-pub const GCT_WILD : u32 = 4;
-pub const GCT_SEPARATOR : u32 = 8;
-pub const PMSF_NORMAL : u32 = 0;
-pub const PMSF_MULTIPLE : u32 = 1;
-pub const PMSF_DONT_STRIP_SPACES : u32 = 65536;
-pub const URL_UNESCAPE : u32 = 268435456;
-pub const URL_ESCAPE_UNSAFE : u32 = 536870912;
-pub const URL_PLUGGABLE_PROTOCOL : u32 = 1073741824;
-pub const URL_WININET_COMPATIBILITY : u32 = 2147483648;
-pub const URL_DONT_ESCAPE_EXTRA_INFO : u32 = 33554432;
-pub const URL_ESCAPE_SPACES_ONLY : u32 = 67108864;
-pub const URL_DONT_SIMPLIFY : u32 = 134217728;
-pub const URL_UNESCAPE_INPLACE : u32 = 1048576;
-pub const URL_CONVERT_IF_DOSPATH : u32 = 2097152;
-pub const URL_UNESCAPE_HIGH_ANSI_ONLY : u32 = 4194304;
-pub const URL_INTERNAL_PATH : u32 = 8388608;
-pub const URL_FILE_USE_PATHURL : u32 = 65536;
-pub const URL_DONT_UNESCAPE : u32 = 131072;
-pub const URL_ESCAPE_AS_UTF8 : u32 = 262144;
-pub const URL_ESCAPE_ASCII_URI_COMPONENT : u32 = 524288;
-pub const URL_ESCAPE_PERCENT : u32 = 4096;
-pub const URL_ESCAPE_SEGMENT_ONLY : u32 = 8192;
-pub const URL_PARTFLAG_KEEPSCHEME : u32 = 1;
-pub const URL_APPLY_DEFAULT : u32 = 1;
-pub const URL_APPLY_GUESSSCHEME : u32 = 2;
-pub const URL_APPLY_GUESSFILE : u32 = 4;
-pub const URL_APPLY_FORCEAPPLY : u32 = 8;
-pub const SRRF_RT_REG_NONE : u32 = 1;
-pub const SRRF_RT_REG_SZ : u32 = 2;
-pub const SRRF_RT_REG_EXPAND_SZ : u32 = 4;
-pub const SRRF_RT_REG_BINARY : u32 = 8;
-pub const SRRF_RT_REG_DWORD : u32 = 16;
-pub const SRRF_RT_REG_MULTI_SZ : u32 = 32;
-pub const SRRF_RT_REG_QWORD : u32 = 64;
-pub const SRRF_RT_ANY : u32 = 65535;
-pub const SRRF_RM_ANY : u32 = 0;
-pub const SRRF_RM_NORMAL : u32 = 65536;
-pub const SRRF_RM_SAFE : u32 = 131072;
-pub const SRRF_RM_SAFENETWORK : u32 = 262144;
-pub const SRRF_NOEXPAND : u32 = 268435456;
-pub const SRRF_ZEROONFAILURE : u32 = 536870912;
-pub const SRRF_NOVIRT : u32 = 1073741824;
-pub const SHREGSET_HKCU : u32 = 1;
-pub const SHREGSET_FORCE_HKCU : u32 = 2;
-pub const SHREGSET_HKLM : u32 = 4;
-pub const SHREGSET_FORCE_HKLM : u32 = 8;
-pub const SPMODE_SHELL : u32 = 1;
-pub const SPMODE_DEBUGOUT : u32 = 2;
-pub const SPMODE_TEST : u32 = 4;
-pub const SPMODE_BROWSER : u32 = 8;
-pub const SPMODE_FLUSH : u32 = 16;
-pub const SPMODE_EVENT : u32 = 32;
-pub const SPMODE_MSVM : u32 = 64;
-pub const SPMODE_FORMATTEXT : u32 = 128;
-pub const SPMODE_PROFILE : u32 = 256;
-pub const SPMODE_DEBUGBREAK : u32 = 512;
-pub const SPMODE_MSGTRACE : u32 = 1024;
-pub const SPMODE_PERFTAGS : u32 = 2048;
-pub const SPMODE_MEMWATCH : u32 = 4096;
-pub const SPMODE_DBMON : u32 = 8192;
-pub const SPMODE_MULTISTOP : u32 = 16384;
-pub const SPMODE_EVENTTRACE : u32 = 32768;
-pub const SHGVSPB_PERUSER : u32 = 1;
-pub const SHGVSPB_ALLUSERS : u32 = 2;
-pub const SHGVSPB_PERFOLDER : u32 = 4;
-pub const SHGVSPB_ALLFOLDERS : u32 = 8;
-pub const SHGVSPB_INHERIT : u32 = 16;
-pub const SHGVSPB_ROAM : u32 = 32;
-pub const SHGVSPB_NOAUTODEFAULTS : u32 = 2147483648;
-pub const FDTF_SHORTTIME : u32 = 1;
-pub const FDTF_SHORTDATE : u32 = 2;
-pub const FDTF_LONGDATE : u32 = 4;
-pub const FDTF_LONGTIME : u32 = 8;
-pub const FDTF_RELATIVE : u32 = 16;
-pub const FDTF_LTRDATE : u32 = 256;
-pub const FDTF_RTLDATE : u32 = 512;
-pub const FDTF_NOAUTOREADINGORDER : u32 = 1024;
-pub const OS_WINDOWS : u32 = 0;
-pub const OS_NT : u32 = 1;
-pub const OS_WIN95ORGREATER : u32 = 2;
-pub const OS_NT4ORGREATER : u32 = 3;
-pub const OS_WIN98ORGREATER : u32 = 5;
-pub const OS_WIN98_GOLD : u32 = 6;
-pub const OS_WIN2000ORGREATER : u32 = 7;
-pub const OS_WIN2000PRO : u32 = 8;
-pub const OS_WIN2000SERVER : u32 = 9;
-pub const OS_WIN2000ADVSERVER : u32 = 10;
-pub const OS_WIN2000DATACENTER : u32 = 11;
-pub const OS_WIN2000TERMINAL : u32 = 12;
-pub const OS_EMBEDDED : u32 = 13;
-pub const OS_TERMINALCLIENT : u32 = 14;
-pub const OS_TERMINALREMOTEADMIN : u32 = 15;
-pub const OS_WIN95_GOLD : u32 = 16;
-pub const OS_MEORGREATER : u32 = 17;
-pub const OS_XPORGREATER : u32 = 18;
-pub const OS_HOME : u32 = 19;
-pub const OS_PROFESSIONAL : u32 = 20;
-pub const OS_DATACENTER : u32 = 21;
-pub const OS_ADVSERVER : u32 = 22;
-pub const OS_SERVER : u32 = 23;
-pub const OS_TERMINALSERVER : u32 = 24;
-pub const OS_PERSONALTERMINALSERVER : u32 = 25;
-pub const OS_FASTUSERSWITCHING : u32 = 26;
-pub const OS_WELCOMELOGONUI : u32 = 27;
-pub const OS_DOMAINMEMBER : u32 = 28;
-pub const OS_ANYSERVER : u32 = 29;
-pub const OS_WOW6432 : u32 = 30;
-pub const OS_WEBSERVER : u32 = 31;
-pub const OS_SMALLBUSINESSSERVER : u32 = 32;
-pub const OS_TABLETPC : u32 = 33;
-pub const OS_SERVERADMINUI : u32 = 34;
-pub const OS_MEDIACENTER : u32 = 35;
-pub const OS_APPLIANCE : u32 = 36;
-pub const PLATFORM_UNKNOWN : u32 = 0;
-pub const PLATFORM_IE3 : u32 = 1;
-pub const PLATFORM_BROWSERONLY : u32 = 1;
-pub const PLATFORM_INTEGRATED : u32 = 2;
-pub const ILMM_IE4 : u32 = 0;
-pub const SHACF_DEFAULT : u32 = 0;
-pub const SHACF_FILESYSTEM : u32 = 1;
-pub const SHACF_URLHISTORY : u32 = 2;
-pub const SHACF_URLMRU : u32 = 4;
-pub const SHACF_USETAB : u32 = 8;
-pub const SHACF_FILESYS_ONLY : u32 = 16;
-pub const SHACF_FILESYS_DIRS : u32 = 32;
-pub const SHACF_VIRTUAL_NAMESPACE : u32 = 64;
-pub const SHACF_AUTOSUGGEST_FORCE_ON : u32 = 268435456;
-pub const SHACF_AUTOSUGGEST_FORCE_OFF : u32 = 536870912;
-pub const SHACF_AUTOAPPEND_FORCE_ON : u32 = 1073741824;
-pub const SHACF_AUTOAPPEND_FORCE_OFF : u32 = 2147483648;
-pub const DLLVER_PLATFORM_WINDOWS : u32 = 1;
-pub const DLLVER_PLATFORM_NT : u32 = 2;
-pub const DLLVER_MAJOR_MASK : u64 = 18446462598732840960;
-pub const DLLVER_MINOR_MASK : u64 = 281470681743360;
-pub const DLLVER_BUILD_MASK : u64 = 4294901760;
-pub const DLLVER_QFE_MASK : u64 = 65535;
-pub const SHIMGDEC_DEFAULT : u32 = 0;
-pub const SHIMGDEC_THUMBNAIL : u32 = 1;
-pub const SHIMGDEC_LOADFULL : u32 = 2;
-pub const SYNCMGRPROGRESSITEM_STATUSTEXT : u32 = 1;
-pub const SYNCMGRPROGRESSITEM_STATUSTYPE : u32 = 2;
-pub const SYNCMGRPROGRESSITEM_PROGVALUE : u32 = 4;
-pub const SYNCMGRPROGRESSITEM_MAXVALUE : u32 = 8;
-pub const SYNCMGRLOGERROR_ERRORFLAGS : u32 = 1;
-pub const SYNCMGRLOGERROR_ERRORID : u32 = 2;
-pub const SYNCMGRLOGERROR_ITEMID : u32 = 4;
-pub const SYNCMGRITEM_ITEMFLAGMASK : u32 = 127;
-pub const MAX_SYNCMGRITEMNAME : u32 = 128;
-pub const SYNCMGRHANDLERFLAG_MASK : u32 = 15;
-pub const MAX_SYNCMGRHANDLERNAME : u32 = 32;
-pub const SYNCMGRREGISTERFLAGS_MASK : u32 = 7;
-pub const TLOG_BACK : i32 = -1;
-pub const TLOG_CURRENT : u32 = 0;
-pub const TLOG_FORE : u32 = 1;
-pub const TLMENUF_INCLUDECURRENT : u32 = 1;
-pub const TLMENUF_BACK : u32 = 16;
-pub const TLMENUF_FORE : u32 = 32;
-pub const BSF_REGISTERASDROPTARGET : u32 = 1;
-pub const BSF_THEATERMODE : u32 = 2;
-pub const BSF_NOLOCALFILEWARNING : u32 = 16;
-pub const BSF_UISETBYAUTOMATION : u32 = 256;
-pub const BSF_RESIZABLE : u32 = 512;
-pub const BSF_CANMAXIMIZE : u32 = 1024;
-pub const BSF_TOPBROWSER : u32 = 2048;
-pub const BSF_NAVNOHISTORY : u32 = 4096;
-pub const BSF_HTMLNAVCANCELED : u32 = 8192;
-pub const BSF_DONTSHOWNAVCANCELPAGE : u32 = 16384;
-pub const BSF_SETNAVIGATABLECODEPAGE : u32 = 32768;
-pub const BSF_DELEGATEDNAVIGATION : u32 = 65536;
-pub const BSF_TRUSTEDFORACTIVEX : u32 = 131072;
-pub const BSF_MERGEDMENUS : u32 = 262144;
-pub const BSF_FEEDNAVIGATION : u32 = 524288;
-pub const BSF_FEEDSUBSCRIBED : u32 = 1048576;
-pub const HLNF_CALLERUNTRUSTED : u32 = 2097152;
-pub const HLNF_TRUSTEDFORACTIVEX : u32 = 4194304;
-pub const HLNF_DISABLEWINDOWRESTRICTIONS : u32 = 8388608;
-pub const HLNF_TRUSTFIRSTDOWNLOAD : u32 = 16777216;
-pub const HLNF_UNTRUSTEDFORDOWNLOAD : u32 = 33554432;
-pub const SHHLNF_NOAUTOSELECT : u32 = 67108864;
-pub const SHHLNF_WRITENOHISTORY : u32 = 134217728;
-pub const HLNF_EXTERNALNAVIGATE : u32 = 268435456;
-pub const HLNF_ALLOW_AUTONAVIGATE : u32 = 536870912;
-pub const HLNF_NEWWINDOWSMANAGED : u32 = 2147483648;
-pub const INTERNET_MAX_PATH_LENGTH : u32 = 2048;
-pub const INTERNET_MAX_SCHEME_LENGTH : u32 = 32;
-pub const VIEW_PRIORITY_RESTRICTED : u32 = 112;
-pub const VIEW_PRIORITY_CACHEHIT : u32 = 80;
-pub const VIEW_PRIORITY_STALECACHEHIT : u32 = 69;
-pub const VIEW_PRIORITY_USEASDEFAULT : u32 = 67;
-pub const VIEW_PRIORITY_SHELLEXT : u32 = 64;
-pub const VIEW_PRIORITY_CACHEMISS : u32 = 48;
-pub const VIEW_PRIORITY_INHERIT : u32 = 32;
-pub const VIEW_PRIORITY_SHELLEXT_ASBACKUP : u32 = 21;
-pub const VIEW_PRIORITY_DESPERATE : u32 = 16;
-pub const VIEW_PRIORITY_NONE : u32 = 0;
-pub const PATHCCH_MAX_CCH : u32 = 32768;
-pub const IDS_DESCRIPTION : u32 = 1;
-pub const ID_APP : u32 = 100;
-pub const DLG_SCRNSAVECONFIGURE : u32 = 2003;
-pub const MAXFILELEN : u32 = 13;
-pub const TITLEBARNAMELEN : u32 = 40;
-pub const APPNAMEBUFFERLEN : u32 = 40;
-pub const BUFFLEN : u32 = 255;
-pub const PID_FIRST_USABLE : u32 = 2;
-pub const GPFIDL_DEFAULT : i32 = 0;
-pub const GPFIDL_ALTNAME : i32 = 1;
-pub const GPFIDL_UNCPRINTER : i32 = 2;
-pub const ISHCUTCMDID_DOWNLOADICON : i32 = 0;
-pub const ISHCUTCMDID_INTSHORTCUTCREATE : i32 = 1;
-pub const ISHCUTCMDID_COMMITHISTORY : i32 = 2;
-pub const ISHCUTCMDID_SETUSERAWURL : i32 = 3;
-pub const SFBID_PIDLCHANGED : i32 = 0;
-pub const DBCID_EMPTY : i32 = 0;
-pub const DBCID_ONDRAG : i32 = 1;
-pub const DBCID_CLSIDOFBAR : i32 = 2;
-pub const DBCID_RESIZE : i32 = 3;
-pub const DBCID_GETBAR : i32 = 4;
-pub const BMICON_LARGE : i32 = 0;
-pub const BMICON_SMALL : i32 = 1;
-pub const ASSOCF_NONE : i32 = 0;
-pub const ASSOCF_INIT_NOREMAPCLSID : i32 = 1;
-pub const ASSOCF_INIT_BYEXENAME : i32 = 2;
-pub const ASSOCF_OPEN_BYEXENAME : i32 = 2;
-pub const ASSOCF_INIT_DEFAULTTOSTAR : i32 = 4;
-pub const ASSOCF_INIT_DEFAULTTOFOLDER : i32 = 8;
-pub const ASSOCF_NOUSERSETTINGS : i32 = 16;
-pub const ASSOCF_NOTRUNCATE : i32 = 32;
-pub const ASSOCF_VERIFY : i32 = 64;
-pub const ASSOCF_REMAPRUNDLL : i32 = 128;
-pub const ASSOCF_NOFIXUPS : i32 = 256;
-pub const ASSOCF_IGNOREBASECLASS : i32 = 512;
-pub const ASSOCF_INIT_IGNOREUNKNOWN : i32 = 1024;
-pub const ASSOCF_INIT_FIXED_PROGID : i32 = 2048;
-pub const ASSOCF_IS_PROTOCOL : i32 = 4096;
-pub const ASSOCF_INIT_FOR_FILE : i32 = 8192;
-pub const ASSOCF_IS_FULL_URI : i32 = 16384;
-pub const ASSOCF_PER_MACHINE_ONLY : i32 = 32768;
-pub const ASSOCF_APP_TO_APP : i32 = 65536;
-pub const CTF_INSIST : i32 = 1;
-pub const CTF_THREAD_REF : i32 = 2;
-pub const CTF_PROCESS_REF : i32 = 4;
-pub const CTF_COINIT_STA : i32 = 8;
-pub const CTF_COINIT : i32 = 8;
-pub const CTF_FREELIBANDEXIT : i32 = 16;
-pub const CTF_REF_COUNTED : i32 = 32;
-pub const CTF_WAIT_ALLOWCOM : i32 = 64;
-pub const CTF_UNUSED : i32 = 128;
-pub const CTF_INHERITWOW64 : i32 = 256;
-pub const CTF_WAIT_NO_REENTRANCY : i32 = 512;
-pub const CTF_KEYBOARD_LOCALE : i32 = 1024;
-pub const CTF_OLEINITIALIZE : i32 = 2048;
-pub const CTF_COINIT_MTA : i32 = 4096;
-pub const CTF_NOADDREFLIB : i32 = 8192;
+pub const CPL_DYNAMIC_RES = @as(u32, 0);
+pub const CPL_INIT = @as(u32, 1);
+pub const CPL_GETCOUNT = @as(u32, 2);
+pub const CPL_INQUIRE = @as(u32, 3);
+pub const CPL_SELECT = @as(u32, 4);
+pub const CPL_DBLCLK = @as(u32, 5);
+pub const CPL_STOP = @as(u32, 6);
+pub const CPL_EXIT = @as(u32, 7);
+pub const CPL_NEWINQUIRE = @as(u32, 8);
+pub const CPL_STARTWPARMSA = @as(u32, 9);
+pub const CPL_STARTWPARMSW = @as(u32, 10);
+pub const CPL_SETUP = @as(u32, 200);
+pub const PERCEIVEDFLAG_UNDEFINED = @as(u32, 0);
+pub const PERCEIVEDFLAG_SOFTCODED = @as(u32, 1);
+pub const PERCEIVEDFLAG_HARDCODED = @as(u32, 2);
+pub const PERCEIVEDFLAG_NATIVESUPPORT = @as(u32, 4);
+pub const PERCEIVEDFLAG_GDIPLUS = @as(u32, 16);
+pub const PERCEIVEDFLAG_WMSDK = @as(u32, 32);
+pub const PERCEIVEDFLAG_ZIPFOLDER = @as(u32, 64);
+pub const FOLDERID_NetworkFolder = Guid.initString("d20beec4-5ca8-4905-ae3b-bf251ea09b53");
+pub const FOLDERID_ComputerFolder = Guid.initString("0ac0837c-bbf8-452a-850d-79d08e667ca7");
+pub const FOLDERID_InternetFolder = Guid.initString("4d9f7874-4e0c-4904-967b-40b0d20c3e4b");
+pub const FOLDERID_ControlPanelFolder = Guid.initString("82a74aeb-aeb4-465c-a014-d097ee346d63");
+pub const FOLDERID_PrintersFolder = Guid.initString("76fc4e2d-d6ad-4519-a663-37bd56068185");
+pub const FOLDERID_SyncManagerFolder = Guid.initString("43668bf8-c14e-49b2-97c9-747784d784b7");
+pub const FOLDERID_SyncSetupFolder = Guid.initString("0f214138-b1d3-4a90-bba9-27cbc0c5389a");
+pub const FOLDERID_ConflictFolder = Guid.initString("4bfefb45-347d-4006-a5be-ac0cb0567192");
+pub const FOLDERID_SyncResultsFolder = Guid.initString("289a9a43-be44-4057-a41b-587a76d7e7f9");
+pub const FOLDERID_RecycleBinFolder = Guid.initString("b7534046-3ecb-4c18-be4e-64cd4cb7d6ac");
+pub const FOLDERID_ConnectionsFolder = Guid.initString("6f0cd92b-2e97-45d1-88ff-b0d186b8dedd");
+pub const FOLDERID_Fonts = Guid.initString("fd228cb7-ae11-4ae3-864c-16f3910ab8fe");
+pub const FOLDERID_Desktop = Guid.initString("b4bfcc3a-db2c-424c-b029-7fe99a87c641");
+pub const FOLDERID_Startup = Guid.initString("b97d20bb-f46a-4c97-ba10-5e3608430854");
+pub const FOLDERID_Programs = Guid.initString("a77f5d77-2e2b-44c3-a6a2-aba601054a51");
+pub const FOLDERID_StartMenu = Guid.initString("625b53c3-ab48-4ec1-ba1f-a1ef4146fc19");
+pub const FOLDERID_Recent = Guid.initString("ae50c081-ebd2-438a-8655-8a092e34987a");
+pub const FOLDERID_SendTo = Guid.initString("8983036c-27c0-404b-8f08-102d10dcfd74");
+pub const FOLDERID_Documents = Guid.initString("fdd39ad0-238f-46af-adb4-6c85480369c7");
+pub const FOLDERID_Favorites = Guid.initString("1777f761-68ad-4d8a-87bd-30b759fa33dd");
+pub const FOLDERID_NetHood = Guid.initString("c5abbf53-e17f-4121-8900-86626fc2c973");
+pub const FOLDERID_PrintHood = Guid.initString("9274bd8d-cfd1-41c3-b35e-b13f55a758f4");
+pub const FOLDERID_Templates = Guid.initString("a63293e8-664e-48db-a079-df759e0509f7");
+pub const FOLDERID_CommonStartup = Guid.initString("82a5ea35-d9cd-47c5-9629-e15d2f714e6e");
+pub const FOLDERID_CommonPrograms = Guid.initString("0139d44e-6afe-49f2-8690-3dafcae6ffb8");
+pub const FOLDERID_CommonStartMenu = Guid.initString("a4115719-d62e-491d-aa7c-e74b8be3b067");
+pub const FOLDERID_PublicDesktop = Guid.initString("c4aa340d-f20f-4863-afef-f87ef2e6ba25");
+pub const FOLDERID_ProgramData = Guid.initString("62ab5d82-fdc1-4dc3-a9dd-070d1d495d97");
+pub const FOLDERID_CommonTemplates = Guid.initString("b94237e7-57ac-4347-9151-b08c6c32d1f7");
+pub const FOLDERID_PublicDocuments = Guid.initString("ed4824af-dce4-45a8-81e2-fc7965083634");
+pub const FOLDERID_RoamingAppData = Guid.initString("3eb685db-65f9-4cf6-a03a-e3ef65729f3d");
+pub const FOLDERID_LocalAppData = Guid.initString("f1b32785-6fba-4fcf-9d55-7b8e7f157091");
+pub const FOLDERID_LocalAppDataLow = Guid.initString("a520a1a4-1780-4ff6-bd18-167343c5af16");
+pub const FOLDERID_InternetCache = Guid.initString("352481e8-33be-4251-ba85-6007caedcf9d");
+pub const FOLDERID_Cookies = Guid.initString("2b0f765d-c0e9-4171-908e-08a611b84ff6");
+pub const FOLDERID_History = Guid.initString("d9dc8a3b-b784-432e-a781-5a1130a75963");
+pub const FOLDERID_System = Guid.initString("1ac14e77-02e7-4e5d-b744-2eb1ae5198b7");
+pub const FOLDERID_SystemX86 = Guid.initString("d65231b0-b2f1-4857-a4ce-a8e7c6ea7d27");
+pub const FOLDERID_Windows = Guid.initString("f38bf404-1d43-42f2-9305-67de0b28fc23");
+pub const FOLDERID_Profile = Guid.initString("5e6c858f-0e22-4760-9afe-ea3317b67173");
+pub const FOLDERID_Pictures = Guid.initString("33e28130-4e1e-4676-835a-98395c3bc3bb");
+pub const FOLDERID_ProgramFilesX86 = Guid.initString("7c5a40ef-a0fb-4bfc-874a-c0f2e0b9fa8e");
+pub const FOLDERID_ProgramFilesCommonX86 = Guid.initString("de974d24-d9c6-4d3e-bf91-f4455120b917");
+pub const FOLDERID_ProgramFilesX64 = Guid.initString("6d809377-6af0-444b-8957-a3773f02200e");
+pub const FOLDERID_ProgramFilesCommonX64 = Guid.initString("6365d5a7-0f0d-45e5-87f6-0da56b6a4f7d");
+pub const FOLDERID_ProgramFiles = Guid.initString("905e63b6-c1bf-494e-b29c-65b732d3d21a");
+pub const FOLDERID_ProgramFilesCommon = Guid.initString("f7f1ed05-9f6d-47a2-aaae-29d317c6f066");
+pub const FOLDERID_UserProgramFiles = Guid.initString("5cd7aee2-2219-4a67-b85d-6c9ce15660cb");
+pub const FOLDERID_UserProgramFilesCommon = Guid.initString("bcbd3057-ca5c-4622-b42d-bc56db0ae516");
+pub const FOLDERID_AdminTools = Guid.initString("724ef170-a42d-4fef-9f26-b60e846fba4f");
+pub const FOLDERID_CommonAdminTools = Guid.initString("d0384e7d-bac3-4797-8f14-cba229b392b5");
+pub const FOLDERID_Music = Guid.initString("4bd8d571-6d19-48d3-be97-422220080e43");
+pub const FOLDERID_Videos = Guid.initString("18989b1d-99b5-455b-841c-ab7c74e4ddfc");
+pub const FOLDERID_Ringtones = Guid.initString("c870044b-f49e-4126-a9c3-b52a1ff411e8");
+pub const FOLDERID_PublicPictures = Guid.initString("b6ebfb86-6907-413c-9af7-4fc2abf07cc5");
+pub const FOLDERID_PublicMusic = Guid.initString("3214fab5-9757-4298-bb61-92a9deaa44ff");
+pub const FOLDERID_PublicVideos = Guid.initString("2400183a-6185-49fb-a2d8-4a392a602ba3");
+pub const FOLDERID_PublicRingtones = Guid.initString("e555ab60-153b-4d17-9f04-a5fe99fc15ec");
+pub const FOLDERID_ResourceDir = Guid.initString("8ad10c31-2adb-4296-a8f7-e4701232c972");
+pub const FOLDERID_LocalizedResourcesDir = Guid.initString("2a00375e-224c-49de-b8d1-440df7ef3ddc");
+pub const FOLDERID_CommonOEMLinks = Guid.initString("c1bae2d0-10df-4334-bedd-7aa20b227a9d");
+pub const FOLDERID_CDBurning = Guid.initString("9e52ab10-f80d-49df-acb8-4330f5687855");
+pub const FOLDERID_UserProfiles = Guid.initString("0762d272-c50a-4bb0-a382-697dcd729b80");
+pub const FOLDERID_Playlists = Guid.initString("de92c1c7-837f-4f69-a3bb-86e631204a23");
+pub const FOLDERID_SamplePlaylists = Guid.initString("15ca69b3-30ee-49c1-ace1-6b5ec372afb5");
+pub const FOLDERID_SampleMusic = Guid.initString("b250c668-f57d-4ee1-a63c-290ee7d1aa1f");
+pub const FOLDERID_SamplePictures = Guid.initString("c4900540-2379-4c75-844b-64e6faf8716b");
+pub const FOLDERID_SampleVideos = Guid.initString("859ead94-2e85-48ad-a71a-0969cb56a6cd");
+pub const FOLDERID_PhotoAlbums = Guid.initString("69d2cf90-fc33-4fb7-9a0c-ebb0f0fcb43c");
+pub const FOLDERID_Public = Guid.initString("dfdf76a2-c82a-4d63-906a-5644ac457385");
+pub const FOLDERID_ChangeRemovePrograms = Guid.initString("df7266ac-9274-4867-8d55-3bd661de872d");
+pub const FOLDERID_AppUpdates = Guid.initString("a305ce99-f527-492b-8b1a-7e76fa98d6e4");
+pub const FOLDERID_AddNewPrograms = Guid.initString("de61d971-5ebc-4f02-a3a9-6c82895e5c04");
+pub const FOLDERID_Downloads = Guid.initString("374de290-123f-4565-9164-39c4925e467b");
+pub const FOLDERID_PublicDownloads = Guid.initString("3d644c9b-1fb8-4f30-9b45-f670235f79c0");
+pub const FOLDERID_SavedSearches = Guid.initString("7d1d3a04-debb-4115-95cf-2f29da2920da");
+pub const FOLDERID_QuickLaunch = Guid.initString("52a4f021-7b75-48a9-9f6b-4b87a210bc8f");
+pub const FOLDERID_Contacts = Guid.initString("56784854-c6cb-462b-8169-88e350acb882");
+pub const FOLDERID_SidebarParts = Guid.initString("a75d362e-50fc-4fb7-ac2c-a8beaa314493");
+pub const FOLDERID_SidebarDefaultParts = Guid.initString("7b396e54-9ec5-4300-be0a-2482ebae1a26");
+pub const FOLDERID_PublicGameTasks = Guid.initString("debf2536-e1a8-4c59-b6a2-414586476aea");
+pub const FOLDERID_GameTasks = Guid.initString("054fae61-4dd8-4787-80b6-090220c4b700");
+pub const FOLDERID_SavedGames = Guid.initString("4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4");
+pub const FOLDERID_Games = Guid.initString("cac52c1a-b53d-4edc-92d7-6b2e8ac19434");
+pub const FOLDERID_SEARCH_MAPI = Guid.initString("98ec0e18-2098-4d44-8644-66979315a281");
+pub const FOLDERID_SEARCH_CSC = Guid.initString("ee32e446-31ca-4aba-814f-a5ebd2fd6d5e");
+pub const FOLDERID_Links = Guid.initString("bfb9d5e0-c6a9-404c-b2b2-ae6db6af4968");
+pub const FOLDERID_UsersFiles = Guid.initString("f3ce0f7c-4901-4acc-8648-d5d44b04ef8f");
+pub const FOLDERID_UsersLibraries = Guid.initString("a302545d-deff-464b-abe8-61c8648d939b");
+pub const FOLDERID_SearchHome = Guid.initString("190337d1-b8ca-4121-a639-6d472d16972a");
+pub const FOLDERID_OriginalImages = Guid.initString("2c36c0aa-5812-4b87-bfd0-4cd0dfb19b39");
+pub const FOLDERID_DocumentsLibrary = Guid.initString("7b0db17d-9cd2-4a93-9733-46cc89022e7c");
+pub const FOLDERID_MusicLibrary = Guid.initString("2112ab0a-c86a-4ffe-a368-0de96e47012e");
+pub const FOLDERID_PicturesLibrary = Guid.initString("a990ae9f-a03b-4e80-94bc-9912d7504104");
+pub const FOLDERID_VideosLibrary = Guid.initString("491e922f-5643-4af4-a7eb-4e7a138d8174");
+pub const FOLDERID_RecordedTVLibrary = Guid.initString("1a6fdba2-f42d-4358-a798-b74d745926c5");
+pub const FOLDERID_HomeGroup = Guid.initString("52528a6b-b9e3-4add-b60d-588c2dba842d");
+pub const FOLDERID_HomeGroupCurrentUser = Guid.initString("9b74b6a3-0dfd-4f11-9e78-5f7800f2e772");
+pub const FOLDERID_DeviceMetadataStore = Guid.initString("5ce4a5e9-e4eb-479d-b89f-130c02886155");
+pub const FOLDERID_Libraries = Guid.initString("1b3ea5dc-b587-4786-b4ef-bd1dc332aeae");
+pub const FOLDERID_PublicLibraries = Guid.initString("48daf80b-e6cf-4f4e-b800-0e69d84ee384");
+pub const FOLDERID_UserPinned = Guid.initString("9e3995ab-1f9c-4f13-b827-48b24b6c7174");
+pub const FOLDERID_ImplicitAppShortcuts = Guid.initString("bcb5256f-79f6-4cee-b725-dc34e402fd46");
+pub const FOLDERID_AccountPictures = Guid.initString("008ca0b1-55b4-4c56-b8a8-4de4b299d3be");
+pub const FOLDERID_PublicUserTiles = Guid.initString("0482af6c-08f1-4c34-8c90-e17ec98b1e17");
+pub const FOLDERID_AppsFolder = Guid.initString("1e87508d-89c2-42f0-8a7e-645a0f50ca58");
+pub const FOLDERID_StartMenuAllPrograms = Guid.initString("f26305ef-6948-40b9-b255-81453d09c785");
+pub const FOLDERID_CommonStartMenuPlaces = Guid.initString("a440879f-87a0-4f7d-b700-0207b966194a");
+pub const FOLDERID_ApplicationShortcuts = Guid.initString("a3918781-e5f2-4890-b3d9-a7e54332328c");
+pub const FOLDERID_RoamingTiles = Guid.initString("00bcfc5a-ed94-4e48-96a1-3f6217f21990");
+pub const FOLDERID_RoamedTileImages = Guid.initString("aaa8d5a5-f1d6-4259-baa8-78e7ef60835e");
+pub const FOLDERID_Screenshots = Guid.initString("b7bede81-df94-4682-a7d8-57a52620b86f");
+pub const FOLDERID_CameraRoll = Guid.initString("ab5fb87b-7ce2-4f83-915d-550846c9537b");
+pub const FOLDERID_SkyDrive = Guid.initString("a52bba46-e9e1-435f-b3d9-28daa648c0f6");
+pub const FOLDERID_OneDrive = Guid.initString("a52bba46-e9e1-435f-b3d9-28daa648c0f6");
+pub const FOLDERID_SkyDriveDocuments = Guid.initString("24d89e24-2f19-4534-9dde-6a6671fbb8fe");
+pub const FOLDERID_SkyDrivePictures = Guid.initString("339719b5-8c47-4894-94c2-d8f77add44a6");
+pub const FOLDERID_SkyDriveMusic = Guid.initString("c3f2459e-80d6-45dc-bfef-1f769f2be730");
+pub const FOLDERID_SkyDriveCameraRoll = Guid.initString("767e6811-49cb-4273-87c2-20f355e1085b");
+pub const FOLDERID_SearchHistory = Guid.initString("0d4c3db6-03a3-462f-a0e6-08924c41b5d4");
+pub const FOLDERID_SearchTemplates = Guid.initString("7e636bfe-dfa9-4d5e-b456-d7b39851d8a9");
+pub const FOLDERID_CameraRollLibrary = Guid.initString("2b20df75-1eda-4039-8097-38798227d5b7");
+pub const FOLDERID_SavedPictures = Guid.initString("3b193882-d3ad-4eab-965a-69829d1fb59f");
+pub const FOLDERID_SavedPicturesLibrary = Guid.initString("e25b5812-be88-4bd9-94b0-29233477b6c3");
+pub const FOLDERID_RetailDemo = Guid.initString("12d4c69e-24ad-4923-be19-31321c43a767");
+pub const FOLDERID_Device = Guid.initString("1c2ac1dc-4358-4b6c-9733-af21156576f0");
+pub const FOLDERID_DevelopmentFiles = Guid.initString("dbe8e08e-3053-4bbc-b183-2a7b2b191e59");
+pub const FOLDERID_Objects3D = Guid.initString("31c0dd25-9439-4f12-bf41-7ff4eda38722");
+pub const FOLDERID_AppCaptures = Guid.initString("edc0fe71-98d8-4f4a-b920-c8dc133cb165");
+pub const FOLDERID_LocalDocuments = Guid.initString("f42ee2d3-909f-4907-8871-4c22fc0bf756");
+pub const FOLDERID_LocalPictures = Guid.initString("0ddd015d-b06c-45d5-8c4c-f59713854639");
+pub const FOLDERID_LocalVideos = Guid.initString("35286a68-3c57-41a1-bbb1-0eae73d76c95");
+pub const FOLDERID_LocalMusic = Guid.initString("a0c69a99-21c8-4671-8703-7934162fcf1d");
+pub const FOLDERID_LocalDownloads = Guid.initString("7d83ee9b-2244-4e70-b1f5-5393042af1e4");
+pub const FOLDERID_RecordedCalls = Guid.initString("2f8b40c2-83ed-48ee-b383-a1f157ec6f9a");
+pub const FOLDERID_AllAppMods = Guid.initString("7ad67899-66af-43ba-9156-6aad42e6c596");
+pub const FOLDERID_CurrentAppMods = Guid.initString("3db40b20-2a30-4dbe-917e-771dd21dd099");
+pub const FOLDERID_AppDataDesktop = Guid.initString("b2c5e279-7add-439f-b28c-c41fe1bbf672");
+pub const FOLDERID_AppDataDocuments = Guid.initString("7be16610-1f7f-44ac-bff0-83e15f2ffca1");
+pub const FOLDERID_AppDataFavorites = Guid.initString("7cfbefbc-de1f-45aa-b843-a542ac536cc9");
+pub const FOLDERID_AppDataProgramData = Guid.initString("559d40a3-a036-40fa-af61-84cb430a4d34");
+pub const CLSID_InternetShortcut = Guid.initString("fbf23b40-e3f0-101b-8488-00aa003e56f8");
+pub const CLSID_NetworkDomain = Guid.initString("46e06680-4bf0-11d1-83ee-00a0c90dc849");
+pub const CLSID_NetworkServer = Guid.initString("c0542a90-4bf0-11d1-83ee-00a0c90dc849");
+pub const CLSID_NetworkShare = Guid.initString("54a754c0-4bf0-11d1-83ee-00a0c90dc849");
+pub const CLSID_MyComputer = Guid.initString("20d04fe0-3aea-1069-a2d8-08002b30309d");
+pub const CLSID_Internet = Guid.initString("871c5380-42a0-1069-a2ea-08002b30309d");
+pub const CLSID_RecycleBin = Guid.initString("645ff040-5081-101b-9f08-00aa002f954e");
+pub const CLSID_ControlPanel = Guid.initString("21ec2020-3aea-1069-a2dd-08002b30309d");
+pub const CLSID_Printers = Guid.initString("2227a280-3aea-1069-a2de-08002b30309d");
+pub const CLSID_MyDocuments = Guid.initString("450d8fba-ad25-11d0-98a8-0800361b1103");
+pub const CATID_BrowsableShellExt = Guid.initString("00021490-0000-0000-c000-000000000046");
+pub const CATID_BrowseInPlace = Guid.initString("00021491-0000-0000-c000-000000000046");
+pub const CATID_DeskBand = Guid.initString("00021492-0000-0000-c000-000000000046");
+pub const CATID_InfoBand = Guid.initString("00021493-0000-0000-c000-000000000046");
+pub const CATID_CommBand = Guid.initString("00021494-0000-0000-c000-000000000046");
+pub const FMTID_Intshcut = Guid.initString("000214a0-0000-0000-c000-000000000046");
+pub const FMTID_InternetSite = Guid.initString("000214a1-0000-0000-c000-000000000046");
+pub const CGID_Explorer = Guid.initString("000214d0-0000-0000-c000-000000000046");
+pub const CGID_ShellDocView = Guid.initString("000214d1-0000-0000-c000-000000000046");
+pub const CGID_ShellServiceObject = Guid.initString("000214d2-0000-0000-c000-000000000046");
+pub const CGID_ExplorerBarDoc = Guid.initString("000214d3-0000-0000-c000-000000000046");
+pub const CLSID_FolderShortcut = Guid.initString("0afaced1-e828-11d1-9187-b532f1e9575d");
+pub const CLSID_CFSIconOverlayManager = Guid.initString("63b51f81-c868-11d0-999c-00c04fd655e1");
+pub const CLSID_ShellThumbnailDiskCache = Guid.initString("1ebdcf80-a200-11d0-a3a4-00c04fd706ec");
+pub const SID_DefView = Guid.initString("6d12fe80-7911-11cf-9534-0000c05bae0b");
+pub const CGID_DefView = Guid.initString("4af07f10-d231-11d0-b942-00a0c90312e1");
+pub const CLSID_MenuBand = Guid.initString("5b4dae26-b807-11d0-9815-00c04fd91972");
+pub const VID_LargeIcons = Guid.initString("0057d0e0-3573-11cf-ae69-08002b2e1262");
+pub const VID_SmallIcons = Guid.initString("089000c0-3573-11cf-ae69-08002b2e1262");
+pub const VID_List = Guid.initString("0e1fa5e0-3573-11cf-ae69-08002b2e1262");
+pub const VID_Details = Guid.initString("137e7700-3573-11cf-ae69-08002b2e1262");
+pub const VID_Tile = Guid.initString("65f125e5-7be1-4810-ba9d-d271c8432ce3");
+pub const VID_Content = Guid.initString("30c2c434-0889-4c8d-985d-a9f71830b0a9");
+pub const VID_Thumbnails = Guid.initString("8bebb290-52d0-11d0-b7f4-00c04fd706ec");
+pub const VID_ThumbStrip = Guid.initString("8eefa624-d1e9-445b-94b7-74fbce2ea11a");
+pub const SID_SInPlaceBrowser = Guid.initString("1d2ae02b-3655-46cc-b63a-285988153bca");
+pub const SID_SSearchBoxInfo = Guid.initString("142daa61-516b-4713-b49c-fb985ef82998");
+pub const SID_CommandsPropertyBag = Guid.initString("6e043250-4416-485c-b143-e62a760d9fe5");
+pub const CLSID_CUrlHistory = Guid.initString("3c374a40-bae4-11cf-bf7d-00aa006946ee");
+pub const CLSID_CURLSearchHook = Guid.initString("cfbfae00-17a6-11d0-99cb-00c04fd64497");
+pub const CLSID_AutoComplete = Guid.initString("00bb2763-6a77-11d0-a535-00c04fd7d062");
+pub const CLSID_ACLHistory = Guid.initString("00bb2764-6a77-11d0-a535-00c04fd7d062");
+pub const CLSID_ACListISF = Guid.initString("03c036f1-a186-11d0-824a-00aa005b4383");
+pub const CLSID_ACLMRU = Guid.initString("6756a641-de71-11d0-831b-00aa005b4383");
+pub const CLSID_ACLMulti = Guid.initString("00bb2765-6a77-11d0-a535-00c04fd7d062");
+pub const CLSID_ACLCustomMRU = Guid.initString("6935db93-21e8-4ccc-beb9-9fe3c77a297a");
+pub const CLSID_ProgressDialog = Guid.initString("f8383852-fcd3-11d1-a6b9-006097df5bd4");
+pub const SID_STopLevelBrowser = Guid.initString("4c96be40-915c-11cf-99d3-00aa004ae837");
+pub const CLSID_FileTypes = Guid.initString("b091e540-83e3-11cf-a713-0020afd79762");
+pub const CLSID_ActiveDesktop = Guid.initString("75048700-ef1f-11d0-9888-006097deacf9");
+pub const CLSID_QueryAssociations = Guid.initString("a07034fd-6caa-4954-ac3f-97a27216f98a");
+pub const CLSID_LinkColumnProvider = Guid.initString("24f14f02-7b1c-11d1-838f-0000f80461cf");
+pub const CGID_ShortCut = Guid.initString("93a68750-951a-11d1-946f-000000000000");
+pub const CLSID_InternetButtons = Guid.initString("1e796980-9cc5-11d1-a83f-00c04fc99d61");
+pub const CLSID_MSOButtons = Guid.initString("178f34b8-a282-11d2-86c5-00c04f8eea99");
+pub const CLSID_ToolbarExtButtons = Guid.initString("2ce4b5d8-a28f-11d2-86c5-00c04f8eea99");
+pub const CLSID_DarwinAppPublisher = Guid.initString("cfccc7a0-a282-11d1-9082-006008059382");
+pub const CLSID_DocHostUIHandler = Guid.initString("7057e952-bd1b-11d1-8919-00c04fc2c836");
+pub const FMTID_ShellDetails = Guid.initString("28636aa6-953d-11d2-b5d6-00c04fd918d0");
+pub const PID_FINDDATA = @as(u32, 0);
+pub const PID_NETRESOURCE = @as(u32, 1);
+pub const PID_DESCRIPTIONID = @as(u32, 2);
+pub const PID_WHICHFOLDER = @as(u32, 3);
+pub const PID_NETWORKLOCATION = @as(u32, 4);
+pub const PID_COMPUTERNAME = @as(u32, 5);
+pub const FMTID_Storage = Guid.initString("b725f130-47ef-101a-a5f1-02608c9eebac");
+pub const FMTID_ImageProperties = Guid.initString("14b81da1-0135-4d31-96d9-6cbfc9671a99");
+pub const FMTID_CustomImageProperties = Guid.initString("7ecd8b0e-c136-4a9b-9411-4ebd6673ccc3");
+pub const FMTID_LibraryProperties = Guid.initString("5d76b67f-9b3d-44bb-b6ae-25da4f638a67");
+pub const FMTID_Displaced = Guid.initString("9b174b33-40ff-11d2-a27e-00c04fc30871");
+pub const PID_DISPLACED_FROM = @as(u32, 2);
+pub const PID_DISPLACED_DATE = @as(u32, 3);
+pub const FMTID_Briefcase = Guid.initString("328d8b21-7729-4bfc-954c-902b329d56b0");
+pub const PID_SYNC_COPY_IN = @as(u32, 2);
+pub const FMTID_Misc = Guid.initString("9b174b34-40ff-11d2-a27e-00c04fc30871");
+pub const PID_MISC_STATUS = @as(u32, 2);
+pub const PID_MISC_ACCESSCOUNT = @as(u32, 3);
+pub const PID_MISC_OWNER = @as(u32, 4);
+pub const PID_HTMLINFOTIPFILE = @as(u32, 5);
+pub const PID_MISC_PICS = @as(u32, 6);
+pub const FMTID_WebView = Guid.initString("f2275480-f782-4291-bd94-f13693513aec");
+pub const PID_DISPLAY_PROPERTIES = @as(u32, 0);
+pub const PID_INTROTEXT = @as(u32, 1);
+pub const FMTID_MUSIC = Guid.initString("56a3372e-ce9c-11d2-9f0e-006097c686f6");
+pub const PIDSI_ARTIST = @as(u32, 2);
+pub const PIDSI_SONGTITLE = @as(u32, 3);
+pub const PIDSI_ALBUM = @as(u32, 4);
+pub const PIDSI_YEAR = @as(u32, 5);
+pub const PIDSI_COMMENT = @as(u32, 6);
+pub const PIDSI_TRACK = @as(u32, 7);
+pub const PIDSI_GENRE = @as(u32, 11);
+pub const PIDSI_LYRICS = @as(u32, 12);
+pub const FMTID_DRM = Guid.initString("aeac19e4-89ae-4508-b9b7-bb867abee2ed");
+pub const PIDDRSI_PROTECTED = @as(u32, 2);
+pub const PIDDRSI_DESCRIPTION = @as(u32, 3);
+pub const PIDDRSI_PLAYCOUNT = @as(u32, 4);
+pub const PIDDRSI_PLAYSTARTS = @as(u32, 5);
+pub const PIDDRSI_PLAYEXPIRES = @as(u32, 6);
+pub const PIDVSI_STREAM_NAME = @as(u32, 2);
+pub const PIDVSI_FRAME_WIDTH = @as(u32, 3);
+pub const PIDVSI_FRAME_HEIGHT = @as(u32, 4);
+pub const PIDVSI_TIMELENGTH = @as(u32, 7);
+pub const PIDVSI_FRAME_COUNT = @as(u32, 5);
+pub const PIDVSI_FRAME_RATE = @as(u32, 6);
+pub const PIDVSI_DATA_RATE = @as(u32, 8);
+pub const PIDVSI_SAMPLE_SIZE = @as(u32, 9);
+pub const PIDVSI_COMPRESSION = @as(u32, 10);
+pub const PIDVSI_STREAM_NUMBER = @as(u32, 11);
+pub const PIDASI_FORMAT = @as(u32, 2);
+pub const PIDASI_TIMELENGTH = @as(u32, 3);
+pub const PIDASI_AVG_DATA_RATE = @as(u32, 4);
+pub const PIDASI_SAMPLE_RATE = @as(u32, 5);
+pub const PIDASI_SAMPLE_SIZE = @as(u32, 6);
+pub const PIDASI_CHANNEL_COUNT = @as(u32, 7);
+pub const PIDASI_STREAM_NUMBER = @as(u32, 8);
+pub const PIDASI_STREAM_NAME = @as(u32, 9);
+pub const PIDASI_COMPRESSION = @as(u32, 10);
+pub const PID_CONTROLPANEL_CATEGORY = @as(u32, 2);
+pub const FMTID_Volume = Guid.initString("9b174b35-40ff-11d2-a27e-00c04fc30871");
+pub const PID_VOLUME_FREE = @as(u32, 2);
+pub const PID_VOLUME_CAPACITY = @as(u32, 3);
+pub const PID_VOLUME_FILESYSTEM = @as(u32, 4);
+pub const PID_SHARE_CSC_STATUS = @as(u32, 2);
+pub const PID_LINK_TARGET = @as(u32, 2);
+pub const PID_LINK_TARGET_TYPE = @as(u32, 3);
+pub const FMTID_Query = Guid.initString("49691c90-7e17-101a-a91c-08002b2ecda9");
+pub const PID_QUERY_RANK = @as(u32, 2);
+pub const CLSID_HWShellExecute = Guid.initString("ffb8655f-81b9-4fce-b89c-9a6ba76d13e7");
+pub const CLSID_DragDropHelper = Guid.initString("4657278a-411b-11d2-839a-00c04fd918d0");
+pub const CLSID_CAnchorBrowsePropertyPage = Guid.initString("3050f3bb-98b5-11cf-bb82-00aa00bdce0b");
+pub const CLSID_CImageBrowsePropertyPage = Guid.initString("3050f3b3-98b5-11cf-bb82-00aa00bdce0b");
+pub const CLSID_CDocBrowsePropertyPage = Guid.initString("3050f3b4-98b5-11cf-bb82-00aa00bdce0b");
+pub const SID_STopWindow = Guid.initString("49e1b500-4636-11d3-97f7-00c04f45d0b3");
+pub const SID_SGetViewFromViewDual = Guid.initString("889a935d-971e-4b12-b90c-24dfc9e1e5e8");
+pub const CLSID_FolderItemsMultiLevel = Guid.initString("53c74826-ab99-4d33-aca4-3117f51d3788");
+pub const CLSID_NewMenu = Guid.initString("d969a300-e7ff-11d0-a93b-00a0c90f2719");
+pub const BHID_SFObject = Guid.initString("3981e224-f559-11d3-8e3a-00c04f6837d5");
+pub const BHID_SFUIObject = Guid.initString("3981e225-f559-11d3-8e3a-00c04f6837d5");
+pub const BHID_SFViewObject = Guid.initString("3981e226-f559-11d3-8e3a-00c04f6837d5");
+pub const BHID_Storage = Guid.initString("3981e227-f559-11d3-8e3a-00c04f6837d5");
+pub const BHID_Stream = Guid.initString("1cebb3ab-7c10-499a-a417-92ca16c4cb83");
+pub const BHID_RandomAccessStream = Guid.initString("f16fc93b-77ae-4cfe-bda7-a866eea6878d");
+pub const BHID_LinkTargetItem = Guid.initString("3981e228-f559-11d3-8e3a-00c04f6837d5");
+pub const BHID_StorageEnum = Guid.initString("4621a4e3-f0d6-4773-8a9c-46e77b174840");
+pub const BHID_Transfer = Guid.initString("d5e346a1-f753-4932-b403-4574800e2498");
+pub const BHID_PropertyStore = Guid.initString("0384e1a4-1523-439c-a4c8-ab911052f586");
+pub const BHID_ThumbnailHandler = Guid.initString("7b2e650a-8e20-4f4a-b09e-6597afc72fb0");
+pub const BHID_EnumItems = Guid.initString("94f60519-2850-4924-aa5a-d15e84868039");
+pub const BHID_DataObject = Guid.initString("b8c0bd9f-ed24-455c-83e6-d5390c4fe8c4");
+pub const BHID_AssociationArray = Guid.initString("bea9ef17-82f1-4f60-9284-4f8db75c3be9");
+pub const BHID_Filter = Guid.initString("38d08778-f557-4690-9ebf-ba54706ad8f7");
+pub const BHID_EnumAssocHandlers = Guid.initString("b8ab0b9c-c2ec-4f7a-918d-314900e6280a");
+pub const BHID_StorageItem = Guid.initString("404e2109-77d2-4699-a5a0-4fdf10db9837");
+pub const BHID_FilePlaceholder = Guid.initString("8677dceb-aae0-4005-8d3d-547fa852f825");
+pub const CATID_FilePlaceholderMergeHandler = Guid.initString("3e9c9a51-d4aa-4870-b47c-7424b491f1cc");
+pub const SID_CtxQueryAssociations = Guid.initString("faadfc40-b777-4b69-aa81-77035ef0e6e8");
+pub const CLSID_QuickLinks = Guid.initString("0e5cbf21-d15f-11d0-8301-00aa005b4383");
+pub const CLSID_ISFBand = Guid.initString("d82be2b0-5764-11d0-a96e-00c04fd705a2");
+pub const CLSID_ShellFldSetExt = Guid.initString("6d5313c0-8c62-11d1-b2cd-006097df8c11");
+pub const SID_SMenuBandChild = Guid.initString("ed9cc020-08b9-11d1-9823-00c04fd91972");
+pub const SID_SMenuBandParent = Guid.initString("8c278eec-3eab-11d1-8cb0-00c04fd918d0");
+pub const SID_SMenuPopup = Guid.initString("d1e7afeb-6a2e-11d0-8c78-00c04fd918b4");
+pub const SID_SMenuBandBottomSelected = Guid.initString("165ebaf4-6d51-11d2-83ad-00c04fd918d0");
+pub const SID_SMenuBandBottom = Guid.initString("743ca664-0deb-11d1-9825-00c04fd91972");
+pub const SID_MenuShellFolder = Guid.initString("a6c17eb4-2d65-11d2-838f-00c04fd918d0");
+pub const SID_SMenuBandContextMenuModifier = Guid.initString("39545874-7162-465e-b783-2aa1874fef81");
+pub const SID_SMenuBandBKContextMenu = Guid.initString("164bbd86-1d0d-4de0-9a3b-d9729647c2b8");
+pub const CGID_MENUDESKBAR = Guid.initString("5c9f0a12-959e-11d0-a3a4-00a0c9082636");
+pub const SID_SMenuBandTop = Guid.initString("9493a810-ec38-11d0-bc46-00aa006ce2f5");
+pub const CLSID_MenuToolbarBase = Guid.initString("40b96610-b522-11d1-b3b4-00aa006efde7");
+pub const CLSID_MenuBandSite = Guid.initString("e13ef4e4-d2f2-11d0-9816-00c04fd91972");
+pub const SID_SCommDlgBrowser = Guid.initString("80f30233-b7df-11d2-a33b-006097df5bd4");
+pub const CPFG_LOGON_USERNAME = Guid.initString("da15bbe8-954d-4fd3-b0f4-1fb5b90b174b");
+pub const CPFG_LOGON_PASSWORD = Guid.initString("60624cfa-a477-47b1-8a8e-3a4a19981827");
+pub const CPFG_SMARTCARD_USERNAME = Guid.initString("3e1ecf69-568c-4d96-9d59-46444174e2d6");
+pub const CPFG_SMARTCARD_PIN = Guid.initString("4fe5263b-9181-46c1-b0a4-9dedd4db7dea");
+pub const CPFG_CREDENTIAL_PROVIDER_LOGO = Guid.initString("2d837775-f6cd-464e-a745-482fd0b47493");
+pub const CPFG_CREDENTIAL_PROVIDER_LABEL = Guid.initString("286bbff3-bad4-438f-b007-79b7267c3d48");
+pub const CPFG_STANDALONE_SUBMIT_BUTTON = Guid.initString("0b7b0ad8-cc36-4d59-802b-82f714fa7022");
+pub const CPFG_STYLE_LINK_AS_BUTTON = Guid.initString("088fa508-94a6-4430-a4cb-6fc6e3c0b9e2");
+pub const FOLDERTYPEID_Invalid = Guid.initString("57807898-8c4f-4462-bb63-71042380b109");
+pub const FOLDERTYPEID_Generic = Guid.initString("5c4f28b5-f869-4e84-8e60-f11db97c5cc7");
+pub const FOLDERTYPEID_GenericSearchResults = Guid.initString("7fde1a1e-8b31-49a5-93b8-6be14cfa4943");
+pub const FOLDERTYPEID_GenericLibrary = Guid.initString("5f4eab9a-6833-4f61-899d-31cf46979d49");
+pub const FOLDERTYPEID_Documents = Guid.initString("7d49d726-3c21-4f05-99aa-fdc2c9474656");
+pub const FOLDERTYPEID_Pictures = Guid.initString("b3690e58-e961-423b-b687-386ebfd83239");
+pub const FOLDERTYPEID_Music = Guid.initString("94d6ddcc-4a68-4175-a374-bd584a510b78");
+pub const FOLDERTYPEID_Videos = Guid.initString("5fa96407-7e77-483c-ac93-691d05850de8");
+pub const FOLDERTYPEID_Downloads = Guid.initString("885a186e-a440-4ada-812b-db871b942259");
+pub const FOLDERTYPEID_UserFiles = Guid.initString("cd0fc69b-71e2-46e5-9690-5bcd9f57aab3");
+pub const FOLDERTYPEID_UsersLibraries = Guid.initString("c4d98f09-6124-4fe0-9942-826416082da9");
+pub const FOLDERTYPEID_OtherUsers = Guid.initString("b337fd00-9dd5-4635-a6d4-da33fd102b7a");
+pub const FOLDERTYPEID_PublishedItems = Guid.initString("7f2f5b96-ff74-41da-afd8-1c78a5f3aea2");
+pub const FOLDERTYPEID_Communications = Guid.initString("91475fe5-586b-4eba-8d75-d17434b8cdf6");
+pub const FOLDERTYPEID_Contacts = Guid.initString("de2b70ec-9bf7-4a93-bd3d-243f7881d492");
+pub const FOLDERTYPEID_StartMenu = Guid.initString("ef87b4cb-f2ce-4785-8658-4ca6c63e38c6");
+pub const FOLDERTYPEID_RecordedTV = Guid.initString("5557a28f-5da6-4f83-8809-c2c98a11a6fa");
+pub const FOLDERTYPEID_SavedGames = Guid.initString("d0363307-28cb-4106-9f23-2956e3e5e0e7");
+pub const FOLDERTYPEID_OpenSearch = Guid.initString("8faf9629-1980-46ff-8023-9dceab9c3ee3");
+pub const FOLDERTYPEID_SearchConnector = Guid.initString("982725ee-6f47-479e-b447-812bfa7d2e8f");
+pub const FOLDERTYPEID_AccountPictures = Guid.initString("db2a5d8f-06e6-4007-aba6-af877d526ea6");
+pub const FOLDERTYPEID_Games = Guid.initString("b689b0d0-76d3-4cbb-87f7-585d0e0ce070");
+pub const FOLDERTYPEID_ControlPanelCategory = Guid.initString("de4f0660-fa10-4b8f-a494-068b20b22307");
+pub const FOLDERTYPEID_ControlPanelClassic = Guid.initString("0c3794f3-b545-43aa-a329-c37430c58d2a");
+pub const FOLDERTYPEID_Printers = Guid.initString("2c7bbec6-c844-4a0a-91fa-cef6f59cfda1");
+pub const FOLDERTYPEID_RecycleBin = Guid.initString("d6d9e004-cd87-442b-9d57-5e0aeb4f6f72");
+pub const FOLDERTYPEID_SoftwareExplorer = Guid.initString("d674391b-52d9-4e07-834e-67c98610f39d");
+pub const FOLDERTYPEID_CompressedFolder = Guid.initString("80213e82-bcfd-4c4f-8817-bb27601267a9");
+pub const FOLDERTYPEID_NetworkExplorer = Guid.initString("25cc242b-9a7c-4f51-80e0-7a2928febe42");
+pub const FOLDERTYPEID_Searches = Guid.initString("0b0ba2e3-405f-415e-a6ee-cad625207853");
+pub const FOLDERTYPEID_SearchHome = Guid.initString("834d8a44-0974-4ed6-866e-f203d80b3810");
+pub const FOLDERTYPEID_StorageProviderGeneric = Guid.initString("4f01ebc5-2385-41f2-a28e-2c5c91fb56e0");
+pub const FOLDERTYPEID_StorageProviderDocuments = Guid.initString("dd61bd66-70e8-48dd-9655-65c5e1aac2d1");
+pub const FOLDERTYPEID_StorageProviderPictures = Guid.initString("71d642a9-f2b1-42cd-ad92-eb9300c7cc0a");
+pub const FOLDERTYPEID_StorageProviderMusic = Guid.initString("672ecd7e-af04-4399-875c-0290845b6247");
+pub const FOLDERTYPEID_StorageProviderVideos = Guid.initString("51294da1-d7b1-485b-9e9a-17cffe33e187");
+pub const SYNCMGR_OBJECTID_Icon = Guid.initString("6dbc85c3-5d07-4c72-a777-7fec78072c06");
+pub const SYNCMGR_OBJECTID_EventStore = Guid.initString("4bef34b9-a786-4075-ba88-0c2b9d89a98f");
+pub const SYNCMGR_OBJECTID_ConflictStore = Guid.initString("d78181f4-2389-47e4-a960-60bcc2ed930b");
+pub const SYNCMGR_OBJECTID_BrowseContent = Guid.initString("57cbb584-e9b4-47ae-a120-c4df3335dee2");
+pub const SYNCMGR_OBJECTID_ShowSchedule = Guid.initString("edc6f3e3-8441-4109-adf3-6c1ca0b7de47");
+pub const SYNCMGR_OBJECTID_QueryBeforeActivate = Guid.initString("d882d80b-e7aa-49ed-86b7-e6e1f714cdfe");
+pub const SYNCMGR_OBJECTID_QueryBeforeDeactivate = Guid.initString("a0efc282-60e0-460e-9374-ea88513cfc80");
+pub const SYNCMGR_OBJECTID_QueryBeforeEnable = Guid.initString("04cbf7f0-5beb-4de1-bc90-908345c480f6");
+pub const SYNCMGR_OBJECTID_QueryBeforeDisable = Guid.initString("bb5f64aa-f004-4eb5-8e4d-26751966344c");
+pub const SYNCMGR_OBJECTID_QueryBeforeDelete = Guid.initString("f76c3397-afb3-45d7-a59f-5a49e905437e");
+pub const SYNCMGR_OBJECTID_EventLinkClick = Guid.initString("2203bdc1-1af1-4082-8c30-28399f41384c");
+pub const EP_NavPane = Guid.initString("cb316b22-25f7-42b8-8a09-540d23a43c2f");
+pub const EP_Commands = Guid.initString("d9745868-ca5f-4a76-91cd-f5a129fbb076");
+pub const EP_Commands_Organize = Guid.initString("72e81700-e3ec-4660-bf24-3c3b7b648806");
+pub const EP_Commands_View = Guid.initString("21f7c32d-eeaa-439b-bb51-37b96fd6a943");
+pub const EP_DetailsPane = Guid.initString("43abf98b-89b8-472d-b9ce-e69b8229f019");
+pub const EP_PreviewPane = Guid.initString("893c63d1-45c8-4d17-be19-223be71be365");
+pub const EP_QueryPane = Guid.initString("65bcde4f-4f07-4f27-83a7-1afca4df7ddd");
+pub const EP_AdvQueryPane = Guid.initString("b4e9db8b-34ba-4c39-b5cc-16a1bd2c411c");
+pub const EP_StatusBar = Guid.initString("65fe56ce-5cfe-4bc4-ad8a-7ae3fe7e8f7c");
+pub const EP_Ribbon = Guid.initString("d27524a8-c9f2-4834-a106-df8889fd4f37");
+pub const CATID_LocationFactory = Guid.initString("965c4d51-8b76-4e57-80b7-564d2ea4b55e");
+pub const CATID_LocationProvider = Guid.initString("1b3ca474-2614-414b-b813-1aceca3e3dd8");
+pub const ItemCount_Property_GUID = Guid.initString("abbf5c45-5ccc-47b7-bb4e-87cb87bbd162");
+pub const SelectedItemCount_Property_GUID = Guid.initString("8fe316d2-0e52-460a-9c1e-48f273d470a3");
+pub const ItemIndex_Property_GUID = Guid.initString("92a053da-2969-4021-bf27-514cfc2e4a69");
+pub const CATID_SearchableApplication = Guid.initString("366c292a-d9b3-4dbf-bb70-e62ec3d0bbbf");
+pub const IDD_WIZEXTN_FIRST = @as(u32, 20480);
+pub const IDD_WIZEXTN_LAST = @as(u32, 20736);
+pub const SHPWHF_NORECOMPRESS = @as(u32, 1);
+pub const SHPWHF_NONETPLACECREATE = @as(u32, 2);
+pub const SHPWHF_NOFILESELECTOR = @as(u32, 4);
+pub const SHPWHF_USEMRU = @as(u32, 8);
+pub const SHPWHF_ANYLOCATION = @as(u32, 256);
+pub const SHPWHF_VALIDATEVIAWEBFOLDERS = @as(u32, 65536);
+pub const ACDD_VISIBLE = @as(u32, 1);
+pub const SID_SCommandBarState = Guid.initString("b99eaa5c-3850-4400-bc33-2ce534048bf8");
+pub const NSTCDHPOS_ONTOP = @as(i32, -1);
+pub const FVSIF_RECT = @as(u32, 1);
+pub const FVSIF_PINNED = @as(u32, 2);
+pub const FVSIF_NEWFAILED = @as(u32, 134217728);
+pub const FVSIF_NEWFILE = @as(u32, 2147483648);
+pub const FVSIF_CANVIEWIT = @as(u32, 1073741824);
+pub const IDC_OFFLINE_HAND = @as(u32, 103);
+pub const IDC_PANTOOL_HAND_OPEN = @as(u32, 104);
+pub const IDC_PANTOOL_HAND_CLOSED = @as(u32, 105);
+pub const PANE_ZONE = @as(u32, 1);
+pub const PANE_OFFLINE = @as(u32, 2);
+pub const PANE_PRINTER = @as(u32, 3);
+pub const PANE_SSL = @as(u32, 4);
+pub const PANE_NAVIGATION = @as(u32, 5);
+pub const PANE_PROGRESS = @as(u32, 6);
+pub const PANE_PRIVACY = @as(u32, 7);
+pub const DWFRF_NORMAL = @as(u32, 0);
+pub const DWFRF_DELETECONFIGDATA = @as(u32, 1);
+pub const DWFAF_HIDDEN = @as(u32, 1);
+pub const DWFAF_GROUP1 = @as(u32, 2);
+pub const DWFAF_GROUP2 = @as(u32, 4);
+pub const DWFAF_AUTOHIDE = @as(u32, 16);
+pub const SHIMSTCAPFLAG_LOCKABLE = @as(u32, 1);
+pub const SHIMSTCAPFLAG_PURGEABLE = @as(u32, 2);
+pub const ISFB_MASK_STATE = @as(u32, 1);
+pub const ISFB_MASK_BKCOLOR = @as(u32, 2);
+pub const ISFB_MASK_VIEWMODE = @as(u32, 4);
+pub const ISFB_MASK_SHELLFOLDER = @as(u32, 8);
+pub const ISFB_MASK_IDLIST = @as(u32, 16);
+pub const ISFB_MASK_COLORS = @as(u32, 32);
+pub const ISFB_STATE_DEFAULT = @as(u32, 0);
+pub const ISFB_STATE_DEBOSSED = @as(u32, 1);
+pub const ISFB_STATE_ALLOWRENAME = @as(u32, 2);
+pub const ISFB_STATE_NOSHOWTEXT = @as(u32, 4);
+pub const ISFB_STATE_CHANNELBAR = @as(u32, 16);
+pub const ISFB_STATE_QLINKSMODE = @as(u32, 32);
+pub const ISFB_STATE_FULLOPEN = @as(u32, 64);
+pub const ISFB_STATE_NONAMESORT = @as(u32, 128);
+pub const ISFB_STATE_BTNMINSIZE = @as(u32, 256);
+pub const ISFBVIEWMODE_SMALLICONS = @as(u32, 1);
+pub const ISFBVIEWMODE_LARGEICONS = @as(u32, 2);
+pub const ISFBVIEWMODE_LOGOS = @as(u32, 3);
+pub const DBC_GS_IDEAL = @as(u32, 0);
+pub const DBC_GS_SIZEDOWN = @as(u32, 1);
+pub const DBC_HIDE = @as(u32, 0);
+pub const DBC_SHOW = @as(u32, 1);
+pub const DBC_SHOWOBSCURE = @as(u32, 2);
+pub const SSM_CLEAR = @as(u32, 0);
+pub const SSM_SET = @as(u32, 1);
+pub const SSM_REFRESH = @as(u32, 2);
+pub const SSM_UPDATE = @as(u32, 4);
+pub const SCHEME_DISPLAY = @as(u32, 1);
+pub const SCHEME_EDIT = @as(u32, 2);
+pub const SCHEME_LOCAL = @as(u32, 4);
+pub const SCHEME_GLOBAL = @as(u32, 8);
+pub const SCHEME_REFRESH = @as(u32, 16);
+pub const SCHEME_UPDATE = @as(u32, 32);
+pub const SCHEME_DONOTUSE = @as(u32, 64);
+pub const SCHEME_CREATE = @as(u32, 128);
+pub const GADOF_DIRTY = @as(u32, 1);
+pub const SHCDF_UPDATEITEM = @as(u32, 1);
+pub const PPCF_ADDQUOTES = @as(u32, 1);
+pub const PPCF_ADDARGUMENTS = @as(u32, 3);
+pub const PPCF_NODIRECTORIES = @as(u32, 16);
+pub const PPCF_FORCEQUALIFY = @as(u32, 64);
+pub const PPCF_LONGESTPOSSIBLE = @as(u32, 128);
+pub const OPENPROPS_NONE = @as(u32, 0);
+pub const OPENPROPS_INHIBITPIF = @as(u32, 32768);
+pub const GETPROPS_NONE = @as(u32, 0);
+pub const SETPROPS_NONE = @as(u32, 0);
+pub const CLOSEPROPS_NONE = @as(u32, 0);
+pub const CLOSEPROPS_DISCARD = @as(u32, 1);
+pub const TBIF_APPEND = @as(u32, 0);
+pub const TBIF_PREPEND = @as(u32, 1);
+pub const TBIF_REPLACE = @as(u32, 2);
+pub const TBIF_DEFAULT = @as(u32, 0);
+pub const TBIF_INTERNETBAR = @as(u32, 65536);
+pub const TBIF_STANDARDTOOLBAR = @as(u32, 131072);
+pub const TBIF_NOTOOLBAR = @as(u32, 196608);
+pub const SFVM_REARRANGE = @as(u32, 1);
+pub const SFVM_ADDOBJECT = @as(u32, 3);
+pub const SFVM_REMOVEOBJECT = @as(u32, 6);
+pub const SFVM_UPDATEOBJECT = @as(u32, 7);
+pub const SFVM_GETSELECTEDOBJECTS = @as(u32, 9);
+pub const SFVM_SETITEMPOS = @as(u32, 14);
+pub const SFVM_SETCLIPBOARD = @as(u32, 16);
+pub const SFVM_SETPOINTS = @as(u32, 23);
+pub const GIL_OPENICON = @as(u32, 1);
+pub const GIL_FORSHELL = @as(u32, 2);
+pub const GIL_ASYNC = @as(u32, 32);
+pub const GIL_DEFAULTICON = @as(u32, 64);
+pub const GIL_FORSHORTCUT = @as(u32, 128);
+pub const GIL_CHECKSHIELD = @as(u32, 512);
+pub const GIL_SIMULATEDOC = @as(u32, 1);
+pub const GIL_PERINSTANCE = @as(u32, 2);
+pub const GIL_PERCLASS = @as(u32, 4);
+pub const GIL_NOTFILENAME = @as(u32, 8);
+pub const GIL_DONTCACHE = @as(u32, 16);
+pub const GIL_SHIELD = @as(u32, 512);
+pub const GIL_FORCENOSHIELD = @as(u32, 1024);
+pub const SIOM_OVERLAYINDEX = @as(u32, 1);
+pub const SIOM_ICONINDEX = @as(u32, 2);
+pub const SIOM_RESERVED_SHARED = @as(u32, 0);
+pub const SIOM_RESERVED_LINK = @as(u32, 1);
+pub const SIOM_RESERVED_SLOWFILE = @as(u32, 2);
+pub const SIOM_RESERVED_DEFAULT = @as(u32, 3);
+pub const OI_DEFAULT = @as(u32, 0);
+pub const OI_ASYNC = @as(u32, 4294962926);
+pub const IDO_SHGIOI_SHARE = @as(u32, 268435455);
+pub const IDO_SHGIOI_LINK = @as(u32, 268435454);
+pub const IDO_SHGIOI_SLOWFILE = @as(u64, 4294967293);
+pub const IDO_SHGIOI_DEFAULT = @as(u64, 4294967292);
+pub const NT_CONSOLE_PROPS_SIG = @as(u32, 2684354562);
+pub const NT_FE_CONSOLE_PROPS_SIG = @as(u32, 2684354564);
+pub const EXP_DARWIN_ID_SIG = @as(u32, 2684354566);
+pub const EXP_SPECIAL_FOLDER_SIG = @as(u32, 2684354565);
+pub const EXP_SZ_LINK_SIG = @as(u32, 2684354561);
+pub const EXP_SZ_ICON_SIG = @as(u32, 2684354567);
+pub const EXP_PROPERTYSTORAGE_SIG = @as(u32, 2684354569);
+pub const FCIDM_SHVIEWFIRST = @as(u32, 0);
+pub const FCIDM_SHVIEWLAST = @as(u32, 32767);
+pub const FCIDM_BROWSERFIRST = @as(u32, 40960);
+pub const FCIDM_BROWSERLAST = @as(u32, 48896);
+pub const FCIDM_GLOBALFIRST = @as(u32, 32768);
+pub const FCIDM_GLOBALLAST = @as(u32, 40959);
+pub const OFASI_EDIT = @as(u32, 1);
+pub const OFASI_OPENDESKTOP = @as(u32, 2);
+pub const CSIDL_DESKTOP = @as(u32, 0);
+pub const CSIDL_INTERNET = @as(u32, 1);
+pub const CSIDL_PROGRAMS = @as(u32, 2);
+pub const CSIDL_CONTROLS = @as(u32, 3);
+pub const CSIDL_PRINTERS = @as(u32, 4);
+pub const CSIDL_PERSONAL = @as(u32, 5);
+pub const CSIDL_FAVORITES = @as(u32, 6);
+pub const CSIDL_STARTUP = @as(u32, 7);
+pub const CSIDL_RECENT = @as(u32, 8);
+pub const CSIDL_SENDTO = @as(u32, 9);
+pub const CSIDL_BITBUCKET = @as(u32, 10);
+pub const CSIDL_STARTMENU = @as(u32, 11);
+pub const CSIDL_MYMUSIC = @as(u32, 13);
+pub const CSIDL_MYVIDEO = @as(u32, 14);
+pub const CSIDL_DESKTOPDIRECTORY = @as(u32, 16);
+pub const CSIDL_DRIVES = @as(u32, 17);
+pub const CSIDL_NETWORK = @as(u32, 18);
+pub const CSIDL_NETHOOD = @as(u32, 19);
+pub const CSIDL_FONTS = @as(u32, 20);
+pub const CSIDL_TEMPLATES = @as(u32, 21);
+pub const CSIDL_COMMON_STARTMENU = @as(u32, 22);
+pub const CSIDL_COMMON_PROGRAMS = @as(u32, 23);
+pub const CSIDL_COMMON_STARTUP = @as(u32, 24);
+pub const CSIDL_COMMON_DESKTOPDIRECTORY = @as(u32, 25);
+pub const CSIDL_APPDATA = @as(u32, 26);
+pub const CSIDL_PRINTHOOD = @as(u32, 27);
+pub const CSIDL_LOCAL_APPDATA = @as(u32, 28);
+pub const CSIDL_ALTSTARTUP = @as(u32, 29);
+pub const CSIDL_COMMON_ALTSTARTUP = @as(u32, 30);
+pub const CSIDL_COMMON_FAVORITES = @as(u32, 31);
+pub const CSIDL_INTERNET_CACHE = @as(u32, 32);
+pub const CSIDL_COOKIES = @as(u32, 33);
+pub const CSIDL_HISTORY = @as(u32, 34);
+pub const CSIDL_COMMON_APPDATA = @as(u32, 35);
+pub const CSIDL_WINDOWS = @as(u32, 36);
+pub const CSIDL_SYSTEM = @as(u32, 37);
+pub const CSIDL_PROGRAM_FILES = @as(u32, 38);
+pub const CSIDL_MYPICTURES = @as(u32, 39);
+pub const CSIDL_PROFILE = @as(u32, 40);
+pub const CSIDL_SYSTEMX86 = @as(u32, 41);
+pub const CSIDL_PROGRAM_FILESX86 = @as(u32, 42);
+pub const CSIDL_PROGRAM_FILES_COMMON = @as(u32, 43);
+pub const CSIDL_PROGRAM_FILES_COMMONX86 = @as(u32, 44);
+pub const CSIDL_COMMON_TEMPLATES = @as(u32, 45);
+pub const CSIDL_COMMON_DOCUMENTS = @as(u32, 46);
+pub const CSIDL_COMMON_ADMINTOOLS = @as(u32, 47);
+pub const CSIDL_ADMINTOOLS = @as(u32, 48);
+pub const CSIDL_CONNECTIONS = @as(u32, 49);
+pub const CSIDL_COMMON_MUSIC = @as(u32, 53);
+pub const CSIDL_COMMON_PICTURES = @as(u32, 54);
+pub const CSIDL_COMMON_VIDEO = @as(u32, 55);
+pub const CSIDL_RESOURCES = @as(u32, 56);
+pub const CSIDL_RESOURCES_LOCALIZED = @as(u32, 57);
+pub const CSIDL_COMMON_OEM_LINKS = @as(u32, 58);
+pub const CSIDL_CDBURN_AREA = @as(u32, 59);
+pub const CSIDL_COMPUTERSNEARME = @as(u32, 61);
+pub const CSIDL_FLAG_CREATE = @as(u32, 32768);
+pub const CSIDL_FLAG_DONT_VERIFY = @as(u32, 16384);
+pub const CSIDL_FLAG_DONT_UNEXPAND = @as(u32, 8192);
+pub const CSIDL_FLAG_NO_ALIAS = @as(u32, 4096);
+pub const CSIDL_FLAG_PER_USER_INIT = @as(u32, 2048);
+pub const CSIDL_FLAG_MASK = @as(u32, 65280);
+pub const FCS_READ = @as(u32, 1);
+pub const FCS_FORCEWRITE = @as(u32, 2);
+pub const FCS_FLAG_DRAGDROP = @as(u32, 2);
+pub const FCSM_VIEWID = @as(u32, 1);
+pub const FCSM_WEBVIEWTEMPLATE = @as(u32, 2);
+pub const FCSM_INFOTIP = @as(u32, 4);
+pub const FCSM_CLSID = @as(u32, 8);
+pub const FCSM_ICONFILE = @as(u32, 16);
+pub const FCSM_LOGO = @as(u32, 32);
+pub const FCSM_FLAGS = @as(u32, 64);
+pub const BIF_RETURNONLYFSDIRS = @as(u32, 1);
+pub const BIF_DONTGOBELOWDOMAIN = @as(u32, 2);
+pub const BIF_STATUSTEXT = @as(u32, 4);
+pub const BIF_RETURNFSANCESTORS = @as(u32, 8);
+pub const BIF_EDITBOX = @as(u32, 16);
+pub const BIF_VALIDATE = @as(u32, 32);
+pub const BIF_NEWDIALOGSTYLE = @as(u32, 64);
+pub const BIF_BROWSEINCLUDEURLS = @as(u32, 128);
+pub const BIF_UAHINT = @as(u32, 256);
+pub const BIF_NONEWFOLDERBUTTON = @as(u32, 512);
+pub const BIF_NOTRANSLATETARGETS = @as(u32, 1024);
+pub const BIF_BROWSEFORCOMPUTER = @as(u32, 4096);
+pub const BIF_BROWSEFORPRINTER = @as(u32, 8192);
+pub const BIF_BROWSEINCLUDEFILES = @as(u32, 16384);
+pub const BIF_SHAREABLE = @as(u32, 32768);
+pub const BIF_BROWSEFILEJUNCTIONS = @as(u32, 65536);
+pub const BFFM_INITIALIZED = @as(u32, 1);
+pub const BFFM_SELCHANGED = @as(u32, 2);
+pub const BFFM_VALIDATEFAILEDA = @as(u32, 3);
+pub const BFFM_VALIDATEFAILEDW = @as(u32, 4);
+pub const BFFM_IUNKNOWN = @as(u32, 5);
+pub const PROGDLG_NORMAL = @as(u32, 0);
+pub const PROGDLG_MODAL = @as(u32, 1);
+pub const PROGDLG_AUTOTIME = @as(u32, 2);
+pub const PROGDLG_NOTIME = @as(u32, 4);
+pub const PROGDLG_NOMINIMIZE = @as(u32, 8);
+pub const PROGDLG_NOPROGRESSBAR = @as(u32, 16);
+pub const PROGDLG_MARQUEEPROGRESS = @as(u32, 32);
+pub const PROGDLG_NOCANCEL = @as(u32, 64);
+pub const PDTIMER_RESET = @as(u32, 1);
+pub const PDTIMER_PAUSE = @as(u32, 2);
+pub const PDTIMER_RESUME = @as(u32, 3);
+pub const COMPONENT_TOP = @as(u32, 1073741823);
+pub const COMP_TYPE_HTMLDOC = @as(u32, 0);
+pub const COMP_TYPE_PICTURE = @as(u32, 1);
+pub const COMP_TYPE_WEBSITE = @as(u32, 2);
+pub const COMP_TYPE_CONTROL = @as(u32, 3);
+pub const COMP_TYPE_CFHTML = @as(u32, 4);
+pub const COMP_TYPE_MAX = @as(u32, 4);
+pub const IS_NORMAL = @as(u32, 1);
+pub const IS_FULLSCREEN = @as(u32, 2);
+pub const IS_SPLIT = @as(u32, 4);
+pub const AD_APPLY_SAVE = @as(u32, 1);
+pub const AD_APPLY_HTMLGEN = @as(u32, 2);
+pub const AD_APPLY_REFRESH = @as(u32, 4);
+pub const AD_APPLY_FORCE = @as(u32, 8);
+pub const AD_APPLY_BUFFERED_REFRESH = @as(u32, 16);
+pub const AD_APPLY_DYNAMICREFRESH = @as(u32, 32);
+pub const AD_GETWP_BMP = @as(u32, 0);
+pub const AD_GETWP_IMAGE = @as(u32, 1);
+pub const AD_GETWP_LAST_APPLIED = @as(u32, 2);
+pub const WPSTYLE_CENTER = @as(u32, 0);
+pub const WPSTYLE_TILE = @as(u32, 1);
+pub const WPSTYLE_STRETCH = @as(u32, 2);
+pub const WPSTYLE_KEEPASPECT = @as(u32, 3);
+pub const WPSTYLE_CROPTOFIT = @as(u32, 4);
+pub const WPSTYLE_SPAN = @as(u32, 5);
+pub const WPSTYLE_MAX = @as(u32, 6);
+pub const COMP_ELEM_TYPE = @as(u32, 1);
+pub const COMP_ELEM_CHECKED = @as(u32, 2);
+pub const COMP_ELEM_DIRTY = @as(u32, 4);
+pub const COMP_ELEM_NOSCROLL = @as(u32, 8);
+pub const COMP_ELEM_POS_LEFT = @as(u32, 16);
+pub const COMP_ELEM_POS_TOP = @as(u32, 32);
+pub const COMP_ELEM_SIZE_WIDTH = @as(u32, 64);
+pub const COMP_ELEM_SIZE_HEIGHT = @as(u32, 128);
+pub const COMP_ELEM_POS_ZINDEX = @as(u32, 256);
+pub const COMP_ELEM_SOURCE = @as(u32, 512);
+pub const COMP_ELEM_FRIENDLYNAME = @as(u32, 1024);
+pub const COMP_ELEM_SUBSCRIBEDURL = @as(u32, 2048);
+pub const COMP_ELEM_ORIGINAL_CSI = @as(u32, 4096);
+pub const COMP_ELEM_RESTORED_CSI = @as(u32, 8192);
+pub const COMP_ELEM_CURITEMSTATE = @as(u32, 16384);
+pub const ADDURL_SILENT = @as(u32, 1);
+pub const COMPONENT_DEFAULT_LEFT = @as(u32, 65535);
+pub const COMPONENT_DEFAULT_TOP = @as(u32, 65535);
+pub const MAX_COLUMN_NAME_LEN = @as(u32, 80);
+pub const MAX_COLUMN_DESC_LEN = @as(u32, 128);
+pub const DVASPECT_SHORTNAME = @as(u32, 2);
+pub const DVASPECT_COPY = @as(u32, 3);
+pub const DVASPECT_LINK = @as(u32, 4);
+pub const SHCNEE_ORDERCHANGED = @as(i32, 2);
+pub const SHCNEE_MSI_CHANGE = @as(i32, 4);
+pub const SHCNEE_MSI_UNINSTALL = @as(i32, 5);
+pub const NUM_POINTS = @as(u32, 3);
+pub const CABINETSTATE_VERSION = @as(u32, 2);
+pub const PIFNAMESIZE = @as(u32, 30);
+pub const PIFSTARTLOCSIZE = @as(u32, 63);
+pub const PIFDEFPATHSIZE = @as(u32, 64);
+pub const PIFPARAMSSIZE = @as(u32, 64);
+pub const PIFSHPROGSIZE = @as(u32, 64);
+pub const PIFSHDATASIZE = @as(u32, 64);
+pub const PIFDEFFILESIZE = @as(u32, 80);
+pub const PIFMAXFILEPATH = @as(u32, 260);
+pub const QCMINFO_PLACE_BEFORE = @as(u32, 0);
+pub const QCMINFO_PLACE_AFTER = @as(u32, 1);
+pub const SFVSOC_INVALIDATE_ALL = @as(u32, 1);
+pub const SHELLSTATEVERSION_IE4 = @as(u32, 9);
+pub const SHELLSTATEVERSION_WIN2K = @as(u32, 10);
+pub const SHPPFW_NONE = @as(u32, 0);
+pub const SHPPFW_DIRCREATE = @as(u32, 1);
+pub const SHPPFW_ASKDIRCREATE = @as(u32, 2);
+pub const SHPPFW_IGNOREFILENAME = @as(u32, 4);
+pub const SHPPFW_NOWRITECHECK = @as(u32, 8);
+pub const SHPPFW_MEDIACHECKONLY = @as(u32, 16);
+pub const CMF_NORMAL = @as(u32, 0);
+pub const CMF_DEFAULTONLY = @as(u32, 1);
+pub const CMF_VERBSONLY = @as(u32, 2);
+pub const CMF_EXPLORE = @as(u32, 4);
+pub const CMF_NOVERBS = @as(u32, 8);
+pub const CMF_CANRENAME = @as(u32, 16);
+pub const CMF_NODEFAULT = @as(u32, 32);
+pub const CMF_INCLUDESTATIC = @as(u32, 64);
+pub const CMF_ITEMMENU = @as(u32, 128);
+pub const CMF_EXTENDEDVERBS = @as(u32, 256);
+pub const CMF_DISABLEDVERBS = @as(u32, 512);
+pub const CMF_ASYNCVERBSTATE = @as(u32, 1024);
+pub const CMF_OPTIMIZEFORINVOKE = @as(u32, 2048);
+pub const CMF_SYNCCASCADEMENU = @as(u32, 4096);
+pub const CMF_DONOTPICKDEFAULT = @as(u32, 8192);
+pub const CMF_RESERVED = @as(u32, 4294901760);
+pub const GCS_VERBA = @as(u32, 0);
+pub const GCS_HELPTEXTA = @as(u32, 1);
+pub const GCS_VALIDATEA = @as(u32, 2);
+pub const GCS_VERBW = @as(u32, 4);
+pub const GCS_HELPTEXTW = @as(u32, 5);
+pub const GCS_VALIDATEW = @as(u32, 6);
+pub const GCS_VERBICONW = @as(u32, 20);
+pub const GCS_UNICODE = @as(u32, 4);
+pub const CMIC_MASK_SHIFT_DOWN = @as(u32, 268435456);
+pub const CMIC_MASK_CONTROL_DOWN = @as(u32, 1073741824);
+pub const CMIC_MASK_PTINVOKE = @as(u32, 536870912);
+pub const IRTIR_TASK_NOT_RUNNING = @as(u32, 0);
+pub const IRTIR_TASK_RUNNING = @as(u32, 1);
+pub const IRTIR_TASK_SUSPENDED = @as(u32, 2);
+pub const IRTIR_TASK_PENDING = @as(u32, 3);
+pub const IRTIR_TASK_FINISHED = @as(u32, 4);
+pub const ITSAT_DEFAULT_PRIORITY = @as(u32, 268435456);
+pub const ITSAT_MAX_PRIORITY = @as(u32, 2147483647);
+pub const ITSAT_MIN_PRIORITY = @as(u32, 0);
+pub const ITSSFLAG_COMPLETE_ON_DESTROY = @as(u32, 0);
+pub const ITSSFLAG_KILL_ON_DESTROY = @as(u32, 1);
+pub const ITSSFLAG_FLAGS_MASK = @as(u32, 3);
+pub const SHCIDS_ALLFIELDS = @as(i32, -2147483648);
+pub const SHCIDS_CANONICALONLY = @as(i32, 268435456);
+pub const SHCIDS_BITMASK = @as(i32, -65536);
+pub const SHCIDS_COLUMNMASK = @as(i32, 65535);
+pub const SFGAO_STORAGE = @as(i32, 8);
+pub const SFGAO_CANRENAME = @as(i32, 16);
+pub const SFGAO_CANDELETE = @as(i32, 32);
+pub const SFGAO_HASPROPSHEET = @as(i32, 64);
+pub const SFGAO_DROPTARGET = @as(i32, 256);
+pub const SFGAO_CAPABILITYMASK = @as(i32, 375);
+pub const SFGAO_PLACEHOLDER = @as(i32, 2048);
+pub const SFGAO_SYSTEM = @as(i32, 4096);
+pub const SFGAO_ENCRYPTED = @as(i32, 8192);
+pub const SFGAO_ISSLOW = @as(i32, 16384);
+pub const SFGAO_GHOSTED = @as(i32, 32768);
+pub const SFGAO_LINK = @as(i32, 65536);
+pub const SFGAO_SHARE = @as(i32, 131072);
+pub const SFGAO_READONLY = @as(i32, 262144);
+pub const SFGAO_HIDDEN = @as(i32, 524288);
+pub const SFGAO_DISPLAYATTRMASK = @as(i32, 1032192);
+pub const SFGAO_FILESYSANCESTOR = @as(i32, 268435456);
+pub const SFGAO_FOLDER = @as(i32, 536870912);
+pub const SFGAO_FILESYSTEM = @as(i32, 1073741824);
+pub const SFGAO_HASSUBFOLDER = @as(i32, -2147483648);
+pub const SFGAO_CONTENTSMASK = @as(i32, -2147483648);
+pub const SFGAO_VALIDATE = @as(i32, 16777216);
+pub const SFGAO_REMOVABLE = @as(i32, 33554432);
+pub const SFGAO_COMPRESSED = @as(i32, 67108864);
+pub const SFGAO_BROWSABLE = @as(i32, 134217728);
+pub const SFGAO_NONENUMERATED = @as(i32, 1048576);
+pub const SFGAO_NEWCONTENT = @as(i32, 2097152);
+pub const SFGAO_CANMONIKER = @as(i32, 4194304);
+pub const SFGAO_HASSTORAGE = @as(i32, 4194304);
+pub const SFGAO_STREAM = @as(i32, 4194304);
+pub const SFGAO_STORAGEANCESTOR = @as(i32, 8388608);
+pub const SFGAO_STORAGECAPMASK = @as(i32, 1891958792);
+pub const SFGAO_PKEYSFGAOMASK = @as(i32, -2130427904);
+pub const BIND_INTERRUPTABLE = @as(u32, 4294967295);
+pub const CDBOSC_SETFOCUS = @as(u32, 0);
+pub const CDBOSC_KILLFOCUS = @as(u32, 1);
+pub const CDBOSC_SELCHANGE = @as(u32, 2);
+pub const CDBOSC_RENAME = @as(u32, 3);
+pub const CDBOSC_STATECHANGE = @as(u32, 4);
+pub const CDB2N_CONTEXTMENU_DONE = @as(u32, 1);
+pub const CDB2N_CONTEXTMENU_START = @as(u32, 2);
+pub const CDB2GVF_SHOWALLFILES = @as(u32, 1);
+pub const CDB2GVF_ISFILESAVE = @as(u32, 2);
+pub const CDB2GVF_ALLOWPREVIEWPANE = @as(u32, 4);
+pub const CDB2GVF_NOSELECTVERB = @as(u32, 8);
+pub const CDB2GVF_NOINCLUDEITEM = @as(u32, 16);
+pub const CDB2GVF_ISFOLDERPICKER = @as(u32, 32);
+pub const CDB2GVF_ADDSHIELD = @as(u32, 64);
+pub const SBSP_DEFBROWSER = @as(u32, 0);
+pub const SBSP_SAMEBROWSER = @as(u32, 1);
+pub const SBSP_NEWBROWSER = @as(u32, 2);
+pub const SBSP_DEFMODE = @as(u32, 0);
+pub const SBSP_OPENMODE = @as(u32, 16);
+pub const SBSP_EXPLOREMODE = @as(u32, 32);
+pub const SBSP_HELPMODE = @as(u32, 64);
+pub const SBSP_NOTRANSFERHIST = @as(u32, 128);
+pub const SBSP_ABSOLUTE = @as(u32, 0);
+pub const SBSP_RELATIVE = @as(u32, 4096);
+pub const SBSP_PARENT = @as(u32, 8192);
+pub const SBSP_NAVIGATEBACK = @as(u32, 16384);
+pub const SBSP_NAVIGATEFORWARD = @as(u32, 32768);
+pub const SBSP_ALLOW_AUTONAVIGATE = @as(u32, 65536);
+pub const SBSP_KEEPSAMETEMPLATE = @as(u32, 131072);
+pub const SBSP_KEEPWORDWHEELTEXT = @as(u32, 262144);
+pub const SBSP_ACTIVATE_NOFOCUS = @as(u32, 524288);
+pub const SBSP_CREATENOHISTORY = @as(u32, 1048576);
+pub const SBSP_PLAYNOSOUND = @as(u32, 2097152);
+pub const SBSP_CALLERUNTRUSTED = @as(u32, 8388608);
+pub const SBSP_TRUSTFIRSTDOWNLOAD = @as(u32, 16777216);
+pub const SBSP_UNTRUSTEDFORDOWNLOAD = @as(u32, 33554432);
+pub const SBSP_NOAUTOSELECT = @as(u32, 67108864);
+pub const SBSP_WRITENOHISTORY = @as(u32, 134217728);
+pub const SBSP_TRUSTEDFORACTIVEX = @as(u32, 268435456);
+pub const SBSP_FEEDNAVIGATION = @as(u32, 536870912);
+pub const SBSP_REDIRECT = @as(u32, 1073741824);
+pub const SBSP_INITIATEDBYHLINKFRAME = @as(u32, 2147483648);
+pub const FCW_STATUS = @as(u32, 1);
+pub const FCW_TOOLBAR = @as(u32, 2);
+pub const FCW_TREE = @as(u32, 3);
+pub const FCW_INTERNETBAR = @as(u32, 6);
+pub const FCW_PROGRESS = @as(u32, 8);
+pub const FCT_MERGE = @as(u32, 1);
+pub const FCT_CONFIGABLE = @as(u32, 2);
+pub const FCT_ADDTOEND = @as(u32, 4);
+pub const ARCONTENT_AUTORUNINF = @as(u32, 2);
+pub const ARCONTENT_AUDIOCD = @as(u32, 4);
+pub const ARCONTENT_DVDMOVIE = @as(u32, 8);
+pub const ARCONTENT_BLANKCD = @as(u32, 16);
+pub const ARCONTENT_BLANKDVD = @as(u32, 32);
+pub const ARCONTENT_UNKNOWNCONTENT = @as(u32, 64);
+pub const ARCONTENT_AUTOPLAYPIX = @as(u32, 128);
+pub const ARCONTENT_AUTOPLAYMUSIC = @as(u32, 256);
+pub const ARCONTENT_AUTOPLAYVIDEO = @as(u32, 512);
+pub const ARCONTENT_VCD = @as(u32, 1024);
+pub const ARCONTENT_SVCD = @as(u32, 2048);
+pub const ARCONTENT_DVDAUDIO = @as(u32, 4096);
+pub const ARCONTENT_BLANKBD = @as(u32, 8192);
+pub const ARCONTENT_BLURAY = @as(u32, 16384);
+pub const ARCONTENT_CAMERASTORAGE = @as(u32, 32768);
+pub const ARCONTENT_CUSTOMEVENT = @as(u32, 65536);
+pub const ARCONTENT_NONE = @as(u32, 0);
+pub const ARCONTENT_MASK = @as(u32, 131070);
+pub const ARCONTENT_PHASE_UNKNOWN = @as(u32, 0);
+pub const ARCONTENT_PHASE_PRESNIFF = @as(u32, 268435456);
+pub const ARCONTENT_PHASE_SNIFFING = @as(u32, 536870912);
+pub const ARCONTENT_PHASE_FINAL = @as(u32, 1073741824);
+pub const ARCONTENT_PHASE_MASK = @as(u32, 1879048192);
+pub const IEIFLAG_ASYNC = @as(u32, 1);
+pub const IEIFLAG_CACHE = @as(u32, 2);
+pub const IEIFLAG_ASPECT = @as(u32, 4);
+pub const IEIFLAG_OFFLINE = @as(u32, 8);
+pub const IEIFLAG_GLEAM = @as(u32, 16);
+pub const IEIFLAG_SCREEN = @as(u32, 32);
+pub const IEIFLAG_ORIGSIZE = @as(u32, 64);
+pub const IEIFLAG_NOSTAMP = @as(u32, 128);
+pub const IEIFLAG_NOBORDER = @as(u32, 256);
+pub const IEIFLAG_QUALITY = @as(u32, 512);
+pub const IEIFLAG_REFRESH = @as(u32, 1024);
+pub const DBIM_MINSIZE = @as(u32, 1);
+pub const DBIM_MAXSIZE = @as(u32, 2);
+pub const DBIM_INTEGRAL = @as(u32, 4);
+pub const DBIM_ACTUAL = @as(u32, 8);
+pub const DBIM_TITLE = @as(u32, 16);
+pub const DBIM_MODEFLAGS = @as(u32, 32);
+pub const DBIM_BKCOLOR = @as(u32, 64);
+pub const DBIMF_NORMAL = @as(u32, 0);
+pub const DBIMF_FIXED = @as(u32, 1);
+pub const DBIMF_FIXEDBMP = @as(u32, 4);
+pub const DBIMF_VARIABLEHEIGHT = @as(u32, 8);
+pub const DBIMF_UNDELETEABLE = @as(u32, 16);
+pub const DBIMF_DEBOSSED = @as(u32, 32);
+pub const DBIMF_BKCOLOR = @as(u32, 64);
+pub const DBIMF_USECHEVRON = @as(u32, 128);
+pub const DBIMF_BREAK = @as(u32, 256);
+pub const DBIMF_ADDTOFRONT = @as(u32, 512);
+pub const DBIMF_TOPALIGN = @as(u32, 1024);
+pub const DBIMF_NOGRIPPER = @as(u32, 2048);
+pub const DBIMF_ALWAYSGRIPPER = @as(u32, 4096);
+pub const DBIMF_NOMARGINS = @as(u32, 8192);
+pub const DBIF_VIEWMODE_NORMAL = @as(u32, 0);
+pub const DBIF_VIEWMODE_VERTICAL = @as(u32, 1);
+pub const DBIF_VIEWMODE_FLOATING = @as(u32, 2);
+pub const DBIF_VIEWMODE_TRANSPARENT = @as(u32, 4);
+pub const THBN_CLICKED = @as(u32, 6144);
+pub const FOFX_NOSKIPJUNCTIONS = @as(u32, 65536);
+pub const FOFX_PREFERHARDLINK = @as(u32, 131072);
+pub const FOFX_SHOWELEVATIONPROMPT = @as(u32, 262144);
+pub const FOFX_RECYCLEONDELETE = @as(u32, 524288);
+pub const FOFX_EARLYFAILURE = @as(u32, 1048576);
+pub const FOFX_PRESERVEFILEEXTENSIONS = @as(u32, 2097152);
+pub const FOFX_KEEPNEWERFILE = @as(u32, 4194304);
+pub const FOFX_NOCOPYHOOKS = @as(u32, 8388608);
+pub const FOFX_NOMINIMIZEBOX = @as(u32, 16777216);
+pub const FOFX_MOVEACLSACROSSVOLUMES = @as(u32, 33554432);
+pub const FOFX_DONTDISPLAYSOURCEPATH = @as(u32, 67108864);
+pub const FOFX_DONTDISPLAYDESTPATH = @as(u32, 134217728);
+pub const FOFX_REQUIREELEVATION = @as(u32, 268435456);
+pub const FOFX_ADDUNDORECORD = @as(u32, 536870912);
+pub const FOFX_COPYASDOWNLOAD = @as(u32, 1073741824);
+pub const FOFX_DONTDISPLAYLOCATIONS = @as(u32, 2147483648);
+pub const BSIM_STATE = @as(u32, 1);
+pub const BSIM_STYLE = @as(u32, 2);
+pub const BSSF_VISIBLE = @as(u32, 1);
+pub const BSSF_NOTITLE = @as(u32, 2);
+pub const BSSF_UNDELETEABLE = @as(u32, 4096);
+pub const BSIS_AUTOGRIPPER = @as(u32, 0);
+pub const BSIS_NOGRIPPER = @as(u32, 1);
+pub const BSIS_ALWAYSGRIPPER = @as(u32, 2);
+pub const BSIS_LEFTALIGN = @as(u32, 4);
+pub const BSIS_SINGLECLICK = @as(u32, 8);
+pub const BSIS_NOCONTEXTMENU = @as(u32, 16);
+pub const BSIS_NODROPTARGET = @as(u32, 32);
+pub const BSIS_NOCAPTION = @as(u32, 64);
+pub const BSIS_PREFERNOLINEBREAK = @as(u32, 128);
+pub const BSIS_LOCKED = @as(u32, 256);
+pub const BSIS_PRESERVEORDERDURINGLAYOUT = @as(u32, 512);
+pub const BSIS_FIXEDORDER = @as(u32, 1024);
+pub const OF_CAP_CANSWITCHTO = @as(u32, 1);
+pub const OF_CAP_CANCLOSE = @as(u32, 2);
+pub const SMDM_SHELLFOLDER = @as(u32, 1);
+pub const SMDM_HMENU = @as(u32, 2);
+pub const SMDM_TOOLBAR = @as(u32, 4);
+pub const SMC_INITMENU = @as(u32, 1);
+pub const SMC_CREATE = @as(u32, 2);
+pub const SMC_EXITMENU = @as(u32, 3);
+pub const SMC_GETINFO = @as(u32, 5);
+pub const SMC_GETSFINFO = @as(u32, 6);
+pub const SMC_GETOBJECT = @as(u32, 7);
+pub const SMC_GETSFOBJECT = @as(u32, 8);
+pub const SMC_SFEXEC = @as(u32, 9);
+pub const SMC_SFSELECTITEM = @as(u32, 10);
+pub const SMC_REFRESH = @as(u32, 16);
+pub const SMC_DEMOTE = @as(u32, 17);
+pub const SMC_PROMOTE = @as(u32, 18);
+pub const SMC_DEFAULTICON = @as(u32, 22);
+pub const SMC_NEWITEM = @as(u32, 23);
+pub const SMC_CHEVRONEXPAND = @as(u32, 25);
+pub const SMC_DISPLAYCHEVRONTIP = @as(u32, 42);
+pub const SMC_SETSFOBJECT = @as(u32, 45);
+pub const SMC_SHCHANGENOTIFY = @as(u32, 46);
+pub const SMC_CHEVRONGETTIP = @as(u32, 47);
+pub const SMC_SFDDRESTRICTED = @as(u32, 48);
+pub const SMC_SFEXEC_MIDDLE = @as(u32, 49);
+pub const SMC_GETAUTOEXPANDSTATE = @as(u32, 65);
+pub const SMC_AUTOEXPANDCHANGE = @as(u32, 66);
+pub const SMC_GETCONTEXTMENUMODIFIER = @as(u32, 67);
+pub const SMC_GETBKCONTEXTMENU = @as(u32, 68);
+pub const SMC_OPEN = @as(u32, 69);
+pub const SMAE_EXPANDED = @as(u32, 1);
+pub const SMAE_CONTRACTED = @as(u32, 2);
+pub const SMAE_USER = @as(u32, 4);
+pub const SMAE_VALID = @as(u32, 7);
+pub const SMINIT_DEFAULT = @as(u32, 0);
+pub const SMINIT_RESTRICT_DRAGDROP = @as(u32, 2);
+pub const SMINIT_TOPLEVEL = @as(u32, 4);
+pub const SMINIT_CACHED = @as(u32, 16);
+pub const SMINIT_AUTOEXPAND = @as(u32, 256);
+pub const SMINIT_AUTOTOOLTIP = @as(u32, 512);
+pub const SMINIT_DROPONCONTAINER = @as(u32, 1024);
+pub const SMINIT_VERTICAL = @as(u32, 268435456);
+pub const SMINIT_HORIZONTAL = @as(u32, 536870912);
+pub const SMSET_TOP = @as(u32, 268435456);
+pub const SMSET_BOTTOM = @as(u32, 536870912);
+pub const SMSET_DONTOWN = @as(u32, 1);
+pub const SMINV_REFRESH = @as(u32, 1);
+pub const SMINV_ID = @as(u32, 8);
+pub const E_PREVIEWHANDLER_DRM_FAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2042494975));
+pub const E_PREVIEWHANDLER_NOAUTH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2042494974));
+pub const E_PREVIEWHANDLER_NOTFOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2042494973));
+pub const E_PREVIEWHANDLER_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2042494972));
+pub const SID_URLExecutionContext = Guid.initString("fb5f8ebc-bbb6-4d10-a461-777291a09030");
+pub const SID_LaunchSourceViewSizePreference = Guid.initString("80605492-67d9-414f-af89-a1cdf1242bc1");
+pub const SID_LaunchTargetViewSizePreference = Guid.initString("26db2472-b7b7-406b-9702-730a4e20d3bf");
+pub const SID_LaunchSourceAppUserModelId = Guid.initString("2ce78010-74db-48bc-9c6a-10f372495723");
+pub const SID_ShellExecuteNamedPropertyStore = Guid.initString("eb84ada2-00ff-4992-8324-ed5ce061cb29");
+pub const ISIOI_ICONFILE = @as(u32, 1);
+pub const ISIOI_ICONINDEX = @as(u32, 2);
+pub const ABM_NEW = @as(u32, 0);
+pub const ABM_REMOVE = @as(u32, 1);
+pub const ABM_QUERYPOS = @as(u32, 2);
+pub const ABM_SETPOS = @as(u32, 3);
+pub const ABM_GETSTATE = @as(u32, 4);
+pub const ABM_GETTASKBARPOS = @as(u32, 5);
+pub const ABM_ACTIVATE = @as(u32, 6);
+pub const ABM_GETAUTOHIDEBAR = @as(u32, 7);
+pub const ABM_SETAUTOHIDEBAR = @as(u32, 8);
+pub const ABM_WINDOWPOSCHANGED = @as(u32, 9);
+pub const ABM_SETSTATE = @as(u32, 10);
+pub const ABM_GETAUTOHIDEBAREX = @as(u32, 11);
+pub const ABM_SETAUTOHIDEBAREX = @as(u32, 12);
+pub const ABN_STATECHANGE = @as(u32, 0);
+pub const ABN_POSCHANGED = @as(u32, 1);
+pub const ABN_FULLSCREENAPP = @as(u32, 2);
+pub const ABN_WINDOWARRANGE = @as(u32, 3);
+pub const ABS_AUTOHIDE = @as(u32, 1);
+pub const ABS_ALWAYSONTOP = @as(u32, 2);
+pub const ABE_LEFT = @as(u32, 0);
+pub const ABE_TOP = @as(u32, 1);
+pub const ABE_RIGHT = @as(u32, 2);
+pub const ABE_BOTTOM = @as(u32, 3);
+pub const FO_MOVE = @as(u32, 1);
+pub const FO_COPY = @as(u32, 2);
+pub const FO_DELETE = @as(u32, 3);
+pub const FO_RENAME = @as(u32, 4);
+pub const FOF_MULTIDESTFILES = @as(u32, 1);
+pub const FOF_CONFIRMMOUSE = @as(u32, 2);
+pub const FOF_SILENT = @as(u32, 4);
+pub const FOF_RENAMEONCOLLISION = @as(u32, 8);
+pub const FOF_NOCONFIRMATION = @as(u32, 16);
+pub const FOF_WANTMAPPINGHANDLE = @as(u32, 32);
+pub const FOF_ALLOWUNDO = @as(u32, 64);
+pub const FOF_FILESONLY = @as(u32, 128);
+pub const FOF_SIMPLEPROGRESS = @as(u32, 256);
+pub const FOF_NOCONFIRMMKDIR = @as(u32, 512);
+pub const FOF_NOERRORUI = @as(u32, 1024);
+pub const FOF_NOCOPYSECURITYATTRIBS = @as(u32, 2048);
+pub const FOF_NORECURSION = @as(u32, 4096);
+pub const FOF_NO_CONNECTED_ELEMENTS = @as(u32, 8192);
+pub const FOF_WANTNUKEWARNING = @as(u32, 16384);
+pub const FOF_NORECURSEREPARSE = @as(u32, 32768);
+pub const PO_DELETE = @as(u32, 19);
+pub const PO_RENAME = @as(u32, 20);
+pub const PO_PORTCHANGE = @as(u32, 32);
+pub const PO_REN_PORT = @as(u32, 52);
+pub const SE_ERR_FNF = @as(u32, 2);
+pub const SE_ERR_PNF = @as(u32, 3);
+pub const SE_ERR_ACCESSDENIED = @as(u32, 5);
+pub const SE_ERR_OOM = @as(u32, 8);
+pub const SE_ERR_DLLNOTFOUND = @as(u32, 32);
+pub const SE_ERR_SHARE = @as(u32, 26);
+pub const SE_ERR_ASSOCINCOMPLETE = @as(u32, 27);
+pub const SE_ERR_DDETIMEOUT = @as(u32, 28);
+pub const SE_ERR_DDEFAIL = @as(u32, 29);
+pub const SE_ERR_DDEBUSY = @as(u32, 30);
+pub const SE_ERR_NOASSOC = @as(u32, 31);
+pub const SEE_MASK_DEFAULT = @as(u32, 0);
+pub const SEE_MASK_CLASSNAME = @as(u32, 1);
+pub const SEE_MASK_CLASSKEY = @as(u32, 3);
+pub const SEE_MASK_IDLIST = @as(u32, 4);
+pub const SEE_MASK_INVOKEIDLIST = @as(u32, 12);
+pub const SEE_MASK_ICON = @as(u32, 16);
+pub const SEE_MASK_HOTKEY = @as(u32, 32);
+pub const SEE_MASK_NOCLOSEPROCESS = @as(u32, 64);
+pub const SEE_MASK_CONNECTNETDRV = @as(u32, 128);
+pub const SEE_MASK_NOASYNC = @as(u32, 256);
+pub const SEE_MASK_DOENVSUBST = @as(u32, 512);
+pub const SEE_MASK_FLAG_NO_UI = @as(u32, 1024);
+pub const SEE_MASK_UNICODE = @as(u32, 16384);
+pub const SEE_MASK_NO_CONSOLE = @as(u32, 32768);
+pub const SEE_MASK_ASYNCOK = @as(u32, 1048576);
+pub const SEE_MASK_HMONITOR = @as(u32, 2097152);
+pub const SEE_MASK_NOZONECHECKS = @as(u32, 8388608);
+pub const SEE_MASK_NOQUERYCLASSSTORE = @as(u32, 16777216);
+pub const SEE_MASK_WAITFORINPUTIDLE = @as(u32, 33554432);
+pub const SEE_MASK_FLAG_LOG_USAGE = @as(u32, 67108864);
+pub const SEE_MASK_FLAG_HINST_IS_SITE = @as(u32, 134217728);
+pub const SHERB_NOCONFIRMATION = @as(u32, 1);
+pub const SHERB_NOPROGRESSUI = @as(u32, 2);
+pub const SHERB_NOSOUND = @as(u32, 4);
+pub const NINF_KEY = @as(u32, 1);
+pub const NIM_ADD = @as(u32, 0);
+pub const NIM_MODIFY = @as(u32, 1);
+pub const NIM_DELETE = @as(u32, 2);
+pub const NIM_SETFOCUS = @as(u32, 3);
+pub const NIM_SETVERSION = @as(u32, 4);
+pub const NOTIFYICON_VERSION = @as(u32, 3);
+pub const NOTIFYICON_VERSION_4 = @as(u32, 4);
+pub const NIF_MESSAGE = @as(u32, 1);
+pub const NIF_ICON = @as(u32, 2);
+pub const NIF_TIP = @as(u32, 4);
+pub const NIF_STATE = @as(u32, 8);
+pub const NIF_INFO = @as(u32, 16);
+pub const NIF_GUID = @as(u32, 32);
+pub const NIF_REALTIME = @as(u32, 64);
+pub const NIF_SHOWTIP = @as(u32, 128);
+pub const NIS_HIDDEN = @as(u32, 1);
+pub const NIS_SHAREDICON = @as(u32, 2);
+pub const NIIF_NONE = @as(u32, 0);
+pub const NIIF_INFO = @as(u32, 1);
+pub const NIIF_WARNING = @as(u32, 2);
+pub const NIIF_ERROR = @as(u32, 3);
+pub const NIIF_USER = @as(u32, 4);
+pub const NIIF_ICON_MASK = @as(u32, 15);
+pub const NIIF_NOSOUND = @as(u32, 16);
+pub const NIIF_LARGE_ICON = @as(u32, 32);
+pub const NIIF_RESPECT_QUIET_TIME = @as(u32, 128);
+pub const SHGSI_ICONLOCATION = @as(u32, 0);
+pub const SHGNLI_PIDL = @as(u64, 1);
+pub const SHGNLI_PREFIXNAME = @as(u64, 2);
+pub const SHGNLI_NOUNIQUE = @as(u64, 4);
+pub const SHGNLI_NOLNK = @as(u64, 8);
+pub const SHGNLI_NOLOCNAME = @as(u64, 16);
+pub const SHGNLI_USEURLEXT = @as(u64, 32);
+pub const PRINTACTION_OPEN = @as(u32, 0);
+pub const PRINTACTION_PROPERTIES = @as(u32, 1);
+pub const PRINTACTION_NETINSTALL = @as(u32, 2);
+pub const PRINTACTION_NETINSTALLLINK = @as(u32, 3);
+pub const PRINTACTION_TESTPAGE = @as(u32, 4);
+pub const PRINTACTION_OPENNETPRN = @as(u32, 5);
+pub const PRINTACTION_DOCUMENTDEFAULTS = @as(u32, 6);
+pub const PRINTACTION_SERVERPROPERTIES = @as(u32, 7);
+pub const PRINT_PROP_FORCE_NAME = @as(u32, 1);
+pub const OFFLINE_STATUS_LOCAL = @as(u32, 1);
+pub const OFFLINE_STATUS_REMOTE = @as(u32, 2);
+pub const OFFLINE_STATUS_INCOMPLETE = @as(u32, 4);
+pub const SHIL_LARGE = @as(u32, 0);
+pub const SHIL_SMALL = @as(u32, 1);
+pub const SHIL_EXTRALARGE = @as(u32, 2);
+pub const SHIL_SYSSMALL = @as(u32, 3);
+pub const SHIL_JUMBO = @as(u32, 4);
+pub const Identity_LocalUserProvider = Guid.initString("a198529b-730f-4089-b646-a12557f5665e");
+pub const MAX_SYNCMGR_ID = @as(u32, 64);
+pub const MAX_SYNCMGR_PROGRESSTEXT = @as(u32, 260);
+pub const MAX_SYNCMGR_NAME = @as(u32, 128);
+pub const STIF_DEFAULT = @as(i32, 0);
+pub const STIF_SUPPORT_HEX = @as(i32, 1);
+pub const GCT_INVALID = @as(u32, 0);
+pub const GCT_LFNCHAR = @as(u32, 1);
+pub const GCT_SHORTCHAR = @as(u32, 2);
+pub const GCT_WILD = @as(u32, 4);
+pub const GCT_SEPARATOR = @as(u32, 8);
+pub const PMSF_NORMAL = @as(u32, 0);
+pub const PMSF_MULTIPLE = @as(u32, 1);
+pub const PMSF_DONT_STRIP_SPACES = @as(u32, 65536);
+pub const URL_UNESCAPE = @as(u32, 268435456);
+pub const URL_ESCAPE_UNSAFE = @as(u32, 536870912);
+pub const URL_PLUGGABLE_PROTOCOL = @as(u32, 1073741824);
+pub const URL_WININET_COMPATIBILITY = @as(u32, 2147483648);
+pub const URL_DONT_ESCAPE_EXTRA_INFO = @as(u32, 33554432);
+pub const URL_ESCAPE_SPACES_ONLY = @as(u32, 67108864);
+pub const URL_DONT_SIMPLIFY = @as(u32, 134217728);
+pub const URL_UNESCAPE_INPLACE = @as(u32, 1048576);
+pub const URL_CONVERT_IF_DOSPATH = @as(u32, 2097152);
+pub const URL_UNESCAPE_HIGH_ANSI_ONLY = @as(u32, 4194304);
+pub const URL_INTERNAL_PATH = @as(u32, 8388608);
+pub const URL_FILE_USE_PATHURL = @as(u32, 65536);
+pub const URL_DONT_UNESCAPE = @as(u32, 131072);
+pub const URL_ESCAPE_AS_UTF8 = @as(u32, 262144);
+pub const URL_ESCAPE_ASCII_URI_COMPONENT = @as(u32, 524288);
+pub const URL_ESCAPE_PERCENT = @as(u32, 4096);
+pub const URL_ESCAPE_SEGMENT_ONLY = @as(u32, 8192);
+pub const URL_PARTFLAG_KEEPSCHEME = @as(u32, 1);
+pub const URL_APPLY_DEFAULT = @as(u32, 1);
+pub const URL_APPLY_GUESSSCHEME = @as(u32, 2);
+pub const URL_APPLY_GUESSFILE = @as(u32, 4);
+pub const URL_APPLY_FORCEAPPLY = @as(u32, 8);
+pub const SRRF_RT_REG_NONE = @as(u32, 1);
+pub const SRRF_RT_REG_SZ = @as(u32, 2);
+pub const SRRF_RT_REG_EXPAND_SZ = @as(u32, 4);
+pub const SRRF_RT_REG_BINARY = @as(u32, 8);
+pub const SRRF_RT_REG_DWORD = @as(u32, 16);
+pub const SRRF_RT_REG_MULTI_SZ = @as(u32, 32);
+pub const SRRF_RT_REG_QWORD = @as(u32, 64);
+pub const SRRF_RT_ANY = @as(u32, 65535);
+pub const SRRF_RM_ANY = @as(u32, 0);
+pub const SRRF_RM_NORMAL = @as(u32, 65536);
+pub const SRRF_RM_SAFE = @as(u32, 131072);
+pub const SRRF_RM_SAFENETWORK = @as(u32, 262144);
+pub const SRRF_NOEXPAND = @as(u32, 268435456);
+pub const SRRF_ZEROONFAILURE = @as(u32, 536870912);
+pub const SRRF_NOVIRT = @as(u32, 1073741824);
+pub const SHREGSET_HKCU = @as(u32, 1);
+pub const SHREGSET_FORCE_HKCU = @as(u32, 2);
+pub const SHREGSET_HKLM = @as(u32, 4);
+pub const SHREGSET_FORCE_HKLM = @as(u32, 8);
+pub const SPMODE_SHELL = @as(u32, 1);
+pub const SPMODE_DEBUGOUT = @as(u32, 2);
+pub const SPMODE_TEST = @as(u32, 4);
+pub const SPMODE_BROWSER = @as(u32, 8);
+pub const SPMODE_FLUSH = @as(u32, 16);
+pub const SPMODE_EVENT = @as(u32, 32);
+pub const SPMODE_MSVM = @as(u32, 64);
+pub const SPMODE_FORMATTEXT = @as(u32, 128);
+pub const SPMODE_PROFILE = @as(u32, 256);
+pub const SPMODE_DEBUGBREAK = @as(u32, 512);
+pub const SPMODE_MSGTRACE = @as(u32, 1024);
+pub const SPMODE_PERFTAGS = @as(u32, 2048);
+pub const SPMODE_MEMWATCH = @as(u32, 4096);
+pub const SPMODE_DBMON = @as(u32, 8192);
+pub const SPMODE_MULTISTOP = @as(u32, 16384);
+pub const SPMODE_EVENTTRACE = @as(u32, 32768);
+pub const SHGVSPB_PERUSER = @as(u32, 1);
+pub const SHGVSPB_ALLUSERS = @as(u32, 2);
+pub const SHGVSPB_PERFOLDER = @as(u32, 4);
+pub const SHGVSPB_ALLFOLDERS = @as(u32, 8);
+pub const SHGVSPB_INHERIT = @as(u32, 16);
+pub const SHGVSPB_ROAM = @as(u32, 32);
+pub const SHGVSPB_NOAUTODEFAULTS = @as(u32, 2147483648);
+pub const FDTF_SHORTTIME = @as(u32, 1);
+pub const FDTF_SHORTDATE = @as(u32, 2);
+pub const FDTF_LONGDATE = @as(u32, 4);
+pub const FDTF_LONGTIME = @as(u32, 8);
+pub const FDTF_RELATIVE = @as(u32, 16);
+pub const FDTF_LTRDATE = @as(u32, 256);
+pub const FDTF_RTLDATE = @as(u32, 512);
+pub const FDTF_NOAUTOREADINGORDER = @as(u32, 1024);
+pub const OS_WINDOWS = @as(u32, 0);
+pub const OS_NT = @as(u32, 1);
+pub const OS_WIN95ORGREATER = @as(u32, 2);
+pub const OS_NT4ORGREATER = @as(u32, 3);
+pub const OS_WIN98ORGREATER = @as(u32, 5);
+pub const OS_WIN98_GOLD = @as(u32, 6);
+pub const OS_WIN2000ORGREATER = @as(u32, 7);
+pub const OS_WIN2000PRO = @as(u32, 8);
+pub const OS_WIN2000SERVER = @as(u32, 9);
+pub const OS_WIN2000ADVSERVER = @as(u32, 10);
+pub const OS_WIN2000DATACENTER = @as(u32, 11);
+pub const OS_WIN2000TERMINAL = @as(u32, 12);
+pub const OS_EMBEDDED = @as(u32, 13);
+pub const OS_TERMINALCLIENT = @as(u32, 14);
+pub const OS_TERMINALREMOTEADMIN = @as(u32, 15);
+pub const OS_WIN95_GOLD = @as(u32, 16);
+pub const OS_MEORGREATER = @as(u32, 17);
+pub const OS_XPORGREATER = @as(u32, 18);
+pub const OS_HOME = @as(u32, 19);
+pub const OS_PROFESSIONAL = @as(u32, 20);
+pub const OS_DATACENTER = @as(u32, 21);
+pub const OS_ADVSERVER = @as(u32, 22);
+pub const OS_SERVER = @as(u32, 23);
+pub const OS_TERMINALSERVER = @as(u32, 24);
+pub const OS_PERSONALTERMINALSERVER = @as(u32, 25);
+pub const OS_FASTUSERSWITCHING = @as(u32, 26);
+pub const OS_WELCOMELOGONUI = @as(u32, 27);
+pub const OS_DOMAINMEMBER = @as(u32, 28);
+pub const OS_ANYSERVER = @as(u32, 29);
+pub const OS_WOW6432 = @as(u32, 30);
+pub const OS_WEBSERVER = @as(u32, 31);
+pub const OS_SMALLBUSINESSSERVER = @as(u32, 32);
+pub const OS_TABLETPC = @as(u32, 33);
+pub const OS_SERVERADMINUI = @as(u32, 34);
+pub const OS_MEDIACENTER = @as(u32, 35);
+pub const OS_APPLIANCE = @as(u32, 36);
+pub const PLATFORM_UNKNOWN = @as(u32, 0);
+pub const PLATFORM_IE3 = @as(u32, 1);
+pub const PLATFORM_BROWSERONLY = @as(u32, 1);
+pub const PLATFORM_INTEGRATED = @as(u32, 2);
+pub const ILMM_IE4 = @as(u32, 0);
+pub const SHACF_DEFAULT = @as(u32, 0);
+pub const SHACF_FILESYSTEM = @as(u32, 1);
+pub const SHACF_URLHISTORY = @as(u32, 2);
+pub const SHACF_URLMRU = @as(u32, 4);
+pub const SHACF_USETAB = @as(u32, 8);
+pub const SHACF_FILESYS_ONLY = @as(u32, 16);
+pub const SHACF_FILESYS_DIRS = @as(u32, 32);
+pub const SHACF_VIRTUAL_NAMESPACE = @as(u32, 64);
+pub const SHACF_AUTOSUGGEST_FORCE_ON = @as(u32, 268435456);
+pub const SHACF_AUTOSUGGEST_FORCE_OFF = @as(u32, 536870912);
+pub const SHACF_AUTOAPPEND_FORCE_ON = @as(u32, 1073741824);
+pub const SHACF_AUTOAPPEND_FORCE_OFF = @as(u32, 2147483648);
+pub const DLLVER_PLATFORM_WINDOWS = @as(u32, 1);
+pub const DLLVER_PLATFORM_NT = @as(u32, 2);
+pub const DLLVER_MAJOR_MASK = @as(u64, 18446462598732840960);
+pub const DLLVER_MINOR_MASK = @as(u64, 281470681743360);
+pub const DLLVER_BUILD_MASK = @as(u64, 4294901760);
+pub const DLLVER_QFE_MASK = @as(u64, 65535);
+pub const SHIMGDEC_DEFAULT = @as(u32, 0);
+pub const SHIMGDEC_THUMBNAIL = @as(u32, 1);
+pub const SHIMGDEC_LOADFULL = @as(u32, 2);
+pub const SYNCMGRPROGRESSITEM_STATUSTEXT = @as(u32, 1);
+pub const SYNCMGRPROGRESSITEM_STATUSTYPE = @as(u32, 2);
+pub const SYNCMGRPROGRESSITEM_PROGVALUE = @as(u32, 4);
+pub const SYNCMGRPROGRESSITEM_MAXVALUE = @as(u32, 8);
+pub const SYNCMGRLOGERROR_ERRORFLAGS = @as(u32, 1);
+pub const SYNCMGRLOGERROR_ERRORID = @as(u32, 2);
+pub const SYNCMGRLOGERROR_ITEMID = @as(u32, 4);
+pub const SYNCMGRITEM_ITEMFLAGMASK = @as(u32, 127);
+pub const MAX_SYNCMGRITEMNAME = @as(u32, 128);
+pub const SYNCMGRHANDLERFLAG_MASK = @as(u32, 15);
+pub const MAX_SYNCMGRHANDLERNAME = @as(u32, 32);
+pub const SYNCMGRREGISTERFLAGS_MASK = @as(u32, 7);
+pub const TLOG_BACK = @as(i32, -1);
+pub const TLOG_CURRENT = @as(u32, 0);
+pub const TLOG_FORE = @as(u32, 1);
+pub const TLMENUF_INCLUDECURRENT = @as(u32, 1);
+pub const TLMENUF_BACK = @as(u32, 16);
+pub const TLMENUF_FORE = @as(u32, 32);
+pub const BSF_REGISTERASDROPTARGET = @as(u32, 1);
+pub const BSF_THEATERMODE = @as(u32, 2);
+pub const BSF_NOLOCALFILEWARNING = @as(u32, 16);
+pub const BSF_UISETBYAUTOMATION = @as(u32, 256);
+pub const BSF_RESIZABLE = @as(u32, 512);
+pub const BSF_CANMAXIMIZE = @as(u32, 1024);
+pub const BSF_TOPBROWSER = @as(u32, 2048);
+pub const BSF_NAVNOHISTORY = @as(u32, 4096);
+pub const BSF_HTMLNAVCANCELED = @as(u32, 8192);
+pub const BSF_DONTSHOWNAVCANCELPAGE = @as(u32, 16384);
+pub const BSF_SETNAVIGATABLECODEPAGE = @as(u32, 32768);
+pub const BSF_DELEGATEDNAVIGATION = @as(u32, 65536);
+pub const BSF_TRUSTEDFORACTIVEX = @as(u32, 131072);
+pub const BSF_MERGEDMENUS = @as(u32, 262144);
+pub const BSF_FEEDNAVIGATION = @as(u32, 524288);
+pub const BSF_FEEDSUBSCRIBED = @as(u32, 1048576);
+pub const HLNF_CALLERUNTRUSTED = @as(u32, 2097152);
+pub const HLNF_TRUSTEDFORACTIVEX = @as(u32, 4194304);
+pub const HLNF_DISABLEWINDOWRESTRICTIONS = @as(u32, 8388608);
+pub const HLNF_TRUSTFIRSTDOWNLOAD = @as(u32, 16777216);
+pub const HLNF_UNTRUSTEDFORDOWNLOAD = @as(u32, 33554432);
+pub const SHHLNF_NOAUTOSELECT = @as(u32, 67108864);
+pub const SHHLNF_WRITENOHISTORY = @as(u32, 134217728);
+pub const HLNF_EXTERNALNAVIGATE = @as(u32, 268435456);
+pub const HLNF_ALLOW_AUTONAVIGATE = @as(u32, 536870912);
+pub const HLNF_NEWWINDOWSMANAGED = @as(u32, 2147483648);
+pub const INTERNET_MAX_PATH_LENGTH = @as(u32, 2048);
+pub const INTERNET_MAX_SCHEME_LENGTH = @as(u32, 32);
+pub const VIEW_PRIORITY_RESTRICTED = @as(u32, 112);
+pub const VIEW_PRIORITY_CACHEHIT = @as(u32, 80);
+pub const VIEW_PRIORITY_STALECACHEHIT = @as(u32, 69);
+pub const VIEW_PRIORITY_USEASDEFAULT = @as(u32, 67);
+pub const VIEW_PRIORITY_SHELLEXT = @as(u32, 64);
+pub const VIEW_PRIORITY_CACHEMISS = @as(u32, 48);
+pub const VIEW_PRIORITY_INHERIT = @as(u32, 32);
+pub const VIEW_PRIORITY_SHELLEXT_ASBACKUP = @as(u32, 21);
+pub const VIEW_PRIORITY_DESPERATE = @as(u32, 16);
+pub const VIEW_PRIORITY_NONE = @as(u32, 0);
+pub const PATHCCH_MAX_CCH = @as(u32, 32768);
+pub const IDS_DESCRIPTION = @as(u32, 1);
+pub const ID_APP = @as(u32, 100);
+pub const DLG_SCRNSAVECONFIGURE = @as(u32, 2003);
+pub const MAXFILELEN = @as(u32, 13);
+pub const TITLEBARNAMELEN = @as(u32, 40);
+pub const APPNAMEBUFFERLEN = @as(u32, 40);
+pub const BUFFLEN = @as(u32, 255);
+pub const PID_FIRST_USABLE = @as(u32, 2);
+pub const GPFIDL_DEFAULT = @as(i32, 0);
+pub const GPFIDL_ALTNAME = @as(i32, 1);
+pub const GPFIDL_UNCPRINTER = @as(i32, 2);
+pub const ISHCUTCMDID_DOWNLOADICON = @as(i32, 0);
+pub const ISHCUTCMDID_INTSHORTCUTCREATE = @as(i32, 1);
+pub const ISHCUTCMDID_COMMITHISTORY = @as(i32, 2);
+pub const ISHCUTCMDID_SETUSERAWURL = @as(i32, 3);
+pub const SFBID_PIDLCHANGED = @as(i32, 0);
+pub const DBCID_EMPTY = @as(i32, 0);
+pub const DBCID_ONDRAG = @as(i32, 1);
+pub const DBCID_CLSIDOFBAR = @as(i32, 2);
+pub const DBCID_RESIZE = @as(i32, 3);
+pub const DBCID_GETBAR = @as(i32, 4);
+pub const BMICON_LARGE = @as(i32, 0);
+pub const BMICON_SMALL = @as(i32, 1);
+pub const ASSOCF_NONE = @as(i32, 0);
+pub const ASSOCF_INIT_NOREMAPCLSID = @as(i32, 1);
+pub const ASSOCF_INIT_BYEXENAME = @as(i32, 2);
+pub const ASSOCF_OPEN_BYEXENAME = @as(i32, 2);
+pub const ASSOCF_INIT_DEFAULTTOSTAR = @as(i32, 4);
+pub const ASSOCF_INIT_DEFAULTTOFOLDER = @as(i32, 8);
+pub const ASSOCF_NOUSERSETTINGS = @as(i32, 16);
+pub const ASSOCF_NOTRUNCATE = @as(i32, 32);
+pub const ASSOCF_VERIFY = @as(i32, 64);
+pub const ASSOCF_REMAPRUNDLL = @as(i32, 128);
+pub const ASSOCF_NOFIXUPS = @as(i32, 256);
+pub const ASSOCF_IGNOREBASECLASS = @as(i32, 512);
+pub const ASSOCF_INIT_IGNOREUNKNOWN = @as(i32, 1024);
+pub const ASSOCF_INIT_FIXED_PROGID = @as(i32, 2048);
+pub const ASSOCF_IS_PROTOCOL = @as(i32, 4096);
+pub const ASSOCF_INIT_FOR_FILE = @as(i32, 8192);
+pub const ASSOCF_IS_FULL_URI = @as(i32, 16384);
+pub const ASSOCF_PER_MACHINE_ONLY = @as(i32, 32768);
+pub const ASSOCF_APP_TO_APP = @as(i32, 65536);
+pub const CTF_INSIST = @as(i32, 1);
+pub const CTF_THREAD_REF = @as(i32, 2);
+pub const CTF_PROCESS_REF = @as(i32, 4);
+pub const CTF_COINIT_STA = @as(i32, 8);
+pub const CTF_COINIT = @as(i32, 8);
+pub const CTF_FREELIBANDEXIT = @as(i32, 16);
+pub const CTF_REF_COUNTED = @as(i32, 32);
+pub const CTF_WAIT_ALLOWCOM = @as(i32, 64);
+pub const CTF_UNUSED = @as(i32, 128);
+pub const CTF_INHERITWOW64 = @as(i32, 256);
+pub const CTF_WAIT_NO_REENTRANCY = @as(i32, 512);
+pub const CTF_KEYBOARD_LOCALE = @as(i32, 1024);
+pub const CTF_OLEINITIALIZE = @as(i32, 2048);
+pub const CTF_COINIT_MTA = @as(i32, 4096);
+pub const CTF_NOADDREFLIB = @as(i32, 8192);
 
 //--------------------------------------------------------------------------------
-// Section: Types (929)
+// Section: Types (928)
 //--------------------------------------------------------------------------------
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: PWSTR,
+    szAbstract: PWSTR,
+    szHREF: PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
 pub const SUBCLASSPROC = fn(
     hWnd: HWND,
     uMsg: u32,
@@ -1405,6 +1421,13 @@ pub const SUBCLASSPROC = fn(
     uIdSubclass: ?*c_void,
     dwRefData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const HDROP = ?*c_void;
+
+pub const HPSXA = ?*c_void;
+
+// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
+pub const ShFindChangeNotifcationHandle = ?*c_void;
 
 pub const APPCATEGORYINFO = extern struct {
     Locale: u32,
@@ -1795,32 +1818,709 @@ pub const IShellWindows = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: PWSTR,
-    szAbstract: PWSTR,
-    szHREF: PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHGFI_FLAGS = extern enum(i32) {
+    ADDOVERLAYS = 32,
+    ATTR_SPECIFIED = 131072,
+    ATTRIBUTES = 2048,
+    DISPLAYNAME = 512,
+    EXETYPE = 8192,
+    ICON = 256,
+    ICONLOCATION = 4096,
+    LARGEICON = 0,
+    LINKOVERLAY = 32768,
+    OPENICON = 2,
+    OVERLAYINDEX = 64,
+    PIDL = 8,
+    SELECTED = 65536,
+    SHELLICONSIZE = 4,
+    SMALLICON = 1,
+    SYSICONINDEX = 16384,
+    TYPENAME = 1024,
+    USEFILEATTRIBUTES = 16,
+    _,
 };
+pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
+pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
+pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
+pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
+pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
+pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
+pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
+pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
+pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
+pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
+pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
+pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
+pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
+pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
+pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
+pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
+pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
+pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
 
-pub const HDROP = ?*c_void;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNE_ID = extern enum(u32) {
+    RENAMEITEM = 1,
+    CREATE = 2,
+    DELETE = 4,
+    MKDIR = 8,
+    RMDIR = 16,
+    MEDIAINSERTED = 32,
+    MEDIAREMOVED = 64,
+    DRIVEREMOVED = 128,
+    DRIVEADD = 256,
+    NETSHARE = 512,
+    NETUNSHARE = 1024,
+    ATTRIBUTES = 2048,
+    UPDATEDIR = 4096,
+    UPDATEITEM = 8192,
+    SERVERDISCONNECT = 16384,
+    UPDATEIMAGE = 32768,
+    DRIVEADDGUI = 65536,
+    RENAMEFOLDER = 131072,
+    FREESPACE = 262144,
+    EXTENDED_EVENT = 67108864,
+    ASSOCCHANGED = 134217728,
+    DISKEVENTS = 145439,
+    GLOBALEVENTS = 201687520,
+    ALLEVENTS = 2147483647,
+    INTERRUPT = 2147483648,
+    _,
+};
+pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
+pub const SHCNE_CREATE = SHCNE_ID.CREATE;
+pub const SHCNE_DELETE = SHCNE_ID.DELETE;
+pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
+pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
+pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
+pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
+pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
+pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
+pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
+pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
+pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
+pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
+pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
+pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
+pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
+pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
+pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
+pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
+pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
+pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
+pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
+pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
+pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
+pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
 
-pub const HPSXA = ?*c_void;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNRF_SOURCE = extern enum(i32) {
+    InterruptLevel = 1,
+    ShellLevel = 2,
+    RecursiveInterrupt = 4096,
+    NewDelivery = 32768,
+    _,
+};
+pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
+pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
+pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
+pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
 
-// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
-pub const ShFindChangeNotifcationHandle = ?*c_void;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNF_FLAGS = extern enum(u32) {
+    IDLIST = 0,
+    PATHA = 1,
+    PRINTERA = 2,
+    DWORD = 3,
+    PATHW = 5,
+    PRINTERW = 6,
+    TYPE = 255,
+    FLUSH = 4096,
+    FLUSHNOWAIT = 12288,
+    NOTIFYRECURSIVE = 65536,
+    PATH = 5,
+    PRINTER = 6,
+    _,
+};
+pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
+pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
+pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
+pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
+pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
+pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
+pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
+pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
+pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
+pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
+pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
+pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const QITIPF_FLAGS = extern enum(i32) {
+    TIPF_DEFAULT = 0,
+    TIPF_USENAME = 1,
+    TIPF_LINKNOTARGET = 2,
+    TIPF_LINKUSETARGET = 4,
+    TIPF_USESLOWTIP = 8,
+    TIPF_SINGLELINE = 16,
+    F_CACHED = 1,
+    F_DONTEXPANDFOLDER = 2,
+    _,
+};
+pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
+pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
+pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
+pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
+pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
+pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
+pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
+pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+
+pub const SHDID_ID = extern enum(i32) {
+    ROOT_REGITEM = 1,
+    FS_FILE = 2,
+    FS_DIRECTORY = 3,
+    FS_OTHER = 4,
+    COMPUTER_DRIVE35 = 5,
+    COMPUTER_DRIVE525 = 6,
+    COMPUTER_REMOVABLE = 7,
+    COMPUTER_FIXED = 8,
+    COMPUTER_NETDRIVE = 9,
+    COMPUTER_CDROM = 10,
+    COMPUTER_RAMDISK = 11,
+    COMPUTER_OTHER = 12,
+    NET_DOMAIN = 13,
+    NET_SERVER = 14,
+    NET_SHARE = 15,
+    NET_RESTOFNET = 16,
+    NET_OTHER = 17,
+    COMPUTER_IMAGING = 18,
+    COMPUTER_AUDIO = 19,
+    COMPUTER_SHAREDDOCS = 20,
+    MOBILE_DEVICE = 21,
+    REMOTE_DESKTOP_DRIVE = 22,
+};
+pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
+pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
+pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
+pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
+pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
+pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
+pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
+pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
+pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
+pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
+pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
+pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
+pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
+pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
+pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
+pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
+pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
+pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
+pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
+pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
+pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
+pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
+
+pub const SHGDFIL_FORMAT = extern enum(i32) {
+    FINDDATA = 1,
+    NETRESOURCE = 2,
+    DESCRIPTIONID = 3,
+};
+pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
+pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
+pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRF_FLAGS = extern enum(i32) {
+    VERIFYEXISTS = 1,
+    TRYPROGRAMEXTENSIONS = 3,
+    FIRSTDIRDEF = 4,
+    DONTFINDLNK = 8,
+    REQUIREABSOLUTE = 16,
+    _,
+};
+pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
+pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
+pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
+pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
+pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PCS_RET = extern enum(u32) {
+    FATAL = 2147483648,
+    REPLACEDCHAR = 1,
+    REMOVEDCHAR = 2,
+    TRUNCATED = 4,
+    PATHTOOLONG = 8,
+    _,
+};
+pub const PCS_FATAL = PCS_RET.FATAL;
+pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
+pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
+pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
+pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MM_FLAGS = extern enum(u32) {
+    ADDSEPARATOR = 1,
+    SUBMENUSHAVEIDS = 2,
+    DONTREMOVESEPS = 4,
+    _,
+};
+pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
+pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
+pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHOP_TYPE = extern enum(i32) {
+    PRINTERNAME = 1,
+    FILEPATH = 2,
+    VOLUMEGUID = 4,
+    _,
+};
+pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
+pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
+pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
+
+pub const SHFMT_ID = extern enum(u32) {
+    T = 65535,
+};
+pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHFMT_OPT = extern enum(i32) {
+    NONE = 0,
+    FULL = 1,
+    SYSONLY = 2,
+    _,
+};
+pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
+pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
+pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
+
+pub const SHFMT_RET = extern enum(u32) {
+    ERROR = 4294967295,
+    CANCEL = 4294967294,
+    NOFORMAT = 4294967293,
+};
+pub const SHFMT_ERROR = SHFMT_RET.ERROR;
+pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
+pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VALIDATEUNC_OPTION = extern enum(i32) {
+    CONNECT = 1,
+    NOUI = 2,
+    PRINT = 4,
+    PERSIST = 8,
+    VALID = 15,
+    _,
+};
+pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
+pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
+pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
+pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
+pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
+
+pub const SFVM_MESSAGE_ID = extern enum(i32) {
+    MERGEMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 3,
+    GETTOOLTIPTEXT = 4,
+    GETBUTTONINFO = 5,
+    GETBUTTONS = 6,
+    INITMENUPOPUP = 7,
+    FSNOTIFY = 14,
+    WINDOWCREATED = 15,
+    GETDETAILSOF = 23,
+    COLUMNCLICK = 24,
+    QUERYFSNOTIFY = 25,
+    DEFITEMCOUNT = 26,
+    DEFVIEWMODE = 27,
+    UNMERGEMENU = 28,
+    UPDATESTATUSBAR = 31,
+    BACKGROUNDENUM = 32,
+    DIDDRAGDROP = 36,
+    SETISFV = 39,
+    THISIDLIST = 41,
+    ADDPROPERTYPAGES = 47,
+    BACKGROUNDENUMDONE = 48,
+    GETNOTIFY = 49,
+    GETSORTDEFAULTS = 53,
+    SIZE = 57,
+    GETZONE = 58,
+    GETPANE = 59,
+    GETHELPTOPIC = 63,
+    GETANIMATION = 68,
+};
+pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
+pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
+pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
+pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
+pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
+pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
+pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
+pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
+pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
+pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
+pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
+pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
+pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
+pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
+pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
+pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
+pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
+pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
+pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
+pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
+pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
+pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
+pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
+pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
+pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
+pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
+pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
+pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
+pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
+
+pub const SFVS_SELECT = extern enum(i32) {
+    NONE = 0,
+    ALLITEMS = 1,
+    INVERT = 2,
+};
+pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
+pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
+pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
+
+pub const DFM_MESSAGE_ID = extern enum(i32) {
+    MERGECONTEXTMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 5,
+    WM_MEASUREITEM = 6,
+    WM_DRAWITEM = 7,
+    WM_INITMENUPOPUP = 8,
+    VALIDATECMD = 9,
+    MERGECONTEXTMENU_TOP = 10,
+    GETHELPTEXTW = 11,
+    INVOKECOMMANDEX = 12,
+    MAPCOMMANDNAME = 13,
+    GETDEFSTATICID = 14,
+    GETVERBW = 15,
+    GETVERBA = 16,
+    MERGECONTEXTMENU_BOTTOM = 17,
+    MODIFYQCMFLAGS = 18,
+};
+pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
+pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
+pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
+pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
+pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
+pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
+pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
+pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
+pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
+pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
+pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
+pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
+pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
+pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
+pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
+pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
+
+pub const DFM_CMD = extern enum(i32) {
+    DELETE = -1,
+    MOVE = -2,
+    COPY = -3,
+    LINK = -4,
+    PROPERTIES = -5,
+    NEWFOLDER = -6,
+    PASTE = -7,
+    VIEWLIST = -8,
+    VIEWDETAILS = -9,
+    PASTELINK = -10,
+    PASTESPECIAL = -11,
+    MODALPROP = -12,
+    RENAME = -13,
+};
+pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
+pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
+pub const DFM_CMD_COPY = DFM_CMD.COPY;
+pub const DFM_CMD_LINK = DFM_CMD.LINK;
+pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
+pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
+pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
+pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
+pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
+pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
+pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
+pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
+pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
+
+pub const PID_IS = extern enum(i32) {
+    URL = 2,
+    NAME = 4,
+    WORKINGDIR = 5,
+    HOTKEY = 6,
+    SHOWCMD = 7,
+    ICONINDEX = 8,
+    ICONFILE = 9,
+    WHATSNEW = 10,
+    AUTHOR = 11,
+    DESCRIPTION = 12,
+    COMMENT = 13,
+    ROAMED = 15,
+};
+pub const PID_IS_URL = PID_IS.URL;
+pub const PID_IS_NAME = PID_IS.NAME;
+pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
+pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
+pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
+pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
+pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
+pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
+pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
+pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
+pub const PID_IS_COMMENT = PID_IS.COMMENT;
+pub const PID_IS_ROAMED = PID_IS.ROAMED;
+
+pub const PID_INTSITE = extern enum(i32) {
+    WHATSNEW = 2,
+    AUTHOR = 3,
+    LASTVISIT = 4,
+    LASTMOD = 5,
+    VISITCOUNT = 6,
+    DESCRIPTION = 7,
+    COMMENT = 8,
+    FLAGS = 9,
+    CONTENTLEN = 10,
+    CONTENTCODE = 11,
+    RECURSE = 12,
+    WATCH = 13,
+    SUBSCRIPTION = 14,
+    URL = 15,
+    TITLE = 16,
+    CODEPAGE = 18,
+    TRACKING = 19,
+    ICONINDEX = 20,
+    ICONFILE = 21,
+    ROAMED = 34,
+};
+pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
+pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
+pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
+pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
+pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
+pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
+pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
+pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
+pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
+pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
+pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
+pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
+pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
+pub const PID_INTSITE_URL = PID_INTSITE.URL;
+pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
+pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
+pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
+pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
+pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
+pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PIDISF_FLAGS = extern enum(i32) {
+    RECENTLYCHANGED = 1,
+    CACHEDSTICKY = 2,
+    CACHEIMAGES = 16,
+    FOLLOWALLLINKS = 32,
+    _,
+};
+pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
+pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
+pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
+pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
+
+pub const PIDISM_OPTIONS = extern enum(i32) {
+    GLOBAL = 0,
+    WATCH = 1,
+    DONTWATCH = 2,
+};
+pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
+pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
+pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
+
+pub const PIDISR_INFO = extern enum(i32) {
+    UP_TO_DATE = 0,
+    NEEDS_ADD = 1,
+    NEEDS_UPDATE = 2,
+    NEEDS_DELETE = 3,
+};
+pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
+pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
+pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
+pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SSF_MASK = extern enum(u32) {
+    SHOWALLOBJECTS = 1,
+    SHOWEXTENSIONS = 2,
+    HIDDENFILEEXTS = 4,
+    SERVERADMINUI = 4,
+    SHOWCOMPCOLOR = 8,
+    SORTCOLUMNS = 16,
+    SHOWSYSFILES = 32,
+    DOUBLECLICKINWEBVIEW = 128,
+    SHOWATTRIBCOL = 256,
+    DESKTOPHTML = 512,
+    WIN95CLASSIC = 1024,
+    DONTPRETTYPATH = 2048,
+    SHOWINFOTIP = 8192,
+    MAPNETDRVBUTTON = 4096,
+    NOCONFIRMRECYCLE = 32768,
+    HIDEICONS = 16384,
+    FILTER = 65536,
+    WEBVIEW = 131072,
+    SHOWSUPERHIDDEN = 262144,
+    SEPPROCESS = 524288,
+    NONETCRAWLING = 1048576,
+    STARTPANELON = 2097152,
+    SHOWSTARTPAGE = 4194304,
+    AUTOCHECKSELECT = 8388608,
+    ICONSONLY = 16777216,
+    SHOWTYPEOVERLAY = 33554432,
+    SHOWSTATUSBAR = 67108864,
+    _,
+};
+pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
+pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
+pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
+pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
+pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
+pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
+pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
+pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
+pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
+pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
+pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
+pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
+pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
+pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
+pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
+pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
+pub const SSF_FILTER = SSF_MASK.FILTER;
+pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
+pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
+pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
+pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
+pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
+pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
+pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
+pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
+pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
+pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
 
 pub const SERIALIZEDPROPERTYVALUE = extern struct {
     dwType: u32,
     rgb: [1]u8,
+};
+
+pub const LOGFONTA = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]i8,
+};
+
+pub const LOGFONTW = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]u16,
+};
+
+pub const HELPINFO = extern struct {
+    cbSize: u32,
+    iContextType: i32,
+    iCtrlId: i32,
+    hItemHandle: HANDLE,
+    dwContextId: ?*c_void,
+    MousePos: POINT,
+};
+
+pub const MULTIKEYHELPA = extern struct {
+    mkSize: u32,
+    mkKeylist: i8,
+    szKeyphrase: [1]i8,
+};
+
+pub const MULTIKEYHELPW = extern struct {
+    mkSize: u32,
+    mkKeylist: u16,
+    szKeyphrase: [1]u16,
+};
+
+pub const HELPWININFOA = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]i8,
+};
+
+pub const HELPWININFOW = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]u16,
+};
+
+const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
+pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
+pub const INotifyReplica = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        YouAreAReplica: fn(
+            self: *const INotifyReplica,
+            ulcOtherReplicas: u32,
+            rgpmkOtherReplicas: [*]*IMoniker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DRAGINFOA = extern struct {
@@ -3788,9 +4488,6 @@ pub const SVUIA_DEACTIVATE = SVUIA_STATUS.DEACTIVATE;
 pub const SVUIA_ACTIVATE_NOFOCUS = SVUIA_STATUS.ACTIVATE_NOFOCUS;
 pub const SVUIA_ACTIVATE_FOCUS = SVUIA_STATUS.ACTIVATE_FOCUS;
 pub const SVUIA_INPLACEACTIVATE = SVUIA_STATUS.INPLACEACTIVATE;
-
-pub const LPFNSVADDPROPSHEETPAGE = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IShellView_Value = @import("../zig.zig").Guid.initString("000214e3-0000-0000-c000-000000000046");
 pub const IID_IShellView = &IID_IShellView_Value;
@@ -19582,7 +20279,7 @@ pub const DETAILSINFO = extern struct {
 
 pub const SFVM_PROPPAGE_DATA = extern struct {
     dwReserved: u32,
-    pfn: LPFNADDPROPSHEETPAGE,
+    pfn: LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 };
 
@@ -27548,706 +28245,6 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHGFI_FLAGS = extern enum(i32) {
-    ADDOVERLAYS = 32,
-    ATTR_SPECIFIED = 131072,
-    ATTRIBUTES = 2048,
-    DISPLAYNAME = 512,
-    EXETYPE = 8192,
-    ICON = 256,
-    ICONLOCATION = 4096,
-    LARGEICON = 0,
-    LINKOVERLAY = 32768,
-    OPENICON = 2,
-    OVERLAYINDEX = 64,
-    PIDL = 8,
-    SELECTED = 65536,
-    SHELLICONSIZE = 4,
-    SMALLICON = 1,
-    SYSICONINDEX = 16384,
-    TYPENAME = 1024,
-    USEFILEATTRIBUTES = 16,
-    _,
-};
-pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
-pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
-pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
-pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
-pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
-pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
-pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
-pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
-pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
-pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
-pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
-pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
-pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
-pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
-pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
-pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
-pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
-pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNE_ID = extern enum(u32) {
-    RENAMEITEM = 1,
-    CREATE = 2,
-    DELETE = 4,
-    MKDIR = 8,
-    RMDIR = 16,
-    MEDIAINSERTED = 32,
-    MEDIAREMOVED = 64,
-    DRIVEREMOVED = 128,
-    DRIVEADD = 256,
-    NETSHARE = 512,
-    NETUNSHARE = 1024,
-    ATTRIBUTES = 2048,
-    UPDATEDIR = 4096,
-    UPDATEITEM = 8192,
-    SERVERDISCONNECT = 16384,
-    UPDATEIMAGE = 32768,
-    DRIVEADDGUI = 65536,
-    RENAMEFOLDER = 131072,
-    FREESPACE = 262144,
-    EXTENDED_EVENT = 67108864,
-    ASSOCCHANGED = 134217728,
-    DISKEVENTS = 145439,
-    GLOBALEVENTS = 201687520,
-    ALLEVENTS = 2147483647,
-    INTERRUPT = 2147483648,
-    _,
-};
-pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
-pub const SHCNE_CREATE = SHCNE_ID.CREATE;
-pub const SHCNE_DELETE = SHCNE_ID.DELETE;
-pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
-pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
-pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
-pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
-pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
-pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
-pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
-pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
-pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
-pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
-pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
-pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
-pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
-pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
-pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
-pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
-pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
-pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
-pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
-pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
-pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
-pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNRF_SOURCE = extern enum(i32) {
-    InterruptLevel = 1,
-    ShellLevel = 2,
-    RecursiveInterrupt = 4096,
-    NewDelivery = 32768,
-    _,
-};
-pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
-pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
-pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
-pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNF_FLAGS = extern enum(u32) {
-    IDLIST = 0,
-    PATHA = 1,
-    PRINTERA = 2,
-    DWORD = 3,
-    PATHW = 5,
-    PRINTERW = 6,
-    TYPE = 255,
-    FLUSH = 4096,
-    FLUSHNOWAIT = 12288,
-    NOTIFYRECURSIVE = 65536,
-    PATH = 5,
-    PRINTER = 6,
-    _,
-};
-pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
-pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
-pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
-pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
-pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
-pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
-pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
-pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
-pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
-pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
-pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
-pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const QITIPF_FLAGS = extern enum(i32) {
-    TIPF_DEFAULT = 0,
-    TIPF_USENAME = 1,
-    TIPF_LINKNOTARGET = 2,
-    TIPF_LINKUSETARGET = 4,
-    TIPF_USESLOWTIP = 8,
-    TIPF_SINGLELINE = 16,
-    F_CACHED = 1,
-    F_DONTEXPANDFOLDER = 2,
-    _,
-};
-pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
-pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
-pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
-pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
-pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
-pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
-pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
-pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
-
-pub const SHDID_ID = extern enum(i32) {
-    ROOT_REGITEM = 1,
-    FS_FILE = 2,
-    FS_DIRECTORY = 3,
-    FS_OTHER = 4,
-    COMPUTER_DRIVE35 = 5,
-    COMPUTER_DRIVE525 = 6,
-    COMPUTER_REMOVABLE = 7,
-    COMPUTER_FIXED = 8,
-    COMPUTER_NETDRIVE = 9,
-    COMPUTER_CDROM = 10,
-    COMPUTER_RAMDISK = 11,
-    COMPUTER_OTHER = 12,
-    NET_DOMAIN = 13,
-    NET_SERVER = 14,
-    NET_SHARE = 15,
-    NET_RESTOFNET = 16,
-    NET_OTHER = 17,
-    COMPUTER_IMAGING = 18,
-    COMPUTER_AUDIO = 19,
-    COMPUTER_SHAREDDOCS = 20,
-    MOBILE_DEVICE = 21,
-    REMOTE_DESKTOP_DRIVE = 22,
-};
-pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
-pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
-pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
-pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
-pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
-pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
-pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
-pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
-pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
-pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
-pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
-pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
-pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
-pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
-pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
-pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
-pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
-pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
-pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
-pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
-pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
-pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
-
-pub const SHGDFIL_FORMAT = extern enum(i32) {
-    FINDDATA = 1,
-    NETRESOURCE = 2,
-    DESCRIPTIONID = 3,
-};
-pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
-pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
-pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PRF_FLAGS = extern enum(i32) {
-    VERIFYEXISTS = 1,
-    TRYPROGRAMEXTENSIONS = 3,
-    FIRSTDIRDEF = 4,
-    DONTFINDLNK = 8,
-    REQUIREABSOLUTE = 16,
-    _,
-};
-pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
-pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
-pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
-pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
-pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PCS_RET = extern enum(u32) {
-    FATAL = 2147483648,
-    REPLACEDCHAR = 1,
-    REMOVEDCHAR = 2,
-    TRUNCATED = 4,
-    PATHTOOLONG = 8,
-    _,
-};
-pub const PCS_FATAL = PCS_RET.FATAL;
-pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
-pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
-pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
-pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MM_FLAGS = extern enum(u32) {
-    ADDSEPARATOR = 1,
-    SUBMENUSHAVEIDS = 2,
-    DONTREMOVESEPS = 4,
-    _,
-};
-pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
-pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
-pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHOP_TYPE = extern enum(i32) {
-    PRINTERNAME = 1,
-    FILEPATH = 2,
-    VOLUMEGUID = 4,
-    _,
-};
-pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
-pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
-pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
-
-pub const SHFMT_ID = extern enum(u32) {
-    T = 65535,
-};
-pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHFMT_OPT = extern enum(i32) {
-    NONE = 0,
-    FULL = 1,
-    SYSONLY = 2,
-    _,
-};
-pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
-pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
-pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
-
-pub const SHFMT_RET = extern enum(u32) {
-    ERROR = 4294967295,
-    CANCEL = 4294967294,
-    NOFORMAT = 4294967293,
-};
-pub const SHFMT_ERROR = SHFMT_RET.ERROR;
-pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
-pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VALIDATEUNC_OPTION = extern enum(i32) {
-    CONNECT = 1,
-    NOUI = 2,
-    PRINT = 4,
-    PERSIST = 8,
-    VALID = 15,
-    _,
-};
-pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
-pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
-pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
-pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
-pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
-
-pub const SFVM_MESSAGE_ID = extern enum(i32) {
-    MERGEMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 3,
-    GETTOOLTIPTEXT = 4,
-    GETBUTTONINFO = 5,
-    GETBUTTONS = 6,
-    INITMENUPOPUP = 7,
-    FSNOTIFY = 14,
-    WINDOWCREATED = 15,
-    GETDETAILSOF = 23,
-    COLUMNCLICK = 24,
-    QUERYFSNOTIFY = 25,
-    DEFITEMCOUNT = 26,
-    DEFVIEWMODE = 27,
-    UNMERGEMENU = 28,
-    UPDATESTATUSBAR = 31,
-    BACKGROUNDENUM = 32,
-    DIDDRAGDROP = 36,
-    SETISFV = 39,
-    THISIDLIST = 41,
-    ADDPROPERTYPAGES = 47,
-    BACKGROUNDENUMDONE = 48,
-    GETNOTIFY = 49,
-    GETSORTDEFAULTS = 53,
-    SIZE = 57,
-    GETZONE = 58,
-    GETPANE = 59,
-    GETHELPTOPIC = 63,
-    GETANIMATION = 68,
-};
-pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
-pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
-pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
-pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
-pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
-pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
-pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
-pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
-pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
-pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
-pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
-pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
-pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
-pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
-pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
-pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
-pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
-pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
-pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
-pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
-pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
-pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
-pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
-pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
-pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
-pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
-pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
-pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
-pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
-
-pub const SFVS_SELECT = extern enum(i32) {
-    NONE = 0,
-    ALLITEMS = 1,
-    INVERT = 2,
-};
-pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
-pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
-pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
-
-pub const DFM_MESSAGE_ID = extern enum(i32) {
-    MERGECONTEXTMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 5,
-    WM_MEASUREITEM = 6,
-    WM_DRAWITEM = 7,
-    WM_INITMENUPOPUP = 8,
-    VALIDATECMD = 9,
-    MERGECONTEXTMENU_TOP = 10,
-    GETHELPTEXTW = 11,
-    INVOKECOMMANDEX = 12,
-    MAPCOMMANDNAME = 13,
-    GETDEFSTATICID = 14,
-    GETVERBW = 15,
-    GETVERBA = 16,
-    MERGECONTEXTMENU_BOTTOM = 17,
-    MODIFYQCMFLAGS = 18,
-};
-pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
-pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
-pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
-pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
-pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
-pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
-pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
-pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
-pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
-pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
-pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
-pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
-pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
-pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
-pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
-pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
-
-pub const DFM_CMD = extern enum(i32) {
-    DELETE = -1,
-    MOVE = -2,
-    COPY = -3,
-    LINK = -4,
-    PROPERTIES = -5,
-    NEWFOLDER = -6,
-    PASTE = -7,
-    VIEWLIST = -8,
-    VIEWDETAILS = -9,
-    PASTELINK = -10,
-    PASTESPECIAL = -11,
-    MODALPROP = -12,
-    RENAME = -13,
-};
-pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
-pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
-pub const DFM_CMD_COPY = DFM_CMD.COPY;
-pub const DFM_CMD_LINK = DFM_CMD.LINK;
-pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
-pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
-pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
-pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
-pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
-pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
-pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
-pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
-pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
-
-pub const PID_IS = extern enum(i32) {
-    URL = 2,
-    NAME = 4,
-    WORKINGDIR = 5,
-    HOTKEY = 6,
-    SHOWCMD = 7,
-    ICONINDEX = 8,
-    ICONFILE = 9,
-    WHATSNEW = 10,
-    AUTHOR = 11,
-    DESCRIPTION = 12,
-    COMMENT = 13,
-    ROAMED = 15,
-};
-pub const PID_IS_URL = PID_IS.URL;
-pub const PID_IS_NAME = PID_IS.NAME;
-pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
-pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
-pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
-pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
-pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
-pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
-pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
-pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
-pub const PID_IS_COMMENT = PID_IS.COMMENT;
-pub const PID_IS_ROAMED = PID_IS.ROAMED;
-
-pub const PID_INTSITE = extern enum(i32) {
-    WHATSNEW = 2,
-    AUTHOR = 3,
-    LASTVISIT = 4,
-    LASTMOD = 5,
-    VISITCOUNT = 6,
-    DESCRIPTION = 7,
-    COMMENT = 8,
-    FLAGS = 9,
-    CONTENTLEN = 10,
-    CONTENTCODE = 11,
-    RECURSE = 12,
-    WATCH = 13,
-    SUBSCRIPTION = 14,
-    URL = 15,
-    TITLE = 16,
-    CODEPAGE = 18,
-    TRACKING = 19,
-    ICONINDEX = 20,
-    ICONFILE = 21,
-    ROAMED = 34,
-};
-pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
-pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
-pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
-pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
-pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
-pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
-pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
-pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
-pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
-pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
-pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
-pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
-pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
-pub const PID_INTSITE_URL = PID_INTSITE.URL;
-pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
-pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
-pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
-pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
-pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
-pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PIDISF_FLAGS = extern enum(i32) {
-    RECENTLYCHANGED = 1,
-    CACHEDSTICKY = 2,
-    CACHEIMAGES = 16,
-    FOLLOWALLLINKS = 32,
-    _,
-};
-pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
-pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
-pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
-pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
-
-pub const PIDISM_OPTIONS = extern enum(i32) {
-    GLOBAL = 0,
-    WATCH = 1,
-    DONTWATCH = 2,
-};
-pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
-pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
-pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
-
-pub const PIDISR_INFO = extern enum(i32) {
-    UP_TO_DATE = 0,
-    NEEDS_ADD = 1,
-    NEEDS_UPDATE = 2,
-    NEEDS_DELETE = 3,
-};
-pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
-pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
-pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
-pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SSF_MASK = extern enum(u32) {
-    SHOWALLOBJECTS = 1,
-    SHOWEXTENSIONS = 2,
-    HIDDENFILEEXTS = 4,
-    SERVERADMINUI = 4,
-    SHOWCOMPCOLOR = 8,
-    SORTCOLUMNS = 16,
-    SHOWSYSFILES = 32,
-    DOUBLECLICKINWEBVIEW = 128,
-    SHOWATTRIBCOL = 256,
-    DESKTOPHTML = 512,
-    WIN95CLASSIC = 1024,
-    DONTPRETTYPATH = 2048,
-    SHOWINFOTIP = 8192,
-    MAPNETDRVBUTTON = 4096,
-    NOCONFIRMRECYCLE = 32768,
-    HIDEICONS = 16384,
-    FILTER = 65536,
-    WEBVIEW = 131072,
-    SHOWSUPERHIDDEN = 262144,
-    SEPPROCESS = 524288,
-    NONETCRAWLING = 1048576,
-    STARTPANELON = 2097152,
-    SHOWSTARTPAGE = 4194304,
-    AUTOCHECKSELECT = 8388608,
-    ICONSONLY = 16777216,
-    SHOWTYPEOVERLAY = 33554432,
-    SHOWSTATUSBAR = 67108864,
-    _,
-};
-pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
-pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
-pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
-pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
-pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
-pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
-pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
-pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
-pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
-pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
-pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
-pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
-pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
-pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
-pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
-pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
-pub const SSF_FILTER = SSF_MASK.FILTER;
-pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
-pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
-pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
-pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
-pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
-pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
-pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
-pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
-pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
-pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
-
-pub const LOGFONTA = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]i8,
-};
-
-pub const LOGFONTW = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]u16,
-};
-
-const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
-pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
-pub const INotifyReplica = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        YouAreAReplica: fn(
-            self: *const INotifyReplica,
-            ulcOtherReplicas: u32,
-            rgpmkOtherReplicas: [*]*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const HELPINFO = extern struct {
-    cbSize: u32,
-    iContextType: i32,
-    iCtrlId: i32,
-    hItemHandle: HANDLE,
-    dwContextId: ?*c_void,
-    MousePos: POINT,
-};
-
-pub const MULTIKEYHELPA = extern struct {
-    mkSize: u32,
-    mkKeylist: i8,
-    szKeyphrase: [1]i8,
-};
-
-pub const MULTIKEYHELPW = extern struct {
-    mkSize: u32,
-    mkKeylist: u16,
-    szKeyphrase: [1]u16,
-};
-
-pub const HELPWININFOA = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]i8,
-};
-
-pub const HELPWININFOW = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]u16,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (699)
@@ -28416,6 +28413,38 @@ pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRes
     pszRestrictedAppContainerName: [*:0]const u16,
     ppsidRestrictedAppContainerSid: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "USER32" fn SetWindowContextHelpId(
+    param0: HWND,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetWindowContextHelpId(
+    param0: HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn SetMenuContextHelpId(
+    param0: HMENU,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetMenuContextHelpId(
+    param0: HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn WinHelpA(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u8,
+    uCommand: u32,
+    dwData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn WinHelpW(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u16,
+    uCommand: u32,
+    dwData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SHELL32" fn CommandLineToArgvW(
     lpCmdLine: [*:0]const u16,
@@ -29541,14 +29570,14 @@ pub extern "SHELL32" fn SHDestroyPropSheetExtArray(
 
 pub extern "SHELL32" fn SHAddFromPropSheetExtArray(
     hpsxa: HPSXA,
-    lpfnAddPage: LPFNADDPROPSHEETPAGE,
+    lpfnAddPage: LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "SHELL32" fn SHReplaceFromPropSheetExtArray(
     hpsxa: HPSXA,
     uPageID: u32,
-    lpfnReplaceWith: LPFNADDPROPSHEETPAGE,
+    lpfnReplaceWith: LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -32346,44 +32375,15 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
     Registration: *_APPCONSTRAIN_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "USER32" fn SetWindowContextHelpId(
-    param0: HWND,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetWindowContextHelpId(
-    param0: HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn SetMenuContextHelpId(
-    param0: HMENU,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetMenuContextHelpId(
-    param0: HMENU,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn WinHelpA(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u8,
-    uCommand: u32,
-    dwData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn WinHelpW(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u16,
-    uCommand: u32,
-    dwData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (208)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const LOGFONT = LOGFONTA;
+        pub const MULTIKEYHELP = MULTIKEYHELPA;
+        pub const HELPWININFO = HELPWININFOA;
         pub const DRAGINFO = DRAGINFOA;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
@@ -32405,9 +32405,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOA;
         pub const urlinvokecommandinfo = urlinvokecommandinfoA;
         pub const IUniformResourceLocator = IUniformResourceLocatorA;
-        pub const LOGFONT = LOGFONTA;
-        pub const MULTIKEYHELP = MULTIKEYHELPA;
-        pub const HELPWININFO = HELPWININFOA;
         pub const LoadUserProfile = LoadUserProfileA;
         pub const GetProfilesDirectory = GetProfilesDirectoryA;
         pub const DeleteProfile = DeleteProfileA;
@@ -32415,6 +32412,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
         pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
         pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
+        pub const WinHelp = WinHelpA;
         pub const DragQueryFile = DragQueryFileA;
         pub const ShellExecute = ShellExecuteA;
         pub const FindExecutable = FindExecutableA;
@@ -32591,9 +32589,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckA;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
         pub const SHStripMneumonic = SHStripMneumonicA;
-        pub const WinHelp = WinHelpA;
     },
     .wide => struct {
+        pub const LOGFONT = LOGFONTW;
+        pub const MULTIKEYHELP = MULTIKEYHELPW;
+        pub const HELPWININFO = HELPWININFOW;
         pub const DRAGINFO = DRAGINFOW;
         pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
         pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
@@ -32615,9 +32615,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOW;
         pub const urlinvokecommandinfo = urlinvokecommandinfoW;
         pub const IUniformResourceLocator = IUniformResourceLocatorW;
-        pub const LOGFONT = LOGFONTW;
-        pub const MULTIKEYHELP = MULTIKEYHELPW;
-        pub const HELPWININFO = HELPWININFOW;
         pub const LoadUserProfile = LoadUserProfileW;
         pub const GetProfilesDirectory = GetProfilesDirectoryW;
         pub const DeleteProfile = DeleteProfileW;
@@ -32625,6 +32622,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
         pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
         pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
+        pub const WinHelp = WinHelpW;
         pub const DragQueryFile = DragQueryFileW;
         pub const ShellExecute = ShellExecuteW;
         pub const FindExecutable = FindExecutableW;
@@ -32801,9 +32799,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckW;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
         pub const SHStripMneumonic = SHStripMneumonicW;
-        pub const WinHelp = WinHelpW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const LOGFONT = *opaque{};
+        pub const MULTIKEYHELP = *opaque{};
+        pub const HELPWININFO = *opaque{};
         pub const DRAGINFO = *opaque{};
         pub const SHFILEOPSTRUCT = *opaque{};
         pub const SHNAMEMAPPING = *opaque{};
@@ -32825,9 +32825,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = *opaque{};
         pub const urlinvokecommandinfo = *opaque{};
         pub const IUniformResourceLocator = *opaque{};
-        pub const LOGFONT = *opaque{};
-        pub const MULTIKEYHELP = *opaque{};
-        pub const HELPWININFO = *opaque{};
         pub const LoadUserProfile = *opaque{};
         pub const GetProfilesDirectory = *opaque{};
         pub const DeleteProfile = *opaque{};
@@ -32835,6 +32832,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = *opaque{};
         pub const GetUserProfileDirectory = *opaque{};
         pub const ExpandEnvironmentStringsForUser = *opaque{};
+        pub const WinHelp = *opaque{};
         pub const DragQueryFile = *opaque{};
         pub const ShellExecute = *opaque{};
         pub const FindExecutable = *opaque{};
@@ -33011,8 +33009,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = *opaque{};
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
-        pub const WinHelp = *opaque{};
     } else struct {
+        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
+        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
+        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
         pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
         pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
@@ -33034,9 +33034,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
         pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
-        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
-        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
-        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
         pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
         pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
@@ -33044,6 +33041,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
         pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
+        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
         pub const DragQueryFile = @compileError("'DragQueryFile' requires that UNICODE be set to true or false in the root module");
         pub const ShellExecute = @compileError("'ShellExecute' requires that UNICODE be set to true or false in the root module");
         pub const FindExecutable = @compileError("'FindExecutable' requires that UNICODE be set to true or false in the root module");
@@ -33220,7 +33218,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
         pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
         pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
-        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -33228,10 +33225,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
-const LPFNADDPROPSHEETPAGE = @import("controls.zig").LPFNADDPROPSHEETPAGE;
+const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const IXMLDOMDocument = @import("windows_programming.zig").IXMLDOMDocument;
-const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const SID_AND_ATTRIBUTES = @import("security.zig").SID_AND_ATTRIBUTES;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const IOleCommandTarget = @import("com.zig").IOleCommandTarget;
@@ -33292,6 +33288,7 @@ const NMHDR = @import("controls.zig").NMHDR;
 const BOOL = @import("system_services.zig").BOOL;
 const IPersist = @import("com.zig").IPersist;
 const BFFCALLBACK = @import("active_directory.zig").BFFCALLBACK;
+const LPFNSVADDPROPSHEETPAGE = @import("controls.zig").LPFNSVADDPROPSHEETPAGE;
 const HPALETTE = @import("gdi.zig").HPALETTE;
 const IConnectionPoint = @import("com.zig").IConnectionPoint;
 const PROPERTYKEY = @import("windows_properties_system.zig").PROPERTYKEY;
@@ -33326,7 +33323,6 @@ test {
     _ = SUBCLASSPROC;
     _ = PFNCANSHAREFOLDERW;
     _ = PFNSHOWSHAREFOLDERUIW;
-    _ = LPFNSVADDPROPSHEETPAGE;
     _ = LPFNDFMCALLBACK;
     _ = LPFNVIEWCALLBACK;
     _ = DLLGETVERSIONPROC;
@@ -33335,7 +33331,7 @@ test {
     _ = PAPPCONSTRAIN_CHANGE_ROUTINE;
 
     const constant_export_count = 1391;
-    const type_export_count = 820;
+    const type_export_count = 819;
     const enum_value_export_count = 2001;
     const com_iface_id_export_count = 403;
     const com_class_id_export_count = 109;

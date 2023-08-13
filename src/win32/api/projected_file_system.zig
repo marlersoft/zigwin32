@@ -6,6 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (31)
 //--------------------------------------------------------------------------------
+pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = ?*c_void;
+
+pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = ?*c_void;
+
 pub const PRJ_NOTIFY_TYPES = extern enum(i32) {
     NONE = 0,
     SUPPRESS_NOTIFICATIONS = 1,
@@ -247,14 +251,14 @@ pub const PRJ_CANCEL_COMMAND_CB = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PRJ_CALLBACKS = extern struct {
-    StartDirectoryEnumerationCallback: *PRJ_START_DIRECTORY_ENUMERATION_CB,
-    EndDirectoryEnumerationCallback: *PRJ_END_DIRECTORY_ENUMERATION_CB,
-    GetDirectoryEnumerationCallback: *PRJ_GET_DIRECTORY_ENUMERATION_CB,
-    GetPlaceholderInfoCallback: *PRJ_GET_PLACEHOLDER_INFO_CB,
-    GetFileDataCallback: *PRJ_GET_FILE_DATA_CB,
-    QueryFileNameCallback: *PRJ_QUERY_FILE_NAME_CB,
-    NotificationCallback: *PRJ_NOTIFICATION_CB,
-    CancelCommandCallback: *PRJ_CANCEL_COMMAND_CB,
+    StartDirectoryEnumerationCallback: PRJ_START_DIRECTORY_ENUMERATION_CB,
+    EndDirectoryEnumerationCallback: PRJ_END_DIRECTORY_ENUMERATION_CB,
+    GetDirectoryEnumerationCallback: PRJ_GET_DIRECTORY_ENUMERATION_CB,
+    GetPlaceholderInfoCallback: PRJ_GET_PLACEHOLDER_INFO_CB,
+    GetFileDataCallback: PRJ_GET_FILE_DATA_CB,
+    QueryFileNameCallback: PRJ_QUERY_FILE_NAME_CB,
+    NotificationCallback: PRJ_NOTIFICATION_CB,
+    CancelCommandCallback: PRJ_CANCEL_COMMAND_CB,
 };
 
 pub const PRJ_COMPLETE_COMMAND_TYPE = extern enum(i32) {
@@ -269,10 +273,6 @@ pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
     Anonymous: PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
-
-pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = ?*c_void;
-
-pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

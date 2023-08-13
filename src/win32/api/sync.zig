@@ -10,6 +10,10 @@
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
 //--------------------------------------------------------------------------------
+pub extern "KERNEL32" fn EnterCriticalSection(
+    lpCriticalSection: *RTL_CRITICAL_SECTION,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "KERNEL32" fn CreatePrivateNamespaceA(
     lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
     lpBoundaryDescriptor: *c_void,
@@ -20,10 +24,6 @@ pub extern "KERNEL32" fn OpenPrivateNamespaceA(
     lpBoundaryDescriptor: *c_void,
     lpAliasPrefix: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
-
-pub extern "KERNEL32" fn EnterCriticalSection(
-    lpCriticalSection: *RTL_CRITICAL_SECTION,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 
 //--------------------------------------------------------------------------------

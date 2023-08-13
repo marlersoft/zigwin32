@@ -2,14 +2,28 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const COMPRESS_ALGORITHM_INVALID : u32 = 0;
-pub const COMPRESS_ALGORITHM_NULL : u32 = 1;
-pub const COMPRESS_ALGORITHM_MAX : u32 = 6;
-pub const COMPRESS_RAW : u32 = 536870912;
+pub const COMPRESS_ALGORITHM_INVALID = @as(u32, 0);
+pub const COMPRESS_ALGORITHM_NULL = @as(u32, 1);
+pub const COMPRESS_ALGORITHM_MAX = @as(u32, 6);
+pub const COMPRESS_RAW = @as(u32, 536870912);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const COMPRESS_ALGORITHM = extern enum(u32) {
+    MSZIP = 2,
+    XPRESS = 3,
+    XPRESS_HUFF = 4,
+    LZMS = 5,
+};
+pub const COMPRESS_ALGORITHM_MSZIP = COMPRESS_ALGORITHM.MSZIP;
+pub const COMPRESS_ALGORITHM_XPRESS = COMPRESS_ALGORITHM.XPRESS;
+pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
+pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
+
+// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
+pub const COMPRESSOR_HANDLE = ?*c_void;
+
 pub const PFN_COMPRESS_ALLOCATE = fn(
     UserContext: *c_void,
     Size: ?*c_void,
@@ -34,20 +48,6 @@ pub const COMPRESS_INFORMATION_CLASS = extern enum(i32) {
 pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALID;
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
-
-pub const COMPRESS_ALGORITHM = extern enum(u32) {
-    MSZIP = 2,
-    XPRESS = 3,
-    XPRESS_HUFF = 4,
-    LZMS = 5,
-};
-pub const COMPRESS_ALGORITHM_MSZIP = COMPRESS_ALGORITHM.MSZIP;
-pub const COMPRESS_ALGORITHM_XPRESS = COMPRESS_ALGORITHM.XPRESS;
-pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
-pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
-
-// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
-pub const COMPRESSOR_HANDLE = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

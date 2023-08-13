@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const UI_ANIMATION_SECONDS_EVENTUALLY : i32 = -1;
-pub const UI_ANIMATION_REPEAT_INDEFINITELY : i32 = -1;
-pub const UI_ANIMATION_REPEAT_INDEFINITELY_CONCLUDE_AT_START : i32 = -2;
-pub const UI_ANIMATION_SECONDS_INFINITE : i32 = -1;
+pub const UI_ANIMATION_SECONDS_EVENTUALLY = @as(i32, -1);
+pub const UI_ANIMATION_REPEAT_INDEFINITELY = @as(i32, -1);
+pub const UI_ANIMATION_REPEAT_INDEFINITELY_CONCLUDE_AT_START = @as(i32, -2);
+pub const UI_ANIMATION_SECONDS_INFINITE = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (51)

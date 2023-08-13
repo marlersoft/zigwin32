@@ -2,17 +2,17 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (11)
 //--------------------------------------------------------------------------------
-pub const WINBIO_MAX_STRING_LEN : u32 = 256;
-pub const WINBIO_SCP_VERSION_1 : u32 = 1;
-pub const WINBIO_SCP_RANDOM_SIZE_V1 : u32 = 32;
-pub const WINBIO_SCP_DIGEST_SIZE_V1 : u32 = 32;
-pub const WINBIO_SCP_CURVE_FIELD_SIZE_V1 : u32 = 32;
-pub const WINBIO_SCP_PUBLIC_KEY_SIZE_V1 : u32 = 65;
-pub const WINBIO_SCP_PRIVATE_KEY_SIZE_V1 : u32 = 32;
-pub const WINBIO_SCP_SIGNATURE_SIZE_V1 : u32 = 64;
-pub const WINBIO_SCP_ENCRYPTION_BLOCK_SIZE_V1 : u32 = 16;
-pub const WINBIO_SCP_ENCRYPTION_KEY_SIZE_V1 : u32 = 32;
-pub const WINBIO_BIR_ALIGN_SIZE : u32 = 8;
+pub const WINBIO_MAX_STRING_LEN = @as(u32, 256);
+pub const WINBIO_SCP_VERSION_1 = @as(u32, 1);
+pub const WINBIO_SCP_RANDOM_SIZE_V1 = @as(u32, 32);
+pub const WINBIO_SCP_DIGEST_SIZE_V1 = @as(u32, 32);
+pub const WINBIO_SCP_CURVE_FIELD_SIZE_V1 = @as(u32, 32);
+pub const WINBIO_SCP_PUBLIC_KEY_SIZE_V1 = @as(u32, 65);
+pub const WINBIO_SCP_PRIVATE_KEY_SIZE_V1 = @as(u32, 32);
+pub const WINBIO_SCP_SIGNATURE_SIZE_V1 = @as(u32, 64);
+pub const WINBIO_SCP_ENCRYPTION_BLOCK_SIZE_V1 = @as(u32, 16);
+pub const WINBIO_SCP_ENCRYPTION_KEY_SIZE_V1 = @as(u32, 32);
+pub const WINBIO_BIR_ALIGN_SIZE = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (178)

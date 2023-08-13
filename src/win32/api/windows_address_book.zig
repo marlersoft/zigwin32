@@ -2,55 +2,55 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (46)
 //--------------------------------------------------------------------------------
-pub const PROP_ID_SECURE_MIN : u32 = 26608;
-pub const PROP_ID_SECURE_MAX : u32 = 26623;
-pub const MAPI_DIM : u32 = 1;
-pub const MAPI_P1 : u32 = 268435456;
-pub const MAPI_SUBMITTED : u32 = 2147483648;
-pub const MAPI_SHORTTERM : u32 = 128;
-pub const MAPI_NOTRECIP : u32 = 64;
-pub const MAPI_THISSESSION : u32 = 32;
-pub const MAPI_NOW : u32 = 16;
-pub const MAPI_NOTRESERVED : u32 = 8;
-pub const MAPI_COMPOUND : u32 = 128;
-pub const MV_FLAG : u32 = 4096;
-pub const PROP_ID_NULL : u32 = 0;
-pub const PROP_ID_INVALID : u32 = 65535;
-pub const MV_INSTANCE : u32 = 8192;
-pub const TABLE_CHANGED : u32 = 1;
-pub const TABLE_ERROR : u32 = 2;
-pub const TABLE_ROW_ADDED : u32 = 3;
-pub const TABLE_ROW_DELETED : u32 = 4;
-pub const TABLE_ROW_MODIFIED : u32 = 5;
-pub const TABLE_SORT_DONE : u32 = 6;
-pub const TABLE_RESTRICT_DONE : u32 = 7;
-pub const TABLE_SETCOL_DONE : u32 = 8;
-pub const TABLE_RELOAD : u32 = 9;
-pub const MAPI_ERROR_VERSION : i32 = 0;
-pub const MAPI_USE_DEFAULT : u32 = 64;
-pub const MNID_ID : u32 = 0;
-pub const MNID_STRING : u32 = 1;
-pub const WAB_LOCAL_CONTAINERS : u32 = 1048576;
-pub const WAB_PROFILE_CONTENTS : u32 = 2097152;
-pub const WAB_IGNORE_PROFILES : u32 = 8388608;
-pub const MAPI_ONE_OFF_NO_RICH_INFO : u32 = 1;
-pub const UI_SERVICE : u32 = 2;
-pub const SERVICE_UI_ALWAYS : u32 = 2;
-pub const SERVICE_UI_ALLOWED : u32 = 16;
-pub const UI_CURRENT_PROVIDER_FIRST : u32 = 4;
-pub const WABOBJECT_LDAPURL_RETURN_MAILUSER : u32 = 1;
-pub const WABOBJECT_ME_NEW : u32 = 1;
-pub const WABOBJECT_ME_NOCREATE : u32 = 2;
-pub const WAB_VCARD_FILE : u32 = 0;
-pub const WAB_VCARD_STREAM : u32 = 1;
-pub const WAB_USE_OE_SENDMAIL : u32 = 1;
-pub const WAB_ENABLE_PROFILES : u32 = 4194304;
-pub const WAB_DISPLAY_LDAPURL : u32 = 1;
-pub const WAB_CONTEXT_ADRLIST : u32 = 2;
-pub const WAB_DISPLAY_ISNTDS : u32 = 4;
+pub const PROP_ID_SECURE_MIN = @as(u32, 26608);
+pub const PROP_ID_SECURE_MAX = @as(u32, 26623);
+pub const MAPI_DIM = @as(u32, 1);
+pub const MAPI_P1 = @as(u32, 268435456);
+pub const MAPI_SUBMITTED = @as(u32, 2147483648);
+pub const MAPI_SHORTTERM = @as(u32, 128);
+pub const MAPI_NOTRECIP = @as(u32, 64);
+pub const MAPI_THISSESSION = @as(u32, 32);
+pub const MAPI_NOW = @as(u32, 16);
+pub const MAPI_NOTRESERVED = @as(u32, 8);
+pub const MAPI_COMPOUND = @as(u32, 128);
+pub const MV_FLAG = @as(u32, 4096);
+pub const PROP_ID_NULL = @as(u32, 0);
+pub const PROP_ID_INVALID = @as(u32, 65535);
+pub const MV_INSTANCE = @as(u32, 8192);
+pub const TABLE_CHANGED = @as(u32, 1);
+pub const TABLE_ERROR = @as(u32, 2);
+pub const TABLE_ROW_ADDED = @as(u32, 3);
+pub const TABLE_ROW_DELETED = @as(u32, 4);
+pub const TABLE_ROW_MODIFIED = @as(u32, 5);
+pub const TABLE_SORT_DONE = @as(u32, 6);
+pub const TABLE_RESTRICT_DONE = @as(u32, 7);
+pub const TABLE_SETCOL_DONE = @as(u32, 8);
+pub const TABLE_RELOAD = @as(u32, 9);
+pub const MAPI_ERROR_VERSION = @as(i32, 0);
+pub const MAPI_USE_DEFAULT = @as(u32, 64);
+pub const MNID_ID = @as(u32, 0);
+pub const MNID_STRING = @as(u32, 1);
+pub const WAB_LOCAL_CONTAINERS = @as(u32, 1048576);
+pub const WAB_PROFILE_CONTENTS = @as(u32, 2097152);
+pub const WAB_IGNORE_PROFILES = @as(u32, 8388608);
+pub const MAPI_ONE_OFF_NO_RICH_INFO = @as(u32, 1);
+pub const UI_SERVICE = @as(u32, 2);
+pub const SERVICE_UI_ALWAYS = @as(u32, 2);
+pub const SERVICE_UI_ALLOWED = @as(u32, 16);
+pub const UI_CURRENT_PROVIDER_FIRST = @as(u32, 4);
+pub const WABOBJECT_LDAPURL_RETURN_MAILUSER = @as(u32, 1);
+pub const WABOBJECT_ME_NEW = @as(u32, 1);
+pub const WABOBJECT_ME_NOCREATE = @as(u32, 2);
+pub const WAB_VCARD_FILE = @as(u32, 0);
+pub const WAB_VCARD_STREAM = @as(u32, 1);
+pub const WAB_USE_OE_SENDMAIL = @as(u32, 1);
+pub const WAB_ENABLE_PROFILES = @as(u32, 4194304);
+pub const WAB_DISPLAY_LDAPURL = @as(u32, 1);
+pub const WAB_CONTEXT_ADRLIST = @as(u32, 2);
+pub const WAB_DISPLAY_ISNTDS = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
-// Section: Types (123)
+// Section: Types (115)
 //--------------------------------------------------------------------------------
 pub const ENTRYID = extern struct {
     abFlags: [4]u8,
@@ -194,28 +194,19 @@ pub const SRowSet = extern struct {
     aRow: [1]SRow,
 };
 
-pub const ALLOCATEBUFFER = fn(
+pub const LPALLOCATEBUFFER = fn(
     cbSize: u32,
     lppBuffer: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ALLOCATEMORE = fn(
+pub const LPALLOCATEMORE = fn(
     cbSize: u32,
     lpObject: *c_void,
     lppBuffer: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const FREEBUFFER = fn(
-    lpBuffer: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const LPALLOCATEBUFFER = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const LPALLOCATEMORE = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 pub const LPFREEBUFFER = fn(
+    lpBuffer: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MAPIERROR = extern struct {
@@ -306,13 +297,10 @@ pub const IMAPIAdviseSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NOTIFCALLBACK = fn(
+pub const LPNOTIFCALLBACK = fn(
     lpvContext: *c_void,
     cNotification: u32,
     lpNotifications: *NOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const LPNOTIFCALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IMAPIProgress = extern struct {
@@ -1445,20 +1433,14 @@ pub const IAttach = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACCELERATEABSDI = fn(
+pub const LPFNABSDI = fn(
     ulUIParam: ?*c_void,
     lpvmsg: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFNABSDI = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DISMISSMODELESS = fn(
+pub const LPFNDISMISS = fn(
     ulUIParam: ?*c_void,
     lpvContext: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const LPFNDISMISS = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPFNBUTTON = fn(
@@ -2272,27 +2254,21 @@ pub const WAB_PARAM = extern struct {
     guidPSExt: Guid,
 };
 
-pub const WABOPEN = fn(
+pub const LPWABOPEN = fn(
     lppAdrBook: **IAddrBook,
     lppWABObject: **IWABObject,
     lpWP: *WAB_PARAM,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const LPWABOPEN = fn(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const WABOPENEX = fn(
+pub const LPWABOPENEX = fn(
     lppAdrBook: **IAddrBook,
     lppWABObject: **IWABObject,
     lpWP: *WAB_PARAM,
     Reserved: u32,
-    fnAllocateBuffer: *ALLOCATEBUFFER,
-    fnAllocateMore: *ALLOCATEMORE,
-    fnFreeBuffer: *FREEBUFFER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const LPWABOPENEX = fn(
+    fnAllocateBuffer: LPALLOCATEBUFFER,
+    fnAllocateMore: LPALLOCATEMORE,
+    fnFreeBuffer: LPFREEBUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WABIMPORTPARAM = extern struct {
@@ -2378,17 +2354,11 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = ALLOCATEBUFFER;
-    _ = ALLOCATEMORE;
-    _ = FREEBUFFER;
     _ = LPALLOCATEBUFFER;
     _ = LPALLOCATEMORE;
     _ = LPFREEBUFFER;
-    _ = NOTIFCALLBACK;
     _ = LPNOTIFCALLBACK;
-    _ = ACCELERATEABSDI;
     _ = LPFNABSDI;
-    _ = DISMISSMODELESS;
     _ = LPFNDISMISS;
     _ = LPFNBUTTON;
     _ = IWABOBJECT_QueryInterface_METHOD;
@@ -2407,13 +2377,11 @@ test {
     _ = IWABOBJECT_VCardRetrieve_METHOD;
     _ = IWABOBJECT_GetMe_METHOD;
     _ = IWABOBJECT_SetMe_METHOD;
-    _ = WABOPEN;
     _ = LPWABOPEN;
-    _ = WABOPENEX;
     _ = LPWABOPENEX;
 
     const constant_export_count = 46;
-    const type_export_count = 123;
+    const type_export_count = 115;
     const enum_value_export_count = 3;
     const com_iface_id_export_count = 1;
     const com_class_id_export_count = 0;

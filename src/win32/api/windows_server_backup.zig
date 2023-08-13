@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const WSB_MAX_OB_STATUS_VALUE_TYPE_PAIR : u32 = 5;
-pub const WSB_MAX_OB_STATUS_ENTRY : u32 = 5;
+pub const WSB_MAX_OB_STATUS_VALUE_TYPE_PAIR = @as(u32, 5);
+pub const WSB_MAX_OB_STATUS_ENTRY = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
 // Section: Types (8)

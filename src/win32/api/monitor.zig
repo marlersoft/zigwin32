@@ -2,29 +2,29 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (23)
 //--------------------------------------------------------------------------------
-pub const MC_CAPS_NONE : u32 = 0;
-pub const MC_CAPS_MONITOR_TECHNOLOGY_TYPE : u32 = 1;
-pub const MC_CAPS_BRIGHTNESS : u32 = 2;
-pub const MC_CAPS_CONTRAST : u32 = 4;
-pub const MC_CAPS_COLOR_TEMPERATURE : u32 = 8;
-pub const MC_CAPS_RED_GREEN_BLUE_GAIN : u32 = 16;
-pub const MC_CAPS_RED_GREEN_BLUE_DRIVE : u32 = 32;
-pub const MC_CAPS_DEGAUSS : u32 = 64;
-pub const MC_CAPS_DISPLAY_AREA_POSITION : u32 = 128;
-pub const MC_CAPS_DISPLAY_AREA_SIZE : u32 = 256;
-pub const MC_CAPS_RESTORE_FACTORY_DEFAULTS : u32 = 1024;
-pub const MC_CAPS_RESTORE_FACTORY_COLOR_DEFAULTS : u32 = 2048;
-pub const MC_RESTORE_FACTORY_DEFAULTS_ENABLES_MONITOR_SETTINGS : u32 = 4096;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_NONE : u32 = 0;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_4000K : u32 = 1;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_5000K : u32 = 2;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_6500K : u32 = 4;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_7500K : u32 = 8;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_8200K : u32 = 16;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_9300K : u32 = 32;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_10000K : u32 = 64;
-pub const MC_SUPPORTED_COLOR_TEMPERATURE_11500K : u32 = 128;
-pub const PHYSICAL_MONITOR_DESCRIPTION_SIZE : u32 = 128;
+pub const MC_CAPS_NONE = @as(u32, 0);
+pub const MC_CAPS_MONITOR_TECHNOLOGY_TYPE = @as(u32, 1);
+pub const MC_CAPS_BRIGHTNESS = @as(u32, 2);
+pub const MC_CAPS_CONTRAST = @as(u32, 4);
+pub const MC_CAPS_COLOR_TEMPERATURE = @as(u32, 8);
+pub const MC_CAPS_RED_GREEN_BLUE_GAIN = @as(u32, 16);
+pub const MC_CAPS_RED_GREEN_BLUE_DRIVE = @as(u32, 32);
+pub const MC_CAPS_DEGAUSS = @as(u32, 64);
+pub const MC_CAPS_DISPLAY_AREA_POSITION = @as(u32, 128);
+pub const MC_CAPS_DISPLAY_AREA_SIZE = @as(u32, 256);
+pub const MC_CAPS_RESTORE_FACTORY_DEFAULTS = @as(u32, 1024);
+pub const MC_CAPS_RESTORE_FACTORY_COLOR_DEFAULTS = @as(u32, 2048);
+pub const MC_RESTORE_FACTORY_DEFAULTS_ENABLES_MONITOR_SETTINGS = @as(u32, 4096);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_NONE = @as(u32, 0);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_4000K = @as(u32, 1);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_5000K = @as(u32, 2);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_6500K = @as(u32, 4);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_7500K = @as(u32, 8);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_8200K = @as(u32, 16);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_9300K = @as(u32, 32);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_10000K = @as(u32, 64);
+pub const MC_SUPPORTED_COLOR_TEMPERATURE_11500K = @as(u32, 128);
+pub const PHYSICAL_MONITOR_DESCRIPTION_SIZE = @as(u32, 128);
 
 //--------------------------------------------------------------------------------
 // Section: Types (9)

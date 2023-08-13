@@ -2,12 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const MDM_REGISTRATION_FACILITY_CODE : u32 = 25;
-pub const DEVICE_ENROLLER_FACILITY_CODE : u32 = 24;
-pub const DEVICEREGISTRATIONTYPE_MDM_ONLY : u32 = 0;
-pub const DEVICEREGISTRATIONTYPE_MAM : u32 = 5;
-pub const DEVICEREGISTRATIONTYPE_MDM_DEVICEWIDE_WITH_AAD : u32 = 6;
-pub const DEVICEREGISTRATIONTYPE_MDM_USERSPECIFIC_WITH_AAD : u32 = 13;
+pub const MDM_REGISTRATION_FACILITY_CODE = @as(u32, 25);
+pub const DEVICE_ENROLLER_FACILITY_CODE = @as(u32, 24);
+pub const DEVICEREGISTRATIONTYPE_MDM_ONLY = @as(u32, 0);
+pub const DEVICEREGISTRATIONTYPE_MAM = @as(u32, 5);
+pub const DEVICEREGISTRATIONTYPE_MDM_DEVICEWIDE_WITH_AAD = @as(u32, 6);
+pub const DEVICEREGISTRATIONTYPE_MDM_USERSPECIFIC_WITH_AAD = @as(u32, 13);
 
 //--------------------------------------------------------------------------------
 // Section: Types (3)

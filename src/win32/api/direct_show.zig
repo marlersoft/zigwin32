@@ -2,6 +2,616 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (677)
 //--------------------------------------------------------------------------------
+pub const EC_SND_DEVICE_ERROR_BASE = @as(u32, 512);
+pub const EC_SYSTEMBASE = @as(u32, 0);
+pub const EC_USER = @as(u32, 32768);
+pub const EC_COMPLETE = @as(u32, 1);
+pub const EC_USERABORT = @as(u32, 2);
+pub const EC_ERRORABORT = @as(u32, 3);
+pub const EC_TIME = @as(u32, 4);
+pub const EC_REPAINT = @as(u32, 5);
+pub const EC_STREAM_ERROR_STOPPED = @as(u32, 6);
+pub const EC_STREAM_ERROR_STILLPLAYING = @as(u32, 7);
+pub const EC_ERROR_STILLPLAYING = @as(u32, 8);
+pub const EC_PALETTE_CHANGED = @as(u32, 9);
+pub const EC_VIDEO_SIZE_CHANGED = @as(u32, 10);
+pub const EC_QUALITY_CHANGE = @as(u32, 11);
+pub const EC_SHUTTING_DOWN = @as(u32, 12);
+pub const EC_CLOCK_CHANGED = @as(u32, 13);
+pub const EC_PAUSED = @as(u32, 14);
+pub const EC_OPENING_FILE = @as(u32, 16);
+pub const EC_BUFFERING_DATA = @as(u32, 17);
+pub const EC_FULLSCREEN_LOST = @as(u32, 18);
+pub const EC_ACTIVATE = @as(u32, 19);
+pub const EC_NEED_RESTART = @as(u32, 20);
+pub const EC_WINDOW_DESTROYED = @as(u32, 21);
+pub const EC_DISPLAY_CHANGED = @as(u32, 22);
+pub const EC_STARVATION = @as(u32, 23);
+pub const EC_OLE_EVENT = @as(u32, 24);
+pub const EC_NOTIFY_WINDOW = @as(u32, 25);
+pub const EC_STREAM_CONTROL_STOPPED = @as(u32, 26);
+pub const EC_STREAM_CONTROL_STARTED = @as(u32, 27);
+pub const EC_END_OF_SEGMENT = @as(u32, 28);
+pub const EC_SEGMENT_STARTED = @as(u32, 29);
+pub const EC_LENGTH_CHANGED = @as(u32, 30);
+pub const EC_DEVICE_LOST = @as(u32, 31);
+pub const EC_SAMPLE_NEEDED = @as(u32, 32);
+pub const EC_PROCESSING_LATENCY = @as(u32, 33);
+pub const EC_SAMPLE_LATENCY = @as(u32, 34);
+pub const EC_SCRUB_TIME = @as(u32, 35);
+pub const EC_STEP_COMPLETE = @as(u32, 36);
+pub const EC_TIMECODE_AVAILABLE = @as(u32, 48);
+pub const EC_EXTDEVICE_MODE_CHANGE = @as(u32, 49);
+pub const EC_STATE_CHANGE = @as(u32, 50);
+pub const EC_GRAPH_CHANGED = @as(u32, 80);
+pub const EC_CLOCK_UNSET = @as(u32, 81);
+pub const EC_VMR_RENDERDEVICE_SET = @as(u32, 83);
+pub const VMR_RENDER_DEVICE_OVERLAY = @as(u32, 1);
+pub const VMR_RENDER_DEVICE_VIDMEM = @as(u32, 2);
+pub const VMR_RENDER_DEVICE_SYSMEM = @as(u32, 4);
+pub const EC_VMR_SURFACE_FLIPPED = @as(u32, 84);
+pub const EC_VMR_RECONNECTION_FAILED = @as(u32, 85);
+pub const EC_PREPROCESS_COMPLETE = @as(u32, 86);
+pub const EC_CODECAPI_EVENT = @as(u32, 87);
+pub const EC_WMT_EVENT_BASE = @as(u32, 593);
+pub const EC_BUILT = @as(u32, 768);
+pub const EC_UNBUILT = @as(u32, 769);
+pub const EC_SKIP_FRAMES = @as(u32, 37);
+pub const EC_PLEASE_REOPEN = @as(u32, 64);
+pub const EC_STATUS = @as(u32, 65);
+pub const EC_MARKER_HIT = @as(u32, 66);
+pub const EC_LOADSTATUS = @as(u32, 67);
+pub const EC_FILE_CLOSED = @as(u32, 68);
+pub const EC_ERRORABORTEX = @as(u32, 69);
+pub const AM_LOADSTATUS_CLOSED = @as(u32, 0);
+pub const AM_LOADSTATUS_LOADINGDESCR = @as(u32, 1);
+pub const AM_LOADSTATUS_LOADINGMCAST = @as(u32, 2);
+pub const AM_LOADSTATUS_LOCATING = @as(u32, 3);
+pub const AM_LOADSTATUS_CONNECTING = @as(u32, 4);
+pub const AM_LOADSTATUS_OPENING = @as(u32, 5);
+pub const AM_LOADSTATUS_OPEN = @as(u32, 6);
+pub const EC_NEW_PIN = @as(u32, 32);
+pub const EC_RENDER_FINISHED = @as(u32, 33);
+pub const EC_EOS_SOON = @as(u32, 70);
+pub const EC_CONTENTPROPERTY_CHANGED = @as(u32, 71);
+pub const AM_CONTENTPROPERTY_TITLE = @as(u32, 1);
+pub const AM_CONTENTPROPERTY_AUTHOR = @as(u32, 2);
+pub const AM_CONTENTPROPERTY_COPYRIGHT = @as(u32, 4);
+pub const AM_CONTENTPROPERTY_DESCRIPTION = @as(u32, 8);
+pub const EC_BANDWIDTHCHANGE = @as(u32, 72);
+pub const EC_VIDEOFRAMEREADY = @as(u32, 73);
+pub const EC_DVDBASE = @as(u32, 256);
+pub const AM_AC3_ALTERNATE_AUDIO_1 = @as(u32, 1);
+pub const AM_AC3_ALTERNATE_AUDIO_2 = @as(u32, 2);
+pub const AM_AC3_ALTERNATE_AUDIO_BOTH = @as(u32, 3);
+pub const AM_AC3_SERVICE_MAIN_AUDIO = @as(u32, 0);
+pub const AM_AC3_SERVICE_NO_DIALOG = @as(u32, 1);
+pub const AM_AC3_SERVICE_VISUALLY_IMPAIRED = @as(u32, 2);
+pub const AM_AC3_SERVICE_HEARING_IMPAIRED = @as(u32, 3);
+pub const AM_AC3_SERVICE_DIALOG_ONLY = @as(u32, 4);
+pub const AM_AC3_SERVICE_COMMENTARY = @as(u32, 5);
+pub const AM_AC3_SERVICE_EMERGENCY_FLASH = @as(u32, 6);
+pub const AM_AC3_SERVICE_VOICE_OVER = @as(u32, 7);
+pub const AM_UseNewCSSKey = @as(u32, 1);
+pub const AM_ReverseBlockStart = @as(u32, 2);
+pub const AM_ReverseBlockEnd = @as(u32, 4);
+pub const AM_DVD_CGMS_RESERVED_MASK = @as(u32, 120);
+pub const AM_DVD_CGMS_COPY_PROTECT_MASK = @as(u32, 24);
+pub const AM_DVD_CGMS_COPY_PERMITTED = @as(u32, 0);
+pub const AM_DVD_CGMS_COPY_ONCE = @as(u32, 16);
+pub const AM_DVD_CGMS_NO_COPY = @as(u32, 24);
+pub const AM_DVD_COPYRIGHT_MASK = @as(u32, 64);
+pub const AM_DVD_NOT_COPYRIGHTED = @as(u32, 0);
+pub const AM_DVD_COPYRIGHTED = @as(u32, 64);
+pub const AM_DVD_SECTOR_PROTECT_MASK = @as(u32, 32);
+pub const AM_DVD_SECTOR_NOT_PROTECTED = @as(u32, 0);
+pub const AM_DVD_SECTOR_PROTECTED = @as(u32, 32);
+pub const AMINTERLACE_IsInterlaced = @as(u32, 1);
+pub const AMINTERLACE_1FieldPerSample = @as(u32, 2);
+pub const AMINTERLACE_Field1First = @as(u32, 4);
+pub const AMINTERLACE_UNUSED = @as(u32, 8);
+pub const AMINTERLACE_FieldPatternMask = @as(u32, 48);
+pub const AMINTERLACE_FieldPatField1Only = @as(u32, 0);
+pub const AMINTERLACE_FieldPatField2Only = @as(u32, 16);
+pub const AMINTERLACE_FieldPatBothRegular = @as(u32, 32);
+pub const AMINTERLACE_FieldPatBothIrregular = @as(u32, 48);
+pub const AMINTERLACE_DisplayModeMask = @as(u32, 192);
+pub const AMINTERLACE_DisplayModeBobOnly = @as(u32, 0);
+pub const AMINTERLACE_DisplayModeWeaveOnly = @as(u32, 64);
+pub const AMINTERLACE_DisplayModeBobOrWeave = @as(u32, 128);
+pub const AMCOPYPROTECT_RestrictDuplication = @as(u32, 1);
+pub const AMCONTROL_USED = @as(u32, 1);
+pub const AMCONTROL_PAD_TO_4x3 = @as(u32, 2);
+pub const AMCONTROL_PAD_TO_16x9 = @as(u32, 4);
+pub const AMCONTROL_COLORINFO_PRESENT = @as(u32, 128);
+pub const AM_VIDEO_FLAG_FIELD_MASK = @as(i32, 3);
+pub const AM_VIDEO_FLAG_INTERLEAVED_FRAME = @as(i32, 0);
+pub const AM_VIDEO_FLAG_FIELD1 = @as(i32, 1);
+pub const AM_VIDEO_FLAG_FIELD2 = @as(i32, 2);
+pub const AM_VIDEO_FLAG_FIELD1FIRST = @as(i32, 4);
+pub const AM_VIDEO_FLAG_WEAVE = @as(i32, 8);
+pub const AM_VIDEO_FLAG_IPB_MASK = @as(i32, 48);
+pub const AM_VIDEO_FLAG_I_SAMPLE = @as(i32, 0);
+pub const AM_VIDEO_FLAG_P_SAMPLE = @as(i32, 16);
+pub const AM_VIDEO_FLAG_B_SAMPLE = @as(i32, 32);
+pub const AM_VIDEO_FLAG_REPEAT_FIELD = @as(i32, 64);
+pub const AVIF_HASINDEX = @as(u32, 16);
+pub const AVIF_MUSTUSEINDEX = @as(u32, 32);
+pub const AVIF_ISINTERLEAVED = @as(u32, 256);
+pub const AVIF_TRUSTCKTYPE = @as(u32, 2048);
+pub const AVIF_WASCAPTUREFILE = @as(u32, 65536);
+pub const AVIF_COPYRIGHTED = @as(u32, 131072);
+pub const AVI_HEADERSIZE = @as(u32, 2048);
+pub const AVISF_DISABLED = @as(u32, 1);
+pub const AVISF_VIDEO_PALCHANGES = @as(u32, 65536);
+pub const AVIIF_LIST = @as(i32, 1);
+pub const AVIIF_KEYFRAME = @as(i32, 16);
+pub const AVIIF_FIRSTPART = @as(i32, 32);
+pub const AVIIF_LASTPART = @as(i32, 64);
+pub const AVIIF_NOTIME = @as(i32, 256);
+pub const AVIIF_COMPUSE = @as(i32, 268369920);
+pub const TIMECODE_RATE_30DROP = @as(u32, 0);
+pub const TIMECODE_SMPTE_BINARY_GROUP = @as(u32, 7);
+pub const TIMECODE_SMPTE_COLOR_FRAME = @as(u32, 8);
+pub const AVI_INDEX_OF_INDEXES = @as(u32, 0);
+pub const AVI_INDEX_OF_CHUNKS = @as(u32, 1);
+pub const AVI_INDEX_OF_TIMED_CHUNKS = @as(u32, 2);
+pub const AVI_INDEX_OF_SUB_2FIELD = @as(u32, 3);
+pub const AVI_INDEX_IS_DATA = @as(u32, 128);
+pub const AVI_INDEX_SUB_DEFAULT = @as(u32, 0);
+pub const AVI_INDEX_SUB_2FIELD = @as(u32, 1);
+pub const STDINDEXSIZE = @as(u32, 16384);
+pub const AVISTDINDEX_DELTAFRAME = @as(u32, 2147483648);
+pub const AllocatorStrategy_DontCare = @as(u32, 0);
+pub const AllocatorStrategy_MinimizeNumberOfFrames = @as(u32, 1);
+pub const AllocatorStrategy_MinimizeFrameSize = @as(u32, 2);
+pub const AllocatorStrategy_MinimizeNumberOfAllocators = @as(u32, 4);
+pub const AllocatorStrategy_MaximizeSpeed = @as(u32, 8);
+pub const PipeFactor_None = @as(u32, 0);
+pub const PipeFactor_UserModeUpstream = @as(u32, 1);
+pub const PipeFactor_UserModeDownstream = @as(u32, 2);
+pub const PipeFactor_MemoryTypes = @as(u32, 4);
+pub const PipeFactor_Flags = @as(u32, 8);
+pub const PipeFactor_PhysicalRanges = @as(u32, 16);
+pub const PipeFactor_OptimalRanges = @as(u32, 32);
+pub const PipeFactor_FixedCompression = @as(u32, 64);
+pub const PipeFactor_UnknownCompression = @as(u32, 128);
+pub const PipeFactor_Buffers = @as(u32, 256);
+pub const PipeFactor_Align = @as(u32, 512);
+pub const PipeFactor_PhysicalEnd = @as(u32, 1024);
+pub const PipeFactor_LogicalEnd = @as(u32, 2048);
+pub const AMVA_TYPEINDEX_OUTPUTFRAME = @as(u32, 4294967295);
+pub const AMVA_QUERYRENDERSTATUSF_READ = @as(u32, 1);
+pub const MIN_DIMENSION = @as(u32, 1);
+pub const BDA_PLP_ID_NOT_SET = @as(i32, -1);
+pub const CDEF_CLASS_DEFAULT = @as(u32, 1);
+pub const CDEF_BYPASS_CLASS_MANAGER = @as(u32, 2);
+pub const CDEF_MERIT_ABOVE_DO_NOT_USE = @as(u32, 8);
+pub const CDEF_DEVMON_CMGR_DEVICE = @as(u32, 16);
+pub const CDEF_DEVMON_DMO = @as(u32, 32);
+pub const CDEF_DEVMON_PNP_DEVICE = @as(u32, 64);
+pub const CDEF_DEVMON_FILTER = @as(u32, 128);
+pub const CDEF_DEVMON_SELECTIVE_MASK = @as(u32, 240);
+pub const CHARS_IN_GUID = @as(u32, 39);
+pub const MAX_PIN_NAME = @as(u32, 128);
+pub const MAX_FILTER_NAME = @as(u32, 128);
+pub const AM_GBF_PREVFRAMESKIPPED = @as(u32, 1);
+pub const AM_GBF_NOTASYNCPOINT = @as(u32, 2);
+pub const AM_GBF_NOWAIT = @as(u32, 4);
+pub const AM_GBF_NODDSURFACELOCK = @as(u32, 8);
+pub const AMF_AUTOMATICGAIN = @as(f64, -1);
+pub const AnalogVideo_NTSC_Mask = @as(u32, 7);
+pub const AnalogVideo_PAL_Mask = @as(u32, 1052656);
+pub const AnalogVideo_SECAM_Mask = @as(u32, 1044480);
+pub const MPEG2_PROGRAM_STREAM_MAP = @as(u32, 0);
+pub const MPEG2_PROGRAM_ELEMENTARY_STREAM = @as(u32, 1);
+pub const MPEG2_PROGRAM_DIRECTORY_PES_PACKET = @as(u32, 2);
+pub const MPEG2_PROGRAM_PACK_HEADER = @as(u32, 3);
+pub const MPEG2_PROGRAM_PES_STREAM = @as(u32, 4);
+pub const MPEG2_PROGRAM_SYSTEM_HEADER = @as(u32, 5);
+pub const SUBSTREAM_FILTER_VAL_NONE = @as(u32, 268435456);
+pub const AM_GETDECODERCAP_QUERY_VMR_SUPPORT = @as(u32, 1);
+pub const VMR_NOTSUPPORTED = @as(u32, 0);
+pub const VMR_SUPPORTED = @as(u32, 1);
+pub const AM_QUERY_DECODER_VMR_SUPPORT = @as(u32, 1);
+pub const AM_QUERY_DECODER_DXVA_1_SUPPORT = @as(u32, 2);
+pub const AM_QUERY_DECODER_DVD_SUPPORT = @as(u32, 3);
+pub const AM_QUERY_DECODER_ATSC_SD_SUPPORT = @as(u32, 4);
+pub const AM_QUERY_DECODER_ATSC_HD_SUPPORT = @as(u32, 5);
+pub const AM_GETDECODERCAP_QUERY_VMR9_SUPPORT = @as(u32, 6);
+pub const AM_GETDECODERCAP_QUERY_EVR_SUPPORT = @as(u32, 7);
+pub const DECODER_CAP_NOTSUPPORTED = @as(u32, 0);
+pub const DECODER_CAP_SUPPORTED = @as(u32, 1);
+pub const VMRBITMAP_DISABLE = @as(u32, 1);
+pub const VMRBITMAP_HDC = @as(u32, 2);
+pub const VMRBITMAP_ENTIREDDS = @as(u32, 4);
+pub const VMRBITMAP_SRCCOLORKEY = @as(u32, 8);
+pub const VMRBITMAP_SRCRECT = @as(u32, 16);
+pub const DVD_TITLE_MENU = @as(u32, 0);
+pub const DVD_STREAM_DATA_CURRENT = @as(u32, 2048);
+pub const DVD_STREAM_DATA_VMGM = @as(u32, 1024);
+pub const DVD_STREAM_DATA_VTSM = @as(u32, 1025);
+pub const DVD_DEFAULT_AUDIO_STREAM = @as(u32, 15);
+pub const DVD_AUDIO_CAPS_AC3 = @as(u32, 1);
+pub const DVD_AUDIO_CAPS_MPEG2 = @as(u32, 2);
+pub const DVD_AUDIO_CAPS_LPCM = @as(u32, 4);
+pub const DVD_AUDIO_CAPS_DTS = @as(u32, 8);
+pub const DVD_AUDIO_CAPS_SDDS = @as(u32, 16);
+pub const MEDIATYPE_CONTROL = Guid.initString("e06d8021-db46-11cf-b4d1-00805f6cbbea");
+pub const PBDA_AUX_CONNECTOR_TYPE_SVideo = Guid.initString("a0e905f4-24c9-4a54-b761-213355efc13a");
+pub const PBDA_AUX_CONNECTOR_TYPE_Composite = Guid.initString("f6298b4c-c725-4d42-849b-410bbb14ea62");
+pub const CLSID_PBDA_AUX_DATA_TYPE = Guid.initString("fd456373-3323-4090-adca-8ed45f55cf10");
+pub const CLSID_PBDA_Encoder_DATA_TYPE = Guid.initString("728fd6bc-5546-4716-b103-f899f5a1fa68");
+pub const PBDA_Encoder_Audio_AlgorithmType_MPEG1LayerII = @as(u32, 0);
+pub const PBDA_Encoder_Audio_AlgorithmType_AC3 = @as(u32, 1);
+pub const PBDA_Encoder_Video_MPEG2PartII = @as(u32, 0);
+pub const PBDA_Encoder_Video_MPEG4Part10 = @as(u32, 1);
+pub const PBDA_Encoder_Video_AVC = @as(u32, 1);
+pub const PBDA_Encoder_Video_H264 = @as(u32, 1);
+pub const PBDA_Encoder_BitrateMode_Constant = @as(u32, 1);
+pub const PBDA_Encoder_BitrateMode_Variable = @as(u32, 2);
+pub const PBDA_Encoder_BitrateMode_Average = @as(u32, 3);
+pub const CLSID_PBDA_FDC_DATA_TYPE = Guid.initString("e7dbf9a0-22ab-4047-8e67-ef9ad504e729");
+pub const CLSID_PBDA_GDDS_DATA_TYPE = Guid.initString("c80c0df3-6052-4c16-9f56-c44c21f73c45");
+pub const LIBID_QuartzNetTypeLib = Guid.initString("56a868b1-0ad4-11ce-b03a-0020af0ba770");
+pub const LIBID_QuartzTypeLib = Guid.initString("56a868b0-0ad4-11ce-b03a-0020af0ba770");
+pub const CLSID_AMMultiMediaStream = Guid.initString("49c47ce5-9ba4-11d0-8212-00c04fc32c45");
+pub const CLSID_AMDirectDrawStream = Guid.initString("49c47ce4-9ba4-11d0-8212-00c04fc32c45");
+pub const CLSID_AMAudioStream = Guid.initString("8496e040-af4c-11d0-8212-00c04fc32c45");
+pub const CLSID_AMAudioData = Guid.initString("f2468580-af8a-11d0-8212-00c04fc32c45");
+pub const CLSID_AMMediaTypeStream = Guid.initString("cf0f2f7c-f7bf-11d0-900d-00c04fd9189d");
+pub const AMDDS_NONE = @as(u32, 0);
+pub const AMDDS_DCIPS = @as(u32, 1);
+pub const AMDDS_PS = @as(u32, 2);
+pub const AMDDS_RGBOVR = @as(u32, 4);
+pub const AMDDS_YUVOVR = @as(u32, 8);
+pub const AMDDS_RGBOFF = @as(u32, 16);
+pub const AMDDS_YUVOFF = @as(u32, 32);
+pub const AMDDS_RGBFLP = @as(u32, 64);
+pub const AMDDS_YUVFLP = @as(u32, 128);
+pub const AMDDS_ALL = @as(u32, 255);
+pub const MAX_SIZE_MPEG1_SEQUENCE_INFO = @as(u32, 140);
+pub const CLSID_DMOWrapperFilter = Guid.initString("94297043-bd82-4dfd-b0de-8177739c6d20");
+pub const CLSID_DMOFilterCategory = Guid.initString("bcd5796c-bd52-4d30-ab76-70f975b89199");
+pub const AM_MPEG_AUDIO_DUAL_MERGE = @as(u32, 0);
+pub const AM_MPEG_AUDIO_DUAL_LEFT = @as(u32, 1);
+pub const AM_MPEG_AUDIO_DUAL_RIGHT = @as(u32, 2);
+pub const CLSID_XMLGraphBuilder = Guid.initString("1bb05961-5fbf-11d2-a521-44df07c10000");
+pub const VFW_FIRST_CODE = @as(u32, 512);
+pub const MAX_ERROR_TEXT_LEN = @as(u32, 160);
+pub const MPBOOL_TRUE = @as(u32, 1);
+pub const MPBOOL_FALSE = @as(u32, 0);
+pub const DWORD_ALLPARAMS = @as(i32, -1);
+pub const GUID_TIME_REFERENCE = Guid.initString("93ad712b-daa0-4ffe-bc81-b0ce500fcdd9");
+pub const GUID_TIME_MUSIC = Guid.initString("0574c49d-5b04-4b15-a542-ae282030117b");
+pub const GUID_TIME_SAMPLES = Guid.initString("a8593d05-0c43-4984-9a63-97af9e02c4c0");
+pub const MPF_ENVLP_STANDARD = @as(u32, 0);
+pub const MPF_ENVLP_BEGIN_CURRENTVAL = @as(u32, 1);
+pub const MPF_ENVLP_BEGIN_NEUTRALVAL = @as(u32, 2);
+pub const MPF_PUNCHIN_REFTIME = @as(u32, 0);
+pub const MPF_PUNCHIN_NOW = @as(u32, 1);
+pub const MPF_PUNCHIN_STOPPED = @as(u32, 2);
+pub const DMOCATEGORY_AUDIO_DECODER = Guid.initString("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
+pub const DMOCATEGORY_AUDIO_ENCODER = Guid.initString("33d9a761-90c8-11d0-bd43-00a0c911ce86");
+pub const DMOCATEGORY_VIDEO_DECODER = Guid.initString("4a69b442-28be-4991-969c-b500adf5d8a8");
+pub const DMOCATEGORY_VIDEO_ENCODER = Guid.initString("33d9a760-90c8-11d0-bd43-00a0c911ce86");
+pub const DMOCATEGORY_AUDIO_EFFECT = Guid.initString("f3602b3f-0592-48df-a4cd-674721e7ebeb");
+pub const DMOCATEGORY_VIDEO_EFFECT = Guid.initString("d990ee14-776c-4723-be46-3da2f56f10b9");
+pub const DMOCATEGORY_AUDIO_CAPTURE_EFFECT = Guid.initString("f665aaba-3e09-4920-aa5f-219811148f09");
+pub const DMOCATEGORY_ACOUSTIC_ECHO_CANCEL = Guid.initString("bf963d80-c559-11d0-8a2b-00a0c9255ac1");
+pub const DMOCATEGORY_AUDIO_NOISE_SUPPRESS = Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
+pub const DMOCATEGORY_AGC = Guid.initString("e88c9ba0-c557-11d0-8a2b-00a0c9255ac1");
+pub const MSPID_PrimaryVideo = Guid.initString("a35ff56a-9fda-11d0-8fdf-00c04fd9189d");
+pub const MSPID_PrimaryAudio = Guid.initString("a35ff56b-9fda-11d0-8fdf-00c04fd9189d");
+pub const VFW_E_INVALIDMEDIATYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const VFW_E_INVALIDSUBTYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const VFW_E_NEED_OWNER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const VFW_E_ENUM_OUT_OF_SYNC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220989));
+pub const VFW_E_ALREADY_CONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220988));
+pub const VFW_E_FILTER_ACTIVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220987));
+pub const VFW_E_NO_TYPES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220986));
+pub const VFW_E_NO_ACCEPTABLE_TYPES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220985));
+pub const VFW_E_INVALID_DIRECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220984));
+pub const VFW_E_NOT_CONNECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220983));
+pub const VFW_E_NO_ALLOCATOR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220982));
+pub const VFW_E_RUNTIME_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220981));
+pub const VFW_E_BUFFER_NOTSET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220980));
+pub const VFW_E_BUFFER_OVERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220979));
+pub const VFW_E_BADALIGN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220978));
+pub const VFW_E_ALREADY_COMMITTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220977));
+pub const VFW_E_BUFFERS_OUTSTANDING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220976));
+pub const VFW_E_NOT_COMMITTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220975));
+pub const VFW_E_SIZENOTSET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220974));
+pub const VFW_E_NO_CLOCK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220973));
+pub const VFW_E_NO_SINK = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220972));
+pub const VFW_E_NO_INTERFACE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220971));
+pub const VFW_E_NOT_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220970));
+pub const VFW_E_CANNOT_CONNECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220969));
+pub const VFW_E_CANNOT_RENDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220968));
+pub const VFW_E_CHANGING_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220967));
+pub const VFW_E_NO_COLOR_KEY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220966));
+pub const VFW_E_NOT_OVERLAY_CONNECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220965));
+pub const VFW_E_NOT_SAMPLE_CONNECTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220964));
+pub const VFW_E_PALETTE_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220963));
+pub const VFW_E_COLOR_KEY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220962));
+pub const VFW_E_NO_COLOR_KEY_FOUND = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220961));
+pub const VFW_E_NO_PALETTE_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220960));
+pub const VFW_E_NO_DISPLAY_PALETTE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220959));
+pub const VFW_E_TOO_MANY_COLORS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220958));
+pub const VFW_E_STATE_CHANGED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220957));
+pub const VFW_E_NOT_STOPPED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220956));
+pub const VFW_E_NOT_PAUSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220955));
+pub const VFW_E_NOT_RUNNING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220954));
+pub const VFW_E_WRONG_STATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220953));
+pub const VFW_E_START_TIME_AFTER_END = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220952));
+pub const VFW_E_INVALID_RECT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220951));
+pub const VFW_E_TYPE_NOT_ACCEPTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220950));
+pub const VFW_E_SAMPLE_REJECTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220949));
+pub const VFW_E_SAMPLE_REJECTED_EOS = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220948));
+pub const VFW_E_DUPLICATE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220947));
+pub const VFW_S_DUPLICATE_NAME = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262701));
+pub const VFW_E_TIMEOUT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220946));
+pub const VFW_E_INVALID_FILE_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220945));
+pub const VFW_E_ENUM_OUT_OF_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220944));
+pub const VFW_E_CIRCULAR_GRAPH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220943));
+pub const VFW_E_NOT_ALLOWED_TO_SAVE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220942));
+pub const VFW_E_TIME_ALREADY_PASSED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220941));
+pub const VFW_E_ALREADY_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220940));
+pub const VFW_E_CORRUPT_GRAPH_FILE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220939));
+pub const VFW_E_ADVISE_ALREADY_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220938));
+pub const VFW_S_STATE_INTERMEDIATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262711));
+pub const VFW_E_NO_MODEX_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220936));
+pub const VFW_E_NO_ADVISE_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220935));
+pub const VFW_E_NO_FULLSCREEN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220934));
+pub const VFW_E_IN_FULLSCREEN_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220933));
+pub const VFW_E_UNKNOWN_FILE_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220928));
+pub const VFW_E_CANNOT_LOAD_SOURCE_FILTER = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220927));
+pub const VFW_S_PARTIAL_RENDER = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262722));
+pub const VFW_E_FILE_TOO_SHORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220925));
+pub const VFW_E_INVALID_FILE_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220924));
+pub const VFW_S_SOME_DATA_IGNORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262725));
+pub const VFW_S_CONNECTIONS_DEFERRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262726));
+pub const VFW_E_INVALID_CLSID = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220921));
+pub const VFW_E_INVALID_MEDIA_TYPE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220920));
+pub const VFW_E_BAD_KEY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220494));
+pub const VFW_S_NO_MORE_ITEMS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262403));
+pub const VFW_E_SAMPLE_TIME_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220919));
+pub const VFW_S_RESOURCE_NOT_NEEDED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262736));
+pub const VFW_E_MEDIA_TIME_NOT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220911));
+pub const VFW_E_NO_TIME_FORMAT_SET = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220910));
+pub const VFW_E_MONO_AUDIO_HW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220909));
+pub const VFW_S_MEDIA_TYPE_IGNORED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262740));
+pub const VFW_E_NO_DECOMPRESSOR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220907));
+pub const VFW_E_NO_AUDIO_HARDWARE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220906));
+pub const VFW_S_VIDEO_NOT_RENDERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262743));
+pub const VFW_S_AUDIO_NOT_RENDERED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262744));
+pub const VFW_E_RPZA = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220903));
+pub const VFW_S_RPZA = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262746));
+pub const VFW_E_PROCESSOR_NOT_SUITABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220901));
+pub const VFW_E_UNSUPPORTED_AUDIO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220900));
+pub const VFW_E_UNSUPPORTED_VIDEO = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220899));
+pub const VFW_E_MPEG_NOT_CONSTRAINED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220898));
+pub const VFW_E_NOT_IN_GRAPH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220897));
+pub const VFW_S_ESTIMATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262752));
+pub const VFW_E_NO_TIME_FORMAT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220895));
+pub const VFW_E_READ_ONLY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220894));
+pub const VFW_S_RESERVED = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262755));
+pub const VFW_E_BUFFER_UNDERFLOW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220892));
+pub const VFW_E_UNSUPPORTED_STREAM = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220891));
+pub const VFW_E_NO_TRANSPORT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220890));
+pub const VFW_S_STREAM_OFF = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262759));
+pub const VFW_S_CANT_CUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262760));
+pub const VFW_E_BAD_VIDEOCD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220887));
+pub const VFW_S_NO_STOP_TIME = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262768));
+pub const VFW_E_OUT_OF_VIDEO_MEMORY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220879));
+pub const VFW_E_VP_NEGOTIATION_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220878));
+pub const VFW_E_DDRAW_CAPS_NOT_SUITABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220877));
+pub const VFW_E_NO_VP_HARDWARE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220876));
+pub const VFW_E_NO_CAPTURE_HARDWARE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220875));
+pub const VFW_E_DVD_OPERATION_INHIBITED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220874));
+pub const VFW_E_DVD_INVALIDDOMAIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220873));
+pub const VFW_E_DVD_NO_BUTTON = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220872));
+pub const VFW_E_DVD_GRAPHNOTREADY = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220871));
+pub const VFW_E_DVD_RENDERFAIL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220870));
+pub const VFW_E_DVD_DECNOTENOUGH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220869));
+pub const VFW_E_DDRAW_VERSION_NOT_SUITABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220868));
+pub const VFW_E_COPYPROT_FAILED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220867));
+pub const VFW_S_NOPREVIEWPIN = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262782));
+pub const VFW_E_TIME_EXPIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220865));
+pub const VFW_S_DVD_NON_ONE_SEQUENTIAL = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262784));
+pub const VFW_E_DVD_WRONG_SPEED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220863));
+pub const VFW_E_DVD_MENU_DOES_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220862));
+pub const VFW_E_DVD_CMD_CANCELLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220861));
+pub const VFW_E_DVD_STATE_WRONG_VERSION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220860));
+pub const VFW_E_DVD_STATE_CORRUPT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220859));
+pub const VFW_E_DVD_STATE_WRONG_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220858));
+pub const VFW_E_DVD_INCOMPATIBLE_REGION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220857));
+pub const VFW_E_DVD_NO_ATTRIBUTES = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220856));
+pub const VFW_E_DVD_NO_GOUP_PGC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220855));
+pub const VFW_E_DVD_LOW_PARENTAL_LEVEL = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220854));
+pub const VFW_E_DVD_NOT_IN_KARAOKE_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220853));
+pub const VFW_S_DVD_CHANNEL_CONTENTS_NOT_AVAILABLE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262796));
+pub const VFW_S_DVD_NOT_ACCURATE = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262797));
+pub const VFW_E_FRAME_STEP_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220850));
+pub const VFW_E_DVD_STREAM_DISABLED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220849));
+pub const VFW_E_DVD_TITLE_UNKNOWN = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220848));
+pub const VFW_E_DVD_INVALID_DISC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220847));
+pub const VFW_E_DVD_NO_RESUME_INFORMATION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220846));
+pub const VFW_E_PIN_ALREADY_BLOCKED_ON_THIS_THREAD = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220845));
+pub const VFW_E_PIN_ALREADY_BLOCKED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220844));
+pub const VFW_E_CERTIFICATION_FAILURE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220843));
+pub const VFW_E_VMR_NOT_IN_MIXER_MODE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220842));
+pub const VFW_E_VMR_NO_AP_SUPPLIED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220841));
+pub const VFW_E_VMR_NO_DEINTERLACE_HW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220840));
+pub const VFW_E_VMR_NO_PROCAMP_HW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220839));
+pub const VFW_E_DVD_VMR9_INCOMPATIBLEDEC = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220838));
+pub const VFW_E_NO_COPP_HW = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220837));
+pub const VFW_E_DVD_NONBLOCKING = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220836));
+pub const VFW_E_DVD_TOO_MANY_RENDERERS_IN_FILTER_GRAPH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220835));
+pub const VFW_E_DVD_NON_EVR_RENDERER_IN_FILTER_GRAPH = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220834));
+pub const VFW_E_DVD_RESOLUTION_ERROR = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220833));
+pub const E_PROP_SET_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147023726));
+pub const E_PROP_ID_UNSUPPORTED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147023728));
+pub const VFW_E_CODECAPI_LINEAR_RANGE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220720));
+pub const VFW_E_CODECAPI_ENUMERATED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220719));
+pub const VFW_E_CODECAPI_NO_DEFAULT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220717));
+pub const VFW_E_CODECAPI_NO_CURRENT_VALUE = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220716));
+pub const VFW_E_DVD_CHAPTER_DOES_NOT_EXIST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220715));
+pub const VFW_S_DVD_RENDER_STATUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262944));
+pub const DTV_CardStatus_Inserted = @as(u32, 0);
+pub const DTV_CardStatus_Removed = @as(u32, 1);
+pub const DTV_CardStatus_Error = @as(u32, 2);
+pub const DTV_CardStatus_FirmwareDownload = @as(u32, 3);
+pub const OCUR_PAIRING_PROTOCOL_VERSION = @as(u32, 2);
+pub const PBDA_PAIRING_PROTOCOL_VERSION = @as(u32, 3);
+pub const DTV_MMIMessage_Open = @as(u32, 0);
+pub const DTV_MMIMessage_Close = @as(u32, 1);
+pub const DTV_Entitlement_CanDecrypt = @as(u32, 0);
+pub const DTV_Entitlement_NotEntitled = @as(u32, 1);
+pub const DTV_Entitlement_TechnicalFailure = @as(u32, 2);
+pub const AudioType_Standard = @as(u32, 0);
+pub const AudioType_Music_And_Effects = @as(u32, 1);
+pub const AudioType_Visually_Impaired = @as(u32, 2);
+pub const AudioType_Hearing_Impaired = @as(u32, 3);
+pub const AudioType_Dialogue = @as(u32, 4);
+pub const AudioType_Commentary = @as(u32, 5);
+pub const AudioType_Emergency = @as(u32, 6);
+pub const AudioType_Voiceover = @as(u32, 7);
+pub const AudioType_Reserved = @as(i32, -1);
+pub const MAX_COUNTRY_CODE_STRING = @as(u32, 3);
+pub const PARENTAL_CONTROL_TIME_RANGE = @as(u32, 1);
+pub const REQUIRED_PARENTAL_CONTROL_TIME_RANGE = @as(u32, 2);
+pub const PARENTAL_CONTROL_CONTENT_RATING = @as(u32, 256);
+pub const PARENTAL_CONTROL_ATTRIB_VIOLENCE = @as(u32, 512);
+pub const PARENTAL_CONTROL_ATTRIB_LANGUAGE = @as(u32, 513);
+pub const PARENTAL_CONTROL_ATTRIB_SEXUAL = @as(u32, 514);
+pub const PARENTAL_CONTROL_ATTRIB_DIALOGUE = @as(u32, 515);
+pub const PARENTAL_CONTROL_ATTRIB_FANTASY = @as(u32, 516);
+pub const PARENTAL_CONTROL_VALUE_UNDEFINED = @as(u32, 0);
+pub const MPEG2_FILTER_VERSION_1_SIZE = @as(u32, 124);
+pub const MPEG2_FILTER_VERSION_2_SIZE = @as(u32, 133);
+pub const SID_MSVidCtl_CurrentAudioEndpoint = Guid.initString("cf9a88f4-abcf-4ed8-9b74-7db33445459e");
+pub const STREAMBUFFER_EC_BASE = @as(u32, 806);
+pub const EVENTID_SBE2RecControlStarted = Guid.initString("8966a89e-f83e-4c0e-bc3b-bfa7649e04cb");
+pub const EVENTID_SBE2RecControlStopped = Guid.initString("454b1ec8-0c9b-4caa-b1a1-1e7a2666f6c3");
+pub const SBE2_STREAM_DESC_EVENT = Guid.initString("2313a4ed-bf2d-454f-ad8a-d95ba7f91fee");
+pub const SBE2_V1_STREAMS_CREATION_EVENT = Guid.initString("000fcf09-97f5-46ac-9769-7a83b35384fb");
+pub const SBE2_V2_STREAMS_CREATION_EVENT = Guid.initString("a72530a3-0344-4cab-a2d0-fe937dbdcab3");
+pub const SBE2_STREAM_DESC_VERSION = @as(u32, 1);
+pub const SID_DRMSecureServiceChannel = Guid.initString("c4c4c4c4-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_ETFilterEncProperties = Guid.initString("c4c4c481-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_ETFilterTagProperties = Guid.initString("c4c4c491-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_PTFilter = Guid.initString("9cd31617-b303-4f96-8330-2eb173ea4dc6");
+pub const CLSID_DTFilterEncProperties = Guid.initString("c4c4c482-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_DTFilterTagProperties = Guid.initString("c4c4c492-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_XDSCodecProperties = Guid.initString("c4c4c483-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_XDSCodecTagProperties = Guid.initString("c4c4c493-0049-4e2b-98fb-9537f6ce516d");
+pub const CLSID_CPCAFiltersCategory = Guid.initString("c4c4c4fc-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_XDSCodecNewXDSRating = Guid.initString("c4c4c4e0-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_XDSCodecDuplicateXDSRating = Guid.initString("c4c4c4df-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_XDSCodecNewXDSPacket = Guid.initString("c4c4c4e1-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterRatingChange = Guid.initString("c4c4c4e2-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterRatingsBlock = Guid.initString("c4c4c4e3-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterRatingsUnblock = Guid.initString("c4c4c4e4-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterXDSPacket = Guid.initString("c4c4c4e5-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETFilterEncryptionOn = Guid.initString("c4c4c4e6-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETFilterEncryptionOff = Guid.initString("c4c4c4e7-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterCOPPUnblock = Guid.initString("c4c4c4e8-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_EncDecFilterError = Guid.initString("c4c4c4e9-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterCOPPBlock = Guid.initString("c4c4c4ea-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETFilterCopyOnce = Guid.initString("c4c4c4eb-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETFilterCopyNever = Guid.initString("c4c4c4f0-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterDataFormatOK = Guid.initString("c4c4c4ec-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_DTFilterDataFormatFailure = Guid.initString("c4c4c4ed-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETDTFilterLicenseOK = Guid.initString("c4c4c4ee-0049-4e2b-98fb-9537f6ce516d");
+pub const EVENTID_ETDTFilterLicenseFailure = Guid.initString("c4c4c4ef-0049-4e2b-98fb-9537f6ce516d");
+pub const MEDIASUBTYPE_ETDTFilter_Tagged = Guid.initString("c4c4c4d0-0049-4e2b-98fb-9537f6ce516d");
+pub const FORMATTYPE_ETDTFilter_Tagged = Guid.initString("c4c4c4d1-0049-4e2b-98fb-9537f6ce516d");
+pub const MEDIASUBTYPE_CPFilters_Processed = Guid.initString("46adbd28-6fd0-4796-93b2-155c51dc048d");
+pub const FORMATTYPE_CPFilters_Processed = Guid.initString("6739b36f-1d5f-4ac2-8192-28bb0e73d16a");
+pub const EVENTID_EncDecFilterEvent = Guid.initString("4a1b465b-0fb9-4159-afbd-e33006a0f9f4");
+pub const EVENTID_FormatNotSupportedEvent = Guid.initString("24b2280a-b2aa-4777-bf65-63f35e7b024a");
+pub const EVENTID_DemultiplexerFilterDiscontinuity = Guid.initString("16155770-aed5-475c-bb98-95a33070df0c");
+pub const DSATTRIB_WMDRMProtectionInfo = Guid.initString("40749583-6b9d-4eec-b43c-67a1801e1a9b");
+pub const DSATTRIB_BadSampleInfo = Guid.initString("e4846dda-5838-42b4-b897-6f7e5faa2f2f");
+pub const MPEG_PAT_PID = @as(u32, 0);
+pub const MPEG_PAT_TID = @as(u32, 0);
+pub const MPEG_CAT_PID = @as(u32, 1);
+pub const MPEG_CAT_TID = @as(u32, 1);
+pub const MPEG_PMT_TID = @as(u32, 2);
+pub const MPEG_TSDT_PID = @as(u32, 2);
+pub const MPEG_TSDT_TID = @as(u32, 3);
+pub const ATSC_MGT_PID = @as(u32, 8187);
+pub const ATSC_MGT_TID = @as(u32, 199);
+pub const ATSC_VCT_PID = @as(u32, 8187);
+pub const ATSC_VCT_TERR_TID = @as(u32, 200);
+pub const ATSC_VCT_CABL_TID = @as(u32, 201);
+pub const ATSC_EIT_TID = @as(u32, 203);
+pub const ATSC_ETT_TID = @as(u32, 204);
+pub const ATSC_RRT_TID = @as(u32, 202);
+pub const ATSC_RRT_PID = @as(u32, 8187);
+pub const ATSC_STT_PID = @as(u32, 8187);
+pub const ATSC_STT_TID = @as(u32, 205);
+pub const ATSC_PIT_TID = @as(u32, 208);
+pub const DVB_NIT_PID = @as(u32, 16);
+pub const DVB_NIT_ACTUAL_TID = @as(u32, 64);
+pub const DVB_NIT_OTHER_TID = @as(u32, 65);
+pub const DVB_SDT_PID = @as(u32, 17);
+pub const DVB_SDT_ACTUAL_TID = @as(u32, 66);
+pub const DVB_SDT_OTHER_TID = @as(u32, 70);
+pub const DVB_BAT_PID = @as(u32, 17);
+pub const DVB_BAT_TID = @as(u32, 74);
+pub const DVB_EIT_PID = @as(u32, 18);
+pub const DVB_EIT_OTHER_TID = @as(u32, 79);
+pub const DVB_RST_PID = @as(u32, 19);
+pub const DVB_RST_TID = @as(u32, 113);
+pub const DVB_TDT_PID = @as(u32, 20);
+pub const DVB_TDT_TID = @as(u32, 112);
+pub const DVB_ST_PID_16 = @as(u32, 16);
+pub const DVB_ST_PID_17 = @as(u32, 17);
+pub const DVB_ST_PID_18 = @as(u32, 18);
+pub const DVB_ST_PID_19 = @as(u32, 19);
+pub const DVB_ST_PID_20 = @as(u32, 20);
+pub const DVB_ST_TID = @as(u32, 114);
+pub const ISDB_ST_TID = @as(u32, 114);
+pub const DVB_TOT_PID = @as(u32, 20);
+pub const DVB_TOT_TID = @as(u32, 115);
+pub const DVB_DIT_PID = @as(u32, 30);
+pub const DVB_DIT_TID = @as(u32, 126);
+pub const DVB_SIT_PID = @as(u32, 31);
+pub const DVB_SIT_TID = @as(u32, 127);
+pub const ISDB_EMM_TID = @as(u32, 133);
+pub const ISDB_BIT_PID = @as(u32, 36);
+pub const ISDB_BIT_TID = @as(u32, 196);
+pub const ISDB_NBIT_PID = @as(u32, 37);
+pub const ISDB_NBIT_MSG_TID = @as(u32, 197);
+pub const ISDB_NBIT_REF_TID = @as(u32, 198);
+pub const ISDB_LDT_PID = @as(u32, 37);
+pub const ISDB_LDT_TID = @as(u32, 199);
+pub const ISDB_SDTT_PID = @as(u32, 35);
+pub const ISDB_SDTT_ALT_PID = @as(u32, 40);
+pub const ISDB_SDTT_TID = @as(u32, 195);
+pub const ISDB_CDT_PID = @as(u32, 41);
+pub const ISDB_CDT_TID = @as(u32, 200);
+pub const SCTE_EAS_TID = @as(u32, 216);
+pub const SCTE_EAS_IB_PID = @as(u32, 8187);
+pub const SCTE_EAS_OOB_PID = @as(u32, 8188);
+pub const CLSID_Mpeg2TableFilter = Guid.initString("752845f1-758f-4c83-a043-4270c593308e");
+pub const ATSC_ETM_LOCATION_NOT_PRESENT = @as(u32, 0);
+pub const ATSC_ETM_LOCATION_IN_PTC_FOR_PSIP = @as(u32, 1);
+pub const ATSC_ETM_LOCATION_IN_PTC_FOR_EVENT = @as(u32, 2);
+pub const ATSC_ETM_LOCATION_RESERVED = @as(u32, 3);
+pub const SAMPLE_SEQ_SEQUENCE_HEADER = @as(u32, 1);
+pub const SAMPLE_SEQ_GOP_HEADER = @as(u32, 2);
+pub const SAMPLE_SEQ_PICTURE_HEADER = @as(u32, 3);
+pub const SAMPLE_SEQ_CONTENT_UNKNOWN = @as(u32, 0);
+pub const SAMPLE_SEQ_CONTENT_I_FRAME = @as(u32, 1);
+pub const SAMPLE_SEQ_CONTENT_P_FRAME = @as(u32, 2);
+pub const SAMPLE_SEQ_CONTENT_B_FRAME = @as(u32, 3);
+pub const COMPONENT_TAG_CAPTION_MIN = @as(u32, 48);
+pub const COMPONENT_TAG_CAPTION_MAX = @as(u32, 55);
+pub const COMPONENT_TAG_SUPERIMPOSE_MIN = @as(u32, 56);
+pub const COMPONENT_TAG_SUPERIMPOSE_MAX = @as(u32, 63);
 pub const g_wszStreamBufferRecordingDuration = "Duration";
 pub const g_wszStreamBufferRecordingBitrate = "Bitrate";
 pub const g_wszStreamBufferRecordingSeekable = "Seekable";
@@ -57,632 +667,35 @@ pub const g_wszStreamBufferRecordingNSCAddress = "NSC_Address";
 pub const g_wszStreamBufferRecordingNSCPhone = "NSC_Phone";
 pub const g_wszStreamBufferRecordingNSCEmail = "NSC_Email";
 pub const g_wszStreamBufferRecordingNSCDescription = "NSC_Description";
-pub const STREAMBUFFER_EC_TIMEHOLE : i32 = 806;
-pub const STREAMBUFFER_EC_STALE_DATA_READ : i32 = 807;
-pub const STREAMBUFFER_EC_STALE_FILE_DELETED : i32 = 808;
-pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE : i32 = 809;
-pub const STREAMBUFFER_EC_WRITE_FAILURE : i32 = 810;
-pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR : i32 = 811;
-pub const STREAMBUFFER_EC_READ_FAILURE : i32 = 812;
-pub const STREAMBUFFER_EC_RATE_CHANGED : i32 = 813;
-pub const STREAMBUFFER_EC_PRIMARY_AUDIO : i32 = 814;
-pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS : i32 = 815;
-pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE : i32 = 816;
-pub const EC_SND_DEVICE_ERROR_BASE : u32 = 512;
-pub const EC_SYSTEMBASE : u32 = 0;
-pub const EC_USER : u32 = 32768;
-pub const EC_COMPLETE : u32 = 1;
-pub const EC_USERABORT : u32 = 2;
-pub const EC_ERRORABORT : u32 = 3;
-pub const EC_TIME : u32 = 4;
-pub const EC_REPAINT : u32 = 5;
-pub const EC_STREAM_ERROR_STOPPED : u32 = 6;
-pub const EC_STREAM_ERROR_STILLPLAYING : u32 = 7;
-pub const EC_ERROR_STILLPLAYING : u32 = 8;
-pub const EC_PALETTE_CHANGED : u32 = 9;
-pub const EC_VIDEO_SIZE_CHANGED : u32 = 10;
-pub const EC_QUALITY_CHANGE : u32 = 11;
-pub const EC_SHUTTING_DOWN : u32 = 12;
-pub const EC_CLOCK_CHANGED : u32 = 13;
-pub const EC_PAUSED : u32 = 14;
-pub const EC_OPENING_FILE : u32 = 16;
-pub const EC_BUFFERING_DATA : u32 = 17;
-pub const EC_FULLSCREEN_LOST : u32 = 18;
-pub const EC_ACTIVATE : u32 = 19;
-pub const EC_NEED_RESTART : u32 = 20;
-pub const EC_WINDOW_DESTROYED : u32 = 21;
-pub const EC_DISPLAY_CHANGED : u32 = 22;
-pub const EC_STARVATION : u32 = 23;
-pub const EC_OLE_EVENT : u32 = 24;
-pub const EC_NOTIFY_WINDOW : u32 = 25;
-pub const EC_STREAM_CONTROL_STOPPED : u32 = 26;
-pub const EC_STREAM_CONTROL_STARTED : u32 = 27;
-pub const EC_END_OF_SEGMENT : u32 = 28;
-pub const EC_SEGMENT_STARTED : u32 = 29;
-pub const EC_LENGTH_CHANGED : u32 = 30;
-pub const EC_DEVICE_LOST : u32 = 31;
-pub const EC_SAMPLE_NEEDED : u32 = 32;
-pub const EC_PROCESSING_LATENCY : u32 = 33;
-pub const EC_SAMPLE_LATENCY : u32 = 34;
-pub const EC_SCRUB_TIME : u32 = 35;
-pub const EC_STEP_COMPLETE : u32 = 36;
-pub const EC_TIMECODE_AVAILABLE : u32 = 48;
-pub const EC_EXTDEVICE_MODE_CHANGE : u32 = 49;
-pub const EC_STATE_CHANGE : u32 = 50;
-pub const EC_GRAPH_CHANGED : u32 = 80;
-pub const EC_CLOCK_UNSET : u32 = 81;
-pub const EC_VMR_RENDERDEVICE_SET : u32 = 83;
-pub const VMR_RENDER_DEVICE_OVERLAY : u32 = 1;
-pub const VMR_RENDER_DEVICE_VIDMEM : u32 = 2;
-pub const VMR_RENDER_DEVICE_SYSMEM : u32 = 4;
-pub const EC_VMR_SURFACE_FLIPPED : u32 = 84;
-pub const EC_VMR_RECONNECTION_FAILED : u32 = 85;
-pub const EC_PREPROCESS_COMPLETE : u32 = 86;
-pub const EC_CODECAPI_EVENT : u32 = 87;
-pub const EC_WMT_EVENT_BASE : u32 = 593;
-pub const EC_BUILT : u32 = 768;
-pub const EC_UNBUILT : u32 = 769;
-pub const EC_SKIP_FRAMES : u32 = 37;
-pub const EC_PLEASE_REOPEN : u32 = 64;
-pub const EC_STATUS : u32 = 65;
-pub const EC_MARKER_HIT : u32 = 66;
-pub const EC_LOADSTATUS : u32 = 67;
-pub const EC_FILE_CLOSED : u32 = 68;
-pub const EC_ERRORABORTEX : u32 = 69;
-pub const AM_LOADSTATUS_CLOSED : u32 = 0;
-pub const AM_LOADSTATUS_LOADINGDESCR : u32 = 1;
-pub const AM_LOADSTATUS_LOADINGMCAST : u32 = 2;
-pub const AM_LOADSTATUS_LOCATING : u32 = 3;
-pub const AM_LOADSTATUS_CONNECTING : u32 = 4;
-pub const AM_LOADSTATUS_OPENING : u32 = 5;
-pub const AM_LOADSTATUS_OPEN : u32 = 6;
-pub const EC_NEW_PIN : u32 = 32;
-pub const EC_RENDER_FINISHED : u32 = 33;
-pub const EC_EOS_SOON : u32 = 70;
-pub const EC_CONTENTPROPERTY_CHANGED : u32 = 71;
-pub const AM_CONTENTPROPERTY_TITLE : u32 = 1;
-pub const AM_CONTENTPROPERTY_AUTHOR : u32 = 2;
-pub const AM_CONTENTPROPERTY_COPYRIGHT : u32 = 4;
-pub const AM_CONTENTPROPERTY_DESCRIPTION : u32 = 8;
-pub const EC_BANDWIDTHCHANGE : u32 = 72;
-pub const EC_VIDEOFRAMEREADY : u32 = 73;
-pub const EC_DVDBASE : u32 = 256;
-pub const AM_AC3_ALTERNATE_AUDIO_1 : u32 = 1;
-pub const AM_AC3_ALTERNATE_AUDIO_2 : u32 = 2;
-pub const AM_AC3_ALTERNATE_AUDIO_BOTH : u32 = 3;
-pub const AM_AC3_SERVICE_MAIN_AUDIO : u32 = 0;
-pub const AM_AC3_SERVICE_NO_DIALOG : u32 = 1;
-pub const AM_AC3_SERVICE_VISUALLY_IMPAIRED : u32 = 2;
-pub const AM_AC3_SERVICE_HEARING_IMPAIRED : u32 = 3;
-pub const AM_AC3_SERVICE_DIALOG_ONLY : u32 = 4;
-pub const AM_AC3_SERVICE_COMMENTARY : u32 = 5;
-pub const AM_AC3_SERVICE_EMERGENCY_FLASH : u32 = 6;
-pub const AM_AC3_SERVICE_VOICE_OVER : u32 = 7;
-pub const AM_UseNewCSSKey : u32 = 1;
-pub const AM_ReverseBlockStart : u32 = 2;
-pub const AM_ReverseBlockEnd : u32 = 4;
-pub const AM_DVD_CGMS_RESERVED_MASK : u32 = 120;
-pub const AM_DVD_CGMS_COPY_PROTECT_MASK : u32 = 24;
-pub const AM_DVD_CGMS_COPY_PERMITTED : u32 = 0;
-pub const AM_DVD_CGMS_COPY_ONCE : u32 = 16;
-pub const AM_DVD_CGMS_NO_COPY : u32 = 24;
-pub const AM_DVD_COPYRIGHT_MASK : u32 = 64;
-pub const AM_DVD_NOT_COPYRIGHTED : u32 = 0;
-pub const AM_DVD_COPYRIGHTED : u32 = 64;
-pub const AM_DVD_SECTOR_PROTECT_MASK : u32 = 32;
-pub const AM_DVD_SECTOR_NOT_PROTECTED : u32 = 0;
-pub const AM_DVD_SECTOR_PROTECTED : u32 = 32;
-pub const AMINTERLACE_IsInterlaced : u32 = 1;
-pub const AMINTERLACE_1FieldPerSample : u32 = 2;
-pub const AMINTERLACE_Field1First : u32 = 4;
-pub const AMINTERLACE_UNUSED : u32 = 8;
-pub const AMINTERLACE_FieldPatternMask : u32 = 48;
-pub const AMINTERLACE_FieldPatField1Only : u32 = 0;
-pub const AMINTERLACE_FieldPatField2Only : u32 = 16;
-pub const AMINTERLACE_FieldPatBothRegular : u32 = 32;
-pub const AMINTERLACE_FieldPatBothIrregular : u32 = 48;
-pub const AMINTERLACE_DisplayModeMask : u32 = 192;
-pub const AMINTERLACE_DisplayModeBobOnly : u32 = 0;
-pub const AMINTERLACE_DisplayModeWeaveOnly : u32 = 64;
-pub const AMINTERLACE_DisplayModeBobOrWeave : u32 = 128;
-pub const AMCOPYPROTECT_RestrictDuplication : u32 = 1;
-pub const AMCONTROL_USED : u32 = 1;
-pub const AMCONTROL_PAD_TO_4x3 : u32 = 2;
-pub const AMCONTROL_PAD_TO_16x9 : u32 = 4;
-pub const AMCONTROL_COLORINFO_PRESENT : u32 = 128;
-pub const AM_VIDEO_FLAG_FIELD_MASK : i32 = 3;
-pub const AM_VIDEO_FLAG_INTERLEAVED_FRAME : i32 = 0;
-pub const AM_VIDEO_FLAG_FIELD1 : i32 = 1;
-pub const AM_VIDEO_FLAG_FIELD2 : i32 = 2;
-pub const AM_VIDEO_FLAG_FIELD1FIRST : i32 = 4;
-pub const AM_VIDEO_FLAG_WEAVE : i32 = 8;
-pub const AM_VIDEO_FLAG_IPB_MASK : i32 = 48;
-pub const AM_VIDEO_FLAG_I_SAMPLE : i32 = 0;
-pub const AM_VIDEO_FLAG_P_SAMPLE : i32 = 16;
-pub const AM_VIDEO_FLAG_B_SAMPLE : i32 = 32;
-pub const AM_VIDEO_FLAG_REPEAT_FIELD : i32 = 64;
-pub const AVIF_HASINDEX : u32 = 16;
-pub const AVIF_MUSTUSEINDEX : u32 = 32;
-pub const AVIF_ISINTERLEAVED : u32 = 256;
-pub const AVIF_TRUSTCKTYPE : u32 = 2048;
-pub const AVIF_WASCAPTUREFILE : u32 = 65536;
-pub const AVIF_COPYRIGHTED : u32 = 131072;
-pub const AVI_HEADERSIZE : u32 = 2048;
-pub const AVISF_DISABLED : u32 = 1;
-pub const AVISF_VIDEO_PALCHANGES : u32 = 65536;
-pub const AVIIF_LIST : i32 = 1;
-pub const AVIIF_KEYFRAME : i32 = 16;
-pub const AVIIF_FIRSTPART : i32 = 32;
-pub const AVIIF_LASTPART : i32 = 64;
-pub const AVIIF_NOTIME : i32 = 256;
-pub const AVIIF_COMPUSE : i32 = 268369920;
-pub const TIMECODE_RATE_30DROP : u32 = 0;
-pub const TIMECODE_SMPTE_BINARY_GROUP : u32 = 7;
-pub const TIMECODE_SMPTE_COLOR_FRAME : u32 = 8;
-pub const AVI_INDEX_OF_INDEXES : u32 = 0;
-pub const AVI_INDEX_OF_CHUNKS : u32 = 1;
-pub const AVI_INDEX_OF_TIMED_CHUNKS : u32 = 2;
-pub const AVI_INDEX_OF_SUB_2FIELD : u32 = 3;
-pub const AVI_INDEX_IS_DATA : u32 = 128;
-pub const AVI_INDEX_SUB_DEFAULT : u32 = 0;
-pub const AVI_INDEX_SUB_2FIELD : u32 = 1;
-pub const STDINDEXSIZE : u32 = 16384;
-pub const AVISTDINDEX_DELTAFRAME : u32 = 2147483648;
-pub const AllocatorStrategy_DontCare : u32 = 0;
-pub const AllocatorStrategy_MinimizeNumberOfFrames : u32 = 1;
-pub const AllocatorStrategy_MinimizeFrameSize : u32 = 2;
-pub const AllocatorStrategy_MinimizeNumberOfAllocators : u32 = 4;
-pub const AllocatorStrategy_MaximizeSpeed : u32 = 8;
-pub const PipeFactor_None : u32 = 0;
-pub const PipeFactor_UserModeUpstream : u32 = 1;
-pub const PipeFactor_UserModeDownstream : u32 = 2;
-pub const PipeFactor_MemoryTypes : u32 = 4;
-pub const PipeFactor_Flags : u32 = 8;
-pub const PipeFactor_PhysicalRanges : u32 = 16;
-pub const PipeFactor_OptimalRanges : u32 = 32;
-pub const PipeFactor_FixedCompression : u32 = 64;
-pub const PipeFactor_UnknownCompression : u32 = 128;
-pub const PipeFactor_Buffers : u32 = 256;
-pub const PipeFactor_Align : u32 = 512;
-pub const PipeFactor_PhysicalEnd : u32 = 1024;
-pub const PipeFactor_LogicalEnd : u32 = 2048;
-pub const AMVA_TYPEINDEX_OUTPUTFRAME : u32 = 4294967295;
-pub const AMVA_QUERYRENDERSTATUSF_READ : u32 = 1;
-pub const MIN_DIMENSION : u32 = 1;
-pub const BDA_PLP_ID_NOT_SET : i32 = -1;
-pub const CDEF_CLASS_DEFAULT : u32 = 1;
-pub const CDEF_BYPASS_CLASS_MANAGER : u32 = 2;
-pub const CDEF_MERIT_ABOVE_DO_NOT_USE : u32 = 8;
-pub const CDEF_DEVMON_CMGR_DEVICE : u32 = 16;
-pub const CDEF_DEVMON_DMO : u32 = 32;
-pub const CDEF_DEVMON_PNP_DEVICE : u32 = 64;
-pub const CDEF_DEVMON_FILTER : u32 = 128;
-pub const CDEF_DEVMON_SELECTIVE_MASK : u32 = 240;
-pub const CHARS_IN_GUID : u32 = 39;
-pub const MAX_PIN_NAME : u32 = 128;
-pub const MAX_FILTER_NAME : u32 = 128;
-pub const AM_GBF_PREVFRAMESKIPPED : u32 = 1;
-pub const AM_GBF_NOTASYNCPOINT : u32 = 2;
-pub const AM_GBF_NOWAIT : u32 = 4;
-pub const AM_GBF_NODDSURFACELOCK : u32 = 8;
-pub const AMF_AUTOMATICGAIN : f64 = -1;
-pub const AnalogVideo_NTSC_Mask : u32 = 7;
-pub const AnalogVideo_PAL_Mask : u32 = 1052656;
-pub const AnalogVideo_SECAM_Mask : u32 = 1044480;
-pub const MPEG2_PROGRAM_STREAM_MAP : u32 = 0;
-pub const MPEG2_PROGRAM_ELEMENTARY_STREAM : u32 = 1;
-pub const MPEG2_PROGRAM_DIRECTORY_PES_PACKET : u32 = 2;
-pub const MPEG2_PROGRAM_PACK_HEADER : u32 = 3;
-pub const MPEG2_PROGRAM_PES_STREAM : u32 = 4;
-pub const MPEG2_PROGRAM_SYSTEM_HEADER : u32 = 5;
-pub const SUBSTREAM_FILTER_VAL_NONE : u32 = 268435456;
-pub const AM_GETDECODERCAP_QUERY_VMR_SUPPORT : u32 = 1;
-pub const VMR_NOTSUPPORTED : u32 = 0;
-pub const VMR_SUPPORTED : u32 = 1;
-pub const AM_QUERY_DECODER_VMR_SUPPORT : u32 = 1;
-pub const AM_QUERY_DECODER_DXVA_1_SUPPORT : u32 = 2;
-pub const AM_QUERY_DECODER_DVD_SUPPORT : u32 = 3;
-pub const AM_QUERY_DECODER_ATSC_SD_SUPPORT : u32 = 4;
-pub const AM_QUERY_DECODER_ATSC_HD_SUPPORT : u32 = 5;
-pub const AM_GETDECODERCAP_QUERY_VMR9_SUPPORT : u32 = 6;
-pub const AM_GETDECODERCAP_QUERY_EVR_SUPPORT : u32 = 7;
-pub const DECODER_CAP_NOTSUPPORTED : u32 = 0;
-pub const DECODER_CAP_SUPPORTED : u32 = 1;
-pub const VMRBITMAP_DISABLE : u32 = 1;
-pub const VMRBITMAP_HDC : u32 = 2;
-pub const VMRBITMAP_ENTIREDDS : u32 = 4;
-pub const VMRBITMAP_SRCCOLORKEY : u32 = 8;
-pub const VMRBITMAP_SRCRECT : u32 = 16;
-pub const DVD_TITLE_MENU : u32 = 0;
-pub const DVD_STREAM_DATA_CURRENT : u32 = 2048;
-pub const DVD_STREAM_DATA_VMGM : u32 = 1024;
-pub const DVD_STREAM_DATA_VTSM : u32 = 1025;
-pub const DVD_DEFAULT_AUDIO_STREAM : u32 = 15;
-pub const DVD_AUDIO_CAPS_AC3 : u32 = 1;
-pub const DVD_AUDIO_CAPS_MPEG2 : u32 = 2;
-pub const DVD_AUDIO_CAPS_LPCM : u32 = 4;
-pub const DVD_AUDIO_CAPS_DTS : u32 = 8;
-pub const DVD_AUDIO_CAPS_SDDS : u32 = 16;
-pub const MEDIATYPE_CONTROL = @import("../zig.zig").Guid.initString("e06d8021-db46-11cf-b4d1-00805f6cbbea");
-pub const PBDA_AUX_CONNECTOR_TYPE_SVideo = @import("../zig.zig").Guid.initString("a0e905f4-24c9-4a54-b761-213355efc13a");
-pub const PBDA_AUX_CONNECTOR_TYPE_Composite = @import("../zig.zig").Guid.initString("f6298b4c-c725-4d42-849b-410bbb14ea62");
-pub const CLSID_PBDA_AUX_DATA_TYPE = @import("../zig.zig").Guid.initString("fd456373-3323-4090-adca-8ed45f55cf10");
-pub const CLSID_PBDA_Encoder_DATA_TYPE = @import("../zig.zig").Guid.initString("728fd6bc-5546-4716-b103-f899f5a1fa68");
-pub const PBDA_Encoder_Audio_AlgorithmType_MPEG1LayerII : u32 = 0;
-pub const PBDA_Encoder_Audio_AlgorithmType_AC3 : u32 = 1;
-pub const PBDA_Encoder_Video_MPEG2PartII : u32 = 0;
-pub const PBDA_Encoder_Video_MPEG4Part10 : u32 = 1;
-pub const PBDA_Encoder_Video_AVC : u32 = 1;
-pub const PBDA_Encoder_Video_H264 : u32 = 1;
-pub const PBDA_Encoder_BitrateMode_Constant : u32 = 1;
-pub const PBDA_Encoder_BitrateMode_Variable : u32 = 2;
-pub const PBDA_Encoder_BitrateMode_Average : u32 = 3;
-pub const CLSID_PBDA_FDC_DATA_TYPE = @import("../zig.zig").Guid.initString("e7dbf9a0-22ab-4047-8e67-ef9ad504e729");
-pub const CLSID_PBDA_GDDS_DATA_TYPE = @import("../zig.zig").Guid.initString("c80c0df3-6052-4c16-9f56-c44c21f73c45");
-pub const LIBID_QuartzNetTypeLib = @import("../zig.zig").Guid.initString("56a868b1-0ad4-11ce-b03a-0020af0ba770");
-pub const LIBID_QuartzTypeLib = @import("../zig.zig").Guid.initString("56a868b0-0ad4-11ce-b03a-0020af0ba770");
-pub const CLSID_AMMultiMediaStream = @import("../zig.zig").Guid.initString("49c47ce5-9ba4-11d0-8212-00c04fc32c45");
-pub const CLSID_AMDirectDrawStream = @import("../zig.zig").Guid.initString("49c47ce4-9ba4-11d0-8212-00c04fc32c45");
-pub const CLSID_AMAudioStream = @import("../zig.zig").Guid.initString("8496e040-af4c-11d0-8212-00c04fc32c45");
-pub const CLSID_AMAudioData = @import("../zig.zig").Guid.initString("f2468580-af8a-11d0-8212-00c04fc32c45");
-pub const CLSID_AMMediaTypeStream = @import("../zig.zig").Guid.initString("cf0f2f7c-f7bf-11d0-900d-00c04fd9189d");
-pub const AMDDS_NONE : u32 = 0;
-pub const AMDDS_DCIPS : u32 = 1;
-pub const AMDDS_PS : u32 = 2;
-pub const AMDDS_RGBOVR : u32 = 4;
-pub const AMDDS_YUVOVR : u32 = 8;
-pub const AMDDS_RGBOFF : u32 = 16;
-pub const AMDDS_YUVOFF : u32 = 32;
-pub const AMDDS_RGBFLP : u32 = 64;
-pub const AMDDS_YUVFLP : u32 = 128;
-pub const AMDDS_ALL : u32 = 255;
-pub const MAX_SIZE_MPEG1_SEQUENCE_INFO : u32 = 140;
-pub const CLSID_DMOWrapperFilter = @import("../zig.zig").Guid.initString("94297043-bd82-4dfd-b0de-8177739c6d20");
-pub const CLSID_DMOFilterCategory = @import("../zig.zig").Guid.initString("bcd5796c-bd52-4d30-ab76-70f975b89199");
-pub const AM_MPEG_AUDIO_DUAL_MERGE : u32 = 0;
-pub const AM_MPEG_AUDIO_DUAL_LEFT : u32 = 1;
-pub const AM_MPEG_AUDIO_DUAL_RIGHT : u32 = 2;
-pub const CLSID_XMLGraphBuilder = @import("../zig.zig").Guid.initString("1bb05961-5fbf-11d2-a521-44df07c10000");
-pub const VFW_FIRST_CODE : u32 = 512;
-pub const MAX_ERROR_TEXT_LEN : u32 = 160;
-pub const MPBOOL_TRUE : u32 = 1;
-pub const MPBOOL_FALSE : u32 = 0;
-pub const DWORD_ALLPARAMS : i32 = -1;
-pub const GUID_TIME_REFERENCE = @import("../zig.zig").Guid.initString("93ad712b-daa0-4ffe-bc81-b0ce500fcdd9");
-pub const GUID_TIME_MUSIC = @import("../zig.zig").Guid.initString("0574c49d-5b04-4b15-a542-ae282030117b");
-pub const GUID_TIME_SAMPLES = @import("../zig.zig").Guid.initString("a8593d05-0c43-4984-9a63-97af9e02c4c0");
-pub const MPF_ENVLP_STANDARD : u32 = 0;
-pub const MPF_ENVLP_BEGIN_CURRENTVAL : u32 = 1;
-pub const MPF_ENVLP_BEGIN_NEUTRALVAL : u32 = 2;
-pub const MPF_PUNCHIN_REFTIME : u32 = 0;
-pub const MPF_PUNCHIN_NOW : u32 = 1;
-pub const MPF_PUNCHIN_STOPPED : u32 = 2;
-pub const DMOCATEGORY_AUDIO_DECODER = @import("../zig.zig").Guid.initString("57f2db8b-e6bb-4513-9d43-dcd2a6593125");
-pub const DMOCATEGORY_AUDIO_ENCODER = @import("../zig.zig").Guid.initString("33d9a761-90c8-11d0-bd43-00a0c911ce86");
-pub const DMOCATEGORY_VIDEO_DECODER = @import("../zig.zig").Guid.initString("4a69b442-28be-4991-969c-b500adf5d8a8");
-pub const DMOCATEGORY_VIDEO_ENCODER = @import("../zig.zig").Guid.initString("33d9a760-90c8-11d0-bd43-00a0c911ce86");
-pub const DMOCATEGORY_AUDIO_EFFECT = @import("../zig.zig").Guid.initString("f3602b3f-0592-48df-a4cd-674721e7ebeb");
-pub const DMOCATEGORY_VIDEO_EFFECT = @import("../zig.zig").Guid.initString("d990ee14-776c-4723-be46-3da2f56f10b9");
-pub const DMOCATEGORY_AUDIO_CAPTURE_EFFECT = @import("../zig.zig").Guid.initString("f665aaba-3e09-4920-aa5f-219811148f09");
-pub const DMOCATEGORY_ACOUSTIC_ECHO_CANCEL = @import("../zig.zig").Guid.initString("bf963d80-c559-11d0-8a2b-00a0c9255ac1");
-pub const DMOCATEGORY_AUDIO_NOISE_SUPPRESS = @import("../zig.zig").Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
-pub const DMOCATEGORY_AGC = @import("../zig.zig").Guid.initString("e88c9ba0-c557-11d0-8a2b-00a0c9255ac1");
-pub const MSPID_PrimaryVideo = @import("../zig.zig").Guid.initString("a35ff56a-9fda-11d0-8fdf-00c04fd9189d");
-pub const MSPID_PrimaryAudio = @import("../zig.zig").Guid.initString("a35ff56b-9fda-11d0-8fdf-00c04fd9189d");
-pub const VFW_E_INVALIDMEDIATYPE : i32 = -2147220992;
-pub const VFW_E_INVALIDSUBTYPE : i32 = -2147220991;
-pub const VFW_E_NEED_OWNER : i32 = -2147220990;
-pub const VFW_E_ENUM_OUT_OF_SYNC : i32 = -2147220989;
-pub const VFW_E_ALREADY_CONNECTED : i32 = -2147220988;
-pub const VFW_E_FILTER_ACTIVE : i32 = -2147220987;
-pub const VFW_E_NO_TYPES : i32 = -2147220986;
-pub const VFW_E_NO_ACCEPTABLE_TYPES : i32 = -2147220985;
-pub const VFW_E_INVALID_DIRECTION : i32 = -2147220984;
-pub const VFW_E_NOT_CONNECTED : i32 = -2147220983;
-pub const VFW_E_NO_ALLOCATOR : i32 = -2147220982;
-pub const VFW_E_RUNTIME_ERROR : i32 = -2147220981;
-pub const VFW_E_BUFFER_NOTSET : i32 = -2147220980;
-pub const VFW_E_BUFFER_OVERFLOW : i32 = -2147220979;
-pub const VFW_E_BADALIGN : i32 = -2147220978;
-pub const VFW_E_ALREADY_COMMITTED : i32 = -2147220977;
-pub const VFW_E_BUFFERS_OUTSTANDING : i32 = -2147220976;
-pub const VFW_E_NOT_COMMITTED : i32 = -2147220975;
-pub const VFW_E_SIZENOTSET : i32 = -2147220974;
-pub const VFW_E_NO_CLOCK : i32 = -2147220973;
-pub const VFW_E_NO_SINK : i32 = -2147220972;
-pub const VFW_E_NO_INTERFACE : i32 = -2147220971;
-pub const VFW_E_NOT_FOUND : i32 = -2147220970;
-pub const VFW_E_CANNOT_CONNECT : i32 = -2147220969;
-pub const VFW_E_CANNOT_RENDER : i32 = -2147220968;
-pub const VFW_E_CHANGING_FORMAT : i32 = -2147220967;
-pub const VFW_E_NO_COLOR_KEY_SET : i32 = -2147220966;
-pub const VFW_E_NOT_OVERLAY_CONNECTION : i32 = -2147220965;
-pub const VFW_E_NOT_SAMPLE_CONNECTION : i32 = -2147220964;
-pub const VFW_E_PALETTE_SET : i32 = -2147220963;
-pub const VFW_E_COLOR_KEY_SET : i32 = -2147220962;
-pub const VFW_E_NO_COLOR_KEY_FOUND : i32 = -2147220961;
-pub const VFW_E_NO_PALETTE_AVAILABLE : i32 = -2147220960;
-pub const VFW_E_NO_DISPLAY_PALETTE : i32 = -2147220959;
-pub const VFW_E_TOO_MANY_COLORS : i32 = -2147220958;
-pub const VFW_E_STATE_CHANGED : i32 = -2147220957;
-pub const VFW_E_NOT_STOPPED : i32 = -2147220956;
-pub const VFW_E_NOT_PAUSED : i32 = -2147220955;
-pub const VFW_E_NOT_RUNNING : i32 = -2147220954;
-pub const VFW_E_WRONG_STATE : i32 = -2147220953;
-pub const VFW_E_START_TIME_AFTER_END : i32 = -2147220952;
-pub const VFW_E_INVALID_RECT : i32 = -2147220951;
-pub const VFW_E_TYPE_NOT_ACCEPTED : i32 = -2147220950;
-pub const VFW_E_SAMPLE_REJECTED : i32 = -2147220949;
-pub const VFW_E_SAMPLE_REJECTED_EOS : i32 = -2147220948;
-pub const VFW_E_DUPLICATE_NAME : i32 = -2147220947;
-pub const VFW_S_DUPLICATE_NAME : i32 = 262701;
-pub const VFW_E_TIMEOUT : i32 = -2147220946;
-pub const VFW_E_INVALID_FILE_FORMAT : i32 = -2147220945;
-pub const VFW_E_ENUM_OUT_OF_RANGE : i32 = -2147220944;
-pub const VFW_E_CIRCULAR_GRAPH : i32 = -2147220943;
-pub const VFW_E_NOT_ALLOWED_TO_SAVE : i32 = -2147220942;
-pub const VFW_E_TIME_ALREADY_PASSED : i32 = -2147220941;
-pub const VFW_E_ALREADY_CANCELLED : i32 = -2147220940;
-pub const VFW_E_CORRUPT_GRAPH_FILE : i32 = -2147220939;
-pub const VFW_E_ADVISE_ALREADY_SET : i32 = -2147220938;
-pub const VFW_S_STATE_INTERMEDIATE : i32 = 262711;
-pub const VFW_E_NO_MODEX_AVAILABLE : i32 = -2147220936;
-pub const VFW_E_NO_ADVISE_SET : i32 = -2147220935;
-pub const VFW_E_NO_FULLSCREEN : i32 = -2147220934;
-pub const VFW_E_IN_FULLSCREEN_MODE : i32 = -2147220933;
-pub const VFW_E_UNKNOWN_FILE_TYPE : i32 = -2147220928;
-pub const VFW_E_CANNOT_LOAD_SOURCE_FILTER : i32 = -2147220927;
-pub const VFW_S_PARTIAL_RENDER : i32 = 262722;
-pub const VFW_E_FILE_TOO_SHORT : i32 = -2147220925;
-pub const VFW_E_INVALID_FILE_VERSION : i32 = -2147220924;
-pub const VFW_S_SOME_DATA_IGNORED : i32 = 262725;
-pub const VFW_S_CONNECTIONS_DEFERRED : i32 = 262726;
-pub const VFW_E_INVALID_CLSID : i32 = -2147220921;
-pub const VFW_E_INVALID_MEDIA_TYPE : i32 = -2147220920;
-pub const VFW_E_BAD_KEY : i32 = -2147220494;
-pub const VFW_S_NO_MORE_ITEMS : i32 = 262403;
-pub const VFW_E_SAMPLE_TIME_NOT_SET : i32 = -2147220919;
-pub const VFW_S_RESOURCE_NOT_NEEDED : i32 = 262736;
-pub const VFW_E_MEDIA_TIME_NOT_SET : i32 = -2147220911;
-pub const VFW_E_NO_TIME_FORMAT_SET : i32 = -2147220910;
-pub const VFW_E_MONO_AUDIO_HW : i32 = -2147220909;
-pub const VFW_S_MEDIA_TYPE_IGNORED : i32 = 262740;
-pub const VFW_E_NO_DECOMPRESSOR : i32 = -2147220907;
-pub const VFW_E_NO_AUDIO_HARDWARE : i32 = -2147220906;
-pub const VFW_S_VIDEO_NOT_RENDERED : i32 = 262743;
-pub const VFW_S_AUDIO_NOT_RENDERED : i32 = 262744;
-pub const VFW_E_RPZA : i32 = -2147220903;
-pub const VFW_S_RPZA : i32 = 262746;
-pub const VFW_E_PROCESSOR_NOT_SUITABLE : i32 = -2147220901;
-pub const VFW_E_UNSUPPORTED_AUDIO : i32 = -2147220900;
-pub const VFW_E_UNSUPPORTED_VIDEO : i32 = -2147220899;
-pub const VFW_E_MPEG_NOT_CONSTRAINED : i32 = -2147220898;
-pub const VFW_E_NOT_IN_GRAPH : i32 = -2147220897;
-pub const VFW_S_ESTIMATED : i32 = 262752;
-pub const VFW_E_NO_TIME_FORMAT : i32 = -2147220895;
-pub const VFW_E_READ_ONLY : i32 = -2147220894;
-pub const VFW_S_RESERVED : i32 = 262755;
-pub const VFW_E_BUFFER_UNDERFLOW : i32 = -2147220892;
-pub const VFW_E_UNSUPPORTED_STREAM : i32 = -2147220891;
-pub const VFW_E_NO_TRANSPORT : i32 = -2147220890;
-pub const VFW_S_STREAM_OFF : i32 = 262759;
-pub const VFW_S_CANT_CUE : i32 = 262760;
-pub const VFW_E_BAD_VIDEOCD : i32 = -2147220887;
-pub const VFW_S_NO_STOP_TIME : i32 = 262768;
-pub const VFW_E_OUT_OF_VIDEO_MEMORY : i32 = -2147220879;
-pub const VFW_E_VP_NEGOTIATION_FAILED : i32 = -2147220878;
-pub const VFW_E_DDRAW_CAPS_NOT_SUITABLE : i32 = -2147220877;
-pub const VFW_E_NO_VP_HARDWARE : i32 = -2147220876;
-pub const VFW_E_NO_CAPTURE_HARDWARE : i32 = -2147220875;
-pub const VFW_E_DVD_OPERATION_INHIBITED : i32 = -2147220874;
-pub const VFW_E_DVD_INVALIDDOMAIN : i32 = -2147220873;
-pub const VFW_E_DVD_NO_BUTTON : i32 = -2147220872;
-pub const VFW_E_DVD_GRAPHNOTREADY : i32 = -2147220871;
-pub const VFW_E_DVD_RENDERFAIL : i32 = -2147220870;
-pub const VFW_E_DVD_DECNOTENOUGH : i32 = -2147220869;
-pub const VFW_E_DDRAW_VERSION_NOT_SUITABLE : i32 = -2147220868;
-pub const VFW_E_COPYPROT_FAILED : i32 = -2147220867;
-pub const VFW_S_NOPREVIEWPIN : i32 = 262782;
-pub const VFW_E_TIME_EXPIRED : i32 = -2147220865;
-pub const VFW_S_DVD_NON_ONE_SEQUENTIAL : i32 = 262784;
-pub const VFW_E_DVD_WRONG_SPEED : i32 = -2147220863;
-pub const VFW_E_DVD_MENU_DOES_NOT_EXIST : i32 = -2147220862;
-pub const VFW_E_DVD_CMD_CANCELLED : i32 = -2147220861;
-pub const VFW_E_DVD_STATE_WRONG_VERSION : i32 = -2147220860;
-pub const VFW_E_DVD_STATE_CORRUPT : i32 = -2147220859;
-pub const VFW_E_DVD_STATE_WRONG_DISC : i32 = -2147220858;
-pub const VFW_E_DVD_INCOMPATIBLE_REGION : i32 = -2147220857;
-pub const VFW_E_DVD_NO_ATTRIBUTES : i32 = -2147220856;
-pub const VFW_E_DVD_NO_GOUP_PGC : i32 = -2147220855;
-pub const VFW_E_DVD_LOW_PARENTAL_LEVEL : i32 = -2147220854;
-pub const VFW_E_DVD_NOT_IN_KARAOKE_MODE : i32 = -2147220853;
-pub const VFW_S_DVD_CHANNEL_CONTENTS_NOT_AVAILABLE : i32 = 262796;
-pub const VFW_S_DVD_NOT_ACCURATE : i32 = 262797;
-pub const VFW_E_FRAME_STEP_UNSUPPORTED : i32 = -2147220850;
-pub const VFW_E_DVD_STREAM_DISABLED : i32 = -2147220849;
-pub const VFW_E_DVD_TITLE_UNKNOWN : i32 = -2147220848;
-pub const VFW_E_DVD_INVALID_DISC : i32 = -2147220847;
-pub const VFW_E_DVD_NO_RESUME_INFORMATION : i32 = -2147220846;
-pub const VFW_E_PIN_ALREADY_BLOCKED_ON_THIS_THREAD : i32 = -2147220845;
-pub const VFW_E_PIN_ALREADY_BLOCKED : i32 = -2147220844;
-pub const VFW_E_CERTIFICATION_FAILURE : i32 = -2147220843;
-pub const VFW_E_VMR_NOT_IN_MIXER_MODE : i32 = -2147220842;
-pub const VFW_E_VMR_NO_AP_SUPPLIED : i32 = -2147220841;
-pub const VFW_E_VMR_NO_DEINTERLACE_HW : i32 = -2147220840;
-pub const VFW_E_VMR_NO_PROCAMP_HW : i32 = -2147220839;
-pub const VFW_E_DVD_VMR9_INCOMPATIBLEDEC : i32 = -2147220838;
-pub const VFW_E_NO_COPP_HW : i32 = -2147220837;
-pub const VFW_E_DVD_NONBLOCKING : i32 = -2147220836;
-pub const VFW_E_DVD_TOO_MANY_RENDERERS_IN_FILTER_GRAPH : i32 = -2147220835;
-pub const VFW_E_DVD_NON_EVR_RENDERER_IN_FILTER_GRAPH : i32 = -2147220834;
-pub const VFW_E_DVD_RESOLUTION_ERROR : i32 = -2147220833;
-pub const E_PROP_SET_UNSUPPORTED : i32 = -2147023726;
-pub const E_PROP_ID_UNSUPPORTED : i32 = -2147023728;
-pub const VFW_E_CODECAPI_LINEAR_RANGE : i32 = -2147220720;
-pub const VFW_E_CODECAPI_ENUMERATED : i32 = -2147220719;
-pub const VFW_E_CODECAPI_NO_DEFAULT : i32 = -2147220717;
-pub const VFW_E_CODECAPI_NO_CURRENT_VALUE : i32 = -2147220716;
-pub const VFW_E_DVD_CHAPTER_DOES_NOT_EXIST : i32 = -2147220715;
-pub const VFW_S_DVD_RENDER_STATUS : i32 = 262944;
-pub const DTV_CardStatus_Inserted : u32 = 0;
-pub const DTV_CardStatus_Removed : u32 = 1;
-pub const DTV_CardStatus_Error : u32 = 2;
-pub const DTV_CardStatus_FirmwareDownload : u32 = 3;
-pub const OCUR_PAIRING_PROTOCOL_VERSION : u32 = 2;
-pub const PBDA_PAIRING_PROTOCOL_VERSION : u32 = 3;
-pub const DTV_MMIMessage_Open : u32 = 0;
-pub const DTV_MMIMessage_Close : u32 = 1;
-pub const DTV_Entitlement_CanDecrypt : u32 = 0;
-pub const DTV_Entitlement_NotEntitled : u32 = 1;
-pub const DTV_Entitlement_TechnicalFailure : u32 = 2;
-pub const AudioType_Standard : u32 = 0;
-pub const AudioType_Music_And_Effects : u32 = 1;
-pub const AudioType_Visually_Impaired : u32 = 2;
-pub const AudioType_Hearing_Impaired : u32 = 3;
-pub const AudioType_Dialogue : u32 = 4;
-pub const AudioType_Commentary : u32 = 5;
-pub const AudioType_Emergency : u32 = 6;
-pub const AudioType_Voiceover : u32 = 7;
-pub const AudioType_Reserved : i32 = -1;
-pub const MAX_COUNTRY_CODE_STRING : u32 = 3;
-pub const PARENTAL_CONTROL_TIME_RANGE : u32 = 1;
-pub const REQUIRED_PARENTAL_CONTROL_TIME_RANGE : u32 = 2;
-pub const PARENTAL_CONTROL_CONTENT_RATING : u32 = 256;
-pub const PARENTAL_CONTROL_ATTRIB_VIOLENCE : u32 = 512;
-pub const PARENTAL_CONTROL_ATTRIB_LANGUAGE : u32 = 513;
-pub const PARENTAL_CONTROL_ATTRIB_SEXUAL : u32 = 514;
-pub const PARENTAL_CONTROL_ATTRIB_DIALOGUE : u32 = 515;
-pub const PARENTAL_CONTROL_ATTRIB_FANTASY : u32 = 516;
-pub const PARENTAL_CONTROL_VALUE_UNDEFINED : u32 = 0;
-pub const MPEG2_FILTER_VERSION_1_SIZE : u32 = 124;
-pub const MPEG2_FILTER_VERSION_2_SIZE : u32 = 133;
-pub const SID_MSVidCtl_CurrentAudioEndpoint = @import("../zig.zig").Guid.initString("cf9a88f4-abcf-4ed8-9b74-7db33445459e");
-pub const STREAMBUFFER_EC_BASE : u32 = 806;
-pub const EVENTID_SBE2RecControlStarted = @import("../zig.zig").Guid.initString("8966a89e-f83e-4c0e-bc3b-bfa7649e04cb");
-pub const EVENTID_SBE2RecControlStopped = @import("../zig.zig").Guid.initString("454b1ec8-0c9b-4caa-b1a1-1e7a2666f6c3");
-pub const SBE2_STREAM_DESC_EVENT = @import("../zig.zig").Guid.initString("2313a4ed-bf2d-454f-ad8a-d95ba7f91fee");
-pub const SBE2_V1_STREAMS_CREATION_EVENT = @import("../zig.zig").Guid.initString("000fcf09-97f5-46ac-9769-7a83b35384fb");
-pub const SBE2_V2_STREAMS_CREATION_EVENT = @import("../zig.zig").Guid.initString("a72530a3-0344-4cab-a2d0-fe937dbdcab3");
-pub const SBE2_STREAM_DESC_VERSION : u32 = 1;
-pub const SID_DRMSecureServiceChannel = @import("../zig.zig").Guid.initString("c4c4c4c4-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_ETFilterEncProperties = @import("../zig.zig").Guid.initString("c4c4c481-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_ETFilterTagProperties = @import("../zig.zig").Guid.initString("c4c4c491-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_PTFilter = @import("../zig.zig").Guid.initString("9cd31617-b303-4f96-8330-2eb173ea4dc6");
-pub const CLSID_DTFilterEncProperties = @import("../zig.zig").Guid.initString("c4c4c482-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_DTFilterTagProperties = @import("../zig.zig").Guid.initString("c4c4c492-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_XDSCodecProperties = @import("../zig.zig").Guid.initString("c4c4c483-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_XDSCodecTagProperties = @import("../zig.zig").Guid.initString("c4c4c493-0049-4e2b-98fb-9537f6ce516d");
-pub const CLSID_CPCAFiltersCategory = @import("../zig.zig").Guid.initString("c4c4c4fc-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_XDSCodecNewXDSRating = @import("../zig.zig").Guid.initString("c4c4c4e0-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_XDSCodecDuplicateXDSRating = @import("../zig.zig").Guid.initString("c4c4c4df-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_XDSCodecNewXDSPacket = @import("../zig.zig").Guid.initString("c4c4c4e1-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterRatingChange = @import("../zig.zig").Guid.initString("c4c4c4e2-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterRatingsBlock = @import("../zig.zig").Guid.initString("c4c4c4e3-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterRatingsUnblock = @import("../zig.zig").Guid.initString("c4c4c4e4-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterXDSPacket = @import("../zig.zig").Guid.initString("c4c4c4e5-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETFilterEncryptionOn = @import("../zig.zig").Guid.initString("c4c4c4e6-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETFilterEncryptionOff = @import("../zig.zig").Guid.initString("c4c4c4e7-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterCOPPUnblock = @import("../zig.zig").Guid.initString("c4c4c4e8-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_EncDecFilterError = @import("../zig.zig").Guid.initString("c4c4c4e9-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterCOPPBlock = @import("../zig.zig").Guid.initString("c4c4c4ea-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETFilterCopyOnce = @import("../zig.zig").Guid.initString("c4c4c4eb-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETFilterCopyNever = @import("../zig.zig").Guid.initString("c4c4c4f0-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterDataFormatOK = @import("../zig.zig").Guid.initString("c4c4c4ec-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_DTFilterDataFormatFailure = @import("../zig.zig").Guid.initString("c4c4c4ed-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETDTFilterLicenseOK = @import("../zig.zig").Guid.initString("c4c4c4ee-0049-4e2b-98fb-9537f6ce516d");
-pub const EVENTID_ETDTFilterLicenseFailure = @import("../zig.zig").Guid.initString("c4c4c4ef-0049-4e2b-98fb-9537f6ce516d");
-pub const MEDIASUBTYPE_ETDTFilter_Tagged = @import("../zig.zig").Guid.initString("c4c4c4d0-0049-4e2b-98fb-9537f6ce516d");
-pub const FORMATTYPE_ETDTFilter_Tagged = @import("../zig.zig").Guid.initString("c4c4c4d1-0049-4e2b-98fb-9537f6ce516d");
-pub const MEDIASUBTYPE_CPFilters_Processed = @import("../zig.zig").Guid.initString("46adbd28-6fd0-4796-93b2-155c51dc048d");
-pub const FORMATTYPE_CPFilters_Processed = @import("../zig.zig").Guid.initString("6739b36f-1d5f-4ac2-8192-28bb0e73d16a");
-pub const EVENTID_EncDecFilterEvent = @import("../zig.zig").Guid.initString("4a1b465b-0fb9-4159-afbd-e33006a0f9f4");
-pub const EVENTID_FormatNotSupportedEvent = @import("../zig.zig").Guid.initString("24b2280a-b2aa-4777-bf65-63f35e7b024a");
-pub const EVENTID_DemultiplexerFilterDiscontinuity = @import("../zig.zig").Guid.initString("16155770-aed5-475c-bb98-95a33070df0c");
-pub const DSATTRIB_WMDRMProtectionInfo = @import("../zig.zig").Guid.initString("40749583-6b9d-4eec-b43c-67a1801e1a9b");
-pub const DSATTRIB_BadSampleInfo = @import("../zig.zig").Guid.initString("e4846dda-5838-42b4-b897-6f7e5faa2f2f");
-pub const MPEG_PAT_PID : u32 = 0;
-pub const MPEG_PAT_TID : u32 = 0;
-pub const MPEG_CAT_PID : u32 = 1;
-pub const MPEG_CAT_TID : u32 = 1;
-pub const MPEG_PMT_TID : u32 = 2;
-pub const MPEG_TSDT_PID : u32 = 2;
-pub const MPEG_TSDT_TID : u32 = 3;
-pub const ATSC_MGT_PID : u32 = 8187;
-pub const ATSC_MGT_TID : u32 = 199;
-pub const ATSC_VCT_PID : u32 = 8187;
-pub const ATSC_VCT_TERR_TID : u32 = 200;
-pub const ATSC_VCT_CABL_TID : u32 = 201;
-pub const ATSC_EIT_TID : u32 = 203;
-pub const ATSC_ETT_TID : u32 = 204;
-pub const ATSC_RRT_TID : u32 = 202;
-pub const ATSC_RRT_PID : u32 = 8187;
-pub const ATSC_STT_PID : u32 = 8187;
-pub const ATSC_STT_TID : u32 = 205;
-pub const ATSC_PIT_TID : u32 = 208;
-pub const DVB_NIT_PID : u32 = 16;
-pub const DVB_NIT_ACTUAL_TID : u32 = 64;
-pub const DVB_NIT_OTHER_TID : u32 = 65;
-pub const DVB_SDT_PID : u32 = 17;
-pub const DVB_SDT_ACTUAL_TID : u32 = 66;
-pub const DVB_SDT_OTHER_TID : u32 = 70;
-pub const DVB_BAT_PID : u32 = 17;
-pub const DVB_BAT_TID : u32 = 74;
-pub const DVB_EIT_PID : u32 = 18;
-pub const DVB_EIT_OTHER_TID : u32 = 79;
-pub const DVB_RST_PID : u32 = 19;
-pub const DVB_RST_TID : u32 = 113;
-pub const DVB_TDT_PID : u32 = 20;
-pub const DVB_TDT_TID : u32 = 112;
-pub const DVB_ST_PID_16 : u32 = 16;
-pub const DVB_ST_PID_17 : u32 = 17;
-pub const DVB_ST_PID_18 : u32 = 18;
-pub const DVB_ST_PID_19 : u32 = 19;
-pub const DVB_ST_PID_20 : u32 = 20;
-pub const DVB_ST_TID : u32 = 114;
-pub const ISDB_ST_TID : u32 = 114;
-pub const DVB_TOT_PID : u32 = 20;
-pub const DVB_TOT_TID : u32 = 115;
-pub const DVB_DIT_PID : u32 = 30;
-pub const DVB_DIT_TID : u32 = 126;
-pub const DVB_SIT_PID : u32 = 31;
-pub const DVB_SIT_TID : u32 = 127;
-pub const ISDB_EMM_TID : u32 = 133;
-pub const ISDB_BIT_PID : u32 = 36;
-pub const ISDB_BIT_TID : u32 = 196;
-pub const ISDB_NBIT_PID : u32 = 37;
-pub const ISDB_NBIT_MSG_TID : u32 = 197;
-pub const ISDB_NBIT_REF_TID : u32 = 198;
-pub const ISDB_LDT_PID : u32 = 37;
-pub const ISDB_LDT_TID : u32 = 199;
-pub const ISDB_SDTT_PID : u32 = 35;
-pub const ISDB_SDTT_ALT_PID : u32 = 40;
-pub const ISDB_SDTT_TID : u32 = 195;
-pub const ISDB_CDT_PID : u32 = 41;
-pub const ISDB_CDT_TID : u32 = 200;
-pub const SCTE_EAS_TID : u32 = 216;
-pub const SCTE_EAS_IB_PID : u32 = 8187;
-pub const SCTE_EAS_OOB_PID : u32 = 8188;
-pub const CLSID_Mpeg2TableFilter = @import("../zig.zig").Guid.initString("752845f1-758f-4c83-a043-4270c593308e");
-pub const ATSC_ETM_LOCATION_NOT_PRESENT : u32 = 0;
-pub const ATSC_ETM_LOCATION_IN_PTC_FOR_PSIP : u32 = 1;
-pub const ATSC_ETM_LOCATION_IN_PTC_FOR_EVENT : u32 = 2;
-pub const ATSC_ETM_LOCATION_RESERVED : u32 = 3;
-pub const SAMPLE_SEQ_SEQUENCE_HEADER : u32 = 1;
-pub const SAMPLE_SEQ_GOP_HEADER : u32 = 2;
-pub const SAMPLE_SEQ_PICTURE_HEADER : u32 = 3;
-pub const SAMPLE_SEQ_CONTENT_UNKNOWN : u32 = 0;
-pub const SAMPLE_SEQ_CONTENT_I_FRAME : u32 = 1;
-pub const SAMPLE_SEQ_CONTENT_P_FRAME : u32 = 2;
-pub const SAMPLE_SEQ_CONTENT_B_FRAME : u32 = 3;
-pub const COMPONENT_TAG_CAPTION_MIN : u32 = 48;
-pub const COMPONENT_TAG_CAPTION_MAX : u32 = 55;
-pub const COMPONENT_TAG_SUPERIMPOSE_MIN : u32 = 56;
-pub const COMPONENT_TAG_SUPERIMPOSE_MAX : u32 = 63;
+pub const STREAMBUFFER_EC_TIMEHOLE = @as(i32, 806);
+pub const STREAMBUFFER_EC_STALE_DATA_READ = @as(i32, 807);
+pub const STREAMBUFFER_EC_STALE_FILE_DELETED = @as(i32, 808);
+pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE = @as(i32, 809);
+pub const STREAMBUFFER_EC_WRITE_FAILURE = @as(i32, 810);
+pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR = @as(i32, 811);
+pub const STREAMBUFFER_EC_READ_FAILURE = @as(i32, 812);
+pub const STREAMBUFFER_EC_RATE_CHANGED = @as(i32, 813);
+pub const STREAMBUFFER_EC_PRIMARY_AUDIO = @as(i32, 814);
+pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
+pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
 
 //--------------------------------------------------------------------------------
-// Section: Types (1479)
+// Section: Types (1478)
 //--------------------------------------------------------------------------------
+pub const READYSTATE = extern enum(i32) {
+    UNINITIALIZED = 0,
+    LOADING = 1,
+    LOADED = 2,
+    INTERACTIVE = 3,
+    COMPLETE = 4,
+};
+pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
+pub const READYSTATE_LOADING = READYSTATE.LOADING;
+pub const READYSTATE_LOADED = READYSTATE.LOADED;
+pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
+pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
+
 pub const KSTOPOLOGY_CONNECTION = extern struct {
     FromNode: u32,
     FromNodePin: u32,
@@ -707,19 +720,6 @@ pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
 pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
 pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
 pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
-
-pub const READYSTATE = extern enum(i32) {
-    UNINITIALIZED = 0,
-    LOADING = 1,
-    LOADED = 2,
-    INTERACTIVE = 3,
-    COMPLETE = 4,
-};
-pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
-pub const READYSTATE_LOADING = READYSTATE.LOADING;
-pub const READYSTATE_LOADED = READYSTATE.LOADED;
-pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
-pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
 
 const CLSID_SystemTuningSpaces_Value = @import("../zig.zig").Guid.initString("d02aac50-027e-11d3-9d8e-00c04f72d980");
 pub const CLSID_SystemTuningSpaces = &CLSID_SystemTuningSpaces_Value;
@@ -22308,101 +22308,6 @@ pub const MPEG_HEADER_BITS = extern struct {
 pub const MPEG_HEADER_VERSION_BITS = extern struct {
     _bitfield: u8,
 };
-
-pub const MPEG1WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    fwHeadLayer: u16,
-    dwHeadBitrate: u32,
-    fwHeadMode: u16,
-    fwHeadModeExt: u16,
-    wHeadEmphasis: u16,
-    fwHeadFlags: u16,
-    dwPTSLow: u32,
-    dwPTSHigh: u32,
-};
-
-pub const MPEGLAYER3WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    wID: u16,
-    fdwFlags: MPEGLAYER3WAVEFORMAT_fdwFlags,
-    nBlockSize: u16,
-    nFramesPerBlock: u16,
-    nCodecDelay: u16,
-};
-
-pub const HEAACWAVEINFO = extern struct {
-    wfx: WAVEFORMATEX,
-    wPayloadType: u16,
-    wAudioProfileLevelIndication: u16,
-    wStructType: u16,
-    wReserved1: u16,
-    dwReserved2: u32,
-};
-
-pub const HEAACWAVEFORMAT = extern struct {
-    wfInfo: HEAACWAVEINFO,
-    pbAudioSpecificConfig: [1]u8,
-};
-
-pub const BITMAPINFOHEADER = extern struct {
-    biSize: u32,
-    biWidth: i32,
-    biHeight: i32,
-    biPlanes: u16,
-    biBitCount: u16,
-    biCompression: u32,
-    biSizeImage: u32,
-    biXPelsPerMeter: i32,
-    biYPelsPerMeter: i32,
-    biClrUsed: u32,
-    biClrImportant: u32,
-};
-
-pub const DDCOLORKEY = extern struct {
-    dwColorSpaceLowValue: u32,
-    dwColorSpaceHighValue: u32,
-};
-
-pub const IDvbSiParser2_GetEIT2_tableIdFlags = extern enum(u32) {
-    ACTUAL_TID = 78,
-    OTHER_TID_ = 79,
-};
-pub const DVB_EIT_ACTUAL_TID = IDvbSiParser2_GetEIT2_tableIdFlags.ACTUAL_TID;
-pub const DVB_EIT_OTHER_TID_ = IDvbSiParser2_GetEIT2_tableIdFlags.OTHER_TID_;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MPEG2VIDEOINFO_dwFlags = extern enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-};
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_dwFlags.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_dwFlags.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_dwFlags.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_dwFlags.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_dwFlags.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_dwFlags.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_dwFlags.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_dwFlags.WidescreenAnalogOut;
-
-pub const MPEGLAYER3WAVEFORMAT_fdwFlags = extern enum(u32) {
-    ISO = 0,
-    ON = 1,
-    OFF = 2,
-};
-pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_fdwFlags.ISO;
-pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_fdwFlags.ON;
-pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_fdwFlags.OFF;
 
 pub const AMVP_SELECT_FORMAT_BY = extern enum(i32) {
     DO_NOT_CARE = 0,
@@ -44290,9 +44195,6 @@ pub const AMGETERRORTEXTPROCW = fn(
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const AMGETERRORTEXTPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub const SNDDEV_ERR = extern enum(i32) {
     Open = 1,
     Close = 2,
@@ -44508,6 +44410,101 @@ pub const DMO_ENUM_FLAGS = extern enum(i32) {
     D = 1,
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
+
+pub const MPEG1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    fwHeadLayer: u16,
+    dwHeadBitrate: u32,
+    fwHeadMode: u16,
+    fwHeadModeExt: u16,
+    wHeadEmphasis: u16,
+    fwHeadFlags: u16,
+    dwPTSLow: u32,
+    dwPTSHigh: u32,
+};
+
+pub const MPEGLAYER3WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    wID: u16,
+    fdwFlags: MPEGLAYER3WAVEFORMAT_fdwFlags,
+    nBlockSize: u16,
+    nFramesPerBlock: u16,
+    nCodecDelay: u16,
+};
+
+pub const HEAACWAVEINFO = extern struct {
+    wfx: WAVEFORMATEX,
+    wPayloadType: u16,
+    wAudioProfileLevelIndication: u16,
+    wStructType: u16,
+    wReserved1: u16,
+    dwReserved2: u32,
+};
+
+pub const HEAACWAVEFORMAT = extern struct {
+    wfInfo: HEAACWAVEINFO,
+    pbAudioSpecificConfig: [1]u8,
+};
+
+pub const DDCOLORKEY = extern struct {
+    dwColorSpaceLowValue: u32,
+    dwColorSpaceHighValue: u32,
+};
+
+pub const IDvbSiParser2_GetEIT2_tableIdFlags = extern enum(u32) {
+    ACTUAL_TID = 78,
+    OTHER_TID_ = 79,
+};
+pub const DVB_EIT_ACTUAL_TID = IDvbSiParser2_GetEIT2_tableIdFlags.ACTUAL_TID;
+pub const DVB_EIT_OTHER_TID_ = IDvbSiParser2_GetEIT2_tableIdFlags.OTHER_TID_;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MPEG2VIDEOINFO_dwFlags = extern enum(u32) {
+    DoPanScan = 1,
+    DVDLine21Field1 = 2,
+    DVDLine21Field2 = 4,
+    SourceIsLetterboxed = 8,
+    FilmCameraMode = 16,
+    LetterboxAnalogOut = 32,
+    DSS_UserData = 64,
+    DVB_UserData = 128,
+    @"27MhzTimebase" = 256,
+    WidescreenAnalogOut = 512,
+    _,
+};
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_dwFlags.DoPanScan;
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field1;
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_dwFlags.DVDLine21Field2;
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_dwFlags.SourceIsLetterboxed;
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_dwFlags.FilmCameraMode;
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_dwFlags.LetterboxAnalogOut;
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_dwFlags.DSS_UserData;
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_dwFlags.DVB_UserData;
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_dwFlags.@"27MhzTimebase";
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_dwFlags.WidescreenAnalogOut;
+
+pub const MPEGLAYER3WAVEFORMAT_fdwFlags = extern enum(u32) {
+    ISO = 0,
+    ON = 1,
+    OFF = 2,
+};
+pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_fdwFlags.ISO;
+pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_fdwFlags.ON;
+pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_fdwFlags.OFF;
+
+pub const BITMAPINFOHEADER = extern struct {
+    biSize: u32,
+    biWidth: i32,
+    biHeight: i32,
+    biPlanes: u16,
+    biBitCount: u16,
+    biCompression: u32,
+    biSizeImage: u32,
+    biXPelsPerMeter: i32,
+    biYPelsPerMeter: i32,
+    biClrUsed: u32,
+    biClrImportant: u32,
+};
 
 pub const DMO_MEDIA_TYPE = extern struct {
     majortype: Guid,
@@ -45271,18 +45268,22 @@ pub extern "msdmo" fn MoDuplicateMediaType(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
+// Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const AMGETERRORTEXTPROC = AMGETERRORTEXTPROCA;
         pub const AMGetErrorText = AMGetErrorTextA;
     },
     .wide => struct {
+        pub const AMGETERRORTEXTPROC = AMGETERRORTEXTPROCW;
         pub const AMGetErrorText = AMGetErrorTextW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const AMGETERRORTEXTPROC = *opaque{};
         pub const AMGetErrorText = *opaque{};
     } else struct {
+        pub const AMGETERRORTEXTPROC = @compileError("'AMGETERRORTEXTPROC' requires that UNICODE be set to true or false in the root module");
         pub const AMGetErrorText = @compileError("'AMGetErrorText' requires that UNICODE be set to true or false in the root module");
     },
 };
@@ -45315,9 +45316,9 @@ const IErrorLog = @import("automation.zig").IErrorLog;
 const BITMAPINFO = @import("gdi.zig").BITMAPINFO;
 const KS_FRAMING_RANGE = @import("core_audio.zig").KS_FRAMING_RANGE;
 const IEnumMoniker = @import("com.zig").IEnumMoniker;
-const RGNDATA = @import("gdi.zig").RGNDATA;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
+const RGNDATA = @import("gdi.zig").RGNDATA;
 const RGBQUAD = @import("gdi.zig").RGBQUAD;
 const HKEY = @import("windows_programming.zig").HKEY;
 const IEnumVARIANT = @import("automation.zig").IEnumVARIANT;
@@ -45357,15 +45358,14 @@ test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     _ = AMGETERRORTEXTPROCA;
     _ = AMGETERRORTEXTPROCW;
-    _ = AMGETERRORTEXTPROC;
 
     const constant_export_count = 677;
-    const type_export_count = 1185;
+    const type_export_count = 1184;
     const enum_value_export_count = 2136;
     const com_iface_id_export_count = 560;
     const com_class_id_export_count = 294;
     const func_export_count = 13;
-    const unicode_alias_count = 1;
+    const unicode_alias_count = 2;
     const import_count = 63;
     @setEvalBranchQuota(
         constant_export_count +

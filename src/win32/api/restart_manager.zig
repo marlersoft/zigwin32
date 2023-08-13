@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const CCH_RM_MAX_APP_NAME : u32 = 255;
-pub const CCH_RM_MAX_SVC_NAME : u32 = 63;
-pub const RM_INVALID_TS_SESSION : i32 = -1;
-pub const RM_INVALID_PROCESS : i32 = -1;
+pub const CCH_RM_MAX_APP_NAME = @as(u32, 255);
+pub const CCH_RM_MAX_SVC_NAME = @as(u32, 63);
+pub const RM_INVALID_TS_SESSION = @as(i32, -1);
+pub const RM_INVALID_PROCESS = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (10)

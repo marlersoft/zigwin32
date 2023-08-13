@@ -2,929 +2,991 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (919)
 //--------------------------------------------------------------------------------
-pub const _IID_IXmlReader = @import("../zig.zig").Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
-pub const _IID_IXmlWriter = @import("../zig.zig").Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
-pub const _IID_IXmlResolver = @import("../zig.zig").Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
-pub const WLDP_LOCKDOWN_UNDEFINED : u32 = 0;
-pub const WLDP_LOCKDOWN_DEFINED_FLAG : u32 = 2147483648;
-pub const WLDP_LOCKDOWN_CONFIG_CI_FLAG : u32 = 1;
-pub const WLDP_LOCKDOWN_CONFIG_CI_AUDIT_FLAG : u32 = 2;
-pub const WLDP_LOCKDOWN_UMCIENFORCE_FLAG : u32 = 4;
-pub const WLDP_LOCKDOWN_AUDIT_FLAG : u32 = 8;
-pub const WLDP_LOCKDOWN_EXCLUSION_FLAG : u32 = 16;
-pub const WLDP_HOST_INFORMATION_REVISION : u32 = 1;
-pub const WLDP_FLAGS_SKIPSIGNATUREVALIDATION : u32 = 256;
-pub const MAX_TDI_ENTITIES : u32 = 4096;
-pub const INFO_CLASS_GENERIC : u32 = 256;
-pub const INFO_CLASS_PROTOCOL : u32 = 512;
-pub const INFO_CLASS_IMPLEMENTATION : u32 = 768;
-pub const INFO_TYPE_PROVIDER : u32 = 256;
-pub const INFO_TYPE_ADDRESS_OBJECT : u32 = 512;
-pub const INFO_TYPE_CONNECTION : u32 = 768;
-pub const ENTITY_LIST_ID : u32 = 0;
-pub const INVALID_ENTITY_INSTANCE : i32 = -1;
-pub const CONTEXT_SIZE : u32 = 16;
-pub const ENTITY_TYPE_ID : u32 = 1;
-pub const CO_TL_NBF : u32 = 1024;
-pub const CO_TL_SPX : u32 = 1026;
-pub const CO_TL_TCP : u32 = 1028;
-pub const CO_TL_SPP : u32 = 1030;
-pub const CL_TL_NBF : u32 = 1025;
-pub const CL_TL_UDP : u32 = 1027;
-pub const ER_ICMP : u32 = 896;
-pub const CL_NL_IPX : u32 = 769;
-pub const CL_NL_IP : u32 = 771;
-pub const AT_ARP : u32 = 640;
-pub const AT_NULL : u32 = 642;
-pub const IF_GENERIC : u32 = 512;
-pub const IF_MIB : u32 = 514;
-pub const OBJECT_ISROOT : i32 = -2147483648;
-pub const GUID_MiscellaneousCallbacks = @import("../zig.zig").Guid.initString("efd60cc0-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_VideoPortCallbacks = @import("../zig.zig").Guid.initString("efd60cc1-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_ColorControlCallbacks = @import("../zig.zig").Guid.initString("efd60cc2-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_VideoPortCaps = @import("../zig.zig").Guid.initString("efd60cc3-49e7-11d0-889d-00aa00bbb76a");
-pub const GUID_D3DCallbacks2 = @import("../zig.zig").Guid.initString("0ba584e1-70b6-11d0-889d-00aa00bbb76a");
-pub const GUID_D3DCallbacks3 = @import("../zig.zig").Guid.initString("ddf41230-ec0a-11d0-a9b6-00aa00c0993e");
-pub const GUID_NonLocalVidMemCaps = @import("../zig.zig").Guid.initString("86c4fa80-8d84-11d0-94e8-00c04fc34137");
-pub const GUID_KernelCallbacks = @import("../zig.zig").Guid.initString("80863800-6b06-11d0-9b06-00a0c903a3b8");
-pub const GUID_KernelCaps = @import("../zig.zig").Guid.initString("ffaa7540-7aa8-11d0-9b06-00a0c903a3b8");
-pub const GUID_D3DExtendedCaps = @import("../zig.zig").Guid.initString("7de41f80-9d93-11d0-89ab-00a0c9054129");
-pub const GUID_ZPixelFormats = @import("../zig.zig").Guid.initString("93869880-36cf-11d1-9b1b-00aa00bbb8ae");
-pub const GUID_DDMoreSurfaceCaps = @import("../zig.zig").Guid.initString("3b8a0466-f269-11d1-880b-00c04fd930c5");
-pub const GUID_DDStereoMode = @import("../zig.zig").Guid.initString("f828169c-a8e8-11d2-a1f2-00a0c983eaf6");
-pub const GUID_OptSurfaceKmodeInfo = @import("../zig.zig").Guid.initString("e05c8472-51d4-11d1-8cce-00a0c90629a8");
-pub const GUID_OptSurfaceUmodeInfo = @import("../zig.zig").Guid.initString("9d792804-5fa8-11d1-8cd0-00a0c90629a8");
-pub const GUID_UserModeDriverInfo = @import("../zig.zig").Guid.initString("f0b0e8e2-5f97-11d1-8cd0-00a0c90629a8");
-pub const GUID_UserModeDriverPassword = @import("../zig.zig").Guid.initString("97f861b6-60a1-11d1-8cd0-00a0c90629a8");
-pub const GUID_D3DParseUnknownCommandCallback = @import("../zig.zig").Guid.initString("2e04ffa0-98e4-11d1-8ce1-00a0c90629a8");
-pub const GUID_MotionCompCallbacks = @import("../zig.zig").Guid.initString("b1122b40-5da5-11d1-8fcf-00c04fc29b4e");
-pub const GUID_Miscellaneous2Callbacks = @import("../zig.zig").Guid.initString("406b2f00-3e5a-11d1-b640-00aa00a1f96a");
-pub const DDPF_NOVEL_TEXTURE_FORMAT : i32 = 1048576;
-pub const DELETED_OK : u32 = 0;
-pub const DELETED_LASTONE : u32 = 1;
-pub const DELETED_NOTFOUND : u32 = 2;
-pub const DCICOMMAND : u32 = 3075;
-pub const DD_VERSION : i32 = 512;
-pub const DD_RUNTIME_VERSION : i32 = 2306;
-pub const DD_HAL_VERSION : u32 = 256;
-pub const DDCREATEDRIVEROBJECT : u32 = 10;
-pub const DDGET32BITDRIVERNAME : u32 = 11;
-pub const DDNEWCALLBACKFNS : u32 = 12;
-pub const DDVERSIONINFO : u32 = 13;
-pub const MAX_PALETTE_SIZE : u32 = 256;
-pub const D3DFMT_INTERNAL_D32 : u32 = 71;
-pub const D3DFMT_INTERNAL_S1D15 : u32 = 72;
-pub const D3DFMT_INTERNAL_D15S1 : u32 = 73;
-pub const D3DFMT_INTERNAL_S8D24 : u32 = 74;
-pub const D3DFMT_INTERNAL_D24S8 : u32 = 75;
-pub const D3DFMT_INTERNAL_X8D24 : u32 = 76;
-pub const D3DFMT_INTERNAL_D24X8 : u32 = 77;
-pub const DDHAL_PLEASEALLOC_LINEARSIZE : i32 = 3;
-pub const HEAPALIASINFO_MAPPEDREAL : i32 = 1;
-pub const HEAPALIASINFO_MAPPEDDUMMY : i32 = 2;
-pub const DDHAL_CB32_SETEXCLUSIVEMODE : i32 = 256;
-pub const DDHAL_CB32_FLIPTOGDISURFACE : i32 = 512;
-pub const DDHAL_MISCCB32_UPDATENONLOCALHEAP : i32 = 2;
-pub const DDHAL_MISCCB32_GETHEAPALIGNMENT : i32 = 4;
-pub const DDHAL_MISCCB32_GETSYSMEMBLTSTATUS : i32 = 8;
-pub const DDRAWIPAL_256 : i32 = 1;
-pub const DDRAWIPAL_16 : i32 = 2;
-pub const DDRAWIPAL_GDI : i32 = 4;
-pub const DDRAWIPAL_STORED_8 : i32 = 8;
-pub const DDRAWIPAL_STORED_16 : i32 = 16;
-pub const DDRAWIPAL_STORED_24 : i32 = 32;
-pub const DDRAWIPAL_EXCLUSIVE : i32 = 64;
-pub const DDRAWIPAL_INHEL : i32 = 128;
-pub const DDRAWIPAL_DIRTY : i32 = 256;
-pub const DDRAWIPAL_ALLOW256 : i32 = 512;
-pub const DDRAWIPAL_4 : i32 = 1024;
-pub const DDRAWIPAL_2 : i32 = 2048;
-pub const DDRAWIPAL_STORED_8INDEX : i32 = 4096;
-pub const DDRAWIPAL_ALPHA : i32 = 8192;
-pub const DDRAWICLIP_WATCHWINDOW : i32 = 1;
-pub const DDRAWICLIP_ISINITIALIZED : i32 = 2;
-pub const DDRAWICLIP_INMASTERSPRITELIST : i32 = 4;
-pub const DDAL_IMPLICIT : i32 = 1;
-pub const ACCESSRECT_VRAMSTYLE : i32 = 1;
-pub const ACCESSRECT_NOTHOLDINGWIN16LOCK : i32 = 2;
-pub const ACCESSRECT_BROKEN : i32 = 4;
-pub const PFINDEX_UNINITIALIZED : u32 = 0;
-pub const DDRAWISURFGBL_MEMFREE : i32 = 1;
-pub const DDRAWISURFGBL_SYSMEMREQUESTED : i32 = 2;
-pub const DDRAWISURFGBL_ISGDISURFACE : i32 = 4;
-pub const DDRAWISURFGBL_SOFTWAREAUTOFLIP : i32 = 8;
-pub const DDRAWISURFGBL_LOCKNOTHOLDINGWIN16LOCK : i32 = 16;
-pub const DDRAWISURFGBL_LOCKVRAMSTYLE : i32 = 32;
-pub const DDRAWISURFGBL_LOCKBROKEN : i32 = 64;
-pub const DDRAWISURFGBL_IMPLICITHANDLE : i32 = 128;
-pub const DDRAWISURFGBL_ISCLIENTMEM : i32 = 256;
-pub const DDRAWISURFGBL_HARDWAREOPSOURCE : i32 = 512;
-pub const DDRAWISURFGBL_HARDWAREOPDEST : i32 = 1024;
-pub const DDRAWISURFGBL_VPORTINTERLEAVED : i32 = 2048;
-pub const DDRAWISURFGBL_VPORTDATA : i32 = 4096;
-pub const DDRAWISURFGBL_LATEALLOCATELINEAR : i32 = 8192;
-pub const DDRAWISURFGBL_SYSMEMEXECUTEBUFFER : i32 = 16384;
-pub const DDRAWISURFGBL_FASTLOCKHELD : i32 = 32768;
-pub const DDRAWISURFGBL_READONLYLOCKHELD : i32 = 65536;
-pub const DDRAWISURFGBL_DX8SURFACE : i32 = 524288;
-pub const DDRAWISURFGBL_DDHELDONTFREE : i32 = 1048576;
-pub const DDRAWISURFGBL_NOTIFYWHENUNLOCKED : i32 = 2097152;
-pub const DDRAWISURFGBL_RESERVED0 : i32 = -2147483648;
-pub const DDRAWISURF_ATTACHED : i32 = 1;
-pub const DDRAWISURF_IMPLICITCREATE : i32 = 2;
-pub const DDRAWISURF_ISFREE : i32 = 4;
-pub const DDRAWISURF_ATTACHED_FROM : i32 = 8;
-pub const DDRAWISURF_IMPLICITROOT : i32 = 16;
-pub const DDRAWISURF_PARTOFPRIMARYCHAIN : i32 = 32;
-pub const DDRAWISURF_DATAISALIASED : i32 = 64;
-pub const DDRAWISURF_HASDC : i32 = 128;
-pub const DDRAWISURF_HASCKEYDESTOVERLAY : i32 = 256;
-pub const DDRAWISURF_HASCKEYDESTBLT : i32 = 512;
-pub const DDRAWISURF_HASCKEYSRCOVERLAY : i32 = 1024;
-pub const DDRAWISURF_LOCKEXCLUDEDCURSOR : i32 = 4096;
-pub const DDRAWISURF_SETGAMMA : i32 = 32768;
-pub const DDRAWISURF_SW_CKEYDESTOVERLAY : i32 = 65536;
-pub const DDRAWISURF_SW_CKEYDESTBLT : i32 = 131072;
-pub const DDRAWISURF_SW_CKEYSRCOVERLAY : i32 = 262144;
-pub const DDRAWISURF_SW_CKEYSRCBLT : i32 = 524288;
-pub const DDRAWISURF_HW_CKEYDESTOVERLAY : i32 = 1048576;
-pub const DDRAWISURF_HW_CKEYDESTBLT : i32 = 2097152;
-pub const DDRAWISURF_HW_CKEYSRCOVERLAY : i32 = 4194304;
-pub const DDRAWISURF_HW_CKEYSRCBLT : i32 = 8388608;
-pub const DDRAWISURF_INMASTERSPRITELIST : i32 = 16777216;
-pub const DDRAWISURF_HELCB : i32 = 33554432;
-pub const DDRAWISURF_DCIBUSY : i32 = 536870912;
-pub const DDRAWISURF_GETDCNULL : i32 = 1073741824;
-pub const DDRAWISURF_STEREOSURFACELEFT : i32 = 536870912;
-pub const DDRAWISURF_DCILOCK : i32 = -2147483648;
-pub const DDMODEINFO_PALETTIZED : u32 = 1;
-pub const DDMODEINFO_MODEX : u32 = 2;
-pub const DDMODEINFO_UNSUPPORTED : u32 = 4;
-pub const DDMODEINFO_STANDARDVGA : u32 = 8;
-pub const DDMODEINFO_MAXREFRESH : u32 = 16;
-pub const DDMODEINFO_STEREO : u32 = 32;
-pub const DDRAWILCL_HASEXCLUSIVEMODE : i32 = 1;
-pub const DDRAWILCL_ISFULLSCREEN : i32 = 2;
-pub const DDRAWILCL_SETCOOPCALLED : i32 = 4;
-pub const DDRAWILCL_ACTIVEYES : i32 = 8;
-pub const DDRAWILCL_ACTIVENO : i32 = 16;
-pub const DDRAWILCL_HOOKEDHWND : i32 = 32;
-pub const DDRAWILCL_ALLOWMODEX : i32 = 64;
-pub const DDRAWILCL_V1SCLBEHAVIOUR : i32 = 128;
-pub const DDRAWILCL_MODEHASBEENCHANGED : i32 = 256;
-pub const DDRAWILCL_CREATEDWINDOW : i32 = 512;
-pub const DDRAWILCL_DIRTYDC : i32 = 1024;
-pub const DDRAWILCL_DISABLEINACTIVATE : i32 = 2048;
-pub const DDRAWILCL_CURSORCLIPPED : i32 = 4096;
-pub const DDRAWILCL_EXPLICITMONITOR : i32 = 8192;
-pub const DDRAWILCL_MULTITHREADED : i32 = 16384;
-pub const DDRAWILCL_FPUSETUP : i32 = 32768;
-pub const DDRAWILCL_POWEREDDOWN : i32 = 65536;
-pub const DDRAWILCL_DIRECTDRAW7 : i32 = 131072;
-pub const DDRAWILCL_ATTEMPTEDD3DCONTEXT : i32 = 262144;
-pub const DDRAWILCL_FPUPRESERVE : i32 = 524288;
-pub const DDRAWILCL_DX8DRIVER : i32 = 1048576;
-pub const DDRAWILCL_DIRECTDRAW8 : i32 = 2097152;
-pub const DDRAWI_xxxxxxxxx1 : i32 = 1;
-pub const DDRAWI_xxxxxxxxx2 : i32 = 2;
-pub const DDRAWI_VIRTUALDESKTOP : i32 = 8;
-pub const DDRAWI_MODEX : i32 = 16;
-pub const DDRAWI_DISPLAYDRV : i32 = 32;
-pub const DDRAWI_FULLSCREEN : i32 = 64;
-pub const DDRAWI_MODECHANGED : i32 = 128;
-pub const DDRAWI_NOHARDWARE : i32 = 256;
-pub const DDRAWI_PALETTEINIT : i32 = 512;
-pub const DDRAWI_NOEMULATION : i32 = 1024;
-pub const DDRAWI_HASCKEYDESTOVERLAY : i32 = 2048;
-pub const DDRAWI_HASCKEYSRCOVERLAY : i32 = 4096;
-pub const DDRAWI_HASGDIPALETTE : i32 = 8192;
-pub const DDRAWI_EMULATIONINITIALIZED : i32 = 16384;
-pub const DDRAWI_HASGDIPALETTE_EXCLUSIVE : i32 = 32768;
-pub const DDRAWI_MODEXILLEGAL : i32 = 65536;
-pub const DDRAWI_FLIPPEDTOGDI : i32 = 131072;
-pub const DDRAWI_NEEDSWIN16FORVRAMLOCK : i32 = 262144;
-pub const DDRAWI_PDEVICEVRAMBITCLEARED : i32 = 524288;
-pub const DDRAWI_STANDARDVGA : i32 = 1048576;
-pub const DDRAWI_EXTENDEDALIGNMENT : i32 = 2097152;
-pub const DDRAWI_CHANGINGMODE : i32 = 4194304;
-pub const DDRAWI_GDIDRV : i32 = 8388608;
-pub const DDRAWI_ATTACHEDTODESKTOP : i32 = 16777216;
-pub const DDRAWI_UMODELOADED : i32 = 33554432;
-pub const DDRAWI_DDRAWDATANOTFETCHED : i32 = 67108864;
-pub const DDRAWI_SECONDARYDRIVERLOADED : i32 = 134217728;
-pub const DDRAWI_TESTINGMODES : i32 = 268435456;
-pub const DDRAWI_DRIVERINFO2 : i32 = 536870912;
-pub const DDRAWI_BADPDEV : i32 = 1073741824;
-pub const DDRAWIVPORT_NOKERNELHANDLES : u32 = 8;
-pub const DDRAWIVPORT_SOFTWARE_BOB : u32 = 16;
-pub const DDRAWIVPORT_VBION : u32 = 32;
-pub const DDRAWIVPORT_VIDEOON : u32 = 64;
-pub const DDHALINFO_ISPRIMARYDISPLAY : i32 = 1;
-pub const DDHALINFO_MODEXILLEGAL : i32 = 2;
-pub const VDMCONTEXT_i386 : u32 = 65536;
-pub const VDMCONTEXT_i486 : u32 = 65536;
-pub const VDM_KGDT_R3_CODE : u32 = 24;
-pub const VDM_MAXIMUM_SUPPORTED_EXTENSION : u32 = 512;
-pub const V86FLAGS_CARRY : u32 = 1;
-pub const V86FLAGS_PARITY : u32 = 4;
-pub const V86FLAGS_AUXCARRY : u32 = 16;
-pub const V86FLAGS_ZERO : u32 = 64;
-pub const V86FLAGS_SIGN : u32 = 128;
-pub const V86FLAGS_TRACE : u32 = 256;
-pub const V86FLAGS_INTERRUPT : u32 = 512;
-pub const V86FLAGS_DIRECTION : u32 = 1024;
-pub const V86FLAGS_OVERFLOW : u32 = 2048;
-pub const V86FLAGS_IOPL : u32 = 12288;
-pub const V86FLAGS_IOPL_BITS : u32 = 18;
-pub const V86FLAGS_RESUME : u32 = 65536;
-pub const V86FLAGS_V86 : u32 = 131072;
-pub const V86FLAGS_ALIGNMENT : u32 = 262144;
-pub const DCI_VERSION : u32 = 256;
-pub const DCICREATEPRIMARYSURFACE : u32 = 1;
-pub const DCICREATEOFFSCREENSURFACE : u32 = 2;
-pub const DCICREATEOVERLAYSURFACE : u32 = 3;
-pub const DCIENUMSURFACE : u32 = 4;
-pub const DCIESCAPE : u32 = 5;
-pub const DCI_OK : u32 = 0;
-pub const DCI_FAIL_GENERIC : i32 = -1;
-pub const DCI_FAIL_UNSUPPORTEDVERSION : i32 = -2;
-pub const DCI_FAIL_INVALIDSURFACE : i32 = -3;
-pub const DCI_FAIL_UNSUPPORTED : i32 = -4;
-pub const DCI_ERR_CURRENTLYNOTAVAIL : i32 = -5;
-pub const DCI_ERR_INVALIDRECT : i32 = -6;
-pub const DCI_ERR_UNSUPPORTEDFORMAT : i32 = -7;
-pub const DCI_ERR_UNSUPPORTEDMASK : i32 = -8;
-pub const DCI_ERR_TOOBIGHEIGHT : i32 = -9;
-pub const DCI_ERR_TOOBIGWIDTH : i32 = -10;
-pub const DCI_ERR_TOOBIGSIZE : i32 = -11;
-pub const DCI_ERR_OUTOFMEMORY : i32 = -12;
-pub const DCI_ERR_INVALIDPOSITION : i32 = -13;
-pub const DCI_ERR_INVALIDSTRETCH : i32 = -14;
-pub const DCI_ERR_INVALIDCLIPLIST : i32 = -15;
-pub const DCI_ERR_SURFACEISOBSCURED : i32 = -16;
-pub const DCI_ERR_XALIGN : i32 = -17;
-pub const DCI_ERR_YALIGN : i32 = -18;
-pub const DCI_ERR_XYALIGN : i32 = -19;
-pub const DCI_ERR_WIDTHALIGN : i32 = -20;
-pub const DCI_ERR_HEIGHTALIGN : i32 = -21;
-pub const DCI_STATUS_POINTERCHANGED : u32 = 1;
-pub const DCI_STATUS_STRIDECHANGED : u32 = 2;
-pub const DCI_STATUS_FORMATCHANGED : u32 = 4;
-pub const DCI_STATUS_SURFACEINFOCHANGED : u32 = 8;
-pub const DCI_STATUS_CHROMAKEYCHANGED : u32 = 16;
-pub const DCI_STATUS_WASSTILLDRAWING : u32 = 32;
-pub const DCI_SURFACE_TYPE : u32 = 15;
-pub const DCI_PRIMARY : u32 = 0;
-pub const DCI_OFFSCREEN : u32 = 1;
-pub const DCI_OVERLAY : u32 = 2;
-pub const DCI_VISIBLE : u32 = 16;
-pub const DCI_CHROMAKEY : u32 = 32;
-pub const DCI_1632_ACCESS : u32 = 64;
-pub const DCI_DWORDSIZE : u32 = 128;
-pub const DCI_DWORDALIGN : u32 = 256;
-pub const DCI_WRITEONLY : u32 = 512;
-pub const DCI_ASYNC : u32 = 1024;
-pub const DCI_CAN_STRETCHX : u32 = 4096;
-pub const DCI_CAN_STRETCHY : u32 = 8192;
-pub const DCI_CAN_STRETCHXN : u32 = 16384;
-pub const DCI_CAN_STRETCHYN : u32 = 32768;
-pub const DCI_CANOVERLAY : u32 = 65536;
-pub const TSF_Hardware : u32 = 1;
-pub const TSF_Authenticated : u32 = 2;
-pub const TSF_IPv6 : u32 = 4;
-pub const TSF_SignatureAuthenticated : u32 = 8;
-pub const FILE_FLAG_SESSION_AWARE : u32 = 8388608;
-pub const FILE_FLAG_FIRST_PIPE_INSTANCE : u32 = 524288;
-pub const FILE_FLAG_OPEN_REQUIRING_OPLOCK : u32 = 262144;
-pub const PROGRESS_CONTINUE : u32 = 0;
-pub const PROGRESS_CANCEL : u32 = 1;
-pub const PROGRESS_STOP : u32 = 2;
-pub const PROGRESS_QUIET : u32 = 3;
-pub const COPY_FILE_FAIL_IF_EXISTS : u32 = 1;
-pub const COPY_FILE_RESTARTABLE : u32 = 2;
-pub const COPY_FILE_OPEN_SOURCE_FOR_WRITE : u32 = 4;
-pub const COPY_FILE_ALLOW_DECRYPTED_DESTINATION : u32 = 8;
-pub const COPY_FILE_COPY_SYMLINK : u32 = 2048;
-pub const COPY_FILE_NO_BUFFERING : u32 = 4096;
-pub const COPY_FILE_REQUEST_SECURITY_PRIVILEGES : u32 = 8192;
-pub const COPY_FILE_RESUME_FROM_PAUSE : u32 = 16384;
-pub const COPY_FILE_NO_OFFLOAD : u32 = 262144;
-pub const COPY_FILE_IGNORE_EDP_BLOCK : u32 = 4194304;
-pub const COPY_FILE_IGNORE_SOURCE_ENCRYPTION : u32 = 8388608;
-pub const COPY_FILE_DONT_REQUEST_DEST_WRITE_DAC : u32 = 33554432;
-pub const COPY_FILE_REQUEST_COMPRESSED_TRAFFIC : u32 = 268435456;
-pub const COPY_FILE_OPEN_AND_COPY_REPARSE_POINT : u32 = 2097152;
-pub const COPY_FILE_DIRECTORY : u32 = 128;
-pub const COPY_FILE_SKIP_ALTERNATE_STREAMS : u32 = 32768;
-pub const COPY_FILE_DISABLE_PRE_ALLOCATION : u32 = 67108864;
-pub const COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE : u32 = 134217728;
-pub const PIPE_ACCESS_INBOUND : u32 = 1;
-pub const PIPE_ACCESS_OUTBOUND : u32 = 2;
-pub const PIPE_ACCESS_DUPLEX : u32 = 3;
-pub const PIPE_WAIT : u32 = 0;
-pub const PIPE_READMODE_BYTE : u32 = 0;
-pub const PIPE_ACCEPT_REMOTE_CLIENTS : u32 = 0;
-pub const PIPE_REJECT_REMOTE_CLIENTS : u32 = 8;
-pub const PIPE_UNLIMITED_INSTANCES : u32 = 255;
-pub const SECURITY_SQOS_PRESENT : u32 = 1048576;
-pub const SECURITY_VALID_SQOS_FLAGS : u32 = 2031616;
-pub const FAIL_FAST_GENERATE_EXCEPTION_ADDRESS : u32 = 1;
-pub const FAIL_FAST_NO_HARD_ERROR_DLG : u32 = 2;
-pub const GMEM_NOCOMPACT : u32 = 16;
-pub const GMEM_NODISCARD : u32 = 32;
-pub const GMEM_MODIFY : u32 = 128;
-pub const GMEM_DISCARDABLE : u32 = 256;
-pub const GMEM_NOT_BANKED : u32 = 4096;
-pub const GMEM_SHARE : u32 = 8192;
-pub const GMEM_DDESHARE : u32 = 8192;
-pub const GMEM_NOTIFY : u32 = 16384;
-pub const GMEM_VALID_FLAGS : u32 = 32626;
-pub const GMEM_INVALID_HANDLE : u32 = 32768;
-pub const GMEM_DISCARDED : u32 = 16384;
-pub const GMEM_LOCKCOUNT : u32 = 255;
-pub const STACK_SIZE_PARAM_IS_A_RESERVATION : u32 = 65536;
-pub const VOLUME_NAME_DOS : u32 = 0;
-pub const VOLUME_NAME_GUID : u32 = 1;
-pub const VOLUME_NAME_NT : u32 = 2;
-pub const VOLUME_NAME_NONE : u32 = 4;
-pub const DRIVE_UNKNOWN : u32 = 0;
-pub const DRIVE_NO_ROOT_DIR : u32 = 1;
-pub const DRIVE_REMOVABLE : u32 = 2;
-pub const DRIVE_FIXED : u32 = 3;
-pub const DRIVE_REMOTE : u32 = 4;
-pub const DRIVE_CDROM : u32 = 5;
-pub const DRIVE_RAMDISK : u32 = 6;
-pub const FILE_TYPE_UNKNOWN : u32 = 0;
-pub const FILE_TYPE_DISK : u32 = 1;
-pub const FILE_TYPE_CHAR : u32 = 2;
-pub const FILE_TYPE_PIPE : u32 = 3;
-pub const FILE_TYPE_REMOTE : u32 = 32768;
-pub const IGNORE : u32 = 0;
-pub const INFINITE : u32 = 4294967295;
-pub const CBR_110 : u32 = 110;
-pub const CBR_300 : u32 = 300;
-pub const CBR_600 : u32 = 600;
-pub const CBR_1200 : u32 = 1200;
-pub const CBR_2400 : u32 = 2400;
-pub const CBR_4800 : u32 = 4800;
-pub const CBR_9600 : u32 = 9600;
-pub const CBR_14400 : u32 = 14400;
-pub const CBR_19200 : u32 = 19200;
-pub const CBR_38400 : u32 = 38400;
-pub const CBR_56000 : u32 = 56000;
-pub const CBR_57600 : u32 = 57600;
-pub const CBR_115200 : u32 = 115200;
-pub const CBR_128000 : u32 = 128000;
-pub const CBR_256000 : u32 = 256000;
-pub const CE_TXFULL : u32 = 256;
-pub const CE_PTO : u32 = 512;
-pub const CE_IOE : u32 = 1024;
-pub const CE_DNS : u32 = 2048;
-pub const CE_OOP : u32 = 4096;
-pub const CE_MODE : u32 = 32768;
-pub const IE_BADID : i32 = -1;
-pub const IE_OPEN : i32 = -2;
-pub const IE_NOPEN : i32 = -3;
-pub const IE_MEMORY : i32 = -4;
-pub const IE_DEFAULT : i32 = -5;
-pub const IE_HARDWARE : i32 = -10;
-pub const IE_BYTESIZE : i32 = -11;
-pub const IE_BAUDRATE : i32 = -12;
-pub const RESETDEV : u32 = 7;
-pub const LPTx : u32 = 128;
-pub const S_QUEUEEMPTY : u32 = 0;
-pub const S_THRESHOLD : u32 = 1;
-pub const S_ALLTHRESHOLD : u32 = 2;
-pub const S_NORMAL : u32 = 0;
-pub const S_LEGATO : u32 = 1;
-pub const S_STACCATO : u32 = 2;
-pub const S_PERIOD512 : u32 = 0;
-pub const S_PERIOD1024 : u32 = 1;
-pub const S_PERIOD2048 : u32 = 2;
-pub const S_PERIODVOICE : u32 = 3;
-pub const S_WHITE512 : u32 = 4;
-pub const S_WHITE1024 : u32 = 5;
-pub const S_WHITE2048 : u32 = 6;
-pub const S_WHITEVOICE : u32 = 7;
-pub const S_SERDVNA : i32 = -1;
-pub const S_SEROFM : i32 = -2;
-pub const S_SERMACT : i32 = -3;
-pub const S_SERQFUL : i32 = -4;
-pub const S_SERBDNT : i32 = -5;
-pub const S_SERDLN : i32 = -6;
-pub const S_SERDCC : i32 = -7;
-pub const S_SERDTP : i32 = -8;
-pub const S_SERDVL : i32 = -9;
-pub const S_SERDMD : i32 = -10;
-pub const S_SERDSH : i32 = -11;
-pub const S_SERDPT : i32 = -12;
-pub const S_SERDFQ : i32 = -13;
-pub const S_SERDDR : i32 = -14;
-pub const S_SERDSR : i32 = -15;
-pub const S_SERDST : i32 = -16;
-pub const NMPWAIT_NOWAIT : u32 = 1;
-pub const OFS_MAXPATHNAME : u32 = 128;
-pub const MAXINTATOM : u32 = 49152;
-pub const SCS_32BIT_BINARY : u32 = 0;
-pub const SCS_DOS_BINARY : u32 = 1;
-pub const SCS_WOW_BINARY : u32 = 2;
-pub const SCS_PIF_BINARY : u32 = 3;
-pub const SCS_POSIX_BINARY : u32 = 4;
-pub const SCS_OS216_BINARY : u32 = 5;
-pub const SCS_64BIT_BINARY : u32 = 6;
-pub const FIBER_FLAG_FLOAT_SWITCH : u32 = 1;
-pub const FILE_SKIP_COMPLETION_PORT_ON_SUCCESS : u32 = 1;
-pub const FILE_SKIP_SET_EVENT_ON_HANDLE : u32 = 2;
-pub const HINSTANCE_ERROR : u32 = 32;
-pub const FORMAT_MESSAGE_MAX_WIDTH_MASK : u32 = 255;
-pub const FILE_ENCRYPTABLE : u32 = 0;
-pub const FILE_IS_ENCRYPTED : u32 = 1;
-pub const FILE_SYSTEM_ATTR : u32 = 2;
-pub const FILE_ROOT_DIR : u32 = 3;
-pub const FILE_SYSTEM_DIR : u32 = 4;
-pub const FILE_UNKNOWN : u32 = 5;
-pub const FILE_SYSTEM_NOT_SUPPORT : u32 = 6;
-pub const FILE_USER_DISALLOWED : u32 = 7;
-pub const FILE_READ_ONLY : u32 = 8;
-pub const FILE_DIR_DISALLOWED : u32 = 9;
-pub const EFS_USE_RECOVERY_KEYS : u32 = 1;
-pub const CREATE_FOR_IMPORT : u32 = 1;
-pub const CREATE_FOR_DIR : u32 = 2;
-pub const OVERWRITE_HIDDEN : u32 = 4;
-pub const EFSRPC_SECURE_ONLY : u32 = 8;
-pub const EFS_DROP_ALTERNATE_STREAMS : u32 = 16;
-pub const BACKUP_INVALID : u32 = 0;
-pub const BACKUP_GHOSTED_FILE_EXTENTS : u32 = 11;
-pub const STREAM_NORMAL_ATTRIBUTE : u32 = 0;
-pub const STREAM_MODIFIED_WHEN_READ : u32 = 1;
-pub const STREAM_CONTAINS_SECURITY : u32 = 2;
-pub const STREAM_CONTAINS_PROPERTIES : u32 = 4;
-pub const STREAM_SPARSE_ATTRIBUTE : u32 = 8;
-pub const STREAM_CONTAINS_GHOSTED_FILE_EXTENTS : u32 = 16;
-pub const SHUTDOWN_NORETRY : u32 = 1;
-pub const PROTECTION_LEVEL_SAME : u32 = 4294967295;
-pub const PROC_THREAD_ATTRIBUTE_NUMBER : u32 = 65535;
-pub const PROC_THREAD_ATTRIBUTE_THREAD : u32 = 65536;
-pub const PROC_THREAD_ATTRIBUTE_INPUT : u32 = 131072;
-pub const PROC_THREAD_ATTRIBUTE_ADDITIVE : u32 = 262144;
-pub const PROCESS_CREATION_MITIGATION_POLICY_DEP_ENABLE : u32 = 1;
-pub const PROCESS_CREATION_MITIGATION_POLICY_DEP_ATL_THUNK_ENABLE : u32 = 2;
-pub const PROCESS_CREATION_MITIGATION_POLICY_SEHOP_ENABLE : u32 = 4;
-pub const PROCESS_CREATION_CHILD_PROCESS_RESTRICTED : u32 = 1;
-pub const PROCESS_CREATION_CHILD_PROCESS_OVERRIDE : u32 = 2;
-pub const PROCESS_CREATION_CHILD_PROCESS_RESTRICTED_UNLESS_SECURE : u32 = 4;
-pub const PROCESS_CREATION_ALL_APPLICATION_PACKAGES_OPT_OUT : u32 = 1;
-pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_ENABLE_PROCESS_TREE : u32 = 1;
-pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_DISABLE_PROCESS_TREE : u32 = 2;
-pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_OVERRIDE : u32 = 4;
-pub const ATOM_FLAG_GLOBAL : u32 = 2;
-pub const BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE : u32 = 1;
-pub const BASE_SEARCH_PATH_DISABLE_SAFE_SEARCHMODE : u32 = 65536;
-pub const BASE_SEARCH_PATH_PERMANENT : u32 = 32768;
-pub const COPYFILE2_MESSAGE_COPY_OFFLOAD : i32 = 1;
-pub const EVENTLOG_FULL_INFO : u32 = 0;
-pub const OPERATION_API_VERSION : u32 = 1;
-pub const MAX_COMPUTERNAME_LENGTH : u32 = 15;
-pub const LOGON32_PROVIDER_WINNT35 : u32 = 1;
-pub const LOGON32_PROVIDER_VIRTUAL : u32 = 4;
-pub const LOGON_ZERO_PASSWORD_BUFFER : u32 = 2147483648;
-pub const HW_PROFILE_GUIDLEN : u32 = 39;
-pub const DOCKINFO_UNDOCKED : u32 = 1;
-pub const DOCKINFO_DOCKED : u32 = 2;
-pub const DOCKINFO_USER_SUPPLIED : u32 = 4;
-pub const TC_NORMAL : u32 = 0;
-pub const TC_HARDERR : u32 = 1;
-pub const TC_GP_TRAP : u32 = 2;
-pub const TC_SIGNAL : u32 = 3;
-pub const AC_LINE_OFFLINE : u32 = 0;
-pub const AC_LINE_ONLINE : u32 = 1;
-pub const AC_LINE_BACKUP_POWER : u32 = 2;
-pub const AC_LINE_UNKNOWN : u32 = 255;
-pub const BATTERY_FLAG_HIGH : u32 = 1;
-pub const BATTERY_FLAG_LOW : u32 = 2;
-pub const BATTERY_FLAG_CRITICAL : u32 = 4;
-pub const BATTERY_FLAG_CHARGING : u32 = 8;
-pub const BATTERY_FLAG_NO_BATTERY : u32 = 128;
-pub const BATTERY_FLAG_UNKNOWN : u32 = 255;
-pub const BATTERY_PERCENTAGE_UNKNOWN : u32 = 255;
-pub const SYSTEM_STATUS_FLAG_POWER_SAVING_ON : u32 = 1;
-pub const BATTERY_LIFE_UNKNOWN : u32 = 4294967295;
-pub const ACTCTX_FLAG_PROCESSOR_ARCHITECTURE_VALID : u32 = 1;
-pub const ACTCTX_FLAG_LANGID_VALID : u32 = 2;
-pub const ACTCTX_FLAG_ASSEMBLY_DIRECTORY_VALID : u32 = 4;
-pub const ACTCTX_FLAG_RESOURCE_NAME_VALID : u32 = 8;
-pub const ACTCTX_FLAG_SET_PROCESS_DEFAULT : u32 = 16;
-pub const ACTCTX_FLAG_APPLICATION_NAME_VALID : u32 = 32;
-pub const ACTCTX_FLAG_SOURCE_IS_ASSEMBLYREF : u32 = 64;
-pub const ACTCTX_FLAG_HMODULE_VALID : u32 = 128;
-pub const DEACTIVATE_ACTCTX_FLAG_FORCE_EARLY_DEACTIVATION : u32 = 1;
-pub const FIND_ACTCTX_SECTION_KEY_RETURN_HACTCTX : u32 = 1;
-pub const FIND_ACTCTX_SECTION_KEY_RETURN_FLAGS : u32 = 2;
-pub const FIND_ACTCTX_SECTION_KEY_RETURN_ASSEMBLY_METADATA : u32 = 4;
-pub const ACTIVATION_CONTEXT_BASIC_INFORMATION_DEFINED : u32 = 1;
-pub const QUERY_ACTCTX_FLAG_USE_ACTIVE_ACTCTX : u32 = 4;
-pub const QUERY_ACTCTX_FLAG_ACTCTX_IS_HMODULE : u32 = 8;
-pub const QUERY_ACTCTX_FLAG_ACTCTX_IS_ADDRESS : u32 = 16;
-pub const QUERY_ACTCTX_FLAG_NO_ADDREF : u32 = 2147483648;
-pub const RESTART_MAX_CMD_LINE : u32 = 1024;
-pub const RECOVERY_DEFAULT_PING_INTERVAL : u32 = 5000;
-pub const FILE_RENAME_FLAG_REPLACE_IF_EXISTS : u32 = 1;
-pub const FILE_RENAME_FLAG_POSIX_SEMANTICS : u32 = 2;
-pub const FILE_RENAME_FLAG_SUPPRESS_PIN_STATE_INHERITANCE : u32 = 4;
-pub const FILE_DISPOSITION_FLAG_DO_NOT_DELETE : u32 = 0;
-pub const FILE_DISPOSITION_FLAG_DELETE : u32 = 1;
-pub const FILE_DISPOSITION_FLAG_POSIX_SEMANTICS : u32 = 2;
-pub const FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK : u32 = 4;
-pub const FILE_DISPOSITION_FLAG_ON_CLOSE : u32 = 8;
-pub const FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE : u32 = 16;
-pub const STORAGE_INFO_FLAGS_ALIGNED_DEVICE : u32 = 1;
-pub const STORAGE_INFO_FLAGS_PARTITION_ALIGNED_ON_DEVICE : u32 = 2;
-pub const STORAGE_INFO_OFFSET_UNKNOWN : u32 = 4294967295;
-pub const REMOTE_PROTOCOL_INFO_FLAG_LOOPBACK : u32 = 1;
-pub const REMOTE_PROTOCOL_INFO_FLAG_OFFLINE : u32 = 2;
-pub const REMOTE_PROTOCOL_INFO_FLAG_PERSISTENT_HANDLE : u32 = 4;
-pub const RPI_FLAG_SMB2_SHARECAP_TIMEWARP : u32 = 2;
-pub const RPI_FLAG_SMB2_SHARECAP_DFS : u32 = 8;
-pub const RPI_FLAG_SMB2_SHARECAP_CONTINUOUS_AVAILABILITY : u32 = 16;
-pub const RPI_FLAG_SMB2_SHARECAP_SCALEOUT : u32 = 32;
-pub const RPI_FLAG_SMB2_SHARECAP_CLUSTER : u32 = 64;
-pub const RPI_SMB2_FLAG_SERVERCAP_DFS : u32 = 1;
-pub const RPI_SMB2_FLAG_SERVERCAP_LEASING : u32 = 2;
-pub const RPI_SMB2_FLAG_SERVERCAP_LARGEMTU : u32 = 4;
-pub const RPI_SMB2_FLAG_SERVERCAP_MULTICHANNEL : u32 = 8;
-pub const RPI_SMB2_FLAG_SERVERCAP_PERSISTENT_HANDLES : u32 = 16;
-pub const RPI_SMB2_FLAG_SERVERCAP_DIRECTORY_LEASING : u32 = 32;
-pub const SYMBOLIC_LINK_FLAG_DIRECTORY : u32 = 1;
-pub const SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE : u32 = 2;
-pub const MICROSOFT_WINBASE_H_DEFINE_INTERLOCKED_CPLUSPLUS_OVERLOADS : u32 = 0;
-pub const CODEINTEGRITY_OPTION_ENABLED : u32 = 1;
-pub const CODEINTEGRITY_OPTION_TESTSIGN : u32 = 2;
-pub const CODEINTEGRITY_OPTION_UMCI_ENABLED : u32 = 4;
-pub const CODEINTEGRITY_OPTION_UMCI_AUDITMODE_ENABLED : u32 = 8;
-pub const CODEINTEGRITY_OPTION_UMCI_EXCLUSIONPATHS_ENABLED : u32 = 16;
-pub const CODEINTEGRITY_OPTION_TEST_BUILD : u32 = 32;
-pub const CODEINTEGRITY_OPTION_PREPRODUCTION_BUILD : u32 = 64;
-pub const CODEINTEGRITY_OPTION_DEBUGMODE_ENABLED : u32 = 128;
-pub const CODEINTEGRITY_OPTION_FLIGHT_BUILD : u32 = 256;
-pub const CODEINTEGRITY_OPTION_FLIGHTING_ENABLED : u32 = 512;
-pub const CODEINTEGRITY_OPTION_HVCI_KMCI_ENABLED : u32 = 1024;
-pub const CODEINTEGRITY_OPTION_HVCI_KMCI_AUDITMODE_ENABLED : u32 = 2048;
-pub const CODEINTEGRITY_OPTION_HVCI_KMCI_STRICTMODE_ENABLED : u32 = 4096;
-pub const CODEINTEGRITY_OPTION_HVCI_IUM_ENABLED : u32 = 8192;
-pub const FILE_MAXIMUM_DISPOSITION : u32 = 5;
-pub const FILE_DIRECTORY_FILE : u32 = 1;
-pub const FILE_WRITE_THROUGH : u32 = 2;
-pub const FILE_SEQUENTIAL_ONLY : u32 = 4;
-pub const FILE_NO_INTERMEDIATE_BUFFERING : u32 = 8;
-pub const FILE_SYNCHRONOUS_IO_ALERT : u32 = 16;
-pub const FILE_SYNCHRONOUS_IO_NONALERT : u32 = 32;
-pub const FILE_NON_DIRECTORY_FILE : u32 = 64;
-pub const FILE_CREATE_TREE_CONNECTION : u32 = 128;
-pub const FILE_COMPLETE_IF_OPLOCKED : u32 = 256;
-pub const FILE_NO_EA_KNOWLEDGE : u32 = 512;
-pub const FILE_OPEN_REMOTE_INSTANCE : u32 = 1024;
-pub const FILE_RANDOM_ACCESS : u32 = 2048;
-pub const FILE_DELETE_ON_CLOSE : u32 = 4096;
-pub const FILE_OPEN_BY_FILE_ID : u32 = 8192;
-pub const FILE_OPEN_FOR_BACKUP_INTENT : u32 = 16384;
-pub const FILE_NO_COMPRESSION : u32 = 32768;
-pub const FILE_OPEN_REQUIRING_OPLOCK : u32 = 65536;
-pub const FILE_RESERVE_OPFILTER : u32 = 1048576;
-pub const FILE_OPEN_REPARSE_POINT : u32 = 2097152;
-pub const FILE_OPEN_NO_RECALL : u32 = 4194304;
-pub const FILE_OPEN_FOR_FREE_SPACE_QUERY : u32 = 8388608;
-pub const FILE_VALID_OPTION_FLAGS : u32 = 16777215;
-pub const FILE_VALID_PIPE_OPTION_FLAGS : u32 = 50;
-pub const FILE_VALID_MAILSLOT_OPTION_FLAGS : u32 = 50;
-pub const FILE_VALID_SET_FLAGS : u32 = 54;
-pub const FILE_SUPERSEDED : u32 = 0;
-pub const FILE_OPENED : u32 = 1;
-pub const FILE_CREATED : u32 = 2;
-pub const FILE_OVERWRITTEN : u32 = 3;
-pub const FILE_EXISTS : u32 = 4;
-pub const FILE_DOES_NOT_EXIST : u32 = 5;
-pub const AVRF_MAX_TRACES : u32 = 32;
-pub const INCLUDED_FCI : u32 = 1;
-pub const INCLUDED_FDI : u32 = 1;
-pub const INCLUDED_TYPES_FCI_FDI : u32 = 1;
-pub const CB_MAX_DISK : i32 = 2147483647;
-pub const CB_MAX_FILENAME : u32 = 256;
-pub const CB_MAX_CABINET_NAME : u32 = 256;
-pub const CB_MAX_CAB_PATH : u32 = 256;
-pub const CB_MAX_DISK_NAME : u32 = 256;
-pub const DBG_SEGLOAD : u32 = 0;
-pub const DBG_SEGMOVE : u32 = 1;
-pub const DBG_SEGFREE : u32 = 2;
-pub const DBG_MODLOAD : u32 = 3;
-pub const DBG_MODFREE : u32 = 4;
-pub const DBG_SINGLESTEP : u32 = 5;
-pub const DBG_BREAK : u32 = 6;
-pub const DBG_GPFAULT : u32 = 7;
-pub const DBG_DIVOVERFLOW : u32 = 8;
-pub const DBG_INSTRFAULT : u32 = 9;
-pub const DBG_TASKSTART : u32 = 10;
-pub const DBG_TASKSTOP : u32 = 11;
-pub const DBG_DLLSTART : u32 = 12;
-pub const DBG_DLLSTOP : u32 = 13;
-pub const DBG_ATTACH : u32 = 14;
-pub const DBG_TOOLHELP : u32 = 15;
-pub const DBG_STACKFAULT : u32 = 16;
-pub const DBG_WOWINIT : u32 = 17;
-pub const DBG_TEMPBP : u32 = 18;
-pub const DBG_MODMOVE : u32 = 19;
-pub const DBG_INIT : u32 = 20;
-pub const DBG_GPFAULT2 : u32 = 21;
-pub const VDMEVENT_NEEDS_INTERACTIVE : u32 = 32768;
-pub const VDMEVENT_VERBOSE : u32 = 16384;
-pub const VDMEVENT_PE : u32 = 8192;
-pub const VDMEVENT_ALLFLAGS : u32 = 57344;
-pub const VDMEVENT_V86 : u32 = 1;
-pub const VDMEVENT_PM16 : u32 = 2;
-pub const MAX_PATH16 : u32 = 255;
-pub const SN_CODE : u32 = 0;
-pub const SN_DATA : u32 = 1;
-pub const SN_V86 : u32 = 2;
-pub const GLOBAL_ALL : u32 = 0;
-pub const GLOBAL_LRU : u32 = 1;
-pub const GLOBAL_FREE : u32 = 2;
-pub const GT_UNKNOWN : u32 = 0;
-pub const GT_DGROUP : u32 = 1;
-pub const GT_DATA : u32 = 2;
-pub const GT_CODE : u32 = 3;
-pub const GT_TASK : u32 = 4;
-pub const GT_RESOURCE : u32 = 5;
-pub const GT_MODULE : u32 = 6;
-pub const GT_FREE : u32 = 7;
-pub const GT_INTERNAL : u32 = 8;
-pub const GT_SENTINEL : u32 = 9;
-pub const GT_BURGERMASTER : u32 = 10;
-pub const GD_USERDEFINED : u32 = 0;
-pub const GD_CURSORCOMPONENT : u32 = 1;
-pub const GD_BITMAP : u32 = 2;
-pub const GD_ICONCOMPONENT : u32 = 3;
-pub const GD_MENU : u32 = 4;
-pub const GD_DIALOG : u32 = 5;
-pub const GD_STRING : u32 = 6;
-pub const GD_FONTDIR : u32 = 7;
-pub const GD_FONT : u32 = 8;
-pub const GD_ACCELERATORS : u32 = 9;
-pub const GD_RCDATA : u32 = 10;
-pub const GD_ERRTABLE : u32 = 11;
-pub const GD_CURSOR : u32 = 12;
-pub const GD_ICON : u32 = 14;
-pub const GD_NAMETABLE : u32 = 15;
-pub const GD_MAX_RESOURCE : u32 = 15;
-pub const VDMDBG_BREAK_DOSTASK : u32 = 1;
-pub const VDMDBG_BREAK_WOWTASK : u32 = 2;
-pub const VDMDBG_BREAK_LOADDLL : u32 = 4;
-pub const VDMDBG_BREAK_EXCEPTIONS : u32 = 8;
-pub const VDMDBG_BREAK_DEBUGGER : u32 = 16;
-pub const VDMDBG_TRACE_HISTORY : u32 = 128;
-pub const VDMDBG_BREAK_DIVIDEBYZERO : u32 = 256;
-pub const VDMDBG_MAX_SYMBOL_BUFFER : u32 = 256;
-pub const VDMADDR_V86 : u32 = 2;
-pub const VDMADDR_PM16 : u32 = 4;
-pub const VDMADDR_PM32 : u32 = 16;
-pub const WINWATCHNOTIFY_START : u32 = 0;
-pub const WINWATCHNOTIFY_STOP : u32 = 1;
-pub const WINWATCHNOTIFY_DESTROY : u32 = 2;
-pub const WINWATCHNOTIFY_CHANGING : u32 = 3;
-pub const WINWATCHNOTIFY_CHANGED : u32 = 4;
-pub const S_ASYNCHRONOUS : i32 = 262632;
-pub const RSC_FLAG_INF : u32 = 1;
-pub const RSC_FLAG_SKIPDISKSPACECHECK : u32 = 2;
-pub const RSC_FLAG_QUIET : u32 = 4;
-pub const RSC_FLAG_NGCONV : u32 = 8;
-pub const RSC_FLAG_UPDHLPDLLS : u32 = 16;
-pub const RSC_FLAG_DELAYREGISTEROCX : u32 = 512;
-pub const RSC_FLAG_SETUPAPI : u32 = 1024;
-pub const ALINF_QUIET : u32 = 4;
-pub const ALINF_NGCONV : u32 = 8;
-pub const ALINF_UPDHLPDLLS : u32 = 16;
-pub const ALINF_BKINSTALL : u32 = 32;
-pub const ALINF_ROLLBACK : u32 = 64;
-pub const ALINF_CHECKBKDATA : u32 = 128;
-pub const ALINF_ROLLBKDOALL : u32 = 256;
-pub const ALINF_DELAYREGISTEROCX : u32 = 512;
-pub const AIF_WARNIFSKIP : u32 = 1;
-pub const AIF_NOSKIP : u32 = 2;
-pub const AIF_NOVERSIONCHECK : u32 = 4;
-pub const AIF_FORCE_FILE_IN_USE : u32 = 8;
-pub const AIF_NOOVERWRITE : u32 = 16;
-pub const AIF_NO_VERSION_DIALOG : u32 = 32;
-pub const AIF_REPLACEONLY : u32 = 1024;
-pub const AIF_NOLANGUAGECHECK : u32 = 268435456;
-pub const AIF_QUIET : u32 = 536870912;
-pub const IE4_RESTORE : u32 = 1;
-pub const IE4_BACKNEW : u32 = 2;
-pub const IE4_NODELETENEW : u32 = 4;
-pub const IE4_NOMESSAGES : u32 = 8;
-pub const IE4_NOPROGRESS : u32 = 16;
-pub const IE4_NOENUMKEY : u32 = 32;
-pub const IE4_NO_CRC_MAPPING : u32 = 64;
-pub const IE4_REGSECTION : u32 = 128;
-pub const IE4_FRDOALL : u32 = 256;
-pub const IE4_UPDREFCNT : u32 = 512;
-pub const IE4_USEREFCNT : u32 = 1024;
-pub const IE4_EXTRAINCREFCNT : u32 = 2048;
-pub const IE4_REMOVREGBKDATA : u32 = 4096;
-pub const AADBE_ADD_ENTRY : u32 = 1;
-pub const AADBE_DEL_ENTRY : u32 = 2;
-pub const ADN_DEL_IF_EMPTY : u32 = 1;
-pub const ADN_DONT_DEL_SUBDIRS : u32 = 2;
-pub const ADN_DONT_DEL_DIR : u32 = 4;
-pub const ADN_DEL_UNC_PATHS : u32 = 8;
-pub const LIS_QUIET : u32 = 1;
-pub const LIS_NOGRPCONV : u32 = 2;
-pub const RUNCMDS_QUIET : u32 = 1;
-pub const RUNCMDS_NOWAIT : u32 = 2;
-pub const RUNCMDS_DELAYPOSTCMD : u32 = 4;
-pub const IME_MAXPROCESS : u32 = 32;
-pub const CP_HWND : u32 = 0;
-pub const CP_OPEN : u32 = 1;
-pub const CP_DIRECT : u32 = 2;
-pub const CP_LEVEL : u32 = 3;
-pub const VK_DBE_ALPHANUMERIC : u32 = 240;
-pub const VK_DBE_KATAKANA : u32 = 241;
-pub const VK_DBE_HIRAGANA : u32 = 242;
-pub const VK_DBE_SBCSCHAR : u32 = 243;
-pub const VK_DBE_DBCSCHAR : u32 = 244;
-pub const VK_DBE_ROMAN : u32 = 245;
-pub const VK_DBE_NOROMAN : u32 = 246;
-pub const VK_DBE_ENTERWORDREGISTERMODE : u32 = 247;
-pub const VK_DBE_ENTERIMECONFIGMODE : u32 = 248;
-pub const VK_DBE_FLUSHSTRING : u32 = 249;
-pub const VK_DBE_CODEINPUT : u32 = 250;
-pub const VK_DBE_NOCODEINPUT : u32 = 251;
-pub const VK_DBE_DETERMINESTRING : u32 = 252;
-pub const VK_DBE_ENTERDLGCONVERSIONMODE : u32 = 253;
-pub const MCW_DEFAULT : u32 = 0;
-pub const MCW_RECT : u32 = 1;
-pub const MCW_WINDOW : u32 = 2;
-pub const MCW_SCREEN : u32 = 4;
-pub const MCW_VERTICAL : u32 = 8;
-pub const MCW_HIDDEN : u32 = 16;
-pub const IME_MODE_ALPHANUMERIC : u32 = 1;
-pub const IME_MODE_SBCSCHAR : u32 = 2;
-pub const IME_MODE_KATAKANA : u32 = 2;
-pub const IME_MODE_HIRAGANA : u32 = 4;
-pub const IME_MODE_HANJACONVERT : u32 = 4;
-pub const IME_MODE_DBCSCHAR : u32 = 16;
-pub const IME_MODE_ROMAN : u32 = 32;
-pub const IME_MODE_NOROMAN : u32 = 64;
-pub const IME_MODE_CODEINPUT : u32 = 128;
-pub const IME_MODE_NOCODEINPUT : u32 = 256;
-pub const IME_GETIMECAPS : u32 = 3;
-pub const IME_SETOPEN : u32 = 4;
-pub const IME_GETOPEN : u32 = 5;
-pub const IME_GETVERSION : u32 = 7;
-pub const IME_SETCONVERSIONWINDOW : u32 = 8;
-pub const IME_SETCONVERSIONMODE : u32 = 16;
-pub const IME_GETCONVERSIONMODE : u32 = 17;
-pub const IME_SET_MODE : u32 = 18;
-pub const IME_SENDVKEY : u32 = 19;
-pub const IME_ENTERWORDREGISTERMODE : u32 = 24;
-pub const IME_SETCONVERSIONFONTEX : u32 = 25;
-pub const IME_BANJAtoJUNJA : u32 = 19;
-pub const IME_JUNJAtoBANJA : u32 = 20;
-pub const IME_JOHABtoKS : u32 = 21;
-pub const IME_KStoJOHAB : u32 = 22;
-pub const IMEA_INIT : u32 = 1;
-pub const IMEA_NEXT : u32 = 2;
-pub const IMEA_PREV : u32 = 3;
-pub const IME_REQUEST_CONVERT : u32 = 1;
-pub const IME_ENABLE_CONVERT : u32 = 2;
-pub const INTERIM_WINDOW : u32 = 0;
-pub const MODE_WINDOW : u32 = 1;
-pub const HANJA_WINDOW : u32 = 2;
-pub const IME_RS_ERROR : u32 = 1;
-pub const IME_RS_NOIME : u32 = 2;
-pub const IME_RS_TOOLONG : u32 = 5;
-pub const IME_RS_ILLEGAL : u32 = 6;
-pub const IME_RS_NOTFOUND : u32 = 7;
-pub const IME_RS_NOROOM : u32 = 10;
-pub const IME_RS_DISKERROR : u32 = 14;
-pub const IME_RS_INVALID : u32 = 17;
-pub const IME_RS_NEST : u32 = 18;
-pub const IME_RS_SYSTEMMODAL : u32 = 19;
-pub const WM_IME_REPORT : u32 = 640;
-pub const IR_STRINGSTART : u32 = 256;
-pub const IR_STRINGEND : u32 = 257;
-pub const IR_OPENCONVERT : u32 = 288;
-pub const IR_CHANGECONVERT : u32 = 289;
-pub const IR_CLOSECONVERT : u32 = 290;
-pub const IR_FULLCONVERT : u32 = 291;
-pub const IR_IMESELECT : u32 = 304;
-pub const IR_STRING : u32 = 320;
-pub const IR_DBCSCHAR : u32 = 352;
-pub const IR_UNDETERMINE : u32 = 368;
-pub const IR_STRINGEX : u32 = 384;
-pub const IR_MODEINFO : u32 = 400;
-pub const WM_WNT_CONVERTREQUESTEX : u32 = 265;
-pub const WM_CONVERTREQUEST : u32 = 266;
-pub const WM_CONVERTRESULT : u32 = 267;
-pub const WM_INTERIM : u32 = 268;
-pub const WM_IMEKEYDOWN : u32 = 656;
-pub const WM_IMEKEYUP : u32 = 657;
-pub const ICW_MAX_ACCTNAME : u32 = 256;
-pub const ICW_MAX_PASSWORD : u32 = 256;
-pub const ICW_MAX_LOGONNAME : u32 = 256;
-pub const ICW_MAX_SERVERNAME : u32 = 64;
-pub const ICW_MAX_RASNAME : u32 = 256;
-pub const ICW_MAX_EMAILNAME : u32 = 64;
-pub const ICW_MAX_EMAILADDR : u32 = 128;
-pub const ICW_CHECKSTATUS : u32 = 1;
-pub const ICW_LAUNCHFULL : u32 = 256;
-pub const ICW_LAUNCHMANUAL : u32 = 512;
-pub const ICW_USE_SHELLNEXT : u32 = 1024;
-pub const ICW_FULL_SMARTSTART : u32 = 2048;
-pub const ICW_FULLPRESENT : u32 = 1;
-pub const ICW_MANUALPRESENT : u32 = 2;
-pub const ICW_ALREADYRUN : u32 = 4;
-pub const ICW_LAUNCHEDFULL : u32 = 256;
-pub const ICW_LAUNCHEDMANUAL : u32 = 512;
-pub const ICW_USEDEFAULTS : u32 = 1;
-pub const RRF_SUBKEY_WOW6464KEY : u32 = 65536;
-pub const RRF_SUBKEY_WOW6432KEY : u32 = 131072;
-pub const RRF_WOW64_MASK : u32 = 196608;
-pub const RRF_NOEXPAND : u32 = 268435456;
-pub const RRF_ZEROONFAILURE : u32 = 536870912;
-pub const REG_PROCESS_APPKEY : u32 = 1;
-pub const PROVIDER_KEEPS_VALUE_LENGTH : u32 = 1;
-pub const REG_MUI_STRING_TRUNCATE : u32 = 1;
-pub const REG_SECURE_CONNECTION : u32 = 1;
-pub const SHUTDOWN_FORCE_OTHERS : u32 = 1;
-pub const SHUTDOWN_FORCE_SELF : u32 = 2;
-pub const SHUTDOWN_RESTART : u32 = 4;
-pub const SHUTDOWN_POWEROFF : u32 = 8;
-pub const SHUTDOWN_NOREBOOT : u32 = 16;
-pub const SHUTDOWN_GRACE_OVERRIDE : u32 = 32;
-pub const SHUTDOWN_INSTALL_UPDATES : u32 = 64;
-pub const SHUTDOWN_RESTARTAPPS : u32 = 128;
-pub const SHUTDOWN_SKIP_SVC_PRESHUTDOWN : u32 = 256;
-pub const SHUTDOWN_HYBRID : u32 = 512;
-pub const SHUTDOWN_RESTART_BOOTOPTIONS : u32 = 1024;
-pub const SHUTDOWN_SOFT_REBOOT : u32 = 2048;
-pub const SHUTDOWN_MOBILE_UI : u32 = 4096;
-pub const SHUTDOWN_ARSO : u32 = 8192;
-pub const PROC_THREAD_ATTRIBUTE_REPLACE_VALUE : u32 = 1;
-pub const THREAD_POWER_THROTTLING_CURRENT_VERSION : u32 = 1;
-pub const THREAD_POWER_THROTTLING_EXECUTION_SPEED : u32 = 1;
-pub const PME_CURRENT_VERSION : u32 = 1;
-pub const PME_FAILFAST_ON_COMMIT_FAIL_DISABLE : u32 = 0;
-pub const PME_FAILFAST_ON_COMMIT_FAIL_ENABLE : u32 = 1;
-pub const PROCESS_POWER_THROTTLING_CURRENT_VERSION : u32 = 1;
-pub const PROCESS_POWER_THROTTLING_EXECUTION_SPEED : u32 = 1;
-pub const PROCESS_LEAP_SECOND_INFO_FLAG_ENABLE_SIXTY_SECOND : u32 = 1;
-pub const SCEX2_ALT_NETBIOS_NAME : u32 = 1;
-pub const SURFACEALIGN_DISCARDABLE : i32 = 1;
-pub const VMEMHEAP_LINEAR : i32 = 1;
-pub const VMEMHEAP_RECTANGULAR : i32 = 2;
-pub const VMEMHEAP_ALIGNMENT : i32 = 4;
-pub const DDKERNELCAPS_SKIPFIELDS : i32 = 1;
-pub const DDKERNELCAPS_AUTOFLIP : i32 = 2;
-pub const DDKERNELCAPS_SETSTATE : i32 = 4;
-pub const DDKERNELCAPS_LOCK : i32 = 8;
-pub const DDKERNELCAPS_FLIPVIDEOPORT : i32 = 16;
-pub const DDKERNELCAPS_FLIPOVERLAY : i32 = 32;
-pub const DDKERNELCAPS_CAPTURE_SYSMEM : i32 = 64;
-pub const DDKERNELCAPS_CAPTURE_NONLOCALVIDMEM : i32 = 128;
-pub const DDKERNELCAPS_FIELDPOLARITY : i32 = 256;
-pub const DDKERNELCAPS_CAPTURE_INVERTED : i32 = 512;
-pub const DDIRQ_DISPLAY_VSYNC : i32 = 1;
-pub const DDIRQ_RESERVED1 : i32 = 2;
-pub const DDIRQ_VPORT0_VSYNC : i32 = 4;
-pub const DDIRQ_VPORT0_LINE : i32 = 8;
-pub const DDIRQ_VPORT1_VSYNC : i32 = 16;
-pub const DDIRQ_VPORT1_LINE : i32 = 32;
-pub const DDIRQ_VPORT2_VSYNC : i32 = 64;
-pub const DDIRQ_VPORT2_LINE : i32 = 128;
-pub const DDIRQ_VPORT3_VSYNC : i32 = 256;
-pub const DDIRQ_VPORT3_LINE : i32 = 512;
-pub const DDIRQ_VPORT4_VSYNC : i32 = 1024;
-pub const DDIRQ_VPORT4_LINE : i32 = 2048;
-pub const DDIRQ_VPORT5_VSYNC : i32 = 4096;
-pub const DDIRQ_VPORT5_LINE : i32 = 8192;
-pub const DDIRQ_VPORT6_VSYNC : i32 = 16384;
-pub const DDIRQ_VPORT6_LINE : i32 = 32768;
-pub const DDIRQ_VPORT7_VSYNC : i32 = 65536;
-pub const DDIRQ_VPORT7_LINE : i32 = 131072;
-pub const DDIRQ_VPORT8_VSYNC : i32 = 262144;
-pub const DDIRQ_VPORT8_LINE : i32 = 524288;
-pub const DDIRQ_VPORT9_VSYNC : i32 = 65536;
-pub const DDIRQ_VPORT9_LINE : i32 = 131072;
-pub const FD_FLAGS_NOSYN : u32 = 1;
-pub const LB_SRC_ADDR_USE_SRCADDR_FLAG : u32 = 1;
-pub const LB_SRC_ADDR_USE_DSTADDR_FLAG : u32 = 2;
-pub const LB_DST_ADDR_USE_SRCADDR_FLAG : u32 = 4;
-pub const LB_DST_ADDR_USE_DSTADDR_FLAG : u32 = 8;
-pub const LB_SRC_MASK_LATE_FLAG : u32 = 16;
-pub const LB_DST_MASK_LATE_FLAG : u32 = 32;
-pub const ERROR_BASE : u32 = 23000;
+pub const WLDP_LOCKDOWN_UNDEFINED = @as(u32, 0);
+pub const WLDP_LOCKDOWN_DEFINED_FLAG = @as(u32, 2147483648);
+pub const WLDP_LOCKDOWN_CONFIG_CI_FLAG = @as(u32, 1);
+pub const WLDP_LOCKDOWN_CONFIG_CI_AUDIT_FLAG = @as(u32, 2);
+pub const WLDP_LOCKDOWN_UMCIENFORCE_FLAG = @as(u32, 4);
+pub const WLDP_LOCKDOWN_AUDIT_FLAG = @as(u32, 8);
+pub const WLDP_LOCKDOWN_EXCLUSION_FLAG = @as(u32, 16);
+pub const WLDP_HOST_INFORMATION_REVISION = @as(u32, 1);
+pub const WLDP_FLAGS_SKIPSIGNATUREVALIDATION = @as(u32, 256);
+pub const MAX_TDI_ENTITIES = @as(u32, 4096);
+pub const INFO_CLASS_GENERIC = @as(u32, 256);
+pub const INFO_CLASS_PROTOCOL = @as(u32, 512);
+pub const INFO_CLASS_IMPLEMENTATION = @as(u32, 768);
+pub const INFO_TYPE_PROVIDER = @as(u32, 256);
+pub const INFO_TYPE_ADDRESS_OBJECT = @as(u32, 512);
+pub const INFO_TYPE_CONNECTION = @as(u32, 768);
+pub const ENTITY_LIST_ID = @as(u32, 0);
+pub const INVALID_ENTITY_INSTANCE = @as(i32, -1);
+pub const CONTEXT_SIZE = @as(u32, 16);
+pub const ENTITY_TYPE_ID = @as(u32, 1);
+pub const CO_TL_NBF = @as(u32, 1024);
+pub const CO_TL_SPX = @as(u32, 1026);
+pub const CO_TL_TCP = @as(u32, 1028);
+pub const CO_TL_SPP = @as(u32, 1030);
+pub const CL_TL_NBF = @as(u32, 1025);
+pub const CL_TL_UDP = @as(u32, 1027);
+pub const ER_ICMP = @as(u32, 896);
+pub const CL_NL_IPX = @as(u32, 769);
+pub const CL_NL_IP = @as(u32, 771);
+pub const AT_ARP = @as(u32, 640);
+pub const AT_NULL = @as(u32, 642);
+pub const IF_GENERIC = @as(u32, 512);
+pub const IF_MIB = @as(u32, 514);
+pub const OBJECT_ISROOT = @as(i32, -2147483648);
+pub const GUID_MiscellaneousCallbacks = Guid.initString("efd60cc0-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_VideoPortCallbacks = Guid.initString("efd60cc1-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_ColorControlCallbacks = Guid.initString("efd60cc2-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_VideoPortCaps = Guid.initString("efd60cc3-49e7-11d0-889d-00aa00bbb76a");
+pub const GUID_D3DCallbacks2 = Guid.initString("0ba584e1-70b6-11d0-889d-00aa00bbb76a");
+pub const GUID_D3DCallbacks3 = Guid.initString("ddf41230-ec0a-11d0-a9b6-00aa00c0993e");
+pub const GUID_NonLocalVidMemCaps = Guid.initString("86c4fa80-8d84-11d0-94e8-00c04fc34137");
+pub const GUID_KernelCallbacks = Guid.initString("80863800-6b06-11d0-9b06-00a0c903a3b8");
+pub const GUID_KernelCaps = Guid.initString("ffaa7540-7aa8-11d0-9b06-00a0c903a3b8");
+pub const GUID_D3DExtendedCaps = Guid.initString("7de41f80-9d93-11d0-89ab-00a0c9054129");
+pub const GUID_ZPixelFormats = Guid.initString("93869880-36cf-11d1-9b1b-00aa00bbb8ae");
+pub const GUID_DDMoreSurfaceCaps = Guid.initString("3b8a0466-f269-11d1-880b-00c04fd930c5");
+pub const GUID_DDStereoMode = Guid.initString("f828169c-a8e8-11d2-a1f2-00a0c983eaf6");
+pub const GUID_OptSurfaceKmodeInfo = Guid.initString("e05c8472-51d4-11d1-8cce-00a0c90629a8");
+pub const GUID_OptSurfaceUmodeInfo = Guid.initString("9d792804-5fa8-11d1-8cd0-00a0c90629a8");
+pub const GUID_UserModeDriverInfo = Guid.initString("f0b0e8e2-5f97-11d1-8cd0-00a0c90629a8");
+pub const GUID_UserModeDriverPassword = Guid.initString("97f861b6-60a1-11d1-8cd0-00a0c90629a8");
+pub const GUID_D3DParseUnknownCommandCallback = Guid.initString("2e04ffa0-98e4-11d1-8ce1-00a0c90629a8");
+pub const GUID_MotionCompCallbacks = Guid.initString("b1122b40-5da5-11d1-8fcf-00c04fc29b4e");
+pub const GUID_Miscellaneous2Callbacks = Guid.initString("406b2f00-3e5a-11d1-b640-00aa00a1f96a");
+pub const DDPF_NOVEL_TEXTURE_FORMAT = @as(i32, 1048576);
+pub const DELETED_OK = @as(u32, 0);
+pub const DELETED_LASTONE = @as(u32, 1);
+pub const DELETED_NOTFOUND = @as(u32, 2);
+pub const DCICOMMAND = @as(u32, 3075);
+pub const DD_VERSION = @as(i32, 512);
+pub const DD_RUNTIME_VERSION = @as(i32, 2306);
+pub const DD_HAL_VERSION = @as(u32, 256);
+pub const DDCREATEDRIVEROBJECT = @as(u32, 10);
+pub const DDGET32BITDRIVERNAME = @as(u32, 11);
+pub const DDNEWCALLBACKFNS = @as(u32, 12);
+pub const DDVERSIONINFO = @as(u32, 13);
+pub const MAX_PALETTE_SIZE = @as(u32, 256);
+pub const D3DFMT_INTERNAL_D32 = @as(u32, 71);
+pub const D3DFMT_INTERNAL_S1D15 = @as(u32, 72);
+pub const D3DFMT_INTERNAL_D15S1 = @as(u32, 73);
+pub const D3DFMT_INTERNAL_S8D24 = @as(u32, 74);
+pub const D3DFMT_INTERNAL_D24S8 = @as(u32, 75);
+pub const D3DFMT_INTERNAL_X8D24 = @as(u32, 76);
+pub const D3DFMT_INTERNAL_D24X8 = @as(u32, 77);
+pub const DDHAL_PLEASEALLOC_LINEARSIZE = @as(i32, 3);
+pub const HEAPALIASINFO_MAPPEDREAL = @as(i32, 1);
+pub const HEAPALIASINFO_MAPPEDDUMMY = @as(i32, 2);
+pub const DDHAL_CB32_SETEXCLUSIVEMODE = @as(i32, 256);
+pub const DDHAL_CB32_FLIPTOGDISURFACE = @as(i32, 512);
+pub const DDHAL_MISCCB32_UPDATENONLOCALHEAP = @as(i32, 2);
+pub const DDHAL_MISCCB32_GETHEAPALIGNMENT = @as(i32, 4);
+pub const DDHAL_MISCCB32_GETSYSMEMBLTSTATUS = @as(i32, 8);
+pub const DDRAWIPAL_256 = @as(i32, 1);
+pub const DDRAWIPAL_16 = @as(i32, 2);
+pub const DDRAWIPAL_GDI = @as(i32, 4);
+pub const DDRAWIPAL_STORED_8 = @as(i32, 8);
+pub const DDRAWIPAL_STORED_16 = @as(i32, 16);
+pub const DDRAWIPAL_STORED_24 = @as(i32, 32);
+pub const DDRAWIPAL_EXCLUSIVE = @as(i32, 64);
+pub const DDRAWIPAL_INHEL = @as(i32, 128);
+pub const DDRAWIPAL_DIRTY = @as(i32, 256);
+pub const DDRAWIPAL_ALLOW256 = @as(i32, 512);
+pub const DDRAWIPAL_4 = @as(i32, 1024);
+pub const DDRAWIPAL_2 = @as(i32, 2048);
+pub const DDRAWIPAL_STORED_8INDEX = @as(i32, 4096);
+pub const DDRAWIPAL_ALPHA = @as(i32, 8192);
+pub const DDRAWICLIP_WATCHWINDOW = @as(i32, 1);
+pub const DDRAWICLIP_ISINITIALIZED = @as(i32, 2);
+pub const DDRAWICLIP_INMASTERSPRITELIST = @as(i32, 4);
+pub const DDAL_IMPLICIT = @as(i32, 1);
+pub const ACCESSRECT_VRAMSTYLE = @as(i32, 1);
+pub const ACCESSRECT_NOTHOLDINGWIN16LOCK = @as(i32, 2);
+pub const ACCESSRECT_BROKEN = @as(i32, 4);
+pub const PFINDEX_UNINITIALIZED = @as(u32, 0);
+pub const DDRAWISURFGBL_MEMFREE = @as(i32, 1);
+pub const DDRAWISURFGBL_SYSMEMREQUESTED = @as(i32, 2);
+pub const DDRAWISURFGBL_ISGDISURFACE = @as(i32, 4);
+pub const DDRAWISURFGBL_SOFTWAREAUTOFLIP = @as(i32, 8);
+pub const DDRAWISURFGBL_LOCKNOTHOLDINGWIN16LOCK = @as(i32, 16);
+pub const DDRAWISURFGBL_LOCKVRAMSTYLE = @as(i32, 32);
+pub const DDRAWISURFGBL_LOCKBROKEN = @as(i32, 64);
+pub const DDRAWISURFGBL_IMPLICITHANDLE = @as(i32, 128);
+pub const DDRAWISURFGBL_ISCLIENTMEM = @as(i32, 256);
+pub const DDRAWISURFGBL_HARDWAREOPSOURCE = @as(i32, 512);
+pub const DDRAWISURFGBL_HARDWAREOPDEST = @as(i32, 1024);
+pub const DDRAWISURFGBL_VPORTINTERLEAVED = @as(i32, 2048);
+pub const DDRAWISURFGBL_VPORTDATA = @as(i32, 4096);
+pub const DDRAWISURFGBL_LATEALLOCATELINEAR = @as(i32, 8192);
+pub const DDRAWISURFGBL_SYSMEMEXECUTEBUFFER = @as(i32, 16384);
+pub const DDRAWISURFGBL_FASTLOCKHELD = @as(i32, 32768);
+pub const DDRAWISURFGBL_READONLYLOCKHELD = @as(i32, 65536);
+pub const DDRAWISURFGBL_DX8SURFACE = @as(i32, 524288);
+pub const DDRAWISURFGBL_DDHELDONTFREE = @as(i32, 1048576);
+pub const DDRAWISURFGBL_NOTIFYWHENUNLOCKED = @as(i32, 2097152);
+pub const DDRAWISURFGBL_RESERVED0 = @as(i32, -2147483648);
+pub const DDRAWISURF_ATTACHED = @as(i32, 1);
+pub const DDRAWISURF_IMPLICITCREATE = @as(i32, 2);
+pub const DDRAWISURF_ISFREE = @as(i32, 4);
+pub const DDRAWISURF_ATTACHED_FROM = @as(i32, 8);
+pub const DDRAWISURF_IMPLICITROOT = @as(i32, 16);
+pub const DDRAWISURF_PARTOFPRIMARYCHAIN = @as(i32, 32);
+pub const DDRAWISURF_DATAISALIASED = @as(i32, 64);
+pub const DDRAWISURF_HASDC = @as(i32, 128);
+pub const DDRAWISURF_HASCKEYDESTOVERLAY = @as(i32, 256);
+pub const DDRAWISURF_HASCKEYDESTBLT = @as(i32, 512);
+pub const DDRAWISURF_HASCKEYSRCOVERLAY = @as(i32, 1024);
+pub const DDRAWISURF_LOCKEXCLUDEDCURSOR = @as(i32, 4096);
+pub const DDRAWISURF_SETGAMMA = @as(i32, 32768);
+pub const DDRAWISURF_SW_CKEYDESTOVERLAY = @as(i32, 65536);
+pub const DDRAWISURF_SW_CKEYDESTBLT = @as(i32, 131072);
+pub const DDRAWISURF_SW_CKEYSRCOVERLAY = @as(i32, 262144);
+pub const DDRAWISURF_SW_CKEYSRCBLT = @as(i32, 524288);
+pub const DDRAWISURF_HW_CKEYDESTOVERLAY = @as(i32, 1048576);
+pub const DDRAWISURF_HW_CKEYDESTBLT = @as(i32, 2097152);
+pub const DDRAWISURF_HW_CKEYSRCOVERLAY = @as(i32, 4194304);
+pub const DDRAWISURF_HW_CKEYSRCBLT = @as(i32, 8388608);
+pub const DDRAWISURF_INMASTERSPRITELIST = @as(i32, 16777216);
+pub const DDRAWISURF_HELCB = @as(i32, 33554432);
+pub const DDRAWISURF_DCIBUSY = @as(i32, 536870912);
+pub const DDRAWISURF_GETDCNULL = @as(i32, 1073741824);
+pub const DDRAWISURF_STEREOSURFACELEFT = @as(i32, 536870912);
+pub const DDRAWISURF_DCILOCK = @as(i32, -2147483648);
+pub const DDMODEINFO_PALETTIZED = @as(u32, 1);
+pub const DDMODEINFO_MODEX = @as(u32, 2);
+pub const DDMODEINFO_UNSUPPORTED = @as(u32, 4);
+pub const DDMODEINFO_STANDARDVGA = @as(u32, 8);
+pub const DDMODEINFO_MAXREFRESH = @as(u32, 16);
+pub const DDMODEINFO_STEREO = @as(u32, 32);
+pub const DDRAWILCL_HASEXCLUSIVEMODE = @as(i32, 1);
+pub const DDRAWILCL_ISFULLSCREEN = @as(i32, 2);
+pub const DDRAWILCL_SETCOOPCALLED = @as(i32, 4);
+pub const DDRAWILCL_ACTIVEYES = @as(i32, 8);
+pub const DDRAWILCL_ACTIVENO = @as(i32, 16);
+pub const DDRAWILCL_HOOKEDHWND = @as(i32, 32);
+pub const DDRAWILCL_ALLOWMODEX = @as(i32, 64);
+pub const DDRAWILCL_V1SCLBEHAVIOUR = @as(i32, 128);
+pub const DDRAWILCL_MODEHASBEENCHANGED = @as(i32, 256);
+pub const DDRAWILCL_CREATEDWINDOW = @as(i32, 512);
+pub const DDRAWILCL_DIRTYDC = @as(i32, 1024);
+pub const DDRAWILCL_DISABLEINACTIVATE = @as(i32, 2048);
+pub const DDRAWILCL_CURSORCLIPPED = @as(i32, 4096);
+pub const DDRAWILCL_EXPLICITMONITOR = @as(i32, 8192);
+pub const DDRAWILCL_MULTITHREADED = @as(i32, 16384);
+pub const DDRAWILCL_FPUSETUP = @as(i32, 32768);
+pub const DDRAWILCL_POWEREDDOWN = @as(i32, 65536);
+pub const DDRAWILCL_DIRECTDRAW7 = @as(i32, 131072);
+pub const DDRAWILCL_ATTEMPTEDD3DCONTEXT = @as(i32, 262144);
+pub const DDRAWILCL_FPUPRESERVE = @as(i32, 524288);
+pub const DDRAWILCL_DX8DRIVER = @as(i32, 1048576);
+pub const DDRAWILCL_DIRECTDRAW8 = @as(i32, 2097152);
+pub const DDRAWI_xxxxxxxxx1 = @as(i32, 1);
+pub const DDRAWI_xxxxxxxxx2 = @as(i32, 2);
+pub const DDRAWI_VIRTUALDESKTOP = @as(i32, 8);
+pub const DDRAWI_MODEX = @as(i32, 16);
+pub const DDRAWI_DISPLAYDRV = @as(i32, 32);
+pub const DDRAWI_FULLSCREEN = @as(i32, 64);
+pub const DDRAWI_MODECHANGED = @as(i32, 128);
+pub const DDRAWI_NOHARDWARE = @as(i32, 256);
+pub const DDRAWI_PALETTEINIT = @as(i32, 512);
+pub const DDRAWI_NOEMULATION = @as(i32, 1024);
+pub const DDRAWI_HASCKEYDESTOVERLAY = @as(i32, 2048);
+pub const DDRAWI_HASCKEYSRCOVERLAY = @as(i32, 4096);
+pub const DDRAWI_HASGDIPALETTE = @as(i32, 8192);
+pub const DDRAWI_EMULATIONINITIALIZED = @as(i32, 16384);
+pub const DDRAWI_HASGDIPALETTE_EXCLUSIVE = @as(i32, 32768);
+pub const DDRAWI_MODEXILLEGAL = @as(i32, 65536);
+pub const DDRAWI_FLIPPEDTOGDI = @as(i32, 131072);
+pub const DDRAWI_NEEDSWIN16FORVRAMLOCK = @as(i32, 262144);
+pub const DDRAWI_PDEVICEVRAMBITCLEARED = @as(i32, 524288);
+pub const DDRAWI_STANDARDVGA = @as(i32, 1048576);
+pub const DDRAWI_EXTENDEDALIGNMENT = @as(i32, 2097152);
+pub const DDRAWI_CHANGINGMODE = @as(i32, 4194304);
+pub const DDRAWI_GDIDRV = @as(i32, 8388608);
+pub const DDRAWI_ATTACHEDTODESKTOP = @as(i32, 16777216);
+pub const DDRAWI_UMODELOADED = @as(i32, 33554432);
+pub const DDRAWI_DDRAWDATANOTFETCHED = @as(i32, 67108864);
+pub const DDRAWI_SECONDARYDRIVERLOADED = @as(i32, 134217728);
+pub const DDRAWI_TESTINGMODES = @as(i32, 268435456);
+pub const DDRAWI_DRIVERINFO2 = @as(i32, 536870912);
+pub const DDRAWI_BADPDEV = @as(i32, 1073741824);
+pub const DDRAWIVPORT_NOKERNELHANDLES = @as(u32, 8);
+pub const DDRAWIVPORT_SOFTWARE_BOB = @as(u32, 16);
+pub const DDRAWIVPORT_VBION = @as(u32, 32);
+pub const DDRAWIVPORT_VIDEOON = @as(u32, 64);
+pub const DDHALINFO_ISPRIMARYDISPLAY = @as(i32, 1);
+pub const DDHALINFO_MODEXILLEGAL = @as(i32, 2);
+pub const VDMCONTEXT_i386 = @as(u32, 65536);
+pub const VDMCONTEXT_i486 = @as(u32, 65536);
+pub const VDM_KGDT_R3_CODE = @as(u32, 24);
+pub const VDM_MAXIMUM_SUPPORTED_EXTENSION = @as(u32, 512);
+pub const V86FLAGS_CARRY = @as(u32, 1);
+pub const V86FLAGS_PARITY = @as(u32, 4);
+pub const V86FLAGS_AUXCARRY = @as(u32, 16);
+pub const V86FLAGS_ZERO = @as(u32, 64);
+pub const V86FLAGS_SIGN = @as(u32, 128);
+pub const V86FLAGS_TRACE = @as(u32, 256);
+pub const V86FLAGS_INTERRUPT = @as(u32, 512);
+pub const V86FLAGS_DIRECTION = @as(u32, 1024);
+pub const V86FLAGS_OVERFLOW = @as(u32, 2048);
+pub const V86FLAGS_IOPL = @as(u32, 12288);
+pub const V86FLAGS_IOPL_BITS = @as(u32, 18);
+pub const V86FLAGS_RESUME = @as(u32, 65536);
+pub const V86FLAGS_V86 = @as(u32, 131072);
+pub const V86FLAGS_ALIGNMENT = @as(u32, 262144);
+pub const DCI_VERSION = @as(u32, 256);
+pub const DCICREATEPRIMARYSURFACE = @as(u32, 1);
+pub const DCICREATEOFFSCREENSURFACE = @as(u32, 2);
+pub const DCICREATEOVERLAYSURFACE = @as(u32, 3);
+pub const DCIENUMSURFACE = @as(u32, 4);
+pub const DCIESCAPE = @as(u32, 5);
+pub const DCI_OK = @as(u32, 0);
+pub const DCI_FAIL_GENERIC = @as(i32, -1);
+pub const DCI_FAIL_UNSUPPORTEDVERSION = @as(i32, -2);
+pub const DCI_FAIL_INVALIDSURFACE = @as(i32, -3);
+pub const DCI_FAIL_UNSUPPORTED = @as(i32, -4);
+pub const DCI_ERR_CURRENTLYNOTAVAIL = @as(i32, -5);
+pub const DCI_ERR_INVALIDRECT = @as(i32, -6);
+pub const DCI_ERR_UNSUPPORTEDFORMAT = @as(i32, -7);
+pub const DCI_ERR_UNSUPPORTEDMASK = @as(i32, -8);
+pub const DCI_ERR_TOOBIGHEIGHT = @as(i32, -9);
+pub const DCI_ERR_TOOBIGWIDTH = @as(i32, -10);
+pub const DCI_ERR_TOOBIGSIZE = @as(i32, -11);
+pub const DCI_ERR_OUTOFMEMORY = @as(i32, -12);
+pub const DCI_ERR_INVALIDPOSITION = @as(i32, -13);
+pub const DCI_ERR_INVALIDSTRETCH = @as(i32, -14);
+pub const DCI_ERR_INVALIDCLIPLIST = @as(i32, -15);
+pub const DCI_ERR_SURFACEISOBSCURED = @as(i32, -16);
+pub const DCI_ERR_XALIGN = @as(i32, -17);
+pub const DCI_ERR_YALIGN = @as(i32, -18);
+pub const DCI_ERR_XYALIGN = @as(i32, -19);
+pub const DCI_ERR_WIDTHALIGN = @as(i32, -20);
+pub const DCI_ERR_HEIGHTALIGN = @as(i32, -21);
+pub const DCI_STATUS_POINTERCHANGED = @as(u32, 1);
+pub const DCI_STATUS_STRIDECHANGED = @as(u32, 2);
+pub const DCI_STATUS_FORMATCHANGED = @as(u32, 4);
+pub const DCI_STATUS_SURFACEINFOCHANGED = @as(u32, 8);
+pub const DCI_STATUS_CHROMAKEYCHANGED = @as(u32, 16);
+pub const DCI_STATUS_WASSTILLDRAWING = @as(u32, 32);
+pub const DCI_SURFACE_TYPE = @as(u32, 15);
+pub const DCI_PRIMARY = @as(u32, 0);
+pub const DCI_OFFSCREEN = @as(u32, 1);
+pub const DCI_OVERLAY = @as(u32, 2);
+pub const DCI_VISIBLE = @as(u32, 16);
+pub const DCI_CHROMAKEY = @as(u32, 32);
+pub const DCI_1632_ACCESS = @as(u32, 64);
+pub const DCI_DWORDSIZE = @as(u32, 128);
+pub const DCI_DWORDALIGN = @as(u32, 256);
+pub const DCI_WRITEONLY = @as(u32, 512);
+pub const DCI_ASYNC = @as(u32, 1024);
+pub const DCI_CAN_STRETCHX = @as(u32, 4096);
+pub const DCI_CAN_STRETCHY = @as(u32, 8192);
+pub const DCI_CAN_STRETCHXN = @as(u32, 16384);
+pub const DCI_CAN_STRETCHYN = @as(u32, 32768);
+pub const DCI_CANOVERLAY = @as(u32, 65536);
+pub const TSF_Hardware = @as(u32, 1);
+pub const TSF_Authenticated = @as(u32, 2);
+pub const TSF_IPv6 = @as(u32, 4);
+pub const TSF_SignatureAuthenticated = @as(u32, 8);
+pub const FILE_FLAG_SESSION_AWARE = @as(u32, 8388608);
+pub const FILE_FLAG_FIRST_PIPE_INSTANCE = @as(u32, 524288);
+pub const FILE_FLAG_OPEN_REQUIRING_OPLOCK = @as(u32, 262144);
+pub const PROGRESS_CONTINUE = @as(u32, 0);
+pub const PROGRESS_CANCEL = @as(u32, 1);
+pub const PROGRESS_STOP = @as(u32, 2);
+pub const PROGRESS_QUIET = @as(u32, 3);
+pub const COPY_FILE_FAIL_IF_EXISTS = @as(u32, 1);
+pub const COPY_FILE_RESTARTABLE = @as(u32, 2);
+pub const COPY_FILE_OPEN_SOURCE_FOR_WRITE = @as(u32, 4);
+pub const COPY_FILE_ALLOW_DECRYPTED_DESTINATION = @as(u32, 8);
+pub const COPY_FILE_COPY_SYMLINK = @as(u32, 2048);
+pub const COPY_FILE_NO_BUFFERING = @as(u32, 4096);
+pub const COPY_FILE_REQUEST_SECURITY_PRIVILEGES = @as(u32, 8192);
+pub const COPY_FILE_RESUME_FROM_PAUSE = @as(u32, 16384);
+pub const COPY_FILE_NO_OFFLOAD = @as(u32, 262144);
+pub const COPY_FILE_IGNORE_EDP_BLOCK = @as(u32, 4194304);
+pub const COPY_FILE_IGNORE_SOURCE_ENCRYPTION = @as(u32, 8388608);
+pub const COPY_FILE_DONT_REQUEST_DEST_WRITE_DAC = @as(u32, 33554432);
+pub const COPY_FILE_REQUEST_COMPRESSED_TRAFFIC = @as(u32, 268435456);
+pub const COPY_FILE_OPEN_AND_COPY_REPARSE_POINT = @as(u32, 2097152);
+pub const COPY_FILE_DIRECTORY = @as(u32, 128);
+pub const COPY_FILE_SKIP_ALTERNATE_STREAMS = @as(u32, 32768);
+pub const COPY_FILE_DISABLE_PRE_ALLOCATION = @as(u32, 67108864);
+pub const COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE = @as(u32, 134217728);
+pub const PIPE_ACCESS_INBOUND = @as(u32, 1);
+pub const PIPE_ACCESS_OUTBOUND = @as(u32, 2);
+pub const PIPE_ACCESS_DUPLEX = @as(u32, 3);
+pub const PIPE_WAIT = @as(u32, 0);
+pub const PIPE_READMODE_BYTE = @as(u32, 0);
+pub const PIPE_ACCEPT_REMOTE_CLIENTS = @as(u32, 0);
+pub const PIPE_REJECT_REMOTE_CLIENTS = @as(u32, 8);
+pub const PIPE_UNLIMITED_INSTANCES = @as(u32, 255);
+pub const SECURITY_SQOS_PRESENT = @as(u32, 1048576);
+pub const SECURITY_VALID_SQOS_FLAGS = @as(u32, 2031616);
+pub const FAIL_FAST_GENERATE_EXCEPTION_ADDRESS = @as(u32, 1);
+pub const FAIL_FAST_NO_HARD_ERROR_DLG = @as(u32, 2);
+pub const GMEM_NOCOMPACT = @as(u32, 16);
+pub const GMEM_NODISCARD = @as(u32, 32);
+pub const GMEM_MODIFY = @as(u32, 128);
+pub const GMEM_DISCARDABLE = @as(u32, 256);
+pub const GMEM_NOT_BANKED = @as(u32, 4096);
+pub const GMEM_SHARE = @as(u32, 8192);
+pub const GMEM_DDESHARE = @as(u32, 8192);
+pub const GMEM_NOTIFY = @as(u32, 16384);
+pub const GMEM_VALID_FLAGS = @as(u32, 32626);
+pub const GMEM_INVALID_HANDLE = @as(u32, 32768);
+pub const GMEM_DISCARDED = @as(u32, 16384);
+pub const GMEM_LOCKCOUNT = @as(u32, 255);
+pub const STACK_SIZE_PARAM_IS_A_RESERVATION = @as(u32, 65536);
+pub const VOLUME_NAME_DOS = @as(u32, 0);
+pub const VOLUME_NAME_GUID = @as(u32, 1);
+pub const VOLUME_NAME_NT = @as(u32, 2);
+pub const VOLUME_NAME_NONE = @as(u32, 4);
+pub const DRIVE_UNKNOWN = @as(u32, 0);
+pub const DRIVE_NO_ROOT_DIR = @as(u32, 1);
+pub const DRIVE_REMOVABLE = @as(u32, 2);
+pub const DRIVE_FIXED = @as(u32, 3);
+pub const DRIVE_REMOTE = @as(u32, 4);
+pub const DRIVE_CDROM = @as(u32, 5);
+pub const DRIVE_RAMDISK = @as(u32, 6);
+pub const FILE_TYPE_UNKNOWN = @as(u32, 0);
+pub const FILE_TYPE_DISK = @as(u32, 1);
+pub const FILE_TYPE_CHAR = @as(u32, 2);
+pub const FILE_TYPE_PIPE = @as(u32, 3);
+pub const FILE_TYPE_REMOTE = @as(u32, 32768);
+pub const IGNORE = @as(u32, 0);
+pub const INFINITE = @as(u32, 4294967295);
+pub const CBR_110 = @as(u32, 110);
+pub const CBR_300 = @as(u32, 300);
+pub const CBR_600 = @as(u32, 600);
+pub const CBR_1200 = @as(u32, 1200);
+pub const CBR_2400 = @as(u32, 2400);
+pub const CBR_4800 = @as(u32, 4800);
+pub const CBR_9600 = @as(u32, 9600);
+pub const CBR_14400 = @as(u32, 14400);
+pub const CBR_19200 = @as(u32, 19200);
+pub const CBR_38400 = @as(u32, 38400);
+pub const CBR_56000 = @as(u32, 56000);
+pub const CBR_57600 = @as(u32, 57600);
+pub const CBR_115200 = @as(u32, 115200);
+pub const CBR_128000 = @as(u32, 128000);
+pub const CBR_256000 = @as(u32, 256000);
+pub const CE_TXFULL = @as(u32, 256);
+pub const CE_PTO = @as(u32, 512);
+pub const CE_IOE = @as(u32, 1024);
+pub const CE_DNS = @as(u32, 2048);
+pub const CE_OOP = @as(u32, 4096);
+pub const CE_MODE = @as(u32, 32768);
+pub const IE_BADID = @as(i32, -1);
+pub const IE_OPEN = @as(i32, -2);
+pub const IE_NOPEN = @as(i32, -3);
+pub const IE_MEMORY = @as(i32, -4);
+pub const IE_DEFAULT = @as(i32, -5);
+pub const IE_HARDWARE = @as(i32, -10);
+pub const IE_BYTESIZE = @as(i32, -11);
+pub const IE_BAUDRATE = @as(i32, -12);
+pub const RESETDEV = @as(u32, 7);
+pub const LPTx = @as(u32, 128);
+pub const S_QUEUEEMPTY = @as(u32, 0);
+pub const S_THRESHOLD = @as(u32, 1);
+pub const S_ALLTHRESHOLD = @as(u32, 2);
+pub const S_NORMAL = @as(u32, 0);
+pub const S_LEGATO = @as(u32, 1);
+pub const S_STACCATO = @as(u32, 2);
+pub const S_PERIOD512 = @as(u32, 0);
+pub const S_PERIOD1024 = @as(u32, 1);
+pub const S_PERIOD2048 = @as(u32, 2);
+pub const S_PERIODVOICE = @as(u32, 3);
+pub const S_WHITE512 = @as(u32, 4);
+pub const S_WHITE1024 = @as(u32, 5);
+pub const S_WHITE2048 = @as(u32, 6);
+pub const S_WHITEVOICE = @as(u32, 7);
+pub const S_SERDVNA = @as(i32, -1);
+pub const S_SEROFM = @as(i32, -2);
+pub const S_SERMACT = @as(i32, -3);
+pub const S_SERQFUL = @as(i32, -4);
+pub const S_SERBDNT = @as(i32, -5);
+pub const S_SERDLN = @as(i32, -6);
+pub const S_SERDCC = @as(i32, -7);
+pub const S_SERDTP = @as(i32, -8);
+pub const S_SERDVL = @as(i32, -9);
+pub const S_SERDMD = @as(i32, -10);
+pub const S_SERDSH = @as(i32, -11);
+pub const S_SERDPT = @as(i32, -12);
+pub const S_SERDFQ = @as(i32, -13);
+pub const S_SERDDR = @as(i32, -14);
+pub const S_SERDSR = @as(i32, -15);
+pub const S_SERDST = @as(i32, -16);
+pub const NMPWAIT_NOWAIT = @as(u32, 1);
+pub const OFS_MAXPATHNAME = @as(u32, 128);
+pub const MAXINTATOM = @as(u32, 49152);
+pub const SCS_32BIT_BINARY = @as(u32, 0);
+pub const SCS_DOS_BINARY = @as(u32, 1);
+pub const SCS_WOW_BINARY = @as(u32, 2);
+pub const SCS_PIF_BINARY = @as(u32, 3);
+pub const SCS_POSIX_BINARY = @as(u32, 4);
+pub const SCS_OS216_BINARY = @as(u32, 5);
+pub const SCS_64BIT_BINARY = @as(u32, 6);
+pub const FIBER_FLAG_FLOAT_SWITCH = @as(u32, 1);
+pub const FILE_SKIP_COMPLETION_PORT_ON_SUCCESS = @as(u32, 1);
+pub const FILE_SKIP_SET_EVENT_ON_HANDLE = @as(u32, 2);
+pub const HINSTANCE_ERROR = @as(u32, 32);
+pub const FORMAT_MESSAGE_MAX_WIDTH_MASK = @as(u32, 255);
+pub const FILE_ENCRYPTABLE = @as(u32, 0);
+pub const FILE_IS_ENCRYPTED = @as(u32, 1);
+pub const FILE_SYSTEM_ATTR = @as(u32, 2);
+pub const FILE_ROOT_DIR = @as(u32, 3);
+pub const FILE_SYSTEM_DIR = @as(u32, 4);
+pub const FILE_UNKNOWN = @as(u32, 5);
+pub const FILE_SYSTEM_NOT_SUPPORT = @as(u32, 6);
+pub const FILE_USER_DISALLOWED = @as(u32, 7);
+pub const FILE_READ_ONLY = @as(u32, 8);
+pub const FILE_DIR_DISALLOWED = @as(u32, 9);
+pub const EFS_USE_RECOVERY_KEYS = @as(u32, 1);
+pub const CREATE_FOR_IMPORT = @as(u32, 1);
+pub const CREATE_FOR_DIR = @as(u32, 2);
+pub const OVERWRITE_HIDDEN = @as(u32, 4);
+pub const EFSRPC_SECURE_ONLY = @as(u32, 8);
+pub const EFS_DROP_ALTERNATE_STREAMS = @as(u32, 16);
+pub const BACKUP_INVALID = @as(u32, 0);
+pub const BACKUP_GHOSTED_FILE_EXTENTS = @as(u32, 11);
+pub const STREAM_NORMAL_ATTRIBUTE = @as(u32, 0);
+pub const STREAM_MODIFIED_WHEN_READ = @as(u32, 1);
+pub const STREAM_CONTAINS_SECURITY = @as(u32, 2);
+pub const STREAM_CONTAINS_PROPERTIES = @as(u32, 4);
+pub const STREAM_SPARSE_ATTRIBUTE = @as(u32, 8);
+pub const STREAM_CONTAINS_GHOSTED_FILE_EXTENTS = @as(u32, 16);
+pub const SHUTDOWN_NORETRY = @as(u32, 1);
+pub const PROTECTION_LEVEL_SAME = @as(u32, 4294967295);
+pub const PROC_THREAD_ATTRIBUTE_NUMBER = @as(u32, 65535);
+pub const PROC_THREAD_ATTRIBUTE_THREAD = @as(u32, 65536);
+pub const PROC_THREAD_ATTRIBUTE_INPUT = @as(u32, 131072);
+pub const PROC_THREAD_ATTRIBUTE_ADDITIVE = @as(u32, 262144);
+pub const PROCESS_CREATION_MITIGATION_POLICY_DEP_ENABLE = @as(u32, 1);
+pub const PROCESS_CREATION_MITIGATION_POLICY_DEP_ATL_THUNK_ENABLE = @as(u32, 2);
+pub const PROCESS_CREATION_MITIGATION_POLICY_SEHOP_ENABLE = @as(u32, 4);
+pub const PROCESS_CREATION_CHILD_PROCESS_RESTRICTED = @as(u32, 1);
+pub const PROCESS_CREATION_CHILD_PROCESS_OVERRIDE = @as(u32, 2);
+pub const PROCESS_CREATION_CHILD_PROCESS_RESTRICTED_UNLESS_SECURE = @as(u32, 4);
+pub const PROCESS_CREATION_ALL_APPLICATION_PACKAGES_OPT_OUT = @as(u32, 1);
+pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_ENABLE_PROCESS_TREE = @as(u32, 1);
+pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_DISABLE_PROCESS_TREE = @as(u32, 2);
+pub const PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_OVERRIDE = @as(u32, 4);
+pub const ATOM_FLAG_GLOBAL = @as(u32, 2);
+pub const BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE = @as(u32, 1);
+pub const BASE_SEARCH_PATH_DISABLE_SAFE_SEARCHMODE = @as(u32, 65536);
+pub const BASE_SEARCH_PATH_PERMANENT = @as(u32, 32768);
+pub const COPYFILE2_MESSAGE_COPY_OFFLOAD = @as(i32, 1);
+pub const EVENTLOG_FULL_INFO = @as(u32, 0);
+pub const OPERATION_API_VERSION = @as(u32, 1);
+pub const MAX_COMPUTERNAME_LENGTH = @as(u32, 15);
+pub const LOGON32_PROVIDER_WINNT35 = @as(u32, 1);
+pub const LOGON32_PROVIDER_VIRTUAL = @as(u32, 4);
+pub const LOGON_ZERO_PASSWORD_BUFFER = @as(u32, 2147483648);
+pub const HW_PROFILE_GUIDLEN = @as(u32, 39);
+pub const DOCKINFO_UNDOCKED = @as(u32, 1);
+pub const DOCKINFO_DOCKED = @as(u32, 2);
+pub const DOCKINFO_USER_SUPPLIED = @as(u32, 4);
+pub const TC_NORMAL = @as(u32, 0);
+pub const TC_HARDERR = @as(u32, 1);
+pub const TC_GP_TRAP = @as(u32, 2);
+pub const TC_SIGNAL = @as(u32, 3);
+pub const AC_LINE_OFFLINE = @as(u32, 0);
+pub const AC_LINE_ONLINE = @as(u32, 1);
+pub const AC_LINE_BACKUP_POWER = @as(u32, 2);
+pub const AC_LINE_UNKNOWN = @as(u32, 255);
+pub const BATTERY_FLAG_HIGH = @as(u32, 1);
+pub const BATTERY_FLAG_LOW = @as(u32, 2);
+pub const BATTERY_FLAG_CRITICAL = @as(u32, 4);
+pub const BATTERY_FLAG_CHARGING = @as(u32, 8);
+pub const BATTERY_FLAG_NO_BATTERY = @as(u32, 128);
+pub const BATTERY_FLAG_UNKNOWN = @as(u32, 255);
+pub const BATTERY_PERCENTAGE_UNKNOWN = @as(u32, 255);
+pub const SYSTEM_STATUS_FLAG_POWER_SAVING_ON = @as(u32, 1);
+pub const BATTERY_LIFE_UNKNOWN = @as(u32, 4294967295);
+pub const ACTCTX_FLAG_PROCESSOR_ARCHITECTURE_VALID = @as(u32, 1);
+pub const ACTCTX_FLAG_LANGID_VALID = @as(u32, 2);
+pub const ACTCTX_FLAG_ASSEMBLY_DIRECTORY_VALID = @as(u32, 4);
+pub const ACTCTX_FLAG_RESOURCE_NAME_VALID = @as(u32, 8);
+pub const ACTCTX_FLAG_SET_PROCESS_DEFAULT = @as(u32, 16);
+pub const ACTCTX_FLAG_APPLICATION_NAME_VALID = @as(u32, 32);
+pub const ACTCTX_FLAG_SOURCE_IS_ASSEMBLYREF = @as(u32, 64);
+pub const ACTCTX_FLAG_HMODULE_VALID = @as(u32, 128);
+pub const DEACTIVATE_ACTCTX_FLAG_FORCE_EARLY_DEACTIVATION = @as(u32, 1);
+pub const FIND_ACTCTX_SECTION_KEY_RETURN_HACTCTX = @as(u32, 1);
+pub const FIND_ACTCTX_SECTION_KEY_RETURN_FLAGS = @as(u32, 2);
+pub const FIND_ACTCTX_SECTION_KEY_RETURN_ASSEMBLY_METADATA = @as(u32, 4);
+pub const ACTIVATION_CONTEXT_BASIC_INFORMATION_DEFINED = @as(u32, 1);
+pub const QUERY_ACTCTX_FLAG_USE_ACTIVE_ACTCTX = @as(u32, 4);
+pub const QUERY_ACTCTX_FLAG_ACTCTX_IS_HMODULE = @as(u32, 8);
+pub const QUERY_ACTCTX_FLAG_ACTCTX_IS_ADDRESS = @as(u32, 16);
+pub const QUERY_ACTCTX_FLAG_NO_ADDREF = @as(u32, 2147483648);
+pub const RESTART_MAX_CMD_LINE = @as(u32, 1024);
+pub const RECOVERY_DEFAULT_PING_INTERVAL = @as(u32, 5000);
+pub const FILE_RENAME_FLAG_REPLACE_IF_EXISTS = @as(u32, 1);
+pub const FILE_RENAME_FLAG_POSIX_SEMANTICS = @as(u32, 2);
+pub const FILE_RENAME_FLAG_SUPPRESS_PIN_STATE_INHERITANCE = @as(u32, 4);
+pub const FILE_DISPOSITION_FLAG_DO_NOT_DELETE = @as(u32, 0);
+pub const FILE_DISPOSITION_FLAG_DELETE = @as(u32, 1);
+pub const FILE_DISPOSITION_FLAG_POSIX_SEMANTICS = @as(u32, 2);
+pub const FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK = @as(u32, 4);
+pub const FILE_DISPOSITION_FLAG_ON_CLOSE = @as(u32, 8);
+pub const FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE = @as(u32, 16);
+pub const STORAGE_INFO_FLAGS_ALIGNED_DEVICE = @as(u32, 1);
+pub const STORAGE_INFO_FLAGS_PARTITION_ALIGNED_ON_DEVICE = @as(u32, 2);
+pub const STORAGE_INFO_OFFSET_UNKNOWN = @as(u32, 4294967295);
+pub const REMOTE_PROTOCOL_INFO_FLAG_LOOPBACK = @as(u32, 1);
+pub const REMOTE_PROTOCOL_INFO_FLAG_OFFLINE = @as(u32, 2);
+pub const REMOTE_PROTOCOL_INFO_FLAG_PERSISTENT_HANDLE = @as(u32, 4);
+pub const RPI_FLAG_SMB2_SHARECAP_TIMEWARP = @as(u32, 2);
+pub const RPI_FLAG_SMB2_SHARECAP_DFS = @as(u32, 8);
+pub const RPI_FLAG_SMB2_SHARECAP_CONTINUOUS_AVAILABILITY = @as(u32, 16);
+pub const RPI_FLAG_SMB2_SHARECAP_SCALEOUT = @as(u32, 32);
+pub const RPI_FLAG_SMB2_SHARECAP_CLUSTER = @as(u32, 64);
+pub const RPI_SMB2_FLAG_SERVERCAP_DFS = @as(u32, 1);
+pub const RPI_SMB2_FLAG_SERVERCAP_LEASING = @as(u32, 2);
+pub const RPI_SMB2_FLAG_SERVERCAP_LARGEMTU = @as(u32, 4);
+pub const RPI_SMB2_FLAG_SERVERCAP_MULTICHANNEL = @as(u32, 8);
+pub const RPI_SMB2_FLAG_SERVERCAP_PERSISTENT_HANDLES = @as(u32, 16);
+pub const RPI_SMB2_FLAG_SERVERCAP_DIRECTORY_LEASING = @as(u32, 32);
+pub const SYMBOLIC_LINK_FLAG_DIRECTORY = @as(u32, 1);
+pub const SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE = @as(u32, 2);
+pub const MICROSOFT_WINBASE_H_DEFINE_INTERLOCKED_CPLUSPLUS_OVERLOADS = @as(u32, 0);
+pub const CODEINTEGRITY_OPTION_ENABLED = @as(u32, 1);
+pub const CODEINTEGRITY_OPTION_TESTSIGN = @as(u32, 2);
+pub const CODEINTEGRITY_OPTION_UMCI_ENABLED = @as(u32, 4);
+pub const CODEINTEGRITY_OPTION_UMCI_AUDITMODE_ENABLED = @as(u32, 8);
+pub const CODEINTEGRITY_OPTION_UMCI_EXCLUSIONPATHS_ENABLED = @as(u32, 16);
+pub const CODEINTEGRITY_OPTION_TEST_BUILD = @as(u32, 32);
+pub const CODEINTEGRITY_OPTION_PREPRODUCTION_BUILD = @as(u32, 64);
+pub const CODEINTEGRITY_OPTION_DEBUGMODE_ENABLED = @as(u32, 128);
+pub const CODEINTEGRITY_OPTION_FLIGHT_BUILD = @as(u32, 256);
+pub const CODEINTEGRITY_OPTION_FLIGHTING_ENABLED = @as(u32, 512);
+pub const CODEINTEGRITY_OPTION_HVCI_KMCI_ENABLED = @as(u32, 1024);
+pub const CODEINTEGRITY_OPTION_HVCI_KMCI_AUDITMODE_ENABLED = @as(u32, 2048);
+pub const CODEINTEGRITY_OPTION_HVCI_KMCI_STRICTMODE_ENABLED = @as(u32, 4096);
+pub const CODEINTEGRITY_OPTION_HVCI_IUM_ENABLED = @as(u32, 8192);
+pub const FILE_MAXIMUM_DISPOSITION = @as(u32, 5);
+pub const FILE_DIRECTORY_FILE = @as(u32, 1);
+pub const FILE_WRITE_THROUGH = @as(u32, 2);
+pub const FILE_SEQUENTIAL_ONLY = @as(u32, 4);
+pub const FILE_NO_INTERMEDIATE_BUFFERING = @as(u32, 8);
+pub const FILE_SYNCHRONOUS_IO_ALERT = @as(u32, 16);
+pub const FILE_SYNCHRONOUS_IO_NONALERT = @as(u32, 32);
+pub const FILE_NON_DIRECTORY_FILE = @as(u32, 64);
+pub const FILE_CREATE_TREE_CONNECTION = @as(u32, 128);
+pub const FILE_COMPLETE_IF_OPLOCKED = @as(u32, 256);
+pub const FILE_NO_EA_KNOWLEDGE = @as(u32, 512);
+pub const FILE_OPEN_REMOTE_INSTANCE = @as(u32, 1024);
+pub const FILE_RANDOM_ACCESS = @as(u32, 2048);
+pub const FILE_DELETE_ON_CLOSE = @as(u32, 4096);
+pub const FILE_OPEN_BY_FILE_ID = @as(u32, 8192);
+pub const FILE_OPEN_FOR_BACKUP_INTENT = @as(u32, 16384);
+pub const FILE_NO_COMPRESSION = @as(u32, 32768);
+pub const FILE_OPEN_REQUIRING_OPLOCK = @as(u32, 65536);
+pub const FILE_RESERVE_OPFILTER = @as(u32, 1048576);
+pub const FILE_OPEN_REPARSE_POINT = @as(u32, 2097152);
+pub const FILE_OPEN_NO_RECALL = @as(u32, 4194304);
+pub const FILE_OPEN_FOR_FREE_SPACE_QUERY = @as(u32, 8388608);
+pub const FILE_VALID_OPTION_FLAGS = @as(u32, 16777215);
+pub const FILE_VALID_PIPE_OPTION_FLAGS = @as(u32, 50);
+pub const FILE_VALID_MAILSLOT_OPTION_FLAGS = @as(u32, 50);
+pub const FILE_VALID_SET_FLAGS = @as(u32, 54);
+pub const FILE_SUPERSEDED = @as(u32, 0);
+pub const FILE_OPENED = @as(u32, 1);
+pub const FILE_CREATED = @as(u32, 2);
+pub const FILE_OVERWRITTEN = @as(u32, 3);
+pub const FILE_EXISTS = @as(u32, 4);
+pub const FILE_DOES_NOT_EXIST = @as(u32, 5);
+pub const AVRF_MAX_TRACES = @as(u32, 32);
+pub const INCLUDED_FCI = @as(u32, 1);
+pub const INCLUDED_FDI = @as(u32, 1);
+pub const INCLUDED_TYPES_FCI_FDI = @as(u32, 1);
+pub const CB_MAX_DISK = @as(i32, 2147483647);
+pub const CB_MAX_FILENAME = @as(u32, 256);
+pub const CB_MAX_CABINET_NAME = @as(u32, 256);
+pub const CB_MAX_CAB_PATH = @as(u32, 256);
+pub const CB_MAX_DISK_NAME = @as(u32, 256);
+pub const DBG_SEGLOAD = @as(u32, 0);
+pub const DBG_SEGMOVE = @as(u32, 1);
+pub const DBG_SEGFREE = @as(u32, 2);
+pub const DBG_MODLOAD = @as(u32, 3);
+pub const DBG_MODFREE = @as(u32, 4);
+pub const DBG_SINGLESTEP = @as(u32, 5);
+pub const DBG_BREAK = @as(u32, 6);
+pub const DBG_GPFAULT = @as(u32, 7);
+pub const DBG_DIVOVERFLOW = @as(u32, 8);
+pub const DBG_INSTRFAULT = @as(u32, 9);
+pub const DBG_TASKSTART = @as(u32, 10);
+pub const DBG_TASKSTOP = @as(u32, 11);
+pub const DBG_DLLSTART = @as(u32, 12);
+pub const DBG_DLLSTOP = @as(u32, 13);
+pub const DBG_ATTACH = @as(u32, 14);
+pub const DBG_TOOLHELP = @as(u32, 15);
+pub const DBG_STACKFAULT = @as(u32, 16);
+pub const DBG_WOWINIT = @as(u32, 17);
+pub const DBG_TEMPBP = @as(u32, 18);
+pub const DBG_MODMOVE = @as(u32, 19);
+pub const DBG_INIT = @as(u32, 20);
+pub const DBG_GPFAULT2 = @as(u32, 21);
+pub const VDMEVENT_NEEDS_INTERACTIVE = @as(u32, 32768);
+pub const VDMEVENT_VERBOSE = @as(u32, 16384);
+pub const VDMEVENT_PE = @as(u32, 8192);
+pub const VDMEVENT_ALLFLAGS = @as(u32, 57344);
+pub const VDMEVENT_V86 = @as(u32, 1);
+pub const VDMEVENT_PM16 = @as(u32, 2);
+pub const MAX_PATH16 = @as(u32, 255);
+pub const SN_CODE = @as(u32, 0);
+pub const SN_DATA = @as(u32, 1);
+pub const SN_V86 = @as(u32, 2);
+pub const GLOBAL_ALL = @as(u32, 0);
+pub const GLOBAL_LRU = @as(u32, 1);
+pub const GLOBAL_FREE = @as(u32, 2);
+pub const GT_UNKNOWN = @as(u32, 0);
+pub const GT_DGROUP = @as(u32, 1);
+pub const GT_DATA = @as(u32, 2);
+pub const GT_CODE = @as(u32, 3);
+pub const GT_TASK = @as(u32, 4);
+pub const GT_RESOURCE = @as(u32, 5);
+pub const GT_MODULE = @as(u32, 6);
+pub const GT_FREE = @as(u32, 7);
+pub const GT_INTERNAL = @as(u32, 8);
+pub const GT_SENTINEL = @as(u32, 9);
+pub const GT_BURGERMASTER = @as(u32, 10);
+pub const GD_USERDEFINED = @as(u32, 0);
+pub const GD_CURSORCOMPONENT = @as(u32, 1);
+pub const GD_BITMAP = @as(u32, 2);
+pub const GD_ICONCOMPONENT = @as(u32, 3);
+pub const GD_MENU = @as(u32, 4);
+pub const GD_DIALOG = @as(u32, 5);
+pub const GD_STRING = @as(u32, 6);
+pub const GD_FONTDIR = @as(u32, 7);
+pub const GD_FONT = @as(u32, 8);
+pub const GD_ACCELERATORS = @as(u32, 9);
+pub const GD_RCDATA = @as(u32, 10);
+pub const GD_ERRTABLE = @as(u32, 11);
+pub const GD_CURSOR = @as(u32, 12);
+pub const GD_ICON = @as(u32, 14);
+pub const GD_NAMETABLE = @as(u32, 15);
+pub const GD_MAX_RESOURCE = @as(u32, 15);
+pub const VDMDBG_BREAK_DOSTASK = @as(u32, 1);
+pub const VDMDBG_BREAK_WOWTASK = @as(u32, 2);
+pub const VDMDBG_BREAK_LOADDLL = @as(u32, 4);
+pub const VDMDBG_BREAK_EXCEPTIONS = @as(u32, 8);
+pub const VDMDBG_BREAK_DEBUGGER = @as(u32, 16);
+pub const VDMDBG_TRACE_HISTORY = @as(u32, 128);
+pub const VDMDBG_BREAK_DIVIDEBYZERO = @as(u32, 256);
+pub const VDMDBG_MAX_SYMBOL_BUFFER = @as(u32, 256);
+pub const VDMADDR_V86 = @as(u32, 2);
+pub const VDMADDR_PM16 = @as(u32, 4);
+pub const VDMADDR_PM32 = @as(u32, 16);
+pub const WINWATCHNOTIFY_START = @as(u32, 0);
+pub const WINWATCHNOTIFY_STOP = @as(u32, 1);
+pub const WINWATCHNOTIFY_DESTROY = @as(u32, 2);
+pub const WINWATCHNOTIFY_CHANGING = @as(u32, 3);
+pub const WINWATCHNOTIFY_CHANGED = @as(u32, 4);
+pub const S_ASYNCHRONOUS = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262632));
+pub const RSC_FLAG_INF = @as(u32, 1);
+pub const RSC_FLAG_SKIPDISKSPACECHECK = @as(u32, 2);
+pub const RSC_FLAG_QUIET = @as(u32, 4);
+pub const RSC_FLAG_NGCONV = @as(u32, 8);
+pub const RSC_FLAG_UPDHLPDLLS = @as(u32, 16);
+pub const RSC_FLAG_DELAYREGISTEROCX = @as(u32, 512);
+pub const RSC_FLAG_SETUPAPI = @as(u32, 1024);
+pub const ALINF_QUIET = @as(u32, 4);
+pub const ALINF_NGCONV = @as(u32, 8);
+pub const ALINF_UPDHLPDLLS = @as(u32, 16);
+pub const ALINF_BKINSTALL = @as(u32, 32);
+pub const ALINF_ROLLBACK = @as(u32, 64);
+pub const ALINF_CHECKBKDATA = @as(u32, 128);
+pub const ALINF_ROLLBKDOALL = @as(u32, 256);
+pub const ALINF_DELAYREGISTEROCX = @as(u32, 512);
+pub const AIF_WARNIFSKIP = @as(u32, 1);
+pub const AIF_NOSKIP = @as(u32, 2);
+pub const AIF_NOVERSIONCHECK = @as(u32, 4);
+pub const AIF_FORCE_FILE_IN_USE = @as(u32, 8);
+pub const AIF_NOOVERWRITE = @as(u32, 16);
+pub const AIF_NO_VERSION_DIALOG = @as(u32, 32);
+pub const AIF_REPLACEONLY = @as(u32, 1024);
+pub const AIF_NOLANGUAGECHECK = @as(u32, 268435456);
+pub const AIF_QUIET = @as(u32, 536870912);
+pub const IE4_RESTORE = @as(u32, 1);
+pub const IE4_BACKNEW = @as(u32, 2);
+pub const IE4_NODELETENEW = @as(u32, 4);
+pub const IE4_NOMESSAGES = @as(u32, 8);
+pub const IE4_NOPROGRESS = @as(u32, 16);
+pub const IE4_NOENUMKEY = @as(u32, 32);
+pub const IE4_NO_CRC_MAPPING = @as(u32, 64);
+pub const IE4_REGSECTION = @as(u32, 128);
+pub const IE4_FRDOALL = @as(u32, 256);
+pub const IE4_UPDREFCNT = @as(u32, 512);
+pub const IE4_USEREFCNT = @as(u32, 1024);
+pub const IE4_EXTRAINCREFCNT = @as(u32, 2048);
+pub const IE4_REMOVREGBKDATA = @as(u32, 4096);
+pub const AADBE_ADD_ENTRY = @as(u32, 1);
+pub const AADBE_DEL_ENTRY = @as(u32, 2);
+pub const ADN_DEL_IF_EMPTY = @as(u32, 1);
+pub const ADN_DONT_DEL_SUBDIRS = @as(u32, 2);
+pub const ADN_DONT_DEL_DIR = @as(u32, 4);
+pub const ADN_DEL_UNC_PATHS = @as(u32, 8);
+pub const LIS_QUIET = @as(u32, 1);
+pub const LIS_NOGRPCONV = @as(u32, 2);
+pub const RUNCMDS_QUIET = @as(u32, 1);
+pub const RUNCMDS_NOWAIT = @as(u32, 2);
+pub const RUNCMDS_DELAYPOSTCMD = @as(u32, 4);
+pub const IME_MAXPROCESS = @as(u32, 32);
+pub const CP_HWND = @as(u32, 0);
+pub const CP_OPEN = @as(u32, 1);
+pub const CP_DIRECT = @as(u32, 2);
+pub const CP_LEVEL = @as(u32, 3);
+pub const VK_DBE_ALPHANUMERIC = @as(u32, 240);
+pub const VK_DBE_KATAKANA = @as(u32, 241);
+pub const VK_DBE_HIRAGANA = @as(u32, 242);
+pub const VK_DBE_SBCSCHAR = @as(u32, 243);
+pub const VK_DBE_DBCSCHAR = @as(u32, 244);
+pub const VK_DBE_ROMAN = @as(u32, 245);
+pub const VK_DBE_NOROMAN = @as(u32, 246);
+pub const VK_DBE_ENTERWORDREGISTERMODE = @as(u32, 247);
+pub const VK_DBE_ENTERIMECONFIGMODE = @as(u32, 248);
+pub const VK_DBE_FLUSHSTRING = @as(u32, 249);
+pub const VK_DBE_CODEINPUT = @as(u32, 250);
+pub const VK_DBE_NOCODEINPUT = @as(u32, 251);
+pub const VK_DBE_DETERMINESTRING = @as(u32, 252);
+pub const VK_DBE_ENTERDLGCONVERSIONMODE = @as(u32, 253);
+pub const MCW_DEFAULT = @as(u32, 0);
+pub const MCW_RECT = @as(u32, 1);
+pub const MCW_WINDOW = @as(u32, 2);
+pub const MCW_SCREEN = @as(u32, 4);
+pub const MCW_VERTICAL = @as(u32, 8);
+pub const MCW_HIDDEN = @as(u32, 16);
+pub const IME_MODE_ALPHANUMERIC = @as(u32, 1);
+pub const IME_MODE_SBCSCHAR = @as(u32, 2);
+pub const IME_MODE_KATAKANA = @as(u32, 2);
+pub const IME_MODE_HIRAGANA = @as(u32, 4);
+pub const IME_MODE_HANJACONVERT = @as(u32, 4);
+pub const IME_MODE_DBCSCHAR = @as(u32, 16);
+pub const IME_MODE_ROMAN = @as(u32, 32);
+pub const IME_MODE_NOROMAN = @as(u32, 64);
+pub const IME_MODE_CODEINPUT = @as(u32, 128);
+pub const IME_MODE_NOCODEINPUT = @as(u32, 256);
+pub const IME_GETIMECAPS = @as(u32, 3);
+pub const IME_SETOPEN = @as(u32, 4);
+pub const IME_GETOPEN = @as(u32, 5);
+pub const IME_GETVERSION = @as(u32, 7);
+pub const IME_SETCONVERSIONWINDOW = @as(u32, 8);
+pub const IME_SETCONVERSIONMODE = @as(u32, 16);
+pub const IME_GETCONVERSIONMODE = @as(u32, 17);
+pub const IME_SET_MODE = @as(u32, 18);
+pub const IME_SENDVKEY = @as(u32, 19);
+pub const IME_ENTERWORDREGISTERMODE = @as(u32, 24);
+pub const IME_SETCONVERSIONFONTEX = @as(u32, 25);
+pub const IME_BANJAtoJUNJA = @as(u32, 19);
+pub const IME_JUNJAtoBANJA = @as(u32, 20);
+pub const IME_JOHABtoKS = @as(u32, 21);
+pub const IME_KStoJOHAB = @as(u32, 22);
+pub const IMEA_INIT = @as(u32, 1);
+pub const IMEA_NEXT = @as(u32, 2);
+pub const IMEA_PREV = @as(u32, 3);
+pub const IME_REQUEST_CONVERT = @as(u32, 1);
+pub const IME_ENABLE_CONVERT = @as(u32, 2);
+pub const INTERIM_WINDOW = @as(u32, 0);
+pub const MODE_WINDOW = @as(u32, 1);
+pub const HANJA_WINDOW = @as(u32, 2);
+pub const IME_RS_ERROR = @as(u32, 1);
+pub const IME_RS_NOIME = @as(u32, 2);
+pub const IME_RS_TOOLONG = @as(u32, 5);
+pub const IME_RS_ILLEGAL = @as(u32, 6);
+pub const IME_RS_NOTFOUND = @as(u32, 7);
+pub const IME_RS_NOROOM = @as(u32, 10);
+pub const IME_RS_DISKERROR = @as(u32, 14);
+pub const IME_RS_INVALID = @as(u32, 17);
+pub const IME_RS_NEST = @as(u32, 18);
+pub const IME_RS_SYSTEMMODAL = @as(u32, 19);
+pub const WM_IME_REPORT = @as(u32, 640);
+pub const IR_STRINGSTART = @as(u32, 256);
+pub const IR_STRINGEND = @as(u32, 257);
+pub const IR_OPENCONVERT = @as(u32, 288);
+pub const IR_CHANGECONVERT = @as(u32, 289);
+pub const IR_CLOSECONVERT = @as(u32, 290);
+pub const IR_FULLCONVERT = @as(u32, 291);
+pub const IR_IMESELECT = @as(u32, 304);
+pub const IR_STRING = @as(u32, 320);
+pub const IR_DBCSCHAR = @as(u32, 352);
+pub const IR_UNDETERMINE = @as(u32, 368);
+pub const IR_STRINGEX = @as(u32, 384);
+pub const IR_MODEINFO = @as(u32, 400);
+pub const WM_WNT_CONVERTREQUESTEX = @as(u32, 265);
+pub const WM_CONVERTREQUEST = @as(u32, 266);
+pub const WM_CONVERTRESULT = @as(u32, 267);
+pub const WM_INTERIM = @as(u32, 268);
+pub const WM_IMEKEYDOWN = @as(u32, 656);
+pub const WM_IMEKEYUP = @as(u32, 657);
+pub const ICW_MAX_ACCTNAME = @as(u32, 256);
+pub const ICW_MAX_PASSWORD = @as(u32, 256);
+pub const ICW_MAX_LOGONNAME = @as(u32, 256);
+pub const ICW_MAX_SERVERNAME = @as(u32, 64);
+pub const ICW_MAX_RASNAME = @as(u32, 256);
+pub const ICW_MAX_EMAILNAME = @as(u32, 64);
+pub const ICW_MAX_EMAILADDR = @as(u32, 128);
+pub const ICW_CHECKSTATUS = @as(u32, 1);
+pub const ICW_LAUNCHFULL = @as(u32, 256);
+pub const ICW_LAUNCHMANUAL = @as(u32, 512);
+pub const ICW_USE_SHELLNEXT = @as(u32, 1024);
+pub const ICW_FULL_SMARTSTART = @as(u32, 2048);
+pub const ICW_FULLPRESENT = @as(u32, 1);
+pub const ICW_MANUALPRESENT = @as(u32, 2);
+pub const ICW_ALREADYRUN = @as(u32, 4);
+pub const ICW_LAUNCHEDFULL = @as(u32, 256);
+pub const ICW_LAUNCHEDMANUAL = @as(u32, 512);
+pub const ICW_USEDEFAULTS = @as(u32, 1);
+pub const RRF_SUBKEY_WOW6464KEY = @as(u32, 65536);
+pub const RRF_SUBKEY_WOW6432KEY = @as(u32, 131072);
+pub const RRF_WOW64_MASK = @as(u32, 196608);
+pub const RRF_NOEXPAND = @as(u32, 268435456);
+pub const RRF_ZEROONFAILURE = @as(u32, 536870912);
+pub const REG_PROCESS_APPKEY = @as(u32, 1);
+pub const PROVIDER_KEEPS_VALUE_LENGTH = @as(u32, 1);
+pub const REG_MUI_STRING_TRUNCATE = @as(u32, 1);
+pub const REG_SECURE_CONNECTION = @as(u32, 1);
+pub const SHUTDOWN_FORCE_OTHERS = @as(u32, 1);
+pub const SHUTDOWN_FORCE_SELF = @as(u32, 2);
+pub const SHUTDOWN_RESTART = @as(u32, 4);
+pub const SHUTDOWN_POWEROFF = @as(u32, 8);
+pub const SHUTDOWN_NOREBOOT = @as(u32, 16);
+pub const SHUTDOWN_GRACE_OVERRIDE = @as(u32, 32);
+pub const SHUTDOWN_INSTALL_UPDATES = @as(u32, 64);
+pub const SHUTDOWN_RESTARTAPPS = @as(u32, 128);
+pub const SHUTDOWN_SKIP_SVC_PRESHUTDOWN = @as(u32, 256);
+pub const SHUTDOWN_HYBRID = @as(u32, 512);
+pub const SHUTDOWN_RESTART_BOOTOPTIONS = @as(u32, 1024);
+pub const SHUTDOWN_SOFT_REBOOT = @as(u32, 2048);
+pub const SHUTDOWN_MOBILE_UI = @as(u32, 4096);
+pub const SHUTDOWN_ARSO = @as(u32, 8192);
+pub const PROC_THREAD_ATTRIBUTE_REPLACE_VALUE = @as(u32, 1);
+pub const THREAD_POWER_THROTTLING_CURRENT_VERSION = @as(u32, 1);
+pub const THREAD_POWER_THROTTLING_EXECUTION_SPEED = @as(u32, 1);
+pub const PME_CURRENT_VERSION = @as(u32, 1);
+pub const PME_FAILFAST_ON_COMMIT_FAIL_DISABLE = @as(u32, 0);
+pub const PME_FAILFAST_ON_COMMIT_FAIL_ENABLE = @as(u32, 1);
+pub const PROCESS_POWER_THROTTLING_CURRENT_VERSION = @as(u32, 1);
+pub const PROCESS_POWER_THROTTLING_EXECUTION_SPEED = @as(u32, 1);
+pub const PROCESS_LEAP_SECOND_INFO_FLAG_ENABLE_SIXTY_SECOND = @as(u32, 1);
+pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
+pub const SURFACEALIGN_DISCARDABLE = @as(i32, 1);
+pub const VMEMHEAP_LINEAR = @as(i32, 1);
+pub const VMEMHEAP_RECTANGULAR = @as(i32, 2);
+pub const VMEMHEAP_ALIGNMENT = @as(i32, 4);
+pub const DDKERNELCAPS_SKIPFIELDS = @as(i32, 1);
+pub const DDKERNELCAPS_AUTOFLIP = @as(i32, 2);
+pub const DDKERNELCAPS_SETSTATE = @as(i32, 4);
+pub const DDKERNELCAPS_LOCK = @as(i32, 8);
+pub const DDKERNELCAPS_FLIPVIDEOPORT = @as(i32, 16);
+pub const DDKERNELCAPS_FLIPOVERLAY = @as(i32, 32);
+pub const DDKERNELCAPS_CAPTURE_SYSMEM = @as(i32, 64);
+pub const DDKERNELCAPS_CAPTURE_NONLOCALVIDMEM = @as(i32, 128);
+pub const DDKERNELCAPS_FIELDPOLARITY = @as(i32, 256);
+pub const DDKERNELCAPS_CAPTURE_INVERTED = @as(i32, 512);
+pub const DDIRQ_DISPLAY_VSYNC = @as(i32, 1);
+pub const DDIRQ_RESERVED1 = @as(i32, 2);
+pub const DDIRQ_VPORT0_VSYNC = @as(i32, 4);
+pub const DDIRQ_VPORT0_LINE = @as(i32, 8);
+pub const DDIRQ_VPORT1_VSYNC = @as(i32, 16);
+pub const DDIRQ_VPORT1_LINE = @as(i32, 32);
+pub const DDIRQ_VPORT2_VSYNC = @as(i32, 64);
+pub const DDIRQ_VPORT2_LINE = @as(i32, 128);
+pub const DDIRQ_VPORT3_VSYNC = @as(i32, 256);
+pub const DDIRQ_VPORT3_LINE = @as(i32, 512);
+pub const DDIRQ_VPORT4_VSYNC = @as(i32, 1024);
+pub const DDIRQ_VPORT4_LINE = @as(i32, 2048);
+pub const DDIRQ_VPORT5_VSYNC = @as(i32, 4096);
+pub const DDIRQ_VPORT5_LINE = @as(i32, 8192);
+pub const DDIRQ_VPORT6_VSYNC = @as(i32, 16384);
+pub const DDIRQ_VPORT6_LINE = @as(i32, 32768);
+pub const DDIRQ_VPORT7_VSYNC = @as(i32, 65536);
+pub const DDIRQ_VPORT7_LINE = @as(i32, 131072);
+pub const DDIRQ_VPORT8_VSYNC = @as(i32, 262144);
+pub const DDIRQ_VPORT8_LINE = @as(i32, 524288);
+pub const DDIRQ_VPORT9_VSYNC = @as(i32, 65536);
+pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
+pub const FD_FLAGS_NOSYN = @as(u32, 1);
+pub const LB_SRC_ADDR_USE_SRCADDR_FLAG = @as(u32, 1);
+pub const LB_SRC_ADDR_USE_DSTADDR_FLAG = @as(u32, 2);
+pub const LB_DST_ADDR_USE_SRCADDR_FLAG = @as(u32, 4);
+pub const LB_DST_ADDR_USE_DSTADDR_FLAG = @as(u32, 8);
+pub const LB_SRC_MASK_LATE_FLAG = @as(u32, 16);
+pub const LB_DST_MASK_LATE_FLAG = @as(u32, 32);
+pub const ERROR_BASE = @as(u32, 23000);
+pub const _IID_IXmlReader = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
+pub const _IID_IXmlWriter = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
+pub const _IID_IXmlResolver = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 
 //--------------------------------------------------------------------------------
-// Section: Types (596)
+// Section: Types (593)
 //--------------------------------------------------------------------------------
+pub const FIRMWARE_TYPE = extern enum(i32) {
+    Unknown = 0,
+    Bios = 1,
+    Uefi = 2,
+    Max = 3,
+};
+pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
+pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
+pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
+pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
+
+pub const OSVERSIONINFOA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]i8,
+};
+
+pub const OSVERSIONINFOW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+};
+
+pub const OSVERSIONINFOEXA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]i8,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: VER_NT,
+    wReserved: u8,
+};
+
+pub const OSVERSIONINFOEXW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: VER_NT,
+    wReserved: u8,
+};
+
+pub const FILETIME = extern struct {
+    dwLowDateTime: u32,
+    dwHighDateTime: u32,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VER_MASK = extern enum(u32) {
     BUILDNUMBER = 4,
@@ -1330,6 +1392,42 @@ pub const CO_TL_ENTITY = TDIEntityID_tei_entityFlags.CO_TL_ENTITY;
 pub const ER_ENTITY = TDIEntityID_tei_entityFlags.ER_ENTITY;
 pub const IF_ENTITY = TDIEntityID_tei_entityFlags.IF_ENTITY;
 
+pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = ?*c_void;
+
+pub const FH_SERVICE_PIPE_HANDLE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = ?*c_void;
+
+pub const HWINWATCH = ?*c_void;
+
+pub const NETLOGON_INFO_1 = extern struct {
+    netlog1_flags: u32,
+    netlog1_pdc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_2 = extern struct {
+    netlog2_flags: u32,
+    netlog2_pdc_connection_status: u32,
+    netlog2_trusted_dc_name: PWSTR,
+    netlog2_tc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_3 = extern struct {
+    netlog3_flags: u32,
+    netlog3_logon_attempts: u32,
+    netlog3_reserved1: u32,
+    netlog3_reserved2: u32,
+    netlog3_reserved3: u32,
+    netlog3_reserved4: u32,
+    netlog3_reserved5: u32,
+};
+
+pub const NETLOGON_INFO_4 = extern struct {
+    netlog4_trusted_dc_name: PWSTR,
+    netlog4_trusted_domain_name: PWSTR,
+};
+
 pub const _PROC_THREAD_ATTRIBUTE_LIST = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
 
 pub const THREAD_INFORMATION_CLASS = extern enum(i32) {
@@ -1381,6 +1479,7 @@ pub const ComputerNamePhysicalDnsFullyQualified = COMPUTER_NAME_FORMAT.PhysicalD
 pub const ComputerNameMax = COMPUTER_NAME_FORMAT.Max;
 
 pub const LPFIBER_START_ROUTINE = fn(
+    lpFiberParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFIBER_CALLOUT_ROUTINE = fn(
@@ -1396,9 +1495,6 @@ pub const JIT_DEBUG_INFO = extern struct {
     lpExceptionRecord: u64,
     lpContextRecord: u64,
 };
-
-pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DEP_SYSTEM_POLICY_TYPE = extern enum(i32) {
     PolicyAlwaysOff = 0,
@@ -1560,16 +1656,13 @@ pub const pvalueW = extern struct {
     pv_type: u32,
 };
 
-pub const QUERYHANDLER = fn(
+pub const PQUERYHANDLER = fn(
     keycontext: *c_void,
     val_list: *val_context,
     num_vals: u32,
     outputbuffer: *c_void,
     total_outlen: *u32,
     input_blen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PQUERYHANDLER = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const provider_info = extern struct {
@@ -5104,11 +5197,8 @@ pub const FEATURE_ERROR = extern struct {
     originName: [*:0]const u8,
 };
 
-pub const FEATURE_STATE_CHANGE_CALLBACK = fn(
-    context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub const PFEATURE_STATE_CHANGE_CALLBACK = fn(
+    context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_FhConfigMgr_Value = @import("../zig.zig").Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
@@ -11252,77 +11342,6 @@ pub const _pfLogFrame = extern struct {
     bPacketData: [1]u8,
 };
 
-pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = ?*c_void;
-
-pub const FH_SERVICE_PIPE_HANDLE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*c_void;
-
-pub const HWINWATCH = ?*c_void;
-
-pub const FIRMWARE_TYPE = extern enum(i32) {
-    Unknown = 0,
-    Bios = 1,
-    Uefi = 2,
-    Max = 3,
-};
-pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
-pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
-pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
-pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
-
-pub const OSVERSIONINFOA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]i8,
-};
-
-pub const OSVERSIONINFOW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-};
-
-pub const OSVERSIONINFOEXA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]i8,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: VER_NT,
-    wReserved: u8,
-};
-
-pub const OSVERSIONINFOEXW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: VER_NT,
-    wReserved: u8,
-};
-
-pub const FILETIME = extern struct {
-    dwLowDateTime: u32,
-    dwHighDateTime: u32,
-};
-
 pub const SYSTEMTIME = extern struct {
     wYear: u16,
     wMonth: u16,
@@ -11389,60 +11408,6 @@ pub const OSUpdateAssessment = extern struct {
     currentOSReleaseTime: FILETIME,
     upToDateOSBuild: PWSTR,
     upToDateOSReleaseTime: FILETIME,
-};
-
-pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
-    Unknown = 0,
-    FullyQualifiedDN = 1,
-    SamCompatible = 2,
-    Display = 3,
-    UniqueId = 6,
-    Canonical = 7,
-    UserPrincipal = 8,
-    CanonicalEx = 9,
-    ServicePrincipal = 10,
-    DnsDomain = 12,
-    GivenName = 13,
-    Surname = 14,
-};
-pub const NameUnknown = EXTENDED_NAME_FORMAT.Unknown;
-pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.FullyQualifiedDN;
-pub const NameSamCompatible = EXTENDED_NAME_FORMAT.SamCompatible;
-pub const NameDisplay = EXTENDED_NAME_FORMAT.Display;
-pub const NameUniqueId = EXTENDED_NAME_FORMAT.UniqueId;
-pub const NameCanonical = EXTENDED_NAME_FORMAT.Canonical;
-pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.UserPrincipal;
-pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.CanonicalEx;
-pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.ServicePrincipal;
-pub const NameDnsDomain = EXTENDED_NAME_FORMAT.DnsDomain;
-pub const NameGivenName = EXTENDED_NAME_FORMAT.GivenName;
-pub const NameSurname = EXTENDED_NAME_FORMAT.Surname;
-
-pub const NETLOGON_INFO_1 = extern struct {
-    netlog1_flags: u32,
-    netlog1_pdc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_2 = extern struct {
-    netlog2_flags: u32,
-    netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: PWSTR,
-    netlog2_tc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_3 = extern struct {
-    netlog3_flags: u32,
-    netlog3_logon_attempts: u32,
-    netlog3_reserved1: u32,
-    netlog3_reserved2: u32,
-    netlog3_reserved3: u32,
-    netlog3_reserved4: u32,
-    netlog3_reserved5: u32,
-};
-
-pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: PWSTR,
-    netlog4_trusted_domain_name: PWSTR,
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -11650,6 +11615,33 @@ pub const STRING = extern struct {
     Buffer: [*]u8,
 };
 
+pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
+    Unknown = 0,
+    FullyQualifiedDN = 1,
+    SamCompatible = 2,
+    Display = 3,
+    UniqueId = 6,
+    Canonical = 7,
+    UserPrincipal = 8,
+    CanonicalEx = 9,
+    ServicePrincipal = 10,
+    DnsDomain = 12,
+    GivenName = 13,
+    Surname = 14,
+};
+pub const NameUnknown = EXTENDED_NAME_FORMAT.Unknown;
+pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.FullyQualifiedDN;
+pub const NameSamCompatible = EXTENDED_NAME_FORMAT.SamCompatible;
+pub const NameDisplay = EXTENDED_NAME_FORMAT.Display;
+pub const NameUniqueId = EXTENDED_NAME_FORMAT.UniqueId;
+pub const NameCanonical = EXTENDED_NAME_FORMAT.Canonical;
+pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.UserPrincipal;
+pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.CanonicalEx;
+pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.ServicePrincipal;
+pub const NameDnsDomain = EXTENDED_NAME_FORMAT.DnsDomain;
+pub const NameGivenName = EXTENDED_NAME_FORMAT.GivenName;
+pub const NameSurname = EXTENDED_NAME_FORMAT.Surname;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (474)
@@ -11666,81 +11658,17 @@ pub extern "loadperf" fn InstallPerfDllA(
     dwFlags: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "RPCRT4" fn NdrSimpleStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrComplexStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrConformantArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrComplexArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
+pub extern "KERNEL32" fn RtlRaiseException(
+    ExceptionRecord: *EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "RPCRT4" fn NdrComplexStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "NETAPI32" fn I_NetLogonControl2(
+    ServerName: ?[*:0]const u16,
+    FunctionCode: u32,
+    QueryLevel: u32,
+    Data: *u8,
+    Buffer: **u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
     Contract: [*:0]const u8,
@@ -14548,57 +14476,81 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
-pub extern "KERNEL32" fn RtlRaiseException(
-    ExceptionRecord: *EXCEPTION_RECORD,
+pub extern "RPCRT4" fn NdrSimpleStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrComplexStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrConformantArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrComplexArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SspiCli" fn GetUserNameExA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+pub extern "RPCRT4" fn NdrComplexStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SspiCli" fn GetUserNameExW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SECUR32" fn GetComputerObjectNameA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn GetComputerObjectNameW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameA(
-    lpAccountName: [*:0]const u8,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameW(
-    lpAccountName: [*:0]const u16,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "NETAPI32" fn I_NetLogonControl2(
-    ServerName: ?[*:0]const u16,
-    FunctionCode: u32,
-    QueryLevel: u32,
-    Data: *u8,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ole32" fn CoInstall(
     pbc: *IBindCtx,
@@ -14607,9 +14559,6 @@ pub extern "ole32" fn CoInstall(
     pQuery: *QUERYCONTEXT,
     pszCodeBase: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "USER32" fn DisableProcessWindowsGhosting(
-) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "KERNEL32" fn CompareFileTime(
     lpFileTime1: *const FILETIME,
@@ -14667,12 +14616,57 @@ pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
     MachineIsSupported: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub extern "USER32" fn DisableProcessWindowsGhosting(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "SspiCli" fn GetUserNameExA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SspiCli" fn GetUserNameExW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameA(
+    lpAccountName: [*:0]const u8,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameW(
+    lpAccountName: [*:0]const u16,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (109)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const OSVERSIONINFO = OSVERSIONINFOA;
+        pub const OSVERSIONINFOEX = OSVERSIONINFOEXA;
         pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_A;
         pub const HW_PROFILE_INFO = HW_PROFILE_INFOA;
         pub const pvalue = pvalueA;
@@ -14682,8 +14676,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = _CabInfoA;
         pub const PERUSERSECTION = PERUSERSECTIONA;
         pub const IMEPRO = IMEPROA;
-        pub const OSVERSIONINFO = OSVERSIONINFOA;
-        pub const OSVERSIONINFOEX = OSVERSIONINFOEXA;
         pub const InstallPerfDll = InstallPerfDllA;
         pub const SetEnvironmentStrings = SetEnvironmentStringsA;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsA;
@@ -14777,13 +14769,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEA;
         pub const IMPQueryIME = IMPQueryIMEA;
         pub const IMPSetIME = IMPSetIMEA;
+        pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
+        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
         pub const GetUserNameEx = GetUserNameExA;
         pub const GetComputerObjectName = GetComputerObjectNameA;
         pub const TranslateName = TranslateNameA;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
     },
     .wide => struct {
+        pub const OSVERSIONINFO = OSVERSIONINFOW;
+        pub const OSVERSIONINFOEX = OSVERSIONINFOEXW;
         pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_W;
         pub const HW_PROFILE_INFO = HW_PROFILE_INFOW;
         pub const pvalue = pvalueW;
@@ -14793,8 +14787,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = _CabInfoW;
         pub const PERUSERSECTION = PERUSERSECTIONW;
         pub const IMEPRO = IMEPROW;
-        pub const OSVERSIONINFO = OSVERSIONINFOW;
-        pub const OSVERSIONINFOEX = OSVERSIONINFOEXW;
         pub const InstallPerfDll = InstallPerfDllW;
         pub const SetEnvironmentStrings = SetEnvironmentStringsW;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsW;
@@ -14888,13 +14880,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEW;
         pub const IMPQueryIME = IMPQueryIMEW;
         pub const IMPSetIME = IMPSetIMEW;
+        pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
+        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
         pub const GetUserNameEx = GetUserNameExW;
         pub const GetComputerObjectName = GetComputerObjectNameW;
         pub const TranslateName = TranslateNameW;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const OSVERSIONINFO = *opaque{};
+        pub const OSVERSIONINFOEX = *opaque{};
         pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque{};
         pub const HW_PROFILE_INFO = *opaque{};
         pub const pvalue = *opaque{};
@@ -14904,8 +14898,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = *opaque{};
         pub const PERUSERSECTION = *opaque{};
         pub const IMEPRO = *opaque{};
-        pub const OSVERSIONINFO = *opaque{};
-        pub const OSVERSIONINFOEX = *opaque{};
         pub const InstallPerfDll = *opaque{};
         pub const SetEnvironmentStrings = *opaque{};
         pub const ExpandEnvironmentStrings = *opaque{};
@@ -14999,12 +14991,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = *opaque{};
         pub const IMPQueryIME = *opaque{};
         pub const IMPSetIME = *opaque{};
+        pub const GetSystemWow64Directory = *opaque{};
+        pub const GetSystemWow64Directory2 = *opaque{};
         pub const GetUserNameEx = *opaque{};
         pub const GetComputerObjectName = *opaque{};
         pub const TranslateName = *opaque{};
-        pub const GetSystemWow64Directory = *opaque{};
-        pub const GetSystemWow64Directory2 = *opaque{};
     } else struct {
+        pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
+        pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const PGET_SYSTEM_WOW64_DIRECTORY_ = @compileError("'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module");
         pub const HW_PROFILE_INFO = @compileError("'HW_PROFILE_INFO' requires that UNICODE be set to true or false in the root module");
         pub const pvalue = @compileError("'pvalue' requires that UNICODE be set to true or false in the root module");
@@ -15014,8 +15008,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = @compileError("'_CabInfo' requires that UNICODE be set to true or false in the root module");
         pub const PERUSERSECTION = @compileError("'PERUSERSECTION' requires that UNICODE be set to true or false in the root module");
         pub const IMEPRO = @compileError("'IMEPRO' requires that UNICODE be set to true or false in the root module");
-        pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const SetEnvironmentStrings = @compileError("'SetEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const ExpandEnvironmentStrings = @compileError("'ExpandEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
@@ -15109,11 +15101,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
+        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
+        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
         pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
         pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
         pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -15127,8 +15119,8 @@ const OLECMDF = @import("com.zig").OLECMDF;
 const OLECMDEXECOPT = @import("com.zig").OLECMDEXECOPT;
 const FLOATING_SAVE_AREA = @import("system_services.zig").FLOATING_SAVE_AREA;
 const DEVPROPERTY = @import("system_services.zig").DEVPROPERTY;
-const MIDL_STUB_MESSAGE = @import("rpc.zig").MIDL_STUB_MESSAGE;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
+const MIDL_STUB_MESSAGE = @import("rpc.zig").MIDL_STUB_MESSAGE;
 const CONTEXT = @import("debug.zig").CONTEXT;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("system_services.zig").LRESULT;
@@ -15200,12 +15192,10 @@ test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     _ = LPFIBER_START_ROUTINE;
     _ = PFIBER_CALLOUT_ROUTINE;
-    _ = PUMS_SCHEDULER_ENTRY_POINT;
     _ = PGET_SYSTEM_WOW64_DIRECTORY_A;
     _ = PGET_SYSTEM_WOW64_DIRECTORY_W;
     _ = PQUERYACTCTXW_FUNC;
     _ = APPLICATION_RECOVERY_CALLBACK;
-    _ = QUERYHANDLER;
     _ = PQUERYHANDLER;
     _ = PPS_POST_PROCESS_INIT_ROUTINE;
     _ = PIO_APC_ROUTINE;
@@ -15264,7 +15254,6 @@ test {
     _ = VDMGETSEGMENTINFOPROC;
     _ = VDMGETSYMBOLPROC;
     _ = VDMGETADDREXPRESSIONPROC;
-    _ = FEATURE_STATE_CHANGE_CALLBACK;
     _ = PFEATURE_STATE_CHANGE_CALLBACK;
     _ = ENUM_CALLBACK;
     _ = WINWATCHNOTIFYPROC;
@@ -15359,7 +15348,7 @@ test {
     _ = PDEV_QUERY_RESULT_CALLBACK;
 
     const constant_export_count = 919;
-    const type_export_count = 573;
+    const type_export_count = 570;
     const enum_value_export_count = 793;
     const com_iface_id_export_count = 70;
     const com_class_id_export_count = 23;

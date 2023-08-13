@@ -2,37 +2,59 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (27)
 //--------------------------------------------------------------------------------
-pub const TBS_CONTEXT_VERSION_ONE : u32 = 1;
-pub const TBS_SUCCESS : u32 = 0;
-pub const TBS_OWNERAUTH_TYPE_FULL : u32 = 1;
-pub const TBS_OWNERAUTH_TYPE_ADMIN : u32 = 2;
-pub const TBS_OWNERAUTH_TYPE_USER : u32 = 3;
-pub const TBS_OWNERAUTH_TYPE_ENDORSEMENT : u32 = 4;
-pub const TBS_OWNERAUTH_TYPE_ENDORSEMENT_20 : u32 = 12;
-pub const TBS_OWNERAUTH_TYPE_STORAGE_20 : u32 = 13;
-pub const TBS_CONTEXT_VERSION_TWO : u32 = 2;
-pub const TPM_WNF_INFO_CLEAR_SUCCESSFUL : u32 = 1;
-pub const TPM_WNF_INFO_OWNERSHIP_SUCCESSFUL : u32 = 2;
-pub const TPM_WNF_INFO_NO_REBOOT_REQUIRED : u32 = 1;
-pub const TPM_VERSION_UNKNOWN : u32 = 0;
-pub const TPM_VERSION_12 : u32 = 1;
-pub const TPM_VERSION_20 : u32 = 2;
-pub const TPM_IFTYPE_UNKNOWN : u32 = 0;
-pub const TPM_IFTYPE_1 : u32 = 1;
-pub const TPM_IFTYPE_TRUSTZONE : u32 = 2;
-pub const TPM_IFTYPE_HW : u32 = 3;
-pub const TPM_IFTYPE_EMULATOR : u32 = 4;
-pub const TPM_IFTYPE_SPB : u32 = 5;
-pub const TBS_TCGLOG_SRTM_CURRENT : u32 = 0;
-pub const TBS_TCGLOG_DRTM_CURRENT : u32 = 1;
-pub const TBS_TCGLOG_SRTM_BOOT : u32 = 2;
-pub const TBS_TCGLOG_SRTM_RESUME : u32 = 3;
-pub const TBS_TCGLOG_DRTM_BOOT : u32 = 4;
-pub const TBS_TCGLOG_DRTM_RESUME : u32 = 5;
+pub const TBS_CONTEXT_VERSION_ONE = @as(u32, 1);
+pub const TBS_SUCCESS = @as(u32, 0);
+pub const TBS_OWNERAUTH_TYPE_FULL = @as(u32, 1);
+pub const TBS_OWNERAUTH_TYPE_ADMIN = @as(u32, 2);
+pub const TBS_OWNERAUTH_TYPE_USER = @as(u32, 3);
+pub const TBS_OWNERAUTH_TYPE_ENDORSEMENT = @as(u32, 4);
+pub const TBS_OWNERAUTH_TYPE_ENDORSEMENT_20 = @as(u32, 12);
+pub const TBS_OWNERAUTH_TYPE_STORAGE_20 = @as(u32, 13);
+pub const TBS_CONTEXT_VERSION_TWO = @as(u32, 2);
+pub const TPM_WNF_INFO_CLEAR_SUCCESSFUL = @as(u32, 1);
+pub const TPM_WNF_INFO_OWNERSHIP_SUCCESSFUL = @as(u32, 2);
+pub const TPM_WNF_INFO_NO_REBOOT_REQUIRED = @as(u32, 1);
+pub const TPM_VERSION_UNKNOWN = @as(u32, 0);
+pub const TPM_VERSION_12 = @as(u32, 1);
+pub const TPM_VERSION_20 = @as(u32, 2);
+pub const TPM_IFTYPE_UNKNOWN = @as(u32, 0);
+pub const TPM_IFTYPE_1 = @as(u32, 1);
+pub const TPM_IFTYPE_TRUSTZONE = @as(u32, 2);
+pub const TPM_IFTYPE_HW = @as(u32, 3);
+pub const TPM_IFTYPE_EMULATOR = @as(u32, 4);
+pub const TPM_IFTYPE_SPB = @as(u32, 5);
+pub const TBS_TCGLOG_SRTM_CURRENT = @as(u32, 0);
+pub const TBS_TCGLOG_DRTM_CURRENT = @as(u32, 1);
+pub const TBS_TCGLOG_SRTM_BOOT = @as(u32, 2);
+pub const TBS_TCGLOG_SRTM_RESUME = @as(u32, 3);
+pub const TBS_TCGLOG_DRTM_BOOT = @as(u32, 4);
+pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const TBS_CONTEXT_PARAMS = extern struct {
+    version: u32,
+};
+
+pub const TBS_CONTEXT_PARAMS2 = extern struct {
+    version: u32,
+    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const tdTPM_WNF_PROVISIONING = extern struct {
+    status: u32,
+    message: [28]u8,
+};
+
+pub const TPM_DEVICE_INFO = extern struct {
+    structVersion: u32,
+    tpmVersion: u32,
+    tpmInterfaceType: u32,
+    tpmImpRevision: u32,
+};
+
 pub const Tbsip_Submit_Command_PriorityFlags = extern enum(u32) {
     LOW = 100,
     NORMAL = 200,
@@ -58,28 +80,6 @@ pub const TBS_COMMAND_LOCALITY_ONE = Tbsip_Submit_Command_LocalityFlags.ONE;
 pub const TBS_COMMAND_LOCALITY_TWO = Tbsip_Submit_Command_LocalityFlags.TWO;
 pub const TBS_COMMAND_LOCALITY_THREE = Tbsip_Submit_Command_LocalityFlags.THREE;
 pub const TBS_COMMAND_LOCALITY_FOUR = Tbsip_Submit_Command_LocalityFlags.FOUR;
-
-pub const TBS_CONTEXT_PARAMS = extern struct {
-    version: u32,
-};
-
-pub const TBS_CONTEXT_PARAMS2 = extern struct {
-    version: u32,
-    Anonymous: TBS_CONTEXT_PARAMS2._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const tdTPM_WNF_PROVISIONING = extern struct {
-    status: u32,
-    message: [28]u8,
-};
-
-pub const TPM_DEVICE_INFO = extern struct {
-    structVersion: u32,
-    tpmVersion: u32,
-    tpmInterfaceType: u32,
-    tpmImpRevision: u32,
-};
 
 
 //--------------------------------------------------------------------------------

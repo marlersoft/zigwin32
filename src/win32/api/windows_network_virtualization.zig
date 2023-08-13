@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2)
 //--------------------------------------------------------------------------------
-pub const WNV_API_MAJOR_VERSION_1 : u32 = 1;
-pub const WNV_API_MINOR_VERSION_0 : u32 = 0;
+pub const WNV_API_MAJOR_VERSION_1 = @as(u32, 1);
+pub const WNV_API_MINOR_VERSION_0 = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
 // Section: Types (11)

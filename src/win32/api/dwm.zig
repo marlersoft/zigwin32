@@ -2,24 +2,24 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (18)
 //--------------------------------------------------------------------------------
-pub const DWM_BB_ENABLE : u32 = 1;
-pub const DWM_BB_BLURREGION : u32 = 2;
-pub const DWM_BB_TRANSITIONONMAXIMIZED : u32 = 4;
-pub const DWM_CLOAKED_APP : u32 = 1;
-pub const DWM_CLOAKED_SHELL : u32 = 2;
-pub const DWM_CLOAKED_INHERITED : u32 = 4;
-pub const DWM_TNP_RECTDESTINATION : u32 = 1;
-pub const DWM_TNP_RECTSOURCE : u32 = 2;
-pub const DWM_TNP_OPACITY : u32 = 4;
-pub const DWM_TNP_VISIBLE : u32 = 8;
-pub const DWM_TNP_SOURCECLIENTAREAONLY : u32 = 16;
-pub const DWM_FRAME_DURATION_DEFAULT : i32 = -1;
-pub const DWM_EC_DISABLECOMPOSITION : u32 = 0;
-pub const DWM_EC_ENABLECOMPOSITION : u32 = 1;
-pub const DWM_SIT_DISPLAYFRAME : u32 = 1;
-pub const c_DwmMaxQueuedBuffers : u32 = 8;
-pub const c_DwmMaxMonitors : u32 = 16;
-pub const c_DwmMaxAdapters : u32 = 16;
+pub const DWM_BB_ENABLE = @as(u32, 1);
+pub const DWM_BB_BLURREGION = @as(u32, 2);
+pub const DWM_BB_TRANSITIONONMAXIMIZED = @as(u32, 4);
+pub const DWM_CLOAKED_APP = @as(u32, 1);
+pub const DWM_CLOAKED_SHELL = @as(u32, 2);
+pub const DWM_CLOAKED_INHERITED = @as(u32, 4);
+pub const DWM_TNP_RECTDESTINATION = @as(u32, 1);
+pub const DWM_TNP_RECTSOURCE = @as(u32, 2);
+pub const DWM_TNP_OPACITY = @as(u32, 4);
+pub const DWM_TNP_VISIBLE = @as(u32, 8);
+pub const DWM_TNP_SOURCECLIENTAREAONLY = @as(u32, 16);
+pub const DWM_FRAME_DURATION_DEFAULT = @as(i32, -1);
+pub const DWM_EC_DISABLECOMPOSITION = @as(u32, 0);
+pub const DWM_EC_ENABLECOMPOSITION = @as(u32, 1);
+pub const DWM_SIT_DISPLAYFRAME = @as(u32, 1);
+pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
+pub const c_DwmMaxMonitors = @as(u32, 16);
+pub const c_DwmMaxAdapters = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (13)

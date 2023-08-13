@@ -2,13 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const EC_VARIANT_TYPE_MASK : u32 = 127;
-pub const EC_VARIANT_TYPE_ARRAY : u32 = 128;
-pub const EC_READ_ACCESS : u32 = 1;
-pub const EC_WRITE_ACCESS : u32 = 2;
-pub const EC_OPEN_ALWAYS : u32 = 0;
-pub const EC_CREATE_NEW : u32 = 1;
-pub const EC_OPEN_EXISTING : u32 = 2;
+pub const EC_VARIANT_TYPE_MASK = @as(u32, 127);
+pub const EC_VARIANT_TYPE_ARRAY = @as(u32, 128);
+pub const EC_READ_ACCESS = @as(u32, 1);
+pub const EC_WRITE_ACCESS = @as(u32, 2);
+pub const EC_OPEN_ALWAYS = @as(u32, 0);
+pub const EC_CREATE_NEW = @as(u32, 1);
+pub const EC_OPEN_EXISTING = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (10)

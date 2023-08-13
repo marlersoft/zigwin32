@@ -2,11 +2,15 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1)
 //--------------------------------------------------------------------------------
-pub const PSS_PERF_RESOLUTION : u32 = 1000000;
+pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
+pub const HPSS = ?*c_void;
+
+pub const HPSSWALK = ?*c_void;
+
 pub const PSS_HANDLE_FLAGS = extern enum(i32) {
     NONE = 0,
     HAVE_TYPE = 1,
@@ -284,10 +288,6 @@ pub const PSS_ALLOCATOR = extern struct {
     AllocRoutine: ?*c_void,
     FreeRoutine: ?*c_void,
 };
-
-pub const HPSS = ?*c_void;
-
-pub const HPSSWALK = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

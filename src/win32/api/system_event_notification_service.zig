@@ -2,14 +2,21 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const NETWORK_ALIVE_LAN : u32 = 1;
-pub const NETWORK_ALIVE_WAN : u32 = 2;
-pub const NETWORK_ALIVE_AOL : u32 = 4;
-pub const NETWORK_ALIVE_INTERNET : u32 = 8;
+pub const NETWORK_ALIVE_LAN = @as(u32, 1);
+pub const NETWORK_ALIVE_WAN = @as(u32, 2);
+pub const NETWORK_ALIVE_AOL = @as(u32, 4);
+pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
+pub const ISensNetwork_ConnectionLost_ulTypeFlags = extern enum(u32) {
+    LAN = 0,
+    WAN = 1,
+};
+pub const CONNECTION_LAN = ISensNetwork_ConnectionLost_ulTypeFlags.LAN;
+pub const CONNECTION_WAN = ISensNetwork_ConnectionLost_ulTypeFlags.WAN;
+
 pub const QOCINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -251,13 +258,6 @@ pub const ISensLogon2 = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const ISensNetwork_ConnectionLost_ulTypeFlags = extern enum(u32) {
-    LAN = 0,
-    WAN = 1,
-};
-pub const CONNECTION_LAN = ISensNetwork_ConnectionLost_ulTypeFlags.LAN;
-pub const CONNECTION_WAN = ISensNetwork_ConnectionLost_ulTypeFlags.WAN;
 
 
 //--------------------------------------------------------------------------------

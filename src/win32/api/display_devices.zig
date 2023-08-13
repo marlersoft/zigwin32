@@ -6,6 +6,40 @@
 //--------------------------------------------------------------------------------
 // Section: Types (242)
 //--------------------------------------------------------------------------------
+pub const RECT = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const RECTL = extern struct {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+};
+
+pub const POINT = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const POINTL = extern struct {
+    x: i32,
+    y: i32,
+};
+
+pub const SIZE = extern struct {
+    cx: i32,
+    cy: i32,
+};
+
+pub const POINTS = extern struct {
+    x: i16,
+    y: i16,
+};
+
 const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
 pub const IDirectDrawKernel = extern struct {
@@ -181,40 +215,6 @@ pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
     dwFlags: u32,
     pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
     ddRVal: HRESULT,
-};
-
-pub const RECT = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const RECTL = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const POINT = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const POINTL = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const SIZE = extern struct {
-    cx: i32,
-    cy: i32,
-};
-
-pub const POINTS = extern struct {
-    x: i16,
-    y: i16,
 };
 
 pub const DDVIDEOPORTCAPS = extern struct {
@@ -693,8 +693,8 @@ pub const DD_SURFACE_GLOBAL = extern struct {
     fpHeapOffset: ?*c_void,
     hCreatorProcess: HANDLE,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DD_SURFACE_MORE = extern struct {

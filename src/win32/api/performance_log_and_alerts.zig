@@ -2,13 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const PLA_CAPABILITY_LOCAL : u32 = 268435456;
-pub const PLA_CAPABILITY_V1_SVC : u32 = 1;
-pub const PLA_CAPABILITY_V1_SESSION : u32 = 2;
-pub const PLA_CAPABILITY_V1_SYSTEM : u32 = 4;
-pub const PLA_CAPABILITY_LEGACY_SESSION : u32 = 8;
-pub const PLA_CAPABILITY_LEGACY_SVC : u32 = 16;
-pub const PLA_CAPABILITY_AUTOLOGGER : u32 = 32;
+pub const PLA_CAPABILITY_LOCAL = @as(u32, 268435456);
+pub const PLA_CAPABILITY_V1_SVC = @as(u32, 1);
+pub const PLA_CAPABILITY_V1_SESSION = @as(u32, 2);
+pub const PLA_CAPABILITY_V1_SYSTEM = @as(u32, 4);
+pub const PLA_CAPABILITY_LEGACY_SESSION = @as(u32, 8);
+pub const PLA_CAPABILITY_LEGACY_SVC = @as(u32, 16);
+pub const PLA_CAPABILITY_AUTOLOGGER = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (47)

@@ -2,17 +2,17 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (11)
 //--------------------------------------------------------------------------------
-pub const FAULT_INVALID_ACTION : u32 = 401;
-pub const FAULT_INVALID_ARG : u32 = 402;
-pub const FAULT_INVALID_SEQUENCE_NUMBER : u32 = 403;
-pub const FAULT_INVALID_VARIABLE : u32 = 404;
-pub const FAULT_DEVICE_INTERNAL_ERROR : u32 = 501;
-pub const FAULT_ACTION_SPECIFIC_BASE : u32 = 600;
-pub const FAULT_ACTION_SPECIFIC_MAX : u32 = 899;
-pub const UPNP_ADDRESSFAMILY_IPv4 : u32 = 1;
-pub const UPNP_ADDRESSFAMILY_IPv6 : u32 = 2;
-pub const UPNP_ADDRESSFAMILY_BOTH : u32 = 3;
-pub const UPNP_SERVICE_DELAY_SCPD_AND_SUBSCRIPTION : u32 = 1;
+pub const FAULT_INVALID_ACTION = @as(u32, 401);
+pub const FAULT_INVALID_ARG = @as(u32, 402);
+pub const FAULT_INVALID_SEQUENCE_NUMBER = @as(u32, 403);
+pub const FAULT_INVALID_VARIABLE = @as(u32, 404);
+pub const FAULT_DEVICE_INTERNAL_ERROR = @as(u32, 501);
+pub const FAULT_ACTION_SPECIFIC_BASE = @as(u32, 600);
+pub const FAULT_ACTION_SPECIFIC_MAX = @as(u32, 899);
+pub const UPNP_ADDRESSFAMILY_IPv4 = @as(u32, 1);
+pub const UPNP_ADDRESSFAMILY_IPv6 = @as(u32, 2);
+pub const UPNP_ADDRESSFAMILY_BOTH = @as(u32, 3);
+pub const UPNP_SERVICE_DELAY_SCPD_AND_SUBSCRIPTION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (36)

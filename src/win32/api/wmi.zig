@@ -2,12 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const WBEMS_DISPID_DERIVATION : u32 = 23;
-pub const WBEMS_DISPID_OBJECT_READY : u32 = 1;
-pub const WBEMS_DISPID_COMPLETED : u32 = 2;
-pub const WBEMS_DISPID_PROGRESS : u32 = 3;
-pub const WBEMS_DISPID_OBJECT_PUT : u32 = 4;
-pub const WBEMS_DISPID_CONNECTION_READY : u32 = 5;
+pub const WBEMS_DISPID_DERIVATION = @as(u32, 23);
+pub const WBEMS_DISPID_OBJECT_READY = @as(u32, 1);
+pub const WBEMS_DISPID_COMPLETED = @as(u32, 2);
+pub const WBEMS_DISPID_PROGRESS = @as(u32, 3);
+pub const WBEMS_DISPID_OBJECT_PUT = @as(u32, 4);
+pub const WBEMS_DISPID_CONNECTION_READY = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
 // Section: Types (162)

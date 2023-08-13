@@ -2,112 +2,136 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (102)
 //--------------------------------------------------------------------------------
-pub const WPCPROV = @import("../zig.zig").Guid.initString("01090065-b467-4503-9b28-533766761087");
-pub const ARRAY_SEP_CHAR : u32 = 9;
-pub const WPCCHANNEL : u32 = 16;
-pub const WPC_SETTINGS_LOCATE : u32 = 20;
-pub const WPC_SETTINGS_MODIFY : u32 = 21;
-pub const WPC_APP_LAUNCH : u32 = 22;
-pub const WPC_SYSTEM : u32 = 23;
-pub const WPC_WEB : u32 = 24;
-pub const WPCPROV_TASK_SettingChange : u32 = 1;
-pub const WPCPROV_TASK_GameStart : u32 = 2;
-pub const WPCPROV_TASK_UrlVisit : u32 = 3;
-pub const WPCPROV_TASK_EmailReceived : u32 = 4;
-pub const WPCPROV_TASK_EmailSent : u32 = 5;
-pub const WPCPROV_TASK_MediaPlayback : u32 = 6;
-pub const WPCPROV_TASK_IMInvitation : u32 = 7;
-pub const WPCPROV_TASK_IMJoin : u32 = 8;
-pub const WPCPROV_TASK_IMLeave : u32 = 9;
-pub const WPCPROV_TASK_FileDownload : u32 = 10;
-pub const WPCPROV_TASK_IMFeature : u32 = 11;
-pub const WPCPROV_TASK_Custom : u32 = 13;
-pub const WPCPROV_TASK_EmailContact : u32 = 14;
-pub const WPCPROV_TASK_IMContact : u32 = 15;
-pub const WPCPROV_TASK_AppBlocked : u32 = 16;
-pub const WPCPROV_TASK_AppOverride : u32 = 17;
-pub const WPCPROV_TASK_WebOverride : u32 = 18;
-pub const WPCPROV_TASK_WebsiteVisit : u32 = 19;
-pub const WPCPROV_TASK_Application : u32 = 20;
-pub const WPCPROV_TASK_ComputerUsage : u32 = 21;
-pub const WPCPROV_TASK_ContentUsage : u32 = 22;
-pub const WPCPROV_KEYWORD_WPC : u32 = 16;
-pub const WPCPROV_KEYWORD_ThirdParty : u32 = 32;
-pub const WPCEVENT_SYS_SETTINGCHANGE_value : u32 = 1;
-pub const WPCEVENT_GAME_START_value : u32 = 2;
-pub const WPCEVENT_WEB_URLVISIT_value : u32 = 3;
-pub const WPCEVENT_EMAIL_RECEIVED_value : u32 = 4;
-pub const WPCEVENT_EMAIL_SENT_value : u32 = 5;
-pub const WPCEVENT_MEDIA_PLAYBACK_value : u32 = 6;
-pub const WPCEVENT_IM_INVITATION_value : u32 = 7;
-pub const WPCEVENT_IM_JOIN_value : u32 = 8;
-pub const WPCEVENT_IM_LEAVE_value : u32 = 9;
-pub const WPCEVENT_WEB_FILEDOWNLOAD_value : u32 = 10;
-pub const WPCEVENT_IM_FEATURE_value : u32 = 11;
-pub const WPCEVENT_CUSTOM_value : u32 = 13;
-pub const WPCEVENT_EMAIL_CONTACT_value : u32 = 14;
-pub const WPCEVENT_IM_CONTACT_value : u32 = 15;
-pub const WPCEVENT_SYSTEM_APPBLOCKED_value : u32 = 16;
-pub const WPCEVENT_APPOVERRIDE_value : u32 = 17;
-pub const WPCEVENT_WEBOVERRIDE_value : u32 = 18;
-pub const WPCEVENT_WEB_WEBSITEVISIT_value : u32 = 19;
-pub const WPCEVENT_APPLICATION_value : u32 = 20;
-pub const WPCEVENT_COMPUTERUSAGE_value : u32 = 21;
-pub const WPCEVENT_CONTENTUSAGE_value : u32 = 22;
-pub const MSG_Keyword_WPC : i32 = 268435461;
-pub const MSG_Keyword_ThirdParty : i32 = 268435462;
-pub const MSG_Opcode_Locate : i32 = 805306388;
-pub const MSG_Opcode_Modify : i32 = 805306389;
-pub const MSG_Opcode_Launch : i32 = 805306390;
-pub const MSG_Opcode_System : i32 = 805306391;
-pub const MSG_Opcode_Web : i32 = 805306392;
-pub const MSG_Task_SettingChange : i32 = 1879048193;
-pub const MSG_Task_GameStart : i32 = 1879048194;
-pub const MSG_Task_UrlVisit : i32 = 1879048195;
-pub const MSG_Task_EmailReceived : i32 = 1879048196;
-pub const MSG_Task_EmailSent : i32 = 1879048197;
-pub const MSG_Task_MediaPlayback : i32 = 1879048198;
-pub const MSG_Task_IMInvitation : i32 = 1879048199;
-pub const MSG_Task_IMJoin : i32 = 1879048200;
-pub const MSG_Task_IMLeave : i32 = 1879048201;
-pub const MSG_Task_FileDownload : i32 = 1879048202;
-pub const MSG_Task_IMFeature : i32 = 1879048203;
-pub const MSG_Task_Custom : i32 = 1879048205;
-pub const MSG_Task_EmailContact : i32 = 1879048206;
-pub const MSG_Task_IMContact : i32 = 1879048207;
-pub const MSG_Task_AppBlocked : i32 = 1879048208;
-pub const MSG_Task_AppOverride : i32 = 1879048209;
-pub const MSG_Task_WebOverride : i32 = 1879048210;
-pub const MSG_Task_WebsiteVisit : i32 = 1879048211;
-pub const MSG_Task_Application : i32 = 1879048212;
-pub const MSG_Task_ComputerUsage : i32 = 1879048213;
-pub const MSG_Task_ContentUsage : i32 = 1879048214;
-pub const MSG_Publisher_Name : i32 = -1879048191;
-pub const MSG_Event_SettingChange : i32 = -1342177279;
-pub const MSG_Event_GameStart : i32 = -1342177278;
-pub const MSG_Event_UrlVisit : i32 = -1342177277;
-pub const MSG_Event_EmailReceived : i32 = -1342177276;
-pub const MSG_Event_EmailSent : i32 = -1342177275;
-pub const MSG_Event_MediaPlayback : i32 = -1342177274;
-pub const MSG_Event_IMInvitation : i32 = -1342177273;
-pub const MSG_Event_IMJoin : i32 = -1342177272;
-pub const MSG_Event_IMLeave : i32 = -1342177271;
-pub const MSG_Event_FileDownload : i32 = -1342177270;
-pub const MSG_Event_IMFeature : i32 = -1342177269;
-pub const MSG_Event_Custom : i32 = -1342177267;
-pub const MSG_Event_EmailContact : i32 = -1342177266;
-pub const MSG_Event_IMContact : i32 = -1342177265;
-pub const MSG_Event_AppBlocked : i32 = -1342177264;
-pub const MSG_Event_AppOverride : i32 = -1342177263;
-pub const MSG_Event_WebOverride : i32 = -1342177262;
-pub const MSG_Event_WebsiteVisit : i32 = -1342177261;
-pub const MSG_Event_Application : i32 = -1342177260;
-pub const MSG_Event_ComputerUsage : i32 = -1342177259;
-pub const MSG_Event_ContentUsage : i32 = -1342177258;
+pub const ARRAY_SEP_CHAR = @as(u32, 9);
+pub const WPCCHANNEL = @as(u32, 16);
+pub const WPC_SETTINGS_LOCATE = @as(u32, 20);
+pub const WPC_SETTINGS_MODIFY = @as(u32, 21);
+pub const WPC_APP_LAUNCH = @as(u32, 22);
+pub const WPC_SYSTEM = @as(u32, 23);
+pub const WPC_WEB = @as(u32, 24);
+pub const WPCPROV_TASK_SettingChange = @as(u32, 1);
+pub const WPCPROV_TASK_GameStart = @as(u32, 2);
+pub const WPCPROV_TASK_UrlVisit = @as(u32, 3);
+pub const WPCPROV_TASK_EmailReceived = @as(u32, 4);
+pub const WPCPROV_TASK_EmailSent = @as(u32, 5);
+pub const WPCPROV_TASK_MediaPlayback = @as(u32, 6);
+pub const WPCPROV_TASK_IMInvitation = @as(u32, 7);
+pub const WPCPROV_TASK_IMJoin = @as(u32, 8);
+pub const WPCPROV_TASK_IMLeave = @as(u32, 9);
+pub const WPCPROV_TASK_FileDownload = @as(u32, 10);
+pub const WPCPROV_TASK_IMFeature = @as(u32, 11);
+pub const WPCPROV_TASK_Custom = @as(u32, 13);
+pub const WPCPROV_TASK_EmailContact = @as(u32, 14);
+pub const WPCPROV_TASK_IMContact = @as(u32, 15);
+pub const WPCPROV_TASK_AppBlocked = @as(u32, 16);
+pub const WPCPROV_TASK_AppOverride = @as(u32, 17);
+pub const WPCPROV_TASK_WebOverride = @as(u32, 18);
+pub const WPCPROV_TASK_WebsiteVisit = @as(u32, 19);
+pub const WPCPROV_TASK_Application = @as(u32, 20);
+pub const WPCPROV_TASK_ComputerUsage = @as(u32, 21);
+pub const WPCPROV_TASK_ContentUsage = @as(u32, 22);
+pub const WPCPROV_KEYWORD_WPC = @as(u32, 16);
+pub const WPCPROV_KEYWORD_ThirdParty = @as(u32, 32);
+pub const WPCEVENT_SYS_SETTINGCHANGE_value = @as(u32, 1);
+pub const WPCEVENT_GAME_START_value = @as(u32, 2);
+pub const WPCEVENT_WEB_URLVISIT_value = @as(u32, 3);
+pub const WPCEVENT_EMAIL_RECEIVED_value = @as(u32, 4);
+pub const WPCEVENT_EMAIL_SENT_value = @as(u32, 5);
+pub const WPCEVENT_MEDIA_PLAYBACK_value = @as(u32, 6);
+pub const WPCEVENT_IM_INVITATION_value = @as(u32, 7);
+pub const WPCEVENT_IM_JOIN_value = @as(u32, 8);
+pub const WPCEVENT_IM_LEAVE_value = @as(u32, 9);
+pub const WPCEVENT_WEB_FILEDOWNLOAD_value = @as(u32, 10);
+pub const WPCEVENT_IM_FEATURE_value = @as(u32, 11);
+pub const WPCEVENT_CUSTOM_value = @as(u32, 13);
+pub const WPCEVENT_EMAIL_CONTACT_value = @as(u32, 14);
+pub const WPCEVENT_IM_CONTACT_value = @as(u32, 15);
+pub const WPCEVENT_SYSTEM_APPBLOCKED_value = @as(u32, 16);
+pub const WPCEVENT_APPOVERRIDE_value = @as(u32, 17);
+pub const WPCEVENT_WEBOVERRIDE_value = @as(u32, 18);
+pub const WPCEVENT_WEB_WEBSITEVISIT_value = @as(u32, 19);
+pub const WPCEVENT_APPLICATION_value = @as(u32, 20);
+pub const WPCEVENT_COMPUTERUSAGE_value = @as(u32, 21);
+pub const WPCEVENT_CONTENTUSAGE_value = @as(u32, 22);
+pub const MSG_Keyword_WPC = @as(i32, 268435461);
+pub const MSG_Keyword_ThirdParty = @as(i32, 268435462);
+pub const MSG_Opcode_Locate = @as(i32, 805306388);
+pub const MSG_Opcode_Modify = @as(i32, 805306389);
+pub const MSG_Opcode_Launch = @as(i32, 805306390);
+pub const MSG_Opcode_System = @as(i32, 805306391);
+pub const MSG_Opcode_Web = @as(i32, 805306392);
+pub const MSG_Task_SettingChange = @as(i32, 1879048193);
+pub const MSG_Task_GameStart = @as(i32, 1879048194);
+pub const MSG_Task_UrlVisit = @as(i32, 1879048195);
+pub const MSG_Task_EmailReceived = @as(i32, 1879048196);
+pub const MSG_Task_EmailSent = @as(i32, 1879048197);
+pub const MSG_Task_MediaPlayback = @as(i32, 1879048198);
+pub const MSG_Task_IMInvitation = @as(i32, 1879048199);
+pub const MSG_Task_IMJoin = @as(i32, 1879048200);
+pub const MSG_Task_IMLeave = @as(i32, 1879048201);
+pub const MSG_Task_FileDownload = @as(i32, 1879048202);
+pub const MSG_Task_IMFeature = @as(i32, 1879048203);
+pub const MSG_Task_Custom = @as(i32, 1879048205);
+pub const MSG_Task_EmailContact = @as(i32, 1879048206);
+pub const MSG_Task_IMContact = @as(i32, 1879048207);
+pub const MSG_Task_AppBlocked = @as(i32, 1879048208);
+pub const MSG_Task_AppOverride = @as(i32, 1879048209);
+pub const MSG_Task_WebOverride = @as(i32, 1879048210);
+pub const MSG_Task_WebsiteVisit = @as(i32, 1879048211);
+pub const MSG_Task_Application = @as(i32, 1879048212);
+pub const MSG_Task_ComputerUsage = @as(i32, 1879048213);
+pub const MSG_Task_ContentUsage = @as(i32, 1879048214);
+pub const MSG_Publisher_Name = @as(i32, -1879048191);
+pub const MSG_Event_SettingChange = @as(i32, -1342177279);
+pub const MSG_Event_GameStart = @as(i32, -1342177278);
+pub const MSG_Event_UrlVisit = @as(i32, -1342177277);
+pub const MSG_Event_EmailReceived = @as(i32, -1342177276);
+pub const MSG_Event_EmailSent = @as(i32, -1342177275);
+pub const MSG_Event_MediaPlayback = @as(i32, -1342177274);
+pub const MSG_Event_IMInvitation = @as(i32, -1342177273);
+pub const MSG_Event_IMJoin = @as(i32, -1342177272);
+pub const MSG_Event_IMLeave = @as(i32, -1342177271);
+pub const MSG_Event_FileDownload = @as(i32, -1342177270);
+pub const MSG_Event_IMFeature = @as(i32, -1342177269);
+pub const MSG_Event_Custom = @as(i32, -1342177267);
+pub const MSG_Event_EmailContact = @as(i32, -1342177266);
+pub const MSG_Event_IMContact = @as(i32, -1342177265);
+pub const MSG_Event_AppBlocked = @as(i32, -1342177264);
+pub const MSG_Event_AppOverride = @as(i32, -1342177263);
+pub const MSG_Event_WebOverride = @as(i32, -1342177262);
+pub const MSG_Event_WebsiteVisit = @as(i32, -1342177261);
+pub const MSG_Event_Application = @as(i32, -1342177260);
+pub const MSG_Event_ComputerUsage = @as(i32, -1342177259);
+pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
+pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 
 //--------------------------------------------------------------------------------
 // Section: Types (47)
 //--------------------------------------------------------------------------------
+pub const IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags = extern enum(u32) {
+    VISIBLE = 0,
+    HIDDEN = 1,
+};
+// TODO: enum 'IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags' has known issues with its value aliases
+
+pub const GetRestrictions_pdwRestrictions = extern enum(u32) {
+    NO_RESTRICTION = 0,
+    LOGGING_REQUIRED = 1,
+    WEB_FILTERED = 2,
+    HOURS_RESTRICTED = 4,
+    GAMES_BLOCKED = 8,
+    APPS_RESTRICTED = 16,
+};
+// TODO: enum 'GetRestrictions_pdwRestrictions' has known issues with its value aliases
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const IWPCWebSettings_GetSettings_pdwSettingsFlags = extern enum(u32) {
+    NOTBLOCKED = 0,
+    DOWNLOADSBLOCKED = 1,
+    _,
+};
+// TODO: enum 'IWPCWebSettings_GetSettings_pdwSettingsFlags' has known issues with its value aliases
+
 pub const WPCFLAG_ISBLOCKED = extern enum(i32) {
     NOTBLOCKED = 0,
     IMBLOCKED = 1,
@@ -1054,30 +1078,6 @@ pub const IWPCProviderSupport = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags = extern enum(u32) {
-    VISIBLE = 0,
-    HIDDEN = 1,
-};
-// TODO: enum 'IWindowsParentalControlsCore_GetVisibility_peVisibilityFlags' has known issues with its value aliases
-
-pub const GetRestrictions_pdwRestrictions = extern enum(u32) {
-    NO_RESTRICTION = 0,
-    LOGGING_REQUIRED = 1,
-    WEB_FILTERED = 2,
-    HOURS_RESTRICTED = 4,
-    GAMES_BLOCKED = 8,
-    APPS_RESTRICTED = 16,
-};
-// TODO: enum 'GetRestrictions_pdwRestrictions' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IWPCWebSettings_GetSettings_pdwSettingsFlags = extern enum(u32) {
-    NOTBLOCKED = 0,
-    DOWNLOADSBLOCKED = 1,
-    _,
-};
-// TODO: enum 'IWPCWebSettings_GetSettings_pdwSettingsFlags' has known issues with its value aliases
 
 
 //--------------------------------------------------------------------------------

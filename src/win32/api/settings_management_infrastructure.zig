@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const WCM_SETTINGS_ID_FLAG_REFERENCE : u32 = 0;
-pub const WCM_SETTINGS_ID_FLAG_DEFINITION : u32 = 1;
-pub const LINK_STORE_TO_ENGINE_INSTANCE : u32 = 1;
-pub const LIMITED_VALIDATION_MODE : u32 = 1;
+pub const WCM_SETTINGS_ID_FLAG_REFERENCE = @as(u32, 0);
+pub const WCM_SETTINGS_ID_FLAG_DEFINITION = @as(u32, 1);
+pub const LINK_STORE_TO_ENGINE_INSTANCE = @as(u32, 1);
+pub const LIMITED_VALIDATION_MODE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (16)

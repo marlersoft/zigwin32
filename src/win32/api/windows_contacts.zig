@@ -2,12 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (6)
 //--------------------------------------------------------------------------------
-pub const CGD_DEFAULT : u32 = 0;
-pub const CGD_UNKNOWN_PROPERTY : u32 = 0;
-pub const CGD_STRING_PROPERTY : u32 = 1;
-pub const CGD_DATE_PROPERTY : u32 = 2;
-pub const CGD_BINARY_PROPERTY : u32 = 4;
-pub const CGD_ARRAY_NODE : u32 = 8;
+pub const CGD_DEFAULT = @as(u32, 0);
+pub const CGD_UNKNOWN_PROPERTY = @as(u32, 0);
+pub const CGD_STRING_PROPERTY = @as(u32, 1);
+pub const CGD_DATE_PROPERTY = @as(u32, 2);
+pub const CGD_BINARY_PROPERTY = @as(u32, 4);
+pub const CGD_ARRAY_NODE = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (7)

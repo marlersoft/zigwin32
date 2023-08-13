@@ -2,368 +2,533 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (358)
 //--------------------------------------------------------------------------------
-pub const RASNAP_ProbationTime : u32 = 1;
-pub const RASTUNNELENDPOINT_UNKNOWN : u32 = 0;
-pub const RASTUNNELENDPOINT_IPv4 : u32 = 1;
-pub const RASTUNNELENDPOINT_IPv6 : u32 = 2;
-pub const RAS_MaxDeviceType : u32 = 16;
-pub const RAS_MaxPhoneNumber : u32 = 128;
-pub const RAS_MaxIpAddress : u32 = 15;
-pub const RAS_MaxIpxAddress : u32 = 21;
-pub const RAS_MaxEntryName : u32 = 256;
-pub const RAS_MaxDeviceName : u32 = 128;
-pub const RAS_MaxCallbackNumber : u32 = 48;
-pub const RAS_MaxAreaCode : u32 = 10;
-pub const RAS_MaxPadType : u32 = 32;
-pub const RAS_MaxX25Address : u32 = 200;
-pub const RAS_MaxFacilities : u32 = 200;
-pub const RAS_MaxUserData : u32 = 200;
-pub const RAS_MaxReplyMessage : u32 = 1024;
-pub const RAS_MaxDnsSuffix : u32 = 256;
-pub const RASCF_AllUsers : u32 = 1;
-pub const RASCF_GlobalCreds : u32 = 2;
-pub const RASCF_OwnerKnown : u32 = 4;
-pub const RASCF_OwnerMatch : u32 = 8;
-pub const RAS_MaxIDSize : u32 = 256;
-pub const RASCS_PAUSED : u32 = 4096;
-pub const RASCS_DONE : u32 = 8192;
-pub const RASCSS_DONE : u32 = 8192;
-pub const RDEOPT_UsePrefixSuffix : u32 = 1;
-pub const RDEOPT_PausedStates : u32 = 2;
-pub const RDEOPT_IgnoreModemSpeaker : u32 = 4;
-pub const RDEOPT_SetModemSpeaker : u32 = 8;
-pub const RDEOPT_IgnoreSoftwareCompression : u32 = 16;
-pub const RDEOPT_SetSoftwareCompression : u32 = 32;
-pub const RDEOPT_DisableConnectedUI : u32 = 64;
-pub const RDEOPT_DisableReconnectUI : u32 = 128;
-pub const RDEOPT_DisableReconnect : u32 = 256;
-pub const RDEOPT_NoUser : u32 = 512;
-pub const RDEOPT_PauseOnScript : u32 = 1024;
-pub const RDEOPT_Router : u32 = 2048;
-pub const RDEOPT_CustomDial : u32 = 4096;
-pub const RDEOPT_UseCustomScripting : u32 = 8192;
-pub const RDEOPT_InvokeAutoTriggerCredentialUI : u32 = 16384;
-pub const RDEOPT_EapInfoCryptInCapable : u32 = 32768;
-pub const REN_User : u32 = 0;
-pub const REN_AllUsers : u32 = 1;
-pub const RASIPO_VJ : u32 = 1;
-pub const RASLCPO_PFC : u32 = 1;
-pub const RASLCPO_ACFC : u32 = 2;
-pub const RASLCPO_SSHF : u32 = 4;
-pub const RASLCPO_DES_56 : u32 = 8;
-pub const RASLCPO_3_DES : u32 = 16;
-pub const RASLCPO_AES_128 : u32 = 32;
-pub const RASLCPO_AES_256 : u32 = 64;
-pub const RASLCPO_AES_192 : u32 = 128;
-pub const RASLCPO_GCM_AES_128 : u32 = 256;
-pub const RASLCPO_GCM_AES_192 : u32 = 512;
-pub const RASLCPO_GCM_AES_256 : u32 = 1024;
-pub const RASCCPCA_MPPC : u32 = 6;
-pub const RASCCPCA_STAC : u32 = 5;
-pub const RASCCPO_Compression : u32 = 1;
-pub const RASCCPO_HistoryLess : u32 = 2;
-pub const RASCCPO_Encryption56bit : u32 = 16;
-pub const RASCCPO_Encryption40bit : u32 = 32;
-pub const RASCCPO_Encryption128bit : u32 = 64;
-pub const RASIKEv2_AUTH_MACHINECERTIFICATES : u32 = 1;
-pub const RASIKEv2_AUTH_EAP : u32 = 2;
-pub const RASIKEv2_AUTH_PSK : u32 = 3;
-pub const WM_RASDIALEVENT : u32 = 52429;
-pub const ET_None : u32 = 0;
-pub const ET_Require : u32 = 1;
-pub const ET_RequireMax : u32 = 2;
-pub const ET_Optional : u32 = 3;
-pub const VS_Default : u32 = 0;
-pub const VS_PptpOnly : u32 = 1;
-pub const VS_PptpFirst : u32 = 2;
-pub const VS_L2tpOnly : u32 = 3;
-pub const VS_L2tpFirst : u32 = 4;
-pub const VS_SstpOnly : u32 = 5;
-pub const VS_SstpFirst : u32 = 6;
-pub const VS_Ikev2Only : u32 = 7;
-pub const VS_Ikev2First : u32 = 8;
-pub const VS_GREOnly : u32 = 9;
-pub const VS_PptpSstp : u32 = 12;
-pub const VS_L2tpSstp : u32 = 13;
-pub const VS_Ikev2Sstp : u32 = 14;
-pub const RASEO_UseCountryAndAreaCodes : u32 = 1;
-pub const RASEO_SpecificIpAddr : u32 = 2;
-pub const RASEO_SpecificNameServers : u32 = 4;
-pub const RASEO_IpHeaderCompression : u32 = 8;
-pub const RASEO_RemoteDefaultGateway : u32 = 16;
-pub const RASEO_DisableLcpExtensions : u32 = 32;
-pub const RASEO_TerminalBeforeDial : u32 = 64;
-pub const RASEO_TerminalAfterDial : u32 = 128;
-pub const RASEO_ModemLights : u32 = 256;
-pub const RASEO_SwCompression : u32 = 512;
-pub const RASEO_RequireEncryptedPw : u32 = 1024;
-pub const RASEO_RequireMsEncryptedPw : u32 = 2048;
-pub const RASEO_RequireDataEncryption : u32 = 4096;
-pub const RASEO_NetworkLogon : u32 = 8192;
-pub const RASEO_UseLogonCredentials : u32 = 16384;
-pub const RASEO_PromoteAlternates : u32 = 32768;
-pub const RASEO_SecureLocalFiles : u32 = 65536;
-pub const RASEO_RequireEAP : u32 = 131072;
-pub const RASEO_RequirePAP : u32 = 262144;
-pub const RASEO_RequireSPAP : u32 = 524288;
-pub const RASEO_Custom : u32 = 1048576;
-pub const RASEO_PreviewPhoneNumber : u32 = 2097152;
-pub const RASEO_SharedPhoneNumbers : u32 = 8388608;
-pub const RASEO_PreviewUserPw : u32 = 16777216;
-pub const RASEO_PreviewDomain : u32 = 33554432;
-pub const RASEO_ShowDialingProgress : u32 = 67108864;
-pub const RASEO_RequireCHAP : u32 = 134217728;
-pub const RASEO_RequireMsCHAP : u32 = 268435456;
-pub const RASEO_RequireMsCHAP2 : u32 = 536870912;
-pub const RASEO_RequireW95MSCHAP : u32 = 1073741824;
-pub const RASEO_CustomScript : u32 = 2147483648;
-pub const RASEO2_SecureFileAndPrint : u32 = 1;
-pub const RASEO2_SecureClientForMSNet : u32 = 2;
-pub const RASEO2_DontNegotiateMultilink : u32 = 4;
-pub const RASEO2_DontUseRasCredentials : u32 = 8;
-pub const RASEO2_UsePreSharedKey : u32 = 16;
-pub const RASEO2_Internet : u32 = 32;
-pub const RASEO2_DisableNbtOverIP : u32 = 64;
-pub const RASEO2_UseGlobalDeviceSettings : u32 = 128;
-pub const RASEO2_ReconnectIfDropped : u32 = 256;
-pub const RASEO2_SharePhoneNumbers : u32 = 512;
-pub const RASEO2_SecureRoutingCompartment : u32 = 1024;
-pub const RASEO2_UseTypicalSettings : u32 = 2048;
-pub const RASEO2_IPv6SpecificNameServers : u32 = 4096;
-pub const RASEO2_IPv6RemoteDefaultGateway : u32 = 8192;
-pub const RASEO2_RegisterIpWithDNS : u32 = 16384;
-pub const RASEO2_UseDNSSuffixForRegistration : u32 = 32768;
-pub const RASEO2_IPv4ExplicitMetric : u32 = 65536;
-pub const RASEO2_IPv6ExplicitMetric : u32 = 131072;
-pub const RASEO2_DisableIKENameEkuCheck : u32 = 262144;
-pub const RASEO2_DisableClassBasedStaticRoute : u32 = 524288;
-pub const RASEO2_SpecificIPv6Addr : u32 = 1048576;
-pub const RASEO2_DisableMobility : u32 = 2097152;
-pub const RASEO2_RequireMachineCertificates : u32 = 4194304;
-pub const RASEO2_UsePreSharedKeyForIkev2Initiator : u32 = 8388608;
-pub const RASEO2_UsePreSharedKeyForIkev2Responder : u32 = 16777216;
-pub const RASEO2_CacheCredentials : u32 = 33554432;
-pub const RASEO2_AutoTriggerCapable : u32 = 67108864;
-pub const RASEO2_IsThirdPartyProfile : u32 = 134217728;
-pub const RASEO2_AuthTypeIsOtp : u32 = 268435456;
-pub const RASEO2_IsAlwaysOn : u32 = 536870912;
-pub const RASEO2_IsPrivateNetwork : u32 = 1073741824;
-pub const RASEO2_PlumbIKEv2TSAsRoutes : u32 = 2147483648;
-pub const RASNP_NetBEUI : u32 = 1;
-pub const RASNP_Ipx : u32 = 2;
-pub const RASNP_Ip : u32 = 4;
-pub const RASNP_Ipv6 : u32 = 8;
-pub const RASFP_Ppp : u32 = 1;
-pub const RASFP_Slip : u32 = 2;
-pub const RASFP_Ras : u32 = 4;
-pub const RASET_Phone : u32 = 1;
-pub const RASET_Vpn : u32 = 2;
-pub const RASET_Direct : u32 = 3;
-pub const RASET_Internet : u32 = 4;
-pub const RASET_Broadband : u32 = 5;
-pub const RASCN_Dormant : u32 = 16;
-pub const RASCN_ReConnection : u32 = 32;
-pub const RASCN_EPDGPacketArrival : u32 = 64;
-pub const RASIDS_Disabled : u32 = 4294967295;
-pub const RASIDS_UseGlobalValue : u32 = 0;
-pub const RASADFLG_PositionDlg : u32 = 1;
-pub const RASCM_UserName : u32 = 1;
-pub const RASCM_Password : u32 = 2;
-pub const RASCM_Domain : u32 = 4;
-pub const RASCM_DefaultCreds : u32 = 8;
-pub const RASCM_PreSharedKey : u32 = 16;
-pub const RASCM_ServerPreSharedKey : u32 = 32;
-pub const RASCM_DDMPreSharedKey : u32 = 64;
-pub const RASEAPF_NonInteractive : u32 = 2;
-pub const RASEAPF_Logon : u32 = 4;
-pub const RASEAPF_Preview : u32 = 8;
-pub const RCD_SingleUser : u32 = 0;
-pub const RCD_AllUsers : u32 = 1;
-pub const RCD_Eap : u32 = 2;
-pub const RCD_Logon : u32 = 4;
-pub const RASPBDEVENT_AddEntry : u32 = 1;
-pub const RASPBDEVENT_EditEntry : u32 = 2;
-pub const RASPBDEVENT_RemoveEntry : u32 = 3;
-pub const RASPBDEVENT_DialEntry : u32 = 4;
-pub const RASPBDEVENT_EditGlobals : u32 = 5;
-pub const RASPBDEVENT_NoUser : u32 = 6;
-pub const RASPBDEVENT_NoUserEdit : u32 = 7;
-pub const RASNOUSER_SmartCard : u32 = 1;
-pub const RASPBDFLAG_PositionDlg : u32 = 1;
-pub const RASPBDFLAG_ForceCloseOnDial : u32 = 2;
-pub const RASPBDFLAG_NoUser : u32 = 16;
-pub const RASPBDFLAG_UpdateDefaults : u32 = 2147483648;
-pub const RASEDFLAG_PositionDlg : u32 = 1;
-pub const RASEDFLAG_NewEntry : u32 = 2;
-pub const RASEDFLAG_CloneEntry : u32 = 4;
-pub const RASEDFLAG_NoRename : u32 = 8;
-pub const RASEDFLAG_ShellOwned : u32 = 1073741824;
-pub const RASEDFLAG_NewPhoneEntry : u32 = 16;
-pub const RASEDFLAG_NewTunnelEntry : u32 = 32;
-pub const RASEDFLAG_NewDirectEntry : u32 = 64;
-pub const RASEDFLAG_NewBroadbandEntry : u32 = 128;
-pub const RASEDFLAG_InternetEntry : u32 = 256;
-pub const RASEDFLAG_NAT : u32 = 512;
-pub const RASEDFLAG_IncomingConnection : u32 = 1024;
-pub const RASDDFLAG_PositionDlg : u32 = 1;
-pub const RASDDFLAG_NoPrompt : u32 = 2;
-pub const RASDDFLAG_AoacRedial : u32 = 4;
-pub const RASDDFLAG_LinkFailure : u32 = 2147483648;
-pub const PID_IPX : u32 = 43;
-pub const PID_IP : u32 = 33;
-pub const PID_IPV6 : u32 = 87;
-pub const PID_NBF : u32 = 63;
-pub const PID_ATALK : u32 = 41;
-pub const MPR_INTERFACE_OUT_OF_RESOURCES : u32 = 1;
-pub const MPR_INTERFACE_ADMIN_DISABLED : u32 = 2;
-pub const MPR_INTERFACE_CONNECTION_FAILURE : u32 = 4;
-pub const MPR_INTERFACE_SERVICE_PAUSED : u32 = 8;
-pub const MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION : u32 = 16;
-pub const MPR_INTERFACE_NO_MEDIA_SENSE : u32 = 32;
-pub const MPR_INTERFACE_NO_DEVICE : u32 = 64;
-pub const MPRIO_IpSecPreSharedKey : u32 = 2147483648;
-pub const MPRIO_RequireMachineCertificates : u32 = 16777216;
-pub const MPRIO_UsePreSharedKeyForIkev2Initiator : u32 = 33554432;
-pub const MPRIO_UsePreSharedKeyForIkev2Responder : u32 = 67108864;
-pub const MPR_ENABLE_RAS_ON_DEVICE : u32 = 1;
-pub const MPR_ENABLE_ROUTING_ON_DEVICE : u32 = 2;
-pub const IPADDRESSLEN : u32 = 15;
-pub const IPXADDRESSLEN : u32 = 22;
-pub const ATADDRESSLEN : u32 = 32;
-pub const MAXIPADRESSLEN : u32 = 64;
-pub const PPP_IPCP_VJ : u32 = 1;
-pub const PPP_CCP_COMPRESSION : u32 = 1;
-pub const PPP_CCP_ENCRYPTION40BITOLD : u32 = 16;
-pub const PPP_CCP_ENCRYPTION40BIT : u32 = 32;
-pub const PPP_CCP_ENCRYPTION128BIT : u32 = 64;
-pub const PPP_CCP_ENCRYPTION56BIT : u32 = 128;
-pub const PPP_CCP_HISTORYLESS : u32 = 16777216;
-pub const PPP_LCP_MULTILINK_FRAMING : u32 = 1;
-pub const PPP_LCP_PFC : u32 = 2;
-pub const PPP_LCP_ACFC : u32 = 4;
-pub const PPP_LCP_SSHF : u32 = 8;
-pub const PPP_LCP_DES_56 : u32 = 16;
-pub const PPP_LCP_3_DES : u32 = 32;
-pub const PPP_LCP_AES_128 : u32 = 64;
-pub const PPP_LCP_AES_256 : u32 = 128;
-pub const PPP_LCP_AES_192 : u32 = 256;
-pub const PPP_LCP_GCM_AES_128 : u32 = 512;
-pub const PPP_LCP_GCM_AES_192 : u32 = 1024;
-pub const PPP_LCP_GCM_AES_256 : u32 = 2048;
-pub const RAS_FLAGS_RAS_CONNECTION : u32 = 4;
-pub const RASPRIV_NoCallback : u32 = 1;
-pub const RASPRIV_AdminSetCallback : u32 = 2;
-pub const RASPRIV_CallerSetCallback : u32 = 4;
-pub const RASPRIV_DialinPrivilege : u32 = 8;
-pub const RASPRIV2_DialinPolicy : u32 = 1;
-pub const MPRAPI_IKEV2_AUTH_USING_CERT : u32 = 1;
-pub const MPRAPI_IKEV2_AUTH_USING_EAP : u32 = 2;
-pub const MPRAPI_PPP_PROJECTION_INFO_TYPE : u32 = 1;
-pub const MPRAPI_IKEV2_PROJECTION_INFO_TYPE : u32 = 2;
-pub const MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1 : u32 = 1;
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_1 : u32 = 1;
-pub const MPRAPI_IF_CUSTOM_CONFIG_FOR_IKEV2 : u32 = 1;
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_3 : u32 = 3;
-pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_2 : u32 = 2;
-pub const MPRAPI_IKEV2_SET_TUNNEL_CONFIG_PARAMS : u32 = 1;
-pub const MPRAPI_L2TP_SET_TUNNEL_CONFIG_PARAMS : u32 = 1;
-pub const MAX_SSTP_HASH_SIZE : u32 = 32;
-pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_1 : u32 = 1;
-pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_2 : u32 = 2;
-pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_3 : u32 = 3;
-pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_4 : u32 = 4;
-pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_5 : u32 = 5;
-pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_1 : u32 = 1;
-pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_2 : u32 = 2;
-pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_3 : u32 = 3;
-pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_4 : u32 = 4;
-pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_5 : u32 = 5;
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_PPTP : u32 = 1;
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_L2TP : u32 = 2;
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_SSTP : u32 = 4;
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_IKEV2 : u32 = 8;
-pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_GRE : u32 = 16;
-pub const ALLOW_NO_AUTH : u32 = 1;
-pub const DO_NOT_ALLOW_NO_AUTH : u32 = 0;
-pub const MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1 : u32 = 1;
-pub const MPRAPI_ADMIN_DLL_VERSION_1 : u32 = 1;
-pub const MPRAPI_ADMIN_DLL_VERSION_2 : u32 = 2;
-pub const MGM_JOIN_STATE_FLAG : u32 = 1;
-pub const MGM_FORWARD_STATE_FLAG : u32 = 2;
-pub const MGM_MFE_STATS_0 : u32 = 1;
-pub const MGM_MFE_STATS_1 : u32 = 2;
-pub const RTM_MAX_ADDRESS_SIZE : u32 = 16;
-pub const RTM_MAX_VIEWS : u32 = 32;
-pub const RTM_VIEW_ID_UCAST : u32 = 0;
-pub const RTM_VIEW_ID_MCAST : u32 = 1;
-pub const RTM_VIEW_MASK_SIZE : u32 = 32;
-pub const RTM_VIEW_MASK_NONE : u32 = 0;
-pub const RTM_VIEW_MASK_ANY : u32 = 0;
-pub const RTM_VIEW_MASK_UCAST : u32 = 1;
-pub const RTM_VIEW_MASK_MCAST : u32 = 2;
-pub const RTM_VIEW_MASK_ALL : u32 = 4294967295;
-pub const IPV6_ADDRESS_LEN_IN_BYTES : u32 = 16;
-pub const RTM_DEST_FLAG_NATURAL_NET : u32 = 1;
-pub const RTM_DEST_FLAG_FWD_ENGIN_ADD : u32 = 2;
-pub const RTM_DEST_FLAG_DONT_FORWARD : u32 = 4;
-pub const RTM_ROUTE_STATE_CREATED : u32 = 0;
-pub const RTM_ROUTE_STATE_DELETING : u32 = 1;
-pub const RTM_ROUTE_STATE_DELETED : u32 = 2;
-pub const RTM_ROUTE_FLAGS_MARTIAN : u32 = 1;
-pub const RTM_ROUTE_FLAGS_BLACKHOLE : u32 = 2;
-pub const RTM_ROUTE_FLAGS_DISCARD : u32 = 4;
-pub const RTM_ROUTE_FLAGS_INACTIVE : u32 = 8;
-pub const RTM_ROUTE_FLAGS_LOCAL : u32 = 16;
-pub const RTM_ROUTE_FLAGS_REMOTE : u32 = 32;
-pub const RTM_ROUTE_FLAGS_MYSELF : u32 = 64;
-pub const RTM_ROUTE_FLAGS_LOOPBACK : u32 = 128;
-pub const RTM_ROUTE_FLAGS_MCAST : u32 = 256;
-pub const RTM_ROUTE_FLAGS_LOCAL_MCAST : u32 = 512;
-pub const RTM_ROUTE_FLAGS_LIMITED_BC : u32 = 1024;
-pub const RTM_ROUTE_FLAGS_ZEROS_NETBC : u32 = 4096;
-pub const RTM_ROUTE_FLAGS_ZEROS_SUBNETBC : u32 = 8192;
-pub const RTM_ROUTE_FLAGS_ONES_NETBC : u32 = 16384;
-pub const RTM_ROUTE_FLAGS_ONES_SUBNETBC : u32 = 32768;
-pub const RTM_NEXTHOP_STATE_CREATED : u32 = 0;
-pub const RTM_NEXTHOP_STATE_DELETED : u32 = 1;
-pub const METHOD_TYPE_ALL_METHODS : u32 = 4294967295;
-pub const METHOD_RIP2_NEIGHBOUR_ADDR : u32 = 1;
-pub const METHOD_RIP2_OUTBOUND_INTF : u32 = 2;
-pub const METHOD_RIP2_ROUTE_TAG : u32 = 4;
-pub const METHOD_RIP2_ROUTE_TIMESTAMP : u32 = 8;
-pub const METHOD_BGP4_AS_PATH : u32 = 1;
-pub const METHOD_BGP4_PEER_ID : u32 = 2;
-pub const METHOD_BGP4_PA_ORIGIN : u32 = 4;
-pub const METHOD_BGP4_NEXTHOP_ATTR : u32 = 8;
-pub const RTM_RESUME_METHODS : u32 = 0;
-pub const RTM_BLOCK_METHODS : u32 = 1;
-pub const RTM_ROUTE_CHANGE_FIRST : u32 = 1;
-pub const RTM_ROUTE_CHANGE_NEW : u32 = 2;
-pub const RTM_ROUTE_CHANGE_BEST : u32 = 65536;
-pub const RTM_NEXTHOP_CHANGE_NEW : u32 = 1;
-pub const RTM_MATCH_NONE : u32 = 0;
-pub const RTM_MATCH_OWNER : u32 = 1;
-pub const RTM_MATCH_NEIGHBOUR : u32 = 2;
-pub const RTM_MATCH_PREF : u32 = 4;
-pub const RTM_MATCH_NEXTHOP : u32 = 8;
-pub const RTM_MATCH_INTERFACE : u32 = 16;
-pub const RTM_MATCH_FULL : u32 = 65535;
-pub const RTM_ENUM_START : u32 = 0;
-pub const RTM_ENUM_NEXT : u32 = 1;
-pub const RTM_ENUM_RANGE : u32 = 2;
-pub const RTM_ENUM_ALL_DESTS : u32 = 0;
-pub const RTM_ENUM_OWN_DESTS : u32 = 16777216;
-pub const RTM_ENUM_ALL_ROUTES : u32 = 0;
-pub const RTM_ENUM_OWN_ROUTES : u32 = 65536;
-pub const RTM_NUM_CHANGE_TYPES : u32 = 3;
-pub const RTM_CHANGE_TYPE_ALL : u32 = 1;
-pub const RTM_CHANGE_TYPE_BEST : u32 = 2;
-pub const RTM_CHANGE_TYPE_FORWARDING : u32 = 4;
-pub const RTM_NOTIFY_ONLY_MARKED_DESTS : u32 = 65536;
+pub const RASNAP_ProbationTime = @as(u32, 1);
+pub const RASTUNNELENDPOINT_UNKNOWN = @as(u32, 0);
+pub const RASTUNNELENDPOINT_IPv4 = @as(u32, 1);
+pub const RASTUNNELENDPOINT_IPv6 = @as(u32, 2);
+pub const RAS_MaxDeviceType = @as(u32, 16);
+pub const RAS_MaxPhoneNumber = @as(u32, 128);
+pub const RAS_MaxIpAddress = @as(u32, 15);
+pub const RAS_MaxIpxAddress = @as(u32, 21);
+pub const RAS_MaxEntryName = @as(u32, 256);
+pub const RAS_MaxDeviceName = @as(u32, 128);
+pub const RAS_MaxCallbackNumber = @as(u32, 48);
+pub const RAS_MaxAreaCode = @as(u32, 10);
+pub const RAS_MaxPadType = @as(u32, 32);
+pub const RAS_MaxX25Address = @as(u32, 200);
+pub const RAS_MaxFacilities = @as(u32, 200);
+pub const RAS_MaxUserData = @as(u32, 200);
+pub const RAS_MaxReplyMessage = @as(u32, 1024);
+pub const RAS_MaxDnsSuffix = @as(u32, 256);
+pub const RASCF_AllUsers = @as(u32, 1);
+pub const RASCF_GlobalCreds = @as(u32, 2);
+pub const RASCF_OwnerKnown = @as(u32, 4);
+pub const RASCF_OwnerMatch = @as(u32, 8);
+pub const RAS_MaxIDSize = @as(u32, 256);
+pub const RASCS_PAUSED = @as(u32, 4096);
+pub const RASCS_DONE = @as(u32, 8192);
+pub const RASCSS_DONE = @as(u32, 8192);
+pub const RDEOPT_UsePrefixSuffix = @as(u32, 1);
+pub const RDEOPT_PausedStates = @as(u32, 2);
+pub const RDEOPT_IgnoreModemSpeaker = @as(u32, 4);
+pub const RDEOPT_SetModemSpeaker = @as(u32, 8);
+pub const RDEOPT_IgnoreSoftwareCompression = @as(u32, 16);
+pub const RDEOPT_SetSoftwareCompression = @as(u32, 32);
+pub const RDEOPT_DisableConnectedUI = @as(u32, 64);
+pub const RDEOPT_DisableReconnectUI = @as(u32, 128);
+pub const RDEOPT_DisableReconnect = @as(u32, 256);
+pub const RDEOPT_NoUser = @as(u32, 512);
+pub const RDEOPT_PauseOnScript = @as(u32, 1024);
+pub const RDEOPT_Router = @as(u32, 2048);
+pub const RDEOPT_CustomDial = @as(u32, 4096);
+pub const RDEOPT_UseCustomScripting = @as(u32, 8192);
+pub const RDEOPT_InvokeAutoTriggerCredentialUI = @as(u32, 16384);
+pub const RDEOPT_EapInfoCryptInCapable = @as(u32, 32768);
+pub const REN_User = @as(u32, 0);
+pub const REN_AllUsers = @as(u32, 1);
+pub const RASIPO_VJ = @as(u32, 1);
+pub const RASLCPO_PFC = @as(u32, 1);
+pub const RASLCPO_ACFC = @as(u32, 2);
+pub const RASLCPO_SSHF = @as(u32, 4);
+pub const RASLCPO_DES_56 = @as(u32, 8);
+pub const RASLCPO_3_DES = @as(u32, 16);
+pub const RASLCPO_AES_128 = @as(u32, 32);
+pub const RASLCPO_AES_256 = @as(u32, 64);
+pub const RASLCPO_AES_192 = @as(u32, 128);
+pub const RASLCPO_GCM_AES_128 = @as(u32, 256);
+pub const RASLCPO_GCM_AES_192 = @as(u32, 512);
+pub const RASLCPO_GCM_AES_256 = @as(u32, 1024);
+pub const RASCCPCA_MPPC = @as(u32, 6);
+pub const RASCCPCA_STAC = @as(u32, 5);
+pub const RASCCPO_Compression = @as(u32, 1);
+pub const RASCCPO_HistoryLess = @as(u32, 2);
+pub const RASCCPO_Encryption56bit = @as(u32, 16);
+pub const RASCCPO_Encryption40bit = @as(u32, 32);
+pub const RASCCPO_Encryption128bit = @as(u32, 64);
+pub const RASIKEv2_AUTH_MACHINECERTIFICATES = @as(u32, 1);
+pub const RASIKEv2_AUTH_EAP = @as(u32, 2);
+pub const RASIKEv2_AUTH_PSK = @as(u32, 3);
+pub const WM_RASDIALEVENT = @as(u32, 52429);
+pub const ET_None = @as(u32, 0);
+pub const ET_Require = @as(u32, 1);
+pub const ET_RequireMax = @as(u32, 2);
+pub const ET_Optional = @as(u32, 3);
+pub const VS_Default = @as(u32, 0);
+pub const VS_PptpOnly = @as(u32, 1);
+pub const VS_PptpFirst = @as(u32, 2);
+pub const VS_L2tpOnly = @as(u32, 3);
+pub const VS_L2tpFirst = @as(u32, 4);
+pub const VS_SstpOnly = @as(u32, 5);
+pub const VS_SstpFirst = @as(u32, 6);
+pub const VS_Ikev2Only = @as(u32, 7);
+pub const VS_Ikev2First = @as(u32, 8);
+pub const VS_GREOnly = @as(u32, 9);
+pub const VS_PptpSstp = @as(u32, 12);
+pub const VS_L2tpSstp = @as(u32, 13);
+pub const VS_Ikev2Sstp = @as(u32, 14);
+pub const RASEO_UseCountryAndAreaCodes = @as(u32, 1);
+pub const RASEO_SpecificIpAddr = @as(u32, 2);
+pub const RASEO_SpecificNameServers = @as(u32, 4);
+pub const RASEO_IpHeaderCompression = @as(u32, 8);
+pub const RASEO_RemoteDefaultGateway = @as(u32, 16);
+pub const RASEO_DisableLcpExtensions = @as(u32, 32);
+pub const RASEO_TerminalBeforeDial = @as(u32, 64);
+pub const RASEO_TerminalAfterDial = @as(u32, 128);
+pub const RASEO_ModemLights = @as(u32, 256);
+pub const RASEO_SwCompression = @as(u32, 512);
+pub const RASEO_RequireEncryptedPw = @as(u32, 1024);
+pub const RASEO_RequireMsEncryptedPw = @as(u32, 2048);
+pub const RASEO_RequireDataEncryption = @as(u32, 4096);
+pub const RASEO_NetworkLogon = @as(u32, 8192);
+pub const RASEO_UseLogonCredentials = @as(u32, 16384);
+pub const RASEO_PromoteAlternates = @as(u32, 32768);
+pub const RASEO_SecureLocalFiles = @as(u32, 65536);
+pub const RASEO_RequireEAP = @as(u32, 131072);
+pub const RASEO_RequirePAP = @as(u32, 262144);
+pub const RASEO_RequireSPAP = @as(u32, 524288);
+pub const RASEO_Custom = @as(u32, 1048576);
+pub const RASEO_PreviewPhoneNumber = @as(u32, 2097152);
+pub const RASEO_SharedPhoneNumbers = @as(u32, 8388608);
+pub const RASEO_PreviewUserPw = @as(u32, 16777216);
+pub const RASEO_PreviewDomain = @as(u32, 33554432);
+pub const RASEO_ShowDialingProgress = @as(u32, 67108864);
+pub const RASEO_RequireCHAP = @as(u32, 134217728);
+pub const RASEO_RequireMsCHAP = @as(u32, 268435456);
+pub const RASEO_RequireMsCHAP2 = @as(u32, 536870912);
+pub const RASEO_RequireW95MSCHAP = @as(u32, 1073741824);
+pub const RASEO_CustomScript = @as(u32, 2147483648);
+pub const RASEO2_SecureFileAndPrint = @as(u32, 1);
+pub const RASEO2_SecureClientForMSNet = @as(u32, 2);
+pub const RASEO2_DontNegotiateMultilink = @as(u32, 4);
+pub const RASEO2_DontUseRasCredentials = @as(u32, 8);
+pub const RASEO2_UsePreSharedKey = @as(u32, 16);
+pub const RASEO2_Internet = @as(u32, 32);
+pub const RASEO2_DisableNbtOverIP = @as(u32, 64);
+pub const RASEO2_UseGlobalDeviceSettings = @as(u32, 128);
+pub const RASEO2_ReconnectIfDropped = @as(u32, 256);
+pub const RASEO2_SharePhoneNumbers = @as(u32, 512);
+pub const RASEO2_SecureRoutingCompartment = @as(u32, 1024);
+pub const RASEO2_UseTypicalSettings = @as(u32, 2048);
+pub const RASEO2_IPv6SpecificNameServers = @as(u32, 4096);
+pub const RASEO2_IPv6RemoteDefaultGateway = @as(u32, 8192);
+pub const RASEO2_RegisterIpWithDNS = @as(u32, 16384);
+pub const RASEO2_UseDNSSuffixForRegistration = @as(u32, 32768);
+pub const RASEO2_IPv4ExplicitMetric = @as(u32, 65536);
+pub const RASEO2_IPv6ExplicitMetric = @as(u32, 131072);
+pub const RASEO2_DisableIKENameEkuCheck = @as(u32, 262144);
+pub const RASEO2_DisableClassBasedStaticRoute = @as(u32, 524288);
+pub const RASEO2_SpecificIPv6Addr = @as(u32, 1048576);
+pub const RASEO2_DisableMobility = @as(u32, 2097152);
+pub const RASEO2_RequireMachineCertificates = @as(u32, 4194304);
+pub const RASEO2_UsePreSharedKeyForIkev2Initiator = @as(u32, 8388608);
+pub const RASEO2_UsePreSharedKeyForIkev2Responder = @as(u32, 16777216);
+pub const RASEO2_CacheCredentials = @as(u32, 33554432);
+pub const RASEO2_AutoTriggerCapable = @as(u32, 67108864);
+pub const RASEO2_IsThirdPartyProfile = @as(u32, 134217728);
+pub const RASEO2_AuthTypeIsOtp = @as(u32, 268435456);
+pub const RASEO2_IsAlwaysOn = @as(u32, 536870912);
+pub const RASEO2_IsPrivateNetwork = @as(u32, 1073741824);
+pub const RASEO2_PlumbIKEv2TSAsRoutes = @as(u32, 2147483648);
+pub const RASNP_NetBEUI = @as(u32, 1);
+pub const RASNP_Ipx = @as(u32, 2);
+pub const RASNP_Ip = @as(u32, 4);
+pub const RASNP_Ipv6 = @as(u32, 8);
+pub const RASFP_Ppp = @as(u32, 1);
+pub const RASFP_Slip = @as(u32, 2);
+pub const RASFP_Ras = @as(u32, 4);
+pub const RASET_Phone = @as(u32, 1);
+pub const RASET_Vpn = @as(u32, 2);
+pub const RASET_Direct = @as(u32, 3);
+pub const RASET_Internet = @as(u32, 4);
+pub const RASET_Broadband = @as(u32, 5);
+pub const RASCN_Dormant = @as(u32, 16);
+pub const RASCN_ReConnection = @as(u32, 32);
+pub const RASCN_EPDGPacketArrival = @as(u32, 64);
+pub const RASIDS_Disabled = @as(u32, 4294967295);
+pub const RASIDS_UseGlobalValue = @as(u32, 0);
+pub const RASADFLG_PositionDlg = @as(u32, 1);
+pub const RASCM_UserName = @as(u32, 1);
+pub const RASCM_Password = @as(u32, 2);
+pub const RASCM_Domain = @as(u32, 4);
+pub const RASCM_DefaultCreds = @as(u32, 8);
+pub const RASCM_PreSharedKey = @as(u32, 16);
+pub const RASCM_ServerPreSharedKey = @as(u32, 32);
+pub const RASCM_DDMPreSharedKey = @as(u32, 64);
+pub const RASEAPF_NonInteractive = @as(u32, 2);
+pub const RASEAPF_Logon = @as(u32, 4);
+pub const RASEAPF_Preview = @as(u32, 8);
+pub const RCD_SingleUser = @as(u32, 0);
+pub const RCD_AllUsers = @as(u32, 1);
+pub const RCD_Eap = @as(u32, 2);
+pub const RCD_Logon = @as(u32, 4);
+pub const RASPBDEVENT_AddEntry = @as(u32, 1);
+pub const RASPBDEVENT_EditEntry = @as(u32, 2);
+pub const RASPBDEVENT_RemoveEntry = @as(u32, 3);
+pub const RASPBDEVENT_DialEntry = @as(u32, 4);
+pub const RASPBDEVENT_EditGlobals = @as(u32, 5);
+pub const RASPBDEVENT_NoUser = @as(u32, 6);
+pub const RASPBDEVENT_NoUserEdit = @as(u32, 7);
+pub const RASNOUSER_SmartCard = @as(u32, 1);
+pub const RASPBDFLAG_PositionDlg = @as(u32, 1);
+pub const RASPBDFLAG_ForceCloseOnDial = @as(u32, 2);
+pub const RASPBDFLAG_NoUser = @as(u32, 16);
+pub const RASPBDFLAG_UpdateDefaults = @as(u32, 2147483648);
+pub const RASEDFLAG_PositionDlg = @as(u32, 1);
+pub const RASEDFLAG_NewEntry = @as(u32, 2);
+pub const RASEDFLAG_CloneEntry = @as(u32, 4);
+pub const RASEDFLAG_NoRename = @as(u32, 8);
+pub const RASEDFLAG_ShellOwned = @as(u32, 1073741824);
+pub const RASEDFLAG_NewPhoneEntry = @as(u32, 16);
+pub const RASEDFLAG_NewTunnelEntry = @as(u32, 32);
+pub const RASEDFLAG_NewDirectEntry = @as(u32, 64);
+pub const RASEDFLAG_NewBroadbandEntry = @as(u32, 128);
+pub const RASEDFLAG_InternetEntry = @as(u32, 256);
+pub const RASEDFLAG_NAT = @as(u32, 512);
+pub const RASEDFLAG_IncomingConnection = @as(u32, 1024);
+pub const RASDDFLAG_PositionDlg = @as(u32, 1);
+pub const RASDDFLAG_NoPrompt = @as(u32, 2);
+pub const RASDDFLAG_AoacRedial = @as(u32, 4);
+pub const RASDDFLAG_LinkFailure = @as(u32, 2147483648);
+pub const PID_IPX = @as(u32, 43);
+pub const PID_IP = @as(u32, 33);
+pub const PID_IPV6 = @as(u32, 87);
+pub const PID_NBF = @as(u32, 63);
+pub const PID_ATALK = @as(u32, 41);
+pub const MPR_INTERFACE_OUT_OF_RESOURCES = @as(u32, 1);
+pub const MPR_INTERFACE_ADMIN_DISABLED = @as(u32, 2);
+pub const MPR_INTERFACE_CONNECTION_FAILURE = @as(u32, 4);
+pub const MPR_INTERFACE_SERVICE_PAUSED = @as(u32, 8);
+pub const MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION = @as(u32, 16);
+pub const MPR_INTERFACE_NO_MEDIA_SENSE = @as(u32, 32);
+pub const MPR_INTERFACE_NO_DEVICE = @as(u32, 64);
+pub const MPRIO_IpSecPreSharedKey = @as(u32, 2147483648);
+pub const MPRIO_RequireMachineCertificates = @as(u32, 16777216);
+pub const MPRIO_UsePreSharedKeyForIkev2Initiator = @as(u32, 33554432);
+pub const MPRIO_UsePreSharedKeyForIkev2Responder = @as(u32, 67108864);
+pub const MPR_ENABLE_RAS_ON_DEVICE = @as(u32, 1);
+pub const MPR_ENABLE_ROUTING_ON_DEVICE = @as(u32, 2);
+pub const IPADDRESSLEN = @as(u32, 15);
+pub const IPXADDRESSLEN = @as(u32, 22);
+pub const ATADDRESSLEN = @as(u32, 32);
+pub const MAXIPADRESSLEN = @as(u32, 64);
+pub const PPP_IPCP_VJ = @as(u32, 1);
+pub const PPP_CCP_COMPRESSION = @as(u32, 1);
+pub const PPP_CCP_ENCRYPTION40BITOLD = @as(u32, 16);
+pub const PPP_CCP_ENCRYPTION40BIT = @as(u32, 32);
+pub const PPP_CCP_ENCRYPTION128BIT = @as(u32, 64);
+pub const PPP_CCP_ENCRYPTION56BIT = @as(u32, 128);
+pub const PPP_CCP_HISTORYLESS = @as(u32, 16777216);
+pub const PPP_LCP_MULTILINK_FRAMING = @as(u32, 1);
+pub const PPP_LCP_PFC = @as(u32, 2);
+pub const PPP_LCP_ACFC = @as(u32, 4);
+pub const PPP_LCP_SSHF = @as(u32, 8);
+pub const PPP_LCP_DES_56 = @as(u32, 16);
+pub const PPP_LCP_3_DES = @as(u32, 32);
+pub const PPP_LCP_AES_128 = @as(u32, 64);
+pub const PPP_LCP_AES_256 = @as(u32, 128);
+pub const PPP_LCP_AES_192 = @as(u32, 256);
+pub const PPP_LCP_GCM_AES_128 = @as(u32, 512);
+pub const PPP_LCP_GCM_AES_192 = @as(u32, 1024);
+pub const PPP_LCP_GCM_AES_256 = @as(u32, 2048);
+pub const RAS_FLAGS_RAS_CONNECTION = @as(u32, 4);
+pub const RASPRIV_NoCallback = @as(u32, 1);
+pub const RASPRIV_AdminSetCallback = @as(u32, 2);
+pub const RASPRIV_CallerSetCallback = @as(u32, 4);
+pub const RASPRIV_DialinPrivilege = @as(u32, 8);
+pub const RASPRIV2_DialinPolicy = @as(u32, 1);
+pub const MPRAPI_IKEV2_AUTH_USING_CERT = @as(u32, 1);
+pub const MPRAPI_IKEV2_AUTH_USING_EAP = @as(u32, 2);
+pub const MPRAPI_PPP_PROJECTION_INFO_TYPE = @as(u32, 1);
+pub const MPRAPI_IKEV2_PROJECTION_INFO_TYPE = @as(u32, 2);
+pub const MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_IF_CUSTOM_CONFIG_FOR_IKEV2 = @as(u32, 1);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_3 = @as(u32, 3);
+pub const MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_2 = @as(u32, 2);
+pub const MPRAPI_IKEV2_SET_TUNNEL_CONFIG_PARAMS = @as(u32, 1);
+pub const MPRAPI_L2TP_SET_TUNNEL_CONFIG_PARAMS = @as(u32, 1);
+pub const MAX_SSTP_HASH_SIZE = @as(u32, 32);
+pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_2 = @as(u32, 2);
+pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_3 = @as(u32, 3);
+pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_4 = @as(u32, 4);
+pub const MPRAPI_MPR_SERVER_OBJECT_REVISION_5 = @as(u32, 5);
+pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_2 = @as(u32, 2);
+pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_3 = @as(u32, 3);
+pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_4 = @as(u32, 4);
+pub const MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_5 = @as(u32, 5);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_PPTP = @as(u32, 1);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_L2TP = @as(u32, 2);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_SSTP = @as(u32, 4);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_IKEV2 = @as(u32, 8);
+pub const MPRAPI_SET_CONFIG_PROTOCOL_FOR_GRE = @as(u32, 16);
+pub const ALLOW_NO_AUTH = @as(u32, 1);
+pub const DO_NOT_ALLOW_NO_AUTH = @as(u32, 0);
+pub const MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1 = @as(u32, 1);
+pub const MPRAPI_ADMIN_DLL_VERSION_1 = @as(u32, 1);
+pub const MPRAPI_ADMIN_DLL_VERSION_2 = @as(u32, 2);
+pub const MGM_JOIN_STATE_FLAG = @as(u32, 1);
+pub const MGM_FORWARD_STATE_FLAG = @as(u32, 2);
+pub const MGM_MFE_STATS_0 = @as(u32, 1);
+pub const MGM_MFE_STATS_1 = @as(u32, 2);
+pub const RTM_MAX_ADDRESS_SIZE = @as(u32, 16);
+pub const RTM_MAX_VIEWS = @as(u32, 32);
+pub const RTM_VIEW_ID_UCAST = @as(u32, 0);
+pub const RTM_VIEW_ID_MCAST = @as(u32, 1);
+pub const RTM_VIEW_MASK_SIZE = @as(u32, 32);
+pub const RTM_VIEW_MASK_NONE = @as(u32, 0);
+pub const RTM_VIEW_MASK_ANY = @as(u32, 0);
+pub const RTM_VIEW_MASK_UCAST = @as(u32, 1);
+pub const RTM_VIEW_MASK_MCAST = @as(u32, 2);
+pub const RTM_VIEW_MASK_ALL = @as(u32, 4294967295);
+pub const IPV6_ADDRESS_LEN_IN_BYTES = @as(u32, 16);
+pub const RTM_DEST_FLAG_NATURAL_NET = @as(u32, 1);
+pub const RTM_DEST_FLAG_FWD_ENGIN_ADD = @as(u32, 2);
+pub const RTM_DEST_FLAG_DONT_FORWARD = @as(u32, 4);
+pub const RTM_ROUTE_STATE_CREATED = @as(u32, 0);
+pub const RTM_ROUTE_STATE_DELETING = @as(u32, 1);
+pub const RTM_ROUTE_STATE_DELETED = @as(u32, 2);
+pub const RTM_ROUTE_FLAGS_MARTIAN = @as(u32, 1);
+pub const RTM_ROUTE_FLAGS_BLACKHOLE = @as(u32, 2);
+pub const RTM_ROUTE_FLAGS_DISCARD = @as(u32, 4);
+pub const RTM_ROUTE_FLAGS_INACTIVE = @as(u32, 8);
+pub const RTM_ROUTE_FLAGS_LOCAL = @as(u32, 16);
+pub const RTM_ROUTE_FLAGS_REMOTE = @as(u32, 32);
+pub const RTM_ROUTE_FLAGS_MYSELF = @as(u32, 64);
+pub const RTM_ROUTE_FLAGS_LOOPBACK = @as(u32, 128);
+pub const RTM_ROUTE_FLAGS_MCAST = @as(u32, 256);
+pub const RTM_ROUTE_FLAGS_LOCAL_MCAST = @as(u32, 512);
+pub const RTM_ROUTE_FLAGS_LIMITED_BC = @as(u32, 1024);
+pub const RTM_ROUTE_FLAGS_ZEROS_NETBC = @as(u32, 4096);
+pub const RTM_ROUTE_FLAGS_ZEROS_SUBNETBC = @as(u32, 8192);
+pub const RTM_ROUTE_FLAGS_ONES_NETBC = @as(u32, 16384);
+pub const RTM_ROUTE_FLAGS_ONES_SUBNETBC = @as(u32, 32768);
+pub const RTM_NEXTHOP_STATE_CREATED = @as(u32, 0);
+pub const RTM_NEXTHOP_STATE_DELETED = @as(u32, 1);
+pub const METHOD_TYPE_ALL_METHODS = @as(u32, 4294967295);
+pub const METHOD_RIP2_NEIGHBOUR_ADDR = @as(u32, 1);
+pub const METHOD_RIP2_OUTBOUND_INTF = @as(u32, 2);
+pub const METHOD_RIP2_ROUTE_TAG = @as(u32, 4);
+pub const METHOD_RIP2_ROUTE_TIMESTAMP = @as(u32, 8);
+pub const METHOD_BGP4_AS_PATH = @as(u32, 1);
+pub const METHOD_BGP4_PEER_ID = @as(u32, 2);
+pub const METHOD_BGP4_PA_ORIGIN = @as(u32, 4);
+pub const METHOD_BGP4_NEXTHOP_ATTR = @as(u32, 8);
+pub const RTM_RESUME_METHODS = @as(u32, 0);
+pub const RTM_BLOCK_METHODS = @as(u32, 1);
+pub const RTM_ROUTE_CHANGE_FIRST = @as(u32, 1);
+pub const RTM_ROUTE_CHANGE_NEW = @as(u32, 2);
+pub const RTM_ROUTE_CHANGE_BEST = @as(u32, 65536);
+pub const RTM_NEXTHOP_CHANGE_NEW = @as(u32, 1);
+pub const RTM_MATCH_NONE = @as(u32, 0);
+pub const RTM_MATCH_OWNER = @as(u32, 1);
+pub const RTM_MATCH_NEIGHBOUR = @as(u32, 2);
+pub const RTM_MATCH_PREF = @as(u32, 4);
+pub const RTM_MATCH_NEXTHOP = @as(u32, 8);
+pub const RTM_MATCH_INTERFACE = @as(u32, 16);
+pub const RTM_MATCH_FULL = @as(u32, 65535);
+pub const RTM_ENUM_START = @as(u32, 0);
+pub const RTM_ENUM_NEXT = @as(u32, 1);
+pub const RTM_ENUM_RANGE = @as(u32, 2);
+pub const RTM_ENUM_ALL_DESTS = @as(u32, 0);
+pub const RTM_ENUM_OWN_DESTS = @as(u32, 16777216);
+pub const RTM_ENUM_ALL_ROUTES = @as(u32, 0);
+pub const RTM_ENUM_OWN_ROUTES = @as(u32, 65536);
+pub const RTM_NUM_CHANGE_TYPES = @as(u32, 3);
+pub const RTM_CHANGE_TYPE_ALL = @as(u32, 1);
+pub const RTM_CHANGE_TYPE_BEST = @as(u32, 2);
+pub const RTM_CHANGE_TYPE_FORWARDING = @as(u32, 4);
+pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 
 //--------------------------------------------------------------------------------
-// Section: Types (233)
+// Section: Types (229)
 //--------------------------------------------------------------------------------
+pub const HRASCONN = ?*c_void;
+
+pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
+    First = 0,
+    All = 1,
+    AsNeeded = 2,
+};
+pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
+pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
+pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
+
+pub const RASENTRY_DIAL_MODE = extern enum(u32) {
+    ll = 1,
+    sNeeded = 2,
+};
+pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
+pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
+
+pub const Ras_arg1 = extern enum(u32) {
+    DisableConnectionQuery = 0,
+    LoginSessionDisable = 1,
+    SavedAddressesLimit = 2,
+    FailedConnectionTimeout = 3,
+    ConnectionQueryTimeout = 4,
+};
+pub const RASADP_DisableConnectionQuery = Ras_arg1.DisableConnectionQuery;
+pub const RASADP_LoginSessionDisable = Ras_arg1.LoginSessionDisable;
+pub const RASADP_SavedAddressesLimit = Ras_arg1.SavedAddressesLimit;
+pub const RASADP_FailedConnectionTimeout = Ras_arg1.FailedConnectionTimeout;
+pub const RASADP_ConnectionQueryTimeout = Ras_arg1.ConnectionQueryTimeout;
+
+pub const RtmAddNextHop_NextHopInfoFlags = extern enum(u32) {
+    REMOTE = 1,
+    DOWN = 2,
+};
+pub const RTM_NEXTHOP_FLAGS_REMOTE = RtmAddNextHop_NextHopInfoFlags.REMOTE;
+pub const RTM_NEXTHOP_FLAGS_DOWN = RtmAddNextHop_NextHopInfoFlags.DOWN;
+
+pub const RasDial_arg4 = extern enum(u32) {
+    None = 0,
+    @"1" = 1,
+    @"2" = 2,
+};
+pub const arg41 = RasDial_arg4.@"1";
+pub const arg42 = RasDial_arg4.@"2";
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RasConnectionNotification_arg3 = extern enum(u32) {
+    Connection = 1,
+    Disconnection = 2,
+    BandwidthAdded = 4,
+    BandwidthRemoved = 8,
+    _,
+};
+pub const RASCN_Connection = RasConnectionNotification_arg3.Connection;
+pub const RASCN_Disconnection = RasConnectionNotification_arg3.Disconnection;
+pub const RASCN_BandwidthAdded = RasConnectionNotification_arg3.BandwidthAdded;
+pub const RASCN_BandwidthRemoved = RasConnectionNotification_arg3.BandwidthRemoved;
+
+pub const MPR_INTERFACE_2_dwIdleDisconnectSeconds = extern enum(u32) {
+    Disabled = 4294967295,
+    UseGlobalValue = 0,
+};
+pub const MPRIDS_Disabled = MPR_INTERFACE_2_dwIdleDisconnectSeconds.Disabled;
+pub const MPRIDS_UseGlobalValue = MPR_INTERFACE_2_dwIdleDisconnectSeconds.UseGlobalValue;
+
+pub const RAS_FLAGS = extern enum(u32) {
+    PPP_CONNECTION = 1,
+    MESSENGER_PRESENT = 2,
+    QUARANTINE_PRESENT = 8,
+    ARAP_CONNECTION = 16,
+    IKEV2_CONNECTION = 16,
+    DORMANT = 32,
+};
+pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
+pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
+pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
+pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
+pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.IKEV2_CONNECTION;
+pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
+
+pub const MPR_ET = extern enum(u32) {
+    None = 0,
+    Require = 1,
+    RequireMax = 2,
+    Optional = 3,
+};
+pub const MPR_ET_None = MPR_ET.None;
+pub const MPR_ET_Require = MPR_ET.Require;
+pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
+pub const MPR_ET_Optional = MPR_ET.Optional;
+
+pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationData = extern enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.D5;
+pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.S;
+pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.SV2;
+
+pub const PPP_LCP = extern enum(u32) {
+    PAP = 49187,
+    CHAP = 49699,
+    EAP = 49703,
+    SPAP = 49191,
+};
+pub const PPP_LCP_PAP = PPP_LCP.PAP;
+pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
+pub const PPP_LCP_EAP = PPP_LCP.EAP;
+pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
+
+pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol = extern enum(u32) {
+    PAP = 49187,
+    SPAP = 49191,
+    CHAP = 49699,
+    EAP = 49703,
+};
+pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.PAP;
+pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.SPAP;
+pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.CHAP;
+pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.EAP;
+
+pub const PPP_LCP_INFO_dwAuthenticationData = extern enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_dwAuthenticationData.D5;
+pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_dwAuthenticationData.S;
+pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_dwAuthenticationData.SV2;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const RASIKEV2_PROJECTION_INFOFlags = extern enum(u32) {
+    MOBIKESUPPORTED = 1,
+    BEHIND_NAT = 2,
+    SERVERBEHIND_NAT = 4,
+    _,
+};
+pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV2_PROJECTION_INFOFlags.MOBIKESUPPORTED;
+pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.BEHIND_NAT;
+pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.SERVERBEHIND_NAT;
+
+pub const MPR_VS = extern enum(u32) {
+    Default = 0,
+    PptpOnly = 1,
+    PptpFirst = 2,
+    L2tpOnly = 3,
+    L2tpFirst = 4,
+};
+pub const MPR_VS_Default = MPR_VS.Default;
+pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
+pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
+pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
+pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
+
+pub const SECURITY_MESSAGE_dwMsgIdFlags = extern enum(u32) {
+    SUCCESS = 1,
+    FAILURE = 2,
+    ERROR = 3,
+};
+pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_dwMsgIdFlags.SUCCESS;
+pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_dwMsgIdFlags.FAILURE;
+pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_dwMsgIdFlags.ERROR;
+
 pub const RASAPIVERSION = extern enum(i32) {
     @"500" = 1,
     @"501" = 2,
@@ -2512,17 +2677,11 @@ pub const RTM_ENTITY_DEREGISTERED = RTM_EVENT_TYPE.ENTITY_DEREGISTERED;
 pub const RTM_ROUTE_EXPIRED = RTM_EVENT_TYPE.ROUTE_EXPIRED;
 pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
 
-pub const _EVENT_CALLBACK = fn(
+pub const RTM_EVENT_CALLBACK = fn(
     RtmRegHandle: ?*c_void,
     EventType: RTM_EVENT_TYPE,
     Context1: *c_void,
     Context2: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const RTM_EVENT_CALLBACK = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PRTM_EVENT_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RTM_ENTITY_METHOD_INPUT = extern struct {
@@ -2538,188 +2697,17 @@ pub const RTM_ENTITY_METHOD_OUTPUT = extern struct {
     OutputData: [1]u8,
 };
 
-pub const _ENTITY_METHOD = fn(
+pub const RTM_ENTITY_EXPORT_METHOD = fn(
     CallerHandle: ?*c_void,
     CalleeHandle: ?*c_void,
     Input: *RTM_ENTITY_METHOD_INPUT,
     Output: *RTM_ENTITY_METHOD_OUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RTM_ENTITY_EXPORT_METHOD = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PRTM_ENTITY_EXPORT_METHOD = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
     NumMethods: u32,
-    Methods: [1]?*c_void,
+    Methods: [1]RTM_ENTITY_EXPORT_METHOD,
 };
-
-pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
-    First = 0,
-    All = 1,
-    AsNeeded = 2,
-};
-pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
-pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
-pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
-
-pub const RASENTRY_DIAL_MODE = extern enum(u32) {
-    ll = 1,
-    sNeeded = 2,
-};
-pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
-pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
-
-pub const Ras_arg1 = extern enum(u32) {
-    DisableConnectionQuery = 0,
-    LoginSessionDisable = 1,
-    SavedAddressesLimit = 2,
-    FailedConnectionTimeout = 3,
-    ConnectionQueryTimeout = 4,
-};
-pub const RASADP_DisableConnectionQuery = Ras_arg1.DisableConnectionQuery;
-pub const RASADP_LoginSessionDisable = Ras_arg1.LoginSessionDisable;
-pub const RASADP_SavedAddressesLimit = Ras_arg1.SavedAddressesLimit;
-pub const RASADP_FailedConnectionTimeout = Ras_arg1.FailedConnectionTimeout;
-pub const RASADP_ConnectionQueryTimeout = Ras_arg1.ConnectionQueryTimeout;
-
-pub const RtmAddNextHop_NextHopInfoFlags = extern enum(u32) {
-    REMOTE = 1,
-    DOWN = 2,
-};
-pub const RTM_NEXTHOP_FLAGS_REMOTE = RtmAddNextHop_NextHopInfoFlags.REMOTE;
-pub const RTM_NEXTHOP_FLAGS_DOWN = RtmAddNextHop_NextHopInfoFlags.DOWN;
-
-pub const RasDial_arg4 = extern enum(u32) {
-    None = 0,
-    @"1" = 1,
-    @"2" = 2,
-};
-pub const arg41 = RasDial_arg4.@"1";
-pub const arg42 = RasDial_arg4.@"2";
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RasConnectionNotification_arg3 = extern enum(u32) {
-    Connection = 1,
-    Disconnection = 2,
-    BandwidthAdded = 4,
-    BandwidthRemoved = 8,
-    _,
-};
-pub const RASCN_Connection = RasConnectionNotification_arg3.Connection;
-pub const RASCN_Disconnection = RasConnectionNotification_arg3.Disconnection;
-pub const RASCN_BandwidthAdded = RasConnectionNotification_arg3.BandwidthAdded;
-pub const RASCN_BandwidthRemoved = RasConnectionNotification_arg3.BandwidthRemoved;
-
-pub const MPR_INTERFACE_2_dwIdleDisconnectSeconds = extern enum(u32) {
-    Disabled = 4294967295,
-    UseGlobalValue = 0,
-};
-pub const MPRIDS_Disabled = MPR_INTERFACE_2_dwIdleDisconnectSeconds.Disabled;
-pub const MPRIDS_UseGlobalValue = MPR_INTERFACE_2_dwIdleDisconnectSeconds.UseGlobalValue;
-
-pub const RAS_FLAGS = extern enum(u32) {
-    PPP_CONNECTION = 1,
-    MESSENGER_PRESENT = 2,
-    QUARANTINE_PRESENT = 8,
-    ARAP_CONNECTION = 16,
-    IKEV2_CONNECTION = 16,
-    DORMANT = 32,
-};
-pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
-pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
-pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
-pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.IKEV2_CONNECTION;
-pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
-
-pub const MPR_ET = extern enum(u32) {
-    None = 0,
-    Require = 1,
-    RequireMax = 2,
-    Optional = 3,
-};
-pub const MPR_ET_None = MPR_ET.None;
-pub const MPR_ET_Require = MPR_ET.Require;
-pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
-pub const MPR_ET_Optional = MPR_ET.Optional;
-
-pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationData = extern enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.D5;
-pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.S;
-pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.SV2;
-
-pub const PPP_LCP = extern enum(u32) {
-    PAP = 49187,
-    CHAP = 49699,
-    EAP = 49703,
-    SPAP = 49191,
-};
-pub const PPP_LCP_PAP = PPP_LCP.PAP;
-pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
-pub const PPP_LCP_EAP = PPP_LCP.EAP;
-pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
-
-pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol = extern enum(u32) {
-    PAP = 49187,
-    SPAP = 49191,
-    CHAP = 49699,
-    EAP = 49703,
-};
-pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.PAP;
-pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.SPAP;
-pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.CHAP;
-pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.EAP;
-
-pub const PPP_LCP_INFO_dwAuthenticationData = extern enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_dwAuthenticationData.D5;
-pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_dwAuthenticationData.S;
-pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_dwAuthenticationData.SV2;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RASIKEV2_PROJECTION_INFOFlags = extern enum(u32) {
-    MOBIKESUPPORTED = 1,
-    BEHIND_NAT = 2,
-    SERVERBEHIND_NAT = 4,
-    _,
-};
-pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV2_PROJECTION_INFOFlags.MOBIKESUPPORTED;
-pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.BEHIND_NAT;
-pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.SERVERBEHIND_NAT;
-
-pub const MPR_VS = extern enum(u32) {
-    Default = 0,
-    PptpOnly = 1,
-    PptpFirst = 2,
-    L2tpOnly = 3,
-    L2tpFirst = 4,
-};
-pub const MPR_VS_Default = MPR_VS.Default;
-pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
-pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
-pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
-pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
-
-pub const SECURITY_MESSAGE_dwMsgIdFlags = extern enum(u32) {
-    SUCCESS = 1,
-    FAILURE = 2,
-    ERROR = 3,
-};
-pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_dwMsgIdFlags.SUCCESS;
-pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_dwMsgIdFlags.FAILURE;
-pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_dwMsgIdFlags.ERROR;
-
-pub const HRASCONN = ?*c_void;
 
 
 //--------------------------------------------------------------------------------
@@ -4224,7 +4212,7 @@ pub extern "rtm" fn RtmGetEntityMethods(
     RtmRegHandle: ?*c_void,
     EntityHandle: ?*c_void,
     NumMethods: *u32,
-    ExptMethods: PRTM_ENTITY_EXPORT_METHOD,
+    ExptMethods: *RTM_ENTITY_EXPORT_METHOD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "rtm" fn RtmInvokeMethod(
@@ -4896,15 +4884,11 @@ test {
     _ = PMGM_LOCAL_LEAVE_CALLBACK;
     _ = PMGM_DISABLE_IGMP_CALLBACK;
     _ = PMGM_ENABLE_IGMP_CALLBACK;
-    _ = _EVENT_CALLBACK;
     _ = RTM_EVENT_CALLBACK;
-    _ = PRTM_EVENT_CALLBACK;
-    _ = _ENTITY_METHOD;
     _ = RTM_ENTITY_EXPORT_METHOD;
-    _ = PRTM_ENTITY_EXPORT_METHOD;
 
     const constant_export_count = 358;
-    const type_export_count = 233;
+    const type_export_count = 229;
     const enum_value_export_count = 157;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

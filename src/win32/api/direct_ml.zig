@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const DML_TENSOR_DIMENSION_COUNT_MAX : u32 = 5;
-pub const DML_TEMPORARY_BUFFER_ALIGNMENT : u32 = 256;
-pub const DML_PERSISTENT_BUFFER_ALIGNMENT : u32 = 256;
-pub const DML_MINIMUM_BUFFER_TENSOR_ALIGNMENT : u32 = 16;
+pub const DML_TENSOR_DIMENSION_COUNT_MAX = @as(u32, 5);
+pub const DML_TEMPORARY_BUFFER_ALIGNMENT = @as(u32, 256);
+pub const DML_PERSISTENT_BUFFER_ALIGNMENT = @as(u32, 256);
+pub const DML_MINIMUM_BUFFER_TENSOR_ALIGNMENT = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (137)

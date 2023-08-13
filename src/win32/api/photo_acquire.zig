@@ -2,34 +2,34 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (28)
 //--------------------------------------------------------------------------------
-pub const PROGRESS_INDETERMINATE : i32 = -1;
-pub const PHOTOACQ_RUN_DEFAULT : u32 = 0;
-pub const PHOTOACQ_NO_GALLERY_LAUNCH : u32 = 1;
-pub const PHOTOACQ_DISABLE_AUTO_ROTATE : u32 = 2;
-pub const PHOTOACQ_DISABLE_PLUGINS : u32 = 4;
-pub const PHOTOACQ_DISABLE_GROUP_TAG_PROMPT : u32 = 8;
-pub const PHOTOACQ_DISABLE_DB_INTEGRATION : u32 = 16;
-pub const PHOTOACQ_DELETE_AFTER_ACQUIRE : u32 = 32;
-pub const PHOTOACQ_DISABLE_DUPLICATE_DETECTION : u32 = 64;
-pub const PHOTOACQ_ENABLE_THUMBNAIL_CACHING : u32 = 128;
-pub const PHOTOACQ_DISABLE_METADATA_WRITE : u32 = 256;
-pub const PHOTOACQ_DISABLE_THUMBNAIL_PROGRESS : u32 = 512;
-pub const PHOTOACQ_DISABLE_SETTINGS_LINK : u32 = 1024;
-pub const PHOTOACQ_ABORT_ON_SETTINGS_UPDATE : u32 = 2048;
-pub const PHOTOACQ_IMPORT_VIDEO_AS_MULTIPLE_FILES : u32 = 4096;
-pub const DSF_WPD_DEVICES : u32 = 1;
-pub const DSF_WIA_CAMERAS : u32 = 2;
-pub const DSF_WIA_SCANNERS : u32 = 4;
-pub const DSF_STI_DEVICES : u32 = 8;
-pub const DSF_TWAIN_DEVICES : u32 = 16;
-pub const DSF_FS_DEVICES : u32 = 32;
-pub const DSF_DV_DEVICES : u32 = 64;
-pub const DSF_ALL_DEVICES : u32 = 65535;
-pub const DSF_CPL_MODE : u32 = 65536;
-pub const DSF_SHOW_OFFLINE : u32 = 131072;
-pub const PAPS_PRESAVE : u32 = 0;
-pub const PAPS_POSTSAVE : u32 = 1;
-pub const PAPS_CLEANUP : u32 = 2;
+pub const PROGRESS_INDETERMINATE = @as(i32, -1);
+pub const PHOTOACQ_RUN_DEFAULT = @as(u32, 0);
+pub const PHOTOACQ_NO_GALLERY_LAUNCH = @as(u32, 1);
+pub const PHOTOACQ_DISABLE_AUTO_ROTATE = @as(u32, 2);
+pub const PHOTOACQ_DISABLE_PLUGINS = @as(u32, 4);
+pub const PHOTOACQ_DISABLE_GROUP_TAG_PROMPT = @as(u32, 8);
+pub const PHOTOACQ_DISABLE_DB_INTEGRATION = @as(u32, 16);
+pub const PHOTOACQ_DELETE_AFTER_ACQUIRE = @as(u32, 32);
+pub const PHOTOACQ_DISABLE_DUPLICATE_DETECTION = @as(u32, 64);
+pub const PHOTOACQ_ENABLE_THUMBNAIL_CACHING = @as(u32, 128);
+pub const PHOTOACQ_DISABLE_METADATA_WRITE = @as(u32, 256);
+pub const PHOTOACQ_DISABLE_THUMBNAIL_PROGRESS = @as(u32, 512);
+pub const PHOTOACQ_DISABLE_SETTINGS_LINK = @as(u32, 1024);
+pub const PHOTOACQ_ABORT_ON_SETTINGS_UPDATE = @as(u32, 2048);
+pub const PHOTOACQ_IMPORT_VIDEO_AS_MULTIPLE_FILES = @as(u32, 4096);
+pub const DSF_WPD_DEVICES = @as(u32, 1);
+pub const DSF_WIA_CAMERAS = @as(u32, 2);
+pub const DSF_WIA_SCANNERS = @as(u32, 4);
+pub const DSF_STI_DEVICES = @as(u32, 8);
+pub const DSF_TWAIN_DEVICES = @as(u32, 16);
+pub const DSF_FS_DEVICES = @as(u32, 32);
+pub const DSF_DV_DEVICES = @as(u32, 64);
+pub const DSF_ALL_DEVICES = @as(u32, 65535);
+pub const DSF_CPL_MODE = @as(u32, 65536);
+pub const DSF_SHOW_OFFLINE = @as(u32, 131072);
+pub const PAPS_PRESAVE = @as(u32, 0);
+pub const PAPS_POSTSAVE = @as(u32, 1);
+pub const PAPS_CLEANUP = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)

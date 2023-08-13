@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1)
 //--------------------------------------------------------------------------------
-pub const WINML_TENSOR_DIMENSION_COUNT_MAX : u32 = 4;
+pub const WINML_TENSOR_DIMENSION_COUNT_MAX = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (47)
@@ -91,8 +91,8 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {

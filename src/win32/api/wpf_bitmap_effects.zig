@@ -2,17 +2,26 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const MILBITMAPEFFECT_SDK_VERSION : u32 = 16777216;
-pub const CLSID_MILBitmapEffectGroup = @import("../zig.zig").Guid.initString("ac9c1a9a-7e18-4f64-ac7e-47cf7f051e95");
-pub const CLSID_MILBitmapEffectBlur = @import("../zig.zig").Guid.initString("a924df87-225d-4373-8f5b-b90ec85ae3de");
-pub const CLSID_MILBitmapEffectDropShadow = @import("../zig.zig").Guid.initString("459a3fbe-d8ac-4692-874b-7a265715aa16");
-pub const CLSID_MILBitmapEffectOuterGlow = @import("../zig.zig").Guid.initString("e2161bdd-7eb6-4725-9c0b-8a2a1b4f0667");
-pub const CLSID_MILBitmapEffectBevel = @import("../zig.zig").Guid.initString("fd361dbe-6c9b-4de0-8290-f6400c2737ed");
-pub const CLSID_MILBitmapEffectEmboss = @import("../zig.zig").Guid.initString("cd299846-824f-47ec-a007-12aa767f2816");
+pub const MILBITMAPEFFECT_SDK_VERSION = @as(u32, 16777216);
+pub const CLSID_MILBitmapEffectGroup = Guid.initString("ac9c1a9a-7e18-4f64-ac7e-47cf7f051e95");
+pub const CLSID_MILBitmapEffectBlur = Guid.initString("a924df87-225d-4373-8f5b-b90ec85ae3de");
+pub const CLSID_MILBitmapEffectDropShadow = Guid.initString("459a3fbe-d8ac-4692-874b-7a265715aa16");
+pub const CLSID_MILBitmapEffectOuterGlow = Guid.initString("e2161bdd-7eb6-4725-9c0b-8a2a1b4f0667");
+pub const CLSID_MILBitmapEffectBevel = Guid.initString("fd361dbe-6c9b-4de0-8290-f6400c2737ed");
+pub const CLSID_MILBitmapEffectEmboss = Guid.initString("cd299846-824f-47ec-a007-12aa767f2816");
 
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
+pub const MilMatrix3x2D = extern struct {
+    S_11: f64,
+    S_12: f64,
+    S_21: f64,
+    S_22: f64,
+    DX: f64,
+    DY: f64,
+};
+
 pub const MilRectD = extern struct {
     left: f64,
     top: f64,
@@ -871,15 +880,6 @@ pub const IMILBitmapEffectEvents = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const MilMatrix3x2D = extern struct {
-    S_11: f64,
-    S_12: f64,
-    S_21: f64,
-    S_22: f64,
-    DX: f64,
-    DY: f64,
 };
 
 

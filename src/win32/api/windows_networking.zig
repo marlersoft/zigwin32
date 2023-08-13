@@ -2,34 +2,34 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (28)
 //--------------------------------------------------------------------------------
-pub const RESOURCE_RECENT : u32 = 4;
-pub const RESOURCETYPE_RESERVED : u32 = 8;
-pub const RESOURCETYPE_UNKNOWN : u32 = 4294967295;
-pub const RESOURCEUSAGE_NOLOCALDEVICE : u32 = 4;
-pub const RESOURCEUSAGE_SIBLING : u32 = 8;
-pub const RESOURCEUSAGE_RESERVED : u32 = 2147483648;
-pub const RESOURCEDISPLAYTYPE_NETWORK : u32 = 6;
-pub const RESOURCEDISPLAYTYPE_ROOT : u32 = 7;
-pub const RESOURCEDISPLAYTYPE_SHAREADMIN : u32 = 8;
-pub const RESOURCEDISPLAYTYPE_DIRECTORY : u32 = 9;
-pub const RESOURCEDISPLAYTYPE_NDSCONTAINER : u32 = 11;
-pub const NETPROPERTY_PERSISTENT : u32 = 1;
-pub const CONNECT_NEED_DRIVE : u32 = 32;
-pub const CONNECT_REFCOUNT : u32 = 64;
-pub const CONNECT_LOCALDRIVE : u32 = 256;
-pub const CONNECT_CURRENT_MEDIA : u32 = 512;
-pub const CONNECT_RESERVED : u32 = 4278190080;
-pub const CONNECT_CRED_RESET : u32 = 8192;
-pub const CONNECT_REQUIRE_INTEGRITY : u32 = 16384;
-pub const CONNECT_REQUIRE_PRIVACY : u32 = 32768;
-pub const CONNECT_WRITE_THROUGH_SEMANTICS : u32 = 65536;
-pub const CONNECT_COMPRESS_NETWORK_TRAFFIC : u32 = 131072;
-pub const WNFMT_INENUM : u32 = 16;
-pub const WNFMT_CONNECTION : u32 = 32;
-pub const WNCON_FORNETCARD : u32 = 1;
-pub const WNCON_NOTROUTED : u32 = 2;
-pub const WNCON_SLOWLINK : u32 = 4;
-pub const WNCON_DYNAMIC : u32 = 8;
+pub const RESOURCE_RECENT = @as(u32, 4);
+pub const RESOURCETYPE_RESERVED = @as(u32, 8);
+pub const RESOURCETYPE_UNKNOWN = @as(u32, 4294967295);
+pub const RESOURCEUSAGE_NOLOCALDEVICE = @as(u32, 4);
+pub const RESOURCEUSAGE_SIBLING = @as(u32, 8);
+pub const RESOURCEUSAGE_RESERVED = @as(u32, 2147483648);
+pub const RESOURCEDISPLAYTYPE_NETWORK = @as(u32, 6);
+pub const RESOURCEDISPLAYTYPE_ROOT = @as(u32, 7);
+pub const RESOURCEDISPLAYTYPE_SHAREADMIN = @as(u32, 8);
+pub const RESOURCEDISPLAYTYPE_DIRECTORY = @as(u32, 9);
+pub const RESOURCEDISPLAYTYPE_NDSCONTAINER = @as(u32, 11);
+pub const NETPROPERTY_PERSISTENT = @as(u32, 1);
+pub const CONNECT_NEED_DRIVE = @as(u32, 32);
+pub const CONNECT_REFCOUNT = @as(u32, 64);
+pub const CONNECT_LOCALDRIVE = @as(u32, 256);
+pub const CONNECT_CURRENT_MEDIA = @as(u32, 512);
+pub const CONNECT_RESERVED = @as(u32, 4278190080);
+pub const CONNECT_CRED_RESET = @as(u32, 8192);
+pub const CONNECT_REQUIRE_INTEGRITY = @as(u32, 16384);
+pub const CONNECT_REQUIRE_PRIVACY = @as(u32, 32768);
+pub const CONNECT_WRITE_THROUGH_SEMANTICS = @as(u32, 65536);
+pub const CONNECT_COMPRESS_NETWORK_TRAFFIC = @as(u32, 131072);
+pub const WNFMT_INENUM = @as(u32, 16);
+pub const WNFMT_CONNECTION = @as(u32, 32);
+pub const WNCON_FORNETCARD = @as(u32, 1);
+pub const WNCON_NOTROUTED = @as(u32, 2);
+pub const WNCON_SLOWLINK = @as(u32, 4);
+pub const WNCON_DYNAMIC = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (14)

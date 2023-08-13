@@ -2,27 +2,27 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (21)
 //--------------------------------------------------------------------------------
-pub const MIN_EVENT : u32 = 100;
-pub const BEGIN_NESTED_SYSTEM_CHANGE_NORP : u32 = 104;
-pub const MAX_EVENT : u32 = 104;
-pub const MIN_RPT : u32 = 0;
-pub const DESKTOP_SETTING : u32 = 2;
-pub const ACCESSIBILITY_SETTING : u32 = 3;
-pub const OE_SETTING : u32 = 4;
-pub const APPLICATION_RUN : u32 = 5;
-pub const RESTORE : u32 = 6;
-pub const CHECKPOINT : u32 = 7;
-pub const WINDOWS_SHUTDOWN : u32 = 8;
-pub const WINDOWS_BOOT : u32 = 9;
-pub const FIRSTRUN : u32 = 11;
-pub const BACKUP_RECOVERY : u32 = 14;
-pub const BACKUP : u32 = 15;
-pub const MANUAL_CHECKPOINT : u32 = 16;
-pub const WINDOWS_UPDATE : u32 = 17;
-pub const CRITICAL_UPDATE : u32 = 18;
-pub const MAX_RPT : u32 = 18;
-pub const MAX_DESC : u32 = 64;
-pub const MAX_DESC_W : u32 = 256;
+pub const MIN_EVENT = @as(u32, 100);
+pub const BEGIN_NESTED_SYSTEM_CHANGE_NORP = @as(u32, 104);
+pub const MAX_EVENT = @as(u32, 104);
+pub const MIN_RPT = @as(u32, 0);
+pub const DESKTOP_SETTING = @as(u32, 2);
+pub const ACCESSIBILITY_SETTING = @as(u32, 3);
+pub const OE_SETTING = @as(u32, 4);
+pub const APPLICATION_RUN = @as(u32, 5);
+pub const RESTORE = @as(u32, 6);
+pub const CHECKPOINT = @as(u32, 7);
+pub const WINDOWS_SHUTDOWN = @as(u32, 8);
+pub const WINDOWS_BOOT = @as(u32, 9);
+pub const FIRSTRUN = @as(u32, 11);
+pub const BACKUP_RECOVERY = @as(u32, 14);
+pub const BACKUP = @as(u32, 15);
+pub const MANUAL_CHECKPOINT = @as(u32, 16);
+pub const WINDOWS_UPDATE = @as(u32, 17);
+pub const CRITICAL_UPDATE = @as(u32, 18);
+pub const MAX_RPT = @as(u32, 18);
+pub const MAX_DESC = @as(u32, 64);
+pub const MAX_DESC_W = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)

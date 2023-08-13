@@ -2,88 +2,91 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (78)
 //--------------------------------------------------------------------------------
-pub const PI_NOUI : u32 = 1;
-pub const PI_APPLYPOLICY : u32 = 2;
-pub const PT_TEMPORARY : u32 = 1;
-pub const PT_ROAMING : u32 = 2;
-pub const PT_MANDATORY : u32 = 4;
-pub const PT_ROAMING_PREEXISTING : u32 = 8;
-pub const RP_FORCE : u32 = 1;
-pub const RP_SYNC : u32 = 2;
-pub const GPC_BLOCK_POLICY : u32 = 1;
-pub const GPO_FLAG_DISABLE : u32 = 1;
-pub const GPO_FLAG_FORCE : u32 = 2;
-pub const GPO_LIST_FLAG_MACHINE : u32 = 1;
-pub const GPO_LIST_FLAG_SITEONLY : u32 = 2;
-pub const GPO_LIST_FLAG_NO_WMIFILTERS : u32 = 4;
-pub const GPO_LIST_FLAG_NO_SECURITYFILTERS : u32 = 8;
-pub const GPO_INFO_FLAG_MACHINE : u32 = 1;
-pub const GPO_INFO_FLAG_BACKGROUND : u32 = 16;
-pub const GPO_INFO_FLAG_SLOWLINK : u32 = 32;
-pub const GPO_INFO_FLAG_VERBOSE : u32 = 64;
-pub const GPO_INFO_FLAG_NOCHANGES : u32 = 128;
-pub const GPO_INFO_FLAG_LINKTRANSITION : u32 = 256;
-pub const GPO_INFO_FLAG_LOGRSOP_TRANSITION : u32 = 512;
-pub const GPO_INFO_FLAG_FORCED_REFRESH : u32 = 1024;
-pub const GPO_INFO_FLAG_SAFEMODE_BOOT : u32 = 2048;
-pub const GPO_INFO_FLAG_ASYNC_FOREGROUND : u32 = 4096;
-pub const FLAG_NO_GPO_FILTER : u32 = 2147483648;
-pub const FLAG_NO_CSE_INVOKE : u32 = 1073741824;
-pub const FLAG_ASSUME_SLOW_LINK : u32 = 536870912;
-pub const FLAG_LOOPBACK_MERGE : u32 = 268435456;
-pub const FLAG_LOOPBACK_REPLACE : u32 = 134217728;
-pub const FLAG_ASSUME_USER_WQLFILTER_TRUE : u32 = 67108864;
-pub const FLAG_ASSUME_COMP_WQLFILTER_TRUE : u32 = 33554432;
-pub const FLAG_PLANNING_MODE : u32 = 16777216;
-pub const FLAG_NO_USER : u32 = 1;
-pub const FLAG_NO_COMPUTER : u32 = 2;
-pub const FLAG_FORCE_CREATENAMESPACE : u32 = 4;
-pub const RSOP_USER_ACCESS_DENIED : u32 = 1;
-pub const RSOP_COMPUTER_ACCESS_DENIED : u32 = 2;
-pub const RSOP_TEMPNAMESPACE_EXISTS : u32 = 4;
-pub const LOCALSTATE_ASSIGNED : u32 = 1;
-pub const LOCALSTATE_PUBLISHED : u32 = 2;
-pub const LOCALSTATE_UNINSTALL_UNMANAGED : u32 = 4;
-pub const LOCALSTATE_POLICYREMOVE_ORPHAN : u32 = 8;
-pub const LOCALSTATE_POLICYREMOVE_UNINSTALL : u32 = 16;
-pub const LOCALSTATE_ORPHANED : u32 = 32;
-pub const LOCALSTATE_UNINSTALLED : u32 = 64;
-pub const MANAGED_APPS_USERAPPLICATIONS : u32 = 1;
-pub const MANAGED_APPS_FROMCATEGORY : u32 = 2;
-pub const MANAGED_APPS_INFOLEVEL_DEFAULT : u32 = 65536;
-pub const MANAGED_APPTYPE_WINDOWSINSTALLER : u32 = 1;
-pub const MANAGED_APPTYPE_SETUPEXE : u32 = 2;
-pub const MANAGED_APPTYPE_UNSUPPORTED : u32 = 3;
-pub const CLSID_GPESnapIn = @import("../zig.zig").Guid.initString("8fc0b734-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_Machine = @import("../zig.zig").Guid.initString("8fc0b737-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_MachineSWSettings = @import("../zig.zig").Guid.initString("8fc0b73a-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_User = @import("../zig.zig").Guid.initString("8fc0b738-a0e1-11d1-a7d3-0000f87571e3");
-pub const NODEID_UserSWSettings = @import("../zig.zig").Guid.initString("8fc0b73c-a0e1-11d1-a7d3-0000f87571e3");
-pub const CLSID_GroupPolicyObject = @import("../zig.zig").Guid.initString("ea502722-a23d-11d1-a7d3-0000f87571e3");
-pub const CLSID_RSOPSnapIn = @import("../zig.zig").Guid.initString("6dc3804b-7212-458d-adb0-9a07e2ae1fa2");
-pub const NODEID_RSOPMachine = @import("../zig.zig").Guid.initString("bd4c1a2e-0b7a-4a62-a6b0-c0577539c97e");
-pub const NODEID_RSOPMachineSWSettings = @import("../zig.zig").Guid.initString("6a76273e-eb8e-45db-94c5-25663a5f2c1a");
-pub const NODEID_RSOPUser = @import("../zig.zig").Guid.initString("ab87364f-0cec-4cd8-9bf8-898f34628fb8");
-pub const NODEID_RSOPUserSWSettings = @import("../zig.zig").Guid.initString("e52c5ce3-fd27-4402-84de-d9a5f2858910");
-pub const GPO_SECTION_ROOT : u32 = 0;
-pub const GPO_SECTION_USER : u32 = 1;
-pub const GPO_SECTION_MACHINE : u32 = 2;
-pub const GPO_OPEN_LOAD_REGISTRY : u32 = 1;
-pub const GPO_OPEN_READ_ONLY : u32 = 2;
-pub const GPO_OPTION_DISABLE_USER : u32 = 1;
-pub const GPO_OPTION_DISABLE_MACHINE : u32 = 2;
-pub const RSOP_INFO_FLAG_DIAGNOSTIC_MODE : u32 = 1;
-pub const GPO_BROWSE_DISABLENEW : u32 = 1;
-pub const GPO_BROWSE_NOCOMPUTERS : u32 = 2;
-pub const GPO_BROWSE_NODSGPOS : u32 = 4;
-pub const GPO_BROWSE_OPENBUTTON : u32 = 8;
-pub const GPO_BROWSE_INITTOALL : u32 = 16;
-pub const GPO_BROWSE_NOUSERGPOS : u32 = 32;
-pub const GPO_BROWSE_SENDAPPLYONEDIT : u32 = 64;
+pub const PI_NOUI = @as(u32, 1);
+pub const PI_APPLYPOLICY = @as(u32, 2);
+pub const PT_TEMPORARY = @as(u32, 1);
+pub const PT_ROAMING = @as(u32, 2);
+pub const PT_MANDATORY = @as(u32, 4);
+pub const PT_ROAMING_PREEXISTING = @as(u32, 8);
+pub const RP_FORCE = @as(u32, 1);
+pub const RP_SYNC = @as(u32, 2);
+pub const GPC_BLOCK_POLICY = @as(u32, 1);
+pub const GPO_FLAG_DISABLE = @as(u32, 1);
+pub const GPO_FLAG_FORCE = @as(u32, 2);
+pub const GPO_LIST_FLAG_MACHINE = @as(u32, 1);
+pub const GPO_LIST_FLAG_SITEONLY = @as(u32, 2);
+pub const GPO_LIST_FLAG_NO_WMIFILTERS = @as(u32, 4);
+pub const GPO_LIST_FLAG_NO_SECURITYFILTERS = @as(u32, 8);
+pub const GPO_INFO_FLAG_MACHINE = @as(u32, 1);
+pub const GPO_INFO_FLAG_BACKGROUND = @as(u32, 16);
+pub const GPO_INFO_FLAG_SLOWLINK = @as(u32, 32);
+pub const GPO_INFO_FLAG_VERBOSE = @as(u32, 64);
+pub const GPO_INFO_FLAG_NOCHANGES = @as(u32, 128);
+pub const GPO_INFO_FLAG_LINKTRANSITION = @as(u32, 256);
+pub const GPO_INFO_FLAG_LOGRSOP_TRANSITION = @as(u32, 512);
+pub const GPO_INFO_FLAG_FORCED_REFRESH = @as(u32, 1024);
+pub const GPO_INFO_FLAG_SAFEMODE_BOOT = @as(u32, 2048);
+pub const GPO_INFO_FLAG_ASYNC_FOREGROUND = @as(u32, 4096);
+pub const FLAG_NO_GPO_FILTER = @as(u32, 2147483648);
+pub const FLAG_NO_CSE_INVOKE = @as(u32, 1073741824);
+pub const FLAG_ASSUME_SLOW_LINK = @as(u32, 536870912);
+pub const FLAG_LOOPBACK_MERGE = @as(u32, 268435456);
+pub const FLAG_LOOPBACK_REPLACE = @as(u32, 134217728);
+pub const FLAG_ASSUME_USER_WQLFILTER_TRUE = @as(u32, 67108864);
+pub const FLAG_ASSUME_COMP_WQLFILTER_TRUE = @as(u32, 33554432);
+pub const FLAG_PLANNING_MODE = @as(u32, 16777216);
+pub const FLAG_NO_USER = @as(u32, 1);
+pub const FLAG_NO_COMPUTER = @as(u32, 2);
+pub const FLAG_FORCE_CREATENAMESPACE = @as(u32, 4);
+pub const RSOP_USER_ACCESS_DENIED = @as(u32, 1);
+pub const RSOP_COMPUTER_ACCESS_DENIED = @as(u32, 2);
+pub const RSOP_TEMPNAMESPACE_EXISTS = @as(u32, 4);
+pub const LOCALSTATE_ASSIGNED = @as(u32, 1);
+pub const LOCALSTATE_PUBLISHED = @as(u32, 2);
+pub const LOCALSTATE_UNINSTALL_UNMANAGED = @as(u32, 4);
+pub const LOCALSTATE_POLICYREMOVE_ORPHAN = @as(u32, 8);
+pub const LOCALSTATE_POLICYREMOVE_UNINSTALL = @as(u32, 16);
+pub const LOCALSTATE_ORPHANED = @as(u32, 32);
+pub const LOCALSTATE_UNINSTALLED = @as(u32, 64);
+pub const MANAGED_APPS_USERAPPLICATIONS = @as(u32, 1);
+pub const MANAGED_APPS_FROMCATEGORY = @as(u32, 2);
+pub const MANAGED_APPS_INFOLEVEL_DEFAULT = @as(u32, 65536);
+pub const MANAGED_APPTYPE_WINDOWSINSTALLER = @as(u32, 1);
+pub const MANAGED_APPTYPE_SETUPEXE = @as(u32, 2);
+pub const MANAGED_APPTYPE_UNSUPPORTED = @as(u32, 3);
+pub const CLSID_GPESnapIn = Guid.initString("8fc0b734-a0e1-11d1-a7d3-0000f87571e3");
+pub const NODEID_Machine = Guid.initString("8fc0b737-a0e1-11d1-a7d3-0000f87571e3");
+pub const NODEID_MachineSWSettings = Guid.initString("8fc0b73a-a0e1-11d1-a7d3-0000f87571e3");
+pub const NODEID_User = Guid.initString("8fc0b738-a0e1-11d1-a7d3-0000f87571e3");
+pub const NODEID_UserSWSettings = Guid.initString("8fc0b73c-a0e1-11d1-a7d3-0000f87571e3");
+pub const CLSID_GroupPolicyObject = Guid.initString("ea502722-a23d-11d1-a7d3-0000f87571e3");
+pub const CLSID_RSOPSnapIn = Guid.initString("6dc3804b-7212-458d-adb0-9a07e2ae1fa2");
+pub const NODEID_RSOPMachine = Guid.initString("bd4c1a2e-0b7a-4a62-a6b0-c0577539c97e");
+pub const NODEID_RSOPMachineSWSettings = Guid.initString("6a76273e-eb8e-45db-94c5-25663a5f2c1a");
+pub const NODEID_RSOPUser = Guid.initString("ab87364f-0cec-4cd8-9bf8-898f34628fb8");
+pub const NODEID_RSOPUserSWSettings = Guid.initString("e52c5ce3-fd27-4402-84de-d9a5f2858910");
+pub const GPO_SECTION_ROOT = @as(u32, 0);
+pub const GPO_SECTION_USER = @as(u32, 1);
+pub const GPO_SECTION_MACHINE = @as(u32, 2);
+pub const GPO_OPEN_LOAD_REGISTRY = @as(u32, 1);
+pub const GPO_OPEN_READ_ONLY = @as(u32, 2);
+pub const GPO_OPTION_DISABLE_USER = @as(u32, 1);
+pub const GPO_OPTION_DISABLE_MACHINE = @as(u32, 2);
+pub const RSOP_INFO_FLAG_DIAGNOSTIC_MODE = @as(u32, 1);
+pub const GPO_BROWSE_DISABLENEW = @as(u32, 1);
+pub const GPO_BROWSE_NOCOMPUTERS = @as(u32, 2);
+pub const GPO_BROWSE_NODSGPOS = @as(u32, 4);
+pub const GPO_BROWSE_OPENBUTTON = @as(u32, 8);
+pub const GPO_BROWSE_INITTOALL = @as(u32, 16);
+pub const GPO_BROWSE_NOUSERGPOS = @as(u32, 32);
+pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
 
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
+pub const CriticalPolicySectionHandle = ?*c_void;
+
 pub const GPO_LINK = extern enum(i32) {
     Unknown = 0,
     Machine = 1,
@@ -602,9 +605,6 @@ pub const GPOBROWSEINFO = extern struct {
     gpoType: GROUP_POLICY_OBJECT_TYPE,
     gpoHint: GROUP_POLICY_HINT_TYPE,
 };
-
-// TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
-pub const CriticalPolicySectionHandle = ?*c_void;
 
 
 //--------------------------------------------------------------------------------

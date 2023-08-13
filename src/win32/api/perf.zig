@@ -2,41 +2,41 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (35)
 //--------------------------------------------------------------------------------
-pub const PERF_PROVIDER_USER_MODE : u32 = 0;
-pub const PERF_PROVIDER_KERNEL_MODE : u32 = 1;
-pub const PERF_PROVIDER_DRIVER : u32 = 2;
-pub const PERF_COUNTERSET_FLAG_MULTIPLE : u32 = 2;
-pub const PERF_COUNTERSET_FLAG_AGGREGATE : u32 = 4;
-pub const PERF_COUNTERSET_FLAG_HISTORY : u32 = 8;
-pub const PERF_COUNTERSET_FLAG_INSTANCE : u32 = 16;
-pub const PERF_COUNTERSET_SINGLE_INSTANCE : u32 = 0;
-pub const PERF_AGGREGATE_MAX : u32 = 4;
-pub const PERF_ATTRIB_BY_REFERENCE : u64 = 1;
-pub const PERF_ATTRIB_NO_DISPLAYABLE : u64 = 2;
-pub const PERF_ATTRIB_NO_GROUP_SEPARATOR : u64 = 4;
-pub const PERF_ATTRIB_DISPLAY_AS_REAL : u64 = 8;
-pub const PERF_ATTRIB_DISPLAY_AS_HEX : u64 = 16;
-pub const PERF_WILDCARD_COUNTER : u32 = 4294967295;
-pub const PERF_MAX_INSTANCE_NAME : u32 = 1024;
-pub const PERF_ADD_COUNTER : u32 = 1;
-pub const PERF_REMOVE_COUNTER : u32 = 2;
-pub const PERF_ENUM_INSTANCES : u32 = 3;
-pub const PERF_COLLECT_START : u32 = 5;
-pub const PERF_COLLECT_END : u32 = 6;
-pub const PERF_FILTER : u32 = 9;
-pub const MAX_COUNTER_PATH : u32 = 256;
-pub const PDH_MAX_COUNTER_NAME : u32 = 1024;
-pub const PDH_MAX_INSTANCE_NAME : u32 = 1024;
-pub const PDH_MAX_COUNTER_PATH : u32 = 2048;
-pub const PDH_MAX_DATASOURCE_PATH : u32 = 1024;
-pub const PDH_MAX_SCALE : i32 = 7;
-pub const PDH_MIN_SCALE : i32 = -7;
-pub const PDH_NOEXPANDCOUNTERS : u32 = 1;
-pub const PDH_NOEXPANDINSTANCES : u32 = 2;
-pub const PDH_REFRESHCOUNTERS : u32 = 4;
-pub const PDH_LOG_TYPE_RETIRED_BIN : u32 = 3;
-pub const PDH_LOG_TYPE_TRACE_KERNEL : u32 = 4;
-pub const PDH_LOG_TYPE_TRACE_GENERIC : u32 = 5;
+pub const PERF_PROVIDER_USER_MODE = @as(u32, 0);
+pub const PERF_PROVIDER_KERNEL_MODE = @as(u32, 1);
+pub const PERF_PROVIDER_DRIVER = @as(u32, 2);
+pub const PERF_COUNTERSET_FLAG_MULTIPLE = @as(u32, 2);
+pub const PERF_COUNTERSET_FLAG_AGGREGATE = @as(u32, 4);
+pub const PERF_COUNTERSET_FLAG_HISTORY = @as(u32, 8);
+pub const PERF_COUNTERSET_FLAG_INSTANCE = @as(u32, 16);
+pub const PERF_COUNTERSET_SINGLE_INSTANCE = @as(u32, 0);
+pub const PERF_AGGREGATE_MAX = @as(u32, 4);
+pub const PERF_ATTRIB_BY_REFERENCE = @as(u64, 1);
+pub const PERF_ATTRIB_NO_DISPLAYABLE = @as(u64, 2);
+pub const PERF_ATTRIB_NO_GROUP_SEPARATOR = @as(u64, 4);
+pub const PERF_ATTRIB_DISPLAY_AS_REAL = @as(u64, 8);
+pub const PERF_ATTRIB_DISPLAY_AS_HEX = @as(u64, 16);
+pub const PERF_WILDCARD_COUNTER = @as(u32, 4294967295);
+pub const PERF_MAX_INSTANCE_NAME = @as(u32, 1024);
+pub const PERF_ADD_COUNTER = @as(u32, 1);
+pub const PERF_REMOVE_COUNTER = @as(u32, 2);
+pub const PERF_ENUM_INSTANCES = @as(u32, 3);
+pub const PERF_COLLECT_START = @as(u32, 5);
+pub const PERF_COLLECT_END = @as(u32, 6);
+pub const PERF_FILTER = @as(u32, 9);
+pub const MAX_COUNTER_PATH = @as(u32, 256);
+pub const PDH_MAX_COUNTER_NAME = @as(u32, 1024);
+pub const PDH_MAX_INSTANCE_NAME = @as(u32, 1024);
+pub const PDH_MAX_COUNTER_PATH = @as(u32, 2048);
+pub const PDH_MAX_DATASOURCE_PATH = @as(u32, 1024);
+pub const PDH_MAX_SCALE = @as(i32, 7);
+pub const PDH_MIN_SCALE = @as(i32, -7);
+pub const PDH_NOEXPANDCOUNTERS = @as(u32, 1);
+pub const PDH_NOEXPANDINSTANCES = @as(u32, 2);
+pub const PDH_REFRESHCOUNTERS = @as(u32, 4);
+pub const PDH_LOG_TYPE_RETIRED_BIN = @as(u32, 3);
+pub const PDH_LOG_TYPE_TRACE_KERNEL = @as(u32, 4);
+pub const PDH_LOG_TYPE_TRACE_GENERIC = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
 // Section: Types (61)

@@ -2,13 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (7)
 //--------------------------------------------------------------------------------
-pub const DAV_AUTHN_SCHEME_BASIC : u32 = 1;
-pub const DAV_AUTHN_SCHEME_NTLM : u32 = 2;
-pub const DAV_AUTHN_SCHEME_PASSPORT : u32 = 4;
-pub const DAV_AUTHN_SCHEME_DIGEST : u32 = 8;
-pub const DAV_AUTHN_SCHEME_NEGOTIATE : u32 = 16;
-pub const DAV_AUTHN_SCHEME_CERT : u32 = 65536;
-pub const DAV_AUTHN_SCHEME_FBA : u32 = 1048576;
+pub const DAV_AUTHN_SCHEME_BASIC = @as(u32, 1);
+pub const DAV_AUTHN_SCHEME_NTLM = @as(u32, 2);
+pub const DAV_AUTHN_SCHEME_PASSPORT = @as(u32, 4);
+pub const DAV_AUTHN_SCHEME_DIGEST = @as(u32, 8);
+pub const DAV_AUTHN_SCHEME_NEGOTIATE = @as(u32, 16);
+pub const DAV_AUTHN_SCHEME_CERT = @as(u32, 65536);
+pub const DAV_AUTHN_SCHEME_FBA = @as(u32, 1048576);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)

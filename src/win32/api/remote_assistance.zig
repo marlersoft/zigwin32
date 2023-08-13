@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const DISPID_EVENT_ON_STATE_CHANGED : u32 = 5;
-pub const DISPID_EVENT_ON_TERMINATION : u32 = 6;
-pub const DISPID_EVENT_ON_CONTEXT_DATA : u32 = 7;
-pub const DISPID_EVENT_ON_SEND_ERROR : u32 = 8;
+pub const DISPID_EVENT_ON_STATE_CHANGED = @as(u32, 5);
+pub const DISPID_EVENT_ON_TERMINATION = @as(u32, 6);
+pub const DISPID_EVENT_ON_CONTEXT_DATA = @as(u32, 7);
+pub const DISPID_EVENT_ON_SEND_ERROR = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)

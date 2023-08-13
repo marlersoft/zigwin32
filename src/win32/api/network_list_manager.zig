@@ -2,10 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (4)
 //--------------------------------------------------------------------------------
-pub const NLM_MAX_ADDRESS_LIST_SIZE : u32 = 10;
-pub const NLM_UNKNOWN_DATAPLAN_STATUS : u32 = 4294967295;
-pub const NET_INTERFACE_FLAG_NONE : u32 = 0;
-pub const NET_INTERFACE_FLAG_CONNECT_IF_NEEDED : u32 = 1;
+pub const NLM_MAX_ADDRESS_LIST_SIZE = @as(u32, 10);
+pub const NLM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
+pub const NET_INTERFACE_FLAG_NONE = @as(u32, 0);
+pub const NET_INTERFACE_FLAG_CONNECT_IF_NEEDED = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (29)

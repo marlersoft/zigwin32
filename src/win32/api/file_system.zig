@@ -2,208 +2,272 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (198)
 //--------------------------------------------------------------------------------
-pub const IOCTL_VOLUME_BC_VERSION : u32 = 1;
-pub const CSV_BLOCK_CACHE_CALLBACK_VERSION : u32 = 1;
-pub const CSV_BLOCK_AND_FILE_CACHE_CALLBACK_VERSION : u32 = 2;
-pub const CLFS_MGMT_POLICY_VERSION : u32 = 1;
-pub const LOG_POLICY_OVERWRITE : u32 = 1;
-pub const LOG_POLICY_PERSIST : u32 = 2;
-pub const CLFS_MGMT_CLIENT_REGISTRATION_VERSION : u32 = 1;
-pub const NTMSMLI_MAXTYPE : u32 = 64;
-pub const NTMSMLI_MAXIDSIZE : u32 = 256;
-pub const NTMSMLI_MAXAPPDESCR : u32 = 256;
-pub const NTMS_OBJECTNAME_LENGTH : u32 = 64;
-pub const NTMS_DESCRIPTION_LENGTH : u32 = 127;
-pub const NTMS_DEVICENAME_LENGTH : u32 = 64;
-pub const NTMS_SERIALNUMBER_LENGTH : u32 = 32;
-pub const NTMS_REVISION_LENGTH : u32 = 32;
-pub const NTMS_BARCODE_LENGTH : u32 = 64;
-pub const NTMS_SEQUENCE_LENGTH : u32 = 32;
-pub const NTMS_VENDORNAME_LENGTH : u32 = 128;
-pub const NTMS_PRODUCTNAME_LENGTH : u32 = 128;
-pub const NTMS_USERNAME_LENGTH : u32 = 64;
-pub const NTMS_APPLICATIONNAME_LENGTH : u32 = 64;
-pub const NTMS_COMPUTERNAME_LENGTH : u32 = 64;
-pub const NTMS_I1_MESSAGE_LENGTH : u32 = 127;
-pub const NTMS_MESSAGE_LENGTH : u32 = 256;
-pub const NTMS_POOLHIERARCHY_LENGTH : u32 = 512;
-pub const NTMS_OMIDLABELID_LENGTH : u32 = 255;
-pub const NTMS_OMIDLABELTYPE_LENGTH : u32 = 64;
-pub const NTMS_OMIDLABELINFO_LENGTH : u32 = 256;
-pub const NTMS_MAXATTR_LENGTH : u32 = 65536;
-pub const NTMS_MAXATTR_NAMELEN : u32 = 32;
-pub const CLFS_FLAG_REENTRANT_FILE_SYSTEM : u32 = 8;
-pub const CLFS_FLAG_NON_REENTRANT_FILTER : u32 = 16;
-pub const CLFS_FLAG_REENTRANT_FILTER : u32 = 32;
-pub const CLFS_FLAG_IGNORE_SHARE_ACCESS : u32 = 64;
-pub const CLFS_FLAG_READ_IN_PROGRESS : u32 = 128;
-pub const CLFS_FLAG_MINIFILTER_LEVEL : u32 = 256;
-pub const CLFS_FLAG_HIDDEN_SYSTEM_LOG : u32 = 512;
-pub const CLFS_MARSHALLING_FLAG_NONE : u32 = 0;
-pub const CLFS_MARSHALLING_FLAG_DISABLE_BUFF_INIT : u32 = 1;
-pub const CLSID_DiskQuotaControl = @import("../zig.zig").Guid.initString("7988b571-ec89-11cf-9c00-00aa00a14f56");
-pub const DISKQUOTA_STATE_DISABLED : u32 = 0;
-pub const DISKQUOTA_STATE_TRACK : u32 = 1;
-pub const DISKQUOTA_STATE_ENFORCE : u32 = 2;
-pub const DISKQUOTA_STATE_MASK : u32 = 3;
-pub const DISKQUOTA_FILESTATE_INCOMPLETE : u32 = 256;
-pub const DISKQUOTA_FILESTATE_REBUILDING : u32 = 512;
-pub const DISKQUOTA_FILESTATE_MASK : u32 = 768;
-pub const DISKQUOTA_LOGFLAG_USER_THRESHOLD : u32 = 1;
-pub const DISKQUOTA_LOGFLAG_USER_LIMIT : u32 = 2;
-pub const DISKQUOTA_USER_ACCOUNT_RESOLVED : u32 = 0;
-pub const DISKQUOTA_USER_ACCOUNT_UNAVAILABLE : u32 = 1;
-pub const DISKQUOTA_USER_ACCOUNT_DELETED : u32 = 2;
-pub const DISKQUOTA_USER_ACCOUNT_INVALID : u32 = 3;
-pub const DISKQUOTA_USER_ACCOUNT_UNKNOWN : u32 = 4;
-pub const DISKQUOTA_USER_ACCOUNT_UNRESOLVED : u32 = 5;
-pub const WINEFS_SETUSERKEY_SET_CAPABILITIES : u32 = 1;
-pub const EFS_COMPATIBILITY_VERSION_NCRYPT_PROTECTOR : u32 = 5;
-pub const EFS_COMPATIBILITY_VERSION_PFILE_PROTECTOR : u32 = 6;
-pub const EFS_SUBVER_UNKNOWN : u32 = 0;
-pub const EFS_EFS_SUBVER_EFS_CERT : u32 = 1;
-pub const EFS_PFILE_SUBVER_RMS : u32 = 2;
-pub const EFS_PFILE_SUBVER_APPX : u32 = 3;
-pub const MAX_SID_SIZE : u32 = 256;
-pub const EFS_METADATA_ADD_USER : u32 = 1;
-pub const EFS_METADATA_REMOVE_USER : u32 = 2;
-pub const EFS_METADATA_REPLACE_USER : u32 = 4;
-pub const EFS_METADATA_GENERAL_OP : u32 = 8;
-pub const LZERROR_BADINHANDLE : i32 = -1;
-pub const LZERROR_BADOUTHANDLE : i32 = -2;
-pub const LZERROR_READ : i32 = -3;
-pub const LZERROR_WRITE : i32 = -4;
-pub const LZERROR_GLOBALLOC : i32 = -5;
-pub const LZERROR_GLOBLOCK : i32 = -6;
-pub const LZERROR_BADVALUE : i32 = -7;
-pub const LZERROR_UNKNOWNALG : i32 = -8;
-pub const WIM_ENTRY_FLAG_NOT_ACTIVE : u32 = 1;
-pub const WIM_ENTRY_FLAG_SUSPENDED : u32 = 2;
-pub const TXF_LOG_RECORD_GENERIC_TYPE_COMMIT : u32 = 1;
-pub const TXF_LOG_RECORD_GENERIC_TYPE_ABORT : u32 = 2;
-pub const TXF_LOG_RECORD_GENERIC_TYPE_PREPARE : u32 = 4;
-pub const TXF_LOG_RECORD_GENERIC_TYPE_DATA : u32 = 8;
-pub const SHARE_NETNAME_PARMNUM : u32 = 1;
-pub const SHARE_TYPE_PARMNUM : u32 = 3;
-pub const SHARE_REMARK_PARMNUM : u32 = 4;
-pub const SHARE_PERMISSIONS_PARMNUM : u32 = 5;
-pub const SHARE_MAX_USES_PARMNUM : u32 = 6;
-pub const SHARE_CURRENT_USES_PARMNUM : u32 = 7;
-pub const SHARE_PATH_PARMNUM : u32 = 8;
-pub const SHARE_PASSWD_PARMNUM : u32 = 9;
-pub const SHARE_FILE_SD_PARMNUM : u32 = 501;
-pub const SHARE_SERVER_PARMNUM : u32 = 503;
-pub const SHI1_NUM_ELEMENTS : u32 = 4;
-pub const SHI2_NUM_ELEMENTS : u32 = 10;
-pub const STYPE_MASK : u32 = 255;
-pub const STYPE_RESERVED1 : u32 = 16777216;
-pub const STYPE_RESERVED2 : u32 = 33554432;
-pub const STYPE_RESERVED3 : u32 = 67108864;
-pub const STYPE_RESERVED4 : u32 = 134217728;
-pub const STYPE_RESERVED5 : u32 = 1048576;
-pub const STYPE_RESERVED_ALL : u32 = 1073741568;
-pub const STYPE_TEMPORARY : u32 = 1073741824;
-pub const STYPE_SPECIAL : u32 = 2147483648;
-pub const SHI1005_FLAGS_DFS : u32 = 1;
-pub const SHI1005_FLAGS_DFS_ROOT : u32 = 2;
-pub const CSC_MASK_EXT : u32 = 8240;
-pub const CSC_MASK : u32 = 48;
-pub const CSC_CACHE_MANUAL_REINT : u32 = 0;
-pub const CSC_CACHE_AUTO_REINT : u32 = 16;
-pub const CSC_CACHE_VDO : u32 = 32;
-pub const CSC_CACHE_NONE : u32 = 48;
-pub const SHI1005_FLAGS_RESTRICT_EXCLUSIVE_OPENS : u32 = 256;
-pub const SHI1005_FLAGS_FORCE_SHARED_DELETE : u32 = 512;
-pub const SHI1005_FLAGS_ALLOW_NAMESPACE_CACHING : u32 = 1024;
-pub const SHI1005_FLAGS_ACCESS_BASED_DIRECTORY_ENUM : u32 = 2048;
-pub const SHI1005_FLAGS_FORCE_LEVELII_OPLOCK : u32 = 4096;
-pub const SHI1005_FLAGS_ENABLE_HASH : u32 = 8192;
-pub const SHI1005_FLAGS_ENABLE_CA : u32 = 16384;
-pub const SHI1005_FLAGS_ENCRYPT_DATA : u32 = 32768;
-pub const SHI1005_FLAGS_RESERVED : u32 = 65536;
-pub const SHI1005_FLAGS_DISABLE_CLIENT_BUFFERING : u32 = 131072;
-pub const SHI1005_FLAGS_IDENTITY_REMOTING : u32 = 262144;
-pub const SHI1005_FLAGS_CLUSTER_MANAGED : u32 = 524288;
-pub const SESI1_NUM_ELEMENTS : u32 = 8;
-pub const SESI2_NUM_ELEMENTS : u32 = 9;
-pub const STATSOPT_CLR : u32 = 1;
-pub const TRANSACTION_MANAGER_VOLATILE : u32 = 1;
-pub const TRANSACTION_MANAGER_COMMIT_DEFAULT : u32 = 0;
-pub const TRANSACTION_MANAGER_COMMIT_SYSTEM_VOLUME : u32 = 2;
-pub const TRANSACTION_MANAGER_COMMIT_SYSTEM_HIVES : u32 = 4;
-pub const TRANSACTION_MANAGER_COMMIT_LOWEST : u32 = 8;
-pub const TRANSACTION_MANAGER_CORRUPT_FOR_RECOVERY : u32 = 16;
-pub const TRANSACTION_MANAGER_CORRUPT_FOR_PROGRESS : u32 = 32;
-pub const TRANSACTION_MANAGER_MAXIMUM_OPTION : u32 = 63;
-pub const TRANSACTION_DO_NOT_PROMOTE : u32 = 1;
-pub const TRANSACTION_MAXIMUM_OPTION : u32 = 1;
-pub const RESOURCE_MANAGER_VOLATILE : u32 = 1;
-pub const RESOURCE_MANAGER_COMMUNICATION : u32 = 2;
-pub const RESOURCE_MANAGER_MAXIMUM_OPTION : u32 = 3;
-pub const CRM_PROTOCOL_EXPLICIT_MARSHAL_ONLY : u32 = 1;
-pub const CRM_PROTOCOL_DYNAMIC_MARSHAL_INFO : u32 = 2;
-pub const CRM_PROTOCOL_MAXIMUM_OPTION : u32 = 3;
-pub const ENLISTMENT_SUPERIOR : u32 = 1;
-pub const ENLISTMENT_MAXIMUM_OPTION : u32 = 1;
-pub const TRANSACTION_NOTIFY_MASK : u32 = 1073741823;
-pub const TRANSACTION_NOTIFY_PREPREPARE : u32 = 1;
-pub const TRANSACTION_NOTIFY_PREPARE : u32 = 2;
-pub const TRANSACTION_NOTIFY_COMMIT : u32 = 4;
-pub const TRANSACTION_NOTIFY_ROLLBACK : u32 = 8;
-pub const TRANSACTION_NOTIFY_PREPREPARE_COMPLETE : u32 = 16;
-pub const TRANSACTION_NOTIFY_PREPARE_COMPLETE : u32 = 32;
-pub const TRANSACTION_NOTIFY_COMMIT_COMPLETE : u32 = 64;
-pub const TRANSACTION_NOTIFY_ROLLBACK_COMPLETE : u32 = 128;
-pub const TRANSACTION_NOTIFY_RECOVER : u32 = 256;
-pub const TRANSACTION_NOTIFY_SINGLE_PHASE_COMMIT : u32 = 512;
-pub const TRANSACTION_NOTIFY_DELEGATE_COMMIT : u32 = 1024;
-pub const TRANSACTION_NOTIFY_RECOVER_QUERY : u32 = 2048;
-pub const TRANSACTION_NOTIFY_ENLIST_PREPREPARE : u32 = 4096;
-pub const TRANSACTION_NOTIFY_LAST_RECOVER : u32 = 8192;
-pub const TRANSACTION_NOTIFY_INDOUBT : u32 = 16384;
-pub const TRANSACTION_NOTIFY_PROPAGATE_PULL : u32 = 32768;
-pub const TRANSACTION_NOTIFY_PROPAGATE_PUSH : u32 = 65536;
-pub const TRANSACTION_NOTIFY_MARSHAL : u32 = 131072;
-pub const TRANSACTION_NOTIFY_ENLIST_MASK : u32 = 262144;
-pub const TRANSACTION_NOTIFY_RM_DISCONNECTED : u32 = 16777216;
-pub const TRANSACTION_NOTIFY_TM_ONLINE : u32 = 33554432;
-pub const TRANSACTION_NOTIFY_COMMIT_REQUEST : u32 = 67108864;
-pub const TRANSACTION_NOTIFY_PROMOTE : u32 = 134217728;
-pub const TRANSACTION_NOTIFY_PROMOTE_NEW : u32 = 268435456;
-pub const TRANSACTION_NOTIFY_REQUEST_OUTCOME : u32 = 536870912;
-pub const TRANSACTION_NOTIFY_COMMIT_FINALIZE : u32 = 1073741824;
-pub const TRANSACTION_NOTIFICATION_TM_ONLINE_FLAG_IS_CLUSTERED : u32 = 1;
-pub const KTM_MARSHAL_BLOB_VERSION_MAJOR : u32 = 1;
-pub const KTM_MARSHAL_BLOB_VERSION_MINOR : u32 = 1;
-pub const MAX_TRANSACTION_DESCRIPTION_LENGTH : u32 = 64;
-pub const MAX_RESOURCEMANAGER_DESCRIPTION_LENGTH : u32 = 64;
-pub const ClfsNullRecord : u8 = 0;
-pub const ClfsDataRecord : u8 = 1;
-pub const ClfsRestartRecord : u8 = 2;
-pub const ClfsClientRecord : u8 = 3;
-pub const ClsContainerInitializing : u32 = 1;
-pub const ClsContainerInactive : u32 = 2;
-pub const ClsContainerActive : u32 = 4;
-pub const ClsContainerActivePendingDelete : u32 = 8;
-pub const ClsContainerPendingArchive : u32 = 16;
-pub const ClsContainerPendingArchiveAndDelete : u32 = 32;
-pub const ClfsContainerInitializing : u32 = 1;
-pub const ClfsContainerInactive : u32 = 2;
-pub const ClfsContainerActive : u32 = 4;
-pub const ClfsContainerActivePendingDelete : u32 = 8;
-pub const ClfsContainerPendingArchive : u32 = 16;
-pub const ClfsContainerPendingArchiveAndDelete : u32 = 32;
-pub const CLFS_MAX_CONTAINER_INFO : u32 = 256;
-pub const CLFS_SCAN_INIT : u8 = 1;
-pub const CLFS_SCAN_FORWARD : u8 = 2;
-pub const CLFS_SCAN_BACKWARD : u8 = 4;
-pub const CLFS_SCAN_CLOSE : u8 = 8;
-pub const CLFS_SCAN_INITIALIZED : u8 = 16;
-pub const CLFS_SCAN_BUFFERED : u8 = 32;
+pub const IOCTL_VOLUME_BC_VERSION = @as(u32, 1);
+pub const CSV_BLOCK_CACHE_CALLBACK_VERSION = @as(u32, 1);
+pub const CSV_BLOCK_AND_FILE_CACHE_CALLBACK_VERSION = @as(u32, 2);
+pub const CLFS_MGMT_POLICY_VERSION = @as(u32, 1);
+pub const LOG_POLICY_OVERWRITE = @as(u32, 1);
+pub const LOG_POLICY_PERSIST = @as(u32, 2);
+pub const CLFS_MGMT_CLIENT_REGISTRATION_VERSION = @as(u32, 1);
+pub const NTMSMLI_MAXTYPE = @as(u32, 64);
+pub const NTMSMLI_MAXIDSIZE = @as(u32, 256);
+pub const NTMSMLI_MAXAPPDESCR = @as(u32, 256);
+pub const NTMS_OBJECTNAME_LENGTH = @as(u32, 64);
+pub const NTMS_DESCRIPTION_LENGTH = @as(u32, 127);
+pub const NTMS_DEVICENAME_LENGTH = @as(u32, 64);
+pub const NTMS_SERIALNUMBER_LENGTH = @as(u32, 32);
+pub const NTMS_REVISION_LENGTH = @as(u32, 32);
+pub const NTMS_BARCODE_LENGTH = @as(u32, 64);
+pub const NTMS_SEQUENCE_LENGTH = @as(u32, 32);
+pub const NTMS_VENDORNAME_LENGTH = @as(u32, 128);
+pub const NTMS_PRODUCTNAME_LENGTH = @as(u32, 128);
+pub const NTMS_USERNAME_LENGTH = @as(u32, 64);
+pub const NTMS_APPLICATIONNAME_LENGTH = @as(u32, 64);
+pub const NTMS_COMPUTERNAME_LENGTH = @as(u32, 64);
+pub const NTMS_I1_MESSAGE_LENGTH = @as(u32, 127);
+pub const NTMS_MESSAGE_LENGTH = @as(u32, 256);
+pub const NTMS_POOLHIERARCHY_LENGTH = @as(u32, 512);
+pub const NTMS_OMIDLABELID_LENGTH = @as(u32, 255);
+pub const NTMS_OMIDLABELTYPE_LENGTH = @as(u32, 64);
+pub const NTMS_OMIDLABELINFO_LENGTH = @as(u32, 256);
+pub const NTMS_MAXATTR_LENGTH = @as(u32, 65536);
+pub const NTMS_MAXATTR_NAMELEN = @as(u32, 32);
+pub const CLFS_FLAG_REENTRANT_FILE_SYSTEM = @as(u32, 8);
+pub const CLFS_FLAG_NON_REENTRANT_FILTER = @as(u32, 16);
+pub const CLFS_FLAG_REENTRANT_FILTER = @as(u32, 32);
+pub const CLFS_FLAG_IGNORE_SHARE_ACCESS = @as(u32, 64);
+pub const CLFS_FLAG_READ_IN_PROGRESS = @as(u32, 128);
+pub const CLFS_FLAG_MINIFILTER_LEVEL = @as(u32, 256);
+pub const CLFS_FLAG_HIDDEN_SYSTEM_LOG = @as(u32, 512);
+pub const CLFS_MARSHALLING_FLAG_NONE = @as(u32, 0);
+pub const CLFS_MARSHALLING_FLAG_DISABLE_BUFF_INIT = @as(u32, 1);
+pub const CLSID_DiskQuotaControl = Guid.initString("7988b571-ec89-11cf-9c00-00aa00a14f56");
+pub const DISKQUOTA_STATE_DISABLED = @as(u32, 0);
+pub const DISKQUOTA_STATE_TRACK = @as(u32, 1);
+pub const DISKQUOTA_STATE_ENFORCE = @as(u32, 2);
+pub const DISKQUOTA_STATE_MASK = @as(u32, 3);
+pub const DISKQUOTA_FILESTATE_INCOMPLETE = @as(u32, 256);
+pub const DISKQUOTA_FILESTATE_REBUILDING = @as(u32, 512);
+pub const DISKQUOTA_FILESTATE_MASK = @as(u32, 768);
+pub const DISKQUOTA_LOGFLAG_USER_THRESHOLD = @as(u32, 1);
+pub const DISKQUOTA_LOGFLAG_USER_LIMIT = @as(u32, 2);
+pub const DISKQUOTA_USER_ACCOUNT_RESOLVED = @as(u32, 0);
+pub const DISKQUOTA_USER_ACCOUNT_UNAVAILABLE = @as(u32, 1);
+pub const DISKQUOTA_USER_ACCOUNT_DELETED = @as(u32, 2);
+pub const DISKQUOTA_USER_ACCOUNT_INVALID = @as(u32, 3);
+pub const DISKQUOTA_USER_ACCOUNT_UNKNOWN = @as(u32, 4);
+pub const DISKQUOTA_USER_ACCOUNT_UNRESOLVED = @as(u32, 5);
+pub const WINEFS_SETUSERKEY_SET_CAPABILITIES = @as(u32, 1);
+pub const EFS_COMPATIBILITY_VERSION_NCRYPT_PROTECTOR = @as(u32, 5);
+pub const EFS_COMPATIBILITY_VERSION_PFILE_PROTECTOR = @as(u32, 6);
+pub const EFS_SUBVER_UNKNOWN = @as(u32, 0);
+pub const EFS_EFS_SUBVER_EFS_CERT = @as(u32, 1);
+pub const EFS_PFILE_SUBVER_RMS = @as(u32, 2);
+pub const EFS_PFILE_SUBVER_APPX = @as(u32, 3);
+pub const MAX_SID_SIZE = @as(u32, 256);
+pub const EFS_METADATA_ADD_USER = @as(u32, 1);
+pub const EFS_METADATA_REMOVE_USER = @as(u32, 2);
+pub const EFS_METADATA_REPLACE_USER = @as(u32, 4);
+pub const EFS_METADATA_GENERAL_OP = @as(u32, 8);
+pub const LZERROR_BADINHANDLE = @as(i32, -1);
+pub const LZERROR_BADOUTHANDLE = @as(i32, -2);
+pub const LZERROR_READ = @as(i32, -3);
+pub const LZERROR_WRITE = @as(i32, -4);
+pub const LZERROR_GLOBALLOC = @as(i32, -5);
+pub const LZERROR_GLOBLOCK = @as(i32, -6);
+pub const LZERROR_BADVALUE = @as(i32, -7);
+pub const LZERROR_UNKNOWNALG = @as(i32, -8);
+pub const WIM_ENTRY_FLAG_NOT_ACTIVE = @as(u32, 1);
+pub const WIM_ENTRY_FLAG_SUSPENDED = @as(u32, 2);
+pub const TXF_LOG_RECORD_GENERIC_TYPE_COMMIT = @as(u32, 1);
+pub const TXF_LOG_RECORD_GENERIC_TYPE_ABORT = @as(u32, 2);
+pub const TXF_LOG_RECORD_GENERIC_TYPE_PREPARE = @as(u32, 4);
+pub const TXF_LOG_RECORD_GENERIC_TYPE_DATA = @as(u32, 8);
+pub const SHARE_NETNAME_PARMNUM = @as(u32, 1);
+pub const SHARE_TYPE_PARMNUM = @as(u32, 3);
+pub const SHARE_REMARK_PARMNUM = @as(u32, 4);
+pub const SHARE_PERMISSIONS_PARMNUM = @as(u32, 5);
+pub const SHARE_MAX_USES_PARMNUM = @as(u32, 6);
+pub const SHARE_CURRENT_USES_PARMNUM = @as(u32, 7);
+pub const SHARE_PATH_PARMNUM = @as(u32, 8);
+pub const SHARE_PASSWD_PARMNUM = @as(u32, 9);
+pub const SHARE_FILE_SD_PARMNUM = @as(u32, 501);
+pub const SHARE_SERVER_PARMNUM = @as(u32, 503);
+pub const SHI1_NUM_ELEMENTS = @as(u32, 4);
+pub const SHI2_NUM_ELEMENTS = @as(u32, 10);
+pub const STYPE_MASK = @as(u32, 255);
+pub const STYPE_RESERVED1 = @as(u32, 16777216);
+pub const STYPE_RESERVED2 = @as(u32, 33554432);
+pub const STYPE_RESERVED3 = @as(u32, 67108864);
+pub const STYPE_RESERVED4 = @as(u32, 134217728);
+pub const STYPE_RESERVED5 = @as(u32, 1048576);
+pub const STYPE_RESERVED_ALL = @as(u32, 1073741568);
+pub const STYPE_TEMPORARY = @as(u32, 1073741824);
+pub const STYPE_SPECIAL = @as(u32, 2147483648);
+pub const SHI1005_FLAGS_DFS = @as(u32, 1);
+pub const SHI1005_FLAGS_DFS_ROOT = @as(u32, 2);
+pub const CSC_MASK_EXT = @as(u32, 8240);
+pub const CSC_MASK = @as(u32, 48);
+pub const CSC_CACHE_MANUAL_REINT = @as(u32, 0);
+pub const CSC_CACHE_AUTO_REINT = @as(u32, 16);
+pub const CSC_CACHE_VDO = @as(u32, 32);
+pub const CSC_CACHE_NONE = @as(u32, 48);
+pub const SHI1005_FLAGS_RESTRICT_EXCLUSIVE_OPENS = @as(u32, 256);
+pub const SHI1005_FLAGS_FORCE_SHARED_DELETE = @as(u32, 512);
+pub const SHI1005_FLAGS_ALLOW_NAMESPACE_CACHING = @as(u32, 1024);
+pub const SHI1005_FLAGS_ACCESS_BASED_DIRECTORY_ENUM = @as(u32, 2048);
+pub const SHI1005_FLAGS_FORCE_LEVELII_OPLOCK = @as(u32, 4096);
+pub const SHI1005_FLAGS_ENABLE_HASH = @as(u32, 8192);
+pub const SHI1005_FLAGS_ENABLE_CA = @as(u32, 16384);
+pub const SHI1005_FLAGS_ENCRYPT_DATA = @as(u32, 32768);
+pub const SHI1005_FLAGS_RESERVED = @as(u32, 65536);
+pub const SHI1005_FLAGS_DISABLE_CLIENT_BUFFERING = @as(u32, 131072);
+pub const SHI1005_FLAGS_IDENTITY_REMOTING = @as(u32, 262144);
+pub const SHI1005_FLAGS_CLUSTER_MANAGED = @as(u32, 524288);
+pub const SESI1_NUM_ELEMENTS = @as(u32, 8);
+pub const SESI2_NUM_ELEMENTS = @as(u32, 9);
+pub const STATSOPT_CLR = @as(u32, 1);
+pub const TRANSACTION_MANAGER_VOLATILE = @as(u32, 1);
+pub const TRANSACTION_MANAGER_COMMIT_DEFAULT = @as(u32, 0);
+pub const TRANSACTION_MANAGER_COMMIT_SYSTEM_VOLUME = @as(u32, 2);
+pub const TRANSACTION_MANAGER_COMMIT_SYSTEM_HIVES = @as(u32, 4);
+pub const TRANSACTION_MANAGER_COMMIT_LOWEST = @as(u32, 8);
+pub const TRANSACTION_MANAGER_CORRUPT_FOR_RECOVERY = @as(u32, 16);
+pub const TRANSACTION_MANAGER_CORRUPT_FOR_PROGRESS = @as(u32, 32);
+pub const TRANSACTION_MANAGER_MAXIMUM_OPTION = @as(u32, 63);
+pub const TRANSACTION_DO_NOT_PROMOTE = @as(u32, 1);
+pub const TRANSACTION_MAXIMUM_OPTION = @as(u32, 1);
+pub const RESOURCE_MANAGER_VOLATILE = @as(u32, 1);
+pub const RESOURCE_MANAGER_COMMUNICATION = @as(u32, 2);
+pub const RESOURCE_MANAGER_MAXIMUM_OPTION = @as(u32, 3);
+pub const CRM_PROTOCOL_EXPLICIT_MARSHAL_ONLY = @as(u32, 1);
+pub const CRM_PROTOCOL_DYNAMIC_MARSHAL_INFO = @as(u32, 2);
+pub const CRM_PROTOCOL_MAXIMUM_OPTION = @as(u32, 3);
+pub const ENLISTMENT_SUPERIOR = @as(u32, 1);
+pub const ENLISTMENT_MAXIMUM_OPTION = @as(u32, 1);
+pub const TRANSACTION_NOTIFY_MASK = @as(u32, 1073741823);
+pub const TRANSACTION_NOTIFY_PREPREPARE = @as(u32, 1);
+pub const TRANSACTION_NOTIFY_PREPARE = @as(u32, 2);
+pub const TRANSACTION_NOTIFY_COMMIT = @as(u32, 4);
+pub const TRANSACTION_NOTIFY_ROLLBACK = @as(u32, 8);
+pub const TRANSACTION_NOTIFY_PREPREPARE_COMPLETE = @as(u32, 16);
+pub const TRANSACTION_NOTIFY_PREPARE_COMPLETE = @as(u32, 32);
+pub const TRANSACTION_NOTIFY_COMMIT_COMPLETE = @as(u32, 64);
+pub const TRANSACTION_NOTIFY_ROLLBACK_COMPLETE = @as(u32, 128);
+pub const TRANSACTION_NOTIFY_RECOVER = @as(u32, 256);
+pub const TRANSACTION_NOTIFY_SINGLE_PHASE_COMMIT = @as(u32, 512);
+pub const TRANSACTION_NOTIFY_DELEGATE_COMMIT = @as(u32, 1024);
+pub const TRANSACTION_NOTIFY_RECOVER_QUERY = @as(u32, 2048);
+pub const TRANSACTION_NOTIFY_ENLIST_PREPREPARE = @as(u32, 4096);
+pub const TRANSACTION_NOTIFY_LAST_RECOVER = @as(u32, 8192);
+pub const TRANSACTION_NOTIFY_INDOUBT = @as(u32, 16384);
+pub const TRANSACTION_NOTIFY_PROPAGATE_PULL = @as(u32, 32768);
+pub const TRANSACTION_NOTIFY_PROPAGATE_PUSH = @as(u32, 65536);
+pub const TRANSACTION_NOTIFY_MARSHAL = @as(u32, 131072);
+pub const TRANSACTION_NOTIFY_ENLIST_MASK = @as(u32, 262144);
+pub const TRANSACTION_NOTIFY_RM_DISCONNECTED = @as(u32, 16777216);
+pub const TRANSACTION_NOTIFY_TM_ONLINE = @as(u32, 33554432);
+pub const TRANSACTION_NOTIFY_COMMIT_REQUEST = @as(u32, 67108864);
+pub const TRANSACTION_NOTIFY_PROMOTE = @as(u32, 134217728);
+pub const TRANSACTION_NOTIFY_PROMOTE_NEW = @as(u32, 268435456);
+pub const TRANSACTION_NOTIFY_REQUEST_OUTCOME = @as(u32, 536870912);
+pub const TRANSACTION_NOTIFY_COMMIT_FINALIZE = @as(u32, 1073741824);
+pub const TRANSACTION_NOTIFICATION_TM_ONLINE_FLAG_IS_CLUSTERED = @as(u32, 1);
+pub const KTM_MARSHAL_BLOB_VERSION_MAJOR = @as(u32, 1);
+pub const KTM_MARSHAL_BLOB_VERSION_MINOR = @as(u32, 1);
+pub const MAX_TRANSACTION_DESCRIPTION_LENGTH = @as(u32, 64);
+pub const MAX_RESOURCEMANAGER_DESCRIPTION_LENGTH = @as(u32, 64);
+pub const ClfsNullRecord = @as(u8, 0);
+pub const ClfsDataRecord = @as(u8, 1);
+pub const ClfsRestartRecord = @as(u8, 2);
+pub const ClfsClientRecord = @as(u8, 3);
+pub const ClsContainerInitializing = @as(u32, 1);
+pub const ClsContainerInactive = @as(u32, 2);
+pub const ClsContainerActive = @as(u32, 4);
+pub const ClsContainerActivePendingDelete = @as(u32, 8);
+pub const ClsContainerPendingArchive = @as(u32, 16);
+pub const ClsContainerPendingArchiveAndDelete = @as(u32, 32);
+pub const ClfsContainerInitializing = @as(u32, 1);
+pub const ClfsContainerInactive = @as(u32, 2);
+pub const ClfsContainerActive = @as(u32, 4);
+pub const ClfsContainerActivePendingDelete = @as(u32, 8);
+pub const ClfsContainerPendingArchive = @as(u32, 16);
+pub const ClfsContainerPendingArchiveAndDelete = @as(u32, 32);
+pub const CLFS_MAX_CONTAINER_INFO = @as(u32, 256);
+pub const CLFS_SCAN_INIT = @as(u8, 1);
+pub const CLFS_SCAN_FORWARD = @as(u8, 2);
+pub const CLFS_SCAN_BACKWARD = @as(u8, 4);
+pub const CLFS_SCAN_CLOSE = @as(u8, 8);
+pub const CLFS_SCAN_INITIALIZED = @as(u8, 16);
+pub const CLFS_SCAN_BUFFERED = @as(u8, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (459)
 //--------------------------------------------------------------------------------
+pub const FILE_ID_128 = extern struct {
+    Identifier: [16]u8,
+};
+
+pub const FILE_NOTIFY_INFORMATION = extern struct {
+    NextEntryOffset: u32,
+    Action: FILE_ACTION,
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const FILE_NOTIFY_EXTENDED_INFORMATION = extern struct {
+    NextEntryOffset: u32,
+    Action: FILE_ACTION,
+    CreationTime: LARGE_INTEGER,
+    LastModificationTime: LARGE_INTEGER,
+    LastChangeTime: LARGE_INTEGER,
+    LastAccessTime: LARGE_INTEGER,
+    AllocatedLength: LARGE_INTEGER,
+    FileSize: LARGE_INTEGER,
+    FileAttributes: u32,
+    ReparsePointTag: u32,
+    FileId: LARGE_INTEGER,
+    ParentFileId: LARGE_INTEGER,
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const REPARSE_GUID_DATA_BUFFER = extern struct {
+    ReparseTag: u32,
+    ReparseDataLength: u16,
+    Reserved: u16,
+    ReparseGuid: Guid,
+    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER._GenericReparseBuffer_e__Struct,
+    const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const TRANSACTION_OUTCOME = extern enum(i32) {
+    Undetermined = 1,
+    Committed = 2,
+    Aborted = 3,
+};
+pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.Undetermined;
+pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.Committed;
+pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.Aborted;
+
+// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
+pub const FindChangeNotifcationHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileNameHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindStreamHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
+pub const FindVolumeHandle = ?*c_void;
+
+// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
+pub const FindVolumeMointPointHandle = ?*c_void;
+
 pub const OFSTRUCT = extern struct {
     cBytes: u8,
     fFixedDisk: u8,
@@ -487,70 +551,6 @@ pub const FILE_ID_DESCRIPTOR = extern struct {
     Anonymous: FILE_ID_DESCRIPTOR._Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
-
-// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
-pub const FindChangeNotifcationHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileNameHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindStreamHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
-pub const FindVolumeHandle = ?*c_void;
-
-// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
-pub const FindVolumeMointPointHandle = ?*c_void;
-
-pub const FILE_ID_128 = extern struct {
-    Identifier: [16]u8,
-};
-
-pub const FILE_NOTIFY_INFORMATION = extern struct {
-    NextEntryOffset: u32,
-    Action: FILE_ACTION,
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const FILE_NOTIFY_EXTENDED_INFORMATION = extern struct {
-    NextEntryOffset: u32,
-    Action: FILE_ACTION,
-    CreationTime: LARGE_INTEGER,
-    LastModificationTime: LARGE_INTEGER,
-    LastChangeTime: LARGE_INTEGER,
-    LastAccessTime: LARGE_INTEGER,
-    AllocatedLength: LARGE_INTEGER,
-    FileSize: LARGE_INTEGER,
-    FileAttributes: u32,
-    ReparsePointTag: u32,
-    FileId: LARGE_INTEGER,
-    ParentFileId: LARGE_INTEGER,
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const REPARSE_GUID_DATA_BUFFER = extern struct {
-    ReparseTag: u32,
-    ReparseDataLength: u16,
-    Reserved: u16,
-    ReparseGuid: Guid,
-    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER._GenericReparseBuffer_e__Struct,
-    const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const TRANSACTION_OUTCOME = extern enum(i32) {
-    Undetermined = 1,
-    Committed = 2,
-    Aborted = 3,
-};
-pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.Undetermined;
-pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.Committed;
-pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.Aborted;
 
 pub const OVERLAPPED_ENTRY = extern struct {
     lpCompletionKey: ?*c_void,
@@ -1844,8 +1844,8 @@ pub const NTFS_STATISTICS = extern struct {
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS_EX = extern struct {
@@ -1926,9 +1926,9 @@ pub const NTFS_STATISTICS_EX = extern struct {
     NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
     const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
+    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_OBJECTID_BUFFER = extern struct {
