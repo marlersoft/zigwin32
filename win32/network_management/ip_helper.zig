@@ -472,17 +472,8 @@ pub const IP_FILTER_ENABLE_INFO_V6 = @as(u32, 4294901782);
 pub const IP_PROT_PRIORITY_INFO_EX = @as(u32, 4294901783);
 
 //--------------------------------------------------------------------------------
-// Section: Types (225)
+// Section: Types (224)
 //--------------------------------------------------------------------------------
-pub const ADDRESS_FAMILY = enum(u32) {
-    INET = 2,
-    INET6 = 23,
-    UNSPEC = 0,
-};
-pub const AF_INET = ADDRESS_FAMILY.INET;
-pub const AF_INET6 = ADDRESS_FAMILY.INET6;
-pub const AF_UNSPEC = ADDRESS_FAMILY.UNSPEC;
-
 pub const GET_ADAPTERS_ADDRESSES_FLAGS = enum(u32) {
     SKIP_UNICAST = 1,
     SKIP_ANYCAST = 2,
@@ -4140,9 +4131,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (32)
+// Section: Imports (33)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CHAR = @import("../foundation.zig").CHAR;

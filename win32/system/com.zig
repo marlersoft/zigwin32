@@ -10558,7 +10558,7 @@ pub extern "ole32" fn CoDisconnectContext(
 pub extern "ole32" fn CoInitializeSecurity(
     pSecDesc: ?PSECURITY_DESCRIPTOR,
     cAuthSvc: i32,
-    asAuthSvc: ?[*]SOLE_AUTHENTICATION_SERVICE,
+    asAuthSvc: ?*SOLE_AUTHENTICATION_SERVICE,
     pReserved1: ?*anyopaque,
     dwAuthnLevel: RPC_C_AUTHN_LEVEL,
     dwImpLevel: RPC_C_IMP_LEVEL,

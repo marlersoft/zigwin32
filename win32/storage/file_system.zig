@@ -1431,6 +1431,7 @@ pub const FindStreamHandle = isize;
 pub const FindChangeNotificationHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '-1', what can Zig do with this information?
 pub const FindVolumeHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
