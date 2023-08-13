@@ -255,6 +255,7 @@ pub extern "MAPI32" fn MAPIFreeBuffer(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -267,8 +268,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
 const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

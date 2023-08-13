@@ -4512,6 +4512,7 @@ pub extern "NETAPI32" fn NetWkstaTransportEnum(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4525,15 +4526,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const PSID = @import("../foundation.zig").PSID;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SID_NAME_USE = @import("../security.zig").SID_NAME_USE;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PSID = @import("../foundation.zig").PSID;
-const BOOL = @import("../foundation.zig").BOOL;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 
 test {
     @setEvalBranchQuota(

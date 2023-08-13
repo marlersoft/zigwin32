@@ -761,36 +761,37 @@ pub extern "KERNEL32" fn VerifyVersionInfoW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const OSVERSIONINFO = OSVERSIONINFOA;
-        pub const OSVERSIONINFOEX = OSVERSIONINFOEXA;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_A;
-        pub const GetSystemDirectory = GetSystemDirectoryA;
-        pub const GetWindowsDirectory = GetWindowsDirectoryA;
-        pub const GetSystemWindowsDirectory = GetSystemWindowsDirectoryA;
-        pub const GetComputerNameEx = GetComputerNameExA;
-        pub const SetComputerNameEx = SetComputerNameExA;
-        pub const GetVersionEx = GetVersionExA;
-        pub const SetComputerName = SetComputerNameA;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
-        pub const VerifyVersionInfo = VerifyVersionInfoA;
+        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOA;
+        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXA;
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_A;
+        pub const GetSystemDirectory = thismodule.GetSystemDirectoryA;
+        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryA;
+        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryA;
+        pub const GetComputerNameEx = thismodule.GetComputerNameExA;
+        pub const SetComputerNameEx = thismodule.SetComputerNameExA;
+        pub const GetVersionEx = thismodule.GetVersionExA;
+        pub const SetComputerName = thismodule.SetComputerNameA;
+        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryA;
+        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2A;
+        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoA;
     },
     .wide => struct {
-        pub const OSVERSIONINFO = OSVERSIONINFOW;
-        pub const OSVERSIONINFOEX = OSVERSIONINFOEXW;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_W;
-        pub const GetSystemDirectory = GetSystemDirectoryW;
-        pub const GetWindowsDirectory = GetWindowsDirectoryW;
-        pub const GetSystemWindowsDirectory = GetSystemWindowsDirectoryW;
-        pub const GetComputerNameEx = GetComputerNameExW;
-        pub const SetComputerNameEx = SetComputerNameExW;
-        pub const GetVersionEx = GetVersionExW;
-        pub const SetComputerName = SetComputerNameW;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
-        pub const VerifyVersionInfo = VerifyVersionInfoW;
+        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOW;
+        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXW;
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_W;
+        pub const GetSystemDirectory = thismodule.GetSystemDirectoryW;
+        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryW;
+        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryW;
+        pub const GetComputerNameEx = thismodule.GetComputerNameExW;
+        pub const SetComputerNameEx = thismodule.SetComputerNameExW;
+        pub const GetVersionEx = thismodule.GetVersionExW;
+        pub const SetComputerName = thismodule.SetComputerNameW;
+        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryW;
+        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2W;
+        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const OSVERSIONINFO = *opaque{};
@@ -825,15 +826,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
-const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = @import("../system/system_services.zig").SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const CACHE_DESCRIPTOR = @import("../system/system_services.zig").CACHE_DESCRIPTOR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PSTR = @import("../foundation.zig").PSTR;
-const CACHE_DESCRIPTOR = @import("../system/system_services.zig").CACHE_DESCRIPTOR;
-const BOOL = @import("../foundation.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = @import("../system/system_services.zig").SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

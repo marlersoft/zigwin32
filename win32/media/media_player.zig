@@ -9164,6 +9164,7 @@ pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = packed struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -9177,26 +9178,26 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const IMFActivate = @import("../media/media_foundation.zig").IMFActivate;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
 const BLOB = @import("../system/com.zig").BLOB;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const WPARAM = @import("../foundation.zig").WPARAM;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
+const IMFActivate = @import("../media/media_foundation.zig").IMFActivate;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     @setEvalBranchQuota(

@@ -3894,6 +3894,7 @@ pub const ISyncRegistrationChange = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3907,13 +3908,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

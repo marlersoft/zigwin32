@@ -1558,12 +1558,13 @@ pub extern "HTTPAPI" fn HttpGetExtension(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const HTTP_SERVICE_BINDING_ = HTTP_SERVICE_BINDING_A;
+        pub const HTTP_SERVICE_BINDING_ = thismodule.HTTP_SERVICE_BINDING_A;
     },
     .wide => struct {
-        pub const HTTP_SERVICE_BINDING_ = HTTP_SERVICE_BINDING_W;
+        pub const HTTP_SERVICE_BINDING_ = thismodule.HTTP_SERVICE_BINDING_W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const HTTP_SERVICE_BINDING_ = *opaque{};
@@ -1576,15 +1577,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
+const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 
 test {
     @setEvalBranchQuota(

@@ -39,65 +39,10 @@ pub const FSCTL_DFS_GET_PKT_ENTRY_STATE = @as(u32, 401340);
 //--------------------------------------------------------------------------------
 // Section: Types (35)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const DFS_INFO_1_32 = extern struct {
-    EntryPath: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const DFS_INFO_2_32 = extern struct {
-    EntryPath: u32,
-    Comment: u32,
-    State: u32,
-    NumberOfStorages: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DFS_STORAGE_INFO_0_32 = extern struct {
-    State: u32,
-    ServerName: u32,
-    ShareName: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DFS_INFO_3_32 = extern struct {
-    EntryPath: u32,
-    Comment: u32,
-    State: u32,
-    NumberOfStorages: u32,
-    Storage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DFS_INFO_4_32 = extern struct {
-    EntryPath: u32,
-    Comment: u32,
-    State: u32,
-    Timeout: u32,
-    Guid: Guid,
-    NumberOfStorages: u32,
-    Storage: u32,
-};
-
-}, else => struct { } };
 
 pub const DFS_TARGET_PRIORITY_CLASS = enum(i32) {
     InvalidPriorityClass = -1,
@@ -316,6 +261,51 @@ pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
     Buffer: [1]u16,
 };
 
+pub const DFS_INFO_1_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        EntryPath: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DFS_INFO_2_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        EntryPath: u32,
+        Comment: u32,
+        State: u32,
+        NumberOfStorages: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        State: u32,
+        ServerName: u32,
+        ShareName: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DFS_INFO_3_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        EntryPath: u32,
+        Comment: u32,
+        State: u32,
+        NumberOfStorages: u32,
+        Storage: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+pub const DFS_INFO_4_32 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        EntryPath: u32,
+        Comment: u32,
+        State: u32,
+        Timeout: u32,
+        Guid: Guid,
+        NumberOfStorages: u32,
+        Storage: u32,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (22)
@@ -502,6 +492,7 @@ pub extern "NETAPI32" fn NetDfsGetSupportedNamespaceVersion(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -515,8 +506,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     @setEvalBranchQuota(

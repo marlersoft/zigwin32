@@ -4360,6 +4360,7 @@ pub extern "WindowsCodecs" fn WICGetMetadataContentSize(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4373,29 +4374,29 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const ID2D1Image = @import("../graphics/direct2d.zig").ID2D1Image;
-const IPersistStream = @import("../system/com.zig").IPersistStream;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IEnumString = @import("../system/com.zig").IEnumString;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const PROPBAG2 = @import("../system/com.zig").PROPBAG2;
 const BOOL = @import("../foundation.zig").BOOL;
-const ID2D1Device = @import("../graphics/direct2d.zig").ID2D1Device;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const DXGI_JPEG_DC_HUFFMAN_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_DC_HUFFMAN_TABLE;
 const D2D1_PIXEL_FORMAT = @import("../graphics/direct2d.zig").D2D1_PIXEL_FORMAT;
-const IPropertyBag2 = @import("../system/com.zig").IPropertyBag2;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
 const DXGI_JPEG_AC_HUFFMAN_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_AC_HUFFMAN_TABLE;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const DXGI_JPEG_DC_HUFFMAN_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_DC_HUFFMAN_TABLE;
 const DXGI_JPEG_QUANTIZATION_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_QUANTIZATION_TABLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const ID2D1Device = @import("../graphics/direct2d.zig").ID2D1Device;
+const ID2D1Image = @import("../graphics/direct2d.zig").ID2D1Image;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IPersistStream = @import("../system/com.zig").IPersistStream;
+const IPropertyBag2 = @import("../system/com.zig").IPropertyBag2;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PROPBAG2 = @import("../system/com.zig").PROPBAG2;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

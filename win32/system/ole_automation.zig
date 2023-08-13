@@ -5024,6 +5024,7 @@ pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -5037,25 +5038,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LONG_SIZEDARR = @import("../system/com.zig").LONG_SIZEDARR;
-const FLAGGED_WORD_BLOB = @import("../system/com.zig").FLAGGED_WORD_BLOB;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const CY = @import("../system/system_services.zig").CY;
-const SHORT_SIZEDARR = @import("../system/com.zig").SHORT_SIZEDARR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HYPER_SIZEDARR = @import("../system/com.zig").HYPER_SIZEDARR;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
+const BYTE_SIZEDARR = @import("../system/com.zig").BYTE_SIZEDARR;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const CY = @import("../system/system_services.zig").CY;
+const DECIMAL = @import("../system/system_services.zig").DECIMAL;
+const FLAGGED_WORD_BLOB = @import("../system/com.zig").FLAGGED_WORD_BLOB;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const HYPER_SIZEDARR = @import("../system/com.zig").HYPER_SIZEDARR;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LONG_SIZEDARR = @import("../system/com.zig").LONG_SIZEDARR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const BOOL = @import("../foundation.zig").BOOL;
-const BYTE_SIZEDARR = @import("../system/com.zig").BYTE_SIZEDARR;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const DECIMAL = @import("../system/system_services.zig").DECIMAL;
-const HWND = @import("../foundation.zig").HWND;
+const SHORT_SIZEDARR = @import("../system/com.zig").SHORT_SIZEDARR;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

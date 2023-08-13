@@ -11,21 +11,6 @@ pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (22)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: ?*c_void,
-    AllocationBase: ?*c_void,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    PartitionId: u16,
-    RegionSize: usize,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
 pub const HeapHandle = *opaque{};
@@ -515,21 +500,28 @@ pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
 pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: ?*c_void,
-    AllocationBase: ?*c_void,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    RegionSize: usize,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
+pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        BaseAddress: ?*c_void,
+        AllocationBase: ?*c_void,
+        AllocationProtect: PAGE_PROTECTION_FLAGS,
+        PartitionId: u16,
+        RegionSize: usize,
+        State: VIRTUAL_ALLOCATION_TYPE,
+        Protect: PAGE_PROTECTION_FLAGS,
+        Type: PAGE_TYPE,
+    },
+    .X86 => extern struct {
+        BaseAddress: ?*c_void,
+        AllocationBase: ?*c_void,
+        AllocationProtect: PAGE_PROTECTION_FLAGS,
+        RegionSize: usize,
+        State: VIRTUAL_ALLOCATION_TYPE,
+        Protect: PAGE_PROTECTION_FLAGS,
+        Type: PAGE_TYPE,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (99)
@@ -1253,18 +1245,19 @@ pub extern "KERNEL32" fn RemoveSecureMemoryCacheCallback(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const CreateFileMapping = CreateFileMappingA;
-        pub const OpenFileMapping = OpenFileMappingA;
-        pub const CreateFileMappingNuma = CreateFileMappingNumaA;
-        pub const IsBadStringPtr = IsBadStringPtrA;
+        pub const CreateFileMapping = thismodule.CreateFileMappingA;
+        pub const OpenFileMapping = thismodule.OpenFileMappingA;
+        pub const CreateFileMappingNuma = thismodule.CreateFileMappingNumaA;
+        pub const IsBadStringPtr = thismodule.IsBadStringPtrA;
     },
     .wide => struct {
-        pub const CreateFileMapping = CreateFileMappingW;
-        pub const OpenFileMapping = OpenFileMappingW;
-        pub const CreateFileMappingNuma = CreateFileMappingNumaW;
-        pub const IsBadStringPtr = IsBadStringPtrW;
+        pub const CreateFileMapping = thismodule.CreateFileMappingW;
+        pub const OpenFileMapping = thismodule.OpenFileMappingW;
+        pub const CreateFileMappingNuma = thismodule.CreateFileMappingNumaW;
+        pub const IsBadStringPtr = thismodule.IsBadStringPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateFileMapping = *opaque{};
@@ -1281,17 +1274,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
-const HEAP_INFORMATION_CLASS = @import("../system/system_services.zig").HEAP_INFORMATION_CLASS;
-const PROCESS_HEAP_ENTRY = @import("../system/system_services.zig").PROCESS_HEAP_ENTRY;
-const FARPROC = @import("../foundation.zig").FARPROC;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const CFG_CALL_TARGET_INFO = @import("../system/system_services.zig").CFG_CALL_TARGET_INFO;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const CFG_CALL_TARGET_INFO = @import("../system/system_services.zig").CFG_CALL_TARGET_INFO;
+const FARPROC = @import("../foundation.zig").FARPROC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HEAP_INFORMATION_CLASS = @import("../system/system_services.zig").HEAP_INFORMATION_CLASS;
+const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
+const PROCESS_HEAP_ENTRY = @import("../system/system_services.zig").PROCESS_HEAP_ENTRY;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

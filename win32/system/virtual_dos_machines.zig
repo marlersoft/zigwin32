@@ -98,145 +98,12 @@ pub const VDMADDR_PM32 = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (43)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const VDMCONTEXT = extern struct {
-    ContextFlags: u32,
-    Dr0: u32,
-    Dr1: u32,
-    Dr2: u32,
-    Dr3: u32,
-    Dr6: u32,
-    Dr7: u32,
-    FloatSave: FLOATING_SAVE_AREA,
-    SegGs: u32,
-    SegFs: u32,
-    SegEs: u32,
-    SegDs: u32,
-    Edi: u32,
-    Esi: u32,
-    Ebx: u32,
-    Edx: u32,
-    Ecx: u32,
-    Eax: u32,
-    Ebp: u32,
-    Eip: u32,
-    SegCs: u32,
-    EFlags: u32,
-    Esp: u32,
-    SegSs: u32,
-    ExtendedRegisters: [512]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const VDMLDT_ENTRY = extern struct {
-    LimitLow: u16,
-    BaseLow: u16,
-    HighWord: extern union {
-        Bytes: extern struct {
-            BaseMid: u8,
-            Flags1: u8,
-            Flags2: u8,
-            BaseHi: u8,
-        },
-        Bits: extern struct {
-            _bitfield: u32,
-        },
-    },
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MODULEENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szModule: [10]CHAR,
-    hModule: ?HANDLE,
-    wcUsage: u16,
-    szExePath: [256]CHAR,
-    wNext: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const GLOBALENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwAddress: u32,
-    dwBlockSize: u32,
-    hBlock: ?HANDLE,
-    wcLock: u16,
-    wcPageLock: u16,
-    wFlags: u16,
-    wHeapPresent: BOOL,
-    hOwner: ?HANDLE,
-    wType: u16,
-    wData: u16,
-    dwNext: u32,
-    dwNextAlt: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u32,
-    param3: ?*VDMLDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMGETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMSETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
 
 pub const VDMCONTEXT_WITHOUT_XSAVE = extern struct {
     ContextFlags: u32,
@@ -465,90 +332,149 @@ pub const VDMGETADDREXPRESSIONPROC = fn(
     param4: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const MODULEENTRY = extern struct {
-    dwSize: u32,
-    szModule: [10]CHAR,
-    hModule: ?HANDLE,
-    wcUsage: u16,
-    szExePath: [256]CHAR,
-    wNext: u16,
+
+
+
+
+pub const VDMCONTEXT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ContextFlags: u32,
+        Dr0: u32,
+        Dr1: u32,
+        Dr2: u32,
+        Dr3: u32,
+        Dr6: u32,
+        Dr7: u32,
+        FloatSave: FLOATING_SAVE_AREA,
+        SegGs: u32,
+        SegFs: u32,
+        SegEs: u32,
+        SegDs: u32,
+        Edi: u32,
+        Esi: u32,
+        Ebx: u32,
+        Edx: u32,
+        Ecx: u32,
+        Eax: u32,
+        Ebp: u32,
+        Eip: u32,
+        SegCs: u32,
+        EFlags: u32,
+        Esp: u32,
+        SegSs: u32,
+        ExtendedRegisters: [512]u8,
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const GLOBALENTRY = extern struct {
-    dwSize: u32,
-    dwAddress: u32,
-    dwBlockSize: u32,
-    hBlock: ?HANDLE,
-    wcLock: u16,
-    wcPageLock: u16,
-    wFlags: u16,
-    wHeapPresent: BOOL,
-    hOwner: ?HANDLE,
-    wType: u16,
-    wData: u16,
-    dwNext: u32,
-    dwNextAlt: u32,
+pub const VDMLDT_ENTRY = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        LimitLow: u16,
+        BaseLow: u16,
+        HighWord: extern union {
+            Bytes: extern struct {
+                BaseMid: u8,
+                Flags1: u8,
+                Flags2: u8,
+                BaseHi: u8,
+            },
+            Bits: extern struct {
+                _bitfield: u32,
+            },
+        },
+    },
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u32,
-    param3: ?*LDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const VDMGETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const VDMSETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
+pub const MODULEENTRY = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        szModule: [10]CHAR,
+        hModule: ?HANDLE,
+        wcUsage: u16,
+        szExePath: [256]CHAR,
+        wNext: u16,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        szModule: [10]CHAR,
+        hModule: ?HANDLE,
+        wcUsage: u16,
+        szExePath: [256]CHAR,
+        wNext: u16,
+    },
+};
+pub const GLOBALENTRY = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        dwAddress: u32,
+        dwBlockSize: u32,
+        hBlock: ?HANDLE,
+        wcLock: u16,
+        wcPageLock: u16,
+        wFlags: u16,
+        wHeapPresent: BOOL,
+        hOwner: ?HANDLE,
+        wType: u16,
+        wData: u16,
+        dwNext: u32,
+        dwNextAlt: u32,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        dwAddress: u32,
+        dwBlockSize: u32,
+        hBlock: ?HANDLE,
+        wcLock: u16,
+        wcPageLock: u16,
+        wFlags: u16,
+        wHeapPresent: BOOL,
+        hOwner: ?HANDLE,
+        wType: u16,
+        wData: u16,
+        dwNext: u32,
+        dwNextAlt: u32,
+    },
+};
+pub const VDMGETTHREADSELECTORENTRYPROC = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u32,
+        param3: ?*VDMLDT_ENTRY,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X86 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u32,
+        param3: ?*LDT_ENTRY,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+};
+pub const VDMGETCONTEXTPROC = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*VDMCONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X86 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+};
+pub const VDMSETCONTEXTPROC = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*VDMCONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X86 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -557,6 +483,7 @@ pub const VDMSETCONTEXTPROC = fn(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -569,31 +496,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const CHAR = @import("../system/system_services.zig").CHAR;
-usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-    pub const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-
-}, else => struct { } };
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const BOOL = @import("../foundation.zig").BOOL;
-usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-    pub const LDT_ENTRY = @import("../system/diagnostics/debug.zig").LDT_ENTRY;
-
-}, else => struct { } };
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PSTR = @import("../foundation.zig").PSTR;
+// 2 arch-specific imports
+const CONTEXT = switch(@import("../zig.zig").arch) {
+    .X86 => @import("../system/diagnostics/debug.zig").CONTEXT,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
+const LDT_ENTRY = switch(@import("../zig.zig").arch) {
+    .X86 => @import("../system/diagnostics/debug.zig").LDT_ENTRY,
+    else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
+};
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
-    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
-    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
     if (@hasDecl(@This(), "DEBUGEVENTPROC")) { _ = DEBUGEVENTPROC; }
     if (@hasDecl(@This(), "PROCESSENUMPROC")) { _ = PROCESSENUMPROC; }
     if (@hasDecl(@This(), "TASKENUMPROC")) { _ = TASKENUMPROC; }
@@ -621,7 +542,10 @@ test {
     if (@hasDecl(@This(), "VDMGETSYMBOLPROC")) { _ = VDMGETSYMBOLPROC; }
     if (@hasDecl(@This(), "VDMGETADDREXPRESSIONPROC")) { _ = VDMGETADDREXPRESSIONPROC; }
     if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
+    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
     if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
+    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
+    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
     if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
 
     @setEvalBranchQuota(

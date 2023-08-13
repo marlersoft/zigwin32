@@ -11201,6 +11201,7 @@ pub extern "MTxDM" fn GetDispenserManager(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -11214,24 +11215,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const BLOB = @import("../system/com.zig").BLOB;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PSID = @import("../foundation.zig").PSID;
-const BOOL = @import("../foundation.zig").BOOL;
-const EOC_ChangeType = @import("../system/com.zig").EOC_ChangeType;
 const APTTYPE = @import("../system/com.zig").APTTYPE;
-const IClassFactory = @import("../system/com.zig").IClassFactory;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IMoniker = @import("../system/com.zig").IMoniker;
+const BLOB = @import("../system/com.zig").BLOB;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const EOC_ChangeType = @import("../system/com.zig").EOC_ChangeType;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IClassFactory = @import("../system/com.zig").IClassFactory;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IMoniker = @import("../system/com.zig").IMoniker;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSID = @import("../foundation.zig").PSID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

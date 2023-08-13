@@ -4408,6 +4408,7 @@ pub extern "MSAJApi" fn alljoyn_securityapplicationproxy_setmanifestsignature(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4420,11 +4421,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

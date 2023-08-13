@@ -1041,18 +1041,19 @@ pub extern "TRAFFIC" fn TcEnumerateFlows(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const TcOpenInterface = TcOpenInterfaceA;
-        pub const TcQueryFlow = TcQueryFlowA;
-        pub const TcSetFlow = TcSetFlowA;
-        pub const TcGetFlowName = TcGetFlowNameA;
+        pub const TcOpenInterface = thismodule.TcOpenInterfaceA;
+        pub const TcQueryFlow = thismodule.TcQueryFlowA;
+        pub const TcSetFlow = thismodule.TcSetFlowA;
+        pub const TcGetFlowName = thismodule.TcGetFlowNameA;
     },
     .wide => struct {
-        pub const TcOpenInterface = TcOpenInterfaceW;
-        pub const TcQueryFlow = TcQueryFlowW;
-        pub const TcSetFlow = TcSetFlowW;
-        pub const TcGetFlowName = TcGetFlowNameW;
+        pub const TcOpenInterface = thismodule.TcOpenInterfaceW;
+        pub const TcQueryFlow = thismodule.TcQueryFlowW;
+        pub const TcSetFlow = thismodule.TcSetFlowW;
+        pub const TcGetFlowName = thismodule.TcGetFlowNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const TcOpenInterface = *opaque{};
@@ -1070,17 +1071,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
-const WSABUF = @import("../networking/win_sock.zig").WSABUF;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SOCKET = @import("../networking/win_sock.zig").SOCKET;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
+const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
+const SOCKET = @import("../networking/win_sock.zig").SOCKET;
+const WSABUF = @import("../networking/win_sock.zig").WSABUF;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -124,6 +124,7 @@ pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -136,12 +137,12 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const HPTPROVIDER = @import("../../storage/xps.zig").HPTPROVIDER;
-const IStream = @import("../../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const BSTR = @import("../../foundation.zig").BSTR;
 const DEVMODEA = @import("../../ui/display_devices.zig").DEVMODEA;
+const HPTPROVIDER = @import("../../storage/xps.zig").HPTPROVIDER;
 const HRESULT = @import("../../foundation.zig").HRESULT;
+const IStream = @import("../../storage/structured_storage.zig").IStream;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

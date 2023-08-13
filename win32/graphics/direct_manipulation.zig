@@ -1169,6 +1169,7 @@ pub const IDirectManipulationDeferContactService = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1182,13 +1183,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     @setEvalBranchQuota(

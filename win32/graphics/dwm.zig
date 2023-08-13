@@ -501,6 +501,7 @@ pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -514,18 +515,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const HRGN = @import("../graphics/gdi.zig").HRGN;
+const BOOL = @import("../foundation.zig").BOOL;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const HRGN = @import("../graphics/gdi.zig").HRGN;
+const HWND = @import("../foundation.zig").HWND;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const MARGINS = @import("../ui/controls.zig").MARGINS;
 const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
-const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     @setEvalBranchQuota(

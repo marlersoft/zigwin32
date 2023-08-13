@@ -161,6 +161,7 @@ pub extern "MAGNIFICATION" fn MagShowSystemCursor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -174,10 +175,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const RECT = @import("../foundation.zig").RECT;
-const HRGN = @import("../graphics/gdi.zig").HRGN;
 const BOOL = @import("../foundation.zig").BOOL;
+const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

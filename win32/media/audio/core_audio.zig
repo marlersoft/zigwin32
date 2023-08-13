@@ -1041,43 +1041,8 @@ pub const SPTLAUD_MD_CLNT_E_ITEMS_LOCKED_FOR_WRITING = @import("../../zig.zig").
 //--------------------------------------------------------------------------------
 // Section: Types (1173)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const KSSTREAM_HEADER = extern struct {
-    Size: u32,
-    TypeSpecificFlags: u32,
-    PresentationTime: KSTIME,
-    Duration: i64,
-    FrameExtent: u32,
-    DataUsed: u32,
-    Data: ?*c_void,
-    OptionsFlags: u32,
-    Reserved: u32,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    ListenerId: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    AppContext: ?*c_void,
-    Length: u32,
-};
-
-}, else => struct { } };
 
 pub const HTASK = *opaque{};
 
@@ -11388,45 +11353,56 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
 
-pub const KSSTREAM_HEADER = extern struct {
-    Size: u32,
-    TypeSpecificFlags: u32,
-    PresentationTime: KSTIME,
-    Duration: i64,
-    FrameExtent: u32,
-    DataUsed: u32,
-    Data: ?*c_void,
-    OptionsFlags: u32,
+
+
+pub const KSSTREAM_HEADER = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Size: u32,
+        TypeSpecificFlags: u32,
+        PresentationTime: KSTIME,
+        Duration: i64,
+        FrameExtent: u32,
+        DataUsed: u32,
+        Data: ?*c_void,
+        OptionsFlags: u32,
+        Reserved: u32,
+    },
+    .X86 => extern struct {
+        Size: u32,
+        TypeSpecificFlags: u32,
+        PresentationTime: KSTIME,
+        Duration: i64,
+        FrameExtent: u32,
+        DataUsed: u32,
+        Data: ?*c_void,
+        OptionsFlags: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    ListenerId: ?*c_void,
-    Reserved: u32,
+pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        NodeProperty: KSNODEPROPERTY,
+        ListenerId: ?*c_void,
+    },
+    .X86 => extern struct {
+        NodeProperty: KSNODEPROPERTY,
+        ListenerId: ?*c_void,
+        Reserved: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    AppContext: ?*c_void,
-    Length: u32,
-    Reserved: u32,
+pub const KSNODEPROPERTY_AUDIO_PROPERTY = switch(@import("../../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        NodeProperty: KSNODEPROPERTY,
+        AppContext: ?*c_void,
+        Length: u32,
+    },
+    .X86 => extern struct {
+        NodeProperty: KSNODEPROPERTY,
+        AppContext: ?*c_void,
+        Length: u32,
+        Reserved: u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
@@ -11598,46 +11574,47 @@ pub extern "MMDevAPI" fn ActivateAudioInterfaceAsync(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (18)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const MCI_OPEN_PARMS = MCI_OPEN_PARMSA;
-        pub const MCI_INFO_PARMS = MCI_INFO_PARMSA;
-        pub const MCI_SYSINFO_PARMS = MCI_SYSINFO_PARMSA;
-        pub const MCI_SAVE_PARMS = MCI_SAVE_PARMSA;
-        pub const MCI_LOAD_PARMS = MCI_LOAD_PARMSA;
-        pub const MCI_VD_ESCAPE_PARMS = MCI_VD_ESCAPE_PARMSA;
-        pub const MCI_WAVE_OPEN_PARMS = MCI_WAVE_OPEN_PARMSA;
-        pub const MCI_ANIM_OPEN_PARMS = MCI_ANIM_OPEN_PARMSA;
-        pub const MCI_ANIM_WINDOW_PARMS = MCI_ANIM_WINDOW_PARMSA;
-        pub const MCI_OVLY_OPEN_PARMS = MCI_OVLY_OPEN_PARMSA;
-        pub const MCI_OVLY_WINDOW_PARMS = MCI_OVLY_WINDOW_PARMSA;
-        pub const MCI_OVLY_SAVE_PARMS = MCI_OVLY_SAVE_PARMSA;
-        pub const MCI_OVLY_LOAD_PARMS = MCI_OVLY_LOAD_PARMSA;
-        pub const mciSendCommand = mciSendCommandA;
-        pub const mciSendString = mciSendStringA;
-        pub const mciGetDeviceID = mciGetDeviceIDA;
-        pub const mciGetDeviceIDFromElementID = mciGetDeviceIDFromElementIDA;
-        pub const mciGetErrorString = mciGetErrorStringA;
+        pub const MCI_OPEN_PARMS = thismodule.MCI_OPEN_PARMSA;
+        pub const MCI_INFO_PARMS = thismodule.MCI_INFO_PARMSA;
+        pub const MCI_SYSINFO_PARMS = thismodule.MCI_SYSINFO_PARMSA;
+        pub const MCI_SAVE_PARMS = thismodule.MCI_SAVE_PARMSA;
+        pub const MCI_LOAD_PARMS = thismodule.MCI_LOAD_PARMSA;
+        pub const MCI_VD_ESCAPE_PARMS = thismodule.MCI_VD_ESCAPE_PARMSA;
+        pub const MCI_WAVE_OPEN_PARMS = thismodule.MCI_WAVE_OPEN_PARMSA;
+        pub const MCI_ANIM_OPEN_PARMS = thismodule.MCI_ANIM_OPEN_PARMSA;
+        pub const MCI_ANIM_WINDOW_PARMS = thismodule.MCI_ANIM_WINDOW_PARMSA;
+        pub const MCI_OVLY_OPEN_PARMS = thismodule.MCI_OVLY_OPEN_PARMSA;
+        pub const MCI_OVLY_WINDOW_PARMS = thismodule.MCI_OVLY_WINDOW_PARMSA;
+        pub const MCI_OVLY_SAVE_PARMS = thismodule.MCI_OVLY_SAVE_PARMSA;
+        pub const MCI_OVLY_LOAD_PARMS = thismodule.MCI_OVLY_LOAD_PARMSA;
+        pub const mciSendCommand = thismodule.mciSendCommandA;
+        pub const mciSendString = thismodule.mciSendStringA;
+        pub const mciGetDeviceID = thismodule.mciGetDeviceIDA;
+        pub const mciGetDeviceIDFromElementID = thismodule.mciGetDeviceIDFromElementIDA;
+        pub const mciGetErrorString = thismodule.mciGetErrorStringA;
     },
     .wide => struct {
-        pub const MCI_OPEN_PARMS = MCI_OPEN_PARMSW;
-        pub const MCI_INFO_PARMS = MCI_INFO_PARMSW;
-        pub const MCI_SYSINFO_PARMS = MCI_SYSINFO_PARMSW;
-        pub const MCI_SAVE_PARMS = MCI_SAVE_PARMSW;
-        pub const MCI_LOAD_PARMS = MCI_LOAD_PARMSW;
-        pub const MCI_VD_ESCAPE_PARMS = MCI_VD_ESCAPE_PARMSW;
-        pub const MCI_WAVE_OPEN_PARMS = MCI_WAVE_OPEN_PARMSW;
-        pub const MCI_ANIM_OPEN_PARMS = MCI_ANIM_OPEN_PARMSW;
-        pub const MCI_ANIM_WINDOW_PARMS = MCI_ANIM_WINDOW_PARMSW;
-        pub const MCI_OVLY_OPEN_PARMS = MCI_OVLY_OPEN_PARMSW;
-        pub const MCI_OVLY_WINDOW_PARMS = MCI_OVLY_WINDOW_PARMSW;
-        pub const MCI_OVLY_SAVE_PARMS = MCI_OVLY_SAVE_PARMSW;
-        pub const MCI_OVLY_LOAD_PARMS = MCI_OVLY_LOAD_PARMSW;
-        pub const mciSendCommand = mciSendCommandW;
-        pub const mciSendString = mciSendStringW;
-        pub const mciGetDeviceID = mciGetDeviceIDW;
-        pub const mciGetDeviceIDFromElementID = mciGetDeviceIDFromElementIDW;
-        pub const mciGetErrorString = mciGetErrorStringW;
+        pub const MCI_OPEN_PARMS = thismodule.MCI_OPEN_PARMSW;
+        pub const MCI_INFO_PARMS = thismodule.MCI_INFO_PARMSW;
+        pub const MCI_SYSINFO_PARMS = thismodule.MCI_SYSINFO_PARMSW;
+        pub const MCI_SAVE_PARMS = thismodule.MCI_SAVE_PARMSW;
+        pub const MCI_LOAD_PARMS = thismodule.MCI_LOAD_PARMSW;
+        pub const MCI_VD_ESCAPE_PARMS = thismodule.MCI_VD_ESCAPE_PARMSW;
+        pub const MCI_WAVE_OPEN_PARMS = thismodule.MCI_WAVE_OPEN_PARMSW;
+        pub const MCI_ANIM_OPEN_PARMS = thismodule.MCI_ANIM_OPEN_PARMSW;
+        pub const MCI_ANIM_WINDOW_PARMS = thismodule.MCI_ANIM_WINDOW_PARMSW;
+        pub const MCI_OVLY_OPEN_PARMS = thismodule.MCI_OVLY_OPEN_PARMSW;
+        pub const MCI_OVLY_WINDOW_PARMS = thismodule.MCI_OVLY_WINDOW_PARMSW;
+        pub const MCI_OVLY_SAVE_PARMS = thismodule.MCI_OVLY_SAVE_PARMSW;
+        pub const MCI_OVLY_LOAD_PARMS = thismodule.MCI_OVLY_LOAD_PARMSW;
+        pub const mciSendCommand = thismodule.mciSendCommandW;
+        pub const mciSendString = thismodule.mciSendStringW;
+        pub const mciGetDeviceID = thismodule.mciGetDeviceIDW;
+        pub const mciGetDeviceIDFromElementID = thismodule.mciGetDeviceIDFromElementIDW;
+        pub const mciGetErrorString = thismodule.mciGetErrorStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const MCI_OPEN_PARMS = *opaque{};
@@ -11683,29 +11660,29 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HDC = @import("../../graphics/gdi.zig").HDC;
-const ULARGE_INTEGER = @import("../../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const LPARAM = @import("../../foundation.zig").LPARAM;
+const APO_CONNECTION_PROPERTY = @import("../../system/remote_desktop.zig").APO_CONNECTION_PROPERTY;
+const BOOL = @import("../../foundation.zig").BOOL;
 const CHAR = @import("../../system/system_services.zig").CHAR;
-const IUnknown = @import("../../system/com.zig").IUnknown;
+const HANDLE = @import("../../foundation.zig").HANDLE;
+const HDC = @import("../../graphics/gdi.zig").HDC;
 const HRESULT = @import("../../foundation.zig").HRESULT;
-const TIMECODE_SAMPLE = @import("../../graphics/direct_show.zig").TIMECODE_SAMPLE;
+const HWND = @import("../../foundation.zig").HWND;
+const IPropertyStore = @import("../../system/properties_system.zig").IPropertyStore;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const KSTOPOLOGY_CONNECTION = @import("../../graphics/direct_show.zig").KSTOPOLOGY_CONNECTION;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
+const LPARAM = @import("../../foundation.zig").LPARAM;
+const LUID = @import("../../system/system_services.zig").LUID;
+const PROPERTYKEY = @import("../../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../../storage/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECT = @import("../../foundation.zig").RECT;
-const BOOL = @import("../../foundation.zig").BOOL;
-const HWND = @import("../../foundation.zig").HWND;
-const LUID = @import("../../system/system_services.zig").LUID;
-const WAVEFORMATEXTENSIBLE = @import("../../media/multimedia.zig").WAVEFORMATEXTENSIBLE;
-const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const APO_CONNECTION_PROPERTY = @import("../../system/remote_desktop.zig").APO_CONNECTION_PROPERTY;
-const PROPERTYKEY = @import("../../system/properties_system.zig").PROPERTYKEY;
-const HANDLE = @import("../../foundation.zig").HANDLE;
 const SIZE = @import("../../foundation.zig").SIZE;
+const TIMECODE_SAMPLE = @import("../../graphics/direct_show.zig").TIMECODE_SAMPLE;
+const ULARGE_INTEGER = @import("../../system/system_services.zig").ULARGE_INTEGER;
 const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
-const KSTOPOLOGY_CONNECTION = @import("../../graphics/direct_show.zig").KSTOPOLOGY_CONNECTION;
-const IPropertyStore = @import("../../system/properties_system.zig").IPropertyStore;
+const WAVEFORMATEXTENSIBLE = @import("../../media/multimedia.zig").WAVEFORMATEXTENSIBLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

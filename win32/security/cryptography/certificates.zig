@@ -16320,6 +16320,7 @@ pub extern "certpoleng" fn PstGetUserNameForCertificate(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -16333,26 +16334,26 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
+const BOOL = @import("../../foundation.zig").BOOL;
+const BSTR = @import("../../foundation.zig").BSTR;
+const CERT_CHAIN_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CHAIN_CONTEXT;
+const CERT_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CONTEXT;
+const CERT_EXTENSIONS = @import("../../security/cryptography/core.zig").CERT_EXTENSIONS;
+const CERT_SELECT_CRITERIA = @import("../../security/cryptography/core.zig").CERT_SELECT_CRITERIA;
+const CERT_USAGE_MATCH = @import("../../security/cryptography/core.zig").CERT_USAGE_MATCH;
+const CRYPT_ATTRIBUTES = @import("../../security/cryptography/core.zig").CRYPT_ATTRIBUTES;
+const CRYPTOAPI_BLOB = @import("../../security/cryptography/core.zig").CRYPTOAPI_BLOB;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const HWND = @import("../../foundation.zig").HWND;
 const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
+const LSA_TOKEN_INFORMATION_TYPE = @import("../../security/authentication/identity/core.zig").LSA_TOKEN_INFORMATION_TYPE;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 const PWSTR = @import("../../foundation.zig").PWSTR;
-const CERT_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CONTEXT;
-const IUnknown = @import("../../system/com.zig").IUnknown;
-const CERT_CHAIN_CONTEXT = @import("../../security/cryptography/core.zig").CERT_CHAIN_CONTEXT;
-const HRESULT = @import("../../foundation.zig").HRESULT;
-const CRYPT_ATTRIBUTES = @import("../../security/cryptography/core.zig").CRYPT_ATTRIBUTES;
-const BSTR = @import("../../foundation.zig").BSTR;
-const CERT_SELECT_CRITERIA = @import("../../security/cryptography/core.zig").CERT_SELECT_CRITERIA;
-const BOOL = @import("../../foundation.zig").BOOL;
-const HWND = @import("../../foundation.zig").HWND;
-const CERT_USAGE_MATCH = @import("../../security/cryptography/core.zig").CERT_USAGE_MATCH;
-const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
-const CERT_EXTENSIONS = @import("../../security/cryptography/core.zig").CERT_EXTENSIONS;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography/core.zig").CRYPTOAPI_BLOB;
-const UNICODE_STRING = @import("../../system/kernel.zig").UNICODE_STRING;
-const LSA_TOKEN_INFORMATION_TYPE = @import("../../security/authentication/identity/core.zig").LSA_TOKEN_INFORMATION_TYPE;
 const SecPkgContext_IssuerListInfoEx = @import("../../security/authentication/identity/core.zig").SecPkgContext_IssuerListInfoEx;
+const UNICODE_STRING = @import("../../system/kernel.zig").UNICODE_STRING;
+const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -2008,6 +2008,7 @@ pub extern "winbio" fn WinBioReleaseFocus(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2021,16 +2022,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const POINT = @import("../foundation.zig").POINT;
-const RECT = @import("../foundation.zig").RECT;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

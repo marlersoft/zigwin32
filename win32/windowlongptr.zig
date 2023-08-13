@@ -16,12 +16,12 @@ pub usingnamespace if (@sizeOf(usize) == 8) struct {
 
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const SetWindowLongPtr = SetWindowLongPtrA;
-        pub const GetWindowLongPtr = GetWindowLongPtrA;
+        pub const SetWindowLongPtr = @This().SetWindowLongPtrA;
+        pub const GetWindowLongPtr = @This().GetWindowLongPtrA;
     },
     .wide => struct {
-        pub const SetWindowLongPtr = SetWindowLongPtrW;
-        pub const GetWindowLongPtr = GetWindowLongPtrW;
+        pub const SetWindowLongPtr = @This().SetWindowLongPtrW;
+        pub const GetWindowLongPtr = @This().GetWindowLongPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SetWindowLongPtr = *opaque{};

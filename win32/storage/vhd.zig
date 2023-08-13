@@ -1254,6 +1254,7 @@ pub extern "VirtDisk" fn CompleteForkVirtualDisk(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1267,11 +1268,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     @setEvalBranchQuota(

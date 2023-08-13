@@ -7328,6 +7328,7 @@ pub extern "WMVCore" fn WMCreateWriterPushSink(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -7341,19 +7342,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IPin = @import("../graphics/direct_show.zig").IPin;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
+const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
-const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const BSTR = @import("../foundation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IAMVideoAccelerator = @import("../graphics/direct_show.zig").IAMVideoAccelerator;
+const IPin = @import("../graphics/direct_show.zig").IPin;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

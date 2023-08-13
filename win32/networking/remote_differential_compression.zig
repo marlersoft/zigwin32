@@ -1022,6 +1022,7 @@ pub const ISimilarity = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1034,10 +1035,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

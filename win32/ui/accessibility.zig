@@ -11567,22 +11567,23 @@ pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const SERIALKEYS = SERIALKEYSA;
-        pub const HIGHCONTRAST = HIGHCONTRASTA;
-        pub const SOUNDSENTRY = SOUNDSENTRYA;
-        pub const GetRoleText = GetRoleTextA;
-        pub const GetStateText = GetStateTextA;
-        pub const CreateStdAccessibleProxy = CreateStdAccessibleProxyA;
+        pub const SERIALKEYS = thismodule.SERIALKEYSA;
+        pub const HIGHCONTRAST = thismodule.HIGHCONTRASTA;
+        pub const SOUNDSENTRY = thismodule.SOUNDSENTRYA;
+        pub const GetRoleText = thismodule.GetRoleTextA;
+        pub const GetStateText = thismodule.GetStateTextA;
+        pub const CreateStdAccessibleProxy = thismodule.CreateStdAccessibleProxyA;
     },
     .wide => struct {
-        pub const SERIALKEYS = SERIALKEYSW;
-        pub const HIGHCONTRAST = HIGHCONTRASTW;
-        pub const SOUNDSENTRY = SOUNDSENTRYW;
-        pub const GetRoleText = GetRoleTextW;
-        pub const GetStateText = GetStateTextW;
-        pub const CreateStdAccessibleProxy = CreateStdAccessibleProxyW;
+        pub const SERIALKEYS = thismodule.SERIALKEYSW;
+        pub const HIGHCONTRAST = thismodule.HIGHCONTRASTW;
+        pub const SOUNDSENTRY = thismodule.SOUNDSENTRYW;
+        pub const GetRoleText = thismodule.GetRoleTextW;
+        pub const GetStateText = thismodule.GetStateTextW;
+        pub const CreateStdAccessibleProxy = thismodule.CreateStdAccessibleProxyW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SERIALKEYS = *opaque{};
@@ -11604,24 +11605,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const BSTR = @import("../foundation.zig").BSTR;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
-const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
+const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

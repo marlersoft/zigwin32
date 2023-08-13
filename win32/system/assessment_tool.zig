@@ -382,6 +382,7 @@ pub const IQueryOEMWinSATCustomization = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -394,16 +395,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
+const BSTR = @import("../foundation.zig").BSTR;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IAccessible = @import("../ui/accessibility.zig").IAccessible;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IAccessible = @import("../ui/accessibility.zig").IAccessible;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

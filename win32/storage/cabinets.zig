@@ -16,15 +16,6 @@ pub const INCLUDED_FDI = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FDISPILLFILE = extern struct {
-    ach: [2]CHAR,
-    cbFile: i32,
-};
-
-}, else => struct { } };
 
 pub const ERF = extern struct {
     erfOper: i32,
@@ -319,16 +310,17 @@ pub const FDICREATE_CPU_TYPE = enum(u32) {
 pub const cpu80286 = FDICREATE_CPU_TYPE.@"286";
 pub const cpu80386 = FDICREATE_CPU_TYPE.@"386";
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const FDISPILLFILE = packed struct {
-    ach: [2]CHAR,
-    cbFile: i32,
+pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ach: [2]CHAR,
+        cbFile: i32,
+    },
+    .X86 => packed struct {
+        ach: [2]CHAR,
+        cbFile: i32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -423,6 +415,7 @@ pub extern "Cabinet" fn FDITruncateCabinet(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -435,9 +428,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const PSTR = @import("../foundation.zig").PSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

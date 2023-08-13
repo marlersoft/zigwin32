@@ -1451,6 +1451,7 @@ pub extern "dxva2" fn RestoreMonitorFactoryDefaults(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1464,20 +1465,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const COORD = @import("../system/console.zig").COORD;
-const CHAR_INFO = @import("../system/console.zig").CHAR_INFO;
 const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const HANDLE = @import("../foundation.zig").HANDLE;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const CHAR_INFO = @import("../system/console.zig").CHAR_INFO;
+const COORD = @import("../system/console.zig").COORD;
 const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
 const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LUID = @import("../system/system_services.zig").LUID;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -615,6 +615,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -627,12 +628,12 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const IInspectable = @import("system/win_rt.zig").IInspectable;
-const HSTRING = @import("system/win_rt.zig").HSTRING;
-const PWSTR = @import("foundation.zig").PWSTR;
-const IUnknown = @import("system/com.zig").IUnknown;
 const BOOL = @import("foundation.zig").BOOL;
 const HRESULT = @import("foundation.zig").HRESULT;
+const HSTRING = @import("system/win_rt.zig").HSTRING;
+const IInspectable = @import("system/win_rt.zig").IInspectable;
+const IUnknown = @import("system/com.zig").IUnknown;
+const PWSTR = @import("foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

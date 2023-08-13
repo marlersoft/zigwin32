@@ -140,28 +140,29 @@ pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (9)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const GetCommandLine = GetCommandLineA;
-        pub const FreeEnvironmentStrings = FreeEnvironmentStringsA;
-        pub const GetEnvironmentVariable = GetEnvironmentVariableA;
-        pub const SetEnvironmentVariable = SetEnvironmentVariableA;
-        pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsA;
-        pub const SetCurrentDirectory = SetCurrentDirectoryA;
-        pub const GetCurrentDirectory = GetCurrentDirectoryA;
-        pub const NeedCurrentDirectoryForExePath = NeedCurrentDirectoryForExePathA;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
+        pub const GetCommandLine = thismodule.GetCommandLineA;
+        pub const FreeEnvironmentStrings = thismodule.FreeEnvironmentStringsA;
+        pub const GetEnvironmentVariable = thismodule.GetEnvironmentVariableA;
+        pub const SetEnvironmentVariable = thismodule.SetEnvironmentVariableA;
+        pub const ExpandEnvironmentStrings = thismodule.ExpandEnvironmentStringsA;
+        pub const SetCurrentDirectory = thismodule.SetCurrentDirectoryA;
+        pub const GetCurrentDirectory = thismodule.GetCurrentDirectoryA;
+        pub const NeedCurrentDirectoryForExePath = thismodule.NeedCurrentDirectoryForExePathA;
+        pub const ExpandEnvironmentStringsForUser = thismodule.ExpandEnvironmentStringsForUserA;
     },
     .wide => struct {
-        pub const GetCommandLine = GetCommandLineW;
-        pub const FreeEnvironmentStrings = FreeEnvironmentStringsW;
-        pub const GetEnvironmentVariable = GetEnvironmentVariableW;
-        pub const SetEnvironmentVariable = SetEnvironmentVariableW;
-        pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsW;
-        pub const SetCurrentDirectory = SetCurrentDirectoryW;
-        pub const GetCurrentDirectory = GetCurrentDirectoryW;
-        pub const NeedCurrentDirectoryForExePath = NeedCurrentDirectoryForExePathW;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
+        pub const GetCommandLine = thismodule.GetCommandLineW;
+        pub const FreeEnvironmentStrings = thismodule.FreeEnvironmentStringsW;
+        pub const GetEnvironmentVariable = thismodule.GetEnvironmentVariableW;
+        pub const SetEnvironmentVariable = thismodule.SetEnvironmentVariableW;
+        pub const ExpandEnvironmentStrings = thismodule.ExpandEnvironmentStringsW;
+        pub const SetCurrentDirectory = thismodule.SetCurrentDirectoryW;
+        pub const GetCurrentDirectory = thismodule.GetCurrentDirectoryW;
+        pub const NeedCurrentDirectoryForExePath = thismodule.NeedCurrentDirectoryForExePathW;
+        pub const ExpandEnvironmentStringsForUser = thismodule.ExpandEnvironmentStringsForUserW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const GetCommandLine = *opaque{};
@@ -188,10 +189,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

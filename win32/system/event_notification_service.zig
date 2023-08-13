@@ -288,12 +288,13 @@ pub extern "SensApi" fn IsNetworkAlive(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const IsDestinationReachable = IsDestinationReachableA;
+        pub const IsDestinationReachable = thismodule.IsDestinationReachableA;
     },
     .wide => struct {
-        pub const IsDestinationReachable = IsDestinationReachableW;
+        pub const IsDestinationReachable = thismodule.IsDestinationReachableW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const IsDestinationReachable = *opaque{};
@@ -304,12 +305,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const BOOL = @import("../foundation.zig").BOOL;
-const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

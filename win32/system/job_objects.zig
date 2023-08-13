@@ -300,14 +300,15 @@ pub extern "KERNEL32" fn OpenJobObjectA(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const CreateJobObject = CreateJobObjectA;
-        pub const OpenJobObject = OpenJobObjectA;
+        pub const CreateJobObject = thismodule.CreateJobObjectA;
+        pub const OpenJobObject = thismodule.OpenJobObjectA;
     },
     .wide => struct {
-        pub const CreateJobObject = CreateJobObjectW;
-        pub const OpenJobObject = OpenJobObjectW;
+        pub const CreateJobObject = thismodule.CreateJobObjectW;
+        pub const OpenJobObject = thismodule.OpenJobObjectW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateJobObject = *opaque{};
@@ -320,13 +321,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../foundation.zig").PWSTR;
-const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = @import("../system/system_services.zig").JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const JOBOBJECTINFOCLASS = @import("../system/system_services.zig").JOBOBJECTINFOCLASS;
 const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = @import("../system/system_services.zig").JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
+const JOBOBJECTINFOCLASS = @import("../system/system_services.zig").JOBOBJECTINFOCLASS;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

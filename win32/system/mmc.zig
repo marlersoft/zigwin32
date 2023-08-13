@@ -4428,6 +4428,7 @@ pub const IResultData2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4441,22 +4442,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IEnumString = @import("../system/com.zig").IEnumString;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IDataObject = @import("../system/com.zig").IDataObject;
-const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDataObject = @import("../system/com.zig").IDataObject;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

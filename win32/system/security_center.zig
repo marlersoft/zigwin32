@@ -348,6 +348,7 @@ pub extern "WSCAPI" fn WscGetAntiMalwareUri(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -360,13 +361,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

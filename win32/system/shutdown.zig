@@ -411,18 +411,19 @@ pub extern "ADVAPI32" fn CheckForHiberboot(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const InitiateSystemShutdown = InitiateSystemShutdownA;
-        pub const AbortSystemShutdown = AbortSystemShutdownA;
-        pub const InitiateSystemShutdownEx = InitiateSystemShutdownExA;
-        pub const InitiateShutdown = InitiateShutdownA;
+        pub const InitiateSystemShutdown = thismodule.InitiateSystemShutdownA;
+        pub const AbortSystemShutdown = thismodule.AbortSystemShutdownA;
+        pub const InitiateSystemShutdownEx = thismodule.InitiateSystemShutdownExA;
+        pub const InitiateShutdown = thismodule.InitiateShutdownA;
     },
     .wide => struct {
-        pub const InitiateSystemShutdown = InitiateSystemShutdownW;
-        pub const AbortSystemShutdown = AbortSystemShutdownW;
-        pub const InitiateSystemShutdownEx = InitiateSystemShutdownExW;
-        pub const InitiateShutdown = InitiateShutdownW;
+        pub const InitiateSystemShutdown = thismodule.InitiateSystemShutdownW;
+        pub const AbortSystemShutdown = thismodule.AbortSystemShutdownW;
+        pub const InitiateSystemShutdownEx = thismodule.InitiateSystemShutdownExW;
+        pub const InitiateShutdown = thismodule.InitiateShutdownW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const InitiateSystemShutdown = *opaque{};
@@ -439,11 +440,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HWND = @import("../foundation.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

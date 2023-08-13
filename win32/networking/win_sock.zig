@@ -817,32 +817,7 @@ pub const LM_HB2_FileServer = @as(i32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (326)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const servent = extern struct {
-    s_name: ?PSTR,
-    s_aliases: ?*?*i8,
-    s_proto: ?PSTR,
-    s_port: i16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WSAData = extern struct {
-    wVersion: u16,
-    wHighVersion: u16,
-    iMaxSockets: u16,
-    iMaxUdpDg: u16,
-    lpVendorInfo: ?PSTR,
-    szDescription: [257]CHAR,
-    szSystemStatus: [129]CHAR,
-};
-
-}, else => struct { } };
 
 pub const RIO_BUFFERID_t = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -856,16 +831,6 @@ pub const RIO_RQ_t = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ATM_PVC_PARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    PvcConnectionId: ATM_CONNECTION_ID,
-    PvcQos: QOS,
-};
-
-}, else => struct { } };
 
 // TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
 pub const HWSAEVENT = *opaque{};
@@ -4048,43 +4013,54 @@ pub const LPWSCWRITENAMESPACEORDER = fn(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const servent = extern struct {
-    s_name: ?PSTR,
-    s_aliases: ?*?*i8,
-    s_port: i16,
-    s_proto: ?PSTR,
+
+
+pub const servent = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        s_name: ?PSTR,
+        s_aliases: ?*?*i8,
+        s_proto: ?PSTR,
+        s_port: i16,
+    },
+    .X86 => extern struct {
+        s_name: ?PSTR,
+        s_aliases: ?*?*i8,
+        s_port: i16,
+        s_proto: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WSAData = extern struct {
-    wVersion: u16,
-    wHighVersion: u16,
-    szDescription: [257]CHAR,
-    szSystemStatus: [129]CHAR,
-    iMaxSockets: u16,
-    iMaxUdpDg: u16,
-    lpVendorInfo: ?PSTR,
+pub const WSAData = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        wVersion: u16,
+        wHighVersion: u16,
+        iMaxSockets: u16,
+        iMaxUdpDg: u16,
+        lpVendorInfo: ?PSTR,
+        szDescription: [257]CHAR,
+        szSystemStatus: [129]CHAR,
+    },
+    .X86 => extern struct {
+        wVersion: u16,
+        wHighVersion: u16,
+        szDescription: [257]CHAR,
+        szSystemStatus: [129]CHAR,
+        iMaxSockets: u16,
+        iMaxUdpDg: u16,
+        lpVendorInfo: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ATM_PVC_PARAMS = extern struct {
-    PvcConnectionId: ATM_CONNECTION_ID,
-    PvcQos: QOS,
+pub const ATM_PVC_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        PvcConnectionId: ATM_CONNECTION_ID,
+        PvcQos: QOS,
+    },
+    .X86 => extern struct {
+        PvcConnectionId: ATM_CONNECTION_ID,
+        PvcQos: QOS,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (202)
@@ -5815,106 +5791,107 @@ pub extern "WS2_32" fn WSCWriteNameSpaceOrder(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (48)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const addrinfoex = addrinfoexA;
-        pub const addrinfoex2 = addrinfoex2A;
-        pub const WSAPROTOCOL_INFO = WSAPROTOCOL_INFOA;
-        pub const WSAQUERYSET = WSAQUERYSETA;
-        pub const WSAQUERYSET2 = WSAQUERYSET2A;
-        pub const WSANSCLASSINFO = WSANSCLASSINFOA;
-        pub const WSASERVICECLASSINFO = WSASERVICECLASSINFOA;
-        pub const WSANAMESPACE_INFO = WSANAMESPACE_INFOA;
-        pub const WSANAMESPACE_INFOEX = WSANAMESPACE_INFOEXA;
-        pub const NS_INFO = NS_INFOA;
-        pub const SERVICE_TYPE_VALUE_ABS = SERVICE_TYPE_VALUE_ABSA;
-        pub const SERVICE_TYPE_INFO_ABS = SERVICE_TYPE_INFO_ABSA;
-        pub const SERVICE_INFO = SERVICE_INFOA;
-        pub const NS_SERVICE_INFO = NS_SERVICE_INFOA;
-        pub const PROTOCOL_INFO = PROTOCOL_INFOA;
-        pub const NETRESOURCE2 = NETRESOURCE2A;
-        pub const WSAConnectByName = WSAConnectByNameA;
-        pub const WSADuplicateSocket = WSADuplicateSocketA;
-        pub const WSAEnumProtocols = WSAEnumProtocolsA;
-        pub const WSASocket = WSASocketA;
-        pub const WSAAddressToString = WSAAddressToStringA;
-        pub const WSAStringToAddress = WSAStringToAddressA;
-        pub const WSALookupServiceBegin = WSALookupServiceBeginA;
-        pub const WSALookupServiceNext = WSALookupServiceNextA;
-        pub const WSAInstallServiceClass = WSAInstallServiceClassA;
-        pub const WSAGetServiceClassInfo = WSAGetServiceClassInfoA;
-        pub const WSAEnumNameSpaceProviders = WSAEnumNameSpaceProvidersA;
-        pub const WSAEnumNameSpaceProvidersEx = WSAEnumNameSpaceProvidersExA;
-        pub const WSAGetServiceClassNameByClassId = WSAGetServiceClassNameByClassIdA;
-        pub const WSASetService = WSASetServiceA;
-        pub const RtlIpv4AddressToString = RtlIpv4AddressToStringA;
-        pub const RtlIpv4AddressToStringEx = RtlIpv4AddressToStringExA;
-        pub const RtlIpv4StringToAddress = RtlIpv4StringToAddressA;
-        pub const RtlIpv4StringToAddressEx = RtlIpv4StringToAddressExA;
-        pub const RtlIpv6AddressToString = RtlIpv6AddressToStringA;
-        pub const RtlIpv6AddressToStringEx = RtlIpv6AddressToStringExA;
-        pub const RtlIpv6StringToAddress = RtlIpv6StringToAddressA;
-        pub const RtlIpv6StringToAddressEx = RtlIpv6StringToAddressExA;
-        pub const RtlEthernetAddressToString = RtlEthernetAddressToStringA;
-        pub const RtlEthernetStringToAddress = RtlEthernetStringToAddressA;
-        pub const EnumProtocols = EnumProtocolsA;
-        pub const GetAddressByName = GetAddressByNameA;
-        pub const GetTypeByName = GetTypeByNameA;
-        pub const GetNameByType = GetNameByTypeA;
-        pub const SetService = SetServiceA;
-        pub const GetService = GetServiceA;
-        pub const GetAddrInfoEx = GetAddrInfoExA;
-        pub const SetAddrInfoEx = SetAddrInfoExA;
+        pub const addrinfoex = thismodule.addrinfoexA;
+        pub const addrinfoex2 = thismodule.addrinfoex2A;
+        pub const WSAPROTOCOL_INFO = thismodule.WSAPROTOCOL_INFOA;
+        pub const WSAQUERYSET = thismodule.WSAQUERYSETA;
+        pub const WSAQUERYSET2 = thismodule.WSAQUERYSET2A;
+        pub const WSANSCLASSINFO = thismodule.WSANSCLASSINFOA;
+        pub const WSASERVICECLASSINFO = thismodule.WSASERVICECLASSINFOA;
+        pub const WSANAMESPACE_INFO = thismodule.WSANAMESPACE_INFOA;
+        pub const WSANAMESPACE_INFOEX = thismodule.WSANAMESPACE_INFOEXA;
+        pub const NS_INFO = thismodule.NS_INFOA;
+        pub const SERVICE_TYPE_VALUE_ABS = thismodule.SERVICE_TYPE_VALUE_ABSA;
+        pub const SERVICE_TYPE_INFO_ABS = thismodule.SERVICE_TYPE_INFO_ABSA;
+        pub const SERVICE_INFO = thismodule.SERVICE_INFOA;
+        pub const NS_SERVICE_INFO = thismodule.NS_SERVICE_INFOA;
+        pub const PROTOCOL_INFO = thismodule.PROTOCOL_INFOA;
+        pub const NETRESOURCE2 = thismodule.NETRESOURCE2A;
+        pub const WSAConnectByName = thismodule.WSAConnectByNameA;
+        pub const WSADuplicateSocket = thismodule.WSADuplicateSocketA;
+        pub const WSAEnumProtocols = thismodule.WSAEnumProtocolsA;
+        pub const WSASocket = thismodule.WSASocketA;
+        pub const WSAAddressToString = thismodule.WSAAddressToStringA;
+        pub const WSAStringToAddress = thismodule.WSAStringToAddressA;
+        pub const WSALookupServiceBegin = thismodule.WSALookupServiceBeginA;
+        pub const WSALookupServiceNext = thismodule.WSALookupServiceNextA;
+        pub const WSAInstallServiceClass = thismodule.WSAInstallServiceClassA;
+        pub const WSAGetServiceClassInfo = thismodule.WSAGetServiceClassInfoA;
+        pub const WSAEnumNameSpaceProviders = thismodule.WSAEnumNameSpaceProvidersA;
+        pub const WSAEnumNameSpaceProvidersEx = thismodule.WSAEnumNameSpaceProvidersExA;
+        pub const WSAGetServiceClassNameByClassId = thismodule.WSAGetServiceClassNameByClassIdA;
+        pub const WSASetService = thismodule.WSASetServiceA;
+        pub const RtlIpv4AddressToString = thismodule.RtlIpv4AddressToStringA;
+        pub const RtlIpv4AddressToStringEx = thismodule.RtlIpv4AddressToStringExA;
+        pub const RtlIpv4StringToAddress = thismodule.RtlIpv4StringToAddressA;
+        pub const RtlIpv4StringToAddressEx = thismodule.RtlIpv4StringToAddressExA;
+        pub const RtlIpv6AddressToString = thismodule.RtlIpv6AddressToStringA;
+        pub const RtlIpv6AddressToStringEx = thismodule.RtlIpv6AddressToStringExA;
+        pub const RtlIpv6StringToAddress = thismodule.RtlIpv6StringToAddressA;
+        pub const RtlIpv6StringToAddressEx = thismodule.RtlIpv6StringToAddressExA;
+        pub const RtlEthernetAddressToString = thismodule.RtlEthernetAddressToStringA;
+        pub const RtlEthernetStringToAddress = thismodule.RtlEthernetStringToAddressA;
+        pub const EnumProtocols = thismodule.EnumProtocolsA;
+        pub const GetAddressByName = thismodule.GetAddressByNameA;
+        pub const GetTypeByName = thismodule.GetTypeByNameA;
+        pub const GetNameByType = thismodule.GetNameByTypeA;
+        pub const SetService = thismodule.SetServiceA;
+        pub const GetService = thismodule.GetServiceA;
+        pub const GetAddrInfoEx = thismodule.GetAddrInfoExA;
+        pub const SetAddrInfoEx = thismodule.SetAddrInfoExA;
     },
     .wide => struct {
-        pub const addrinfoex = addrinfoexW;
-        pub const addrinfoex2 = addrinfoex2W;
-        pub const WSAPROTOCOL_INFO = WSAPROTOCOL_INFOW;
-        pub const WSAQUERYSET = WSAQUERYSETW;
-        pub const WSAQUERYSET2 = WSAQUERYSET2W;
-        pub const WSANSCLASSINFO = WSANSCLASSINFOW;
-        pub const WSASERVICECLASSINFO = WSASERVICECLASSINFOW;
-        pub const WSANAMESPACE_INFO = WSANAMESPACE_INFOW;
-        pub const WSANAMESPACE_INFOEX = WSANAMESPACE_INFOEXW;
-        pub const NS_INFO = NS_INFOW;
-        pub const SERVICE_TYPE_VALUE_ABS = SERVICE_TYPE_VALUE_ABSW;
-        pub const SERVICE_TYPE_INFO_ABS = SERVICE_TYPE_INFO_ABSW;
-        pub const SERVICE_INFO = SERVICE_INFOW;
-        pub const NS_SERVICE_INFO = NS_SERVICE_INFOW;
-        pub const PROTOCOL_INFO = PROTOCOL_INFOW;
-        pub const NETRESOURCE2 = NETRESOURCE2W;
-        pub const WSAConnectByName = WSAConnectByNameW;
-        pub const WSADuplicateSocket = WSADuplicateSocketW;
-        pub const WSAEnumProtocols = WSAEnumProtocolsW;
-        pub const WSASocket = WSASocketW;
-        pub const WSAAddressToString = WSAAddressToStringW;
-        pub const WSAStringToAddress = WSAStringToAddressW;
-        pub const WSALookupServiceBegin = WSALookupServiceBeginW;
-        pub const WSALookupServiceNext = WSALookupServiceNextW;
-        pub const WSAInstallServiceClass = WSAInstallServiceClassW;
-        pub const WSAGetServiceClassInfo = WSAGetServiceClassInfoW;
-        pub const WSAEnumNameSpaceProviders = WSAEnumNameSpaceProvidersW;
-        pub const WSAEnumNameSpaceProvidersEx = WSAEnumNameSpaceProvidersExW;
-        pub const WSAGetServiceClassNameByClassId = WSAGetServiceClassNameByClassIdW;
-        pub const WSASetService = WSASetServiceW;
-        pub const RtlIpv4AddressToString = RtlIpv4AddressToStringW;
-        pub const RtlIpv4AddressToStringEx = RtlIpv4AddressToStringExW;
-        pub const RtlIpv4StringToAddress = RtlIpv4StringToAddressW;
-        pub const RtlIpv4StringToAddressEx = RtlIpv4StringToAddressExW;
-        pub const RtlIpv6AddressToString = RtlIpv6AddressToStringW;
-        pub const RtlIpv6AddressToStringEx = RtlIpv6AddressToStringExW;
-        pub const RtlIpv6StringToAddress = RtlIpv6StringToAddressW;
-        pub const RtlIpv6StringToAddressEx = RtlIpv6StringToAddressExW;
-        pub const RtlEthernetAddressToString = RtlEthernetAddressToStringW;
-        pub const RtlEthernetStringToAddress = RtlEthernetStringToAddressW;
-        pub const EnumProtocols = EnumProtocolsW;
-        pub const GetAddressByName = GetAddressByNameW;
-        pub const GetTypeByName = GetTypeByNameW;
-        pub const GetNameByType = GetNameByTypeW;
-        pub const SetService = SetServiceW;
-        pub const GetService = GetServiceW;
-        pub const GetAddrInfoEx = GetAddrInfoExW;
-        pub const SetAddrInfoEx = SetAddrInfoExW;
+        pub const addrinfoex = thismodule.addrinfoexW;
+        pub const addrinfoex2 = thismodule.addrinfoex2W;
+        pub const WSAPROTOCOL_INFO = thismodule.WSAPROTOCOL_INFOW;
+        pub const WSAQUERYSET = thismodule.WSAQUERYSETW;
+        pub const WSAQUERYSET2 = thismodule.WSAQUERYSET2W;
+        pub const WSANSCLASSINFO = thismodule.WSANSCLASSINFOW;
+        pub const WSASERVICECLASSINFO = thismodule.WSASERVICECLASSINFOW;
+        pub const WSANAMESPACE_INFO = thismodule.WSANAMESPACE_INFOW;
+        pub const WSANAMESPACE_INFOEX = thismodule.WSANAMESPACE_INFOEXW;
+        pub const NS_INFO = thismodule.NS_INFOW;
+        pub const SERVICE_TYPE_VALUE_ABS = thismodule.SERVICE_TYPE_VALUE_ABSW;
+        pub const SERVICE_TYPE_INFO_ABS = thismodule.SERVICE_TYPE_INFO_ABSW;
+        pub const SERVICE_INFO = thismodule.SERVICE_INFOW;
+        pub const NS_SERVICE_INFO = thismodule.NS_SERVICE_INFOW;
+        pub const PROTOCOL_INFO = thismodule.PROTOCOL_INFOW;
+        pub const NETRESOURCE2 = thismodule.NETRESOURCE2W;
+        pub const WSAConnectByName = thismodule.WSAConnectByNameW;
+        pub const WSADuplicateSocket = thismodule.WSADuplicateSocketW;
+        pub const WSAEnumProtocols = thismodule.WSAEnumProtocolsW;
+        pub const WSASocket = thismodule.WSASocketW;
+        pub const WSAAddressToString = thismodule.WSAAddressToStringW;
+        pub const WSAStringToAddress = thismodule.WSAStringToAddressW;
+        pub const WSALookupServiceBegin = thismodule.WSALookupServiceBeginW;
+        pub const WSALookupServiceNext = thismodule.WSALookupServiceNextW;
+        pub const WSAInstallServiceClass = thismodule.WSAInstallServiceClassW;
+        pub const WSAGetServiceClassInfo = thismodule.WSAGetServiceClassInfoW;
+        pub const WSAEnumNameSpaceProviders = thismodule.WSAEnumNameSpaceProvidersW;
+        pub const WSAEnumNameSpaceProvidersEx = thismodule.WSAEnumNameSpaceProvidersExW;
+        pub const WSAGetServiceClassNameByClassId = thismodule.WSAGetServiceClassNameByClassIdW;
+        pub const WSASetService = thismodule.WSASetServiceW;
+        pub const RtlIpv4AddressToString = thismodule.RtlIpv4AddressToStringW;
+        pub const RtlIpv4AddressToStringEx = thismodule.RtlIpv4AddressToStringExW;
+        pub const RtlIpv4StringToAddress = thismodule.RtlIpv4StringToAddressW;
+        pub const RtlIpv4StringToAddressEx = thismodule.RtlIpv4StringToAddressExW;
+        pub const RtlIpv6AddressToString = thismodule.RtlIpv6AddressToStringW;
+        pub const RtlIpv6AddressToStringEx = thismodule.RtlIpv6AddressToStringExW;
+        pub const RtlIpv6StringToAddress = thismodule.RtlIpv6StringToAddressW;
+        pub const RtlIpv6StringToAddressEx = thismodule.RtlIpv6StringToAddressExW;
+        pub const RtlEthernetAddressToString = thismodule.RtlEthernetAddressToStringW;
+        pub const RtlEthernetStringToAddress = thismodule.RtlEthernetStringToAddressW;
+        pub const EnumProtocols = thismodule.EnumProtocolsW;
+        pub const GetAddressByName = thismodule.GetAddressByNameW;
+        pub const GetTypeByName = thismodule.GetTypeByNameW;
+        pub const GetNameByType = thismodule.GetNameByTypeW;
+        pub const SetService = thismodule.SetServiceW;
+        pub const GetService = thismodule.GetServiceW;
+        pub const GetAddrInfoEx = thismodule.GetAddrInfoExW;
+        pub const SetAddrInfoEx = thismodule.SetAddrInfoExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const addrinfoex = *opaque{};
@@ -6021,22 +5998,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const QOS = @import("../network_management/qo_s.zig").QOS;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const QOS = @import("../network_management/qo_s.zig").QOS;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

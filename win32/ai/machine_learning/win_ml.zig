@@ -1091,6 +1091,7 @@ pub extern "windows.ai.machinelearning" fn MLCreateOperatorRegistry(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1103,13 +1104,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../../foundation.zig").PWSTR;
-const IUnknown = @import("../../system/com.zig").IUnknown;
+const BOOL = @import("../../foundation.zig").BOOL;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
-const PSTR = @import("../../foundation.zig").PSTR;
-const BOOL = @import("../../foundation.zig").BOOL;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
+const IUnknown = @import("../../system/com.zig").IUnknown;
+const PSTR = @import("../../foundation.zig").PSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

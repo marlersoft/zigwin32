@@ -858,6 +858,7 @@ pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -870,12 +871,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../foundation.zig").BOOL;
 const FARPROC = @import("../foundation.zig").FARPROC;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const BOOL = @import("../foundation.zig").BOOL;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

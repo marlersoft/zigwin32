@@ -1073,777 +1073,63 @@ pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
 pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
 pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const INFCONTEXT = extern struct {
-    Inf: ?*c_void,
-    CurrentInf: ?*c_void,
-    Section: u32,
-    Line: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INF_INFORMATION = extern struct {
-    InfStyle: SP_INF_STYLE,
-    InfCount: u32,
-    VersionData: [1]u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: extern union {
-        Reserved: u16,
-        Flags: u16,
-    },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-    ProductType: u8,
-    SuiteMask: u16,
-    BuildNumber: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: extern union {
-        Reserved: u16,
-        Flags: u16,
-    },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Reserved: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]CHAR,
-    OriginalCatalogName: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]u16,
-    OriginalCatalogName: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILEPATHS_A = extern struct {
-    Target: ?[*:0]const u8,
-    Source: ?[*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILEPATHS_W = extern struct {
-    Target: ?[*:0]const u16,
-    Source: ?[*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILEPATHS_SIGNERINFO_A = extern struct {
-    Target: ?[*:0]const u8,
-    Source: ?[*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: ?[*:0]const u8,
-    Version: ?[*:0]const u8,
-    CatalogFile: ?[*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILEPATHS_SIGNERINFO_W = extern struct {
-    Target: ?[*:0]const u16,
-    Source: ?[*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: ?[*:0]const u16,
-    Version: ?[*:0]const u16,
-    CatalogFile: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SOURCE_MEDIA_A = extern struct {
-    Reserved: ?[*:0]const u8,
-    Tagfile: ?[*:0]const u8,
-    Description: ?[*:0]const u8,
-    SourcePath: ?[*:0]const u8,
-    SourceFile: ?[*:0]const u8,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SOURCE_MEDIA_W = extern struct {
-    Reserved: ?[*:0]const u16,
-    Tagfile: ?[*:0]const u16,
-    Description: ?[*:0]const u16,
-    SourcePath: ?[*:0]const u16,
-    SourceFile: ?[*:0]const u16,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CABINET_INFO_A = extern struct {
-    CabinetPath: ?[*:0]const u8,
-    CabinetFile: ?[*:0]const u8,
-    DiskName: ?[*:0]const u8,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CABINET_INFO_W = extern struct {
-    CabinetPath: ?[*:0]const u16,
-    CabinetFile: ?[*:0]const u16,
-    DiskName: ?[*:0]const u16,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILE_IN_CABINET_INFO_A = extern struct {
-    NameInCabinet: ?[*:0]const u8,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FILE_IN_CABINET_INFO_W = extern struct {
-    NameInCabinet: ?[*:0]const u16,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
-    cbSize: u32,
-    FileName: ?[*:0]const u8,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
-    cbSize: u32,
-    FileName: ?[*:0]const u16,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_FILE_COPY_PARAMS_A = extern struct {
-    cbSize: u32,
-    QueueHandle: ?*c_void,
-    SourceRootPath: ?[*:0]const u8,
-    SourcePath: ?[*:0]const u8,
-    SourceFilename: ?[*:0]const u8,
-    SourceDescription: ?[*:0]const u8,
-    SourceTagfile: ?[*:0]const u8,
-    TargetDirectory: ?[*:0]const u8,
-    TargetFilename: ?[*:0]const u8,
-    CopyStyle: u32,
-    LayoutInf: ?*c_void,
-    SecurityDescriptor: ?[*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_FILE_COPY_PARAMS_W = extern struct {
-    cbSize: u32,
-    QueueHandle: ?*c_void,
-    SourceRootPath: ?[*:0]const u16,
-    SourcePath: ?[*:0]const u16,
-    SourceFilename: ?[*:0]const u16,
-    SourceDescription: ?[*:0]const u16,
-    SourceTagfile: ?[*:0]const u16,
-    TargetDirectory: ?[*:0]const u16,
-    TargetFilename: ?[*:0]const u16,
-    CopyStyle: u32,
-    LayoutInf: ?*c_void,
-    SecurityDescriptor: ?[*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVINFO_DATA = extern struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    DevInst: u32,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVICE_INTERFACE_DATA = extern struct {
-    cbSize: u32,
-    InterfaceClassGuid: Guid,
-    Flags: u32,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
-    cbSize: u32,
-    DevicePath: [1]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
-    cbSize: u32,
-    DevicePath: [1]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: ?HANDLE,
-    RemoteMachineName: [263]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: ?HANDLE,
-    RemoteMachineName: [263]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_A = extern struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: ?HWND,
-    InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: ?*c_void,
-    FileQueue: ?*c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_W = extern struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: ?HWND,
-    InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: ?*c_void,
-    FileQueue: ?*c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_CLASSINSTALL_HEADER = extern struct {
-    cbSize: u32,
-    InstallFunction: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_ENABLECLASS_PARAMS = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ClassGuid: Guid,
-    EnableMessage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_PROPCHANGE_PARAMS = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    StateChange: u32,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_REMOVEDEVICE_PARAMS = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]u16,
-    Instructions: [256]u16,
-    ListLabel: [30]u16,
-    SubTitle: [256]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DETECTDEVICE_PARAMS = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
-    ProgressNotifyParam: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INSTALLWIZARD_DATA = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]?HPROPSHEETPAGE,
-    NumDynamicPages: u32,
-    DynamicPageFlags: u32,
-    PrivateFlags: u32,
-    PrivateData: LPARAM,
-    hwndWizardDlg: ?HWND,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]?HPROPSHEETPAGE,
-    NumDynamicPages: u32,
-    hwndWizardDlg: ?HWND,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]u16,
-    HtmlTroubleShooter: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DATA_V2_A = extern struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DATA_V2_W = extern struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DATA_V1_A = extern struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DATA_V1_W = extern struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]CHAR,
-    InfFileName: [260]CHAR,
-    DrvDescription: [256]CHAR,
-    HardwareID: [1]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]u16,
-    InfFileName: [260]u16,
-    DrvDescription: [256]u16,
-    HardwareID: [1]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_DRVINSTALL_PARAMS = extern struct {
-    cbSize: u32,
-    Rank: u32,
-    Flags: u32,
-    PrivateData: usize,
-    Reserved: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const COINSTALLER_CONTEXT_DATA = extern struct {
-    PostProcessing: BOOL,
-    InstallResult: u32,
-    PrivateData: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_CLASSIMAGELIST_DATA = extern struct {
-    cbSize: u32,
-    ImageList: ?HIMAGELIST,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
-    cbSize: u32,
-    PageRequested: u32,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_W = extern struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-    SignerScore: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-    SignerScore: u32,
-};
-
-}, else => struct { } };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 pub const HCMNOTIFICATION = *opaque{};
 
@@ -2419,778 +1705,1028 @@ pub const PCM_NOTIFY_CALLBACK = fn(
     EventDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const INFCONTEXT = packed struct {
-    Inf: ?*c_void,
-    CurrentInf: ?*c_void,
-    Section: u32,
-    Line: u32,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SP_INF_INFORMATION = packed struct {
-    InfStyle: SP_INF_STYLE,
-    InfCount: u32,
-    VersionData: [1]u8,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const SP_ALTPLATFORM_INFO_V3 = packed struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: packed union {
-        Reserved: u16,
-        Flags: u16,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const INFCONTEXT = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Inf: ?*c_void,
+        CurrentInf: ?*c_void,
+        Section: u32,
+        Line: u32,
     },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-    ProductType: u8,
-    SuiteMask: u16,
-    BuildNumber: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V2 = packed struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: packed union {
-        Reserved: u16,
-        Flags: u16,
+    .X86 => packed struct {
+        Inf: ?*c_void,
+        CurrentInf: ?*c_void,
+        Section: u32,
+        Line: u32,
     },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V1 = packed struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Reserved: u16,
+pub const SP_INF_INFORMATION = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        InfStyle: SP_INF_STYLE,
+        InfCount: u32,
+        VersionData: [1]u8,
+    },
+    .X86 => packed struct {
+        InfStyle: SP_INF_STYLE,
+        InfCount: u32,
+        VersionData: [1]u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_A = packed struct {
-    cbSize: u32,
-    OriginalInfName: [260]CHAR,
-    OriginalCatalogName: [260]CHAR,
+pub const SP_ALTPLATFORM_INFO_V3 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Platform: u32,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Anonymous: extern union {
+            Reserved: u16,
+            Flags: u16,
+        },
+        FirstValidatedMajorVersion: u32,
+        FirstValidatedMinorVersion: u32,
+        ProductType: u8,
+        SuiteMask: u16,
+        BuildNumber: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Platform: u32,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Anonymous: packed union {
+            Reserved: u16,
+            Flags: u16,
+        },
+        FirstValidatedMajorVersion: u32,
+        FirstValidatedMinorVersion: u32,
+        ProductType: u8,
+        SuiteMask: u16,
+        BuildNumber: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_W = packed struct {
-    cbSize: u32,
-    OriginalInfName: [260]u16,
-    OriginalCatalogName: [260]u16,
+pub const SP_ALTPLATFORM_INFO_V2 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Platform: VER_PLATFORM,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Anonymous: extern union {
+            Reserved: u16,
+            Flags: u16,
+        },
+        FirstValidatedMajorVersion: u32,
+        FirstValidatedMinorVersion: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Platform: VER_PLATFORM,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Anonymous: packed union {
+            Reserved: u16,
+            Flags: u16,
+        },
+        FirstValidatedMajorVersion: u32,
+        FirstValidatedMinorVersion: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_A = packed struct {
-    Target: ?[*:0]const u8,
-    Source: ?[*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
+pub const SP_ALTPLATFORM_INFO_V1 = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Platform: VER_PLATFORM,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Reserved: u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Platform: VER_PLATFORM,
+        MajorVersion: u32,
+        MinorVersion: u32,
+        ProcessorArchitecture: u16,
+        Reserved: u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_W = packed struct {
-    Target: ?[*:0]const u16,
-    Source: ?[*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
+pub const SP_ORIGINAL_FILE_INFO_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        OriginalInfName: [260]CHAR,
+        OriginalCatalogName: [260]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        OriginalInfName: [260]CHAR,
+        OriginalCatalogName: [260]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_SIGNERINFO_A = packed struct {
-    Target: ?[*:0]const u8,
-    Source: ?[*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: ?[*:0]const u8,
-    Version: ?[*:0]const u8,
-    CatalogFile: ?[*:0]const u8,
+pub const SP_ORIGINAL_FILE_INFO_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        OriginalInfName: [260]u16,
+        OriginalCatalogName: [260]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        OriginalInfName: [260]u16,
+        OriginalCatalogName: [260]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_SIGNERINFO_W = packed struct {
-    Target: ?[*:0]const u16,
-    Source: ?[*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: ?[*:0]const u16,
-    Version: ?[*:0]const u16,
-    CatalogFile: ?[*:0]const u16,
+pub const FILEPATHS_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Target: ?[*:0]const u8,
+        Source: ?[*:0]const u8,
+        Win32Error: u32,
+        Flags: u32,
+    },
+    .X86 => packed struct {
+        Target: ?[*:0]const u8,
+        Source: ?[*:0]const u8,
+        Win32Error: u32,
+        Flags: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SOURCE_MEDIA_A = packed struct {
-    Reserved: ?[*:0]const u8,
-    Tagfile: ?[*:0]const u8,
-    Description: ?[*:0]const u8,
-    SourcePath: ?[*:0]const u8,
-    SourceFile: ?[*:0]const u8,
-    Flags: u32,
+pub const FILEPATHS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Target: ?[*:0]const u16,
+        Source: ?[*:0]const u16,
+        Win32Error: u32,
+        Flags: u32,
+    },
+    .X86 => packed struct {
+        Target: ?[*:0]const u16,
+        Source: ?[*:0]const u16,
+        Win32Error: u32,
+        Flags: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SOURCE_MEDIA_W = packed struct {
-    Reserved: ?[*:0]const u16,
-    Tagfile: ?[*:0]const u16,
-    Description: ?[*:0]const u16,
-    SourcePath: ?[*:0]const u16,
-    SourceFile: ?[*:0]const u16,
-    Flags: u32,
+pub const FILEPATHS_SIGNERINFO_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Target: ?[*:0]const u8,
+        Source: ?[*:0]const u8,
+        Win32Error: u32,
+        Flags: u32,
+        DigitalSigner: ?[*:0]const u8,
+        Version: ?[*:0]const u8,
+        CatalogFile: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        Target: ?[*:0]const u8,
+        Source: ?[*:0]const u8,
+        Win32Error: u32,
+        Flags: u32,
+        DigitalSigner: ?[*:0]const u8,
+        Version: ?[*:0]const u8,
+        CatalogFile: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CABINET_INFO_A = packed struct {
-    CabinetPath: ?[*:0]const u8,
-    CabinetFile: ?[*:0]const u8,
-    DiskName: ?[*:0]const u8,
-    SetId: u16,
-    CabinetNumber: u16,
+pub const FILEPATHS_SIGNERINFO_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Target: ?[*:0]const u16,
+        Source: ?[*:0]const u16,
+        Win32Error: u32,
+        Flags: u32,
+        DigitalSigner: ?[*:0]const u16,
+        Version: ?[*:0]const u16,
+        CatalogFile: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        Target: ?[*:0]const u16,
+        Source: ?[*:0]const u16,
+        Win32Error: u32,
+        Flags: u32,
+        DigitalSigner: ?[*:0]const u16,
+        Version: ?[*:0]const u16,
+        CatalogFile: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CABINET_INFO_W = packed struct {
-    CabinetPath: ?[*:0]const u16,
-    CabinetFile: ?[*:0]const u16,
-    DiskName: ?[*:0]const u16,
-    SetId: u16,
-    CabinetNumber: u16,
+pub const SOURCE_MEDIA_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Reserved: ?[*:0]const u8,
+        Tagfile: ?[*:0]const u8,
+        Description: ?[*:0]const u8,
+        SourcePath: ?[*:0]const u8,
+        SourceFile: ?[*:0]const u8,
+        Flags: u32,
+    },
+    .X86 => packed struct {
+        Reserved: ?[*:0]const u8,
+        Tagfile: ?[*:0]const u8,
+        Description: ?[*:0]const u8,
+        SourcePath: ?[*:0]const u8,
+        SourceFile: ?[*:0]const u8,
+        Flags: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILE_IN_CABINET_INFO_A = packed struct {
-    NameInCabinet: ?[*:0]const u8,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]CHAR,
+pub const SOURCE_MEDIA_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        Reserved: ?[*:0]const u16,
+        Tagfile: ?[*:0]const u16,
+        Description: ?[*:0]const u16,
+        SourcePath: ?[*:0]const u16,
+        SourceFile: ?[*:0]const u16,
+        Flags: u32,
+    },
+    .X86 => packed struct {
+        Reserved: ?[*:0]const u16,
+        Tagfile: ?[*:0]const u16,
+        Description: ?[*:0]const u16,
+        SourcePath: ?[*:0]const u16,
+        SourceFile: ?[*:0]const u16,
+        Flags: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILE_IN_CABINET_INFO_W = packed struct {
-    NameInCabinet: ?[*:0]const u16,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]u16,
+pub const CABINET_INFO_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        CabinetPath: ?[*:0]const u8,
+        CabinetFile: ?[*:0]const u8,
+        DiskName: ?[*:0]const u8,
+        SetId: u16,
+        CabinetNumber: u16,
+    },
+    .X86 => packed struct {
+        CabinetPath: ?[*:0]const u8,
+        CabinetFile: ?[*:0]const u8,
+        DiskName: ?[*:0]const u8,
+        SetId: u16,
+        CabinetNumber: u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSA = packed struct {
-    cbSize: u32,
-    FileName: ?[*:0]const u8,
-    Win32Error: u32,
-    FailureCode: u32,
+pub const CABINET_INFO_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        CabinetPath: ?[*:0]const u16,
+        CabinetFile: ?[*:0]const u16,
+        DiskName: ?[*:0]const u16,
+        SetId: u16,
+        CabinetNumber: u16,
+    },
+    .X86 => packed struct {
+        CabinetPath: ?[*:0]const u16,
+        CabinetFile: ?[*:0]const u16,
+        DiskName: ?[*:0]const u16,
+        SetId: u16,
+        CabinetNumber: u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSW = packed struct {
-    cbSize: u32,
-    FileName: ?[*:0]const u16,
-    Win32Error: u32,
-    FailureCode: u32,
+pub const FILE_IN_CABINET_INFO_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        NameInCabinet: ?[*:0]const u8,
+        FileSize: u32,
+        Win32Error: u32,
+        DosDate: u16,
+        DosTime: u16,
+        DosAttribs: u16,
+        FullTargetName: [260]CHAR,
+    },
+    .X86 => packed struct {
+        NameInCabinet: ?[*:0]const u8,
+        FileSize: u32,
+        Win32Error: u32,
+        DosDate: u16,
+        DosTime: u16,
+        DosAttribs: u16,
+        FullTargetName: [260]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_FILE_COPY_PARAMS_A = packed struct {
-    cbSize: u32,
-    QueueHandle: ?*c_void,
-    SourceRootPath: ?[*:0]const u8,
-    SourcePath: ?[*:0]const u8,
-    SourceFilename: ?[*:0]const u8,
-    SourceDescription: ?[*:0]const u8,
-    SourceTagfile: ?[*:0]const u8,
-    TargetDirectory: ?[*:0]const u8,
-    TargetFilename: ?[*:0]const u8,
-    CopyStyle: u32,
-    LayoutInf: ?*c_void,
-    SecurityDescriptor: ?[*:0]const u8,
+pub const FILE_IN_CABINET_INFO_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        NameInCabinet: ?[*:0]const u16,
+        FileSize: u32,
+        Win32Error: u32,
+        DosDate: u16,
+        DosTime: u16,
+        DosAttribs: u16,
+        FullTargetName: [260]u16,
+    },
+    .X86 => packed struct {
+        NameInCabinet: ?[*:0]const u16,
+        FileSize: u32,
+        Win32Error: u32,
+        DosDate: u16,
+        DosTime: u16,
+        DosAttribs: u16,
+        FullTargetName: [260]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_FILE_COPY_PARAMS_W = packed struct {
-    cbSize: u32,
-    QueueHandle: ?*c_void,
-    SourceRootPath: ?[*:0]const u16,
-    SourcePath: ?[*:0]const u16,
-    SourceFilename: ?[*:0]const u16,
-    SourceDescription: ?[*:0]const u16,
-    SourceTagfile: ?[*:0]const u16,
-    TargetDirectory: ?[*:0]const u16,
-    TargetFilename: ?[*:0]const u16,
-    CopyStyle: u32,
-    LayoutInf: ?*c_void,
-    SecurityDescriptor: ?[*:0]const u16,
+pub const SP_REGISTER_CONTROL_STATUSA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FileName: ?[*:0]const u8,
+        Win32Error: u32,
+        FailureCode: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FileName: ?[*:0]const u8,
+        Win32Error: u32,
+        FailureCode: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_DATA = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    DevInst: u32,
-    Reserved: usize,
+pub const SP_REGISTER_CONTROL_STATUSW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FileName: ?[*:0]const u16,
+        Win32Error: u32,
+        FailureCode: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FileName: ?[*:0]const u16,
+        Win32Error: u32,
+        FailureCode: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DATA = packed struct {
-    cbSize: u32,
-    InterfaceClassGuid: Guid,
-    Flags: u32,
-    Reserved: usize,
+pub const SP_FILE_COPY_PARAMS_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        QueueHandle: ?*c_void,
+        SourceRootPath: ?[*:0]const u8,
+        SourcePath: ?[*:0]const u8,
+        SourceFilename: ?[*:0]const u8,
+        SourceDescription: ?[*:0]const u8,
+        SourceTagfile: ?[*:0]const u8,
+        TargetDirectory: ?[*:0]const u8,
+        TargetFilename: ?[*:0]const u8,
+        CopyStyle: u32,
+        LayoutInf: ?*c_void,
+        SecurityDescriptor: ?[*:0]const u8,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        QueueHandle: ?*c_void,
+        SourceRootPath: ?[*:0]const u8,
+        SourcePath: ?[*:0]const u8,
+        SourceFilename: ?[*:0]const u8,
+        SourceDescription: ?[*:0]const u8,
+        SourceTagfile: ?[*:0]const u8,
+        TargetDirectory: ?[*:0]const u8,
+        TargetFilename: ?[*:0]const u8,
+        CopyStyle: u32,
+        LayoutInf: ?*c_void,
+        SecurityDescriptor: ?[*:0]const u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    DevicePath: [1]CHAR,
+pub const SP_FILE_COPY_PARAMS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        QueueHandle: ?*c_void,
+        SourceRootPath: ?[*:0]const u16,
+        SourcePath: ?[*:0]const u16,
+        SourceFilename: ?[*:0]const u16,
+        SourceDescription: ?[*:0]const u16,
+        SourceTagfile: ?[*:0]const u16,
+        TargetDirectory: ?[*:0]const u16,
+        TargetFilename: ?[*:0]const u16,
+        CopyStyle: u32,
+        LayoutInf: ?*c_void,
+        SecurityDescriptor: ?[*:0]const u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        QueueHandle: ?*c_void,
+        SourceRootPath: ?[*:0]const u16,
+        SourcePath: ?[*:0]const u16,
+        SourceFilename: ?[*:0]const u16,
+        SourceDescription: ?[*:0]const u16,
+        SourceTagfile: ?[*:0]const u16,
+        TargetDirectory: ?[*:0]const u16,
+        TargetFilename: ?[*:0]const u16,
+        CopyStyle: u32,
+        LayoutInf: ?*c_void,
+        SecurityDescriptor: ?[*:0]const u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    DevicePath: [1]u16,
+pub const SP_DEVINFO_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        DevInst: u32,
+        Reserved: usize,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        DevInst: u32,
+        Reserved: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: ?HANDLE,
-    RemoteMachineName: [263]CHAR,
+pub const SP_DEVICE_INTERFACE_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        InterfaceClassGuid: Guid,
+        Flags: u32,
+        Reserved: usize,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        InterfaceClassGuid: Guid,
+        Flags: u32,
+        Reserved: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: ?HANDLE,
-    RemoteMachineName: [263]u16,
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DevicePath: [1]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DevicePath: [1]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_A = packed struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: ?HWND,
-    InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: ?*c_void,
-    FileQueue: ?*c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]CHAR,
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DevicePath: [1]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DevicePath: [1]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_W = packed struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: ?HWND,
-    InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: ?*c_void,
-    FileQueue: ?*c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]u16,
+pub const SP_DEVINFO_LIST_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        RemoteMachineHandle: ?HANDLE,
+        RemoteMachineName: [263]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        RemoteMachineHandle: ?HANDLE,
+        RemoteMachineName: [263]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_CLASSINSTALL_HEADER = packed struct {
-    cbSize: u32,
-    InstallFunction: u32,
+pub const SP_DEVINFO_LIST_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        RemoteMachineHandle: ?HANDLE,
+        RemoteMachineName: [263]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        ClassGuid: Guid,
+        RemoteMachineHandle: ?HANDLE,
+        RemoteMachineName: [263]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ENABLECLASS_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ClassGuid: Guid,
-    EnableMessage: u32,
+pub const SP_DEVINSTALL_PARAMS_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Flags: u32,
+        FlagsEx: u32,
+        hwndParent: ?HWND,
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
+        InstallMsgHandlerContext: ?*c_void,
+        FileQueue: ?*c_void,
+        ClassInstallReserved: usize,
+        Reserved: u32,
+        DriverPath: [260]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Flags: u32,
+        FlagsEx: u32,
+        hwndParent: ?HWND,
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
+        InstallMsgHandlerContext: ?*c_void,
+        FileQueue: ?*c_void,
+        ClassInstallReserved: usize,
+        Reserved: u32,
+        DriverPath: [260]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_PROPCHANGE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    StateChange: u32,
-    Scope: u32,
-    HwProfile: u32,
+pub const SP_DEVINSTALL_PARAMS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Flags: u32,
+        FlagsEx: u32,
+        hwndParent: ?HWND,
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
+        InstallMsgHandlerContext: ?*c_void,
+        FileQueue: ?*c_void,
+        ClassInstallReserved: usize,
+        Reserved: u32,
+        DriverPath: [260]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Flags: u32,
+        FlagsEx: u32,
+        hwndParent: ?HWND,
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
+        InstallMsgHandlerContext: ?*c_void,
+        FileQueue: ?*c_void,
+        ClassInstallReserved: usize,
+        Reserved: u32,
+        DriverPath: [260]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REMOVEDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
+pub const SP_CLASSINSTALL_HEADER = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        InstallFunction: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        InstallFunction: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_UNREMOVEDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
+pub const SP_ENABLECLASS_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        ClassGuid: Guid,
+        EnableMessage: u32,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        ClassGuid: Guid,
+        EnableMessage: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_SELECTDEVICE_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]u16,
-    Instructions: [256]u16,
-    ListLabel: [30]u16,
-    SubTitle: [256]u16,
+pub const SP_PROPCHANGE_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        StateChange: u32,
+        Scope: u32,
+        HwProfile: u32,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        StateChange: u32,
+        Scope: u32,
+        HwProfile: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DETECTDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
-    ProgressNotifyParam: ?*c_void,
+pub const SP_REMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Scope: u32,
+        HwProfile: u32,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Scope: u32,
+        HwProfile: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INSTALLWIZARD_DATA = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]?HPROPSHEETPAGE,
-    NumDynamicPages: u32,
-    DynamicPageFlags: u32,
-    PrivateFlags: u32,
-    PrivateData: LPARAM,
-    hwndWizardDlg: ?HWND,
+pub const SP_UNREMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Scope: u32,
+        HwProfile: u32,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Scope: u32,
+        HwProfile: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_NEWDEVICEWIZARD_DATA = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]?HPROPSHEETPAGE,
-    NumDynamicPages: u32,
-    hwndWizardDlg: ?HWND,
+pub const SP_SELECTDEVICE_PARAMS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Title: [60]u16,
+        Instructions: [256]u16,
+        ListLabel: [30]u16,
+        SubTitle: [256]u16,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Title: [60]u16,
+        Instructions: [256]u16,
+        ListLabel: [30]u16,
+        SubTitle: [256]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_TROUBLESHOOTER_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]u16,
-    HtmlTroubleShooter: [260]u16,
+pub const SP_DETECTDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
+        ProgressNotifyParam: ?*c_void,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
+        ProgressNotifyParam: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_POWERMESSAGEWAKE_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]u16,
+pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Flags: u32,
+        DynamicPages: [20]?HPROPSHEETPAGE,
+        NumDynamicPages: u32,
+        DynamicPageFlags: u32,
+        PrivateFlags: u32,
+        PrivateData: LPARAM,
+        hwndWizardDlg: ?HWND,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Flags: u32,
+        DynamicPages: [20]?HPROPSHEETPAGE,
+        NumDynamicPages: u32,
+        DynamicPageFlags: u32,
+        PrivateFlags: u32,
+        PrivateData: LPARAM,
+        hwndWizardDlg: ?HWND,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V2_A = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
+pub const SP_NEWDEVICEWIZARD_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Flags: u32,
+        DynamicPages: [20]?HPROPSHEETPAGE,
+        NumDynamicPages: u32,
+        hwndWizardDlg: ?HWND,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        Flags: u32,
+        DynamicPages: [20]?HPROPSHEETPAGE,
+        NumDynamicPages: u32,
+        hwndWizardDlg: ?HWND,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V2_W = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
+pub const SP_TROUBLESHOOTER_PARAMS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        ChmFile: [260]u16,
+        HtmlTroubleShooter: [260]u16,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        ChmFile: [260]u16,
+        HtmlTroubleShooter: [260]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V1_A = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
+pub const SP_POWERMESSAGEWAKE_PARAMS_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        PowerMessageWake: [512]u16,
+    },
+    .X86 => packed struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+        PowerMessageWake: [512]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V1_W = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
+pub const SP_DRVINFO_DATA_V2_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]CHAR,
+        MfgName: [256]CHAR,
+        ProviderName: [256]CHAR,
+        DriverDate: FILETIME,
+        DriverVersion: u64,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]CHAR,
+        MfgName: [256]CHAR,
+        ProviderName: [256]CHAR,
+        DriverDate: FILETIME,
+        DriverVersion: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]CHAR,
-    InfFileName: [260]CHAR,
-    DrvDescription: [256]CHAR,
-    HardwareID: [1]CHAR,
+pub const SP_DRVINFO_DATA_V2_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]u16,
+        MfgName: [256]u16,
+        ProviderName: [256]u16,
+        DriverDate: FILETIME,
+        DriverVersion: u64,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]u16,
+        MfgName: [256]u16,
+        ProviderName: [256]u16,
+        DriverDate: FILETIME,
+        DriverVersion: u64,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]u16,
-    InfFileName: [260]u16,
-    DrvDescription: [256]u16,
-    HardwareID: [1]u16,
+pub const SP_DRVINFO_DATA_V1_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]CHAR,
+        MfgName: [256]CHAR,
+        ProviderName: [256]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]CHAR,
+        MfgName: [256]CHAR,
+        ProviderName: [256]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINSTALL_PARAMS = packed struct {
-    cbSize: u32,
-    Rank: u32,
-    Flags: u32,
-    PrivateData: usize,
-    Reserved: u32,
+pub const SP_DRVINFO_DATA_V1_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]u16,
+        MfgName: [256]u16,
+        ProviderName: [256]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        DriverType: u32,
+        Reserved: usize,
+        Description: [256]u16,
+        MfgName: [256]u16,
+        ProviderName: [256]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const COINSTALLER_CONTEXT_DATA = packed struct {
-    PostProcessing: BOOL,
-    InstallResult: u32,
-    PrivateData: ?*c_void,
+pub const SP_DRVINFO_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        InfDate: FILETIME,
+        CompatIDsOffset: u32,
+        CompatIDsLength: u32,
+        Reserved: usize,
+        SectionName: [256]CHAR,
+        InfFileName: [260]CHAR,
+        DrvDescription: [256]CHAR,
+        HardwareID: [1]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        InfDate: FILETIME,
+        CompatIDsOffset: u32,
+        CompatIDsLength: u32,
+        Reserved: usize,
+        SectionName: [256]CHAR,
+        InfFileName: [260]CHAR,
+        DrvDescription: [256]CHAR,
+        HardwareID: [1]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_CLASSIMAGELIST_DATA = packed struct {
-    cbSize: u32,
-    ImageList: ?HIMAGELIST,
-    Reserved: usize,
+pub const SP_DRVINFO_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        InfDate: FILETIME,
+        CompatIDsOffset: u32,
+        CompatIDsLength: u32,
+        Reserved: usize,
+        SectionName: [256]u16,
+        InfFileName: [260]u16,
+        DrvDescription: [256]u16,
+        HardwareID: [1]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        InfDate: FILETIME,
+        CompatIDsOffset: u32,
+        CompatIDsLength: u32,
+        Reserved: usize,
+        SectionName: [256]u16,
+        InfFileName: [260]u16,
+        DrvDescription: [256]u16,
+        HardwareID: [1]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_PROPSHEETPAGE_REQUEST = packed struct {
-    cbSize: u32,
-    PageRequested: u32,
-    DeviceInfoSet: ?*c_void,
-    DeviceInfoData: ?*SP_DEVINFO_DATA,
+pub const SP_DRVINSTALL_PARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        Rank: u32,
+        Flags: u32,
+        PrivateData: usize,
+        Reserved: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        Rank: u32,
+        Flags: u32,
+        PrivateData: usize,
+        Reserved: u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_A = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]CHAR,
+pub const COINSTALLER_CONTEXT_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        PostProcessing: BOOL,
+        InstallResult: u32,
+        PrivateData: ?*c_void,
+    },
+    .X86 => packed struct {
+        PostProcessing: BOOL,
+        InstallResult: u32,
+        PrivateData: ?*c_void,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_W = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]u16,
+pub const SP_CLASSIMAGELIST_DATA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        ImageList: ?HIMAGELIST,
+        Reserved: usize,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        ImageList: ?HIMAGELIST,
+        Reserved: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_A = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
+pub const SP_PROPSHEETPAGE_REQUEST = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        PageRequested: u32,
+        DeviceInfoSet: ?*c_void,
+        DeviceInfoData: ?*SP_DEVINFO_DATA,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        PageRequested: u32,
+        DeviceInfoSet: ?*c_void,
+        DeviceInfoData: ?*SP_DEVINFO_DATA,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_W = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
+pub const SP_BACKUP_QUEUE_PARAMS_V2_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FullInfPath: [260]CHAR,
+        FilenameOffset: i32,
+        ReinstallInstance: [260]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FullInfPath: [260]CHAR,
+        FilenameOffset: i32,
+        ReinstallInstance: [260]CHAR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_A = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
+pub const SP_BACKUP_QUEUE_PARAMS_V2_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FullInfPath: [260]u16,
+        FilenameOffset: i32,
+        ReinstallInstance: [260]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FullInfPath: [260]u16,
+        FilenameOffset: i32,
+        ReinstallInstance: [260]u16,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_W = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
+pub const SP_BACKUP_QUEUE_PARAMS_V1_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FullInfPath: [260]CHAR,
+        FilenameOffset: i32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FullInfPath: [260]CHAR,
+        FilenameOffset: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_A = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-    SignerScore: u32,
+pub const SP_BACKUP_QUEUE_PARAMS_V1_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        FullInfPath: [260]u16,
+        FilenameOffset: i32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        FullInfPath: [260]u16,
+        FilenameOffset: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_W = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-    SignerScore: u32,
+pub const SP_INF_SIGNER_INFO_V1_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        CatalogFile: [260]CHAR,
+        DigitalSigner: [260]CHAR,
+        DigitalSignerVersion: [260]CHAR,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        CatalogFile: [260]CHAR,
+        DigitalSigner: [260]CHAR,
+        DigitalSignerVersion: [260]CHAR,
+    },
 };
-
-}, else => struct { } };
-
+pub const SP_INF_SIGNER_INFO_V1_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        CatalogFile: [260]u16,
+        DigitalSigner: [260]u16,
+        DigitalSignerVersion: [260]u16,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        CatalogFile: [260]u16,
+        DigitalSigner: [260]u16,
+        DigitalSignerVersion: [260]u16,
+    },
+};
+pub const SP_INF_SIGNER_INFO_V2_A = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        CatalogFile: [260]CHAR,
+        DigitalSigner: [260]CHAR,
+        DigitalSignerVersion: [260]CHAR,
+        SignerScore: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        CatalogFile: [260]CHAR,
+        DigitalSigner: [260]CHAR,
+        DigitalSignerVersion: [260]CHAR,
+        SignerScore: u32,
+    },
+};
+pub const SP_INF_SIGNER_INFO_V2_W = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        cbSize: u32,
+        CatalogFile: [260]u16,
+        DigitalSigner: [260]u16,
+        DigitalSignerVersion: [260]u16,
+        SignerScore: u32,
+    },
+    .X86 => packed struct {
+        cbSize: u32,
+        CatalogFile: [260]u16,
+        DigitalSigner: [260]u16,
+        DigitalSignerVersion: [260]u16,
+        SignerScore: u32,
+    },
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (575)
@@ -7977,422 +7513,423 @@ pub extern "newdev" fn DiShowUpdateDriver(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (206)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_A;
-        pub const FILEPATHS_ = FILEPATHS_A;
-        pub const FILEPATHS_SIGNERINFO_ = FILEPATHS_SIGNERINFO_A;
-        pub const SOURCE_MEDIA_ = SOURCE_MEDIA_A;
-        pub const CABINET_INFO_ = CABINET_INFO_A;
-        pub const FILE_IN_CABINET_INFO_ = FILE_IN_CABINET_INFO_A;
-        pub const SP_REGISTER_CONTROL_STATUS = SP_REGISTER_CONTROL_STATUSA;
-        pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_A;
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = SP_DEVICE_INTERFACE_DETAIL_DATA_A;
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = SP_DEVINFO_LIST_DETAIL_DATA_A;
-        pub const SP_DEVINSTALL_PARAMS_ = SP_DEVINSTALL_PARAMS_A;
-        pub const SP_SELECTDEVICE_PARAMS_ = SP_SELECTDEVICE_PARAMS_A;
-        pub const SP_TROUBLESHOOTER_PARAMS_ = SP_TROUBLESHOOTER_PARAMS_A;
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = SP_POWERMESSAGEWAKE_PARAMS_A;
-        pub const SP_DRVINFO_DATA_V2_ = SP_DRVINFO_DATA_V2_A;
-        pub const SP_DRVINFO_DATA_V1_ = SP_DRVINFO_DATA_V1_A;
-        pub const SP_DRVINFO_DETAIL_DATA_ = SP_DRVINFO_DETAIL_DATA_A;
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = SP_BACKUP_QUEUE_PARAMS_V2_A;
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = SP_BACKUP_QUEUE_PARAMS_V1_A;
-        pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_A;
-        pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_A;
-        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_A;
-        pub const CONFLICT_DETAILS_ = CONFLICT_DETAILS_A;
-        pub const HWProfileInfo_s = HWProfileInfo_sA;
-        pub const SetupGetInfInformation = SetupGetInfInformationA;
-        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationA;
-        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationA;
-        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationA;
-        pub const SetupGetInfDriverStoreLocation = SetupGetInfDriverStoreLocationA;
-        pub const SetupGetInfPublishedName = SetupGetInfPublishedNameA;
-        pub const SetupGetInfFileList = SetupGetInfFileListA;
-        pub const SetupOpenInfFile = SetupOpenInfFileA;
-        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileA;
-        pub const SetupFindFirstLine = SetupFindFirstLineA;
-        pub const SetupFindNextMatchLine = SetupFindNextMatchLineA;
-        pub const SetupGetLineByIndex = SetupGetLineByIndexA;
-        pub const SetupGetLineCount = SetupGetLineCountA;
-        pub const SetupGetLineText = SetupGetLineTextA;
-        pub const SetupGetStringField = SetupGetStringFieldA;
-        pub const SetupGetMultiSzField = SetupGetMultiSzFieldA;
-        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoA;
-        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExA;
-        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileA;
-        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationA;
-        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeA;
-        pub const SetupGetTargetPath = SetupGetTargetPathA;
-        pub const SetupSetSourceList = SetupSetSourceListA;
-        pub const SetupAddToSourceList = SetupAddToSourceListA;
-        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListA;
-        pub const SetupQuerySourceList = SetupQuerySourceListA;
-        pub const SetupFreeSourceList = SetupFreeSourceListA;
-        pub const SetupPromptForDisk = SetupPromptForDiskA;
-        pub const SetupCopyError = SetupCopyErrorA;
-        pub const SetupRenameError = SetupRenameErrorA;
-        pub const SetupDeleteError = SetupDeleteErrorA;
-        pub const SetupBackupError = SetupBackupErrorA;
-        pub const SetupSetDirectoryId = SetupSetDirectoryIdA;
-        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExA;
-        pub const SetupGetSourceInfo = SetupGetSourceInfoA;
-        pub const SetupInstallFile = SetupInstallFileA;
-        pub const SetupInstallFileEx = SetupInstallFileExA;
-        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformA;
-        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideA;
-        pub const SetupQueueCopy = SetupQueueCopyA;
-        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectA;
-        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyA;
-        pub const SetupQueueCopySection = SetupQueueCopySectionA;
-        pub const SetupQueueDelete = SetupQueueDeleteA;
-        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionA;
-        pub const SetupQueueRename = SetupQueueRenameA;
-        pub const SetupQueueRenameSection = SetupQueueRenameSectionA;
-        pub const SetupCommitFileQueue = SetupCommitFileQueueA;
-        pub const SetupScanFileQueue = SetupScanFileQueueA;
-        pub const SetupCopyOEMInf = SetupCopyOEMInfA;
-        pub const SetupUninstallOEMInf = SetupUninstallOEMInfA;
-        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListA;
-        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListA;
-        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListA;
-        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveA;
-        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListA;
-        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListA;
-        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListA;
-        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListA;
-        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListA;
-        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListA;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListA;
-        pub const SetupIterateCabinet = SetupIterateCabinetA;
-        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackA;
-        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionA;
-        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionA;
-        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExA;
-        pub const InstallHinfSection = InstallHinfSectionA;
-        pub const SetupInitializeFileLog = SetupInitializeFileLogA;
-        pub const SetupLogFile = SetupLogFileA;
-        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryA;
-        pub const SetupQueryFileLog = SetupQueryFileLogA;
-        pub const SetupLogError = SetupLogErrorA;
-        pub const SetupGetBackupInformation = SetupGetBackupInformationA;
-        pub const SetupPrepareQueueForRestore = SetupPrepareQueueForRestoreA;
-        pub const SetupDiCreateDeviceInfoListEx = SetupDiCreateDeviceInfoListExA;
-        pub const SetupDiGetDeviceInfoListDetail = SetupDiGetDeviceInfoListDetailA;
-        pub const SetupDiCreateDeviceInfo = SetupDiCreateDeviceInfoA;
-        pub const SetupDiOpenDeviceInfo = SetupDiOpenDeviceInfoA;
-        pub const SetupDiGetDeviceInstanceId = SetupDiGetDeviceInstanceIdA;
-        pub const SetupDiCreateDeviceInterface = SetupDiCreateDeviceInterfaceA;
-        pub const SetupDiOpenDeviceInterface = SetupDiOpenDeviceInterfaceA;
-        pub const SetupDiGetDeviceInterfaceDetail = SetupDiGetDeviceInterfaceDetailA;
-        pub const SetupDiEnumDriverInfo = SetupDiEnumDriverInfoA;
-        pub const SetupDiGetSelectedDriver = SetupDiGetSelectedDriverA;
-        pub const SetupDiSetSelectedDriver = SetupDiSetSelectedDriverA;
-        pub const SetupDiGetDriverInfoDetail = SetupDiGetDriverInfoDetailA;
-        pub const SetupDiGetClassDevs = SetupDiGetClassDevsA;
-        pub const SetupDiGetClassDevsEx = SetupDiGetClassDevsExA;
-        pub const SetupDiGetINFClass = SetupDiGetINFClassA;
-        pub const SetupDiBuildClassInfoListEx = SetupDiBuildClassInfoListExA;
-        pub const SetupDiGetClassDescription = SetupDiGetClassDescriptionA;
-        pub const SetupDiGetClassDescriptionEx = SetupDiGetClassDescriptionExA;
-        pub const SetupDiInstallClass = SetupDiInstallClassA;
-        pub const SetupDiInstallClassEx = SetupDiInstallClassExA;
-        pub const SetupDiOpenClassRegKeyEx = SetupDiOpenClassRegKeyExA;
-        pub const SetupDiCreateDeviceInterfaceRegKey = SetupDiCreateDeviceInterfaceRegKeyA;
-        pub const SetupDiCreateDevRegKey = SetupDiCreateDevRegKeyA;
-        pub const SetupDiGetHwProfileListEx = SetupDiGetHwProfileListExA;
-        pub const SetupDiGetDeviceRegistryProperty = SetupDiGetDeviceRegistryPropertyA;
-        pub const SetupDiGetClassRegistryProperty = SetupDiGetClassRegistryPropertyA;
-        pub const SetupDiSetDeviceRegistryProperty = SetupDiSetDeviceRegistryPropertyA;
-        pub const SetupDiSetClassRegistryProperty = SetupDiSetClassRegistryPropertyA;
-        pub const SetupDiGetDeviceInstallParams = SetupDiGetDeviceInstallParamsA;
-        pub const SetupDiGetClassInstallParams = SetupDiGetClassInstallParamsA;
-        pub const SetupDiSetDeviceInstallParams = SetupDiSetDeviceInstallParamsA;
-        pub const SetupDiSetClassInstallParams = SetupDiSetClassInstallParamsA;
-        pub const SetupDiGetDriverInstallParams = SetupDiGetDriverInstallParamsA;
-        pub const SetupDiSetDriverInstallParams = SetupDiSetDriverInstallParamsA;
-        pub const SetupDiGetClassImageListEx = SetupDiGetClassImageListExA;
-        pub const SetupDiGetClassDevPropertySheets = SetupDiGetClassDevPropertySheetsA;
-        pub const SetupDiClassNameFromGuid = SetupDiClassNameFromGuidA;
-        pub const SetupDiClassNameFromGuidEx = SetupDiClassNameFromGuidExA;
-        pub const SetupDiClassGuidsFromName = SetupDiClassGuidsFromNameA;
-        pub const SetupDiClassGuidsFromNameEx = SetupDiClassGuidsFromNameExA;
-        pub const SetupDiGetHwProfileFriendlyName = SetupDiGetHwProfileFriendlyNameA;
-        pub const SetupDiGetHwProfileFriendlyNameEx = SetupDiGetHwProfileFriendlyNameExA;
-        pub const SetupDiGetActualModelsSection = SetupDiGetActualModelsSectionA;
-        pub const SetupDiGetActualSectionToInstall = SetupDiGetActualSectionToInstallA;
-        pub const SetupDiGetActualSectionToInstallEx = SetupDiGetActualSectionToInstallExA;
-        pub const SetupEnumInfSections = SetupEnumInfSectionsA;
-        pub const SetupVerifyInfFile = SetupVerifyInfFileA;
-        pub const SetupDiGetCustomDeviceProperty = SetupDiGetCustomDevicePropertyA;
-        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionA;
-        pub const CM_Add_ID = CM_Add_IDA;
-        pub const CM_Add_ID_Ex = CM_Add_ID_ExA;
-        pub const CM_Connect_Machine = CM_Connect_MachineA;
-        pub const CM_Create_DevNode = CM_Create_DevNodeA;
-        pub const CM_Create_DevNode_Ex = CM_Create_DevNode_ExA;
-        pub const CM_Enumerate_Enumerators = CM_Enumerate_EnumeratorsA;
-        pub const CM_Enumerate_Enumerators_Ex = CM_Enumerate_Enumerators_ExA;
-        pub const CM_Get_Class_Name = CM_Get_Class_NameA;
-        pub const CM_Get_Class_Name_Ex = CM_Get_Class_Name_ExA;
-        pub const CM_Get_Class_Key_Name = CM_Get_Class_Key_NameA;
-        pub const CM_Get_Class_Key_Name_Ex = CM_Get_Class_Key_Name_ExA;
-        pub const CM_Get_Device_ID = CM_Get_Device_IDA;
-        pub const CM_Get_Device_ID_Ex = CM_Get_Device_ID_ExA;
-        pub const CM_Get_Device_ID_List = CM_Get_Device_ID_ListA;
-        pub const CM_Get_Device_ID_List_Ex = CM_Get_Device_ID_List_ExA;
-        pub const CM_Get_Device_ID_List_Size = CM_Get_Device_ID_List_SizeA;
-        pub const CM_Get_Device_ID_List_Size_Ex = CM_Get_Device_ID_List_Size_ExA;
-        pub const CM_Get_DevNode_Registry_Property = CM_Get_DevNode_Registry_PropertyA;
-        pub const CM_Get_DevNode_Registry_Property_Ex = CM_Get_DevNode_Registry_Property_ExA;
-        pub const CM_Get_DevNode_Custom_Property = CM_Get_DevNode_Custom_PropertyA;
-        pub const CM_Get_DevNode_Custom_Property_Ex = CM_Get_DevNode_Custom_Property_ExA;
-        pub const CM_Get_Hardware_Profile_Info = CM_Get_Hardware_Profile_InfoA;
-        pub const CM_Get_Hardware_Profile_Info_Ex = CM_Get_Hardware_Profile_Info_ExA;
-        pub const CM_Get_HW_Prof_Flags = CM_Get_HW_Prof_FlagsA;
-        pub const CM_Get_HW_Prof_Flags_Ex = CM_Get_HW_Prof_Flags_ExA;
-        pub const CM_Get_Device_Interface_Alias = CM_Get_Device_Interface_AliasA;
-        pub const CM_Get_Device_Interface_Alias_Ex = CM_Get_Device_Interface_Alias_ExA;
-        pub const CM_Get_Device_Interface_List = CM_Get_Device_Interface_ListA;
-        pub const CM_Get_Device_Interface_List_Ex = CM_Get_Device_Interface_List_ExA;
-        pub const CM_Get_Device_Interface_List_Size = CM_Get_Device_Interface_List_SizeA;
-        pub const CM_Get_Device_Interface_List_Size_Ex = CM_Get_Device_Interface_List_Size_ExA;
-        pub const CM_Locate_DevNode = CM_Locate_DevNodeA;
-        pub const CM_Locate_DevNode_Ex = CM_Locate_DevNode_ExA;
-        pub const CM_Open_Class_Key = CM_Open_Class_KeyA;
-        pub const CM_Open_Class_Key_Ex = CM_Open_Class_Key_ExA;
-        pub const CM_Open_Device_Interface_Key = CM_Open_Device_Interface_KeyA;
-        pub const CM_Open_Device_Interface_Key_Ex = CM_Open_Device_Interface_Key_ExA;
-        pub const CM_Delete_Device_Interface_Key = CM_Delete_Device_Interface_KeyA;
-        pub const CM_Delete_Device_Interface_Key_Ex = CM_Delete_Device_Interface_Key_ExA;
-        pub const CM_Query_And_Remove_SubTree = CM_Query_And_Remove_SubTreeA;
-        pub const CM_Query_And_Remove_SubTree_Ex = CM_Query_And_Remove_SubTree_ExA;
-        pub const CM_Request_Device_Eject = CM_Request_Device_EjectA;
-        pub const CM_Request_Device_Eject_Ex = CM_Request_Device_Eject_ExA;
-        pub const CM_Register_Device_Interface = CM_Register_Device_InterfaceA;
-        pub const CM_Register_Device_Interface_Ex = CM_Register_Device_Interface_ExA;
-        pub const CM_Unregister_Device_Interface = CM_Unregister_Device_InterfaceA;
-        pub const CM_Unregister_Device_Interface_Ex = CM_Unregister_Device_Interface_ExA;
-        pub const CM_Set_DevNode_Registry_Property = CM_Set_DevNode_Registry_PropertyA;
-        pub const CM_Set_DevNode_Registry_Property_Ex = CM_Set_DevNode_Registry_Property_ExA;
-        pub const CM_Set_HW_Prof_Flags = CM_Set_HW_Prof_FlagsA;
-        pub const CM_Set_HW_Prof_Flags_Ex = CM_Set_HW_Prof_Flags_ExA;
-        pub const CM_Get_Resource_Conflict_Details = CM_Get_Resource_Conflict_DetailsA;
-        pub const CM_Get_Class_Registry_Property = CM_Get_Class_Registry_PropertyA;
-        pub const CM_Set_Class_Registry_Property = CM_Set_Class_Registry_PropertyA;
-        pub const UpdateDriverForPlugAndPlayDevices = UpdateDriverForPlugAndPlayDevicesA;
-        pub const DiInstallDriver = DiInstallDriverA;
-        pub const DiUninstallDriver = DiUninstallDriverA;
+        pub const SP_ORIGINAL_FILE_INFO_ = thismodule.SP_ORIGINAL_FILE_INFO_A;
+        pub const FILEPATHS_ = thismodule.FILEPATHS_A;
+        pub const FILEPATHS_SIGNERINFO_ = thismodule.FILEPATHS_SIGNERINFO_A;
+        pub const SOURCE_MEDIA_ = thismodule.SOURCE_MEDIA_A;
+        pub const CABINET_INFO_ = thismodule.CABINET_INFO_A;
+        pub const FILE_IN_CABINET_INFO_ = thismodule.FILE_IN_CABINET_INFO_A;
+        pub const SP_REGISTER_CONTROL_STATUS = thismodule.SP_REGISTER_CONTROL_STATUSA;
+        pub const SP_FILE_COPY_PARAMS_ = thismodule.SP_FILE_COPY_PARAMS_A;
+        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = thismodule.SP_DEVICE_INTERFACE_DETAIL_DATA_A;
+        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = thismodule.SP_DEVINFO_LIST_DETAIL_DATA_A;
+        pub const SP_DEVINSTALL_PARAMS_ = thismodule.SP_DEVINSTALL_PARAMS_A;
+        pub const SP_SELECTDEVICE_PARAMS_ = thismodule.SP_SELECTDEVICE_PARAMS_A;
+        pub const SP_TROUBLESHOOTER_PARAMS_ = thismodule.SP_TROUBLESHOOTER_PARAMS_A;
+        pub const SP_POWERMESSAGEWAKE_PARAMS_ = thismodule.SP_POWERMESSAGEWAKE_PARAMS_A;
+        pub const SP_DRVINFO_DATA_V2_ = thismodule.SP_DRVINFO_DATA_V2_A;
+        pub const SP_DRVINFO_DATA_V1_ = thismodule.SP_DRVINFO_DATA_V1_A;
+        pub const SP_DRVINFO_DETAIL_DATA_ = thismodule.SP_DRVINFO_DETAIL_DATA_A;
+        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V2_A;
+        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V1_A;
+        pub const SP_INF_SIGNER_INFO_V1_ = thismodule.SP_INF_SIGNER_INFO_V1_A;
+        pub const SP_INF_SIGNER_INFO_V2_ = thismodule.SP_INF_SIGNER_INFO_V2_A;
+        pub const PSP_FILE_CALLBACK_ = thismodule.PSP_FILE_CALLBACK_A;
+        pub const CONFLICT_DETAILS_ = thismodule.CONFLICT_DETAILS_A;
+        pub const HWProfileInfo_s = thismodule.HWProfileInfo_sA;
+        pub const SetupGetInfInformation = thismodule.SetupGetInfInformationA;
+        pub const SetupQueryInfFileInformation = thismodule.SetupQueryInfFileInformationA;
+        pub const SetupQueryInfOriginalFileInformation = thismodule.SetupQueryInfOriginalFileInformationA;
+        pub const SetupQueryInfVersionInformation = thismodule.SetupQueryInfVersionInformationA;
+        pub const SetupGetInfDriverStoreLocation = thismodule.SetupGetInfDriverStoreLocationA;
+        pub const SetupGetInfPublishedName = thismodule.SetupGetInfPublishedNameA;
+        pub const SetupGetInfFileList = thismodule.SetupGetInfFileListA;
+        pub const SetupOpenInfFile = thismodule.SetupOpenInfFileA;
+        pub const SetupOpenAppendInfFile = thismodule.SetupOpenAppendInfFileA;
+        pub const SetupFindFirstLine = thismodule.SetupFindFirstLineA;
+        pub const SetupFindNextMatchLine = thismodule.SetupFindNextMatchLineA;
+        pub const SetupGetLineByIndex = thismodule.SetupGetLineByIndexA;
+        pub const SetupGetLineCount = thismodule.SetupGetLineCountA;
+        pub const SetupGetLineText = thismodule.SetupGetLineTextA;
+        pub const SetupGetStringField = thismodule.SetupGetStringFieldA;
+        pub const SetupGetMultiSzField = thismodule.SetupGetMultiSzFieldA;
+        pub const SetupGetFileCompressionInfo = thismodule.SetupGetFileCompressionInfoA;
+        pub const SetupGetFileCompressionInfoEx = thismodule.SetupGetFileCompressionInfoExA;
+        pub const SetupDecompressOrCopyFile = thismodule.SetupDecompressOrCopyFileA;
+        pub const SetupGetSourceFileLocation = thismodule.SetupGetSourceFileLocationA;
+        pub const SetupGetSourceFileSize = thismodule.SetupGetSourceFileSizeA;
+        pub const SetupGetTargetPath = thismodule.SetupGetTargetPathA;
+        pub const SetupSetSourceList = thismodule.SetupSetSourceListA;
+        pub const SetupAddToSourceList = thismodule.SetupAddToSourceListA;
+        pub const SetupRemoveFromSourceList = thismodule.SetupRemoveFromSourceListA;
+        pub const SetupQuerySourceList = thismodule.SetupQuerySourceListA;
+        pub const SetupFreeSourceList = thismodule.SetupFreeSourceListA;
+        pub const SetupPromptForDisk = thismodule.SetupPromptForDiskA;
+        pub const SetupCopyError = thismodule.SetupCopyErrorA;
+        pub const SetupRenameError = thismodule.SetupRenameErrorA;
+        pub const SetupDeleteError = thismodule.SetupDeleteErrorA;
+        pub const SetupBackupError = thismodule.SetupBackupErrorA;
+        pub const SetupSetDirectoryId = thismodule.SetupSetDirectoryIdA;
+        pub const SetupSetDirectoryIdEx = thismodule.SetupSetDirectoryIdExA;
+        pub const SetupGetSourceInfo = thismodule.SetupGetSourceInfoA;
+        pub const SetupInstallFile = thismodule.SetupInstallFileA;
+        pub const SetupInstallFileEx = thismodule.SetupInstallFileExA;
+        pub const SetupSetFileQueueAlternatePlatform = thismodule.SetupSetFileQueueAlternatePlatformA;
+        pub const SetupSetPlatformPathOverride = thismodule.SetupSetPlatformPathOverrideA;
+        pub const SetupQueueCopy = thismodule.SetupQueueCopyA;
+        pub const SetupQueueCopyIndirect = thismodule.SetupQueueCopyIndirectA;
+        pub const SetupQueueDefaultCopy = thismodule.SetupQueueDefaultCopyA;
+        pub const SetupQueueCopySection = thismodule.SetupQueueCopySectionA;
+        pub const SetupQueueDelete = thismodule.SetupQueueDeleteA;
+        pub const SetupQueueDeleteSection = thismodule.SetupQueueDeleteSectionA;
+        pub const SetupQueueRename = thismodule.SetupQueueRenameA;
+        pub const SetupQueueRenameSection = thismodule.SetupQueueRenameSectionA;
+        pub const SetupCommitFileQueue = thismodule.SetupCommitFileQueueA;
+        pub const SetupScanFileQueue = thismodule.SetupScanFileQueueA;
+        pub const SetupCopyOEMInf = thismodule.SetupCopyOEMInfA;
+        pub const SetupUninstallOEMInf = thismodule.SetupUninstallOEMInfA;
+        pub const SetupCreateDiskSpaceList = thismodule.SetupCreateDiskSpaceListA;
+        pub const SetupDuplicateDiskSpaceList = thismodule.SetupDuplicateDiskSpaceListA;
+        pub const SetupQueryDrivesInDiskSpaceList = thismodule.SetupQueryDrivesInDiskSpaceListA;
+        pub const SetupQuerySpaceRequiredOnDrive = thismodule.SetupQuerySpaceRequiredOnDriveA;
+        pub const SetupAdjustDiskSpaceList = thismodule.SetupAdjustDiskSpaceListA;
+        pub const SetupAddToDiskSpaceList = thismodule.SetupAddToDiskSpaceListA;
+        pub const SetupAddSectionToDiskSpaceList = thismodule.SetupAddSectionToDiskSpaceListA;
+        pub const SetupAddInstallSectionToDiskSpaceList = thismodule.SetupAddInstallSectionToDiskSpaceListA;
+        pub const SetupRemoveFromDiskSpaceList = thismodule.SetupRemoveFromDiskSpaceListA;
+        pub const SetupRemoveSectionFromDiskSpaceList = thismodule.SetupRemoveSectionFromDiskSpaceListA;
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = thismodule.SetupRemoveInstallSectionFromDiskSpaceListA;
+        pub const SetupIterateCabinet = thismodule.SetupIterateCabinetA;
+        pub const SetupDefaultQueueCallback = thismodule.SetupDefaultQueueCallbackA;
+        pub const SetupInstallFromInfSection = thismodule.SetupInstallFromInfSectionA;
+        pub const SetupInstallFilesFromInfSection = thismodule.SetupInstallFilesFromInfSectionA;
+        pub const SetupInstallServicesFromInfSection = thismodule.SetupInstallServicesFromInfSectionA;
+        pub const SetupInstallServicesFromInfSectionEx = thismodule.SetupInstallServicesFromInfSectionExA;
+        pub const InstallHinfSection = thismodule.InstallHinfSectionA;
+        pub const SetupInitializeFileLog = thismodule.SetupInitializeFileLogA;
+        pub const SetupLogFile = thismodule.SetupLogFileA;
+        pub const SetupRemoveFileLogEntry = thismodule.SetupRemoveFileLogEntryA;
+        pub const SetupQueryFileLog = thismodule.SetupQueryFileLogA;
+        pub const SetupLogError = thismodule.SetupLogErrorA;
+        pub const SetupGetBackupInformation = thismodule.SetupGetBackupInformationA;
+        pub const SetupPrepareQueueForRestore = thismodule.SetupPrepareQueueForRestoreA;
+        pub const SetupDiCreateDeviceInfoListEx = thismodule.SetupDiCreateDeviceInfoListExA;
+        pub const SetupDiGetDeviceInfoListDetail = thismodule.SetupDiGetDeviceInfoListDetailA;
+        pub const SetupDiCreateDeviceInfo = thismodule.SetupDiCreateDeviceInfoA;
+        pub const SetupDiOpenDeviceInfo = thismodule.SetupDiOpenDeviceInfoA;
+        pub const SetupDiGetDeviceInstanceId = thismodule.SetupDiGetDeviceInstanceIdA;
+        pub const SetupDiCreateDeviceInterface = thismodule.SetupDiCreateDeviceInterfaceA;
+        pub const SetupDiOpenDeviceInterface = thismodule.SetupDiOpenDeviceInterfaceA;
+        pub const SetupDiGetDeviceInterfaceDetail = thismodule.SetupDiGetDeviceInterfaceDetailA;
+        pub const SetupDiEnumDriverInfo = thismodule.SetupDiEnumDriverInfoA;
+        pub const SetupDiGetSelectedDriver = thismodule.SetupDiGetSelectedDriverA;
+        pub const SetupDiSetSelectedDriver = thismodule.SetupDiSetSelectedDriverA;
+        pub const SetupDiGetDriverInfoDetail = thismodule.SetupDiGetDriverInfoDetailA;
+        pub const SetupDiGetClassDevs = thismodule.SetupDiGetClassDevsA;
+        pub const SetupDiGetClassDevsEx = thismodule.SetupDiGetClassDevsExA;
+        pub const SetupDiGetINFClass = thismodule.SetupDiGetINFClassA;
+        pub const SetupDiBuildClassInfoListEx = thismodule.SetupDiBuildClassInfoListExA;
+        pub const SetupDiGetClassDescription = thismodule.SetupDiGetClassDescriptionA;
+        pub const SetupDiGetClassDescriptionEx = thismodule.SetupDiGetClassDescriptionExA;
+        pub const SetupDiInstallClass = thismodule.SetupDiInstallClassA;
+        pub const SetupDiInstallClassEx = thismodule.SetupDiInstallClassExA;
+        pub const SetupDiOpenClassRegKeyEx = thismodule.SetupDiOpenClassRegKeyExA;
+        pub const SetupDiCreateDeviceInterfaceRegKey = thismodule.SetupDiCreateDeviceInterfaceRegKeyA;
+        pub const SetupDiCreateDevRegKey = thismodule.SetupDiCreateDevRegKeyA;
+        pub const SetupDiGetHwProfileListEx = thismodule.SetupDiGetHwProfileListExA;
+        pub const SetupDiGetDeviceRegistryProperty = thismodule.SetupDiGetDeviceRegistryPropertyA;
+        pub const SetupDiGetClassRegistryProperty = thismodule.SetupDiGetClassRegistryPropertyA;
+        pub const SetupDiSetDeviceRegistryProperty = thismodule.SetupDiSetDeviceRegistryPropertyA;
+        pub const SetupDiSetClassRegistryProperty = thismodule.SetupDiSetClassRegistryPropertyA;
+        pub const SetupDiGetDeviceInstallParams = thismodule.SetupDiGetDeviceInstallParamsA;
+        pub const SetupDiGetClassInstallParams = thismodule.SetupDiGetClassInstallParamsA;
+        pub const SetupDiSetDeviceInstallParams = thismodule.SetupDiSetDeviceInstallParamsA;
+        pub const SetupDiSetClassInstallParams = thismodule.SetupDiSetClassInstallParamsA;
+        pub const SetupDiGetDriverInstallParams = thismodule.SetupDiGetDriverInstallParamsA;
+        pub const SetupDiSetDriverInstallParams = thismodule.SetupDiSetDriverInstallParamsA;
+        pub const SetupDiGetClassImageListEx = thismodule.SetupDiGetClassImageListExA;
+        pub const SetupDiGetClassDevPropertySheets = thismodule.SetupDiGetClassDevPropertySheetsA;
+        pub const SetupDiClassNameFromGuid = thismodule.SetupDiClassNameFromGuidA;
+        pub const SetupDiClassNameFromGuidEx = thismodule.SetupDiClassNameFromGuidExA;
+        pub const SetupDiClassGuidsFromName = thismodule.SetupDiClassGuidsFromNameA;
+        pub const SetupDiClassGuidsFromNameEx = thismodule.SetupDiClassGuidsFromNameExA;
+        pub const SetupDiGetHwProfileFriendlyName = thismodule.SetupDiGetHwProfileFriendlyNameA;
+        pub const SetupDiGetHwProfileFriendlyNameEx = thismodule.SetupDiGetHwProfileFriendlyNameExA;
+        pub const SetupDiGetActualModelsSection = thismodule.SetupDiGetActualModelsSectionA;
+        pub const SetupDiGetActualSectionToInstall = thismodule.SetupDiGetActualSectionToInstallA;
+        pub const SetupDiGetActualSectionToInstallEx = thismodule.SetupDiGetActualSectionToInstallExA;
+        pub const SetupEnumInfSections = thismodule.SetupEnumInfSectionsA;
+        pub const SetupVerifyInfFile = thismodule.SetupVerifyInfFileA;
+        pub const SetupDiGetCustomDeviceProperty = thismodule.SetupDiGetCustomDevicePropertyA;
+        pub const SetupConfigureWmiFromInfSection = thismodule.SetupConfigureWmiFromInfSectionA;
+        pub const CM_Add_ID = thismodule.CM_Add_IDA;
+        pub const CM_Add_ID_Ex = thismodule.CM_Add_ID_ExA;
+        pub const CM_Connect_Machine = thismodule.CM_Connect_MachineA;
+        pub const CM_Create_DevNode = thismodule.CM_Create_DevNodeA;
+        pub const CM_Create_DevNode_Ex = thismodule.CM_Create_DevNode_ExA;
+        pub const CM_Enumerate_Enumerators = thismodule.CM_Enumerate_EnumeratorsA;
+        pub const CM_Enumerate_Enumerators_Ex = thismodule.CM_Enumerate_Enumerators_ExA;
+        pub const CM_Get_Class_Name = thismodule.CM_Get_Class_NameA;
+        pub const CM_Get_Class_Name_Ex = thismodule.CM_Get_Class_Name_ExA;
+        pub const CM_Get_Class_Key_Name = thismodule.CM_Get_Class_Key_NameA;
+        pub const CM_Get_Class_Key_Name_Ex = thismodule.CM_Get_Class_Key_Name_ExA;
+        pub const CM_Get_Device_ID = thismodule.CM_Get_Device_IDA;
+        pub const CM_Get_Device_ID_Ex = thismodule.CM_Get_Device_ID_ExA;
+        pub const CM_Get_Device_ID_List = thismodule.CM_Get_Device_ID_ListA;
+        pub const CM_Get_Device_ID_List_Ex = thismodule.CM_Get_Device_ID_List_ExA;
+        pub const CM_Get_Device_ID_List_Size = thismodule.CM_Get_Device_ID_List_SizeA;
+        pub const CM_Get_Device_ID_List_Size_Ex = thismodule.CM_Get_Device_ID_List_Size_ExA;
+        pub const CM_Get_DevNode_Registry_Property = thismodule.CM_Get_DevNode_Registry_PropertyA;
+        pub const CM_Get_DevNode_Registry_Property_Ex = thismodule.CM_Get_DevNode_Registry_Property_ExA;
+        pub const CM_Get_DevNode_Custom_Property = thismodule.CM_Get_DevNode_Custom_PropertyA;
+        pub const CM_Get_DevNode_Custom_Property_Ex = thismodule.CM_Get_DevNode_Custom_Property_ExA;
+        pub const CM_Get_Hardware_Profile_Info = thismodule.CM_Get_Hardware_Profile_InfoA;
+        pub const CM_Get_Hardware_Profile_Info_Ex = thismodule.CM_Get_Hardware_Profile_Info_ExA;
+        pub const CM_Get_HW_Prof_Flags = thismodule.CM_Get_HW_Prof_FlagsA;
+        pub const CM_Get_HW_Prof_Flags_Ex = thismodule.CM_Get_HW_Prof_Flags_ExA;
+        pub const CM_Get_Device_Interface_Alias = thismodule.CM_Get_Device_Interface_AliasA;
+        pub const CM_Get_Device_Interface_Alias_Ex = thismodule.CM_Get_Device_Interface_Alias_ExA;
+        pub const CM_Get_Device_Interface_List = thismodule.CM_Get_Device_Interface_ListA;
+        pub const CM_Get_Device_Interface_List_Ex = thismodule.CM_Get_Device_Interface_List_ExA;
+        pub const CM_Get_Device_Interface_List_Size = thismodule.CM_Get_Device_Interface_List_SizeA;
+        pub const CM_Get_Device_Interface_List_Size_Ex = thismodule.CM_Get_Device_Interface_List_Size_ExA;
+        pub const CM_Locate_DevNode = thismodule.CM_Locate_DevNodeA;
+        pub const CM_Locate_DevNode_Ex = thismodule.CM_Locate_DevNode_ExA;
+        pub const CM_Open_Class_Key = thismodule.CM_Open_Class_KeyA;
+        pub const CM_Open_Class_Key_Ex = thismodule.CM_Open_Class_Key_ExA;
+        pub const CM_Open_Device_Interface_Key = thismodule.CM_Open_Device_Interface_KeyA;
+        pub const CM_Open_Device_Interface_Key_Ex = thismodule.CM_Open_Device_Interface_Key_ExA;
+        pub const CM_Delete_Device_Interface_Key = thismodule.CM_Delete_Device_Interface_KeyA;
+        pub const CM_Delete_Device_Interface_Key_Ex = thismodule.CM_Delete_Device_Interface_Key_ExA;
+        pub const CM_Query_And_Remove_SubTree = thismodule.CM_Query_And_Remove_SubTreeA;
+        pub const CM_Query_And_Remove_SubTree_Ex = thismodule.CM_Query_And_Remove_SubTree_ExA;
+        pub const CM_Request_Device_Eject = thismodule.CM_Request_Device_EjectA;
+        pub const CM_Request_Device_Eject_Ex = thismodule.CM_Request_Device_Eject_ExA;
+        pub const CM_Register_Device_Interface = thismodule.CM_Register_Device_InterfaceA;
+        pub const CM_Register_Device_Interface_Ex = thismodule.CM_Register_Device_Interface_ExA;
+        pub const CM_Unregister_Device_Interface = thismodule.CM_Unregister_Device_InterfaceA;
+        pub const CM_Unregister_Device_Interface_Ex = thismodule.CM_Unregister_Device_Interface_ExA;
+        pub const CM_Set_DevNode_Registry_Property = thismodule.CM_Set_DevNode_Registry_PropertyA;
+        pub const CM_Set_DevNode_Registry_Property_Ex = thismodule.CM_Set_DevNode_Registry_Property_ExA;
+        pub const CM_Set_HW_Prof_Flags = thismodule.CM_Set_HW_Prof_FlagsA;
+        pub const CM_Set_HW_Prof_Flags_Ex = thismodule.CM_Set_HW_Prof_Flags_ExA;
+        pub const CM_Get_Resource_Conflict_Details = thismodule.CM_Get_Resource_Conflict_DetailsA;
+        pub const CM_Get_Class_Registry_Property = thismodule.CM_Get_Class_Registry_PropertyA;
+        pub const CM_Set_Class_Registry_Property = thismodule.CM_Set_Class_Registry_PropertyA;
+        pub const UpdateDriverForPlugAndPlayDevices = thismodule.UpdateDriverForPlugAndPlayDevicesA;
+        pub const DiInstallDriver = thismodule.DiInstallDriverA;
+        pub const DiUninstallDriver = thismodule.DiUninstallDriverA;
     },
     .wide => struct {
-        pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_W;
-        pub const FILEPATHS_ = FILEPATHS_W;
-        pub const FILEPATHS_SIGNERINFO_ = FILEPATHS_SIGNERINFO_W;
-        pub const SOURCE_MEDIA_ = SOURCE_MEDIA_W;
-        pub const CABINET_INFO_ = CABINET_INFO_W;
-        pub const FILE_IN_CABINET_INFO_ = FILE_IN_CABINET_INFO_W;
-        pub const SP_REGISTER_CONTROL_STATUS = SP_REGISTER_CONTROL_STATUSW;
-        pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_W;
-        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = SP_DEVICE_INTERFACE_DETAIL_DATA_W;
-        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = SP_DEVINFO_LIST_DETAIL_DATA_W;
-        pub const SP_DEVINSTALL_PARAMS_ = SP_DEVINSTALL_PARAMS_W;
-        pub const SP_SELECTDEVICE_PARAMS_ = SP_SELECTDEVICE_PARAMS_W;
-        pub const SP_TROUBLESHOOTER_PARAMS_ = SP_TROUBLESHOOTER_PARAMS_W;
-        pub const SP_POWERMESSAGEWAKE_PARAMS_ = SP_POWERMESSAGEWAKE_PARAMS_W;
-        pub const SP_DRVINFO_DATA_V2_ = SP_DRVINFO_DATA_V2_W;
-        pub const SP_DRVINFO_DATA_V1_ = SP_DRVINFO_DATA_V1_W;
-        pub const SP_DRVINFO_DETAIL_DATA_ = SP_DRVINFO_DETAIL_DATA_W;
-        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = SP_BACKUP_QUEUE_PARAMS_V2_W;
-        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = SP_BACKUP_QUEUE_PARAMS_V1_W;
-        pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_W;
-        pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_W;
-        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_W;
-        pub const CONFLICT_DETAILS_ = CONFLICT_DETAILS_W;
-        pub const HWProfileInfo_s = HWProfileInfo_sW;
-        pub const SetupGetInfInformation = SetupGetInfInformationW;
-        pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationW;
-        pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationW;
-        pub const SetupQueryInfVersionInformation = SetupQueryInfVersionInformationW;
-        pub const SetupGetInfDriverStoreLocation = SetupGetInfDriverStoreLocationW;
-        pub const SetupGetInfPublishedName = SetupGetInfPublishedNameW;
-        pub const SetupGetInfFileList = SetupGetInfFileListW;
-        pub const SetupOpenInfFile = SetupOpenInfFileW;
-        pub const SetupOpenAppendInfFile = SetupOpenAppendInfFileW;
-        pub const SetupFindFirstLine = SetupFindFirstLineW;
-        pub const SetupFindNextMatchLine = SetupFindNextMatchLineW;
-        pub const SetupGetLineByIndex = SetupGetLineByIndexW;
-        pub const SetupGetLineCount = SetupGetLineCountW;
-        pub const SetupGetLineText = SetupGetLineTextW;
-        pub const SetupGetStringField = SetupGetStringFieldW;
-        pub const SetupGetMultiSzField = SetupGetMultiSzFieldW;
-        pub const SetupGetFileCompressionInfo = SetupGetFileCompressionInfoW;
-        pub const SetupGetFileCompressionInfoEx = SetupGetFileCompressionInfoExW;
-        pub const SetupDecompressOrCopyFile = SetupDecompressOrCopyFileW;
-        pub const SetupGetSourceFileLocation = SetupGetSourceFileLocationW;
-        pub const SetupGetSourceFileSize = SetupGetSourceFileSizeW;
-        pub const SetupGetTargetPath = SetupGetTargetPathW;
-        pub const SetupSetSourceList = SetupSetSourceListW;
-        pub const SetupAddToSourceList = SetupAddToSourceListW;
-        pub const SetupRemoveFromSourceList = SetupRemoveFromSourceListW;
-        pub const SetupQuerySourceList = SetupQuerySourceListW;
-        pub const SetupFreeSourceList = SetupFreeSourceListW;
-        pub const SetupPromptForDisk = SetupPromptForDiskW;
-        pub const SetupCopyError = SetupCopyErrorW;
-        pub const SetupRenameError = SetupRenameErrorW;
-        pub const SetupDeleteError = SetupDeleteErrorW;
-        pub const SetupBackupError = SetupBackupErrorW;
-        pub const SetupSetDirectoryId = SetupSetDirectoryIdW;
-        pub const SetupSetDirectoryIdEx = SetupSetDirectoryIdExW;
-        pub const SetupGetSourceInfo = SetupGetSourceInfoW;
-        pub const SetupInstallFile = SetupInstallFileW;
-        pub const SetupInstallFileEx = SetupInstallFileExW;
-        pub const SetupSetFileQueueAlternatePlatform = SetupSetFileQueueAlternatePlatformW;
-        pub const SetupSetPlatformPathOverride = SetupSetPlatformPathOverrideW;
-        pub const SetupQueueCopy = SetupQueueCopyW;
-        pub const SetupQueueCopyIndirect = SetupQueueCopyIndirectW;
-        pub const SetupQueueDefaultCopy = SetupQueueDefaultCopyW;
-        pub const SetupQueueCopySection = SetupQueueCopySectionW;
-        pub const SetupQueueDelete = SetupQueueDeleteW;
-        pub const SetupQueueDeleteSection = SetupQueueDeleteSectionW;
-        pub const SetupQueueRename = SetupQueueRenameW;
-        pub const SetupQueueRenameSection = SetupQueueRenameSectionW;
-        pub const SetupCommitFileQueue = SetupCommitFileQueueW;
-        pub const SetupScanFileQueue = SetupScanFileQueueW;
-        pub const SetupCopyOEMInf = SetupCopyOEMInfW;
-        pub const SetupUninstallOEMInf = SetupUninstallOEMInfW;
-        pub const SetupCreateDiskSpaceList = SetupCreateDiskSpaceListW;
-        pub const SetupDuplicateDiskSpaceList = SetupDuplicateDiskSpaceListW;
-        pub const SetupQueryDrivesInDiskSpaceList = SetupQueryDrivesInDiskSpaceListW;
-        pub const SetupQuerySpaceRequiredOnDrive = SetupQuerySpaceRequiredOnDriveW;
-        pub const SetupAdjustDiskSpaceList = SetupAdjustDiskSpaceListW;
-        pub const SetupAddToDiskSpaceList = SetupAddToDiskSpaceListW;
-        pub const SetupAddSectionToDiskSpaceList = SetupAddSectionToDiskSpaceListW;
-        pub const SetupAddInstallSectionToDiskSpaceList = SetupAddInstallSectionToDiskSpaceListW;
-        pub const SetupRemoveFromDiskSpaceList = SetupRemoveFromDiskSpaceListW;
-        pub const SetupRemoveSectionFromDiskSpaceList = SetupRemoveSectionFromDiskSpaceListW;
-        pub const SetupRemoveInstallSectionFromDiskSpaceList = SetupRemoveInstallSectionFromDiskSpaceListW;
-        pub const SetupIterateCabinet = SetupIterateCabinetW;
-        pub const SetupDefaultQueueCallback = SetupDefaultQueueCallbackW;
-        pub const SetupInstallFromInfSection = SetupInstallFromInfSectionW;
-        pub const SetupInstallFilesFromInfSection = SetupInstallFilesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSection = SetupInstallServicesFromInfSectionW;
-        pub const SetupInstallServicesFromInfSectionEx = SetupInstallServicesFromInfSectionExW;
-        pub const InstallHinfSection = InstallHinfSectionW;
-        pub const SetupInitializeFileLog = SetupInitializeFileLogW;
-        pub const SetupLogFile = SetupLogFileW;
-        pub const SetupRemoveFileLogEntry = SetupRemoveFileLogEntryW;
-        pub const SetupQueryFileLog = SetupQueryFileLogW;
-        pub const SetupLogError = SetupLogErrorW;
-        pub const SetupGetBackupInformation = SetupGetBackupInformationW;
-        pub const SetupPrepareQueueForRestore = SetupPrepareQueueForRestoreW;
-        pub const SetupDiCreateDeviceInfoListEx = SetupDiCreateDeviceInfoListExW;
-        pub const SetupDiGetDeviceInfoListDetail = SetupDiGetDeviceInfoListDetailW;
-        pub const SetupDiCreateDeviceInfo = SetupDiCreateDeviceInfoW;
-        pub const SetupDiOpenDeviceInfo = SetupDiOpenDeviceInfoW;
-        pub const SetupDiGetDeviceInstanceId = SetupDiGetDeviceInstanceIdW;
-        pub const SetupDiCreateDeviceInterface = SetupDiCreateDeviceInterfaceW;
-        pub const SetupDiOpenDeviceInterface = SetupDiOpenDeviceInterfaceW;
-        pub const SetupDiGetDeviceInterfaceDetail = SetupDiGetDeviceInterfaceDetailW;
-        pub const SetupDiEnumDriverInfo = SetupDiEnumDriverInfoW;
-        pub const SetupDiGetSelectedDriver = SetupDiGetSelectedDriverW;
-        pub const SetupDiSetSelectedDriver = SetupDiSetSelectedDriverW;
-        pub const SetupDiGetDriverInfoDetail = SetupDiGetDriverInfoDetailW;
-        pub const SetupDiGetClassDevs = SetupDiGetClassDevsW;
-        pub const SetupDiGetClassDevsEx = SetupDiGetClassDevsExW;
-        pub const SetupDiGetINFClass = SetupDiGetINFClassW;
-        pub const SetupDiBuildClassInfoListEx = SetupDiBuildClassInfoListExW;
-        pub const SetupDiGetClassDescription = SetupDiGetClassDescriptionW;
-        pub const SetupDiGetClassDescriptionEx = SetupDiGetClassDescriptionExW;
-        pub const SetupDiInstallClass = SetupDiInstallClassW;
-        pub const SetupDiInstallClassEx = SetupDiInstallClassExW;
-        pub const SetupDiOpenClassRegKeyEx = SetupDiOpenClassRegKeyExW;
-        pub const SetupDiCreateDeviceInterfaceRegKey = SetupDiCreateDeviceInterfaceRegKeyW;
-        pub const SetupDiCreateDevRegKey = SetupDiCreateDevRegKeyW;
-        pub const SetupDiGetHwProfileListEx = SetupDiGetHwProfileListExW;
-        pub const SetupDiGetDeviceRegistryProperty = SetupDiGetDeviceRegistryPropertyW;
-        pub const SetupDiGetClassRegistryProperty = SetupDiGetClassRegistryPropertyW;
-        pub const SetupDiSetDeviceRegistryProperty = SetupDiSetDeviceRegistryPropertyW;
-        pub const SetupDiSetClassRegistryProperty = SetupDiSetClassRegistryPropertyW;
-        pub const SetupDiGetDeviceInstallParams = SetupDiGetDeviceInstallParamsW;
-        pub const SetupDiGetClassInstallParams = SetupDiGetClassInstallParamsW;
-        pub const SetupDiSetDeviceInstallParams = SetupDiSetDeviceInstallParamsW;
-        pub const SetupDiSetClassInstallParams = SetupDiSetClassInstallParamsW;
-        pub const SetupDiGetDriverInstallParams = SetupDiGetDriverInstallParamsW;
-        pub const SetupDiSetDriverInstallParams = SetupDiSetDriverInstallParamsW;
-        pub const SetupDiGetClassImageListEx = SetupDiGetClassImageListExW;
-        pub const SetupDiGetClassDevPropertySheets = SetupDiGetClassDevPropertySheetsW;
-        pub const SetupDiClassNameFromGuid = SetupDiClassNameFromGuidW;
-        pub const SetupDiClassNameFromGuidEx = SetupDiClassNameFromGuidExW;
-        pub const SetupDiClassGuidsFromName = SetupDiClassGuidsFromNameW;
-        pub const SetupDiClassGuidsFromNameEx = SetupDiClassGuidsFromNameExW;
-        pub const SetupDiGetHwProfileFriendlyName = SetupDiGetHwProfileFriendlyNameW;
-        pub const SetupDiGetHwProfileFriendlyNameEx = SetupDiGetHwProfileFriendlyNameExW;
-        pub const SetupDiGetActualModelsSection = SetupDiGetActualModelsSectionW;
-        pub const SetupDiGetActualSectionToInstall = SetupDiGetActualSectionToInstallW;
-        pub const SetupDiGetActualSectionToInstallEx = SetupDiGetActualSectionToInstallExW;
-        pub const SetupEnumInfSections = SetupEnumInfSectionsW;
-        pub const SetupVerifyInfFile = SetupVerifyInfFileW;
-        pub const SetupDiGetCustomDeviceProperty = SetupDiGetCustomDevicePropertyW;
-        pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionW;
-        pub const CM_Add_ID = CM_Add_IDW;
-        pub const CM_Add_ID_Ex = CM_Add_ID_ExW;
-        pub const CM_Connect_Machine = CM_Connect_MachineW;
-        pub const CM_Create_DevNode = CM_Create_DevNodeW;
-        pub const CM_Create_DevNode_Ex = CM_Create_DevNode_ExW;
-        pub const CM_Enumerate_Enumerators = CM_Enumerate_EnumeratorsW;
-        pub const CM_Enumerate_Enumerators_Ex = CM_Enumerate_Enumerators_ExW;
-        pub const CM_Get_Class_Name = CM_Get_Class_NameW;
-        pub const CM_Get_Class_Name_Ex = CM_Get_Class_Name_ExW;
-        pub const CM_Get_Class_Key_Name = CM_Get_Class_Key_NameW;
-        pub const CM_Get_Class_Key_Name_Ex = CM_Get_Class_Key_Name_ExW;
-        pub const CM_Get_Device_ID = CM_Get_Device_IDW;
-        pub const CM_Get_Device_ID_Ex = CM_Get_Device_ID_ExW;
-        pub const CM_Get_Device_ID_List = CM_Get_Device_ID_ListW;
-        pub const CM_Get_Device_ID_List_Ex = CM_Get_Device_ID_List_ExW;
-        pub const CM_Get_Device_ID_List_Size = CM_Get_Device_ID_List_SizeW;
-        pub const CM_Get_Device_ID_List_Size_Ex = CM_Get_Device_ID_List_Size_ExW;
-        pub const CM_Get_DevNode_Registry_Property = CM_Get_DevNode_Registry_PropertyW;
-        pub const CM_Get_DevNode_Registry_Property_Ex = CM_Get_DevNode_Registry_Property_ExW;
-        pub const CM_Get_DevNode_Custom_Property = CM_Get_DevNode_Custom_PropertyW;
-        pub const CM_Get_DevNode_Custom_Property_Ex = CM_Get_DevNode_Custom_Property_ExW;
-        pub const CM_Get_Hardware_Profile_Info = CM_Get_Hardware_Profile_InfoW;
-        pub const CM_Get_Hardware_Profile_Info_Ex = CM_Get_Hardware_Profile_Info_ExW;
-        pub const CM_Get_HW_Prof_Flags = CM_Get_HW_Prof_FlagsW;
-        pub const CM_Get_HW_Prof_Flags_Ex = CM_Get_HW_Prof_Flags_ExW;
-        pub const CM_Get_Device_Interface_Alias = CM_Get_Device_Interface_AliasW;
-        pub const CM_Get_Device_Interface_Alias_Ex = CM_Get_Device_Interface_Alias_ExW;
-        pub const CM_Get_Device_Interface_List = CM_Get_Device_Interface_ListW;
-        pub const CM_Get_Device_Interface_List_Ex = CM_Get_Device_Interface_List_ExW;
-        pub const CM_Get_Device_Interface_List_Size = CM_Get_Device_Interface_List_SizeW;
-        pub const CM_Get_Device_Interface_List_Size_Ex = CM_Get_Device_Interface_List_Size_ExW;
-        pub const CM_Locate_DevNode = CM_Locate_DevNodeW;
-        pub const CM_Locate_DevNode_Ex = CM_Locate_DevNode_ExW;
-        pub const CM_Open_Class_Key = CM_Open_Class_KeyW;
-        pub const CM_Open_Class_Key_Ex = CM_Open_Class_Key_ExW;
-        pub const CM_Open_Device_Interface_Key = CM_Open_Device_Interface_KeyW;
-        pub const CM_Open_Device_Interface_Key_Ex = CM_Open_Device_Interface_Key_ExW;
-        pub const CM_Delete_Device_Interface_Key = CM_Delete_Device_Interface_KeyW;
-        pub const CM_Delete_Device_Interface_Key_Ex = CM_Delete_Device_Interface_Key_ExW;
-        pub const CM_Query_And_Remove_SubTree = CM_Query_And_Remove_SubTreeW;
-        pub const CM_Query_And_Remove_SubTree_Ex = CM_Query_And_Remove_SubTree_ExW;
-        pub const CM_Request_Device_Eject = CM_Request_Device_EjectW;
-        pub const CM_Request_Device_Eject_Ex = CM_Request_Device_Eject_ExW;
-        pub const CM_Register_Device_Interface = CM_Register_Device_InterfaceW;
-        pub const CM_Register_Device_Interface_Ex = CM_Register_Device_Interface_ExW;
-        pub const CM_Unregister_Device_Interface = CM_Unregister_Device_InterfaceW;
-        pub const CM_Unregister_Device_Interface_Ex = CM_Unregister_Device_Interface_ExW;
-        pub const CM_Set_DevNode_Registry_Property = CM_Set_DevNode_Registry_PropertyW;
-        pub const CM_Set_DevNode_Registry_Property_Ex = CM_Set_DevNode_Registry_Property_ExW;
-        pub const CM_Set_HW_Prof_Flags = CM_Set_HW_Prof_FlagsW;
-        pub const CM_Set_HW_Prof_Flags_Ex = CM_Set_HW_Prof_Flags_ExW;
-        pub const CM_Get_Resource_Conflict_Details = CM_Get_Resource_Conflict_DetailsW;
-        pub const CM_Get_Class_Registry_Property = CM_Get_Class_Registry_PropertyW;
-        pub const CM_Set_Class_Registry_Property = CM_Set_Class_Registry_PropertyW;
-        pub const UpdateDriverForPlugAndPlayDevices = UpdateDriverForPlugAndPlayDevicesW;
-        pub const DiInstallDriver = DiInstallDriverW;
-        pub const DiUninstallDriver = DiUninstallDriverW;
+        pub const SP_ORIGINAL_FILE_INFO_ = thismodule.SP_ORIGINAL_FILE_INFO_W;
+        pub const FILEPATHS_ = thismodule.FILEPATHS_W;
+        pub const FILEPATHS_SIGNERINFO_ = thismodule.FILEPATHS_SIGNERINFO_W;
+        pub const SOURCE_MEDIA_ = thismodule.SOURCE_MEDIA_W;
+        pub const CABINET_INFO_ = thismodule.CABINET_INFO_W;
+        pub const FILE_IN_CABINET_INFO_ = thismodule.FILE_IN_CABINET_INFO_W;
+        pub const SP_REGISTER_CONTROL_STATUS = thismodule.SP_REGISTER_CONTROL_STATUSW;
+        pub const SP_FILE_COPY_PARAMS_ = thismodule.SP_FILE_COPY_PARAMS_W;
+        pub const SP_DEVICE_INTERFACE_DETAIL_DATA_ = thismodule.SP_DEVICE_INTERFACE_DETAIL_DATA_W;
+        pub const SP_DEVINFO_LIST_DETAIL_DATA_ = thismodule.SP_DEVINFO_LIST_DETAIL_DATA_W;
+        pub const SP_DEVINSTALL_PARAMS_ = thismodule.SP_DEVINSTALL_PARAMS_W;
+        pub const SP_SELECTDEVICE_PARAMS_ = thismodule.SP_SELECTDEVICE_PARAMS_W;
+        pub const SP_TROUBLESHOOTER_PARAMS_ = thismodule.SP_TROUBLESHOOTER_PARAMS_W;
+        pub const SP_POWERMESSAGEWAKE_PARAMS_ = thismodule.SP_POWERMESSAGEWAKE_PARAMS_W;
+        pub const SP_DRVINFO_DATA_V2_ = thismodule.SP_DRVINFO_DATA_V2_W;
+        pub const SP_DRVINFO_DATA_V1_ = thismodule.SP_DRVINFO_DATA_V1_W;
+        pub const SP_DRVINFO_DETAIL_DATA_ = thismodule.SP_DRVINFO_DETAIL_DATA_W;
+        pub const SP_BACKUP_QUEUE_PARAMS_V2_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V2_W;
+        pub const SP_BACKUP_QUEUE_PARAMS_V1_ = thismodule.SP_BACKUP_QUEUE_PARAMS_V1_W;
+        pub const SP_INF_SIGNER_INFO_V1_ = thismodule.SP_INF_SIGNER_INFO_V1_W;
+        pub const SP_INF_SIGNER_INFO_V2_ = thismodule.SP_INF_SIGNER_INFO_V2_W;
+        pub const PSP_FILE_CALLBACK_ = thismodule.PSP_FILE_CALLBACK_W;
+        pub const CONFLICT_DETAILS_ = thismodule.CONFLICT_DETAILS_W;
+        pub const HWProfileInfo_s = thismodule.HWProfileInfo_sW;
+        pub const SetupGetInfInformation = thismodule.SetupGetInfInformationW;
+        pub const SetupQueryInfFileInformation = thismodule.SetupQueryInfFileInformationW;
+        pub const SetupQueryInfOriginalFileInformation = thismodule.SetupQueryInfOriginalFileInformationW;
+        pub const SetupQueryInfVersionInformation = thismodule.SetupQueryInfVersionInformationW;
+        pub const SetupGetInfDriverStoreLocation = thismodule.SetupGetInfDriverStoreLocationW;
+        pub const SetupGetInfPublishedName = thismodule.SetupGetInfPublishedNameW;
+        pub const SetupGetInfFileList = thismodule.SetupGetInfFileListW;
+        pub const SetupOpenInfFile = thismodule.SetupOpenInfFileW;
+        pub const SetupOpenAppendInfFile = thismodule.SetupOpenAppendInfFileW;
+        pub const SetupFindFirstLine = thismodule.SetupFindFirstLineW;
+        pub const SetupFindNextMatchLine = thismodule.SetupFindNextMatchLineW;
+        pub const SetupGetLineByIndex = thismodule.SetupGetLineByIndexW;
+        pub const SetupGetLineCount = thismodule.SetupGetLineCountW;
+        pub const SetupGetLineText = thismodule.SetupGetLineTextW;
+        pub const SetupGetStringField = thismodule.SetupGetStringFieldW;
+        pub const SetupGetMultiSzField = thismodule.SetupGetMultiSzFieldW;
+        pub const SetupGetFileCompressionInfo = thismodule.SetupGetFileCompressionInfoW;
+        pub const SetupGetFileCompressionInfoEx = thismodule.SetupGetFileCompressionInfoExW;
+        pub const SetupDecompressOrCopyFile = thismodule.SetupDecompressOrCopyFileW;
+        pub const SetupGetSourceFileLocation = thismodule.SetupGetSourceFileLocationW;
+        pub const SetupGetSourceFileSize = thismodule.SetupGetSourceFileSizeW;
+        pub const SetupGetTargetPath = thismodule.SetupGetTargetPathW;
+        pub const SetupSetSourceList = thismodule.SetupSetSourceListW;
+        pub const SetupAddToSourceList = thismodule.SetupAddToSourceListW;
+        pub const SetupRemoveFromSourceList = thismodule.SetupRemoveFromSourceListW;
+        pub const SetupQuerySourceList = thismodule.SetupQuerySourceListW;
+        pub const SetupFreeSourceList = thismodule.SetupFreeSourceListW;
+        pub const SetupPromptForDisk = thismodule.SetupPromptForDiskW;
+        pub const SetupCopyError = thismodule.SetupCopyErrorW;
+        pub const SetupRenameError = thismodule.SetupRenameErrorW;
+        pub const SetupDeleteError = thismodule.SetupDeleteErrorW;
+        pub const SetupBackupError = thismodule.SetupBackupErrorW;
+        pub const SetupSetDirectoryId = thismodule.SetupSetDirectoryIdW;
+        pub const SetupSetDirectoryIdEx = thismodule.SetupSetDirectoryIdExW;
+        pub const SetupGetSourceInfo = thismodule.SetupGetSourceInfoW;
+        pub const SetupInstallFile = thismodule.SetupInstallFileW;
+        pub const SetupInstallFileEx = thismodule.SetupInstallFileExW;
+        pub const SetupSetFileQueueAlternatePlatform = thismodule.SetupSetFileQueueAlternatePlatformW;
+        pub const SetupSetPlatformPathOverride = thismodule.SetupSetPlatformPathOverrideW;
+        pub const SetupQueueCopy = thismodule.SetupQueueCopyW;
+        pub const SetupQueueCopyIndirect = thismodule.SetupQueueCopyIndirectW;
+        pub const SetupQueueDefaultCopy = thismodule.SetupQueueDefaultCopyW;
+        pub const SetupQueueCopySection = thismodule.SetupQueueCopySectionW;
+        pub const SetupQueueDelete = thismodule.SetupQueueDeleteW;
+        pub const SetupQueueDeleteSection = thismodule.SetupQueueDeleteSectionW;
+        pub const SetupQueueRename = thismodule.SetupQueueRenameW;
+        pub const SetupQueueRenameSection = thismodule.SetupQueueRenameSectionW;
+        pub const SetupCommitFileQueue = thismodule.SetupCommitFileQueueW;
+        pub const SetupScanFileQueue = thismodule.SetupScanFileQueueW;
+        pub const SetupCopyOEMInf = thismodule.SetupCopyOEMInfW;
+        pub const SetupUninstallOEMInf = thismodule.SetupUninstallOEMInfW;
+        pub const SetupCreateDiskSpaceList = thismodule.SetupCreateDiskSpaceListW;
+        pub const SetupDuplicateDiskSpaceList = thismodule.SetupDuplicateDiskSpaceListW;
+        pub const SetupQueryDrivesInDiskSpaceList = thismodule.SetupQueryDrivesInDiskSpaceListW;
+        pub const SetupQuerySpaceRequiredOnDrive = thismodule.SetupQuerySpaceRequiredOnDriveW;
+        pub const SetupAdjustDiskSpaceList = thismodule.SetupAdjustDiskSpaceListW;
+        pub const SetupAddToDiskSpaceList = thismodule.SetupAddToDiskSpaceListW;
+        pub const SetupAddSectionToDiskSpaceList = thismodule.SetupAddSectionToDiskSpaceListW;
+        pub const SetupAddInstallSectionToDiskSpaceList = thismodule.SetupAddInstallSectionToDiskSpaceListW;
+        pub const SetupRemoveFromDiskSpaceList = thismodule.SetupRemoveFromDiskSpaceListW;
+        pub const SetupRemoveSectionFromDiskSpaceList = thismodule.SetupRemoveSectionFromDiskSpaceListW;
+        pub const SetupRemoveInstallSectionFromDiskSpaceList = thismodule.SetupRemoveInstallSectionFromDiskSpaceListW;
+        pub const SetupIterateCabinet = thismodule.SetupIterateCabinetW;
+        pub const SetupDefaultQueueCallback = thismodule.SetupDefaultQueueCallbackW;
+        pub const SetupInstallFromInfSection = thismodule.SetupInstallFromInfSectionW;
+        pub const SetupInstallFilesFromInfSection = thismodule.SetupInstallFilesFromInfSectionW;
+        pub const SetupInstallServicesFromInfSection = thismodule.SetupInstallServicesFromInfSectionW;
+        pub const SetupInstallServicesFromInfSectionEx = thismodule.SetupInstallServicesFromInfSectionExW;
+        pub const InstallHinfSection = thismodule.InstallHinfSectionW;
+        pub const SetupInitializeFileLog = thismodule.SetupInitializeFileLogW;
+        pub const SetupLogFile = thismodule.SetupLogFileW;
+        pub const SetupRemoveFileLogEntry = thismodule.SetupRemoveFileLogEntryW;
+        pub const SetupQueryFileLog = thismodule.SetupQueryFileLogW;
+        pub const SetupLogError = thismodule.SetupLogErrorW;
+        pub const SetupGetBackupInformation = thismodule.SetupGetBackupInformationW;
+        pub const SetupPrepareQueueForRestore = thismodule.SetupPrepareQueueForRestoreW;
+        pub const SetupDiCreateDeviceInfoListEx = thismodule.SetupDiCreateDeviceInfoListExW;
+        pub const SetupDiGetDeviceInfoListDetail = thismodule.SetupDiGetDeviceInfoListDetailW;
+        pub const SetupDiCreateDeviceInfo = thismodule.SetupDiCreateDeviceInfoW;
+        pub const SetupDiOpenDeviceInfo = thismodule.SetupDiOpenDeviceInfoW;
+        pub const SetupDiGetDeviceInstanceId = thismodule.SetupDiGetDeviceInstanceIdW;
+        pub const SetupDiCreateDeviceInterface = thismodule.SetupDiCreateDeviceInterfaceW;
+        pub const SetupDiOpenDeviceInterface = thismodule.SetupDiOpenDeviceInterfaceW;
+        pub const SetupDiGetDeviceInterfaceDetail = thismodule.SetupDiGetDeviceInterfaceDetailW;
+        pub const SetupDiEnumDriverInfo = thismodule.SetupDiEnumDriverInfoW;
+        pub const SetupDiGetSelectedDriver = thismodule.SetupDiGetSelectedDriverW;
+        pub const SetupDiSetSelectedDriver = thismodule.SetupDiSetSelectedDriverW;
+        pub const SetupDiGetDriverInfoDetail = thismodule.SetupDiGetDriverInfoDetailW;
+        pub const SetupDiGetClassDevs = thismodule.SetupDiGetClassDevsW;
+        pub const SetupDiGetClassDevsEx = thismodule.SetupDiGetClassDevsExW;
+        pub const SetupDiGetINFClass = thismodule.SetupDiGetINFClassW;
+        pub const SetupDiBuildClassInfoListEx = thismodule.SetupDiBuildClassInfoListExW;
+        pub const SetupDiGetClassDescription = thismodule.SetupDiGetClassDescriptionW;
+        pub const SetupDiGetClassDescriptionEx = thismodule.SetupDiGetClassDescriptionExW;
+        pub const SetupDiInstallClass = thismodule.SetupDiInstallClassW;
+        pub const SetupDiInstallClassEx = thismodule.SetupDiInstallClassExW;
+        pub const SetupDiOpenClassRegKeyEx = thismodule.SetupDiOpenClassRegKeyExW;
+        pub const SetupDiCreateDeviceInterfaceRegKey = thismodule.SetupDiCreateDeviceInterfaceRegKeyW;
+        pub const SetupDiCreateDevRegKey = thismodule.SetupDiCreateDevRegKeyW;
+        pub const SetupDiGetHwProfileListEx = thismodule.SetupDiGetHwProfileListExW;
+        pub const SetupDiGetDeviceRegistryProperty = thismodule.SetupDiGetDeviceRegistryPropertyW;
+        pub const SetupDiGetClassRegistryProperty = thismodule.SetupDiGetClassRegistryPropertyW;
+        pub const SetupDiSetDeviceRegistryProperty = thismodule.SetupDiSetDeviceRegistryPropertyW;
+        pub const SetupDiSetClassRegistryProperty = thismodule.SetupDiSetClassRegistryPropertyW;
+        pub const SetupDiGetDeviceInstallParams = thismodule.SetupDiGetDeviceInstallParamsW;
+        pub const SetupDiGetClassInstallParams = thismodule.SetupDiGetClassInstallParamsW;
+        pub const SetupDiSetDeviceInstallParams = thismodule.SetupDiSetDeviceInstallParamsW;
+        pub const SetupDiSetClassInstallParams = thismodule.SetupDiSetClassInstallParamsW;
+        pub const SetupDiGetDriverInstallParams = thismodule.SetupDiGetDriverInstallParamsW;
+        pub const SetupDiSetDriverInstallParams = thismodule.SetupDiSetDriverInstallParamsW;
+        pub const SetupDiGetClassImageListEx = thismodule.SetupDiGetClassImageListExW;
+        pub const SetupDiGetClassDevPropertySheets = thismodule.SetupDiGetClassDevPropertySheetsW;
+        pub const SetupDiClassNameFromGuid = thismodule.SetupDiClassNameFromGuidW;
+        pub const SetupDiClassNameFromGuidEx = thismodule.SetupDiClassNameFromGuidExW;
+        pub const SetupDiClassGuidsFromName = thismodule.SetupDiClassGuidsFromNameW;
+        pub const SetupDiClassGuidsFromNameEx = thismodule.SetupDiClassGuidsFromNameExW;
+        pub const SetupDiGetHwProfileFriendlyName = thismodule.SetupDiGetHwProfileFriendlyNameW;
+        pub const SetupDiGetHwProfileFriendlyNameEx = thismodule.SetupDiGetHwProfileFriendlyNameExW;
+        pub const SetupDiGetActualModelsSection = thismodule.SetupDiGetActualModelsSectionW;
+        pub const SetupDiGetActualSectionToInstall = thismodule.SetupDiGetActualSectionToInstallW;
+        pub const SetupDiGetActualSectionToInstallEx = thismodule.SetupDiGetActualSectionToInstallExW;
+        pub const SetupEnumInfSections = thismodule.SetupEnumInfSectionsW;
+        pub const SetupVerifyInfFile = thismodule.SetupVerifyInfFileW;
+        pub const SetupDiGetCustomDeviceProperty = thismodule.SetupDiGetCustomDevicePropertyW;
+        pub const SetupConfigureWmiFromInfSection = thismodule.SetupConfigureWmiFromInfSectionW;
+        pub const CM_Add_ID = thismodule.CM_Add_IDW;
+        pub const CM_Add_ID_Ex = thismodule.CM_Add_ID_ExW;
+        pub const CM_Connect_Machine = thismodule.CM_Connect_MachineW;
+        pub const CM_Create_DevNode = thismodule.CM_Create_DevNodeW;
+        pub const CM_Create_DevNode_Ex = thismodule.CM_Create_DevNode_ExW;
+        pub const CM_Enumerate_Enumerators = thismodule.CM_Enumerate_EnumeratorsW;
+        pub const CM_Enumerate_Enumerators_Ex = thismodule.CM_Enumerate_Enumerators_ExW;
+        pub const CM_Get_Class_Name = thismodule.CM_Get_Class_NameW;
+        pub const CM_Get_Class_Name_Ex = thismodule.CM_Get_Class_Name_ExW;
+        pub const CM_Get_Class_Key_Name = thismodule.CM_Get_Class_Key_NameW;
+        pub const CM_Get_Class_Key_Name_Ex = thismodule.CM_Get_Class_Key_Name_ExW;
+        pub const CM_Get_Device_ID = thismodule.CM_Get_Device_IDW;
+        pub const CM_Get_Device_ID_Ex = thismodule.CM_Get_Device_ID_ExW;
+        pub const CM_Get_Device_ID_List = thismodule.CM_Get_Device_ID_ListW;
+        pub const CM_Get_Device_ID_List_Ex = thismodule.CM_Get_Device_ID_List_ExW;
+        pub const CM_Get_Device_ID_List_Size = thismodule.CM_Get_Device_ID_List_SizeW;
+        pub const CM_Get_Device_ID_List_Size_Ex = thismodule.CM_Get_Device_ID_List_Size_ExW;
+        pub const CM_Get_DevNode_Registry_Property = thismodule.CM_Get_DevNode_Registry_PropertyW;
+        pub const CM_Get_DevNode_Registry_Property_Ex = thismodule.CM_Get_DevNode_Registry_Property_ExW;
+        pub const CM_Get_DevNode_Custom_Property = thismodule.CM_Get_DevNode_Custom_PropertyW;
+        pub const CM_Get_DevNode_Custom_Property_Ex = thismodule.CM_Get_DevNode_Custom_Property_ExW;
+        pub const CM_Get_Hardware_Profile_Info = thismodule.CM_Get_Hardware_Profile_InfoW;
+        pub const CM_Get_Hardware_Profile_Info_Ex = thismodule.CM_Get_Hardware_Profile_Info_ExW;
+        pub const CM_Get_HW_Prof_Flags = thismodule.CM_Get_HW_Prof_FlagsW;
+        pub const CM_Get_HW_Prof_Flags_Ex = thismodule.CM_Get_HW_Prof_Flags_ExW;
+        pub const CM_Get_Device_Interface_Alias = thismodule.CM_Get_Device_Interface_AliasW;
+        pub const CM_Get_Device_Interface_Alias_Ex = thismodule.CM_Get_Device_Interface_Alias_ExW;
+        pub const CM_Get_Device_Interface_List = thismodule.CM_Get_Device_Interface_ListW;
+        pub const CM_Get_Device_Interface_List_Ex = thismodule.CM_Get_Device_Interface_List_ExW;
+        pub const CM_Get_Device_Interface_List_Size = thismodule.CM_Get_Device_Interface_List_SizeW;
+        pub const CM_Get_Device_Interface_List_Size_Ex = thismodule.CM_Get_Device_Interface_List_Size_ExW;
+        pub const CM_Locate_DevNode = thismodule.CM_Locate_DevNodeW;
+        pub const CM_Locate_DevNode_Ex = thismodule.CM_Locate_DevNode_ExW;
+        pub const CM_Open_Class_Key = thismodule.CM_Open_Class_KeyW;
+        pub const CM_Open_Class_Key_Ex = thismodule.CM_Open_Class_Key_ExW;
+        pub const CM_Open_Device_Interface_Key = thismodule.CM_Open_Device_Interface_KeyW;
+        pub const CM_Open_Device_Interface_Key_Ex = thismodule.CM_Open_Device_Interface_Key_ExW;
+        pub const CM_Delete_Device_Interface_Key = thismodule.CM_Delete_Device_Interface_KeyW;
+        pub const CM_Delete_Device_Interface_Key_Ex = thismodule.CM_Delete_Device_Interface_Key_ExW;
+        pub const CM_Query_And_Remove_SubTree = thismodule.CM_Query_And_Remove_SubTreeW;
+        pub const CM_Query_And_Remove_SubTree_Ex = thismodule.CM_Query_And_Remove_SubTree_ExW;
+        pub const CM_Request_Device_Eject = thismodule.CM_Request_Device_EjectW;
+        pub const CM_Request_Device_Eject_Ex = thismodule.CM_Request_Device_Eject_ExW;
+        pub const CM_Register_Device_Interface = thismodule.CM_Register_Device_InterfaceW;
+        pub const CM_Register_Device_Interface_Ex = thismodule.CM_Register_Device_Interface_ExW;
+        pub const CM_Unregister_Device_Interface = thismodule.CM_Unregister_Device_InterfaceW;
+        pub const CM_Unregister_Device_Interface_Ex = thismodule.CM_Unregister_Device_Interface_ExW;
+        pub const CM_Set_DevNode_Registry_Property = thismodule.CM_Set_DevNode_Registry_PropertyW;
+        pub const CM_Set_DevNode_Registry_Property_Ex = thismodule.CM_Set_DevNode_Registry_Property_ExW;
+        pub const CM_Set_HW_Prof_Flags = thismodule.CM_Set_HW_Prof_FlagsW;
+        pub const CM_Set_HW_Prof_Flags_Ex = thismodule.CM_Set_HW_Prof_Flags_ExW;
+        pub const CM_Get_Resource_Conflict_Details = thismodule.CM_Get_Resource_Conflict_DetailsW;
+        pub const CM_Get_Class_Registry_Property = thismodule.CM_Get_Class_Registry_PropertyW;
+        pub const CM_Set_Class_Registry_Property = thismodule.CM_Set_Class_Registry_PropertyW;
+        pub const UpdateDriverForPlugAndPlayDevices = thismodule.UpdateDriverForPlugAndPlayDevicesW;
+        pub const DiInstallDriver = thismodule.DiInstallDriverW;
+        pub const DiUninstallDriver = thismodule.DiUninstallDriverW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SP_ORIGINAL_FILE_INFO_ = *opaque{};
@@ -8814,27 +8351,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const HKEY = @import("../system/registry.zig").HKEY;
-const VER_PLATFORM = @import("../system/diagnostics/debug.zig").VER_PLATFORM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const PRIORITY = @import("../data/html_help.zig").PRIORITY;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HDC = @import("../graphics/gdi.zig").HDC;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
+const HWND = @import("../foundation.zig").HWND;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PRIORITY = @import("../data/html_help.zig").PRIORITY;
+const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
+const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const VER_PLATFORM = @import("../system/diagnostics/debug.zig").VER_PLATFORM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

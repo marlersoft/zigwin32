@@ -358,6 +358,7 @@ pub const IADesktopP2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -371,13 +372,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const HKEY = @import("../system/registry.zig").HKEY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IMoniker = @import("../system/com.zig").IMoniker;
-const IStorage = @import("../storage/structured_storage.zig").IStorage;
 const HWND = @import("../foundation.zig").HWND;
+const IMoniker = @import("../system/com.zig").IMoniker;
 const IOleObject = @import("../system/com.zig").IOleObject;
+const IStorage = @import("../storage/structured_storage.zig").IStorage;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

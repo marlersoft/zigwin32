@@ -503,54 +503,55 @@ pub extern "KERNEL32" fn GetDllDirectoryW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ENUMRESLANGPROC = ENUMRESLANGPROCA;
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
-        pub const PGET_MODULE_HANDLE_EX = PGET_MODULE_HANDLE_EXA;
-        pub const FindResourceEx = FindResourceExA;
-        pub const GetModuleFileName = GetModuleFileNameA;
-        pub const GetModuleHandle = GetModuleHandleA;
-        pub const GetModuleHandleEx = GetModuleHandleExA;
-        pub const LoadLibraryEx = LoadLibraryExA;
-        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExA;
-        pub const EnumResourceNamesEx = EnumResourceNamesExA;
-        pub const EnumResourceTypesEx = EnumResourceTypesExA;
-        pub const FindResource = FindResourceA;
-        pub const LoadLibrary = LoadLibraryA;
-        pub const EnumResourceNames = EnumResourceNamesA;
-        pub const EnumResourceTypes = EnumResourceTypesA;
-        pub const EnumResourceLanguages = EnumResourceLanguagesA;
-        pub const BeginUpdateResource = BeginUpdateResourceA;
-        pub const UpdateResource = UpdateResourceA;
-        pub const EndUpdateResource = EndUpdateResourceA;
-        pub const SetDllDirectory = SetDllDirectoryA;
-        pub const GetDllDirectory = GetDllDirectoryA;
+        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCA;
+        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCA;
+        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCA;
+        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXA;
+        pub const FindResourceEx = thismodule.FindResourceExA;
+        pub const GetModuleFileName = thismodule.GetModuleFileNameA;
+        pub const GetModuleHandle = thismodule.GetModuleHandleA;
+        pub const GetModuleHandleEx = thismodule.GetModuleHandleExA;
+        pub const LoadLibraryEx = thismodule.LoadLibraryExA;
+        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExA;
+        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExA;
+        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExA;
+        pub const FindResource = thismodule.FindResourceA;
+        pub const LoadLibrary = thismodule.LoadLibraryA;
+        pub const EnumResourceNames = thismodule.EnumResourceNamesA;
+        pub const EnumResourceTypes = thismodule.EnumResourceTypesA;
+        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesA;
+        pub const BeginUpdateResource = thismodule.BeginUpdateResourceA;
+        pub const UpdateResource = thismodule.UpdateResourceA;
+        pub const EndUpdateResource = thismodule.EndUpdateResourceA;
+        pub const SetDllDirectory = thismodule.SetDllDirectoryA;
+        pub const GetDllDirectory = thismodule.GetDllDirectoryA;
     },
     .wide => struct {
-        pub const ENUMRESLANGPROC = ENUMRESLANGPROCW;
-        pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
-        pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
-        pub const PGET_MODULE_HANDLE_EX = PGET_MODULE_HANDLE_EXW;
-        pub const FindResourceEx = FindResourceExW;
-        pub const GetModuleFileName = GetModuleFileNameW;
-        pub const GetModuleHandle = GetModuleHandleW;
-        pub const GetModuleHandleEx = GetModuleHandleExW;
-        pub const LoadLibraryEx = LoadLibraryExW;
-        pub const EnumResourceLanguagesEx = EnumResourceLanguagesExW;
-        pub const EnumResourceNamesEx = EnumResourceNamesExW;
-        pub const EnumResourceTypesEx = EnumResourceTypesExW;
-        pub const FindResource = FindResourceW;
-        pub const LoadLibrary = LoadLibraryW;
-        pub const EnumResourceNames = EnumResourceNamesW;
-        pub const EnumResourceTypes = EnumResourceTypesW;
-        pub const EnumResourceLanguages = EnumResourceLanguagesW;
-        pub const BeginUpdateResource = BeginUpdateResourceW;
-        pub const UpdateResource = UpdateResourceW;
-        pub const EndUpdateResource = EndUpdateResourceW;
-        pub const SetDllDirectory = SetDllDirectoryW;
-        pub const GetDllDirectory = GetDllDirectoryW;
+        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCW;
+        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCW;
+        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCW;
+        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXW;
+        pub const FindResourceEx = thismodule.FindResourceExW;
+        pub const GetModuleFileName = thismodule.GetModuleFileNameW;
+        pub const GetModuleHandle = thismodule.GetModuleHandleW;
+        pub const GetModuleHandleEx = thismodule.GetModuleHandleExW;
+        pub const LoadLibraryEx = thismodule.LoadLibraryExW;
+        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExW;
+        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExW;
+        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExW;
+        pub const FindResource = thismodule.FindResourceW;
+        pub const LoadLibrary = thismodule.LoadLibraryW;
+        pub const EnumResourceNames = thismodule.EnumResourceNamesW;
+        pub const EnumResourceTypes = thismodule.EnumResourceTypesW;
+        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesW;
+        pub const BeginUpdateResource = thismodule.BeginUpdateResourceW;
+        pub const UpdateResource = thismodule.UpdateResourceW;
+        pub const EndUpdateResource = thismodule.EndUpdateResourceW;
+        pub const SetDllDirectory = thismodule.SetDllDirectoryW;
+        pub const GetDllDirectory = thismodule.GetDllDirectoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ENUMRESLANGPROC = *opaque{};
@@ -603,12 +604,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
+const BOOL = @import("../foundation.zig").BOOL;
 const FARPROC = @import("../foundation.zig").FARPROC;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const BOOL = @import("../foundation.zig").BOOL;
-const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

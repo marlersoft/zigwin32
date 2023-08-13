@@ -9816,6 +9816,7 @@ pub extern "inkobjcore" fn LoadCachedAttributes(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -9829,23 +9830,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
-const NMHDR = @import("../ui/controls.zig").NMHDR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const XFORM = @import("../graphics/gdi.zig").XFORM;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IDataObject = @import("../system/com.zig").IDataObject;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IFontDisp = @import("../system/com.zig").IFontDisp;
-const POINT = @import("../foundation.zig").POINT;
 const IPictureDisp = @import("../system/com.zig").IPictureDisp;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const NMHDR = @import("../ui/controls.zig").NMHDR;
+const POINT = @import("../foundation.zig").POINT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const XFORM = @import("../graphics/gdi.zig").XFORM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

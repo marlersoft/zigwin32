@@ -535,6 +535,7 @@ pub extern "PROJECTEDFSLIB" fn PrjDoesNameContainWildCards(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -549,9 +550,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

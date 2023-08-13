@@ -14052,6 +14052,7 @@ pub extern "d3dcsx" fn D3DX11CreateFFT3DComplex(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -14065,24 +14066,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const RECT = @import("../foundation.zig").RECT;
-const DXGI_HDR_METADATA_TYPE = @import("../graphics/dxgi.zig").DXGI_HDR_METADATA_TYPE;
+const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi.zig").DXGI_COLOR_SPACE_TYPE;
 const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_HDR_METADATA_TYPE = @import("../graphics/dxgi.zig").DXGI_HDR_METADATA_TYPE;
 const DXGI_RATIONAL = @import("../graphics/dxgi.zig").DXGI_RATIONAL;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SIZE = @import("../foundation.zig").SIZE;
 const DXGI_SAMPLE_DESC = @import("../graphics/dxgi.zig").DXGI_SAMPLE_DESC;
 const DXGI_SWAP_CHAIN_DESC = @import("../graphics/dxgi.zig").DXGI_SWAP_CHAIN_DESC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
+const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

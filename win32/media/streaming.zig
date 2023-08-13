@@ -327,6 +327,7 @@ pub const HistogramDataHeader = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -340,15 +341,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const DeviceStreamState = @import("../media/media_foundation.zig").DeviceStreamState;
-const IMFMediaEvent = @import("../media/media_foundation.zig").IMFMediaEvent;
-const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IMFMediaType = @import("../media/media_foundation.zig").IMFMediaType;
-const MFT_OUTPUT_DATA_BUFFER = @import("../media/media_foundation.zig").MFT_OUTPUT_DATA_BUFFER;
-const MFT_MESSAGE_TYPE = @import("../media/media_foundation.zig").MFT_MESSAGE_TYPE;
-const RECT = @import("../foundation.zig").RECT;
-const IMFSample = @import("../media/media_foundation.zig").IMFSample;
 const IMFAttributes = @import("../media/media_foundation.zig").IMFAttributes;
+const IMFMediaEvent = @import("../media/media_foundation.zig").IMFMediaEvent;
+const IMFMediaType = @import("../media/media_foundation.zig").IMFMediaType;
+const IMFSample = @import("../media/media_foundation.zig").IMFSample;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const MFT_MESSAGE_TYPE = @import("../media/media_foundation.zig").MFT_MESSAGE_TYPE;
+const MFT_OUTPUT_DATA_BUFFER = @import("../media/media_foundation.zig").MFT_OUTPUT_DATA_BUFFER;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     @setEvalBranchQuota(

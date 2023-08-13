@@ -441,6 +441,7 @@ pub extern "api-ms-win-devices-query-l1-1-0" fn DevFindProperty(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -454,11 +455,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const DEVPROPCOMPKEY = @import("../system/system_services.zig").DEVPROPCOMPKEY;
+const DEVPROPERTY = @import("../system/system_services.zig").DEVPROPERTY;
+const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
+const DEVPROPSTORE = @import("../system/system_services.zig").DEVPROPSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const DEVPROPSTORE = @import("../system/system_services.zig").DEVPROPSTORE;
-const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
-const DEVPROPERTY = @import("../system/system_services.zig").DEVPROPERTY;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

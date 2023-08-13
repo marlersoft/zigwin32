@@ -977,24 +977,25 @@ pub extern "ADVAPI32" fn GetEventLogInformation(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ClearEventLog = ClearEventLogA;
-        pub const BackupEventLog = BackupEventLogA;
-        pub const OpenEventLog = OpenEventLogA;
-        pub const RegisterEventSource = RegisterEventSourceA;
-        pub const OpenBackupEventLog = OpenBackupEventLogA;
-        pub const ReadEventLog = ReadEventLogA;
-        pub const ReportEvent = ReportEventA;
+        pub const ClearEventLog = thismodule.ClearEventLogA;
+        pub const BackupEventLog = thismodule.BackupEventLogA;
+        pub const OpenEventLog = thismodule.OpenEventLogA;
+        pub const RegisterEventSource = thismodule.RegisterEventSourceA;
+        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogA;
+        pub const ReadEventLog = thismodule.ReadEventLogA;
+        pub const ReportEvent = thismodule.ReportEventA;
     },
     .wide => struct {
-        pub const ClearEventLog = ClearEventLogW;
-        pub const BackupEventLog = BackupEventLogW;
-        pub const OpenEventLog = OpenEventLogW;
-        pub const RegisterEventSource = RegisterEventSourceW;
-        pub const OpenBackupEventLog = OpenBackupEventLogW;
-        pub const ReadEventLog = ReadEventLogW;
-        pub const ReportEvent = ReportEventW;
+        pub const ClearEventLog = thismodule.ClearEventLogW;
+        pub const BackupEventLog = thismodule.BackupEventLogW;
+        pub const OpenEventLog = thismodule.OpenEventLogW;
+        pub const RegisterEventSource = thismodule.RegisterEventSourceW;
+        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogW;
+        pub const ReadEventLog = thismodule.ReadEventLogW;
+        pub const ReportEvent = thismodule.ReportEventW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ClearEventLog = *opaque{};
@@ -1018,13 +1019,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PSID = @import("../foundation.zig").PSID;
 const BOOL = @import("../foundation.zig").BOOL;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSID = @import("../foundation.zig").PSID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

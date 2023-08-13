@@ -254,14 +254,15 @@ pub extern "OPENGL32" fn wglSwapLayerBuffers(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const wglUseFontBitmaps = wglUseFontBitmapsA;
-        pub const wglUseFontOutlines = wglUseFontOutlinesA;
+        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsA;
+        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesA;
     },
     .wide => struct {
-        pub const wglUseFontBitmaps = wglUseFontBitmapsW;
-        pub const wglUseFontOutlines = wglUseFontOutlinesW;
+        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsW;
+        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const wglUseFontBitmaps = *opaque{};
@@ -274,11 +275,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const HDC = @import("../graphics/gdi.zig").HDC;
-const PROC = @import("../foundation.zig").PROC;
-const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
+const PROC = @import("../foundation.zig").PROC;
+const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     @setEvalBranchQuota(

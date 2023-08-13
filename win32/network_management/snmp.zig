@@ -96,39 +96,8 @@ pub const MAXVENDORINFO = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const AsnOctetString = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    stream: ?*u8,
-    length: u32,
-    dynamic: BOOL,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const AsnObjectIdentifier = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    idLength: u32,
-    ids: ?*u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SnmpVarBindList = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    list: ?*SnmpVarBind,
-    len: u32,
-};
-
-}, else => struct { } };
 
 pub const SNMP_PDU_TYPE = enum(u32) {
     GET = 160,
@@ -419,37 +388,44 @@ pub const PFNSNMPSTARTUPEX = fn(
 pub const PFNSNMPCLEANUPEX = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const AsnOctetString = extern struct {
-    stream: ?*u8,
-    length: u32,
-    dynamic: BOOL,
+
+
+pub const AsnOctetString = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        stream: ?*u8,
+        length: u32,
+        dynamic: BOOL,
+    },
+    .X86 => extern struct {
+        stream: ?*u8,
+        length: u32,
+        dynamic: BOOL,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const AsnObjectIdentifier = extern struct {
-    idLength: u32,
-    ids: ?*u32,
+pub const AsnObjectIdentifier = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        idLength: u32,
+        ids: ?*u32,
+    },
+    .X86 => extern struct {
+        idLength: u32,
+        ids: ?*u32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SnmpVarBindList = extern struct {
-    list: ?*SnmpVarBind,
-    len: u32,
+pub const SnmpVarBindList = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        list: ?*SnmpVarBind,
+        len: u32,
+    },
+    .X86 => extern struct {
+        list: ?*SnmpVarBind,
+        len: u32,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (84)
@@ -1001,6 +977,7 @@ pub extern "wsnmp32" fn SnmpFreeDescriptor(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1013,14 +990,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const WPARAM = @import("../foundation.zig").WPARAM;
+const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PSTR = @import("../foundation.zig").PSTR;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

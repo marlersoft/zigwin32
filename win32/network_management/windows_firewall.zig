@@ -3851,6 +3851,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectF
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3864,18 +3865,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const SID = @import("../security.zig").SID;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSID = @import("../foundation.zig").PSID;
-const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSID = @import("../foundation.zig").PSID;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SID = @import("../security.zig").SID;
+const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

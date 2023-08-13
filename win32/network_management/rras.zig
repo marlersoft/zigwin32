@@ -375,265 +375,20 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 // Section: Types (239)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const RASCONNW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]u16,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szPhonebook: [260]u16,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const RASCONNA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhonebook: [260]CHAR,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const RASDIALPARAMSW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]u16,
-    szPhoneNumber: [129]u16,
-    szCallbackNumber: [129]u16,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PWSTR,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const RASDIALPARAMSA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    szPhoneNumber: [129]CHAR,
-    szCallbackNumber: [129]CHAR,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PSTR,
-};
 
-}, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
 
-pub const RASEAPINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSizeofEapInfo: u32,
-    pbEapInfo: ?*u8,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDEVSPECIFICINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pbDevSpecificInfo: ?*u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwfOptions: u32,
-    hwndParent: ?HWND,
-    reserved: usize,
-    reserved1: usize,
-    RasEapInfo: RASEAPINFO,
-    fSkipPppAuth: BOOL,
-    RasDevSpecificInfo: RASDEVSPECIFICINFO,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv6NegotiationError: u32,
-    ipv6Address: IN6_ADDR,
-    ipv6ServerAddress: IN6_ADDR,
-    dwPrefixLength: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
-    dwEncryptionMethod: u32,
-    numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: ?*IN_ADDR,
-    numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: ?*IN6_ADDR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASADPARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASPBDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCW,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASPBDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCA,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASENTRYDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]u16,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASENTRYDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]CHAR,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALDLG = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwSubEntry: u32,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
 
 pub const HRASCONN = *opaque{};
 
@@ -2793,251 +2548,376 @@ pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
     Methods: [1]?RTM_ENTITY_EXPORT_METHOD,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const RASCONNW = extern struct {
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]u16,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szPhonebook: [260]u16,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pub const RASCONNW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hrasconn: ?HRASCONN,
+        szEntryName: [257]u16,
+        szDeviceType: [17]u16,
+        szDeviceName: [129]u16,
+        szPhonebook: [260]u16,
+        dwSubEntry: u32,
+        guidEntry: Guid,
+        dwFlags: u32,
+        luid: LUID,
+        guidCorrelationId: Guid,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hrasconn: ?HRASCONN,
+        szEntryName: [257]u16,
+        szDeviceType: [17]u16,
+        szDeviceName: [129]u16,
+        szPhonebook: [260]u16,
+        dwSubEntry: u32,
+        guidEntry: Guid,
+        dwFlags: u32,
+        luid: LUID,
+        guidCorrelationId: Guid,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASCONNA = extern struct {
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhonebook: [260]CHAR,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
+pub const RASCONNA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hrasconn: ?HRASCONN,
+        szEntryName: [257]CHAR,
+        szDeviceType: [17]CHAR,
+        szDeviceName: [129]CHAR,
+        szPhonebook: [260]CHAR,
+        dwSubEntry: u32,
+        guidEntry: Guid,
+        dwFlags: u32,
+        luid: LUID,
+        guidCorrelationId: Guid,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hrasconn: ?HRASCONN,
+        szEntryName: [257]CHAR,
+        szDeviceType: [17]CHAR,
+        szDeviceName: [129]CHAR,
+        szPhonebook: [260]CHAR,
+        dwSubEntry: u32,
+        guidEntry: Guid,
+        dwFlags: u32,
+        luid: LUID,
+        guidCorrelationId: Guid,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASDIALPARAMSW = extern struct {
-    dwSize: u32,
-    szEntryName: [257]u16,
-    szPhoneNumber: [129]u16,
-    szCallbackNumber: [129]u16,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PWSTR,
+pub const RASDIALPARAMSW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        szEntryName: [257]u16,
+        szPhoneNumber: [129]u16,
+        szCallbackNumber: [129]u16,
+        szUserName: [257]u16,
+        szPassword: [257]u16,
+        szDomain: [16]u16,
+        dwSubEntry: u32,
+        dwCallbackId: usize,
+        dwIfIndex: u32,
+        szEncPassword: ?PWSTR,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        szEntryName: [257]u16,
+        szPhoneNumber: [129]u16,
+        szCallbackNumber: [129]u16,
+        szUserName: [257]u16,
+        szPassword: [257]u16,
+        szDomain: [16]u16,
+        dwSubEntry: u32,
+        dwCallbackId: usize,
+        dwIfIndex: u32,
+        szEncPassword: ?PWSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASDIALPARAMSA = extern struct {
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    szPhoneNumber: [129]CHAR,
-    szCallbackNumber: [129]CHAR,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PSTR,
+pub const RASDIALPARAMSA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        szEntryName: [257]CHAR,
+        szPhoneNumber: [129]CHAR,
+        szCallbackNumber: [129]CHAR,
+        szUserName: [257]CHAR,
+        szPassword: [257]CHAR,
+        szDomain: [16]CHAR,
+        dwSubEntry: u32,
+        dwCallbackId: usize,
+        dwIfIndex: u32,
+        szEncPassword: ?PSTR,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        szEntryName: [257]CHAR,
+        szPhoneNumber: [129]CHAR,
+        szCallbackNumber: [129]CHAR,
+        szUserName: [257]CHAR,
+        szPassword: [257]CHAR,
+        szDomain: [16]CHAR,
+        dwSubEntry: u32,
+        dwCallbackId: usize,
+        dwIfIndex: u32,
+        szEncPassword: ?PSTR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASEAPINFO = extern struct {
-    dwSizeofEapInfo: u32,
-    pbEapInfo: ?*u8,
+pub const RASEAPINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSizeofEapInfo: u32,
+        pbEapInfo: ?*u8,
+    },
+    .X86 => extern struct {
+        dwSizeofEapInfo: u32,
+        pbEapInfo: ?*u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASDEVSPECIFICINFO = extern struct {
-    dwSize: u32,
-    pbDevSpecificInfo: ?*u8,
+pub const RASDEVSPECIFICINFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        pbDevSpecificInfo: ?*u8,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        pbDevSpecificInfo: ?*u8,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASDIALEXTENSIONS = extern struct {
-    dwSize: u32,
-    dwfOptions: u32,
-    hwndParent: ?HWND,
-    reserved: usize,
-    reserved1: usize,
-    RasEapInfo: RASEAPINFO,
-    fSkipPppAuth: BOOL,
-    RasDevSpecificInfo: RASDEVSPECIFICINFO,
+pub const RASDIALEXTENSIONS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        dwfOptions: u32,
+        hwndParent: ?HWND,
+        reserved: usize,
+        reserved1: usize,
+        RasEapInfo: RASEAPINFO,
+        fSkipPppAuth: BOOL,
+        RasDevSpecificInfo: RASDEVSPECIFICINFO,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        dwfOptions: u32,
+        hwndParent: ?HWND,
+        reserved: usize,
+        reserved1: usize,
+        RasEapInfo: RASEAPINFO,
+        fSkipPppAuth: BOOL,
+        RasDevSpecificInfo: RASDEVSPECIFICINFO,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv6NegotiationError: u32,
-    ipv6Address: IN6_ADDR,
-    ipv6ServerAddress: IN6_ADDR,
-    dwPrefixLength: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
-    dwEncryptionMethod: u32,
-    numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: ?*IN_ADDR,
-    numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: ?*IN6_ADDR,
+pub const RASIKEV2_PROJECTION_INFO = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwIPv4NegotiationError: u32,
+        ipv4Address: IN_ADDR,
+        ipv4ServerAddress: IN_ADDR,
+        dwIPv6NegotiationError: u32,
+        ipv6Address: IN6_ADDR,
+        ipv6ServerAddress: IN6_ADDR,
+        dwPrefixLength: u32,
+        dwAuthenticationProtocol: u32,
+        dwEapTypeId: u32,
+        dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
+        dwEncryptionMethod: u32,
+        numIPv4ServerAddresses: u32,
+        ipv4ServerAddresses: ?*IN_ADDR,
+        numIPv6ServerAddresses: u32,
+        ipv6ServerAddresses: ?*IN6_ADDR,
+    },
+    .X86 => extern struct {
+        dwIPv4NegotiationError: u32,
+        ipv4Address: IN_ADDR,
+        ipv4ServerAddress: IN_ADDR,
+        dwIPv6NegotiationError: u32,
+        ipv6Address: IN6_ADDR,
+        ipv6ServerAddress: IN6_ADDR,
+        dwPrefixLength: u32,
+        dwAuthenticationProtocol: u32,
+        dwEapTypeId: u32,
+        dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
+        dwEncryptionMethod: u32,
+        numIPv4ServerAddresses: u32,
+        ipv4ServerAddresses: ?*IN_ADDR,
+        numIPv6ServerAddresses: u32,
+        ipv6ServerAddresses: ?*IN6_ADDR,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASADPARAMS = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
+pub const RASADPARAMS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    dwSize: u32,
-    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS,
+pub const RASCUSTOMSCRIPTEXTENSIONS = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASPBDLGW = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCW,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+pub const RASPBDLGW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwCallbackId: usize,
+        pCallback: ?RASPBDLGFUNCW,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwCallbackId: usize,
+        pCallback: ?RASPBDLGFUNCW,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASPBDLGA = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCA,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+pub const RASPBDLGA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwCallbackId: usize,
+        pCallback: ?RASPBDLGFUNCA,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwCallbackId: usize,
+        pCallback: ?RASPBDLGFUNCA,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASENTRYDLGW = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]u16,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+pub const RASENTRYDLGW = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        szEntry: [257]u16,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        szEntry: [257]u16,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASENTRYDLGA = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]CHAR,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+pub const RASENTRYDLGA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        szEntry: [257]CHAR,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        szEntry: [257]CHAR,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RASDIALDLG = extern struct {
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwSubEntry: u32,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+pub const RASDIALDLG = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwSubEntry: u32,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
+    .X86 => extern struct {
+        dwSize: u32,
+        hwndOwner: ?HWND,
+        dwFlags: u32,
+        xDlg: i32,
+        yDlg: i32,
+        dwSubEntry: u32,
+        dwError: u32,
+        reserved: usize,
+        reserved2: usize,
+    },
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (277)
@@ -5182,130 +5062,131 @@ pub extern "rtm" fn RtmReferenceHandles(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (60)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const RASCONN = RASCONNA;
-        pub const RASDIALPARAMS = RASDIALPARAMSA;
-        pub const RASPBDLG = RASPBDLGA;
-        pub const RASENTRYDLG = RASENTRYDLGA;
-        pub const RASCONNSTATUS = RASCONNSTATUSA;
-        pub const RASENTRYNAME = RASENTRYNAMEA;
-        pub const RASAMB = RASAMBA;
-        pub const RASPPPNBF = RASPPPNBFA;
-        pub const RASPPPIP = RASPPPIPA;
-        pub const RASPPPLCP = RASPPPLCPA;
-        pub const RASDEVINFO = RASDEVINFOA;
-        pub const RASENTRY = RASENTRYA;
-        pub const RASADFUNC = RASADFUNCA;
-        pub const RASSUBENTRY = RASSUBENTRYA;
-        pub const RASCREDENTIALS = RASCREDENTIALSA;
-        pub const RASAUTODIALENTRY = RASAUTODIALENTRYA;
-        pub const RASEAPUSERIDENTITY = RASEAPUSERIDENTITYA;
-        pub const RASPBDLGFUNC = RASPBDLGFUNCA;
-        pub const RASNOUSER = RASNOUSERA;
-        pub const RasDial = RasDialA;
-        pub const RasEnumConnections = RasEnumConnectionsA;
-        pub const RasEnumEntries = RasEnumEntriesA;
-        pub const RasGetConnectStatus = RasGetConnectStatusA;
-        pub const RasGetErrorString = RasGetErrorStringA;
-        pub const RasHangUp = RasHangUpA;
-        pub const RasGetProjectionInfo = RasGetProjectionInfoA;
-        pub const RasCreatePhonebookEntry = RasCreatePhonebookEntryA;
-        pub const RasEditPhonebookEntry = RasEditPhonebookEntryA;
-        pub const RasSetEntryDialParams = RasSetEntryDialParamsA;
-        pub const RasGetEntryDialParams = RasGetEntryDialParamsA;
-        pub const RasEnumDevices = RasEnumDevicesA;
-        pub const RasGetCountryInfo = RasGetCountryInfoA;
-        pub const RasGetEntryProperties = RasGetEntryPropertiesA;
-        pub const RasSetEntryProperties = RasSetEntryPropertiesA;
-        pub const RasRenameEntry = RasRenameEntryA;
-        pub const RasDeleteEntry = RasDeleteEntryA;
-        pub const RasValidateEntryName = RasValidateEntryNameA;
-        pub const RasConnectionNotification = RasConnectionNotificationA;
-        pub const RasGetSubEntryHandle = RasGetSubEntryHandleA;
-        pub const RasGetCredentials = RasGetCredentialsA;
-        pub const RasSetCredentials = RasSetCredentialsA;
-        pub const RasGetSubEntryProperties = RasGetSubEntryPropertiesA;
-        pub const RasSetSubEntryProperties = RasSetSubEntryPropertiesA;
-        pub const RasGetAutodialAddress = RasGetAutodialAddressA;
-        pub const RasSetAutodialAddress = RasSetAutodialAddressA;
-        pub const RasEnumAutodialAddresses = RasEnumAutodialAddressesA;
-        pub const RasGetAutodialEnable = RasGetAutodialEnableA;
-        pub const RasSetAutodialEnable = RasSetAutodialEnableA;
-        pub const RasGetAutodialParam = RasGetAutodialParamA;
-        pub const RasSetAutodialParam = RasSetAutodialParamA;
-        pub const RasGetEapUserData = RasGetEapUserDataA;
-        pub const RasSetEapUserData = RasSetEapUserDataA;
-        pub const RasGetCustomAuthData = RasGetCustomAuthDataA;
-        pub const RasSetCustomAuthData = RasSetCustomAuthDataA;
-        pub const RasGetEapUserIdentity = RasGetEapUserIdentityA;
-        pub const RasFreeEapUserIdentity = RasFreeEapUserIdentityA;
-        pub const RasDeleteSubEntry = RasDeleteSubEntryA;
-        pub const RasPhonebookDlg = RasPhonebookDlgA;
-        pub const RasEntryDlg = RasEntryDlgA;
-        pub const RasDialDlg = RasDialDlgA;
+        pub const RASCONN = thismodule.RASCONNA;
+        pub const RASDIALPARAMS = thismodule.RASDIALPARAMSA;
+        pub const RASPBDLG = thismodule.RASPBDLGA;
+        pub const RASENTRYDLG = thismodule.RASENTRYDLGA;
+        pub const RASCONNSTATUS = thismodule.RASCONNSTATUSA;
+        pub const RASENTRYNAME = thismodule.RASENTRYNAMEA;
+        pub const RASAMB = thismodule.RASAMBA;
+        pub const RASPPPNBF = thismodule.RASPPPNBFA;
+        pub const RASPPPIP = thismodule.RASPPPIPA;
+        pub const RASPPPLCP = thismodule.RASPPPLCPA;
+        pub const RASDEVINFO = thismodule.RASDEVINFOA;
+        pub const RASENTRY = thismodule.RASENTRYA;
+        pub const RASADFUNC = thismodule.RASADFUNCA;
+        pub const RASSUBENTRY = thismodule.RASSUBENTRYA;
+        pub const RASCREDENTIALS = thismodule.RASCREDENTIALSA;
+        pub const RASAUTODIALENTRY = thismodule.RASAUTODIALENTRYA;
+        pub const RASEAPUSERIDENTITY = thismodule.RASEAPUSERIDENTITYA;
+        pub const RASPBDLGFUNC = thismodule.RASPBDLGFUNCA;
+        pub const RASNOUSER = thismodule.RASNOUSERA;
+        pub const RasDial = thismodule.RasDialA;
+        pub const RasEnumConnections = thismodule.RasEnumConnectionsA;
+        pub const RasEnumEntries = thismodule.RasEnumEntriesA;
+        pub const RasGetConnectStatus = thismodule.RasGetConnectStatusA;
+        pub const RasGetErrorString = thismodule.RasGetErrorStringA;
+        pub const RasHangUp = thismodule.RasHangUpA;
+        pub const RasGetProjectionInfo = thismodule.RasGetProjectionInfoA;
+        pub const RasCreatePhonebookEntry = thismodule.RasCreatePhonebookEntryA;
+        pub const RasEditPhonebookEntry = thismodule.RasEditPhonebookEntryA;
+        pub const RasSetEntryDialParams = thismodule.RasSetEntryDialParamsA;
+        pub const RasGetEntryDialParams = thismodule.RasGetEntryDialParamsA;
+        pub const RasEnumDevices = thismodule.RasEnumDevicesA;
+        pub const RasGetCountryInfo = thismodule.RasGetCountryInfoA;
+        pub const RasGetEntryProperties = thismodule.RasGetEntryPropertiesA;
+        pub const RasSetEntryProperties = thismodule.RasSetEntryPropertiesA;
+        pub const RasRenameEntry = thismodule.RasRenameEntryA;
+        pub const RasDeleteEntry = thismodule.RasDeleteEntryA;
+        pub const RasValidateEntryName = thismodule.RasValidateEntryNameA;
+        pub const RasConnectionNotification = thismodule.RasConnectionNotificationA;
+        pub const RasGetSubEntryHandle = thismodule.RasGetSubEntryHandleA;
+        pub const RasGetCredentials = thismodule.RasGetCredentialsA;
+        pub const RasSetCredentials = thismodule.RasSetCredentialsA;
+        pub const RasGetSubEntryProperties = thismodule.RasGetSubEntryPropertiesA;
+        pub const RasSetSubEntryProperties = thismodule.RasSetSubEntryPropertiesA;
+        pub const RasGetAutodialAddress = thismodule.RasGetAutodialAddressA;
+        pub const RasSetAutodialAddress = thismodule.RasSetAutodialAddressA;
+        pub const RasEnumAutodialAddresses = thismodule.RasEnumAutodialAddressesA;
+        pub const RasGetAutodialEnable = thismodule.RasGetAutodialEnableA;
+        pub const RasSetAutodialEnable = thismodule.RasSetAutodialEnableA;
+        pub const RasGetAutodialParam = thismodule.RasGetAutodialParamA;
+        pub const RasSetAutodialParam = thismodule.RasSetAutodialParamA;
+        pub const RasGetEapUserData = thismodule.RasGetEapUserDataA;
+        pub const RasSetEapUserData = thismodule.RasSetEapUserDataA;
+        pub const RasGetCustomAuthData = thismodule.RasGetCustomAuthDataA;
+        pub const RasSetCustomAuthData = thismodule.RasSetCustomAuthDataA;
+        pub const RasGetEapUserIdentity = thismodule.RasGetEapUserIdentityA;
+        pub const RasFreeEapUserIdentity = thismodule.RasFreeEapUserIdentityA;
+        pub const RasDeleteSubEntry = thismodule.RasDeleteSubEntryA;
+        pub const RasPhonebookDlg = thismodule.RasPhonebookDlgA;
+        pub const RasEntryDlg = thismodule.RasEntryDlgA;
+        pub const RasDialDlg = thismodule.RasDialDlgA;
     },
     .wide => struct {
-        pub const RASCONN = RASCONNW;
-        pub const RASDIALPARAMS = RASDIALPARAMSW;
-        pub const RASPBDLG = RASPBDLGW;
-        pub const RASENTRYDLG = RASENTRYDLGW;
-        pub const RASCONNSTATUS = RASCONNSTATUSW;
-        pub const RASENTRYNAME = RASENTRYNAMEW;
-        pub const RASAMB = RASAMBW;
-        pub const RASPPPNBF = RASPPPNBFW;
-        pub const RASPPPIP = RASPPPIPW;
-        pub const RASPPPLCP = RASPPPLCPW;
-        pub const RASDEVINFO = RASDEVINFOW;
-        pub const RASENTRY = RASENTRYW;
-        pub const RASADFUNC = RASADFUNCW;
-        pub const RASSUBENTRY = RASSUBENTRYW;
-        pub const RASCREDENTIALS = RASCREDENTIALSW;
-        pub const RASAUTODIALENTRY = RASAUTODIALENTRYW;
-        pub const RASEAPUSERIDENTITY = RASEAPUSERIDENTITYW;
-        pub const RASPBDLGFUNC = RASPBDLGFUNCW;
-        pub const RASNOUSER = RASNOUSERW;
-        pub const RasDial = RasDialW;
-        pub const RasEnumConnections = RasEnumConnectionsW;
-        pub const RasEnumEntries = RasEnumEntriesW;
-        pub const RasGetConnectStatus = RasGetConnectStatusW;
-        pub const RasGetErrorString = RasGetErrorStringW;
-        pub const RasHangUp = RasHangUpW;
-        pub const RasGetProjectionInfo = RasGetProjectionInfoW;
-        pub const RasCreatePhonebookEntry = RasCreatePhonebookEntryW;
-        pub const RasEditPhonebookEntry = RasEditPhonebookEntryW;
-        pub const RasSetEntryDialParams = RasSetEntryDialParamsW;
-        pub const RasGetEntryDialParams = RasGetEntryDialParamsW;
-        pub const RasEnumDevices = RasEnumDevicesW;
-        pub const RasGetCountryInfo = RasGetCountryInfoW;
-        pub const RasGetEntryProperties = RasGetEntryPropertiesW;
-        pub const RasSetEntryProperties = RasSetEntryPropertiesW;
-        pub const RasRenameEntry = RasRenameEntryW;
-        pub const RasDeleteEntry = RasDeleteEntryW;
-        pub const RasValidateEntryName = RasValidateEntryNameW;
-        pub const RasConnectionNotification = RasConnectionNotificationW;
-        pub const RasGetSubEntryHandle = RasGetSubEntryHandleW;
-        pub const RasGetCredentials = RasGetCredentialsW;
-        pub const RasSetCredentials = RasSetCredentialsW;
-        pub const RasGetSubEntryProperties = RasGetSubEntryPropertiesW;
-        pub const RasSetSubEntryProperties = RasSetSubEntryPropertiesW;
-        pub const RasGetAutodialAddress = RasGetAutodialAddressW;
-        pub const RasSetAutodialAddress = RasSetAutodialAddressW;
-        pub const RasEnumAutodialAddresses = RasEnumAutodialAddressesW;
-        pub const RasGetAutodialEnable = RasGetAutodialEnableW;
-        pub const RasSetAutodialEnable = RasSetAutodialEnableW;
-        pub const RasGetAutodialParam = RasGetAutodialParamW;
-        pub const RasSetAutodialParam = RasSetAutodialParamW;
-        pub const RasGetEapUserData = RasGetEapUserDataW;
-        pub const RasSetEapUserData = RasSetEapUserDataW;
-        pub const RasGetCustomAuthData = RasGetCustomAuthDataW;
-        pub const RasSetCustomAuthData = RasSetCustomAuthDataW;
-        pub const RasGetEapUserIdentity = RasGetEapUserIdentityW;
-        pub const RasFreeEapUserIdentity = RasFreeEapUserIdentityW;
-        pub const RasDeleteSubEntry = RasDeleteSubEntryW;
-        pub const RasPhonebookDlg = RasPhonebookDlgW;
-        pub const RasEntryDlg = RasEntryDlgW;
-        pub const RasDialDlg = RasDialDlgW;
+        pub const RASCONN = thismodule.RASCONNW;
+        pub const RASDIALPARAMS = thismodule.RASDIALPARAMSW;
+        pub const RASPBDLG = thismodule.RASPBDLGW;
+        pub const RASENTRYDLG = thismodule.RASENTRYDLGW;
+        pub const RASCONNSTATUS = thismodule.RASCONNSTATUSW;
+        pub const RASENTRYNAME = thismodule.RASENTRYNAMEW;
+        pub const RASAMB = thismodule.RASAMBW;
+        pub const RASPPPNBF = thismodule.RASPPPNBFW;
+        pub const RASPPPIP = thismodule.RASPPPIPW;
+        pub const RASPPPLCP = thismodule.RASPPPLCPW;
+        pub const RASDEVINFO = thismodule.RASDEVINFOW;
+        pub const RASENTRY = thismodule.RASENTRYW;
+        pub const RASADFUNC = thismodule.RASADFUNCW;
+        pub const RASSUBENTRY = thismodule.RASSUBENTRYW;
+        pub const RASCREDENTIALS = thismodule.RASCREDENTIALSW;
+        pub const RASAUTODIALENTRY = thismodule.RASAUTODIALENTRYW;
+        pub const RASEAPUSERIDENTITY = thismodule.RASEAPUSERIDENTITYW;
+        pub const RASPBDLGFUNC = thismodule.RASPBDLGFUNCW;
+        pub const RASNOUSER = thismodule.RASNOUSERW;
+        pub const RasDial = thismodule.RasDialW;
+        pub const RasEnumConnections = thismodule.RasEnumConnectionsW;
+        pub const RasEnumEntries = thismodule.RasEnumEntriesW;
+        pub const RasGetConnectStatus = thismodule.RasGetConnectStatusW;
+        pub const RasGetErrorString = thismodule.RasGetErrorStringW;
+        pub const RasHangUp = thismodule.RasHangUpW;
+        pub const RasGetProjectionInfo = thismodule.RasGetProjectionInfoW;
+        pub const RasCreatePhonebookEntry = thismodule.RasCreatePhonebookEntryW;
+        pub const RasEditPhonebookEntry = thismodule.RasEditPhonebookEntryW;
+        pub const RasSetEntryDialParams = thismodule.RasSetEntryDialParamsW;
+        pub const RasGetEntryDialParams = thismodule.RasGetEntryDialParamsW;
+        pub const RasEnumDevices = thismodule.RasEnumDevicesW;
+        pub const RasGetCountryInfo = thismodule.RasGetCountryInfoW;
+        pub const RasGetEntryProperties = thismodule.RasGetEntryPropertiesW;
+        pub const RasSetEntryProperties = thismodule.RasSetEntryPropertiesW;
+        pub const RasRenameEntry = thismodule.RasRenameEntryW;
+        pub const RasDeleteEntry = thismodule.RasDeleteEntryW;
+        pub const RasValidateEntryName = thismodule.RasValidateEntryNameW;
+        pub const RasConnectionNotification = thismodule.RasConnectionNotificationW;
+        pub const RasGetSubEntryHandle = thismodule.RasGetSubEntryHandleW;
+        pub const RasGetCredentials = thismodule.RasGetCredentialsW;
+        pub const RasSetCredentials = thismodule.RasSetCredentialsW;
+        pub const RasGetSubEntryProperties = thismodule.RasGetSubEntryPropertiesW;
+        pub const RasSetSubEntryProperties = thismodule.RasSetSubEntryPropertiesW;
+        pub const RasGetAutodialAddress = thismodule.RasGetAutodialAddressW;
+        pub const RasSetAutodialAddress = thismodule.RasSetAutodialAddressW;
+        pub const RasEnumAutodialAddresses = thismodule.RasEnumAutodialAddressesW;
+        pub const RasGetAutodialEnable = thismodule.RasGetAutodialEnableW;
+        pub const RasSetAutodialEnable = thismodule.RasSetAutodialEnableW;
+        pub const RasGetAutodialParam = thismodule.RasGetAutodialParamW;
+        pub const RasSetAutodialParam = thismodule.RasSetAutodialParamW;
+        pub const RasGetEapUserData = thismodule.RasGetEapUserDataW;
+        pub const RasSetEapUserData = thismodule.RasSetEapUserDataW;
+        pub const RasGetCustomAuthData = thismodule.RasGetCustomAuthDataW;
+        pub const RasSetCustomAuthData = thismodule.RasSetCustomAuthDataW;
+        pub const RasGetEapUserIdentity = thismodule.RasGetEapUserIdentityW;
+        pub const RasFreeEapUserIdentity = thismodule.RasFreeEapUserIdentityW;
+        pub const RasDeleteSubEntry = thismodule.RasDeleteSubEntryW;
+        pub const RasPhonebookDlg = thismodule.RasPhonebookDlgW;
+        pub const RasEntryDlg = thismodule.RasEntryDlgW;
+        pub const RasDialDlg = thismodule.RasDialDlgW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const RASCONN = *opaque{};
@@ -5435,19 +5316,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const MIB_IPMCAST_MFE = @import("../network_management/ip_helper.zig").MIB_IPMCAST_MFE;
-const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const CRYPTOAPI_BLOB = @import("../security/cryptography/core.zig").CRYPTOAPI_BLOB;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HWND = @import("../foundation.zig").HWND;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const CRYPTOAPI_BLOB = @import("../security/cryptography/core.zig").CRYPTOAPI_BLOB;
+const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
+const LUID = @import("../system/system_services.zig").LUID;
+const MIB_IPMCAST_MFE = @import("../network_management/ip_helper.zig").MIB_IPMCAST_MFE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

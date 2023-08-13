@@ -4345,6 +4345,7 @@ pub const IRepetitionPattern = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4358,17 +4359,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

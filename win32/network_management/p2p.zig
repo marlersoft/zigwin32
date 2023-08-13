@@ -2440,6 +2440,7 @@ pub extern "PeerDist" fn PeerDistClientGetInformationByHandle(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2454,20 +2455,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const SOCKET_ADDRESS_LIST = @import("../networking/win_sock.zig").SOCKET_ADDRESS_LIST;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
 const CERT_PUBLIC_KEY_INFO = @import("../security/cryptography/core.zig").CERT_PUBLIC_KEY_INFO;
-const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
-const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKADDR_IN6 = @import("../networking/win_sock.zig").SOCKADDR_IN6;
+const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
+const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
+const SOCKET_ADDRESS_LIST = @import("../networking/win_sock.zig").SOCKET_ADDRESS_LIST;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

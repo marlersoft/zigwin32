@@ -2619,6 +2619,7 @@ pub const IConnectionRequestCallback = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -2632,19 +2633,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../foundation.zig").BSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 
 test {
     @setEvalBranchQuota(

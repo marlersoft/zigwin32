@@ -230,6 +230,7 @@ pub extern "websocket" fn WebSocketGetGlobalProperty(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -242,8 +243,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const PSTR = @import("../foundation.zig").PSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     @setEvalBranchQuota(

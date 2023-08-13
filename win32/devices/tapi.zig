@@ -12375,30 +12375,31 @@ pub extern "TAPI32" fn tapiRequestMediaCallW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (10)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const lineCreateAgent = lineCreateAgentA;
-        pub const lineCreateAgentSession = lineCreateAgentSessionA;
-        pub const lineGetAgentActivityList = lineGetAgentActivityListA;
-        pub const lineGetAgentCaps = lineGetAgentCapsA;
-        pub const lineGetAgentGroupList = lineGetAgentGroupListA;
-        pub const lineGetAgentStatus = lineGetAgentStatusA;
-        pub const lineGetGroupList = lineGetGroupListA;
-        pub const lineGetQueueList = lineGetQueueListA;
-        pub const lineInitializeEx = lineInitializeExA;
-        pub const phoneInitializeEx = phoneInitializeExA;
+        pub const lineCreateAgent = thismodule.lineCreateAgentA;
+        pub const lineCreateAgentSession = thismodule.lineCreateAgentSessionA;
+        pub const lineGetAgentActivityList = thismodule.lineGetAgentActivityListA;
+        pub const lineGetAgentCaps = thismodule.lineGetAgentCapsA;
+        pub const lineGetAgentGroupList = thismodule.lineGetAgentGroupListA;
+        pub const lineGetAgentStatus = thismodule.lineGetAgentStatusA;
+        pub const lineGetGroupList = thismodule.lineGetGroupListA;
+        pub const lineGetQueueList = thismodule.lineGetQueueListA;
+        pub const lineInitializeEx = thismodule.lineInitializeExA;
+        pub const phoneInitializeEx = thismodule.phoneInitializeExA;
     },
     .wide => struct {
-        pub const lineCreateAgent = lineCreateAgentW;
-        pub const lineCreateAgentSession = lineCreateAgentSessionW;
-        pub const lineGetAgentActivityList = lineGetAgentActivityListW;
-        pub const lineGetAgentCaps = lineGetAgentCapsW;
-        pub const lineGetAgentGroupList = lineGetAgentGroupListW;
-        pub const lineGetAgentStatus = lineGetAgentStatusW;
-        pub const lineGetGroupList = lineGetGroupListW;
-        pub const lineGetQueueList = lineGetQueueListW;
-        pub const lineInitializeEx = lineInitializeExW;
-        pub const phoneInitializeEx = phoneInitializeExW;
+        pub const lineCreateAgent = thismodule.lineCreateAgentW;
+        pub const lineCreateAgentSession = thismodule.lineCreateAgentSessionW;
+        pub const lineGetAgentActivityList = thismodule.lineGetAgentActivityListW;
+        pub const lineGetAgentCaps = thismodule.lineGetAgentCapsW;
+        pub const lineGetAgentGroupList = thismodule.lineGetAgentGroupListW;
+        pub const lineGetAgentStatus = thismodule.lineGetAgentStatusW;
+        pub const lineGetGroupList = thismodule.lineGetGroupListW;
+        pub const lineGetQueueList = thismodule.lineGetQueueListW;
+        pub const lineInitializeEx = thismodule.lineInitializeExW;
+        pub const phoneInitializeEx = thismodule.phoneInitializeExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const lineCreateAgent = *opaque{};
@@ -12428,24 +12429,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const ALLOCATOR_PROPERTIES = @import("../graphics/direct_show.zig").ALLOCATOR_PROPERTIES;
+const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
+const BOOL = @import("../foundation.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const CY = @import("../system/system_services.zig").CY;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const ALLOCATOR_PROPERTIES = @import("../graphics/direct_show.zig").ALLOCATOR_PROPERTIES;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const BSTR = @import("../foundation.zig").BSTR;
-const PSTR = @import("../foundation.zig").PSTR;
-const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

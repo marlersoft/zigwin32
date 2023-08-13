@@ -4493,6 +4493,7 @@ pub const usoNonVolatileService = UpdateServiceOption.e;
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -4506,13 +4507,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const DECIMAL = @import("../system/system_services.zig").DECIMAL;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
 const BSTR = @import("../foundation.zig").BSTR;
+const DECIMAL = @import("../system/system_services.zig").DECIMAL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 
 test {
     @setEvalBranchQuota(

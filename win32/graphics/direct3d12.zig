@@ -10610,6 +10610,7 @@ pub extern "d3d11" fn D3D11On12CreateDevice(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -10623,39 +10624,39 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const D3D_FEATURE_LEVEL = @import("../graphics/direct3d11.zig").D3D_FEATURE_LEVEL;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const D3D_SHADER_VARIABLE_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_TYPE;
 const BOOL = @import("../foundation.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const D3D_SRV_DIMENSION = @import("../graphics/direct3d11.zig").D3D_SRV_DIMENSION;
-const D3D_PARAMETER_FLAGS = @import("../graphics/direct3d11.zig").D3D_PARAMETER_FLAGS;
-const D3D_TESSELLATOR_PARTITIONING = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_PARTITIONING;
-const D3D_PRIMITIVE_TOPOLOGY = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE_TOPOLOGY;
-const D3D_INTERPOLATION_MODE = @import("../graphics/direct3d11.zig").D3D_INTERPOLATION_MODE;
-const DXGI_SAMPLE_DESC = @import("../graphics/dxgi.zig").DXGI_SAMPLE_DESC;
-const D3D_TESSELLATOR_DOMAIN = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_DOMAIN;
-const D3D_RESOURCE_RETURN_TYPE = @import("../graphics/direct3d11.zig").D3D_RESOURCE_RETURN_TYPE;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const D3D_MIN_PRECISION = @import("../graphics/direct3d11.zig").D3D_MIN_PRECISION;
-const D3D_SHADER_INPUT_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_INPUT_TYPE;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const PSTR = @import("../foundation.zig").PSTR;
-const RECT = @import("../foundation.zig").RECT;
-const HWND = @import("../foundation.zig").HWND;
-const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
-const ID3D11Resource = @import("../graphics/direct3d11.zig").ID3D11Resource;
-const D3D_NAME = @import("../graphics/direct3d11.zig").D3D_NAME;
-const ID3D11DeviceContext = @import("../graphics/direct3d11.zig").ID3D11DeviceContext;
-const D3D_REGISTER_COMPONENT_TYPE = @import("../graphics/direct3d11.zig").D3D_REGISTER_COMPONENT_TYPE;
-const D3D_TESSELLATOR_OUTPUT_PRIMITIVE = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_OUTPUT_PRIMITIVE;
-const D3D_PRIMITIVE = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE;
 const D3D_CBUFFER_TYPE = @import("../graphics/direct3d11.zig").D3D_CBUFFER_TYPE;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
+const D3D_FEATURE_LEVEL = @import("../graphics/direct3d11.zig").D3D_FEATURE_LEVEL;
+const D3D_INTERPOLATION_MODE = @import("../graphics/direct3d11.zig").D3D_INTERPOLATION_MODE;
+const D3D_MIN_PRECISION = @import("../graphics/direct3d11.zig").D3D_MIN_PRECISION;
+const D3D_NAME = @import("../graphics/direct3d11.zig").D3D_NAME;
+const D3D_PARAMETER_FLAGS = @import("../graphics/direct3d11.zig").D3D_PARAMETER_FLAGS;
+const D3D_PRIMITIVE = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE;
+const D3D_PRIMITIVE_TOPOLOGY = @import("../graphics/direct3d11.zig").D3D_PRIMITIVE_TOPOLOGY;
+const D3D_REGISTER_COMPONENT_TYPE = @import("../graphics/direct3d11.zig").D3D_REGISTER_COMPONENT_TYPE;
+const D3D_RESOURCE_RETURN_TYPE = @import("../graphics/direct3d11.zig").D3D_RESOURCE_RETURN_TYPE;
+const D3D_SHADER_INPUT_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_INPUT_TYPE;
 const D3D_SHADER_VARIABLE_CLASS = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_CLASS;
+const D3D_SHADER_VARIABLE_TYPE = @import("../graphics/direct3d11.zig").D3D_SHADER_VARIABLE_TYPE;
+const D3D_SRV_DIMENSION = @import("../graphics/direct3d11.zig").D3D_SRV_DIMENSION;
+const D3D_TESSELLATOR_DOMAIN = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_DOMAIN;
+const D3D_TESSELLATOR_OUTPUT_PRIMITIVE = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_OUTPUT_PRIMITIVE;
+const D3D_TESSELLATOR_PARTITIONING = @import("../graphics/direct3d11.zig").D3D_TESSELLATOR_PARTITIONING;
+const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
+const DXGI_SAMPLE_DESC = @import("../graphics/dxgi.zig").DXGI_SAMPLE_DESC;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
 const ID3D11Device = @import("../graphics/direct3d11.zig").ID3D11Device;
+const ID3D11DeviceContext = @import("../graphics/direct3d11.zig").ID3D11DeviceContext;
+const ID3D11Resource = @import("../graphics/direct3d11.zig").ID3D11Resource;
+const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LUID = @import("../system/system_services.zig").LUID;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

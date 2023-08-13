@@ -789,14 +789,15 @@ pub extern "faultrep" fn WerReportHang(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = pfn_ADDEREXCLUDEDAPPLICATIONA;
-        pub const AddERExcludedApplication = AddERExcludedApplicationA;
+        pub const pfn_ADDEREXCLUDEDAPPLICATION = thismodule.pfn_ADDEREXCLUDEDAPPLICATIONA;
+        pub const AddERExcludedApplication = thismodule.AddERExcludedApplicationA;
     },
     .wide => struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = pfn_ADDEREXCLUDEDAPPLICATIONW;
-        pub const AddERExcludedApplication = AddERExcludedApplicationW;
+        pub const pfn_ADDEREXCLUDEDAPPLICATION = thismodule.pfn_ADDEREXCLUDEDAPPLICATIONW;
+        pub const AddERExcludedApplication = thismodule.AddERExcludedApplicationW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const pfn_ADDEREXCLUDEDAPPLICATION = *opaque{};
@@ -810,16 +811,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
+const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
+const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

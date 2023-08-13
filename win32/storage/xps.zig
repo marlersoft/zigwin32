@@ -6344,16 +6344,17 @@ pub extern "USER32" fn PrintWindow(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const DOCINFO = DOCINFOA;
-        pub const DeviceCapabilities = DeviceCapabilitiesA;
-        pub const StartDoc = StartDocA;
+        pub const DOCINFO = thismodule.DOCINFOA;
+        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesA;
+        pub const StartDoc = thismodule.StartDocA;
     },
     .wide => struct {
-        pub const DOCINFO = DOCINFOW;
-        pub const DeviceCapabilities = DeviceCapabilitiesW;
-        pub const StartDoc = StartDocW;
+        pub const DOCINFO = thismodule.DOCINFOW;
+        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesW;
+        pub const StartDoc = thismodule.StartDocW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const DOCINFO = *opaque{};
@@ -6368,30 +6369,30 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IOpcCertificateSet = @import("../storage/packaging/opc.zig").IOpcCertificateSet;
-const IOpcPartUri = @import("../storage/packaging/opc.zig").IOpcPartUri;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const IUri = @import("../system/com.zig").IUri;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const IOpcSignatureReferenceSet = @import("../storage/packaging/opc.zig").IOpcSignatureReferenceSet;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
-const PSTR = @import("../foundation.zig").PSTR;
-const IOpcCertificateEnumerator = @import("../storage/packaging/opc.zig").IOpcCertificateEnumerator;
 const BOOL = @import("../foundation.zig").BOOL;
-const IOpcSignatureCustomObjectSet = @import("../storage/packaging/opc.zig").IOpcSignatureCustomObjectSet;
-const IOpcSignatureCustomObjectEnumerator = @import("../storage/packaging/opc.zig").IOpcSignatureCustomObjectEnumerator;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
 const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
 const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
-const POINT = @import("../foundation.zig").POINT;
-const ISequentialStream = @import("../storage/structured_storage.zig").ISequentialStream;
-const OPC_SIGNATURE_TIME_FORMAT = @import("../storage/packaging/opc.zig").OPC_SIGNATURE_TIME_FORMAT;
+const IOpcCertificateEnumerator = @import("../storage/packaging/opc.zig").IOpcCertificateEnumerator;
+const IOpcCertificateSet = @import("../storage/packaging/opc.zig").IOpcCertificateSet;
+const IOpcPartUri = @import("../storage/packaging/opc.zig").IOpcPartUri;
+const IOpcSignatureCustomObjectEnumerator = @import("../storage/packaging/opc.zig").IOpcSignatureCustomObjectEnumerator;
+const IOpcSignatureCustomObjectSet = @import("../storage/packaging/opc.zig").IOpcSignatureCustomObjectSet;
 const IOpcSignatureReferenceEnumerator = @import("../storage/packaging/opc.zig").IOpcSignatureReferenceEnumerator;
+const IOpcSignatureReferenceSet = @import("../storage/packaging/opc.zig").IOpcSignatureReferenceSet;
+const ISequentialStream = @import("../storage/structured_storage.zig").ISequentialStream;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const IUri = @import("../system/com.zig").IUri;
+const OPC_SIGNATURE_TIME_FORMAT = @import("../storage/packaging/opc.zig").OPC_SIGNATURE_TIME_FORMAT;
+const POINT = @import("../foundation.zig").POINT;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -969,36 +969,37 @@ pub extern "KERNEL32" fn GetAtomNameW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const MONHSZSTRUCT = MONHSZSTRUCTA;
-        pub const DdeInitialize = DdeInitializeA;
-        pub const DdeCreateStringHandle = DdeCreateStringHandleA;
-        pub const DdeQueryString = DdeQueryStringA;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatA;
-        pub const GetClipboardFormatName = GetClipboardFormatNameA;
-        pub const GlobalAddAtom = GlobalAddAtomA;
-        pub const GlobalAddAtomEx = GlobalAddAtomExA;
-        pub const GlobalFindAtom = GlobalFindAtomA;
-        pub const GlobalGetAtomName = GlobalGetAtomNameA;
-        pub const AddAtom = AddAtomA;
-        pub const FindAtom = FindAtomA;
-        pub const GetAtomName = GetAtomNameA;
+        pub const MONHSZSTRUCT = thismodule.MONHSZSTRUCTA;
+        pub const DdeInitialize = thismodule.DdeInitializeA;
+        pub const DdeCreateStringHandle = thismodule.DdeCreateStringHandleA;
+        pub const DdeQueryString = thismodule.DdeQueryStringA;
+        pub const RegisterClipboardFormat = thismodule.RegisterClipboardFormatA;
+        pub const GetClipboardFormatName = thismodule.GetClipboardFormatNameA;
+        pub const GlobalAddAtom = thismodule.GlobalAddAtomA;
+        pub const GlobalAddAtomEx = thismodule.GlobalAddAtomExA;
+        pub const GlobalFindAtom = thismodule.GlobalFindAtomA;
+        pub const GlobalGetAtomName = thismodule.GlobalGetAtomNameA;
+        pub const AddAtom = thismodule.AddAtomA;
+        pub const FindAtom = thismodule.FindAtomA;
+        pub const GetAtomName = thismodule.GetAtomNameA;
     },
     .wide => struct {
-        pub const MONHSZSTRUCT = MONHSZSTRUCTW;
-        pub const DdeInitialize = DdeInitializeW;
-        pub const DdeCreateStringHandle = DdeCreateStringHandleW;
-        pub const DdeQueryString = DdeQueryStringW;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatW;
-        pub const GetClipboardFormatName = GetClipboardFormatNameW;
-        pub const GlobalAddAtom = GlobalAddAtomW;
-        pub const GlobalAddAtomEx = GlobalAddAtomExW;
-        pub const GlobalFindAtom = GlobalFindAtomW;
-        pub const GlobalGetAtomName = GlobalGetAtomNameW;
-        pub const AddAtom = AddAtomW;
-        pub const FindAtom = FindAtomW;
-        pub const GetAtomName = GetAtomNameW;
+        pub const MONHSZSTRUCT = thismodule.MONHSZSTRUCTW;
+        pub const DdeInitialize = thismodule.DdeInitializeW;
+        pub const DdeCreateStringHandle = thismodule.DdeCreateStringHandleW;
+        pub const DdeQueryString = thismodule.DdeQueryStringW;
+        pub const RegisterClipboardFormat = thismodule.RegisterClipboardFormatW;
+        pub const GetClipboardFormatName = thismodule.GetClipboardFormatNameW;
+        pub const GlobalAddAtom = thismodule.GlobalAddAtomW;
+        pub const GlobalAddAtomEx = thismodule.GlobalAddAtomExW;
+        pub const GlobalFindAtom = thismodule.GlobalFindAtomW;
+        pub const GlobalGetAtomName = thismodule.GlobalGetAtomNameW;
+        pub const AddAtom = thismodule.AddAtomW;
+        pub const FindAtom = thismodule.FindAtomW;
+        pub const GetAtomName = thismodule.GetAtomNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const MONHSZSTRUCT = *opaque{};
@@ -1033,16 +1034,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../foundation.zig").LPARAM;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const HMETAFILE = @import("../graphics/gdi.zig").HMETAFILE;
-const SECURITY_QUALITY_OF_SERVICE = @import("../security.zig").SECURITY_QUALITY_OF_SERVICE;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HMETAFILE = @import("../graphics/gdi.zig").HMETAFILE;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SECURITY_QUALITY_OF_SERVICE = @import("../security.zig").SECURITY_QUALITY_OF_SERVICE;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

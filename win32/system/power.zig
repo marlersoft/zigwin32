@@ -1515,6 +1515,7 @@ pub extern "KERNEL32" fn GetSystemPowerStatus(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -1528,18 +1529,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const POWER_INFORMATION_LEVEL = @import("../system/system_services.zig").POWER_INFORMATION_LEVEL;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
-const BOOL = @import("../foundation.zig").BOOL;
-const REASON_CONTEXT = @import("../system/system_services.zig").REASON_CONTEXT;
 const POWER_REQUEST_TYPE = @import("../system/system_services.zig").POWER_REQUEST_TYPE;
+const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const REASON_CONTEXT = @import("../system/system_services.zig").REASON_CONTEXT;
+const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

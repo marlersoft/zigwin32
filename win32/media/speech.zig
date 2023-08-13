@@ -9681,6 +9681,7 @@ pub const ISpeechPhoneConverter = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -9694,24 +9695,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const HKEY = @import("../system/registry.zig").HKEY;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IStream = @import("../storage/structured_storage.zig").IStream;
-const FILETIME = @import("../foundation.zig").FILETIME;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../foundation.zig").BSTR;
 const BOOL = @import("../foundation.zig").BOOL;
-const HWND = @import("../foundation.zig").HWND;
-const WPARAM = @import("../foundation.zig").WPARAM;
-const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const IInternetSecurityManager = @import("../system/com.zig").IInternetSecurityManager;
+const BSTR = @import("../foundation.zig").BSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
+const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const IInternetSecurityManager = @import("../system/com.zig").IInternetSecurityManager;
 const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const VARIANT = @import("../system/ole_automation.zig").VARIANT;
+const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
+const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

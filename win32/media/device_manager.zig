@@ -3711,6 +3711,7 @@ pub const MTP_COMMAND_DATA_OUT = packed struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -3724,14 +3725,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const IUnknown = @import("../system/com.zig").IUnknown;
+const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const ISpecifyPropertyPages = @import("../system/com.zig").ISpecifyPropertyPages;
+const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const RECT = @import("../foundation.zig").RECT;
 const PSTR = @import("../foundation.zig").PSTR;
-const BOOL = @import("../foundation.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const RECT = @import("../foundation.zig").RECT;
 
 test {
     @setEvalBranchQuota(

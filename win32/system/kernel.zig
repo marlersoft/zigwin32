@@ -34,38 +34,7 @@ pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
 pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
 pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.Arm64 => struct {
 
-pub const SLIST_HEADER = extern union {
-    Anonymous: extern struct {
-        Alignment: u64,
-        Region: u64,
-    },
-    HeaderArm64: extern struct {
-        _bitfield1: u64,
-        _bitfield2: u64,
-    },
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Cr0NpxState: u32,
-};
-
-}, else => struct { } };
 
 pub const COMPARTMENT_ID = enum(i32) {
     UNSPECIFIED_COMPARTMENT_ID = 0,
@@ -78,21 +47,6 @@ pub const SLIST_ENTRY = extern struct {
     Next: ?*SLIST_ENTRY,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64 => struct {
-
-pub const SLIST_HEADER = extern union {
-    Anonymous: extern struct {
-        Alignment: u64,
-        Region: u64,
-    },
-    HeaderX64: extern struct {
-        _bitfield1: u64,
-        _bitfield2: u64,
-    },
-};
-
-}, else => struct { } };
 
 pub const QUAD = extern struct {
     Anonymous: extern union {
@@ -285,37 +239,62 @@ pub const PhoneNT = SUITE_TYPE.PhoneNT;
 pub const MultiUserTS = SUITE_TYPE.MultiUserTS;
 pub const MaxSuiteType = SUITE_TYPE.MaxSuiteType;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
 
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Spare0: u32,
-};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SLIST_HEADER = extern union {
-    Alignment: u64,
-    Anonymous: extern struct {
-        Next: SLIST_ENTRY,
-        Depth: u16,
-        CpuId: u16,
+pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
+    .Arm64 => extern union {
+        Anonymous: extern struct {
+            Alignment: u64,
+            Region: u64,
+        },
+        HeaderArm64: extern struct {
+            _bitfield1: u64,
+            _bitfield2: u64,
+        },
+    },
+    .X64 => extern union {
+        Anonymous: extern struct {
+            Alignment: u64,
+            Region: u64,
+        },
+        HeaderX64: extern struct {
+            _bitfield1: u64,
+            _bitfield2: u64,
+        },
+    },
+    .X86 => extern union {
+        Alignment: u64,
+        Anonymous: extern struct {
+            Next: SLIST_ENTRY,
+            Depth: u16,
+            CpuId: u16,
+        },
     },
 };
-
-}, else => struct { } };
-
+pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        ControlWord: u32,
+        StatusWord: u32,
+        TagWord: u32,
+        ErrorOffset: u32,
+        ErrorSelector: u32,
+        DataOffset: u32,
+        DataSelector: u32,
+        RegisterArea: [80]u8,
+        Cr0NpxState: u32,
+    },
+    .X86 => extern struct {
+        ControlWord: u32,
+        StatusWord: u32,
+        TagWord: u32,
+        ErrorOffset: u32,
+        ErrorSelector: u32,
+        DataOffset: u32,
+        DataSelector: u32,
+        RegisterArea: [80]u8,
+        Spare0: u32,
+    },
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -324,6 +303,7 @@ pub const SLIST_HEADER = extern union {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
+const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
     },
@@ -338,9 +318,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
