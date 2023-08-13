@@ -31089,16 +31089,16 @@ pub const IMSVidDevice = extern struct {
             return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get_Power(@ptrCast(*const IMSVidDevice, self), Power);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidDevice_get_Category(self: *const T, Guid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get_Category(@ptrCast(*const IMSVidDevice, self), Guid);
+        pub fn IMSVidDevice_get_Category(self: *const T, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get_Category(@ptrCast(*const IMSVidDevice, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMSVidDevice_get_ClassID(self: *const T, Clsid: ?*?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get_ClassID(@ptrCast(*const IMSVidDevice, self), Clsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidDevice_get__Category(self: *const T, Guid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get__Category(@ptrCast(*const IMSVidDevice, self), Guid);
+        pub fn IMSVidDevice_get__Category(self: *const T, _param_Guid: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidDevice.VTable, self.vtable).get__Category(@ptrCast(*const IMSVidDevice, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMSVidDevice_get__ClassID(self: *const T, Clsid: ?*Guid) callconv(.Inline) HRESULT {
@@ -34363,12 +34363,12 @@ pub const IMSVidStreamBufferSourceEvent3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMSVidStreamBufferSourceEvent2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidStreamBufferSourceEvent3_BroadcastEvent(self: *const T, Guid: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidStreamBufferSourceEvent3.VTable, self.vtable).BroadcastEvent(@ptrCast(*const IMSVidStreamBufferSourceEvent3, self), Guid);
+        pub fn IMSVidStreamBufferSourceEvent3_BroadcastEvent(self: *const T, _param_Guid: ?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidStreamBufferSourceEvent3.VTable, self.vtable).BroadcastEvent(@ptrCast(*const IMSVidStreamBufferSourceEvent3, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidStreamBufferSourceEvent3_BroadcastEventEx(self: *const T, Guid: ?BSTR, Param1: u32, Param2: u32, Param3: u32, Param4: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidStreamBufferSourceEvent3.VTable, self.vtable).BroadcastEventEx(@ptrCast(*const IMSVidStreamBufferSourceEvent3, self), Guid, Param1, Param2, Param3, Param4);
+        pub fn IMSVidStreamBufferSourceEvent3_BroadcastEventEx(self: *const T, _param_Guid: ?BSTR, Param1: u32, Param2: u32, Param3: u32, Param4: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidStreamBufferSourceEvent3.VTable, self.vtable).BroadcastEventEx(@ptrCast(*const IMSVidStreamBufferSourceEvent3, self), _param_Guid, Param1, Param2, Param3, Param4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMSVidStreamBufferSourceEvent3_COPPBlocked(self: *const T) callconv(.Inline) HRESULT {
@@ -34458,12 +34458,12 @@ pub const IMSVidStreamBufferV2SourceEvent = extern struct {
             return @ptrCast(*const IMSVidStreamBufferV2SourceEvent.VTable, self.vtable).RateChange(@ptrCast(*const IMSVidStreamBufferV2SourceEvent, self), qwNewRate, qwOldRate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidStreamBufferV2SourceEvent_BroadcastEvent(self: *const T, Guid: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidStreamBufferV2SourceEvent.VTable, self.vtable).BroadcastEvent(@ptrCast(*const IMSVidStreamBufferV2SourceEvent, self), Guid);
+        pub fn IMSVidStreamBufferV2SourceEvent_BroadcastEvent(self: *const T, _param_Guid: ?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidStreamBufferV2SourceEvent.VTable, self.vtable).BroadcastEvent(@ptrCast(*const IMSVidStreamBufferV2SourceEvent, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSVidStreamBufferV2SourceEvent_BroadcastEventEx(self: *const T, Guid: ?BSTR, Param1: u32, Param2: u32, Param3: u32, Param4: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSVidStreamBufferV2SourceEvent.VTable, self.vtable).BroadcastEventEx(@ptrCast(*const IMSVidStreamBufferV2SourceEvent, self), Guid, Param1, Param2, Param3, Param4);
+        pub fn IMSVidStreamBufferV2SourceEvent_BroadcastEventEx(self: *const T, _param_Guid: ?BSTR, Param1: u32, Param2: u32, Param3: u32, Param4: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMSVidStreamBufferV2SourceEvent.VTable, self.vtable).BroadcastEventEx(@ptrCast(*const IMSVidStreamBufferV2SourceEvent, self), _param_Guid, Param1, Param2, Param3, Param4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMSVidStreamBufferV2SourceEvent_ContentPrimarilyAudio(self: *const T) callconv(.Inline) HRESULT {

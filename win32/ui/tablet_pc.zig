@@ -1774,8 +1774,8 @@ pub const IInkExtendedProperty = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperty_get_Guid(self: *const T, Guid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Guid(@ptrCast(*const IInkExtendedProperty, self), Guid);
+        pub fn IInkExtendedProperty_get_Guid(self: *const T, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Guid(@ptrCast(*const IInkExtendedProperty, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkExtendedProperty_get_Data(self: *const T, Data: ?*VARIANT) callconv(.Inline) HRESULT {
@@ -1845,8 +1845,8 @@ pub const IInkExtendedProperties = extern struct {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Item(@ptrCast(*const IInkExtendedProperties, self), Identifier, Item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Add(self: *const T, Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Add(@ptrCast(*const IInkExtendedProperties, self), Guid, Data, InkExtendedProperty);
+        pub fn IInkExtendedProperties_Add(self: *const T, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Add(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, Data, InkExtendedProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkExtendedProperties_Remove(self: *const T, Identifier: VARIANT) callconv(.Inline) HRESULT {
@@ -1857,8 +1857,8 @@ pub const IInkExtendedProperties = extern struct {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Clear(@ptrCast(*const IInkExtendedProperties, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_DoesPropertyExist(self: *const T, Guid: ?BSTR, DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).DoesPropertyExist(@ptrCast(*const IInkExtendedProperties, self), Guid, DoesPropertyExist);
+        pub fn IInkExtendedProperties_DoesPropertyExist(self: *const T, _param_Guid: ?BSTR, DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).DoesPropertyExist(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, DoesPropertyExist);
         }
     };}
     pub usingnamespace MethodMixin(@This());

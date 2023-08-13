@@ -6115,12 +6115,12 @@ pub const ISpeechAudioFormat = extern struct {
             return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Type(@ptrCast(*const ISpeechAudioFormat, self), AudioFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudioFormat_get_Guid(self: *const T, Guid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).get_Guid(@ptrCast(*const ISpeechAudioFormat, self), Guid);
+        pub fn ISpeechAudioFormat_get_Guid(self: *const T, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).get_Guid(@ptrCast(*const ISpeechAudioFormat, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpeechAudioFormat_put_Guid(self: *const T, Guid: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Guid(@ptrCast(*const ISpeechAudioFormat, self), Guid);
+        pub fn ISpeechAudioFormat_put_Guid(self: *const T, _param_Guid: ?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Guid(@ptrCast(*const ISpeechAudioFormat, self), _param_Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISpeechAudioFormat_GetWaveFormatEx(self: *const T, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
