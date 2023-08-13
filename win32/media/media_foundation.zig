@@ -3138,7 +3138,7 @@ pub const ID3D12VideoMotionEstimator = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoMotionEstimator,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3149,7 +3149,7 @@ pub const ID3D12VideoMotionEstimator = extern struct {
             return @ptrCast(*const ID3D12VideoMotionEstimator.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoMotionEstimator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoMotionEstimator_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoMotionEstimator_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoMotionEstimator.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoMotionEstimator, self), riid, ppProtectedSession);
         }
     };}
@@ -3176,7 +3176,7 @@ pub const ID3D12VideoMotionVectorHeap = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoMotionVectorHeap,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3187,7 +3187,7 @@ pub const ID3D12VideoMotionVectorHeap = extern struct {
             return @ptrCast(*const ID3D12VideoMotionVectorHeap.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoMotionVectorHeap, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoMotionVectorHeap_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoMotionVectorHeap_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoMotionVectorHeap.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoMotionVectorHeap, self), riid, ppProtectedSession);
         }
     };}
@@ -3604,14 +3604,14 @@ pub const ID3D12VideoDecoder1 = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoDecoder1,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12VideoDecoder.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoDecoder1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoDecoder1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoDecoder1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoDecoder1, self), riid, ppProtectedSession);
         }
     };}
@@ -3626,14 +3626,14 @@ pub const ID3D12VideoDecoderHeap1 = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoDecoderHeap1,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12VideoDecoderHeap.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoDecoderHeap1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoDecoderHeap1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoDecoderHeap1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoDecoderHeap1, self), riid, ppProtectedSession);
         }
     };}
@@ -3648,14 +3648,14 @@ pub const ID3D12VideoProcessor1 = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoProcessor1,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12VideoProcessor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoProcessor1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoProcessor1_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoProcessor1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoProcessor1, self), riid, ppProtectedSession);
         }
     };}
@@ -3674,7 +3674,7 @@ pub const ID3D12VideoExtensionCommand = extern struct {
         GetProtectedResourceSession: fn(
             self: *const ID3D12VideoExtensionCommand,
             riid: *const Guid,
-            ppProtectedSession: ?*?*c_void,
+            ppProtectedSession: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3685,7 +3685,7 @@ pub const ID3D12VideoExtensionCommand = extern struct {
             return @ptrCast(*const ID3D12VideoExtensionCommand.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoExtensionCommand, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12VideoExtensionCommand_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D12VideoExtensionCommand_GetProtectedResourceSession(self: *const T, riid: *const Guid, ppProtectedSession: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D12VideoExtensionCommand.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoExtensionCommand, self), riid, ppProtectedSession);
         }
     };}
@@ -4302,7 +4302,7 @@ pub const IValidateBinding = extern struct {
             guidLicensorID: Guid,
             pbEphemeron: [*:0]u8,
             cbEphemeron: u32,
-            ppbBlobValidationID: ?[*]?*u8,
+            ppbBlobValidationID: ?[*]*u8,
             pcbBlobSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4310,7 +4310,7 @@ pub const IValidateBinding = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidateBinding_GetIdentifier(self: *const T, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: ?[*]?*u8, pcbBlobSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IValidateBinding_GetIdentifier(self: *const T, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: ?[*]*u8, pcbBlobSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValidateBinding.VTable, self.vtable).GetIdentifier(@ptrCast(*const IValidateBinding, self), guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
         }
     };}
@@ -9253,13 +9253,13 @@ pub const IDirectXVideoDecoderService = extern struct {
         GetDecoderDeviceGuids: fn(
             self: *const IDirectXVideoDecoderService,
             pCount: *u32,
-            pGuids: ?*?*Guid,
+            pGuids: ?**Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDecoderRenderTargets: fn(
             self: *const IDirectXVideoDecoderService,
             Guid: *const Guid,
             pCount: *u32,
-            pFormats: ?*?*D3DFORMAT,
+            pFormats: ?**D3DFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDecoderConfigurations: fn(
             self: *const IDirectXVideoDecoderService,
@@ -9267,7 +9267,7 @@ pub const IDirectXVideoDecoderService = extern struct {
             pVideoDesc: *const DXVA2_VideoDesc,
             pReserved: *c_void,
             pCount: *u32,
-            ppConfigs: ?*?*DXVA2_ConfigPictureDecode,
+            ppConfigs: ?**DXVA2_ConfigPictureDecode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVideoDecoder: fn(
             self: *const IDirectXVideoDecoderService,
@@ -9283,15 +9283,15 @@ pub const IDirectXVideoDecoderService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectXVideoAccelerationService.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_GetDecoderDeviceGuids(self: *const T, pCount: *u32, pGuids: ?*?*Guid) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoDecoderService_GetDecoderDeviceGuids(self: *const T, pCount: *u32, pGuids: ?**Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderDeviceGuids(@ptrCast(*const IDirectXVideoDecoderService, self), pCount, pGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_GetDecoderRenderTargets(self: *const T, Guid: *const Guid, pCount: *u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoDecoderService_GetDecoderRenderTargets(self: *const T, Guid: *const Guid, pCount: *u32, pFormats: ?**D3DFORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderRenderTargets(@ptrCast(*const IDirectXVideoDecoderService, self), Guid, pCount, pFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoDecoderService_GetDecoderConfigurations(self: *const T, Guid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, pReserved: *c_void, pCount: *u32, ppConfigs: ?*?*DXVA2_ConfigPictureDecode) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoDecoderService_GetDecoderConfigurations(self: *const T, Guid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, pReserved: *c_void, pCount: *u32, ppConfigs: ?**DXVA2_ConfigPictureDecode) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderConfigurations(@ptrCast(*const IDirectXVideoDecoderService, self), Guid, pVideoDesc, pReserved, pCount, ppConfigs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9316,14 +9316,14 @@ pub const IDirectXVideoProcessorService = extern struct {
             self: *const IDirectXVideoProcessorService,
             pVideoDesc: *const DXVA2_VideoDesc,
             pCount: *u32,
-            pGuids: ?*?*Guid,
+            pGuids: ?**Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoProcessorRenderTargets: fn(
             self: *const IDirectXVideoProcessorService,
             VideoProcDeviceGuid: *const Guid,
             pVideoDesc: *const DXVA2_VideoDesc,
             pCount: *u32,
-            pFormats: ?*?*D3DFORMAT,
+            pFormats: ?**D3DFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoProcessorSubStreamFormats: fn(
             self: *const IDirectXVideoProcessorService,
@@ -9331,7 +9331,7 @@ pub const IDirectXVideoProcessorService = extern struct {
             pVideoDesc: *const DXVA2_VideoDesc,
             RenderTargetFormat: D3DFORMAT,
             pCount: *u32,
-            pFormats: ?*?*D3DFORMAT,
+            pFormats: ?**D3DFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoProcessorCaps: fn(
             self: *const IDirectXVideoProcessorService,
@@ -9373,15 +9373,15 @@ pub const IDirectXVideoProcessorService = extern struct {
             return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).RegisterVideoProcessorSoftwareDevice(@ptrCast(*const IDirectXVideoProcessorService, self), pCallbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoProcessorService_GetVideoProcessorDeviceGuids(self: *const T, pVideoDesc: *const DXVA2_VideoDesc, pCount: *u32, pGuids: ?*?*Guid) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoProcessorService_GetVideoProcessorDeviceGuids(self: *const T, pVideoDesc: *const DXVA2_VideoDesc, pCount: *u32, pGuids: ?**Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorDeviceGuids(@ptrCast(*const IDirectXVideoProcessorService, self), pVideoDesc, pCount, pGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoProcessorService_GetVideoProcessorRenderTargets(self: *const T, VideoProcDeviceGuid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, pCount: *u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoProcessorService_GetVideoProcessorRenderTargets(self: *const T, VideoProcDeviceGuid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, pCount: *u32, pFormats: ?**D3DFORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorRenderTargets(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, pCount, pFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectXVideoProcessorService_GetVideoProcessorSubStreamFormats(self: *const T, VideoProcDeviceGuid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCount: *u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
+        pub fn IDirectXVideoProcessorService_GetVideoProcessorSubStreamFormats(self: *const T, VideoProcDeviceGuid: *const Guid, pVideoDesc: *const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCount: *u32, pFormats: ?**D3DFORMAT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorSubStreamFormats(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCount, pFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13086,7 +13086,7 @@ pub const IMFSourceResolver = extern struct {
             pwszURL: [*:0]const u16,
             dwFlags: u32,
             pProps: *IPropertyStore,
-            ppIUnknownCancelCookie: ?*?*IUnknown,
+            ppIUnknownCancelCookie: ?**IUnknown,
             pCallback: *IMFAsyncCallback,
             punkState: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -13102,7 +13102,7 @@ pub const IMFSourceResolver = extern struct {
             pwszURL: [*:0]const u16,
             dwFlags: u32,
             pProps: *IPropertyStore,
-            ppIUnknownCancelCookie: ?*?*IUnknown,
+            ppIUnknownCancelCookie: ?**IUnknown,
             pCallback: *IMFAsyncCallback,
             punkState: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -13129,7 +13129,7 @@ pub const IMFSourceResolver = extern struct {
             return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).CreateObjectFromByteStream(@ptrCast(*const IMFSourceResolver, self), pByteStream, pwszURL, dwFlags, pProps, pObjectType, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSourceResolver_BeginCreateObjectFromURL(self: *const T, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFSourceResolver_BeginCreateObjectFromURL(self: *const T, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?**IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).BeginCreateObjectFromURL(@ptrCast(*const IMFSourceResolver, self), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13137,7 +13137,7 @@ pub const IMFSourceResolver = extern struct {
             return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).EndCreateObjectFromURL(@ptrCast(*const IMFSourceResolver, self), pResult, pObjectType, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSourceResolver_BeginCreateObjectFromByteStream(self: *const T, pByteStream: *IMFByteStream, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFSourceResolver_BeginCreateObjectFromByteStream(self: *const T, pByteStream: *IMFByteStream, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?**IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).BeginCreateObjectFromByteStream(@ptrCast(*const IMFSourceResolver, self), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14534,7 +14534,7 @@ pub const IMFMediaTypeHandler = extern struct {
         IsMediaTypeSupported: fn(
             self: *const IMFMediaTypeHandler,
             pMediaType: *IMFMediaType,
-            ppMediaType: ?*?*IMFMediaType,
+            ppMediaType: ?**IMFMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMediaTypeCount: fn(
             self: *const IMFMediaTypeHandler,
@@ -14562,7 +14562,7 @@ pub const IMFMediaTypeHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaTypeHandler_IsMediaTypeSupported(self: *const T, pMediaType: *IMFMediaType, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+        pub fn IMFMediaTypeHandler_IsMediaTypeSupported(self: *const T, pMediaType: *IMFMediaType, ppMediaType: ?**IMFMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).IsMediaTypeSupported(@ptrCast(*const IMFMediaTypeHandler, self), pMediaType, ppMediaType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15814,7 +15814,7 @@ pub const IMFSequencerSource = extern struct {
             self: *const IMFSequencerSource,
             pPD: *IMFPresentationDescriptor,
             pId: ?*u32,
-            ppTopology: ?*?*IMFTopology,
+            ppTopology: ?**IMFTopology,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateTopology: fn(
             self: *const IMFSequencerSource,
@@ -15839,7 +15839,7 @@ pub const IMFSequencerSource = extern struct {
             return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).DeleteTopology(@ptrCast(*const IMFSequencerSource, self), dwId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSequencerSource_GetPresentationContext(self: *const T, pPD: *IMFPresentationDescriptor, pId: ?*u32, ppTopology: ?*?*IMFTopology) callconv(.Inline) HRESULT {
+        pub fn IMFSequencerSource_GetPresentationContext(self: *const T, pPD: *IMFPresentationDescriptor, pId: ?*u32, ppTopology: ?**IMFTopology) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).GetPresentationContext(@ptrCast(*const IMFSequencerSource, self), pPD, pId, ppTopology);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16675,7 +16675,7 @@ pub const IMFSchemeHandler = extern struct {
             pwszURL: [*:0]const u16,
             dwFlags: u32,
             pProps: *IPropertyStore,
-            ppIUnknownCancelCookie: ?*?*IUnknown,
+            ppIUnknownCancelCookie: ?**IUnknown,
             pCallback: *IMFAsyncCallback,
             punkState: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -16694,7 +16694,7 @@ pub const IMFSchemeHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSchemeHandler_BeginCreateObject(self: *const T, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFSchemeHandler_BeginCreateObject(self: *const T, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?**IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSchemeHandler.VTable, self.vtable).BeginCreateObject(@ptrCast(*const IMFSchemeHandler, self), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16721,7 +16721,7 @@ pub const IMFByteStreamHandler = extern struct {
             pwszURL: [*:0]const u16,
             dwFlags: u32,
             pProps: *IPropertyStore,
-            ppIUnknownCancelCookie: ?*?*IUnknown,
+            ppIUnknownCancelCookie: ?**IUnknown,
             pCallback: *IMFAsyncCallback,
             punkState: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -16744,7 +16744,7 @@ pub const IMFByteStreamHandler = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFByteStreamHandler_BeginCreateObject(self: *const T, pByteStream: *IMFByteStream, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFByteStreamHandler_BeginCreateObject(self: *const T, pByteStream: *IMFByteStream, pwszURL: [*:0]const u16, dwFlags: u32, pProps: *IPropertyStore, ppIUnknownCancelCookie: ?**IUnknown, pCallback: *IMFAsyncCallback, punkState: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFByteStreamHandler.VTable, self.vtable).BeginCreateObject(@ptrCast(*const IMFByteStreamHandler, self), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16940,9 +16940,9 @@ pub const IMFOutputTrustAuthority = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPolicy: fn(
             self: *const IMFOutputTrustAuthority,
-            ppPolicy: ?[*]?*IMFOutputPolicy,
+            ppPolicy: ?[*]*IMFOutputPolicy,
             nPolicy: u32,
-            ppbTicket: ?*?*u8,
+            ppbTicket: ?**u8,
             pcbTicket: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -16954,7 +16954,7 @@ pub const IMFOutputTrustAuthority = extern struct {
             return @ptrCast(*const IMFOutputTrustAuthority.VTable, self.vtable).GetAction(@ptrCast(*const IMFOutputTrustAuthority, self), pAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFOutputTrustAuthority_SetPolicy(self: *const T, ppPolicy: ?[*]?*IMFOutputPolicy, nPolicy: u32, ppbTicket: ?*?*u8, pcbTicket: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMFOutputTrustAuthority_SetPolicy(self: *const T, ppPolicy: ?[*]*IMFOutputPolicy, nPolicy: u32, ppbTicket: ?**u8, pcbTicket: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFOutputTrustAuthority.VTable, self.vtable).SetPolicy(@ptrCast(*const IMFOutputTrustAuthority, self), ppPolicy, nPolicy, ppbTicket, pcbTicket);
         }
     };}
@@ -17511,7 +17511,7 @@ pub const IMFTranscodeProfile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAudioAttributes: fn(
             self: *const IMFTranscodeProfile,
-            ppAttrs: ?*?*IMFAttributes,
+            ppAttrs: ?**IMFAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetVideoAttributes: fn(
             self: *const IMFTranscodeProfile,
@@ -17519,7 +17519,7 @@ pub const IMFTranscodeProfile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoAttributes: fn(
             self: *const IMFTranscodeProfile,
-            ppAttrs: ?*?*IMFAttributes,
+            ppAttrs: ?**IMFAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetContainerAttributes: fn(
             self: *const IMFTranscodeProfile,
@@ -17527,7 +17527,7 @@ pub const IMFTranscodeProfile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContainerAttributes: fn(
             self: *const IMFTranscodeProfile,
-            ppAttrs: ?*?*IMFAttributes,
+            ppAttrs: ?**IMFAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17538,7 +17538,7 @@ pub const IMFTranscodeProfile = extern struct {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetAudioAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTranscodeProfile_GetAudioAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+        pub fn IMFTranscodeProfile_GetAudioAttributes(self: *const T, ppAttrs: ?**IMFAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetAudioAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17546,7 +17546,7 @@ pub const IMFTranscodeProfile = extern struct {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetVideoAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTranscodeProfile_GetVideoAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+        pub fn IMFTranscodeProfile_GetVideoAttributes(self: *const T, ppAttrs: ?**IMFAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetVideoAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17554,7 +17554,7 @@ pub const IMFTranscodeProfile = extern struct {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetContainerAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTranscodeProfile_GetContainerAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+        pub fn IMFTranscodeProfile_GetContainerAttributes(self: *const T, ppAttrs: ?**IMFAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetContainerAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
         }
     };}
@@ -18441,7 +18441,7 @@ pub const IMFSensorDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceAttributes: fn(
             self: *const IMFSensorDevice,
-            ppAttributes: ?*?*IMFAttributes,
+            ppAttributes: ?**IMFAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStreamAttributesCount: fn(
             self: *const IMFSensorDevice,
@@ -18483,7 +18483,7 @@ pub const IMFSensorDevice = extern struct {
             return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetSymbolicLink(@ptrCast(*const IMFSensorDevice, self), SymbolicLink, cchSymbolicLink, pcchWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSensorDevice_GetDeviceAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+        pub fn IMFSensorDevice_GetDeviceAttributes(self: *const T, ppAttributes: ?**IMFAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetDeviceAttributes(@ptrCast(*const IMFSensorDevice, self), ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18524,7 +18524,7 @@ pub const IMFSensorGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSensorGroupAttributes: fn(
             self: *const IMFSensorGroup,
-            ppAttributes: ?*?*IMFAttributes,
+            ppAttributes: ?**IMFAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSensorDeviceCount: fn(
             self: *const IMFSensorGroup,
@@ -18560,7 +18560,7 @@ pub const IMFSensorGroup = extern struct {
             return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetFlags(@ptrCast(*const IMFSensorGroup, self), pFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSensorGroup_GetSensorGroupAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+        pub fn IMFSensorGroup_GetSensorGroupAttributes(self: *const T, ppAttributes: ?**IMFAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetSensorGroupAttributes(@ptrCast(*const IMFSensorGroup, self), ppAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18650,7 +18650,7 @@ pub const IMFSensorTransformFactory = extern struct {
             self: *const IMFSensorTransformFactory,
             TransformIndex: u32,
             pguidTransformId: *Guid,
-            ppAttributes: ?*?*IMFAttributes,
+            ppAttributes: ?**IMFAttributes,
             ppStreamInformation: **IMFCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTransform: fn(
@@ -18676,7 +18676,7 @@ pub const IMFSensorTransformFactory = extern struct {
             return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).GetTransformCount(@ptrCast(*const IMFSensorTransformFactory, self), pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSensorTransformFactory_GetTransformInformation(self: *const T, TransformIndex: u32, pguidTransformId: *Guid, ppAttributes: ?*?*IMFAttributes, ppStreamInformation: **IMFCollection) callconv(.Inline) HRESULT {
+        pub fn IMFSensorTransformFactory_GetTransformInformation(self: *const T, TransformIndex: u32, pguidTransformId: *Guid, ppAttributes: ?**IMFAttributes, ppStreamInformation: **IMFCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).GetTransformInformation(@ptrCast(*const IMFSensorTransformFactory, self), TransformIndex, pguidTransformId, ppAttributes, ppStreamInformation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20554,14 +20554,14 @@ pub const IMFCaptureSink = extern struct {
         GetOutputMediaType: fn(
             self: *const IMFCaptureSink,
             dwSinkStreamIndex: u32,
-            ppMediaType: ?*?*IMFMediaType,
+            ppMediaType: ?**IMFMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetService: fn(
             self: *const IMFCaptureSink,
             dwSinkStreamIndex: u32,
             rguidService: *const Guid,
             riid: *const Guid,
-            ppUnknown: ?*?*IUnknown,
+            ppUnknown: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStream: fn(
             self: *const IMFCaptureSink,
@@ -20581,11 +20581,11 @@ pub const IMFCaptureSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSink_GetOutputMediaType(self: *const T, dwSinkStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSink_GetOutputMediaType(self: *const T, dwSinkStreamIndex: u32, ppMediaType: ?**IMFMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).GetOutputMediaType(@ptrCast(*const IMFCaptureSink, self), dwSinkStreamIndex, ppMediaType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSink_GetService(self: *const T, dwSinkStreamIndex: u32, rguidService: *const Guid, riid: *const Guid, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSink_GetService(self: *const T, dwSinkStreamIndex: u32, rguidService: *const Guid, riid: *const Guid, ppUnknown: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).GetService(@ptrCast(*const IMFCaptureSink, self), dwSinkStreamIndex, rguidService, riid, ppUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20808,18 +20808,18 @@ pub const IMFCaptureSource = extern struct {
         GetCaptureDeviceSource: fn(
             self: *const IMFCaptureSource,
             mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE,
-            ppMediaSource: ?*?*IMFMediaSource,
+            ppMediaSource: ?**IMFMediaSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCaptureDeviceActivate: fn(
             self: *const IMFCaptureSource,
             mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE,
-            ppActivate: ?*?*IMFActivate,
+            ppActivate: ?**IMFActivate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetService: fn(
             self: *const IMFCaptureSource,
             rguidService: *const Guid,
             riid: *const Guid,
-            ppUnknown: ?*?*IUnknown,
+            ppUnknown: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddEffect: fn(
             self: *const IMFCaptureSource,
@@ -20839,7 +20839,7 @@ pub const IMFCaptureSource = extern struct {
             self: *const IMFCaptureSource,
             dwSourceStreamIndex: u32,
             dwMediaTypeIndex: u32,
-            ppMediaType: ?*?*IMFMediaType,
+            ppMediaType: ?**IMFMediaType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCurrentDeviceMediaType: fn(
             self: *const IMFCaptureSource,
@@ -20880,15 +20880,15 @@ pub const IMFCaptureSource = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSource_GetCaptureDeviceSource(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppMediaSource: ?*?*IMFMediaSource) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSource_GetCaptureDeviceSource(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppMediaSource: ?**IMFMediaSource) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetCaptureDeviceSource(@ptrCast(*const IMFCaptureSource, self), mfCaptureEngineDeviceType, ppMediaSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSource_GetCaptureDeviceActivate(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppActivate: ?*?*IMFActivate) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSource_GetCaptureDeviceActivate(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppActivate: ?**IMFActivate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetCaptureDeviceActivate(@ptrCast(*const IMFCaptureSource, self), mfCaptureEngineDeviceType, ppActivate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSource_GetService(self: *const T, rguidService: *const Guid, riid: *const Guid, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSource_GetService(self: *const T, rguidService: *const Guid, riid: *const Guid, ppUnknown: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetService(@ptrCast(*const IMFCaptureSource, self), rguidService, riid, ppUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20904,7 +20904,7 @@ pub const IMFCaptureSource = extern struct {
             return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).RemoveAllEffects(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFCaptureSource_GetAvailableDeviceMediaType(self: *const T, dwSourceStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+        pub fn IMFCaptureSource_GetAvailableDeviceMediaType(self: *const T, dwSourceStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?**IMFMediaType) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetAvailableDeviceMediaType(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, dwMediaTypeIndex, ppMediaType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21628,9 +21628,9 @@ pub const IMFMediaEngineSrcElements = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddElement: fn(
             self: *const IMFMediaEngineSrcElements,
-            pURL: BSTR,
-            pType: BSTR,
-            pMedia: BSTR,
+            pURL: ?BSTR,
+            pType: ?BSTR,
+            pMedia: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAllElements: fn(
             self: *const IMFMediaEngineSrcElements,
@@ -21656,7 +21656,7 @@ pub const IMFMediaEngineSrcElements = extern struct {
             return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).GetMedia(@ptrCast(*const IMFMediaEngineSrcElements, self), index, pMedia);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineSrcElements_AddElement(self: *const T, pURL: BSTR, pType: BSTR, pMedia: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineSrcElements_AddElement(self: *const T, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).AddElement(@ptrCast(*const IMFMediaEngineSrcElements, self), pURL, pType, pMedia);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23078,7 +23078,7 @@ pub const IMFMediaEngineEME = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Keys: fn(
             self: *const IMFMediaEngineEME,
-            keys: ?*?*IMFMediaKeys,
+            keys: ?**IMFMediaKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMediaKeys: fn(
             self: *const IMFMediaEngineEME,
@@ -23089,7 +23089,7 @@ pub const IMFMediaEngineEME = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineEME_get_Keys(self: *const T, keys: ?*?*IMFMediaKeys) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineEME_get_Keys(self: *const T, keys: ?**IMFMediaKeys) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineEME.VTable, self.vtable).get_Keys(@ptrCast(*const IMFMediaEngineEME, self), keys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23108,10 +23108,10 @@ pub const IMFMediaEngineSrcElementsEx = extern struct {
         base: IMFMediaEngineSrcElements.VTable,
         AddElementEx: fn(
             self: *const IMFMediaEngineSrcElementsEx,
-            pURL: BSTR,
-            pType: BSTR,
-            pMedia: BSTR,
-            keySystem: BSTR,
+            pURL: ?BSTR,
+            pType: ?BSTR,
+            pMedia: ?BSTR,
+            keySystem: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeySystem: fn(
             self: *const IMFMediaEngineSrcElementsEx,
@@ -23123,7 +23123,7 @@ pub const IMFMediaEngineSrcElementsEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMFMediaEngineSrcElements.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineSrcElementsEx_AddElementEx(self: *const T, pURL: BSTR, pType: BSTR, pMedia: BSTR, keySystem: BSTR) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineSrcElementsEx_AddElementEx(self: *const T, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR, keySystem: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineSrcElementsEx.VTable, self.vtable).AddElementEx(@ptrCast(*const IMFMediaEngineSrcElementsEx, self), pURL, pType, pMedia, keySystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23166,7 +23166,7 @@ pub const IMFMediaKeys = extern struct {
         base: IUnknown.VTable,
         CreateSession: fn(
             self: *const IMFMediaKeys,
-            mimeType: BSTR,
+            mimeType: ?BSTR,
             // TODO: what to do with BytesParamIndex 2?
             initData: ?*const u8,
             cb: u32,
@@ -23193,7 +23193,7 @@ pub const IMFMediaKeys = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaKeys_CreateSession(self: *const T, mimeType: BSTR, initData: ?*const u8, cb: u32, customData: ?*const u8, cbCustomData: u32, notify: *IMFMediaKeySessionNotify, ppSession: **IMFMediaKeySession) callconv(.Inline) HRESULT {
+        pub fn IMFMediaKeys_CreateSession(self: *const T, mimeType: ?BSTR, initData: ?*const u8, cb: u32, customData: ?*const u8, cbCustomData: u32, notify: *IMFMediaKeySessionNotify, ppSession: **IMFMediaKeySession) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaKeys.VTable, self.vtable).CreateSession(@ptrCast(*const IMFMediaKeys, self), mimeType, initData, cb, customData, cbCustomData, notify, ppSession);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23293,7 +23293,7 @@ pub const IMFMediaKeySessionNotify = extern struct {
         base: IUnknown.VTable,
         KeyMessage: fn(
             self: *const IMFMediaKeySessionNotify,
-            destinationURL: BSTR,
+            destinationURL: ?BSTR,
             // TODO: what to do with BytesParamIndex 2?
             message: *const u8,
             cb: u32,
@@ -23311,7 +23311,7 @@ pub const IMFMediaKeySessionNotify = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaKeySessionNotify_KeyMessage(self: *const T, destinationURL: BSTR, message: *const u8, cb: u32) callconv(.Inline) void {
+        pub fn IMFMediaKeySessionNotify_KeyMessage(self: *const T, destinationURL: ?BSTR, message: *const u8, cb: u32) callconv(.Inline) void {
             return @ptrCast(*const IMFMediaKeySessionNotify.VTable, self.vtable).KeyMessage(@ptrCast(*const IMFMediaKeySessionNotify, self), destinationURL, message, cb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23510,12 +23510,12 @@ pub const IMFMediaEngineClassFactoryEx = extern struct {
         CreateMediaKeys: fn(
             self: *const IMFMediaEngineClassFactoryEx,
             keySystem: BSTR,
-            cdmStorePath: BSTR,
+            cdmStorePath: ?BSTR,
             ppKeys: **IMFMediaKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsTypeSupported: fn(
             self: *const IMFMediaEngineClassFactoryEx,
-            type: BSTR,
+            type: ?BSTR,
             keySystem: BSTR,
             isSupported: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23528,11 +23528,11 @@ pub const IMFMediaEngineClassFactoryEx = extern struct {
             return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).CreateMediaSourceExtension(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), dwFlags, pAttr, ppMSE);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineClassFactoryEx_CreateMediaKeys(self: *const T, keySystem: BSTR, cdmStorePath: BSTR, ppKeys: **IMFMediaKeys) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineClassFactoryEx_CreateMediaKeys(self: *const T, keySystem: BSTR, cdmStorePath: ?BSTR, ppKeys: **IMFMediaKeys) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).CreateMediaKeys(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), keySystem, cdmStorePath, ppKeys);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineClassFactoryEx_IsTypeSupported(self: *const T, type: BSTR, keySystem: BSTR, isSupported: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineClassFactoryEx_IsTypeSupported(self: *const T, type: ?BSTR, keySystem: BSTR, isSupported: *BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).IsTypeSupported(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), type, keySystem, isSupported);
         }
     };}
@@ -23549,7 +23549,7 @@ pub const IMFMediaEngineClassFactory2 = extern struct {
             self: *const IMFMediaEngineClassFactory2,
             keySystem: BSTR,
             defaultCdmStorePath: BSTR,
-            inprivateCdmStorePath: BSTR,
+            inprivateCdmStorePath: ?BSTR,
             ppKeys: **IMFMediaKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -23557,7 +23557,7 @@ pub const IMFMediaEngineClassFactory2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaEngineClassFactory2_CreateMediaKeys2(self: *const T, keySystem: BSTR, defaultCdmStorePath: BSTR, inprivateCdmStorePath: BSTR, ppKeys: **IMFMediaKeys) callconv(.Inline) HRESULT {
+        pub fn IMFMediaEngineClassFactory2_CreateMediaKeys2(self: *const T, keySystem: BSTR, defaultCdmStorePath: BSTR, inprivateCdmStorePath: ?BSTR, ppKeys: **IMFMediaKeys) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFMediaEngineClassFactory2.VTable, self.vtable).CreateMediaKeys2(@ptrCast(*const IMFMediaEngineClassFactory2, self), keySystem, defaultCdmStorePath, inprivateCdmStorePath, ppKeys);
         }
     };}
@@ -23571,7 +23571,7 @@ pub const IMFExtendedDRMTypeSupport = extern struct {
         base: IUnknown.VTable,
         IsTypeSupportedEx: fn(
             self: *const IMFExtendedDRMTypeSupport,
-            type: BSTR,
+            type: ?BSTR,
             keySystem: BSTR,
             pAnswer: *MF_MEDIA_ENGINE_CANPLAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23580,7 +23580,7 @@ pub const IMFExtendedDRMTypeSupport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFExtendedDRMTypeSupport_IsTypeSupportedEx(self: *const T, type: BSTR, keySystem: BSTR, pAnswer: *MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
+        pub fn IMFExtendedDRMTypeSupport_IsTypeSupportedEx(self: *const T, type: ?BSTR, keySystem: BSTR, pAnswer: *MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFExtendedDRMTypeSupport.VTable, self.vtable).IsTypeSupportedEx(@ptrCast(*const IMFExtendedDRMTypeSupport, self), type, keySystem, pAnswer);
         }
     };}
@@ -24153,15 +24153,15 @@ pub const IMFTimedTextCue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
         GetData: fn(
             self: *const IMFTimedTextCue,
-            data: ?*?*IMFTimedTextBinary,
+            data: ?**IMFTimedTextBinary,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegion: fn(
             self: *const IMFTimedTextCue,
-            region: ?*?*IMFTimedTextRegion,
+            region: ?**IMFTimedTextRegion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStyle: fn(
             self: *const IMFTimedTextCue,
-            style: ?*?*IMFTimedTextStyle,
+            style: ?**IMFTimedTextStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLineCount: fn(
             self: *const IMFTimedTextCue,
@@ -24200,15 +24200,15 @@ pub const IMFTimedTextCue = extern struct {
             return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetTrackId(@ptrCast(*const IMFTimedTextCue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextCue_GetData(self: *const T, data: ?*?*IMFTimedTextBinary) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextCue_GetData(self: *const T, data: ?**IMFTimedTextBinary) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetData(@ptrCast(*const IMFTimedTextCue, self), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextCue_GetRegion(self: *const T, region: ?*?*IMFTimedTextRegion) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextCue_GetRegion(self: *const T, region: ?**IMFTimedTextRegion) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetRegion(@ptrCast(*const IMFTimedTextCue, self), region);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextCue_GetStyle(self: *const T, style: ?*?*IMFTimedTextStyle) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextCue_GetStyle(self: *const T, style: ?**IMFTimedTextStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetStyle(@ptrCast(*const IMFTimedTextCue, self), style);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24231,7 +24231,7 @@ pub const IMFTimedTextFormattedText = extern struct {
         base: IUnknown.VTable,
         GetText: fn(
             self: *const IMFTimedTextFormattedText,
-            text: ?*?PWSTR,
+            text: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubformattingCount: fn(
             self: *const IMFTimedTextFormattedText,
@@ -24241,14 +24241,14 @@ pub const IMFTimedTextFormattedText = extern struct {
             index: u32,
             firstChar: *u32,
             charLength: *u32,
-            style: ?*?*IMFTimedTextStyle,
+            style: ?**IMFTimedTextStyle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextFormattedText_GetText(self: *const T, text: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextFormattedText_GetText(self: *const T, text: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetText(@ptrCast(*const IMFTimedTextFormattedText, self), text);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24256,7 +24256,7 @@ pub const IMFTimedTextFormattedText = extern struct {
             return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetSubformattingCount(@ptrCast(*const IMFTimedTextFormattedText, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextFormattedText_GetSubformatting(self: *const T, index: u32, firstChar: *u32, charLength: *u32, style: ?*?*IMFTimedTextStyle) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextFormattedText_GetSubformatting(self: *const T, index: u32, firstChar: *u32, charLength: *u32, style: ?**IMFTimedTextStyle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetSubformatting(@ptrCast(*const IMFTimedTextFormattedText, self), index, firstChar, charLength, style);
         }
     };}
@@ -24511,7 +24511,7 @@ pub const IMFTimedTextBinary = extern struct {
         base: IUnknown.VTable,
         GetData: fn(
             self: *const IMFTimedTextBinary,
-            data: *const *const u8,
+            data: *const *u8,
             length: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -24519,7 +24519,7 @@ pub const IMFTimedTextBinary = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextBinary_GetData(self: *const T, data: *const *const u8, length: *u32) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextBinary_GetData(self: *const T, data: *const *u8, length: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextBinary.VTable, self.vtable).GetData(@ptrCast(*const IMFTimedTextBinary, self), data, length);
         }
     };}
@@ -24554,7 +24554,7 @@ pub const IMFTimedTextCueList = extern struct {
             start: f64,
             duration: f64,
             text: [*:0]const u16,
-            cue: ?*?*IMFTimedTextCue,
+            cue: ?**IMFTimedTextCue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddDataCue: fn(
             self: *const IMFTimedTextCueList,
@@ -24563,7 +24563,7 @@ pub const IMFTimedTextCueList = extern struct {
             // TODO: what to do with BytesParamIndex 3?
             data: *const u8,
             dataSize: u32,
-            cue: ?*?*IMFTimedTextCue,
+            cue: ?**IMFTimedTextCue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveCue: fn(
             self: *const IMFTimedTextCueList,
@@ -24590,11 +24590,11 @@ pub const IMFTimedTextCueList = extern struct {
             return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).GetCueByOriginalId(@ptrCast(*const IMFTimedTextCueList, self), originalId, cue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextCueList_AddTextCue(self: *const T, start: f64, duration: f64, text: [*:0]const u16, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextCueList_AddTextCue(self: *const T, start: f64, duration: f64, text: [*:0]const u16, cue: ?**IMFTimedTextCue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).AddTextCue(@ptrCast(*const IMFTimedTextCueList, self), start, duration, text, cue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFTimedTextCueList_AddDataCue(self: *const T, start: f64, duration: f64, data: *const u8, dataSize: u32, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
+        pub fn IMFTimedTextCueList_AddDataCue(self: *const T, start: f64, duration: f64, data: *const u8, dataSize: u32, cue: ?**IMFTimedTextCue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).AddDataCue(@ptrCast(*const IMFTimedTextCueList, self), start, duration, data, dataSize, cue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24662,7 +24662,7 @@ pub const IMFMediaKeySessionNotify2 = extern struct {
         KeyMessage2: fn(
             self: *const IMFMediaKeySessionNotify2,
             eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE,
-            destinationURL: BSTR,
+            destinationURL: ?BSTR,
             // TODO: what to do with BytesParamIndex 3?
             pbMessage: *const u8,
             cbMessage: u32,
@@ -24675,7 +24675,7 @@ pub const IMFMediaKeySessionNotify2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMFMediaKeySessionNotify.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFMediaKeySessionNotify2_KeyMessage2(self: *const T, eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE, destinationURL: BSTR, pbMessage: *const u8, cbMessage: u32) callconv(.Inline) void {
+        pub fn IMFMediaKeySessionNotify2_KeyMessage2(self: *const T, eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE, destinationURL: ?BSTR, pbMessage: *const u8, cbMessage: u32) callconv(.Inline) void {
             return @ptrCast(*const IMFMediaKeySessionNotify2.VTable, self.vtable).KeyMessage2(@ptrCast(*const IMFMediaKeySessionNotify2, self), eMessageType, destinationURL, pbMessage, cbMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25046,7 +25046,7 @@ pub const IMFSourceReader = extern struct {
             pdwActualStreamIndex: ?*u32,
             pdwStreamFlags: ?*u32,
             pllTimestamp: ?*i64,
-            ppSample: ?*?*IMFSample,
+            ppSample: ?**IMFSample,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Flush: fn(
             self: *const IMFSourceReader,
@@ -25094,7 +25094,7 @@ pub const IMFSourceReader = extern struct {
             return @ptrCast(*const IMFSourceReader.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IMFSourceReader, self), guidTimeFormat, varPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFSourceReader_ReadSample(self: *const T, dwStreamIndex: u32, dwControlFlags: u32, pdwActualStreamIndex: ?*u32, pdwStreamFlags: ?*u32, pllTimestamp: ?*i64, ppSample: ?*?*IMFSample) callconv(.Inline) HRESULT {
+        pub fn IMFSourceReader_ReadSample(self: *const T, dwStreamIndex: u32, dwControlFlags: u32, pdwActualStreamIndex: ?*u32, pdwStreamFlags: ?*u32, pllTimestamp: ?*i64, ppSample: ?**IMFSample) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFSourceReader.VTable, self.vtable).ReadSample(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, dwControlFlags, pdwActualStreamIndex, pdwStreamFlags, pllTimestamp, ppSample);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26223,14 +26223,14 @@ pub const IMFPMediaPlayer = extern struct {
             pwszURL: [*:0]const u16,
             fSync: BOOL,
             dwUserData: usize,
-            ppMediaItem: ?*?*IMFPMediaItem,
+            ppMediaItem: ?**IMFPMediaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateMediaItemFromObject: fn(
             self: *const IMFPMediaPlayer,
             pIUnknownObj: *IUnknown,
             fSync: BOOL,
             dwUserData: usize,
-            ppMediaItem: ?*?*IMFPMediaItem,
+            ppMediaItem: ?**IMFPMediaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMediaItem: fn(
             self: *const IMFPMediaPlayer,
@@ -26372,11 +26372,11 @@ pub const IMFPMediaPlayer = extern struct {
             return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetState(@ptrCast(*const IMFPMediaPlayer, self), peState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFPMediaPlayer_CreateMediaItemFromURL(self: *const T, pwszURL: [*:0]const u16, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) callconv(.Inline) HRESULT {
+        pub fn IMFPMediaPlayer_CreateMediaItemFromURL(self: *const T, pwszURL: [*:0]const u16, fSync: BOOL, dwUserData: usize, ppMediaItem: ?**IMFPMediaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).CreateMediaItemFromURL(@ptrCast(*const IMFPMediaPlayer, self), pwszURL, fSync, dwUserData, ppMediaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFPMediaPlayer_CreateMediaItemFromObject(self: *const T, pIUnknownObj: *IUnknown, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) callconv(.Inline) HRESULT {
+        pub fn IMFPMediaPlayer_CreateMediaItemFromObject(self: *const T, pIUnknownObj: *IUnknown, fSync: BOOL, dwUserData: usize, ppMediaItem: ?**IMFPMediaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).CreateMediaItemFromObject(@ptrCast(*const IMFPMediaPlayer, self), pIUnknownObj, fSync, dwUserData, ppMediaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27075,7 +27075,7 @@ pub const IMFVideoProcessor = extern struct {
         GetAvailableVideoProcessorModes: fn(
             self: *const IMFVideoProcessor,
             lpdwNumProcessingModes: *u32,
-            ppVideoProcessingModes: ?[*]?*Guid,
+            ppVideoProcessingModes: ?[*]*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoProcessorCaps: fn(
             self: *const IMFVideoProcessor,
@@ -27133,7 +27133,7 @@ pub const IMFVideoProcessor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFVideoProcessor_GetAvailableVideoProcessorModes(self: *const T, lpdwNumProcessingModes: *u32, ppVideoProcessingModes: ?[*]?*Guid) callconv(.Inline) HRESULT {
+        pub fn IMFVideoProcessor_GetAvailableVideoProcessorModes(self: *const T, lpdwNumProcessingModes: *u32, ppVideoProcessingModes: ?[*]*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetAvailableVideoProcessorModes(@ptrCast(*const IMFVideoProcessor, self), lpdwNumProcessingModes, ppVideoProcessingModes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27780,7 +27780,7 @@ pub extern "MF" fn MFCreatePMPMediaSession(
     dwCreationFlags: u32,
     pConfiguration: *IMFAttributes,
     ppMediaSession: **IMFMediaSession,
-    ppEnablerActivate: ?*?*IMFActivate,
+    ppEnablerActivate: ?**IMFActivate,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -27847,7 +27847,7 @@ pub extern "MFPlat" fn MFCreateSystemTimeSource(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFCreatePresentationDescriptor(
     cStreamDescriptors: u32,
-    apStreamDescriptors: ?[*]?*IMFStreamDescriptor,
+    apStreamDescriptors: ?[*]*IMFStreamDescriptor,
     ppPresentationDescriptor: **IMFPresentationDescriptor,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -28790,12 +28790,12 @@ pub extern "MFPlat" fn MFTEnum2(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "MFPlat" fn MFTGetInfo(
     clsidMFT: Guid,
-    pszName: ?*?PWSTR,
-    ppInputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
+    pszName: ?*PWSTR,
+    ppInputTypes: ?**MFT_REGISTER_TYPE_INFO,
     pcInputTypes: ?*u32,
-    ppOutputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
+    ppOutputTypes: ?**MFT_REGISTER_TYPE_INFO,
     pcOutputTypes: ?*u32,
-    ppAttributes: ?*?*IMFAttributes,
+    ppAttributes: ?**IMFAttributes,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -29243,7 +29243,7 @@ pub extern "EVR" fn MFCreateVideoPresenter(
     pOwner: ?*IUnknown,
     riidDevice: *const Guid,
     riid: *const Guid,
-    ppVideoPresenter: ?*?*c_void,
+    ppVideoPresenter: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "EVR" fn MFCreateVideoMixer(
@@ -29264,7 +29264,7 @@ pub extern "EVR" fn MFCreateVideoMixerAndPresenter(
 
 pub extern "MF" fn MFCreateVideoRenderer(
     riidRenderer: *const Guid,
-    ppVideoRenderer: ?*?*c_void,
+    ppVideoRenderer: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "EVR" fn MFCreateVideoSampleFromSurface(
@@ -29278,14 +29278,8 @@ pub extern "EVR" fn MFCreateVideoSampleAllocator(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "MFPlay" fn MFPCreateMediaPlayer(
-    pwszURL: ?[*:0]const u16,
-    fStartPlayback: BOOL,
-    creationOptions: MFP_CREATION_OPTIONS,
-    pCallback: ?*IMFPMediaPlayerCallback,
-    hWnd: HWND,
-    ppMediaPlayer: ?*?*IMFPMediaPlayer,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+// This function from dll 'MFPlay' is being skipped because it has some sort of issue
+pub fn MFPCreateMediaPlayer() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "MF" fn MFCreateEncryptedMediaExtensionsStoreActivate(

@@ -7,7 +7,7 @@
 // Section: Types (233)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
-pub const HSEMAPHORE = ?*opaque{};
+pub const HSEMAPHORE = *opaque{};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {

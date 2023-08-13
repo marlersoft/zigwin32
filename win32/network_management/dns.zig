@@ -1340,8 +1340,8 @@ pub extern "DNSAPI" fn DnsRecordCompare(
 pub extern "DNSAPI" fn DnsRecordSetCompare(
     pRR1: *DNS_RECORDA,
     pRR2: *DNS_RECORDA,
-    ppDiff1: ?*?*DNS_RECORDA,
-    ppDiff2: ?*?*DNS_RECORDA,
+    ppDiff1: ?**DNS_RECORDA,
+    ppDiff2: ?**DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1361,8 +1361,8 @@ pub extern "DNSAPI" fn DnsQuery_A(
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    ppQueryResults: ?**DNS_RECORDA,
+    pReserved: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1371,8 +1371,8 @@ pub extern "DNSAPI" fn DnsQuery_UTF8(
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    ppQueryResults: ?**DNS_RECORDA,
+    pReserved: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1381,8 +1381,8 @@ pub extern "DNSAPI" fn DnsQuery_W(
     wType: u16,
     Options: u32,
     pExtra: ?*c_void,
-    ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    ppQueryResults: ?**DNS_RECORDA,
+    pReserved: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1421,7 +1421,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_W(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
-    hCredentials: HANDLE,
+    hCredentials: ?HANDLE,
     pExtraList: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1431,7 +1431,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_A(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
-    hCredentials: HANDLE,
+    hCredentials: ?HANDLE,
     pExtraList: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1441,7 +1441,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
     pAddRecords: ?*DNS_RECORDA,
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
-    hCredentials: HANDLE,
+    hCredentials: ?HANDLE,
     pExtraList: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1450,7 +1450,7 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
 pub extern "DNSAPI" fn DnsReplaceRecordSetW(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
-    hContext: HANDLE,
+    hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1459,7 +1459,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetW(
 pub extern "DNSAPI" fn DnsReplaceRecordSetA(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
-    hContext: HANDLE,
+    hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1468,7 +1468,7 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetA(
 pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
     pReplaceSet: *DNS_RECORDA,
     Options: u32,
-    hContext: HANDLE,
+    hContext: ?HANDLE,
     pExtraInfo: ?*c_void,
     pReserved: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;

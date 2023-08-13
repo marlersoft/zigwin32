@@ -375,7 +375,7 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 // Section: Types (239)
 //--------------------------------------------------------------------------------
-pub const HRASCONN = ?*opaque{};
+pub const HRASCONN = *opaque{};
 
 pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
     First = 0,
@@ -3445,7 +3445,7 @@ pub extern "RASAPI32" fn RasSetAutodialAddressW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasEnumAutodialAddressesA(
     // TODO: what to do with BytesParamIndex 1?
-    lppRasAutodialAddresses: ?*?PSTR,
+    lppRasAutodialAddresses: ?*PSTR,
     lpdwcbRasAutodialAddresses: *u32,
     lpdwcRasAutodialAddresses: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3453,7 +3453,7 @@ pub extern "RASAPI32" fn RasEnumAutodialAddressesA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasEnumAutodialAddressesW(
     // TODO: what to do with BytesParamIndex 1?
-    lppRasAutodialAddresses: ?*?PWSTR,
+    lppRasAutodialAddresses: ?*PWSTR,
     lpdwcbRasAutodialAddresses: *u32,
     lpdwcRasAutodialAddresses: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3548,7 +3548,7 @@ pub extern "RASAPI32" fn RasClearConnectionStatistics(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasGetEapUserDataA(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     pszPhonebook: ?[*:0]const u8,
     pszEntry: [*:0]const u8,
     pbEapData: ?*u8,
@@ -3557,7 +3557,7 @@ pub extern "RASAPI32" fn RasGetEapUserDataA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasGetEapUserDataW(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     pszPhonebook: ?[*:0]const u16,
     pszEntry: [*:0]const u16,
     pbEapData: ?*u8,
@@ -3566,7 +3566,7 @@ pub extern "RASAPI32" fn RasGetEapUserDataW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasSetEapUserDataA(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     pszPhonebook: ?[*:0]const u8,
     pszEntry: [*:0]const u8,
     pbEapData: *u8,
@@ -3575,7 +3575,7 @@ pub extern "RASAPI32" fn RasSetEapUserDataA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasSetEapUserDataW(
-    hToken: HANDLE,
+    hToken: ?HANDLE,
     pszPhonebook: ?[*:0]const u16,
     pszEntry: [*:0]const u16,
     pbEapData: *u8,
@@ -3994,9 +3994,9 @@ pub extern "MPRAPI" fn MprAdminTransportSetInfo(
 pub extern "MPRAPI" fn MprAdminTransportGetInfo(
     hMprServer: isize,
     dwTransportId: u32,
-    ppGlobalInfo: ?*?*u8,
+    ppGlobalInfo: ?**u8,
     lpdwGlobalInfoSize: ?*u32,
-    ppClientInterfaceInfo: ?*?*u8,
+    ppClientInterfaceInfo: ?**u8,
     lpdwClientInterfaceInfoSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4364,18 +4364,18 @@ pub extern "MPRAPI" fn MprConfigTransportSetInfo(
 pub extern "MPRAPI" fn MprConfigTransportGetInfo(
     hMprConfig: HANDLE,
     hRouterTransport: HANDLE,
-    ppGlobalInfo: ?*?*u8,
+    ppGlobalInfo: ?**u8,
     lpdwGlobalInfoSize: ?*u32,
-    ppClientInterfaceInfo: ?*?*u8,
+    ppClientInterfaceInfo: ?**u8,
     lpdwClientInterfaceInfoSize: ?*u32,
-    lplpwsDLLPath: ?*?PWSTR,
+    lplpwsDLLPath: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprConfigTransportEnum(
     hMprConfig: HANDLE,
     dwLevel: u32,
-    lplpBuffer: ?*?*u8,
+    lplpBuffer: ?**u8,
     dwPrefMaxLen: u32,
     lpdwEntriesRead: *u32,
     lpdwTotalEntries: *u32,
@@ -4424,7 +4424,7 @@ pub extern "MPRAPI" fn MprConfigInterfaceSetInfo(
 pub extern "MPRAPI" fn MprConfigInterfaceEnum(
     hMprConfig: HANDLE,
     dwLevel: u32,
-    lplpBuffer: ?*?*u8,
+    lplpBuffer: ?**u8,
     dwPrefMaxLen: u32,
     lpdwEntriesRead: *u32,
     lpdwTotalEntries: *u32,
@@ -4463,7 +4463,7 @@ pub extern "MPRAPI" fn MprConfigInterfaceTransportGetInfo(
     hMprConfig: HANDLE,
     hRouterInterface: HANDLE,
     hRouterIfTransport: HANDLE,
-    ppInterfaceInfo: ?*?*u8,
+    ppInterfaceInfo: ?**u8,
     lpdwInterfaceInfoSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4482,7 +4482,7 @@ pub extern "MPRAPI" fn MprConfigInterfaceTransportEnum(
     hMprConfig: HANDLE,
     hRouterInterface: HANDLE,
     dwLevel: u32,
-    lplpBuffer: ?*?*u8,
+    lplpBuffer: ?**u8,
     dwPrefMaxLen: u32,
     lpdwEntriesRead: *u32,
     lpdwTotalEntries: *u32,

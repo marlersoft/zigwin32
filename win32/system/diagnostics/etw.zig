@@ -2449,7 +2449,7 @@ pub extern "tdh" fn TdhCreatePayloadFilter(
     EventMatchANY: u8,
     PayloadPredicateCount: u32,
     PayloadPredicates: [*]PAYLOAD_FILTER_PREDICATE,
-    PayloadFilter: ?*?*c_void,
+    PayloadFilter: ?**c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -2544,7 +2544,7 @@ pub extern "tdh" fn TdhEnumerateProviderFilters(
     TdhContext: ?[*]TDH_CONTEXT,
     FilterCount: *u32,
     // TODO: what to do with BytesParamIndex 5?
-    Buffer: ?*?*PROVIDER_FILTER_INFO,
+    Buffer: ?**PROVIDER_FILTER_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

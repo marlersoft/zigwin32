@@ -436,7 +436,7 @@ pub const GAA_FLAG_SKIP_DNS_INFO = @as(u32, 2048);
 // TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
 pub const IcmpHandle = isize;
 
-pub const HIFTIMESTAMPCHANGE = ?*opaque{};
+pub const HIFTIMESTAMPCHANGE = *opaque{};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -3181,7 +3181,7 @@ pub extern "IPHLPAPI" fn IcmpSendEcho(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "IPHLPAPI" fn IcmpSendEcho2(
     IcmpHandle: HANDLE,
-    Event: HANDLE,
+    Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
     DestinationAddress: u32,
@@ -3198,7 +3198,7 @@ pub extern "IPHLPAPI" fn IcmpSendEcho2(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn IcmpSendEcho2Ex(
     IcmpHandle: HANDLE,
-    Event: HANDLE,
+    Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
     SourceAddress: u32,
@@ -3216,7 +3216,7 @@ pub extern "IPHLPAPI" fn IcmpSendEcho2Ex(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn Icmp6SendEcho2(
     IcmpHandle: HANDLE,
-    Event: HANDLE,
+    Event: ?HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
     SourceAddress: *SOCKADDR_IN6,

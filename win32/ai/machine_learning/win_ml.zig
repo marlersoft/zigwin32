@@ -527,7 +527,7 @@ pub const IMLOperatorKernelCreationContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExecutionInterface: fn(
             self: *const IMLOperatorKernelCreationContext,
-            executionObject: ?*?*IUnknown,
+            executionObject: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -566,7 +566,7 @@ pub const IMLOperatorKernelCreationContext = extern struct {
             return @ptrCast(*const IMLOperatorKernelCreationContext.VTable, self.vtable).GetTensorShapeDescription(@ptrCast(*const IMLOperatorKernelCreationContext, self), shapeDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelCreationContext_GetExecutionInterface(self: *const T, executionObject: ?*?*IUnknown) callconv(.Inline) void {
+        pub fn IMLOperatorKernelCreationContext_GetExecutionInterface(self: *const T, executionObject: ?**IUnknown) callconv(.Inline) void {
             return @ptrCast(*const IMLOperatorKernelCreationContext.VTable, self.vtable).GetExecutionInterface(@ptrCast(*const IMLOperatorKernelCreationContext, self), executionObject);
         }
     };}
@@ -600,7 +600,7 @@ pub const IMLOperatorTensor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) *c_void,
         GetDataInterface: fn(
             self: *const IMLOperatorTensor,
-            dataInterface: ?*?*IUnknown,
+            dataInterface: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -631,7 +631,7 @@ pub const IMLOperatorTensor = extern struct {
             return @ptrCast(*const IMLOperatorTensor.VTable, self.vtable).GetData(@ptrCast(*const IMLOperatorTensor, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorTensor_GetDataInterface(self: *const T, dataInterface: ?*?*IUnknown) callconv(.Inline) void {
+        pub fn IMLOperatorTensor_GetDataInterface(self: *const T, dataInterface: ?**IUnknown) callconv(.Inline) void {
             return @ptrCast(*const IMLOperatorTensor.VTable, self.vtable).GetDataInterface(@ptrCast(*const IMLOperatorTensor, self), dataInterface);
         }
     };}
@@ -646,19 +646,19 @@ pub const IMLOperatorKernelContext = extern struct {
         GetInputTensor: fn(
             self: *const IMLOperatorKernelContext,
             inputIndex: u32,
-            tensor: ?*?*IMLOperatorTensor,
+            tensor: ?**IMLOperatorTensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputTensor: fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
-            tensor: ?*?*IMLOperatorTensor,
+            tensor: ?**IMLOperatorTensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputTensor1: fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
             dimensionCount: u32,
             dimensionSizes: [*]const u32,
-            tensor: ?*?*IMLOperatorTensor,
+            tensor: ?**IMLOperatorTensor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AllocateTemporaryData: fn(
             self: *const IMLOperatorKernelContext,
@@ -667,22 +667,22 @@ pub const IMLOperatorKernelContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetExecutionInterface: fn(
             self: *const IMLOperatorKernelContext,
-            executionObject: ?*?*IUnknown,
+            executionObject: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetInputTensor(self: *const T, inputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorKernelContext_GetInputTensor(self: *const T, inputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetInputTensor(@ptrCast(*const IMLOperatorKernelContext, self), inputIndex, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetOutputTensor(self: *const T, outputIndex: u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorKernelContext_GetOutputTensor(self: *const T, outputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetOutputTensor1(self: *const T, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?*?*IMLOperatorTensor) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorKernelContext_GetOutputTensor1(self: *const T, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetOutputTensor(@ptrCast(*const IMLOperatorKernelContext, self), outputIndex, dimensionCount, dimensionSizes, tensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -690,7 +690,7 @@ pub const IMLOperatorKernelContext = extern struct {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).AllocateTemporaryData(@ptrCast(*const IMLOperatorKernelContext, self), size, data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorKernelContext_GetExecutionInterface(self: *const T, executionObject: ?*?*IUnknown) callconv(.Inline) void {
+        pub fn IMLOperatorKernelContext_GetExecutionInterface(self: *const T, executionObject: ?**IUnknown) callconv(.Inline) void {
             return @ptrCast(*const IMLOperatorKernelContext.VTable, self.vtable).GetExecutionInterface(@ptrCast(*const IMLOperatorKernelContext, self), executionObject);
         }
     };}
@@ -956,7 +956,7 @@ pub const MLOperatorAttributeNameValue = extern struct {
     Anonymous: extern union {
         reserved: *const c_void,
         ints: *const i64,
-        strings: *const *const i8,
+        strings: *const *i8,
         floats: *const f32,
     },
 };
@@ -1048,7 +1048,7 @@ pub const IMLOperatorRegistry = extern struct {
             self: *const IMLOperatorRegistry,
             operatorSetId: *const MLOperatorSetId,
             baselineVersion: i32,
-            schema: ?[*]const ?*const MLOperatorSchemaDescription,
+            schema: ?[*]const *const MLOperatorSchemaDescription,
             schemaCount: u32,
             typeInferrer: ?*IMLOperatorTypeInferrer,
             shapeInferrer: ?*IMLOperatorShapeInferrer,
@@ -1064,7 +1064,7 @@ pub const IMLOperatorRegistry = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorRegistry_RegisterOperatorSetSchema(self: *const T, operatorSetId: *const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorRegistry_RegisterOperatorSetSchema(self: *const T, operatorSetId: *const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const *const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorRegistry.VTable, self.vtable).RegisterOperatorSetSchema(@ptrCast(*const IMLOperatorRegistry, self), operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

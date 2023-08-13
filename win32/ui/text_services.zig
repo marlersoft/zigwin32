@@ -340,7 +340,7 @@ pub const TS_STRF_END = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (211)
 //--------------------------------------------------------------------------------
-pub const HKL = ?*opaque{};
+pub const HKL = *opaque{};
 
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,

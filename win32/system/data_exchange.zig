@@ -70,13 +70,13 @@ pub const MF_MASK = @as(u32, 4278190080);
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
-pub const HSZ = ?*opaque{};
+pub const HSZ = *opaque{};
 
-pub const HCONV = ?*opaque{};
+pub const HCONV = *opaque{};
 
-pub const HCONVLIST = ?*opaque{};
+pub const HCONVLIST = *opaque{};
 
-pub const HDDEDATA = ?*opaque{};
+pub const HDDEDATA = *opaque{};
 
 pub const METAFILEPICT = extern struct {
     mm: i32,
@@ -592,7 +592,7 @@ pub extern "KERNEL32" fn GetAtomNameW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn OpenClipboard(
-    hWndNewOwner: HWND,
+    hWndNewOwner: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -625,7 +625,7 @@ pub extern "USER32" fn ChangeClipboardChain(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetClipboardData(
     uFormat: u32,
-    hMem: HANDLE,
+    hMem: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -847,8 +847,8 @@ pub extern "USER32" fn DdeImpersonateClient(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeNameService(
     idInst: u32,
-    hsz1: HSZ,
-    hsz2: HSZ,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
     afCmd: DDE_NAME_SERVICE_CMD,
 ) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
 
@@ -857,7 +857,7 @@ pub extern "USER32" fn DdeClientTransaction(
     pData: ?*u8,
     cbData: u32,
     hConv: HCONV,
-    hszItem: HSZ,
+    hszItem: ?HSZ,
     wFmt: u32,
     wType: DDE_CLIENT_TRANSACTION_TYPE,
     dwTimeout: u32,
@@ -871,7 +871,7 @@ pub extern "USER32" fn DdeCreateDataHandle(
     pSrc: ?*u8,
     cb: u32,
     cbOff: u32,
-    hszItem: HSZ,
+    hszItem: ?HSZ,
     wFmt: u32,
     afCmd: u32,
 ) callconv(@import("std").os.windows.WINAPI) HDDEDATA;

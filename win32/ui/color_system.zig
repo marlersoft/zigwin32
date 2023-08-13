@@ -90,7 +90,7 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 // Section: Types (51)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*opaque{};
+pub const HCOLORSPACE = *opaque{};
 
 pub const CIEXYZ = extern struct {
     ciexyzX: i32,

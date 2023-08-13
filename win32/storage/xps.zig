@@ -91,7 +91,7 @@ pub const XPS_E_PACKAGE_WRITER_NOT_CLOSED = @import("../zig.zig").typedConst(HRE
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const HPTPROVIDER = ?*opaque{};
+pub const HPTPROVIDER = *opaque{};
 
 pub const PSINJECT_POINT = extern enum(u16) {
     BEGINSTREAM = 1,

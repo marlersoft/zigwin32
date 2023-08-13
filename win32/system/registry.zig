@@ -26,7 +26,7 @@ pub const REG_SECURE_CONNECTION = @as(u32, 1);
 // Section: Types (16)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*opaque{};
+pub const HKEY = *opaque{};
 
 pub const REG_VALUE_TYPE = extern enum(u32) {
     NONE = 0,
@@ -316,7 +316,7 @@ pub extern "ADVAPI32" fn RegCloseKey(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegOverridePredefKey(
     hKey: HKEY,
-    hNewHKey: HKEY,
+    hNewHKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -614,7 +614,7 @@ pub extern "ADVAPI32" fn RegNotifyChangeKeyValue(
     hKey: HKEY,
     bWatchSubtree: BOOL,
     dwNotifyFilter: REG_NOTIFY_FILTER,
-    hEvent: HANDLE,
+    hEvent: ?HANDLE,
     fAsynchronous: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -1020,9 +1020,9 @@ pub extern "ADVAPI32" fn RegSaveKeyExW(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbackW(
-    hkeyPrimary: HKEY,
+    hkeyPrimary: ?HKEY,
     pwszPrimarySubKey: ?[*:0]const u16,
-    hkeyFallback: HKEY,
+    hkeyFallback: ?HKEY,
     pwszFallbackSubKey: ?[*:0]const u16,
     pwszValue: [*:0]const u16,
     dwFlags: u32,

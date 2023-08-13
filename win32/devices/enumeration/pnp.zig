@@ -51,7 +51,7 @@ pub const UPNP_E_DEVICE_NOTREGISTERED = @import("../../zig.zig").typedConst(HRES
 //--------------------------------------------------------------------------------
 // Section: Types (41)
 //--------------------------------------------------------------------------------
-pub const HSWDEVICE = ?*opaque{};
+pub const HSWDEVICE = *opaque{};
 
 const CLSID_UPnPDeviceFinder_Value = @import("../../zig.zig").Guid.initString("e2085f28-feb7-404a-b8e7-e659bdeaaa02");
 pub const CLSID_UPnPDeviceFinder = &CLSID_UPnPDeviceFinder_Value;
@@ -1338,7 +1338,7 @@ pub extern "CFGMGR32" fn SwDeviceInterfaceRegister(
     cPropertyCount: u32,
     pProperties: ?[*]const DEVPROPERTY,
     fEnabled: BOOL,
-    ppszDeviceInterfaceId: ?*?PWSTR,
+    ppszDeviceInterfaceId: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

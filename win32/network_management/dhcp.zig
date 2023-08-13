@@ -2779,7 +2779,7 @@ pub extern "DHCPSAPI" fn DhcpAuditLogSetParams(
 pub extern "DHCPSAPI" fn DhcpAuditLogGetParams(
     ServerIpAddress: ?PWSTR,
     Flags: u32,
-    AuditLogDir: ?*?PWSTR,
+    AuditLogDir: ?*PWSTR,
     DiskCheckInterval: *u32,
     MaxLogFilesSize: *u32,
     MinSpaceOnDisk: *u32,

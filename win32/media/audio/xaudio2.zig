@@ -215,13 +215,13 @@ pub const IXAPO = extern struct {
             self: *const IXAPO,
             pOutputFormat: *const WAVEFORMATEX,
             pRequestedInputFormat: *const WAVEFORMATEX,
-            ppSupportedInputFormat: ?*?*WAVEFORMATEX,
+            ppSupportedInputFormat: ?**WAVEFORMATEX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsOutputFormatSupported: fn(
             self: *const IXAPO,
             pInputFormat: *const WAVEFORMATEX,
             pRequestedOutputFormat: *const WAVEFORMATEX,
-            ppSupportedOutputFormat: ?*?*WAVEFORMATEX,
+            ppSupportedOutputFormat: ?**WAVEFORMATEX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IXAPO,
@@ -267,11 +267,11 @@ pub const IXAPO = extern struct {
             return @ptrCast(*const IXAPO.VTable, self.vtable).GetRegistrationProperties(@ptrCast(*const IXAPO, self), ppRegistrationProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_IsInputFormatSupported(self: *const T, pOutputFormat: *const WAVEFORMATEX, pRequestedInputFormat: *const WAVEFORMATEX, ppSupportedInputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IXAPO_IsInputFormatSupported(self: *const T, pOutputFormat: *const WAVEFORMATEX, pRequestedInputFormat: *const WAVEFORMATEX, ppSupportedInputFormat: ?**WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAPO.VTable, self.vtable).IsInputFormatSupported(@ptrCast(*const IXAPO, self), pOutputFormat, pRequestedInputFormat, ppSupportedInputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_IsOutputFormatSupported(self: *const T, pInputFormat: *const WAVEFORMATEX, pRequestedOutputFormat: *const WAVEFORMATEX, ppSupportedOutputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IXAPO_IsOutputFormatSupported(self: *const T, pInputFormat: *const WAVEFORMATEX, pRequestedOutputFormat: *const WAVEFORMATEX, ppSupportedOutputFormat: ?**WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAPO.VTable, self.vtable).IsOutputFormatSupported(@ptrCast(*const IXAPO, self), pInputFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

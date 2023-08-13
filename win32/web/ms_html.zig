@@ -67841,7 +67841,7 @@ pub const IDebugCallbackNotificationHandler = extern struct {
             callbackCookie: u32,
             pDispHandler: *IDispatch,
             ullHandlerCookie: u64,
-            functionName: BSTR,
+            functionName: ?BSTR,
             line: u32,
             column: u32,
             cchLength: u32,
@@ -67853,7 +67853,7 @@ pub const IDebugCallbackNotificationHandler = extern struct {
             callbackCookie: u32,
             pDispHandler: *IDispatch,
             ullHandlerCookie: u64,
-            functionName: BSTR,
+            functionName: ?BSTR,
             line: u32,
             column: u32,
             cchLength: u32,
@@ -67884,11 +67884,11 @@ pub const IDebugCallbackNotificationHandler = extern struct {
             return @ptrCast(*const IDebugCallbackNotificationHandler.VTable, self.vtable).InvokeDomCallbackComplete(@ptrCast(*const IDebugCallbackNotificationHandler, self), pEvent, pCallback, eStage, propagationStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugCallbackNotificationHandler_BeforeInvokeCallback(self: *const T, eCallbackType: SCRIPT_TIMER_TYPE, callbackCookie: u32, pDispHandler: *IDispatch, ullHandlerCookie: u64, functionName: BSTR, line: u32, column: u32, cchLength: u32, pDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDebugCallbackNotificationHandler_BeforeInvokeCallback(self: *const T, eCallbackType: SCRIPT_TIMER_TYPE, callbackCookie: u32, pDispHandler: *IDispatch, ullHandlerCookie: u64, functionName: ?BSTR, line: u32, column: u32, cchLength: u32, pDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugCallbackNotificationHandler.VTable, self.vtable).BeforeInvokeCallback(@ptrCast(*const IDebugCallbackNotificationHandler, self), eCallbackType, callbackCookie, pDispHandler, ullHandlerCookie, functionName, line, column, cchLength, pDebugDocumentContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugCallbackNotificationHandler_InvokeCallbackComplete(self: *const T, eCallbackType: SCRIPT_TIMER_TYPE, callbackCookie: u32, pDispHandler: *IDispatch, ullHandlerCookie: u64, functionName: BSTR, line: u32, column: u32, cchLength: u32, pDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDebugCallbackNotificationHandler_InvokeCallbackComplete(self: *const T, eCallbackType: SCRIPT_TIMER_TYPE, callbackCookie: u32, pDispHandler: *IDispatch, ullHandlerCookie: u64, functionName: ?BSTR, line: u32, column: u32, cchLength: u32, pDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugCallbackNotificationHandler.VTable, self.vtable).InvokeCallbackComplete(@ptrCast(*const IDebugCallbackNotificationHandler, self), eCallbackType, callbackCookie, pDispHandler, ullHandlerCookie, functionName, line, column, cchLength, pDebugDocumentContext);
         }
     };}

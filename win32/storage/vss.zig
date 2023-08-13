@@ -1517,7 +1517,7 @@ pub const IVssWriterImpl = extern struct {
         GetSnapshotDeviceName: fn(
             self: *const IVssWriterImpl,
             wszOriginalVolume: [*:0]const u16,
-            ppwszSnapshotDevice: ?*?PWSTR,
+            ppwszSnapshotDevice: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentSnapshotSetId: fn(
             self: *const IVssWriterImpl,
@@ -1601,7 +1601,7 @@ pub const IVssWriterImpl = extern struct {
             return @ptrCast(*const IVssWriterImpl.VTable, self.vtable).GetCurrentVolumeCount(@ptrCast(*const IVssWriterImpl, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVssWriterImpl_GetSnapshotDeviceName(self: *const T, wszOriginalVolume: [*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IVssWriterImpl_GetSnapshotDeviceName(self: *const T, wszOriginalVolume: [*:0]const u16, ppwszSnapshotDevice: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVssWriterImpl.VTable, self.vtable).GetSnapshotDeviceName(@ptrCast(*const IVssWriterImpl, self), wszOriginalVolume, ppwszSnapshotDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -150,28 +150,28 @@ pub extern "KERNEL32" fn K32EnumProcessModulesEx(
 
 pub extern "KERNEL32" fn K32GetModuleBaseNameA(
     hProcess: HANDLE,
-    hModule: HINSTANCE,
+    hModule: ?HINSTANCE,
     lpBaseName: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleBaseNameW(
     hProcess: HANDLE,
-    hModule: HINSTANCE,
+    hModule: ?HINSTANCE,
     lpBaseName: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleFileNameExA(
-    hProcess: HANDLE,
-    hModule: HINSTANCE,
+    hProcess: ?HANDLE,
+    hModule: ?HINSTANCE,
     lpFilename: [*:0]u8,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn K32GetModuleFileNameExW(
-    hProcess: HANDLE,
-    hModule: HINSTANCE,
+    hProcess: ?HANDLE,
+    hModule: ?HINSTANCE,
     lpFilename: [*:0]u16,
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;

@@ -12,7 +12,7 @@ pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 // Section: Types (17)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
-pub const HeapHandle = isize;
+pub const HeapHandle = *opaque{};
 
 pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -706,7 +706,7 @@ pub extern "KERNEL32" fn HeapCompact(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapSetInformation(
-    HeapHandle: HeapHandle,
+    HeapHandle: ?HeapHandle,
     HeapInformationClass: HEAP_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
     HeapInformation: ?*c_void,
@@ -750,7 +750,7 @@ pub extern "KERNEL32" fn HeapWalk(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapQueryInformation(
-    HeapHandle: HeapHandle,
+    HeapHandle: ?HeapHandle,
     HeapInformationClass: HEAP_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
     HeapInformation: ?*c_void,
@@ -908,7 +908,7 @@ pub extern "KERNEL32" fn GetWriteWatch(
     dwFlags: u32,
     lpBaseAddress: *c_void,
     dwRegionSize: usize,
-    lpAddresses: ?[*]?*c_void,
+    lpAddresses: ?[*]*c_void,
     lpdwCount: ?*usize,
     lpdwGranularity: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1132,14 +1132,14 @@ pub extern "api-ms-win-core-memory-l1-1-5" fn UnmapViewOfFile2(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-memory-l1-1-5" fn VirtualUnlockEx(
-    Process: HANDLE,
+    Process: ?HANDLE,
     Address: *c_void,
     Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2(
-    Process: HANDLE,
+    Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Size: usize,
     AllocationType: VIRTUAL_ALLOCATION_TYPE,
@@ -1151,7 +1151,7 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2(
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3(
     FileMapping: HANDLE,
-    Process: HANDLE,
+    Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Offset: u64,
     ViewSize: usize,
@@ -1163,7 +1163,7 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
-    Process: HANDLE,
+    Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Size: usize,
     AllocationType: VIRTUAL_ALLOCATION_TYPE,
@@ -1175,7 +1175,7 @@ pub extern "api-ms-win-core-memory-l1-1-6" fn VirtualAlloc2FromApp(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-core-memory-l1-1-6" fn MapViewOfFile3FromApp(
     FileMapping: HANDLE,
-    Process: HANDLE,
+    Process: ?HANDLE,
     BaseAddress: ?*c_void,
     Offset: u64,
     ViewSize: usize,

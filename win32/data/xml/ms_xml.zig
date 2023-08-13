@@ -1591,7 +1591,7 @@ pub const IXMLHttpRequest = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseXML: fn(
             self: *const IXMLHttpRequest,
-            ppBody: ?*?*IDispatch,
+            ppBody: ?**IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_responseText: fn(
@@ -1655,7 +1655,7 @@ pub const IXMLHttpRequest = extern struct {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_statusText(@ptrCast(*const IXMLHttpRequest, self), pbstrStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_get_responseXML(self: *const T, ppBody: ?*?*IDispatch) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_get_responseXML(self: *const T, ppBody: ?**IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseXML(@ptrCast(*const IXMLHttpRequest, self), ppBody);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3301,7 +3301,7 @@ pub const ISAXXMLReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getBaseURL: fn(
             self: *const ISAXXMLReader,
-            ppwchBaseUrl: *const *const u16,
+            ppwchBaseUrl: *const *u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putBaseURL: fn(
             self: *const ISAXXMLReader,
@@ -3309,7 +3309,7 @@ pub const ISAXXMLReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getSecureBaseURL: fn(
             self: *const ISAXXMLReader,
-            ppwchSecureBaseUrl: *const *const u16,
+            ppwchSecureBaseUrl: *const *u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putSecureBaseURL: fn(
             self: *const ISAXXMLReader,
@@ -3376,7 +3376,7 @@ pub const ISAXXMLReader = extern struct {
             return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putErrorHandler(@ptrCast(*const ISAXXMLReader, self), pHandler);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXXMLReader_getBaseURL(self: *const T, ppwchBaseUrl: *const *const u16) callconv(.Inline) HRESULT {
+        pub fn ISAXXMLReader_getBaseURL(self: *const T, ppwchBaseUrl: *const *u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getBaseURL(@ptrCast(*const ISAXXMLReader, self), ppwchBaseUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3384,7 +3384,7 @@ pub const ISAXXMLReader = extern struct {
             return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putBaseURL(@ptrCast(*const ISAXXMLReader, self), pwchBaseUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXXMLReader_getSecureBaseURL(self: *const T, ppwchSecureBaseUrl: *const *const u16) callconv(.Inline) HRESULT {
+        pub fn ISAXXMLReader_getSecureBaseURL(self: *const T, ppwchSecureBaseUrl: *const *u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getSecureBaseURL(@ptrCast(*const ISAXXMLReader, self), ppwchSecureBaseUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3447,11 +3447,11 @@ pub const ISAXLocator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getPublicId: fn(
             self: *const ISAXLocator,
-            ppwchPublicId: *const *const u16,
+            ppwchPublicId: *const *u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getSystemId: fn(
             self: *const ISAXLocator,
-            ppwchSystemId: *const *const u16,
+            ppwchSystemId: *const *u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3466,11 +3466,11 @@ pub const ISAXLocator = extern struct {
             return @ptrCast(*const ISAXLocator.VTable, self.vtable).getLineNumber(@ptrCast(*const ISAXLocator, self), pnLine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXLocator_getPublicId(self: *const T, ppwchPublicId: *const *const u16) callconv(.Inline) HRESULT {
+        pub fn ISAXLocator_getPublicId(self: *const T, ppwchPublicId: *const *u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXLocator.VTable, self.vtable).getPublicId(@ptrCast(*const ISAXLocator, self), ppwchPublicId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXLocator_getSystemId(self: *const T, ppwchSystemId: *const *const u16) callconv(.Inline) HRESULT {
+        pub fn ISAXLocator_getSystemId(self: *const T, ppwchSystemId: *const *u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXLocator.VTable, self.vtable).getSystemId(@ptrCast(*const ISAXLocator, self), ppwchSystemId);
         }
     };}
@@ -3855,29 +3855,29 @@ pub const ISAXAttributes = extern struct {
         getURI: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchUri: *const *const u16,
+            ppwchUri: *const *u16,
             pcchUri: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getLocalName: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchLocalName: *const *const u16,
+            ppwchLocalName: *const *u16,
             pcchLocalName: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getQName: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchQName: *const *const u16,
+            ppwchQName: *const *u16,
             pcchQName: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getName: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchUri: *const *const u16,
+            ppwchUri: *const *u16,
             pcchUri: *i32,
-            ppwchLocalName: *const *const u16,
+            ppwchLocalName: *const *u16,
             pcchLocalName: *i32,
-            ppwchQName: *const *const u16,
+            ppwchQName: *const *u16,
             pcchQName: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getIndexFromName: fn(
@@ -3897,7 +3897,7 @@ pub const ISAXAttributes = extern struct {
         getType: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchType: *const *const u16,
+            ppwchType: *const *u16,
             pcchType: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getTypeFromName: fn(
@@ -3906,20 +3906,20 @@ pub const ISAXAttributes = extern struct {
             cchUri: i32,
             pwchLocalName: [*:0]const u16,
             cchLocalName: i32,
-            ppwchType: *const *const u16,
+            ppwchType: *const *u16,
             pcchType: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getTypeFromQName: fn(
             self: *const ISAXAttributes,
             pwchQName: [*:0]const u16,
             cchQName: i32,
-            ppwchType: *const *const u16,
+            ppwchType: *const *u16,
             pcchType: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getValue: fn(
             self: *const ISAXAttributes,
             nIndex: i32,
-            ppwchValue: *const *const u16,
+            ppwchValue: *const *u16,
             pcchValue: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getValueFromName: fn(
@@ -3928,14 +3928,14 @@ pub const ISAXAttributes = extern struct {
             cchUri: i32,
             pwchLocalName: [*:0]const u16,
             cchLocalName: i32,
-            ppwchValue: *const *const u16,
+            ppwchValue: *const *u16,
             pcchValue: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getValueFromQName: fn(
             self: *const ISAXAttributes,
             pwchQName: [*:0]const u16,
             cchQName: i32,
-            ppwchValue: *const *const u16,
+            ppwchValue: *const *u16,
             pcchValue: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3947,19 +3947,19 @@ pub const ISAXAttributes = extern struct {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getLength(@ptrCast(*const ISAXAttributes, self), pnLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getURI(self: *const T, nIndex: i32, ppwchUri: *const *const u16, pcchUri: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getURI(self: *const T, nIndex: i32, ppwchUri: *const *u16, pcchUri: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getURI(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchUri, pcchUri);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getLocalName(self: *const T, nIndex: i32, ppwchLocalName: *const *const u16, pcchLocalName: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getLocalName(self: *const T, nIndex: i32, ppwchLocalName: *const *u16, pcchLocalName: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getLocalName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchLocalName, pcchLocalName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getQName(self: *const T, nIndex: i32, ppwchQName: *const *const u16, pcchQName: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getQName(self: *const T, nIndex: i32, ppwchQName: *const *u16, pcchQName: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getQName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchQName, pcchQName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getName(self: *const T, nIndex: i32, ppwchUri: *const *const u16, pcchUri: *i32, ppwchLocalName: *const *const u16, pcchLocalName: *i32, ppwchQName: *const *const u16, pcchQName: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getName(self: *const T, nIndex: i32, ppwchUri: *const *u16, pcchUri: *i32, ppwchLocalName: *const *u16, pcchLocalName: *i32, ppwchQName: *const *u16, pcchQName: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchUri, pcchUri, ppwchLocalName, pcchLocalName, ppwchQName, pcchQName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3971,27 +3971,27 @@ pub const ISAXAttributes = extern struct {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getIndexFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, pnIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getType(self: *const T, nIndex: i32, ppwchType: *const *const u16, pcchType: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getType(self: *const T, nIndex: i32, ppwchType: *const *u16, pcchType: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getType(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchType, pcchType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getTypeFromName(self: *const T, pwchUri: [*:0]const u16, cchUri: i32, pwchLocalName: [*:0]const u16, cchLocalName: i32, ppwchType: *const *const u16, pcchType: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getTypeFromName(self: *const T, pwchUri: [*:0]const u16, cchUri: i32, pwchLocalName: [*:0]const u16, cchLocalName: i32, ppwchType: *const *u16, pcchType: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getTypeFromName(@ptrCast(*const ISAXAttributes, self), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchType, pcchType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getTypeFromQName(self: *const T, pwchQName: [*:0]const u16, cchQName: i32, ppwchType: *const *const u16, pcchType: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getTypeFromQName(self: *const T, pwchQName: [*:0]const u16, cchQName: i32, ppwchType: *const *u16, pcchType: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getTypeFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, ppwchType, pcchType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getValue(self: *const T, nIndex: i32, ppwchValue: *const *const u16, pcchValue: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getValue(self: *const T, nIndex: i32, ppwchValue: *const *u16, pcchValue: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValue(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchValue, pcchValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getValueFromName(self: *const T, pwchUri: [*:0]const u16, cchUri: i32, pwchLocalName: [*:0]const u16, cchLocalName: i32, ppwchValue: *const *const u16, pcchValue: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getValueFromName(self: *const T, pwchUri: [*:0]const u16, cchUri: i32, pwchLocalName: [*:0]const u16, cchLocalName: i32, ppwchValue: *const *u16, pcchValue: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValueFromName(@ptrCast(*const ISAXAttributes, self), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchValue, pcchValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISAXAttributes_getValueFromQName(self: *const T, pwchQName: [*:0]const u16, cchQName: i32, ppwchValue: *const *const u16, pcchValue: *i32) callconv(.Inline) HRESULT {
+        pub fn ISAXAttributes_getValueFromQName(self: *const T, pwchQName: [*:0]const u16, cchQName: i32, ppwchValue: *const *u16, pcchValue: *i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValueFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, ppwchValue, pcchValue);
         }
     };}

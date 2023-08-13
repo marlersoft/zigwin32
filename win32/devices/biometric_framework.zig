@@ -803,7 +803,7 @@ pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = fn(
     // TODO: what to do with BytesParamIndex 2?
     RawBufferAddress: ?*u8,
     RawBufferSize: usize,
-    ResultBufferAddress: ?*?*u8,
+    ResultBufferAddress: ?**u8,
     ResultBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -813,7 +813,7 @@ pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = fn(
     // TODO: what to do with BytesParamIndex 3?
     MetadataBufferAddress: ?*u8,
     MetadataBufferSize: usize,
-    ResultBufferAddress: ?*?*u8,
+    ResultBufferAddress: ?**u8,
     ResultBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1526,7 +1526,7 @@ pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = fn(
     PropertyId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?*?*c_void,
+    PropertyBuffer: ?**c_void,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1641,7 +1641,7 @@ pub extern "winbio" fn WinBioEnumDatabases(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncOpenFramework(
     NotificationMethod: WINBIO_ASYNC_NOTIFICATION_METHOD,
-    TargetWindow: HWND,
+    TargetWindow: ?HWND,
     MessageCode: u32,
     CallbackRoutine: ?PWINBIO_ASYNC_COMPLETION_CALLBACK,
     UserData: ?*c_void,
@@ -1698,7 +1698,7 @@ pub extern "winbio" fn WinBioAsyncOpenSession(
     UnitCount: usize,
     DatabaseId: ?*Guid,
     NotificationMethod: WINBIO_ASYNC_NOTIFICATION_METHOD,
-    TargetWindow: HWND,
+    TargetWindow: ?HWND,
     MessageCode: u32,
     CallbackRoutine: ?PWINBIO_ASYNC_COMPLETION_CALLBACK,
     UserData: ?*c_void,
@@ -1812,7 +1812,7 @@ pub extern "winbio" fn WinBioEnumEnrollments(
     SessionHandle: u32,
     UnitId: u32,
     Identity: *WINBIO_IDENTITY,
-    SubFactorArray: ?*?*u8,
+    SubFactorArray: ?**u8,
     SubFactorCount: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1841,7 +1841,7 @@ pub extern "winbio" fn WinBioCaptureSample(
     Purpose: u8,
     Flags: u8,
     UnitId: ?*u32,
-    Sample: ?*?*WINBIO_BIR,
+    Sample: ?**WINBIO_BIR,
     SampleSize: ?*usize,
     RejectDetail: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1915,7 +1915,7 @@ pub extern "winbio" fn WinBioGetProperty(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    PropertyBuffer: ?*?*c_void,
+    PropertyBuffer: ?**c_void,
     PropertyBufferSize: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

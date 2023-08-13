@@ -7,10 +7,10 @@
 // Section: Types (4)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = ?*opaque{};
+pub const HWINSTA = *opaque{};
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = ?*opaque{};
+pub const HDESK = *opaque{};
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -106,21 +106,21 @@ pub extern "USER32" fn OpenInputDesktop(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDesktopsA(
-    hwinsta: HWINSTA,
+    hwinsta: ?HWINSTA,
     lpEnumFunc: DESKTOPENUMPROCA,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDesktopsW(
-    hwinsta: HWINSTA,
+    hwinsta: ?HWINSTA,
     lpEnumFunc: DESKTOPENUMPROCW,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn EnumDesktopWindows(
-    hDesktop: HDESK,
+    hDesktop: ?HDESK,
     lpfn: WNDENUMPROC,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

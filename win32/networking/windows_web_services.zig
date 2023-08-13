@@ -2440,7 +2440,7 @@ pub const WS_GET_CERT_CALLBACK = fn(
     getCertCallbackState: ?*c_void,
     targetAddress: ?*const WS_ENDPOINT_ADDRESS,
     viaUri: ?*const WS_STRING,
-    cert: *const *const CERT_CONTEXT,
+    cert: *const *CERT_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -3280,7 +3280,7 @@ pub const WS_SAML_AUTHENTICATOR = extern struct {
 
 pub const WS_CERT_SIGNED_SAML_AUTHENTICATOR = extern struct {
     authenticator: WS_SAML_AUTHENTICATOR,
-    trustedIssuerCerts: *const *const CERT_CONTEXT,
+    trustedIssuerCerts: *const *CERT_CONTEXT,
     trustedIssuerCertCount: u32,
     decryptionCert: *const CERT_CONTEXT,
     samlValidator: WS_VALIDATE_SAML_CALLBACK,
@@ -4387,7 +4387,7 @@ pub extern "webservices" fn WsGetReaderProperty(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetReaderNode(
     xmlReader: *WS_XML_READER,
-    node: *const *const WS_XML_NODE,
+    node: *const *WS_XML_NODE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4773,7 +4773,7 @@ pub extern "webservices" fn WsGetPrefixFromNamespace(
     writer: *WS_XML_WRITER,
     ns: *const WS_XML_STRING,
     required: BOOL,
-    prefix: *const *const WS_XML_STRING,
+    prefix: *const *WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4827,7 +4827,7 @@ pub extern "webservices" fn WsGetNamespaceFromPrefix(
     reader: *WS_XML_READER,
     prefix: *const WS_XML_STRING,
     required: BOOL,
-    ns: *const *const WS_XML_STRING,
+    ns: *const *WS_XML_STRING,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4846,7 +4846,7 @@ pub extern "webservices" fn WsGetXmlAttribute(
     reader: *WS_XML_READER,
     localName: *const WS_XML_STRING,
     heap: *WS_HEAP,
-    valueChars: ?*?*u16,
+    valueChars: ?**u16,
     valueCharCount: *u32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5066,7 +5066,7 @@ pub extern "webservices" fn WsGetOperationContextProperty(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetDictionary(
     encoding: WS_ENCODING,
-    dictionary: ?*?*WS_XML_DICTIONARY,
+    dictionary: ?**WS_XML_DICTIONARY,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5706,7 +5706,7 @@ pub extern "webservices" fn WsGetServiceHostProperty(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsCreateServiceHost(
-    endpoints: ?[*]const ?*const WS_SERVICE_ENDPOINT,
+    endpoints: ?[*]const *const WS_SERVICE_ENDPOINT,
     endpointCount: u16,
     serviceProperties: ?[*]const WS_SERVICE_PROPERTY,
     servicePropertyCount: u32,
@@ -5811,7 +5811,7 @@ pub extern "webservices" fn WsAbandonCall(
 pub extern "webservices" fn WsCall(
     serviceProxy: *WS_SERVICE_PROXY,
     operation: *const WS_OPERATION_DESCRIPTION,
-    arguments: ?*const ?*const c_void,
+    arguments: ?*const *c_void,
     heap: *WS_HEAP,
     callProperties: ?[*]const WS_CALL_PROPERTY,
     callPropertyCount: u32,
@@ -5901,7 +5901,7 @@ pub extern "webservices" fn WsGetMetadataProperty(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsGetMissingMetadataDocumentAddress(
     metadata: *WS_METADATA,
-    address: ?*?*WS_ENDPOINT_ADDRESS,
+    address: ?**WS_ENDPOINT_ADDRESS,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5987,7 +5987,7 @@ pub extern "webauthn" fn WebAuthNAuthenticatorMakeCredential(
     pPubKeyCredParams: *WEBAUTHN_COSE_CREDENTIAL_PARAMETERS,
     pWebAuthNClientData: *WEBAUTHN_CLIENT_DATA,
     pWebAuthNMakeCredentialOptions: ?*WEBAUTHN_AUTHENTICATOR_MAKE_CREDENTIAL_OPTIONS,
-    ppWebAuthNCredentialAttestation: ?*?*WEBAUTHN_CREDENTIAL_ATTESTATION,
+    ppWebAuthNCredentialAttestation: ?**WEBAUTHN_CREDENTIAL_ATTESTATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNAuthenticatorGetAssertion(
@@ -5995,7 +5995,7 @@ pub extern "webauthn" fn WebAuthNAuthenticatorGetAssertion(
     pwszRpId: [*:0]const u16,
     pWebAuthNClientData: *WEBAUTHN_CLIENT_DATA,
     pWebAuthNGetAssertionOptions: ?*WEBAUTHN_AUTHENTICATOR_GET_ASSERTION_OPTIONS,
-    ppWebAuthNAssertion: ?*?*WEBAUTHN_ASSERTION,
+    ppWebAuthNAssertion: ?**WEBAUTHN_ASSERTION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "webauthn" fn WebAuthNFreeCredentialAttestation(

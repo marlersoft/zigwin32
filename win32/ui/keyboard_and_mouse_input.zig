@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
-pub const HRAWINPUT = ?*opaque{};
+pub const HRAWINPUT = *opaque{};
 
 pub const RAW_INPUT_DATA_COMMAND_FLAGS = extern enum(u32) {
     HEADER = 268435461,
@@ -417,7 +417,7 @@ pub extern "USER32" fn ToUnicodeEx(
     pwszBuff: [*:0]u16,
     cchBuff: i32,
     wFlags: u32,
-    dwhkl: HKL,
+    dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -462,7 +462,7 @@ pub extern "USER32" fn TrackMouseEvent(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn RegisterHotKey(
-    hWnd: HWND,
+    hWnd: ?HWND,
     id: i32,
     fsModifiers: HOT_KEY_MODIFIERS,
     vk: u32,
@@ -470,7 +470,7 @@ pub extern "USER32" fn RegisterHotKey(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn UnregisterHotKey(
-    hWnd: HWND,
+    hWnd: ?HWND,
     id: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -490,7 +490,7 @@ pub extern "USER32" fn SetDoubleClickTime(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetFocus(
-    hWnd: HWND,
+    hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -560,7 +560,7 @@ pub extern "USER32" fn ToAsciiEx(
     lpKeyState: ?*[256]u8,
     lpChar: *u16,
     uFlags: u32,
-    dwhkl: HKL,
+    dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -645,14 +645,14 @@ pub extern "USER32" fn MapVirtualKeyW(
 pub extern "USER32" fn MapVirtualKeyExA(
     uCode: u32,
     uMapType: u32,
-    dwhkl: HKL,
+    dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn MapVirtualKeyExW(
     uCode: u32,
     uMapType: u32,
-    dwhkl: HKL,
+    dwhkl: ?HKL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -707,7 +707,7 @@ pub extern "USER32" fn GetRawInputData(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputDeviceInfoA(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
     pData: ?*c_void,
@@ -716,7 +716,7 @@ pub extern "USER32" fn GetRawInputDeviceInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn GetRawInputDeviceInfoW(
-    hDevice: HANDLE,
+    hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
     // TODO: what to do with BytesParamIndex 3?
     pData: ?*c_void,

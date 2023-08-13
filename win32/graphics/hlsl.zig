@@ -347,11 +347,11 @@ pub const IDxcOperationResult = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetResult: fn(
             self: *const IDxcOperationResult,
-            pResult: ?*?*IDxcBlob,
+            pResult: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorBuffer: fn(
             self: *const IDxcOperationResult,
-            pErrors: ?*?*IDxcBlobEncoding,
+            pErrors: ?**IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -362,11 +362,11 @@ pub const IDxcOperationResult = extern struct {
             return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetStatus(@ptrCast(*const IDxcOperationResult, self), pStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOperationResult_GetResult(self: *const T, pResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+        pub fn IDxcOperationResult_GetResult(self: *const T, pResult: ?**IDxcBlob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetResult(@ptrCast(*const IDxcOperationResult, self), pResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOperationResult_GetErrorBuffer(self: *const T, pErrors: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcOperationResult_GetErrorBuffer(self: *const T, pErrors: ?**IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetErrorBuffer(@ptrCast(*const IDxcOperationResult, self), pErrors);
         }
     };}
@@ -381,14 +381,14 @@ pub const IDxcIncludeHandler = extern struct {
         LoadSource: fn(
             self: *const IDxcIncludeHandler,
             pFilename: [*:0]const u16,
-            ppIncludeSource: ?*?*IDxcBlob,
+            ppIncludeSource: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcIncludeHandler_LoadSource(self: *const T, pFilename: [*:0]const u16, ppIncludeSource: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+        pub fn IDxcIncludeHandler_LoadSource(self: *const T, pFilename: [*:0]const u16, ppIncludeSource: ?**IDxcBlob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcIncludeHandler.VTable, self.vtable).LoadSource(@ptrCast(*const IDxcIncludeHandler, self), pFilename, ppIncludeSource);
         }
     };}
@@ -471,15 +471,15 @@ pub const IDxcCompiler2 = extern struct {
             defineCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
             ppResult: **IDxcOperationResult,
-            ppDebugBlobName: ?*?PWSTR,
-            ppDebugBlob: ?*?*IDxcBlob,
+            ppDebugBlobName: ?*PWSTR,
+            ppDebugBlob: ?**IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDxcCompiler.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler2_CompileWithDebug(self: *const T, pSource: *IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: [*:0]const u16, pTargetProfile: [*:0]const u16, pArguments: [*]PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
+        pub fn IDxcCompiler2_CompileWithDebug(self: *const T, pSource: *IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: [*:0]const u16, pTargetProfile: [*:0]const u16, pArguments: [*]PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult, ppDebugBlobName: ?*PWSTR, ppDebugBlob: ?**IDxcBlob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcCompiler2.VTable, self.vtable).CompileWithDebug(@ptrCast(*const IDxcCompiler2, self), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
         }
     };}
@@ -754,7 +754,7 @@ pub const IDxcOptimizer = extern struct {
             ppOptions: [*]PWSTR,
             optionCount: u32,
             pOutputModule: **IDxcBlob,
-            ppOutputText: ?*?*IDxcBlobEncoding,
+            ppOutputText: ?**IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -769,7 +769,7 @@ pub const IDxcOptimizer = extern struct {
             return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).GetAvailablePass(@ptrCast(*const IDxcOptimizer, self), index, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizer_RunOptimizer(self: *const T, pBlob: *IDxcBlob, ppOptions: [*]PWSTR, optionCount: u32, pOutputModule: **IDxcBlob, ppOutputText: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcOptimizer_RunOptimizer(self: *const T, pBlob: *IDxcBlob, ppOptions: [*]PWSTR, optionCount: u32, pOutputModule: **IDxcBlob, ppOutputText: ?**IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).RunOptimizer(@ptrCast(*const IDxcOptimizer, self), pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
         }
     };}
@@ -864,7 +864,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompile(
     Flags1: u32,
     Flags2: u32,
     ppCode: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DCompile2(
@@ -883,7 +883,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompile2(
     pSecondaryData: ?*const c_void,
     SecondaryDataSize: usize,
     ppCode: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DCompileFromFile(
@@ -895,7 +895,7 @@ pub extern "D3DCOMPILER_47" fn D3DCompileFromFile(
     Flags1: u32,
     Flags2: u32,
     ppCode: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DPreprocess(
@@ -906,7 +906,7 @@ pub extern "D3DCOMPILER_47" fn D3DPreprocess(
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
     ppCodeText: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "D3DCOMPILER_47" fn D3DGetDebugInfo(

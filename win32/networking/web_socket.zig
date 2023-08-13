@@ -131,9 +131,9 @@ pub extern "websocket" fn WebSocketCreateClientHandle(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginClientHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
-    pszSubprotocols: ?[*]?PSTR,
+    pszSubprotocols: ?[*]PSTR,
     ulSubprotocolCount: u32,
-    pszExtensions: ?[*]?PSTR,
+    pszExtensions: ?[*]PSTR,
     ulExtensionCount: u32,
     pInitialHeaders: ?[*]const WEB_SOCKET_HTTP_HEADER,
     ulInitialHeaderCount: u32,
@@ -162,7 +162,7 @@ pub extern "websocket" fn WebSocketCreateServerHandle(
 pub extern "websocket" fn WebSocketBeginServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pszSubprotocolSelected: ?[*:0]const u8,
-    pszExtensionSelected: ?[*]?PSTR,
+    pszExtensionSelected: ?[*]PSTR,
     ulExtensionSelectedCount: u32,
     pRequestHeaders: [*]const WEB_SOCKET_HTTP_HEADER,
     ulRequestHeaderCount: u32,
@@ -198,7 +198,7 @@ pub extern "websocket" fn WebSocketGetAction(
     pulDataBufferCount: *u32,
     pAction: *WEB_SOCKET_ACTION,
     pBufferType: *WEB_SOCKET_BUFFER_TYPE,
-    pvApplicationContext: ?*?*c_void,
+    pvApplicationContext: ?**c_void,
     pvActionContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

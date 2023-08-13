@@ -2512,14 +2512,14 @@ pub const IXATransLookup = extern struct {
         base: IUnknown.VTable,
         Lookup: fn(
             self: *const IXATransLookup,
-            ppTransaction: ?*?*ITransaction,
+            ppTransaction: ?**ITransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXATransLookup_Lookup(self: *const T, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+        pub fn IXATransLookup_Lookup(self: *const T, ppTransaction: ?**ITransaction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXATransLookup.VTable, self.vtable).Lookup(@ptrCast(*const IXATransLookup, self), ppTransaction);
         }
     };}
@@ -2534,14 +2534,14 @@ pub const IXATransLookup2 = extern struct {
         Lookup: fn(
             self: *const IXATransLookup2,
             pXID: *xid_t,
-            ppTransaction: ?*?*ITransaction,
+            ppTransaction: ?**ITransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXATransLookup2_Lookup(self: *const T, pXID: *xid_t, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+        pub fn IXATransLookup2_Lookup(self: *const T, pXID: *xid_t, ppTransaction: ?**ITransaction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXATransLookup2.VTable, self.vtable).Lookup(@ptrCast(*const IXATransLookup2, self), pXID, ppTransaction);
         }
     };}
@@ -2580,7 +2580,7 @@ pub const IResourceManager = extern struct {
             pRes: ?*ITransactionResourceAsync,
             pUOW: *BOID,
             pisoLevel: *i32,
-            ppEnlist: ?*?*ITransactionEnlistmentAsync,
+            ppEnlist: ?**ITransactionEnlistmentAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reenlist: fn(
             self: *const IResourceManager,
@@ -2595,14 +2595,14 @@ pub const IResourceManager = extern struct {
         GetDistributedTransactionManager: fn(
             self: *const IResourceManager,
             iid: *const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManager_Enlist(self: *const T, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: *BOID, pisoLevel: *i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
+        pub fn IResourceManager_Enlist(self: *const T, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: *BOID, pisoLevel: *i32, ppEnlist: ?**ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManager.VTable, self.vtable).Enlist(@ptrCast(*const IResourceManager, self), pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2614,7 +2614,7 @@ pub const IResourceManager = extern struct {
             return @ptrCast(*const IResourceManager.VTable, self.vtable).ReenlistmentComplete(@ptrCast(*const IResourceManager, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManager_GetDistributedTransactionManager(self: *const T, iid: *const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResourceManager_GetDistributedTransactionManager(self: *const T, iid: *const Guid, ppvObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManager.VTable, self.vtable).GetDistributedTransactionManager(@ptrCast(*const IResourceManager, self), iid, ppvObject);
         }
     };}
@@ -2779,14 +2779,14 @@ pub const IResourceManagerFactory = extern struct {
             pguidRM: *Guid,
             pszRMName: PSTR,
             pIResMgrSink: ?*IResourceManagerSink,
-            ppResMgr: ?*?*IResourceManager,
+            ppResMgr: ?**IResourceManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManagerFactory_Create(self: *const T, pguidRM: *Guid, pszRMName: PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.Inline) HRESULT {
+        pub fn IResourceManagerFactory_Create(self: *const T, pguidRM: *Guid, pszRMName: PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?**IResourceManager) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManagerFactory.VTable, self.vtable).Create(@ptrCast(*const IResourceManagerFactory, self), pguidRM, pszRMName, pIResMgrSink, ppResMgr);
         }
     };}
@@ -2804,14 +2804,14 @@ pub const IResourceManagerFactory2 = extern struct {
             pszRMName: PSTR,
             pIResMgrSink: ?*IResourceManagerSink,
             riidRequested: *const Guid,
-            ppvResMgr: ?*?*c_void,
+            ppvResMgr: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IResourceManagerFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IResourceManagerFactory2_CreateEx(self: *const T, pguidRM: *Guid, pszRMName: PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: *const Guid, ppvResMgr: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IResourceManagerFactory2_CreateEx(self: *const T, pguidRM: *Guid, pszRMName: PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: *const Guid, ppvResMgr: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IResourceManagerFactory2.VTable, self.vtable).CreateEx(@ptrCast(*const IResourceManagerFactory2, self), pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
         }
     };}
@@ -2885,14 +2885,14 @@ pub const IGetDispenser = extern struct {
         GetDispenser: fn(
             self: *const IGetDispenser,
             iid: *const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetDispenser_GetDispenser(self: *const T, iid: *const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IGetDispenser_GetDispenser(self: *const T, iid: *const Guid, ppvObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetDispenser.VTable, self.vtable).GetDispenser(@ptrCast(*const IGetDispenser, self), iid, ppvObject);
         }
     };}
@@ -2950,14 +2950,14 @@ pub const ITransactionVoterFactory2 = extern struct {
             self: *const ITransactionVoterFactory2,
             pTransaction: ?*ITransaction,
             pVoterNotify: ?*ITransactionVoterNotifyAsync2,
-            ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
+            ppVoterBallot: ?**ITransactionVoterBallotAsync2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionVoterFactory2_Create(self: *const T, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.Inline) HRESULT {
+        pub fn ITransactionVoterFactory2_Create(self: *const T, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?**ITransactionVoterBallotAsync2) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionVoterFactory2.VTable, self.vtable).Create(@ptrCast(*const ITransactionVoterFactory2, self), pTransaction, pVoterNotify, ppVoterBallot);
         }
     };}
@@ -2983,7 +2983,7 @@ pub const ITransactionPhase0EnlistmentAsync = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTransaction: fn(
             self: *const ITransactionPhase0EnlistmentAsync,
-            ppITransaction: ?*?*ITransaction,
+            ppITransaction: ?**ITransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3006,7 +3006,7 @@ pub const ITransactionPhase0EnlistmentAsync = extern struct {
             return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).Unenlist(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionPhase0EnlistmentAsync_GetTransaction(self: *const T, ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+        pub fn ITransactionPhase0EnlistmentAsync_GetTransaction(self: *const T, ppITransaction: ?**ITransaction) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).GetTransaction(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self), ppITransaction);
         }
     };}
@@ -3050,14 +3050,14 @@ pub const ITransactionPhase0Factory = extern struct {
         Create: fn(
             self: *const ITransactionPhase0Factory,
             pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
-            ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
+            ppPhase0Enlistment: ?**ITransactionPhase0EnlistmentAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionPhase0Factory_Create(self: *const T, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+        pub fn ITransactionPhase0Factory_Create(self: *const T, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?**ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionPhase0Factory.VTable, self.vtable).Create(@ptrCast(*const ITransactionPhase0Factory, self), pPhase0Notify, ppPhase0Enlistment);
         }
     };}
@@ -3126,14 +3126,14 @@ pub const ITransactionTransmitterFactory = extern struct {
         base: IUnknown.VTable,
         Create: fn(
             self: *const ITransactionTransmitterFactory,
-            ppTransmitter: ?*?*ITransactionTransmitter,
+            ppTransmitter: ?**ITransactionTransmitter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionTransmitterFactory_Create(self: *const T, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.Inline) HRESULT {
+        pub fn ITransactionTransmitterFactory_Create(self: *const T, ppTransmitter: ?**ITransactionTransmitter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionTransmitterFactory.VTable, self.vtable).Create(@ptrCast(*const ITransactionTransmitterFactory, self), ppTransmitter);
         }
     };}
@@ -3149,7 +3149,7 @@ pub const ITransactionReceiver = extern struct {
             self: *const ITransactionReceiver,
             cbToken: u32,
             rgbToken: [*:0]u8,
-            ppTransaction: ?*?*ITransaction,
+            ppTransaction: ?**ITransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReturnTokenSize: fn(
             self: *const ITransactionReceiver,
@@ -3169,7 +3169,7 @@ pub const ITransactionReceiver = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionReceiver_UnmarshalPropagationToken(self: *const T, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+        pub fn ITransactionReceiver_UnmarshalPropagationToken(self: *const T, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?**ITransaction) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionReceiver.VTable, self.vtable).UnmarshalPropagationToken(@ptrCast(*const ITransactionReceiver, self), cbToken, rgbToken, ppTransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3195,14 +3195,14 @@ pub const ITransactionReceiverFactory = extern struct {
         base: IUnknown.VTable,
         Create: fn(
             self: *const ITransactionReceiverFactory,
-            ppReceiver: ?*?*ITransactionReceiver,
+            ppReceiver: ?**ITransactionReceiver,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionReceiverFactory_Create(self: *const T, ppReceiver: ?*?*ITransactionReceiver) callconv(.Inline) HRESULT {
+        pub fn ITransactionReceiverFactory_Create(self: *const T, ppReceiver: ?**ITransactionReceiver) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionReceiverFactory.VTable, self.vtable).Create(@ptrCast(*const ITransactionReceiverFactory, self), ppReceiver);
         }
     };}
@@ -3266,14 +3266,14 @@ pub const IDtcLuRecoveryFactory = extern struct {
             self: *const IDtcLuRecoveryFactory,
             pucLuPair: [*:0]u8,
             cbLuPair: u32,
-            ppRecovery: ?*?*IDtcLuRecovery,
+            ppRecovery: ?**IDtcLuRecovery,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDtcLuRecoveryFactory_Create(self: *const T, pucLuPair: [*:0]u8, cbLuPair: u32, ppRecovery: ?*?*IDtcLuRecovery) callconv(.Inline) HRESULT {
+        pub fn IDtcLuRecoveryFactory_Create(self: *const T, pucLuPair: [*:0]u8, cbLuPair: u32, ppRecovery: ?**IDtcLuRecovery) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDtcLuRecoveryFactory.VTable, self.vtable).Create(@ptrCast(*const IDtcLuRecoveryFactory, self), pucLuPair, cbLuPair, ppRecovery);
         }
     };}
@@ -3626,14 +3626,14 @@ pub const IDtcLuRecoveryInitiatedByLu = extern struct {
         base: IUnknown.VTable,
         GetObjectToHandleWorkFromLu: fn(
             self: *const IDtcLuRecoveryInitiatedByLu,
-            ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
+            ppWork: ?**IDtcLuRecoveryInitiatedByLuWork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDtcLuRecoveryInitiatedByLu_GetObjectToHandleWorkFromLu(self: *const T, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.Inline) HRESULT {
+        pub fn IDtcLuRecoveryInitiatedByLu_GetObjectToHandleWorkFromLu(self: *const T, ppWork: ?**IDtcLuRecoveryInitiatedByLuWork) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDtcLuRecoveryInitiatedByLu.VTable, self.vtable).GetObjectToHandleWorkFromLu(@ptrCast(*const IDtcLuRecoveryInitiatedByLu, self), ppWork);
         }
     };}
@@ -3982,7 +3982,7 @@ pub const ISecurityIdentityColl = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISecurityIdentityColl,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3997,7 +3997,7 @@ pub const ISecurityIdentityColl = extern struct {
             return @ptrCast(*const ISecurityIdentityColl.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityIdentityColl, self), name, pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityIdentityColl_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISecurityIdentityColl_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityIdentityColl.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityIdentityColl, self), ppEnum);
         }
     };}
@@ -4019,12 +4019,12 @@ pub const ISecurityCallersColl = extern struct {
         get_Item: fn(
             self: *const ISecurityCallersColl,
             lIndex: i32,
-            pObj: ?*?*ISecurityIdentityColl,
+            pObj: ?**ISecurityIdentityColl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISecurityCallersColl,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4035,11 +4035,11 @@ pub const ISecurityCallersColl = extern struct {
             return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get_Count(@ptrCast(*const ISecurityCallersColl, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityCallersColl_get_Item(self: *const T, lIndex: i32, pObj: ?*?*ISecurityIdentityColl) callconv(.Inline) HRESULT {
+        pub fn ISecurityCallersColl_get_Item(self: *const T, lIndex: i32, pObj: ?**ISecurityIdentityColl) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityCallersColl, self), lIndex, pObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityCallersColl_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISecurityCallersColl_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityCallersColl, self), ppEnum);
         }
     };}
@@ -4066,7 +4066,7 @@ pub const ISecurityCallContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISecurityCallContext,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsCallerInRole: fn(
             self: *const ISecurityCallContext,
@@ -4096,7 +4096,7 @@ pub const ISecurityCallContext = extern struct {
             return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityCallContext, self), name, pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityCallContext_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISecurityCallContext_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityCallContext, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4123,14 +4123,14 @@ pub const IGetSecurityCallContext = extern struct {
         base: IDispatch.VTable,
         GetSecurityCallContext: fn(
             self: *const IGetSecurityCallContext,
-            ppObject: ?*?*ISecurityCallContext,
+            ppObject: ?**ISecurityCallContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetSecurityCallContext_GetSecurityCallContext(self: *const T, ppObject: ?*?*ISecurityCallContext) callconv(.Inline) HRESULT {
+        pub fn IGetSecurityCallContext_GetSecurityCallContext(self: *const T, ppObject: ?**ISecurityCallContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetSecurityCallContext.VTable, self.vtable).GetSecurityCallContext(@ptrCast(*const IGetSecurityCallContext, self), ppObject);
         }
     };}
@@ -4195,7 +4195,7 @@ pub const ContextInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTransaction: fn(
             self: *const ContextInfo,
-            ppTx: ?*?*IUnknown,
+            ppTx: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTransactionId: fn(
             self: *const ContextInfo,
@@ -4218,7 +4218,7 @@ pub const ContextInfo = extern struct {
             return @ptrCast(*const ContextInfo.VTable, self.vtable).IsInTransaction(@ptrCast(*const ContextInfo, self), pbIsInTx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ContextInfo_GetTransaction(self: *const T, ppTx: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ContextInfo_GetTransaction(self: *const T, ppTx: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ContextInfo.VTable, self.vtable).GetTransaction(@ptrCast(*const ContextInfo, self), ppTx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4325,17 +4325,17 @@ pub const ObjectContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ObjectContext,
-            ppEnum: ?*?*IUnknown,
+            ppEnum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: fn(
             self: *const ObjectContext,
-            ppSecurityProperty: ?*?*SecurityProperty,
+            ppSecurityProperty: ?**SecurityProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContextInfo: fn(
             self: *const ObjectContext,
-            ppContextInfo: ?*?*ContextInfo,
+            ppContextInfo: ?**ContextInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4382,15 +4382,15 @@ pub const ObjectContext = extern struct {
             return @ptrCast(*const ObjectContext.VTable, self.vtable).get_Item(@ptrCast(*const ObjectContext, self), name, pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ObjectContext_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ObjectContext_get__NewEnum(self: *const T, ppEnum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ObjectContext.VTable, self.vtable).get__NewEnum(@ptrCast(*const ObjectContext, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ObjectContext_get_Security(self: *const T, ppSecurityProperty: ?*?*SecurityProperty) callconv(.Inline) HRESULT {
+        pub fn ObjectContext_get_Security(self: *const T, ppSecurityProperty: ?**SecurityProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ObjectContext.VTable, self.vtable).get_Security(@ptrCast(*const ObjectContext, self), ppSecurityProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ObjectContext_get_ContextInfo(self: *const T, ppContextInfo: ?*?*ContextInfo) callconv(.Inline) HRESULT {
+        pub fn ObjectContext_get_ContextInfo(self: *const T, ppContextInfo: ?**ContextInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ObjectContext.VTable, self.vtable).get_ContextInfo(@ptrCast(*const ObjectContext, self), ppContextInfo);
         }
     };}
@@ -4407,7 +4407,7 @@ pub const ITransactionContextEx = extern struct {
             self: *const ITransactionContextEx,
             rclsid: *const Guid,
             riid: *const Guid,
-            pObject: ?*?*c_void,
+            pObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const ITransactionContextEx,
@@ -4420,7 +4420,7 @@ pub const ITransactionContextEx = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransactionContextEx_CreateInstance(self: *const T, rclsid: *const Guid, riid: *const Guid, pObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITransactionContextEx_CreateInstance(self: *const T, rclsid: *const Guid, riid: *const Guid, pObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransactionContextEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ITransactionContextEx, self), rclsid, riid, pObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4483,14 +4483,14 @@ pub const ICreateWithTransactionEx = extern struct {
             pTransaction: ?*ITransaction,
             rclsid: *const Guid,
             riid: *const Guid,
-            pObject: ?*?*c_void,
+            pObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateWithTransactionEx_CreateInstance(self: *const T, pTransaction: ?*ITransaction, rclsid: *const Guid, riid: *const Guid, pObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICreateWithTransactionEx_CreateInstance(self: *const T, pTransaction: ?*ITransaction, rclsid: *const Guid, riid: *const Guid, pObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateWithTransactionEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ICreateWithTransactionEx, self), pTransaction, rclsid, riid, pObject);
         }
     };}
@@ -4533,14 +4533,14 @@ pub const ICreateWithTipTransactionEx = extern struct {
             bstrTipUrl: BSTR,
             rclsid: *const Guid,
             riid: *const Guid,
-            pObject: ?*?*c_void,
+            pObject: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateWithTipTransactionEx_CreateInstance(self: *const T, bstrTipUrl: BSTR, rclsid: *const Guid, riid: *const Guid, pObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICreateWithTipTransactionEx_CreateInstance(self: *const T, bstrTipUrl: BSTR, rclsid: *const Guid, riid: *const Guid, pObject: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateWithTipTransactionEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ICreateWithTipTransactionEx, self), bstrTipUrl, rclsid, riid, pObject);
         }
     };}
@@ -5843,7 +5843,7 @@ pub const IComTrackingInfoCollection = extern struct {
             self: *const IComTrackingInfoCollection,
             ulIndex: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5858,7 +5858,7 @@ pub const IComTrackingInfoCollection = extern struct {
             return @ptrCast(*const IComTrackingInfoCollection.VTable, self.vtable).Count(@ptrCast(*const IComTrackingInfoCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComTrackingInfoCollection_Item(self: *const T, ulIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IComTrackingInfoCollection_Item(self: *const T, ulIndex: u32, riid: *const Guid, ppv: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComTrackingInfoCollection.VTable, self.vtable).Item(@ptrCast(*const IComTrackingInfoCollection, self), ulIndex, riid, ppv);
         }
     };}
@@ -5901,7 +5901,7 @@ pub const IComTrackingInfoProperties = extern struct {
         GetPropName: fn(
             self: *const IComTrackingInfoProperties,
             ulIndex: u32,
-            ppszPropName: ?*?PWSTR,
+            ppszPropName: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5912,7 +5912,7 @@ pub const IComTrackingInfoProperties = extern struct {
             return @ptrCast(*const IComTrackingInfoProperties.VTable, self.vtable).PropCount(@ptrCast(*const IComTrackingInfoProperties, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComTrackingInfoProperties_GetPropName(self: *const T, ulIndex: u32, ppszPropName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IComTrackingInfoProperties_GetPropName(self: *const T, ulIndex: u32, ppszPropName: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IComTrackingInfoProperties.VTable, self.vtable).GetPropName(@ptrCast(*const IComTrackingInfoProperties, self), ulIndex, ppszPropName);
         }
     };}
@@ -6263,7 +6263,7 @@ pub const IMtsEventInfo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Names: fn(
             self: *const IMtsEventInfo,
-            pUnk: ?*?*IUnknown,
+            pUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: fn(
@@ -6291,7 +6291,7 @@ pub const IMtsEventInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMtsEventInfo_get_Names(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMtsEventInfo_get_Names(self: *const T, pUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_Names(@ptrCast(*const IMtsEventInfo, self), pUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6322,14 +6322,14 @@ pub const IMTSLocator = extern struct {
         base: IDispatch.VTable,
         GetEventDispatcher: fn(
             self: *const IMTSLocator,
-            pUnk: ?*?*IUnknown,
+            pUnk: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMTSLocator_GetEventDispatcher(self: *const T, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMTSLocator_GetEventDispatcher(self: *const T, pUnk: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMTSLocator.VTable, self.vtable).GetEventDispatcher(@ptrCast(*const IMTSLocator, self), pUnk);
         }
     };}
@@ -6350,7 +6350,7 @@ pub const IMtsGrp = extern struct {
         Item: fn(
             self: *const IMtsGrp,
             lIndex: i32,
-            ppUnkDispatcher: ?*?*IUnknown,
+            ppUnkDispatcher: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Refresh: fn(
             self: *const IMtsGrp,
@@ -6364,7 +6364,7 @@ pub const IMtsGrp = extern struct {
             return @ptrCast(*const IMtsGrp.VTable, self.vtable).get_Count(@ptrCast(*const IMtsGrp, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMtsGrp_Item(self: *const T, lIndex: i32, ppUnkDispatcher: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IMtsGrp_Item(self: *const T, lIndex: i32, ppUnkDispatcher: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMtsGrp.VTable, self.vtable).Item(@ptrCast(*const IMtsGrp, self), lIndex, ppUnkDispatcher);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6677,7 +6677,7 @@ pub const IGetAppTrackerData = extern struct {
             ApplicationId: *const Guid,
             Flags: u32,
             NumApplicationProcesses: *u32,
-            ApplicationProcesses: ?[*]?*ApplicationProcessSummary,
+            ApplicationProcesses: ?[*]*ApplicationProcessSummary,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetApplicationProcessDetails: fn(
             self: *const IGetAppTrackerData,
@@ -6696,7 +6696,7 @@ pub const IGetAppTrackerData = extern struct {
             PartitionId: *const Guid,
             Flags: u32,
             NumApplicationsInProcess: *u32,
-            Applications: ?[*]?*ApplicationSummary,
+            Applications: ?[*]*ApplicationSummary,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComponentsInProcess: fn(
             self: *const IGetAppTrackerData,
@@ -6706,7 +6706,7 @@ pub const IGetAppTrackerData = extern struct {
             ApplicationId: *const Guid,
             Flags: u32,
             NumComponentsInProcess: *u32,
-            Components: ?[*]?*ComponentSummary,
+            Components: ?[*]*ComponentSummary,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComponentDetails: fn(
             self: *const IGetAppTrackerData,
@@ -6720,7 +6720,7 @@ pub const IGetAppTrackerData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTrackerDataAsCollectionObject: fn(
             self: *const IGetAppTrackerData,
-            TopLevelCollection: ?*?*IUnknown,
+            TopLevelCollection: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSuggestedPollingInterval: fn(
             self: *const IGetAppTrackerData,
@@ -6731,7 +6731,7 @@ pub const IGetAppTrackerData = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetApplicationProcesses(self: *const T, PartitionId: *const Guid, ApplicationId: *const Guid, Flags: u32, NumApplicationProcesses: *u32, ApplicationProcesses: ?[*]?*ApplicationProcessSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetApplicationProcesses(self: *const T, PartitionId: *const Guid, ApplicationId: *const Guid, Flags: u32, NumApplicationProcesses: *u32, ApplicationProcesses: ?[*]*ApplicationProcessSummary) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationProcesses(@ptrCast(*const IGetAppTrackerData, self), PartitionId, ApplicationId, Flags, NumApplicationProcesses, ApplicationProcesses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6739,11 +6739,11 @@ pub const IGetAppTrackerData = extern struct {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationProcessDetails(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, Flags, Summary, Statistics, RecycleInfo, AnyComponentsHangMonitored);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetApplicationsInProcess(self: *const T, ApplicationInstanceId: *const Guid, ProcessId: u32, PartitionId: *const Guid, Flags: u32, NumApplicationsInProcess: *u32, Applications: ?[*]?*ApplicationSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetApplicationsInProcess(self: *const T, ApplicationInstanceId: *const Guid, ProcessId: u32, PartitionId: *const Guid, Flags: u32, NumApplicationsInProcess: *u32, Applications: ?[*]*ApplicationSummary) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationsInProcess(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, PartitionId, Flags, NumApplicationsInProcess, Applications);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetComponentsInProcess(self: *const T, ApplicationInstanceId: *const Guid, ProcessId: u32, PartitionId: *const Guid, ApplicationId: *const Guid, Flags: u32, NumComponentsInProcess: *u32, Components: ?[*]?*ComponentSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetComponentsInProcess(self: *const T, ApplicationInstanceId: *const Guid, ProcessId: u32, PartitionId: *const Guid, ApplicationId: *const Guid, Flags: u32, NumComponentsInProcess: *u32, Components: ?[*]*ComponentSummary) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetComponentsInProcess(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, PartitionId, ApplicationId, Flags, NumComponentsInProcess, Components);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6751,7 +6751,7 @@ pub const IGetAppTrackerData = extern struct {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetComponentDetails(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, Clsid, Flags, Summary, Statistics, HangMonitorInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetTrackerDataAsCollectionObject(self: *const T, TopLevelCollection: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetTrackerDataAsCollectionObject(self: *const T, TopLevelCollection: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetTrackerDataAsCollectionObject(@ptrCast(*const IGetAppTrackerData, self), TopLevelCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7352,44 +7352,44 @@ pub const ISharedPropertyGroup = extern struct {
             self: *const ISharedPropertyGroup,
             Index: i32,
             fExists: *i16,
-            ppProp: ?*?*ISharedProperty,
+            ppProp: ?**ISharedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyByPosition: fn(
             self: *const ISharedPropertyGroup,
             Index: i32,
-            ppProperty: ?*?*ISharedProperty,
+            ppProperty: ?**ISharedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProperty: fn(
             self: *const ISharedPropertyGroup,
             Name: BSTR,
             fExists: *i16,
-            ppProp: ?*?*ISharedProperty,
+            ppProp: ?**ISharedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Property: fn(
             self: *const ISharedPropertyGroup,
             Name: BSTR,
-            ppProperty: ?*?*ISharedProperty,
+            ppProperty: ?**ISharedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroup_CreatePropertyByPosition(self: *const T, Index: i32, fExists: *i16, ppProp: ?*?*ISharedProperty) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroup_CreatePropertyByPosition(self: *const T, Index: i32, fExists: *i16, ppProp: ?**ISharedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).CreatePropertyByPosition(@ptrCast(*const ISharedPropertyGroup, self), Index, fExists, ppProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroup_get_PropertyByPosition(self: *const T, Index: i32, ppProperty: ?*?*ISharedProperty) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroup_get_PropertyByPosition(self: *const T, Index: i32, ppProperty: ?**ISharedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).get_PropertyByPosition(@ptrCast(*const ISharedPropertyGroup, self), Index, ppProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroup_CreateProperty(self: *const T, Name: BSTR, fExists: *i16, ppProp: ?*?*ISharedProperty) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroup_CreateProperty(self: *const T, Name: BSTR, fExists: *i16, ppProp: ?**ISharedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).CreateProperty(@ptrCast(*const ISharedPropertyGroup, self), Name, fExists, ppProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroup_get_Property(self: *const T, Name: BSTR, ppProperty: ?*?*ISharedProperty) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroup_get_Property(self: *const T, Name: BSTR, ppProperty: ?**ISharedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).get_Property(@ptrCast(*const ISharedPropertyGroup, self), Name, ppProperty);
         }
     };}
@@ -7408,33 +7408,33 @@ pub const ISharedPropertyGroupManager = extern struct {
             dwIsoMode: *i32,
             dwRelMode: *i32,
             fExists: *i16,
-            ppGroup: ?*?*ISharedPropertyGroup,
+            ppGroup: ?**ISharedPropertyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Group: fn(
             self: *const ISharedPropertyGroupManager,
             Name: BSTR,
-            ppGroup: ?*?*ISharedPropertyGroup,
+            ppGroup: ?**ISharedPropertyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISharedPropertyGroupManager,
-            retval: ?*?*IUnknown,
+            retval: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroupManager_CreatePropertyGroup(self: *const T, Name: BSTR, dwIsoMode: *i32, dwRelMode: *i32, fExists: *i16, ppGroup: ?*?*ISharedPropertyGroup) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroupManager_CreatePropertyGroup(self: *const T, Name: BSTR, dwIsoMode: *i32, dwRelMode: *i32, fExists: *i16, ppGroup: ?**ISharedPropertyGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).CreatePropertyGroup(@ptrCast(*const ISharedPropertyGroupManager, self), Name, dwIsoMode, dwRelMode, fExists, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroupManager_get_Group(self: *const T, Name: BSTR, ppGroup: ?*?*ISharedPropertyGroup) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroupManager_get_Group(self: *const T, Name: BSTR, ppGroup: ?**ISharedPropertyGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).get_Group(@ptrCast(*const ISharedPropertyGroupManager, self), Name, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISharedPropertyGroupManager_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISharedPropertyGroupManager_get__NewEnum(self: *const T, retval: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISharedPropertyGroupManager, self), retval);
         }
     };}
@@ -8219,7 +8219,7 @@ pub const ICrmMonitorClerks = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ICrmMonitorClerks,
-            pVal: ?*?*IUnknown,
+            pVal: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
@@ -8255,7 +8255,7 @@ pub const ICrmMonitorClerks = extern struct {
             return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).Item(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICrmMonitorClerks_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICrmMonitorClerks_get__NewEnum(self: *const T, pVal: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICrmMonitorClerks, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8290,7 +8290,7 @@ pub const ICrmMonitor = extern struct {
         base: IUnknown.VTable,
         GetClerks: fn(
             self: *const ICrmMonitor,
-            pClerks: ?*?*ICrmMonitorClerks,
+            pClerks: ?**ICrmMonitorClerks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HoldClerk: fn(
             self: *const ICrmMonitor,
@@ -8302,7 +8302,7 @@ pub const ICrmMonitor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICrmMonitor_GetClerks(self: *const T, pClerks: ?*?*ICrmMonitorClerks) callconv(.Inline) HRESULT {
+        pub fn ICrmMonitor_GetClerks(self: *const T, pClerks: ?**ICrmMonitorClerks) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICrmMonitor.VTable, self.vtable).GetClerks(@ptrCast(*const ICrmMonitor, self), pClerks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9505,14 +9505,14 @@ pub const IAssemblyLocator = extern struct {
             applicationDir: BSTR,
             applicationName: BSTR,
             assemblyName: BSTR,
-            pModules: ?*?*SAFEARRAY,
+            pModules: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyLocator_GetModules(self: *const T, applicationDir: BSTR, applicationName: BSTR, assemblyName: BSTR, pModules: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IAssemblyLocator_GetModules(self: *const T, applicationDir: BSTR, applicationName: BSTR, assemblyName: BSTR, pModules: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyLocator.VTable, self.vtable).GetModules(@ptrCast(*const IAssemblyLocator, self), applicationDir, applicationName, assemblyName, pModules);
         }
     };}

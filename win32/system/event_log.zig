@@ -588,7 +588,7 @@ pub extern "wevtapi" fn EvtSeek(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSubscribe(
     Session: isize,
-    SignalEvent: HANDLE,
+    SignalEvent: ?HANDLE,
     ChannelPath: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     Bookmark: isize,
@@ -600,7 +600,7 @@ pub extern "wevtapi" fn EvtSubscribe(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateRenderContext(
     ValuePathsCount: u32,
-    ValuePaths: ?[*]?PWSTR,
+    ValuePaths: ?[*]PWSTR,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -941,10 +941,10 @@ pub extern "ADVAPI32" fn ReportEventA(
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
-    lpUserSid: PSID,
+    lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]?PSTR,
+    lpStrings: ?[*]PSTR,
     // TODO: what to do with BytesParamIndex 6?
     lpRawData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -955,10 +955,10 @@ pub extern "ADVAPI32" fn ReportEventW(
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
-    lpUserSid: PSID,
+    lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]?PWSTR,
+    lpStrings: ?[*]PWSTR,
     // TODO: what to do with BytesParamIndex 6?
     lpRawData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

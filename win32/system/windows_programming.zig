@@ -600,7 +600,7 @@ pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
 //--------------------------------------------------------------------------------
 // Section: Types (173)
 //--------------------------------------------------------------------------------
-pub const HWINWATCH = ?*opaque{};
+pub const HWINWATCH = *opaque{};
 
 pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
 
@@ -4721,7 +4721,7 @@ pub extern "ADVAPI32" fn IsTokenUntrusted(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn SetTimerQueueTimer(
-    TimerQueue: HANDLE,
+    TimerQueue: ?HANDLE,
     Callback: WAITORTIMERCALLBACK,
     Parameter: ?*c_void,
     DueTime: u32,
@@ -4730,7 +4730,7 @@ pub extern "KERNEL32" fn SetTimerQueueTimer(
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 pub extern "KERNEL32" fn CancelTimerQueueTimer(
-    TimerQueue: HANDLE,
+    TimerQueue: ?HANDLE,
     Timer: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4884,7 +4884,7 @@ pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
     MasterKeyHandle: HANDLE,
     Count: u32,
     SubordinateObjects: ?[*]OBJECT_ATTRIBUTES,
-    Event: HANDLE,
+    Event: ?HANDLE,
     ApcRoutine: ?PIO_APC_ROUTINE,
     ApcContext: ?*c_void,
     IoStatusBlock: *IO_STATUS_BLOCK,
@@ -4942,7 +4942,7 @@ pub extern "ntdll" fn RtlIsNameLegalDOS8Dot3(
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub extern "ntdll" fn NtQueryObject(
-    Handle: HANDLE,
+    Handle: ?HANDLE,
     ObjectInformationClass: OBJECT_INFORMATION_CLASS,
     // TODO: what to do with BytesParamIndex 3?
     ObjectInformation: ?*c_void,
@@ -5297,8 +5297,8 @@ pub extern "ADVPACK" fn RegInstallW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn LaunchINFSectionExW(
-    hwnd: HWND,
-    hInstance: HINSTANCE,
+    hwnd: ?HWND,
+    hInstance: ?HINSTANCE,
     pszParms: PWSTR,
     nShow: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5376,13 +5376,13 @@ pub extern "ADVPACK" fn RegSaveRestoreOnINFW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegRestoreAllA(
-    hWnd: HWND,
+    hWnd: ?HWND,
     pszTitleString: ?[*:0]const u8,
     hkBckupKey: HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ADVPACK" fn RegRestoreAllW(
-    hWnd: HWND,
+    hWnd: ?HWND,
     pszTitleString: ?[*:0]const u16,
     hkBckupKey: HKEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5676,7 +5676,7 @@ pub extern "Wldp" fn WldpIsDynamicCodePolicyEnabled(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Wldp" fn WldpQueryDynamicCodeTrust(
-    fileHandle: HANDLE,
+    fileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     baseImage: ?*c_void,
     imageSize: u32,

@@ -233,7 +233,7 @@ pub extern "NETSH" fn MatchToken(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "NETSH" fn PreprocessCommand(
-    hModule: HANDLE,
+    hModule: ?HANDLE,
     ppwcArguments: [*]PWSTR,
     dwCurrentIndex: u32,
     dwArgCount: u32,

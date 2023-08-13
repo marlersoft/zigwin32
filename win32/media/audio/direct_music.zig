@@ -865,7 +865,7 @@ pub const IAudioSystemEffects2 = extern struct {
         base: IAudioSystemEffects.VTable,
         GetEffectsList: fn(
             self: *const IAudioSystemEffects2,
-            ppEffectsIds: ?*?*Guid,
+            ppEffectsIds: ?**Guid,
             pcEffects: *u32,
             Event: HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -874,7 +874,7 @@ pub const IAudioSystemEffects2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAudioSystemEffects.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffects2_GetEffectsList(self: *const T, ppEffectsIds: ?*?*Guid, pcEffects: *u32, Event: HANDLE) callconv(.Inline) HRESULT {
+        pub fn IAudioSystemEffects2_GetEffectsList(self: *const T, ppEffectsIds: ?**Guid, pcEffects: *u32, Event: HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioSystemEffects2.VTable, self.vtable).GetEffectsList(@ptrCast(*const IAudioSystemEffects2, self), ppEffectsIds, pcEffects, Event);
         }
     };}
@@ -1446,7 +1446,7 @@ pub const IDirectSoundBuffer = extern struct {
             dwBytes: u32,
             ppvAudioPtr1: **c_void,
             pdwAudioBytes1: *u32,
-            ppvAudioPtr2: ?*?*c_void,
+            ppvAudioPtr2: ?**c_void,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1528,7 +1528,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundBuffer, self), pDirectSound, pcDSBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?**c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2013,7 +2013,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             dwBytes: u32,
             ppvAudioPtr1: **c_void,
             pdwAudioBytes1: *u32,
-            ppvAudioPtr2: ?*?*c_void,
+            ppvAudioPtr2: ?**c_void,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2058,7 +2058,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDirectSoundCapture, pcDSCBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: **c_void, pdwAudioBytes1: *u32, ppvAudioPtr2: ?**c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundCaptureBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

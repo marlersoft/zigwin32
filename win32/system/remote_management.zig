@@ -1642,7 +1642,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
     senderDetails: *WSMAN_SENDER_DETAILS,
     flags: u32,
     userAuthorizationContext: ?*c_void,
-    impersonationToken: HANDLE,
+    impersonationToken: ?HANDLE,
     userIsAdministrator: BOOL,
     errorCode: u32,
     extendedErrorInformation: ?[*:0]const u16,

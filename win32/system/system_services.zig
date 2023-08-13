@@ -4695,25 +4695,25 @@ pub const REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO_VERSION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (980)
 //--------------------------------------------------------------------------------
-pub const HSURF = ?*opaque{};
+pub const HSURF = *opaque{};
 
 pub const DPI_AWARENESS_CONTEXT = isize;
 
-pub const HUMPD = ?*opaque{};
+pub const HUMPD = *opaque{};
 
-pub const HSTR = ?*opaque{};
+pub const HSTR = *opaque{};
 
-pub const HSPRITE = ?*opaque{};
+pub const HSPRITE = *opaque{};
 
-pub const HLSURF = ?*opaque{};
+pub const HLSURF = *opaque{};
 
-pub const HFASTMUTEX = ?*opaque{};
+pub const HFASTMUTEX = *opaque{};
 
-pub const HDRVOBJ = ?*opaque{};
+pub const HDRVOBJ = *opaque{};
 
-pub const HDEV = ?*opaque{};
+pub const HDEV = *opaque{};
 
-pub const HBM = ?*opaque{};
+pub const HBM = *opaque{};
 
 pub const DHSURF = isize;
 
@@ -15869,7 +15869,7 @@ pub extern "ntdll" fn RtlIsZeroMemory(
 pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
     SecurityDescriptor: **SECURITY_DESCRIPTOR,
     SecurityDescriptorLength: u32,
-    NewSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    NewSecurityDescriptor: ?**SECURITY_DESCRIPTOR,
     NewSecurityDescriptorLength: ?*u32,
     CheckOnly: u8,
 ) callconv(@import("std").os.windows.WINAPI) u8;

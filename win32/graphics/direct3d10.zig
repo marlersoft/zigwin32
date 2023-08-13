@@ -1700,13 +1700,13 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PSSetShaderResources: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PSSetShader: fn(
             self: *const ID3D10Device,
@@ -1716,7 +1716,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         VSSetShader: fn(
             self: *const ID3D10Device,
@@ -1737,7 +1737,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         IASetInputLayout: fn(
             self: *const ID3D10Device,
@@ -1747,7 +1747,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppVertexBuffers: ?[*]?*ID3D10Buffer,
+            ppVertexBuffers: ?[*]*ID3D10Buffer,
             pStrides: ?[*]const u32,
             pOffsets: ?[*]const u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
@@ -1776,7 +1776,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GSSetShader: fn(
             self: *const ID3D10Device,
@@ -1790,13 +1790,13 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         VSSetSamplers: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SetPredication: fn(
             self: *const ID3D10Device,
@@ -1807,18 +1807,18 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GSSetSamplers: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OMSetRenderTargets: fn(
             self: *const ID3D10Device,
             NumViews: u32,
-            ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView,
+            ppRenderTargetViews: ?[*]*ID3D10RenderTargetView,
             pDepthStencilView: ?*ID3D10DepthStencilView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OMSetBlendState: fn(
@@ -1835,7 +1835,7 @@ pub const ID3D10Device = extern struct {
         SOSetTargets: fn(
             self: *const ID3D10Device,
             NumBuffers: u32,
-            ppSOTargets: ?[*]?*ID3D10Buffer,
+            ppSOTargets: ?[*]*ID3D10Buffer,
             pOffsets: ?[*]const u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         DrawAuto: fn(
@@ -1908,13 +1908,13 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PSGetShaderResources: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         PSGetShader: fn(
             self: *const ID3D10Device,
@@ -1924,7 +1924,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         VSGetShader: fn(
             self: *const ID3D10Device,
@@ -1934,7 +1934,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         IAGetInputLayout: fn(
             self: *const ID3D10Device,
@@ -1944,13 +1944,13 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppVertexBuffers: ?[*]?*ID3D10Buffer,
+            ppVertexBuffers: ?[*]*ID3D10Buffer,
             pStrides: ?[*]u32,
             pOffsets: ?[*]u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         IAGetIndexBuffer: fn(
             self: *const ID3D10Device,
-            pIndexBuffer: ?*?*ID3D10Buffer,
+            pIndexBuffer: ?**ID3D10Buffer,
             Format: ?*DXGI_FORMAT,
             Offset: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
@@ -1958,7 +1958,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumBuffers: u32,
-            ppConstantBuffers: ?[*]?*ID3D10Buffer,
+            ppConstantBuffers: ?[*]*ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GSGetShader: fn(
             self: *const ID3D10Device,
@@ -1972,52 +1972,52 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         VSGetSamplers: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetPredication: fn(
             self: *const ID3D10Device,
-            ppPredicate: ?*?*ID3D10Predicate,
+            ppPredicate: ?**ID3D10Predicate,
             pPredicateValue: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GSGetShaderResources: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumViews: u32,
-            ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView,
+            ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GSGetSamplers: fn(
             self: *const ID3D10Device,
             StartSlot: u32,
             NumSamplers: u32,
-            ppSamplers: ?[*]?*ID3D10SamplerState,
+            ppSamplers: ?[*]*ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OMGetRenderTargets: fn(
             self: *const ID3D10Device,
             NumViews: u32,
-            ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView,
-            ppDepthStencilView: ?*?*ID3D10DepthStencilView,
+            ppRenderTargetViews: ?[*]*ID3D10RenderTargetView,
+            ppDepthStencilView: ?**ID3D10DepthStencilView,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OMGetBlendState: fn(
             self: *const ID3D10Device,
-            ppBlendState: ?*?*ID3D10BlendState,
+            ppBlendState: ?**ID3D10BlendState,
             BlendFactor: ?*f32,
             pSampleMask: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OMGetDepthStencilState: fn(
             self: *const ID3D10Device,
-            ppDepthStencilState: ?*?*ID3D10DepthStencilState,
+            ppDepthStencilState: ?**ID3D10DepthStencilState,
             pStencilRef: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         SOGetTargets: fn(
             self: *const ID3D10Device,
             NumBuffers: u32,
-            ppSOTargets: ?[*]?*ID3D10Buffer,
+            ppSOTargets: ?[*]*ID3D10Buffer,
             pOffsets: ?[*]u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         RSGetState: fn(
@@ -2073,7 +2073,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             pDesc: *const D3D10_BUFFER_DESC,
             pInitialData: ?*const D3D10_SUBRESOURCE_DATA,
-            ppBuffer: ?*?*ID3D10Buffer,
+            ppBuffer: ?**ID3D10Buffer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTexture1D: fn(
             self: *const ID3D10Device,
@@ -2097,19 +2097,19 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             pResource: *ID3D10Resource,
             pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC,
-            ppSRView: ?*?*ID3D10ShaderResourceView,
+            ppSRView: ?**ID3D10ShaderResourceView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRenderTargetView: fn(
             self: *const ID3D10Device,
             pResource: *ID3D10Resource,
             pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC,
-            ppRTView: ?*?*ID3D10RenderTargetView,
+            ppRTView: ?**ID3D10RenderTargetView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDepthStencilView: fn(
             self: *const ID3D10Device,
             pResource: *ID3D10Resource,
             pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC,
-            ppDepthStencilView: ?*?*ID3D10DepthStencilView,
+            ppDepthStencilView: ?**ID3D10DepthStencilView,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateInputLayout: fn(
             self: *const ID3D10Device,
@@ -2117,19 +2117,19 @@ pub const ID3D10Device = extern struct {
             NumElements: u32,
             pShaderBytecodeWithInputSignature: [*]const u8,
             BytecodeLength: usize,
-            ppInputLayout: ?*?*ID3D10InputLayout,
+            ppInputLayout: ?**ID3D10InputLayout,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVertexShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
-            ppVertexShader: ?*?*ID3D10VertexShader,
+            ppVertexShader: ?**ID3D10VertexShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
-            ppGeometryShader: ?*?*ID3D10GeometryShader,
+            ppGeometryShader: ?**ID3D10GeometryShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateGeometryShaderWithStreamOutput: fn(
             self: *const ID3D10Device,
@@ -2138,48 +2138,48 @@ pub const ID3D10Device = extern struct {
             pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY,
             NumEntries: u32,
             OutputStreamStride: u32,
-            ppGeometryShader: ?*?*ID3D10GeometryShader,
+            ppGeometryShader: ?**ID3D10GeometryShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePixelShader: fn(
             self: *const ID3D10Device,
             pShaderBytecode: [*]const u8,
             BytecodeLength: usize,
-            ppPixelShader: ?*?*ID3D10PixelShader,
+            ppPixelShader: ?**ID3D10PixelShader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendState: fn(
             self: *const ID3D10Device,
             pBlendStateDesc: *const D3D10_BLEND_DESC,
-            ppBlendState: ?*?*ID3D10BlendState,
+            ppBlendState: ?**ID3D10BlendState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDepthStencilState: fn(
             self: *const ID3D10Device,
             pDepthStencilDesc: *const D3D10_DEPTH_STENCIL_DESC,
-            ppDepthStencilState: ?*?*ID3D10DepthStencilState,
+            ppDepthStencilState: ?**ID3D10DepthStencilState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRasterizerState: fn(
             self: *const ID3D10Device,
             pRasterizerDesc: *const D3D10_RASTERIZER_DESC,
-            ppRasterizerState: ?*?*ID3D10RasterizerState,
+            ppRasterizerState: ?**ID3D10RasterizerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSamplerState: fn(
             self: *const ID3D10Device,
             pSamplerDesc: *const D3D10_SAMPLER_DESC,
-            ppSamplerState: ?*?*ID3D10SamplerState,
+            ppSamplerState: ?**ID3D10SamplerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateQuery: fn(
             self: *const ID3D10Device,
             pQueryDesc: *const D3D10_QUERY_DESC,
-            ppQuery: ?*?*ID3D10Query,
+            ppQuery: ?**ID3D10Query,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePredicate: fn(
             self: *const ID3D10Device,
             pPredicateDesc: *const D3D10_QUERY_DESC,
-            ppPredicate: ?*?*ID3D10Predicate,
+            ppPredicate: ?**ID3D10Predicate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateCounter: fn(
             self: *const ID3D10Device,
             pCounterDesc: *const D3D10_COUNTER_DESC,
-            ppCounter: ?*?*ID3D10Counter,
+            ppCounter: ?**ID3D10Counter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckFormatSupport: fn(
             self: *const ID3D10Device,
@@ -2215,7 +2215,7 @@ pub const ID3D10Device = extern struct {
             self: *const ID3D10Device,
             hResource: HANDLE,
             ReturnedInterface: *const Guid,
-            ppResource: ?*?*c_void,
+            ppResource: ?**c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTextFilterSize: fn(
             self: *const ID3D10Device,
@@ -2232,11 +2232,11 @@ pub const ID3D10Device = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_VSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSSetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_PSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSSetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2244,7 +2244,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSSetShader(@ptrCast(*const ID3D10Device, self), pPixelShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_PSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSSetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2260,7 +2260,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).Draw(@ptrCast(*const ID3D10Device, self), VertexCount, StartVertexLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_PSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSSetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2268,7 +2268,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IASetInputLayout(@ptrCast(*const ID3D10Device, self), pInputLayout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IASetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        pub fn ID3D10Device_IASetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IASetVertexBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2284,7 +2284,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).DrawInstanced(@ptrCast(*const ID3D10Device, self), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_GSSetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSSetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2296,11 +2296,11 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IASetPrimitiveTopology(@ptrCast(*const ID3D10Device, self), Topology);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_VSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSSetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_VSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSSetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2308,15 +2308,15 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).SetPredication(@ptrCast(*const ID3D10Device, self), pPredicate, PredicateValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_GSSetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSSetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_GSSetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSSetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMSetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.Inline) void {
+        pub fn ID3D10Device_OMSetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OMSetRenderTargets(@ptrCast(*const ID3D10Device, self), NumViews, ppRenderTargetViews, pDepthStencilView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2328,7 +2328,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OMSetDepthStencilState(@ptrCast(*const ID3D10Device, self), pDepthStencilState, StencilRef);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SOSetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
+        pub fn ID3D10Device_SOSetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).SOSetTargets(@ptrCast(*const ID3D10Device, self), NumBuffers, ppSOTargets, pOffsets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2376,11 +2376,11 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).ResolveSubresource(@ptrCast(*const ID3D10Device, self), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_VSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSGetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_PSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSGetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2388,7 +2388,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSGetShader(@ptrCast(*const ID3D10Device, self), ppPixelShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_PSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSGetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2396,7 +2396,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSGetShader(@ptrCast(*const ID3D10Device, self), ppVertexShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_PSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_PSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).PSGetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2404,15 +2404,15 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IAGetInputLayout(@ptrCast(*const ID3D10Device, self), ppInputLayout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
+        pub fn ID3D10Device_IAGetVertexBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IAGetVertexBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_IAGetIndexBuffer(self: *const T, pIndexBuffer: ?*?*ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
+        pub fn ID3D10Device_IAGetIndexBuffer(self: *const T, pIndexBuffer: ?**ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IAGetIndexBuffer(@ptrCast(*const ID3D10Device, self), pIndexBuffer, Format, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+        pub fn ID3D10Device_GSGetConstantBuffers(self: *const T, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]*ID3D10Buffer) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSGetConstantBuffers(@ptrCast(*const ID3D10Device, self), StartSlot, NumBuffers, ppConstantBuffers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2424,39 +2424,39 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).IAGetPrimitiveTopology(@ptrCast(*const ID3D10Device, self), pTopology);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_VSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSGetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_VSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_VSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).VSGetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GetPredication(self: *const T, ppPredicate: ?*?*ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
+        pub fn ID3D10Device_GetPredication(self: *const T, ppPredicate: ?**ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GetPredication(@ptrCast(*const ID3D10Device, self), ppPredicate, pPredicateValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+        pub fn ID3D10Device_GSGetShaderResources(self: *const T, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]*ID3D10ShaderResourceView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSGetShaderResources(@ptrCast(*const ID3D10Device, self), StartSlot, NumViews, ppShaderResourceViews);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_GSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+        pub fn ID3D10Device_GSGetSamplers(self: *const T, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]*ID3D10SamplerState) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GSGetSamplers(@ptrCast(*const ID3D10Device, self), StartSlot, NumSamplers, ppSamplers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) void {
+        pub fn ID3D10Device_OMGetRenderTargets(self: *const T, NumViews: u32, ppRenderTargetViews: ?[*]*ID3D10RenderTargetView, ppDepthStencilView: ?**ID3D10DepthStencilView) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OMGetRenderTargets(@ptrCast(*const ID3D10Device, self), NumViews, ppRenderTargetViews, ppDepthStencilView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetBlendState(self: *const T, ppBlendState: ?*?*ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
+        pub fn ID3D10Device_OMGetBlendState(self: *const T, ppBlendState: ?**ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OMGetBlendState(@ptrCast(*const ID3D10Device, self), ppBlendState, BlendFactor, pSampleMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OMGetDepthStencilState(self: *const T, ppDepthStencilState: ?*?*ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
+        pub fn ID3D10Device_OMGetDepthStencilState(self: *const T, ppDepthStencilState: ?**ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OMGetDepthStencilState(@ptrCast(*const ID3D10Device, self), ppDepthStencilState, pStencilRef);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_SOGetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.Inline) void {
+        pub fn ID3D10Device_SOGetTargets(self: *const T, NumBuffers: u32, ppSOTargets: ?[*]*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.Inline) void {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).SOGetTargets(@ptrCast(*const ID3D10Device, self), NumBuffers, ppSOTargets, pOffsets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2504,7 +2504,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).Flush(@ptrCast(*const ID3D10Device, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateBuffer(self: *const T, pDesc: *const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateBuffer(self: *const T, pDesc: *const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?**ID3D10Buffer) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateBuffer(@ptrCast(*const ID3D10Device, self), pDesc, pInitialData, ppBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2520,63 +2520,63 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateTexture3D(@ptrCast(*const ID3D10Device, self), pDesc, pInitialData, ppTexture3D);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateShaderResourceView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateShaderResourceView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?**ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateShaderResourceView(@ptrCast(*const ID3D10Device, self), pResource, pDesc, ppSRView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateRenderTargetView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateRenderTargetView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?**ID3D10RenderTargetView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateRenderTargetView(@ptrCast(*const ID3D10Device, self), pResource, pDesc, ppRTView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateDepthStencilView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateDepthStencilView(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?**ID3D10DepthStencilView) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateDepthStencilView(@ptrCast(*const ID3D10Device, self), pResource, pDesc, ppDepthStencilView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateInputLayout(self: *const T, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateInputLayout(self: *const T, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?**ID3D10InputLayout) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateInputLayout(@ptrCast(*const ID3D10Device, self), pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateVertexShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateVertexShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?**ID3D10VertexShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateVertexShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppVertexShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateGeometryShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?**ID3D10GeometryShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateGeometryShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppGeometryShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateGeometryShaderWithStreamOutput(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateGeometryShaderWithStreamOutput(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?**ID3D10GeometryShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateGeometryShaderWithStreamOutput(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, OutputStreamStride, ppGeometryShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreatePixelShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreatePixelShader(self: *const T, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?**ID3D10PixelShader) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreatePixelShader(@ptrCast(*const ID3D10Device, self), pShaderBytecode, BytecodeLength, ppPixelShader);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateBlendState(self: *const T, pBlendStateDesc: *const D3D10_BLEND_DESC, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateBlendState(self: *const T, pBlendStateDesc: *const D3D10_BLEND_DESC, ppBlendState: ?**ID3D10BlendState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateBlendState(@ptrCast(*const ID3D10Device, self), pBlendStateDesc, ppBlendState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateDepthStencilState(self: *const T, pDepthStencilDesc: *const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateDepthStencilState(self: *const T, pDepthStencilDesc: *const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?**ID3D10DepthStencilState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateDepthStencilState(@ptrCast(*const ID3D10Device, self), pDepthStencilDesc, ppDepthStencilState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateRasterizerState(self: *const T, pRasterizerDesc: *const D3D10_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateRasterizerState(self: *const T, pRasterizerDesc: *const D3D10_RASTERIZER_DESC, ppRasterizerState: ?**ID3D10RasterizerState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateRasterizerState(@ptrCast(*const ID3D10Device, self), pRasterizerDesc, ppRasterizerState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateSamplerState(self: *const T, pSamplerDesc: *const D3D10_SAMPLER_DESC, ppSamplerState: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateSamplerState(self: *const T, pSamplerDesc: *const D3D10_SAMPLER_DESC, ppSamplerState: ?**ID3D10SamplerState) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateSamplerState(@ptrCast(*const ID3D10Device, self), pSamplerDesc, ppSamplerState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateQuery(self: *const T, pQueryDesc: *const D3D10_QUERY_DESC, ppQuery: ?*?*ID3D10Query) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateQuery(self: *const T, pQueryDesc: *const D3D10_QUERY_DESC, ppQuery: ?**ID3D10Query) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateQuery(@ptrCast(*const ID3D10Device, self), pQueryDesc, ppQuery);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreatePredicate(self: *const T, pPredicateDesc: *const D3D10_QUERY_DESC, ppPredicate: ?*?*ID3D10Predicate) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreatePredicate(self: *const T, pPredicateDesc: *const D3D10_QUERY_DESC, ppPredicate: ?**ID3D10Predicate) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreatePredicate(@ptrCast(*const ID3D10Device, self), pPredicateDesc, ppPredicate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_CreateCounter(self: *const T, pCounterDesc: *const D3D10_COUNTER_DESC, ppCounter: ?*?*ID3D10Counter) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_CreateCounter(self: *const T, pCounterDesc: *const D3D10_COUNTER_DESC, ppCounter: ?**ID3D10Counter) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).CreateCounter(@ptrCast(*const ID3D10Device, self), pCounterDesc, ppCounter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2600,7 +2600,7 @@ pub const ID3D10Device = extern struct {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).GetCreationFlags(@ptrCast(*const ID3D10Device, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device_OpenSharedResource(self: *const T, hResource: HANDLE, ReturnedInterface: *const Guid, ppResource: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device_OpenSharedResource(self: *const T, hResource: HANDLE, ReturnedInterface: *const Guid, ppResource: ?**c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device.VTable, self.vtable).OpenSharedResource(@ptrCast(*const ID3D10Device, self), hResource, ReturnedInterface, ppResource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5982,12 +5982,12 @@ pub const ID3D10Device1 = extern struct {
             self: *const ID3D10Device1,
             pResource: *ID3D10Resource,
             pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1,
-            ppSRView: ?*?*ID3D10ShaderResourceView1,
+            ppSRView: ?**ID3D10ShaderResourceView1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlendState1: fn(
             self: *const ID3D10Device1,
             pBlendStateDesc: *const D3D10_BLEND_DESC1,
-            ppBlendState: ?*?*ID3D10BlendState1,
+            ppBlendState: ?**ID3D10BlendState1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFeatureLevel: fn(
             self: *const ID3D10Device1,
@@ -5997,11 +5997,11 @@ pub const ID3D10Device1 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D10Device.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device1_CreateShaderResourceView1(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device1_CreateShaderResourceView1(self: *const T, pResource: *ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?**ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device1.VTable, self.vtable).CreateShaderResourceView1(@ptrCast(*const ID3D10Device1, self), pResource, pDesc, ppSRView);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D10Device1_CreateBlendState1(self: *const T, pBlendStateDesc: *const D3D10_BLEND_DESC1, ppBlendState: ?*?*ID3D10BlendState1) callconv(.Inline) HRESULT {
+        pub fn ID3D10Device1_CreateBlendState1(self: *const T, pBlendStateDesc: *const D3D10_BLEND_DESC1, ppBlendState: ?**ID3D10BlendState1) callconv(.Inline) HRESULT {
             return @ptrCast(*const ID3D10Device1.VTable, self.vtable).CreateBlendState1(@ptrCast(*const ID3D10Device1, self), pBlendStateDesc, ppBlendState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6356,7 +6356,7 @@ pub extern "d3d10" fn D3D10CreateDevice(
     Software: HINSTANCE,
     Flags: u32,
     SDKVersion: u32,
-    ppDevice: ?*?*ID3D10Device,
+    ppDevice: ?**ID3D10Device,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
@@ -6366,8 +6366,8 @@ pub extern "d3d10" fn D3D10CreateDeviceAndSwapChain(
     Flags: u32,
     SDKVersion: u32,
     pSwapChainDesc: ?*DXGI_SWAP_CHAIN_DESC,
-    ppSwapChain: ?*?*IDXGISwapChain,
-    ppDevice: ?*?*ID3D10Device,
+    ppSwapChain: ?**IDXGISwapChain,
+    ppDevice: ?**ID3D10Device,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateBlob(
@@ -6386,7 +6386,7 @@ pub extern "d3d10" fn D3D10CompileShader(
     pProfile: [*:0]const u8,
     Flags: u32,
     ppShader: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10DisassembleShader(
@@ -6425,7 +6425,7 @@ pub extern "d3d10" fn D3D10PreprocessShader(
     pDefines: ?*const D3D_SHADER_MACRO,
     pInclude: ?*ID3DInclude,
     ppShaderText: **ID3DBlob,
-    ppErrorMsgs: ?*?*ID3DBlob,
+    ppErrorMsgs: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputSignatureBlob(
@@ -6518,7 +6518,7 @@ pub extern "d3d10" fn D3D10CompileEffectFromMemory(
     HLSLFlags: u32,
     FXFlags: u32,
     ppCompiledEffect: **ID3DBlob,
-    ppErrors: ?*?*ID3DBlob,
+    ppErrors: ?**ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectFromMemory(
@@ -6553,7 +6553,7 @@ pub extern "d3d10_1" fn D3D10CreateDevice1(
     Flags: u32,
     HardwareLevel: D3D10_FEATURE_LEVEL1,
     SDKVersion: u32,
-    ppDevice: ?*?*ID3D10Device1,
+    ppDevice: ?**ID3D10Device1,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
@@ -6564,8 +6564,8 @@ pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
     HardwareLevel: D3D10_FEATURE_LEVEL1,
     SDKVersion: u32,
     pSwapChainDesc: ?*DXGI_SWAP_CHAIN_DESC,
-    ppSwapChain: ?*?*IDXGISwapChain,
-    ppDevice: ?*?*ID3D10Device1,
+    ppSwapChain: ?**IDXGISwapChain,
+    ppDevice: ?**ID3D10Device1,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -43,8 +43,8 @@ pub const IIsolatedAppLauncher = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetAppContainerNamedObjectPath(
-    Token: HANDLE,
-    AppContainerSid: PSID,
+    Token: ?HANDLE,
+    AppContainerSid: ?PSID,
     ObjectPathLength: u32,
     ObjectPath: ?[*:0]u16,
     ReturnLength: *u32,

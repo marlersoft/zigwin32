@@ -35694,8 +35694,8 @@ pub const IKeyStore = extern struct {
         GetKey: fn(
             self: *const IKeyStore,
             key: [*:0]const u16,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: fn(
             self: *const IKeyStore,
@@ -35706,8 +35706,8 @@ pub const IKeyStore = extern struct {
         GetKeyValue: fn(
             self: *const IKeyStore,
             key: [*:0]const u16,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyValue: fn(
             self: *const IKeyStore,
@@ -35722,7 +35722,7 @@ pub const IKeyStore = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKeyStore_GetKey(self: *const T, key: [*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IKeyStore_GetKey(self: *const T, key: [*:0]const u16, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKeyStore.VTable, self.vtable).GetKey(@ptrCast(*const IKeyStore, self), key, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -35730,7 +35730,7 @@ pub const IKeyStore = extern struct {
             return @ptrCast(*const IKeyStore.VTable, self.vtable).SetKey(@ptrCast(*const IKeyStore, self), key, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKeyStore_GetKeyValue(self: *const T, key: [*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IKeyStore_GetKeyValue(self: *const T, key: [*:0]const u16, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKeyStore.VTable, self.vtable).GetKeyValue(@ptrCast(*const IKeyStore, self), key, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -35759,7 +35759,7 @@ pub const IModelObject = extern struct {
         base: IUnknown.VTable,
         GetContext: fn(
             self: *const IModelObject,
-            context: ?*?*IDebugHostContext,
+            context: ?**IDebugHostContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKind: fn(
             self: *const IModelObject,
@@ -35777,8 +35777,8 @@ pub const IModelObject = extern struct {
         GetKeyValue: fn(
             self: *const IModelObject,
             key: [*:0]const u16,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKeyValue: fn(
             self: *const IModelObject,
@@ -35814,7 +35814,7 @@ pub const IModelObject = extern struct {
             self: *const IModelObject,
             conceptId: *const Guid,
             conceptInterface: **IUnknown,
-            conceptMetadata: ?*?*IKeyStore,
+            conceptMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocation: fn(
             self: *const IModelObject,
@@ -35837,7 +35837,7 @@ pub const IModelObject = extern struct {
             self: *const IModelObject,
             i: u64,
             model: **IModelObject,
-            contextObject: ?*?*IModelObject,
+            contextObject: ?**IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddParentModel: fn(
             self: *const IModelObject,
@@ -35852,14 +35852,14 @@ pub const IModelObject = extern struct {
         GetKey: fn(
             self: *const IModelObject,
             key: [*:0]const u16,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyReference: fn(
             self: *const IModelObject,
             key: [*:0]const u16,
-            objectReference: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            objectReference: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: fn(
             self: *const IModelObject,
@@ -35913,7 +35913,7 @@ pub const IModelObject = extern struct {
         Compare: fn(
             self: *const IModelObject,
             other: *IModelObject,
-            ppResult: ?*?*IModelObject,
+            ppResult: ?**IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsEqualTo: fn(
             self: *const IModelObject,
@@ -35925,7 +35925,7 @@ pub const IModelObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetContext(self: *const T, context: ?*?*IDebugHostContext) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetContext(self: *const T, context: ?**IDebugHostContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetContext(@ptrCast(*const IModelObject, self), context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -35941,7 +35941,7 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetIntrinsicValueAs(@ptrCast(*const IModelObject, self), vt, intrinsicData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetKeyValue(self: *const T, key: [*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetKeyValue(self: *const T, key: [*:0]const u16, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetKeyValue(@ptrCast(*const IModelObject, self), key, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -35969,7 +35969,7 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).TryCastToRuntimeType(@ptrCast(*const IModelObject, self), runtimeTypedObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetConcept(self: *const T, conceptId: *const Guid, conceptInterface: **IUnknown, conceptMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetConcept(self: *const T, conceptId: *const Guid, conceptInterface: **IUnknown, conceptMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetConcept(@ptrCast(*const IModelObject, self), conceptId, conceptInterface, conceptMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -35989,7 +35989,7 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetNumberOfParentModels(@ptrCast(*const IModelObject, self), numModels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetParentModel(self: *const T, i: u64, model: **IModelObject, contextObject: ?*?*IModelObject) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetParentModel(self: *const T, i: u64, model: **IModelObject, contextObject: ?**IModelObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetParentModel(@ptrCast(*const IModelObject, self), i, model, contextObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -36001,11 +36001,11 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).RemoveParentModel(@ptrCast(*const IModelObject, self), model);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetKey(self: *const T, key: [*:0]const u16, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetKey(self: *const T, key: [*:0]const u16, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetKey(@ptrCast(*const IModelObject, self), key, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_GetKeyReference(self: *const T, key: [*:0]const u16, objectReference: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelObject_GetKeyReference(self: *const T, key: [*:0]const u16, objectReference: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetKeyReference(@ptrCast(*const IModelObject, self), key, objectReference, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -36049,7 +36049,7 @@ pub const IModelObject = extern struct {
             return @ptrCast(*const IModelObject.VTable, self.vtable).GetContextForDataModel(@ptrCast(*const IModelObject, self), dataModelObject, context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelObject_Compare(self: *const T, other: *IModelObject, ppResult: ?*?*IModelObject) callconv(.Inline) HRESULT {
+        pub fn IModelObject_Compare(self: *const T, other: *IModelObject, ppResult: ?**IModelObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelObject.VTable, self.vtable).Compare(@ptrCast(*const IModelObject, self), other, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -36123,8 +36123,8 @@ pub const IDataModelManager = extern struct {
             self: *const IDataModelManager,
             type: *IDebugHostType,
             dataModel: **IModelObject,
-            typeSignature: ?*?*IDebugHostTypeSignature,
-            wildcardMatches: ?*?*IDebugHostSymbolEnumerator,
+            typeSignature: ?**IDebugHostTypeSignature,
+            wildcardMatches: ?**IDebugHostSymbolEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterModelForTypeSignature: fn(
             self: *const IDataModelManager,
@@ -36214,7 +36214,7 @@ pub const IDataModelManager = extern struct {
             return @ptrCast(*const IDataModelManager.VTable, self.vtable).GetModelForTypeSignature(@ptrCast(*const IDataModelManager, self), typeSignature, dataModel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelManager_GetModelForType(self: *const T, type: *IDebugHostType, dataModel: **IModelObject, typeSignature: ?*?*IDebugHostTypeSignature, wildcardMatches: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+        pub fn IDataModelManager_GetModelForType(self: *const T, type: *IDebugHostType, dataModel: **IModelObject, typeSignature: ?**IDebugHostTypeSignature, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataModelManager.VTable, self.vtable).GetModelForType(@ptrCast(*const IDataModelManager, self), type, dataModel, typeSignature, wildcardMatches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -36276,13 +36276,13 @@ pub const IModelKeyReference = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKey: fn(
             self: *const IModelKeyReference,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetKeyValue: fn(
             self: *const IModelKeyReference,
-            object: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            object: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: fn(
             self: *const IModelKeyReference,
@@ -36310,11 +36310,11 @@ pub const IModelKeyReference = extern struct {
             return @ptrCast(*const IModelKeyReference.VTable, self.vtable).GetContextObject(@ptrCast(*const IModelKeyReference, self), containingObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelKeyReference_GetKey(self: *const T, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelKeyReference_GetKey(self: *const T, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelKeyReference.VTable, self.vtable).GetKey(@ptrCast(*const IModelKeyReference, self), object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelKeyReference_GetKeyValue(self: *const T, object: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelKeyReference_GetKeyValue(self: *const T, object: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelKeyReference.VTable, self.vtable).GetKeyValue(@ptrCast(*const IModelKeyReference, self), object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -36373,14 +36373,14 @@ pub const IModelMethod = extern struct {
             argCount: u64,
             ppArguments: [*]*IModelObject,
             ppResult: **IModelObject,
-            ppMetadata: ?*?*IKeyStore,
+            ppMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelMethod_Call(self: *const T, pContextObject: ?*IModelObject, argCount: u64, ppArguments: [*]*IModelObject, ppResult: **IModelObject, ppMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelMethod_Call(self: *const T, pContextObject: ?*IModelObject, argCount: u64, ppArguments: [*]*IModelObject, ppResult: **IModelObject, ppMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelMethod.VTable, self.vtable).Call(@ptrCast(*const IModelMethod, self), pContextObject, argCount, ppArguments, ppResult, ppMetadata);
         }
     };}
@@ -36398,8 +36398,8 @@ pub const IKeyEnumerator = extern struct {
         GetNext: fn(
             self: *const IKeyEnumerator,
             key: *BSTR,
-            value: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            value: ?**IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -36410,7 +36410,7 @@ pub const IKeyEnumerator = extern struct {
             return @ptrCast(*const IKeyEnumerator.VTable, self.vtable).Reset(@ptrCast(*const IKeyEnumerator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKeyEnumerator_GetNext(self: *const T, key: *BSTR, value: ?*?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IKeyEnumerator_GetNext(self: *const T, key: *BSTR, value: ?**IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKeyEnumerator.VTable, self.vtable).GetNext(@ptrCast(*const IKeyEnumerator, self), key, value, metadata);
         }
     };}
@@ -36429,7 +36429,7 @@ pub const IRawEnumerator = extern struct {
             self: *const IRawEnumerator,
             name: ?*BSTR,
             kind: ?*SymbolKind,
-            value: ?*?*IModelObject,
+            value: ?**IModelObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -36440,7 +36440,7 @@ pub const IRawEnumerator = extern struct {
             return @ptrCast(*const IRawEnumerator.VTable, self.vtable).Reset(@ptrCast(*const IRawEnumerator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawEnumerator_GetNext(self: *const T, name: ?*BSTR, kind: ?*SymbolKind, value: ?*?*IModelObject) callconv(.Inline) HRESULT {
+        pub fn IRawEnumerator_GetNext(self: *const T, name: ?*BSTR, kind: ?*SymbolKind, value: ?**IModelObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawEnumerator.VTable, self.vtable).GetNext(@ptrCast(*const IRawEnumerator, self), name, kind, value);
         }
     };}
@@ -36513,8 +36513,8 @@ pub const IModelIterator = extern struct {
             self: *const IModelIterator,
             object: **IModelObject,
             dimensions: u64,
-            indexers: ?[*]?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            indexers: ?[*]*IModelObject,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -36525,7 +36525,7 @@ pub const IModelIterator = extern struct {
             return @ptrCast(*const IModelIterator.VTable, self.vtable).Reset(@ptrCast(*const IModelIterator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IModelIterator_GetNext(self: *const T, object: **IModelObject, dimensions: u64, indexers: ?[*]?*IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IModelIterator_GetNext(self: *const T, object: **IModelObject, dimensions: u64, indexers: ?[*]*IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IModelIterator.VTable, self.vtable).GetNext(@ptrCast(*const IModelIterator, self), object, dimensions, indexers, metadata);
         }
     };}
@@ -36579,7 +36579,7 @@ pub const IIndexableConcept = extern struct {
             indexerCount: u64,
             indexers: [*]*IModelObject,
             object: **IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAt: fn(
             self: *const IIndexableConcept,
@@ -36597,7 +36597,7 @@ pub const IIndexableConcept = extern struct {
             return @ptrCast(*const IIndexableConcept.VTable, self.vtable).GetDimensionality(@ptrCast(*const IIndexableConcept, self), contextObject, dimensionality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIndexableConcept_GetAt(self: *const T, contextObject: *IModelObject, indexerCount: u64, indexers: [*]*IModelObject, object: **IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IIndexableConcept_GetAt(self: *const T, contextObject: *IModelObject, indexerCount: u64, indexers: [*]*IModelObject, object: **IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIndexableConcept.VTable, self.vtable).GetAt(@ptrCast(*const IIndexableConcept, self), contextObject, indexerCount, indexers, object, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -37388,7 +37388,7 @@ pub const IDebugHostEvaluator = extern struct {
             expression: [*:0]const u16,
             bindingContext: ?*IModelObject,
             result: **IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EvaluateExtendedExpression: fn(
             self: *const IDebugHostEvaluator,
@@ -37396,18 +37396,18 @@ pub const IDebugHostEvaluator = extern struct {
             expression: [*:0]const u16,
             bindingContext: ?*IModelObject,
             result: **IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostEvaluator_EvaluateExpression(self: *const T, context: *IDebugHostContext, expression: [*:0]const u16, bindingContext: ?*IModelObject, result: **IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDebugHostEvaluator_EvaluateExpression(self: *const T, context: *IDebugHostContext, expression: [*:0]const u16, bindingContext: ?*IModelObject, result: **IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostEvaluator.VTable, self.vtable).EvaluateExpression(@ptrCast(*const IDebugHostEvaluator, self), context, expression, bindingContext, result, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostEvaluator_EvaluateExtendedExpression(self: *const T, context: *IDebugHostContext, expression: [*:0]const u16, bindingContext: ?*IModelObject, result: **IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDebugHostEvaluator_EvaluateExtendedExpression(self: *const T, context: *IDebugHostContext, expression: [*:0]const u16, bindingContext: ?*IModelObject, result: **IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostEvaluator.VTable, self.vtable).EvaluateExtendedExpression(@ptrCast(*const IDebugHostEvaluator, self), context, expression, bindingContext, result, metadata);
         }
     };}
@@ -37462,7 +37462,7 @@ pub const IDebugHostTypeSignature = extern struct {
             self: *const IDebugHostTypeSignature,
             type: *IDebugHostType,
             isMatch: *bool,
-            wildcardMatches: ?*?*IDebugHostSymbolEnumerator,
+            wildcardMatches: ?**IDebugHostSymbolEnumerator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareAgainst: fn(
             self: *const IDebugHostTypeSignature,
@@ -37478,7 +37478,7 @@ pub const IDebugHostTypeSignature = extern struct {
             return @ptrCast(*const IDebugHostTypeSignature.VTable, self.vtable).GetHashCode(@ptrCast(*const IDebugHostTypeSignature, self), hashCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostTypeSignature_IsMatch(self: *const T, type: *IDebugHostType, isMatch: *bool, wildcardMatches: ?*?*IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
+        pub fn IDebugHostTypeSignature_IsMatch(self: *const T, type: *IDebugHostType, isMatch: *bool, wildcardMatches: ?**IDebugHostSymbolEnumerator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostTypeSignature.VTable, self.vtable).IsMatch(@ptrCast(*const IDebugHostTypeSignature, self), type, isMatch, wildcardMatches);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -37920,8 +37920,8 @@ pub const IDynamicKeyProviderConcept = extern struct {
             self: *const IDynamicKeyProviderConcept,
             contextObject: *IModelObject,
             key: [*:0]const u16,
-            keyValue: ?*?*IModelObject,
-            metadata: ?*?*IKeyStore,
+            keyValue: ?**IModelObject,
+            metadata: ?**IKeyStore,
             hasKey: ?*bool,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetKey: fn(
@@ -37941,7 +37941,7 @@ pub const IDynamicKeyProviderConcept = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicKeyProviderConcept_GetKey(self: *const T, contextObject: *IModelObject, key: [*:0]const u16, keyValue: ?*?*IModelObject, metadata: ?*?*IKeyStore, hasKey: ?*bool) callconv(.Inline) HRESULT {
+        pub fn IDynamicKeyProviderConcept_GetKey(self: *const T, contextObject: *IModelObject, key: [*:0]const u16, keyValue: ?**IModelObject, metadata: ?**IKeyStore, hasKey: ?*bool) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicKeyProviderConcept.VTable, self.vtable).GetKey(@ptrCast(*const IDynamicKeyProviderConcept, self), contextObject, key, keyValue, metadata, hasKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -37965,8 +37965,8 @@ pub const IDynamicConceptProviderConcept = extern struct {
             self: *const IDynamicConceptProviderConcept,
             contextObject: *IModelObject,
             conceptId: *const Guid,
-            conceptInterface: ?*?*IUnknown,
-            conceptMetadata: ?*?*IKeyStore,
+            conceptInterface: ?**IUnknown,
+            conceptMetadata: ?**IKeyStore,
             hasConcept: *bool,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetConcept: fn(
@@ -37992,7 +37992,7 @@ pub const IDynamicConceptProviderConcept = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicConceptProviderConcept_GetConcept(self: *const T, contextObject: *IModelObject, conceptId: *const Guid, conceptInterface: ?*?*IUnknown, conceptMetadata: ?*?*IKeyStore, hasConcept: *bool) callconv(.Inline) HRESULT {
+        pub fn IDynamicConceptProviderConcept_GetConcept(self: *const T, contextObject: *IModelObject, conceptId: *const Guid, conceptInterface: ?**IUnknown, conceptMetadata: ?**IKeyStore, hasConcept: *bool) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicConceptProviderConcept.VTable, self.vtable).GetConcept(@ptrCast(*const IDynamicConceptProviderConcept, self), contextObject, conceptId, conceptInterface, conceptMetadata, hasConcept);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38082,14 +38082,14 @@ pub const IDataModelNameBinder = extern struct {
             contextObject: *IModelObject,
             name: [*:0]const u16,
             value: **IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindReference: fn(
             self: *const IDataModelNameBinder,
             contextObject: *IModelObject,
             name: [*:0]const u16,
             reference: **IModelObject,
-            metadata: ?*?*IKeyStore,
+            metadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateValues: fn(
             self: *const IDataModelNameBinder,
@@ -38106,11 +38106,11 @@ pub const IDataModelNameBinder = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelNameBinder_BindValue(self: *const T, contextObject: *IModelObject, name: [*:0]const u16, value: **IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDataModelNameBinder_BindValue(self: *const T, contextObject: *IModelObject, name: [*:0]const u16, value: **IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataModelNameBinder.VTable, self.vtable).BindValue(@ptrCast(*const IDataModelNameBinder, self), contextObject, name, value, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelNameBinder_BindReference(self: *const T, contextObject: *IModelObject, name: [*:0]const u16, reference: **IModelObject, metadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDataModelNameBinder_BindReference(self: *const T, contextObject: *IModelObject, name: [*:0]const u16, reference: **IModelObject, metadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataModelNameBinder.VTable, self.vtable).BindReference(@ptrCast(*const IDataModelNameBinder, self), contextObject, name, reference, metadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -38156,14 +38156,14 @@ pub const IDebugHostEvaluator2 = extern struct {
             assignmentReference: *IModelObject,
             assignmentValue: *IModelObject,
             assignmentResult: **IModelObject,
-            assignmentMetadata: ?*?*IKeyStore,
+            assignmentMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDebugHostEvaluator.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostEvaluator2_AssignTo(self: *const T, assignmentReference: *IModelObject, assignmentValue: *IModelObject, assignmentResult: **IModelObject, assignmentMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDebugHostEvaluator2_AssignTo(self: *const T, assignmentReference: *IModelObject, assignmentValue: *IModelObject, assignmentResult: **IModelObject, assignmentMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostEvaluator2.VTable, self.vtable).AssignTo(@ptrCast(*const IDebugHostEvaluator2, self), assignmentReference, assignmentValue, assignmentResult, assignmentMetadata);
         }
     };}
@@ -38357,8 +38357,8 @@ pub const IDataModelScriptDebugVariableSetEnumerator = extern struct {
         GetNext: fn(
             self: *const IDataModelScriptDebugVariableSetEnumerator,
             variableName: *BSTR,
-            variableValue: ?*?*IModelObject,
-            variableMetadata: ?*?*IKeyStore,
+            variableValue: ?**IModelObject,
+            variableMetadata: ?**IKeyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -38369,7 +38369,7 @@ pub const IDataModelScriptDebugVariableSetEnumerator = extern struct {
             return @ptrCast(*const IDataModelScriptDebugVariableSetEnumerator.VTable, self.vtable).Reset(@ptrCast(*const IDataModelScriptDebugVariableSetEnumerator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataModelScriptDebugVariableSetEnumerator_GetNext(self: *const T, variableName: *BSTR, variableValue: ?*?*IModelObject, variableMetadata: ?*?*IKeyStore) callconv(.Inline) HRESULT {
+        pub fn IDataModelScriptDebugVariableSetEnumerator_GetNext(self: *const T, variableName: *BSTR, variableValue: ?**IModelObject, variableMetadata: ?**IKeyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataModelScriptDebugVariableSetEnumerator.VTable, self.vtable).GetNext(@ptrCast(*const IDataModelScriptDebugVariableSetEnumerator, self), variableName, variableValue, variableMetadata);
         }
     };}
@@ -47329,7 +47329,7 @@ pub extern "dbghelp" fn ImageRvaToVa(
     NtHeaders: *IMAGE_NT_HEADERS64,
     Base: *c_void,
     Rva: u32,
-    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
+    LastRvaSection: ?**IMAGE_SECTION_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 }, else => struct { } };
@@ -47403,7 +47403,7 @@ pub extern "KERNEL32" fn FormatMessageA(
     dwLanguageId: u32,
     lpBuffer: PSTR,
     nSize: u32,
-    Arguments: ?*?*i8,
+    Arguments: ?**i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -47414,7 +47414,7 @@ pub extern "KERNEL32" fn FormatMessageW(
     dwLanguageId: u32,
     lpBuffer: PWSTR,
     nSize: u32,
-    Arguments: ?*?*i8,
+    Arguments: ?**i8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -47737,8 +47737,8 @@ pub extern "dbghelp" fn MiniDumpWriteDump(
 pub extern "dbghelp" fn MiniDumpReadDumpStream(
     BaseOfDump: *c_void,
     StreamNumber: u32,
-    Dir: ?*?*MINIDUMP_DIRECTORY,
-    StreamPointer: ?*?*c_void,
+    Dir: ?**MINIDUMP_DIRECTORY,
+    StreamPointer: ?**c_void,
     StreamSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -47849,7 +47849,7 @@ pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
     MappedAsImage: u8,
     DirectoryEntry: IMAGE_DIRECTORY_ENTRY,
     Size: *u32,
-    FoundHeader: ?*?*IMAGE_SECTION_HEADER,
+    FoundHeader: ?**IMAGE_SECTION_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 pub extern "dbghelp" fn ImageDirectoryEntryToData(
@@ -47872,7 +47872,7 @@ pub extern "dbghelp" fn SearchTreeForFileW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumDirTree(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     RootPath: [*:0]const u8,
     InputPathName: [*:0]const u8,
     OutputPathBuffer: ?PSTR,
@@ -47881,7 +47881,7 @@ pub extern "dbghelp" fn EnumDirTree(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumDirTreeW(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     RootPath: [*:0]const u16,
     InputPathName: [*:0]const u16,
     OutputPathBuffer: ?PWSTR,
@@ -47948,12 +47948,12 @@ pub extern "dbghelp" fn SymSetParentWindow(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymSetHomeDirectory(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     dir: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
 pub extern "dbghelp" fn SymSetHomeDirectoryW(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     dir: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
@@ -48250,15 +48250,15 @@ pub extern "dbghelp" fn SymGetFileLineOffsets64(
 pub extern "dbghelp" fn SymMatchFileName(
     FileName: [*:0]const u8,
     Match: [*:0]const u8,
-    FileNameStop: ?*?PSTR,
-    MatchStop: ?*?PSTR,
+    FileNameStop: ?*PSTR,
+    MatchStop: ?*PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymMatchFileNameW(
     FileName: [*:0]const u16,
     Match: [*:0]const u16,
-    FileNameStop: ?*?PWSTR,
-    MatchStop: ?*?PWSTR,
+    FileNameStop: ?*PWSTR,
+    MatchStop: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetSourceFile(
@@ -48389,27 +48389,11 @@ pub extern "dbghelp" fn SymSetSearchPathW(
     SearchPathA: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "dbghelp" fn SymLoadModuleEx(
-    hProcess: HANDLE,
-    hFile: HANDLE,
-    ImageName: ?[*:0]const u8,
-    ModuleName: ?[*:0]const u8,
-    BaseOfDll: u64,
-    DllSize: u32,
-    Data: ?*MODLOAD_DATA,
-    Flags: SYM_LOAD_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u64;
+// This function from dll 'dbghelp' is being skipped because it has some sort of issue
+pub fn SymLoadModuleEx() void { @panic("this function is not working"); }
 
-pub extern "dbghelp" fn SymLoadModuleExW(
-    hProcess: HANDLE,
-    hFile: HANDLE,
-    ImageName: ?[*:0]const u16,
-    ModuleName: ?[*:0]const u16,
-    BaseOfDll: u64,
-    DllSize: u32,
-    Data: ?*MODLOAD_DATA,
-    Flags: SYM_LOAD_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u64;
+// This function from dll 'dbghelp' is being skipped because it has some sort of issue
+pub fn SymLoadModuleExW() void { @panic("this function is not working"); }
 
 pub extern "dbghelp" fn SymUnloadModule64(
     hProcess: HANDLE,
@@ -48768,12 +48752,12 @@ pub extern "dbghelp" fn SymAddSourceStreamW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymSrvIsStoreW(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     path: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymSrvIsStore(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     path: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -48884,7 +48868,7 @@ pub extern "dbghelp" fn SymSrvStoreFileW(
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 pub extern "dbghelp" fn SymGetSymbolFile(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     SymPath: ?[*:0]const u8,
     ImageFile: [*:0]const u8,
     Type: IMAGEHLP_SF_TYPE,
@@ -48895,7 +48879,7 @@ pub extern "dbghelp" fn SymGetSymbolFile(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetSymbolFileW(
-    hProcess: HANDLE,
+    hProcess: ?HANDLE,
     SymPath: ?[*:0]const u16,
     ImageFile: [*:0]const u16,
     Type: IMAGEHLP_SF_TYPE,
@@ -48974,7 +48958,7 @@ pub extern "dbghelp" fn SymEnumerateSymbolsW64(
 
 pub extern "dbghelp" fn SymLoadModule64(
     hProcess: HANDLE,
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     ImageName: ?[*:0]const u8,
     ModuleName: ?[*:0]const u8,
     BaseOfDll: u64,
@@ -49082,7 +49066,7 @@ pub extern "dbghelp" fn ImageRvaToVa(
     NtHeaders: *IMAGE_NT_HEADERS32,
     Base: *c_void,
     Rva: u32,
-    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
+    LastRvaSection: ?**IMAGE_SECTION_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 }, else => struct { } };
@@ -49309,7 +49293,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "dbghelp" fn SymLoadModule(
     hProcess: HANDLE,
-    hFile: HANDLE,
+    hFile: ?HANDLE,
     ImageName: ?[*:0]const u8,
     ModuleName: ?[*:0]const u8,
     BaseOfDll: u32,

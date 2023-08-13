@@ -608,8 +608,8 @@ pub const ISimilarityTraitsMappedView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetView: fn(
             self: *const ISimilarityTraitsMappedView,
-            mappedPageBegin: *const *const u8,
-            mappedPageEnd: *const *const u8,
+            mappedPageBegin: *const *u8,
+            mappedPageEnd: *const *u8,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -628,7 +628,7 @@ pub const ISimilarityTraitsMappedView = extern struct {
             return @ptrCast(*const ISimilarityTraitsMappedView.VTable, self.vtable).Get(@ptrCast(*const ISimilarityTraitsMappedView, self), index, dirty, numElements, viewInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimilarityTraitsMappedView_GetView(self: *const T, mappedPageBegin: *const *const u8, mappedPageEnd: *const *const u8) callconv(.Inline) void {
+        pub fn ISimilarityTraitsMappedView_GetView(self: *const T, mappedPageBegin: *const *u8, mappedPageEnd: *const *u8) callconv(.Inline) void {
             return @ptrCast(*const ISimilarityTraitsMappedView.VTable, self.vtable).GetView(@ptrCast(*const ISimilarityTraitsMappedView, self), mappedPageBegin, mappedPageEnd);
         }
     };}

@@ -1098,14 +1098,14 @@ pub extern "ADVAPI32" fn StartServiceCtrlDispatcherW(
 pub extern "ADVAPI32" fn StartServiceA(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
-    lpServiceArgVectors: ?[*]?PSTR,
+    lpServiceArgVectors: ?[*]PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn StartServiceW(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
-    lpServiceArgVectors: ?[*]?PWSTR,
+    lpServiceArgVectors: ?[*]PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1154,7 +1154,7 @@ pub extern "ADVAPI32" fn WaitServiceState(
     hService: SC_HANDLE,
     dwNotify: u32,
     dwTimeout: u32,
-    hCancelEvent: HANDLE,
+    hCancelEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.19041'

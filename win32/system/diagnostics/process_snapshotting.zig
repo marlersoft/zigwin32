@@ -7,9 +7,9 @@ pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const HPSS = ?*opaque{};
+pub const HPSS = *opaque{};
 
-pub const HPSSWALK = ?*opaque{};
+pub const HPSSWALK = *opaque{};
 
 pub const PSS_HANDLE_FLAGS = extern enum(u32) {
     NONE = 0,
@@ -468,13 +468,8 @@ pub extern "KERNEL32" fn PssWalkSnapshot(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "KERNEL32" fn PssDuplicateSnapshot(
-    SourceProcessHandle: HANDLE,
-    SnapshotHandle: HPSS,
-    TargetProcessHandle: HANDLE,
-    TargetSnapshotHandle: *HPSS,
-    Flags: PSS_DUPLICATE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+// This function from dll 'KERNEL32' is being skipped because it has some sort of issue
+pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "KERNEL32" fn PssWalkMarkerCreate(

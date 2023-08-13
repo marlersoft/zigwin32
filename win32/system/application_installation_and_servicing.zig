@@ -1920,7 +1920,7 @@ pub extern "KERNEL32" fn ZombifyActCtx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ActivateActCtx(
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     lpCookie: *usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1977,7 +1977,7 @@ pub extern "KERNEL32" fn QueryActCtxW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn QueryActCtxSettingsW(
     dwFlags: u32,
-    hActCtx: HANDLE,
+    hActCtx: ?HANDLE,
     settingsNameSpace: ?[*:0]const u16,
     settingName: [*:0]const u16,
     // TODO: what to do with BytesParamIndex 5?
@@ -2177,7 +2177,7 @@ pub extern "msi" fn MsiAdvertiseProductW(
 pub extern "msi" fn MsiProcessAdvertiseScriptA(
     szScriptFile: [*:0]const u8,
     szIconFolder: ?[*:0]const u8,
-    hRegData: HKEY,
+    hRegData: ?HKEY,
     fShortcuts: BOOL,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2186,7 +2186,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptA(
 pub extern "msi" fn MsiProcessAdvertiseScriptW(
     szScriptFile: [*:0]const u16,
     szIconFolder: ?[*:0]const u16,
-    hRegData: HKEY,
+    hRegData: ?HKEY,
     fShortcuts: BOOL,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2634,24 +2634,12 @@ pub extern "msi" fn MsiGetComponentPathW(
 ) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'Windows 8'
-pub extern "msi" fn MsiGetComponentPathExA(
-    szProductCode: [*:0]const u8,
-    szComponentCode: [*:0]const u8,
-    szUserSid: ?[*:0]const u8,
-    dwContext: MSIINSTALLCONTEXT,
-    lpOutPathBuffer: ?[*:0]u8,
-    pcchOutPathBuffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+// This function from dll 'msi' is being skipped because it has some sort of issue
+pub fn MsiGetComponentPathExA() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'Windows 8'
-pub extern "msi" fn MsiGetComponentPathExW(
-    szProductCode: [*:0]const u16,
-    szComponentCode: [*:0]const u16,
-    szUserSid: ?[*:0]const u16,
-    dwContext: MSIINSTALLCONTEXT,
-    lpOutPathBuffer: ?[*:0]u16,
-    pcchOutPathBuffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+// This function from dll 'msi' is being skipped because it has some sort of issue
+pub fn MsiGetComponentPathExW() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiProvideAssemblyA(
@@ -2894,7 +2882,7 @@ pub extern "msi" fn MsiGetPatchFileListA(
     szProductCode: [*:0]const u8,
     szPatchPackages: [*:0]const u8,
     pcFiles: *u32,
-    pphFileRecords: ?*?*MSIHANDLE,
+    pphFileRecords: ?**MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -2902,7 +2890,7 @@ pub extern "msi" fn MsiGetPatchFileListW(
     szProductCode: [*:0]const u16,
     szPatchPackages: [*:0]const u16,
     pcFiles: *u32,
-    pphFileRecords: ?*?*MSIHANDLE,
+    pphFileRecords: ?**MSIHANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'

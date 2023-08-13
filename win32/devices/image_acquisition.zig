@@ -998,7 +998,7 @@ pub const IWiaDevMgr = extern struct {
         EnumDeviceInfo: fn(
             self: *const IWiaDevMgr,
             lFlag: i32,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ppIEnum: ?**IEnumWIA_DEV_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDevice: fn(
             self: *const IWiaDevMgr,
@@ -1068,7 +1068,7 @@ pub const IWiaDevMgr = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
+        pub fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?**IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr, self), lFlag, ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1128,7 +1128,7 @@ pub const IEnumWIA_DEV_INFO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_DEV_INFO,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ppIEnum: ?**IEnumWIA_DEV_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_DEV_INFO,
@@ -1151,7 +1151,7 @@ pub const IEnumWIA_DEV_INFO = extern struct {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_INFO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?**IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_INFO, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1267,7 +1267,7 @@ pub const IWiaDataTransfer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtEnumWIA_FORMAT_INFO: fn(
             self: *const IWiaDataTransfer,
-            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ppEnum: ?**IEnumWIA_FORMAT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         idtGetExtendedTransferInfo: fn(
             self: *const IWiaDataTransfer,
@@ -1290,7 +1290,7 @@ pub const IWiaDataTransfer = extern struct {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtQueryGetData(@ptrCast(*const IWiaDataTransfer, self), pfe);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
+        pub fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?**IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtEnumWIA_FORMAT_INFO(@ptrCast(*const IWiaDataTransfer, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1317,7 +1317,7 @@ pub const IWiaItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumChildItems: fn(
             self: *const IWiaItem,
-            ppIEnumWiaItem: ?*?*IEnumWiaItem,
+            ppIEnumWiaItem: ?**IEnumWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteItem: fn(
             self: *const IWiaItem,
@@ -1328,19 +1328,19 @@ pub const IWiaItem = extern struct {
             lFlags: i32,
             bstrItemName: BSTR,
             bstrFullItemName: BSTR,
-            ppIWiaItem: ?*?*IWiaItem,
+            ppIWiaItem: ?**IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRegisterEventInfo: fn(
             self: *const IWiaItem,
             lFlags: i32,
             pEventGUID: *const Guid,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ppIEnum: ?**IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindItemByName: fn(
             self: *const IWiaItem,
             lFlags: i32,
             bstrFullItemName: BSTR,
-            ppIWiaItem: ?*?*IWiaItem,
+            ppIWiaItem: ?**IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceDlg: fn(
             self: *const IWiaItem,
@@ -1354,16 +1354,16 @@ pub const IWiaItem = extern struct {
             self: *const IWiaItem,
             lFlags: i32,
             pCmdGUID: *const Guid,
-            pIWiaItem: ?*?*IWiaItem,
+            pIWiaItem: ?**IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootItem: fn(
             self: *const IWiaItem,
-            ppIWiaItem: ?*?*IWiaItem,
+            ppIWiaItem: ?**IWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDeviceCapabilities: fn(
             self: *const IWiaItem,
             lFlags: i32,
-            ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
+            ppIEnumWIA_DEV_CAPS: ?**IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DumpItemData: fn(
             self: *const IWiaItem,
@@ -1395,7 +1395,7 @@ pub const IWiaItem = extern struct {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).AnalyzeItem(@ptrCast(*const IWiaItem, self), lFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?**IEnumWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem, self), ppIEnumWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1403,15 +1403,15 @@ pub const IWiaItem = extern struct {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem, self), lFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: BSTR, bstrFullItemName: BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: BSTR, bstrFullItemName: BSTR, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem, self), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: *const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: *const Guid, ppIEnum: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem, self), lFlags, pEventGUID, ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: BSTR, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem, self), lFlags, bstrFullItemName, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1419,15 +1419,15 @@ pub const IWiaItem = extern struct {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem, self), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: *const Guid, pIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: *const Guid, pIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem, self), lFlags, pCmdGUID, pIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?**IWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem, self), ppIWiaItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem, self), lFlags, ppIEnumWIA_DEV_CAPS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1500,7 +1500,7 @@ pub const IWiaPropertyStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enum: fn(
             self: *const IWiaPropertyStorage,
-            ppenum: ?*?*IEnumSTATPROPSTG,
+            ppenum: ?**IEnumSTATPROPSTG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetTimes: fn(
             self: *const IWiaPropertyStorage,
@@ -1530,7 +1530,7 @@ pub const IWiaPropertyStorage = extern struct {
         GetPropertyStream: fn(
             self: *const IWiaPropertyStorage,
             pCompatibilityId: *Guid,
-            ppIStream: ?*?*IStream,
+            ppIStream: ?**IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPropertyStream: fn(
             self: *const IWiaPropertyStorage,
@@ -1574,7 +1574,7 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IWiaPropertyStorage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?**IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IWiaPropertyStorage, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1598,7 +1598,7 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetCount(@ptrCast(*const IWiaPropertyStorage, self), pulNumProps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: *Guid, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: *Guid, ppIStream: ?**IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, ppIStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1630,7 +1630,7 @@ pub const IEnumWiaItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWiaItem,
-            ppIEnum: ?*?*IEnumWiaItem,
+            ppIEnum: ?**IEnumWiaItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWiaItem,
@@ -1653,7 +1653,7 @@ pub const IEnumWiaItem = extern struct {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
+        pub fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?**IEnumWiaItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1694,7 +1694,7 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_DEV_CAPS,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ppIEnum: ?**IEnumWIA_DEV_CAPS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_DEV_CAPS,
@@ -1717,7 +1717,7 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_CAPS, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?**IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_CAPS, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1749,7 +1749,7 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumWIA_FORMAT_INFO,
-            ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ppIEnum: ?**IEnumWIA_FORMAT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCount: fn(
             self: *const IEnumWIA_FORMAT_INFO,
@@ -1772,7 +1772,7 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_FORMAT_INFO, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
+        pub fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?**IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), ppIEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

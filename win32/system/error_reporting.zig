@@ -584,7 +584,7 @@ pub extern "wer" fn WerReportSubmit(
 pub extern "wer" fn WerReportAddDump(
     hReportHandle: isize,
     hProcess: HANDLE,
-    hThread: HANDLE,
+    hThread: ?HANDLE,
     dumpType: WER_DUMP_TYPE,
     pExceptionParam: ?*WER_EXCEPTION_INFORMATION,
     pDumpCustomOptions: ?*WER_DUMP_CUSTOM_OPTIONS,
@@ -710,13 +710,13 @@ pub extern "wer" fn WerStoreClose(
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetFirstReportKey(
     hReportStore: *c_void,
-    ppszReportKey: ?*?PWSTR,
+    ppszReportKey: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetNextReportKey(
     hReportStore: *c_void,
-    ppszReportKey: ?*?PWSTR,
+    ppszReportKey: ?*PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'

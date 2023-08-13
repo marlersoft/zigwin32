@@ -929,15 +929,15 @@ pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 // Section: Types (241)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = ?*opaque{};
+pub const HWINEVENTHOOK = *opaque{};
 
-pub const HUIANODE = ?*opaque{};
+pub const HUIANODE = *opaque{};
 
-pub const HUIAPATTERNOBJECT = ?*opaque{};
+pub const HUIAPATTERNOBJECT = *opaque{};
 
-pub const HUIATEXTRANGE = ?*opaque{};
+pub const HUIATEXTRANGE = *opaque{};
 
-pub const HUIAEVENT = ?*opaque{};
+pub const HUIAEVENT = *opaque{};
 
 pub const STICKYKEYS_FLAGS = extern enum(u32) {
     STICKYKEYSON = 1,
@@ -10787,7 +10787,7 @@ pub extern "USER32" fn NotifyWinEvent(
 pub extern "USER32" fn SetWinEventHook(
     eventMin: u32,
     eventMax: u32,
-    hmodWinEventProc: HINSTANCE,
+    hmodWinEventProc: ?HINSTANCE,
     pfnWinEventProc: WINEVENTPROC,
     idProcess: u32,
     idThread: u32,
@@ -11121,7 +11121,7 @@ pub extern "UIAutomationCore" fn UiaRaiseNotificationEvent(
     provider: *IRawElementProviderSimple,
     notificationKind: NotificationKind,
     notificationProcessing: NotificationProcessing,
-    displayString: BSTR,
+    displayString: ?BSTR,
     activityId: BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

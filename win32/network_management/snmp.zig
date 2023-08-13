@@ -640,7 +640,7 @@ pub extern "mgmtapi" fn SnmpMgrStrToOid(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrOidToStr(
     oid: *AsnObjectIdentifier,
-    string: ?*?PSTR,
+    string: ?*PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'

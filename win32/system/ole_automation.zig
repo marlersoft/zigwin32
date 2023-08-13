@@ -3059,15 +3059,15 @@ pub extern "OLEAUT32" fn SysReleaseString(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SysFreeString(
-    bstrString: BSTR,
+    bstrString: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SysStringLen(
-    pbstr: BSTR,
+    pbstr: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn SysStringByteLen(
-    bstr: BSTR,
+    bstr: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "OLEAUT32" fn SysAllocStringByteLen(
@@ -4799,7 +4799,7 @@ pub extern "OLEAUT32" fn VarUdateFromDate(
 
 pub extern "OLEAUT32" fn GetAltMonthNames(
     lcid: u32,
-    prgp: ?*?*?PWSTR,
+    prgp: ?**PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarFormat(

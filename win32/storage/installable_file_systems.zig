@@ -11,7 +11,7 @@ pub const FLT_PORT_FLAG_SYNC_HANDLE = @as(u32, 1);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
-pub const HFILTER = ?*opaque{};
+pub const HFILTER = *opaque{};
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
 pub const HFILTER_INSTANCE = isize;

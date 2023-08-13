@@ -15,9 +15,9 @@ pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-81
 // Section: Types (118)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
-pub const HSTRING = ?*opaque{};
+pub const HSTRING = *opaque{};
 
-pub const HSTRING_BUFFER = isize;
+pub const HSTRING_BUFFER = *opaque{};
 
 pub const ROPARAMIIDHANDLE = isize;
 
@@ -125,7 +125,7 @@ pub const IInspectable = extern struct {
         GetIids: fn(
             self: *const IInspectable,
             iidCount: *u32,
-            iids: ?[*]?*Guid,
+            iids: ?[*]*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRuntimeClassName: fn(
             self: *const IInspectable,
@@ -140,7 +140,7 @@ pub const IInspectable = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInspectable_GetIids(self: *const T, iidCount: *u32, iids: ?[*]?*Guid) callconv(.Inline) HRESULT {
+        pub fn IInspectable_GetIids(self: *const T, iidCount: *u32, iids: ?[*]*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInspectable.VTable, self.vtable).GetIids(@ptrCast(*const IInspectable, self), iidCount, iids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1449,7 +1449,7 @@ pub const IGeometrySource2DInterop = extern struct {
         TryGetGeometryUsingFactory: fn(
             self: *const IGeometrySource2DInterop,
             factory: *ID2D1Factory,
-            value: ?*?*ID2D1Geometry,
+            value: ?**ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1460,7 +1460,7 @@ pub const IGeometrySource2DInterop = extern struct {
             return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).GetGeometry(@ptrCast(*const IGeometrySource2DInterop, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGeometrySource2DInterop_TryGetGeometryUsingFactory(self: *const T, factory: *ID2D1Factory, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
+        pub fn IGeometrySource2DInterop_TryGetGeometryUsingFactory(self: *const T, factory: *ID2D1Factory, value: ?**ID2D1Geometry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).TryGetGeometryUsingFactory(@ptrCast(*const IGeometrySource2DInterop, self), factory, value);
         }
     };}
@@ -1928,14 +1928,14 @@ pub const IActivationFactory = extern struct {
         base: IInspectable.VTable,
         ActivateInstance: fn(
             self: *const IActivationFactory,
-            instance: ?*?*IInspectable,
+            instance: ?**IInspectable,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActivationFactory_ActivateInstance(self: *const T, instance: ?*?*IInspectable) callconv(.Inline) HRESULT {
+        pub fn IActivationFactory_ActivateInstance(self: *const T, instance: ?**IInspectable) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActivationFactory.VTable, self.vtable).ActivateInstance(@ptrCast(*const IActivationFactory, self), instance);
         }
     };}
@@ -2190,14 +2190,14 @@ pub const IWeakReferenceSource = extern struct {
         base: IUnknown.VTable,
         GetWeakReference: fn(
             self: *const IWeakReferenceSource,
-            weakReference: ?*?*IWeakReference,
+            weakReference: ?**IWeakReference,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWeakReferenceSource_GetWeakReference(self: *const T, weakReference: ?*?*IWeakReference) callconv(.Inline) HRESULT {
+        pub fn IWeakReferenceSource_GetWeakReference(self: *const T, weakReference: ?**IWeakReference) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWeakReferenceSource.VTable, self.vtable).GetWeakReference(@ptrCast(*const IWeakReferenceSource, self), weakReference);
         }
     };}
@@ -3231,54 +3231,54 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCreateStringReference
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteString(
-    string: HSTRING,
+    string: ?HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDuplicateString(
-    string: HSTRING,
+    string: ?HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringLen(
-    string: HSTRING,
+    string: ?HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringRawBuffer(
-    string: HSTRING,
+    string: ?HSTRING,
     length: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsIsStringEmpty(
-    string: HSTRING,
+    string: ?HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsStringHasEmbeddedNull(
-    string: HSTRING,
+    string: ?HSTRING,
     hasEmbedNull: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsCompareStringOrdinal(
-    string1: HSTRING,
-    string2: HSTRING,
+    string1: ?HSTRING,
+    string2: ?HSTRING,
     result: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstring(
-    string: HSTRING,
+    string: ?HSTRING,
     startIndex: u32,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifiedLength(
-    string: HSTRING,
+    string: ?HSTRING,
     startIndex: u32,
     length: u32,
     newString: ?*HSTRING,
@@ -3286,30 +3286,30 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsSubstringWithSpecifie
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsConcatString(
-    string1: HSTRING,
-    string2: HSTRING,
+    string1: ?HSTRING,
+    string2: ?HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsReplaceString(
-    string: HSTRING,
-    stringReplaced: HSTRING,
-    stringReplaceWith: HSTRING,
+    string: ?HSTRING,
+    stringReplaced: ?HSTRING,
+    stringReplaceWith: ?HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringStart(
-    string: HSTRING,
-    trimString: HSTRING,
+    string: ?HSTRING,
+    trimString: ?HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringEnd(
-    string: HSTRING,
-    trimString: HSTRING,
+    string: ?HSTRING,
+    trimString: ?HSTRING,
     newString: ?*HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -3328,7 +3328,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsPromoteStringBuffer(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsDeleteStringBuffer(
-    bufferHandle: HSTRING_BUFFER,
+    bufferHandle: ?HSTRING_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3451,7 +3451,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn SetRestrictedErrorInfo(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn GetRestrictedErrorInfo(
-    ppRestrictedErrorInfo: ?*?*IRestrictedErrorInfo,
+    ppRestrictedErrorInfo: ?**IRestrictedErrorInfo,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3464,7 +3464,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateErrorW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoOriginateError(
     @"error": HRESULT,
-    message: HSTRING,
+    message: ?HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3479,7 +3479,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformErrorW(
 pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoTransformError(
     oldError: HRESULT,
     newError: HRESULT,
-    message: HSTRING,
+    message: ?HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3495,7 +3495,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-0" fn RoFailFastWithErrorContext(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoOriginateLanguageException(
     @"error": HRESULT,
-    message: HSTRING,
+    message: ?HSTRING,
     languageException: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

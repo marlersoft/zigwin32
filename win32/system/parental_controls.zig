@@ -812,12 +812,12 @@ pub const IWPCProviderConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Configure: fn(
             self: *const IWPCProviderConfig,
-            hWnd: HWND,
+            hWnd: ?HWND,
             bstrSID: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestOverride: fn(
             self: *const IWPCProviderConfig,
-            hWnd: HWND,
+            hWnd: ?HWND,
             bstrPath: BSTR,
             dwFlags: WPCFLAG_RESTRICTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -830,11 +830,11 @@ pub const IWPCProviderConfig = extern struct {
             return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).GetUserSummary(@ptrCast(*const IWPCProviderConfig, self), bstrSID, pbstrUserSummary);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCProviderConfig_Configure(self: *const T, hWnd: HWND, bstrSID: BSTR) callconv(.Inline) HRESULT {
+        pub fn IWPCProviderConfig_Configure(self: *const T, hWnd: ?HWND, bstrSID: BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCProviderConfig_RequestOverride(self: *const T, hWnd: HWND, bstrPath: BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
+        pub fn IWPCProviderConfig_RequestOverride(self: *const T, hWnd: ?HWND, bstrPath: BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).RequestOverride(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrPath, dwFlags);
         }
     };}
@@ -940,10 +940,10 @@ pub const IWPCWebSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestURLOverride: fn(
             self: *const IWPCWebSettings,
-            hWnd: HWND,
+            hWnd: ?HWND,
             pcszURL: [*:0]const u16,
             cURLs: u32,
-            ppcszSubURLs: ?[*]?PWSTR,
+            ppcszSubURLs: ?[*]PWSTR,
             pfChanged: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -955,7 +955,7 @@ pub const IWPCWebSettings = extern struct {
             return @ptrCast(*const IWPCWebSettings.VTable, self.vtable).GetSettings(@ptrCast(*const IWPCWebSettings, self), pdwSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCWebSettings_RequestURLOverride(self: *const T, hWnd: HWND, pcszURL: [*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: *BOOL) callconv(.Inline) HRESULT {
+        pub fn IWPCWebSettings_RequestURLOverride(self: *const T, hWnd: ?HWND, pcszURL: [*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]PWSTR, pfChanged: *BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCWebSettings.VTable, self.vtable).RequestURLOverride(@ptrCast(*const IWPCWebSettings, self), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
         }
     };}
@@ -982,17 +982,17 @@ pub const IWindowsParentalControlsCore = extern struct {
         GetUserSettings: fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
-            ppSettings: ?*?*IWPCSettings,
+            ppSettings: ?**IWPCSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWebSettings: fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
-            ppSettings: ?*?*IWPCWebSettings,
+            ppSettings: ?**IWPCWebSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWebFilterInfo: fn(
             self: *const IWindowsParentalControlsCore,
             pguidID: *Guid,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1003,15 +1003,15 @@ pub const IWindowsParentalControlsCore = extern struct {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetVisibility(@ptrCast(*const IWindowsParentalControlsCore, self), peVisibility);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetUserSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetUserSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?**IWPCSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetUserSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetWebSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetWebSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?**IWPCWebSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetWebSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetWebFilterInfo(self: *const T, pguidID: *Guid, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetWebFilterInfo(self: *const T, pguidID: *Guid, ppszName: ?*PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetWebFilterInfo(@ptrCast(*const IWindowsParentalControlsCore, self), pguidID, ppszName);
         }
     };}
@@ -1027,14 +1027,14 @@ pub const IWindowsParentalControls = extern struct {
         GetGamesSettings: fn(
             self: *const IWindowsParentalControls,
             pcszSID: ?[*:0]const u16,
-            ppSettings: ?*?*IWPCGamesSettings,
+            ppSettings: ?**IWPCGamesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWindowsParentalControlsCore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControls_GetGamesSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControls_GetGamesSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?**IWPCGamesSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControls.VTable, self.vtable).GetGamesSettings(@ptrCast(*const IWindowsParentalControls, self), pcszSID, ppSettings);
         }
     };}

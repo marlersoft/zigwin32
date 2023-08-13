@@ -191,7 +191,7 @@ pub const PF_NPAddConnection = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PF_NPAddConnection3 = fn(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     lpPassword: ?PWSTR,
     lpUserName: ?PWSTR,
@@ -199,7 +199,7 @@ pub const PF_NPAddConnection3 = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PF_NPAddConnection4 = fn(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
     lpAuthBuffer: ?*c_void,
@@ -668,7 +668,7 @@ pub extern "MPR" fn WNetAddConnection2W(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetAddConnection3A(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
     lpUserName: ?[*:0]const u8,
@@ -677,7 +677,7 @@ pub extern "MPR" fn WNetAddConnection3A(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetAddConnection3W(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
     lpUserName: ?[*:0]const u16,
@@ -685,7 +685,7 @@ pub extern "MPR" fn WNetAddConnection3W(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MPR" fn WNetAddConnection4A(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
     pAuthBuffer: *c_void,
@@ -697,7 +697,7 @@ pub extern "MPR" fn WNetAddConnection4A(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MPR" fn WNetAddConnection4W(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
     pAuthBuffer: *c_void,
@@ -750,7 +750,7 @@ pub extern "MPR" fn WNetGetConnectionW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetUseConnectionA(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
     lpUserId: ?[*:0]const u8,
@@ -762,7 +762,7 @@ pub extern "MPR" fn WNetUseConnectionA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetUseConnectionW(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
     lpUserId: ?[*:0]const u16,
@@ -773,7 +773,7 @@ pub extern "MPR" fn WNetUseConnectionW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MPR" fn WNetUseConnection4A(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
     pAuthBuffer: ?*c_void,
@@ -788,7 +788,7 @@ pub extern "MPR" fn WNetUseConnection4A(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "MPR" fn WNetUseConnection4W(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
     pAuthBuffer: ?*c_void,
@@ -810,7 +810,7 @@ pub extern "MPR" fn WNetConnectionDialog(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetDisconnectDialog(
-    hwnd: HWND,
+    hwnd: ?HWND,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1006,7 +1006,7 @@ pub extern "davclnt" fn NPAddConnection(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPAddConnection3(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     lpPassword: ?PWSTR,
     lpUserName: ?PWSTR,
@@ -1014,7 +1014,7 @@ pub extern "davclnt" fn NPAddConnection3(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "NTLANMAN" fn NPAddConnection4(
-    hwndOwner: HWND,
+    hwndOwner: ?HWND,
     lpNetResource: *NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
     lpAuthBuffer: ?*c_void,

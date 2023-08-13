@@ -896,7 +896,7 @@ pub const IDataCollectorSet = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataCollectors: fn(
             self: *const IDataCollectorSet,
-            collectors: ?*?*IDataCollectorCollection,
+            collectors: ?**IDataCollectorCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Duration: fn(
@@ -941,7 +941,7 @@ pub const IDataCollectorSet = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Keywords: fn(
             self: *const IDataCollectorSet,
-            keywords: ?*?*SAFEARRAY,
+            keywords: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Keywords: fn(
@@ -1101,7 +1101,7 @@ pub const IDataCollectorSet = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Schedules: fn(
             self: *const IDataCollectorSet,
-            ppSchedules: ?*?*IScheduleCollection,
+            ppSchedules: ?**IScheduleCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SchedulesEnabled: fn(
@@ -1146,7 +1146,7 @@ pub const IDataCollectorSet = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataManager: fn(
             self: *const IDataCollectorSet,
-            DataManager: ?*?*IDataManager,
+            DataManager: ?**IDataManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCredentials: fn(
             self: *const IDataCollectorSet,
@@ -1156,14 +1156,14 @@ pub const IDataCollectorSet = extern struct {
         Query: fn(
             self: *const IDataCollectorSet,
             name: BSTR,
-            server: BSTR,
+            server: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Commit: fn(
             self: *const IDataCollectorSet,
             name: BSTR,
-            server: BSTR,
+            server: ?BSTR,
             mode: CommitMode,
-            validation: ?*?*IValueMap,
+            validation: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IDataCollectorSet,
@@ -1179,7 +1179,7 @@ pub const IDataCollectorSet = extern struct {
         SetXml: fn(
             self: *const IDataCollectorSet,
             xml: BSTR,
-            validation: ?*?*IValueMap,
+            validation: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const IDataCollectorSet,
@@ -1196,7 +1196,7 @@ pub const IDataCollectorSet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_get_DataCollectors(self: *const T, collectors: ?*?*IDataCollectorCollection) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_get_DataCollectors(self: *const T, collectors: ?**IDataCollectorCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DataCollectors(@ptrCast(*const IDataCollectorSet, self), collectors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1232,7 +1232,7 @@ pub const IDataCollectorSet = extern struct {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DisplayNameUnresolved(@ptrCast(*const IDataCollectorSet, self), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_get_Keywords(self: *const T, keywords: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_get_Keywords(self: *const T, keywords: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Keywords(@ptrCast(*const IDataCollectorSet, self), keywords);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1360,7 +1360,7 @@ pub const IDataCollectorSet = extern struct {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_TaskUserTextArguments(@ptrCast(*const IDataCollectorSet, self), UserText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_get_Schedules(self: *const T, ppSchedules: ?*?*IScheduleCollection) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_get_Schedules(self: *const T, ppSchedules: ?**IScheduleCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Schedules(@ptrCast(*const IDataCollectorSet, self), ppSchedules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1396,7 +1396,7 @@ pub const IDataCollectorSet = extern struct {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_StopOnCompletion(@ptrCast(*const IDataCollectorSet, self), Stop);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_get_DataManager(self: *const T, DataManager: ?*?*IDataManager) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_get_DataManager(self: *const T, DataManager: ?**IDataManager) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DataManager(@ptrCast(*const IDataCollectorSet, self), DataManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1404,11 +1404,11 @@ pub const IDataCollectorSet = extern struct {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).SetCredentials(@ptrCast(*const IDataCollectorSet, self), user, password);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_Query(self: *const T, name: BSTR, server: BSTR) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_Query(self: *const T, name: BSTR, server: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Query(@ptrCast(*const IDataCollectorSet, self), name, server);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_Commit(self: *const T, name: BSTR, server: BSTR, mode: CommitMode, validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_Commit(self: *const T, name: BSTR, server: ?BSTR, mode: CommitMode, validation: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Commit(@ptrCast(*const IDataCollectorSet, self), name, server, mode, validation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1424,7 +1424,7 @@ pub const IDataCollectorSet = extern struct {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Stop(@ptrCast(*const IDataCollectorSet, self), Synchronous);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSet_SetXml(self: *const T, xml: BSTR, validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSet_SetXml(self: *const T, xml: BSTR, validation: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).SetXml(@ptrCast(*const IDataCollectorSet, self), xml, validation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1508,7 +1508,7 @@ pub const IDataManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FolderActions: fn(
             self: *const IDataManager,
-            Actions: ?*?*IFolderActionCollection,
+            Actions: ?**IFolderActionCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportSchema: fn(
@@ -1564,7 +1564,7 @@ pub const IDataManager = extern struct {
             self: *const IDataManager,
             Steps: DataManagerSteps,
             bstrFolder: BSTR,
-            Errors: ?*?*IValueMap,
+            Errors: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Extract: fn(
             self: *const IDataManager,
@@ -1624,7 +1624,7 @@ pub const IDataManager = extern struct {
             return @ptrCast(*const IDataManager.VTable, self.vtable).put_ResourcePolicy(@ptrCast(*const IDataManager, self), Policy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataManager_get_FolderActions(self: *const T, Actions: ?*?*IFolderActionCollection) callconv(.Inline) HRESULT {
+        pub fn IDataManager_get_FolderActions(self: *const T, Actions: ?**IFolderActionCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataManager.VTable, self.vtable).get_FolderActions(@ptrCast(*const IDataManager, self), Actions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1668,7 +1668,7 @@ pub const IDataManager = extern struct {
             return @ptrCast(*const IDataManager.VTable, self.vtable).put_Rules(@ptrCast(*const IDataManager, self), bstrXml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataManager_Run(self: *const T, Steps: DataManagerSteps, bstrFolder: BSTR, Errors: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn IDataManager_Run(self: *const T, Steps: DataManagerSteps, bstrFolder: BSTR, Errors: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataManager.VTable, self.vtable).Run(@ptrCast(*const IDataManager, self), Steps, bstrFolder, Errors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1780,12 +1780,12 @@ pub const IFolderActionCollection = extern struct {
         get_Item: fn(
             self: *const IFolderActionCollection,
             Index: VARIANT,
-            Action: ?*?*IFolderAction,
+            Action: ?**IFolderAction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IFolderActionCollection,
-            Enum: ?*?*IUnknown,
+            Enum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IFolderActionCollection,
@@ -1804,7 +1804,7 @@ pub const IFolderActionCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFolderAction: fn(
             self: *const IFolderActionCollection,
-            FolderAction: ?*?*IFolderAction,
+            FolderAction: ?**IFolderAction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1815,11 +1815,11 @@ pub const IFolderActionCollection = extern struct {
             return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get_Count(@ptrCast(*const IFolderActionCollection, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderActionCollection_get_Item(self: *const T, Index: VARIANT, Action: ?*?*IFolderAction) callconv(.Inline) HRESULT {
+        pub fn IFolderActionCollection_get_Item(self: *const T, Index: VARIANT, Action: ?**IFolderAction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get_Item(@ptrCast(*const IFolderActionCollection, self), Index, Action);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderActionCollection_get__NewEnum(self: *const T, Enum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFolderActionCollection_get__NewEnum(self: *const T, Enum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFolderActionCollection, self), Enum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1839,7 +1839,7 @@ pub const IFolderActionCollection = extern struct {
             return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).AddRange(@ptrCast(*const IFolderActionCollection, self), Actions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderActionCollection_CreateFolderAction(self: *const T, FolderAction: ?*?*IFolderAction) callconv(.Inline) HRESULT {
+        pub fn IFolderActionCollection_CreateFolderAction(self: *const T, FolderAction: ?**IFolderAction) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).CreateFolderAction(@ptrCast(*const IFolderActionCollection, self), FolderAction);
         }
     };}
@@ -1855,7 +1855,7 @@ pub const IDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataCollectorSet: fn(
             self: *const IDataCollector,
-            group: ?*?*IDataCollectorSet,
+            group: ?**IDataCollectorSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataCollectorSet: fn(
@@ -1970,7 +1970,7 @@ pub const IDataCollector = extern struct {
         SetXml: fn(
             self: *const IDataCollector,
             Xml: BSTR,
-            Validation: ?*?*IValueMap,
+            Validation: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOutputLocation: fn(
             self: *const IDataCollector,
@@ -1982,7 +1982,7 @@ pub const IDataCollector = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollector_get_DataCollectorSet(self: *const T, group: ?*?*IDataCollectorSet) callconv(.Inline) HRESULT {
+        pub fn IDataCollector_get_DataCollectorSet(self: *const T, group: ?**IDataCollectorSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollector.VTable, self.vtable).get_DataCollectorSet(@ptrCast(*const IDataCollector, self), group);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2074,7 +2074,7 @@ pub const IDataCollector = extern struct {
             return @ptrCast(*const IDataCollector.VTable, self.vtable).get_Xml(@ptrCast(*const IDataCollector, self), Xml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollector_SetXml(self: *const T, Xml: BSTR, Validation: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn IDataCollector_SetXml(self: *const T, Xml: BSTR, Validation: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollector.VTable, self.vtable).SetXml(@ptrCast(*const IDataCollector, self), Xml, Validation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2104,7 +2104,7 @@ pub const IPerformanceCounterDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PerformanceCounters: fn(
             self: *const IPerformanceCounterDataCollector,
-            counters: ?*?*SAFEARRAY,
+            counters: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PerformanceCounters: fn(
@@ -2154,7 +2154,7 @@ pub const IPerformanceCounterDataCollector = extern struct {
             return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_DataSourceName(@ptrCast(*const IPerformanceCounterDataCollector, self), dsn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerformanceCounterDataCollector_get_PerformanceCounters(self: *const T, counters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IPerformanceCounterDataCollector_get_PerformanceCounters(self: *const T, counters: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_PerformanceCounters(@ptrCast(*const IPerformanceCounterDataCollector, self), counters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2393,7 +2393,7 @@ pub const ITraceDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TraceDataProviders: fn(
             self: *const ITraceDataCollector,
-            providers: ?*?*ITraceDataProviderCollection,
+            providers: ?**ITraceDataProviderCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2556,7 +2556,7 @@ pub const ITraceDataCollector = extern struct {
             return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_StreamMode(@ptrCast(*const ITraceDataCollector, self), mode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataCollector_get_TraceDataProviders(self: *const T, providers: ?*?*ITraceDataProviderCollection) callconv(.Inline) HRESULT {
+        pub fn ITraceDataCollector_get_TraceDataProviders(self: *const T, providers: ?**ITraceDataProviderCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_TraceDataProviders(@ptrCast(*const ITraceDataCollector, self), providers);
         }
     };}
@@ -2602,7 +2602,7 @@ pub const IConfigurationDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Files: fn(
             self: *const IConfigurationDataCollector,
-            Files: ?*?*SAFEARRAY,
+            Files: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Files: fn(
@@ -2612,7 +2612,7 @@ pub const IConfigurationDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManagementQueries: fn(
             self: *const IConfigurationDataCollector,
-            Queries: ?*?*SAFEARRAY,
+            Queries: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ManagementQueries: fn(
@@ -2632,7 +2632,7 @@ pub const IConfigurationDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegistryKeys: fn(
             self: *const IConfigurationDataCollector,
-            query: ?*?*SAFEARRAY,
+            query: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegistryKeys: fn(
@@ -2688,7 +2688,7 @@ pub const IConfigurationDataCollector = extern struct {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_FileMaxTotalSize(@ptrCast(*const IConfigurationDataCollector, self), size);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConfigurationDataCollector_get_Files(self: *const T, Files: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IConfigurationDataCollector_get_Files(self: *const T, Files: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_Files(@ptrCast(*const IConfigurationDataCollector, self), Files);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2696,7 +2696,7 @@ pub const IConfigurationDataCollector = extern struct {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_Files(@ptrCast(*const IConfigurationDataCollector, self), Files);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConfigurationDataCollector_get_ManagementQueries(self: *const T, Queries: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IConfigurationDataCollector_get_ManagementQueries(self: *const T, Queries: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_ManagementQueries(@ptrCast(*const IConfigurationDataCollector, self), Queries);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2712,7 +2712,7 @@ pub const IConfigurationDataCollector = extern struct {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_QueryNetworkAdapters(@ptrCast(*const IConfigurationDataCollector, self), network);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConfigurationDataCollector_get_RegistryKeys(self: *const T, query: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IConfigurationDataCollector_get_RegistryKeys(self: *const T, query: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_RegistryKeys(@ptrCast(*const IConfigurationDataCollector, self), query);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2748,7 +2748,7 @@ pub const IAlertDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlertThresholds: fn(
             self: *const IAlertDataCollector,
-            alerts: ?*?*SAFEARRAY,
+            alerts: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlertThresholds: fn(
@@ -2830,7 +2830,7 @@ pub const IAlertDataCollector = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDataCollector.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlertDataCollector_get_AlertThresholds(self: *const T, alerts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IAlertDataCollector_get_AlertThresholds(self: *const T, alerts: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_AlertThresholds(@ptrCast(*const IAlertDataCollector, self), alerts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2946,7 +2946,7 @@ pub const IApiTracingDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeModules: fn(
             self: *const IApiTracingDataCollector,
-            includemodules: ?*?*SAFEARRAY,
+            includemodules: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeModules: fn(
@@ -2956,7 +2956,7 @@ pub const IApiTracingDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeApis: fn(
             self: *const IApiTracingDataCollector,
-            includeapis: ?*?*SAFEARRAY,
+            includeapis: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeApis: fn(
@@ -2966,7 +2966,7 @@ pub const IApiTracingDataCollector = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExcludeApis: fn(
             self: *const IApiTracingDataCollector,
-            excludeapis: ?*?*SAFEARRAY,
+            excludeapis: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExcludeApis: fn(
@@ -3010,7 +3010,7 @@ pub const IApiTracingDataCollector = extern struct {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_LogFilePath(@ptrCast(*const IApiTracingDataCollector, self), logfilepath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApiTracingDataCollector_get_IncludeModules(self: *const T, includemodules: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IApiTracingDataCollector_get_IncludeModules(self: *const T, includemodules: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_IncludeModules(@ptrCast(*const IApiTracingDataCollector, self), includemodules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3018,7 +3018,7 @@ pub const IApiTracingDataCollector = extern struct {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_IncludeModules(@ptrCast(*const IApiTracingDataCollector, self), includemodules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApiTracingDataCollector_get_IncludeApis(self: *const T, includeapis: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IApiTracingDataCollector_get_IncludeApis(self: *const T, includeapis: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_IncludeApis(@ptrCast(*const IApiTracingDataCollector, self), includeapis);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3026,7 +3026,7 @@ pub const IApiTracingDataCollector = extern struct {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_IncludeApis(@ptrCast(*const IApiTracingDataCollector, self), includeapis);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApiTracingDataCollector_get_ExcludeApis(self: *const T, excludeapis: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IApiTracingDataCollector_get_ExcludeApis(self: *const T, excludeapis: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_ExcludeApis(@ptrCast(*const IApiTracingDataCollector, self), excludeapis);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3052,12 +3052,12 @@ pub const IDataCollectorCollection = extern struct {
         get_Item: fn(
             self: *const IDataCollectorCollection,
             index: VARIANT,
-            collector: ?*?*IDataCollector,
+            collector: ?**IDataCollector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IDataCollectorCollection,
-            retVal: ?*?*IUnknown,
+            retVal: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IDataCollectorCollection,
@@ -3077,13 +3077,13 @@ pub const IDataCollectorCollection = extern struct {
         CreateDataCollectorFromXml: fn(
             self: *const IDataCollectorCollection,
             bstrXml: BSTR,
-            pValidation: ?*?*IValueMap,
-            pCollector: ?*?*IDataCollector,
+            pValidation: ?**IValueMap,
+            pCollector: ?**IDataCollector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateDataCollector: fn(
             self: *const IDataCollectorCollection,
             Type: DataCollectorType,
-            Collector: ?*?*IDataCollector,
+            Collector: ?**IDataCollector,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3094,11 +3094,11 @@ pub const IDataCollectorCollection = extern struct {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDataCollectorCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorCollection_get_Item(self: *const T, index: VARIANT, collector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorCollection_get_Item(self: *const T, index: VARIANT, collector: ?**IDataCollector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDataCollectorCollection, self), index, collector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorCollection_get__NewEnum(self: *const T, retVal: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDataCollectorCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3118,11 +3118,11 @@ pub const IDataCollectorCollection = extern struct {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).AddRange(@ptrCast(*const IDataCollectorCollection, self), collectors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorCollection_CreateDataCollectorFromXml(self: *const T, bstrXml: BSTR, pValidation: ?*?*IValueMap, pCollector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorCollection_CreateDataCollectorFromXml(self: *const T, bstrXml: BSTR, pValidation: ?**IValueMap, pCollector: ?**IDataCollector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).CreateDataCollectorFromXml(@ptrCast(*const IDataCollectorCollection, self), bstrXml, pValidation, pCollector);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorCollection_CreateDataCollector(self: *const T, Type: DataCollectorType, Collector: ?*?*IDataCollector) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorCollection_CreateDataCollector(self: *const T, Type: DataCollectorType, Collector: ?**IDataCollector) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).CreateDataCollector(@ptrCast(*const IDataCollectorCollection, self), Type, Collector);
         }
     };}
@@ -3144,12 +3144,12 @@ pub const IDataCollectorSetCollection = extern struct {
         get_Item: fn(
             self: *const IDataCollectorSetCollection,
             index: VARIANT,
-            set: ?*?*IDataCollectorSet,
+            set: ?**IDataCollectorSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IDataCollectorSetCollection,
-            retVal: ?*?*IUnknown,
+            retVal: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IDataCollectorSetCollection,
@@ -3168,8 +3168,8 @@ pub const IDataCollectorSetCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDataCollectorSets: fn(
             self: *const IDataCollectorSetCollection,
-            server: BSTR,
-            filter: BSTR,
+            server: ?BSTR,
+            filter: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3180,11 +3180,11 @@ pub const IDataCollectorSetCollection = extern struct {
             return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDataCollectorSetCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSetCollection_get_Item(self: *const T, index: VARIANT, set: ?*?*IDataCollectorSet) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSetCollection_get_Item(self: *const T, index: VARIANT, set: ?**IDataCollectorSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDataCollectorSetCollection, self), index, set);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSetCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSetCollection_get__NewEnum(self: *const T, retVal: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDataCollectorSetCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3204,7 +3204,7 @@ pub const IDataCollectorSetCollection = extern struct {
             return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).AddRange(@ptrCast(*const IDataCollectorSetCollection, self), sets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataCollectorSetCollection_GetDataCollectorSets(self: *const T, server: BSTR, filter: BSTR) callconv(.Inline) HRESULT {
+        pub fn IDataCollectorSetCollection_GetDataCollectorSets(self: *const T, server: ?BSTR, filter: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).GetDataCollectorSets(@ptrCast(*const IDataCollectorSetCollection, self), server, filter);
         }
     };}
@@ -3240,22 +3240,22 @@ pub const ITraceDataProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Level: fn(
             self: *const ITraceDataProvider,
-            ppLevel: ?*?*IValueMap,
+            ppLevel: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeywordsAny: fn(
             self: *const ITraceDataProvider,
-            ppKeywords: ?*?*IValueMap,
+            ppKeywords: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeywordsAll: fn(
             self: *const ITraceDataProvider,
-            ppKeywords: ?*?*IValueMap,
+            ppKeywords: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: fn(
             self: *const ITraceDataProvider,
-            ppProperties: ?*?*IValueMap,
+            ppProperties: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterEnabled: fn(
@@ -3280,7 +3280,7 @@ pub const ITraceDataProvider = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilterData: fn(
             self: *const ITraceDataProvider,
-            ppData: ?*?*SAFEARRAY,
+            ppData: ?**SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FilterData: fn(
@@ -3290,7 +3290,7 @@ pub const ITraceDataProvider = extern struct {
         Query: fn(
             self: *const ITraceDataProvider,
             bstrName: BSTR,
-            bstrServer: BSTR,
+            bstrServer: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Resolve: fn(
             self: *const ITraceDataProvider,
@@ -3307,7 +3307,7 @@ pub const ITraceDataProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredProcesses: fn(
             self: *const ITraceDataProvider,
-            Processes: ?*?*IValueMap,
+            Processes: ?**IValueMap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3330,19 +3330,19 @@ pub const ITraceDataProvider = extern struct {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_Guid(@ptrCast(*const ITraceDataProvider, self), guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_get_Level(self: *const T, ppLevel: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_get_Level(self: *const T, ppLevel: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_Level(@ptrCast(*const ITraceDataProvider, self), ppLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_get_KeywordsAny(self: *const T, ppKeywords: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_get_KeywordsAny(self: *const T, ppKeywords: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_KeywordsAny(@ptrCast(*const ITraceDataProvider, self), ppKeywords);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_get_KeywordsAll(self: *const T, ppKeywords: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_get_KeywordsAll(self: *const T, ppKeywords: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_KeywordsAll(@ptrCast(*const ITraceDataProvider, self), ppKeywords);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_get_Properties(self: *const T, ppProperties: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_get_Properties(self: *const T, ppProperties: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_Properties(@ptrCast(*const ITraceDataProvider, self), ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3362,7 +3362,7 @@ pub const ITraceDataProvider = extern struct {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_FilterType(@ptrCast(*const ITraceDataProvider, self), ulType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_get_FilterData(self: *const T, ppData: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_get_FilterData(self: *const T, ppData: ?**SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_FilterData(@ptrCast(*const ITraceDataProvider, self), ppData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3370,7 +3370,7 @@ pub const ITraceDataProvider = extern struct {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_FilterData(@ptrCast(*const ITraceDataProvider, self), pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_Query(self: *const T, bstrName: BSTR, bstrServer: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_Query(self: *const T, bstrName: BSTR, bstrServer: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).Query(@ptrCast(*const ITraceDataProvider, self), bstrName, bstrServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3386,7 +3386,7 @@ pub const ITraceDataProvider = extern struct {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).GetSecurity(@ptrCast(*const ITraceDataProvider, self), SecurityInfo, Sddl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProvider_GetRegisteredProcesses(self: *const T, Processes: ?*?*IValueMap) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProvider_GetRegisteredProcesses(self: *const T, Processes: ?**IValueMap) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).GetRegisteredProcesses(@ptrCast(*const ITraceDataProvider, self), Processes);
         }
     };}
@@ -3408,12 +3408,12 @@ pub const ITraceDataProviderCollection = extern struct {
         get_Item: fn(
             self: *const ITraceDataProviderCollection,
             index: VARIANT,
-            ppProvider: ?*?*ITraceDataProvider,
+            ppProvider: ?**ITraceDataProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ITraceDataProviderCollection,
-            retVal: ?*?*IUnknown,
+            retVal: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ITraceDataProviderCollection,
@@ -3432,15 +3432,15 @@ pub const ITraceDataProviderCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTraceDataProvider: fn(
             self: *const ITraceDataProviderCollection,
-            Provider: ?*?*ITraceDataProvider,
+            Provider: ?**ITraceDataProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTraceDataProviders: fn(
             self: *const ITraceDataProviderCollection,
-            server: BSTR,
+            server: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTraceDataProvidersByProcess: fn(
             self: *const ITraceDataProviderCollection,
-            Server: BSTR,
+            Server: ?BSTR,
             Pid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3452,11 +3452,11 @@ pub const ITraceDataProviderCollection = extern struct {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get_Count(@ptrCast(*const ITraceDataProviderCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProviderCollection_get_Item(self: *const T, index: VARIANT, ppProvider: ?*?*ITraceDataProvider) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProviderCollection_get_Item(self: *const T, index: VARIANT, ppProvider: ?**ITraceDataProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get_Item(@ptrCast(*const ITraceDataProviderCollection, self), index, ppProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProviderCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProviderCollection_get__NewEnum(self: *const T, retVal: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ITraceDataProviderCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3476,15 +3476,15 @@ pub const ITraceDataProviderCollection = extern struct {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).AddRange(@ptrCast(*const ITraceDataProviderCollection, self), providers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProviderCollection_CreateTraceDataProvider(self: *const T, Provider: ?*?*ITraceDataProvider) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProviderCollection_CreateTraceDataProvider(self: *const T, Provider: ?**ITraceDataProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).CreateTraceDataProvider(@ptrCast(*const ITraceDataProviderCollection, self), Provider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProviderCollection_GetTraceDataProviders(self: *const T, server: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProviderCollection_GetTraceDataProviders(self: *const T, server: ?BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).GetTraceDataProviders(@ptrCast(*const ITraceDataProviderCollection, self), server);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceDataProviderCollection_GetTraceDataProvidersByProcess(self: *const T, Server: BSTR, Pid: u32) callconv(.Inline) HRESULT {
+        pub fn ITraceDataProviderCollection_GetTraceDataProvidersByProcess(self: *const T, Server: ?BSTR, Pid: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).GetTraceDataProvidersByProcess(@ptrCast(*const ITraceDataProviderCollection, self), Server, Pid);
         }
     };}
@@ -3592,12 +3592,12 @@ pub const IScheduleCollection = extern struct {
         get_Item: fn(
             self: *const IScheduleCollection,
             index: VARIANT,
-            ppSchedule: ?*?*ISchedule,
+            ppSchedule: ?**ISchedule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IScheduleCollection,
-            ienum: ?*?*IUnknown,
+            ienum: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IScheduleCollection,
@@ -3616,7 +3616,7 @@ pub const IScheduleCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSchedule: fn(
             self: *const IScheduleCollection,
-            Schedule: ?*?*ISchedule,
+            Schedule: ?**ISchedule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3627,11 +3627,11 @@ pub const IScheduleCollection = extern struct {
             return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get_Count(@ptrCast(*const IScheduleCollection, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScheduleCollection_get_Item(self: *const T, index: VARIANT, ppSchedule: ?*?*ISchedule) callconv(.Inline) HRESULT {
+        pub fn IScheduleCollection_get_Item(self: *const T, index: VARIANT, ppSchedule: ?**ISchedule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get_Item(@ptrCast(*const IScheduleCollection, self), index, ppSchedule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScheduleCollection_get__NewEnum(self: *const T, ienum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IScheduleCollection_get__NewEnum(self: *const T, ienum: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IScheduleCollection, self), ienum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3651,7 +3651,7 @@ pub const IScheduleCollection = extern struct {
             return @ptrCast(*const IScheduleCollection.VTable, self.vtable).AddRange(@ptrCast(*const IScheduleCollection, self), pSchedules);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScheduleCollection_CreateSchedule(self: *const T, Schedule: ?*?*ISchedule) callconv(.Inline) HRESULT {
+        pub fn IScheduleCollection_CreateSchedule(self: *const T, Schedule: ?**ISchedule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScheduleCollection.VTable, self.vtable).CreateSchedule(@ptrCast(*const IScheduleCollection, self), Schedule);
         }
     };}
@@ -3777,12 +3777,12 @@ pub const IValueMap = extern struct {
         get_Item: fn(
             self: *const IValueMap,
             index: VARIANT,
-            value: ?*?*IValueMapItem,
+            value: ?**IValueMapItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IValueMap,
-            retVal: ?*?*IUnknown,
+            retVal: ?**IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
@@ -3831,7 +3831,7 @@ pub const IValueMap = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateValueMapItem: fn(
             self: *const IValueMap,
-            Item: ?*?*IValueMapItem,
+            Item: ?**IValueMapItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3842,11 +3842,11 @@ pub const IValueMap = extern struct {
             return @ptrCast(*const IValueMap.VTable, self.vtable).get_Count(@ptrCast(*const IValueMap, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_get_Item(self: *const T, index: VARIANT, value: ?*?*IValueMapItem) callconv(.Inline) HRESULT {
+        pub fn IValueMap_get_Item(self: *const T, index: VARIANT, value: ?**IValueMapItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueMap.VTable, self.vtable).get_Item(@ptrCast(*const IValueMap, self), index, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IValueMap_get__NewEnum(self: *const T, retVal: ?**IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueMap.VTable, self.vtable).get__NewEnum(@ptrCast(*const IValueMap, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3890,7 +3890,7 @@ pub const IValueMap = extern struct {
             return @ptrCast(*const IValueMap.VTable, self.vtable).AddRange(@ptrCast(*const IValueMap, self), map);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValueMap_CreateValueMapItem(self: *const T, Item: ?*?*IValueMapItem) callconv(.Inline) HRESULT {
+        pub fn IValueMap_CreateValueMapItem(self: *const T, Item: ?**IValueMapItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IValueMap.VTable, self.vtable).CreateValueMapItem(@ptrCast(*const IValueMap, self), Item);
         }
     };}
