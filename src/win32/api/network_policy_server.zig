@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (66)
 //--------------------------------------------------------------------------------
-const CLSID_SdoMachine_Value = @import("../zig.zig").Guid.initString("E9218AE7-9E91-11D1-BF60-0080C7846BC0");
+const CLSID_SdoMachine_Value = @import("../zig.zig").Guid.initString("e9218ae7-9e91-11d1-bf60-0080c7846bc0");
 pub const CLSID_SdoMachine = &CLSID_SdoMachine_Value;
 
 pub const ATTRIBUTEID = extern enum(u32) {
@@ -1056,7 +1056,7 @@ pub const IASDATASTORE = extern enum(i32) {
 pub const DATA_STORE_LOCAL = IASDATASTORE.DATA_STORE_LOCAL;
 pub const DATA_STORE_DIRECTORY = IASDATASTORE.DATA_STORE_DIRECTORY;
 
-const IID_ISdoMachine_Value = @import("../zig.zig").Guid.initString("479F6E75-49A2-11D2-8ECA-00C04FC2F519");
+const IID_ISdoMachine_Value = @import("../zig.zig").Guid.initString("479f6e75-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoMachine = &IID_ISdoMachine_Value;
 pub const ISdoMachine = extern struct {
     pub const VTable = extern struct {
@@ -1145,7 +1145,7 @@ pub const ISdoMachine = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdoMachine2_Value = @import("../zig.zig").Guid.initString("518E5FFE-D8CE-4F7E-A5DB-B40A35419D3B");
+const IID_ISdoMachine2_Value = @import("../zig.zig").Guid.initString("518e5ffe-d8ce-4f7e-a5db-b40a35419d3b");
 pub const IID_ISdoMachine2 = &IID_ISdoMachine2_Value;
 pub const ISdoMachine2 = extern struct {
     pub const VTable = extern struct {
@@ -1201,7 +1201,7 @@ pub const ISdoMachine2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdoServiceControl_Value = @import("../zig.zig").Guid.initString("479F6E74-49A2-11D2-8ECA-00C04FC2F519");
+const IID_ISdoServiceControl_Value = @import("../zig.zig").Guid.initString("479f6e74-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoServiceControl = &IID_ISdoServiceControl_Value;
 pub const ISdoServiceControl = extern struct {
     pub const VTable = extern struct {
@@ -1243,7 +1243,7 @@ pub const ISdoServiceControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdo_Value = @import("../zig.zig").Guid.initString("56BC53DE-96DB-11D1-BF3F-000000000000");
+const IID_ISdo_Value = @import("../zig.zig").Guid.initString("56bc53de-96db-11d1-bf3f-000000000000");
 pub const IID_ISdo = &IID_ISdo_Value;
 pub const ISdo = extern struct {
     pub const VTable = extern struct {
@@ -1313,7 +1313,7 @@ pub const ISdo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdoCollection_Value = @import("../zig.zig").Guid.initString("56BC53E2-96DB-11D1-BF3F-000000000000");
+const IID_ISdoCollection_Value = @import("../zig.zig").Guid.initString("56bc53e2-96db-11d1-bf3f-000000000000");
 pub const IID_ISdoCollection = &IID_ISdoCollection_Value;
 pub const ISdoCollection = extern struct {
     pub const VTable = extern struct {
@@ -1391,7 +1391,7 @@ pub const ISdoCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITemplateSdo_Value = @import("../zig.zig").Guid.initString("8AA85302-D2E2-4E20-8B1F-A571E437D6C9");
+const IID_ITemplateSdo_Value = @import("../zig.zig").Guid.initString("8aa85302-d2e2-4e20-8b1f-a571e437d6c9");
 pub const IID_ITemplateSdo = &IID_ITemplateSdo_Value;
 pub const ITemplateSdo = extern struct {
     pub const VTable = extern struct {
@@ -1433,7 +1433,7 @@ pub const ITemplateSdo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISdoDictionaryOld_Value = @import("../zig.zig").Guid.initString("D432E5F4-53D8-11D2-9A3A-00C04FB998AC");
+const IID_ISdoDictionaryOld_Value = @import("../zig.zig").Guid.initString("d432e5f4-53d8-11d2-9a3a-00c04fb998ac");
 pub const IID_ISdoDictionaryOld = &IID_ISdoDictionaryOld_Value;
 pub const ISdoDictionaryOld = extern struct {
     pub const VTable = extern struct {

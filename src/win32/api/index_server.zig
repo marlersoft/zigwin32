@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
-const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("CC906FF0-C058-101A-B554-08002B33B0E6");
+const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
 pub const IPhraseSink = extern struct {
     pub const VTable = extern struct {
@@ -172,7 +172,7 @@ pub const STAT_CHUNK = extern struct {
     cwcLenSource: u32,
 };
 
-const IID_IFilter_Value = @import("../zig.zig").Guid.initString("89BCB740-6119-101A-BCB7-00DD010655AF");
+const IID_IFilter_Value = @import("../zig.zig").Guid.initString("89bcb740-6119-101a-bcb7-00dd010655af");
 pub const IID_IFilter = &IID_IFilter_Value;
 pub const IFilter = extern struct {
     pub const VTable = extern struct {

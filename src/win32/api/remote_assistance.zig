@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_RendezvousApplication_Value = @import("../zig.zig").Guid.initString("0B7E019A-B5DE-47FA-8966-9082F82FB192");
+const CLSID_RendezvousApplication_Value = @import("../zig.zig").Guid.initString("0b7e019a-b5de-47fa-8966-9082f82fb192");
 pub const CLSID_RendezvousApplication = &CLSID_RendezvousApplication_Value;
 
 pub const RENDEZVOUS_SESSION_STATE = extern enum(i32) {
@@ -43,7 +43,7 @@ pub const RSF_ORIGINAL_INVITER = RENDEZVOUS_SESSION_FLAGS.RSF_ORIGINAL_INVITER;
 pub const RSF_REMOTE_LEGACYSESSION = RENDEZVOUS_SESSION_FLAGS.RSF_REMOTE_LEGACYSESSION;
 pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.RSF_REMOTE_WIN7SESSION;
 
-const IID_IRendezvousSession_Value = @import("../zig.zig").Guid.initString("9BA4B1DD-8B0C-48B7-9E7C-2F25857C8DF5");
+const IID_IRendezvousSession_Value = @import("../zig.zig").Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
 pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
 pub const IRendezvousSession = extern struct {
     pub const VTable = extern struct {
@@ -54,7 +54,7 @@ pub const IRendezvousSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RemoteUser: fn(
             self: *const IRendezvousSession,
-            bstrUserName: *BSTR,
+            bstrUserName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Flags: fn(
             self: *const IRendezvousSession,
@@ -78,7 +78,7 @@ pub const IRendezvousSession = extern struct {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_State(@ptrCast(*const IRendezvousSession, self), pSessionState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_RemoteUser(@ptrCast(*const IRendezvousSession, self), bstrUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -97,7 +97,7 @@ pub const IRendezvousSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DRendezvousSessionEvents_Value = @import("../zig.zig").Guid.initString("3FA19CF8-64C4-4F53-AE60-635B3806ECA6");
+const IID_DRendezvousSessionEvents_Value = @import("../zig.zig").Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
 pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
 pub const DRendezvousSessionEvents = extern struct {
     pub const VTable = extern struct {
@@ -110,7 +110,7 @@ pub const DRendezvousSessionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRendezvousApplication_Value = @import("../zig.zig").Guid.initString("4F4D070B-A275-49FB-B10D-8EC26387B50D");
+const IID_IRendezvousApplication_Value = @import("../zig.zig").Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
 pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
 pub const IRendezvousApplication = extern struct {
     pub const VTable = extern struct {

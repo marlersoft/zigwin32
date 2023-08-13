@@ -583,18 +583,18 @@ pub const MBN_DEVICE_SERVICES_INTERFACE_STATE = extern enum(i32) {
 pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_ARRIVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_ARRIVAL;
 pub const MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_REMOVAL = MBN_DEVICE_SERVICES_INTERFACE_STATE.MBN_DEVICE_SERVICES_CAPABLE_INTERFACE_REMOVAL;
 
-const IID_IMbnConnection_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200D-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnection_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200d-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnection = &IID_IMbnConnection_Value;
 pub const IMbnConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_ConnectionID: fn(
             self: *const IMbnConnection,
-            ConnectionID: *BSTR,
+            ConnectionID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_InterfaceID: fn(
             self: *const IMbnConnection,
-            InterfaceID: *BSTR,
+            InterfaceID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const IMbnConnection,
@@ -609,7 +609,7 @@ pub const IMbnConnection = extern struct {
         GetConnectionState: fn(
             self: *const IMbnConnection,
             ConnectionState: *MBN_ACTIVATION_STATE,
-            ProfileName: *BSTR,
+            ProfileName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVoiceCallState: fn(
             self: *const IMbnConnection,
@@ -624,11 +624,11 @@ pub const IMbnConnection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_ConnectionID(self: *const T, ConnectionID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_get_ConnectionID(self: *const T, ConnectionID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).get_ConnectionID(@ptrCast(*const IMbnConnection, self), ConnectionID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_get_InterfaceID(self: *const T, InterfaceID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnConnection, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -640,7 +640,7 @@ pub const IMbnConnection = extern struct {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).Disconnect(@ptrCast(*const IMbnConnection, self), requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnection_GetConnectionState(self: *const T, ConnectionState: *MBN_ACTIVATION_STATE, ProfileName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnection_GetConnectionState(self: *const T, ConnectionState: *MBN_ACTIVATION_STATE, ProfileName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnection.VTable, self.vtable).GetConnectionState(@ptrCast(*const IMbnConnection, self), ConnectionState, ProfileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -655,7 +655,7 @@ pub const IMbnConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200E-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200e-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionEvents = &IID_IMbnConnectionEvents_Value;
 pub const IMbnConnectionEvents = extern struct {
     pub const VTable = extern struct {
@@ -704,14 +704,14 @@ pub const IMbnConnectionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnInterface_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2001-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnInterface_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2001-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterface = &IID_IMbnInterface_Value;
 pub const IMbnInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_InterfaceID: fn(
             self: *const IMbnInterface,
-            InterfaceID: *BSTR,
+            InterfaceID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterfaceCapability: fn(
             self: *const IMbnInterface,
@@ -735,7 +735,7 @@ pub const IMbnInterface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredProviders: fn(
             self: *const IMbnInterface,
-            preferredProviders: **SAFEARRAY,
+            preferredProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPreferredProviders: fn(
             self: *const IMbnInterface,
@@ -760,7 +760,7 @@ pub const IMbnInterface = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_get_InterfaceID(self: *const T, InterfaceID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnInterface, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -784,7 +784,7 @@ pub const IMbnInterface = extern struct {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetHomeProvider(@ptrCast(*const IMbnInterface, self), homeProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterface_GetPreferredProviders(self: *const T, preferredProviders: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnInterface_GetPreferredProviders(self: *const T, preferredProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterface.VTable, self.vtable).GetPreferredProviders(@ptrCast(*const IMbnInterface, self), preferredProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -807,7 +807,7 @@ pub const IMbnInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnInterfaceEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2002-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnInterfaceEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2002-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceEvents = &IID_IMbnInterfaceEvents_Value;
 pub const IMbnInterfaceEvents = extern struct {
     pub const VTable = extern struct {
@@ -888,7 +888,7 @@ pub const IMbnInterfaceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnInterfaceManager_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201B-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnInterfaceManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201b-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceManager = &IID_IMbnInterfaceManager_Value;
 pub const IMbnInterfaceManager = extern struct {
     pub const VTable = extern struct {
@@ -896,29 +896,29 @@ pub const IMbnInterfaceManager = extern struct {
         GetInterface: fn(
             self: *const IMbnInterfaceManager,
             interfaceID: [*:0]const u16,
-            mbnInterface: **IMbnInterface,
+            mbnInterface: ?*?*IMbnInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInterfaces: fn(
             self: *const IMbnInterfaceManager,
-            mbnInterfaces: **SAFEARRAY,
+            mbnInterfaces: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterface(self: *const T, interfaceID: [*:0]const u16, mbnInterface: **IMbnInterface) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManager_GetInterface(self: *const T, interfaceID: [*:0]const u16, mbnInterface: ?*?*IMbnInterface) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManager.VTable, self.vtable).GetInterface(@ptrCast(*const IMbnInterfaceManager, self), interfaceID, mbnInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnInterfaceManager_GetInterfaces(self: *const T, mbnInterfaces: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnInterfaceManager_GetInterfaces(self: *const T, mbnInterfaces: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnInterfaceManager.VTable, self.vtable).GetInterfaces(@ptrCast(*const IMbnInterfaceManager, self), mbnInterfaces);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnInterfaceManagerEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201C-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnInterfaceManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201c-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnInterfaceManagerEvents = &IID_IMbnInterfaceManagerEvents_Value;
 pub const IMbnInterfaceManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -947,7 +947,7 @@ pub const IMbnInterfaceManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnRegistration_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2009-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnRegistration_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2009-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRegistration = &IID_IMbnRegistration_Value;
 pub const IMbnRegistration = extern struct {
     pub const VTable = extern struct {
@@ -962,15 +962,15 @@ pub const IMbnRegistration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderID: fn(
             self: *const IMbnRegistration,
-            providerID: *BSTR,
+            providerID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderName: fn(
             self: *const IMbnRegistration,
-            providerName: *BSTR,
+            providerName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRoamingText: fn(
             self: *const IMbnRegistration,
-            roamingText: *BSTR,
+            roamingText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAvailableDataClasses: fn(
             self: *const IMbnRegistration,
@@ -1008,15 +1008,15 @@ pub const IMbnRegistration = extern struct {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRegisterMode(@ptrCast(*const IMbnRegistration, self), registerMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderID(self: *const T, providerID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetProviderID(self: *const T, providerID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetProviderID(@ptrCast(*const IMbnRegistration, self), providerID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetProviderName(self: *const T, providerName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetProviderName(self: *const T, providerName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetProviderName(@ptrCast(*const IMbnRegistration, self), providerName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnRegistration_GetRoamingText(self: *const T, roamingText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnRegistration_GetRoamingText(self: *const T, roamingText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnRegistration.VTable, self.vtable).GetRoamingText(@ptrCast(*const IMbnRegistration, self), roamingText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1043,7 +1043,7 @@ pub const IMbnRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnRegistrationEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200A-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnRegistrationEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200a-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRegistrationEvents = &IID_IMbnRegistrationEvents_Value;
 pub const IMbnRegistrationEvents = extern struct {
     pub const VTable = extern struct {
@@ -1090,7 +1090,7 @@ pub const IMbnRegistrationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionManager_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201D-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201d-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionManager = &IID_IMbnConnectionManager_Value;
 pub const IMbnConnectionManager = extern struct {
     pub const VTable = extern struct {
@@ -1098,29 +1098,29 @@ pub const IMbnConnectionManager = extern struct {
         GetConnection: fn(
             self: *const IMbnConnectionManager,
             connectionID: [*:0]const u16,
-            mbnConnection: **IMbnConnection,
+            mbnConnection: ?*?*IMbnConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnections: fn(
             self: *const IMbnConnectionManager,
-            mbnConnections: **SAFEARRAY,
+            mbnConnections: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnection(self: *const T, connectionID: [*:0]const u16, mbnConnection: **IMbnConnection) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManager_GetConnection(self: *const T, connectionID: [*:0]const u16, mbnConnection: ?*?*IMbnConnection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManager.VTable, self.vtable).GetConnection(@ptrCast(*const IMbnConnectionManager, self), connectionID, mbnConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionManager_GetConnections(self: *const T, mbnConnections: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionManager_GetConnections(self: *const T, mbnConnections: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionManager.VTable, self.vtable).GetConnections(@ptrCast(*const IMbnConnectionManager, self), mbnConnections);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionManagerEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201E-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201e-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionManagerEvents = &IID_IMbnConnectionManagerEvents_Value;
 pub const IMbnConnectionManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -1149,19 +1149,19 @@ pub const IMbnConnectionManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnPinManager_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2005-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnPinManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2005-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinManager = &IID_IMbnPinManager_Value;
 pub const IMbnPinManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPinList: fn(
             self: *const IMbnPinManager,
-            pinList: **SAFEARRAY,
+            pinList: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPin: fn(
             self: *const IMbnPinManager,
             pinType: MBN_PIN_TYPE,
-            pin: **IMbnPin,
+            pin: ?*?*IMbnPin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPinState: fn(
             self: *const IMbnPinManager,
@@ -1172,11 +1172,11 @@ pub const IMbnPinManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPinList(self: *const T, pinList: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManager_GetPinList(self: *const T, pinList: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManager.VTable, self.vtable).GetPinList(@ptrCast(*const IMbnPinManager, self), pinList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPinManager_GetPin(self: *const T, pinType: MBN_PIN_TYPE, pin: **IMbnPin) callconv(.Inline) HRESULT {
+        pub fn IMbnPinManager_GetPin(self: *const T, pinType: MBN_PIN_TYPE, pin: ?*?*IMbnPin) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPinManager.VTable, self.vtable).GetPin(@ptrCast(*const IMbnPinManager, self), pinType, pin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1187,7 +1187,7 @@ pub const IMbnPinManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnPinManagerEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2006-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnPinManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2006-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinManagerEvents = &IID_IMbnPinManagerEvents_Value;
 pub const IMbnPinManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -1219,7 +1219,7 @@ pub const IMbnPinManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnPinEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2008-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnPinEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2008-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPinEvents = &IID_IMbnPinEvents_Value;
 pub const IMbnPinEvents = extern struct {
     pub const VTable = extern struct {
@@ -1287,44 +1287,44 @@ pub const IMbnPinEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSubscriberInformation_Value = @import("../zig.zig").Guid.initString("459ECC43-BCF5-11DC-A8A8-001321F1405F");
+const IID_IMbnSubscriberInformation_Value = @import("../zig.zig").Guid.initString("459ecc43-bcf5-11dc-a8a8-001321f1405f");
 pub const IID_IMbnSubscriberInformation = &IID_IMbnSubscriberInformation_Value;
 pub const IMbnSubscriberInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_SubscriberID: fn(
             self: *const IMbnSubscriberInformation,
-            SubscriberID: *BSTR,
+            SubscriberID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SimIccID: fn(
             self: *const IMbnSubscriberInformation,
-            SimIccID: *BSTR,
+            SimIccID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TelephoneNumbers: fn(
             self: *const IMbnSubscriberInformation,
-            TelephoneNumbers: **SAFEARRAY,
+            TelephoneNumbers: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SubscriberID(self: *const T, SubscriberID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_SubscriberID(self: *const T, SubscriberID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_SubscriberID(@ptrCast(*const IMbnSubscriberInformation, self), SubscriberID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_SimIccID(self: *const T, SimIccID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_SimIccID(self: *const T, SimIccID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_SimIccID(@ptrCast(*const IMbnSubscriberInformation, self), SimIccID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSubscriberInformation_get_TelephoneNumbers(self: *const T, TelephoneNumbers: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSubscriberInformation_get_TelephoneNumbers(self: *const T, TelephoneNumbers: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSubscriberInformation.VTable, self.vtable).get_TelephoneNumbers(@ptrCast(*const IMbnSubscriberInformation, self), TelephoneNumbers);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSignal_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2003-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSignal_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2003-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSignal = &IID_IMbnSignal_Value;
 pub const IMbnSignal = extern struct {
     pub const VTable = extern struct {
@@ -1353,7 +1353,7 @@ pub const IMbnSignal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSignalEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2004-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSignalEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2004-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSignalEvents = &IID_IMbnSignalEvents_Value;
 pub const IMbnSignalEvents = extern struct {
     pub const VTable = extern struct {
@@ -1374,14 +1374,14 @@ pub const IMbnSignalEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionContext_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200B-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionContext_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200b-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionContext = &IID_IMbnConnectionContext_Value;
 pub const IMbnConnectionContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProvisionedContexts: fn(
             self: *const IMbnConnectionContext,
-            provisionedContexts: **SAFEARRAY,
+            provisionedContexts: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetProvisionedContext: fn(
             self: *const IMbnConnectionContext,
@@ -1394,7 +1394,7 @@ pub const IMbnConnectionContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionContext_GetProvisionedContexts(self: *const T, provisionedContexts: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionContext_GetProvisionedContexts(self: *const T, provisionedContexts: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionContext.VTable, self.vtable).GetProvisionedContexts(@ptrCast(*const IMbnConnectionContext, self), provisionedContexts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1405,7 +1405,7 @@ pub const IMbnConnectionContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionContextEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200C-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionContextEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200c-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionContextEvents = &IID_IMbnConnectionContextEvents_Value;
 pub const IMbnConnectionContextEvents = extern struct {
     pub const VTable = extern struct {
@@ -1436,7 +1436,7 @@ pub const IMbnConnectionContextEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionProfileManager_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-200F-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionProfileManager_Value = @import("../zig.zig").Guid.initString("dcbbbab6-200f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileManager = &IID_IMbnConnectionProfileManager_Value;
 pub const IMbnConnectionProfileManager = extern struct {
     pub const VTable = extern struct {
@@ -1444,13 +1444,13 @@ pub const IMbnConnectionProfileManager = extern struct {
         GetConnectionProfiles: fn(
             self: *const IMbnConnectionProfileManager,
             mbnInterface: *IMbnInterface,
-            connectionProfiles: **SAFEARRAY,
+            connectionProfiles: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConnectionProfile: fn(
             self: *const IMbnConnectionProfileManager,
             mbnInterface: *IMbnInterface,
             profileName: [*:0]const u16,
-            connectionProfile: **IMbnConnectionProfile,
+            connectionProfile: ?*?*IMbnConnectionProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateConnectionProfile: fn(
             self: *const IMbnConnectionProfileManager,
@@ -1461,11 +1461,11 @@ pub const IMbnConnectionProfileManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfiles(self: *const T, mbnInterface: *IMbnInterface, connectionProfiles: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManager_GetConnectionProfiles(self: *const T, mbnInterface: *IMbnInterface, connectionProfiles: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManager.VTable, self.vtable).GetConnectionProfiles(@ptrCast(*const IMbnConnectionProfileManager, self), mbnInterface, connectionProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfileManager_GetConnectionProfile(self: *const T, mbnInterface: *IMbnInterface, profileName: [*:0]const u16, connectionProfile: **IMbnConnectionProfile) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfileManager_GetConnectionProfile(self: *const T, mbnInterface: *IMbnInterface, profileName: [*:0]const u16, connectionProfile: ?*?*IMbnConnectionProfile) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfileManager.VTable, self.vtable).GetConnectionProfile(@ptrCast(*const IMbnConnectionProfileManager, self), mbnInterface, profileName, connectionProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1476,14 +1476,14 @@ pub const IMbnConnectionProfileManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionProfile_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2010-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionProfile_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2010-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfile = &IID_IMbnConnectionProfile_Value;
 pub const IMbnConnectionProfile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProfileXmlData: fn(
             self: *const IMbnConnectionProfile,
-            profileData: *BSTR,
+            profileData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UpdateProfile: fn(
             self: *const IMbnConnectionProfile,
@@ -1497,7 +1497,7 @@ pub const IMbnConnectionProfile = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnConnectionProfile_GetProfileXmlData(self: *const T, profileData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnConnectionProfile_GetProfileXmlData(self: *const T, profileData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnConnectionProfile.VTable, self.vtable).GetProfileXmlData(@ptrCast(*const IMbnConnectionProfile, self), profileData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1512,7 +1512,7 @@ pub const IMbnConnectionProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionProfileEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2011-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionProfileEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2011-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileEvents = &IID_IMbnConnectionProfileEvents_Value;
 pub const IMbnConnectionProfileEvents = extern struct {
     pub const VTable = extern struct {
@@ -1533,14 +1533,14 @@ pub const IMbnConnectionProfileEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSmsConfiguration_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2012-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSmsConfiguration_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2012-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsConfiguration = &IID_IMbnSmsConfiguration_Value;
 pub const IMbnSmsConfiguration = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_ServiceCenterAddress: fn(
             self: *const IMbnSmsConfiguration,
-            scAddress: *BSTR,
+            scAddress: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ServiceCenterAddress: fn(
             self: *const IMbnSmsConfiguration,
@@ -1567,7 +1567,7 @@ pub const IMbnSmsConfiguration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsConfiguration_get_ServiceCenterAddress(self: *const T, scAddress: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsConfiguration_get_ServiceCenterAddress(self: *const T, scAddress: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsConfiguration.VTable, self.vtable).get_ServiceCenterAddress(@ptrCast(*const IMbnSmsConfiguration, self), scAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1594,7 +1594,7 @@ pub const IMbnSmsConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSmsReadMsgPdu_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2013-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSmsReadMsgPdu_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2013-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsReadMsgPdu = &IID_IMbnSmsReadMsgPdu_Value;
 pub const IMbnSmsReadMsgPdu = extern struct {
     pub const VTable = extern struct {
@@ -1609,11 +1609,11 @@ pub const IMbnSmsReadMsgPdu = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PduData: fn(
             self: *const IMbnSmsReadMsgPdu,
-            PduData: *BSTR,
+            PduData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Message: fn(
             self: *const IMbnSmsReadMsgPdu,
-            Message: **SAFEARRAY,
+            Message: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1628,18 +1628,18 @@ pub const IMbnSmsReadMsgPdu = extern struct {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_Status(@ptrCast(*const IMbnSmsReadMsgPdu, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_PduData(self: *const T, PduData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_PduData(self: *const T, PduData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_PduData(@ptrCast(*const IMbnSmsReadMsgPdu, self), PduData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgPdu_get_Message(self: *const T, Message: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgPdu_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgPdu.VTable, self.vtable).get_Message(@ptrCast(*const IMbnSmsReadMsgPdu, self), Message);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSmsReadMsgTextCdma_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2014-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSmsReadMsgTextCdma_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2014-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsReadMsgTextCdma = &IID_IMbnSmsReadMsgTextCdma_Value;
 pub const IMbnSmsReadMsgTextCdma = extern struct {
     pub const VTable = extern struct {
@@ -1654,11 +1654,11 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Address: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Address: *BSTR,
+            Address: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Timestamp: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Timestamp: *BSTR,
+            Timestamp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncodingID: fn(
             self: *const IMbnSmsReadMsgTextCdma,
@@ -1674,7 +1674,7 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Message: fn(
             self: *const IMbnSmsReadMsgTextCdma,
-            Message: **SAFEARRAY,
+            Message: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1689,11 +1689,11 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Status(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Address(self: *const T, Address: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Address(self: *const T, Address: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Address(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Address);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Timestamp(self: *const T, Timestamp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Timestamp(self: *const T, Timestamp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Timestamp(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Timestamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1709,21 +1709,21 @@ pub const IMbnSmsReadMsgTextCdma = extern struct {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_SizeInCharacters(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), SizeInCharacters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSmsReadMsgTextCdma_get_Message(self: *const T, Message: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnSmsReadMsgTextCdma_get_Message(self: *const T, Message: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSmsReadMsgTextCdma.VTable, self.vtable).get_Message(@ptrCast(*const IMbnSmsReadMsgTextCdma, self), Message);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSms_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2015-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSms_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2015-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSms = &IID_IMbnSms_Value;
 pub const IMbnSms = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSmsConfiguration: fn(
             self: *const IMbnSms,
-            smsConfiguration: **IMbnSmsConfiguration,
+            smsConfiguration: ?*?*IMbnSmsConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSmsConfiguration: fn(
             self: *const IMbnSms,
@@ -1770,7 +1770,7 @@ pub const IMbnSms = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnSms_GetSmsConfiguration(self: *const T, smsConfiguration: **IMbnSmsConfiguration) callconv(.Inline) HRESULT {
+        pub fn IMbnSms_GetSmsConfiguration(self: *const T, smsConfiguration: ?*?*IMbnSmsConfiguration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnSms.VTable, self.vtable).GetSmsConfiguration(@ptrCast(*const IMbnSms, self), smsConfiguration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1805,7 +1805,7 @@ pub const IMbnSms = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnSmsEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2016-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnSmsEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2016-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnSmsEvents = &IID_IMbnSmsEvents_Value;
 pub const IMbnSmsEvents = extern struct {
     pub const VTable = extern struct {
@@ -1887,7 +1887,7 @@ pub const IMbnSmsEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnServiceActivation_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2017-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnServiceActivation_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2017-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnServiceActivation = &IID_IMbnServiceActivation_Value;
 pub const IMbnServiceActivation = extern struct {
     pub const VTable = extern struct {
@@ -1909,7 +1909,7 @@ pub const IMbnServiceActivation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnServiceActivationEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2018-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnServiceActivationEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2018-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnServiceActivationEvents = &IID_IMbnServiceActivationEvents_Value;
 pub const IMbnServiceActivationEvents = extern struct {
     pub const VTable = extern struct {
@@ -1934,7 +1934,7 @@ pub const IMbnServiceActivationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnVendorSpecificOperation_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2019-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnVendorSpecificOperation_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2019-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnVendorSpecificOperation = &IID_IMbnVendorSpecificOperation_Value;
 pub const IMbnVendorSpecificOperation = extern struct {
     pub const VTable = extern struct {
@@ -1956,7 +1956,7 @@ pub const IMbnVendorSpecificOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnVendorSpecificEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201A-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnVendorSpecificEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201a-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnVendorSpecificEvents = &IID_IMbnVendorSpecificEvents_Value;
 pub const IMbnVendorSpecificEvents = extern struct {
     pub const VTable = extern struct {
@@ -1988,7 +1988,7 @@ pub const IMbnVendorSpecificEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnConnectionProfileManagerEvents_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-201F-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnConnectionProfileManagerEvents_Value = @import("../zig.zig").Guid.initString("dcbbbab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnConnectionProfileManagerEvents = &IID_IMbnConnectionProfileManagerEvents_Value;
 pub const IMbnConnectionProfileManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -2017,7 +2017,7 @@ pub const IMbnConnectionProfileManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnRadio_Value = @import("../zig.zig").Guid.initString("DCCCCAB6-201F-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnRadio_Value = @import("../zig.zig").Guid.initString("dccccab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRadio = &IID_IMbnRadio_Value;
 pub const IMbnRadio = extern struct {
     pub const VTable = extern struct {
@@ -2055,7 +2055,7 @@ pub const IMbnRadio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnRadioEvents_Value = @import("../zig.zig").Guid.initString("DCDDDAB6-201F-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnRadioEvents_Value = @import("../zig.zig").Guid.initString("dcdddab6-201f-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnRadioEvents = &IID_IMbnRadioEvents_Value;
 pub const IMbnRadioEvents = extern struct {
     pub const VTable = extern struct {
@@ -2086,7 +2086,7 @@ pub const IMbnRadioEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnMultiCarrier_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2020-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnMultiCarrier_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2020-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnMultiCarrier = &IID_IMbnMultiCarrier_Value;
 pub const IMbnMultiCarrier = extern struct {
     pub const VTable = extern struct {
@@ -2098,7 +2098,7 @@ pub const IMbnMultiCarrier = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPreferredProviders: fn(
             self: *const IMbnMultiCarrier,
-            preferredMulticarrierProviders: **SAFEARRAY,
+            preferredMulticarrierProviders: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleProviders: fn(
             self: *const IMbnMultiCarrier,
@@ -2107,7 +2107,7 @@ pub const IMbnMultiCarrier = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSupportedCellularClasses: fn(
             self: *const IMbnMultiCarrier,
-            cellularClasses: **SAFEARRAY,
+            cellularClasses: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentCellularClass: fn(
             self: *const IMbnMultiCarrier,
@@ -2126,7 +2126,7 @@ pub const IMbnMultiCarrier = extern struct {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).SetHomeProvider(@ptrCast(*const IMbnMultiCarrier, self), homeProvider, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetPreferredProviders(self: *const T, preferredMulticarrierProviders: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetPreferredProviders(self: *const T, preferredMulticarrierProviders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetPreferredProviders(@ptrCast(*const IMbnMultiCarrier, self), preferredMulticarrierProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2134,7 +2134,7 @@ pub const IMbnMultiCarrier = extern struct {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetVisibleProviders(@ptrCast(*const IMbnMultiCarrier, self), age, visibleProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnMultiCarrier_GetSupportedCellularClasses(self: *const T, cellularClasses: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IMbnMultiCarrier_GetSupportedCellularClasses(self: *const T, cellularClasses: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnMultiCarrier.VTable, self.vtable).GetSupportedCellularClasses(@ptrCast(*const IMbnMultiCarrier, self), cellularClasses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2149,7 +2149,7 @@ pub const IMbnMultiCarrier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnMultiCarrierEvents_Value = @import("../zig.zig").Guid.initString("DCDDDAB6-2021-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnMultiCarrierEvents_Value = @import("../zig.zig").Guid.initString("dcdddab6-2021-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnMultiCarrierEvents = &IID_IMbnMultiCarrierEvents_Value;
 pub const IMbnMultiCarrierEvents = extern struct {
     pub const VTable = extern struct {
@@ -2206,7 +2206,7 @@ pub const IMbnMultiCarrierEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnDeviceServicesManager_Value = @import("../zig.zig").Guid.initString("20A26258-6811-4478-AC1D-13324E45E41C");
+const IID_IMbnDeviceServicesManager_Value = @import("../zig.zig").Guid.initString("20a26258-6811-4478-ac1d-13324e45e41c");
 pub const IID_IMbnDeviceServicesManager = &IID_IMbnDeviceServicesManager_Value;
 pub const IMbnDeviceServicesManager = extern struct {
     pub const VTable = extern struct {
@@ -2214,21 +2214,21 @@ pub const IMbnDeviceServicesManager = extern struct {
         GetDeviceServicesContext: fn(
             self: *const IMbnDeviceServicesManager,
             networkInterfaceID: BSTR,
-            mbnDevicesContext: **IMbnDeviceServicesContext,
+            mbnDevicesContext: ?*?*IMbnDeviceServicesContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesManager_GetDeviceServicesContext(self: *const T, networkInterfaceID: BSTR, mbnDevicesContext: **IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesManager_GetDeviceServicesContext(self: *const T, networkInterfaceID: BSTR, mbnDevicesContext: ?*?*IMbnDeviceServicesContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesManager.VTable, self.vtable).GetDeviceServicesContext(@ptrCast(*const IMbnDeviceServicesManager, self), networkInterfaceID, mbnDevicesContext);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnDeviceServicesContext_Value = @import("../zig.zig").Guid.initString("FC5AC347-1592-4068-80BB-6A57580150D8");
+const IID_IMbnDeviceServicesContext_Value = @import("../zig.zig").Guid.initString("fc5ac347-1592-4068-80bb-6a57580150d8");
 pub const IID_IMbnDeviceServicesContext = &IID_IMbnDeviceServicesContext_Value;
 pub const IMbnDeviceServicesContext = extern struct {
     pub const VTable = extern struct {
@@ -2240,7 +2240,7 @@ pub const IMbnDeviceServicesContext = extern struct {
         GetDeviceService: fn(
             self: *const IMbnDeviceServicesContext,
             deviceServiceID: BSTR,
-            mbnDeviceService: **IMbnDeviceService,
+            mbnDeviceService: ?*?*IMbnDeviceService,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MaxCommandSize: fn(
             self: *const IMbnDeviceServicesContext,
@@ -2259,7 +2259,7 @@ pub const IMbnDeviceServicesContext = extern struct {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).EnumerateDeviceServices(@ptrCast(*const IMbnDeviceServicesContext, self), deviceServices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceServicesContext_GetDeviceService(self: *const T, deviceServiceID: BSTR, mbnDeviceService: **IMbnDeviceService) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceServicesContext_GetDeviceService(self: *const T, deviceServiceID: BSTR, mbnDeviceService: ?*?*IMbnDeviceService) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceServicesContext.VTable, self.vtable).GetDeviceService(@ptrCast(*const IMbnDeviceServicesContext, self), deviceServiceID, mbnDeviceService);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2274,7 +2274,7 @@ pub const IMbnDeviceServicesContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnDeviceServicesEvents_Value = @import("../zig.zig").Guid.initString("0A900C19-6824-4E97-B76E-CF239D0CA642");
+const IID_IMbnDeviceServicesEvents_Value = @import("../zig.zig").Guid.initString("0a900c19-6824-4e97-b76e-cf239d0ca642");
 pub const IID_IMbnDeviceServicesEvents = &IID_IMbnDeviceServicesEvents_Value;
 pub const IMbnDeviceServicesEvents = extern struct {
     pub const VTable = extern struct {
@@ -2400,7 +2400,7 @@ pub const IMbnDeviceServicesEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnDeviceService_Value = @import("../zig.zig").Guid.initString("B3BB9A71-DC70-4BE9-A4DA-7886AE8B191B");
+const IID_IMbnDeviceService_Value = @import("../zig.zig").Guid.initString("b3bb9a71-dc70-4be9-a4da-7886ae8b191b");
 pub const IID_IMbnDeviceService = &IID_IMbnDeviceService_Value;
 pub const IMbnDeviceService = extern struct {
     pub const VTable = extern struct {
@@ -2444,11 +2444,11 @@ pub const IMbnDeviceService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_InterfaceID: fn(
             self: *const IMbnDeviceService,
-            InterfaceID: *BSTR,
+            InterfaceID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceServiceID: fn(
             self: *const IMbnDeviceService,
-            DeviceServiceID: *BSTR,
+            DeviceServiceID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IsCommandSessionOpen: fn(
             self: *const IMbnDeviceService,
@@ -2495,11 +2495,11 @@ pub const IMbnDeviceService = extern struct {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).WriteData(@ptrCast(*const IMbnDeviceService, self), deviceServiceData, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_InterfaceID(self: *const T, InterfaceID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_InterfaceID(self: *const T, InterfaceID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IMbnDeviceService, self), InterfaceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnDeviceService_get_DeviceServiceID(self: *const T, DeviceServiceID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IMbnDeviceService_get_DeviceServiceID(self: *const T, DeviceServiceID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnDeviceService.VTable, self.vtable).get_DeviceServiceID(@ptrCast(*const IMbnDeviceService, self), DeviceServiceID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2514,7 +2514,7 @@ pub const IMbnDeviceService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMbnPin_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-2007-4BBB-AAEE-338E368AF6FA");
+const IID_IMbnPin_Value = @import("../zig.zig").Guid.initString("dcbbbab6-2007-4bbb-aaee-338e368af6fa");
 pub const IID_IMbnPin = &IID_IMbnPin_Value;
 pub const IMbnPin = extern struct {
     pub const VTable = extern struct {
@@ -2568,7 +2568,7 @@ pub const IMbnPin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPinManager: fn(
             self: *const IMbnPin,
-            pinManager: **IMbnPinManager,
+            pinManager: ?*?*IMbnPinManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2615,7 +2615,7 @@ pub const IMbnPin = extern struct {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).Unblock(@ptrCast(*const IMbnPin, self), puk, newPin, requestID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMbnPin_GetPinManager(self: *const T, pinManager: **IMbnPinManager) callconv(.Inline) HRESULT {
+        pub fn IMbnPin_GetPinManager(self: *const T, pinManager: ?*?*IMbnPinManager) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMbnPin.VTable, self.vtable).GetPinManager(@ptrCast(*const IMbnPin, self), pinManager);
         }
     };}

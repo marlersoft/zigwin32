@@ -8,25 +8,25 @@
 //--------------------------------------------------------------------------------
 pub const UI_ANIMATION_KEYFRAME = ?*c_void;
 
-const CLSID_UIAnimationManager_Value = @import("../zig.zig").Guid.initString("4C1FC63A-695C-47E8-A339-1A194BE3D0B8");
+const CLSID_UIAnimationManager_Value = @import("../zig.zig").Guid.initString("4c1fc63a-695c-47e8-a339-1a194be3d0b8");
 pub const CLSID_UIAnimationManager = &CLSID_UIAnimationManager_Value;
 
-const CLSID_UIAnimationManager2_Value = @import("../zig.zig").Guid.initString("D25D8842-8884-4A4A-B321-091314379BDD");
+const CLSID_UIAnimationManager2_Value = @import("../zig.zig").Guid.initString("d25d8842-8884-4a4a-b321-091314379bdd");
 pub const CLSID_UIAnimationManager2 = &CLSID_UIAnimationManager2_Value;
 
-const CLSID_UIAnimationTransitionLibrary_Value = @import("../zig.zig").Guid.initString("1D6322AD-AA85-4EF5-A828-86D71067D145");
+const CLSID_UIAnimationTransitionLibrary_Value = @import("../zig.zig").Guid.initString("1d6322ad-aa85-4ef5-a828-86d71067d145");
 pub const CLSID_UIAnimationTransitionLibrary = &CLSID_UIAnimationTransitionLibrary_Value;
 
-const CLSID_UIAnimationTransitionLibrary2_Value = @import("../zig.zig").Guid.initString("812F944A-C5C8-4CD9-B0A6-B3DA802F228D");
+const CLSID_UIAnimationTransitionLibrary2_Value = @import("../zig.zig").Guid.initString("812f944a-c5c8-4cd9-b0a6-b3da802f228d");
 pub const CLSID_UIAnimationTransitionLibrary2 = &CLSID_UIAnimationTransitionLibrary2_Value;
 
-const CLSID_UIAnimationTransitionFactory_Value = @import("../zig.zig").Guid.initString("8A9B1CDD-FCD7-419C-8B44-42FD17DB1887");
+const CLSID_UIAnimationTransitionFactory_Value = @import("../zig.zig").Guid.initString("8a9b1cdd-fcd7-419c-8b44-42fd17db1887");
 pub const CLSID_UIAnimationTransitionFactory = &CLSID_UIAnimationTransitionFactory_Value;
 
-const CLSID_UIAnimationTransitionFactory2_Value = @import("../zig.zig").Guid.initString("84302F97-7F7B-4040-B190-72AC9D18E420");
+const CLSID_UIAnimationTransitionFactory2_Value = @import("../zig.zig").Guid.initString("84302f97-7f7b-4040-b190-72ac9d18e420");
 pub const CLSID_UIAnimationTransitionFactory2 = &CLSID_UIAnimationTransitionFactory2_Value;
 
-const CLSID_UIAnimationTimer_Value = @import("../zig.zig").Guid.initString("BFCD4A0C-06B6-4384-B768-0DAA792C380E");
+const CLSID_UIAnimationTimer_Value = @import("../zig.zig").Guid.initString("bfcd4a0c-06b6-4384-b768-0daa792c380e");
 pub const CLSID_UIAnimationTimer = &CLSID_UIAnimationTimer_Value;
 
 pub const UI_ANIMATION_UPDATE_RESULT = extern enum(i32) {
@@ -59,7 +59,7 @@ pub const UI_ANIMATION_REPEAT_MODE = extern enum(i32) {
 pub const UI_ANIMATION_REPEAT_MODE_NORMAL = UI_ANIMATION_REPEAT_MODE.NORMAL;
 pub const UI_ANIMATION_REPEAT_MODE_ALTERNATE = UI_ANIMATION_REPEAT_MODE.ALTERNATE;
 
-const IID_IUIAnimationManager_Value = @import("../zig.zig").Guid.initString("9169896C-AC8D-4E7D-94E5-67FA4DC2F2E8");
+const IID_IUIAnimationManager_Value = @import("../zig.zig").Guid.initString("9169896c-ac8d-4e7d-94e5-67fa4dc2f2e8");
 pub const IID_IUIAnimationManager = &IID_IUIAnimationManager_Value;
 pub const IUIAnimationManager = extern struct {
     pub const VTable = extern struct {
@@ -237,7 +237,7 @@ pub const UI_ANIMATION_ROUNDING_NEAREST = UI_ANIMATION_ROUNDING_MODE.UI_ANIMATIO
 pub const UI_ANIMATION_ROUNDING_FLOOR = UI_ANIMATION_ROUNDING_MODE.UI_ANIMATION_ROUNDING_FLOOR;
 pub const UI_ANIMATION_ROUNDING_CEILING = UI_ANIMATION_ROUNDING_MODE.UI_ANIMATION_ROUNDING_CEILING;
 
-const IID_IUIAnimationVariable_Value = @import("../zig.zig").Guid.initString("8CEEB155-2849-4CE5-9448-91FF70E1E4D9");
+const IID_IUIAnimationVariable_Value = @import("../zig.zig").Guid.initString("8ceeb155-2849-4ce5-9448-91ff70e1e4d9");
 pub const IID_IUIAnimationVariable = &IID_IUIAnimationVariable_Value;
 pub const IUIAnimationVariable = extern struct {
     pub const VTable = extern struct {
@@ -396,7 +396,7 @@ pub const UI_ANIMATION_SCHEDULING_ALREADY_SCHEDULED = UI_ANIMATION_SCHEDULING_RE
 pub const UI_ANIMATION_SCHEDULING_SUCCEEDED = UI_ANIMATION_SCHEDULING_RESULT.UI_ANIMATION_SCHEDULING_SUCCEEDED;
 pub const UI_ANIMATION_SCHEDULING_DEFERRED = UI_ANIMATION_SCHEDULING_RESULT.UI_ANIMATION_SCHEDULING_DEFERRED;
 
-const IID_IUIAnimationStoryboard_Value = @import("../zig.zig").Guid.initString("A8FF128F-9BF9-4AF1-9E67-E5E410DEFB84");
+const IID_IUIAnimationStoryboard_Value = @import("../zig.zig").Guid.initString("a8ff128f-9bf9-4af1-9e67-e5e410defb84");
 pub const IID_IUIAnimationStoryboard = &IID_IUIAnimationStoryboard_Value;
 pub const IUIAnimationStoryboard = extern struct {
     pub const VTable = extern struct {
@@ -557,7 +557,7 @@ pub const IUIAnimationStoryboard = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTransition_Value = @import("../zig.zig").Guid.initString("DC6CE252-F731-41CF-B610-614B6CA049AD");
+const IID_IUIAnimationTransition_Value = @import("../zig.zig").Guid.initString("dc6ce252-f731-41cf-b610-614b6ca049ad");
 pub const IID_IUIAnimationTransition = &IID_IUIAnimationTransition_Value;
 pub const IUIAnimationTransition = extern struct {
     pub const VTable = extern struct {
@@ -601,7 +601,7 @@ pub const IUIAnimationTransition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationManagerEventHandler_Value = @import("../zig.zig").Guid.initString("783321ED-78A3-4366-B574-6AF607A64788");
+const IID_IUIAnimationManagerEventHandler_Value = @import("../zig.zig").Guid.initString("783321ed-78a3-4366-b574-6af607a64788");
 pub const IID_IUIAnimationManagerEventHandler = &IID_IUIAnimationManagerEventHandler_Value;
 pub const IUIAnimationManagerEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -623,7 +623,7 @@ pub const IUIAnimationManagerEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariableChangeHandler_Value = @import("../zig.zig").Guid.initString("6358B7BA-87D2-42D5-BF71-82E919DD5862");
+const IID_IUIAnimationVariableChangeHandler_Value = @import("../zig.zig").Guid.initString("6358b7ba-87d2-42d5-bf71-82e919dd5862");
 pub const IID_IUIAnimationVariableChangeHandler = &IID_IUIAnimationVariableChangeHandler_Value;
 pub const IUIAnimationVariableChangeHandler = extern struct {
     pub const VTable = extern struct {
@@ -647,7 +647,7 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariableIntegerChangeHandler_Value = @import("../zig.zig").Guid.initString("BB3E1550-356E-44B0-99DA-85AC6017865E");
+const IID_IUIAnimationVariableIntegerChangeHandler_Value = @import("../zig.zig").Guid.initString("bb3e1550-356e-44b0-99da-85ac6017865e");
 pub const IID_IUIAnimationVariableIntegerChangeHandler = &IID_IUIAnimationVariableIntegerChangeHandler_Value;
 pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
     pub const VTable = extern struct {
@@ -671,7 +671,7 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationStoryboardEventHandler_Value = @import("../zig.zig").Guid.initString("3D5C9008-EC7C-4364-9F8A-9AF3C58CBAE6");
+const IID_IUIAnimationStoryboardEventHandler_Value = @import("../zig.zig").Guid.initString("3d5c9008-ec7c-4364-9f8a-9af3c58cbae6");
 pub const IID_IUIAnimationStoryboardEventHandler = &IID_IUIAnimationStoryboardEventHandler_Value;
 pub const IUIAnimationStoryboardEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -709,7 +709,7 @@ pub const UI_ANIMATION_PRIORITY_EFFECT = extern enum(i32) {
 pub const UI_ANIMATION_PRIORITY_EFFECT_FAILURE = UI_ANIMATION_PRIORITY_EFFECT.FAILURE;
 pub const UI_ANIMATION_PRIORITY_EFFECT_DELAY = UI_ANIMATION_PRIORITY_EFFECT.DELAY;
 
-const IID_IUIAnimationPriorityComparison_Value = @import("../zig.zig").Guid.initString("83FA9B74-5F86-4618-BC6A-A2FAC19B3F44");
+const IID_IUIAnimationPriorityComparison_Value = @import("../zig.zig").Guid.initString("83fa9b74-5f86-4618-bc6a-a2fac19b3f44");
 pub const IID_IUIAnimationPriorityComparison = &IID_IUIAnimationPriorityComparison_Value;
 pub const IUIAnimationPriorityComparison = extern struct {
     pub const VTable = extern struct {
@@ -739,7 +739,7 @@ pub const UI_ANIMATION_SLOPE = extern enum(i32) {
 pub const UI_ANIMATION_SLOPE_INCREASING = UI_ANIMATION_SLOPE.INCREASING;
 pub const UI_ANIMATION_SLOPE_DECREASING = UI_ANIMATION_SLOPE.DECREASING;
 
-const IID_IUIAnimationTransitionLibrary_Value = @import("../zig.zig").Guid.initString("CA5A14B1-D24F-48B8-8FE4-C78169BA954E");
+const IID_IUIAnimationTransitionLibrary_Value = @import("../zig.zig").Guid.initString("ca5a14b1-d24f-48b8-8fe4-c78169ba954e");
 pub const IID_IUIAnimationTransitionLibrary = &IID_IUIAnimationTransitionLibrary_Value;
 pub const IUIAnimationTransitionLibrary = extern struct {
     pub const VTable = extern struct {
@@ -890,7 +890,7 @@ pub const UI_ANIMATION_DEPENDENCY_FINAL_VALUE = UI_ANIMATION_DEPENDENCIES.UI_ANI
 pub const UI_ANIMATION_DEPENDENCY_FINAL_VELOCITY = UI_ANIMATION_DEPENDENCIES.UI_ANIMATION_DEPENDENCY_FINAL_VELOCITY;
 pub const UI_ANIMATION_DEPENDENCY_DURATION = UI_ANIMATION_DEPENDENCIES.UI_ANIMATION_DEPENDENCY_DURATION;
 
-const IID_IUIAnimationInterpolator_Value = @import("../zig.zig").Guid.initString("7815CBBA-DDF7-478C-A46C-7B6C738B7978");
+const IID_IUIAnimationInterpolator_Value = @import("../zig.zig").Guid.initString("7815cbba-ddf7-478c-a46c-7b6c738b7978");
 pub const IID_IUIAnimationInterpolator = &IID_IUIAnimationInterpolator_Value;
 pub const IUIAnimationInterpolator = extern struct {
     pub const VTable = extern struct {
@@ -964,7 +964,7 @@ pub const IUIAnimationInterpolator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTransitionFactory_Value = @import("../zig.zig").Guid.initString("FCD91E03-3E3B-45AD-BBB1-6DFC8153743D");
+const IID_IUIAnimationTransitionFactory_Value = @import("../zig.zig").Guid.initString("fcd91e03-3e3b-45ad-bbb1-6dfc8153743d");
 pub const IID_IUIAnimationTransitionFactory = &IID_IUIAnimationTransitionFactory_Value;
 pub const IUIAnimationTransitionFactory = extern struct {
     pub const VTable = extern struct {
@@ -993,7 +993,7 @@ pub const UI_ANIMATION_IDLE_BEHAVIOR = extern enum(i32) {
 pub const UI_ANIMATION_IDLE_BEHAVIOR_CONTINUE = UI_ANIMATION_IDLE_BEHAVIOR.CONTINUE;
 pub const UI_ANIMATION_IDLE_BEHAVIOR_DISABLE = UI_ANIMATION_IDLE_BEHAVIOR.DISABLE;
 
-const IID_IUIAnimationTimer_Value = @import("../zig.zig").Guid.initString("6B0EFAD1-A053-41D6-9085-33A689144665");
+const IID_IUIAnimationTimer_Value = @import("../zig.zig").Guid.initString("6b0efad1-a053-41d6-9085-33a689144665");
 pub const IID_IUIAnimationTimer = &IID_IUIAnimationTimer_Value;
 pub const IUIAnimationTimer = extern struct {
     pub const VTable = extern struct {
@@ -1060,7 +1060,7 @@ pub const IUIAnimationTimer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTimerUpdateHandler_Value = @import("../zig.zig").Guid.initString("195509B7-5D5E-4E3E-B278-EE3759B367AD");
+const IID_IUIAnimationTimerUpdateHandler_Value = @import("../zig.zig").Guid.initString("195509b7-5d5e-4e3e-b278-ee3759b367ad");
 pub const IID_IUIAnimationTimerUpdateHandler = &IID_IUIAnimationTimerUpdateHandler_Value;
 pub const IUIAnimationTimerUpdateHandler = extern struct {
     pub const VTable = extern struct {
@@ -1104,7 +1104,7 @@ pub const UI_ANIMATION_TIMER_CLIENT_STATUS = extern enum(i32) {
 pub const UI_ANIMATION_TIMER_CLIENT_IDLE = UI_ANIMATION_TIMER_CLIENT_STATUS.UI_ANIMATION_TIMER_CLIENT_IDLE;
 pub const UI_ANIMATION_TIMER_CLIENT_BUSY = UI_ANIMATION_TIMER_CLIENT_STATUS.UI_ANIMATION_TIMER_CLIENT_BUSY;
 
-const IID_IUIAnimationTimerClientEventHandler_Value = @import("../zig.zig").Guid.initString("BEDB4DB6-94FA-4BFB-A47F-EF2D9E408C25");
+const IID_IUIAnimationTimerClientEventHandler_Value = @import("../zig.zig").Guid.initString("bedb4db6-94fa-4bfb-a47f-ef2d9e408c25");
 pub const IID_IUIAnimationTimerClientEventHandler = &IID_IUIAnimationTimerClientEventHandler_Value;
 pub const IUIAnimationTimerClientEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -1126,7 +1126,7 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTimerEventHandler_Value = @import("../zig.zig").Guid.initString("274A7DEA-D771-4095-ABBD-8DF7ABD23CE3");
+const IID_IUIAnimationTimerEventHandler_Value = @import("../zig.zig").Guid.initString("274a7dea-d771-4095-abbd-8df7abd23ce3");
 pub const IID_IUIAnimationTimerEventHandler = &IID_IUIAnimationTimerEventHandler_Value;
 pub const IUIAnimationTimerEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -1161,7 +1161,7 @@ pub const IUIAnimationTimerEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationManager2_Value = @import("../zig.zig").Guid.initString("D8B6F7D4-4109-4D3F-ACEE-879926968CB1");
+const IID_IUIAnimationManager2_Value = @import("../zig.zig").Guid.initString("d8b6f7d4-4109-4d3f-acee-879926968cb1");
 pub const IID_IUIAnimationManager2 = &IID_IUIAnimationManager2_Value;
 pub const IUIAnimationManager2 = extern struct {
     pub const VTable = extern struct {
@@ -1349,7 +1349,7 @@ pub const IUIAnimationManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariable2_Value = @import("../zig.zig").Guid.initString("4914B304-96AB-44D9-9E77-D5109B7E7466");
+const IID_IUIAnimationVariable2_Value = @import("../zig.zig").Guid.initString("4914b304-96ab-44d9-9e77-d5109b7e7466");
 pub const IID_IUIAnimationVariable2 = &IID_IUIAnimationVariable2_Value;
 pub const IUIAnimationVariable2 = extern struct {
     pub const VTable = extern struct {
@@ -1583,7 +1583,7 @@ pub const IUIAnimationVariable2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTransition2_Value = @import("../zig.zig").Guid.initString("62FF9123-A85A-4E9B-A218-435A93E268FD");
+const IID_IUIAnimationTransition2_Value = @import("../zig.zig").Guid.initString("62ff9123-a85a-4e9b-a218-435a93e268fd");
 pub const IID_IUIAnimationTransition2 = &IID_IUIAnimationTransition2_Value;
 pub const IUIAnimationTransition2 = extern struct {
     pub const VTable = extern struct {
@@ -1653,7 +1653,7 @@ pub const IUIAnimationTransition2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationManagerEventHandler2_Value = @import("../zig.zig").Guid.initString("F6E022BA-BFF3-42EC-9033-E073F33E83C3");
+const IID_IUIAnimationManagerEventHandler2_Value = @import("../zig.zig").Guid.initString("f6e022ba-bff3-42ec-9033-e073f33e83c3");
 pub const IID_IUIAnimationManagerEventHandler2 = &IID_IUIAnimationManagerEventHandler2_Value;
 pub const IUIAnimationManagerEventHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1675,7 +1675,7 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariableChangeHandler2_Value = @import("../zig.zig").Guid.initString("63ACC8D2-6EAE-4BB0-B879-586DD8CFBE42");
+const IID_IUIAnimationVariableChangeHandler2_Value = @import("../zig.zig").Guid.initString("63acc8d2-6eae-4bb0-b879-586dd8cfbe42");
 pub const IID_IUIAnimationVariableChangeHandler2 = &IID_IUIAnimationVariableChangeHandler2_Value;
 pub const IUIAnimationVariableChangeHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1700,7 +1700,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariableIntegerChangeHandler2_Value = @import("../zig.zig").Guid.initString("829B6CF1-4F3A-4412-AE09-B243EB4C6B58");
+const IID_IUIAnimationVariableIntegerChangeHandler2_Value = @import("../zig.zig").Guid.initString("829b6cf1-4f3a-4412-ae09-b243eb4c6b58");
 pub const IID_IUIAnimationVariableIntegerChangeHandler2 = &IID_IUIAnimationVariableIntegerChangeHandler2_Value;
 pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1725,7 +1725,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationVariableCurveChangeHandler2_Value = @import("../zig.zig").Guid.initString("72895E91-0145-4C21-9192-5AAB40EDDF80");
+const IID_IUIAnimationVariableCurveChangeHandler2_Value = @import("../zig.zig").Guid.initString("72895e91-0145-4c21-9192-5aab40eddf80");
 pub const IID_IUIAnimationVariableCurveChangeHandler2 = &IID_IUIAnimationVariableCurveChangeHandler2_Value;
 pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1746,7 +1746,7 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationStoryboardEventHandler2_Value = @import("../zig.zig").Guid.initString("BAC5F55A-BA7C-414C-B599-FBF850F553C6");
+const IID_IUIAnimationStoryboardEventHandler2_Value = @import("../zig.zig").Guid.initString("bac5f55a-ba7c-414c-b599-fbf850f553c6");
 pub const IID_IUIAnimationStoryboardEventHandler2 = &IID_IUIAnimationStoryboardEventHandler2_Value;
 pub const IUIAnimationStoryboardEventHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1777,7 +1777,7 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationLoopIterationChangeHandler2_Value = @import("../zig.zig").Guid.initString("2D3B15A4-4762-47AB-A030-B23221DF3AE0");
+const IID_IUIAnimationLoopIterationChangeHandler2_Value = @import("../zig.zig").Guid.initString("2d3b15a4-4762-47ab-a030-b23221df3ae0");
 pub const IID_IUIAnimationLoopIterationChangeHandler2 = &IID_IUIAnimationLoopIterationChangeHandler2_Value;
 pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
     pub const VTable = extern struct {
@@ -1801,7 +1801,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationPriorityComparison2_Value = @import("../zig.zig").Guid.initString("5B6D7A37-4621-467C-8B05-70131DE62DDB");
+const IID_IUIAnimationPriorityComparison2_Value = @import("../zig.zig").Guid.initString("5b6d7a37-4621-467c-8b05-70131de62ddb");
 pub const IID_IUIAnimationPriorityComparison2 = &IID_IUIAnimationPriorityComparison2_Value;
 pub const IUIAnimationPriorityComparison2 = extern struct {
     pub const VTable = extern struct {
@@ -1824,7 +1824,7 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTransitionLibrary2_Value = @import("../zig.zig").Guid.initString("03CFAE53-9580-4EE3-B363-2ECE51B4AF6A");
+const IID_IUIAnimationTransitionLibrary2_Value = @import("../zig.zig").Guid.initString("03cfae53-9580-4ee3-b363-2ece51b4af6a");
 pub const IID_IUIAnimationTransitionLibrary2 = &IID_IUIAnimationTransitionLibrary2_Value;
 pub const IUIAnimationTransitionLibrary2 = extern struct {
     pub const VTable = extern struct {
@@ -2047,7 +2047,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationPrimitiveInterpolation_Value = @import("../zig.zig").Guid.initString("BAB20D63-4361-45DA-A24F-AB8508846B5B");
+const IID_IUIAnimationPrimitiveInterpolation_Value = @import("../zig.zig").Guid.initString("bab20d63-4361-45da-a24f-ab8508846b5b");
 pub const IID_IUIAnimationPrimitiveInterpolation = &IID_IUIAnimationPrimitiveInterpolation_Value;
 pub const IUIAnimationPrimitiveInterpolation = extern struct {
     pub const VTable = extern struct {
@@ -2086,7 +2086,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationInterpolator2_Value = @import("../zig.zig").Guid.initString("EA76AFF8-EA22-4A23-A0EF-A6A966703518");
+const IID_IUIAnimationInterpolator2_Value = @import("../zig.zig").Guid.initString("ea76aff8-ea22-4a23-a0ef-a6a966703518");
 pub const IID_IUIAnimationInterpolator2 = &IID_IUIAnimationInterpolator2_Value;
 pub const IUIAnimationInterpolator2 = extern struct {
     pub const VTable = extern struct {
@@ -2181,7 +2181,7 @@ pub const IUIAnimationInterpolator2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationTransitionFactory2_Value = @import("../zig.zig").Guid.initString("937D4916-C1A6-42D5-88D8-30344D6EFE31");
+const IID_IUIAnimationTransitionFactory2_Value = @import("../zig.zig").Guid.initString("937d4916-c1a6-42d5-88d8-30344d6efe31");
 pub const IID_IUIAnimationTransitionFactory2 = &IID_IUIAnimationTransitionFactory2_Value;
 pub const IUIAnimationTransitionFactory2 = extern struct {
     pub const VTable = extern struct {
@@ -2203,7 +2203,7 @@ pub const IUIAnimationTransitionFactory2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIAnimationStoryboard2_Value = @import("../zig.zig").Guid.initString("AE289CD2-12D4-4945-9419-9E41BE034DF2");
+const IID_IUIAnimationStoryboard2_Value = @import("../zig.zig").Guid.initString("ae289cd2-12d4-4945-9419-9e41be034df2");
 pub const IID_IUIAnimationStoryboard2 = &IID_IUIAnimationStoryboard2_Value;
 pub const IUIAnimationStoryboard2 = extern struct {
     pub const VTable = extern struct {

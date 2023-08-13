@@ -111,25 +111,25 @@ pub const __MACINFO = extern struct {
     abMacState: [36]u8,
 };
 
-const CLSID_MediaDevMgrClassFactory_Value = @import("../zig.zig").Guid.initString("50040C1D-BDBF-4924-B873-F14D6C5BFD66");
+const CLSID_MediaDevMgrClassFactory_Value = @import("../zig.zig").Guid.initString("50040c1d-bdbf-4924-b873-f14d6c5bfd66");
 pub const CLSID_MediaDevMgrClassFactory = &CLSID_MediaDevMgrClassFactory_Value;
 
-const CLSID_MediaDevMgr_Value = @import("../zig.zig").Guid.initString("25BAAD81-3560-11D3-8471-00C04F79DBC0");
+const CLSID_MediaDevMgr_Value = @import("../zig.zig").Guid.initString("25baad81-3560-11d3-8471-00c04f79dbc0");
 pub const CLSID_MediaDevMgr = &CLSID_MediaDevMgr_Value;
 
-const CLSID_WMDMDevice_Value = @import("../zig.zig").Guid.initString("807B3CDF-357A-11D3-8471-00C04F79DBC0");
+const CLSID_WMDMDevice_Value = @import("../zig.zig").Guid.initString("807b3cdf-357a-11d3-8471-00c04f79dbc0");
 pub const CLSID_WMDMDevice = &CLSID_WMDMDevice_Value;
 
-const CLSID_WMDMStorage_Value = @import("../zig.zig").Guid.initString("807B3CE0-357A-11D3-8471-00C04F79DBC0");
+const CLSID_WMDMStorage_Value = @import("../zig.zig").Guid.initString("807b3ce0-357a-11d3-8471-00c04f79dbc0");
 pub const CLSID_WMDMStorage = &CLSID_WMDMStorage_Value;
 
-const CLSID_WMDMStorageGlobal_Value = @import("../zig.zig").Guid.initString("807B3CE1-357A-11D3-8471-00C04F79DBC0");
+const CLSID_WMDMStorageGlobal_Value = @import("../zig.zig").Guid.initString("807b3ce1-357a-11d3-8471-00c04f79dbc0");
 pub const CLSID_WMDMStorageGlobal = &CLSID_WMDMStorageGlobal_Value;
 
-const CLSID_WMDMDeviceEnum_Value = @import("../zig.zig").Guid.initString("430E35AF-3971-11D3-8474-00C04F79DBC0");
+const CLSID_WMDMDeviceEnum_Value = @import("../zig.zig").Guid.initString("430e35af-3971-11d3-8474-00c04f79dbc0");
 pub const CLSID_WMDMDeviceEnum = &CLSID_WMDMDeviceEnum_Value;
 
-const CLSID_WMDMStorageEnum_Value = @import("../zig.zig").Guid.initString("EB401A3B-3AF7-11D3-8474-00C04F79DBC0");
+const CLSID_WMDMStorageEnum_Value = @import("../zig.zig").Guid.initString("eb401a3b-3af7-11d3-8474-00c04f79dbc0");
 pub const CLSID_WMDMStorageEnum = &CLSID_WMDMStorageEnum_Value;
 
 pub const WMDM_TAG_DATATYPE = extern enum(i32) {
@@ -499,7 +499,7 @@ pub const WMDM_MSG_DEVICE_REMOVAL = WMDMMessage.WMDM_MSG_DEVICE_REMOVAL;
 pub const WMDM_MSG_MEDIA_ARRIVAL = WMDMMessage.WMDM_MSG_MEDIA_ARRIVAL;
 pub const WMDM_MSG_MEDIA_REMOVAL = WMDMMessage.WMDM_MSG_MEDIA_REMOVAL;
 
-const IID_IWMDMMetaData_Value = @import("../zig.zig").Guid.initString("EC3B0663-0951-460A-9A80-0DCEED3C043C");
+const IID_IWMDMMetaData_Value = @import("../zig.zig").Guid.initString("ec3b0663-0951-460a-9a80-0dceed3c043c");
 pub const IID_IWMDMMetaData = &IID_IWMDMMetaData_Value;
 pub const IWMDMMetaData = extern struct {
     pub const VTable = extern struct {
@@ -554,7 +554,7 @@ pub const IWMDMMetaData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDeviceManager_Value = @import("../zig.zig").Guid.initString("1DCB3A00-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDeviceManager_Value = @import("../zig.zig").Guid.initString("1dcb3a00-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDeviceManager = &IID_IWMDeviceManager_Value;
 pub const IWMDeviceManager = extern struct {
     pub const VTable = extern struct {
@@ -569,7 +569,7 @@ pub const IWMDeviceManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDevices: fn(
             self: *const IWMDeviceManager,
-            ppEnumDevice: **IWMDMEnumDevice,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -584,14 +584,14 @@ pub const IWMDeviceManager = extern struct {
             return @ptrCast(*const IWMDeviceManager.VTable, self.vtable).GetDeviceCount(@ptrCast(*const IWMDeviceManager, self), pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceManager_EnumDevices(self: *const T, ppEnumDevice: **IWMDMEnumDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceManager_EnumDevices(self: *const T, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceManager.VTable, self.vtable).EnumDevices(@ptrCast(*const IWMDeviceManager, self), ppEnumDevice);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDeviceManager2_Value = @import("../zig.zig").Guid.initString("923E5249-8731-4C5B-9B1C-B8B60B6E46AF");
+const IID_IWMDeviceManager2_Value = @import("../zig.zig").Guid.initString("923e5249-8731-4c5b-9b1c-b8b60b6e46af");
 pub const IID_IWMDeviceManager2 = &IID_IWMDeviceManager2_Value;
 pub const IWMDeviceManager2 = extern struct {
     pub const VTable = extern struct {
@@ -599,11 +599,11 @@ pub const IWMDeviceManager2 = extern struct {
         GetDeviceFromCanonicalName: fn(
             self: *const IWMDeviceManager2,
             pwszCanonicalName: [*:0]const u16,
-            ppDevice: **IWMDMDevice,
+            ppDevice: ?*?*IWMDMDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDevices2: fn(
             self: *const IWMDeviceManager2,
-            ppEnumDevice: **IWMDMEnumDevice,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reinitialize: fn(
             self: *const IWMDeviceManager2,
@@ -613,11 +613,11 @@ pub const IWMDeviceManager2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDeviceManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceManager2_GetDeviceFromCanonicalName(self: *const T, pwszCanonicalName: [*:0]const u16, ppDevice: **IWMDMDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceManager2_GetDeviceFromCanonicalName(self: *const T, pwszCanonicalName: [*:0]const u16, ppDevice: ?*?*IWMDMDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceManager2.VTable, self.vtable).GetDeviceFromCanonicalName(@ptrCast(*const IWMDeviceManager2, self), pwszCanonicalName, ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDeviceManager2_EnumDevices2(self: *const T, ppEnumDevice: **IWMDMEnumDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDeviceManager2_EnumDevices2(self: *const T, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDeviceManager2.VTable, self.vtable).EnumDevices2(@ptrCast(*const IWMDeviceManager2, self), ppEnumDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -628,7 +628,7 @@ pub const IWMDeviceManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDeviceManager3_Value = @import("../zig.zig").Guid.initString("AF185C41-100D-46ED-BE2E-9CE8C44594EF");
+const IID_IWMDeviceManager3_Value = @import("../zig.zig").Guid.initString("af185c41-100d-46ed-be2e-9ce8c44594ef");
 pub const IID_IWMDeviceManager3 = &IID_IWMDeviceManager3_Value;
 pub const IWMDeviceManager3 = extern struct {
     pub const VTable = extern struct {
@@ -649,7 +649,7 @@ pub const IWMDeviceManager3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorageGlobals_Value = @import("../zig.zig").Guid.initString("1DCB3A07-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMStorageGlobals_Value = @import("../zig.zig").Guid.initString("1dcb3a07-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMStorageGlobals = &IID_IWMDMStorageGlobals_Value;
 pub const IWMDMStorageGlobals = extern struct {
     pub const VTable = extern struct {
@@ -723,7 +723,7 @@ pub const IWMDMStorageGlobals = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorage_Value = @import("../zig.zig").Guid.initString("1DCB3A06-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMStorage_Value = @import("../zig.zig").Guid.initString("1dcb3a06-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMStorage = &IID_IWMDMStorage_Value;
 pub const IWMDMStorage = extern struct {
     pub const VTable = extern struct {
@@ -735,7 +735,7 @@ pub const IWMDMStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageGlobals: fn(
             self: *const IWMDMStorage,
-            ppStorageGlobals: **IWMDMStorageGlobals,
+            ppStorageGlobals: ?*?*IWMDMStorageGlobals,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributes: fn(
             self: *const IWMDMStorage,
@@ -764,7 +764,7 @@ pub const IWMDMStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumStorage: fn(
             self: *const IWMDMStorage,
-            pEnumStorage: **IWMDMEnumStorage,
+            pEnumStorage: ?*?*IWMDMEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendOpaqueCommand: fn(
             self: *const IWMDMStorage,
@@ -779,7 +779,7 @@ pub const IWMDMStorage = extern struct {
             return @ptrCast(*const IWMDMStorage.VTable, self.vtable).SetAttributes(@ptrCast(*const IWMDMStorage, self), dwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage_GetStorageGlobals(self: *const T, ppStorageGlobals: **IWMDMStorageGlobals) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage_GetStorageGlobals(self: *const T, ppStorageGlobals: ?*?*IWMDMStorageGlobals) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage.VTable, self.vtable).GetStorageGlobals(@ptrCast(*const IWMDMStorage, self), ppStorageGlobals);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -803,7 +803,7 @@ pub const IWMDMStorage = extern struct {
             return @ptrCast(*const IWMDMStorage.VTable, self.vtable).GetRights(@ptrCast(*const IWMDMStorage, self), ppRights, pnRightsCount, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage_EnumStorage(self: *const T, pEnumStorage: **IWMDMEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage_EnumStorage(self: *const T, pEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage.VTable, self.vtable).EnumStorage(@ptrCast(*const IWMDMStorage, self), pEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -814,7 +814,7 @@ pub const IWMDMStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorage2_Value = @import("../zig.zig").Guid.initString("1ED5A144-5CD5-4683-9EFF-72CBDB2D9533");
+const IID_IWMDMStorage2_Value = @import("../zig.zig").Guid.initString("1ed5a144-5cd5-4683-9eff-72cbdb2d9533");
 pub const IID_IWMDMStorage2 = &IID_IWMDMStorage2_Value;
 pub const IWMDMStorage2 = extern struct {
     pub const VTable = extern struct {
@@ -822,7 +822,7 @@ pub const IWMDMStorage2 = extern struct {
         GetStorage: fn(
             self: *const IWMDMStorage2,
             pszStorageName: [*:0]const u16,
-            ppStorage: **IWMDMStorage,
+            ppStorage: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributes2: fn(
             self: *const IWMDMStorage2,
@@ -843,7 +843,7 @@ pub const IWMDMStorage2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDMStorage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage2.VTable, self.vtable).GetStorage(@ptrCast(*const IWMDMStorage2, self), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -858,14 +858,14 @@ pub const IWMDMStorage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorage3_Value = @import("../zig.zig").Guid.initString("97717EEA-926A-464E-96A4-247B0216026E");
+const IID_IWMDMStorage3_Value = @import("../zig.zig").Guid.initString("97717eea-926a-464e-96a4-247b0216026e");
 pub const IID_IWMDMStorage3 = &IID_IWMDMStorage3_Value;
 pub const IWMDMStorage3 = extern struct {
     pub const VTable = extern struct {
         base: IWMDMStorage2.VTable,
         GetMetadata: fn(
             self: *const IWMDMStorage3,
-            ppMetadata: **IWMDMMetaData,
+            ppMetadata: ?*?*IWMDMMetaData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMetadata: fn(
             self: *const IWMDMStorage3,
@@ -873,7 +873,7 @@ pub const IWMDMStorage3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateEmptyMetadataObject: fn(
             self: *const IWMDMStorage3,
-            ppMetadata: **IWMDMMetaData,
+            ppMetadata: ?*?*IWMDMMetaData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEnumPreference: fn(
             self: *const IWMDMStorage3,
@@ -886,7 +886,7 @@ pub const IWMDMStorage3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDMStorage2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage3_GetMetadata(self: *const T, ppMetadata: **IWMDMMetaData) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage3_GetMetadata(self: *const T, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage3.VTable, self.vtable).GetMetadata(@ptrCast(*const IWMDMStorage3, self), ppMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -894,7 +894,7 @@ pub const IWMDMStorage3 = extern struct {
             return @ptrCast(*const IWMDMStorage3.VTable, self.vtable).SetMetadata(@ptrCast(*const IWMDMStorage3, self), pMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage3_CreateEmptyMetadataObject(self: *const T, ppMetadata: **IWMDMMetaData) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage3_CreateEmptyMetadataObject(self: *const T, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage3.VTable, self.vtable).CreateEmptyMetadataObject(@ptrCast(*const IWMDMStorage3, self), ppMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -905,7 +905,7 @@ pub const IWMDMStorage3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorage4_Value = @import("../zig.zig").Guid.initString("C225BAC5-A03A-40B8-9A23-91CF478C64A6");
+const IID_IWMDMStorage4_Value = @import("../zig.zig").Guid.initString("c225bac5-a03a-40b8-9a23-91cf478c64a6");
 pub const IID_IWMDMStorage4 = &IID_IWMDMStorage4_Value;
 pub const IWMDMStorage4 = extern struct {
     pub const VTable = extern struct {
@@ -930,17 +930,17 @@ pub const IWMDMStorage4 = extern struct {
             self: *const IWMDMStorage4,
             cProperties: u32,
             ppwszPropNames: [*]PWSTR,
-            ppMetadata: **IWMDMMetaData,
+            ppMetadata: ?*?*IWMDMMetaData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindStorage: fn(
             self: *const IWMDMStorage4,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: [*:0]const u16,
-            ppStorage: **IWMDMStorage,
+            ppStorage: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParent: fn(
             self: *const IWMDMStorage4,
-            ppStorage: **IWMDMStorage,
+            ppStorage: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -959,22 +959,22 @@ pub const IWMDMStorage4 = extern struct {
             return @ptrCast(*const IWMDMStorage4.VTable, self.vtable).GetRightsWithProgress(@ptrCast(*const IWMDMStorage4, self), pIProgressCallback, ppRights, pnRightsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage4_GetSpecifiedMetadata(self: *const T, cProperties: u32, ppwszPropNames: [*]PWSTR, ppMetadata: **IWMDMMetaData) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage4_GetSpecifiedMetadata(self: *const T, cProperties: u32, ppwszPropNames: [*]PWSTR, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage4.VTable, self.vtable).GetSpecifiedMetadata(@ptrCast(*const IWMDMStorage4, self), cProperties, ppwszPropNames, ppMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage4_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage4_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage4.VTable, self.vtable).FindStorage(@ptrCast(*const IWMDMStorage4, self), findScope, pwszUniqueID, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage4_GetParent(self: *const T, ppStorage: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage4_GetParent(self: *const T, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorage4.VTable, self.vtable).GetParent(@ptrCast(*const IWMDMStorage4, self), ppStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMOperation_Value = @import("../zig.zig").Guid.initString("1DCB3A0B-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMOperation_Value = @import("../zig.zig").Guid.initString("1dcb3a0b-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMOperation = &IID_IWMDMOperation_Value;
 pub const IWMDMOperation = extern struct {
     pub const VTable = extern struct {
@@ -1074,7 +1074,7 @@ pub const IWMDMOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMOperation2_Value = @import("../zig.zig").Guid.initString("33445B48-7DF7-425C-AD8F-0FC6D82F9F75");
+const IID_IWMDMOperation2_Value = @import("../zig.zig").Guid.initString("33445b48-7df7-425c-ad8f-0fc6d82f9f75");
 pub const IID_IWMDMOperation2 = &IID_IWMDMOperation2_Value;
 pub const IWMDMOperation2 = extern struct {
     pub const VTable = extern struct {
@@ -1109,7 +1109,7 @@ pub const IWMDMOperation2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMOperation3_Value = @import("../zig.zig").Guid.initString("D1F9B46A-9CA8-46D8-9D0F-1EC9BAE54919");
+const IID_IWMDMOperation3_Value = @import("../zig.zig").Guid.initString("d1f9b46a-9ca8-46d8-9d0f-1ec9bae54919");
 pub const IID_IWMDMOperation3 = &IID_IWMDMOperation3_Value;
 pub const IWMDMOperation3 = extern struct {
     pub const VTable = extern struct {
@@ -1131,7 +1131,7 @@ pub const IWMDMOperation3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMProgress_Value = @import("../zig.zig").Guid.initString("1DCB3A0C-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMProgress_Value = @import("../zig.zig").Guid.initString("1dcb3a0c-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMProgress = &IID_IWMDMProgress_Value;
 pub const IWMDMProgress = extern struct {
     pub const VTable = extern struct {
@@ -1167,7 +1167,7 @@ pub const IWMDMProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMProgress2_Value = @import("../zig.zig").Guid.initString("3A43F550-B383-4E92-B04A-E6BBC660FEFC");
+const IID_IWMDMProgress2_Value = @import("../zig.zig").Guid.initString("3a43f550-b383-4e92-b04a-e6bbc660fefc");
 pub const IID_IWMDMProgress2 = &IID_IWMDMProgress2_Value;
 pub const IWMDMProgress2 = extern struct {
     pub const VTable = extern struct {
@@ -1188,7 +1188,7 @@ pub const IWMDMProgress2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMProgress3_Value = @import("../zig.zig").Guid.initString("21DE01CB-3BB4-4929-B21A-17AF3F80F658");
+const IID_IWMDMProgress3_Value = @import("../zig.zig").Guid.initString("21de01cb-3bb4-4929-b21a-17af3f80f658");
 pub const IID_IWMDMProgress3 = &IID_IWMDMProgress3_Value;
 pub const IWMDMProgress3 = extern struct {
     pub const VTable = extern struct {
@@ -1231,7 +1231,7 @@ pub const IWMDMProgress3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMDevice_Value = @import("../zig.zig").Guid.initString("1DCB3A02-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMDevice_Value = @import("../zig.zig").Guid.initString("1dcb3a02-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMDevice = &IID_IWMDMDevice_Value;
 pub const IWMDMDevice = extern struct {
     pub const VTable = extern struct {
@@ -1274,7 +1274,7 @@ pub const IWMDMDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumStorage: fn(
             self: *const IWMDMDevice,
-            ppEnumStorage: **IWMDMEnumStorage,
+            ppEnumStorage: ?*?*IWMDMEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatSupport: fn(
             self: *const IWMDMDevice,
@@ -1324,7 +1324,7 @@ pub const IWMDMDevice = extern struct {
             return @ptrCast(*const IWMDMDevice.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWMDMDevice, self), hIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice_EnumStorage(self: *const T, ppEnumStorage: **IWMDMEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice_EnumStorage(self: *const T, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMDevice.VTable, self.vtable).EnumStorage(@ptrCast(*const IWMDMDevice, self), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1339,7 +1339,7 @@ pub const IWMDMDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMDevice2_Value = @import("../zig.zig").Guid.initString("E34F3D37-9D67-4FC1-9252-62D28B2F8B55");
+const IID_IWMDMDevice2_Value = @import("../zig.zig").Guid.initString("e34f3d37-9d67-4fc1-9252-62d28b2f8b55");
 pub const IID_IWMDMDevice2 = &IID_IWMDMDevice2_Value;
 pub const IWMDMDevice2 = extern struct {
     pub const VTable = extern struct {
@@ -1347,7 +1347,7 @@ pub const IWMDMDevice2 = extern struct {
         GetStorage: fn(
             self: *const IWMDMDevice2,
             pszStorageName: [*:0]const u16,
-            ppStorage: **IWMDMStorage,
+            ppStorage: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatSupport2: fn(
             self: *const IWMDMDevice2,
@@ -1361,7 +1361,7 @@ pub const IWMDMDevice2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpecifyPropertyPages: fn(
             self: *const IWMDMDevice2,
-            ppSpecifyPropPages: **ISpecifyPropertyPages,
+            ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
             pppUnknowns: ?[*]?*?*IUnknown,
             pcUnks: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1375,7 +1375,7 @@ pub const IWMDMDevice2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDMDevice.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMDevice2.VTable, self.vtable).GetStorage(@ptrCast(*const IWMDMDevice2, self), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1383,7 +1383,7 @@ pub const IWMDMDevice2 = extern struct {
             return @ptrCast(*const IWMDMDevice2.VTable, self.vtable).GetFormatSupport2(@ptrCast(*const IWMDMDevice2, self), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: **ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: *u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMDevice2.VTable, self.vtable).GetSpecifyPropertyPages(@ptrCast(*const IWMDMDevice2, self), ppSpecifyPropPages, pppUnknowns, pcUnks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1394,7 +1394,7 @@ pub const IWMDMDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMDevice3_Value = @import("../zig.zig").Guid.initString("6C03E4FE-05DB-4DDA-9E3C-06233A6D5D65");
+const IID_IWMDMDevice3_Value = @import("../zig.zig").Guid.initString("6c03e4fe-05db-4dda-9e3c-06233a6d5d65");
 pub const IID_IWMDMDevice3 = &IID_IWMDMDevice3_Value;
 pub const IWMDMDevice3 = extern struct {
     pub const VTable = extern struct {
@@ -1426,7 +1426,7 @@ pub const IWMDMDevice3 = extern struct {
             self: *const IWMDMDevice3,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: [*:0]const u16,
-            ppStorage: **IWMDMStorage,
+            ppStorage: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1449,14 +1449,14 @@ pub const IWMDMDevice3 = extern struct {
             return @ptrCast(*const IWMDMDevice3.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IWMDMDevice3, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice3_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice3_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMDevice3.VTable, self.vtable).FindStorage(@ptrCast(*const IWMDMDevice3, self), findScope, pwszUniqueID, ppStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMDeviceSession_Value = @import("../zig.zig").Guid.initString("82AF0A65-9D96-412C-83E5-3C43E4B06CC7");
+const IID_IWMDMDeviceSession_Value = @import("../zig.zig").Guid.initString("82af0a65-9d96-412c-83e5-3c43e4b06cc7");
 pub const IID_IWMDMDeviceSession = &IID_IWMDMDeviceSession_Value;
 pub const IWMDMDeviceSession = extern struct {
     pub const VTable = extern struct {
@@ -1489,7 +1489,7 @@ pub const IWMDMDeviceSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMEnumDevice_Value = @import("../zig.zig").Guid.initString("1DCB3A01-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMEnumDevice_Value = @import("../zig.zig").Guid.initString("1dcb3a01-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMEnumDevice = &IID_IWMDMEnumDevice_Value;
 pub const IWMDMEnumDevice = extern struct {
     pub const VTable = extern struct {
@@ -1510,7 +1510,7 @@ pub const IWMDMEnumDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IWMDMEnumDevice,
-            ppEnumDevice: **IWMDMEnumDevice,
+            ppEnumDevice: ?*?*IWMDMEnumDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1529,14 +1529,14 @@ pub const IWMDMEnumDevice = extern struct {
             return @ptrCast(*const IWMDMEnumDevice.VTable, self.vtable).Reset(@ptrCast(*const IWMDMEnumDevice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMEnumDevice_Clone(self: *const T, ppEnumDevice: **IWMDMEnumDevice) callconv(.Inline) HRESULT {
+        pub fn IWMDMEnumDevice_Clone(self: *const T, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMEnumDevice.VTable, self.vtable).Clone(@ptrCast(*const IWMDMEnumDevice, self), ppEnumDevice);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMDeviceControl_Value = @import("../zig.zig").Guid.initString("1DCB3A04-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMDeviceControl_Value = @import("../zig.zig").Guid.initString("1dcb3a04-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMDeviceControl = &IID_IWMDMDeviceControl_Value;
 pub const IWMDMDeviceControl = extern struct {
     pub const VTable = extern struct {
@@ -1610,7 +1610,7 @@ pub const IWMDMDeviceControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMEnumStorage_Value = @import("../zig.zig").Guid.initString("1DCB3A05-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMEnumStorage_Value = @import("../zig.zig").Guid.initString("1dcb3a05-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMEnumStorage = &IID_IWMDMEnumStorage_Value;
 pub const IWMDMEnumStorage = extern struct {
     pub const VTable = extern struct {
@@ -1631,7 +1631,7 @@ pub const IWMDMEnumStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IWMDMEnumStorage,
-            ppEnumStorage: **IWMDMEnumStorage,
+            ppEnumStorage: ?*?*IWMDMEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1650,14 +1650,14 @@ pub const IWMDMEnumStorage = extern struct {
             return @ptrCast(*const IWMDMEnumStorage.VTable, self.vtable).Reset(@ptrCast(*const IWMDMEnumStorage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMEnumStorage_Clone(self: *const T, ppEnumStorage: **IWMDMEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMEnumStorage_Clone(self: *const T, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMEnumStorage.VTable, self.vtable).Clone(@ptrCast(*const IWMDMEnumStorage, self), ppEnumStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorageControl_Value = @import("../zig.zig").Guid.initString("1DCB3A08-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMStorageControl_Value = @import("../zig.zig").Guid.initString("1dcb3a08-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMStorageControl = &IID_IWMDMStorageControl_Value;
 pub const IWMDMStorageControl = extern struct {
     pub const VTable = extern struct {
@@ -1668,7 +1668,7 @@ pub const IWMDMStorageControl = extern struct {
             pwszFile: ?PWSTR,
             pOperation: ?*IWMDMOperation,
             pProgress: ?*IWMDMProgress,
-            ppNewObject: **IWMDMStorage,
+            ppNewObject: ?*?*IWMDMStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IWMDMStorageControl,
@@ -1699,7 +1699,7 @@ pub const IWMDMStorageControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorageControl_Insert(self: *const T, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: **IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorageControl_Insert(self: *const T, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMDMStorageControl.VTable, self.vtable).Insert(@ptrCast(*const IWMDMStorageControl, self), fuMode, pwszFile, pOperation, pProgress, ppNewObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1722,7 +1722,7 @@ pub const IWMDMStorageControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorageControl2_Value = @import("../zig.zig").Guid.initString("972C2E88-BD6C-4125-8E09-84F837E637B6");
+const IID_IWMDMStorageControl2_Value = @import("../zig.zig").Guid.initString("972c2e88-bd6c-4125-8e09-84f837e637b6");
 pub const IID_IWMDMStorageControl2 = &IID_IWMDMStorageControl2_Value;
 pub const IWMDMStorageControl2 = extern struct {
     pub const VTable = extern struct {
@@ -1749,7 +1749,7 @@ pub const IWMDMStorageControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMStorageControl3_Value = @import("../zig.zig").Guid.initString("B3266365-D4F3-4696-8D53-BD27EC60993A");
+const IID_IWMDMStorageControl3_Value = @import("../zig.zig").Guid.initString("b3266365-d4f3-4696-8d53-bd27ec60993a");
 pub const IID_IWMDMStorageControl3 = &IID_IWMDMStorageControl3_Value;
 pub const IWMDMStorageControl3 = extern struct {
     pub const VTable = extern struct {
@@ -1778,7 +1778,7 @@ pub const IWMDMStorageControl3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMObjectInfo_Value = @import("../zig.zig").Guid.initString("1DCB3A09-33ED-11D3-8470-00C04F79DBC0");
+const IID_IWMDMObjectInfo_Value = @import("../zig.zig").Guid.initString("1dcb3a09-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IWMDMObjectInfo = &IID_IWMDMObjectInfo_Value;
 pub const IWMDMObjectInfo = extern struct {
     pub const VTable = extern struct {
@@ -1847,7 +1847,7 @@ pub const IWMDMObjectInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMRevoked_Value = @import("../zig.zig").Guid.initString("EBECCEDB-88EE-4E55-B6A4-8D9F07D696AA");
+const IID_IWMDMRevoked_Value = @import("../zig.zig").Guid.initString("ebeccedb-88ee-4e55-b6a4-8d9f07d696aa");
 pub const IID_IWMDMRevoked = &IID_IWMDMRevoked_Value;
 pub const IWMDMRevoked = extern struct {
     pub const VTable = extern struct {
@@ -1870,7 +1870,7 @@ pub const IWMDMRevoked = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMDMNotification_Value = @import("../zig.zig").Guid.initString("3F5E95C0-0F43-4ED4-93D2-C89A45D59B81");
+const IID_IWMDMNotification_Value = @import("../zig.zig").Guid.initString("3f5e95c0-0f43-4ed4-93d2-c89a45d59b81");
 pub const IID_IWMDMNotification = &IID_IWMDMNotification_Value;
 pub const IWMDMNotification = extern struct {
     pub const VTable = extern struct {
@@ -1894,7 +1894,7 @@ pub const IWMDMNotification = extern struct {
 
 pub const WMDMDetermineMaxPropStringLen = u32; // TODO: implement StructOrUnion types?
 
-const IID_IMDServiceProvider_Value = @import("../zig.zig").Guid.initString("1DCB3A10-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDServiceProvider_Value = @import("../zig.zig").Guid.initString("1dcb3a10-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDServiceProvider = &IID_IMDServiceProvider_Value;
 pub const IMDServiceProvider = extern struct {
     pub const VTable = extern struct {
@@ -1905,7 +1905,7 @@ pub const IMDServiceProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDevices: fn(
             self: *const IMDServiceProvider,
-            ppEnumDevice: **IMDSPEnumDevice,
+            ppEnumDevice: ?*?*IMDSPEnumDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1916,14 +1916,14 @@ pub const IMDServiceProvider = extern struct {
             return @ptrCast(*const IMDServiceProvider.VTable, self.vtable).GetDeviceCount(@ptrCast(*const IMDServiceProvider, self), pdwCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDServiceProvider_EnumDevices(self: *const T, ppEnumDevice: **IMDSPEnumDevice) callconv(.Inline) HRESULT {
+        pub fn IMDServiceProvider_EnumDevices(self: *const T, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDServiceProvider.VTable, self.vtable).EnumDevices(@ptrCast(*const IMDServiceProvider, self), ppEnumDevice);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDServiceProvider2_Value = @import("../zig.zig").Guid.initString("B2FA24B7-CDA3-4694-9862-413AE1A34819");
+const IID_IMDServiceProvider2_Value = @import("../zig.zig").Guid.initString("b2fa24b7-cda3-4694-9862-413ae1a34819");
 pub const IID_IMDServiceProvider2 = &IID_IMDServiceProvider2_Value;
 pub const IMDServiceProvider2 = extern struct {
     pub const VTable = extern struct {
@@ -1946,7 +1946,7 @@ pub const IMDServiceProvider2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDServiceProvider3_Value = @import("../zig.zig").Guid.initString("4ED13EF3-A971-4D19-9F51-0E1826B2DA57");
+const IID_IMDServiceProvider3_Value = @import("../zig.zig").Guid.initString("4ed13ef3-a971-4d19-9f51-0e1826b2da57");
 pub const IID_IMDServiceProvider3 = &IID_IMDServiceProvider3_Value;
 pub const IMDServiceProvider3 = extern struct {
     pub const VTable = extern struct {
@@ -1967,7 +1967,7 @@ pub const IMDServiceProvider3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPEnumDevice_Value = @import("../zig.zig").Guid.initString("1DCB3A11-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPEnumDevice_Value = @import("../zig.zig").Guid.initString("1dcb3a11-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPEnumDevice = &IID_IMDSPEnumDevice_Value;
 pub const IMDSPEnumDevice = extern struct {
     pub const VTable = extern struct {
@@ -1988,7 +1988,7 @@ pub const IMDSPEnumDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IMDSPEnumDevice,
-            ppEnumDevice: **IMDSPEnumDevice,
+            ppEnumDevice: ?*?*IMDSPEnumDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2007,14 +2007,14 @@ pub const IMDSPEnumDevice = extern struct {
             return @ptrCast(*const IMDSPEnumDevice.VTable, self.vtable).Reset(@ptrCast(*const IMDSPEnumDevice, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPEnumDevice_Clone(self: *const T, ppEnumDevice: **IMDSPEnumDevice) callconv(.Inline) HRESULT {
+        pub fn IMDSPEnumDevice_Clone(self: *const T, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPEnumDevice.VTable, self.vtable).Clone(@ptrCast(*const IMDSPEnumDevice, self), ppEnumDevice);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPDevice_Value = @import("../zig.zig").Guid.initString("1DCB3A12-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPDevice_Value = @import("../zig.zig").Guid.initString("1dcb3a12-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPDevice = &IID_IMDSPDevice_Value;
 pub const IMDSPDevice = extern struct {
     pub const VTable = extern struct {
@@ -2057,7 +2057,7 @@ pub const IMDSPDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumStorage: fn(
             self: *const IMDSPDevice,
-            ppEnumStorage: **IMDSPEnumStorage,
+            ppEnumStorage: ?*?*IMDSPEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatSupport: fn(
             self: *const IMDSPDevice,
@@ -2107,7 +2107,7 @@ pub const IMDSPDevice = extern struct {
             return @ptrCast(*const IMDSPDevice.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IMDSPDevice, self), hIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice_EnumStorage(self: *const T, ppEnumStorage: **IMDSPEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice_EnumStorage(self: *const T, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPDevice.VTable, self.vtable).EnumStorage(@ptrCast(*const IMDSPDevice, self), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2122,7 +2122,7 @@ pub const IMDSPDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPDevice2_Value = @import("../zig.zig").Guid.initString("420D16AD-C97D-4E00-82AA-00E9F4335DDD");
+const IID_IMDSPDevice2_Value = @import("../zig.zig").Guid.initString("420d16ad-c97d-4e00-82aa-00e9f4335ddd");
 pub const IID_IMDSPDevice2 = &IID_IMDSPDevice2_Value;
 pub const IMDSPDevice2 = extern struct {
     pub const VTable = extern struct {
@@ -2130,7 +2130,7 @@ pub const IMDSPDevice2 = extern struct {
         GetStorage: fn(
             self: *const IMDSPDevice2,
             pszStorageName: [*:0]const u16,
-            ppStorage: **IMDSPStorage,
+            ppStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFormatSupport2: fn(
             self: *const IMDSPDevice2,
@@ -2144,7 +2144,7 @@ pub const IMDSPDevice2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpecifyPropertyPages: fn(
             self: *const IMDSPDevice2,
-            ppSpecifyPropPages: **ISpecifyPropertyPages,
+            ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
             pppUnknowns: ?[*]?*?*IUnknown,
             pcUnks: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2158,7 +2158,7 @@ pub const IMDSPDevice2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMDSPDevice.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPDevice2.VTable, self.vtable).GetStorage(@ptrCast(*const IMDSPDevice2, self), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2166,7 +2166,7 @@ pub const IMDSPDevice2 = extern struct {
             return @ptrCast(*const IMDSPDevice2.VTable, self.vtable).GetFormatSupport2(@ptrCast(*const IMDSPDevice2, self), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: **ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: *u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPDevice2.VTable, self.vtable).GetSpecifyPropertyPages(@ptrCast(*const IMDSPDevice2, self), ppSpecifyPropPages, pppUnknowns, pcUnks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2177,7 +2177,7 @@ pub const IMDSPDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPDevice3_Value = @import("../zig.zig").Guid.initString("1A839845-FC55-487C-976F-EE38AC0E8C4E");
+const IID_IMDSPDevice3_Value = @import("../zig.zig").Guid.initString("1a839845-fc55-487c-976f-ee38ac0e8c4e");
 pub const IID_IMDSPDevice3 = &IID_IMDSPDevice3_Value;
 pub const IMDSPDevice3 = extern struct {
     pub const VTable = extern struct {
@@ -2209,7 +2209,7 @@ pub const IMDSPDevice3 = extern struct {
             self: *const IMDSPDevice3,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: [*:0]const u16,
-            ppStorage: **IMDSPStorage,
+            ppStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2232,14 +2232,14 @@ pub const IMDSPDevice3 = extern struct {
             return @ptrCast(*const IMDSPDevice3.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IMDSPDevice3, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice3_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice3_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPDevice3.VTable, self.vtable).FindStorage(@ptrCast(*const IMDSPDevice3, self), findScope, pwszUniqueID, ppStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPDeviceControl_Value = @import("../zig.zig").Guid.initString("1DCB3A14-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPDeviceControl_Value = @import("../zig.zig").Guid.initString("1dcb3a14-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPDeviceControl = &IID_IMDSPDeviceControl_Value;
 pub const IMDSPDeviceControl = extern struct {
     pub const VTable = extern struct {
@@ -2313,7 +2313,7 @@ pub const IMDSPDeviceControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPEnumStorage_Value = @import("../zig.zig").Guid.initString("1DCB3A15-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPEnumStorage_Value = @import("../zig.zig").Guid.initString("1dcb3a15-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPEnumStorage = &IID_IMDSPEnumStorage_Value;
 pub const IMDSPEnumStorage = extern struct {
     pub const VTable = extern struct {
@@ -2334,7 +2334,7 @@ pub const IMDSPEnumStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IMDSPEnumStorage,
-            ppEnumStorage: **IMDSPEnumStorage,
+            ppEnumStorage: ?*?*IMDSPEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2353,14 +2353,14 @@ pub const IMDSPEnumStorage = extern struct {
             return @ptrCast(*const IMDSPEnumStorage.VTable, self.vtable).Reset(@ptrCast(*const IMDSPEnumStorage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPEnumStorage_Clone(self: *const T, ppEnumStorage: **IMDSPEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPEnumStorage_Clone(self: *const T, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPEnumStorage.VTable, self.vtable).Clone(@ptrCast(*const IMDSPEnumStorage, self), ppEnumStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPStorage_Value = @import("../zig.zig").Guid.initString("1DCB3A16-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPStorage_Value = @import("../zig.zig").Guid.initString("1dcb3a16-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPStorage = &IID_IMDSPStorage_Value;
 pub const IMDSPStorage = extern struct {
     pub const VTable = extern struct {
@@ -2372,7 +2372,7 @@ pub const IMDSPStorage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStorageGlobals: fn(
             self: *const IMDSPStorage,
-            ppStorageGlobals: **IMDSPStorageGlobals,
+            ppStorageGlobals: ?*?*IMDSPStorageGlobals,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributes: fn(
             self: *const IMDSPStorage,
@@ -2404,11 +2404,11 @@ pub const IMDSPStorage = extern struct {
             dwAttributes: u32,
             pFormat: ?*_tWAVEFORMATEX,
             pwszName: PWSTR,
-            ppNewStorage: **IMDSPStorage,
+            ppNewStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumStorage: fn(
             self: *const IMDSPStorage,
-            ppEnumStorage: **IMDSPEnumStorage,
+            ppEnumStorage: ?*?*IMDSPEnumStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendOpaqueCommand: fn(
             self: *const IMDSPStorage,
@@ -2423,7 +2423,7 @@ pub const IMDSPStorage = extern struct {
             return @ptrCast(*const IMDSPStorage.VTable, self.vtable).SetAttributes(@ptrCast(*const IMDSPStorage, self), dwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_GetStorageGlobals(self: *const T, ppStorageGlobals: **IMDSPStorageGlobals) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_GetStorageGlobals(self: *const T, ppStorageGlobals: ?*?*IMDSPStorageGlobals) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage.VTable, self.vtable).GetStorageGlobals(@ptrCast(*const IMDSPStorage, self), ppStorageGlobals);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2447,11 +2447,11 @@ pub const IMDSPStorage = extern struct {
             return @ptrCast(*const IMDSPStorage.VTable, self.vtable).GetRights(@ptrCast(*const IMDSPStorage, self), ppRights, pnRightsCount, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_CreateStorage(self: *const T, dwAttributes: u32, pFormat: ?*_tWAVEFORMATEX, pwszName: PWSTR, ppNewStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_CreateStorage(self: *const T, dwAttributes: u32, pFormat: ?*_tWAVEFORMATEX, pwszName: PWSTR, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage.VTable, self.vtable).CreateStorage(@ptrCast(*const IMDSPStorage, self), dwAttributes, pFormat, pwszName, ppNewStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_EnumStorage(self: *const T, ppEnumStorage: **IMDSPEnumStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_EnumStorage(self: *const T, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage.VTable, self.vtable).EnumStorage(@ptrCast(*const IMDSPStorage, self), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2462,7 +2462,7 @@ pub const IMDSPStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPStorage2_Value = @import("../zig.zig").Guid.initString("0A5E07A5-6454-4451-9C36-1C6AE7E2B1D6");
+const IID_IMDSPStorage2_Value = @import("../zig.zig").Guid.initString("0a5e07a5-6454-4451-9c36-1c6ae7e2b1d6");
 pub const IID_IMDSPStorage2 = &IID_IMDSPStorage2_Value;
 pub const IMDSPStorage2 = extern struct {
     pub const VTable = extern struct {
@@ -2470,7 +2470,7 @@ pub const IMDSPStorage2 = extern struct {
         GetStorage: fn(
             self: *const IMDSPStorage2,
             pszStorageName: [*:0]const u16,
-            ppStorage: **IMDSPStorage,
+            ppStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStorage2: fn(
             self: *const IMDSPStorage2,
@@ -2480,7 +2480,7 @@ pub const IMDSPStorage2 = extern struct {
             pVideoFormat: ?*_tagVIDEOINFOHEADER,
             pwszName: PWSTR,
             qwFileSize: u64,
-            ppNewStorage: **IMDSPStorage,
+            ppNewStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetAttributes2: fn(
             self: *const IMDSPStorage2,
@@ -2501,11 +2501,11 @@ pub const IMDSPStorage2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMDSPStorage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage2_GetStorage(self: *const T, pszStorageName: [*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage2.VTable, self.vtable).GetStorage(@ptrCast(*const IMDSPStorage2, self), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage2_CreateStorage2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*_tWAVEFORMATEX, pVideoFormat: ?*_tagVIDEOINFOHEADER, pwszName: PWSTR, qwFileSize: u64, ppNewStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage2_CreateStorage2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*_tWAVEFORMATEX, pVideoFormat: ?*_tagVIDEOINFOHEADER, pwszName: PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage2.VTable, self.vtable).CreateStorage2(@ptrCast(*const IMDSPStorage2, self), dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat, pwszName, qwFileSize, ppNewStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2520,7 +2520,7 @@ pub const IMDSPStorage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPStorage3_Value = @import("../zig.zig").Guid.initString("6C669867-97ED-4A67-9706-1C5529D2A414");
+const IID_IMDSPStorage3_Value = @import("../zig.zig").Guid.initString("6c669867-97ed-4a67-9706-1c5529d2a414");
 pub const IID_IMDSPStorage3 = &IID_IMDSPStorage3_Value;
 pub const IMDSPStorage3 = extern struct {
     pub const VTable = extern struct {
@@ -2549,7 +2549,7 @@ pub const IMDSPStorage3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPStorage4_Value = @import("../zig.zig").Guid.initString("3133B2C4-515C-481B-B1CE-39327ECB4F74");
+const IID_IMDSPStorage4_Value = @import("../zig.zig").Guid.initString("3133b2c4-515c-481b-b1ce-39327ecb4f74");
 pub const IID_IMDSPStorage4 = &IID_IMDSPStorage4_Value;
 pub const IMDSPStorage4 = extern struct {
     pub const VTable = extern struct {
@@ -2570,7 +2570,7 @@ pub const IMDSPStorage4 = extern struct {
             pwszName: [*:0]const u16,
             pMetadata: ?*IWMDMMetaData,
             qwFileSize: u64,
-            ppNewStorage: **IMDSPStorage,
+            ppNewStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSpecifiedMetadata: fn(
             self: *const IMDSPStorage4,
@@ -2582,11 +2582,11 @@ pub const IMDSPStorage4 = extern struct {
             self: *const IMDSPStorage4,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: [*:0]const u16,
-            ppStorage: **IMDSPStorage,
+            ppStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParent: fn(
             self: *const IMDSPStorage4,
-            ppStorage: **IMDSPStorage,
+            ppStorage: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2601,7 +2601,7 @@ pub const IMDSPStorage4 = extern struct {
             return @ptrCast(*const IMDSPStorage4.VTable, self.vtable).GetReferences(@ptrCast(*const IMDSPStorage4, self), pdwRefs, pppISPStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage4_CreateStorageWithMetadata(self: *const T, dwAttributes: u32, pwszName: [*:0]const u16, pMetadata: ?*IWMDMMetaData, qwFileSize: u64, ppNewStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage4_CreateStorageWithMetadata(self: *const T, dwAttributes: u32, pwszName: [*:0]const u16, pMetadata: ?*IWMDMMetaData, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage4.VTable, self.vtable).CreateStorageWithMetadata(@ptrCast(*const IMDSPStorage4, self), dwAttributes, pwszName, pMetadata, qwFileSize, ppNewStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2609,18 +2609,18 @@ pub const IMDSPStorage4 = extern struct {
             return @ptrCast(*const IMDSPStorage4.VTable, self.vtable).GetSpecifiedMetadata(@ptrCast(*const IMDSPStorage4, self), cProperties, ppwszPropNames, pMetadata);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage4_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage4_FindStorage(self: *const T, findScope: WMDM_FIND_SCOPE, pwszUniqueID: [*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage4.VTable, self.vtable).FindStorage(@ptrCast(*const IMDSPStorage4, self), findScope, pwszUniqueID, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage4_GetParent(self: *const T, ppStorage: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage4_GetParent(self: *const T, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorage4.VTable, self.vtable).GetParent(@ptrCast(*const IMDSPStorage4, self), ppStorage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPStorageGlobals_Value = @import("../zig.zig").Guid.initString("1DCB3A17-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPStorageGlobals_Value = @import("../zig.zig").Guid.initString("1dcb3a17-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPStorageGlobals = &IID_IMDSPStorageGlobals_Value;
 pub const IMDSPStorageGlobals = extern struct {
     pub const VTable = extern struct {
@@ -2660,11 +2660,11 @@ pub const IMDSPStorageGlobals = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDevice: fn(
             self: *const IMDSPStorageGlobals,
-            ppDevice: **IMDSPDevice,
+            ppDevice: ?*?*IMDSPDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRootStorage: fn(
             self: *const IMDSPStorageGlobals,
-            ppRoot: **IMDSPStorage,
+            ppRoot: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2699,18 +2699,18 @@ pub const IMDSPStorageGlobals = extern struct {
             return @ptrCast(*const IMDSPStorageGlobals.VTable, self.vtable).Initialize(@ptrCast(*const IMDSPStorageGlobals, self), fuMode, pProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorageGlobals_GetDevice(self: *const T, ppDevice: **IMDSPDevice) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorageGlobals_GetDevice(self: *const T, ppDevice: ?*?*IMDSPDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorageGlobals.VTable, self.vtable).GetDevice(@ptrCast(*const IMDSPStorageGlobals, self), ppDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorageGlobals_GetRootStorage(self: *const T, ppRoot: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorageGlobals_GetRootStorage(self: *const T, ppRoot: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPStorageGlobals.VTable, self.vtable).GetRootStorage(@ptrCast(*const IMDSPStorageGlobals, self), ppRoot);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPObjectInfo_Value = @import("../zig.zig").Guid.initString("1DCB3A19-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPObjectInfo_Value = @import("../zig.zig").Guid.initString("1dcb3a19-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPObjectInfo = &IID_IMDSPObjectInfo_Value;
 pub const IMDSPObjectInfo = extern struct {
     pub const VTable = extern struct {
@@ -2779,7 +2779,7 @@ pub const IMDSPObjectInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPObject_Value = @import("../zig.zig").Guid.initString("1DCB3A18-33ED-11D3-8470-00C04F79DBC0");
+const IID_IMDSPObject_Value = @import("../zig.zig").Guid.initString("1dcb3a18-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDSPObject = &IID_IMDSPObject_Value;
 pub const IMDSPObject = extern struct {
     pub const VTable = extern struct {
@@ -2864,7 +2864,7 @@ pub const IMDSPObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPObject2_Value = @import("../zig.zig").Guid.initString("3F34CD3E-5907-4341-9AF9-97F4187C3AA5");
+const IID_IMDSPObject2_Value = @import("../zig.zig").Guid.initString("3f34cd3e-5907-4341-9af9-97f4187c3aa5");
 pub const IID_IMDSPObject2 = &IID_IMDSPObject2_Value;
 pub const IMDSPObject2 = extern struct {
     pub const VTable = extern struct {
@@ -2895,7 +2895,7 @@ pub const IMDSPObject2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPDirectTransfer_Value = @import("../zig.zig").Guid.initString("C2FE57A8-9304-478C-9EE4-47E397B912D7");
+const IID_IMDSPDirectTransfer_Value = @import("../zig.zig").Guid.initString("c2fe57a8-9304-478c-9ee4-47e397b912d7");
 pub const IID_IMDSPDirectTransfer = &IID_IMDSPDirectTransfer_Value;
 pub const IMDSPDirectTransfer = extern struct {
     pub const VTable = extern struct {
@@ -2908,21 +2908,21 @@ pub const IMDSPDirectTransfer = extern struct {
             pwszDestinationName: ?PWSTR,
             pSourceMetaData: ?*IWMDMMetaData,
             pTransferProgress: ?*IWMDMProgress,
-            ppNewObject: **IMDSPStorage,
+            ppNewObject: ?*?*IMDSPStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDirectTransfer_TransferToDevice(self: *const T, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: **IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPDirectTransfer_TransferToDevice(self: *const T, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMDSPDirectTransfer.VTable, self.vtable).TransferToDevice(@ptrCast(*const IMDSPDirectTransfer, self), pwszSourceFilePath, pSourceOperation, fuFlags, pwszDestinationName, pSourceMetaData, pTransferProgress, ppNewObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMDSPRevoked_Value = @import("../zig.zig").Guid.initString("A4E8F2D4-3F31-464D-B53D-4FC335998184");
+const IID_IMDSPRevoked_Value = @import("../zig.zig").Guid.initString("a4e8f2d4-3f31-464d-b53d-4fc335998184");
 pub const IID_IMDSPRevoked = &IID_IMDSPRevoked_Value;
 pub const IMDSPRevoked = extern struct {
     pub const VTable = extern struct {
@@ -2944,49 +2944,49 @@ pub const IMDSPRevoked = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureAuthenticate_Value = @import("../zig.zig").Guid.initString("1DCB3A0F-33ED-11D3-8470-00C04F79DBC0");
+const IID_ISCPSecureAuthenticate_Value = @import("../zig.zig").Guid.initString("1dcb3a0f-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_ISCPSecureAuthenticate = &IID_ISCPSecureAuthenticate_Value;
 pub const ISCPSecureAuthenticate = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSecureQuery: fn(
             self: *const ISCPSecureAuthenticate,
-            ppSecureQuery: **ISCPSecureQuery,
+            ppSecureQuery: ?*?*ISCPSecureQuery,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureAuthenticate_GetSecureQuery(self: *const T, ppSecureQuery: **ISCPSecureQuery) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureAuthenticate_GetSecureQuery(self: *const T, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSecureAuthenticate.VTable, self.vtable).GetSecureQuery(@ptrCast(*const ISCPSecureAuthenticate, self), ppSecureQuery);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureAuthenticate2_Value = @import("../zig.zig").Guid.initString("B580CFAE-1672-47E2-ACAA-44BBECBCAE5B");
+const IID_ISCPSecureAuthenticate2_Value = @import("../zig.zig").Guid.initString("b580cfae-1672-47e2-acaa-44bbecbcae5b");
 pub const IID_ISCPSecureAuthenticate2 = &IID_ISCPSecureAuthenticate2_Value;
 pub const ISCPSecureAuthenticate2 = extern struct {
     pub const VTable = extern struct {
         base: ISCPSecureAuthenticate.VTable,
         GetSCPSession: fn(
             self: *const ISCPSecureAuthenticate2,
-            ppSCPSession: **ISCPSession,
+            ppSCPSession: ?*?*ISCPSession,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISCPSecureAuthenticate.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureAuthenticate2_GetSCPSession(self: *const T, ppSCPSession: **ISCPSession) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureAuthenticate2_GetSCPSession(self: *const T, ppSCPSession: ?*?*ISCPSession) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSecureAuthenticate2.VTable, self.vtable).GetSCPSession(@ptrCast(*const ISCPSecureAuthenticate2, self), ppSCPSession);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureQuery_Value = @import("../zig.zig").Guid.initString("1DCB3A0D-33ED-11D3-8470-00C04F79DBC0");
+const IID_ISCPSecureQuery_Value = @import("../zig.zig").Guid.initString("1dcb3a0d-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_ISCPSecureQuery = &IID_ISCPSecureQuery_Value;
 pub const ISCPSecureQuery = extern struct {
     pub const VTable = extern struct {
@@ -3016,7 +3016,7 @@ pub const ISCPSecureQuery = extern struct {
             pbSPSessionKey: [*:0]u8,
             dwSessionKeyLen: u32,
             pStorageGlobals: ?*IMDSPStorageGlobals,
-            ppExchange: **ISCPSecureExchange,
+            ppExchange: ?*?*ISCPSecureExchange,
             abMac: *u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRights: fn(
@@ -3043,7 +3043,7 @@ pub const ISCPSecureQuery = extern struct {
             return @ptrCast(*const ISCPSecureQuery.VTable, self.vtable).ExamineData(@ptrCast(*const ISCPSecureQuery, self), fuFlags, pwszExtension, pData, dwSize, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery_MakeDecision(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: **ISCPSecureExchange, abMac: *u8) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery_MakeDecision(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: *u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSecureQuery.VTable, self.vtable).MakeDecision(@ptrCast(*const ISCPSecureQuery, self), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, ppExchange, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3054,7 +3054,7 @@ pub const ISCPSecureQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureQuery2_Value = @import("../zig.zig").Guid.initString("EBE17E25-4FD7-4632-AF46-6D93D4FCC72E");
+const IID_ISCPSecureQuery2_Value = @import("../zig.zig").Guid.initString("ebe17e25-4fd7-4632-af46-6d93d4fcc72e");
 pub const IID_ISCPSecureQuery2 = &IID_ISCPSecureQuery2_Value;
 pub const ISCPSecureQuery2 = extern struct {
     pub const VTable = extern struct {
@@ -3077,7 +3077,7 @@ pub const ISCPSecureQuery2 = extern struct {
             pdwRevocationBitFlag: *u32,
             pqwFileSize: ?*u64,
             pUnknown: ?*IUnknown,
-            ppExchange: **ISCPSecureExchange,
+            ppExchange: ?*?*ISCPSecureExchange,
             abMac: *u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3085,14 +3085,14 @@ pub const ISCPSecureQuery2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISCPSecureQuery.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery2_MakeDecision2(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: *u32, pdwRevocationBitFlag: *u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: **ISCPSecureExchange, abMac: *u8) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery2_MakeDecision2(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: *u32, pdwRevocationBitFlag: *u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: *u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSecureQuery2.VTable, self.vtable).MakeDecision2(@ptrCast(*const ISCPSecureQuery2, self), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureExchange_Value = @import("../zig.zig").Guid.initString("1DCB3A0E-33ED-11D3-8470-00C04F79DBC0");
+const IID_ISCPSecureExchange_Value = @import("../zig.zig").Guid.initString("1dcb3a0e-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_ISCPSecureExchange = &IID_ISCPSecureExchange_Value;
 pub const ISCPSecureExchange = extern struct {
     pub const VTable = extern struct {
@@ -3133,7 +3133,7 @@ pub const ISCPSecureExchange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureExchange2_Value = @import("../zig.zig").Guid.initString("6C62FC7B-2690-483F-9D44-0A20CB35577C");
+const IID_ISCPSecureExchange2_Value = @import("../zig.zig").Guid.initString("6c62fc7b-2690-483f-9d44-0a20cb35577c");
 pub const IID_ISCPSecureExchange2 = &IID_ISCPSecureExchange2_Value;
 pub const ISCPSecureExchange2 = extern struct {
     pub const VTable = extern struct {
@@ -3158,7 +3158,7 @@ pub const ISCPSecureExchange2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureExchange3_Value = @import("../zig.zig").Guid.initString("AB4E77E4-8908-4B17-BD2A-B1DBE6DD69E1");
+const IID_ISCPSecureExchange3_Value = @import("../zig.zig").Guid.initString("ab4e77e4-8908-4b17-bd2a-b1dbe6dd69e1");
 pub const IID_ISCPSecureExchange3 = &IID_ISCPSecureExchange3_Value;
 pub const ISCPSecureExchange3 = extern struct {
     pub const VTable = extern struct {
@@ -3201,7 +3201,7 @@ pub const ISCPSecureExchange3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSession_Value = @import("../zig.zig").Guid.initString("88A3E6ED-EEE4-4619-BBB3-FD4FB62715D1");
+const IID_ISCPSession_Value = @import("../zig.zig").Guid.initString("88a3e6ed-eee4-4619-bbb3-fd4fb62715d1");
 pub const IID_ISCPSession = &IID_ISCPSession_Value;
 pub const ISCPSession = extern struct {
     pub const VTable = extern struct {
@@ -3219,7 +3219,7 @@ pub const ISCPSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecureQuery: fn(
             self: *const ISCPSession,
-            ppSecureQuery: **ISCPSecureQuery,
+            ppSecureQuery: ?*?*ISCPSecureQuery,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3234,14 +3234,14 @@ pub const ISCPSession = extern struct {
             return @ptrCast(*const ISCPSession.VTable, self.vtable).EndSession(@ptrCast(*const ISCPSession, self), pCtx, dwSizeCtx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSession_GetSecureQuery(self: *const T, ppSecureQuery: **ISCPSecureQuery) callconv(.Inline) HRESULT {
+        pub fn ISCPSession_GetSecureQuery(self: *const T, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSession.VTable, self.vtable).GetSecureQuery(@ptrCast(*const ISCPSession, self), ppSecureQuery);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISCPSecureQuery3_Value = @import("../zig.zig").Guid.initString("B7EDD1A2-4DAB-484B-B3C5-AD39B8B4C0B1");
+const IID_ISCPSecureQuery3_Value = @import("../zig.zig").Guid.initString("b7edd1a2-4dab-484b-b3c5-ad39b8b4c0b1");
 pub const IID_ISCPSecureQuery3 = &IID_ISCPSecureQuery3_Value;
 pub const ISCPSecureQuery3 = extern struct {
     pub const VTable = extern struct {
@@ -3276,7 +3276,7 @@ pub const ISCPSecureQuery3 = extern struct {
             pdwRevocationBitFlag: *u32,
             pqwFileSize: ?*u64,
             pUnknown: ?*IUnknown,
-            ppExchange: **ISCPSecureExchange,
+            ppExchange: ?*?*ISCPSecureExchange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3287,14 +3287,14 @@ pub const ISCPSecureQuery3 = extern struct {
             return @ptrCast(*const ISCPSecureQuery3.VTable, self.vtable).GetRightsOnClearChannel(@ptrCast(*const ISCPSecureQuery3, self), pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, pProgressCallback, ppRights, pnRightsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery3_MakeDecisionOnClearChannel(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: *u32, pdwRevocationBitFlag: *u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: **ISCPSecureExchange) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery3_MakeDecisionOnClearChannel(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: *u32, pdwRevocationBitFlag: *u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISCPSecureQuery3.VTable, self.vtable).MakeDecisionOnClearChannel(@ptrCast(*const ISCPSecureQuery3, self), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pProgressCallback, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IComponentAuthenticate_Value = @import("../zig.zig").Guid.initString("A9889C00-6D2B-11D3-8496-00C04F79DBC0");
+const IID_IComponentAuthenticate_Value = @import("../zig.zig").Guid.initString("a9889c00-6d2b-11d3-8496-00c04f79dbc0");
 pub const IID_IComponentAuthenticate = &IID_IComponentAuthenticate_Value;
 pub const IComponentAuthenticate = extern struct {
     pub const VTable = extern struct {
@@ -3329,10 +3329,10 @@ pub const IComponentAuthenticate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_WMDMLogger_Value = @import("../zig.zig").Guid.initString("110A3202-5A79-11D3-8D78-444553540000");
+const CLSID_WMDMLogger_Value = @import("../zig.zig").Guid.initString("110a3202-5a79-11d3-8d78-444553540000");
 pub const CLSID_WMDMLogger = &CLSID_WMDMLogger_Value;
 
-const IID_IWMDMLogger_Value = @import("../zig.zig").Guid.initString("110A3200-5A79-11D3-8D78-444553540000");
+const IID_IWMDMLogger_Value = @import("../zig.zig").Guid.initString("110a3200-5a79-11d3-8d78-444553540000");
 pub const IID_IWMDMLogger = &IID_IWMDMLogger_Value;
 pub const IWMDMLogger = extern struct {
     pub const VTable = extern struct {

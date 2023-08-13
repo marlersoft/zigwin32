@@ -44,49 +44,49 @@ pub const IMAPI_E_BOOTIMAGE_AND_NONBLANK_DISC : i32 = -2147220946;
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
-const CLSID_MsftDiscMaster2_Value = @import("../zig.zig").Guid.initString("2735412E-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscMaster2_Value = @import("../zig.zig").Guid.initString("2735412e-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscMaster2 = &CLSID_MsftDiscMaster2_Value;
 
-const CLSID_MsftDiscRecorder2_Value = @import("../zig.zig").Guid.initString("2735412D-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscRecorder2_Value = @import("../zig.zig").Guid.initString("2735412d-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscRecorder2 = &CLSID_MsftDiscRecorder2_Value;
 
-const CLSID_MsftWriteEngine2_Value = @import("../zig.zig").Guid.initString("2735412C-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftWriteEngine2_Value = @import("../zig.zig").Guid.initString("2735412c-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftWriteEngine2 = &CLSID_MsftWriteEngine2_Value;
 
-const CLSID_MsftDiscFormat2Erase_Value = @import("../zig.zig").Guid.initString("2735412B-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscFormat2Erase_Value = @import("../zig.zig").Guid.initString("2735412b-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscFormat2Erase = &CLSID_MsftDiscFormat2Erase_Value;
 
-const CLSID_MsftDiscFormat2Data_Value = @import("../zig.zig").Guid.initString("2735412A-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscFormat2Data_Value = @import("../zig.zig").Guid.initString("2735412a-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscFormat2Data = &CLSID_MsftDiscFormat2Data_Value;
 
-const CLSID_MsftDiscFormat2TrackAtOnce_Value = @import("../zig.zig").Guid.initString("27354129-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscFormat2TrackAtOnce_Value = @import("../zig.zig").Guid.initString("27354129-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscFormat2TrackAtOnce = &CLSID_MsftDiscFormat2TrackAtOnce_Value;
 
-const CLSID_MsftDiscFormat2RawCD_Value = @import("../zig.zig").Guid.initString("27354128-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftDiscFormat2RawCD_Value = @import("../zig.zig").Guid.initString("27354128-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscFormat2RawCD = &CLSID_MsftDiscFormat2RawCD_Value;
 
-const CLSID_MsftStreamZero_Value = @import("../zig.zig").Guid.initString("27354127-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftStreamZero_Value = @import("../zig.zig").Guid.initString("27354127-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftStreamZero = &CLSID_MsftStreamZero_Value;
 
-const CLSID_MsftStreamPrng001_Value = @import("../zig.zig").Guid.initString("27354126-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftStreamPrng001_Value = @import("../zig.zig").Guid.initString("27354126-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftStreamPrng001 = &CLSID_MsftStreamPrng001_Value;
 
-const CLSID_MsftStreamConcatenate_Value = @import("../zig.zig").Guid.initString("27354125-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftStreamConcatenate_Value = @import("../zig.zig").Guid.initString("27354125-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftStreamConcatenate = &CLSID_MsftStreamConcatenate_Value;
 
-const CLSID_MsftStreamInterleave_Value = @import("../zig.zig").Guid.initString("27354124-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftStreamInterleave_Value = @import("../zig.zig").Guid.initString("27354124-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftStreamInterleave = &CLSID_MsftStreamInterleave_Value;
 
-const CLSID_MsftWriteSpeedDescriptor_Value = @import("../zig.zig").Guid.initString("27354123-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftWriteSpeedDescriptor_Value = @import("../zig.zig").Guid.initString("27354123-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftWriteSpeedDescriptor = &CLSID_MsftWriteSpeedDescriptor_Value;
 
-const CLSID_MsftMultisessionSequential_Value = @import("../zig.zig").Guid.initString("27354122-7F64-5B0F-8F00-5D77AFBE261E");
+const CLSID_MsftMultisessionSequential_Value = @import("../zig.zig").Guid.initString("27354122-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftMultisessionSequential = &CLSID_MsftMultisessionSequential_Value;
 
-const CLSID_MsftMultisessionRandomWrite_Value = @import("../zig.zig").Guid.initString("B507CA24-2204-11DD-966A-001AA01BBC58");
+const CLSID_MsftMultisessionRandomWrite_Value = @import("../zig.zig").Guid.initString("b507ca24-2204-11dd-966a-001aa01bbc58");
 pub const CLSID_MsftMultisessionRandomWrite = &CLSID_MsftMultisessionRandomWrite_Value;
 
-const CLSID_MsftRawCDImageCreator_Value = @import("../zig.zig").Guid.initString("25983561-9D65-49CE-B335-40630D901227");
+const CLSID_MsftRawCDImageCreator_Value = @import("../zig.zig").Guid.initString("25983561-9d65-49ce-b335-40630d901227");
 pub const CLSID_MsftRawCDImageCreator = &CLSID_MsftRawCDImageCreator_Value;
 
 pub const IMAPI_MEDIA_PHYSICAL_TYPE = extern enum(i32) {
@@ -482,19 +482,19 @@ pub const IMAPI_BURN_VERIFICATION_NONE = IMAPI_BURN_VERIFICATION_LEVEL.IMAPI_BUR
 pub const IMAPI_BURN_VERIFICATION_QUICK = IMAPI_BURN_VERIFICATION_LEVEL.IMAPI_BURN_VERIFICATION_QUICK;
 pub const IMAPI_BURN_VERIFICATION_FULL = IMAPI_BURN_VERIFICATION_LEVEL.IMAPI_BURN_VERIFICATION_FULL;
 
-const IID_IDiscMaster2_Value = @import("../zig.zig").Guid.initString("27354130-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscMaster2_Value = @import("../zig.zig").Guid.initString("27354130-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscMaster2 = &IID_IDiscMaster2_Value;
 pub const IDiscMaster2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IDiscMaster2,
-            ppunk: **IEnumVARIANT,
+            ppunk: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IDiscMaster2,
             index: i32,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IDiscMaster2,
@@ -509,11 +509,11 @@ pub const IDiscMaster2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster2_get__NewEnum(self: *const T, ppunk: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster2_get__NewEnum(self: *const T, ppunk: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDiscMaster2, self), ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster2_get_Item(self: *const T, index: i32, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster2_get_Item(self: *const T, index: i32, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get_Item(@ptrCast(*const IDiscMaster2, self), index, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -528,7 +528,7 @@ pub const IDiscMaster2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DDiscMaster2Events_Value = @import("../zig.zig").Guid.initString("27354131-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DDiscMaster2Events_Value = @import("../zig.zig").Guid.initString("27354131-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscMaster2Events = &IID_DDiscMaster2Events_Value;
 pub const DDiscMaster2Events = extern struct {
     pub const VTable = extern struct {
@@ -559,7 +559,7 @@ pub const DDiscMaster2Events = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscRecorder2Ex_Value = @import("../zig.zig").Guid.initString("27354132-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscRecorder2Ex_Value = @import("../zig.zig").Guid.initString("27354132-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscRecorder2Ex = &IID_IDiscRecorder2Ex_Value;
 pub const IDiscRecorder2Ex = extern struct {
     pub const VTable = extern struct {
@@ -757,7 +757,7 @@ pub const IDiscRecorder2Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscRecorder2_Value = @import("../zig.zig").Guid.initString("27354133-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscRecorder2_Value = @import("../zig.zig").Guid.initString("27354133-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscRecorder2 = &IID_IDiscRecorder2_Value;
 pub const IDiscRecorder2 = extern struct {
     pub const VTable = extern struct {
@@ -788,27 +788,27 @@ pub const IDiscRecorder2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ActiveDiscRecorder: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VendorId: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductId: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductRevision: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeName: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumePathNames: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceCanLoadMedia: fn(
             self: *const IDiscRecorder2,
@@ -820,27 +820,27 @@ pub const IDiscRecorder2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedFeaturePages: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentFeaturePages: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedProfiles: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentProfiles: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedModePages: fn(
             self: *const IDiscRecorder2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExclusiveAccessOwner: fn(
             self: *const IDiscRecorder2,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -875,27 +875,27 @@ pub const IDiscRecorder2 = extern struct {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).InitializeDiscRecorder(@ptrCast(*const IDiscRecorder2, self), recorderUniqueId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_ActiveDiscRecorder(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_ActiveDiscRecorder(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ActiveDiscRecorder(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_VendorId(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_VendorId(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VendorId(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_ProductId(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_ProductId(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ProductId(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_ProductRevision(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_ProductRevision(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ProductRevision(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_VolumeName(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_VolumeName(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumeName(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_VolumePathNames(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_VolumePathNames(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumePathNames(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -907,34 +907,34 @@ pub const IDiscRecorder2 = extern struct {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_LegacyDeviceNumber(@ptrCast(*const IDiscRecorder2, self), legacyDeviceNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedFeaturePages(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_CurrentFeaturePages(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_CurrentFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedProfiles(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedProfiles(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_CurrentProfiles(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_CurrentProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentProfiles(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_SupportedModePages(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_SupportedModePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedModePages(@ptrCast(*const IDiscRecorder2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2_get_ExclusiveAccessOwner(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2_get_ExclusiveAccessOwner(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ExclusiveAccessOwner(@ptrCast(*const IDiscRecorder2, self), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWriteEngine2_Value = @import("../zig.zig").Guid.initString("27354135-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IWriteEngine2_Value = @import("../zig.zig").Guid.initString("27354135-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteEngine2 = &IID_IWriteEngine2_Value;
 pub const IWriteEngine2 = extern struct {
     pub const VTable = extern struct {
@@ -954,7 +954,7 @@ pub const IWriteEngine2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recorder: fn(
             self: *const IWriteEngine2,
-            value: **IDiscRecorder2Ex,
+            value: ?*?*IDiscRecorder2Ex,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_UseStreamingWrite12: fn(
             self: *const IWriteEngine2,
@@ -1009,7 +1009,7 @@ pub const IWriteEngine2 = extern struct {
             return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_Recorder(@ptrCast(*const IWriteEngine2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWriteEngine2_get_Recorder(self: *const T, value: **IDiscRecorder2Ex) callconv(.Inline) HRESULT {
+        pub fn IWriteEngine2_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_Recorder(@ptrCast(*const IWriteEngine2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1052,7 +1052,7 @@ pub const IWriteEngine2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWriteEngine2EventArgs_Value = @import("../zig.zig").Guid.initString("27354136-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IWriteEngine2EventArgs_Value = @import("../zig.zig").Guid.initString("27354136-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteEngine2EventArgs = &IID_IWriteEngine2EventArgs_Value;
 pub const IWriteEngine2EventArgs = extern struct {
     pub const VTable = extern struct {
@@ -1121,7 +1121,7 @@ pub const IWriteEngine2EventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DWriteEngine2Events_Value = @import("../zig.zig").Guid.initString("27354137-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DWriteEngine2Events_Value = @import("../zig.zig").Guid.initString("27354137-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DWriteEngine2Events = &IID_DWriteEngine2Events_Value;
 pub const DWriteEngine2Events = extern struct {
     pub const VTable = extern struct {
@@ -1143,7 +1143,7 @@ pub const DWriteEngine2Events = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2_Value = @import("../zig.zig").Guid.initString("27354152-8F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2_Value = @import("../zig.zig").Guid.initString("27354152-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2 = &IID_IDiscFormat2_Value;
 pub const IDiscFormat2 = extern struct {
     pub const VTable = extern struct {
@@ -1168,7 +1168,7 @@ pub const IDiscFormat2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedMediaTypes: fn(
             self: *const IDiscFormat2,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1191,14 +1191,14 @@ pub const IDiscFormat2 = extern struct {
             return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_MediaHeuristicallyBlank(@ptrCast(*const IDiscFormat2, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2_get_SupportedMediaTypes(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2_get_SupportedMediaTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_SupportedMediaTypes(@ptrCast(*const IDiscFormat2, self), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2Erase_Value = @import("../zig.zig").Guid.initString("27354156-8F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2Erase_Value = @import("../zig.zig").Guid.initString("27354156-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2Erase = &IID_IDiscFormat2Erase_Value;
 pub const IDiscFormat2Erase = extern struct {
     pub const VTable = extern struct {
@@ -1209,7 +1209,7 @@ pub const IDiscFormat2Erase = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recorder: fn(
             self: *const IDiscFormat2Erase,
-            value: **IDiscRecorder2,
+            value: ?*?*IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FullErase: fn(
             self: *const IDiscFormat2Erase,
@@ -1229,7 +1229,7 @@ pub const IDiscFormat2Erase = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClientName: fn(
             self: *const IDiscFormat2Erase,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EraseMedia: fn(
             self: *const IDiscFormat2Erase,
@@ -1243,7 +1243,7 @@ pub const IDiscFormat2Erase = extern struct {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Erase_get_Recorder(self: *const T, value: **IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Erase_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1263,7 +1263,7 @@ pub const IDiscFormat2Erase = extern struct {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Erase_get_ClientName(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Erase_get_ClientName(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2Erase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1274,7 +1274,7 @@ pub const IDiscFormat2Erase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DDiscFormat2EraseEvents_Value = @import("../zig.zig").Guid.initString("2735413A-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DDiscFormat2EraseEvents_Value = @import("../zig.zig").Guid.initString("2735413a-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2EraseEvents = &IID_DDiscFormat2EraseEvents_Value;
 pub const DDiscFormat2EraseEvents = extern struct {
     pub const VTable = extern struct {
@@ -1297,7 +1297,7 @@ pub const DDiscFormat2EraseEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2Data_Value = @import("../zig.zig").Guid.initString("27354153-9F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2Data_Value = @import("../zig.zig").Guid.initString("27354153-9f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2Data = &IID_IDiscFormat2Data_Value;
 pub const IDiscFormat2Data = extern struct {
     pub const VTable = extern struct {
@@ -1308,7 +1308,7 @@ pub const IDiscFormat2Data = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recorder: fn(
             self: *const IDiscFormat2Data,
-            value: **IDiscRecorder2,
+            value: ?*?*IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BufferUnderrunFreeDisabled: fn(
             self: *const IDiscFormat2Data,
@@ -1380,7 +1380,7 @@ pub const IDiscFormat2Data = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClientName: fn(
             self: *const IDiscFormat2Data,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestedWriteSpeed: fn(
             self: *const IDiscFormat2Data,
@@ -1400,11 +1400,11 @@ pub const IDiscFormat2Data = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2Data,
-            supportedSpeeds: **SAFEARRAY,
+            supportedSpeeds: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2Data,
-            supportedSpeedDescriptors: **SAFEARRAY,
+            supportedSpeedDescriptors: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ForceOverwrite: fn(
             self: *const IDiscFormat2Data,
@@ -1416,7 +1416,7 @@ pub const IDiscFormat2Data = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MultisessionInterfaces: fn(
             self: *const IDiscFormat2Data,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Write: fn(
             self: *const IDiscFormat2Data,
@@ -1439,7 +1439,7 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_Recorder(self: *const T, value: **IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1511,7 +1511,7 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_ClientName(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_ClientName(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1531,11 +1531,11 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2Data, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2Data, self), supportedSpeedDescriptors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1547,7 +1547,7 @@ pub const IDiscFormat2Data = extern struct {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ForceOverwrite(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2Data_get_MultisessionInterfaces(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2Data_get_MultisessionInterfaces(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IDiscFormat2Data, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1566,7 +1566,7 @@ pub const IDiscFormat2Data = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DDiscFormat2DataEvents_Value = @import("../zig.zig").Guid.initString("2735413C-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DDiscFormat2DataEvents_Value = @import("../zig.zig").Guid.initString("2735413c-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2DataEvents = &IID_DDiscFormat2DataEvents_Value;
 pub const DDiscFormat2DataEvents = extern struct {
     pub const VTable = extern struct {
@@ -1588,7 +1588,7 @@ pub const DDiscFormat2DataEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2DataEventArgs_Value = @import("../zig.zig").Guid.initString("2735413D-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2DataEventArgs_Value = @import("../zig.zig").Guid.initString("2735413d-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2DataEventArgs = &IID_IDiscFormat2DataEventArgs_Value;
 pub const IDiscFormat2DataEventArgs = extern struct {
     pub const VTable = extern struct {
@@ -1633,7 +1633,7 @@ pub const IDiscFormat2DataEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2TrackAtOnce_Value = @import("../zig.zig").Guid.initString("27354154-8F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2TrackAtOnce_Value = @import("../zig.zig").Guid.initString("27354154-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2TrackAtOnce = &IID_IDiscFormat2TrackAtOnce_Value;
 pub const IDiscFormat2TrackAtOnce = extern struct {
     pub const VTable = extern struct {
@@ -1662,7 +1662,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recorder: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: **IDiscRecorder2,
+            value: ?*?*IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BufferUnderrunFreeDisabled: fn(
             self: *const IDiscFormat2TrackAtOnce,
@@ -1698,7 +1698,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExpectedTableOfContents: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentPhysicalMediaType: fn(
             self: *const IDiscFormat2TrackAtOnce,
@@ -1710,7 +1710,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClientName: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestedWriteSpeed: fn(
             self: *const IDiscFormat2TrackAtOnce,
@@ -1730,11 +1730,11 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            supportedSpeeds: **SAFEARRAY,
+            supportedSpeeds: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2TrackAtOnce,
-            supportedSpeedDescriptors: **SAFEARRAY,
+            supportedSpeedDescriptors: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1765,7 +1765,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_Recorder(self: *const T, value: **IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1801,7 +1801,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_DoNotFinalizeMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_ExpectedTableOfContents(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1813,7 +1813,7 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_ClientName(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_ClientName(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1833,18 +1833,18 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeedDescriptors);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DDiscFormat2TrackAtOnceEvents_Value = @import("../zig.zig").Guid.initString("2735413F-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DDiscFormat2TrackAtOnceEvents_Value = @import("../zig.zig").Guid.initString("2735413f-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2TrackAtOnceEvents = &IID_DDiscFormat2TrackAtOnceEvents_Value;
 pub const DDiscFormat2TrackAtOnceEvents = extern struct {
     pub const VTable = extern struct {
@@ -1866,7 +1866,7 @@ pub const DDiscFormat2TrackAtOnceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2TrackAtOnceEventArgs_Value = @import("../zig.zig").Guid.initString("27354140-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2TrackAtOnceEventArgs_Value = @import("../zig.zig").Guid.initString("27354140-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2TrackAtOnceEventArgs = &IID_IDiscFormat2TrackAtOnceEventArgs_Value;
 pub const IDiscFormat2TrackAtOnceEventArgs = extern struct {
     pub const VTable = extern struct {
@@ -1911,7 +1911,7 @@ pub const IDiscFormat2TrackAtOnceEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2RawCD_Value = @import("../zig.zig").Guid.initString("27354155-8F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2RawCD_Value = @import("../zig.zig").Guid.initString("27354155-8f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2RawCD = &IID_IDiscFormat2RawCD_Value;
 pub const IDiscFormat2RawCD = extern struct {
     pub const VTable = extern struct {
@@ -1945,7 +1945,7 @@ pub const IDiscFormat2RawCD = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recorder: fn(
             self: *const IDiscFormat2RawCD,
-            value: **IDiscRecorder2,
+            value: ?*?*IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BufferUnderrunFreeDisabled: fn(
             self: *const IDiscFormat2RawCD,
@@ -1969,7 +1969,7 @@ pub const IDiscFormat2RawCD = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedSectorTypes: fn(
             self: *const IDiscFormat2RawCD,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RequestedSectorType: fn(
             self: *const IDiscFormat2RawCD,
@@ -1985,7 +1985,7 @@ pub const IDiscFormat2RawCD = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ClientName: fn(
             self: *const IDiscFormat2RawCD,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestedWriteSpeed: fn(
             self: *const IDiscFormat2RawCD,
@@ -2005,11 +2005,11 @@ pub const IDiscFormat2RawCD = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeeds: fn(
             self: *const IDiscFormat2RawCD,
-            supportedSpeeds: **SAFEARRAY,
+            supportedSpeeds: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportedWriteSpeedDescriptors: fn(
             self: *const IDiscFormat2RawCD,
-            supportedSpeedDescriptors: **SAFEARRAY,
+            supportedSpeedDescriptors: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2044,7 +2044,7 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_Recorder(self: *const T, value: **IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2068,7 +2068,7 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedSectorTypes(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedSectorTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedSectorTypes(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2084,7 +2084,7 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_ClientName(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_ClientName(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2104,18 +2104,18 @@ pub const IDiscFormat2RawCD = extern struct {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2RawCD, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IDiscFormat2RawCD_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeedDescriptors);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DDiscFormat2RawCDEvents_Value = @import("../zig.zig").Guid.initString("27354142-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_DDiscFormat2RawCDEvents_Value = @import("../zig.zig").Guid.initString("27354142-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_DDiscFormat2RawCDEvents = &IID_DDiscFormat2RawCDEvents_Value;
 pub const DDiscFormat2RawCDEvents = extern struct {
     pub const VTable = extern struct {
@@ -2137,7 +2137,7 @@ pub const DDiscFormat2RawCDEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscFormat2RawCDEventArgs_Value = @import("../zig.zig").Guid.initString("27354143-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IDiscFormat2RawCDEventArgs_Value = @import("../zig.zig").Guid.initString("27354143-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IDiscFormat2RawCDEventArgs = &IID_IDiscFormat2RawCDEventArgs_Value;
 pub const IDiscFormat2RawCDEventArgs = extern struct {
     pub const VTable = extern struct {
@@ -2174,7 +2174,7 @@ pub const IDiscFormat2RawCDEventArgs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBurnVerification_Value = @import("../zig.zig").Guid.initString("D2FFD834-958B-426D-8470-2A13879C6A91");
+const IID_IBurnVerification_Value = @import("../zig.zig").Guid.initString("d2ffd834-958b-426d-8470-2a13879c6a91");
 pub const IID_IBurnVerification = &IID_IBurnVerification_Value;
 pub const IBurnVerification = extern struct {
     pub const VTable = extern struct {
@@ -2203,7 +2203,7 @@ pub const IBurnVerification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWriteSpeedDescriptor_Value = @import("../zig.zig").Guid.initString("27354144-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IWriteSpeedDescriptor_Value = @import("../zig.zig").Guid.initString("27354144-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IWriteSpeedDescriptor = &IID_IWriteSpeedDescriptor_Value;
 pub const IWriteSpeedDescriptor = extern struct {
     pub const VTable = extern struct {
@@ -2240,7 +2240,7 @@ pub const IWriteSpeedDescriptor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultisession_Value = @import("../zig.zig").Guid.initString("27354150-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IMultisession_Value = @import("../zig.zig").Guid.initString("27354150-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IMultisession = &IID_IMultisession_Value;
 pub const IMultisession = extern struct {
     pub const VTable = extern struct {
@@ -2259,7 +2259,7 @@ pub const IMultisession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ImportRecorder: fn(
             self: *const IMultisession,
-            value: **IDiscRecorder2,
+            value: ?*?*IDiscRecorder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2278,14 +2278,14 @@ pub const IMultisession = extern struct {
             return @ptrCast(*const IMultisession.VTable, self.vtable).get_InUse(@ptrCast(*const IMultisession, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMultisession_get_ImportRecorder(self: *const T, value: **IDiscRecorder2) callconv(.Inline) HRESULT {
+        pub fn IMultisession_get_ImportRecorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMultisession.VTable, self.vtable).get_ImportRecorder(@ptrCast(*const IMultisession, self), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultisessionSequential_Value = @import("../zig.zig").Guid.initString("27354151-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IMultisessionSequential_Value = @import("../zig.zig").Guid.initString("27354151-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IMultisessionSequential = &IID_IMultisessionSequential_Value;
 pub const IMultisessionSequential = extern struct {
     pub const VTable = extern struct {
@@ -2338,7 +2338,7 @@ pub const IMultisessionSequential = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultisessionSequential2_Value = @import("../zig.zig").Guid.initString("B507CA22-2204-11DD-966A-001AA01BBC58");
+const IID_IMultisessionSequential2_Value = @import("../zig.zig").Guid.initString("b507ca22-2204-11dd-966a-001aa01bbc58");
 pub const IID_IMultisessionSequential2 = &IID_IMultisessionSequential2_Value;
 pub const IMultisessionSequential2 = extern struct {
     pub const VTable = extern struct {
@@ -2359,7 +2359,7 @@ pub const IMultisessionSequential2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMultisessionRandomWrite_Value = @import("../zig.zig").Guid.initString("B507CA23-2204-11DD-966A-001AA01BBC58");
+const IID_IMultisessionRandomWrite_Value = @import("../zig.zig").Guid.initString("b507ca23-2204-11dd-966a-001aa01bbc58");
 pub const IID_IMultisessionRandomWrite = &IID_IMultisessionRandomWrite_Value;
 pub const IMultisessionRandomWrite = extern struct {
     pub const VTable = extern struct {
@@ -2396,7 +2396,7 @@ pub const IMultisessionRandomWrite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStreamPseudoRandomBased_Value = @import("../zig.zig").Guid.initString("27354145-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IStreamPseudoRandomBased_Value = @import("../zig.zig").Guid.initString("27354145-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamPseudoRandomBased = &IID_IStreamPseudoRandomBased_Value;
 pub const IStreamPseudoRandomBased = extern struct {
     pub const VTable = extern struct {
@@ -2443,7 +2443,7 @@ pub const IStreamPseudoRandomBased = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStreamConcatenate_Value = @import("../zig.zig").Guid.initString("27354146-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IStreamConcatenate_Value = @import("../zig.zig").Guid.initString("27354146-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamConcatenate = &IID_IStreamConcatenate_Value;
 pub const IStreamConcatenate = extern struct {
     pub const VTable = extern struct {
@@ -2491,7 +2491,7 @@ pub const IStreamConcatenate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStreamInterleave_Value = @import("../zig.zig").Guid.initString("27354147-7F64-5B0F-8F00-5D77AFBE261E");
+const IID_IStreamInterleave_Value = @import("../zig.zig").Guid.initString("27354147-7f64-5b0f-8f00-5d77afbe261e");
 pub const IID_IStreamInterleave = &IID_IStreamInterleave_Value;
 pub const IStreamInterleave = extern struct {
     pub const VTable = extern struct {
@@ -2514,7 +2514,7 @@ pub const IStreamInterleave = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRawCDImageCreator_Value = @import("../zig.zig").Guid.initString("25983550-9D65-49CE-B335-40630D901227");
+const IID_IRawCDImageCreator_Value = @import("../zig.zig").Guid.initString("25983550-9d65-49ce-b335-40630d901227");
 pub const IID_IRawCDImageCreator = &IID_IRawCDImageCreator_Value;
 pub const IRawCDImageCreator = extern struct {
     pub const VTable = extern struct {
@@ -2571,7 +2571,7 @@ pub const IRawCDImageCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MediaCatalogNumber: fn(
             self: *const IRawCDImageCreator,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_StartingTrackNumber: fn(
             self: *const IRawCDImageCreator,
@@ -2584,7 +2584,7 @@ pub const IRawCDImageCreator = extern struct {
         get_TrackInfo: fn(
             self: *const IRawCDImageCreator,
             trackIndex: i32,
-            value: **IRawCDImageTrackInfo,
+            value: ?*?*IRawCDImageTrackInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NumberOfExistingTracks: fn(
             self: *const IRawCDImageCreator,
@@ -2596,7 +2596,7 @@ pub const IRawCDImageCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExpectedTableOfContents: fn(
             self: *const IRawCDImageCreator,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2651,7 +2651,7 @@ pub const IRawCDImageCreator = extern struct {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_MediaCatalogNumber(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageCreator_get_MediaCatalogNumber(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageCreator_get_MediaCatalogNumber(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_MediaCatalogNumber(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2663,7 +2663,7 @@ pub const IRawCDImageCreator = extern struct {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_StartingTrackNumber(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageCreator_get_TrackInfo(self: *const T, trackIndex: i32, value: **IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageCreator_get_TrackInfo(self: *const T, trackIndex: i32, value: ?*?*IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_TrackInfo(@ptrCast(*const IRawCDImageCreator, self), trackIndex, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2675,14 +2675,14 @@ pub const IRawCDImageCreator = extern struct {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_LastUsedUserSectorInImage(@ptrCast(*const IRawCDImageCreator, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageCreator_get_ExpectedTableOfContents(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageCreator_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IRawCDImageCreator, self), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRawCDImageTrackInfo_Value = @import("../zig.zig").Guid.initString("25983551-9D65-49CE-B335-40630D901227");
+const IID_IRawCDImageTrackInfo_Value = @import("../zig.zig").Guid.initString("25983551-9d65-49ce-b335-40630d901227");
 pub const IID_IRawCDImageTrackInfo = &IID_IRawCDImageTrackInfo_Value;
 pub const IRawCDImageTrackInfo = extern struct {
     pub const VTable = extern struct {
@@ -2705,7 +2705,7 @@ pub const IRawCDImageTrackInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ISRC: fn(
             self: *const IRawCDImageTrackInfo,
-            value: *BSTR,
+            value: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ISRC: fn(
             self: *const IRawCDImageTrackInfo,
@@ -2729,7 +2729,7 @@ pub const IRawCDImageTrackInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TrackIndexes: fn(
             self: *const IRawCDImageTrackInfo,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddTrackIndex: fn(
             self: *const IRawCDImageTrackInfo,
@@ -2760,7 +2760,7 @@ pub const IRawCDImageTrackInfo = extern struct {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_SectorType(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageTrackInfo_get_ISRC(self: *const T, value: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageTrackInfo_get_ISRC(self: *const T, value: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_ISRC(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2784,7 +2784,7 @@ pub const IRawCDImageTrackInfo = extern struct {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).put_AudioHasPreemphasis(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRawCDImageTrackInfo_get_TrackIndexes(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IRawCDImageTrackInfo_get_TrackIndexes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_TrackIndexes(@ptrCast(*const IRawCDImageTrackInfo, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2799,7 +2799,7 @@ pub const IRawCDImageTrackInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBlockRange_Value = @import("../zig.zig").Guid.initString("B507CA25-2204-11DD-966A-001AA01BBC58");
+const IID_IBlockRange_Value = @import("../zig.zig").Guid.initString("b507ca25-2204-11dd-966a-001aa01bbc58");
 pub const IID_IBlockRange = &IID_IBlockRange_Value;
 pub const IBlockRange = extern struct {
     pub const VTable = extern struct {
@@ -2828,67 +2828,67 @@ pub const IBlockRange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBlockRangeList_Value = @import("../zig.zig").Guid.initString("B507CA26-2204-11DD-966A-001AA01BBC58");
+const IID_IBlockRangeList_Value = @import("../zig.zig").Guid.initString("b507ca26-2204-11dd-966a-001aa01bbc58");
 pub const IID_IBlockRangeList = &IID_IBlockRangeList_Value;
 pub const IBlockRangeList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_BlockRanges: fn(
             self: *const IBlockRangeList,
-            value: **SAFEARRAY,
+            value: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBlockRangeList_get_BlockRanges(self: *const T, value: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IBlockRangeList_get_BlockRanges(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBlockRangeList.VTable, self.vtable).get_BlockRanges(@ptrCast(*const IBlockRangeList, self), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BootOptions_Value = @import("../zig.zig").Guid.initString("2C941FCE-975B-59BE-A960-9A2A262853A5");
+const CLSID_BootOptions_Value = @import("../zig.zig").Guid.initString("2c941fce-975b-59be-a960-9a2a262853a5");
 pub const CLSID_BootOptions = &CLSID_BootOptions_Value;
 
-const CLSID_FsiStream_Value = @import("../zig.zig").Guid.initString("2C941FCD-975B-59BE-A960-9A2A262853A5");
+const CLSID_FsiStream_Value = @import("../zig.zig").Guid.initString("2c941fcd-975b-59be-a960-9a2a262853a5");
 pub const CLSID_FsiStream = &CLSID_FsiStream_Value;
 
-const CLSID_FileSystemImageResult_Value = @import("../zig.zig").Guid.initString("2C941FCC-975B-59BE-A960-9A2A262853A5");
+const CLSID_FileSystemImageResult_Value = @import("../zig.zig").Guid.initString("2c941fcc-975b-59be-a960-9a2a262853a5");
 pub const CLSID_FileSystemImageResult = &CLSID_FileSystemImageResult_Value;
 
-const CLSID_ProgressItem_Value = @import("../zig.zig").Guid.initString("2C941FCB-975B-59BE-A960-9A2A262853A5");
+const CLSID_ProgressItem_Value = @import("../zig.zig").Guid.initString("2c941fcb-975b-59be-a960-9a2a262853a5");
 pub const CLSID_ProgressItem = &CLSID_ProgressItem_Value;
 
-const CLSID_EnumProgressItems_Value = @import("../zig.zig").Guid.initString("2C941FCA-975B-59BE-A960-9A2A262853A5");
+const CLSID_EnumProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fca-975b-59be-a960-9a2a262853a5");
 pub const CLSID_EnumProgressItems = &CLSID_EnumProgressItems_Value;
 
-const CLSID_ProgressItems_Value = @import("../zig.zig").Guid.initString("2C941FC9-975B-59BE-A960-9A2A262853A5");
+const CLSID_ProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fc9-975b-59be-a960-9a2a262853a5");
 pub const CLSID_ProgressItems = &CLSID_ProgressItems_Value;
 
-const CLSID_FsiDirectoryItem_Value = @import("../zig.zig").Guid.initString("2C941FC8-975B-59BE-A960-9A2A262853A5");
+const CLSID_FsiDirectoryItem_Value = @import("../zig.zig").Guid.initString("2c941fc8-975b-59be-a960-9a2a262853a5");
 pub const CLSID_FsiDirectoryItem = &CLSID_FsiDirectoryItem_Value;
 
-const CLSID_FsiFileItem_Value = @import("../zig.zig").Guid.initString("2C941FC7-975B-59BE-A960-9A2A262853A5");
+const CLSID_FsiFileItem_Value = @import("../zig.zig").Guid.initString("2c941fc7-975b-59be-a960-9a2a262853a5");
 pub const CLSID_FsiFileItem = &CLSID_FsiFileItem_Value;
 
-const CLSID_EnumFsiItems_Value = @import("../zig.zig").Guid.initString("2C941FC6-975B-59BE-A960-9A2A262853A5");
+const CLSID_EnumFsiItems_Value = @import("../zig.zig").Guid.initString("2c941fc6-975b-59be-a960-9a2a262853a5");
 pub const CLSID_EnumFsiItems = &CLSID_EnumFsiItems_Value;
 
-const CLSID_FsiNamedStreams_Value = @import("../zig.zig").Guid.initString("C6B6F8ED-6D19-44B4-B539-B159B793A32D");
+const CLSID_FsiNamedStreams_Value = @import("../zig.zig").Guid.initString("c6b6f8ed-6d19-44b4-b539-b159b793a32d");
 pub const CLSID_FsiNamedStreams = &CLSID_FsiNamedStreams_Value;
 
-const CLSID_MsftFileSystemImage_Value = @import("../zig.zig").Guid.initString("2C941FC5-975B-59BE-A960-9A2A262853A5");
+const CLSID_MsftFileSystemImage_Value = @import("../zig.zig").Guid.initString("2c941fc5-975b-59be-a960-9a2a262853a5");
 pub const CLSID_MsftFileSystemImage = &CLSID_MsftFileSystemImage_Value;
 
-const CLSID_MsftIsoImageManager_Value = @import("../zig.zig").Guid.initString("CEEE3B62-8F56-4056-869B-EF16917E3EFC");
+const CLSID_MsftIsoImageManager_Value = @import("../zig.zig").Guid.initString("ceee3b62-8f56-4056-869b-ef16917e3efc");
 pub const CLSID_MsftIsoImageManager = &CLSID_MsftIsoImageManager_Value;
 
-const CLSID_BlockRange_Value = @import("../zig.zig").Guid.initString("B507CA27-2204-11DD-966A-001AA01BBC58");
+const CLSID_BlockRange_Value = @import("../zig.zig").Guid.initString("b507ca27-2204-11dd-966a-001aa01bbc58");
 pub const CLSID_BlockRange = &CLSID_BlockRange_Value;
 
-const CLSID_BlockRangeList_Value = @import("../zig.zig").Guid.initString("B507CA28-2204-11DD-966A-001AA01BBC58");
+const CLSID_BlockRangeList_Value = @import("../zig.zig").Guid.initString("b507ca28-2204-11dd-966a-001aa01bbc58");
 pub const CLSID_BlockRangeList = &CLSID_BlockRangeList_Value;
 
 pub const FsiItemType = extern enum(i32) {
@@ -2937,7 +2937,7 @@ pub const PlatformPowerPC = PlatformId.PlatformPowerPC;
 pub const PlatformMac = PlatformId.PlatformMac;
 pub const PlatformEFI = PlatformId.PlatformEFI;
 
-const IID_IBootOptions_Value = @import("../zig.zig").Guid.initString("2C941FD4-975B-59BE-A960-9A2A262853A5");
+const IID_IBootOptions_Value = @import("../zig.zig").Guid.initString("2c941fd4-975b-59be-a960-9a2a262853a5");
 pub const IID_IBootOptions = &IID_IBootOptions_Value;
 pub const IBootOptions = extern struct {
     pub const VTable = extern struct {
@@ -3022,7 +3022,7 @@ pub const IBootOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProgressItem_Value = @import("../zig.zig").Guid.initString("2C941FD5-975B-59BE-A960-9A2A262853A5");
+const IID_IProgressItem_Value = @import("../zig.zig").Guid.initString("2c941fd5-975b-59be-a960-9a2a262853a5");
 pub const IID_IProgressItem = &IID_IProgressItem_Value;
 pub const IProgressItem = extern struct {
     pub const VTable = extern struct {
@@ -3067,7 +3067,7 @@ pub const IProgressItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumProgressItems_Value = @import("../zig.zig").Guid.initString("2C941FD6-975B-59BE-A960-9A2A262853A5");
+const IID_IEnumProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fd6-975b-59be-a960-9a2a262853a5");
 pub const IID_IEnumProgressItems = &IID_IEnumProgressItems_Value;
 pub const IEnumProgressItems = extern struct {
     pub const VTable = extern struct {
@@ -3113,7 +3113,7 @@ pub const IEnumProgressItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProgressItems_Value = @import("../zig.zig").Guid.initString("2C941FD7-975B-59BE-A960-9A2A262853A5");
+const IID_IProgressItems_Value = @import("../zig.zig").Guid.initString("2c941fd7-975b-59be-a960-9a2a262853a5");
 pub const IID_IProgressItems = &IID_IProgressItems_Value;
 pub const IProgressItems = extern struct {
     pub const VTable = extern struct {
@@ -3177,7 +3177,7 @@ pub const IProgressItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileSystemImageResult_Value = @import("../zig.zig").Guid.initString("2C941FD8-975B-59BE-A960-9A2A262853A5");
+const IID_IFileSystemImageResult_Value = @import("../zig.zig").Guid.initString("2c941fd8-975b-59be-a960-9a2a262853a5");
 pub const IID_IFileSystemImageResult = &IID_IFileSystemImageResult_Value;
 pub const IFileSystemImageResult = extern struct {
     pub const VTable = extern struct {
@@ -3230,28 +3230,28 @@ pub const IFileSystemImageResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileSystemImageResult2_Value = @import("../zig.zig").Guid.initString("B507CA29-2204-11DD-966A-001AA01BBC58");
+const IID_IFileSystemImageResult2_Value = @import("../zig.zig").Guid.initString("b507ca29-2204-11dd-966a-001aa01bbc58");
 pub const IID_IFileSystemImageResult2 = &IID_IFileSystemImageResult2_Value;
 pub const IFileSystemImageResult2 = extern struct {
     pub const VTable = extern struct {
         base: IFileSystemImageResult.VTable,
         get_ModifiedBlocks: fn(
             self: *const IFileSystemImageResult2,
-            pVal: **IBlockRangeList,
+            pVal: ?*?*IBlockRangeList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFileSystemImageResult.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImageResult2_get_ModifiedBlocks(self: *const T, pVal: **IBlockRangeList) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImageResult2_get_ModifiedBlocks(self: *const T, pVal: ?*?*IBlockRangeList) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImageResult2.VTable, self.vtable).get_ModifiedBlocks(@ptrCast(*const IFileSystemImageResult2, self), pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiItem_Value = @import("../zig.zig").Guid.initString("2C941FD9-975B-59BE-A960-9A2A262853A5");
+const IID_IFsiItem_Value = @import("../zig.zig").Guid.initString("2c941fd9-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiItem = &IID_IFsiItem_Value;
 pub const IFsiItem = extern struct {
     pub const VTable = extern struct {
@@ -3362,7 +3362,7 @@ pub const IFsiItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumFsiItems_Value = @import("../zig.zig").Guid.initString("2C941FDA-975B-59BE-A960-9A2A262853A5");
+const IID_IEnumFsiItems_Value = @import("../zig.zig").Guid.initString("2c941fda-975b-59be-a960-9a2a262853a5");
 pub const IID_IEnumFsiItems = &IID_IEnumFsiItems_Value;
 pub const IEnumFsiItems = extern struct {
     pub const VTable = extern struct {
@@ -3408,7 +3408,7 @@ pub const IEnumFsiItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiFileItem_Value = @import("../zig.zig").Guid.initString("2C941FDB-975B-59BE-A960-9A2A262853A5");
+const IID_IFsiFileItem_Value = @import("../zig.zig").Guid.initString("2c941fdb-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiFileItem = &IID_IFsiFileItem_Value;
 pub const IFsiFileItem = extern struct {
     pub const VTable = extern struct {
@@ -3461,14 +3461,14 @@ pub const IFsiFileItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiFileItem2_Value = @import("../zig.zig").Guid.initString("199D0C19-11E1-40EB-8EC2-C8C822A07792");
+const IID_IFsiFileItem2_Value = @import("../zig.zig").Guid.initString("199d0c19-11e1-40eb-8ec2-c8c822a07792");
 pub const IID_IFsiFileItem2 = &IID_IFsiFileItem2_Value;
 pub const IFsiFileItem2 = extern struct {
     pub const VTable = extern struct {
         base: IFsiFileItem.VTable,
         get_FsiNamedStreams: fn(
             self: *const IFsiFileItem2,
-            streams: **IFsiNamedStreams,
+            streams: ?*?*IFsiNamedStreams,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IsNamedStream: fn(
             self: *const IFsiFileItem2,
@@ -3496,7 +3496,7 @@ pub const IFsiFileItem2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFsiFileItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiFileItem2_get_FsiNamedStreams(self: *const T, streams: **IFsiNamedStreams) callconv(.Inline) HRESULT {
+        pub fn IFsiFileItem2_get_FsiNamedStreams(self: *const T, streams: ?*?*IFsiNamedStreams) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).get_FsiNamedStreams(@ptrCast(*const IFsiFileItem2, self), streams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3523,19 +3523,19 @@ pub const IFsiFileItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiNamedStreams_Value = @import("../zig.zig").Guid.initString("ED79BA56-5294-4250-8D46-F9AECEE23459");
+const IID_IFsiNamedStreams_Value = @import("../zig.zig").Guid.initString("ed79ba56-5294-4250-8d46-f9aecee23459");
 pub const IID_IFsiNamedStreams = &IID_IFsiNamedStreams_Value;
 pub const IFsiNamedStreams = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFsiNamedStreams,
-            NewEnum: **IEnumVARIANT,
+            NewEnum: ?*?*IEnumVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFsiNamedStreams,
             index: i32,
-            item: **IFsiFileItem2,
+            item: ?*?*IFsiFileItem2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFsiNamedStreams,
@@ -3543,18 +3543,18 @@ pub const IFsiNamedStreams = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EnumNamedStreams: fn(
             self: *const IFsiNamedStreams,
-            NewEnum: **IEnumFsiItems,
+            NewEnum: ?*?*IEnumFsiItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get__NewEnum(self: *const T, NewEnum: **IEnumVARIANT) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get__NewEnum(self: *const T, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get_Item(self: *const T, index: i32, item: **IFsiFileItem2) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get_Item(self: *const T, index: i32, item: ?*?*IFsiFileItem2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Item(@ptrCast(*const IFsiNamedStreams, self), index, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3562,14 +3562,14 @@ pub const IFsiNamedStreams = extern struct {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Count(@ptrCast(*const IFsiNamedStreams, self), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFsiNamedStreams_get_EnumNamedStreams(self: *const T, NewEnum: **IEnumFsiItems) callconv(.Inline) HRESULT {
+        pub fn IFsiNamedStreams_get_EnumNamedStreams(self: *const T, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_EnumNamedStreams(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiDirectoryItem_Value = @import("../zig.zig").Guid.initString("2C941FDC-975B-59BE-A960-9A2A262853A5");
+const IID_IFsiDirectoryItem_Value = @import("../zig.zig").Guid.initString("2c941fdc-975b-59be-a960-9a2a262853a5");
 pub const IID_IFsiDirectoryItem = &IID_IFsiDirectoryItem_Value;
 pub const IFsiDirectoryItem = extern struct {
     pub const VTable = extern struct {
@@ -3665,7 +3665,7 @@ pub const IFsiDirectoryItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFsiDirectoryItem2_Value = @import("../zig.zig").Guid.initString("F7FB4B9B-6D96-4D7B-9115-201B144811EF");
+const IID_IFsiDirectoryItem2_Value = @import("../zig.zig").Guid.initString("f7fb4b9b-6d96-4d7b-9115-201b144811ef");
 pub const IID_IFsiDirectoryItem2 = &IID_IFsiDirectoryItem2_Value;
 pub const IFsiDirectoryItem2 = extern struct {
     pub const VTable = extern struct {
@@ -3687,14 +3687,14 @@ pub const IFsiDirectoryItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileSystemImage_Value = @import("../zig.zig").Guid.initString("2C941FE1-975B-59BE-A960-9A2A262853A5");
+const IID_IFileSystemImage_Value = @import("../zig.zig").Guid.initString("2c941fe1-975b-59be-a960-9a2a262853a5");
 pub const IID_IFileSystemImage = &IID_IFileSystemImage_Value;
 pub const IFileSystemImage = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Root: fn(
             self: *const IFileSystemImage,
-            pVal: **IFsiDirectoryItem,
+            pVal: ?*?*IFsiDirectoryItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SessionStartBlock: fn(
             self: *const IFileSystemImage,
@@ -3722,7 +3722,7 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeName: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_VolumeName: fn(
             self: *const IFileSystemImage,
@@ -3730,11 +3730,11 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ImportedVolumeName: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BootImageOptions: fn(
             self: *const IFileSystemImage,
-            pVal: **IBootOptions,
+            pVal: ?*?*IBootOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BootImageOptions: fn(
             self: *const IFileSystemImage,
@@ -3750,7 +3750,7 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_WorkingDirectory: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_WorkingDirectory: fn(
             self: *const IFileSystemImage,
@@ -3798,7 +3798,7 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UDFRevisionsSupported: fn(
             self: *const IFileSystemImage,
-            pVal: **SAFEARRAY,
+            pVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChooseImageDefaults: fn(
             self: *const IFileSystemImage,
@@ -3818,11 +3818,11 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ISO9660InterchangeLevelsSupported: fn(
             self: *const IFileSystemImage,
-            pVal: **SAFEARRAY,
+            pVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResultImage: fn(
             self: *const IFileSystemImage,
-            resultStream: **IFileSystemImageResult,
+            resultStream: ?*?*IFileSystemImageResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Exists: fn(
             self: *const IFileSystemImage,
@@ -3831,7 +3831,7 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CalculateDiscIdentifier: fn(
             self: *const IFileSystemImage,
-            discIdentifier: *BSTR,
+            discIdentifier: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IdentifyFileSystemsOnDisc: fn(
             self: *const IFileSystemImage,
@@ -3861,24 +3861,24 @@ pub const IFileSystemImage = extern struct {
         CreateDirectoryItem: fn(
             self: *const IFileSystemImage,
             name: BSTR,
-            newItem: **IFsiDirectoryItem,
+            newItem: ?*?*IFsiDirectoryItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFileItem: fn(
             self: *const IFileSystemImage,
             name: BSTR,
-            newItem: **IFsiFileItem,
+            newItem: ?*?*IFsiFileItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeNameUDF: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeNameJoliet: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeNameISO9660: fn(
             self: *const IFileSystemImage,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StageFiles: fn(
             self: *const IFileSystemImage,
@@ -3890,7 +3890,7 @@ pub const IFileSystemImage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MultisessionInterfaces: fn(
             self: *const IFileSystemImage,
-            pVal: **SAFEARRAY,
+            pVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MultisessionInterfaces: fn(
             self: *const IFileSystemImage,
@@ -3901,7 +3901,7 @@ pub const IFileSystemImage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_Root(self: *const T, pVal: **IFsiDirectoryItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_Root(self: *const T, pVal: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_Root(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3929,7 +3929,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UsedBlocks(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_VolumeName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_VolumeName(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeName(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3937,11 +3937,11 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_VolumeName(@ptrCast(*const IFileSystemImage, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_ImportedVolumeName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_ImportedVolumeName(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ImportedVolumeName(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_BootImageOptions(self: *const T, pVal: **IBootOptions) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_BootImageOptions(self: *const T, pVal: ?*?*IBootOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_BootImageOptions(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3957,7 +3957,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_DirectoryCount(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_WorkingDirectory(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_WorkingDirectory(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_WorkingDirectory(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4005,7 +4005,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevision(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_UDFRevisionsSupported(self: *const T, pVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_UDFRevisionsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevisionsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4025,11 +4025,11 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevel(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_ISO9660InterchangeLevelsSupported(self: *const T, pVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_ISO9660InterchangeLevelsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevelsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateResultImage(self: *const T, resultStream: **IFileSystemImageResult) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateResultImage(self: *const T, resultStream: ?*?*IFileSystemImageResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateResultImage(@ptrCast(*const IFileSystemImage, self), resultStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4037,7 +4037,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).Exists(@ptrCast(*const IFileSystemImage, self), fullPath, itemType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CalculateDiscIdentifier(self: *const T, discIdentifier: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CalculateDiscIdentifier(self: *const T, discIdentifier: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CalculateDiscIdentifier(@ptrCast(*const IFileSystemImage, self), discIdentifier);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4065,23 +4065,23 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).LockInChangePoint(@ptrCast(*const IFileSystemImage, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateDirectoryItem(self: *const T, name: BSTR, newItem: **IFsiDirectoryItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateDirectoryItem(self: *const T, name: BSTR, newItem: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateDirectoryItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_CreateFileItem(self: *const T, name: BSTR, newItem: **IFsiFileItem) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_CreateFileItem(self: *const T, name: BSTR, newItem: ?*?*IFsiFileItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateFileItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_VolumeNameUDF(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_VolumeNameUDF(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameUDF(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_VolumeNameJoliet(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_VolumeNameJoliet(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameJoliet(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_VolumeNameISO9660(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_VolumeNameISO9660(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameISO9660(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4093,7 +4093,7 @@ pub const IFileSystemImage = extern struct {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_StageFiles(@ptrCast(*const IFileSystemImage, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage_get_MultisessionInterfaces(self: *const T, pVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage_get_MultisessionInterfaces(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IFileSystemImage, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4104,14 +4104,14 @@ pub const IFileSystemImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileSystemImage2_Value = @import("../zig.zig").Guid.initString("D7644B2C-1537-4767-B62F-F1387B02DDFD");
+const IID_IFileSystemImage2_Value = @import("../zig.zig").Guid.initString("d7644b2c-1537-4767-b62f-f1387b02ddfd");
 pub const IID_IFileSystemImage2 = &IID_IFileSystemImage2_Value;
 pub const IFileSystemImage2 = extern struct {
     pub const VTable = extern struct {
         base: IFileSystemImage.VTable,
         get_BootImageOptionsArray: fn(
             self: *const IFileSystemImage2,
-            pVal: **SAFEARRAY,
+            pVal: ?*?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BootImageOptionsArray: fn(
             self: *const IFileSystemImage2,
@@ -4122,7 +4122,7 @@ pub const IFileSystemImage2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFileSystemImage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFileSystemImage2_get_BootImageOptionsArray(self: *const T, pVal: **SAFEARRAY) callconv(.Inline) HRESULT {
+        pub fn IFileSystemImage2_get_BootImageOptionsArray(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFileSystemImage2.VTable, self.vtable).get_BootImageOptionsArray(@ptrCast(*const IFileSystemImage2, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4133,7 +4133,7 @@ pub const IFileSystemImage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFileSystemImage3_Value = @import("../zig.zig").Guid.initString("7CFF842C-7E97-4807-8304-910DD8F7C051");
+const IID_IFileSystemImage3_Value = @import("../zig.zig").Guid.initString("7cff842c-7e97-4807-8304-910dd8f7c051");
 pub const IID_IFileSystemImage3 = &IID_IFileSystemImage3_Value;
 pub const IFileSystemImage3 = extern struct {
     pub const VTable = extern struct {
@@ -4171,7 +4171,7 @@ pub const IFileSystemImage3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DFileSystemImageEvents_Value = @import("../zig.zig").Guid.initString("2C941FDF-975B-59BE-A960-9A2A262853A5");
+const IID_DFileSystemImageEvents_Value = @import("../zig.zig").Guid.initString("2c941fdf-975b-59be-a960-9a2a262853a5");
 pub const IID_DFileSystemImageEvents = &IID_DFileSystemImageEvents_Value;
 pub const DFileSystemImageEvents = extern struct {
     pub const VTable = extern struct {
@@ -4195,7 +4195,7 @@ pub const DFileSystemImageEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DFileSystemImageImportEvents_Value = @import("../zig.zig").Guid.initString("D25C30F9-4087-4366-9E24-E55BE286424B");
+const IID_DFileSystemImageImportEvents_Value = @import("../zig.zig").Guid.initString("d25c30f9-4087-4366-9e24-e55be286424b");
 pub const IID_DFileSystemImageImportEvents = &IID_DFileSystemImageImportEvents_Value;
 pub const DFileSystemImageImportEvents = extern struct {
     pub const VTable = extern struct {
@@ -4222,14 +4222,14 @@ pub const DFileSystemImageImportEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIsoImageManager_Value = @import("../zig.zig").Guid.initString("6CA38BE5-FBBB-4800-95A1-A438865EB0D4");
+const IID_IIsoImageManager_Value = @import("../zig.zig").Guid.initString("6ca38be5-fbbb-4800-95a1-a438865eb0d4");
 pub const IID_IIsoImageManager = &IID_IIsoImageManager_Value;
 pub const IIsoImageManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Path: fn(
             self: *const IIsoImageManager,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Stream: fn(
             self: *const IIsoImageManager,
@@ -4251,7 +4251,7 @@ pub const IIsoImageManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIsoImageManager_get_Path(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IIsoImageManager_get_Path(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIsoImageManager.VTable, self.vtable).get_Path(@ptrCast(*const IIsoImageManager, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4274,13 +4274,13 @@ pub const IIsoImageManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_MSDiscRecorderObj_Value = @import("../zig.zig").Guid.initString("520CCA61-51A5-11D3-9144-00104BA11C5E");
+const CLSID_MSDiscRecorderObj_Value = @import("../zig.zig").Guid.initString("520cca61-51a5-11d3-9144-00104ba11c5e");
 pub const CLSID_MSDiscRecorderObj = &CLSID_MSDiscRecorderObj_Value;
 
-const CLSID_MSDiscMasterObj_Value = @import("../zig.zig").Guid.initString("520CCA63-51A5-11D3-9144-00104BA11C5E");
+const CLSID_MSDiscMasterObj_Value = @import("../zig.zig").Guid.initString("520cca63-51a5-11d3-9144-00104ba11c5e");
 pub const CLSID_MSDiscMasterObj = &CLSID_MSDiscMasterObj_Value;
 
-const CLSID_MSEnumDiscRecordersObj_Value = @import("../zig.zig").Guid.initString("8A03567A-63CB-4BA8-BAF6-52119816D1EF");
+const CLSID_MSEnumDiscRecordersObj_Value = @import("../zig.zig").Guid.initString("8a03567a-63cb-4ba8-baf6-52119816d1ef");
 pub const CLSID_MSEnumDiscRecordersObj = &CLSID_MSEnumDiscRecordersObj_Value;
 
 pub const MEDIA_TYPES = extern enum(i32) {
@@ -4316,7 +4316,7 @@ pub const RECORDER_TYPES = extern enum(i32) {
 pub const RECORDER_CDR = RECORDER_TYPES.RECORDER_CDR;
 pub const RECORDER_CDRW = RECORDER_TYPES.RECORDER_CDRW;
 
-const IID_IDiscRecorder_Value = @import("../zig.zig").Guid.initString("85AC9776-CA88-4CF2-894E-09598C078A41");
+const IID_IDiscRecorder_Value = @import("../zig.zig").Guid.initString("85ac9776-ca88-4cf2-894e-09598c078a41");
 pub const IID_IDiscRecorder = &IID_IDiscRecorder_Value;
 pub const IDiscRecorder = extern struct {
     pub const VTable = extern struct {
@@ -4345,15 +4345,15 @@ pub const IDiscRecorder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBasePnPID: fn(
             self: *const IDiscRecorder,
-            pbstrBasePnPID: *BSTR,
+            pbstrBasePnPID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPath: fn(
             self: *const IDiscRecorder,
-            pbstrPath: *BSTR,
+            pbstrPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRecorderProperties: fn(
             self: *const IDiscRecorder,
-            ppPropStg: **IPropertyStorage,
+            ppPropStg: ?*?*IPropertyStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetRecorderProperties: fn(
             self: *const IDiscRecorder,
@@ -4410,15 +4410,15 @@ pub const IDiscRecorder = extern struct {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetDisplayNames(@ptrCast(*const IDiscRecorder, self), pbstrVendorID, pbstrProductID, pbstrRevision);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder_GetBasePnPID(self: *const T, pbstrBasePnPID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder_GetBasePnPID(self: *const T, pbstrBasePnPID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetBasePnPID(@ptrCast(*const IDiscRecorder, self), pbstrBasePnPID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder_GetPath(self: *const T, pbstrPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder_GetPath(self: *const T, pbstrPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetPath(@ptrCast(*const IDiscRecorder, self), pbstrPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder_GetRecorderProperties(self: *const T, ppPropStg: **IPropertyStorage) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder_GetRecorderProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderProperties(@ptrCast(*const IDiscRecorder, self), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4457,7 +4457,7 @@ pub const IDiscRecorder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDiscRecorders_Value = @import("../zig.zig").Guid.initString("9B1921E1-54AC-11D3-9144-00104BA11C5E");
+const IID_IEnumDiscRecorders_Value = @import("../zig.zig").Guid.initString("9b1921e1-54ac-11d3-9144-00104ba11c5e");
 pub const IID_IEnumDiscRecorders = &IID_IEnumDiscRecorders_Value;
 pub const IEnumDiscRecorders = extern struct {
     pub const VTable = extern struct {
@@ -4477,7 +4477,7 @@ pub const IEnumDiscRecorders = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDiscRecorders,
-            ppEnum: **IEnumDiscRecorders,
+            ppEnum: ?*?*IEnumDiscRecorders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4496,14 +4496,14 @@ pub const IEnumDiscRecorders = extern struct {
             return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscRecorders, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiscRecorders_Clone(self: *const T, ppEnum: **IEnumDiscRecorders) callconv(.Inline) HRESULT {
+        pub fn IEnumDiscRecorders_Clone(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscRecorders, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDiscMasterFormats_Value = @import("../zig.zig").Guid.initString("DDF445E1-54BA-11D3-9144-00104BA11C5E");
+const IID_IEnumDiscMasterFormats_Value = @import("../zig.zig").Guid.initString("ddf445e1-54ba-11d3-9144-00104ba11c5e");
 pub const IID_IEnumDiscMasterFormats = &IID_IEnumDiscMasterFormats_Value;
 pub const IEnumDiscMasterFormats = extern struct {
     pub const VTable = extern struct {
@@ -4523,7 +4523,7 @@ pub const IEnumDiscMasterFormats = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumDiscMasterFormats,
-            ppEnum: **IEnumDiscMasterFormats,
+            ppEnum: ?*?*IEnumDiscMasterFormats,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4542,14 +4542,14 @@ pub const IEnumDiscMasterFormats = extern struct {
             return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscMasterFormats, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiscMasterFormats_Clone(self: *const T, ppEnum: **IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
+        pub fn IEnumDiscMasterFormats_Clone(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscMasterFormats, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRedbookDiscMaster_Value = @import("../zig.zig").Guid.initString("E3BC42CD-4E5C-11D3-9144-00104BA11C5E");
+const IID_IRedbookDiscMaster_Value = @import("../zig.zig").Guid.initString("e3bc42cd-4e5c-11d3-9144-00104ba11c5e");
 pub const IID_IRedbookDiscMaster = &IID_IRedbookDiscMaster_Value;
 pub const IRedbookDiscMaster = extern struct {
     pub const VTable = extern struct {
@@ -4626,7 +4626,7 @@ pub const IRedbookDiscMaster = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IJolietDiscMaster_Value = @import("../zig.zig").Guid.initString("E3BC42CE-4E5C-11D3-9144-00104BA11C5E");
+const IID_IJolietDiscMaster_Value = @import("../zig.zig").Guid.initString("e3bc42ce-4e5c-11d3-9144-00104ba11c5e");
 pub const IID_IJolietDiscMaster = &IID_IJolietDiscMaster_Value;
 pub const IJolietDiscMaster = extern struct {
     pub const VTable = extern struct {
@@ -4650,7 +4650,7 @@ pub const IJolietDiscMaster = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJolietProperties: fn(
             self: *const IJolietDiscMaster,
-            ppPropStg: **IPropertyStorage,
+            ppPropStg: ?*?*IPropertyStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetJolietProperties: fn(
             self: *const IJolietDiscMaster,
@@ -4677,7 +4677,7 @@ pub const IJolietDiscMaster = extern struct {
             return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).AddData(@ptrCast(*const IJolietDiscMaster, self), pStorage, lFileOverwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IJolietDiscMaster_GetJolietProperties(self: *const T, ppPropStg: **IPropertyStorage) callconv(.Inline) HRESULT {
+        pub fn IJolietDiscMaster_GetJolietProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetJolietProperties(@ptrCast(*const IJolietDiscMaster, self), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4688,7 +4688,7 @@ pub const IJolietDiscMaster = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscMasterProgressEvents_Value = @import("../zig.zig").Guid.initString("EC9E51C1-4E5D-11D3-9144-00104BA11C5E");
+const IID_IDiscMasterProgressEvents_Value = @import("../zig.zig").Guid.initString("ec9e51c1-4e5d-11d3-9144-00104ba11c5e");
 pub const IID_IDiscMasterProgressEvents = &IID_IDiscMasterProgressEvents_Value;
 pub const IDiscMasterProgressEvents = extern struct {
     pub const VTable = extern struct {
@@ -4775,7 +4775,7 @@ pub const IDiscMasterProgressEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiscMaster_Value = @import("../zig.zig").Guid.initString("520CCA62-51A5-11D3-9144-00104BA11C5E");
+const IID_IDiscMaster_Value = @import("../zig.zig").Guid.initString("520cca62-51a5-11d3-9144-00104ba11c5e");
 pub const IID_IDiscMaster = &IID_IDiscMaster_Value;
 pub const IDiscMaster = extern struct {
     pub const VTable = extern struct {
@@ -4785,7 +4785,7 @@ pub const IDiscMaster = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDiscMasterFormats: fn(
             self: *const IDiscMaster,
-            ppEnum: **IEnumDiscMasterFormats,
+            ppEnum: ?*?*IEnumDiscMasterFormats,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveDiscMasterFormat: fn(
             self: *const IDiscMaster,
@@ -4794,15 +4794,15 @@ pub const IDiscMaster = extern struct {
         SetActiveDiscMasterFormat: fn(
             self: *const IDiscMaster,
             riid: *const Guid,
-            ppUnk: **c_void,
+            ppUnk: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDiscRecorders: fn(
             self: *const IDiscMaster,
-            ppEnum: **IEnumDiscRecorders,
+            ppEnum: ?*?*IEnumDiscRecorders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetActiveDiscRecorder: fn(
             self: *const IDiscMaster,
-            ppRecorder: **IDiscRecorder,
+            ppRecorder: ?*?*IDiscRecorder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetActiveDiscRecorder: fn(
             self: *const IDiscMaster,
@@ -4837,7 +4837,7 @@ pub const IDiscMaster = extern struct {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).Open(@ptrCast(*const IDiscMaster, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_EnumDiscMasterFormats(self: *const T, ppEnum: **IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_EnumDiscMasterFormats(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscMasterFormats(@ptrCast(*const IDiscMaster, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4845,15 +4845,15 @@ pub const IDiscMaster = extern struct {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), lpiid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: *const Guid, ppUnk: **c_void) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: *const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).SetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_EnumDiscRecorders(self: *const T, ppEnum: **IEnumDiscRecorders) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_EnumDiscRecorders(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscRecorders(@ptrCast(*const IDiscMaster, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_GetActiveDiscRecorder(self: *const T, ppRecorder: **IDiscRecorder) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_GetActiveDiscRecorder(self: *const T, ppRecorder: ?*?*IDiscRecorder) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscRecorder(@ptrCast(*const IDiscMaster, self), ppRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

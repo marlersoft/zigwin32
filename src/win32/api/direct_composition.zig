@@ -72,7 +72,7 @@ pub const DCOMPOSITION_FRAME_STATISTICS = extern struct {
     nextEstimatedFrameTime: LARGE_INTEGER,
 };
 
-const IID_IDCompositionAnimation_Value = @import("../zig.zig").Guid.initString("CBFD91D9-51B2-45E4-B3DE-D19CCFB863C5");
+const IID_IDCompositionAnimation_Value = @import("../zig.zig").Guid.initString("cbfd91d9-51b2-45e4-b3de-d19ccfb863c5");
 pub const IID_IDCompositionAnimation = &IID_IDCompositionAnimation_Value;
 pub const IDCompositionAnimation = extern struct {
     pub const VTable = extern struct {
@@ -142,7 +142,7 @@ pub const IDCompositionAnimation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionDevice_Value = @import("../zig.zig").Guid.initString("C37EA93A-E7AA-450D-B16F-9746CB0407F3");
+const IID_IDCompositionDevice_Value = @import("../zig.zig").Guid.initString("c37ea93a-e7aa-450d-b16f-9746cb0407f3");
 pub const IID_IDCompositionDevice = &IID_IDCompositionDevice_Value;
 pub const IDCompositionDevice = extern struct {
     pub const VTable = extern struct {
@@ -361,7 +361,7 @@ pub const IDCompositionDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTarget_Value = @import("../zig.zig").Guid.initString("EACDD04C-117E-4E17-88F4-D1B12B0E3D89");
+const IID_IDCompositionTarget_Value = @import("../zig.zig").Guid.initString("eacdd04c-117e-4e17-88f4-d1b12b0e3d89");
 pub const IID_IDCompositionTarget = &IID_IDCompositionTarget_Value;
 pub const IDCompositionTarget = extern struct {
     pub const VTable = extern struct {
@@ -382,7 +382,7 @@ pub const IDCompositionTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionVisual_Value = @import("../zig.zig").Guid.initString("4D93059D-097B-4651-9A60-F0F25116E2F3");
+const IID_IDCompositionVisual_Value = @import("../zig.zig").Guid.initString("4d93059d-097b-4651-9a60-f0f25116e2f3");
 pub const IID_IDCompositionVisual = &IID_IDCompositionVisual_Value;
 pub const IDCompositionVisual = extern struct {
     pub const VTable = extern struct {
@@ -532,7 +532,7 @@ pub const IDCompositionVisual = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionEffect_Value = @import("../zig.zig").Guid.initString("EC81B08F-BFCB-4E8D-B193-A915587999E8");
+const IID_IDCompositionEffect_Value = @import("../zig.zig").Guid.initString("ec81b08f-bfcb-4e8d-b193-a915587999e8");
 pub const IID_IDCompositionEffect = &IID_IDCompositionEffect_Value;
 pub const IDCompositionEffect = extern struct {
     pub const VTable = extern struct {
@@ -545,7 +545,7 @@ pub const IDCompositionEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTransform3D_Value = @import("../zig.zig").Guid.initString("71185722-246B-41F2-AAD1-0443F7F4BFC2");
+const IID_IDCompositionTransform3D_Value = @import("../zig.zig").Guid.initString("71185722-246b-41f2-aad1-0443f7f4bfc2");
 pub const IID_IDCompositionTransform3D = &IID_IDCompositionTransform3D_Value;
 pub const IDCompositionTransform3D = extern struct {
     pub const VTable = extern struct {
@@ -558,7 +558,7 @@ pub const IDCompositionTransform3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTransform_Value = @import("../zig.zig").Guid.initString("FD55FAA7-37E0-4C20-95D2-9BE45BC33F55");
+const IID_IDCompositionTransform_Value = @import("../zig.zig").Guid.initString("fd55faa7-37e0-4c20-95d2-9be45bc33f55");
 pub const IID_IDCompositionTransform = &IID_IDCompositionTransform_Value;
 pub const IDCompositionTransform = extern struct {
     pub const VTable = extern struct {
@@ -571,7 +571,7 @@ pub const IDCompositionTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTranslateTransform_Value = @import("../zig.zig").Guid.initString("06791122-C6F0-417D-8323-269E987F5954");
+const IID_IDCompositionTranslateTransform_Value = @import("../zig.zig").Guid.initString("06791122-c6f0-417d-8323-269e987f5954");
 pub const IID_IDCompositionTranslateTransform = &IID_IDCompositionTranslateTransform_Value;
 pub const IDCompositionTranslateTransform = extern struct {
     pub const VTable = extern struct {
@@ -616,7 +616,7 @@ pub const IDCompositionTranslateTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionScaleTransform_Value = @import("../zig.zig").Guid.initString("71FDE914-40EF-45EF-BD51-68B037C339F9");
+const IID_IDCompositionScaleTransform_Value = @import("../zig.zig").Guid.initString("71fde914-40ef-45ef-bd51-68b037c339f9");
 pub const IID_IDCompositionScaleTransform = &IID_IDCompositionScaleTransform_Value;
 pub const IDCompositionScaleTransform = extern struct {
     pub const VTable = extern struct {
@@ -693,7 +693,7 @@ pub const IDCompositionScaleTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionRotateTransform_Value = @import("../zig.zig").Guid.initString("641ED83C-AE96-46C5-90DC-32774CC5C6D5");
+const IID_IDCompositionRotateTransform_Value = @import("../zig.zig").Guid.initString("641ed83c-ae96-46c5-90dc-32774cc5c6d5");
 pub const IID_IDCompositionRotateTransform = &IID_IDCompositionRotateTransform_Value;
 pub const IDCompositionRotateTransform = extern struct {
     pub const VTable = extern struct {
@@ -754,7 +754,7 @@ pub const IDCompositionRotateTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionSkewTransform_Value = @import("../zig.zig").Guid.initString("E57AA735-DCDB-4C72-9C61-0591F58889EE");
+const IID_IDCompositionSkewTransform_Value = @import("../zig.zig").Guid.initString("e57aa735-dcdb-4c72-9c61-0591f58889ee");
 pub const IID_IDCompositionSkewTransform = &IID_IDCompositionSkewTransform_Value;
 pub const IDCompositionSkewTransform = extern struct {
     pub const VTable = extern struct {
@@ -831,7 +831,7 @@ pub const IDCompositionSkewTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionMatrixTransform_Value = @import("../zig.zig").Guid.initString("16CDFF07-C503-419C-83F2-0965C7AF1FA6");
+const IID_IDCompositionMatrixTransform_Value = @import("../zig.zig").Guid.initString("16cdff07-c503-419c-83f2-0965c7af1fa6");
 pub const IID_IDCompositionMatrixTransform = &IID_IDCompositionMatrixTransform_Value;
 pub const IDCompositionMatrixTransform = extern struct {
     pub const VTable = extern struct {
@@ -872,7 +872,7 @@ pub const IDCompositionMatrixTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionEffectGroup_Value = @import("../zig.zig").Guid.initString("A7929A74-E6B2-4BD6-8B95-4040119CA34D");
+const IID_IDCompositionEffectGroup_Value = @import("../zig.zig").Guid.initString("a7929a74-e6b2-4bd6-8b95-4040119ca34d");
 pub const IID_IDCompositionEffectGroup = &IID_IDCompositionEffectGroup_Value;
 pub const IDCompositionEffectGroup = extern struct {
     pub const VTable = extern struct {
@@ -909,7 +909,7 @@ pub const IDCompositionEffectGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTranslateTransform3D_Value = @import("../zig.zig").Guid.initString("91636D4B-9BA1-4532-AAF7-E3344994D788");
+const IID_IDCompositionTranslateTransform3D_Value = @import("../zig.zig").Guid.initString("91636d4b-9ba1-4532-aaf7-e3344994d788");
 pub const IID_IDCompositionTranslateTransform3D = &IID_IDCompositionTranslateTransform3D_Value;
 pub const IDCompositionTranslateTransform3D = extern struct {
     pub const VTable = extern struct {
@@ -970,7 +970,7 @@ pub const IDCompositionTranslateTransform3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionScaleTransform3D_Value = @import("../zig.zig").Guid.initString("2A9E9EAD-364B-4B15-A7C4-A1997F78B389");
+const IID_IDCompositionScaleTransform3D_Value = @import("../zig.zig").Guid.initString("2a9e9ead-364b-4b15-a7c4-a1997f78b389");
 pub const IID_IDCompositionScaleTransform3D = &IID_IDCompositionScaleTransform3D_Value;
 pub const IDCompositionScaleTransform3D = extern struct {
     pub const VTable = extern struct {
@@ -1079,7 +1079,7 @@ pub const IDCompositionScaleTransform3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionRotateTransform3D_Value = @import("../zig.zig").Guid.initString("D8F5B23F-D429-4A91-B55A-D2F45FD75B18");
+const IID_IDCompositionRotateTransform3D_Value = @import("../zig.zig").Guid.initString("d8f5b23f-d429-4a91-b55a-d2f45fd75b18");
 pub const IID_IDCompositionRotateTransform3D = &IID_IDCompositionRotateTransform3D_Value;
 pub const IDCompositionRotateTransform3D = extern struct {
     pub const VTable = extern struct {
@@ -1204,7 +1204,7 @@ pub const IDCompositionRotateTransform3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionMatrixTransform3D_Value = @import("../zig.zig").Guid.initString("4B3363F0-643B-41B7-B6E0-CCF22D34467C");
+const IID_IDCompositionMatrixTransform3D_Value = @import("../zig.zig").Guid.initString("4b3363f0-643b-41b7-b6e0-ccf22d34467c");
 pub const IID_IDCompositionMatrixTransform3D = &IID_IDCompositionMatrixTransform3D_Value;
 pub const IDCompositionMatrixTransform3D = extern struct {
     pub const VTable = extern struct {
@@ -1245,7 +1245,7 @@ pub const IDCompositionMatrixTransform3D = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionClip_Value = @import("../zig.zig").Guid.initString("64AC3703-9D3F-45EC-A109-7CAC0E7A13A7");
+const IID_IDCompositionClip_Value = @import("../zig.zig").Guid.initString("64ac3703-9d3f-45ec-a109-7cac0e7a13a7");
 pub const IID_IDCompositionClip = &IID_IDCompositionClip_Value;
 pub const IDCompositionClip = extern struct {
     pub const VTable = extern struct {
@@ -1258,7 +1258,7 @@ pub const IDCompositionClip = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionRectangleClip_Value = @import("../zig.zig").Guid.initString("9842AD7D-D9CF-4908-AED7-48B51DA5E7C2");
+const IID_IDCompositionRectangleClip_Value = @import("../zig.zig").Guid.initString("9842ad7d-d9cf-4908-aed7-48b51da5e7c2");
 pub const IID_IDCompositionRectangleClip = &IID_IDCompositionRectangleClip_Value;
 pub const IDCompositionRectangleClip = extern struct {
     pub const VTable = extern struct {
@@ -1463,7 +1463,7 @@ pub const IDCompositionRectangleClip = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionSurface_Value = @import("../zig.zig").Guid.initString("BB8A4953-2C99-4F5A-96F5-4819027FA3AC");
+const IID_IDCompositionSurface_Value = @import("../zig.zig").Guid.initString("bb8a4953-2c99-4f5a-96f5-4819027fa3ac");
 pub const IID_IDCompositionSurface = &IID_IDCompositionSurface_Value;
 pub const IDCompositionSurface = extern struct {
     pub const VTable = extern struct {
@@ -1519,7 +1519,7 @@ pub const IDCompositionSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionVirtualSurface_Value = @import("../zig.zig").Guid.initString("AE471C51-5F53-4A24-8D3E-D0C39C30B3F0");
+const IID_IDCompositionVirtualSurface_Value = @import("../zig.zig").Guid.initString("ae471c51-5f53-4a24-8d3e-d0c39c30b3f0");
 pub const IID_IDCompositionVirtualSurface = &IID_IDCompositionVirtualSurface_Value;
 pub const IDCompositionVirtualSurface = extern struct {
     pub const VTable = extern struct {
@@ -1550,7 +1550,7 @@ pub const IDCompositionVirtualSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionDevice2_Value = @import("../zig.zig").Guid.initString("75F6468D-1B8E-447C-9BC6-75FEA80B5B25");
+const IID_IDCompositionDevice2_Value = @import("../zig.zig").Guid.initString("75f6468d-1b8e-447c-9bc6-75fea80b5b25");
 pub const IID_IDCompositionDevice2 = &IID_IDCompositionDevice2_Value;
 pub const IDCompositionDevice2 = extern struct {
     pub const VTable = extern struct {
@@ -1742,7 +1742,7 @@ pub const IDCompositionDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionDesktopDevice_Value = @import("../zig.zig").Guid.initString("5F4633FE-1E08-4CB8-8C75-CE24333F5602");
+const IID_IDCompositionDesktopDevice_Value = @import("../zig.zig").Guid.initString("5f4633fe-1e08-4cb8-8c75-ce24333f5602");
 pub const IID_IDCompositionDesktopDevice = &IID_IDCompositionDesktopDevice_Value;
 pub const IDCompositionDesktopDevice = extern struct {
     pub const VTable = extern struct {
@@ -1783,7 +1783,7 @@ pub const IDCompositionDesktopDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionDeviceDebug_Value = @import("../zig.zig").Guid.initString("A1A3C64A-224F-4A81-9773-4F03A89D3C6C");
+const IID_IDCompositionDeviceDebug_Value = @import("../zig.zig").Guid.initString("a1a3c64a-224f-4a81-9773-4f03a89d3c6c");
 pub const IID_IDCompositionDeviceDebug = &IID_IDCompositionDeviceDebug_Value;
 pub const IDCompositionDeviceDebug = extern struct {
     pub const VTable = extern struct {
@@ -1810,7 +1810,7 @@ pub const IDCompositionDeviceDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionSurfaceFactory_Value = @import("../zig.zig").Guid.initString("E334BC12-3937-4E02-85EB-FCF4EB30D2C8");
+const IID_IDCompositionSurfaceFactory_Value = @import("../zig.zig").Guid.initString("e334bc12-3937-4e02-85eb-fcf4eb30d2c8");
 pub const IID_IDCompositionSurfaceFactory = &IID_IDCompositionSurfaceFactory_Value;
 pub const IDCompositionSurfaceFactory = extern struct {
     pub const VTable = extern struct {
@@ -1847,7 +1847,7 @@ pub const IDCompositionSurfaceFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionVisual2_Value = @import("../zig.zig").Guid.initString("E8DE1639-4331-4B26-BC5F-6A321D347A85");
+const IID_IDCompositionVisual2_Value = @import("../zig.zig").Guid.initString("e8de1639-4331-4b26-bc5f-6a321d347a85");
 pub const IID_IDCompositionVisual2 = &IID_IDCompositionVisual2_Value;
 pub const IDCompositionVisual2 = extern struct {
     pub const VTable = extern struct {
@@ -1876,7 +1876,7 @@ pub const IDCompositionVisual2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionVisualDebug_Value = @import("../zig.zig").Guid.initString("FED2B808-5EB4-43A0-AEA3-35F65280F91B");
+const IID_IDCompositionVisualDebug_Value = @import("../zig.zig").Guid.initString("fed2b808-5eb4-43a0-aea3-35f65280f91b");
 pub const IID_IDCompositionVisualDebug = &IID_IDCompositionVisualDebug_Value;
 pub const IDCompositionVisualDebug = extern struct {
     pub const VTable = extern struct {
@@ -1918,7 +1918,7 @@ pub const IDCompositionVisualDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionVisual3_Value = @import("../zig.zig").Guid.initString("2775F462-B6C1-4015-B0BE-B3E7D6A4976D");
+const IID_IDCompositionVisual3_Value = @import("../zig.zig").Guid.initString("2775f462-b6c1-4015-b0be-b3e7d6a4976d");
 pub const IID_IDCompositionVisual3 = &IID_IDCompositionVisual3_Value;
 pub const IDCompositionVisual3 = extern struct {
     pub const VTable = extern struct {
@@ -1995,7 +1995,7 @@ pub const IDCompositionVisual3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionDevice3_Value = @import("../zig.zig").Guid.initString("0987CB06-F916-48BF-8D35-CE7641781BD9");
+const IID_IDCompositionDevice3_Value = @import("../zig.zig").Guid.initString("0987cb06-f916-48bf-8d35-ce7641781bd9");
 pub const IID_IDCompositionDevice3 = &IID_IDCompositionDevice3_Value;
 pub const IDCompositionDevice3 = extern struct {
     pub const VTable = extern struct {
@@ -2112,7 +2112,7 @@ pub const IDCompositionDevice3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionFilterEffect_Value = @import("../zig.zig").Guid.initString("30C421D5-8CB2-4E9F-B133-37BE270D4AC2");
+const IID_IDCompositionFilterEffect_Value = @import("../zig.zig").Guid.initString("30c421d5-8cb2-4e9f-b133-37be270d4ac2");
 pub const IID_IDCompositionFilterEffect = &IID_IDCompositionFilterEffect_Value;
 pub const IDCompositionFilterEffect = extern struct {
     pub const VTable = extern struct {
@@ -2135,7 +2135,7 @@ pub const IDCompositionFilterEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionGaussianBlurEffect_Value = @import("../zig.zig").Guid.initString("45D4D0B7-1BD4-454E-8894-2BFA68443033");
+const IID_IDCompositionGaussianBlurEffect_Value = @import("../zig.zig").Guid.initString("45d4d0b7-1bd4-454e-8894-2bfa68443033");
 pub const IID_IDCompositionGaussianBlurEffect = &IID_IDCompositionGaussianBlurEffect_Value;
 pub const IDCompositionGaussianBlurEffect = extern struct {
     pub const VTable = extern struct {
@@ -2172,7 +2172,7 @@ pub const IDCompositionGaussianBlurEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionBrightnessEffect_Value = @import("../zig.zig").Guid.initString("6027496E-CB3A-49AB-934F-D798DA4F7DA6");
+const IID_IDCompositionBrightnessEffect_Value = @import("../zig.zig").Guid.initString("6027496e-cb3a-49ab-934f-d798da4f7da6");
 pub const IID_IDCompositionBrightnessEffect = &IID_IDCompositionBrightnessEffect_Value;
 pub const IDCompositionBrightnessEffect = extern struct {
     pub const VTable = extern struct {
@@ -2265,7 +2265,7 @@ pub const IDCompositionBrightnessEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionColorMatrixEffect_Value = @import("../zig.zig").Guid.initString("C1170A22-3CE2-4966-90D4-55408BFC84C4");
+const IID_IDCompositionColorMatrixEffect_Value = @import("../zig.zig").Guid.initString("c1170a22-3ce2-4966-90d4-55408bfc84c4");
 pub const IID_IDCompositionColorMatrixEffect = &IID_IDCompositionColorMatrixEffect_Value;
 pub const IDCompositionColorMatrixEffect = extern struct {
     pub const VTable = extern struct {
@@ -2322,7 +2322,7 @@ pub const IDCompositionColorMatrixEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionShadowEffect_Value = @import("../zig.zig").Guid.initString("4AD18AC0-CFD2-4C2F-BB62-96E54FDB6879");
+const IID_IDCompositionShadowEffect_Value = @import("../zig.zig").Guid.initString("4ad18ac0-cfd2-4c2f-bb62-96e54fdb6879");
 pub const IID_IDCompositionShadowEffect = &IID_IDCompositionShadowEffect_Value;
 pub const IDCompositionShadowEffect = extern struct {
     pub const VTable = extern struct {
@@ -2423,7 +2423,7 @@ pub const IDCompositionShadowEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionHueRotationEffect_Value = @import("../zig.zig").Guid.initString("6DB9F920-0770-4781-B0C6-381912F9D167");
+const IID_IDCompositionHueRotationEffect_Value = @import("../zig.zig").Guid.initString("6db9f920-0770-4781-b0c6-381912f9d167");
 pub const IID_IDCompositionHueRotationEffect = &IID_IDCompositionHueRotationEffect_Value;
 pub const IDCompositionHueRotationEffect = extern struct {
     pub const VTable = extern struct {
@@ -2452,7 +2452,7 @@ pub const IDCompositionHueRotationEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionSaturationEffect_Value = @import("../zig.zig").Guid.initString("A08DEBDA-3258-4FA4-9F16-9174D3FE93B1");
+const IID_IDCompositionSaturationEffect_Value = @import("../zig.zig").Guid.initString("a08debda-3258-4fa4-9f16-9174d3fe93b1");
 pub const IID_IDCompositionSaturationEffect = &IID_IDCompositionSaturationEffect_Value;
 pub const IDCompositionSaturationEffect = extern struct {
     pub const VTable = extern struct {
@@ -2481,7 +2481,7 @@ pub const IDCompositionSaturationEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTurbulenceEffect_Value = @import("../zig.zig").Guid.initString("A6A55BDA-C09C-49F3-9193-A41922C89715");
+const IID_IDCompositionTurbulenceEffect_Value = @import("../zig.zig").Guid.initString("a6a55bda-c09c-49f3-9193-a41922c89715");
 pub const IID_IDCompositionTurbulenceEffect = &IID_IDCompositionTurbulenceEffect_Value;
 pub const IDCompositionTurbulenceEffect = extern struct {
     pub const VTable = extern struct {
@@ -2550,7 +2550,7 @@ pub const IDCompositionTurbulenceEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionLinearTransferEffect_Value = @import("../zig.zig").Guid.initString("4305EE5B-C4A0-4C88-9385-67124E017683");
+const IID_IDCompositionLinearTransferEffect_Value = @import("../zig.zig").Guid.initString("4305ee5b-c4a0-4c88-9385-67124e017683");
 pub const IID_IDCompositionLinearTransferEffect = &IID_IDCompositionLinearTransferEffect_Value;
 pub const IDCompositionLinearTransferEffect = extern struct {
     pub const VTable = extern struct {
@@ -2731,7 +2731,7 @@ pub const IDCompositionLinearTransferEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionTableTransferEffect_Value = @import("../zig.zig").Guid.initString("9B7E82E2-69C5-4EB4-A5F5-A7033F5132CD");
+const IID_IDCompositionTableTransferEffect_Value = @import("../zig.zig").Guid.initString("9b7e82e2-69c5-4eb4-a5f5-a7033f5132cd");
 pub const IID_IDCompositionTableTransferEffect = &IID_IDCompositionTableTransferEffect_Value;
 pub const IDCompositionTableTransferEffect = extern struct {
     pub const VTable = extern struct {
@@ -2892,7 +2892,7 @@ pub const IDCompositionTableTransferEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionCompositeEffect_Value = @import("../zig.zig").Guid.initString("576616C0-A231-494D-A38D-00FD5EC4DB46");
+const IID_IDCompositionCompositeEffect_Value = @import("../zig.zig").Guid.initString("576616c0-a231-494d-a38d-00fd5ec4db46");
 pub const IID_IDCompositionCompositeEffect = &IID_IDCompositionCompositeEffect_Value;
 pub const IDCompositionCompositeEffect = extern struct {
     pub const VTable = extern struct {
@@ -2913,7 +2913,7 @@ pub const IDCompositionCompositeEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionBlendEffect_Value = @import("../zig.zig").Guid.initString("33ECDC0A-578A-4A11-9C14-0CB90517F9C5");
+const IID_IDCompositionBlendEffect_Value = @import("../zig.zig").Guid.initString("33ecdc0a-578a-4a11-9c14-0cb90517f9c5");
 pub const IID_IDCompositionBlendEffect = &IID_IDCompositionBlendEffect_Value;
 pub const IDCompositionBlendEffect = extern struct {
     pub const VTable = extern struct {
@@ -2934,7 +2934,7 @@ pub const IDCompositionBlendEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionArithmeticCompositeEffect_Value = @import("../zig.zig").Guid.initString("3B67DFA8-E3DD-4E61-B640-46C2F3D739DC");
+const IID_IDCompositionArithmeticCompositeEffect_Value = @import("../zig.zig").Guid.initString("3b67dfa8-e3dd-4e61-b640-46c2f3d739dc");
 pub const IID_IDCompositionArithmeticCompositeEffect = &IID_IDCompositionArithmeticCompositeEffect_Value;
 pub const IDCompositionArithmeticCompositeEffect = extern struct {
     pub const VTable = extern struct {
@@ -3027,7 +3027,7 @@ pub const IDCompositionArithmeticCompositeEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDCompositionAffineTransform2DEffect_Value = @import("../zig.zig").Guid.initString("0B74B9E8-CDD6-492F-BBBC-5ED32157026D");
+const IID_IDCompositionAffineTransform2DEffect_Value = @import("../zig.zig").Guid.initString("0b74b9e8-cdd6-492f-bbbc-5ed32157026d");
 pub const IID_IDCompositionAffineTransform2DEffect = &IID_IDCompositionAffineTransform2DEffect_Value;
 pub const IDCompositionAffineTransform2DEffect = extern struct {
     pub const VTable = extern struct {

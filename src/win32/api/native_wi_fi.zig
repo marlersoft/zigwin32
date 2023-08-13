@@ -1142,26 +1142,26 @@ pub const NDIS_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
     const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_OFFLOAD = extern struct {
@@ -1183,26 +1183,26 @@ pub const NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
+    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_WMI_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
-    const _Supported_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
+    const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_OFFLOAD = extern struct {
@@ -4437,7 +4437,7 @@ pub const ONEX_USER_INFO = extern struct {
     DomainName: ONEX_VARIABLE_BLOB,
 };
 
-const CLSID_Dot11AdHocManager_Value = @import("../zig.zig").Guid.initString("DD06A84F-83BD-4D01-8AB9-2389FEA0869E");
+const CLSID_Dot11AdHocManager_Value = @import("../zig.zig").Guid.initString("dd06a84f-83bd-4d01-8ab9-2389fea0869e");
 pub const CLSID_Dot11AdHocManager = &CLSID_Dot11AdHocManager_Value;
 
 pub const DOT11_ADHOC_CIPHER_ALGORITHM = extern enum(i32) {
@@ -4482,7 +4482,7 @@ pub const DOT11_ADHOC_CONNECT_FAIL_DOMAIN_MISMATCH = DOT11_ADHOC_CONNECT_FAIL_RE
 pub const DOT11_ADHOC_CONNECT_FAIL_PASSPHRASE_MISMATCH = DOT11_ADHOC_CONNECT_FAIL_REASON.DOT11_ADHOC_CONNECT_FAIL_PASSPHRASE_MISMATCH;
 pub const DOT11_ADHOC_CONNECT_FAIL_OTHER = DOT11_ADHOC_CONNECT_FAIL_REASON.DOT11_ADHOC_CONNECT_FAIL_OTHER;
 
-const IID_IDot11AdHocManager_Value = @import("../zig.zig").Guid.initString("8F10CC26-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocManager_Value = @import("../zig.zig").Guid.initString("8f10cc26-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManager = &IID_IDot11AdHocManager_Value;
 pub const IDot11AdHocManager = extern struct {
     pub const VTable = extern struct {
@@ -4545,7 +4545,7 @@ pub const IDot11AdHocManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocManagerNotificationSink_Value = @import("../zig.zig").Guid.initString("8F10CC27-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocManagerNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc27-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManagerNotificationSink = &IID_IDot11AdHocManagerNotificationSink_Value;
 pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub const VTable = extern struct {
@@ -4590,7 +4590,7 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDot11AdHocNetworks_Value = @import("../zig.zig").Guid.initString("8F10CC28-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IEnumDot11AdHocNetworks_Value = @import("../zig.zig").Guid.initString("8f10cc28-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocNetworks = &IID_IEnumDot11AdHocNetworks_Value;
 pub const IEnumDot11AdHocNetworks = extern struct {
     pub const VTable = extern struct {
@@ -4636,7 +4636,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocNetwork_Value = @import("../zig.zig").Guid.initString("8F10CC29-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocNetwork_Value = @import("../zig.zig").Guid.initString("8f10cc29-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetwork = &IID_IDot11AdHocNetwork_Value;
 pub const IDot11AdHocNetwork = extern struct {
     pub const VTable = extern struct {
@@ -4747,7 +4747,7 @@ pub const IDot11AdHocNetwork = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocNetworkNotificationSink_Value = @import("../zig.zig").Guid.initString("8F10CC2A-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocNetworkNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2a-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetworkNotificationSink = &IID_IDot11AdHocNetworkNotificationSink_Value;
 pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub const VTable = extern struct {
@@ -4776,7 +4776,7 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocInterface_Value = @import("../zig.zig").Guid.initString("8F10CC2B-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocInterface_Value = @import("../zig.zig").Guid.initString("8f10cc2b-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterface = &IID_IDot11AdHocInterface_Value;
 pub const IDot11AdHocInterface = extern struct {
     pub const VTable = extern struct {
@@ -4862,7 +4862,7 @@ pub const IDot11AdHocInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDot11AdHocInterfaces_Value = @import("../zig.zig").Guid.initString("8F10CC2C-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IEnumDot11AdHocInterfaces_Value = @import("../zig.zig").Guid.initString("8f10cc2c-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocInterfaces = &IID_IEnumDot11AdHocInterfaces_Value;
 pub const IEnumDot11AdHocInterfaces = extern struct {
     pub const VTable = extern struct {
@@ -4908,7 +4908,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8F10CC2D-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IEnumDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2d-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocSecuritySettings = &IID_IEnumDot11AdHocSecuritySettings_Value;
 pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
@@ -4954,7 +4954,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8F10CC2E-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocSecuritySettings_Value = @import("../zig.zig").Guid.initString("8f10cc2e-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocSecuritySettings = &IID_IDot11AdHocSecuritySettings_Value;
 pub const IDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
@@ -4983,7 +4983,7 @@ pub const IDot11AdHocSecuritySettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDot11AdHocInterfaceNotificationSink_Value = @import("../zig.zig").Guid.initString("8F10CC2F-CF0D-42A0-ACBE-E2DE7007384D");
+const IID_IDot11AdHocInterfaceNotificationSink_Value = @import("../zig.zig").Guid.initString("8f10cc2f-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterfaceNotificationSink = &IID_IDot11AdHocInterfaceNotificationSink_Value;
 pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub const VTable = extern struct {

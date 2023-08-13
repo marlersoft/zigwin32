@@ -142,60 +142,6 @@ pub const STRING = extern struct {
     Buffer: [*]u8,
 };
 
-pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
-    NameUnknown = 0,
-    NameFullyQualifiedDN = 1,
-    NameSamCompatible = 2,
-    NameDisplay = 3,
-    NameUniqueId = 6,
-    NameCanonical = 7,
-    NameUserPrincipal = 8,
-    NameCanonicalEx = 9,
-    NameServicePrincipal = 10,
-    NameDnsDomain = 12,
-    NameGivenName = 13,
-    NameSurname = 14,
-};
-pub const NameUnknown = EXTENDED_NAME_FORMAT.NameUnknown;
-pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.NameFullyQualifiedDN;
-pub const NameSamCompatible = EXTENDED_NAME_FORMAT.NameSamCompatible;
-pub const NameDisplay = EXTENDED_NAME_FORMAT.NameDisplay;
-pub const NameUniqueId = EXTENDED_NAME_FORMAT.NameUniqueId;
-pub const NameCanonical = EXTENDED_NAME_FORMAT.NameCanonical;
-pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.NameUserPrincipal;
-pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.NameCanonicalEx;
-pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.NameServicePrincipal;
-pub const NameDnsDomain = EXTENDED_NAME_FORMAT.NameDnsDomain;
-pub const NameGivenName = EXTENDED_NAME_FORMAT.NameGivenName;
-pub const NameSurname = EXTENDED_NAME_FORMAT.NameSurname;
-
-pub const NETLOGON_INFO_1 = extern struct {
-    netlog1_flags: u32,
-    netlog1_pdc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_2 = extern struct {
-    netlog2_flags: u32,
-    netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: PWSTR,
-    netlog2_tc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_3 = extern struct {
-    netlog3_flags: u32,
-    netlog3_logon_attempts: u32,
-    netlog3_reserved1: u32,
-    netlog3_reserved2: u32,
-    netlog3_reserved3: u32,
-    netlog3_reserved4: u32,
-    netlog3_reserved5: u32,
-};
-
-pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: PWSTR,
-    netlog4_trusted_domain_name: PWSTR,
-};
-
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
 pub const HKEY = ?*c_void;
 
@@ -327,6 +273,33 @@ pub const OSUpdateAssessment = extern struct {
     currentOSReleaseTime: FILETIME,
     upToDateOSBuild: PWSTR,
     upToDateOSReleaseTime: FILETIME,
+};
+
+pub const NETLOGON_INFO_1 = extern struct {
+    netlog1_flags: u32,
+    netlog1_pdc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_2 = extern struct {
+    netlog2_flags: u32,
+    netlog2_pdc_connection_status: u32,
+    netlog2_trusted_dc_name: PWSTR,
+    netlog2_tc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_3 = extern struct {
+    netlog3_flags: u32,
+    netlog3_logon_attempts: u32,
+    netlog3_reserved1: u32,
+    netlog3_reserved2: u32,
+    netlog3_reserved3: u32,
+    netlog3_reserved4: u32,
+    netlog3_reserved5: u32,
+};
+
+pub const NETLOGON_INFO_4 = extern struct {
+    netlog4_trusted_dc_name: PWSTR,
+    netlog4_trusted_domain_name: PWSTR,
 };
 
 pub const _PROC_THREAD_ATTRIBUTE_LIST = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
@@ -594,19 +567,19 @@ pub const VALENTW = extern struct {
     ve_type: u32,
 };
 
-const CLSID_DOMDocument_Value = @import("../zig.zig").Guid.initString("2933BF90-7B36-11D2-B20E-00C04F983E60");
+const CLSID_DOMDocument_Value = @import("../zig.zig").Guid.initString("2933bf90-7b36-11d2-b20e-00c04f983e60");
 pub const CLSID_DOMDocument = &CLSID_DOMDocument_Value;
 
-const CLSID_DOMFreeThreadedDocument_Value = @import("../zig.zig").Guid.initString("2933BF91-7B36-11D2-B20E-00C04F983E60");
+const CLSID_DOMFreeThreadedDocument_Value = @import("../zig.zig").Guid.initString("2933bf91-7b36-11d2-b20e-00c04f983e60");
 pub const CLSID_DOMFreeThreadedDocument = &CLSID_DOMFreeThreadedDocument_Value;
 
-const CLSID_XMLHTTPRequest_Value = @import("../zig.zig").Guid.initString("ED8C108E-4349-11D2-91A4-00C04F7969E8");
+const CLSID_XMLHTTPRequest_Value = @import("../zig.zig").Guid.initString("ed8c108e-4349-11d2-91a4-00c04f7969e8");
 pub const CLSID_XMLHTTPRequest = &CLSID_XMLHTTPRequest_Value;
 
-const CLSID_XMLDSOControl_Value = @import("../zig.zig").Guid.initString("550DDA30-0541-11D2-9CA9-0060B0EC3D39");
+const CLSID_XMLDSOControl_Value = @import("../zig.zig").Guid.initString("550dda30-0541-11d2-9ca9-0060b0ec3d39");
 pub const CLSID_XMLDSOControl = &CLSID_XMLDSOControl_Value;
 
-const CLSID_XMLDocument_Value = @import("../zig.zig").Guid.initString("CFC399AF-D876-11D0-9C10-00C04FC99C8E");
+const CLSID_XMLDocument_Value = @import("../zig.zig").Guid.initString("cfc399af-d876-11d0-9c10-00c04fc99c8e");
 pub const CLSID_XMLDocument = &CLSID_XMLDocument_Value;
 
 pub const XML_ERROR = extern struct {
@@ -666,7 +639,7 @@ pub const XMLELEMTYPE_DTD = XMLEMEM_TYPE.XMLELEMTYPE_DTD;
 pub const XMLELEMTYPE_PI = XMLEMEM_TYPE.XMLELEMTYPE_PI;
 pub const XMLELEMTYPE_OTHER = XMLEMEM_TYPE.XMLELEMTYPE_OTHER;
 
-const IID_IXMLDOMImplementation_Value = @import("../zig.zig").Guid.initString("2933BF8F-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMImplementation_Value = @import("../zig.zig").Guid.initString("2933bf8f-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMImplementation = &IID_IXMLDOMImplementation_Value;
 pub const IXMLDOMImplementation = extern struct {
     pub const VTable = extern struct {
@@ -689,7 +662,7 @@ pub const IXMLDOMImplementation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMNode_Value = @import("../zig.zig").Guid.initString("2933BF80-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMNode_Value = @import("../zig.zig").Guid.initString("2933bf80-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMNode = &IID_IXMLDOMNode_Value;
 pub const IXMLDOMNode = extern struct {
     pub const VTable = extern struct {
@@ -1001,7 +974,7 @@ pub const IXMLDOMNode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMDocumentFragment_Value = @import("../zig.zig").Guid.initString("3EFAA413-272F-11D2-836F-0000F87A7782");
+const IID_IXMLDOMDocumentFragment_Value = @import("../zig.zig").Guid.initString("3efaa413-272f-11d2-836f-0000f87a7782");
 pub const IID_IXMLDOMDocumentFragment = &IID_IXMLDOMDocumentFragment_Value;
 pub const IXMLDOMDocumentFragment = extern struct {
     pub const VTable = extern struct {
@@ -1014,7 +987,7 @@ pub const IXMLDOMDocumentFragment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMDocument_Value = @import("../zig.zig").Guid.initString("2933BF81-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMDocument_Value = @import("../zig.zig").Guid.initString("2933bf81-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMDocument = &IID_IXMLDOMDocument_Value;
 pub const IXMLDOMDocument = extern struct {
     pub const VTable = extern struct {
@@ -1305,7 +1278,7 @@ pub const IXMLDOMDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMNodeList_Value = @import("../zig.zig").Guid.initString("2933BF82-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMNodeList_Value = @import("../zig.zig").Guid.initString("2933bf82-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMNodeList = &IID_IXMLDOMNodeList_Value;
 pub const IXMLDOMNodeList = extern struct {
     pub const VTable = extern struct {
@@ -1358,7 +1331,7 @@ pub const IXMLDOMNodeList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMNamedNodeMap_Value = @import("../zig.zig").Guid.initString("2933BF83-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMNamedNodeMap_Value = @import("../zig.zig").Guid.initString("2933bf83-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMNamedNodeMap = &IID_IXMLDOMNamedNodeMap_Value;
 pub const IXMLDOMNamedNodeMap = extern struct {
     pub const VTable = extern struct {
@@ -1458,7 +1431,7 @@ pub const IXMLDOMNamedNodeMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMCharacterData_Value = @import("../zig.zig").Guid.initString("2933BF84-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMCharacterData_Value = @import("../zig.zig").Guid.initString("2933bf84-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMCharacterData = &IID_IXMLDOMCharacterData_Value;
 pub const IXMLDOMCharacterData = extern struct {
     pub const VTable = extern struct {
@@ -1541,7 +1514,7 @@ pub const IXMLDOMCharacterData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMAttribute_Value = @import("../zig.zig").Guid.initString("2933BF85-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMAttribute_Value = @import("../zig.zig").Guid.initString("2933bf85-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMAttribute = &IID_IXMLDOMAttribute_Value;
 pub const IXMLDOMAttribute = extern struct {
     pub const VTable = extern struct {
@@ -1578,7 +1551,7 @@ pub const IXMLDOMAttribute = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMElement_Value = @import("../zig.zig").Guid.initString("2933BF86-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMElement_Value = @import("../zig.zig").Guid.initString("2933bf86-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMElement = &IID_IXMLDOMElement_Value;
 pub const IXMLDOMElement = extern struct {
     pub const VTable = extern struct {
@@ -1668,7 +1641,7 @@ pub const IXMLDOMElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMText_Value = @import("../zig.zig").Guid.initString("2933BF87-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMText_Value = @import("../zig.zig").Guid.initString("2933bf87-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMText = &IID_IXMLDOMText_Value;
 pub const IXMLDOMText = extern struct {
     pub const VTable = extern struct {
@@ -1690,7 +1663,7 @@ pub const IXMLDOMText = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMComment_Value = @import("../zig.zig").Guid.initString("2933BF88-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMComment_Value = @import("../zig.zig").Guid.initString("2933bf88-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMComment = &IID_IXMLDOMComment_Value;
 pub const IXMLDOMComment = extern struct {
     pub const VTable = extern struct {
@@ -1703,7 +1676,7 @@ pub const IXMLDOMComment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMProcessingInstruction_Value = @import("../zig.zig").Guid.initString("2933BF89-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMProcessingInstruction_Value = @import("../zig.zig").Guid.initString("2933bf89-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMProcessingInstruction = &IID_IXMLDOMProcessingInstruction_Value;
 pub const IXMLDOMProcessingInstruction = extern struct {
     pub const VTable = extern struct {
@@ -1740,7 +1713,7 @@ pub const IXMLDOMProcessingInstruction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMCDATASection_Value = @import("../zig.zig").Guid.initString("2933BF8A-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMCDATASection_Value = @import("../zig.zig").Guid.initString("2933bf8a-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMCDATASection = &IID_IXMLDOMCDATASection_Value;
 pub const IXMLDOMCDATASection = extern struct {
     pub const VTable = extern struct {
@@ -1753,7 +1726,7 @@ pub const IXMLDOMCDATASection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMDocumentType_Value = @import("../zig.zig").Guid.initString("2933BF8B-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMDocumentType_Value = @import("../zig.zig").Guid.initString("2933bf8b-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMDocumentType = &IID_IXMLDOMDocumentType_Value;
 pub const IXMLDOMDocumentType = extern struct {
     pub const VTable = extern struct {
@@ -1790,7 +1763,7 @@ pub const IXMLDOMDocumentType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMNotation_Value = @import("../zig.zig").Guid.initString("2933BF8C-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMNotation_Value = @import("../zig.zig").Guid.initString("2933bf8c-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMNotation = &IID_IXMLDOMNotation_Value;
 pub const IXMLDOMNotation = extern struct {
     pub const VTable = extern struct {
@@ -1819,7 +1792,7 @@ pub const IXMLDOMNotation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMEntity_Value = @import("../zig.zig").Guid.initString("2933BF8D-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMEntity_Value = @import("../zig.zig").Guid.initString("2933bf8d-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMEntity = &IID_IXMLDOMEntity_Value;
 pub const IXMLDOMEntity = extern struct {
     pub const VTable = extern struct {
@@ -1856,7 +1829,7 @@ pub const IXMLDOMEntity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMEntityReference_Value = @import("../zig.zig").Guid.initString("2933BF8E-7B36-11D2-B20E-00C04F983E60");
+const IID_IXMLDOMEntityReference_Value = @import("../zig.zig").Guid.initString("2933bf8e-7b36-11d2-b20e-00c04f983e60");
 pub const IID_IXMLDOMEntityReference = &IID_IXMLDOMEntityReference_Value;
 pub const IXMLDOMEntityReference = extern struct {
     pub const VTable = extern struct {
@@ -1869,7 +1842,7 @@ pub const IXMLDOMEntityReference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDOMParseError_Value = @import("../zig.zig").Guid.initString("3EFAA426-272F-11D2-836F-0000F87A7782");
+const IID_IXMLDOMParseError_Value = @import("../zig.zig").Guid.initString("3efaa426-272f-11d2-836f-0000f87a7782");
 pub const IID_IXMLDOMParseError = &IID_IXMLDOMParseError_Value;
 pub const IXMLDOMParseError = extern struct {
     pub const VTable = extern struct {
@@ -1938,7 +1911,7 @@ pub const IXMLDOMParseError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXTLRuntime_Value = @import("../zig.zig").Guid.initString("3EFAA425-272F-11D2-836F-0000F87A7782");
+const IID_IXTLRuntime_Value = @import("../zig.zig").Guid.initString("3efaa425-272f-11d2-836f-0000f87a7782");
 pub const IID_IXTLRuntime = &IID_IXTLRuntime_Value;
 pub const IXTLRuntime = extern struct {
     pub const VTable = extern struct {
@@ -2039,7 +2012,7 @@ pub const IXTLRuntime = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_XMLDOMDocumentEvents_Value = @import("../zig.zig").Guid.initString("3EFAA427-272F-11D2-836F-0000F87A7782");
+const IID_XMLDOMDocumentEvents_Value = @import("../zig.zig").Guid.initString("3efaa427-272f-11d2-836f-0000f87a7782");
 pub const IID_XMLDOMDocumentEvents = &IID_XMLDOMDocumentEvents_Value;
 pub const XMLDOMDocumentEvents = extern struct {
     pub const VTable = extern struct {
@@ -2052,7 +2025,7 @@ pub const XMLDOMDocumentEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLHttpRequest_Value = @import("../zig.zig").Guid.initString("ED8C108D-4349-11D2-91A4-00C04F7969E8");
+const IID_IXMLHttpRequest_Value = @import("../zig.zig").Guid.initString("ed8c108d-4349-11d2-91a4-00c04f7969e8");
 pub const IID_IXMLHttpRequest = &IID_IXMLHttpRequest_Value;
 pub const IXMLHttpRequest = extern struct {
     pub const VTable = extern struct {
@@ -2073,11 +2046,11 @@ pub const IXMLHttpRequest = extern struct {
         getResponseHeader: fn(
             self: *const IXMLHttpRequest,
             bstrHeader: BSTR,
-            pbstrValue: *BSTR,
+            pbstrValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getAllResponseHeaders: fn(
             self: *const IXMLHttpRequest,
-            pbstrHeaders: *BSTR,
+            pbstrHeaders: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         send: fn(
             self: *const IXMLHttpRequest,
@@ -2092,15 +2065,15 @@ pub const IXMLHttpRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_statusText: fn(
             self: *const IXMLHttpRequest,
-            pbstrStatus: *BSTR,
+            pbstrStatus: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_responseXML: fn(
             self: *const IXMLHttpRequest,
-            ppBody: **IDispatch,
+            ppBody: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_responseText: fn(
             self: *const IXMLHttpRequest,
-            pbstrBody: *BSTR,
+            pbstrBody: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_responseBody: fn(
             self: *const IXMLHttpRequest,
@@ -2131,11 +2104,11 @@ pub const IXMLHttpRequest = extern struct {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).setRequestHeader(@ptrCast(*const IXMLHttpRequest, self), bstrHeader, bstrValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_getResponseHeader(self: *const T, bstrHeader: BSTR, pbstrValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_getResponseHeader(self: *const T, bstrHeader: BSTR, pbstrValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).getResponseHeader(@ptrCast(*const IXMLHttpRequest, self), bstrHeader, pbstrValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_getAllResponseHeaders(self: *const T, pbstrHeaders: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_getAllResponseHeaders(self: *const T, pbstrHeaders: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).getAllResponseHeaders(@ptrCast(*const IXMLHttpRequest, self), pbstrHeaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2151,15 +2124,15 @@ pub const IXMLHttpRequest = extern struct {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_status(@ptrCast(*const IXMLHttpRequest, self), plStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_get_statusText(self: *const T, pbstrStatus: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_get_statusText(self: *const T, pbstrStatus: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_statusText(@ptrCast(*const IXMLHttpRequest, self), pbstrStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_get_responseXML(self: *const T, ppBody: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_get_responseXML(self: *const T, ppBody: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseXML(@ptrCast(*const IXMLHttpRequest, self), ppBody);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXMLHttpRequest_get_responseText(self: *const T, pbstrBody: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IXMLHttpRequest_get_responseText(self: *const T, pbstrBody: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseText(@ptrCast(*const IXMLHttpRequest, self), pbstrBody);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2182,7 +2155,7 @@ pub const IXMLHttpRequest = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDSOControl_Value = @import("../zig.zig").Guid.initString("310AFA62-0575-11D2-9CA9-0060B0EC3D39");
+const IID_IXMLDSOControl_Value = @import("../zig.zig").Guid.initString("310afa62-0575-11d2-9ca9-0060b0ec3d39");
 pub const IID_IXMLDSOControl = &IID_IXMLDSOControl_Value;
 pub const IXMLDSOControl = extern struct {
     pub const VTable = extern struct {
@@ -2235,7 +2208,7 @@ pub const IXMLDSOControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLElementCollection_Value = @import("../zig.zig").Guid.initString("65725580-9B5D-11D0-9BFE-00C04FC99C8E");
+const IID_IXMLElementCollection_Value = @import("../zig.zig").Guid.initString("65725580-9b5d-11d0-9bfe-00c04fc99c8e");
 pub const IID_IXMLElementCollection = &IID_IXMLElementCollection_Value;
 pub const IXMLElementCollection = extern struct {
     pub const VTable = extern struct {
@@ -2282,7 +2255,7 @@ pub const IXMLElementCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDocument_Value = @import("../zig.zig").Guid.initString("F52E2B61-18A1-11D1-B105-00805F49916B");
+const IID_IXMLDocument_Value = @import("../zig.zig").Guid.initString("f52e2b61-18a1-11d1-b105-00805f49916b");
 pub const IID_IXMLDocument = &IID_IXMLDocument_Value;
 pub const IXMLDocument = extern struct {
     pub const VTable = extern struct {
@@ -2409,7 +2382,7 @@ pub const IXMLDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLDocument2_Value = @import("../zig.zig").Guid.initString("2B8DE2FE-8D2D-11D1-B2FC-00C04FD915A9");
+const IID_IXMLDocument2_Value = @import("../zig.zig").Guid.initString("2b8de2fe-8d2d-11d1-b2fc-00c04fd915a9");
 pub const IID_IXMLDocument2 = &IID_IXMLDocument2_Value;
 pub const IXMLDocument2 = extern struct {
     pub const VTable = extern struct {
@@ -2552,7 +2525,7 @@ pub const IXMLDocument2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLElement_Value = @import("../zig.zig").Guid.initString("3F7F31AC-E15F-11D0-9C25-00C04FC99C8E");
+const IID_IXMLElement_Value = @import("../zig.zig").Guid.initString("3f7f31ac-e15f-11d0-9c25-00c04fc99c8e");
 pub const IID_IXMLElement = &IID_IXMLElement_Value;
 pub const IXMLElement = extern struct {
     pub const VTable = extern struct {
@@ -2665,7 +2638,7 @@ pub const IXMLElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLElement2_Value = @import("../zig.zig").Guid.initString("2B8DE2FF-8D2D-11D1-B2FC-00C04FD915A9");
+const IID_IXMLElement2_Value = @import("../zig.zig").Guid.initString("2b8de2ff-8d2d-11d1-b2fc-00c04fd915a9");
 pub const IID_IXMLElement2 = &IID_IXMLElement2_Value;
 pub const IXMLElement2 = extern struct {
     pub const VTable = extern struct {
@@ -2786,7 +2759,7 @@ pub const IXMLElement2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLAttribute_Value = @import("../zig.zig").Guid.initString("D4D4A0FC-3B73-11D1-B2B4-00C04FB92596");
+const IID_IXMLAttribute_Value = @import("../zig.zig").Guid.initString("d4d4a0fc-3b73-11d1-b2b4-00c04fb92596");
 pub const IID_IXMLAttribute = &IID_IXMLAttribute_Value;
 pub const IXMLAttribute = extern struct {
     pub const VTable = extern struct {
@@ -2815,7 +2788,7 @@ pub const IXMLAttribute = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXMLError_Value = @import("../zig.zig").Guid.initString("948C5AD3-C58D-11D0-9C0B-00C04FC99C8E");
+const IID_IXMLError_Value = @import("../zig.zig").Guid.initString("948c5ad3-c58d-11d0-9c0b-00c04fc99c8e");
 pub const IID_IXMLError = &IID_IXMLError_Value;
 pub const IXMLError = extern struct {
     pub const VTable = extern struct {
@@ -3177,7 +3150,7 @@ pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
     EnumerationLevel: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16D5A2BE-B1C5-47B3-8EAE-CCBCF452C7E8");
+const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
 pub const CLSID_CameraUIControl = &CLSID_CameraUIControl_Value;
 
 pub const CameraUIControlMode = extern enum(i32) {
@@ -3226,7 +3199,7 @@ pub const CameraUIControlViewType = extern enum(i32) {
 pub const SingleItem = CameraUIControlViewType.SingleItem;
 pub const ItemList = CameraUIControlViewType.ItemList;
 
-const IID_ICameraUIControlEventCallback_Value = @import("../zig.zig").Guid.initString("1BFA0C2C-FBCD-4776-BDA4-88BF974E74F4");
+const IID_ICameraUIControlEventCallback_Value = @import("../zig.zig").Guid.initString("1bfa0c2c-fbcd-4776-bda4-88bf974e74f4");
 pub const IID_ICameraUIControlEventCallback = &IID_ICameraUIControlEventCallback_Value;
 pub const ICameraUIControlEventCallback = extern struct {
     pub const VTable = extern struct {
@@ -3276,7 +3249,7 @@ pub const ICameraUIControlEventCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICameraUIControl_Value = @import("../zig.zig").Guid.initString("B8733ADF-3D68-4B8F-BB08-E28A0BED0376");
+const IID_ICameraUIControl_Value = @import("../zig.zig").Guid.initString("b8733adf-3d68-4b8f-bb08-e28a0bed0376");
 pub const IID_ICameraUIControl = &IID_ICameraUIControl_Value;
 pub const ICameraUIControl = extern struct {
     pub const VTable = extern struct {
@@ -3898,13 +3871,13 @@ pub const VDMGETADDREXPRESSIONPROC = fn(
     param4: *u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-const CLSID_EditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("01776DF3-B9AF-4E50-9B1C-56E93116D704");
+const CLSID_EditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("01776df3-b9af-4e50-9b1c-56e93116d704");
 pub const CLSID_EditionUpgradeHelper = &CLSID_EditionUpgradeHelper_Value;
 
-const CLSID_EditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("C4270827-4F39-45DF-9288-12FF6B85A921");
+const CLSID_EditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("c4270827-4f39-45df-9288-12ff6b85a921");
 pub const CLSID_EditionUpgradeBroker = &CLSID_EditionUpgradeBroker_Value;
 
-const IID_IEditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("D3E9E342-5DEB-43B6-849E-6913B85D503A");
+const IID_IEditionUpgradeHelper_Value = @import("../zig.zig").Guid.initString("d3e9e342-5deb-43b6-849e-6913b85d503a");
 pub const IID_IEditionUpgradeHelper = &IID_IEditionUpgradeHelper_Value;
 pub const IEditionUpgradeHelper = extern struct {
     pub const VTable = extern struct {
@@ -3956,7 +3929,7 @@ pub const IEditionUpgradeHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsLockModeHelper_Value = @import("../zig.zig").Guid.initString("F342D19E-CC22-4648-BB5D-03CCF75B47C5");
+const IID_IWindowsLockModeHelper_Value = @import("../zig.zig").Guid.initString("f342d19e-cc22-4648-bb5d-03ccf75b47c5");
 pub const IID_IWindowsLockModeHelper = &IID_IWindowsLockModeHelper_Value;
 pub const IWindowsLockModeHelper = extern struct {
     pub const VTable = extern struct {
@@ -3977,7 +3950,7 @@ pub const IWindowsLockModeHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("FF19CBCF-9455-4937-B872-6B7929A460AF");
+const IID_IEditionUpgradeBroker_Value = @import("../zig.zig").Guid.initString("ff19cbcf-9455-4937-b872-6b7929a460af");
 pub const IID_IEditionUpgradeBroker = &IID_IEditionUpgradeBroker_Value;
 pub const IEditionUpgradeBroker = extern struct {
     pub const VTable = extern struct {
@@ -4020,7 +3993,7 @@ pub const IEditionUpgradeBroker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContainerActivationHelper_Value = @import("../zig.zig").Guid.initString("B524F93F-80D5-4EC7-AE9E-D66E93ADE1FA");
+const IID_IContainerActivationHelper_Value = @import("../zig.zig").Guid.initString("b524f93f-80d5-4ec7-ae9e-d66e93ade1fa");
 pub const IID_IContainerActivationHelper = &IID_IContainerActivationHelper_Value;
 pub const IContainerActivationHelper = extern struct {
     pub const VTable = extern struct {
@@ -4041,7 +4014,7 @@ pub const IContainerActivationHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IClipServiceNotificationHelper_Value = @import("../zig.zig").Guid.initString("C39948F0-6142-44FD-98CA-E1681A8D68B5");
+const IID_IClipServiceNotificationHelper_Value = @import("../zig.zig").Guid.initString("c39948f0-6142-44fd-98ca-e1681a8d68b5");
 pub const IID_IClipServiceNotificationHelper = &IID_IClipServiceNotificationHelper_Value;
 pub const IClipServiceNotificationHelper = extern struct {
     pub const VTable = extern struct {
@@ -4114,10 +4087,10 @@ pub const FEATURE_STATE_CHANGE_CALLBACK = fn(
 pub const PFEATURE_STATE_CHANGE_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const CLSID_FhConfigMgr_Value = @import("../zig.zig").Guid.initString("ED43BB3C-09E9-498A-9DF6-2177244C6DB4");
+const CLSID_FhConfigMgr_Value = @import("../zig.zig").Guid.initString("ed43bb3c-09e9-498a-9df6-2177244c6db4");
 pub const CLSID_FhConfigMgr = &CLSID_FhConfigMgr_Value;
 
-const CLSID_FhReassociation_Value = @import("../zig.zig").Guid.initString("4D728E35-16FA-4320-9E8B-BFD7100A8846");
+const CLSID_FhReassociation_Value = @import("../zig.zig").Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
 pub const CLSID_FhReassociation = &CLSID_FhReassociation_Value;
 
 pub const FH_TARGET_PROPERTY_TYPE = extern enum(i32) {
@@ -4142,7 +4115,7 @@ pub const FH_DRIVE_REMOVABLE = FH_TARGET_DRIVE_TYPES.FH_DRIVE_REMOVABLE;
 pub const FH_DRIVE_FIXED = FH_TARGET_DRIVE_TYPES.FH_DRIVE_FIXED;
 pub const FH_DRIVE_REMOTE = FH_TARGET_DRIVE_TYPES.FH_DRIVE_REMOTE;
 
-const IID_IFhTarget_Value = @import("../zig.zig").Guid.initString("D87965FD-2BAD-4657-BD3B-9567EB300CED");
+const IID_IFhTarget_Value = @import("../zig.zig").Guid.initString("d87965fd-2bad-4657-bd3b-9567eb300ced");
 pub const IID_IFhTarget = &IID_IFhTarget_Value;
 pub const IFhTarget = extern struct {
     pub const VTable = extern struct {
@@ -4173,7 +4146,7 @@ pub const IFhTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFhScopeIterator_Value = @import("../zig.zig").Guid.initString("3197ABCE-532A-44C6-8615-F3666566A720");
+const IID_IFhScopeIterator_Value = @import("../zig.zig").Guid.initString("3197abce-532a-44c6-8615-f3666566a720");
 pub const IID_IFhScopeIterator = &IID_IFhScopeIterator_Value;
 pub const IFhScopeIterator = extern struct {
     pub const VTable = extern struct {
@@ -4264,7 +4237,7 @@ pub const FH_TARGET_PART_OF_LIBRARY = FH_DEVICE_VALIDATION_RESULT.FH_TARGET_PART
 pub const FH_VALID_TARGET = FH_DEVICE_VALIDATION_RESULT.FH_VALID_TARGET;
 pub const MAX_VALIDATION_RESULT = FH_DEVICE_VALIDATION_RESULT.MAX_VALIDATION_RESULT;
 
-const IID_IFhConfigMgr_Value = @import("../zig.zig").Guid.initString("6A5FEA5B-BF8F-4EE5-B8C3-44D8A0D7331C");
+const IID_IFhConfigMgr_Value = @import("../zig.zig").Guid.initString("6a5fea5b-bf8f-4ee5-b8c3-44d8a0d7331c");
 pub const IID_IFhConfigMgr = &IID_IFhConfigMgr_Value;
 pub const IFhConfigMgr = extern struct {
     pub const VTable = extern struct {
@@ -4396,7 +4369,7 @@ pub const IFhConfigMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFhReassociation_Value = @import("../zig.zig").Guid.initString("6544A28A-F68D-47AC-91EF-16B2B36AA3EE");
+const IID_IFhReassociation_Value = @import("../zig.zig").Guid.initString("6544a28a-f68d-47ac-91ef-16b2b36aa3ee");
 pub const IID_IFhReassociation = &IID_IFhReassociation_Value;
 pub const IFhReassociation = extern struct {
     pub const VTable = extern struct {
@@ -4546,10 +4519,10 @@ pub const WINWATCHNOTIFYPROC = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const CLSID_WaaSAssessor_Value = @import("../zig.zig").Guid.initString("098EF871-FA9F-46AF-8958-C083515D7C9C");
+const CLSID_WaaSAssessor_Value = @import("../zig.zig").Guid.initString("098ef871-fa9f-46af-8958-c083515d7c9c");
 pub const CLSID_WaaSAssessor = &CLSID_WaaSAssessor_Value;
 
-const IID_IWaaSAssessor_Value = @import("../zig.zig").Guid.initString("2347BBEF-1A3B-45A4-902D-3E09C269B45E");
+const IID_IWaaSAssessor_Value = @import("../zig.zig").Guid.initString("2347bbef-1a3b-45a4-902d-3e09c269b45e");
 pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
 pub const IWaaSAssessor = extern struct {
     pub const VTable = extern struct {
@@ -6280,31 +6253,31 @@ pub const IMEPROW = extern struct {
     szOptions: [30]u16,
 };
 
-const CLSID_WebBrowser_V1_Value = @import("../zig.zig").Guid.initString("EAB22AC3-30C1-11CF-A7EB-0000C05BAE0B");
+const CLSID_WebBrowser_V1_Value = @import("../zig.zig").Guid.initString("eab22ac3-30c1-11cf-a7eb-0000c05bae0b");
 pub const CLSID_WebBrowser_V1 = &CLSID_WebBrowser_V1_Value;
 
-const CLSID_WebBrowser_Value = @import("../zig.zig").Guid.initString("8856F961-340A-11D0-A96B-00C04FD705A2");
+const CLSID_WebBrowser_Value = @import("../zig.zig").Guid.initString("8856f961-340a-11d0-a96b-00c04fd705a2");
 pub const CLSID_WebBrowser = &CLSID_WebBrowser_Value;
 
-const CLSID_InternetExplorer_Value = @import("../zig.zig").Guid.initString("0002DF01-0000-0000-C000-000000000046");
+const CLSID_InternetExplorer_Value = @import("../zig.zig").Guid.initString("0002df01-0000-0000-c000-000000000046");
 pub const CLSID_InternetExplorer = &CLSID_InternetExplorer_Value;
 
-const CLSID_InternetExplorerMedium_Value = @import("../zig.zig").Guid.initString("D5E8041D-920F-45E9-B8FB-B1DEB82C6E5E");
+const CLSID_InternetExplorerMedium_Value = @import("../zig.zig").Guid.initString("d5e8041d-920f-45e9-b8fb-b1deb82c6e5e");
 pub const CLSID_InternetExplorerMedium = &CLSID_InternetExplorerMedium_Value;
 
-const CLSID_ShellBrowserWindow_Value = @import("../zig.zig").Guid.initString("C08AFD90-F2A1-11D1-8455-00A0C91F3880");
+const CLSID_ShellBrowserWindow_Value = @import("../zig.zig").Guid.initString("c08afd90-f2a1-11d1-8455-00a0c91f3880");
 pub const CLSID_ShellBrowserWindow = &CLSID_ShellBrowserWindow_Value;
 
-const CLSID_ShellWindows_Value = @import("../zig.zig").Guid.initString("9BA05972-F6A8-11CF-A442-00A0C90A8F39");
+const CLSID_ShellWindows_Value = @import("../zig.zig").Guid.initString("9ba05972-f6a8-11cf-a442-00a0c90a8f39");
 pub const CLSID_ShellWindows = &CLSID_ShellWindows_Value;
 
-const CLSID_ShellUIHelper_Value = @import("../zig.zig").Guid.initString("64AB4BB7-111E-11D1-8F79-00C04FC2FBE1");
+const CLSID_ShellUIHelper_Value = @import("../zig.zig").Guid.initString("64ab4bb7-111e-11d1-8f79-00c04fc2fbe1");
 pub const CLSID_ShellUIHelper = &CLSID_ShellUIHelper_Value;
 
-const CLSID_ShellNameSpace_Value = @import("../zig.zig").Guid.initString("55136805-B2DE-11D1-B9F2-00A0C98BC547");
+const CLSID_ShellNameSpace_Value = @import("../zig.zig").Guid.initString("55136805-b2de-11d1-b9f2-00a0c98bc547");
 pub const CLSID_ShellNameSpace = &CLSID_ShellNameSpace_Value;
 
-const CLSID_CScriptErrorList_Value = @import("../zig.zig").Guid.initString("EFD01300-160F-11D2-BB2E-00805FF7EFCA");
+const CLSID_CScriptErrorList_Value = @import("../zig.zig").Guid.initString("efd01300-160f-11d2-bb2e-00805ff7efca");
 pub const CLSID_CScriptErrorList = &CLSID_CScriptErrorList_Value;
 
 pub const CommandStateChangeConstants = extern enum(i32) {
@@ -6414,7 +6387,7 @@ pub const REFRESH_NORMAL = RefreshConstants.REFRESH_NORMAL;
 pub const REFRESH_IFEXPIRED = RefreshConstants.REFRESH_IFEXPIRED;
 pub const REFRESH_COMPLETELY = RefreshConstants.REFRESH_COMPLETELY;
 
-const IID_IWebBrowser_Value = @import("../zig.zig").Guid.initString("EAB22AC1-30C1-11CF-A7EB-0000C05BAE0B");
+const IID_IWebBrowser_Value = @import("../zig.zig").Guid.initString("eab22ac1-30c1-11cf-a7eb-0000c05bae0b");
 pub const IID_IWebBrowser = &IID_IWebBrowser_Value;
 pub const IWebBrowser = extern struct {
     pub const VTable = extern struct {
@@ -6625,7 +6598,7 @@ pub const IWebBrowser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DWebBrowserEvents_Value = @import("../zig.zig").Guid.initString("EAB22AC2-30C1-11CF-A7EB-0000C05BAE0B");
+const IID_DWebBrowserEvents_Value = @import("../zig.zig").Guid.initString("eab22ac2-30c1-11cf-a7eb-0000c05bae0b");
 pub const IID_DWebBrowserEvents = &IID_DWebBrowserEvents_Value;
 pub const DWebBrowserEvents = extern struct {
     pub const VTable = extern struct {
@@ -6638,7 +6611,7 @@ pub const DWebBrowserEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWebBrowserApp_Value = @import("../zig.zig").Guid.initString("0002DF05-0000-0000-C000-000000000046");
+const IID_IWebBrowserApp_Value = @import("../zig.zig").Guid.initString("0002df05-0000-0000-c000-000000000046");
 pub const IID_IWebBrowserApp = &IID_IWebBrowserApp_Value;
 pub const IWebBrowserApp = extern struct {
     pub const VTable = extern struct {
@@ -6813,7 +6786,7 @@ pub const IWebBrowserApp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWebBrowser2_Value = @import("../zig.zig").Guid.initString("D30C1661-CDAF-11D0-8A3E-00C04FC9E26E");
+const IID_IWebBrowser2_Value = @import("../zig.zig").Guid.initString("d30c1661-cdaf-11d0-8a3e-00c04fc9e26e");
 pub const IID_IWebBrowser2 = &IID_IWebBrowser2_Value;
 pub const IWebBrowser2 = extern struct {
     pub const VTable = extern struct {
@@ -6988,7 +6961,7 @@ pub const IWebBrowser2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DWebBrowserEvents2_Value = @import("../zig.zig").Guid.initString("34A715A0-6587-11D0-924A-0020AFC7AC4D");
+const IID_DWebBrowserEvents2_Value = @import("../zig.zig").Guid.initString("34a715a0-6587-11d0-924a-0020afc7ac4d");
 pub const IID_DWebBrowserEvents2 = &IID_DWebBrowserEvents2_Value;
 pub const DWebBrowserEvents2 = extern struct {
     pub const VTable = extern struct {
@@ -7001,7 +6974,7 @@ pub const DWebBrowserEvents2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DShellWindowsEvents_Value = @import("../zig.zig").Guid.initString("FE4106E0-399A-11D0-A48C-00A0C90A8F39");
+const IID_DShellWindowsEvents_Value = @import("../zig.zig").Guid.initString("fe4106e0-399a-11d0-a48c-00a0c90a8f39");
 pub const IID_DShellWindowsEvents = &IID_DShellWindowsEvents_Value;
 pub const DShellWindowsEvents = extern struct {
     pub const VTable = extern struct {
@@ -7014,7 +6987,7 @@ pub const DShellWindowsEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper_Value = @import("../zig.zig").Guid.initString("729FE2F8-1EA8-11D1-8F85-00C04FC2FBE1");
+const IID_IShellUIHelper_Value = @import("../zig.zig").Guid.initString("729fe2f8-1ea8-11d1-8f85-00c04fc2fbe1");
 pub const IID_IShellUIHelper = &IID_IShellUIHelper_Value;
 pub const IShellUIHelper = extern struct {
     pub const VTable = extern struct {
@@ -7142,7 +7115,7 @@ pub const IShellUIHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper2_Value = @import("../zig.zig").Guid.initString("A7FE6EDA-1932-4281-B881-87B31B8BC52C");
+const IID_IShellUIHelper2_Value = @import("../zig.zig").Guid.initString("a7fe6eda-1932-4281-b881-87b31b8bc52c");
 pub const IID_IShellUIHelper2 = &IID_IShellUIHelper2_Value;
 pub const IShellUIHelper2 = extern struct {
     pub const VTable = extern struct {
@@ -7282,7 +7255,7 @@ pub const IShellUIHelper2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper3_Value = @import("../zig.zig").Guid.initString("528DF2EC-D419-40BC-9B6D-DCDBF9C1B25D");
+const IID_IShellUIHelper3_Value = @import("../zig.zig").Guid.initString("528df2ec-d419-40bc-9b6d-dcdbf9c1b25d");
 pub const IID_IShellUIHelper3 = &IID_IShellUIHelper3_Value;
 pub const IShellUIHelper3 = extern struct {
     pub const VTable = extern struct {
@@ -7399,7 +7372,7 @@ pub const IShellUIHelper3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper4_Value = @import("../zig.zig").Guid.initString("B36E6A53-8073-499E-824C-D776330A333E");
+const IID_IShellUIHelper4_Value = @import("../zig.zig").Guid.initString("b36e6a53-8073-499e-824c-d776330a333e");
 pub const IID_IShellUIHelper4 = &IID_IShellUIHelper4_Value;
 pub const IShellUIHelper4 = extern struct {
     pub const VTable = extern struct {
@@ -7564,7 +7537,7 @@ pub const IShellUIHelper4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper5_Value = @import("../zig.zig").Guid.initString("A2A08B09-103D-4D3F-B91C-EA455CA82EFA");
+const IID_IShellUIHelper5_Value = @import("../zig.zig").Guid.initString("a2a08b09-103d-4d3f-b91c-ea455ca82efa");
 pub const IID_IShellUIHelper5 = &IID_IShellUIHelper5_Value;
 pub const IShellUIHelper5 = extern struct {
     pub const VTable = extern struct {
@@ -7629,7 +7602,7 @@ pub const IShellUIHelper5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper6_Value = @import("../zig.zig").Guid.initString("987A573E-46EE-4E89-96AB-DDF7F8FDC98C");
+const IID_IShellUIHelper6_Value = @import("../zig.zig").Guid.initString("987a573e-46ee-4e89-96ab-ddf7f8fdc98c");
 pub const IID_IShellUIHelper6 = &IID_IShellUIHelper6_Value;
 pub const IShellUIHelper6 = extern struct {
     pub const VTable = extern struct {
@@ -7760,7 +7733,7 @@ pub const IShellUIHelper6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper7_Value = @import("../zig.zig").Guid.initString("60E567C8-9573-4AB2-A264-637C6C161CB1");
+const IID_IShellUIHelper7_Value = @import("../zig.zig").Guid.initString("60e567c8-9573-4ab2-a264-637c6c161cb1");
 pub const IID_IShellUIHelper7 = &IID_IShellUIHelper7_Value;
 pub const IShellUIHelper7 = extern struct {
     pub const VTable = extern struct {
@@ -7852,7 +7825,7 @@ pub const IShellUIHelper7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper8_Value = @import("../zig.zig").Guid.initString("66DEBCF2-05B0-4F07-B49B-B96241A65DB2");
+const IID_IShellUIHelper8_Value = @import("../zig.zig").Guid.initString("66debcf2-05b0-4f07-b49b-b96241a65db2");
 pub const IID_IShellUIHelper8 = &IID_IShellUIHelper8_Value;
 pub const IShellUIHelper8 = extern struct {
     pub const VTable = extern struct {
@@ -7919,7 +7892,7 @@ pub const IShellUIHelper8 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellUIHelper9_Value = @import("../zig.zig").Guid.initString("6CDF73B0-7F2F-451F-BC0F-63E0F3284E54");
+const IID_IShellUIHelper9_Value = @import("../zig.zig").Guid.initString("6cdf73b0-7f2f-451f-bc0f-63e0f3284e54");
 pub const IID_IShellUIHelper9 = &IID_IShellUIHelper9_Value;
 pub const IShellUIHelper9 = extern struct {
     pub const VTable = extern struct {
@@ -7940,7 +7913,7 @@ pub const IShellUIHelper9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_DShellNameSpaceEvents_Value = @import("../zig.zig").Guid.initString("55136806-B2DE-11D1-B9F2-00A0C98BC547");
+const IID_DShellNameSpaceEvents_Value = @import("../zig.zig").Guid.initString("55136806-b2de-11d1-b9f2-00a0c98bc547");
 pub const IID_DShellNameSpaceEvents = &IID_DShellNameSpaceEvents_Value;
 pub const DShellNameSpaceEvents = extern struct {
     pub const VTable = extern struct {
@@ -7953,7 +7926,7 @@ pub const DShellNameSpaceEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellFavoritesNameSpace_Value = @import("../zig.zig").Guid.initString("55136804-B2DE-11D1-B9F2-00A0C98BC547");
+const IID_IShellFavoritesNameSpace_Value = @import("../zig.zig").Guid.initString("55136804-b2de-11d1-b9f2-00a0c98bc547");
 pub const IID_IShellFavoritesNameSpace = &IID_IShellFavoritesNameSpace_Value;
 pub const IShellFavoritesNameSpace = extern struct {
     pub const VTable = extern struct {
@@ -8062,7 +8035,7 @@ pub const IShellFavoritesNameSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShellNameSpace_Value = @import("../zig.zig").Guid.initString("E572D3C9-37BE-4AE2-825D-D521763E3108");
+const IID_IShellNameSpace_Value = @import("../zig.zig").Guid.initString("e572d3c9-37be-4ae2-825d-d521763e3108");
 pub const IID_IShellNameSpace = &IID_IShellNameSpace_Value;
 pub const IShellNameSpace = extern struct {
     pub const VTable = extern struct {
@@ -8243,7 +8216,7 @@ pub const IShellNameSpace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IScriptErrorList_Value = @import("../zig.zig").Guid.initString("F3470F24-15FD-11D2-BB2E-00805FF7EFCA");
+const IID_IScriptErrorList_Value = @import("../zig.zig").Guid.initString("f3470f24-15fd-11d2-bb2e-00805ff7efca");
 pub const IID_IScriptErrorList = &IID_IScriptErrorList_Value;
 pub const IScriptErrorList = extern struct {
     pub const VTable = extern struct {
@@ -8381,7 +8354,7 @@ pub const JAVA_TRUST = extern struct {
     hVerify: HRESULT,
 };
 
-const CLSID_IsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("BC812430-E75E-4FD1-9641-1F9F1E2D9A1F");
+const CLSID_IsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("bc812430-e75e-4fd1-9641-1f9f1e2d9a1f");
 pub const CLSID_IsolatedAppLauncher = &CLSID_IsolatedAppLauncher_Value;
 
 pub const IsolatedAppLauncherTelemetryParameters = extern struct {
@@ -8389,7 +8362,7 @@ pub const IsolatedAppLauncherTelemetryParameters = extern struct {
     CorrelationGUID: Guid,
 };
 
-const IID_IIsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("F686878F-7B42-4CC4-96FB-F4F3B6E3D24D");
+const IID_IIsolatedAppLauncher_Value = @import("../zig.zig").Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
 pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
 pub const IIsolatedAppLauncher = extern struct {
     pub const VTable = extern struct {
@@ -8412,10 +8385,10 @@ pub const IIsolatedAppLauncher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_WSCProductList_Value = @import("../zig.zig").Guid.initString("17072F7B-9ABE-4A74-A261-1EB76B55107A");
+const CLSID_WSCProductList_Value = @import("../zig.zig").Guid.initString("17072f7b-9abe-4a74-a261-1eb76b55107a");
 pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
 
-const CLSID_WSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("2981A36E-F22D-11E5-9CE9-5E5517507C66");
+const CLSID_WSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("2981a36e-f22d-11e5-9ce9-5e5517507c66");
 pub const CLSID_WSCDefaultProduct = &CLSID_WSCDefaultProduct_Value;
 
 pub const WSC_SECURITY_PRODUCT_SUBSTATUS = extern enum(i32) {
@@ -8456,14 +8429,14 @@ pub const WSC_SECURITY_SIGNATURE_STATUS = extern enum(i32) {
 pub const WSC_SECURITY_PRODUCT_OUT_OF_DATE = WSC_SECURITY_SIGNATURE_STATUS.WSC_SECURITY_PRODUCT_OUT_OF_DATE;
 pub const WSC_SECURITY_PRODUCT_UP_TO_DATE = WSC_SECURITY_SIGNATURE_STATUS.WSC_SECURITY_PRODUCT_UP_TO_DATE;
 
-const IID_IWscProduct_Value = @import("../zig.zig").Guid.initString("8C38232E-3A45-4A27-92B0-1A16A975F669");
+const IID_IWscProduct_Value = @import("../zig.zig").Guid.initString("8c38232e-3a45-4a27-92b0-1a16a975f669");
 pub const IID_IWscProduct = &IID_IWscProduct_Value;
 pub const IWscProduct = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ProductName: fn(
             self: *const IWscProduct,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductState: fn(
             self: *const IWscProduct,
@@ -8475,15 +8448,15 @@ pub const IWscProduct = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RemediationPath: fn(
             self: *const IWscProduct,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductStateTimestamp: fn(
             self: *const IWscProduct,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductGuid: fn(
             self: *const IWscProduct,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProductIsDefault: fn(
             self: *const IWscProduct,
@@ -8494,7 +8467,7 @@ pub const IWscProduct = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductName(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductName(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8506,15 +8479,15 @@ pub const IWscProduct = extern struct {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_SignatureStatus(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_RemediationPath(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_RemediationPath(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_RemediationPath(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductStateTimestamp(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWscProduct_get_ProductGuid(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IWscProduct_get_ProductGuid(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductGuid(@ptrCast(*const IWscProduct, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8525,7 +8498,7 @@ pub const IWscProduct = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWscProduct2_Value = @import("../zig.zig").Guid.initString("F896CA54-FE09-4403-86D4-23CB488D81D8");
+const IID_IWscProduct2_Value = @import("../zig.zig").Guid.initString("f896ca54-fe09-4403-86d4-23cb488d81d8");
 pub const IID_IWscProduct2 = &IID_IWscProduct2_Value;
 pub const IWscProduct2 = extern struct {
     pub const VTable = extern struct {
@@ -8586,7 +8559,7 @@ pub const IWscProduct2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWscProduct3_Value = @import("../zig.zig").Guid.initString("55536524-D1D1-4726-8C7C-04996A1904E7");
+const IID_IWscProduct3_Value = @import("../zig.zig").Guid.initString("55536524-d1d1-4726-8c7c-04996a1904e7");
 pub const IID_IWscProduct3 = &IID_IWscProduct3_Value;
 pub const IWscProduct3 = extern struct {
     pub const VTable = extern struct {
@@ -8607,7 +8580,7 @@ pub const IWscProduct3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSCProductList_Value = @import("../zig.zig").Guid.initString("722A338C-6E8E-4E72-AC27-1417FB0C81C2");
+const IID_IWSCProductList_Value = @import("../zig.zig").Guid.initString("722a338c-6e8e-4e72-ac27-1417fb0c81c2");
 pub const IID_IWSCProductList = &IID_IWSCProductList_Value;
 pub const IWSCProductList = extern struct {
     pub const VTable = extern struct {
@@ -8623,7 +8596,7 @@ pub const IWSCProductList = extern struct {
         get_Item: fn(
             self: *const IWSCProductList,
             index: u32,
-            pVal: **IWscProduct,
+            pVal: ?*?*IWscProduct,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8638,14 +8611,14 @@ pub const IWSCProductList = extern struct {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Count(@ptrCast(*const IWSCProductList, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: **IWscProduct) callconv(.Inline) HRESULT {
+        pub fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Item(@ptrCast(*const IWSCProductList, self), index, pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("0476D69C-F21A-11E5-9CE9-5E5517507C66");
+const IID_IWSCDefaultProduct_Value = @import("../zig.zig").Guid.initString("0476d69c-f21a-11e5-9ce9-5e5517507c66");
 pub const IID_IWSCDefaultProduct = &IID_IWSCDefaultProduct_Value;
 pub const IWSCDefaultProduct = extern struct {
     pub const VTable = extern struct {
@@ -9246,7 +9219,7 @@ pub const XmlWriterProperty_ConformanceLevel = XmlWriterProperty.ConformanceLeve
 pub const XmlWriterProperty_CompactEmptyElement = XmlWriterProperty.CompactEmptyElement;
 pub const _XmlWriterProperty_Last = XmlWriterProperty._XmlWriterProperty_Last;
 
-const IID_IXmlReader_Value = @import("../zig.zig").Guid.initString("7279FC81-709D-4095-B63D-69FE4B0D9030");
+const IID_IXmlReader_Value = @import("../zig.zig").Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlReader = &IID_IXmlReader_Value;
 pub const IXmlReader = extern struct {
     pub const VTable = extern struct {
@@ -9448,7 +9421,7 @@ pub const IXmlReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlResolver_Value = @import("../zig.zig").Guid.initString("7279FC82-709D-4095-B63D-69FE4B0D9030");
+const IID_IXmlResolver_Value = @import("../zig.zig").Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlResolver = &IID_IXmlResolver_Value;
 pub const IXmlResolver = extern struct {
     pub const VTable = extern struct {
@@ -9472,7 +9445,7 @@ pub const IXmlResolver = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlWriter_Value = @import("../zig.zig").Guid.initString("7279FC88-709D-4095-B63D-69FE4B0D9030");
+const IID_IXmlWriter_Value = @import("../zig.zig").Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlWriter = &IID_IXmlWriter_Value;
 pub const IXmlWriter = extern struct {
     pub const VTable = extern struct {
@@ -9734,7 +9707,7 @@ pub const IXmlWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXmlWriterLite_Value = @import("../zig.zig").Guid.initString("862494C6-1310-4AAD-B3CD-2DBEEBF670D3");
+const IID_IXmlWriterLite_Value = @import("../zig.zig").Guid.initString("862494c6-1310-4aad-b3cd-2dbeebf670d3");
 pub const IID_IXmlWriterLite = &IID_IXmlWriterLite_Value;
 pub const IXmlWriterLite = extern struct {
     pub const VTable = extern struct {
@@ -10263,6 +10236,33 @@ pub const _pfLogFrame = extern struct {
     bPacketData: [1]u8,
 };
 
+pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
+    NameUnknown = 0,
+    NameFullyQualifiedDN = 1,
+    NameSamCompatible = 2,
+    NameDisplay = 3,
+    NameUniqueId = 6,
+    NameCanonical = 7,
+    NameUserPrincipal = 8,
+    NameCanonicalEx = 9,
+    NameServicePrincipal = 10,
+    NameDnsDomain = 12,
+    NameGivenName = 13,
+    NameSurname = 14,
+};
+pub const NameUnknown = EXTENDED_NAME_FORMAT.NameUnknown;
+pub const NameFullyQualifiedDN = EXTENDED_NAME_FORMAT.NameFullyQualifiedDN;
+pub const NameSamCompatible = EXTENDED_NAME_FORMAT.NameSamCompatible;
+pub const NameDisplay = EXTENDED_NAME_FORMAT.NameDisplay;
+pub const NameUniqueId = EXTENDED_NAME_FORMAT.NameUniqueId;
+pub const NameCanonical = EXTENDED_NAME_FORMAT.NameCanonical;
+pub const NameUserPrincipal = EXTENDED_NAME_FORMAT.NameUserPrincipal;
+pub const NameCanonicalEx = EXTENDED_NAME_FORMAT.NameCanonicalEx;
+pub const NameServicePrincipal = EXTENDED_NAME_FORMAT.NameServicePrincipal;
+pub const NameDnsDomain = EXTENDED_NAME_FORMAT.NameDnsDomain;
+pub const NameGivenName = EXTENDED_NAME_FORMAT.NameGivenName;
+pub const NameSurname = EXTENDED_NAME_FORMAT.NameSurname;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (474)
@@ -10343,56 +10343,8 @@ pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "SspiCli" fn GetUserNameExA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SspiCli" fn GetUserNameExW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn GetComputerObjectNameA(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn GetComputerObjectNameW(
-    NameFormat: EXTENDED_NAME_FORMAT,
-    lpNameBuffer: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameA(
-    lpAccountName: [*:0]const u8,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u8,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub extern "SECUR32" fn TranslateNameW(
-    lpAccountName: [*:0]const u16,
-    AccountNameFormat: EXTENDED_NAME_FORMAT,
-    DesiredNameFormat: EXTENDED_NAME_FORMAT,
-    lpTranslatedName: ?[*:0]u16,
-    nSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
 pub extern "USER32" fn DisableProcessWindowsGhosting(
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "NETAPI32" fn I_NetLogonControl2(
-    ServerName: ?[*:0]const u16,
-    FunctionCode: u32,
-    QueryLevel: u32,
-    Data: *u8,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "KERNEL32" fn RtlRaiseException(
     ExceptionRecord: *EXCEPTION_RECORD,
@@ -10466,13 +10418,13 @@ pub extern "loadperf" fn InstallPerfDllA(
     dwFlags: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ole32" fn CoInstall(
-    pbc: *IBindCtx,
-    dwFlags: u32,
-    pClassSpec: *uCLSSPEC,
-    pQuery: *QUERYCONTEXT,
-    pszCodeBase: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "NETAPI32" fn I_NetLogonControl2(
+    ServerName: ?[*:0]const u16,
+    FunctionCode: u32,
+    QueryLevel: u32,
+    Data: *u8,
+    Buffer: **u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
     Contract: [*:0]const u8,
@@ -13280,6 +13232,54 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+pub extern "SspiCli" fn GetUserNameExA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SspiCli" fn GetUserNameExW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameA(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn GetComputerObjectNameW(
+    NameFormat: EXTENDED_NAME_FORMAT,
+    lpNameBuffer: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameA(
+    lpAccountName: [*:0]const u8,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u8,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "SECUR32" fn TranslateNameW(
+    lpAccountName: [*:0]const u16,
+    AccountNameFormat: EXTENDED_NAME_FORMAT,
+    DesiredNameFormat: EXTENDED_NAME_FORMAT,
+    lpTranslatedName: ?[*:0]u16,
+    nSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+pub extern "ole32" fn CoInstall(
+    pbc: *IBindCtx,
+    dwFlags: u32,
+    pClassSpec: *uCLSSPEC,
+    pQuery: *QUERYCONTEXT,
+    pszCodeBase: PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (109)
@@ -13297,9 +13297,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = _CabInfoA;
         pub const PERUSERSECTION = PERUSERSECTIONA;
         pub const IMEPRO = IMEPROA;
-        pub const GetUserNameEx = GetUserNameExA;
-        pub const GetComputerObjectName = GetComputerObjectNameA;
-        pub const TranslateName = TranslateNameA;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
         pub const InstallPerfDll = InstallPerfDllA;
@@ -13395,6 +13392,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEA;
         pub const IMPQueryIME = IMPQueryIMEA;
         pub const IMPSetIME = IMPSetIMEA;
+        pub const GetUserNameEx = GetUserNameExA;
+        pub const GetComputerObjectName = GetComputerObjectNameA;
+        pub const TranslateName = TranslateNameA;
     },
     .wide => struct {
         pub const OSVERSIONINFO = OSVERSIONINFOW;
@@ -13408,9 +13408,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = _CabInfoW;
         pub const PERUSERSECTION = PERUSERSECTIONW;
         pub const IMEPRO = IMEPROW;
-        pub const GetUserNameEx = GetUserNameExW;
-        pub const GetComputerObjectName = GetComputerObjectNameW;
-        pub const TranslateName = TranslateNameW;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
         pub const InstallPerfDll = InstallPerfDllW;
@@ -13506,6 +13503,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEW;
         pub const IMPQueryIME = IMPQueryIMEW;
         pub const IMPSetIME = IMPSetIMEW;
+        pub const GetUserNameEx = GetUserNameExW;
+        pub const GetComputerObjectName = GetComputerObjectNameW;
+        pub const TranslateName = TranslateNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const OSVERSIONINFO = *opaque{};
@@ -13519,9 +13519,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = *opaque{};
         pub const PERUSERSECTION = *opaque{};
         pub const IMEPRO = *opaque{};
-        pub const GetUserNameEx = *opaque{};
-        pub const GetComputerObjectName = *opaque{};
-        pub const TranslateName = *opaque{};
         pub const GetSystemWow64Directory = *opaque{};
         pub const GetSystemWow64Directory2 = *opaque{};
         pub const InstallPerfDll = *opaque{};
@@ -13617,6 +13614,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = *opaque{};
         pub const IMPQueryIME = *opaque{};
         pub const IMPSetIME = *opaque{};
+        pub const GetUserNameEx = *opaque{};
+        pub const GetComputerObjectName = *opaque{};
+        pub const TranslateName = *opaque{};
     } else struct {
         pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
         pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
@@ -13629,9 +13629,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const _CabInfo = @compileError("'_CabInfo' requires that UNICODE be set to true or false in the root module");
         pub const PERUSERSECTION = @compileError("'PERUSERSECTION' requires that UNICODE be set to true or false in the root module");
         pub const IMEPRO = @compileError("'IMEPRO' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
-        pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
         pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
@@ -13727,6 +13724,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
+        pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
+        pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
+        pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -13752,8 +13752,8 @@ const DDCOLORKEY = @import("direct_show.zig").DDCOLORKEY;
 const UNICODE_STRING = @import("security.zig").UNICODE_STRING;
 const DDVIDEOPORTCONNECT = @import("core_audio.zig").DDVIDEOPORTCONNECT;
 const PWSTR = @import("system_services.zig").PWSTR;
-const IBindCtx = @import("com.zig").IBindCtx;
 const LSTATUS = @import("system_services.zig").LSTATUS;
+const IBindCtx = @import("com.zig").IBindCtx;
 const DDCORECAPS = @import("display_devices.zig").DDCORECAPS;
 const DDVIDEOPORTINFO = @import("display_devices.zig").DDVIDEOPORTINFO;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;

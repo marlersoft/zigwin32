@@ -154,7 +154,7 @@ pub const WINML_MODEL_DESC = extern struct {
     Version: ?*c_void,
 };
 
-const IID_IWinMLModel_Value = @import("../zig.zig").Guid.initString("E2EEB6A9-F31F-4055-A521-E30B5B33664A");
+const IID_IWinMLModel_Value = @import("../zig.zig").Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
 pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
 pub const IWinMLModel = extern struct {
     pub const VTable = extern struct {
@@ -203,7 +203,7 @@ pub const IWinMLModel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWinMLEvaluationContext_Value = @import("../zig.zig").Guid.initString("95848F9E-583D-4054-AF12-916387CD8426");
+const IID_IWinMLEvaluationContext_Value = @import("../zig.zig").Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
 pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
 pub const IWinMLEvaluationContext = extern struct {
     pub const VTable = extern struct {
@@ -240,7 +240,7 @@ pub const IWinMLEvaluationContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWinMLRuntime_Value = @import("../zig.zig").Guid.initString("A0425329-40AE-48D9-BCE3-829EF7B8A41A");
+const IID_IWinMLRuntime_Value = @import("../zig.zig").Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
 pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
 pub const IWinMLRuntime = extern struct {
     pub const VTable = extern struct {
@@ -284,7 +284,7 @@ pub const WINML_RUNTIME_TYPE = extern enum(i32) {
 };
 pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.WINML_RUNTIME_CNTK;
 
-const IID_IWinMLRuntimeFactory_Value = @import("../zig.zig").Guid.initString("A807B84D-4AE5-4BC0-A76A-941AA246BD41");
+const IID_IWinMLRuntimeFactory_Value = @import("../zig.zig").Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
 pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
 pub const IWinMLRuntimeFactory = extern struct {
     pub const VTable = extern struct {
@@ -355,7 +355,7 @@ pub const MLOperatorEdgeDescription = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_IMLOperatorAttributes_Value = @import("../zig.zig").Guid.initString("4B1B1759-EC40-466C-AAB4-BEB5347FD24C");
+const IID_IMLOperatorAttributes_Value = @import("../zig.zig").Guid.initString("4b1b1759-ec40-466c-aab4-beb5347fd24c");
 pub const IID_IMLOperatorAttributes = &IID_IMLOperatorAttributes_Value;
 pub const IMLOperatorAttributes = extern struct {
     pub const VTable = extern struct {
@@ -411,7 +411,7 @@ pub const IMLOperatorAttributes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorTensorShapeDescription_Value = @import("../zig.zig").Guid.initString("F20E8CBE-3B28-4248-BE95-F96FBC6E4643");
+const IID_IMLOperatorTensorShapeDescription_Value = @import("../zig.zig").Guid.initString("f20e8cbe-3b28-4248-be95-f96fbc6e4643");
 pub const IID_IMLOperatorTensorShapeDescription = &IID_IMLOperatorTensorShapeDescription_Value;
 pub const IMLOperatorTensorShapeDescription = extern struct {
     pub const VTable = extern struct {
@@ -469,7 +469,7 @@ pub const IMLOperatorTensorShapeDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorKernelCreationContext_Value = @import("../zig.zig").Guid.initString("5459B53D-A0FC-4665-ADDD-70171EF7E631");
+const IID_IMLOperatorKernelCreationContext_Value = @import("../zig.zig").Guid.initString("5459b53d-a0fc-4665-addd-70171ef7e631");
 pub const IID_IMLOperatorKernelCreationContext = &IID_IMLOperatorKernelCreationContext_Value;
 pub const IMLOperatorKernelCreationContext = extern struct {
     pub const VTable = extern struct {
@@ -553,7 +553,7 @@ pub const IMLOperatorKernelCreationContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorTensor_Value = @import("../zig.zig").Guid.initString("7FE41F41-F430-440E-AECE-54416DC8B9DB");
+const IID_IMLOperatorTensor_Value = @import("../zig.zig").Guid.initString("7fe41f41-f430-440e-aece-54416dc8b9db");
 pub const IID_IMLOperatorTensor = &IID_IMLOperatorTensor_Value;
 pub const IMLOperatorTensor = extern struct {
     pub const VTable = extern struct {
@@ -618,7 +618,7 @@ pub const IMLOperatorTensor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorKernelContext_Value = @import("../zig.zig").Guid.initString("82536A28-F022-4769-9D3F-8B278F84C0C3");
+const IID_IMLOperatorKernelContext_Value = @import("../zig.zig").Guid.initString("82536a28-f022-4769-9d3f-8b278f84c0c3");
 pub const IID_IMLOperatorKernelContext = &IID_IMLOperatorKernelContext_Value;
 pub const IMLOperatorKernelContext = extern struct {
     pub const VTable = extern struct {
@@ -677,7 +677,7 @@ pub const IMLOperatorKernelContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorKernel_Value = @import("../zig.zig").Guid.initString("11C4B4A0-B467-4EAA-A1A6-B961D8D0ED79");
+const IID_IMLOperatorKernel_Value = @import("../zig.zig").Guid.initString("11c4b4a0-b467-4eaa-a1a6-b961d8d0ed79");
 pub const IID_IMLOperatorKernel = &IID_IMLOperatorKernel_Value;
 pub const IMLOperatorKernel = extern struct {
     pub const VTable = extern struct {
@@ -727,7 +727,7 @@ pub const MLOperatorEdgeTypeConstraint = extern struct {
     allowedTypeCount: u32,
 };
 
-const IID_IMLOperatorShapeInferenceContext_Value = @import("../zig.zig").Guid.initString("105B6B29-5408-4A68-9959-09B5955A3492");
+const IID_IMLOperatorShapeInferenceContext_Value = @import("../zig.zig").Guid.initString("105b6b29-5408-4a68-9959-09b5955a3492");
 pub const IID_IMLOperatorShapeInferenceContext = &IID_IMLOperatorShapeInferenceContext_Value;
 pub const IMLOperatorShapeInferenceContext = extern struct {
     pub const VTable = extern struct {
@@ -808,7 +808,7 @@ pub const IMLOperatorShapeInferenceContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorTypeInferenceContext_Value = @import("../zig.zig").Guid.initString("EC893BB1-F938-427B-8488-C8DCF775F138");
+const IID_IMLOperatorTypeInferenceContext_Value = @import("../zig.zig").Guid.initString("ec893bb1-f938-427b-8488-c8dcf775f138");
 pub const IID_IMLOperatorTypeInferenceContext = &IID_IMLOperatorTypeInferenceContext_Value;
 pub const IMLOperatorTypeInferenceContext = extern struct {
     pub const VTable = extern struct {
@@ -869,7 +869,7 @@ pub const IMLOperatorTypeInferenceContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorTypeInferrer_Value = @import("../zig.zig").Guid.initString("781AEB48-9BCB-4797-BF77-8BF455217BEB");
+const IID_IMLOperatorTypeInferrer_Value = @import("../zig.zig").Guid.initString("781aeb48-9bcb-4797-bf77-8bf455217beb");
 pub const IID_IMLOperatorTypeInferrer = &IID_IMLOperatorTypeInferrer_Value;
 pub const IMLOperatorTypeInferrer = extern struct {
     pub const VTable = extern struct {
@@ -890,7 +890,7 @@ pub const IMLOperatorTypeInferrer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorShapeInferrer_Value = @import("../zig.zig").Guid.initString("540BE5BE-A6C9-40EE-83F6-D2B8B40A7798");
+const IID_IMLOperatorShapeInferrer_Value = @import("../zig.zig").Guid.initString("540be5be-a6c9-40ee-83f6-d2b8b40a7798");
 pub const IID_IMLOperatorShapeInferrer = &IID_IMLOperatorShapeInferrer_Value;
 pub const IMLOperatorShapeInferrer = extern struct {
     pub const VTable = extern struct {
@@ -972,7 +972,7 @@ pub const MLOperatorKernelDescription = extern struct {
     executionOptions: u32,
 };
 
-const IID_IMLOperatorKernelFactory_Value = @import("../zig.zig").Guid.initString("EF15AD6F-0DC9-4908-AB35-A575A30DFBF8");
+const IID_IMLOperatorKernelFactory_Value = @import("../zig.zig").Guid.initString("ef15ad6f-0dc9-4908-ab35-a575a30dfbf8");
 pub const IID_IMLOperatorKernelFactory = &IID_IMLOperatorKernelFactory_Value;
 pub const IMLOperatorKernelFactory = extern struct {
     pub const VTable = extern struct {
@@ -994,7 +994,7 @@ pub const IMLOperatorKernelFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMLOperatorRegistry_Value = @import("../zig.zig").Guid.initString("2AF9DD2D-B516-4672-9AB5-530C208493AD");
+const IID_IMLOperatorRegistry_Value = @import("../zig.zig").Guid.initString("2af9dd2d-b516-4672-9ab5-530c208493ad");
 pub const IID_IMLOperatorRegistry = &IID_IMLOperatorRegistry_Value;
 pub const IMLOperatorRegistry = extern struct {
     pub const VTable = extern struct {

@@ -267,6 +267,1806 @@ pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.TransactionOutcom
 pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.TransactionOutcomeCommitted;
 pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.TransactionOutcomeAborted;
 
+pub const OVERLAPPED_ENTRY = extern struct {
+    lpCompletionKey: ?*c_void,
+    lpOverlapped: *OVERLAPPED,
+    Internal: ?*c_void,
+    dwNumberOfBytesTransferred: u32,
+};
+
+pub const WIN32_FIND_DATAA = extern struct {
+    dwFileAttributes: u32,
+    ftCreationTime: FILETIME,
+    ftLastAccessTime: FILETIME,
+    ftLastWriteTime: FILETIME,
+    nFileSizeHigh: u32,
+    nFileSizeLow: u32,
+    dwReserved0: u32,
+    dwReserved1: u32,
+    cFileName: [260]i8,
+    cAlternateFileName: [14]i8,
+};
+
+pub const WIN32_FIND_DATAW = extern struct {
+    dwFileAttributes: u32,
+    ftCreationTime: FILETIME,
+    ftLastAccessTime: FILETIME,
+    ftLastWriteTime: FILETIME,
+    nFileSizeHigh: u32,
+    nFileSizeLow: u32,
+    dwReserved0: u32,
+    dwReserved1: u32,
+    cFileName: [260]u16,
+    cAlternateFileName: [14]u16,
+};
+
+pub const FINDEX_INFO_LEVELS = extern enum(i32) {
+    FindExInfoStandard = 0,
+    FindExInfoBasic = 1,
+    FindExInfoMaxInfoLevel = 2,
+};
+pub const FindExInfoStandard = FINDEX_INFO_LEVELS.FindExInfoStandard;
+pub const FindExInfoBasic = FINDEX_INFO_LEVELS.FindExInfoBasic;
+pub const FindExInfoMaxInfoLevel = FINDEX_INFO_LEVELS.FindExInfoMaxInfoLevel;
+
+pub const FINDEX_SEARCH_OPS = extern enum(i32) {
+    FindExSearchNameMatch = 0,
+    FindExSearchLimitToDirectories = 1,
+    FindExSearchLimitToDevices = 2,
+    FindExSearchMaxSearchOp = 3,
+};
+pub const FindExSearchNameMatch = FINDEX_SEARCH_OPS.FindExSearchNameMatch;
+pub const FindExSearchLimitToDirectories = FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories;
+pub const FindExSearchLimitToDevices = FINDEX_SEARCH_OPS.FindExSearchLimitToDevices;
+pub const FindExSearchMaxSearchOp = FINDEX_SEARCH_OPS.FindExSearchMaxSearchOp;
+
+pub const READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = extern enum(i32) {
+    ReadDirectoryNotifyInformation = 1,
+    ReadDirectoryNotifyExtendedInformation = 2,
+};
+pub const ReadDirectoryNotifyInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.ReadDirectoryNotifyInformation;
+pub const ReadDirectoryNotifyExtendedInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.ReadDirectoryNotifyExtendedInformation;
+
+pub const GET_FILEEX_INFO_LEVELS = extern enum(i32) {
+    GetFileExInfoStandard = 0,
+    GetFileExMaxInfoLevel = 1,
+};
+pub const GetFileExInfoStandard = GET_FILEEX_INFO_LEVELS.GetFileExInfoStandard;
+pub const GetFileExMaxInfoLevel = GET_FILEEX_INFO_LEVELS.GetFileExMaxInfoLevel;
+
+pub const FILE_INFO_BY_HANDLE_CLASS = extern enum(i32) {
+    FileBasicInfo = 0,
+    FileStandardInfo = 1,
+    FileNameInfo = 2,
+    FileRenameInfo = 3,
+    FileDispositionInfo = 4,
+    FileAllocationInfo = 5,
+    FileEndOfFileInfo = 6,
+    FileStreamInfo = 7,
+    FileCompressionInfo = 8,
+    FileAttributeTagInfo = 9,
+    FileIdBothDirectoryInfo = 10,
+    FileIdBothDirectoryRestartInfo = 11,
+    FileIoPriorityHintInfo = 12,
+    FileRemoteProtocolInfo = 13,
+    FileFullDirectoryInfo = 14,
+    FileFullDirectoryRestartInfo = 15,
+    FileStorageInfo = 16,
+    FileAlignmentInfo = 17,
+    FileIdInfo = 18,
+    FileIdExtdDirectoryInfo = 19,
+    FileIdExtdDirectoryRestartInfo = 20,
+    FileDispositionInfoEx = 21,
+    FileRenameInfoEx = 22,
+    FileCaseSensitiveInfo = 23,
+    FileNormalizedNameInfo = 24,
+    MaximumFileInfoByHandleClass = 25,
+};
+pub const FileBasicInfo = FILE_INFO_BY_HANDLE_CLASS.FileBasicInfo;
+pub const FileStandardInfo = FILE_INFO_BY_HANDLE_CLASS.FileStandardInfo;
+pub const FileNameInfo = FILE_INFO_BY_HANDLE_CLASS.FileNameInfo;
+pub const FileRenameInfo = FILE_INFO_BY_HANDLE_CLASS.FileRenameInfo;
+pub const FileDispositionInfo = FILE_INFO_BY_HANDLE_CLASS.FileDispositionInfo;
+pub const FileAllocationInfo = FILE_INFO_BY_HANDLE_CLASS.FileAllocationInfo;
+pub const FileEndOfFileInfo = FILE_INFO_BY_HANDLE_CLASS.FileEndOfFileInfo;
+pub const FileStreamInfo = FILE_INFO_BY_HANDLE_CLASS.FileStreamInfo;
+pub const FileCompressionInfo = FILE_INFO_BY_HANDLE_CLASS.FileCompressionInfo;
+pub const FileAttributeTagInfo = FILE_INFO_BY_HANDLE_CLASS.FileAttributeTagInfo;
+pub const FileIdBothDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdBothDirectoryInfo;
+pub const FileIdBothDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdBothDirectoryRestartInfo;
+pub const FileIoPriorityHintInfo = FILE_INFO_BY_HANDLE_CLASS.FileIoPriorityHintInfo;
+pub const FileRemoteProtocolInfo = FILE_INFO_BY_HANDLE_CLASS.FileRemoteProtocolInfo;
+pub const FileFullDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileFullDirectoryInfo;
+pub const FileFullDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileFullDirectoryRestartInfo;
+pub const FileStorageInfo = FILE_INFO_BY_HANDLE_CLASS.FileStorageInfo;
+pub const FileAlignmentInfo = FILE_INFO_BY_HANDLE_CLASS.FileAlignmentInfo;
+pub const FileIdInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdInfo;
+pub const FileIdExtdDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdExtdDirectoryInfo;
+pub const FileIdExtdDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdExtdDirectoryRestartInfo;
+pub const FileDispositionInfoEx = FILE_INFO_BY_HANDLE_CLASS.FileDispositionInfoEx;
+pub const FileRenameInfoEx = FILE_INFO_BY_HANDLE_CLASS.FileRenameInfoEx;
+pub const FileCaseSensitiveInfo = FILE_INFO_BY_HANDLE_CLASS.FileCaseSensitiveInfo;
+pub const FileNormalizedNameInfo = FILE_INFO_BY_HANDLE_CLASS.FileNormalizedNameInfo;
+pub const MaximumFileInfoByHandleClass = FILE_INFO_BY_HANDLE_CLASS.MaximumFileInfoByHandleClass;
+
+pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
+    dwErrorCode: u32,
+    dwNumberOfBytesTransfered: u32,
+    lpOverlapped: *OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const STORAGE_QUERY_TYPE = extern enum(i32) {
+    PropertyStandardQuery = 0,
+    PropertyExistsQuery = 1,
+    PropertyMaskQuery = 2,
+    PropertyQueryMaxDefined = 3,
+};
+pub const PropertyStandardQuery = STORAGE_QUERY_TYPE.PropertyStandardQuery;
+pub const PropertyExistsQuery = STORAGE_QUERY_TYPE.PropertyExistsQuery;
+pub const PropertyMaskQuery = STORAGE_QUERY_TYPE.PropertyMaskQuery;
+pub const PropertyQueryMaxDefined = STORAGE_QUERY_TYPE.PropertyQueryMaxDefined;
+
+pub const STORAGE_PROPERTY_ID = extern enum(i32) {
+    StorageDeviceProperty = 0,
+    StorageAdapterProperty = 1,
+    StorageDeviceIdProperty = 2,
+    StorageDeviceUniqueIdProperty = 3,
+    StorageDeviceWriteCacheProperty = 4,
+    StorageMiniportProperty = 5,
+    StorageAccessAlignmentProperty = 6,
+    StorageDeviceSeekPenaltyProperty = 7,
+    StorageDeviceTrimProperty = 8,
+    StorageDeviceWriteAggregationProperty = 9,
+    StorageDeviceDeviceTelemetryProperty = 10,
+    StorageDeviceLBProvisioningProperty = 11,
+    StorageDevicePowerProperty = 12,
+    StorageDeviceCopyOffloadProperty = 13,
+    StorageDeviceResiliencyProperty = 14,
+    StorageDeviceMediumProductType = 15,
+    StorageAdapterRpmbProperty = 16,
+    StorageAdapterCryptoProperty = 17,
+    StorageDeviceIoCapabilityProperty = 48,
+    StorageAdapterProtocolSpecificProperty = 49,
+    StorageDeviceProtocolSpecificProperty = 50,
+    StorageAdapterTemperatureProperty = 51,
+    StorageDeviceTemperatureProperty = 52,
+    StorageAdapterPhysicalTopologyProperty = 53,
+    StorageDevicePhysicalTopologyProperty = 54,
+    StorageDeviceAttributesProperty = 55,
+    StorageDeviceManagementStatus = 56,
+    StorageAdapterSerialNumberProperty = 57,
+    StorageDeviceLocationProperty = 58,
+    StorageDeviceNumaProperty = 59,
+    StorageDeviceZonedDeviceProperty = 60,
+    StorageDeviceUnsafeShutdownCount = 61,
+    StorageDeviceEnduranceProperty = 62,
+};
+pub const StorageDeviceProperty = STORAGE_PROPERTY_ID.StorageDeviceProperty;
+pub const StorageAdapterProperty = STORAGE_PROPERTY_ID.StorageAdapterProperty;
+pub const StorageDeviceIdProperty = STORAGE_PROPERTY_ID.StorageDeviceIdProperty;
+pub const StorageDeviceUniqueIdProperty = STORAGE_PROPERTY_ID.StorageDeviceUniqueIdProperty;
+pub const StorageDeviceWriteCacheProperty = STORAGE_PROPERTY_ID.StorageDeviceWriteCacheProperty;
+pub const StorageMiniportProperty = STORAGE_PROPERTY_ID.StorageMiniportProperty;
+pub const StorageAccessAlignmentProperty = STORAGE_PROPERTY_ID.StorageAccessAlignmentProperty;
+pub const StorageDeviceSeekPenaltyProperty = STORAGE_PROPERTY_ID.StorageDeviceSeekPenaltyProperty;
+pub const StorageDeviceTrimProperty = STORAGE_PROPERTY_ID.StorageDeviceTrimProperty;
+pub const StorageDeviceWriteAggregationProperty = STORAGE_PROPERTY_ID.StorageDeviceWriteAggregationProperty;
+pub const StorageDeviceDeviceTelemetryProperty = STORAGE_PROPERTY_ID.StorageDeviceDeviceTelemetryProperty;
+pub const StorageDeviceLBProvisioningProperty = STORAGE_PROPERTY_ID.StorageDeviceLBProvisioningProperty;
+pub const StorageDevicePowerProperty = STORAGE_PROPERTY_ID.StorageDevicePowerProperty;
+pub const StorageDeviceCopyOffloadProperty = STORAGE_PROPERTY_ID.StorageDeviceCopyOffloadProperty;
+pub const StorageDeviceResiliencyProperty = STORAGE_PROPERTY_ID.StorageDeviceResiliencyProperty;
+pub const StorageDeviceMediumProductType = STORAGE_PROPERTY_ID.StorageDeviceMediumProductType;
+pub const StorageAdapterRpmbProperty = STORAGE_PROPERTY_ID.StorageAdapterRpmbProperty;
+pub const StorageAdapterCryptoProperty = STORAGE_PROPERTY_ID.StorageAdapterCryptoProperty;
+pub const StorageDeviceIoCapabilityProperty = STORAGE_PROPERTY_ID.StorageDeviceIoCapabilityProperty;
+pub const StorageAdapterProtocolSpecificProperty = STORAGE_PROPERTY_ID.StorageAdapterProtocolSpecificProperty;
+pub const StorageDeviceProtocolSpecificProperty = STORAGE_PROPERTY_ID.StorageDeviceProtocolSpecificProperty;
+pub const StorageAdapterTemperatureProperty = STORAGE_PROPERTY_ID.StorageAdapterTemperatureProperty;
+pub const StorageDeviceTemperatureProperty = STORAGE_PROPERTY_ID.StorageDeviceTemperatureProperty;
+pub const StorageAdapterPhysicalTopologyProperty = STORAGE_PROPERTY_ID.StorageAdapterPhysicalTopologyProperty;
+pub const StorageDevicePhysicalTopologyProperty = STORAGE_PROPERTY_ID.StorageDevicePhysicalTopologyProperty;
+pub const StorageDeviceAttributesProperty = STORAGE_PROPERTY_ID.StorageDeviceAttributesProperty;
+pub const StorageDeviceManagementStatus = STORAGE_PROPERTY_ID.StorageDeviceManagementStatus;
+pub const StorageAdapterSerialNumberProperty = STORAGE_PROPERTY_ID.StorageAdapterSerialNumberProperty;
+pub const StorageDeviceLocationProperty = STORAGE_PROPERTY_ID.StorageDeviceLocationProperty;
+pub const StorageDeviceNumaProperty = STORAGE_PROPERTY_ID.StorageDeviceNumaProperty;
+pub const StorageDeviceZonedDeviceProperty = STORAGE_PROPERTY_ID.StorageDeviceZonedDeviceProperty;
+pub const StorageDeviceUnsafeShutdownCount = STORAGE_PROPERTY_ID.StorageDeviceUnsafeShutdownCount;
+pub const StorageDeviceEnduranceProperty = STORAGE_PROPERTY_ID.StorageDeviceEnduranceProperty;
+
+pub const STORAGE_PROPERTY_QUERY = extern struct {
+    PropertyId: STORAGE_PROPERTY_ID,
+    QueryType: STORAGE_QUERY_TYPE,
+    AdditionalParameters: [1]u8,
+};
+
+pub const STORAGE_DESCRIPTOR_HEADER = extern struct {
+    Version: u32,
+    Size: u32,
+};
+
+pub const STORAGE_DEVICE_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    DeviceType: u8,
+    DeviceTypeModifier: u8,
+    RemovableMedia: u8,
+    CommandQueueing: u8,
+    VendorIdOffset: u32,
+    ProductIdOffset: u32,
+    ProductRevisionOffset: u32,
+    SerialNumberOffset: u32,
+    BusType: STORAGE_BUS_TYPE,
+    RawPropertiesLength: u32,
+    RawDeviceProperties: [1]u8,
+};
+
+pub const STORAGE_ADAPTER_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    MaximumTransferLength: u32,
+    MaximumPhysicalPages: u32,
+    AlignmentMask: u32,
+    AdapterUsesPio: u8,
+    AdapterScansDown: u8,
+    CommandQueueing: u8,
+    AcceleratedTransfer: u8,
+    BusType: u8,
+    BusMajorVersion: u16,
+    BusMinorVersion: u16,
+    SrbType: u8,
+    AddressType: u8,
+};
+
+pub const STORAGE_ACCESS_ALIGNMENT_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    BytesPerCacheLine: u32,
+    BytesOffsetForCacheAlignment: u32,
+    BytesPerLogicalSector: u32,
+    BytesPerPhysicalSector: u32,
+    BytesOffsetForSectorAlignment: u32,
+};
+
+pub const STORAGE_MEDIUM_PRODUCT_TYPE_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    MediumProductType: u32,
+};
+
+pub const STORAGE_PORT_CODE_SET = extern enum(i32) {
+    StoragePortCodeSetReserved = 0,
+    StoragePortCodeSetStorport = 1,
+    StoragePortCodeSetSCSIport = 2,
+    StoragePortCodeSetSpaceport = 3,
+    StoragePortCodeSetATAport = 4,
+    StoragePortCodeSetUSBport = 5,
+    StoragePortCodeSetSBP2port = 6,
+    StoragePortCodeSetSDport = 7,
+};
+pub const StoragePortCodeSetReserved = STORAGE_PORT_CODE_SET.StoragePortCodeSetReserved;
+pub const StoragePortCodeSetStorport = STORAGE_PORT_CODE_SET.StoragePortCodeSetStorport;
+pub const StoragePortCodeSetSCSIport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSCSIport;
+pub const StoragePortCodeSetSpaceport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSpaceport;
+pub const StoragePortCodeSetATAport = STORAGE_PORT_CODE_SET.StoragePortCodeSetATAport;
+pub const StoragePortCodeSetUSBport = STORAGE_PORT_CODE_SET.StoragePortCodeSetUSBport;
+pub const StoragePortCodeSetSBP2port = STORAGE_PORT_CODE_SET.StoragePortCodeSetSBP2port;
+pub const StoragePortCodeSetSDport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSDport;
+
+pub const STORAGE_MINIPORT_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    Portdriver: STORAGE_PORT_CODE_SET,
+    LUNResetSupported: u8,
+    TargetResetSupported: u8,
+    IoTimeoutValue: u16,
+    ExtraIoInfoSupported: u8,
+    Reserved0: [3]u8,
+    Reserved1: u32,
+};
+
+pub const STORAGE_DEVICE_ID_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    NumberOfIdentifiers: u32,
+    Identifiers: [1]u8,
+};
+
+pub const DEVICE_SEEK_PENALTY_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    IncursSeekPenalty: u8,
+};
+
+pub const DEVICE_WRITE_AGGREGATION_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    BenefitsFromWriteAggregation: u8,
+};
+
+pub const DEVICE_TRIM_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    TrimEnabled: u8,
+};
+
+pub const DEVICE_LB_PROVISIONING_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    _bitfield: u8,
+    Reserved1: [7]u8,
+    OptimalUnmapGranularity: u64,
+    UnmapGranularityAlignment: u64,
+    MaxUnmapLbaCount: u32,
+    MaxUnmapBlockDescriptorCount: u32,
+};
+
+pub const DEVICE_POWER_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    DeviceAttentionSupported: u8,
+    AsynchronousNotificationSupported: u8,
+    IdlePowerManagementEnabled: u8,
+    D3ColdEnabled: u8,
+    D3ColdSupported: u8,
+    NoVerifyDuringIdlePower: u8,
+    Reserved: [2]u8,
+    IdleTimeoutInMS: u32,
+};
+
+pub const DEVICE_COPY_OFFLOAD_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    MaximumTokenLifetime: u32,
+    DefaultTokenLifetime: u32,
+    MaximumTransferSize: u64,
+    OptimalTransferCount: u64,
+    MaximumDataDescriptors: u32,
+    MaximumTransferLengthPerDescriptor: u32,
+    OptimalTransferLengthPerDescriptor: u32,
+    OptimalTransferLengthGranularity: u16,
+    Reserved: [2]u8,
+};
+
+pub const STORAGE_DEVICE_RESILIENCY_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    NameOffset: u32,
+    NumberOfLogicalCopies: u32,
+    NumberOfPhysicalCopies: u32,
+    PhysicalDiskRedundancy: u32,
+    NumberOfColumns: u32,
+    Interleave: u32,
+};
+
+pub const STORAGE_PROTOCOL_TYPE = extern enum(i32) {
+    ProtocolTypeUnknown = 0,
+    ProtocolTypeScsi = 1,
+    ProtocolTypeAta = 2,
+    ProtocolTypeNvme = 3,
+    ProtocolTypeSd = 4,
+    ProtocolTypeUfs = 5,
+    ProtocolTypeProprietary = 126,
+    ProtocolTypeMaxReserved = 127,
+};
+pub const ProtocolTypeUnknown = STORAGE_PROTOCOL_TYPE.ProtocolTypeUnknown;
+pub const ProtocolTypeScsi = STORAGE_PROTOCOL_TYPE.ProtocolTypeScsi;
+pub const ProtocolTypeAta = STORAGE_PROTOCOL_TYPE.ProtocolTypeAta;
+pub const ProtocolTypeNvme = STORAGE_PROTOCOL_TYPE.ProtocolTypeNvme;
+pub const ProtocolTypeSd = STORAGE_PROTOCOL_TYPE.ProtocolTypeSd;
+pub const ProtocolTypeUfs = STORAGE_PROTOCOL_TYPE.ProtocolTypeUfs;
+pub const ProtocolTypeProprietary = STORAGE_PROTOCOL_TYPE.ProtocolTypeProprietary;
+pub const ProtocolTypeMaxReserved = STORAGE_PROTOCOL_TYPE.ProtocolTypeMaxReserved;
+
+pub const STORAGE_PROTOCOL_NVME_DATA_TYPE = extern enum(i32) {
+    NVMeDataTypeUnknown = 0,
+    NVMeDataTypeIdentify = 1,
+    NVMeDataTypeLogPage = 2,
+    NVMeDataTypeFeature = 3,
+};
+pub const NVMeDataTypeUnknown = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeUnknown;
+pub const NVMeDataTypeIdentify = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeIdentify;
+pub const NVMeDataTypeLogPage = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeLogPage;
+pub const NVMeDataTypeFeature = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeFeature;
+
+pub const STORAGE_PROTOCOL_ATA_DATA_TYPE = extern enum(i32) {
+    AtaDataTypeUnknown = 0,
+    AtaDataTypeIdentify = 1,
+    AtaDataTypeLogPage = 2,
+};
+pub const AtaDataTypeUnknown = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeUnknown;
+pub const AtaDataTypeIdentify = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeIdentify;
+pub const AtaDataTypeLogPage = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeLogPage;
+
+pub const STORAGE_PROTOCOL_SPECIFIC_DATA = extern struct {
+    ProtocolType: STORAGE_PROTOCOL_TYPE,
+    DataType: u32,
+    ProtocolDataRequestValue: u32,
+    ProtocolDataRequestSubValue: u32,
+    ProtocolDataOffset: u32,
+    ProtocolDataLength: u32,
+    FixedProtocolReturnData: u32,
+    ProtocolDataRequestSubValue2: u32,
+    ProtocolDataRequestSubValue3: u32,
+    Reserved: u32,
+};
+
+pub const STORAGE_PROTOCOL_DATA_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    ProtocolSpecificData: STORAGE_PROTOCOL_SPECIFIC_DATA,
+};
+
+pub const STORAGE_TEMPERATURE_INFO = extern struct {
+    Index: u16,
+    Temperature: i16,
+    OverThreshold: i16,
+    UnderThreshold: i16,
+    OverThresholdChangable: u8,
+    UnderThresholdChangable: u8,
+    EventGenerated: u8,
+    Reserved0: u8,
+    Reserved1: u32,
+};
+
+pub const STORAGE_TEMPERATURE_DATA_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    CriticalTemperature: i16,
+    WarningTemperature: i16,
+    InfoCount: u16,
+    Reserved0: [2]u8,
+    Reserved1: [2]u32,
+    TemperatureInfo: [1]STORAGE_TEMPERATURE_INFO,
+};
+
+pub const STORAGE_TEMPERATURE_THRESHOLD = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u16,
+    Index: u16,
+    Threshold: i16,
+    OverThreshold: u8,
+    Reserved: u8,
+};
+
+pub const STORAGE_DEVICE_FORM_FACTOR = extern enum(i32) {
+    FormFactorUnknown = 0,
+    FormFactor3_5 = 1,
+    FormFactor2_5 = 2,
+    FormFactor1_8 = 3,
+    FormFactor1_8Less = 4,
+    FormFactorEmbedded = 5,
+    FormFactorMemoryCard = 6,
+    FormFactormSata = 7,
+    FormFactorM_2 = 8,
+    FormFactorPCIeBoard = 9,
+    FormFactorDimm = 10,
+};
+pub const FormFactorUnknown = STORAGE_DEVICE_FORM_FACTOR.FormFactorUnknown;
+pub const FormFactor3_5 = STORAGE_DEVICE_FORM_FACTOR.FormFactor3_5;
+pub const FormFactor2_5 = STORAGE_DEVICE_FORM_FACTOR.FormFactor2_5;
+pub const FormFactor1_8 = STORAGE_DEVICE_FORM_FACTOR.FormFactor1_8;
+pub const FormFactor1_8Less = STORAGE_DEVICE_FORM_FACTOR.FormFactor1_8Less;
+pub const FormFactorEmbedded = STORAGE_DEVICE_FORM_FACTOR.FormFactorEmbedded;
+pub const FormFactorMemoryCard = STORAGE_DEVICE_FORM_FACTOR.FormFactorMemoryCard;
+pub const FormFactormSata = STORAGE_DEVICE_FORM_FACTOR.FormFactormSata;
+pub const FormFactorM_2 = STORAGE_DEVICE_FORM_FACTOR.FormFactorM_2;
+pub const FormFactorPCIeBoard = STORAGE_DEVICE_FORM_FACTOR.FormFactorPCIeBoard;
+pub const FormFactorDimm = STORAGE_DEVICE_FORM_FACTOR.FormFactorDimm;
+
+pub const STORAGE_COMPONENT_HEALTH_STATUS = extern enum(i32) {
+    HealthStatusUnknown = 0,
+    HealthStatusNormal = 1,
+    HealthStatusThrottled = 2,
+    HealthStatusWarning = 3,
+    HealthStatusDisabled = 4,
+    HealthStatusFailed = 5,
+};
+pub const HealthStatusUnknown = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusUnknown;
+pub const HealthStatusNormal = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusNormal;
+pub const HealthStatusThrottled = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusThrottled;
+pub const HealthStatusWarning = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusWarning;
+pub const HealthStatusDisabled = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusDisabled;
+pub const HealthStatusFailed = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusFailed;
+
+pub const STORAGE_SPEC_VERSION = u32; // TODO: implement StructOrUnion types?
+
+pub const STORAGE_PHYSICAL_DEVICE_DATA = extern struct {
+    DeviceId: u32,
+    Role: u32,
+    HealthStatus: STORAGE_COMPONENT_HEALTH_STATUS,
+    CommandProtocol: STORAGE_PROTOCOL_TYPE,
+    SpecVersion: STORAGE_SPEC_VERSION,
+    FormFactor: STORAGE_DEVICE_FORM_FACTOR,
+    Vendor: [8]u8,
+    Model: [40]u8,
+    FirmwareRevision: [16]u8,
+    Capacity: u64,
+    PhysicalLocation: [32]u8,
+    Reserved: [2]u32,
+};
+
+pub const STORAGE_PHYSICAL_ADAPTER_DATA = extern struct {
+    AdapterId: u32,
+    HealthStatus: STORAGE_COMPONENT_HEALTH_STATUS,
+    CommandProtocol: STORAGE_PROTOCOL_TYPE,
+    SpecVersion: STORAGE_SPEC_VERSION,
+    Vendor: [8]u8,
+    Model: [40]u8,
+    FirmwareRevision: [16]u8,
+    PhysicalLocation: [32]u8,
+    ExpanderConnected: u8,
+    Reserved0: [3]u8,
+    Reserved1: [3]u32,
+};
+
+pub const STORAGE_PHYSICAL_NODE_DATA = extern struct {
+    NodeId: u32,
+    AdapterCount: u32,
+    AdapterDataLength: u32,
+    AdapterDataOffset: u32,
+    DeviceCount: u32,
+    DeviceDataLength: u32,
+    DeviceDataOffset: u32,
+    Reserved: [3]u32,
+};
+
+pub const STORAGE_PHYSICAL_TOPOLOGY_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    NodeCount: u32,
+    Reserved: u32,
+    Node: [1]STORAGE_PHYSICAL_NODE_DATA,
+};
+
+pub const STORAGE_DEVICE_IO_CAPABILITY_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    LunMaxIoCount: u32,
+    AdapterMaxIoCount: u32,
+};
+
+pub const STORAGE_DEVICE_ATTRIBUTES_DESCRIPTOR = extern struct {
+    Version: u32,
+    Size: u32,
+    Attributes: u64,
+};
+
+pub const STORAGE_ADAPTER_SERIAL_NUMBER = extern struct {
+    Version: u32,
+    Size: u32,
+    SerialNumber: [128]u16,
+};
+
+pub const WRITE_CACHE_TYPE = extern enum(i32) {
+    WriteCacheTypeUnknown = 0,
+    WriteCacheTypeNone = 1,
+    WriteCacheTypeWriteBack = 2,
+    WriteCacheTypeWriteThrough = 3,
+};
+pub const WriteCacheTypeUnknown = WRITE_CACHE_TYPE.WriteCacheTypeUnknown;
+pub const WriteCacheTypeNone = WRITE_CACHE_TYPE.WriteCacheTypeNone;
+pub const WriteCacheTypeWriteBack = WRITE_CACHE_TYPE.WriteCacheTypeWriteBack;
+pub const WriteCacheTypeWriteThrough = WRITE_CACHE_TYPE.WriteCacheTypeWriteThrough;
+
+pub const WRITE_CACHE_ENABLE = extern enum(i32) {
+    WriteCacheEnableUnknown = 0,
+    WriteCacheDisabled = 1,
+    WriteCacheEnabled = 2,
+};
+pub const WriteCacheEnableUnknown = WRITE_CACHE_ENABLE.WriteCacheEnableUnknown;
+pub const WriteCacheDisabled = WRITE_CACHE_ENABLE.WriteCacheDisabled;
+pub const WriteCacheEnabled = WRITE_CACHE_ENABLE.WriteCacheEnabled;
+
+pub const WRITE_CACHE_CHANGE = extern enum(i32) {
+    WriteCacheChangeUnknown = 0,
+    WriteCacheNotChangeable = 1,
+    WriteCacheChangeable = 2,
+};
+pub const WriteCacheChangeUnknown = WRITE_CACHE_CHANGE.WriteCacheChangeUnknown;
+pub const WriteCacheNotChangeable = WRITE_CACHE_CHANGE.WriteCacheNotChangeable;
+pub const WriteCacheChangeable = WRITE_CACHE_CHANGE.WriteCacheChangeable;
+
+pub const WRITE_THROUGH = extern enum(i32) {
+    WriteThroughUnknown = 0,
+    WriteThroughNotSupported = 1,
+    WriteThroughSupported = 2,
+};
+pub const WriteThroughUnknown = WRITE_THROUGH.WriteThroughUnknown;
+pub const WriteThroughNotSupported = WRITE_THROUGH.WriteThroughNotSupported;
+pub const WriteThroughSupported = WRITE_THROUGH.WriteThroughSupported;
+
+pub const STORAGE_WRITE_CACHE_PROPERTY = extern struct {
+    Version: u32,
+    Size: u32,
+    WriteCacheType: WRITE_CACHE_TYPE,
+    WriteCacheEnabled: WRITE_CACHE_ENABLE,
+    WriteCacheChangeable: WRITE_CACHE_CHANGE,
+    WriteThroughSupported: WRITE_THROUGH,
+    FlushCacheSupported: u8,
+    UserDefinedPowerProtection: u8,
+    NVCacheEnabled: u8,
+};
+
+pub const STORAGE_DEVICE_POWER_CAP_UNITS = extern enum(i32) {
+    StorageDevicePowerCapUnitsPercent = 0,
+    StorageDevicePowerCapUnitsMilliwatts = 1,
+};
+pub const StorageDevicePowerCapUnitsPercent = STORAGE_DEVICE_POWER_CAP_UNITS.StorageDevicePowerCapUnitsPercent;
+pub const StorageDevicePowerCapUnitsMilliwatts = STORAGE_DEVICE_POWER_CAP_UNITS.StorageDevicePowerCapUnitsMilliwatts;
+
+pub const STORAGE_DEVICE_POWER_CAP = extern struct {
+    Version: u32,
+    Size: u32,
+    Units: STORAGE_DEVICE_POWER_CAP_UNITS,
+    MaxPower: u64,
+};
+
+pub const STORAGE_HW_FIRMWARE_DOWNLOAD = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u32,
+    Slot: u8,
+    Reserved: [3]u8,
+    Offset: u64,
+    BufferSize: u64,
+    ImageBuffer: [1]u8,
+};
+
+pub const STORAGE_HW_FIRMWARE_ACTIVATE = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u32,
+    Slot: u8,
+    Reserved0: [3]u8,
+};
+
+pub const STORAGE_PROTOCOL_COMMAND = extern struct {
+    Version: u32,
+    Length: u32,
+    ProtocolType: STORAGE_PROTOCOL_TYPE,
+    Flags: u32,
+    ReturnStatus: u32,
+    ErrorCode: u32,
+    CommandLength: u32,
+    ErrorInfoLength: u32,
+    DataToDeviceTransferLength: u32,
+    DataFromDeviceTransferLength: u32,
+    TimeOutValue: u32,
+    ErrorInfoOffset: u32,
+    DataToDeviceBufferOffset: u32,
+    DataFromDeviceBufferOffset: u32,
+    CommandSpecific: u32,
+    Reserved0: u32,
+    FixedProtocolReturnData: u32,
+    Reserved1: [3]u32,
+    Command: [1]u8,
+};
+
+pub const MEDIA_TYPE = extern enum(i32) {
+    Unknown = 0,
+    F5_1Pt2_512 = 1,
+    F3_1Pt44_512 = 2,
+    F3_2Pt88_512 = 3,
+    F3_20Pt8_512 = 4,
+    F3_720_512 = 5,
+    F5_360_512 = 6,
+    F5_320_512 = 7,
+    F5_320_1024 = 8,
+    F5_180_512 = 9,
+    F5_160_512 = 10,
+    RemovableMedia = 11,
+    FixedMedia = 12,
+    F3_120M_512 = 13,
+    F3_640_512 = 14,
+    F5_640_512 = 15,
+    F5_720_512 = 16,
+    F3_1Pt2_512 = 17,
+    F3_1Pt23_1024 = 18,
+    F5_1Pt23_1024 = 19,
+    F3_128Mb_512 = 20,
+    F3_230Mb_512 = 21,
+    F8_256_128 = 22,
+    F3_200Mb_512 = 23,
+    F3_240M_512 = 24,
+    F3_32M_512 = 25,
+};
+pub const Unknown = MEDIA_TYPE.Unknown;
+pub const F5_1Pt2_512 = MEDIA_TYPE.F5_1Pt2_512;
+pub const F3_1Pt44_512 = MEDIA_TYPE.F3_1Pt44_512;
+pub const F3_2Pt88_512 = MEDIA_TYPE.F3_2Pt88_512;
+pub const F3_20Pt8_512 = MEDIA_TYPE.F3_20Pt8_512;
+pub const F3_720_512 = MEDIA_TYPE.F3_720_512;
+pub const F5_360_512 = MEDIA_TYPE.F5_360_512;
+pub const F5_320_512 = MEDIA_TYPE.F5_320_512;
+pub const F5_320_1024 = MEDIA_TYPE.F5_320_1024;
+pub const F5_180_512 = MEDIA_TYPE.F5_180_512;
+pub const F5_160_512 = MEDIA_TYPE.F5_160_512;
+pub const RemovableMedia = MEDIA_TYPE.RemovableMedia;
+pub const FixedMedia = MEDIA_TYPE.FixedMedia;
+pub const F3_120M_512 = MEDIA_TYPE.F3_120M_512;
+pub const F3_640_512 = MEDIA_TYPE.F3_640_512;
+pub const F5_640_512 = MEDIA_TYPE.F5_640_512;
+pub const F5_720_512 = MEDIA_TYPE.F5_720_512;
+pub const F3_1Pt2_512 = MEDIA_TYPE.F3_1Pt2_512;
+pub const F3_1Pt23_1024 = MEDIA_TYPE.F3_1Pt23_1024;
+pub const F5_1Pt23_1024 = MEDIA_TYPE.F5_1Pt23_1024;
+pub const F3_128Mb_512 = MEDIA_TYPE.F3_128Mb_512;
+pub const F3_230Mb_512 = MEDIA_TYPE.F3_230Mb_512;
+pub const F8_256_128 = MEDIA_TYPE.F8_256_128;
+pub const F3_200Mb_512 = MEDIA_TYPE.F3_200Mb_512;
+pub const F3_240M_512 = MEDIA_TYPE.F3_240M_512;
+pub const F3_32M_512 = MEDIA_TYPE.F3_32M_512;
+
+pub const FORMAT_PARAMETERS = extern struct {
+    MediaType: MEDIA_TYPE,
+    StartCylinderNumber: u32,
+    EndCylinderNumber: u32,
+    StartHeadNumber: u32,
+    EndHeadNumber: u32,
+};
+
+pub const FORMAT_EX_PARAMETERS = extern struct {
+    MediaType: MEDIA_TYPE,
+    StartCylinderNumber: u32,
+    EndCylinderNumber: u32,
+    StartHeadNumber: u32,
+    EndHeadNumber: u32,
+    FormatGapLength: u16,
+    SectorsPerTrack: u16,
+    SectorNumber: [1]u16,
+};
+
+pub const DISK_GEOMETRY = extern struct {
+    Cylinders: LARGE_INTEGER,
+    MediaType: MEDIA_TYPE,
+    TracksPerCylinder: u32,
+    SectorsPerTrack: u32,
+    BytesPerSector: u32,
+};
+
+pub const PARTITION_INFORMATION = extern struct {
+    StartingOffset: LARGE_INTEGER,
+    PartitionLength: LARGE_INTEGER,
+    HiddenSectors: u32,
+    PartitionNumber: u32,
+    PartitionType: u8,
+    BootIndicator: u8,
+    RecognizedPartition: u8,
+    RewritePartition: u8,
+};
+
+pub const SET_PARTITION_INFORMATION = extern struct {
+    PartitionType: u8,
+};
+
+pub const DRIVE_LAYOUT_INFORMATION = extern struct {
+    PartitionCount: u32,
+    Signature: u32,
+    PartitionEntry: [1]PARTITION_INFORMATION,
+};
+
+pub const VERIFY_INFORMATION = extern struct {
+    StartingOffset: LARGE_INTEGER,
+    Length: u32,
+};
+
+pub const REASSIGN_BLOCKS = extern struct {
+    Reserved: u16,
+    Count: u16,
+    BlockNumber: [1]u32,
+};
+
+pub const REASSIGN_BLOCKS_EX = extern struct {
+    Reserved: u16,
+    Count: u16,
+    BlockNumber: [1]LARGE_INTEGER,
+};
+
+pub const PARTITION_STYLE = extern enum(i32) {
+    MBR = 0,
+    GPT = 1,
+    RAW = 2,
+};
+pub const PARTITION_STYLE_MBR = PARTITION_STYLE.MBR;
+pub const PARTITION_STYLE_GPT = PARTITION_STYLE.GPT;
+pub const PARTITION_STYLE_RAW = PARTITION_STYLE.RAW;
+
+pub const PARTITION_INFORMATION_GPT = extern struct {
+    PartitionType: Guid,
+    PartitionId: Guid,
+    Attributes: u64,
+    Name: [36]u16,
+};
+
+pub const PARTITION_INFORMATION_MBR = extern struct {
+    PartitionType: u8,
+    BootIndicator: u8,
+    RecognizedPartition: u8,
+    HiddenSectors: u32,
+    PartitionId: Guid,
+};
+
+pub const CREATE_DISK_GPT = extern struct {
+    DiskId: Guid,
+    MaxPartitionCount: u32,
+};
+
+pub const CREATE_DISK_MBR = extern struct {
+    Signature: u32,
+};
+
+pub const CREATE_DISK = extern struct {
+    PartitionStyle: PARTITION_STYLE,
+    Anonymous: CREATE_DISK._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const GET_LENGTH_INFORMATION = extern struct {
+    Length: LARGE_INTEGER,
+};
+
+pub const PARTITION_INFORMATION_EX = extern struct {
+    PartitionStyle: PARTITION_STYLE,
+    StartingOffset: LARGE_INTEGER,
+    PartitionLength: LARGE_INTEGER,
+    PartitionNumber: u32,
+    RewritePartition: u8,
+    IsServicePartition: u8,
+    Anonymous: PARTITION_INFORMATION_EX._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const DRIVE_LAYOUT_INFORMATION_GPT = extern struct {
+    DiskId: Guid,
+    StartingUsableOffset: LARGE_INTEGER,
+    UsableLength: LARGE_INTEGER,
+    MaxPartitionCount: u32,
+};
+
+pub const DRIVE_LAYOUT_INFORMATION_MBR = extern struct {
+    Signature: u32,
+    CheckSum: u32,
+};
+
+pub const DRIVE_LAYOUT_INFORMATION_EX = extern struct {
+    PartitionStyle: u32,
+    PartitionCount: u32,
+    Anonymous: DRIVE_LAYOUT_INFORMATION_EX._Anonymous_e__Union,
+    PartitionEntry: [1]PARTITION_INFORMATION_EX,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const DISK_INT13_INFO = extern struct {
+    DriveSelect: u16,
+    MaxCylinders: u32,
+    SectorsPerTrack: u16,
+    MaxHeads: u16,
+    NumberDrives: u16,
+};
+
+pub const DISK_EX_INT13_INFO = extern struct {
+    ExBufferSize: u16,
+    ExFlags: u16,
+    ExCylinders: u32,
+    ExHeads: u32,
+    ExSectorsPerTrack: u32,
+    ExSectorsPerDrive: u64,
+    ExSectorSize: u16,
+    ExReserved: u16,
+};
+
+pub const DISK_DETECTION_INFO = extern struct {
+    SizeOfDetectInfo: u32,
+    DetectionType: DETECTION_TYPE,
+    Anonymous: DISK_DETECTION_INFO._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const DISK_PARTITION_INFO = extern struct {
+    SizeOfPartitionInfo: u32,
+    PartitionStyle: PARTITION_STYLE,
+    Anonymous: DISK_PARTITION_INFO._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const DISK_GEOMETRY_EX = extern struct {
+    Geometry: DISK_GEOMETRY,
+    DiskSize: LARGE_INTEGER,
+    Data: [1]u8,
+};
+
+pub const DISK_CACHE_INFORMATION = extern struct {
+    ParametersSavable: u8,
+    ReadCacheEnabled: u8,
+    WriteCacheEnabled: u8,
+    ReadRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
+    WriteRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
+    DisablePrefetchTransferLength: u16,
+    PrefetchScalar: u8,
+    Anonymous: DISK_CACHE_INFORMATION._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const DISK_GROW_PARTITION = extern struct {
+    PartitionNumber: u32,
+    BytesToGrow: LARGE_INTEGER,
+};
+
+pub const DISK_PERFORMANCE = extern struct {
+    BytesRead: LARGE_INTEGER,
+    BytesWritten: LARGE_INTEGER,
+    ReadTime: LARGE_INTEGER,
+    WriteTime: LARGE_INTEGER,
+    IdleTime: LARGE_INTEGER,
+    ReadCount: u32,
+    WriteCount: u32,
+    QueueDepth: u32,
+    SplitCount: u32,
+    QueryTime: LARGE_INTEGER,
+    StorageDeviceNumber: u32,
+    StorageManagerName: [8]u16,
+};
+
+pub const GET_DISK_ATTRIBUTES = extern struct {
+    Version: u32,
+    Reserved1: u32,
+    Attributes: u64,
+};
+
+pub const SET_DISK_ATTRIBUTES = extern struct {
+    Version: u32,
+    Persist: u8,
+    Reserved1: [3]u8,
+    Attributes: u64,
+    AttributesMask: u64,
+    Reserved2: [4]u32,
+};
+
+pub const NTFS_VOLUME_DATA_BUFFER = extern struct {
+    VolumeSerialNumber: LARGE_INTEGER,
+    NumberSectors: LARGE_INTEGER,
+    TotalClusters: LARGE_INTEGER,
+    FreeClusters: LARGE_INTEGER,
+    TotalReserved: LARGE_INTEGER,
+    BytesPerSector: u32,
+    BytesPerCluster: u32,
+    BytesPerFileRecordSegment: u32,
+    ClustersPerFileRecordSegment: u32,
+    MftValidDataLength: LARGE_INTEGER,
+    MftStartLcn: LARGE_INTEGER,
+    Mft2StartLcn: LARGE_INTEGER,
+    MftZoneStart: LARGE_INTEGER,
+    MftZoneEnd: LARGE_INTEGER,
+};
+
+pub const NTFS_EXTENDED_VOLUME_DATA = extern struct {
+    ByteCount: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    BytesPerPhysicalSector: u32,
+    LfsMajorVersion: u16,
+    LfsMinorVersion: u16,
+    MaxDeviceTrimExtentCount: u32,
+    MaxDeviceTrimByteCount: u32,
+    MaxVolumeTrimExtentCount: u32,
+    MaxVolumeTrimByteCount: u32,
+};
+
+pub const STARTING_LCN_INPUT_BUFFER = extern struct {
+    StartingLcn: LARGE_INTEGER,
+};
+
+pub const VOLUME_BITMAP_BUFFER = extern struct {
+    StartingLcn: LARGE_INTEGER,
+    BitmapSize: LARGE_INTEGER,
+    Buffer: [1]u8,
+};
+
+pub const STARTING_VCN_INPUT_BUFFER = extern struct {
+    StartingVcn: LARGE_INTEGER,
+};
+
+pub const RETRIEVAL_POINTERS_BUFFER = extern struct {
+    ExtentCount: u32,
+    StartingVcn: LARGE_INTEGER,
+    Extents: [1]RETRIEVAL_POINTERS_BUFFER._Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const NTFS_FILE_RECORD_INPUT_BUFFER = extern struct {
+    FileReferenceNumber: LARGE_INTEGER,
+};
+
+pub const NTFS_FILE_RECORD_OUTPUT_BUFFER = extern struct {
+    FileReferenceNumber: LARGE_INTEGER,
+    FileRecordLength: u32,
+    FileRecordBuffer: [1]u8,
+};
+
+pub const MOVE_FILE_DATA = extern struct {
+    FileHandle: HANDLE,
+    StartingVcn: LARGE_INTEGER,
+    StartingLcn: LARGE_INTEGER,
+    ClusterCount: u32,
+};
+
+pub const FIND_BY_SID_DATA = extern struct {
+    Restart: u32,
+    Sid: SID,
+};
+
+pub const FIND_BY_SID_OUTPUT = extern struct {
+    NextEntryOffset: u32,
+    FileIndex: u32,
+    FileNameLength: u32,
+    FileName: [1]u16,
+};
+
+pub const MFT_ENUM_DATA_V0 = extern struct {
+    StartFileReferenceNumber: u64,
+    LowUsn: i64,
+    HighUsn: i64,
+};
+
+pub const MFT_ENUM_DATA_V1 = extern struct {
+    StartFileReferenceNumber: u64,
+    LowUsn: i64,
+    HighUsn: i64,
+    MinMajorVersion: u16,
+    MaxMajorVersion: u16,
+};
+
+pub const CREATE_USN_JOURNAL_DATA = extern struct {
+    MaximumSize: u64,
+    AllocationDelta: u64,
+};
+
+pub const READ_FILE_USN_DATA = extern struct {
+    MinMajorVersion: u16,
+    MaxMajorVersion: u16,
+};
+
+pub const READ_USN_JOURNAL_DATA_V0 = extern struct {
+    StartUsn: i64,
+    ReasonMask: u32,
+    ReturnOnlyOnClose: u32,
+    Timeout: u64,
+    BytesToWaitFor: u64,
+    UsnJournalID: u64,
+};
+
+pub const READ_USN_JOURNAL_DATA_V1 = extern struct {
+    StartUsn: i64,
+    ReasonMask: u32,
+    ReturnOnlyOnClose: u32,
+    Timeout: u64,
+    BytesToWaitFor: u64,
+    UsnJournalID: u64,
+    MinMajorVersion: u16,
+    MaxMajorVersion: u16,
+};
+
+pub const USN_TRACK_MODIFIED_RANGES = extern struct {
+    Flags: u32,
+    Unused: u32,
+    ChunkSize: u64,
+    FileSizeThreshold: i64,
+};
+
+pub const USN_RANGE_TRACK_OUTPUT = extern struct {
+    Usn: i64,
+};
+
+pub const USN_RECORD_V2 = extern struct {
+    RecordLength: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    FileReferenceNumber: u64,
+    ParentFileReferenceNumber: u64,
+    Usn: i64,
+    TimeStamp: LARGE_INTEGER,
+    Reason: u32,
+    SourceInfo: u32,
+    SecurityId: u32,
+    FileAttributes: u32,
+    FileNameLength: u16,
+    FileNameOffset: u16,
+    FileName: [1]u16,
+};
+
+pub const USN_RECORD_V3 = extern struct {
+    RecordLength: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+    FileReferenceNumber: FILE_ID_128,
+    ParentFileReferenceNumber: FILE_ID_128,
+    Usn: i64,
+    TimeStamp: LARGE_INTEGER,
+    Reason: u32,
+    SourceInfo: u32,
+    SecurityId: u32,
+    FileAttributes: u32,
+    FileNameLength: u16,
+    FileNameOffset: u16,
+    FileName: [1]u16,
+};
+
+pub const USN_RECORD_COMMON_HEADER = extern struct {
+    RecordLength: u32,
+    MajorVersion: u16,
+    MinorVersion: u16,
+};
+
+pub const USN_RECORD_EXTENT = extern struct {
+    Offset: i64,
+    Length: i64,
+};
+
+pub const USN_RECORD_V4 = extern struct {
+    Header: USN_RECORD_COMMON_HEADER,
+    FileReferenceNumber: FILE_ID_128,
+    ParentFileReferenceNumber: FILE_ID_128,
+    Usn: i64,
+    Reason: u32,
+    SourceInfo: u32,
+    RemainingExtents: u32,
+    NumberOfExtents: u16,
+    ExtentSize: u16,
+    Extents: [1]USN_RECORD_EXTENT,
+};
+
+pub const USN_JOURNAL_DATA_V0 = extern struct {
+    UsnJournalID: u64,
+    FirstUsn: i64,
+    NextUsn: i64,
+    LowestValidUsn: i64,
+    MaxUsn: i64,
+    MaximumSize: u64,
+    AllocationDelta: u64,
+};
+
+pub const USN_JOURNAL_DATA_V1 = extern struct {
+    UsnJournalID: u64,
+    FirstUsn: i64,
+    NextUsn: i64,
+    LowestValidUsn: i64,
+    MaxUsn: i64,
+    MaximumSize: u64,
+    AllocationDelta: u64,
+    MinSupportedMajorVersion: u16,
+    MaxSupportedMajorVersion: u16,
+};
+
+pub const USN_JOURNAL_DATA_V2 = extern struct {
+    UsnJournalID: u64,
+    FirstUsn: i64,
+    NextUsn: i64,
+    LowestValidUsn: i64,
+    MaxUsn: i64,
+    MaximumSize: u64,
+    AllocationDelta: u64,
+    MinSupportedMajorVersion: u16,
+    MaxSupportedMajorVersion: u16,
+    Flags: u32,
+    RangeTrackChunkSize: u64,
+    RangeTrackFileSizeThreshold: i64,
+};
+
+pub const DELETE_USN_JOURNAL_DATA = extern struct {
+    UsnJournalID: u64,
+    DeleteFlags: u32,
+};
+
+pub const MARK_HANDLE_INFO = extern struct {
+    Anonymous: MARK_HANDLE_INFO._Anonymous_e__Union,
+    VolumeHandle: HANDLE,
+    HandleInfo: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const FILESYSTEM_STATISTICS = extern struct {
+    FileSystemType: u16,
+    Version: u16,
+    SizeOfCompleteStructure: u32,
+    UserFileReads: u32,
+    UserFileReadBytes: u32,
+    UserDiskReads: u32,
+    UserFileWrites: u32,
+    UserFileWriteBytes: u32,
+    UserDiskWrites: u32,
+    MetaDataReads: u32,
+    MetaDataReadBytes: u32,
+    MetaDataDiskReads: u32,
+    MetaDataWrites: u32,
+    MetaDataWriteBytes: u32,
+    MetaDataDiskWrites: u32,
+};
+
+pub const FAT_STATISTICS = extern struct {
+    CreateHits: u32,
+    SuccessfulCreates: u32,
+    FailedCreates: u32,
+    NonCachedReads: u32,
+    NonCachedReadBytes: u32,
+    NonCachedWrites: u32,
+    NonCachedWriteBytes: u32,
+    NonCachedDiskReads: u32,
+    NonCachedDiskWrites: u32,
+};
+
+pub const EXFAT_STATISTICS = extern struct {
+    CreateHits: u32,
+    SuccessfulCreates: u32,
+    FailedCreates: u32,
+    NonCachedReads: u32,
+    NonCachedReadBytes: u32,
+    NonCachedWrites: u32,
+    NonCachedWriteBytes: u32,
+    NonCachedDiskReads: u32,
+    NonCachedDiskWrites: u32,
+};
+
+pub const NTFS_STATISTICS = extern struct {
+    LogFileFullExceptions: u32,
+    OtherExceptions: u32,
+    MftReads: u32,
+    MftReadBytes: u32,
+    MftWrites: u32,
+    MftWriteBytes: u32,
+    MftWritesUserLevel: NTFS_STATISTICS._MftWritesUserLevel_e__Struct,
+    MftWritesFlushForLogFileFull: u16,
+    MftWritesLazyWriter: u16,
+    MftWritesUserRequest: u16,
+    Mft2Writes: u32,
+    Mft2WriteBytes: u32,
+    Mft2WritesUserLevel: NTFS_STATISTICS._Mft2WritesUserLevel_e__Struct,
+    Mft2WritesFlushForLogFileFull: u16,
+    Mft2WritesLazyWriter: u16,
+    Mft2WritesUserRequest: u16,
+    RootIndexReads: u32,
+    RootIndexReadBytes: u32,
+    RootIndexWrites: u32,
+    RootIndexWriteBytes: u32,
+    BitmapReads: u32,
+    BitmapReadBytes: u32,
+    BitmapWrites: u32,
+    BitmapWriteBytes: u32,
+    BitmapWritesFlushForLogFileFull: u16,
+    BitmapWritesLazyWriter: u16,
+    BitmapWritesUserRequest: u16,
+    BitmapWritesUserLevel: NTFS_STATISTICS._BitmapWritesUserLevel_e__Struct,
+    MftBitmapReads: u32,
+    MftBitmapReadBytes: u32,
+    MftBitmapWrites: u32,
+    MftBitmapWriteBytes: u32,
+    MftBitmapWritesFlushForLogFileFull: u16,
+    MftBitmapWritesLazyWriter: u16,
+    MftBitmapWritesUserRequest: u16,
+    MftBitmapWritesUserLevel: NTFS_STATISTICS._MftBitmapWritesUserLevel_e__Struct,
+    UserIndexReads: u32,
+    UserIndexReadBytes: u32,
+    UserIndexWrites: u32,
+    UserIndexWriteBytes: u32,
+    LogFileReads: u32,
+    LogFileReadBytes: u32,
+    LogFileWrites: u32,
+    LogFileWriteBytes: u32,
+    Allocate: NTFS_STATISTICS._Allocate_e__Struct,
+    DiskResourcesExhausted: u32,
+    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const FILESYSTEM_STATISTICS_EX = extern struct {
+    FileSystemType: u16,
+    Version: u16,
+    SizeOfCompleteStructure: u32,
+    UserFileReads: u64,
+    UserFileReadBytes: u64,
+    UserDiskReads: u64,
+    UserFileWrites: u64,
+    UserFileWriteBytes: u64,
+    UserDiskWrites: u64,
+    MetaDataReads: u64,
+    MetaDataReadBytes: u64,
+    MetaDataDiskReads: u64,
+    MetaDataWrites: u64,
+    MetaDataWriteBytes: u64,
+    MetaDataDiskWrites: u64,
+};
+
+pub const NTFS_STATISTICS_EX = extern struct {
+    LogFileFullExceptions: u32,
+    OtherExceptions: u32,
+    MftReads: u64,
+    MftReadBytes: u64,
+    MftWrites: u64,
+    MftWriteBytes: u64,
+    MftWritesUserLevel: NTFS_STATISTICS_EX._MftWritesUserLevel_e__Struct,
+    MftWritesFlushForLogFileFull: u32,
+    MftWritesLazyWriter: u32,
+    MftWritesUserRequest: u32,
+    Mft2Writes: u64,
+    Mft2WriteBytes: u64,
+    Mft2WritesUserLevel: NTFS_STATISTICS_EX._Mft2WritesUserLevel_e__Struct,
+    Mft2WritesFlushForLogFileFull: u32,
+    Mft2WritesLazyWriter: u32,
+    Mft2WritesUserRequest: u32,
+    RootIndexReads: u64,
+    RootIndexReadBytes: u64,
+    RootIndexWrites: u64,
+    RootIndexWriteBytes: u64,
+    BitmapReads: u64,
+    BitmapReadBytes: u64,
+    BitmapWrites: u64,
+    BitmapWriteBytes: u64,
+    BitmapWritesFlushForLogFileFull: u32,
+    BitmapWritesLazyWriter: u32,
+    BitmapWritesUserRequest: u32,
+    BitmapWritesUserLevel: NTFS_STATISTICS_EX._BitmapWritesUserLevel_e__Struct,
+    MftBitmapReads: u64,
+    MftBitmapReadBytes: u64,
+    MftBitmapWrites: u64,
+    MftBitmapWriteBytes: u64,
+    MftBitmapWritesFlushForLogFileFull: u32,
+    MftBitmapWritesLazyWriter: u32,
+    MftBitmapWritesUserRequest: u32,
+    MftBitmapWritesUserLevel: NTFS_STATISTICS_EX._MftBitmapWritesUserLevel_e__Struct,
+    UserIndexReads: u64,
+    UserIndexReadBytes: u64,
+    UserIndexWrites: u64,
+    UserIndexWriteBytes: u64,
+    LogFileReads: u64,
+    LogFileReadBytes: u64,
+    LogFileWrites: u64,
+    LogFileWriteBytes: u64,
+    Allocate: NTFS_STATISTICS_EX._Allocate_e__Struct,
+    DiskResourcesExhausted: u32,
+    VolumeTrimCount: u64,
+    VolumeTrimTime: u64,
+    VolumeTrimByteCount: u64,
+    FileLevelTrimCount: u64,
+    FileLevelTrimTime: u64,
+    FileLevelTrimByteCount: u64,
+    VolumeTrimSkippedCount: u64,
+    VolumeTrimSkippedByteCount: u64,
+    NtfsFillStatInfoFromMftRecordCalledCount: u64,
+    NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount: u64,
+    NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
+    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
+    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const FILE_OBJECTID_BUFFER = extern struct {
+    ObjectId: [16]u8,
+    Anonymous: FILE_OBJECTID_BUFFER._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const FILE_SET_SPARSE_BUFFER = extern struct {
+    SetSparse: u8,
+};
+
+pub const FILE_ZERO_DATA_INFORMATION = extern struct {
+    FileOffset: LARGE_INTEGER,
+    BeyondFinalZero: LARGE_INTEGER,
+};
+
+pub const FILE_ALLOCATED_RANGE_BUFFER = extern struct {
+    FileOffset: LARGE_INTEGER,
+    Length: LARGE_INTEGER,
+};
+
+pub const PLEX_READ_DATA_REQUEST = extern struct {
+    ByteOffset: LARGE_INTEGER,
+    ByteLength: u32,
+    PlexNumber: u32,
+};
+
+pub const FILE_MAKE_COMPATIBLE_BUFFER = extern struct {
+    CloseDisc: u8,
+};
+
+pub const FILE_SET_DEFECT_MGMT_BUFFER = extern struct {
+    Disable: u8,
+};
+
+pub const FILE_QUERY_SPARING_BUFFER = extern struct {
+    SparingUnitBytes: u32,
+    SoftwareSparing: u8,
+    TotalSpareBlocks: u32,
+    FreeSpareBlocks: u32,
+};
+
+pub const FILE_QUERY_ON_DISK_VOL_INFO_BUFFER = extern struct {
+    DirectoryCount: LARGE_INTEGER,
+    FileCount: LARGE_INTEGER,
+    FsFormatMajVersion: u16,
+    FsFormatMinVersion: u16,
+    FsFormatName: [12]u16,
+    FormatTime: LARGE_INTEGER,
+    LastUpdateTime: LARGE_INTEGER,
+    CopyrightInfo: [34]u16,
+    AbstractInfo: [34]u16,
+    FormattingImplementationInfo: [34]u16,
+    LastModifyingImplementationInfo: [34]u16,
+};
+
+pub const SHRINK_VOLUME_INFORMATION = extern struct {
+    ShrinkRequestType: SHRINK_VOLUME_REQUEST_TYPES,
+    Flags: u64,
+    NewNumberOfSectors: i64,
+};
+
+pub const TXFS_MODIFY_RM = extern struct {
+    Flags: u32,
+    LogContainerCountMax: u32,
+    LogContainerCountMin: u32,
+    LogContainerCount: u32,
+    LogGrowthIncrement: u32,
+    LogAutoShrinkPercentage: u32,
+    Reserved: u64,
+    LoggingMode: u16,
+};
+
+pub const TXFS_QUERY_RM_INFORMATION = extern struct {
+    BytesRequired: u32,
+    TailLsn: u64,
+    CurrentLsn: u64,
+    ArchiveTailLsn: u64,
+    LogContainerSize: u64,
+    HighestVirtualClock: LARGE_INTEGER,
+    LogContainerCount: u32,
+    LogContainerCountMax: u32,
+    LogContainerCountMin: u32,
+    LogGrowthIncrement: u32,
+    LogAutoShrinkPercentage: u32,
+    Flags: u32,
+    LoggingMode: u16,
+    Reserved: u16,
+    RmState: u32,
+    LogCapacity: u64,
+    LogFree: u64,
+    TopsSize: u64,
+    TopsUsed: u64,
+    TransactionCount: u64,
+    OnePCCount: u64,
+    TwoPCCount: u64,
+    NumberLogFileFull: u64,
+    OldestTransactionAge: u64,
+    RMName: Guid,
+    TmLogPathOffset: u32,
+};
+
+pub const TXFS_GET_METADATA_INFO_OUT = extern struct {
+    TxfFileId: TXFS_GET_METADATA_INFO_OUT._TxfFileId_e__Struct,
+    LockingTransaction: Guid,
+    LastLsn: u64,
+    TransactionState: u32,
+    const _TxfFileId_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY = extern struct {
+    Offset: u64,
+    NameFlags: u32,
+    FileId: i64,
+    Reserved1: u32,
+    Reserved2: u32,
+    Reserved3: i64,
+    FileName: [1]u16,
+};
+
+pub const TXFS_LIST_TRANSACTION_LOCKED_FILES = extern struct {
+    KtmTransaction: Guid,
+    NumberOfFiles: u64,
+    BufferSizeRequired: u64,
+    Offset: u64,
+};
+
+pub const TXFS_LIST_TRANSACTIONS_ENTRY = extern struct {
+    TransactionId: Guid,
+    TransactionState: u32,
+    Reserved1: u32,
+    Reserved2: u32,
+    Reserved3: i64,
+};
+
+pub const TXFS_LIST_TRANSACTIONS = extern struct {
+    NumberOfTransactions: u64,
+    BufferSizeRequired: u64,
+};
+
+pub const TXFS_READ_BACKUP_INFORMATION_OUT = extern struct {
+    Anonymous: TXFS_READ_BACKUP_INFORMATION_OUT._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const TXFS_WRITE_BACKUP_INFORMATION = extern struct {
+    Buffer: [1]u8,
+};
+
+pub const TXFS_GET_TRANSACTED_VERSION = extern struct {
+    ThisBaseVersion: u32,
+    LatestVersion: u32,
+    ThisMiniVersion: u16,
+    FirstMiniVersion: u16,
+    LatestMiniVersion: u16,
+};
+
+pub const TXFS_SAVEPOINT_INFORMATION = extern struct {
+    KtmTransaction: HANDLE,
+    ActionCode: u32,
+    SavepointId: u32,
+};
+
+pub const TXFS_CREATE_MINIVERSION_INFO = extern struct {
+    StructureVersion: u16,
+    StructureLength: u16,
+    BaseVersion: u32,
+    MiniVersion: u16,
+};
+
+pub const TXFS_TRANSACTION_ACTIVE_INFO = extern struct {
+    TransactionsActiveAtSnapshot: u8,
+};
+
+pub const BOOT_AREA_INFO = extern struct {
+    BootSectorCount: u32,
+    BootSectors: [2]BOOT_AREA_INFO._Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const RETRIEVAL_POINTER_BASE = extern struct {
+    FileAreaOffset: LARGE_INTEGER,
+};
+
+pub const FILE_SYSTEM_RECOGNITION_INFORMATION = extern struct {
+    FileSystem: [9]i8,
+};
+
+pub const REQUEST_OPLOCK_INPUT_BUFFER = extern struct {
+    StructureVersion: u16,
+    StructureLength: u16,
+    RequestedOplockLevel: u32,
+    Flags: u32,
+};
+
+pub const REQUEST_OPLOCK_OUTPUT_BUFFER = extern struct {
+    StructureVersion: u16,
+    StructureLength: u16,
+    OriginalOplockLevel: u32,
+    NewOplockLevel: u32,
+    Flags: u32,
+    AccessMode: u32,
+    ShareMode: u16,
+};
+
+pub const LOOKUP_STREAM_FROM_CLUSTER_INPUT = extern struct {
+    Flags: u32,
+    NumberOfClusters: u32,
+    Cluster: [1]LARGE_INTEGER,
+};
+
+pub const LOOKUP_STREAM_FROM_CLUSTER_OUTPUT = extern struct {
+    Offset: u32,
+    NumberOfMatches: u32,
+    BufferSizeRequired: u32,
+};
+
+pub const LOOKUP_STREAM_FROM_CLUSTER_ENTRY = extern struct {
+    OffsetToNext: u32,
+    Flags: u32,
+    Reserved: LARGE_INTEGER,
+    Cluster: LARGE_INTEGER,
+    FileName: [1]u16,
+};
+
+pub const CSV_NAMESPACE_INFO = extern struct {
+    Version: u32,
+    DeviceNumber: u32,
+    StartingOffset: LARGE_INTEGER,
+    SectorSize: u32,
+};
+
+pub const CSV_CONTROL_OP = extern enum(i32) {
+    CsvControlStartRedirectFile = 2,
+    CsvControlStopRedirectFile = 3,
+    CsvControlQueryRedirectState = 4,
+    CsvControlQueryFileRevision = 6,
+    CsvControlQueryMdsPath = 8,
+    CsvControlQueryFileRevisionFileId128 = 9,
+    CsvControlQueryVolumeRedirectState = 10,
+    CsvControlEnableUSNRangeModificationTracking = 13,
+    CsvControlMarkHandleLocalVolumeMount = 14,
+    CsvControlUnmarkHandleLocalVolumeMount = 15,
+    CsvControlGetCsvFsMdsPathV2 = 18,
+    CsvControlDisableCaching = 19,
+    CsvControlEnableCaching = 20,
+    CsvControlStartForceDFO = 21,
+    CsvControlStopForceDFO = 22,
+};
+pub const CsvControlStartRedirectFile = CSV_CONTROL_OP.CsvControlStartRedirectFile;
+pub const CsvControlStopRedirectFile = CSV_CONTROL_OP.CsvControlStopRedirectFile;
+pub const CsvControlQueryRedirectState = CSV_CONTROL_OP.CsvControlQueryRedirectState;
+pub const CsvControlQueryFileRevision = CSV_CONTROL_OP.CsvControlQueryFileRevision;
+pub const CsvControlQueryMdsPath = CSV_CONTROL_OP.CsvControlQueryMdsPath;
+pub const CsvControlQueryFileRevisionFileId128 = CSV_CONTROL_OP.CsvControlQueryFileRevisionFileId128;
+pub const CsvControlQueryVolumeRedirectState = CSV_CONTROL_OP.CsvControlQueryVolumeRedirectState;
+pub const CsvControlEnableUSNRangeModificationTracking = CSV_CONTROL_OP.CsvControlEnableUSNRangeModificationTracking;
+pub const CsvControlMarkHandleLocalVolumeMount = CSV_CONTROL_OP.CsvControlMarkHandleLocalVolumeMount;
+pub const CsvControlUnmarkHandleLocalVolumeMount = CSV_CONTROL_OP.CsvControlUnmarkHandleLocalVolumeMount;
+pub const CsvControlGetCsvFsMdsPathV2 = CSV_CONTROL_OP.CsvControlGetCsvFsMdsPathV2;
+pub const CsvControlDisableCaching = CSV_CONTROL_OP.CsvControlDisableCaching;
+pub const CsvControlEnableCaching = CSV_CONTROL_OP.CsvControlEnableCaching;
+pub const CsvControlStartForceDFO = CSV_CONTROL_OP.CsvControlStartForceDFO;
+pub const CsvControlStopForceDFO = CSV_CONTROL_OP.CsvControlStopForceDFO;
+
+pub const CSV_CONTROL_PARAM = extern struct {
+    Operation: CSV_CONTROL_OP,
+    Unused: i64,
+};
+
+pub const CSV_QUERY_REDIRECT_STATE = extern struct {
+    MdsNodeId: u32,
+    DsNodeId: u32,
+    FileRedirected: u8,
+};
+
+pub const CSV_QUERY_FILE_REVISION = extern struct {
+    FileId: i64,
+    FileRevision: [3]i64,
+};
+
+pub const CSV_QUERY_MDS_PATH = extern struct {
+    MdsNodeId: u32,
+    DsNodeId: u32,
+    PathLength: u32,
+    Path: [1]u16,
+};
+
+pub const CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT = extern struct {
+    VetoedFromAltitudeIntegral: u64,
+    VetoedFromAltitudeDecimal: u64,
+    Reason: [256]u16,
+};
+
+pub const CSV_IS_OWNED_BY_CSVFS = extern struct {
+    OwnedByCSVFS: u8,
+};
+
+pub const FILE_LEVEL_TRIM_RANGE = extern struct {
+    Offset: u64,
+    Length: u64,
+};
+
+pub const FILE_LEVEL_TRIM = extern struct {
+    Key: u32,
+    NumRanges: u32,
+    Ranges: [1]FILE_LEVEL_TRIM_RANGE,
+};
+
+pub const FILE_LEVEL_TRIM_OUTPUT = extern struct {
+    NumRangesProcessed: u32,
+};
+
+pub const FSCTL_GET_INTEGRITY_INFORMATION_BUFFER = extern struct {
+    ChecksumAlgorithm: u16,
+    Reserved: u16,
+    Flags: u32,
+    ChecksumChunkSizeInBytes: u32,
+    ClusterSizeInBytes: u32,
+};
+
+pub const FSCTL_SET_INTEGRITY_INFORMATION_BUFFER = extern struct {
+    ChecksumAlgorithm: u16,
+    Reserved: u16,
+    Flags: u32,
+};
+
+pub const REPAIR_COPIES_INPUT = extern struct {
+    Size: u32,
+    Flags: u32,
+    FileOffset: LARGE_INTEGER,
+    Length: u32,
+    SourceCopy: u32,
+    NumberOfRepairCopies: u32,
+    RepairCopies: [1]u32,
+};
+
+pub const REPAIR_COPIES_OUTPUT = extern struct {
+    Size: u32,
+    Status: u32,
+    ResumeFileOffset: LARGE_INTEGER,
+};
+
+pub const FILE_STORAGE_TIER_MEDIA_TYPE = extern enum(i32) {
+    FileStorageTierMediaTypeUnspecified = 0,
+    FileStorageTierMediaTypeDisk = 1,
+    FileStorageTierMediaTypeSsd = 2,
+    FileStorageTierMediaTypeScm = 4,
+    FileStorageTierMediaTypeMax = 5,
+};
+pub const FileStorageTierMediaTypeUnspecified = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeUnspecified;
+pub const FileStorageTierMediaTypeDisk = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeDisk;
+pub const FileStorageTierMediaTypeSsd = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeSsd;
+pub const FileStorageTierMediaTypeScm = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeScm;
+pub const FileStorageTierMediaTypeMax = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeMax;
+
+pub const FILE_STORAGE_TIER = extern struct {
+    Id: Guid,
+    Name: [256]u16,
+    Description: [256]u16,
+    Flags: u64,
+    ProvisionedCapacity: u64,
+    MediaType: FILE_STORAGE_TIER_MEDIA_TYPE,
+    Class: FILE_STORAGE_TIER_CLASS,
+};
+
+pub const FSCTL_QUERY_STORAGE_CLASSES_OUTPUT = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u32,
+    TotalNumberOfTiers: u32,
+    NumberOfTiersReturned: u32,
+    Tiers: [1]FILE_STORAGE_TIER,
+};
+
+pub const FSCTL_QUERY_REGION_INFO_INPUT = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u32,
+    NumberOfTierIds: u32,
+    TierIds: [1]Guid,
+};
+
+pub const FILE_STORAGE_TIER_REGION = extern struct {
+    TierId: Guid,
+    Offset: u64,
+    Length: u64,
+};
+
+pub const FSCTL_QUERY_REGION_INFO_OUTPUT = extern struct {
+    Version: u32,
+    Size: u32,
+    Flags: u32,
+    Reserved: u32,
+    Alignment: u64,
+    TotalNumberOfRegions: u32,
+    NumberOfRegionsReturned: u32,
+    Regions: [1]FILE_STORAGE_TIER_REGION,
+};
+
+pub const DUPLICATE_EXTENTS_DATA = extern struct {
+    FileHandle: HANDLE,
+    SourceFileOffset: LARGE_INTEGER,
+    TargetFileOffset: LARGE_INTEGER,
+    ByteCount: LARGE_INTEGER,
+};
+
+pub const DISK_EXTENT = extern struct {
+    DiskNumber: u32,
+    StartingOffset: LARGE_INTEGER,
+    ExtentLength: LARGE_INTEGER,
+};
+
+pub const VOLUME_DISK_EXTENTS = extern struct {
+    NumberOfDiskExtents: u32,
+    Extents: [1]DISK_EXTENT,
+};
+
+pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
+    GptAttributes: u64,
+};
+
 pub const TRANSACTION_NOTIFICATION = extern struct {
     TransactionKey: *c_void,
     TransactionNotification: u32,
@@ -1803,7 +3603,7 @@ pub const DISKQUOTA_USER_INFORMATION = extern struct {
     QuotaLimit: i64,
 };
 
-const IID_IDiskQuotaUser_Value = @import("../zig.zig").Guid.initString("7988B574-EC89-11CF-9C00-00AA00A14F56");
+const IID_IDiskQuotaUser_Value = @import("../zig.zig").Guid.initString("7988b574-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUser = &IID_IDiskQuotaUser_Value;
 pub const IDiskQuotaUser = extern struct {
     pub const VTable = extern struct {
@@ -1947,7 +3747,7 @@ pub const IDiskQuotaUser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumDiskQuotaUsers_Value = @import("../zig.zig").Guid.initString("7988B577-EC89-11CF-9C00-00AA00A14F56");
+const IID_IEnumDiskQuotaUsers_Value = @import("../zig.zig").Guid.initString("7988b577-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IEnumDiskQuotaUsers = &IID_IEnumDiskQuotaUsers_Value;
 pub const IEnumDiskQuotaUsers = extern struct {
     pub const VTable = extern struct {
@@ -1993,7 +3793,7 @@ pub const IEnumDiskQuotaUsers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiskQuotaUserBatch_Value = @import("../zig.zig").Guid.initString("7988B576-EC89-11CF-9C00-00AA00A14F56");
+const IID_IDiskQuotaUserBatch_Value = @import("../zig.zig").Guid.initString("7988b576-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaUserBatch = &IID_IDiskQuotaUserBatch_Value;
 pub const IDiskQuotaUserBatch = extern struct {
     pub const VTable = extern struct {
@@ -2036,7 +3836,7 @@ pub const IDiskQuotaUserBatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiskQuotaControl_Value = @import("../zig.zig").Guid.initString("7988B572-EC89-11CF-9C00-00AA00A14F56");
+const IID_IDiskQuotaControl_Value = @import("../zig.zig").Guid.initString("7988b572-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaControl = &IID_IDiskQuotaControl_Value;
 pub const IDiskQuotaControl = extern struct {
     pub const VTable = extern struct {
@@ -2228,7 +4028,7 @@ pub const IDiskQuotaControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDiskQuotaEvents_Value = @import("../zig.zig").Guid.initString("7988B579-EC89-11CF-9C00-00AA00A14F56");
+const IID_IDiskQuotaEvents_Value = @import("../zig.zig").Guid.initString("7988b579-ec89-11cf-9c00-00aa00a14f56");
 pub const IID_IDiskQuotaEvents = &IID_IDiskQuotaEvents_Value;
 pub const IDiskQuotaEvents = extern struct {
     pub const VTable = extern struct {
@@ -2660,1806 +4460,6 @@ pub const STAT_SERVER_0 = extern struct {
     sts0_avresponse: u32,
     sts0_reqbufneed: u32,
     sts0_bigbufneed: u32,
-};
-
-pub const OVERLAPPED_ENTRY = extern struct {
-    lpCompletionKey: ?*c_void,
-    lpOverlapped: *OVERLAPPED,
-    Internal: ?*c_void,
-    dwNumberOfBytesTransferred: u32,
-};
-
-pub const WIN32_FIND_DATAA = extern struct {
-    dwFileAttributes: u32,
-    ftCreationTime: FILETIME,
-    ftLastAccessTime: FILETIME,
-    ftLastWriteTime: FILETIME,
-    nFileSizeHigh: u32,
-    nFileSizeLow: u32,
-    dwReserved0: u32,
-    dwReserved1: u32,
-    cFileName: [260]i8,
-    cAlternateFileName: [14]i8,
-};
-
-pub const WIN32_FIND_DATAW = extern struct {
-    dwFileAttributes: u32,
-    ftCreationTime: FILETIME,
-    ftLastAccessTime: FILETIME,
-    ftLastWriteTime: FILETIME,
-    nFileSizeHigh: u32,
-    nFileSizeLow: u32,
-    dwReserved0: u32,
-    dwReserved1: u32,
-    cFileName: [260]u16,
-    cAlternateFileName: [14]u16,
-};
-
-pub const FINDEX_INFO_LEVELS = extern enum(i32) {
-    FindExInfoStandard = 0,
-    FindExInfoBasic = 1,
-    FindExInfoMaxInfoLevel = 2,
-};
-pub const FindExInfoStandard = FINDEX_INFO_LEVELS.FindExInfoStandard;
-pub const FindExInfoBasic = FINDEX_INFO_LEVELS.FindExInfoBasic;
-pub const FindExInfoMaxInfoLevel = FINDEX_INFO_LEVELS.FindExInfoMaxInfoLevel;
-
-pub const FINDEX_SEARCH_OPS = extern enum(i32) {
-    FindExSearchNameMatch = 0,
-    FindExSearchLimitToDirectories = 1,
-    FindExSearchLimitToDevices = 2,
-    FindExSearchMaxSearchOp = 3,
-};
-pub const FindExSearchNameMatch = FINDEX_SEARCH_OPS.FindExSearchNameMatch;
-pub const FindExSearchLimitToDirectories = FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories;
-pub const FindExSearchLimitToDevices = FINDEX_SEARCH_OPS.FindExSearchLimitToDevices;
-pub const FindExSearchMaxSearchOp = FINDEX_SEARCH_OPS.FindExSearchMaxSearchOp;
-
-pub const READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = extern enum(i32) {
-    ReadDirectoryNotifyInformation = 1,
-    ReadDirectoryNotifyExtendedInformation = 2,
-};
-pub const ReadDirectoryNotifyInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.ReadDirectoryNotifyInformation;
-pub const ReadDirectoryNotifyExtendedInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.ReadDirectoryNotifyExtendedInformation;
-
-pub const GET_FILEEX_INFO_LEVELS = extern enum(i32) {
-    GetFileExInfoStandard = 0,
-    GetFileExMaxInfoLevel = 1,
-};
-pub const GetFileExInfoStandard = GET_FILEEX_INFO_LEVELS.GetFileExInfoStandard;
-pub const GetFileExMaxInfoLevel = GET_FILEEX_INFO_LEVELS.GetFileExMaxInfoLevel;
-
-pub const FILE_INFO_BY_HANDLE_CLASS = extern enum(i32) {
-    FileBasicInfo = 0,
-    FileStandardInfo = 1,
-    FileNameInfo = 2,
-    FileRenameInfo = 3,
-    FileDispositionInfo = 4,
-    FileAllocationInfo = 5,
-    FileEndOfFileInfo = 6,
-    FileStreamInfo = 7,
-    FileCompressionInfo = 8,
-    FileAttributeTagInfo = 9,
-    FileIdBothDirectoryInfo = 10,
-    FileIdBothDirectoryRestartInfo = 11,
-    FileIoPriorityHintInfo = 12,
-    FileRemoteProtocolInfo = 13,
-    FileFullDirectoryInfo = 14,
-    FileFullDirectoryRestartInfo = 15,
-    FileStorageInfo = 16,
-    FileAlignmentInfo = 17,
-    FileIdInfo = 18,
-    FileIdExtdDirectoryInfo = 19,
-    FileIdExtdDirectoryRestartInfo = 20,
-    FileDispositionInfoEx = 21,
-    FileRenameInfoEx = 22,
-    FileCaseSensitiveInfo = 23,
-    FileNormalizedNameInfo = 24,
-    MaximumFileInfoByHandleClass = 25,
-};
-pub const FileBasicInfo = FILE_INFO_BY_HANDLE_CLASS.FileBasicInfo;
-pub const FileStandardInfo = FILE_INFO_BY_HANDLE_CLASS.FileStandardInfo;
-pub const FileNameInfo = FILE_INFO_BY_HANDLE_CLASS.FileNameInfo;
-pub const FileRenameInfo = FILE_INFO_BY_HANDLE_CLASS.FileRenameInfo;
-pub const FileDispositionInfo = FILE_INFO_BY_HANDLE_CLASS.FileDispositionInfo;
-pub const FileAllocationInfo = FILE_INFO_BY_HANDLE_CLASS.FileAllocationInfo;
-pub const FileEndOfFileInfo = FILE_INFO_BY_HANDLE_CLASS.FileEndOfFileInfo;
-pub const FileStreamInfo = FILE_INFO_BY_HANDLE_CLASS.FileStreamInfo;
-pub const FileCompressionInfo = FILE_INFO_BY_HANDLE_CLASS.FileCompressionInfo;
-pub const FileAttributeTagInfo = FILE_INFO_BY_HANDLE_CLASS.FileAttributeTagInfo;
-pub const FileIdBothDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdBothDirectoryInfo;
-pub const FileIdBothDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdBothDirectoryRestartInfo;
-pub const FileIoPriorityHintInfo = FILE_INFO_BY_HANDLE_CLASS.FileIoPriorityHintInfo;
-pub const FileRemoteProtocolInfo = FILE_INFO_BY_HANDLE_CLASS.FileRemoteProtocolInfo;
-pub const FileFullDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileFullDirectoryInfo;
-pub const FileFullDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileFullDirectoryRestartInfo;
-pub const FileStorageInfo = FILE_INFO_BY_HANDLE_CLASS.FileStorageInfo;
-pub const FileAlignmentInfo = FILE_INFO_BY_HANDLE_CLASS.FileAlignmentInfo;
-pub const FileIdInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdInfo;
-pub const FileIdExtdDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdExtdDirectoryInfo;
-pub const FileIdExtdDirectoryRestartInfo = FILE_INFO_BY_HANDLE_CLASS.FileIdExtdDirectoryRestartInfo;
-pub const FileDispositionInfoEx = FILE_INFO_BY_HANDLE_CLASS.FileDispositionInfoEx;
-pub const FileRenameInfoEx = FILE_INFO_BY_HANDLE_CLASS.FileRenameInfoEx;
-pub const FileCaseSensitiveInfo = FILE_INFO_BY_HANDLE_CLASS.FileCaseSensitiveInfo;
-pub const FileNormalizedNameInfo = FILE_INFO_BY_HANDLE_CLASS.FileNormalizedNameInfo;
-pub const MaximumFileInfoByHandleClass = FILE_INFO_BY_HANDLE_CLASS.MaximumFileInfoByHandleClass;
-
-pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
-    dwErrorCode: u32,
-    dwNumberOfBytesTransfered: u32,
-    lpOverlapped: *OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const STORAGE_QUERY_TYPE = extern enum(i32) {
-    PropertyStandardQuery = 0,
-    PropertyExistsQuery = 1,
-    PropertyMaskQuery = 2,
-    PropertyQueryMaxDefined = 3,
-};
-pub const PropertyStandardQuery = STORAGE_QUERY_TYPE.PropertyStandardQuery;
-pub const PropertyExistsQuery = STORAGE_QUERY_TYPE.PropertyExistsQuery;
-pub const PropertyMaskQuery = STORAGE_QUERY_TYPE.PropertyMaskQuery;
-pub const PropertyQueryMaxDefined = STORAGE_QUERY_TYPE.PropertyQueryMaxDefined;
-
-pub const STORAGE_PROPERTY_ID = extern enum(i32) {
-    StorageDeviceProperty = 0,
-    StorageAdapterProperty = 1,
-    StorageDeviceIdProperty = 2,
-    StorageDeviceUniqueIdProperty = 3,
-    StorageDeviceWriteCacheProperty = 4,
-    StorageMiniportProperty = 5,
-    StorageAccessAlignmentProperty = 6,
-    StorageDeviceSeekPenaltyProperty = 7,
-    StorageDeviceTrimProperty = 8,
-    StorageDeviceWriteAggregationProperty = 9,
-    StorageDeviceDeviceTelemetryProperty = 10,
-    StorageDeviceLBProvisioningProperty = 11,
-    StorageDevicePowerProperty = 12,
-    StorageDeviceCopyOffloadProperty = 13,
-    StorageDeviceResiliencyProperty = 14,
-    StorageDeviceMediumProductType = 15,
-    StorageAdapterRpmbProperty = 16,
-    StorageAdapterCryptoProperty = 17,
-    StorageDeviceIoCapabilityProperty = 48,
-    StorageAdapterProtocolSpecificProperty = 49,
-    StorageDeviceProtocolSpecificProperty = 50,
-    StorageAdapterTemperatureProperty = 51,
-    StorageDeviceTemperatureProperty = 52,
-    StorageAdapterPhysicalTopologyProperty = 53,
-    StorageDevicePhysicalTopologyProperty = 54,
-    StorageDeviceAttributesProperty = 55,
-    StorageDeviceManagementStatus = 56,
-    StorageAdapterSerialNumberProperty = 57,
-    StorageDeviceLocationProperty = 58,
-    StorageDeviceNumaProperty = 59,
-    StorageDeviceZonedDeviceProperty = 60,
-    StorageDeviceUnsafeShutdownCount = 61,
-    StorageDeviceEnduranceProperty = 62,
-};
-pub const StorageDeviceProperty = STORAGE_PROPERTY_ID.StorageDeviceProperty;
-pub const StorageAdapterProperty = STORAGE_PROPERTY_ID.StorageAdapterProperty;
-pub const StorageDeviceIdProperty = STORAGE_PROPERTY_ID.StorageDeviceIdProperty;
-pub const StorageDeviceUniqueIdProperty = STORAGE_PROPERTY_ID.StorageDeviceUniqueIdProperty;
-pub const StorageDeviceWriteCacheProperty = STORAGE_PROPERTY_ID.StorageDeviceWriteCacheProperty;
-pub const StorageMiniportProperty = STORAGE_PROPERTY_ID.StorageMiniportProperty;
-pub const StorageAccessAlignmentProperty = STORAGE_PROPERTY_ID.StorageAccessAlignmentProperty;
-pub const StorageDeviceSeekPenaltyProperty = STORAGE_PROPERTY_ID.StorageDeviceSeekPenaltyProperty;
-pub const StorageDeviceTrimProperty = STORAGE_PROPERTY_ID.StorageDeviceTrimProperty;
-pub const StorageDeviceWriteAggregationProperty = STORAGE_PROPERTY_ID.StorageDeviceWriteAggregationProperty;
-pub const StorageDeviceDeviceTelemetryProperty = STORAGE_PROPERTY_ID.StorageDeviceDeviceTelemetryProperty;
-pub const StorageDeviceLBProvisioningProperty = STORAGE_PROPERTY_ID.StorageDeviceLBProvisioningProperty;
-pub const StorageDevicePowerProperty = STORAGE_PROPERTY_ID.StorageDevicePowerProperty;
-pub const StorageDeviceCopyOffloadProperty = STORAGE_PROPERTY_ID.StorageDeviceCopyOffloadProperty;
-pub const StorageDeviceResiliencyProperty = STORAGE_PROPERTY_ID.StorageDeviceResiliencyProperty;
-pub const StorageDeviceMediumProductType = STORAGE_PROPERTY_ID.StorageDeviceMediumProductType;
-pub const StorageAdapterRpmbProperty = STORAGE_PROPERTY_ID.StorageAdapterRpmbProperty;
-pub const StorageAdapterCryptoProperty = STORAGE_PROPERTY_ID.StorageAdapterCryptoProperty;
-pub const StorageDeviceIoCapabilityProperty = STORAGE_PROPERTY_ID.StorageDeviceIoCapabilityProperty;
-pub const StorageAdapterProtocolSpecificProperty = STORAGE_PROPERTY_ID.StorageAdapterProtocolSpecificProperty;
-pub const StorageDeviceProtocolSpecificProperty = STORAGE_PROPERTY_ID.StorageDeviceProtocolSpecificProperty;
-pub const StorageAdapterTemperatureProperty = STORAGE_PROPERTY_ID.StorageAdapterTemperatureProperty;
-pub const StorageDeviceTemperatureProperty = STORAGE_PROPERTY_ID.StorageDeviceTemperatureProperty;
-pub const StorageAdapterPhysicalTopologyProperty = STORAGE_PROPERTY_ID.StorageAdapterPhysicalTopologyProperty;
-pub const StorageDevicePhysicalTopologyProperty = STORAGE_PROPERTY_ID.StorageDevicePhysicalTopologyProperty;
-pub const StorageDeviceAttributesProperty = STORAGE_PROPERTY_ID.StorageDeviceAttributesProperty;
-pub const StorageDeviceManagementStatus = STORAGE_PROPERTY_ID.StorageDeviceManagementStatus;
-pub const StorageAdapterSerialNumberProperty = STORAGE_PROPERTY_ID.StorageAdapterSerialNumberProperty;
-pub const StorageDeviceLocationProperty = STORAGE_PROPERTY_ID.StorageDeviceLocationProperty;
-pub const StorageDeviceNumaProperty = STORAGE_PROPERTY_ID.StorageDeviceNumaProperty;
-pub const StorageDeviceZonedDeviceProperty = STORAGE_PROPERTY_ID.StorageDeviceZonedDeviceProperty;
-pub const StorageDeviceUnsafeShutdownCount = STORAGE_PROPERTY_ID.StorageDeviceUnsafeShutdownCount;
-pub const StorageDeviceEnduranceProperty = STORAGE_PROPERTY_ID.StorageDeviceEnduranceProperty;
-
-pub const STORAGE_PROPERTY_QUERY = extern struct {
-    PropertyId: STORAGE_PROPERTY_ID,
-    QueryType: STORAGE_QUERY_TYPE,
-    AdditionalParameters: [1]u8,
-};
-
-pub const STORAGE_DESCRIPTOR_HEADER = extern struct {
-    Version: u32,
-    Size: u32,
-};
-
-pub const STORAGE_DEVICE_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    DeviceType: u8,
-    DeviceTypeModifier: u8,
-    RemovableMedia: u8,
-    CommandQueueing: u8,
-    VendorIdOffset: u32,
-    ProductIdOffset: u32,
-    ProductRevisionOffset: u32,
-    SerialNumberOffset: u32,
-    BusType: STORAGE_BUS_TYPE,
-    RawPropertiesLength: u32,
-    RawDeviceProperties: [1]u8,
-};
-
-pub const STORAGE_ADAPTER_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    MaximumTransferLength: u32,
-    MaximumPhysicalPages: u32,
-    AlignmentMask: u32,
-    AdapterUsesPio: u8,
-    AdapterScansDown: u8,
-    CommandQueueing: u8,
-    AcceleratedTransfer: u8,
-    BusType: u8,
-    BusMajorVersion: u16,
-    BusMinorVersion: u16,
-    SrbType: u8,
-    AddressType: u8,
-};
-
-pub const STORAGE_ACCESS_ALIGNMENT_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    BytesPerCacheLine: u32,
-    BytesOffsetForCacheAlignment: u32,
-    BytesPerLogicalSector: u32,
-    BytesPerPhysicalSector: u32,
-    BytesOffsetForSectorAlignment: u32,
-};
-
-pub const STORAGE_MEDIUM_PRODUCT_TYPE_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    MediumProductType: u32,
-};
-
-pub const STORAGE_PORT_CODE_SET = extern enum(i32) {
-    StoragePortCodeSetReserved = 0,
-    StoragePortCodeSetStorport = 1,
-    StoragePortCodeSetSCSIport = 2,
-    StoragePortCodeSetSpaceport = 3,
-    StoragePortCodeSetATAport = 4,
-    StoragePortCodeSetUSBport = 5,
-    StoragePortCodeSetSBP2port = 6,
-    StoragePortCodeSetSDport = 7,
-};
-pub const StoragePortCodeSetReserved = STORAGE_PORT_CODE_SET.StoragePortCodeSetReserved;
-pub const StoragePortCodeSetStorport = STORAGE_PORT_CODE_SET.StoragePortCodeSetStorport;
-pub const StoragePortCodeSetSCSIport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSCSIport;
-pub const StoragePortCodeSetSpaceport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSpaceport;
-pub const StoragePortCodeSetATAport = STORAGE_PORT_CODE_SET.StoragePortCodeSetATAport;
-pub const StoragePortCodeSetUSBport = STORAGE_PORT_CODE_SET.StoragePortCodeSetUSBport;
-pub const StoragePortCodeSetSBP2port = STORAGE_PORT_CODE_SET.StoragePortCodeSetSBP2port;
-pub const StoragePortCodeSetSDport = STORAGE_PORT_CODE_SET.StoragePortCodeSetSDport;
-
-pub const STORAGE_MINIPORT_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    Portdriver: STORAGE_PORT_CODE_SET,
-    LUNResetSupported: u8,
-    TargetResetSupported: u8,
-    IoTimeoutValue: u16,
-    ExtraIoInfoSupported: u8,
-    Reserved0: [3]u8,
-    Reserved1: u32,
-};
-
-pub const STORAGE_DEVICE_ID_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    NumberOfIdentifiers: u32,
-    Identifiers: [1]u8,
-};
-
-pub const DEVICE_SEEK_PENALTY_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    IncursSeekPenalty: u8,
-};
-
-pub const DEVICE_WRITE_AGGREGATION_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    BenefitsFromWriteAggregation: u8,
-};
-
-pub const DEVICE_TRIM_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    TrimEnabled: u8,
-};
-
-pub const DEVICE_LB_PROVISIONING_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    _bitfield: u8,
-    Reserved1: [7]u8,
-    OptimalUnmapGranularity: u64,
-    UnmapGranularityAlignment: u64,
-    MaxUnmapLbaCount: u32,
-    MaxUnmapBlockDescriptorCount: u32,
-};
-
-pub const DEVICE_POWER_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    DeviceAttentionSupported: u8,
-    AsynchronousNotificationSupported: u8,
-    IdlePowerManagementEnabled: u8,
-    D3ColdEnabled: u8,
-    D3ColdSupported: u8,
-    NoVerifyDuringIdlePower: u8,
-    Reserved: [2]u8,
-    IdleTimeoutInMS: u32,
-};
-
-pub const DEVICE_COPY_OFFLOAD_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    MaximumTokenLifetime: u32,
-    DefaultTokenLifetime: u32,
-    MaximumTransferSize: u64,
-    OptimalTransferCount: u64,
-    MaximumDataDescriptors: u32,
-    MaximumTransferLengthPerDescriptor: u32,
-    OptimalTransferLengthPerDescriptor: u32,
-    OptimalTransferLengthGranularity: u16,
-    Reserved: [2]u8,
-};
-
-pub const STORAGE_DEVICE_RESILIENCY_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    NameOffset: u32,
-    NumberOfLogicalCopies: u32,
-    NumberOfPhysicalCopies: u32,
-    PhysicalDiskRedundancy: u32,
-    NumberOfColumns: u32,
-    Interleave: u32,
-};
-
-pub const STORAGE_PROTOCOL_TYPE = extern enum(i32) {
-    ProtocolTypeUnknown = 0,
-    ProtocolTypeScsi = 1,
-    ProtocolTypeAta = 2,
-    ProtocolTypeNvme = 3,
-    ProtocolTypeSd = 4,
-    ProtocolTypeUfs = 5,
-    ProtocolTypeProprietary = 126,
-    ProtocolTypeMaxReserved = 127,
-};
-pub const ProtocolTypeUnknown = STORAGE_PROTOCOL_TYPE.ProtocolTypeUnknown;
-pub const ProtocolTypeScsi = STORAGE_PROTOCOL_TYPE.ProtocolTypeScsi;
-pub const ProtocolTypeAta = STORAGE_PROTOCOL_TYPE.ProtocolTypeAta;
-pub const ProtocolTypeNvme = STORAGE_PROTOCOL_TYPE.ProtocolTypeNvme;
-pub const ProtocolTypeSd = STORAGE_PROTOCOL_TYPE.ProtocolTypeSd;
-pub const ProtocolTypeUfs = STORAGE_PROTOCOL_TYPE.ProtocolTypeUfs;
-pub const ProtocolTypeProprietary = STORAGE_PROTOCOL_TYPE.ProtocolTypeProprietary;
-pub const ProtocolTypeMaxReserved = STORAGE_PROTOCOL_TYPE.ProtocolTypeMaxReserved;
-
-pub const STORAGE_PROTOCOL_NVME_DATA_TYPE = extern enum(i32) {
-    NVMeDataTypeUnknown = 0,
-    NVMeDataTypeIdentify = 1,
-    NVMeDataTypeLogPage = 2,
-    NVMeDataTypeFeature = 3,
-};
-pub const NVMeDataTypeUnknown = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeUnknown;
-pub const NVMeDataTypeIdentify = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeIdentify;
-pub const NVMeDataTypeLogPage = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeLogPage;
-pub const NVMeDataTypeFeature = STORAGE_PROTOCOL_NVME_DATA_TYPE.NVMeDataTypeFeature;
-
-pub const STORAGE_PROTOCOL_ATA_DATA_TYPE = extern enum(i32) {
-    AtaDataTypeUnknown = 0,
-    AtaDataTypeIdentify = 1,
-    AtaDataTypeLogPage = 2,
-};
-pub const AtaDataTypeUnknown = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeUnknown;
-pub const AtaDataTypeIdentify = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeIdentify;
-pub const AtaDataTypeLogPage = STORAGE_PROTOCOL_ATA_DATA_TYPE.AtaDataTypeLogPage;
-
-pub const STORAGE_PROTOCOL_SPECIFIC_DATA = extern struct {
-    ProtocolType: STORAGE_PROTOCOL_TYPE,
-    DataType: u32,
-    ProtocolDataRequestValue: u32,
-    ProtocolDataRequestSubValue: u32,
-    ProtocolDataOffset: u32,
-    ProtocolDataLength: u32,
-    FixedProtocolReturnData: u32,
-    ProtocolDataRequestSubValue2: u32,
-    ProtocolDataRequestSubValue3: u32,
-    Reserved: u32,
-};
-
-pub const STORAGE_PROTOCOL_DATA_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    ProtocolSpecificData: STORAGE_PROTOCOL_SPECIFIC_DATA,
-};
-
-pub const STORAGE_TEMPERATURE_INFO = extern struct {
-    Index: u16,
-    Temperature: i16,
-    OverThreshold: i16,
-    UnderThreshold: i16,
-    OverThresholdChangable: u8,
-    UnderThresholdChangable: u8,
-    EventGenerated: u8,
-    Reserved0: u8,
-    Reserved1: u32,
-};
-
-pub const STORAGE_TEMPERATURE_DATA_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    CriticalTemperature: i16,
-    WarningTemperature: i16,
-    InfoCount: u16,
-    Reserved0: [2]u8,
-    Reserved1: [2]u32,
-    TemperatureInfo: [1]STORAGE_TEMPERATURE_INFO,
-};
-
-pub const STORAGE_TEMPERATURE_THRESHOLD = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u16,
-    Index: u16,
-    Threshold: i16,
-    OverThreshold: u8,
-    Reserved: u8,
-};
-
-pub const STORAGE_DEVICE_FORM_FACTOR = extern enum(i32) {
-    FormFactorUnknown = 0,
-    FormFactor3_5 = 1,
-    FormFactor2_5 = 2,
-    FormFactor1_8 = 3,
-    FormFactor1_8Less = 4,
-    FormFactorEmbedded = 5,
-    FormFactorMemoryCard = 6,
-    FormFactormSata = 7,
-    FormFactorM_2 = 8,
-    FormFactorPCIeBoard = 9,
-    FormFactorDimm = 10,
-};
-pub const FormFactorUnknown = STORAGE_DEVICE_FORM_FACTOR.FormFactorUnknown;
-pub const FormFactor3_5 = STORAGE_DEVICE_FORM_FACTOR.FormFactor3_5;
-pub const FormFactor2_5 = STORAGE_DEVICE_FORM_FACTOR.FormFactor2_5;
-pub const FormFactor1_8 = STORAGE_DEVICE_FORM_FACTOR.FormFactor1_8;
-pub const FormFactor1_8Less = STORAGE_DEVICE_FORM_FACTOR.FormFactor1_8Less;
-pub const FormFactorEmbedded = STORAGE_DEVICE_FORM_FACTOR.FormFactorEmbedded;
-pub const FormFactorMemoryCard = STORAGE_DEVICE_FORM_FACTOR.FormFactorMemoryCard;
-pub const FormFactormSata = STORAGE_DEVICE_FORM_FACTOR.FormFactormSata;
-pub const FormFactorM_2 = STORAGE_DEVICE_FORM_FACTOR.FormFactorM_2;
-pub const FormFactorPCIeBoard = STORAGE_DEVICE_FORM_FACTOR.FormFactorPCIeBoard;
-pub const FormFactorDimm = STORAGE_DEVICE_FORM_FACTOR.FormFactorDimm;
-
-pub const STORAGE_COMPONENT_HEALTH_STATUS = extern enum(i32) {
-    HealthStatusUnknown = 0,
-    HealthStatusNormal = 1,
-    HealthStatusThrottled = 2,
-    HealthStatusWarning = 3,
-    HealthStatusDisabled = 4,
-    HealthStatusFailed = 5,
-};
-pub const HealthStatusUnknown = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusUnknown;
-pub const HealthStatusNormal = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusNormal;
-pub const HealthStatusThrottled = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusThrottled;
-pub const HealthStatusWarning = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusWarning;
-pub const HealthStatusDisabled = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusDisabled;
-pub const HealthStatusFailed = STORAGE_COMPONENT_HEALTH_STATUS.HealthStatusFailed;
-
-pub const STORAGE_SPEC_VERSION = u32; // TODO: implement StructOrUnion types?
-
-pub const STORAGE_PHYSICAL_DEVICE_DATA = extern struct {
-    DeviceId: u32,
-    Role: u32,
-    HealthStatus: STORAGE_COMPONENT_HEALTH_STATUS,
-    CommandProtocol: STORAGE_PROTOCOL_TYPE,
-    SpecVersion: STORAGE_SPEC_VERSION,
-    FormFactor: STORAGE_DEVICE_FORM_FACTOR,
-    Vendor: [8]u8,
-    Model: [40]u8,
-    FirmwareRevision: [16]u8,
-    Capacity: u64,
-    PhysicalLocation: [32]u8,
-    Reserved: [2]u32,
-};
-
-pub const STORAGE_PHYSICAL_ADAPTER_DATA = extern struct {
-    AdapterId: u32,
-    HealthStatus: STORAGE_COMPONENT_HEALTH_STATUS,
-    CommandProtocol: STORAGE_PROTOCOL_TYPE,
-    SpecVersion: STORAGE_SPEC_VERSION,
-    Vendor: [8]u8,
-    Model: [40]u8,
-    FirmwareRevision: [16]u8,
-    PhysicalLocation: [32]u8,
-    ExpanderConnected: u8,
-    Reserved0: [3]u8,
-    Reserved1: [3]u32,
-};
-
-pub const STORAGE_PHYSICAL_NODE_DATA = extern struct {
-    NodeId: u32,
-    AdapterCount: u32,
-    AdapterDataLength: u32,
-    AdapterDataOffset: u32,
-    DeviceCount: u32,
-    DeviceDataLength: u32,
-    DeviceDataOffset: u32,
-    Reserved: [3]u32,
-};
-
-pub const STORAGE_PHYSICAL_TOPOLOGY_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    NodeCount: u32,
-    Reserved: u32,
-    Node: [1]STORAGE_PHYSICAL_NODE_DATA,
-};
-
-pub const STORAGE_DEVICE_IO_CAPABILITY_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    LunMaxIoCount: u32,
-    AdapterMaxIoCount: u32,
-};
-
-pub const STORAGE_DEVICE_ATTRIBUTES_DESCRIPTOR = extern struct {
-    Version: u32,
-    Size: u32,
-    Attributes: u64,
-};
-
-pub const STORAGE_ADAPTER_SERIAL_NUMBER = extern struct {
-    Version: u32,
-    Size: u32,
-    SerialNumber: [128]u16,
-};
-
-pub const WRITE_CACHE_TYPE = extern enum(i32) {
-    WriteCacheTypeUnknown = 0,
-    WriteCacheTypeNone = 1,
-    WriteCacheTypeWriteBack = 2,
-    WriteCacheTypeWriteThrough = 3,
-};
-pub const WriteCacheTypeUnknown = WRITE_CACHE_TYPE.WriteCacheTypeUnknown;
-pub const WriteCacheTypeNone = WRITE_CACHE_TYPE.WriteCacheTypeNone;
-pub const WriteCacheTypeWriteBack = WRITE_CACHE_TYPE.WriteCacheTypeWriteBack;
-pub const WriteCacheTypeWriteThrough = WRITE_CACHE_TYPE.WriteCacheTypeWriteThrough;
-
-pub const WRITE_CACHE_ENABLE = extern enum(i32) {
-    WriteCacheEnableUnknown = 0,
-    WriteCacheDisabled = 1,
-    WriteCacheEnabled = 2,
-};
-pub const WriteCacheEnableUnknown = WRITE_CACHE_ENABLE.WriteCacheEnableUnknown;
-pub const WriteCacheDisabled = WRITE_CACHE_ENABLE.WriteCacheDisabled;
-pub const WriteCacheEnabled = WRITE_CACHE_ENABLE.WriteCacheEnabled;
-
-pub const WRITE_CACHE_CHANGE = extern enum(i32) {
-    WriteCacheChangeUnknown = 0,
-    WriteCacheNotChangeable = 1,
-    WriteCacheChangeable = 2,
-};
-pub const WriteCacheChangeUnknown = WRITE_CACHE_CHANGE.WriteCacheChangeUnknown;
-pub const WriteCacheNotChangeable = WRITE_CACHE_CHANGE.WriteCacheNotChangeable;
-pub const WriteCacheChangeable = WRITE_CACHE_CHANGE.WriteCacheChangeable;
-
-pub const WRITE_THROUGH = extern enum(i32) {
-    WriteThroughUnknown = 0,
-    WriteThroughNotSupported = 1,
-    WriteThroughSupported = 2,
-};
-pub const WriteThroughUnknown = WRITE_THROUGH.WriteThroughUnknown;
-pub const WriteThroughNotSupported = WRITE_THROUGH.WriteThroughNotSupported;
-pub const WriteThroughSupported = WRITE_THROUGH.WriteThroughSupported;
-
-pub const STORAGE_WRITE_CACHE_PROPERTY = extern struct {
-    Version: u32,
-    Size: u32,
-    WriteCacheType: WRITE_CACHE_TYPE,
-    WriteCacheEnabled: WRITE_CACHE_ENABLE,
-    WriteCacheChangeable: WRITE_CACHE_CHANGE,
-    WriteThroughSupported: WRITE_THROUGH,
-    FlushCacheSupported: u8,
-    UserDefinedPowerProtection: u8,
-    NVCacheEnabled: u8,
-};
-
-pub const STORAGE_DEVICE_POWER_CAP_UNITS = extern enum(i32) {
-    StorageDevicePowerCapUnitsPercent = 0,
-    StorageDevicePowerCapUnitsMilliwatts = 1,
-};
-pub const StorageDevicePowerCapUnitsPercent = STORAGE_DEVICE_POWER_CAP_UNITS.StorageDevicePowerCapUnitsPercent;
-pub const StorageDevicePowerCapUnitsMilliwatts = STORAGE_DEVICE_POWER_CAP_UNITS.StorageDevicePowerCapUnitsMilliwatts;
-
-pub const STORAGE_DEVICE_POWER_CAP = extern struct {
-    Version: u32,
-    Size: u32,
-    Units: STORAGE_DEVICE_POWER_CAP_UNITS,
-    MaxPower: u64,
-};
-
-pub const STORAGE_HW_FIRMWARE_DOWNLOAD = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u32,
-    Slot: u8,
-    Reserved: [3]u8,
-    Offset: u64,
-    BufferSize: u64,
-    ImageBuffer: [1]u8,
-};
-
-pub const STORAGE_HW_FIRMWARE_ACTIVATE = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u32,
-    Slot: u8,
-    Reserved0: [3]u8,
-};
-
-pub const STORAGE_PROTOCOL_COMMAND = extern struct {
-    Version: u32,
-    Length: u32,
-    ProtocolType: STORAGE_PROTOCOL_TYPE,
-    Flags: u32,
-    ReturnStatus: u32,
-    ErrorCode: u32,
-    CommandLength: u32,
-    ErrorInfoLength: u32,
-    DataToDeviceTransferLength: u32,
-    DataFromDeviceTransferLength: u32,
-    TimeOutValue: u32,
-    ErrorInfoOffset: u32,
-    DataToDeviceBufferOffset: u32,
-    DataFromDeviceBufferOffset: u32,
-    CommandSpecific: u32,
-    Reserved0: u32,
-    FixedProtocolReturnData: u32,
-    Reserved1: [3]u32,
-    Command: [1]u8,
-};
-
-pub const MEDIA_TYPE = extern enum(i32) {
-    Unknown = 0,
-    F5_1Pt2_512 = 1,
-    F3_1Pt44_512 = 2,
-    F3_2Pt88_512 = 3,
-    F3_20Pt8_512 = 4,
-    F3_720_512 = 5,
-    F5_360_512 = 6,
-    F5_320_512 = 7,
-    F5_320_1024 = 8,
-    F5_180_512 = 9,
-    F5_160_512 = 10,
-    RemovableMedia = 11,
-    FixedMedia = 12,
-    F3_120M_512 = 13,
-    F3_640_512 = 14,
-    F5_640_512 = 15,
-    F5_720_512 = 16,
-    F3_1Pt2_512 = 17,
-    F3_1Pt23_1024 = 18,
-    F5_1Pt23_1024 = 19,
-    F3_128Mb_512 = 20,
-    F3_230Mb_512 = 21,
-    F8_256_128 = 22,
-    F3_200Mb_512 = 23,
-    F3_240M_512 = 24,
-    F3_32M_512 = 25,
-};
-pub const Unknown = MEDIA_TYPE.Unknown;
-pub const F5_1Pt2_512 = MEDIA_TYPE.F5_1Pt2_512;
-pub const F3_1Pt44_512 = MEDIA_TYPE.F3_1Pt44_512;
-pub const F3_2Pt88_512 = MEDIA_TYPE.F3_2Pt88_512;
-pub const F3_20Pt8_512 = MEDIA_TYPE.F3_20Pt8_512;
-pub const F3_720_512 = MEDIA_TYPE.F3_720_512;
-pub const F5_360_512 = MEDIA_TYPE.F5_360_512;
-pub const F5_320_512 = MEDIA_TYPE.F5_320_512;
-pub const F5_320_1024 = MEDIA_TYPE.F5_320_1024;
-pub const F5_180_512 = MEDIA_TYPE.F5_180_512;
-pub const F5_160_512 = MEDIA_TYPE.F5_160_512;
-pub const RemovableMedia = MEDIA_TYPE.RemovableMedia;
-pub const FixedMedia = MEDIA_TYPE.FixedMedia;
-pub const F3_120M_512 = MEDIA_TYPE.F3_120M_512;
-pub const F3_640_512 = MEDIA_TYPE.F3_640_512;
-pub const F5_640_512 = MEDIA_TYPE.F5_640_512;
-pub const F5_720_512 = MEDIA_TYPE.F5_720_512;
-pub const F3_1Pt2_512 = MEDIA_TYPE.F3_1Pt2_512;
-pub const F3_1Pt23_1024 = MEDIA_TYPE.F3_1Pt23_1024;
-pub const F5_1Pt23_1024 = MEDIA_TYPE.F5_1Pt23_1024;
-pub const F3_128Mb_512 = MEDIA_TYPE.F3_128Mb_512;
-pub const F3_230Mb_512 = MEDIA_TYPE.F3_230Mb_512;
-pub const F8_256_128 = MEDIA_TYPE.F8_256_128;
-pub const F3_200Mb_512 = MEDIA_TYPE.F3_200Mb_512;
-pub const F3_240M_512 = MEDIA_TYPE.F3_240M_512;
-pub const F3_32M_512 = MEDIA_TYPE.F3_32M_512;
-
-pub const FORMAT_PARAMETERS = extern struct {
-    MediaType: MEDIA_TYPE,
-    StartCylinderNumber: u32,
-    EndCylinderNumber: u32,
-    StartHeadNumber: u32,
-    EndHeadNumber: u32,
-};
-
-pub const FORMAT_EX_PARAMETERS = extern struct {
-    MediaType: MEDIA_TYPE,
-    StartCylinderNumber: u32,
-    EndCylinderNumber: u32,
-    StartHeadNumber: u32,
-    EndHeadNumber: u32,
-    FormatGapLength: u16,
-    SectorsPerTrack: u16,
-    SectorNumber: [1]u16,
-};
-
-pub const DISK_GEOMETRY = extern struct {
-    Cylinders: LARGE_INTEGER,
-    MediaType: MEDIA_TYPE,
-    TracksPerCylinder: u32,
-    SectorsPerTrack: u32,
-    BytesPerSector: u32,
-};
-
-pub const PARTITION_INFORMATION = extern struct {
-    StartingOffset: LARGE_INTEGER,
-    PartitionLength: LARGE_INTEGER,
-    HiddenSectors: u32,
-    PartitionNumber: u32,
-    PartitionType: u8,
-    BootIndicator: u8,
-    RecognizedPartition: u8,
-    RewritePartition: u8,
-};
-
-pub const SET_PARTITION_INFORMATION = extern struct {
-    PartitionType: u8,
-};
-
-pub const DRIVE_LAYOUT_INFORMATION = extern struct {
-    PartitionCount: u32,
-    Signature: u32,
-    PartitionEntry: [1]PARTITION_INFORMATION,
-};
-
-pub const VERIFY_INFORMATION = extern struct {
-    StartingOffset: LARGE_INTEGER,
-    Length: u32,
-};
-
-pub const REASSIGN_BLOCKS = extern struct {
-    Reserved: u16,
-    Count: u16,
-    BlockNumber: [1]u32,
-};
-
-pub const REASSIGN_BLOCKS_EX = extern struct {
-    Reserved: u16,
-    Count: u16,
-    BlockNumber: [1]LARGE_INTEGER,
-};
-
-pub const PARTITION_STYLE = extern enum(i32) {
-    MBR = 0,
-    GPT = 1,
-    RAW = 2,
-};
-pub const PARTITION_STYLE_MBR = PARTITION_STYLE.MBR;
-pub const PARTITION_STYLE_GPT = PARTITION_STYLE.GPT;
-pub const PARTITION_STYLE_RAW = PARTITION_STYLE.RAW;
-
-pub const PARTITION_INFORMATION_GPT = extern struct {
-    PartitionType: Guid,
-    PartitionId: Guid,
-    Attributes: u64,
-    Name: [36]u16,
-};
-
-pub const PARTITION_INFORMATION_MBR = extern struct {
-    PartitionType: u8,
-    BootIndicator: u8,
-    RecognizedPartition: u8,
-    HiddenSectors: u32,
-    PartitionId: Guid,
-};
-
-pub const CREATE_DISK_GPT = extern struct {
-    DiskId: Guid,
-    MaxPartitionCount: u32,
-};
-
-pub const CREATE_DISK_MBR = extern struct {
-    Signature: u32,
-};
-
-pub const CREATE_DISK = extern struct {
-    PartitionStyle: PARTITION_STYLE,
-    Anonymous: CREATE_DISK._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const GET_LENGTH_INFORMATION = extern struct {
-    Length: LARGE_INTEGER,
-};
-
-pub const PARTITION_INFORMATION_EX = extern struct {
-    PartitionStyle: PARTITION_STYLE,
-    StartingOffset: LARGE_INTEGER,
-    PartitionLength: LARGE_INTEGER,
-    PartitionNumber: u32,
-    RewritePartition: u8,
-    IsServicePartition: u8,
-    Anonymous: PARTITION_INFORMATION_EX._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const DRIVE_LAYOUT_INFORMATION_GPT = extern struct {
-    DiskId: Guid,
-    StartingUsableOffset: LARGE_INTEGER,
-    UsableLength: LARGE_INTEGER,
-    MaxPartitionCount: u32,
-};
-
-pub const DRIVE_LAYOUT_INFORMATION_MBR = extern struct {
-    Signature: u32,
-    CheckSum: u32,
-};
-
-pub const DRIVE_LAYOUT_INFORMATION_EX = extern struct {
-    PartitionStyle: u32,
-    PartitionCount: u32,
-    Anonymous: DRIVE_LAYOUT_INFORMATION_EX._Anonymous_e__Union,
-    PartitionEntry: [1]PARTITION_INFORMATION_EX,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const DISK_INT13_INFO = extern struct {
-    DriveSelect: u16,
-    MaxCylinders: u32,
-    SectorsPerTrack: u16,
-    MaxHeads: u16,
-    NumberDrives: u16,
-};
-
-pub const DISK_EX_INT13_INFO = extern struct {
-    ExBufferSize: u16,
-    ExFlags: u16,
-    ExCylinders: u32,
-    ExHeads: u32,
-    ExSectorsPerTrack: u32,
-    ExSectorsPerDrive: u64,
-    ExSectorSize: u16,
-    ExReserved: u16,
-};
-
-pub const DISK_DETECTION_INFO = extern struct {
-    SizeOfDetectInfo: u32,
-    DetectionType: DETECTION_TYPE,
-    Anonymous: DISK_DETECTION_INFO._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const DISK_PARTITION_INFO = extern struct {
-    SizeOfPartitionInfo: u32,
-    PartitionStyle: PARTITION_STYLE,
-    Anonymous: DISK_PARTITION_INFO._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const DISK_GEOMETRY_EX = extern struct {
-    Geometry: DISK_GEOMETRY,
-    DiskSize: LARGE_INTEGER,
-    Data: [1]u8,
-};
-
-pub const DISK_CACHE_INFORMATION = extern struct {
-    ParametersSavable: u8,
-    ReadCacheEnabled: u8,
-    WriteCacheEnabled: u8,
-    ReadRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
-    WriteRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
-    DisablePrefetchTransferLength: u16,
-    PrefetchScalar: u8,
-    Anonymous: DISK_CACHE_INFORMATION._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const DISK_GROW_PARTITION = extern struct {
-    PartitionNumber: u32,
-    BytesToGrow: LARGE_INTEGER,
-};
-
-pub const DISK_PERFORMANCE = extern struct {
-    BytesRead: LARGE_INTEGER,
-    BytesWritten: LARGE_INTEGER,
-    ReadTime: LARGE_INTEGER,
-    WriteTime: LARGE_INTEGER,
-    IdleTime: LARGE_INTEGER,
-    ReadCount: u32,
-    WriteCount: u32,
-    QueueDepth: u32,
-    SplitCount: u32,
-    QueryTime: LARGE_INTEGER,
-    StorageDeviceNumber: u32,
-    StorageManagerName: [8]u16,
-};
-
-pub const GET_DISK_ATTRIBUTES = extern struct {
-    Version: u32,
-    Reserved1: u32,
-    Attributes: u64,
-};
-
-pub const SET_DISK_ATTRIBUTES = extern struct {
-    Version: u32,
-    Persist: u8,
-    Reserved1: [3]u8,
-    Attributes: u64,
-    AttributesMask: u64,
-    Reserved2: [4]u32,
-};
-
-pub const NTFS_VOLUME_DATA_BUFFER = extern struct {
-    VolumeSerialNumber: LARGE_INTEGER,
-    NumberSectors: LARGE_INTEGER,
-    TotalClusters: LARGE_INTEGER,
-    FreeClusters: LARGE_INTEGER,
-    TotalReserved: LARGE_INTEGER,
-    BytesPerSector: u32,
-    BytesPerCluster: u32,
-    BytesPerFileRecordSegment: u32,
-    ClustersPerFileRecordSegment: u32,
-    MftValidDataLength: LARGE_INTEGER,
-    MftStartLcn: LARGE_INTEGER,
-    Mft2StartLcn: LARGE_INTEGER,
-    MftZoneStart: LARGE_INTEGER,
-    MftZoneEnd: LARGE_INTEGER,
-};
-
-pub const NTFS_EXTENDED_VOLUME_DATA = extern struct {
-    ByteCount: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    BytesPerPhysicalSector: u32,
-    LfsMajorVersion: u16,
-    LfsMinorVersion: u16,
-    MaxDeviceTrimExtentCount: u32,
-    MaxDeviceTrimByteCount: u32,
-    MaxVolumeTrimExtentCount: u32,
-    MaxVolumeTrimByteCount: u32,
-};
-
-pub const STARTING_LCN_INPUT_BUFFER = extern struct {
-    StartingLcn: LARGE_INTEGER,
-};
-
-pub const VOLUME_BITMAP_BUFFER = extern struct {
-    StartingLcn: LARGE_INTEGER,
-    BitmapSize: LARGE_INTEGER,
-    Buffer: [1]u8,
-};
-
-pub const STARTING_VCN_INPUT_BUFFER = extern struct {
-    StartingVcn: LARGE_INTEGER,
-};
-
-pub const RETRIEVAL_POINTERS_BUFFER = extern struct {
-    ExtentCount: u32,
-    StartingVcn: LARGE_INTEGER,
-    Extents: [1]RETRIEVAL_POINTERS_BUFFER._Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const NTFS_FILE_RECORD_INPUT_BUFFER = extern struct {
-    FileReferenceNumber: LARGE_INTEGER,
-};
-
-pub const NTFS_FILE_RECORD_OUTPUT_BUFFER = extern struct {
-    FileReferenceNumber: LARGE_INTEGER,
-    FileRecordLength: u32,
-    FileRecordBuffer: [1]u8,
-};
-
-pub const MOVE_FILE_DATA = extern struct {
-    FileHandle: HANDLE,
-    StartingVcn: LARGE_INTEGER,
-    StartingLcn: LARGE_INTEGER,
-    ClusterCount: u32,
-};
-
-pub const FIND_BY_SID_DATA = extern struct {
-    Restart: u32,
-    Sid: SID,
-};
-
-pub const FIND_BY_SID_OUTPUT = extern struct {
-    NextEntryOffset: u32,
-    FileIndex: u32,
-    FileNameLength: u32,
-    FileName: [1]u16,
-};
-
-pub const MFT_ENUM_DATA_V0 = extern struct {
-    StartFileReferenceNumber: u64,
-    LowUsn: i64,
-    HighUsn: i64,
-};
-
-pub const MFT_ENUM_DATA_V1 = extern struct {
-    StartFileReferenceNumber: u64,
-    LowUsn: i64,
-    HighUsn: i64,
-    MinMajorVersion: u16,
-    MaxMajorVersion: u16,
-};
-
-pub const CREATE_USN_JOURNAL_DATA = extern struct {
-    MaximumSize: u64,
-    AllocationDelta: u64,
-};
-
-pub const READ_FILE_USN_DATA = extern struct {
-    MinMajorVersion: u16,
-    MaxMajorVersion: u16,
-};
-
-pub const READ_USN_JOURNAL_DATA_V0 = extern struct {
-    StartUsn: i64,
-    ReasonMask: u32,
-    ReturnOnlyOnClose: u32,
-    Timeout: u64,
-    BytesToWaitFor: u64,
-    UsnJournalID: u64,
-};
-
-pub const READ_USN_JOURNAL_DATA_V1 = extern struct {
-    StartUsn: i64,
-    ReasonMask: u32,
-    ReturnOnlyOnClose: u32,
-    Timeout: u64,
-    BytesToWaitFor: u64,
-    UsnJournalID: u64,
-    MinMajorVersion: u16,
-    MaxMajorVersion: u16,
-};
-
-pub const USN_TRACK_MODIFIED_RANGES = extern struct {
-    Flags: u32,
-    Unused: u32,
-    ChunkSize: u64,
-    FileSizeThreshold: i64,
-};
-
-pub const USN_RANGE_TRACK_OUTPUT = extern struct {
-    Usn: i64,
-};
-
-pub const USN_RECORD_V2 = extern struct {
-    RecordLength: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    FileReferenceNumber: u64,
-    ParentFileReferenceNumber: u64,
-    Usn: i64,
-    TimeStamp: LARGE_INTEGER,
-    Reason: u32,
-    SourceInfo: u32,
-    SecurityId: u32,
-    FileAttributes: u32,
-    FileNameLength: u16,
-    FileNameOffset: u16,
-    FileName: [1]u16,
-};
-
-pub const USN_RECORD_V3 = extern struct {
-    RecordLength: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    FileReferenceNumber: FILE_ID_128,
-    ParentFileReferenceNumber: FILE_ID_128,
-    Usn: i64,
-    TimeStamp: LARGE_INTEGER,
-    Reason: u32,
-    SourceInfo: u32,
-    SecurityId: u32,
-    FileAttributes: u32,
-    FileNameLength: u16,
-    FileNameOffset: u16,
-    FileName: [1]u16,
-};
-
-pub const USN_RECORD_COMMON_HEADER = extern struct {
-    RecordLength: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-};
-
-pub const USN_RECORD_EXTENT = extern struct {
-    Offset: i64,
-    Length: i64,
-};
-
-pub const USN_RECORD_V4 = extern struct {
-    Header: USN_RECORD_COMMON_HEADER,
-    FileReferenceNumber: FILE_ID_128,
-    ParentFileReferenceNumber: FILE_ID_128,
-    Usn: i64,
-    Reason: u32,
-    SourceInfo: u32,
-    RemainingExtents: u32,
-    NumberOfExtents: u16,
-    ExtentSize: u16,
-    Extents: [1]USN_RECORD_EXTENT,
-};
-
-pub const USN_JOURNAL_DATA_V0 = extern struct {
-    UsnJournalID: u64,
-    FirstUsn: i64,
-    NextUsn: i64,
-    LowestValidUsn: i64,
-    MaxUsn: i64,
-    MaximumSize: u64,
-    AllocationDelta: u64,
-};
-
-pub const USN_JOURNAL_DATA_V1 = extern struct {
-    UsnJournalID: u64,
-    FirstUsn: i64,
-    NextUsn: i64,
-    LowestValidUsn: i64,
-    MaxUsn: i64,
-    MaximumSize: u64,
-    AllocationDelta: u64,
-    MinSupportedMajorVersion: u16,
-    MaxSupportedMajorVersion: u16,
-};
-
-pub const USN_JOURNAL_DATA_V2 = extern struct {
-    UsnJournalID: u64,
-    FirstUsn: i64,
-    NextUsn: i64,
-    LowestValidUsn: i64,
-    MaxUsn: i64,
-    MaximumSize: u64,
-    AllocationDelta: u64,
-    MinSupportedMajorVersion: u16,
-    MaxSupportedMajorVersion: u16,
-    Flags: u32,
-    RangeTrackChunkSize: u64,
-    RangeTrackFileSizeThreshold: i64,
-};
-
-pub const DELETE_USN_JOURNAL_DATA = extern struct {
-    UsnJournalID: u64,
-    DeleteFlags: u32,
-};
-
-pub const MARK_HANDLE_INFO = extern struct {
-    Anonymous: MARK_HANDLE_INFO._Anonymous_e__Union,
-    VolumeHandle: HANDLE,
-    HandleInfo: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const FILESYSTEM_STATISTICS = extern struct {
-    FileSystemType: u16,
-    Version: u16,
-    SizeOfCompleteStructure: u32,
-    UserFileReads: u32,
-    UserFileReadBytes: u32,
-    UserDiskReads: u32,
-    UserFileWrites: u32,
-    UserFileWriteBytes: u32,
-    UserDiskWrites: u32,
-    MetaDataReads: u32,
-    MetaDataReadBytes: u32,
-    MetaDataDiskReads: u32,
-    MetaDataWrites: u32,
-    MetaDataWriteBytes: u32,
-    MetaDataDiskWrites: u32,
-};
-
-pub const FAT_STATISTICS = extern struct {
-    CreateHits: u32,
-    SuccessfulCreates: u32,
-    FailedCreates: u32,
-    NonCachedReads: u32,
-    NonCachedReadBytes: u32,
-    NonCachedWrites: u32,
-    NonCachedWriteBytes: u32,
-    NonCachedDiskReads: u32,
-    NonCachedDiskWrites: u32,
-};
-
-pub const EXFAT_STATISTICS = extern struct {
-    CreateHits: u32,
-    SuccessfulCreates: u32,
-    FailedCreates: u32,
-    NonCachedReads: u32,
-    NonCachedReadBytes: u32,
-    NonCachedWrites: u32,
-    NonCachedWriteBytes: u32,
-    NonCachedDiskReads: u32,
-    NonCachedDiskWrites: u32,
-};
-
-pub const NTFS_STATISTICS = extern struct {
-    LogFileFullExceptions: u32,
-    OtherExceptions: u32,
-    MftReads: u32,
-    MftReadBytes: u32,
-    MftWrites: u32,
-    MftWriteBytes: u32,
-    MftWritesUserLevel: NTFS_STATISTICS._MftWritesUserLevel_e__Struct,
-    MftWritesFlushForLogFileFull: u16,
-    MftWritesLazyWriter: u16,
-    MftWritesUserRequest: u16,
-    Mft2Writes: u32,
-    Mft2WriteBytes: u32,
-    Mft2WritesUserLevel: NTFS_STATISTICS._Mft2WritesUserLevel_e__Struct,
-    Mft2WritesFlushForLogFileFull: u16,
-    Mft2WritesLazyWriter: u16,
-    Mft2WritesUserRequest: u16,
-    RootIndexReads: u32,
-    RootIndexReadBytes: u32,
-    RootIndexWrites: u32,
-    RootIndexWriteBytes: u32,
-    BitmapReads: u32,
-    BitmapReadBytes: u32,
-    BitmapWrites: u32,
-    BitmapWriteBytes: u32,
-    BitmapWritesFlushForLogFileFull: u16,
-    BitmapWritesLazyWriter: u16,
-    BitmapWritesUserRequest: u16,
-    BitmapWritesUserLevel: NTFS_STATISTICS._BitmapWritesUserLevel_e__Struct,
-    MftBitmapReads: u32,
-    MftBitmapReadBytes: u32,
-    MftBitmapWrites: u32,
-    MftBitmapWriteBytes: u32,
-    MftBitmapWritesFlushForLogFileFull: u16,
-    MftBitmapWritesLazyWriter: u16,
-    MftBitmapWritesUserRequest: u16,
-    MftBitmapWritesUserLevel: NTFS_STATISTICS._MftBitmapWritesUserLevel_e__Struct,
-    UserIndexReads: u32,
-    UserIndexReadBytes: u32,
-    UserIndexWrites: u32,
-    UserIndexWriteBytes: u32,
-    LogFileReads: u32,
-    LogFileReadBytes: u32,
-    LogFileWrites: u32,
-    LogFileWriteBytes: u32,
-    Allocate: NTFS_STATISTICS._Allocate_e__Struct,
-    DiskResourcesExhausted: u32,
-    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const FILESYSTEM_STATISTICS_EX = extern struct {
-    FileSystemType: u16,
-    Version: u16,
-    SizeOfCompleteStructure: u32,
-    UserFileReads: u64,
-    UserFileReadBytes: u64,
-    UserDiskReads: u64,
-    UserFileWrites: u64,
-    UserFileWriteBytes: u64,
-    UserDiskWrites: u64,
-    MetaDataReads: u64,
-    MetaDataReadBytes: u64,
-    MetaDataDiskReads: u64,
-    MetaDataWrites: u64,
-    MetaDataWriteBytes: u64,
-    MetaDataDiskWrites: u64,
-};
-
-pub const NTFS_STATISTICS_EX = extern struct {
-    LogFileFullExceptions: u32,
-    OtherExceptions: u32,
-    MftReads: u64,
-    MftReadBytes: u64,
-    MftWrites: u64,
-    MftWriteBytes: u64,
-    MftWritesUserLevel: NTFS_STATISTICS_EX._MftWritesUserLevel_e__Struct,
-    MftWritesFlushForLogFileFull: u32,
-    MftWritesLazyWriter: u32,
-    MftWritesUserRequest: u32,
-    Mft2Writes: u64,
-    Mft2WriteBytes: u64,
-    Mft2WritesUserLevel: NTFS_STATISTICS_EX._Mft2WritesUserLevel_e__Struct,
-    Mft2WritesFlushForLogFileFull: u32,
-    Mft2WritesLazyWriter: u32,
-    Mft2WritesUserRequest: u32,
-    RootIndexReads: u64,
-    RootIndexReadBytes: u64,
-    RootIndexWrites: u64,
-    RootIndexWriteBytes: u64,
-    BitmapReads: u64,
-    BitmapReadBytes: u64,
-    BitmapWrites: u64,
-    BitmapWriteBytes: u64,
-    BitmapWritesFlushForLogFileFull: u32,
-    BitmapWritesLazyWriter: u32,
-    BitmapWritesUserRequest: u32,
-    BitmapWritesUserLevel: NTFS_STATISTICS_EX._BitmapWritesUserLevel_e__Struct,
-    MftBitmapReads: u64,
-    MftBitmapReadBytes: u64,
-    MftBitmapWrites: u64,
-    MftBitmapWriteBytes: u64,
-    MftBitmapWritesFlushForLogFileFull: u32,
-    MftBitmapWritesLazyWriter: u32,
-    MftBitmapWritesUserRequest: u32,
-    MftBitmapWritesUserLevel: NTFS_STATISTICS_EX._MftBitmapWritesUserLevel_e__Struct,
-    UserIndexReads: u64,
-    UserIndexReadBytes: u64,
-    UserIndexWrites: u64,
-    UserIndexWriteBytes: u64,
-    LogFileReads: u64,
-    LogFileReadBytes: u64,
-    LogFileWrites: u64,
-    LogFileWriteBytes: u64,
-    Allocate: NTFS_STATISTICS_EX._Allocate_e__Struct,
-    DiskResourcesExhausted: u32,
-    VolumeTrimCount: u64,
-    VolumeTrimTime: u64,
-    VolumeTrimByteCount: u64,
-    FileLevelTrimCount: u64,
-    FileLevelTrimTime: u64,
-    FileLevelTrimByteCount: u64,
-    VolumeTrimSkippedCount: u64,
-    VolumeTrimSkippedByteCount: u64,
-    NtfsFillStatInfoFromMftRecordCalledCount: u64,
-    NtfsFillStatInfoFromMftRecordBailedBecauseOfAttributeListCount: u64,
-    NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _Allocate_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const FILE_OBJECTID_BUFFER = extern struct {
-    ObjectId: [16]u8,
-    Anonymous: FILE_OBJECTID_BUFFER._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const FILE_SET_SPARSE_BUFFER = extern struct {
-    SetSparse: u8,
-};
-
-pub const FILE_ZERO_DATA_INFORMATION = extern struct {
-    FileOffset: LARGE_INTEGER,
-    BeyondFinalZero: LARGE_INTEGER,
-};
-
-pub const FILE_ALLOCATED_RANGE_BUFFER = extern struct {
-    FileOffset: LARGE_INTEGER,
-    Length: LARGE_INTEGER,
-};
-
-pub const PLEX_READ_DATA_REQUEST = extern struct {
-    ByteOffset: LARGE_INTEGER,
-    ByteLength: u32,
-    PlexNumber: u32,
-};
-
-pub const FILE_MAKE_COMPATIBLE_BUFFER = extern struct {
-    CloseDisc: u8,
-};
-
-pub const FILE_SET_DEFECT_MGMT_BUFFER = extern struct {
-    Disable: u8,
-};
-
-pub const FILE_QUERY_SPARING_BUFFER = extern struct {
-    SparingUnitBytes: u32,
-    SoftwareSparing: u8,
-    TotalSpareBlocks: u32,
-    FreeSpareBlocks: u32,
-};
-
-pub const FILE_QUERY_ON_DISK_VOL_INFO_BUFFER = extern struct {
-    DirectoryCount: LARGE_INTEGER,
-    FileCount: LARGE_INTEGER,
-    FsFormatMajVersion: u16,
-    FsFormatMinVersion: u16,
-    FsFormatName: [12]u16,
-    FormatTime: LARGE_INTEGER,
-    LastUpdateTime: LARGE_INTEGER,
-    CopyrightInfo: [34]u16,
-    AbstractInfo: [34]u16,
-    FormattingImplementationInfo: [34]u16,
-    LastModifyingImplementationInfo: [34]u16,
-};
-
-pub const SHRINK_VOLUME_INFORMATION = extern struct {
-    ShrinkRequestType: SHRINK_VOLUME_REQUEST_TYPES,
-    Flags: u64,
-    NewNumberOfSectors: i64,
-};
-
-pub const TXFS_MODIFY_RM = extern struct {
-    Flags: u32,
-    LogContainerCountMax: u32,
-    LogContainerCountMin: u32,
-    LogContainerCount: u32,
-    LogGrowthIncrement: u32,
-    LogAutoShrinkPercentage: u32,
-    Reserved: u64,
-    LoggingMode: u16,
-};
-
-pub const TXFS_QUERY_RM_INFORMATION = extern struct {
-    BytesRequired: u32,
-    TailLsn: u64,
-    CurrentLsn: u64,
-    ArchiveTailLsn: u64,
-    LogContainerSize: u64,
-    HighestVirtualClock: LARGE_INTEGER,
-    LogContainerCount: u32,
-    LogContainerCountMax: u32,
-    LogContainerCountMin: u32,
-    LogGrowthIncrement: u32,
-    LogAutoShrinkPercentage: u32,
-    Flags: u32,
-    LoggingMode: u16,
-    Reserved: u16,
-    RmState: u32,
-    LogCapacity: u64,
-    LogFree: u64,
-    TopsSize: u64,
-    TopsUsed: u64,
-    TransactionCount: u64,
-    OnePCCount: u64,
-    TwoPCCount: u64,
-    NumberLogFileFull: u64,
-    OldestTransactionAge: u64,
-    RMName: Guid,
-    TmLogPathOffset: u32,
-};
-
-pub const TXFS_GET_METADATA_INFO_OUT = extern struct {
-    TxfFileId: TXFS_GET_METADATA_INFO_OUT._TxfFileId_e__Struct,
-    LockingTransaction: Guid,
-    LastLsn: u64,
-    TransactionState: u32,
-    const _TxfFileId_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const TXFS_LIST_TRANSACTION_LOCKED_FILES_ENTRY = extern struct {
-    Offset: u64,
-    NameFlags: u32,
-    FileId: i64,
-    Reserved1: u32,
-    Reserved2: u32,
-    Reserved3: i64,
-    FileName: [1]u16,
-};
-
-pub const TXFS_LIST_TRANSACTION_LOCKED_FILES = extern struct {
-    KtmTransaction: Guid,
-    NumberOfFiles: u64,
-    BufferSizeRequired: u64,
-    Offset: u64,
-};
-
-pub const TXFS_LIST_TRANSACTIONS_ENTRY = extern struct {
-    TransactionId: Guid,
-    TransactionState: u32,
-    Reserved1: u32,
-    Reserved2: u32,
-    Reserved3: i64,
-};
-
-pub const TXFS_LIST_TRANSACTIONS = extern struct {
-    NumberOfTransactions: u64,
-    BufferSizeRequired: u64,
-};
-
-pub const TXFS_READ_BACKUP_INFORMATION_OUT = extern struct {
-    Anonymous: TXFS_READ_BACKUP_INFORMATION_OUT._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const TXFS_WRITE_BACKUP_INFORMATION = extern struct {
-    Buffer: [1]u8,
-};
-
-pub const TXFS_GET_TRANSACTED_VERSION = extern struct {
-    ThisBaseVersion: u32,
-    LatestVersion: u32,
-    ThisMiniVersion: u16,
-    FirstMiniVersion: u16,
-    LatestMiniVersion: u16,
-};
-
-pub const TXFS_SAVEPOINT_INFORMATION = extern struct {
-    KtmTransaction: HANDLE,
-    ActionCode: u32,
-    SavepointId: u32,
-};
-
-pub const TXFS_CREATE_MINIVERSION_INFO = extern struct {
-    StructureVersion: u16,
-    StructureLength: u16,
-    BaseVersion: u32,
-    MiniVersion: u16,
-};
-
-pub const TXFS_TRANSACTION_ACTIVE_INFO = extern struct {
-    TransactionsActiveAtSnapshot: u8,
-};
-
-pub const BOOT_AREA_INFO = extern struct {
-    BootSectorCount: u32,
-    BootSectors: [2]BOOT_AREA_INFO._Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-};
-
-pub const RETRIEVAL_POINTER_BASE = extern struct {
-    FileAreaOffset: LARGE_INTEGER,
-};
-
-pub const FILE_SYSTEM_RECOGNITION_INFORMATION = extern struct {
-    FileSystem: [9]i8,
-};
-
-pub const REQUEST_OPLOCK_INPUT_BUFFER = extern struct {
-    StructureVersion: u16,
-    StructureLength: u16,
-    RequestedOplockLevel: u32,
-    Flags: u32,
-};
-
-pub const REQUEST_OPLOCK_OUTPUT_BUFFER = extern struct {
-    StructureVersion: u16,
-    StructureLength: u16,
-    OriginalOplockLevel: u32,
-    NewOplockLevel: u32,
-    Flags: u32,
-    AccessMode: u32,
-    ShareMode: u16,
-};
-
-pub const LOOKUP_STREAM_FROM_CLUSTER_INPUT = extern struct {
-    Flags: u32,
-    NumberOfClusters: u32,
-    Cluster: [1]LARGE_INTEGER,
-};
-
-pub const LOOKUP_STREAM_FROM_CLUSTER_OUTPUT = extern struct {
-    Offset: u32,
-    NumberOfMatches: u32,
-    BufferSizeRequired: u32,
-};
-
-pub const LOOKUP_STREAM_FROM_CLUSTER_ENTRY = extern struct {
-    OffsetToNext: u32,
-    Flags: u32,
-    Reserved: LARGE_INTEGER,
-    Cluster: LARGE_INTEGER,
-    FileName: [1]u16,
-};
-
-pub const CSV_NAMESPACE_INFO = extern struct {
-    Version: u32,
-    DeviceNumber: u32,
-    StartingOffset: LARGE_INTEGER,
-    SectorSize: u32,
-};
-
-pub const CSV_CONTROL_OP = extern enum(i32) {
-    CsvControlStartRedirectFile = 2,
-    CsvControlStopRedirectFile = 3,
-    CsvControlQueryRedirectState = 4,
-    CsvControlQueryFileRevision = 6,
-    CsvControlQueryMdsPath = 8,
-    CsvControlQueryFileRevisionFileId128 = 9,
-    CsvControlQueryVolumeRedirectState = 10,
-    CsvControlEnableUSNRangeModificationTracking = 13,
-    CsvControlMarkHandleLocalVolumeMount = 14,
-    CsvControlUnmarkHandleLocalVolumeMount = 15,
-    CsvControlGetCsvFsMdsPathV2 = 18,
-    CsvControlDisableCaching = 19,
-    CsvControlEnableCaching = 20,
-    CsvControlStartForceDFO = 21,
-    CsvControlStopForceDFO = 22,
-};
-pub const CsvControlStartRedirectFile = CSV_CONTROL_OP.CsvControlStartRedirectFile;
-pub const CsvControlStopRedirectFile = CSV_CONTROL_OP.CsvControlStopRedirectFile;
-pub const CsvControlQueryRedirectState = CSV_CONTROL_OP.CsvControlQueryRedirectState;
-pub const CsvControlQueryFileRevision = CSV_CONTROL_OP.CsvControlQueryFileRevision;
-pub const CsvControlQueryMdsPath = CSV_CONTROL_OP.CsvControlQueryMdsPath;
-pub const CsvControlQueryFileRevisionFileId128 = CSV_CONTROL_OP.CsvControlQueryFileRevisionFileId128;
-pub const CsvControlQueryVolumeRedirectState = CSV_CONTROL_OP.CsvControlQueryVolumeRedirectState;
-pub const CsvControlEnableUSNRangeModificationTracking = CSV_CONTROL_OP.CsvControlEnableUSNRangeModificationTracking;
-pub const CsvControlMarkHandleLocalVolumeMount = CSV_CONTROL_OP.CsvControlMarkHandleLocalVolumeMount;
-pub const CsvControlUnmarkHandleLocalVolumeMount = CSV_CONTROL_OP.CsvControlUnmarkHandleLocalVolumeMount;
-pub const CsvControlGetCsvFsMdsPathV2 = CSV_CONTROL_OP.CsvControlGetCsvFsMdsPathV2;
-pub const CsvControlDisableCaching = CSV_CONTROL_OP.CsvControlDisableCaching;
-pub const CsvControlEnableCaching = CSV_CONTROL_OP.CsvControlEnableCaching;
-pub const CsvControlStartForceDFO = CSV_CONTROL_OP.CsvControlStartForceDFO;
-pub const CsvControlStopForceDFO = CSV_CONTROL_OP.CsvControlStopForceDFO;
-
-pub const CSV_CONTROL_PARAM = extern struct {
-    Operation: CSV_CONTROL_OP,
-    Unused: i64,
-};
-
-pub const CSV_QUERY_REDIRECT_STATE = extern struct {
-    MdsNodeId: u32,
-    DsNodeId: u32,
-    FileRedirected: u8,
-};
-
-pub const CSV_QUERY_FILE_REVISION = extern struct {
-    FileId: i64,
-    FileRevision: [3]i64,
-};
-
-pub const CSV_QUERY_MDS_PATH = extern struct {
-    MdsNodeId: u32,
-    DsNodeId: u32,
-    PathLength: u32,
-    Path: [1]u16,
-};
-
-pub const CSV_QUERY_VETO_FILE_DIRECT_IO_OUTPUT = extern struct {
-    VetoedFromAltitudeIntegral: u64,
-    VetoedFromAltitudeDecimal: u64,
-    Reason: [256]u16,
-};
-
-pub const CSV_IS_OWNED_BY_CSVFS = extern struct {
-    OwnedByCSVFS: u8,
-};
-
-pub const FILE_LEVEL_TRIM_RANGE = extern struct {
-    Offset: u64,
-    Length: u64,
-};
-
-pub const FILE_LEVEL_TRIM = extern struct {
-    Key: u32,
-    NumRanges: u32,
-    Ranges: [1]FILE_LEVEL_TRIM_RANGE,
-};
-
-pub const FILE_LEVEL_TRIM_OUTPUT = extern struct {
-    NumRangesProcessed: u32,
-};
-
-pub const FSCTL_GET_INTEGRITY_INFORMATION_BUFFER = extern struct {
-    ChecksumAlgorithm: u16,
-    Reserved: u16,
-    Flags: u32,
-    ChecksumChunkSizeInBytes: u32,
-    ClusterSizeInBytes: u32,
-};
-
-pub const FSCTL_SET_INTEGRITY_INFORMATION_BUFFER = extern struct {
-    ChecksumAlgorithm: u16,
-    Reserved: u16,
-    Flags: u32,
-};
-
-pub const REPAIR_COPIES_INPUT = extern struct {
-    Size: u32,
-    Flags: u32,
-    FileOffset: LARGE_INTEGER,
-    Length: u32,
-    SourceCopy: u32,
-    NumberOfRepairCopies: u32,
-    RepairCopies: [1]u32,
-};
-
-pub const REPAIR_COPIES_OUTPUT = extern struct {
-    Size: u32,
-    Status: u32,
-    ResumeFileOffset: LARGE_INTEGER,
-};
-
-pub const FILE_STORAGE_TIER_MEDIA_TYPE = extern enum(i32) {
-    FileStorageTierMediaTypeUnspecified = 0,
-    FileStorageTierMediaTypeDisk = 1,
-    FileStorageTierMediaTypeSsd = 2,
-    FileStorageTierMediaTypeScm = 4,
-    FileStorageTierMediaTypeMax = 5,
-};
-pub const FileStorageTierMediaTypeUnspecified = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeUnspecified;
-pub const FileStorageTierMediaTypeDisk = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeDisk;
-pub const FileStorageTierMediaTypeSsd = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeSsd;
-pub const FileStorageTierMediaTypeScm = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeScm;
-pub const FileStorageTierMediaTypeMax = FILE_STORAGE_TIER_MEDIA_TYPE.FileStorageTierMediaTypeMax;
-
-pub const FILE_STORAGE_TIER = extern struct {
-    Id: Guid,
-    Name: [256]u16,
-    Description: [256]u16,
-    Flags: u64,
-    ProvisionedCapacity: u64,
-    MediaType: FILE_STORAGE_TIER_MEDIA_TYPE,
-    Class: FILE_STORAGE_TIER_CLASS,
-};
-
-pub const FSCTL_QUERY_STORAGE_CLASSES_OUTPUT = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u32,
-    TotalNumberOfTiers: u32,
-    NumberOfTiersReturned: u32,
-    Tiers: [1]FILE_STORAGE_TIER,
-};
-
-pub const FSCTL_QUERY_REGION_INFO_INPUT = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u32,
-    NumberOfTierIds: u32,
-    TierIds: [1]Guid,
-};
-
-pub const FILE_STORAGE_TIER_REGION = extern struct {
-    TierId: Guid,
-    Offset: u64,
-    Length: u64,
-};
-
-pub const FSCTL_QUERY_REGION_INFO_OUTPUT = extern struct {
-    Version: u32,
-    Size: u32,
-    Flags: u32,
-    Reserved: u32,
-    Alignment: u64,
-    TotalNumberOfRegions: u32,
-    NumberOfRegionsReturned: u32,
-    Regions: [1]FILE_STORAGE_TIER_REGION,
-};
-
-pub const DUPLICATE_EXTENTS_DATA = extern struct {
-    FileHandle: HANDLE,
-    SourceFileOffset: LARGE_INTEGER,
-    TargetFileOffset: LARGE_INTEGER,
-    ByteCount: LARGE_INTEGER,
-};
-
-pub const DISK_EXTENT = extern struct {
-    DiskNumber: u32,
-    StartingOffset: LARGE_INTEGER,
-    ExtentLength: LARGE_INTEGER,
-};
-
-pub const VOLUME_DISK_EXTENTS = extern struct {
-    NumberOfDiskExtents: u32,
-    Extents: [1]DISK_EXTENT,
-};
-
-pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
-    GptAttributes: u64,
 };
 
 pub const OFSTRUCT = extern struct {
@@ -7116,6 +7116,7 @@ pub extern "KERNEL32" fn CreateSymbolicLinkTransactedW(
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const WIN32_FIND_DATA = WIN32_FIND_DATAA;
         pub const NTMS_DRIVEINFORMATION = NTMS_DRIVEINFORMATIONA;
         pub const NTMS_CHANGERINFORMATION = NTMS_CHANGERINFORMATIONA;
         pub const NTMS_PMIDINFORMATION = NTMS_PMIDINFORMATIONA;
@@ -7130,7 +7131,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const NTMS_I1_PARTITIONINFORMATION = NTMS_I1_PARTITIONINFORMATIONA;
         pub const NTMS_I1_OPREQUESTINFORMATION = NTMS_I1_OPREQUESTINFORMATIONA;
         pub const NTMS_I1_OBJECTINFORMATION = NTMS_I1_OBJECTINFORMATIONA;
-        pub const WIN32_FIND_DATA = WIN32_FIND_DATAA;
         pub const CreateDirectory = CreateDirectoryA;
         pub const CreateFile = CreateFileA;
         pub const DefineDosDevice = DefineDosDeviceA;
@@ -7202,6 +7202,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CreateSymbolicLinkTransacted = CreateSymbolicLinkTransactedA;
     },
     .wide => struct {
+        pub const WIN32_FIND_DATA = WIN32_FIND_DATAW;
         pub const NTMS_DRIVEINFORMATION = NTMS_DRIVEINFORMATIONW;
         pub const NTMS_CHANGERINFORMATION = NTMS_CHANGERINFORMATIONW;
         pub const NTMS_PMIDINFORMATION = NTMS_PMIDINFORMATIONW;
@@ -7216,7 +7217,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const NTMS_I1_PARTITIONINFORMATION = NTMS_I1_PARTITIONINFORMATIONW;
         pub const NTMS_I1_OPREQUESTINFORMATION = NTMS_I1_OPREQUESTINFORMATIONW;
         pub const NTMS_I1_OBJECTINFORMATION = NTMS_I1_OBJECTINFORMATIONW;
-        pub const WIN32_FIND_DATA = WIN32_FIND_DATAW;
         pub const CreateDirectory = CreateDirectoryW;
         pub const CreateFile = CreateFileW;
         pub const DefineDosDevice = DefineDosDeviceW;
@@ -7288,6 +7288,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CreateSymbolicLinkTransacted = CreateSymbolicLinkTransactedW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const WIN32_FIND_DATA = *opaque{};
         pub const NTMS_DRIVEINFORMATION = *opaque{};
         pub const NTMS_CHANGERINFORMATION = *opaque{};
         pub const NTMS_PMIDINFORMATION = *opaque{};
@@ -7302,7 +7303,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const NTMS_I1_PARTITIONINFORMATION = *opaque{};
         pub const NTMS_I1_OPREQUESTINFORMATION = *opaque{};
         pub const NTMS_I1_OBJECTINFORMATION = *opaque{};
-        pub const WIN32_FIND_DATA = *opaque{};
         pub const CreateDirectory = *opaque{};
         pub const CreateFile = *opaque{};
         pub const DefineDosDevice = *opaque{};
@@ -7373,6 +7373,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CreateSymbolicLink = *opaque{};
         pub const CreateSymbolicLinkTransacted = *opaque{};
     } else struct {
+        pub const WIN32_FIND_DATA = @compileError("'WIN32_FIND_DATA' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_DRIVEINFORMATION = @compileError("'NTMS_DRIVEINFORMATION' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_CHANGERINFORMATION = @compileError("'NTMS_CHANGERINFORMATION' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_PMIDINFORMATION = @compileError("'NTMS_PMIDINFORMATION' requires that UNICODE be set to true or false in the root module");
@@ -7387,7 +7388,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const NTMS_I1_PARTITIONINFORMATION = @compileError("'NTMS_I1_PARTITIONINFORMATION' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_I1_OPREQUESTINFORMATION = @compileError("'NTMS_I1_OPREQUESTINFORMATION' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_I1_OBJECTINFORMATION = @compileError("'NTMS_I1_OBJECTINFORMATION' requires that UNICODE be set to true or false in the root module");
-        pub const WIN32_FIND_DATA = @compileError("'WIN32_FIND_DATA' requires that UNICODE be set to true or false in the root module");
         pub const CreateDirectory = @compileError("'CreateDirectory' requires that UNICODE be set to true or false in the root module");
         pub const CreateFile = @compileError("'CreateFile' requires that UNICODE be set to true or false in the root module");
         pub const DefineDosDevice = @compileError("'DefineDosDevice' requires that UNICODE be set to true or false in the root module");
@@ -7466,10 +7466,10 @@ const Guid = @import("../zig.zig").Guid;
 const DETECTION_TYPE = @import("system_services.zig").DETECTION_TYPE;
 const IConnectionPointContainer = @import("com.zig").IConnectionPointContainer;
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const STORAGE_BUS_TYPE = @import("system_services.zig").STORAGE_BUS_TYPE;
 const SID = @import("security.zig").SID;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IUnknown = @import("com.zig").IUnknown;
-const STORAGE_BUS_TYPE = @import("system_services.zig").STORAGE_BUS_TYPE;
 const HRESULT = @import("com.zig").HRESULT;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
@@ -7478,14 +7478,15 @@ const FILE_SEGMENT_ELEMENT = @import("system_services.zig").FILE_SEGMENT_ELEMENT
 const BOOL = @import("system_services.zig").BOOL;
 const DISK_CACHE_RETENTION_PRIORITY = @import("system_services.zig").DISK_CACHE_RETENTION_PRIORITY;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
-const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
+const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const SHRINK_VOLUME_REQUEST_TYPES = @import("system_services.zig").SHRINK_VOLUME_REQUEST_TYPES;
 const HANDLE = @import("system_services.zig").HANDLE;
 const FILE_STORAGE_TIER_CLASS = @import("system_services.zig").FILE_STORAGE_TIER_CLASS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    _ = LPOVERLAPPED_COMPLETION_ROUTINE;
     _ = MAXMEDIALABEL;
     _ = CLAIMMEDIALABEL;
     _ = CLAIMMEDIALABELEX;
@@ -7497,7 +7498,6 @@ test {
     _ = PLOG_UNPINNED_CALLBACK;
     _ = WofEnumEntryProc;
     _ = WofEnumFilesProc;
-    _ = LPOVERLAPPED_COMPLETION_ROUTINE;
     _ = PFE_EXPORT_FUNC;
     _ = PFE_IMPORT_FUNC;
     _ = LPPROGRESS_ROUTINE;

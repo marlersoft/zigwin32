@@ -536,7 +536,7 @@ pub const DXGI_SWAP_CHAIN_DESC = extern struct {
     Flags: u32,
 };
 
-const IID_IDXGIObject_Value = @import("../zig.zig").Guid.initString("AEC22FB8-76F3-4639-9BE0-28EB43A67A2E");
+const IID_IDXGIObject_Value = @import("../zig.zig").Guid.initString("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
 pub const IID_IDXGIObject = &IID_IDXGIObject_Value;
 pub const IDXGIObject = extern struct {
     pub const VTable = extern struct {
@@ -587,7 +587,7 @@ pub const IDXGIObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDeviceSubObject_Value = @import("../zig.zig").Guid.initString("3D3E0379-F9DE-4D58-BB6C-18D62992F1A6");
+const IID_IDXGIDeviceSubObject_Value = @import("../zig.zig").Guid.initString("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
 pub const IID_IDXGIDeviceSubObject = &IID_IDXGIDeviceSubObject_Value;
 pub const IDXGIDeviceSubObject = extern struct {
     pub const VTable = extern struct {
@@ -609,7 +609,7 @@ pub const IDXGIDeviceSubObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIResource_Value = @import("../zig.zig").Guid.initString("035F3AB4-482E-4E50-B41F-8A7F8BD8960B");
+const IID_IDXGIResource_Value = @import("../zig.zig").Guid.initString("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
 pub const IID_IDXGIResource = &IID_IDXGIResource_Value;
 pub const IDXGIResource = extern struct {
     pub const VTable = extern struct {
@@ -654,7 +654,7 @@ pub const IDXGIResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIKeyedMutex_Value = @import("../zig.zig").Guid.initString("9D8E1289-D7B3-465F-8126-250E349AF85D");
+const IID_IDXGIKeyedMutex_Value = @import("../zig.zig").Guid.initString("9d8e1289-d7b3-465f-8126-250e349af85d");
 pub const IID_IDXGIKeyedMutex = &IID_IDXGIKeyedMutex_Value;
 pub const IDXGIKeyedMutex = extern struct {
     pub const VTable = extern struct {
@@ -684,7 +684,7 @@ pub const IDXGIKeyedMutex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGISurface_Value = @import("../zig.zig").Guid.initString("CAFCB56C-6AC3-4889-BF47-9E23BBD260EC");
+const IID_IDXGISurface_Value = @import("../zig.zig").Guid.initString("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
 pub const IID_IDXGISurface = &IID_IDXGISurface_Value;
 pub const IDXGISurface = extern struct {
     pub const VTable = extern struct {
@@ -721,7 +721,7 @@ pub const IDXGISurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGISurface1_Value = @import("../zig.zig").Guid.initString("4AE63092-6327-4C1B-80AE-BFE12EA32B86");
+const IID_IDXGISurface1_Value = @import("../zig.zig").Guid.initString("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
 pub const IID_IDXGISurface1 = &IID_IDXGISurface1_Value;
 pub const IDXGISurface1 = extern struct {
     pub const VTable = extern struct {
@@ -751,7 +751,7 @@ pub const IDXGISurface1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIAdapter_Value = @import("../zig.zig").Guid.initString("2411E7E1-12AC-4CCF-BD14-9798E8534DC0");
+const IID_IDXGIAdapter_Value = @import("../zig.zig").Guid.initString("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
 pub const IID_IDXGIAdapter = &IID_IDXGIAdapter_Value;
 pub const IDXGIAdapter = extern struct {
     pub const VTable = extern struct {
@@ -790,7 +790,7 @@ pub const IDXGIAdapter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIOutput_Value = @import("../zig.zig").Guid.initString("AE02EEDB-C735-4690-8D52-5A8DC20213AA");
+const IID_IDXGIOutput_Value = @import("../zig.zig").Guid.initString("ae02eedb-c735-4690-8d52-5a8dc20213aa");
 pub const IID_IDXGIOutput = &IID_IDXGIOutput_Value;
 pub const IDXGIOutput = extern struct {
     pub const VTable = extern struct {
@@ -903,7 +903,7 @@ pub const IDXGIOutput = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGISwapChain_Value = @import("../zig.zig").Guid.initString("310D36A0-D2E7-4C0A-AA04-6A9D23B8886A");
+const IID_IDXGISwapChain_Value = @import("../zig.zig").Guid.initString("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
 pub const IID_IDXGISwapChain = &IID_IDXGISwapChain_Value;
 pub const IDXGISwapChain = extern struct {
     pub const VTable = extern struct {
@@ -1005,7 +1005,7 @@ pub const IDXGISwapChain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactory_Value = @import("../zig.zig").Guid.initString("7B7166EC-21C7-44AE-B21A-C9AE321AE369");
+const IID_IDXGIFactory_Value = @import("../zig.zig").Guid.initString("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
 pub const IID_IDXGIFactory = &IID_IDXGIFactory_Value;
 pub const IDXGIFactory = extern struct {
     pub const VTable = extern struct {
@@ -1063,7 +1063,7 @@ pub const IDXGIFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDevice_Value = @import("../zig.zig").Guid.initString("54EC77FA-1377-44E6-8C32-88FD5F44C84C");
+const IID_IDXGIDevice_Value = @import("../zig.zig").Guid.initString("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
 pub const IID_IDXGIDevice = &IID_IDXGIDevice_Value;
 pub const IDXGIDevice = extern struct {
     pub const VTable = extern struct {
@@ -1149,7 +1149,7 @@ pub const DXGI_DISPLAY_COLOR_SPACE = extern struct {
     WhitePoints: [32]f32,
 };
 
-const IID_IDXGIFactory1_Value = @import("../zig.zig").Guid.initString("770AAE78-F26F-4DBA-A829-253C83D1B387");
+const IID_IDXGIFactory1_Value = @import("../zig.zig").Guid.initString("770aae78-f26f-4dba-a829-253c83d1b387");
 pub const IID_IDXGIFactory1 = &IID_IDXGIFactory1_Value;
 pub const IDXGIFactory1 = extern struct {
     pub const VTable = extern struct {
@@ -1178,7 +1178,7 @@ pub const IDXGIFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIAdapter1_Value = @import("../zig.zig").Guid.initString("29038F61-3839-4626-91FD-086879011A05");
+const IID_IDXGIAdapter1_Value = @import("../zig.zig").Guid.initString("29038f61-3839-4626-91fd-086879011a05");
 pub const IID_IDXGIAdapter1 = &IID_IDXGIAdapter1_Value;
 pub const IDXGIAdapter1 = extern struct {
     pub const VTable = extern struct {
@@ -1199,7 +1199,7 @@ pub const IDXGIAdapter1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDevice1_Value = @import("../zig.zig").Guid.initString("77DB970F-6276-48BA-BA28-070143B4392C");
+const IID_IDXGIDevice1_Value = @import("../zig.zig").Guid.initString("77db970f-6276-48ba-ba28-070143b4392c");
 pub const IID_IDXGIDevice1 = &IID_IDXGIDevice1_Value;
 pub const IDXGIDevice1 = extern struct {
     pub const VTable = extern struct {
@@ -1228,7 +1228,7 @@ pub const IDXGIDevice1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDisplayControl_Value = @import("../zig.zig").Guid.initString("EA9DBF1A-C88E-4486-854A-98AA0138F30C");
+const IID_IDXGIDisplayControl_Value = @import("../zig.zig").Guid.initString("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
 pub const IID_IDXGIDisplayControl = &IID_IDXGIDisplayControl_Value;
 pub const IDXGIDisplayControl = extern struct {
     pub const VTable = extern struct {
@@ -1300,7 +1300,7 @@ pub const DXGI_OUTDUPL_FRAME_INFO = extern struct {
     PointerShapeBufferSize: u32,
 };
 
-const IID_IDXGIOutputDuplication_Value = @import("../zig.zig").Guid.initString("191CFAC3-A341-470D-B26E-A864F428319C");
+const IID_IDXGIOutputDuplication_Value = @import("../zig.zig").Guid.initString("191cfac3-a341-470d-b26e-a864f428319c");
 pub const IID_IDXGIOutputDuplication = &IID_IDXGIOutputDuplication_Value;
 pub const IDXGIOutputDuplication = extern struct {
     pub const VTable = extern struct {
@@ -1397,7 +1397,7 @@ pub const DXGI_ALPHA_MODE_STRAIGHT = DXGI_ALPHA_MODE.STRAIGHT;
 pub const DXGI_ALPHA_MODE_IGNORE = DXGI_ALPHA_MODE.IGNORE;
 pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
 
-const IID_IDXGISurface2_Value = @import("../zig.zig").Guid.initString("ABA496DD-B617-4CB8-A866-BC44D7EB1FA2");
+const IID_IDXGISurface2_Value = @import("../zig.zig").Guid.initString("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
 pub const IID_IDXGISurface2 = &IID_IDXGISurface2_Value;
 pub const IDXGISurface2 = extern struct {
     pub const VTable = extern struct {
@@ -1420,7 +1420,7 @@ pub const IDXGISurface2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIResource1_Value = @import("../zig.zig").Guid.initString("30961379-4609-4A41-998E-54FE567EE0C1");
+const IID_IDXGIResource1_Value = @import("../zig.zig").Guid.initString("30961379-4609-4a41-998e-54fe567ee0c1");
 pub const IID_IDXGIResource1 = &IID_IDXGIResource1_Value;
 pub const IDXGIResource1 = extern struct {
     pub const VTable = extern struct {
@@ -1462,7 +1462,7 @@ pub const DXGI_OFFER_RESOURCE_PRIORITY_LOW = DXGI_OFFER_RESOURCE_PRIORITY.LOW;
 pub const DXGI_OFFER_RESOURCE_PRIORITY_NORMAL = DXGI_OFFER_RESOURCE_PRIORITY.NORMAL;
 pub const DXGI_OFFER_RESOURCE_PRIORITY_HIGH = DXGI_OFFER_RESOURCE_PRIORITY.HIGH;
 
-const IID_IDXGIDevice2_Value = @import("../zig.zig").Guid.initString("05008617-FBFD-4051-A790-144884B4F6A9");
+const IID_IDXGIDevice2_Value = @import("../zig.zig").Guid.initString("05008617-fbfd-4051-a790-144884b4f6a9");
 pub const IID_IDXGIDevice2 = &IID_IDXGIDevice2_Value;
 pub const IDXGIDevice2 = extern struct {
     pub const VTable = extern struct {
@@ -1550,7 +1550,7 @@ pub const DXGI_PRESENT_PARAMETERS = extern struct {
     pScrollOffset: *POINT,
 };
 
-const IID_IDXGISwapChain1_Value = @import("../zig.zig").Guid.initString("790A45F7-0D42-4876-983A-0A55CFE6F4AA");
+const IID_IDXGISwapChain1_Value = @import("../zig.zig").Guid.initString("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
 pub const IID_IDXGISwapChain1 = &IID_IDXGISwapChain1_Value;
 pub const IDXGISwapChain1 = extern struct {
     pub const VTable = extern struct {
@@ -1653,7 +1653,7 @@ pub const IDXGISwapChain1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactory2_Value = @import("../zig.zig").Guid.initString("50C83A1C-E072-4C48-87B0-3630FA36A6D0");
+const IID_IDXGIFactory2_Value = @import("../zig.zig").Guid.initString("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
 pub const IID_IDXGIFactory2 = &IID_IDXGIFactory2_Value;
 pub const IDXGIFactory2 = extern struct {
     pub const VTable = extern struct {
@@ -1813,7 +1813,7 @@ pub const DXGI_ADAPTER_DESC2 = extern struct {
     ComputePreemptionGranularity: DXGI_COMPUTE_PREEMPTION_GRANULARITY,
 };
 
-const IID_IDXGIAdapter2_Value = @import("../zig.zig").Guid.initString("0AA1AE0A-FA0E-4B84-8644-E05FF8E5ACB5");
+const IID_IDXGIAdapter2_Value = @import("../zig.zig").Guid.initString("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
 pub const IID_IDXGIAdapter2 = &IID_IDXGIAdapter2_Value;
 pub const IDXGIAdapter2 = extern struct {
     pub const VTable = extern struct {
@@ -1834,7 +1834,7 @@ pub const IDXGIAdapter2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIOutput1_Value = @import("../zig.zig").Guid.initString("00CDDEA8-939B-4B83-A340-A685226666CC");
+const IID_IDXGIOutput1_Value = @import("../zig.zig").Guid.initString("00cddea8-939b-4b83-a340-a685226666cc");
 pub const IID_IDXGIOutput1 = &IID_IDXGIOutput1_Value;
 pub const IDXGIOutput1 = extern struct {
     pub const VTable = extern struct {
@@ -1885,7 +1885,7 @@ pub const IDXGIOutput1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDevice3_Value = @import("../zig.zig").Guid.initString("6007896C-3244-4AFD-BF18-A6D3BEDA5023");
+const IID_IDXGIDevice3_Value = @import("../zig.zig").Guid.initString("6007896c-3244-4afd-bf18-a6d3beda5023");
 pub const IID_IDXGIDevice3 = &IID_IDXGIDevice3_Value;
 pub const IDXGIDevice3 = extern struct {
     pub const VTable = extern struct {
@@ -1914,7 +1914,7 @@ pub const DXGI_MATRIX_3X2_F = extern struct {
     _32: f32,
 };
 
-const IID_IDXGISwapChain2_Value = @import("../zig.zig").Guid.initString("A8BE2AC4-199F-4946-B331-79599FB98DE7");
+const IID_IDXGISwapChain2_Value = @import("../zig.zig").Guid.initString("a8be2ac4-199f-4946-b331-79599fb98de7");
 pub const IID_IDXGISwapChain2 = &IID_IDXGISwapChain2_Value;
 pub const IDXGISwapChain2 = extern struct {
     pub const VTable = extern struct {
@@ -1984,7 +1984,7 @@ pub const IDXGISwapChain2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIOutput2_Value = @import("../zig.zig").Guid.initString("595E39D1-2724-4663-99B1-DA969DE28364");
+const IID_IDXGIOutput2_Value = @import("../zig.zig").Guid.initString("595e39d1-2724-4663-99b1-da969de28364");
 pub const IID_IDXGIOutput2 = &IID_IDXGIOutput2_Value;
 pub const IDXGIOutput2 = extern struct {
     pub const VTable = extern struct {
@@ -2004,7 +2004,7 @@ pub const IDXGIOutput2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactory3_Value = @import("../zig.zig").Guid.initString("25483823-CD46-4C7D-86CA-47AA95B837BD");
+const IID_IDXGIFactory3_Value = @import("../zig.zig").Guid.initString("25483823-cd46-4c7d-86ca-47aa95b837bd");
 pub const IID_IDXGIFactory3 = &IID_IDXGIFactory3_Value;
 pub const IDXGIFactory3 = extern struct {
     pub const VTable = extern struct {
@@ -2037,7 +2037,7 @@ pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_NOMINAL_RANGE = DXGI_MULTIPLANE_OVE
 pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709 = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS.DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709;
 pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS.DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC;
 
-const IID_IDXGIDecodeSwapChain_Value = @import("../zig.zig").Guid.initString("2633066B-4514-4C7A-8FD8-12EA98059D18");
+const IID_IDXGIDecodeSwapChain_Value = @import("../zig.zig").Guid.initString("2633066b-4514-4c7a-8fd8-12ea98059d18");
 pub const IID_IDXGIDecodeSwapChain = &IID_IDXGIDecodeSwapChain_Value;
 pub const IDXGIDecodeSwapChain = extern struct {
     pub const VTable = extern struct {
@@ -2125,7 +2125,7 @@ pub const IDXGIDecodeSwapChain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactoryMedia_Value = @import("../zig.zig").Guid.initString("41E7D1F2-A591-4F7B-A2E5-FA9C843E1C12");
+const IID_IDXGIFactoryMedia_Value = @import("../zig.zig").Guid.initString("41e7d1f2-a591-4f7b-a2e5-fa9c843e1c12");
 pub const IID_IDXGIFactoryMedia = &IID_IDXGIFactoryMedia_Value;
 pub const IDXGIFactoryMedia = extern struct {
     pub const VTable = extern struct {
@@ -2184,7 +2184,7 @@ pub const DXGI_FRAME_STATISTICS_MEDIA = extern struct {
     ApprovedPresentDuration: u32,
 };
 
-const IID_IDXGISwapChainMedia_Value = @import("../zig.zig").Guid.initString("DD95B90B-F05F-4F6A-BD65-25BFB264BD84");
+const IID_IDXGISwapChainMedia_Value = @import("../zig.zig").Guid.initString("dd95b90b-f05f-4f6a-bd65-25bfb264bd84");
 pub const IID_IDXGISwapChainMedia = &IID_IDXGISwapChainMedia_Value;
 pub const IDXGISwapChainMedia = extern struct {
     pub const VTable = extern struct {
@@ -2230,7 +2230,7 @@ pub const DXGI_OVERLAY_SUPPORT_FLAG = extern enum(i32) {
 pub const DXGI_OVERLAY_SUPPORT_FLAG_DIRECT = DXGI_OVERLAY_SUPPORT_FLAG.DIRECT;
 pub const DXGI_OVERLAY_SUPPORT_FLAG_SCALING = DXGI_OVERLAY_SUPPORT_FLAG.SCALING;
 
-const IID_IDXGIOutput3_Value = @import("../zig.zig").Guid.initString("8A6BB301-7E7E-41F4-A8E0-5B32F7F99B18");
+const IID_IDXGIOutput3_Value = @import("../zig.zig").Guid.initString("8a6bb301-7e7e-41f4-a8e0-5b32f7f99b18");
 pub const IID_IDXGIOutput3 = &IID_IDXGIOutput3_Value;
 pub const IDXGIOutput3 = extern struct {
     pub const VTable = extern struct {
@@ -2260,7 +2260,7 @@ pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
 pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG.PRESENT;
 pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG.OVERLAY_PRESENT;
 
-const IID_IDXGISwapChain3_Value = @import("../zig.zig").Guid.initString("94D99BDB-F1F8-4AB0-B236-7DA0170EDAB1");
+const IID_IDXGISwapChain3_Value = @import("../zig.zig").Guid.initString("94d99bdb-f1f8-4ab0-b236-7da0170edab1");
 pub const IID_IDXGISwapChain3 = &IID_IDXGISwapChain3_Value;
 pub const IDXGISwapChain3 = extern struct {
     pub const VTable = extern struct {
@@ -2316,7 +2316,7 @@ pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG = extern enum(i32) {
 };
 pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG.PRESENT;
 
-const IID_IDXGIOutput4_Value = @import("../zig.zig").Guid.initString("DC7DCA35-2196-414D-9F53-617884032A60");
+const IID_IDXGIOutput4_Value = @import("../zig.zig").Guid.initString("dc7dca35-2196-414d-9f53-617884032a60");
 pub const IID_IDXGIOutput4 = &IID_IDXGIOutput4_Value;
 pub const IDXGIOutput4 = extern struct {
     pub const VTable = extern struct {
@@ -2340,7 +2340,7 @@ pub const IDXGIOutput4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactory4_Value = @import("../zig.zig").Guid.initString("1BC6EA02-EF36-464F-BF0C-21CA39E5168A");
+const IID_IDXGIFactory4_Value = @import("../zig.zig").Guid.initString("1bc6ea02-ef36-464f-bf0c-21ca39e5168a");
 pub const IID_IDXGIFactory4 = &IID_IDXGIFactory4_Value;
 pub const IDXGIFactory4 = extern struct {
     pub const VTable = extern struct {
@@ -2386,7 +2386,7 @@ pub const DXGI_QUERY_VIDEO_MEMORY_INFO = extern struct {
     CurrentReservation: u64,
 };
 
-const IID_IDXGIAdapter3_Value = @import("../zig.zig").Guid.initString("645967A4-1392-4310-A798-8053CE3E93FD");
+const IID_IDXGIAdapter3_Value = @import("../zig.zig").Guid.initString("645967a4-1392-4310-a798-8053ce3e93fd");
 pub const IID_IDXGIAdapter3 = &IID_IDXGIAdapter3_Value;
 pub const IDXGIAdapter3 = extern struct {
     pub const VTable = extern struct {
@@ -2458,7 +2458,7 @@ pub const DXGI_OUTDUPL_FLAG = extern enum(i32) {
 };
 pub const DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY = DXGI_OUTDUPL_FLAG.DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY;
 
-const IID_IDXGIOutput5_Value = @import("../zig.zig").Guid.initString("80A07424-AB52-42EB-833C-0C42FD282D98");
+const IID_IDXGIOutput5_Value = @import("../zig.zig").Guid.initString("80a07424-ab52-42eb-833c-0c42fd282d98");
 pub const IID_IDXGIOutput5 = &IID_IDXGIOutput5_Value;
 pub const IDXGIOutput5 = extern struct {
     pub const VTable = extern struct {
@@ -2507,7 +2507,7 @@ pub const DXGI_HDR_METADATA_HDR10PLUS = extern struct {
     Data: [72]u8,
 };
 
-const IID_IDXGISwapChain4_Value = @import("../zig.zig").Guid.initString("3D585D5A-BD4A-489E-B1F4-3DBCB6452FFB");
+const IID_IDXGISwapChain4_Value = @import("../zig.zig").Guid.initString("3d585d5a-bd4a-489e-b1f4-3dbcb6452ffb");
 pub const IID_IDXGISwapChain4 = &IID_IDXGISwapChain4_Value;
 pub const IDXGISwapChain4 = extern struct {
     pub const VTable = extern struct {
@@ -2544,7 +2544,7 @@ pub const DXGI_RECLAIM_RESOURCE_RESULT_OK = DXGI_RECLAIM_RESOURCE_RESULTS.DXGI_R
 pub const DXGI_RECLAIM_RESOURCE_RESULT_DISCARDED = DXGI_RECLAIM_RESOURCE_RESULTS.DXGI_RECLAIM_RESOURCE_RESULT_DISCARDED;
 pub const DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED = DXGI_RECLAIM_RESOURCE_RESULTS.DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED;
 
-const IID_IDXGIDevice4_Value = @import("../zig.zig").Guid.initString("95B4F95F-D8DA-4CA4-9EE6-3B76D5968A10");
+const IID_IDXGIDevice4_Value = @import("../zig.zig").Guid.initString("95b4f95f-d8da-4ca4-9ee6-3b76d5968a10");
 pub const IID_IDXGIDevice4 = &IID_IDXGIDevice4_Value;
 pub const IDXGIDevice4 = extern struct {
     pub const VTable = extern struct {
@@ -2583,7 +2583,7 @@ pub const DXGI_FEATURE = extern enum(i32) {
 };
 pub const DXGI_FEATURE_PRESENT_ALLOW_TEARING = DXGI_FEATURE.PRESENT_ALLOW_TEARING;
 
-const IID_IDXGIFactory5_Value = @import("../zig.zig").Guid.initString("7632E1F5-EE65-4DCA-87FD-84CD75F8838D");
+const IID_IDXGIFactory5_Value = @import("../zig.zig").Guid.initString("7632e1f5-ee65-4dca-87fd-84cd75f8838d");
 pub const IID_IDXGIFactory5 = &IID_IDXGIFactory5_Value;
 pub const IDXGIFactory5 = extern struct {
     pub const VTable = extern struct {
@@ -2640,7 +2640,7 @@ pub const DXGI_ADAPTER_DESC3 = extern struct {
     ComputePreemptionGranularity: DXGI_COMPUTE_PREEMPTION_GRANULARITY,
 };
 
-const IID_IDXGIAdapter4_Value = @import("../zig.zig").Guid.initString("3C8D99D1-4FBF-4181-A82C-AF66BF7BD24E");
+const IID_IDXGIAdapter4_Value = @import("../zig.zig").Guid.initString("3c8d99d1-4fbf-4181-a82c-af66bf7bd24e");
 pub const IID_IDXGIAdapter4 = &IID_IDXGIAdapter4_Value;
 pub const IDXGIAdapter4 = extern struct {
     pub const VTable = extern struct {
@@ -2687,7 +2687,7 @@ pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMP
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED;
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED;
 
-const IID_IDXGIOutput6_Value = @import("../zig.zig").Guid.initString("068346E8-AAEC-4B84-ADD7-137F513F77A1");
+const IID_IDXGIOutput6_Value = @import("../zig.zig").Guid.initString("068346e8-aaec-4b84-add7-137f513f77a1");
 pub const IID_IDXGIOutput6 = &IID_IDXGIOutput6_Value;
 pub const IDXGIOutput6 = extern struct {
     pub const VTable = extern struct {
@@ -2725,7 +2725,7 @@ pub const DXGI_GPU_PREFERENCE_UNSPECIFIED = DXGI_GPU_PREFERENCE.UNSPECIFIED;
 pub const DXGI_GPU_PREFERENCE_MINIMUM_POWER = DXGI_GPU_PREFERENCE.MINIMUM_POWER;
 pub const DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE = DXGI_GPU_PREFERENCE.HIGH_PERFORMANCE;
 
-const IID_IDXGIFactory6_Value = @import("../zig.zig").Guid.initString("C1B6694F-FF09-44A9-B03C-77900A0A1D17");
+const IID_IDXGIFactory6_Value = @import("../zig.zig").Guid.initString("c1b6694f-ff09-44a9-b03c-77900a0a1d17");
 pub const IID_IDXGIFactory6 = &IID_IDXGIFactory6_Value;
 pub const IDXGIFactory6 = extern struct {
     pub const VTable = extern struct {
@@ -2749,7 +2749,7 @@ pub const IDXGIFactory6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIFactory7_Value = @import("../zig.zig").Guid.initString("A4966EED-76DB-44DA-84C1-EE9A7AFB20A8");
+const IID_IDXGIFactory7_Value = @import("../zig.zig").Guid.initString("a4966eed-76db-44da-84c1-ee9a7afb20a8");
 pub const IID_IDXGIFactory7 = &IID_IDXGIFactory7_Value;
 pub const IDXGIFactory7 = extern struct {
     pub const VTable = extern struct {
@@ -2851,7 +2851,7 @@ pub const DXGI_INFO_QUEUE_FILTER = extern struct {
     DenyList: DXGI_INFO_QUEUE_FILTER_DESC,
 };
 
-const IID_IDXGIInfoQueue_Value = @import("../zig.zig").Guid.initString("D67441C7-672A-476F-9E82-CD55B44949CE");
+const IID_IDXGIInfoQueue_Value = @import("../zig.zig").Guid.initString("d67441c7-672a-476f-9e82-cd55b44949ce");
 pub const IID_IDXGIInfoQueue = &IID_IDXGIInfoQueue_Value;
 pub const IDXGIInfoQueue = extern struct {
     pub const VTable = extern struct {
@@ -3187,7 +3187,7 @@ pub const IDXGIInfoQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDebug_Value = @import("../zig.zig").Guid.initString("119E7452-DE9E-40FE-8806-88F90C12B441");
+const IID_IDXGIDebug_Value = @import("../zig.zig").Guid.initString("119e7452-de9e-40fe-8806-88f90c12b441");
 pub const IID_IDXGIDebug = &IID_IDXGIDebug_Value;
 pub const IDXGIDebug = extern struct {
     pub const VTable = extern struct {
@@ -3209,7 +3209,7 @@ pub const IDXGIDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDXGIDebug1_Value = @import("../zig.zig").Guid.initString("C5A05F0C-16F2-4ADF-9F4D-A8C4D58AC550");
+const IID_IDXGIDebug1_Value = @import("../zig.zig").Guid.initString("c5a05f0c-16f2-4adf-9f4d-a8c4d58ac550");
 pub const IID_IDXGIDebug1 = &IID_IDXGIDebug1_Value;
 pub const IDXGIDebug1 = extern struct {
     pub const VTable = extern struct {

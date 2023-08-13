@@ -6,6 +6,20 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
+pub const COPYDATASTRUCT = extern struct {
+    dwData: ?*c_void,
+    cbData: u32,
+    lpData: *c_void,
+};
+
+pub const HCONV = ?*c_void;
+
+pub const HCONVLIST = ?*c_void;
+
+pub const HDDEDATA = ?*c_void;
+
+pub const HSZ = ?*c_void;
+
 pub const DDEACK = extern struct {
     _bitfield: u16,
 };
@@ -170,20 +184,6 @@ pub const MONCONVSTRUCT = extern struct {
     hConvServer: HCONV,
 };
 
-pub const COPYDATASTRUCT = extern struct {
-    dwData: ?*c_void,
-    cbData: u32,
-    lpData: *c_void,
-};
-
-pub const HCONV = ?*c_void;
-
-pub const HCONVLIST = ?*c_void;
-
-pub const HDDEDATA = ?*c_void;
-
-pub const HSZ = ?*c_void;
-
 pub const METAFILEPICT = extern struct {
     mm: i32,
     xExt: i32,
@@ -195,6 +195,96 @@ pub const METAFILEPICT = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (76)
 //--------------------------------------------------------------------------------
+pub extern "USER32" fn OpenClipboard(
+    hWndNewOwner: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn CloseClipboard(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetClipboardSequenceNumber(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn GetClipboardOwner(
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "USER32" fn SetClipboardViewer(
+    hWndNewViewer: HWND,
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "USER32" fn GetClipboardViewer(
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "USER32" fn ChangeClipboardChain(
+    hWndRemove: HWND,
+    hWndNewNext: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn SetClipboardData(
+    uFormat: u32,
+    hMem: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "USER32" fn GetClipboardData(
+    uFormat: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "USER32" fn RegisterClipboardFormatA(
+    lpszFormat: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn RegisterClipboardFormatW(
+    lpszFormat: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn CountClipboardFormats(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn EnumClipboardFormats(
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "USER32" fn GetClipboardFormatNameA(
+    format: u32,
+    lpszFormatName: [*:0]u8,
+    cchMaxCount: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetClipboardFormatNameW(
+    format: u32,
+    lpszFormatName: [*:0]u16,
+    cchMaxCount: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn EmptyClipboard(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn IsClipboardFormatAvailable(
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetPriorityClipboardFormat(
+    paFormatPriorityList: [*]u32,
+    cFormats: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "USER32" fn GetOpenClipboardWindow(
+) callconv(@import("std").os.windows.WINAPI) HWND;
+
+pub extern "USER32" fn AddClipboardFormatListener(
+    hwnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn RemoveClipboardFormatListener(
+    hwnd: HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetUpdatedClipboardFormats(
+    lpuiFormats: [*]u32,
+    cFormats: u32,
+    pcFormatsOut: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "USER32" fn DdeSetQualityOfService(
     hwndClient: HWND,
     pqosNew: *const SECURITY_QUALITY_OF_SERVICE,
@@ -418,96 +508,6 @@ pub extern "USER32" fn DdeCmpStringHandles(
     hsz2: HSZ,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "USER32" fn OpenClipboard(
-    hWndNewOwner: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn CloseClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetClipboardSequenceNumber(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn GetClipboardOwner(
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "USER32" fn SetClipboardViewer(
-    hWndNewViewer: HWND,
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "USER32" fn GetClipboardViewer(
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "USER32" fn ChangeClipboardChain(
-    hWndRemove: HWND,
-    hWndNewNext: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn SetClipboardData(
-    uFormat: u32,
-    hMem: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "USER32" fn GetClipboardData(
-    uFormat: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "USER32" fn RegisterClipboardFormatA(
-    lpszFormat: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn RegisterClipboardFormatW(
-    lpszFormat: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn CountClipboardFormats(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn EnumClipboardFormats(
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "USER32" fn GetClipboardFormatNameA(
-    format: u32,
-    lpszFormatName: [*:0]u8,
-    cchMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetClipboardFormatNameW(
-    format: u32,
-    lpszFormatName: [*:0]u16,
-    cchMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn EmptyClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn IsClipboardFormatAvailable(
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetPriorityClipboardFormat(
-    paFormatPriorityList: [*]u32,
-    cFormats: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "USER32" fn GetOpenClipboardWindow(
-) callconv(@import("std").os.windows.WINAPI) HWND;
-
-pub extern "USER32" fn AddClipboardFormatListener(
-    hwnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn RemoveClipboardFormatListener(
-    hwnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetUpdatedClipboardFormats(
-    lpuiFormats: [*]u32,
-    cFormats: u32,
-    pcFormatsOut: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "KERNEL32" fn GlobalDeleteAtom(
     nAtom: u16,
 ) callconv(@import("std").os.windows.WINAPI) u16;
@@ -593,11 +593,11 @@ pub extern "KERNEL32" fn GetAtomNameW(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const MONHSZSTRUCT = MONHSZSTRUCTA;
+        pub const RegisterClipboardFormat = RegisterClipboardFormatA;
+        pub const GetClipboardFormatName = GetClipboardFormatNameA;
         pub const DdeInitialize = DdeInitializeA;
         pub const DdeCreateStringHandle = DdeCreateStringHandleA;
         pub const DdeQueryString = DdeQueryStringA;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatA;
-        pub const GetClipboardFormatName = GetClipboardFormatNameA;
         pub const GlobalAddAtom = GlobalAddAtomA;
         pub const GlobalAddAtomEx = GlobalAddAtomExA;
         pub const GlobalFindAtom = GlobalFindAtomA;
@@ -608,11 +608,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .wide => struct {
         pub const MONHSZSTRUCT = MONHSZSTRUCTW;
+        pub const RegisterClipboardFormat = RegisterClipboardFormatW;
+        pub const GetClipboardFormatName = GetClipboardFormatNameW;
         pub const DdeInitialize = DdeInitializeW;
         pub const DdeCreateStringHandle = DdeCreateStringHandleW;
         pub const DdeQueryString = DdeQueryStringW;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatW;
-        pub const GetClipboardFormatName = GetClipboardFormatNameW;
         pub const GlobalAddAtom = GlobalAddAtomW;
         pub const GlobalAddAtomEx = GlobalAddAtomExW;
         pub const GlobalFindAtom = GlobalFindAtomW;
@@ -623,11 +623,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const MONHSZSTRUCT = *opaque{};
+        pub const RegisterClipboardFormat = *opaque{};
+        pub const GetClipboardFormatName = *opaque{};
         pub const DdeInitialize = *opaque{};
         pub const DdeCreateStringHandle = *opaque{};
         pub const DdeQueryString = *opaque{};
-        pub const RegisterClipboardFormat = *opaque{};
-        pub const GetClipboardFormatName = *opaque{};
         pub const GlobalAddAtom = *opaque{};
         pub const GlobalAddAtomEx = *opaque{};
         pub const GlobalFindAtom = *opaque{};
@@ -637,11 +637,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAtomName = *opaque{};
     } else struct {
         pub const MONHSZSTRUCT = @compileError("'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const RegisterClipboardFormat = @compileError("'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module");
+        pub const GetClipboardFormatName = @compileError("'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module");
         pub const DdeInitialize = @compileError("'DdeInitialize' requires that UNICODE be set to true or false in the root module");
         pub const DdeCreateStringHandle = @compileError("'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module");
         pub const DdeQueryString = @compileError("'DdeQueryString' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterClipboardFormat = @compileError("'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module");
-        pub const GetClipboardFormatName = @compileError("'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module");
         pub const GlobalAddAtom = @compileError("'GlobalAddAtom' requires that UNICODE be set to true or false in the root module");
         pub const GlobalAddAtomEx = @compileError("'GlobalAddAtomEx' requires that UNICODE be set to true or false in the root module");
         pub const GlobalFindAtom = @compileError("'GlobalFindAtom' requires that UNICODE be set to true or false in the root module");

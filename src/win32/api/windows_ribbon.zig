@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (33)
 //--------------------------------------------------------------------------------
-const CLSID_UIRibbonFramework_Value = @import("../zig.zig").Guid.initString("926749FA-2615-4987-8845-C33E65F2B957");
+const CLSID_UIRibbonFramework_Value = @import("../zig.zig").Guid.initString("926749fa-2615-4987-8845-c33e65f2b957");
 pub const CLSID_UIRibbonFramework = &CLSID_UIRibbonFramework_Value;
 
-const CLSID_UIRibbonImageFromBitmapFactory_Value = @import("../zig.zig").Guid.initString("0F7434B6-59B6-4250-999E-D168D6AE4293");
+const CLSID_UIRibbonImageFromBitmapFactory_Value = @import("../zig.zig").Guid.initString("0f7434b6-59b6-4250-999e-d168d6ae4293");
 pub const CLSID_UIRibbonImageFromBitmapFactory = &CLSID_UIRibbonImageFromBitmapFactory_Value;
 
 pub const UI_CONTEXTAVAILABILITY = extern enum(i32) {
@@ -110,7 +110,7 @@ pub const UI_EVENTLOCATION_QAT = UI_EVENTLOCATION.QAT;
 pub const UI_EVENTLOCATION_ApplicationMenu = UI_EVENTLOCATION.ApplicationMenu;
 pub const UI_EVENTLOCATION_ContextPopup = UI_EVENTLOCATION.ContextPopup;
 
-const IID_IUISimplePropertySet_Value = @import("../zig.zig").Guid.initString("C205BB48-5B1C-4219-A106-15BD0A5F24E2");
+const IID_IUISimplePropertySet_Value = @import("../zig.zig").Guid.initString("c205bb48-5b1c-4219-a106-15bd0a5f24e2");
 pub const IID_IUISimplePropertySet = &IID_IUISimplePropertySet_Value;
 pub const IUISimplePropertySet = extern struct {
     pub const VTable = extern struct {
@@ -132,7 +132,7 @@ pub const IUISimplePropertySet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIRibbon_Value = @import("../zig.zig").Guid.initString("803982AB-370A-4F7E-A9E7-8784036A6E26");
+const IID_IUIRibbon_Value = @import("../zig.zig").Guid.initString("803982ab-370a-4f7e-a9e7-8784036a6e26");
 pub const IID_IUIRibbon = &IID_IUIRibbon_Value;
 pub const IUIRibbon = extern struct {
     pub const VTable = extern struct {
@@ -180,7 +180,7 @@ pub const UI_INVALIDATIONS_VALUE = UI_INVALIDATIONS.VALUE;
 pub const UI_INVALIDATIONS_PROPERTY = UI_INVALIDATIONS.PROPERTY;
 pub const UI_INVALIDATIONS_ALLPROPERTIES = UI_INVALIDATIONS.ALLPROPERTIES;
 
-const IID_IUIFramework_Value = @import("../zig.zig").Guid.initString("F4F0385D-6872-43A8-AD09-4C339CB3F5C5");
+const IID_IUIFramework_Value = @import("../zig.zig").Guid.initString("f4f0385d-6872-43a8-ad09-4c339cb3f5c5");
 pub const IID_IUIFramework = &IID_IUIFramework_Value;
 pub const IUIFramework = extern struct {
     pub const VTable = extern struct {
@@ -288,7 +288,7 @@ pub const UI_EVENTPARAMS = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_IUIEventLogger_Value = @import("../zig.zig").Guid.initString("EC3E1034-DBF4-41A1-95D5-03E0F1026E05");
+const IID_IUIEventLogger_Value = @import("../zig.zig").Guid.initString("ec3e1034-dbf4-41a1-95d5-03e0f1026e05");
 pub const IID_IUIEventLogger = &IID_IUIEventLogger_Value;
 pub const IUIEventLogger = extern struct {
     pub const VTable = extern struct {
@@ -309,7 +309,7 @@ pub const IUIEventLogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIEventingManager_Value = @import("../zig.zig").Guid.initString("3BE6EA7F-9A9B-4198-9368-9B0F923BD534");
+const IID_IUIEventingManager_Value = @import("../zig.zig").Guid.initString("3be6ea7f-9a9b-4198-9368-9b0f923bd534");
 pub const IID_IUIEventingManager = &IID_IUIEventingManager_Value;
 pub const IUIEventingManager = extern struct {
     pub const VTable = extern struct {
@@ -330,7 +330,7 @@ pub const IUIEventingManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIContextualUI_Value = @import("../zig.zig").Guid.initString("EEA11F37-7C46-437C-8E55-B52122B29293");
+const IID_IUIContextualUI_Value = @import("../zig.zig").Guid.initString("eea11f37-7c46-437c-8e55-b52122b29293");
 pub const IID_IUIContextualUI = &IID_IUIContextualUI_Value;
 pub const IUIContextualUI = extern struct {
     pub const VTable = extern struct {
@@ -352,7 +352,7 @@ pub const IUIContextualUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUICollection_Value = @import("../zig.zig").Guid.initString("DF4F45BF-6F9D-4DD7-9D68-D8F9CD18C4DB");
+const IID_IUICollection_Value = @import("../zig.zig").Guid.initString("df4f45bf-6f9d-4dd7-9d68-d8f9cd18c4db");
 pub const IID_IUICollection = &IID_IUICollection_Value;
 pub const IUICollection = extern struct {
     pub const VTable = extern struct {
@@ -434,7 +434,7 @@ pub const UI_COLLECTIONCHANGE_REMOVE = UI_COLLECTIONCHANGE.REMOVE;
 pub const UI_COLLECTIONCHANGE_REPLACE = UI_COLLECTIONCHANGE.REPLACE;
 pub const UI_COLLECTIONCHANGE_RESET = UI_COLLECTIONCHANGE.RESET;
 
-const IID_IUICollectionChangedEvent_Value = @import("../zig.zig").Guid.initString("6502AE91-A14D-44B5-BBD0-62AACC581D52");
+const IID_IUICollectionChangedEvent_Value = @import("../zig.zig").Guid.initString("6502ae91-a14d-44b5-bbd0-62aacc581d52");
 pub const IID_IUICollectionChangedEvent = &IID_IUICollectionChangedEvent_Value;
 pub const IUICollectionChangedEvent = extern struct {
     pub const VTable = extern struct {
@@ -468,7 +468,7 @@ pub const UI_EXECUTIONVERB_EXECUTE = UI_EXECUTIONVERB.EXECUTE;
 pub const UI_EXECUTIONVERB_PREVIEW = UI_EXECUTIONVERB.PREVIEW;
 pub const UI_EXECUTIONVERB_CANCELPREVIEW = UI_EXECUTIONVERB.CANCELPREVIEW;
 
-const IID_IUICommandHandler_Value = @import("../zig.zig").Guid.initString("75AE0A2D-DC03-4C9F-8883-069660D0BEB6");
+const IID_IUICommandHandler_Value = @import("../zig.zig").Guid.initString("75ae0a2d-dc03-4c9f-8883-069660d0beb6");
 pub const IID_IUICommandHandler = &IID_IUICommandHandler_Value;
 pub const IUICommandHandler = extern struct {
     pub const VTable = extern struct {
@@ -549,7 +549,7 @@ pub const UI_VIEWVERB_DESTROY = UI_VIEWVERB.DESTROY;
 pub const UI_VIEWVERB_SIZE = UI_VIEWVERB.SIZE;
 pub const UI_VIEWVERB_ERROR = UI_VIEWVERB.ERROR;
 
-const IID_IUIApplication_Value = @import("../zig.zig").Guid.initString("D428903C-729A-491D-910D-682A08FF2522");
+const IID_IUIApplication_Value = @import("../zig.zig").Guid.initString("d428903c-729a-491d-910d-682a08ff2522");
 pub const IID_IUIApplication = &IID_IUIApplication_Value;
 pub const IUIApplication = extern struct {
     pub const VTable = extern struct {
@@ -594,7 +594,7 @@ pub const IUIApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUIImage_Value = @import("../zig.zig").Guid.initString("23C8C838-4DE6-436B-AB01-5554BB7C30DD");
+const IID_IUIImage_Value = @import("../zig.zig").Guid.initString("23c8c838-4de6-436b-ab01-5554bb7c30dd");
 pub const IID_IUIImage = &IID_IUIImage_Value;
 pub const IUIImage = extern struct {
     pub const VTable = extern struct {
@@ -622,7 +622,7 @@ pub const UI_OWNERSHIP = extern enum(i32) {
 pub const UI_OWNERSHIP_TRANSFER = UI_OWNERSHIP.TRANSFER;
 pub const UI_OWNERSHIP_COPY = UI_OWNERSHIP.COPY;
 
-const IID_IUIImageFromBitmap_Value = @import("../zig.zig").Guid.initString("18ABA7F3-4C1C-4BA2-BF6C-F5C3326FA816");
+const IID_IUIImageFromBitmap_Value = @import("../zig.zig").Guid.initString("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816");
 pub const IID_IUIImageFromBitmap = &IID_IUIImageFromBitmap_Value;
 pub const IUIImageFromBitmap = extern struct {
     pub const VTable = extern struct {

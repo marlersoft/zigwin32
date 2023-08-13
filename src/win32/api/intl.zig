@@ -543,7 +543,7 @@ pub const MAPPING_PROPERTY_BAG = extern struct {
     pContext: *c_void,
 };
 
-const CLSID_SpellCheckerFactory_Value = @import("../zig.zig").Guid.initString("7AB36653-1796-484B-BDFA-E74F1DB7C1DC");
+const CLSID_SpellCheckerFactory_Value = @import("../zig.zig").Guid.initString("7ab36653-1796-484b-bdfa-e74f1db7c1dc");
 pub const CLSID_SpellCheckerFactory = &CLSID_SpellCheckerFactory_Value;
 
 pub const WORDLIST_TYPE = extern enum(i32) {
@@ -568,7 +568,7 @@ pub const CORRECTIVE_ACTION_GET_SUGGESTIONS = CORRECTIVE_ACTION.GET_SUGGESTIONS;
 pub const CORRECTIVE_ACTION_REPLACE = CORRECTIVE_ACTION.REPLACE;
 pub const CORRECTIVE_ACTION_DELETE = CORRECTIVE_ACTION.DELETE;
 
-const IID_ISpellingError_Value = @import("../zig.zig").Guid.initString("B7C82D61-FBE8-4B47-9B27-6C0D2E0DE0A3");
+const IID_ISpellingError_Value = @import("../zig.zig").Guid.initString("b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3");
 pub const IID_ISpellingError = &IID_ISpellingError_Value;
 pub const ISpellingError = extern struct {
     pub const VTable = extern struct {
@@ -613,7 +613,7 @@ pub const ISpellingError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSpellingError_Value = @import("../zig.zig").Guid.initString("803E3BD4-2828-4410-8290-418D1D73C762");
+const IID_IEnumSpellingError_Value = @import("../zig.zig").Guid.initString("803e3bd4-2828-4410-8290-418d1d73c762");
 pub const IID_IEnumSpellingError = &IID_IEnumSpellingError_Value;
 pub const IEnumSpellingError = extern struct {
     pub const VTable = extern struct {
@@ -634,7 +634,7 @@ pub const IEnumSpellingError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOptionDescription_Value = @import("../zig.zig").Guid.initString("432E5F85-35CF-4606-A801-6F70277E1D7A");
+const IID_IOptionDescription_Value = @import("../zig.zig").Guid.initString("432e5f85-35cf-4606-a801-6f70277e1d7a");
 pub const IID_IOptionDescription = &IID_IOptionDescription_Value;
 pub const IOptionDescription = extern struct {
     pub const VTable = extern struct {
@@ -679,7 +679,7 @@ pub const IOptionDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellCheckerChangedEventHandler_Value = @import("../zig.zig").Guid.initString("0B83A5B0-792F-4EAB-9799-ACF52C5ED08A");
+const IID_ISpellCheckerChangedEventHandler_Value = @import("../zig.zig").Guid.initString("0b83a5b0-792f-4eab-9799-acf52c5ed08a");
 pub const IID_ISpellCheckerChangedEventHandler = &IID_ISpellCheckerChangedEventHandler_Value;
 pub const ISpellCheckerChangedEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -700,7 +700,7 @@ pub const ISpellCheckerChangedEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellChecker_Value = @import("../zig.zig").Guid.initString("B6FD0B71-E2BC-4653-8D05-F197E412770B");
+const IID_ISpellChecker_Value = @import("../zig.zig").Guid.initString("b6fd0b71-e2bc-4653-8d05-f197e412770b");
 pub const IID_ISpellChecker = &IID_ISpellChecker_Value;
 pub const ISpellChecker = extern struct {
     pub const VTable = extern struct {
@@ -832,7 +832,7 @@ pub const ISpellChecker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellChecker2_Value = @import("../zig.zig").Guid.initString("E7ED1C71-87F7-4378-A840-C9200DACEE47");
+const IID_ISpellChecker2_Value = @import("../zig.zig").Guid.initString("e7ed1c71-87f7-4378-a840-c9200dacee47");
 pub const IID_ISpellChecker2 = &IID_ISpellChecker2_Value;
 pub const ISpellChecker2 = extern struct {
     pub const VTable = extern struct {
@@ -853,7 +853,7 @@ pub const ISpellChecker2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellCheckerFactory_Value = @import("../zig.zig").Guid.initString("8E018A9D-2415-4677-BF08-794EA61F94BB");
+const IID_ISpellCheckerFactory_Value = @import("../zig.zig").Guid.initString("8e018a9d-2415-4677-bf08-794ea61f94bb");
 pub const IID_ISpellCheckerFactory = &IID_ISpellCheckerFactory_Value;
 pub const ISpellCheckerFactory = extern struct {
     pub const VTable = extern struct {
@@ -892,7 +892,7 @@ pub const ISpellCheckerFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IUserDictionariesRegistrar_Value = @import("../zig.zig").Guid.initString("AA176B85-0E12-4844-8E1A-EEF1DA77F586");
+const IID_IUserDictionariesRegistrar_Value = @import("../zig.zig").Guid.initString("aa176b85-0e12-4844-8e1a-eef1da77f586");
 pub const IID_IUserDictionariesRegistrar = &IID_IUserDictionariesRegistrar_Value;
 pub const IUserDictionariesRegistrar = extern struct {
     pub const VTable = extern struct {
@@ -923,7 +923,7 @@ pub const IUserDictionariesRegistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellCheckProvider_Value = @import("../zig.zig").Guid.initString("73E976E0-8ED4-4EB1-80D7-1BE0A16B0C38");
+const IID_ISpellCheckProvider_Value = @import("../zig.zig").Guid.initString("73e976e0-8ed4-4eb1-80d7-1be0a16b0c38");
 pub const IID_ISpellCheckProvider = &IID_ISpellCheckProvider_Value;
 pub const ISpellCheckProvider = extern struct {
     pub const VTable = extern struct {
@@ -1022,7 +1022,7 @@ pub const ISpellCheckProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IComprehensiveSpellCheckProvider_Value = @import("../zig.zig").Guid.initString("0C58F8DE-8E94-479E-9717-70C42C4AD2C3");
+const IID_IComprehensiveSpellCheckProvider_Value = @import("../zig.zig").Guid.initString("0c58f8de-8e94-479e-9717-70c42c4ad2c3");
 pub const IID_IComprehensiveSpellCheckProvider = &IID_IComprehensiveSpellCheckProvider_Value;
 pub const IComprehensiveSpellCheckProvider = extern struct {
     pub const VTable = extern struct {
@@ -1044,7 +1044,7 @@ pub const IComprehensiveSpellCheckProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpellCheckProviderFactory_Value = @import("../zig.zig").Guid.initString("9F671E11-77D6-4C92-AEFB-615215E3A4BE");
+const IID_ISpellCheckProviderFactory_Value = @import("../zig.zig").Guid.initString("9f671e11-77d6-4c92-aefb-615215e3a4be");
 pub const IID_ISpellCheckProviderFactory = &IID_ISpellCheckProviderFactory_Value;
 pub const ISpellCheckProviderFactory = extern struct {
     pub const VTable = extern struct {
@@ -1172,8 +1172,8 @@ pub const MORRSLT = extern struct {
     pPrivate: *c_void,
     BLKBuff: u16,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IFELanguage = extern struct {
@@ -1928,7 +1928,7 @@ pub const IImePad = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IImePlugInDictDictionaryList_Value = @import("../zig.zig").Guid.initString("98752974-B0A6-489B-8F6F-BFF3769C8EEB");
+const IID_IImePlugInDictDictionaryList_Value = @import("../zig.zig").Guid.initString("98752974-b0a6-489b-8f6f-bff3769c8eeb");
 pub const IID_IImePlugInDictDictionaryList = &IID_IImePlugInDictDictionaryList_Value;
 pub const IImePlugInDictDictionaryList = extern struct {
     pub const VTable = extern struct {

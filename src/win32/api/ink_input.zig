@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-const CLSID_InkDesktopHost_Value = @import("../zig.zig").Guid.initString("062584A6-F830-4BDC-A4D2-0A10AB062B1D");
+const CLSID_InkDesktopHost_Value = @import("../zig.zig").Guid.initString("062584a6-f830-4bdc-a4d2-0a10ab062b1d");
 pub const CLSID_InkDesktopHost = &CLSID_InkDesktopHost_Value;
 
-const IID_IInkCommitRequestHandler_Value = @import("../zig.zig").Guid.initString("FABEA3FC-B108-45B6-A9FC-8D08FA9F85CF");
+const IID_IInkCommitRequestHandler_Value = @import("../zig.zig").Guid.initString("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf");
 pub const IID_IInkCommitRequestHandler = &IID_IInkCommitRequestHandler_Value;
 pub const IInkCommitRequestHandler = extern struct {
     pub const VTable = extern struct {
@@ -29,7 +29,7 @@ pub const IInkCommitRequestHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkPresenterDesktop_Value = @import("../zig.zig").Guid.initString("73F3C0D9-2E8B-48F3-895E-20CBD27B723B");
+const IID_IInkPresenterDesktop_Value = @import("../zig.zig").Guid.initString("73f3c0d9-2e8b-48f3-895e-20cbd27b723b");
 pub const IID_IInkPresenterDesktop = &IID_IInkPresenterDesktop_Value;
 pub const IInkPresenterDesktop = extern struct {
     pub const VTable = extern struct {
@@ -84,7 +84,7 @@ pub const IInkPresenterDesktop = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkHostWorkItem_Value = @import("../zig.zig").Guid.initString("CCDA0A9A-1B78-4632-BB96-97800662E26C");
+const IID_IInkHostWorkItem_Value = @import("../zig.zig").Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
 pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
 pub const IInkHostWorkItem = extern struct {
     pub const VTable = extern struct {
@@ -104,7 +104,7 @@ pub const IInkHostWorkItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDesktopHost_Value = @import("../zig.zig").Guid.initString("4CE7D875-A981-4140-A1FF-AD93258E8D59");
+const IID_IInkDesktopHost_Value = @import("../zig.zig").Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
 pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
 pub const IInkDesktopHost = extern struct {
     pub const VTable = extern struct {
@@ -116,7 +116,7 @@ pub const IInkDesktopHost = extern struct {
         CreateInkPresenter: fn(
             self: *const IInkDesktopHost,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndInitializeInkPresenter: fn(
             self: *const IInkDesktopHost,
@@ -124,7 +124,7 @@ pub const IInkDesktopHost = extern struct {
             width: f32,
             height: f32,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -135,18 +135,18 @@ pub const IInkDesktopHost = extern struct {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).QueueWorkItem(@ptrCast(*const IInkDesktopHost, self), workItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDesktopHost_CreateInkPresenter(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IInkDesktopHost_CreateInkPresenter(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateInkPresenter(@ptrCast(*const IInkDesktopHost, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDesktopHost_CreateAndInitializeInkPresenter(self: *const T, rootVisual: *IUnknown, width: f32, height: f32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IInkDesktopHost_CreateAndInitializeInkPresenter(self: *const T, rootVisual: *IUnknown, width: f32, height: f32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateAndInitializeInkPresenter(@ptrCast(*const IInkDesktopHost, self), rootVisual, width, height, riid, ppv);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_InkD2DRenderer_Value = @import("../zig.zig").Guid.initString("4044E60C-7B01-4671-A97C-04E0210A07A5");
+const CLSID_InkD2DRenderer_Value = @import("../zig.zig").Guid.initString("4044e60c-7b01-4671-a97c-04e0210a07a5");
 pub const CLSID_InkD2DRenderer = &CLSID_InkD2DRenderer_Value;
 
 pub const __MIDL___MIDL_itf_inkrenderer_0000_0000_0001 = extern enum(i32) {
@@ -158,7 +158,7 @@ pub const USE_SYSTEM_COLORS_WHEN_NECESSARY = __MIDL___MIDL_itf_inkrenderer_0000_
 pub const USE_SYSTEM_COLORS = __MIDL___MIDL_itf_inkrenderer_0000_0000_0001.USE_SYSTEM_COLORS;
 pub const USE_ORIGINAL_COLORS = __MIDL___MIDL_itf_inkrenderer_0000_0000_0001.USE_ORIGINAL_COLORS;
 
-const IID_IInkD2DRenderer_Value = @import("../zig.zig").Guid.initString("407FB1DE-F85A-4150-97CF-B7FB274FB4F8");
+const IID_IInkD2DRenderer_Value = @import("../zig.zig").Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
 pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
 pub const IInkD2DRenderer = extern struct {
     pub const VTable = extern struct {
@@ -181,7 +181,7 @@ pub const IInkD2DRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkD2DRenderer2_Value = @import("../zig.zig").Guid.initString("0A95DCD9-4578-4B71-B20B-BF664D4BFEEE");
+const IID_IInkD2DRenderer2_Value = @import("../zig.zig").Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
 pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
 pub const IInkD2DRenderer2 = extern struct {
     pub const VTable = extern struct {

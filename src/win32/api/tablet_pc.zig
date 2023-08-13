@@ -40,55 +40,55 @@ pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = @import("../zig.zig").Guid.initStr
 pub const PfnRecoCallback = fn(
     param0: u32,
     param1: *u8,
-    param2: *HRECOCONTEXT__,
+    param2: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937C1A34-151D-4610-9CA6-A8CC9BDB5D83");
+const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
 
-const CLSID_InkOverlay_Value = @import("../zig.zig").Guid.initString("65D00646-CDE3-4A88-9163-6769F0F1A97D");
+const CLSID_InkOverlay_Value = @import("../zig.zig").Guid.initString("65d00646-cde3-4a88-9163-6769f0f1a97d");
 pub const CLSID_InkOverlay = &CLSID_InkOverlay_Value;
 
-const CLSID_InkPicture_Value = @import("../zig.zig").Guid.initString("04A1E553-FE36-4FDE-865E-344194E69424");
+const CLSID_InkPicture_Value = @import("../zig.zig").Guid.initString("04a1e553-fe36-4fde-865e-344194e69424");
 pub const CLSID_InkPicture = &CLSID_InkPicture_Value;
 
-const CLSID_InkCollector_Value = @import("../zig.zig").Guid.initString("43FB1553-AD74-4EE8-88E4-3E6DAAC915DB");
+const CLSID_InkCollector_Value = @import("../zig.zig").Guid.initString("43fb1553-ad74-4ee8-88e4-3e6daac915db");
 pub const CLSID_InkCollector = &CLSID_InkCollector_Value;
 
-const CLSID_InkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("D8BF32A2-05A5-44C3-B3AA-5E80AC7D2576");
+const CLSID_InkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("d8bf32a2-05a5-44c3-b3aa-5e80ac7d2576");
 pub const CLSID_InkDrawingAttributes = &CLSID_InkDrawingAttributes_Value;
 
-const CLSID_InkRectangle_Value = @import("../zig.zig").Guid.initString("43B07326-AAE0-4B62-A83D-5FD768B7353C");
+const CLSID_InkRectangle_Value = @import("../zig.zig").Guid.initString("43b07326-aae0-4b62-a83d-5fd768b7353c");
 pub const CLSID_InkRectangle = &CLSID_InkRectangle_Value;
 
-const CLSID_InkRenderer_Value = @import("../zig.zig").Guid.initString("9C1CC6E4-D7EB-4EEB-9091-15A7C8791ED9");
+const CLSID_InkRenderer_Value = @import("../zig.zig").Guid.initString("9c1cc6e4-d7eb-4eeb-9091-15a7c8791ed9");
 pub const CLSID_InkRenderer = &CLSID_InkRenderer_Value;
 
-const CLSID_InkTransform_Value = @import("../zig.zig").Guid.initString("E3D5D93C-1663-4A78-A1A7-22375DFEBAEE");
+const CLSID_InkTransform_Value = @import("../zig.zig").Guid.initString("e3d5d93c-1663-4a78-a1a7-22375dfebaee");
 pub const CLSID_InkTransform = &CLSID_InkTransform_Value;
 
-const CLSID_InkRecognizers_Value = @import("../zig.zig").Guid.initString("9FD4E808-F6E6-4E65-98D3-AA39054C1255");
+const CLSID_InkRecognizers_Value = @import("../zig.zig").Guid.initString("9fd4e808-f6e6-4e65-98d3-aa39054c1255");
 pub const CLSID_InkRecognizers = &CLSID_InkRecognizers_Value;
 
-const CLSID_InkRecognizerContext_Value = @import("../zig.zig").Guid.initString("AAC46A37-9229-4FC0-8CCE-4497569BF4D1");
+const CLSID_InkRecognizerContext_Value = @import("../zig.zig").Guid.initString("aac46a37-9229-4fc0-8cce-4497569bf4d1");
 pub const CLSID_InkRecognizerContext = &CLSID_InkRecognizerContext_Value;
 
-const CLSID_InkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("8770D941-A63A-4671-A375-2855A18EBA73");
+const CLSID_InkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("8770d941-a63a-4671-a375-2855a18eba73");
 pub const CLSID_InkRecognizerGuide = &CLSID_InkRecognizerGuide_Value;
 
-const CLSID_InkTablets_Value = @import("../zig.zig").Guid.initString("6E4FCB12-510A-4D40-9304-1DA10AE9147C");
+const CLSID_InkTablets_Value = @import("../zig.zig").Guid.initString("6e4fcb12-510a-4d40-9304-1da10ae9147c");
 pub const CLSID_InkTablets = &CLSID_InkTablets_Value;
 
-const CLSID_InkWordList_Value = @import("../zig.zig").Guid.initString("9DE85094-F71F-44F1-8471-15A2FA76FCF3");
+const CLSID_InkWordList_Value = @import("../zig.zig").Guid.initString("9de85094-f71f-44f1-8471-15a2fa76fcf3");
 pub const CLSID_InkWordList = &CLSID_InkWordList_Value;
 
-const CLSID_InkStrokes_Value = @import("../zig.zig").Guid.initString("48F491BC-240E-4860-B079-A1E94D3D2C86");
+const CLSID_InkStrokes_Value = @import("../zig.zig").Guid.initString("48f491bc-240e-4860-b079-a1e94d3d2c86");
 pub const CLSID_InkStrokes = &CLSID_InkStrokes_Value;
 
-const CLSID_Ink_Value = @import("../zig.zig").Guid.initString("13DE4A42-8D21-4C8E-BF9C-8F69CB068FCA");
+const CLSID_Ink_Value = @import("../zig.zig").Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
 pub const CLSID_Ink = &CLSID_Ink_Value;
 
-const CLSID_SketchInk_Value = @import("../zig.zig").Guid.initString("F0291081-E87C-4E07-97DA-A0A03761E586");
+const CLSID_SketchInk_Value = @import("../zig.zig").Guid.initString("f0291081-e87c-4e07-97da-a0a03761e586");
 pub const CLSID_SketchInk = &CLSID_SketchInk_Value;
 
 pub const PROPERTY_UNITS = extern enum(i32) {
@@ -1522,7 +1522,7 @@ pub const DISPID_InkWordList2 = extern enum(i32) {
 };
 pub const DISPID_InkWordList2_AddWords = DISPID_InkWordList2.AddWords;
 
-const IID_IInkRectangle_Value = @import("../zig.zig").Guid.initString("9794FF82-6071-4717-8A8B-6AC7C64A686E");
+const IID_IInkRectangle_Value = @import("../zig.zig").Guid.initString("9794ff82-6071-4717-8a8b-6ac7c64a686e");
 pub const IID_IInkRectangle = &IID_IInkRectangle_Value;
 pub const IInkRectangle = extern struct {
     pub const VTable = extern struct {
@@ -1637,14 +1637,14 @@ pub const IInkRectangle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkExtendedProperty_Value = @import("../zig.zig").Guid.initString("DB489209-B7C3-411D-90F6-1548CFFF271E");
+const IID_IInkExtendedProperty_Value = @import("../zig.zig").Guid.initString("db489209-b7c3-411d-90f6-1548cfff271e");
 pub const IID_IInkExtendedProperty = &IID_IInkExtendedProperty_Value;
 pub const IInkExtendedProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Guid: fn(
             self: *const IInkExtendedProperty,
-            Guid: *BSTR,
+            Guid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Data: fn(
             self: *const IInkExtendedProperty,
@@ -1659,7 +1659,7 @@ pub const IInkExtendedProperty = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperty_get_Guid(self: *const T, Guid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkExtendedProperty_get_Guid(self: *const T, Guid: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Guid(@ptrCast(*const IInkExtendedProperty, self), Guid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1674,7 +1674,7 @@ pub const IInkExtendedProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkExtendedProperties_Value = @import("../zig.zig").Guid.initString("89F2A8BE-95A9-4530-8B8F-88E971E3E25F");
+const IID_IInkExtendedProperties_Value = @import("../zig.zig").Guid.initString("89f2a8be-95a9-4530-8b8f-88e971e3e25f");
 pub const IID_IInkExtendedProperties = &IID_IInkExtendedProperties_Value;
 pub const IInkExtendedProperties = extern struct {
     pub const VTable = extern struct {
@@ -1685,18 +1685,18 @@ pub const IInkExtendedProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkExtendedProperties,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkExtendedProperties,
             Identifier: VARIANT,
-            Item: **IInkExtendedProperty,
+            Item: ?*?*IInkExtendedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IInkExtendedProperties,
             Guid: BSTR,
             Data: VARIANT,
-            InkExtendedProperty: **IInkExtendedProperty,
+            InkExtendedProperty: ?*?*IInkExtendedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IInkExtendedProperties,
@@ -1719,15 +1719,15 @@ pub const IInkExtendedProperties = extern struct {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get_Count(@ptrCast(*const IInkExtendedProperties, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkExtendedProperties_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkExtendedProperties, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, Item: **IInkExtendedProperty) callconv(.Inline) HRESULT {
+        pub fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, Item: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Item(@ptrCast(*const IInkExtendedProperties, self), Identifier, Item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Add(self: *const T, Guid: BSTR, Data: VARIANT, InkExtendedProperty: **IInkExtendedProperty) callconv(.Inline) HRESULT {
+        pub fn IInkExtendedProperties_Add(self: *const T, Guid: BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Add(@ptrCast(*const IInkExtendedProperties, self), Guid, Data, InkExtendedProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1746,7 +1746,7 @@ pub const IInkExtendedProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("BF519B75-0A15-4623-ADC9-C00D436A8092");
+const IID_IInkDrawingAttributes_Value = @import("../zig.zig").Guid.initString("bf519b75-0a15-4623-adc9-c00d436a8092");
 pub const IID_IInkDrawingAttributes = &IID_IInkDrawingAttributes_Value;
 pub const IInkDrawingAttributes = extern struct {
     pub const VTable = extern struct {
@@ -1825,11 +1825,11 @@ pub const IInkDrawingAttributes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedProperties: fn(
             self: *const IInkDrawingAttributes,
-            Properties: **IInkExtendedProperties,
+            Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IInkDrawingAttributes,
-            DrawingAttributes: **IInkDrawingAttributes,
+            DrawingAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1908,18 +1908,18 @@ pub const IInkDrawingAttributes = extern struct {
             return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_PenTip(@ptrCast(*const IInkDrawingAttributes, self), NewPenTip);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_ExtendedProperties(self: *const T, Properties: **IInkExtendedProperties) callconv(.Inline) HRESULT {
+        pub fn IInkDrawingAttributes_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDrawingAttributes, self), Properties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_Clone(self: *const T, DrawingAttributes: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkDrawingAttributes_Clone(self: *const T, DrawingAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).Clone(@ptrCast(*const IInkDrawingAttributes, self), DrawingAttributes);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTransform_Value = @import("../zig.zig").Guid.initString("615F1D43-8703-4565-88E2-8201D2ECD7B7");
+const IID_IInkTransform_Value = @import("../zig.zig").Guid.initString("615f1d43-8703-4565-88e2-8201d2ecd7b7");
 pub const IID_IInkTransform = &IID_IInkTransform_Value;
 pub const IInkTransform = extern struct {
     pub const VTable = extern struct {
@@ -2123,7 +2123,7 @@ pub const IInkTransform = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkGesture_Value = @import("../zig.zig").Guid.initString("3BDC0A97-04E5-4E26-B813-18F052D41DEF");
+const IID_IInkGesture_Value = @import("../zig.zig").Guid.initString("3bdc0a97-04e5-4e26-b813-18f052d41def");
 pub const IID_IInkGesture = &IID_IInkGesture_Value;
 pub const IInkGesture = extern struct {
     pub const VTable = extern struct {
@@ -2161,14 +2161,14 @@ pub const IInkGesture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCursor_Value = @import("../zig.zig").Guid.initString("AD30C630-40C5-4350-8405-9C71012FC558");
+const IID_IInkCursor_Value = @import("../zig.zig").Guid.initString("ad30c630-40c5-4350-8405-9c71012fc558");
 pub const IID_IInkCursor = &IID_IInkCursor_Value;
 pub const IInkCursor = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IInkCursor,
-            Name: *BSTR,
+            Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Id: fn(
             self: *const IInkCursor,
@@ -2180,7 +2180,7 @@ pub const IInkCursor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawingAttributes: fn(
             self: *const IInkCursor,
-            Attributes: **IInkDrawingAttributes,
+            Attributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DrawingAttributes: fn(
             self: *const IInkCursor,
@@ -2188,18 +2188,18 @@ pub const IInkCursor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tablet: fn(
             self: *const IInkCursor,
-            Tablet: **IInkTablet,
+            Tablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Buttons: fn(
             self: *const IInkCursor,
-            Buttons: **IInkCursorButtons,
+            Buttons: ?*?*IInkCursorButtons,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Name(self: *const T, Name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkCursor_get_Name(self: *const T, Name: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursor, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2211,7 +2211,7 @@ pub const IInkCursor = extern struct {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Inverted(@ptrCast(*const IInkCursor, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_DrawingAttributes(self: *const T, Attributes: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkCursor_get_DrawingAttributes(self: *const T, Attributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2219,18 +2219,18 @@ pub const IInkCursor = extern struct {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Tablet(self: *const T, Tablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkCursor_get_Tablet(self: *const T, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCursor, self), Tablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Buttons(self: *const T, Buttons: **IInkCursorButtons) callconv(.Inline) HRESULT {
+        pub fn IInkCursor_get_Buttons(self: *const T, Buttons: ?*?*IInkCursorButtons) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Buttons(@ptrCast(*const IInkCursor, self), Buttons);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCursors_Value = @import("../zig.zig").Guid.initString("A248C1AC-C698-4E06-9E5C-D57F77C7E647");
+const IID_IInkCursors_Value = @import("../zig.zig").Guid.initString("a248c1ac-c698-4e06-9e5c-d57f77c7e647");
 pub const IID_IInkCursors = &IID_IInkCursors_Value;
 pub const IInkCursors = extern struct {
     pub const VTable = extern struct {
@@ -2241,12 +2241,12 @@ pub const IInkCursors = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkCursors,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkCursors,
             Index: i32,
-            Cursor: **IInkCursor,
+            Cursor: ?*?*IInkCursor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2257,29 +2257,29 @@ pub const IInkCursors = extern struct {
             return @ptrCast(*const IInkCursors.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursors, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursors_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkCursors_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursors.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursors, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursors_Item(self: *const T, Index: i32, Cursor: **IInkCursor) callconv(.Inline) HRESULT {
+        pub fn IInkCursors_Item(self: *const T, Index: i32, Cursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursors.VTable, self.vtable).Item(@ptrCast(*const IInkCursors, self), Index, Cursor);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCursorButton_Value = @import("../zig.zig").Guid.initString("85EF9417-1D59-49B2-A13C-702C85430894");
+const IID_IInkCursorButton_Value = @import("../zig.zig").Guid.initString("85ef9417-1d59-49b2-a13c-702c85430894");
 pub const IID_IInkCursorButton = &IID_IInkCursorButton_Value;
 pub const IInkCursorButton = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IInkCursorButton,
-            Name: *BSTR,
+            Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Id: fn(
             self: *const IInkCursorButton,
-            Id: *BSTR,
+            Id: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_State: fn(
             self: *const IInkCursorButton,
@@ -2290,11 +2290,11 @@ pub const IInkCursorButton = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButton_get_Name(self: *const T, Name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkCursorButton_get_Name(self: *const T, Name: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursorButton, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButton_get_Id(self: *const T, Id: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkCursorButton_get_Id(self: *const T, Id: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Id(@ptrCast(*const IInkCursorButton, self), Id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2305,7 +2305,7 @@ pub const IInkCursorButton = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCursorButtons_Value = @import("../zig.zig").Guid.initString("3671CC40-B624-4671-9FA0-DB119D952D54");
+const IID_IInkCursorButtons_Value = @import("../zig.zig").Guid.initString("3671cc40-b624-4671-9fa0-db119d952d54");
 pub const IID_IInkCursorButtons = &IID_IInkCursorButtons_Value;
 pub const IInkCursorButtons = extern struct {
     pub const VTable = extern struct {
@@ -2316,12 +2316,12 @@ pub const IInkCursorButtons = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkCursorButtons,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkCursorButtons,
             Identifier: VARIANT,
-            Button: **IInkCursorButton,
+            Button: ?*?*IInkCursorButton,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2332,33 +2332,33 @@ pub const IInkCursorButtons = extern struct {
             return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursorButtons, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButtons_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkCursorButtons_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursorButtons, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButtons_Item(self: *const T, Identifier: VARIANT, Button: **IInkCursorButton) callconv(.Inline) HRESULT {
+        pub fn IInkCursorButtons_Item(self: *const T, Identifier: VARIANT, Button: ?*?*IInkCursorButton) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).Item(@ptrCast(*const IInkCursorButtons, self), Identifier, Button);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTablet_Value = @import("../zig.zig").Guid.initString("2DE25EAA-6EF8-42D5-AEE9-185BC81B912D");
+const IID_IInkTablet_Value = @import("../zig.zig").Guid.initString("2de25eaa-6ef8-42d5-aee9-185bc81b912d");
 pub const IID_IInkTablet = &IID_IInkTablet_Value;
 pub const IInkTablet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IInkTablet,
-            Name: *BSTR,
+            Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PlugAndPlayId: fn(
             self: *const IInkTablet,
-            Id: *BSTR,
+            Id: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MaximumInputRectangle: fn(
             self: *const IInkTablet,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HardwareCapabilities: fn(
             self: *const IInkTablet,
@@ -2382,15 +2382,15 @@ pub const IInkTablet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_Name(self: *const T, Name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkTablet_get_Name(self: *const T, Name: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablet.VTable, self.vtable).get_Name(@ptrCast(*const IInkTablet, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_PlugAndPlayId(self: *const T, Id: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkTablet_get_PlugAndPlayId(self: *const T, Id: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablet.VTable, self.vtable).get_PlugAndPlayId(@ptrCast(*const IInkTablet, self), Id);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_MaximumInputRectangle(self: *const T, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkTablet_get_MaximumInputRectangle(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablet.VTable, self.vtable).get_MaximumInputRectangle(@ptrCast(*const IInkTablet, self), Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2409,7 +2409,7 @@ pub const IInkTablet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTablet2_Value = @import("../zig.zig").Guid.initString("90C91AD2-FA36-49D6-9516-CE8D570F6F85");
+const IID_IInkTablet2_Value = @import("../zig.zig").Guid.initString("90c91ad2-fa36-49d6-9516-ce8d570f6f85");
 pub const IID_IInkTablet2 = &IID_IInkTablet2_Value;
 pub const IInkTablet2 = extern struct {
     pub const VTable = extern struct {
@@ -2430,7 +2430,7 @@ pub const IInkTablet2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTablet3_Value = @import("../zig.zig").Guid.initString("7E313997-1327-41DD-8CA9-79F24BE17250");
+const IID_IInkTablet3_Value = @import("../zig.zig").Guid.initString("7e313997-1327-41dd-8ca9-79f24be17250");
 pub const IID_IInkTablet3 = &IID_IInkTablet3_Value;
 pub const IInkTablet3 = extern struct {
     pub const VTable = extern struct {
@@ -2459,7 +2459,7 @@ pub const IInkTablet3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkTablets_Value = @import("../zig.zig").Guid.initString("112086D9-7779-4535-A699-862B43AC1863");
+const IID_IInkTablets_Value = @import("../zig.zig").Guid.initString("112086d9-7779-4535-a699-862b43ac1863");
 pub const IID_IInkTablets = &IID_IInkTablets_Value;
 pub const IInkTablets = extern struct {
     pub const VTable = extern struct {
@@ -2470,16 +2470,16 @@ pub const IInkTablets = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkTablets,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultTablet: fn(
             self: *const IInkTablets,
-            DefaultTablet: **IInkTablet,
+            DefaultTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkTablets,
             Index: i32,
-            Tablet: **IInkTablet,
+            Tablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsPacketPropertySupported: fn(
             self: *const IInkTablets,
@@ -2495,15 +2495,15 @@ pub const IInkTablets = extern struct {
             return @ptrCast(*const IInkTablets.VTable, self.vtable).get_Count(@ptrCast(*const IInkTablets, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkTablets_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablets.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkTablets, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_get_DefaultTablet(self: *const T, DefaultTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkTablets_get_DefaultTablet(self: *const T, DefaultTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablets.VTable, self.vtable).get_DefaultTablet(@ptrCast(*const IInkTablets, self), DefaultTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_Item(self: *const T, Index: i32, Tablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkTablets_Item(self: *const T, Index: i32, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkTablets.VTable, self.vtable).Item(@ptrCast(*const IInkTablets, self), Index, Tablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2514,7 +2514,7 @@ pub const IInkTablets = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkStrokeDisp_Value = @import("../zig.zig").Guid.initString("43242FEA-91D1-4A72-963E-FBB91829CFA2");
+const IID_IInkStrokeDisp_Value = @import("../zig.zig").Guid.initString("43242fea-91d1-4a72-963e-fbb91829cfa2");
 pub const IID_IInkStrokeDisp = &IID_IInkStrokeDisp_Value;
 pub const IInkStrokeDisp = extern struct {
     pub const VTable = extern struct {
@@ -2529,7 +2529,7 @@ pub const IInkStrokeDisp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawingAttributes: fn(
             self: *const IInkStrokeDisp,
-            DrawAttrs: **IInkDrawingAttributes,
+            DrawAttrs: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DrawingAttributes: fn(
             self: *const IInkStrokeDisp,
@@ -2537,11 +2537,11 @@ pub const IInkStrokeDisp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IInkStrokeDisp,
-            Ink: **IInkDisp,
+            Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedProperties: fn(
             self: *const IInkStrokeDisp,
-            Properties: **IInkExtendedProperties,
+            Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolylineCusps: fn(
             self: *const IInkStrokeDisp,
@@ -2574,7 +2574,7 @@ pub const IInkStrokeDisp = extern struct {
         GetBoundingBox: fn(
             self: *const IInkStrokeDisp,
             BoundingBoxMode: InkBoundingBoxMode,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindIntersections: fn(
             self: *const IInkStrokeDisp,
@@ -2607,7 +2607,7 @@ pub const IInkStrokeDisp = extern struct {
         Split: fn(
             self: *const IInkStrokeDisp,
             SplitAt: f32,
-            NewStroke: **IInkStrokeDisp,
+            NewStroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPacketDescriptionPropertyMetrics: fn(
             self: *const IInkStrokeDisp,
@@ -2699,7 +2699,7 @@ pub const IInkStrokeDisp = extern struct {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_BezierPoints(@ptrCast(*const IInkStrokeDisp, self), Points);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_DrawingAttributes(self: *const T, DrawAttrs: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkStrokeDisp_get_DrawingAttributes(self: *const T, DrawAttrs: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2707,11 +2707,11 @@ pub const IInkStrokeDisp = extern struct {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_Ink(self: *const T, Ink: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkStrokeDisp_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokeDisp, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_ExtendedProperties(self: *const T, Properties: **IInkExtendedProperties) callconv(.Inline) HRESULT {
+        pub fn IInkStrokeDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkStrokeDisp, self), Properties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2743,7 +2743,7 @@ pub const IInkStrokeDisp = extern struct {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Deleted(@ptrCast(*const IInkStrokeDisp, self), Deleted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkStrokeDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokeDisp, self), BoundingBoxMode, Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2767,7 +2767,7 @@ pub const IInkStrokeDisp = extern struct {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkStrokeDisp, self), X, Y, Distance, Point);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Split(self: *const T, SplitAt: f32, NewStroke: **IInkStrokeDisp) callconv(.Inline) HRESULT {
+        pub fn IInkStrokeDisp_Split(self: *const T, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Split(@ptrCast(*const IInkStrokeDisp, self), SplitAt, NewStroke);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2826,7 +2826,7 @@ pub const IInkStrokeDisp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkStrokes_Value = @import("../zig.zig").Guid.initString("F1F4C9D8-590A-4963-B3AE-1935671BB6F3");
+const IID_IInkStrokes_Value = @import("../zig.zig").Guid.initString("f1f4c9d8-590a-4963-b3ae-1935671bb6f3");
 pub const IID_IInkStrokes = &IID_IInkStrokes_Value;
 pub const IInkStrokes = extern struct {
     pub const VTable = extern struct {
@@ -2837,24 +2837,24 @@ pub const IInkStrokes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkStrokes,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IInkStrokes,
-            Ink: **IInkDisp,
+            Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RecognitionResult: fn(
             self: *const IInkStrokes,
-            RecognitionResult: **IInkRecognitionResult,
+            RecognitionResult: ?*?*IInkRecognitionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ToString: fn(
             self: *const IInkStrokes,
-            ToString: *BSTR,
+            ToString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkStrokes,
             Index: i32,
-            Stroke: **IInkStrokeDisp,
+            Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IInkStrokes,
@@ -2879,7 +2879,7 @@ pub const IInkStrokes = extern struct {
         GetBoundingBox: fn(
             self: *const IInkStrokes,
             BoundingBoxMode: InkBoundingBoxMode,
-            BoundingBox: **IInkRectangle,
+            BoundingBox: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Transform: fn(
             self: *const IInkStrokes,
@@ -2927,23 +2927,23 @@ pub const IInkStrokes = extern struct {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkStrokes, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkStrokes, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get_Ink(self: *const T, Ink: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokes, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get_RecognitionResult(self: *const T, RecognitionResult: **IInkRecognitionResult) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_get_RecognitionResult(self: *const T, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_RecognitionResult(@ptrCast(*const IInkStrokes, self), RecognitionResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ToString(self: *const T, ToString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_ToString(self: *const T, ToString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).ToString(@ptrCast(*const IInkStrokes, self), ToString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Item(self: *const T, Index: i32, Stroke: **IInkStrokeDisp) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_Item(self: *const T, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkStrokes, self), Index, Stroke);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2967,7 +2967,7 @@ pub const IInkStrokes = extern struct {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).ModifyDrawingAttributes(@ptrCast(*const IInkStrokes, self), DrawAttrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkStrokes_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkStrokes.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokes, self), BoundingBoxMode, BoundingBox);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3006,7 +3006,7 @@ pub const IInkStrokes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCustomStrokes_Value = @import("../zig.zig").Guid.initString("7E23A88F-C30E-420F-9BDB-28902543F0C1");
+const IID_IInkCustomStrokes_Value = @import("../zig.zig").Guid.initString("7e23a88f-c30e-420f-9bdb-28902543f0c1");
 pub const IID_IInkCustomStrokes = &IID_IInkCustomStrokes_Value;
 pub const IInkCustomStrokes = extern struct {
     pub const VTable = extern struct {
@@ -3017,12 +3017,12 @@ pub const IInkCustomStrokes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkCustomStrokes,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkCustomStrokes,
             Identifier: VARIANT,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IInkCustomStrokes,
@@ -3045,11 +3045,11 @@ pub const IInkCustomStrokes = extern struct {
             return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkCustomStrokes, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkCustomStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCustomStrokes, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_Item(self: *const T, Identifier: VARIANT, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkCustomStrokes_Item(self: *const T, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkCustomStrokes, self), Identifier, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3068,7 +3068,7 @@ pub const IInkCustomStrokes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkStrokesEvents_Value = @import("../zig.zig").Guid.initString("F33053EC-5D25-430A-928F-76A6491DDE15");
+const IID__IInkStrokesEvents_Value = @import("../zig.zig").Guid.initString("f33053ec-5d25-430a-928f-76a6491dde15");
 pub const IID__IInkStrokesEvents = &IID__IInkStrokesEvents_Value;
 pub const _IInkStrokesEvents = extern struct {
     pub const VTable = extern struct {
@@ -3081,18 +3081,18 @@ pub const _IInkStrokesEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDisp_Value = @import("../zig.zig").Guid.initString("9D398FA0-C4E2-4FCD-9973-975CAAF47EA6");
+const IID_IInkDisp_Value = @import("../zig.zig").Guid.initString("9d398fa0-c4e2-4fcd-9973-975caaf47ea6");
 pub const IID_IInkDisp = &IID_IInkDisp_Value;
 pub const IInkDisp = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Strokes: fn(
             self: *const IInkDisp,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedProperties: fn(
             self: *const IInkDisp,
-            Properties: **IInkExtendedProperties,
+            Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Dirty: fn(
             self: *const IInkDisp,
@@ -3104,12 +3104,12 @@ pub const IInkDisp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CustomStrokes: fn(
             self: *const IInkDisp,
-            ppunkInkCustomStrokes: **IInkCustomStrokes,
+            ppunkInkCustomStrokes: ?*?*IInkCustomStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBoundingBox: fn(
             self: *const IInkDisp,
             BoundingBoxMode: InkBoundingBoxMode,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteStrokes: fn(
             self: *const IInkDisp,
@@ -3123,13 +3123,13 @@ pub const IInkDisp = extern struct {
             self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
             ExtractFlags: InkExtractFlags,
-            ExtractedInk: **IInkDisp,
+            ExtractedInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExtractWithRectangle: fn(
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             extractFlags: InkExtractFlags,
-            ExtractedInk: **IInkDisp,
+            ExtractedInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clip: fn(
             self: *const IInkDisp,
@@ -3137,27 +3137,27 @@ pub const IInkDisp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IInkDisp,
-            NewInk: **IInkDisp,
+            NewInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HitTestCircle: fn(
             self: *const IInkDisp,
             X: i32,
             Y: i32,
             radius: f32,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HitTestWithRectangle: fn(
             self: *const IInkDisp,
             SelectionRectangle: ?*IInkRectangle,
             IntersectPercent: f32,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         HitTestWithLasso: fn(
             self: *const IInkDisp,
             Points: VARIANT,
             IntersectPercent: f32,
             LassoPoints: ?*VARIANT,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NearestPoint: fn(
             self: *const IInkDisp,
@@ -3165,12 +3165,12 @@ pub const IInkDisp = extern struct {
             Y: i32,
             PointOnStroke: *f32,
             DistanceFromPacket: *f32,
-            Stroke: **IInkStrokeDisp,
+            Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateStrokes: fn(
             self: *const IInkDisp,
             StrokeIds: VARIANT,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddStrokesAtRectangle: fn(
             self: *const IInkDisp,
@@ -3191,21 +3191,21 @@ pub const IInkDisp = extern struct {
             self: *const IInkDisp,
             PacketData: VARIANT,
             PacketDescription: VARIANT,
-            Stroke: **IInkStrokeDisp,
+            Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClipboardCopyWithRectangle: fn(
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
-            DataObject: **IDataObject,
+            DataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClipboardCopy: fn(
             self: *const IInkDisp,
             strokes: ?*IInkStrokes,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
-            DataObject: **IDataObject,
+            DataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CanPaste: fn(
             self: *const IInkDisp,
@@ -3217,18 +3217,18 @@ pub const IInkDisp = extern struct {
             x: i32,
             y: i32,
             DataObject: ?*IDataObject,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDisp, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_ExtendedProperties(self: *const T, Properties: **IInkExtendedProperties) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDisp, self), Properties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3240,11 +3240,11 @@ pub const IInkDisp = extern struct {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).put_Dirty(@ptrCast(*const IInkDisp, self), Dirty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_CustomStrokes(self: *const T, ppunkInkCustomStrokes: **IInkCustomStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_get_CustomStrokes(self: *const T, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).get_CustomStrokes(@ptrCast(*const IInkDisp, self), ppunkInkCustomStrokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkDisp, self), BoundingBoxMode, Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3256,11 +3256,11 @@ pub const IInkDisp = extern struct {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).DeleteStroke(@ptrCast(*const IInkDisp, self), Stroke);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ExtractStrokes(self: *const T, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_ExtractStrokes(self: *const T, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractStrokes(@ptrCast(*const IInkDisp, self), Strokes, ExtractFlags, ExtractedInk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ExtractWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_ExtractWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, extractFlags, ExtractedInk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3268,27 +3268,27 @@ pub const IInkDisp = extern struct {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).Clip(@ptrCast(*const IInkDisp, self), Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_Clone(self: *const T, NewInk: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_Clone(self: *const T, NewInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).Clone(@ptrCast(*const IInkDisp, self), NewInk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestCircle(self: *const T, X: i32, Y: i32, radius: f32, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_HitTestCircle(self: *const T, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestCircle(@ptrCast(*const IInkDisp, self), X, Y, radius, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestWithRectangle(self: *const T, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_HitTestWithRectangle(self: *const T, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithRectangle(@ptrCast(*const IInkDisp, self), SelectionRectangle, IntersectPercent, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestWithLasso(self: *const T, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_HitTestWithLasso(self: *const T, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithLasso(@ptrCast(*const IInkDisp, self), Points, IntersectPercent, LassoPoints, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_NearestPoint(self: *const T, X: i32, Y: i32, PointOnStroke: *f32, DistanceFromPacket: *f32, Stroke: **IInkStrokeDisp) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_NearestPoint(self: *const T, X: i32, Y: i32, PointOnStroke: *f32, DistanceFromPacket: *f32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkDisp, self), X, Y, PointOnStroke, DistanceFromPacket, Stroke);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CreateStrokes(self: *const T, StrokeIds: VARIANT, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_CreateStrokes(self: *const T, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStrokes(@ptrCast(*const IInkDisp, self), StrokeIds, Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3304,15 +3304,15 @@ pub const IInkDisp = extern struct {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).Load(@ptrCast(*const IInkDisp, self), Data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CreateStroke(self: *const T, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: **IInkStrokeDisp) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_CreateStroke(self: *const T, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStroke(@ptrCast(*const IInkDisp, self), PacketData, PacketDescription, Stroke);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardCopyWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_ClipboardCopyWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopyWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, ClipboardFormats, ClipboardModes, DataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardCopy(self: *const T, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: **IDataObject) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_ClipboardCopy(self: *const T, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopy(@ptrCast(*const IInkDisp, self), strokes, ClipboardFormats, ClipboardModes, DataObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3320,14 +3320,14 @@ pub const IInkDisp = extern struct {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).CanPaste(@ptrCast(*const IInkDisp, self), DataObject, CanPaste);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardPaste(self: *const T, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDisp_ClipboardPaste(self: *const T, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardPaste(@ptrCast(*const IInkDisp, self), x, y, DataObject, Strokes);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkEvents_Value = @import("../zig.zig").Guid.initString("427B1865-CA3F-479A-83A9-0F420F2A0073");
+const IID__IInkEvents_Value = @import("../zig.zig").Guid.initString("427b1865-ca3f-479a-83a9-0f420f2a0073");
 pub const IID__IInkEvents = &IID__IInkEvents_Value;
 pub const _IInkEvents = extern struct {
     pub const VTable = extern struct {
@@ -3340,7 +3340,7 @@ pub const _IInkEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRenderer_Value = @import("../zig.zig").Guid.initString("E6257A9C-B511-4F4C-A8B0-A7DBC9506B83");
+const IID_IInkRenderer_Value = @import("../zig.zig").Guid.initString("e6257a9c-b511-4f4c-a8b0-a7dbc9506b83");
 pub const IID_IInkRenderer = &IID_IInkRenderer_Value;
 pub const IInkRenderer = extern struct {
     pub const VTable = extern struct {
@@ -3397,13 +3397,13 @@ pub const IInkRenderer = extern struct {
         Measure: fn(
             self: *const IInkRenderer,
             Strokes: ?*IInkStrokes,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MeasureStroke: fn(
             self: *const IInkRenderer,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Move: fn(
             self: *const IInkRenderer,
@@ -3467,11 +3467,11 @@ pub const IInkRenderer = extern struct {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixelFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Measure(self: *const T, Strokes: ?*IInkStrokes, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_Measure(self: *const T, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).Measure(@ptrCast(*const IInkRenderer, self), Strokes, Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_MeasureStroke(self: *const T, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkRenderer_MeasureStroke(self: *const T, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRenderer.VTable, self.vtable).MeasureStroke(@ptrCast(*const IInkRenderer, self), Stroke, DrawingAttributes, Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3490,7 +3490,7 @@ pub const IInkRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkCollector_Value = @import("../zig.zig").Guid.initString("F0F060B5-8B1F-4A7C-89EC-880692588A4F");
+const IID_IInkCollector_Value = @import("../zig.zig").Guid.initString("f0f060b5-8b1f-4a7c-89ec-880692588a4f");
 pub const IID_IInkCollector = &IID_IInkCollector_Value;
 pub const IInkCollector = extern struct {
     pub const VTable = extern struct {
@@ -3513,7 +3513,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultDrawingAttributes: fn(
             self: *const IInkCollector,
-            CurrentAttributes: **IInkDrawingAttributes,
+            CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DefaultDrawingAttributes: fn(
             self: *const IInkCollector,
@@ -3521,7 +3521,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Renderer: fn(
             self: *const IInkCollector,
-            CurrentInkRenderer: **IInkRenderer,
+            CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Renderer: fn(
             self: *const IInkCollector,
@@ -3529,7 +3529,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IInkCollector,
-            Ink: **IInkDisp,
+            Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Ink: fn(
             self: *const IInkCollector,
@@ -3573,7 +3573,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MouseIcon: fn(
             self: *const IInkCollector,
-            MouseIcon: **IPictureDisp,
+            MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MouseIcon: fn(
             self: *const IInkCollector,
@@ -3593,7 +3593,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Cursors: fn(
             self: *const IInkCollector,
-            Cursors: **IInkCursors,
+            Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MarginX: fn(
             self: *const IInkCollector,
@@ -3613,7 +3613,7 @@ pub const IInkCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tablet: fn(
             self: *const IInkCollector,
-            SingleTablet: **IInkTablet,
+            SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportHighContrastInk: fn(
             self: *const IInkCollector,
@@ -3680,7 +3680,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkCollector, self), Collecting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), CurrentAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3688,7 +3688,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), NewAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Renderer(self: *const T, CurrentInkRenderer: **IInkRenderer) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkCollector, self), CurrentInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3696,7 +3696,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkCollector, self), NewInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Ink(self: *const T, Ink: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Ink(@ptrCast(*const IInkCollector, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3740,7 +3740,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkCollector, self), PacketGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_MouseIcon(self: *const T, MouseIcon: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3760,7 +3760,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkCollector, self), MousePointer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Cursors(self: *const T, Cursors: **IInkCursors) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkCollector, self), Cursors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3780,7 +3780,7 @@ pub const IInkCollector = extern struct {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkCollector, self), MarginY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Tablet(self: *const T, SingleTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkCollector_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCollector, self), SingleTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3827,7 +3827,7 @@ pub const IInkCollector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkCollectorEvents_Value = @import("../zig.zig").Guid.initString("11A583F2-712D-4FEA-ABCF-AB4AF38EA06B");
+const IID__IInkCollectorEvents_Value = @import("../zig.zig").Guid.initString("11a583f2-712d-4fea-abcf-ab4af38ea06b");
 pub const IID__IInkCollectorEvents = &IID__IInkCollectorEvents_Value;
 pub const _IInkCollectorEvents = extern struct {
     pub const VTable = extern struct {
@@ -3840,7 +3840,7 @@ pub const _IInkCollectorEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkOverlay_Value = @import("../zig.zig").Guid.initString("B82A463B-C1C5-45A3-997C-DEAB5651B67A");
+const IID_IInkOverlay_Value = @import("../zig.zig").Guid.initString("b82a463b-c1c5-45a3-997c-deab5651b67a");
 pub const IID_IInkOverlay = &IID_IInkOverlay_Value;
 pub const IInkOverlay = extern struct {
     pub const VTable = extern struct {
@@ -3863,7 +3863,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultDrawingAttributes: fn(
             self: *const IInkOverlay,
-            CurrentAttributes: **IInkDrawingAttributes,
+            CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DefaultDrawingAttributes: fn(
             self: *const IInkOverlay,
@@ -3871,7 +3871,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Renderer: fn(
             self: *const IInkOverlay,
-            CurrentInkRenderer: **IInkRenderer,
+            CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Renderer: fn(
             self: *const IInkOverlay,
@@ -3879,7 +3879,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IInkOverlay,
-            Ink: **IInkDisp,
+            Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Ink: fn(
             self: *const IInkOverlay,
@@ -3923,7 +3923,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MouseIcon: fn(
             self: *const IInkOverlay,
-            MouseIcon: **IPictureDisp,
+            MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MouseIcon: fn(
             self: *const IInkOverlay,
@@ -3951,7 +3951,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Selection: fn(
             self: *const IInkOverlay,
-            Selection: **IInkStrokes,
+            Selection: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Selection: fn(
             self: *const IInkOverlay,
@@ -3983,7 +3983,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Cursors: fn(
             self: *const IInkOverlay,
-            Cursors: **IInkCursors,
+            Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MarginX: fn(
             self: *const IInkOverlay,
@@ -4003,7 +4003,7 @@ pub const IInkOverlay = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tablet: fn(
             self: *const IInkOverlay,
-            SingleTablet: **IInkTablet,
+            SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportHighContrastInk: fn(
             self: *const IInkOverlay,
@@ -4088,7 +4088,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkOverlay, self), Collecting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), CurrentAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4096,7 +4096,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), NewAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Renderer(self: *const T, CurrentInkRenderer: **IInkRenderer) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkOverlay, self), CurrentInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4104,7 +4104,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkOverlay, self), NewInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Ink(self: *const T, Ink: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Ink(@ptrCast(*const IInkOverlay, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4148,7 +4148,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkOverlay, self), PacketGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_MouseIcon(self: *const T, MouseIcon: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4176,7 +4176,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkOverlay, self), EditingMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Selection(self: *const T, Selection: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Selection(@ptrCast(*const IInkOverlay, self), Selection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4208,7 +4208,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_AttachMode(@ptrCast(*const IInkOverlay, self), AttachMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Cursors(self: *const T, Cursors: **IInkCursors) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkOverlay, self), Cursors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4228,7 +4228,7 @@ pub const IInkOverlay = extern struct {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkOverlay, self), MarginY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Tablet(self: *const T, SingleTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkOverlay_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkOverlay, self), SingleTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4291,7 +4291,7 @@ pub const IInkOverlay = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkOverlayEvents_Value = @import("../zig.zig").Guid.initString("31179B69-E563-489E-B16F-712F1E8A0651");
+const IID__IInkOverlayEvents_Value = @import("../zig.zig").Guid.initString("31179b69-e563-489e-b16f-712f1e8a0651");
 pub const IID__IInkOverlayEvents = &IID__IInkOverlayEvents_Value;
 pub const _IInkOverlayEvents = extern struct {
     pub const VTable = extern struct {
@@ -4304,7 +4304,7 @@ pub const _IInkOverlayEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkPicture_Value = @import("../zig.zig").Guid.initString("E85662E0-379A-40D7-9B5C-757D233F9923");
+const IID_IInkPicture_Value = @import("../zig.zig").Guid.initString("e85662e0-379a-40d7-9b5c-757d233f9923");
 pub const IID_IInkPicture = &IID_IInkPicture_Value;
 pub const IInkPicture = extern struct {
     pub const VTable = extern struct {
@@ -4315,7 +4315,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultDrawingAttributes: fn(
             self: *const IInkPicture,
-            CurrentAttributes: **IInkDrawingAttributes,
+            CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DefaultDrawingAttributes: fn(
             self: *const IInkPicture,
@@ -4323,7 +4323,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Renderer: fn(
             self: *const IInkPicture,
-            CurrentInkRenderer: **IInkRenderer,
+            CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Renderer: fn(
             self: *const IInkPicture,
@@ -4331,7 +4331,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IInkPicture,
-            Ink: **IInkDisp,
+            Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Ink: fn(
             self: *const IInkPicture,
@@ -4375,7 +4375,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MouseIcon: fn(
             self: *const IInkPicture,
-            MouseIcon: **IPictureDisp,
+            MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MouseIcon: fn(
             self: *const IInkPicture,
@@ -4403,7 +4403,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Selection: fn(
             self: *const IInkPicture,
-            Selection: **IInkStrokes,
+            Selection: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Selection: fn(
             self: *const IInkPicture,
@@ -4435,7 +4435,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Picture: fn(
             self: *const IInkPicture,
-            ppPicture: **IPictureDisp,
+            ppPicture: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SizeMode: fn(
             self: *const IInkPicture,
@@ -4455,7 +4455,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Cursors: fn(
             self: *const IInkPicture,
-            Cursors: **IInkCursors,
+            Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MarginX: fn(
             self: *const IInkPicture,
@@ -4475,7 +4475,7 @@ pub const IInkPicture = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tablet: fn(
             self: *const IInkPicture,
-            SingleTablet: **IInkTablet,
+            SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SupportHighContrastInk: fn(
             self: *const IInkPicture,
@@ -4560,7 +4560,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkPicture, self), CurrentWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), CurrentAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4568,7 +4568,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), NewAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Renderer(self: *const T, CurrentInkRenderer: **IInkRenderer) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkPicture, self), CurrentInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4576,7 +4576,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkPicture, self), NewInkRenderer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Ink(self: *const T, Ink: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Ink(@ptrCast(*const IInkPicture, self), Ink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4620,7 +4620,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkPicture, self), PacketGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_MouseIcon(self: *const T, MouseIcon: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4648,7 +4648,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkPicture, self), EditingMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Selection(self: *const T, Selection: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Selection(@ptrCast(*const IInkPicture, self), Selection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4680,7 +4680,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Picture(@ptrCast(*const IInkPicture, self), pPicture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Picture(self: *const T, ppPicture: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Picture(self: *const T, ppPicture: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Picture(@ptrCast(*const IInkPicture, self), ppPicture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4700,7 +4700,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_BackColor(@ptrCast(*const IInkPicture, self), pColor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Cursors(self: *const T, Cursors: **IInkCursors) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkPicture, self), Cursors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4720,7 +4720,7 @@ pub const IInkPicture = extern struct {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkPicture, self), MarginY);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Tablet(self: *const T, SingleTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IInkPicture_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkPicture, self), SingleTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4795,7 +4795,7 @@ pub const IInkPicture = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkPictureEvents_Value = @import("../zig.zig").Guid.initString("60FF4FEE-22FF-4484-ACC1-D308D9CD7EA3");
+const IID__IInkPictureEvents_Value = @import("../zig.zig").Guid.initString("60ff4fee-22ff-4484-acc1-d308d9cd7ea3");
 pub const IID__IInkPictureEvents = &IID__IInkPictureEvents_Value;
 pub const _IInkPictureEvents = extern struct {
     pub const VTable = extern struct {
@@ -4808,18 +4808,18 @@ pub const _IInkPictureEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizer_Value = @import("../zig.zig").Guid.initString("782BF7CF-034B-4396-8A32-3A1833CF6B56");
+const IID_IInkRecognizer_Value = @import("../zig.zig").Guid.initString("782bf7cf-034b-4396-8a32-3a1833cf6b56");
 pub const IID_IInkRecognizer = &IID_IInkRecognizer_Value;
 pub const IInkRecognizer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IInkRecognizer,
-            Name: *BSTR,
+            Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Vendor: fn(
             self: *const IInkRecognizer,
-            Vendor: *BSTR,
+            Vendor: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Capabilities: fn(
             self: *const IInkRecognizer,
@@ -4839,18 +4839,18 @@ pub const IInkRecognizer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRecognizerContext: fn(
             self: *const IInkRecognizer,
-            Context: **IInkRecognizerContext,
+            Context: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Name(self: *const T, Name: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizer_get_Name(self: *const T, Name: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Name(@ptrCast(*const IInkRecognizer, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Vendor(self: *const T, Vendor: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizer_get_Vendor(self: *const T, Vendor: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Vendor(@ptrCast(*const IInkRecognizer, self), Vendor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4870,21 +4870,21 @@ pub const IInkRecognizer = extern struct {
             return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_PreferredPacketDescription(@ptrCast(*const IInkRecognizer, self), PreferredPacketDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_CreateRecognizerContext(self: *const T, Context: **IInkRecognizerContext) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizer_CreateRecognizerContext(self: *const T, Context: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizer.VTable, self.vtable).CreateRecognizerContext(@ptrCast(*const IInkRecognizer, self), Context);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizer2_Value = @import("../zig.zig").Guid.initString("6110118A-3A75-4AD6-B2AA-04B2B72BBE65");
+const IID_IInkRecognizer2_Value = @import("../zig.zig").Guid.initString("6110118a-3a75-4ad6-b2aa-04b2b72bbe65");
 pub const IID_IInkRecognizer2 = &IID_IInkRecognizer2_Value;
 pub const IInkRecognizer2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Id: fn(
             self: *const IInkRecognizer2,
-            pbstrId: *BSTR,
+            pbstrId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UnicodeRanges: fn(
             self: *const IInkRecognizer2,
@@ -4895,7 +4895,7 @@ pub const IInkRecognizer2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer2_get_Id(self: *const T, pbstrId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizer2_get_Id(self: *const T, pbstrId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizer2.VTable, self.vtable).get_Id(@ptrCast(*const IInkRecognizer2, self), pbstrId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4906,7 +4906,7 @@ pub const IInkRecognizer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizers_Value = @import("../zig.zig").Guid.initString("9CCC4F12-B0B7-4A8B-BF58-4AECA4E8CEFD");
+const IID_IInkRecognizers_Value = @import("../zig.zig").Guid.initString("9ccc4f12-b0b7-4a8b-bf58-4aeca4e8cefd");
 pub const IID_IInkRecognizers = &IID_IInkRecognizers_Value;
 pub const IInkRecognizers = extern struct {
     pub const VTable = extern struct {
@@ -4917,17 +4917,17 @@ pub const IInkRecognizers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkRecognizers,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultRecognizer: fn(
             self: *const IInkRecognizers,
             lcid: i32,
-            DefaultRecognizer: **IInkRecognizer,
+            DefaultRecognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkRecognizers,
             Index: i32,
-            InkRecognizer: **IInkRecognizer,
+            InkRecognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4938,22 +4938,22 @@ pub const IInkRecognizers = extern struct {
             return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognizers, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizers_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognizers, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_GetDefaultRecognizer(self: *const T, lcid: i32, DefaultRecognizer: **IInkRecognizer) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizers_GetDefaultRecognizer(self: *const T, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizers.VTable, self.vtable).GetDefaultRecognizer(@ptrCast(*const IInkRecognizers, self), lcid, DefaultRecognizer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_Item(self: *const T, Index: i32, InkRecognizer: **IInkRecognizer) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizers_Item(self: *const T, Index: i32, InkRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizers.VTable, self.vtable).Item(@ptrCast(*const IInkRecognizers, self), Index, InkRecognizer);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkRecognitionEvents_Value = @import("../zig.zig").Guid.initString("17BCE92F-2E21-47FD-9D33-3C6AFBFD8C59");
+const IID__IInkRecognitionEvents_Value = @import("../zig.zig").Guid.initString("17bce92f-2e21-47fd-9d33-3c6afbfd8c59");
 pub const IID__IInkRecognitionEvents = &IID__IInkRecognitionEvents_Value;
 pub const _IInkRecognitionEvents = extern struct {
     pub const VTable = extern struct {
@@ -4966,14 +4966,14 @@ pub const _IInkRecognitionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizerContext_Value = @import("../zig.zig").Guid.initString("C68F52F9-32A3-4625-906C-44FC23B40958");
+const IID_IInkRecognizerContext_Value = @import("../zig.zig").Guid.initString("c68f52f9-32a3-4625-906c-44fc23b40958");
 pub const IID_IInkRecognizerContext = &IID_IInkRecognizerContext_Value;
 pub const IInkRecognizerContext = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Strokes: fn(
             self: *const IInkRecognizerContext,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Strokes: fn(
             self: *const IInkRecognizerContext,
@@ -4989,7 +4989,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Factoid: fn(
             self: *const IInkRecognizerContext,
-            Factoid: *BSTR,
+            Factoid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Factoid: fn(
             self: *const IInkRecognizerContext,
@@ -4997,7 +4997,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Guide: fn(
             self: *const IInkRecognizerContext,
-            RecognizerGuide: **IInkRecognizerGuide,
+            RecognizerGuide: ?*?*IInkRecognizerGuide,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Guide: fn(
             self: *const IInkRecognizerContext,
@@ -5005,7 +5005,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrefixText: fn(
             self: *const IInkRecognizerContext,
-            Prefix: *BSTR,
+            Prefix: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PrefixText: fn(
             self: *const IInkRecognizerContext,
@@ -5013,7 +5013,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SuffixText: fn(
             self: *const IInkRecognizerContext,
-            Suffix: *BSTR,
+            Suffix: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SuffixText: fn(
             self: *const IInkRecognizerContext,
@@ -5029,7 +5029,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_WordList: fn(
             self: *const IInkRecognizerContext,
-            WordList: **IInkWordList,
+            WordList: ?*?*IInkWordList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_WordList: fn(
             self: *const IInkRecognizerContext,
@@ -5037,12 +5037,12 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recognizer: fn(
             self: *const IInkRecognizerContext,
-            Recognizer: **IInkRecognizer,
+            Recognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Recognize: fn(
             self: *const IInkRecognizerContext,
             RecognitionStatus: *InkRecognitionStatus,
-            RecognitionResult: **IInkRecognitionResult,
+            RecognitionResult: ?*?*IInkRecognitionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopBackgroundRecognition: fn(
             self: *const IInkRecognizerContext,
@@ -5060,7 +5060,7 @@ pub const IInkRecognizerContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IInkRecognizerContext,
-            RecoContext: **IInkRecognizerContext,
+            RecoContext: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsStringSupported: fn(
             self: *const IInkRecognizerContext,
@@ -5072,7 +5072,7 @@ pub const IInkRecognizerContext = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognizerContext, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5088,7 +5088,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_CharacterAutoCompletionMode(@ptrCast(*const IInkRecognizerContext, self), Mode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Factoid(self: *const T, Factoid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_Factoid(self: *const T, Factoid: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkRecognizerContext, self), Factoid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5096,7 +5096,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_Factoid(@ptrCast(*const IInkRecognizerContext, self), factoid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Guide(self: *const T, RecognizerGuide: **IInkRecognizerGuide) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_Guide(self: *const T, RecognizerGuide: ?*?*IInkRecognizerGuide) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5104,7 +5104,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_PrefixText(self: *const T, Prefix: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_PrefixText(self: *const T, Prefix: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5112,7 +5112,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_SuffixText(self: *const T, Suffix: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_SuffixText(self: *const T, Suffix: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_SuffixText(@ptrCast(*const IInkRecognizerContext, self), Suffix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5128,7 +5128,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_RecognitionFlags(@ptrCast(*const IInkRecognizerContext, self), Modes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_WordList(self: *const T, WordList: **IInkWordList) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_WordList(self: *const T, WordList: ?*?*IInkWordList) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5136,11 +5136,11 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Recognizer(self: *const T, Recognizer: **IInkRecognizer) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_get_Recognizer(self: *const T, Recognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkRecognizerContext, self), Recognizer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_Recognize(self: *const T, RecognitionStatus: *InkRecognitionStatus, RecognitionResult: **IInkRecognitionResult) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_Recognize(self: *const T, RecognitionStatus: *InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Recognize(@ptrCast(*const IInkRecognizerContext, self), RecognitionStatus, RecognitionResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5160,7 +5160,7 @@ pub const IInkRecognizerContext = extern struct {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).BackgroundRecognizeWithAlternates(@ptrCast(*const IInkRecognizerContext, self), CustomData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_Clone(self: *const T, RecoContext: **IInkRecognizerContext) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerContext_Clone(self: *const T, RecoContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Clone(@ptrCast(*const IInkRecognizerContext, self), RecoContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5171,7 +5171,7 @@ pub const IInkRecognizerContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizerContext2_Value = @import("../zig.zig").Guid.initString("D6F0E32F-73D8-408E-8E9F-5FEA592C363F");
+const IID_IInkRecognizerContext2_Value = @import("../zig.zig").Guid.initString("d6f0e32f-73d8-408e-8e9f-5fea592c363f");
 pub const IID_IInkRecognizerContext2 = &IID_IInkRecognizerContext2_Value;
 pub const IInkRecognizerContext2 = extern struct {
     pub const VTable = extern struct {
@@ -5200,18 +5200,18 @@ pub const IInkRecognizerContext2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognitionResult_Value = @import("../zig.zig").Guid.initString("3BC129A8-86CD-45AD-BDE8-E0D32D61C16D");
+const IID_IInkRecognitionResult_Value = @import("../zig.zig").Guid.initString("3bc129a8-86cd-45ad-bde8-e0d32d61c16d");
 pub const IID_IInkRecognitionResult = &IID_IInkRecognitionResult_Value;
 pub const IInkRecognitionResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_TopString: fn(
             self: *const IInkRecognitionResult,
-            TopString: *BSTR,
+            TopString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TopAlternate: fn(
             self: *const IInkRecognitionResult,
-            TopAlternate: **IInkRecognitionAlternate,
+            TopAlternate: ?*?*IInkRecognitionAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TopConfidence: fn(
             self: *const IInkRecognitionResult,
@@ -5219,14 +5219,14 @@ pub const IInkRecognitionResult = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Strokes: fn(
             self: *const IInkRecognitionResult,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AlternatesFromSelection: fn(
             self: *const IInkRecognitionResult,
             selectionStart: i32,
             selectionLength: i32,
             maximumAlternates: i32,
-            AlternatesFromSelection: **IInkRecognitionAlternates,
+            AlternatesFromSelection: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifyTopAlternate: fn(
             self: *const IInkRecognitionResult,
@@ -5240,11 +5240,11 @@ pub const IInkRecognitionResult = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_TopString(self: *const T, TopString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionResult_get_TopString(self: *const T, TopString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopString(@ptrCast(*const IInkRecognitionResult, self), TopString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_TopAlternate(self: *const T, TopAlternate: **IInkRecognitionAlternate) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionResult_get_TopAlternate(self: *const T, TopAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopAlternate(@ptrCast(*const IInkRecognitionResult, self), TopAlternate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5252,11 +5252,11 @@ pub const IInkRecognitionResult = extern struct {
             return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopConfidence(@ptrCast(*const IInkRecognitionResult, self), TopConfidence);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionResult, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, AlternatesFromSelection: **IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).AlternatesFromSelection(@ptrCast(*const IInkRecognitionResult, self), selectionStart, selectionLength, maximumAlternates, AlternatesFromSelection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5271,14 +5271,14 @@ pub const IInkRecognitionResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognitionAlternate_Value = @import("../zig.zig").Guid.initString("B7E660AD-77E4-429B-ADDA-873780D1FC4A");
+const IID_IInkRecognitionAlternate_Value = @import("../zig.zig").Guid.initString("b7e660ad-77e4-429b-adda-873780d1fc4a");
 pub const IID_IInkRecognitionAlternate = &IID_IInkRecognitionAlternate_Value;
 pub const IInkRecognitionAlternate = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_String: fn(
             self: *const IInkRecognitionAlternate,
-            RecoString: *BSTR,
+            RecoString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Confidence: fn(
             self: *const IInkRecognitionAlternate,
@@ -5306,26 +5306,26 @@ pub const IInkRecognitionAlternate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Strokes: fn(
             self: *const IInkRecognitionAlternate,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LineAlternates: fn(
             self: *const IInkRecognitionAlternate,
-            LineAlternates: **IInkRecognitionAlternates,
+            LineAlternates: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ConfidenceAlternates: fn(
             self: *const IInkRecognitionAlternate,
-            ConfidenceAlternates: **IInkRecognitionAlternates,
+            ConfidenceAlternates: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStrokesFromStrokeRanges: fn(
             self: *const IInkRecognitionAlternate,
             Strokes: ?*IInkStrokes,
-            GetStrokesFromStrokeRanges: **IInkStrokes,
+            GetStrokesFromStrokeRanges: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStrokesFromTextRange: fn(
             self: *const IInkRecognitionAlternate,
             selectionStart: *i32,
             selectionLength: *i32,
-            GetStrokesFromTextRange: **IInkStrokes,
+            GetStrokesFromTextRange: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTextRangeFromStrokes: fn(
             self: *const IInkRecognitionAlternate,
@@ -5336,7 +5336,7 @@ pub const IInkRecognitionAlternate = extern struct {
         AlternatesWithConstantPropertyValues: fn(
             self: *const IInkRecognitionAlternate,
             PropertyType: BSTR,
-            AlternatesWithConstantPropertyValues: **IInkRecognitionAlternates,
+            AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyValue: fn(
             self: *const IInkRecognitionAlternate,
@@ -5348,7 +5348,7 @@ pub const IInkRecognitionAlternate = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_String(self: *const T, RecoString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_get_String(self: *const T, RecoString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_String(@ptrCast(*const IInkRecognitionAlternate, self), RecoString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5376,23 +5376,23 @@ pub const IInkRecognitionAlternate = extern struct {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineNumber(@ptrCast(*const IInkRecognitionAlternate, self), LineNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_LineAlternates(self: *const T, LineAlternates: **IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_get_LineAlternates(self: *const T, LineAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineAlternates(@ptrCast(*const IInkRecognitionAlternate, self), LineAlternates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_ConfidenceAlternates(self: *const T, ConfidenceAlternates: **IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_get_ConfidenceAlternates(self: *const T, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_ConfidenceAlternates(@ptrCast(*const IInkRecognitionAlternate, self), ConfidenceAlternates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, GetStrokesFromStrokeRanges: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromStrokeRanges(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, GetStrokesFromStrokeRanges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: *i32, selectionLength: *i32, GetStrokesFromTextRange: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: *i32, selectionLength: *i32, GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromTextRange(@ptrCast(*const IInkRecognitionAlternate, self), selectionStart, selectionLength, GetStrokesFromTextRange);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5400,7 +5400,7 @@ pub const IInkRecognitionAlternate = extern struct {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetTextRangeFromStrokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, selectionStart, selectionLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: BSTR, AlternatesWithConstantPropertyValues: **IInkRecognitionAlternates) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: BSTR, AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).AlternatesWithConstantPropertyValues(@ptrCast(*const IInkRecognitionAlternate, self), PropertyType, AlternatesWithConstantPropertyValues);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5411,7 +5411,7 @@ pub const IInkRecognitionAlternate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognitionAlternates_Value = @import("../zig.zig").Guid.initString("286A167F-9F19-4C61-9D53-4F07BE622B84");
+const IID_IInkRecognitionAlternates_Value = @import("../zig.zig").Guid.initString("286a167f-9f19-4c61-9d53-4f07be622b84");
 pub const IID_IInkRecognitionAlternates = &IID_IInkRecognitionAlternates_Value;
 pub const IInkRecognitionAlternates = extern struct {
     pub const VTable = extern struct {
@@ -5422,16 +5422,16 @@ pub const IInkRecognitionAlternates = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkRecognitionAlternates,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Strokes: fn(
             self: *const IInkRecognitionAlternates,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkRecognitionAlternates,
             Index: i32,
-            InkRecoAlternate: **IInkRecognitionAlternate,
+            InkRecoAlternate: ?*?*IInkRecognitionAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5442,29 +5442,29 @@ pub const IInkRecognitionAlternates = extern struct {
             return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognitionAlternates, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternates_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognitionAlternates, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternates_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternates, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_Item(self: *const T, Index: i32, InkRecoAlternate: **IInkRecognitionAlternate) callconv(.Inline) HRESULT {
+        pub fn IInkRecognitionAlternates_Item(self: *const T, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).Item(@ptrCast(*const IInkRecognitionAlternates, self), Index, InkRecoAlternate);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("D934BE07-7B84-4208-9136-83C20994E905");
+const IID_IInkRecognizerGuide_Value = @import("../zig.zig").Guid.initString("d934be07-7b84-4208-9136-83c20994e905");
 pub const IID_IInkRecognizerGuide = &IID_IInkRecognizerGuide_Value;
 pub const IInkRecognizerGuide = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_WritingBox: fn(
             self: *const IInkRecognizerGuide,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_WritingBox: fn(
             self: *const IInkRecognizerGuide,
@@ -5472,7 +5472,7 @@ pub const IInkRecognizerGuide = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawnBox: fn(
             self: *const IInkRecognizerGuide,
-            Rectangle: **IInkRectangle,
+            Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DrawnBox: fn(
             self: *const IInkRecognizerGuide,
@@ -5515,7 +5515,7 @@ pub const IInkRecognizerGuide = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_WritingBox(self: *const T, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerGuide_get_WritingBox(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5523,7 +5523,7 @@ pub const IInkRecognizerGuide = extern struct {
             return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_DrawnBox(self: *const T, Rectangle: **IInkRectangle) callconv(.Inline) HRESULT {
+        pub fn IInkRecognizerGuide_get_DrawnBox(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_DrawnBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5566,7 +5566,7 @@ pub const IInkRecognizerGuide = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkWordList_Value = @import("../zig.zig").Guid.initString("76BA3491-CB2F-406B-9961-0E0C4CDAAEF2");
+const IID_IInkWordList_Value = @import("../zig.zig").Guid.initString("76ba3491-cb2f-406b-9961-0e0c4cdaaef2");
 pub const IID_IInkWordList = &IID_IInkWordList_Value;
 pub const IInkWordList = extern struct {
     pub const VTable = extern struct {
@@ -5603,7 +5603,7 @@ pub const IInkWordList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkWordList2_Value = @import("../zig.zig").Guid.initString("14542586-11BF-4F5F-B6E7-49D0744AAB6E");
+const IID_IInkWordList2_Value = @import("../zig.zig").Guid.initString("14542586-11bf-4f5f-b6e7-49d0744aab6e");
 pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
 pub const IInkWordList2 = extern struct {
     pub const VTable = extern struct {
@@ -5624,7 +5624,7 @@ pub const IInkWordList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInk_Value = @import("../zig.zig").Guid.initString("03F8E511-43A1-11D3-8BB6-0080C7D6BAD5");
+const IID_IInk_Value = @import("../zig.zig").Guid.initString("03f8e511-43a1-11d3-8bb6-0080c7d6bad5");
 pub const IID_IInk = &IID_IInk_Value;
 pub const IInk = extern struct {
     pub const VTable = extern struct {
@@ -5637,7 +5637,7 @@ pub const IInk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkLineInfo_Value = @import("../zig.zig").Guid.initString("9C1C5AD6-F22F-4DE4-B453-A2CC482E7C33");
+const IID_IInkLineInfo_Value = @import("../zig.zig").Guid.initString("9c1c5ad6-f22f-4de4-b453-a2cc482e7c33");
 pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
 pub const IInkLineInfo = extern struct {
     pub const VTable = extern struct {
@@ -5702,7 +5702,7 @@ pub const IInkLineInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISketchInk_Value = @import("../zig.zig").Guid.initString("B4563688-98EB-4646-B279-44DA14D45748");
+const IID_ISketchInk_Value = @import("../zig.zig").Guid.initString("b4563688-98eb-4646-b279-44da14d45748");
 pub const IID_ISketchInk = &IID_ISketchInk_Value;
 pub const ISketchInk = extern struct {
     pub const VTable = extern struct {
@@ -5715,7 +5715,7 @@ pub const ISketchInk = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_InkDivider_Value = @import("../zig.zig").Guid.initString("8854F6A0-4683-4AE7-9191-752FE64612C3");
+const CLSID_InkDivider_Value = @import("../zig.zig").Guid.initString("8854f6a0-4683-4ae7-9191-752fe64612c3");
 pub const CLSID_InkDivider = &CLSID_InkDivider_Value;
 
 pub const InkDivisionType = extern enum(i32) {
@@ -5767,14 +5767,14 @@ pub const DISPID_IInkDivisionUnits_NewEnum = DISPID_InkDivisionUnits.DISPID_IInk
 pub const DISPID_IInkDivisionUnits_Item = DISPID_InkDivisionUnits.DISPID_IInkDivisionUnits_Item;
 pub const DISPID_IInkDivisionUnits_Count = DISPID_InkDivisionUnits.DISPID_IInkDivisionUnits_Count;
 
-const IID_IInkDivider_Value = @import("../zig.zig").Guid.initString("5DE00405-F9A4-4651-B0C5-C317DEFD58B9");
+const IID_IInkDivider_Value = @import("../zig.zig").Guid.initString("5de00405-f9a4-4651-b0c5-c317defd58b9");
 pub const IID_IInkDivider = &IID_IInkDivider_Value;
 pub const IInkDivider = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Strokes: fn(
             self: *const IInkDivider,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Strokes: fn(
             self: *const IInkDivider,
@@ -5782,7 +5782,7 @@ pub const IInkDivider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RecognizerContext: fn(
             self: *const IInkDivider,
-            RecognizerContext: **IInkRecognizerContext,
+            RecognizerContext: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_RecognizerContext: fn(
             self: *const IInkDivider,
@@ -5798,14 +5798,14 @@ pub const IInkDivider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Divide: fn(
             self: *const IInkDivider,
-            InkDivisionResult: **IInkDivisionResult,
+            InkDivisionResult: ?*?*IInkDivisionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDivider_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivider.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5813,7 +5813,7 @@ pub const IInkDivider = extern struct {
             return @ptrCast(*const IInkDivider.VTable, self.vtable).putref_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_get_RecognizerContext(self: *const T, RecognizerContext: **IInkRecognizerContext) callconv(.Inline) HRESULT {
+        pub fn IInkDivider_get_RecognizerContext(self: *const T, RecognizerContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivider.VTable, self.vtable).get_RecognizerContext(@ptrCast(*const IInkDivider, self), RecognizerContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5829,51 +5829,51 @@ pub const IInkDivider = extern struct {
             return @ptrCast(*const IInkDivider.VTable, self.vtable).put_LineHeight(@ptrCast(*const IInkDivider, self), LineHeight);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_Divide(self: *const T, InkDivisionResult: **IInkDivisionResult) callconv(.Inline) HRESULT {
+        pub fn IInkDivider_Divide(self: *const T, InkDivisionResult: ?*?*IInkDivisionResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivider.VTable, self.vtable).Divide(@ptrCast(*const IInkDivider, self), InkDivisionResult);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDivisionResult_Value = @import("../zig.zig").Guid.initString("2DBEC0A7-74C7-4B38-81EB-AA8EF0C24900");
+const IID_IInkDivisionResult_Value = @import("../zig.zig").Guid.initString("2dbec0a7-74c7-4b38-81eb-aa8ef0c24900");
 pub const IID_IInkDivisionResult = &IID_IInkDivisionResult_Value;
 pub const IInkDivisionResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Strokes: fn(
             self: *const IInkDivisionResult,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResultByType: fn(
             self: *const IInkDivisionResult,
             divisionType: InkDivisionType,
-            InkDivisionUnits: **IInkDivisionUnits,
+            InkDivisionUnits: ?*?*IInkDivisionUnits,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionResult_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionResult, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionResult_ResultByType(self: *const T, divisionType: InkDivisionType, InkDivisionUnits: **IInkDivisionUnits) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionResult_ResultByType(self: *const T, divisionType: InkDivisionType, InkDivisionUnits: ?*?*IInkDivisionUnits) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).ResultByType(@ptrCast(*const IInkDivisionResult, self), divisionType, InkDivisionUnits);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDivisionUnit_Value = @import("../zig.zig").Guid.initString("85AEE342-48B0-4244-9DD5-1ED435410FAB");
+const IID_IInkDivisionUnit_Value = @import("../zig.zig").Guid.initString("85aee342-48b0-4244-9dd5-1ed435410fab");
 pub const IID_IInkDivisionUnit = &IID_IInkDivisionUnit_Value;
 pub const IInkDivisionUnit = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Strokes: fn(
             self: *const IInkDivisionUnit,
-            Strokes: **IInkStrokes,
+            Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DivisionType: fn(
             self: *const IInkDivisionUnit,
@@ -5881,18 +5881,18 @@ pub const IInkDivisionUnit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RecognizedString: fn(
             self: *const IInkDivisionUnit,
-            RecoString: *BSTR,
+            RecoString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RotationTransform: fn(
             self: *const IInkDivisionUnit,
-            RotationTransform: **IInkTransform,
+            RotationTransform: ?*?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_Strokes(self: *const T, Strokes: **IInkStrokes) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionUnit_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionUnit, self), Strokes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5900,18 +5900,18 @@ pub const IInkDivisionUnit = extern struct {
             return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_DivisionType(@ptrCast(*const IInkDivisionUnit, self), divisionType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_RecognizedString(self: *const T, RecoString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionUnit_get_RecognizedString(self: *const T, RecoString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RecognizedString(@ptrCast(*const IInkDivisionUnit, self), RecoString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_RotationTransform(self: *const T, RotationTransform: **IInkTransform) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionUnit_get_RotationTransform(self: *const T, RotationTransform: ?*?*IInkTransform) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RotationTransform(@ptrCast(*const IInkDivisionUnit, self), RotationTransform);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInkDivisionUnits_Value = @import("../zig.zig").Guid.initString("1BB5DDC2-31CC-4135-AB82-2C66C9F00C41");
+const IID_IInkDivisionUnits_Value = @import("../zig.zig").Guid.initString("1bb5ddc2-31cc-4135-ab82-2c66c9f00c41");
 pub const IID_IInkDivisionUnits = &IID_IInkDivisionUnits_Value;
 pub const IInkDivisionUnits = extern struct {
     pub const VTable = extern struct {
@@ -5922,12 +5922,12 @@ pub const IInkDivisionUnits = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IInkDivisionUnits,
-            _NewEnum: **IUnknown,
+            _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IInkDivisionUnits,
             Index: i32,
-            InkDivisionUnit: **IInkDivisionUnit,
+            InkDivisionUnit: ?*?*IInkDivisionUnit,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5938,27 +5938,27 @@ pub const IInkDivisionUnits = extern struct {
             return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get_Count(@ptrCast(*const IInkDivisionUnits, self), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnits_get__NewEnum(self: *const T, _NewEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionUnits_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkDivisionUnits, self), _NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnits_Item(self: *const T, Index: i32, InkDivisionUnit: **IInkDivisionUnit) callconv(.Inline) HRESULT {
+        pub fn IInkDivisionUnits_Item(self: *const T, Index: i32, InkDivisionUnit: ?*?*IInkDivisionUnit) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).Item(@ptrCast(*const IInkDivisionUnits, self), Index, InkDivisionUnit);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_HandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("9F074EE2-E6E9-4D8A-A047-EB5B5C3C55DA");
+const CLSID_HandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
 pub const CLSID_HandwrittenTextInsertion = &CLSID_HandwrittenTextInsertion_Value;
 
-const CLSID_PenInputPanel_Value = @import("../zig.zig").Guid.initString("F744E496-1B5A-489E-81DC-FBD7AC6298A8");
+const CLSID_PenInputPanel_Value = @import("../zig.zig").Guid.initString("f744e496-1b5a-489e-81dc-fbd7ac6298a8");
 pub const CLSID_PenInputPanel = &CLSID_PenInputPanel_Value;
 
-const CLSID_TextInputPanel_Value = @import("../zig.zig").Guid.initString("F9B189D7-228B-4F2B-8650-B97F59E02C8C");
+const CLSID_TextInputPanel_Value = @import("../zig.zig").Guid.initString("f9b189d7-228b-4f2b-8650-b97f59e02c8c");
 pub const CLSID_TextInputPanel = &CLSID_TextInputPanel_Value;
 
-const CLSID_PenInputPanel_Internal_Value = @import("../zig.zig").Guid.initString("802B1FB9-056B-4720-B0CC-80D23B71171E");
+const CLSID_PenInputPanel_Internal_Value = @import("../zig.zig").Guid.initString("802b1fb9-056b-4720-b0cc-80d23b71171e");
 pub const CLSID_PenInputPanel_Internal = &CLSID_PenInputPanel_Internal_Value;
 
 pub const DISPID_PenInputPanel = extern enum(i32) {
@@ -6122,7 +6122,7 @@ pub const PT_Inactive = PanelType.PT_Inactive;
 pub const PT_Handwriting = PanelType.PT_Handwriting;
 pub const PT_Keyboard = PanelType.PT_Keyboard;
 
-const IID_IPenInputPanel_Value = @import("../zig.zig").Guid.initString("FA7A4083-5747-4040-A182-0B0E9FD4FAC7");
+const IID_IPenInputPanel_Value = @import("../zig.zig").Guid.initString("fa7a4083-5747-4040-a182-0b0e9fd4fac7");
 pub const IID_IPenInputPanel = &IID_IPenInputPanel_Value;
 pub const IPenInputPanel = extern struct {
     pub const VTable = extern struct {
@@ -6133,7 +6133,7 @@ pub const IPenInputPanel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Factoid: fn(
             self: *const IPenInputPanel,
-            Factoid: *BSTR,
+            Factoid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Factoid: fn(
             self: *const IPenInputPanel,
@@ -6235,7 +6235,7 @@ pub const IPenInputPanel = extern struct {
             return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Busy(@ptrCast(*const IPenInputPanel, self), Busy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Factoid(self: *const T, Factoid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPenInputPanel_get_Factoid(self: *const T, Factoid: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Factoid(@ptrCast(*const IPenInputPanel, self), Factoid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6334,7 +6334,7 @@ pub const IPenInputPanel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IPenInputPanelEvents_Value = @import("../zig.zig").Guid.initString("B7E489DA-3719-439F-848F-E7ACBD820F17");
+const IID__IPenInputPanelEvents_Value = @import("../zig.zig").Guid.initString("b7e489da-3719-439f-848f-e7acbd820f17");
 pub const IID__IPenInputPanelEvents = &IID__IPenInputPanelEvents_Value;
 pub const _IPenInputPanelEvents = extern struct {
     pub const VTable = extern struct {
@@ -6347,7 +6347,7 @@ pub const _IPenInputPanelEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IHandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("56FDEA97-ECD6-43E7-AA3A-816BE7785860");
+const IID_IHandwrittenTextInsertion_Value = @import("../zig.zig").Guid.initString("56fdea97-ecd6-43e7-aa3a-816be7785860");
 pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
 pub const IHandwrittenTextInsertion = extern struct {
     pub const VTable = extern struct {
@@ -6380,7 +6380,7 @@ pub const IHandwrittenTextInsertion = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITextInputPanelEventSink_Value = @import("../zig.zig").Guid.initString("27560408-8E64-4FE1-804E-421201584B31");
+const IID_ITextInputPanelEventSink_Value = @import("../zig.zig").Guid.initString("27560408-8e64-4fe1-804e-421201584b31");
 pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
 pub const ITextInputPanelEventSink = extern struct {
     pub const VTable = extern struct {
@@ -6499,14 +6499,14 @@ pub const ITextInputPanelEventSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITextInputPanel_Value = @import("../zig.zig").Guid.initString("6B6A65A5-6AF3-46C2-B6EA-56CD1F80DF71");
+const IID_ITextInputPanel_Value = @import("../zig.zig").Guid.initString("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71");
 pub const IID_ITextInputPanel = &IID_ITextInputPanel_Value;
 pub const ITextInputPanel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         get_AttachedEditWindow: fn(
             self: *const ITextInputPanel,
-            AttachedEditWindow: *HWND,
+            AttachedEditWindow: ?*HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AttachedEditWindow: fn(
             self: *const ITextInputPanel,
@@ -6612,7 +6612,7 @@ pub const ITextInputPanel = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: *HWND) callconv(.Inline) HRESULT {
+        pub fn ITextInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: ?*HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_AttachedEditWindow(@ptrCast(*const ITextInputPanel, self), AttachedEditWindow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6715,7 +6715,7 @@ pub const ITextInputPanel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInputPanelWindowHandle_Value = @import("../zig.zig").Guid.initString("4AF81847-FDC4-4FC3-AD0B-422479C1B935");
+const IID_IInputPanelWindowHandle_Value = @import("../zig.zig").Guid.initString("4af81847-fdc4-4fc3-ad0b-422479c1b935");
 pub const IID_IInputPanelWindowHandle = &IID_IInputPanelWindowHandle_Value;
 pub const IInputPanelWindowHandle = extern struct {
     pub const VTable = extern struct {
@@ -6760,7 +6760,7 @@ pub const IInputPanelWindowHandle = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITextInputPanelRunInfo_Value = @import("../zig.zig").Guid.initString("9F424568-1920-48CC-9811-A993CBF5ADBA");
+const IID_ITextInputPanelRunInfo_Value = @import("../zig.zig").Guid.initString("9f424568-1920-48cc-9811-a993cbf5adba");
 pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
 pub const ITextInputPanelRunInfo = extern struct {
     pub const VTable = extern struct {
@@ -6862,7 +6862,7 @@ pub const KEYMODIFIER_WIN = KEYMODIFIER.WIN;
 pub const KEYMODIFIER_ALTGR = KEYMODIFIER.ALTGR;
 pub const KEYMODIFIER_EXT = KEYMODIFIER.EXT;
 
-const CLSID_InkEdit_Value = @import("../zig.zig").Guid.initString("E5CA59F5-57C4-4DD8-9BD6-1DEEEDD27AF4");
+const CLSID_InkEdit_Value = @import("../zig.zig").Guid.initString("e5ca59f5-57c4-4dd8-9bd6-1deeedd27af4");
 pub const CLSID_InkEdit = &CLSID_InkEdit_Value;
 
 pub const IEC_STROKEINFO = extern struct {
@@ -7066,7 +7066,7 @@ pub const rtfHorizontal = ScrollBarsConstants.rtfHorizontal;
 pub const rtfVertical = ScrollBarsConstants.rtfVertical;
 pub const rtfBoth = ScrollBarsConstants.rtfBoth;
 
-const IID_IInkEdit_Value = @import("../zig.zig").Guid.initString("F2127A19-FBFB-4AED-8464-3F36D78CFEFB");
+const IID_IInkEdit_Value = @import("../zig.zig").Guid.initString("f2127a19-fbfb-4aed-8464-3f36d78cfefb");
 pub const IID_IInkEdit = &IID_IInkEdit_Value;
 pub const IInkEdit = extern struct {
     pub const VTable = extern struct {
@@ -7101,7 +7101,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawingAttributes: fn(
             self: *const IInkEdit,
-            pVal: **IInkDrawingAttributes,
+            pVal: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DrawingAttributes: fn(
             self: *const IInkEdit,
@@ -7117,7 +7117,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recognizer: fn(
             self: *const IInkEdit,
-            pVal: **IInkRecognizer,
+            pVal: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Recognizer: fn(
             self: *const IInkEdit,
@@ -7125,7 +7125,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Factoid: fn(
             self: *const IInkEdit,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Factoid: fn(
             self: *const IInkEdit,
@@ -7190,7 +7190,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Font: fn(
             self: *const IInkEdit,
-            ppFont: **IFontDisp,
+            ppFont: ?*?*IFontDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Font: fn(
             self: *const IInkEdit,
@@ -7198,7 +7198,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Text: fn(
             self: *const IInkEdit,
-            pbstrText: *BSTR,
+            pbstrText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Text: fn(
             self: *const IInkEdit,
@@ -7206,7 +7206,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MouseIcon: fn(
             self: *const IInkEdit,
-            MouseIcon: **IPictureDisp,
+            MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MouseIcon: fn(
             self: *const IInkEdit,
@@ -7338,7 +7338,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TextRTF: fn(
             self: *const IInkEdit,
-            pbstrTextRTF: *BSTR,
+            pbstrTextRTF: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TextRTF: fn(
             self: *const IInkEdit,
@@ -7362,7 +7362,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SelText: fn(
             self: *const IInkEdit,
-            pbstrSelText: *BSTR,
+            pbstrSelText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SelText: fn(
             self: *const IInkEdit,
@@ -7370,7 +7370,7 @@ pub const IInkEdit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SelRTF: fn(
             self: *const IInkEdit,
-            pbstrSelRTF: *BSTR,
+            pbstrSelRTF: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SelRTF: fn(
             self: *const IInkEdit,
@@ -7412,7 +7412,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_InkInsertMode(@ptrCast(*const IInkEdit, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_DrawingAttributes(self: *const T, pVal: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_DrawingAttributes(self: *const T, pVal: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkEdit, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7428,7 +7428,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_RecognitionTimeout(@ptrCast(*const IInkEdit, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Recognizer(self: *const T, pVal: **IInkRecognizer) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_Recognizer(self: *const T, pVal: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkEdit, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7436,7 +7436,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Recognizer(@ptrCast(*const IInkEdit, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Factoid(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_Factoid(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkEdit, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7500,7 +7500,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Hwnd(@ptrCast(*const IInkEdit, self), pohHwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Font(self: *const T, ppFont: **IFontDisp) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_Font(self: *const T, ppFont: ?*?*IFontDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Font(@ptrCast(*const IInkEdit, self), ppFont);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7508,7 +7508,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Font(@ptrCast(*const IInkEdit, self), ppFont);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Text(self: *const T, pbstrText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_Text(self: *const T, pbstrText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Text(@ptrCast(*const IInkEdit, self), pbstrText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7516,7 +7516,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Text(@ptrCast(*const IInkEdit, self), pbstrText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_MouseIcon(self: *const T, MouseIcon: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7648,7 +7648,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelCharOffset(@ptrCast(*const IInkEdit, self), pvarSelCharOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_TextRTF(self: *const T, pbstrTextRTF: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_TextRTF(self: *const T, pbstrTextRTF: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_TextRTF(@ptrCast(*const IInkEdit, self), pbstrTextRTF);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7672,7 +7672,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelLength(@ptrCast(*const IInkEdit, self), plSelLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelText(self: *const T, pbstrSelText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_SelText(self: *const T, pbstrSelText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7680,7 +7680,7 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelRTF(self: *const T, pbstrSelRTF: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IInkEdit_get_SelRTF(self: *const T, pbstrSelRTF: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelRTF(@ptrCast(*const IInkEdit, self), pbstrSelRTF);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7695,7 +7695,7 @@ pub const IInkEdit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IInkEditEvents_Value = @import("../zig.zig").Guid.initString("E3B0B797-A72E-46DB-A0D7-6C9EBA8E9BBC");
+const IID__IInkEditEvents_Value = @import("../zig.zig").Guid.initString("e3b0b797-a72e-46db-a0d7-6c9eba8e9bbc");
 pub const IID__IInkEditEvents = &IID__IInkEditEvents_Value;
 pub const _IInkEditEvents = extern struct {
     pub const VTable = extern struct {
@@ -7708,7 +7708,7 @@ pub const _IInkEditEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_MathInputControl_Value = @import("../zig.zig").Guid.initString("C561816C-14D8-4090-830C-98D994B21C7B");
+const CLSID_MathInputControl_Value = @import("../zig.zig").Guid.initString("c561816c-14d8-4090-830c-98d994b21c7b");
 pub const CLSID_MathInputControl = &CLSID_MathInputControl_Value;
 
 pub const MICUIELEMENT = extern enum(i32) {
@@ -7756,7 +7756,7 @@ pub const DISPID_MICClose = DISPID_MathInputControlEvents.DISPID_MICClose;
 pub const DISPID_MICPaint = DISPID_MathInputControlEvents.DISPID_MICPaint;
 pub const DISPID_MICClear = DISPID_MathInputControlEvents.DISPID_MICClear;
 
-const IID_IMathInputControl_Value = @import("../zig.zig").Guid.initString("EBA615AA-FAC6-4738-BA5F-FF09E9FE473E");
+const IID_IMathInputControl_Value = @import("../zig.zig").Guid.initString("eba615aa-fac6-4738-ba5f-ff09e9fe473e");
 pub const IID_IMathInputControl = &IID_IMathInputControl_Value;
 pub const IMathInputControl = extern struct {
     pub const VTable = extern struct {
@@ -7831,7 +7831,7 @@ pub const IMathInputControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHoverIcon: fn(
             self: *const IMathInputControl,
-            HoverImage: **IPictureDisp,
+            HoverImage: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7902,14 +7902,14 @@ pub const IMathInputControl = extern struct {
             return @ptrCast(*const IMathInputControl.VTable, self.vtable).RemoveFunctionName(@ptrCast(*const IMathInputControl, self), FunctionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_GetHoverIcon(self: *const T, HoverImage: **IPictureDisp) callconv(.Inline) HRESULT {
+        pub fn IMathInputControl_GetHoverIcon(self: *const T, HoverImage: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetHoverIcon(@ptrCast(*const IMathInputControl, self), HoverImage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IMathInputControlEvents_Value = @import("../zig.zig").Guid.initString("683336B5-A47D-4358-96F9-875A472AE70A");
+const IID__IMathInputControlEvents_Value = @import("../zig.zig").Guid.initString("683336b5-a47d-4358-96f9-875a472ae70a");
 pub const IID__IMathInputControlEvents = &IID__IMathInputControlEvents_Value;
 pub const _IMathInputControlEvents = extern struct {
     pub const VTable = extern struct {
@@ -7922,16 +7922,16 @@ pub const _IMathInputControlEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_RealTimeStylus_Value = @import("../zig.zig").Guid.initString("E26B366D-F998-43CE-836F-CB6D904432B0");
+const CLSID_RealTimeStylus_Value = @import("../zig.zig").Guid.initString("e26b366d-f998-43ce-836f-cb6d904432b0");
 pub const CLSID_RealTimeStylus = &CLSID_RealTimeStylus_Value;
 
-const CLSID_DynamicRenderer_Value = @import("../zig.zig").Guid.initString("ECD32AEA-746F-4DCB-BF68-082757FAFF18");
+const CLSID_DynamicRenderer_Value = @import("../zig.zig").Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
 pub const CLSID_DynamicRenderer = &CLSID_DynamicRenderer_Value;
 
-const CLSID_GestureRecognizer_Value = @import("../zig.zig").Guid.initString("EA30C654-C62C-441F-AC00-95F9A196782C");
+const CLSID_GestureRecognizer_Value = @import("../zig.zig").Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
 pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
 
-const CLSID_StrokeBuilder_Value = @import("../zig.zig").Guid.initString("E810CEE7-6E51-4CB0-AA3A-0B985B70DAF7");
+const CLSID_StrokeBuilder_Value = @import("../zig.zig").Guid.initString("e810cee7-6e51-4cb0-aa3a-0b985b70daf7");
 pub const CLSID_StrokeBuilder = &CLSID_StrokeBuilder_Value;
 
 pub const RealTimeStylusDataInterest = extern enum(i32) {
@@ -8018,7 +8018,7 @@ pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
     dynamicRenderer: *IDynamicRenderer,
 };
 
-const IID_IRealTimeStylus_Value = @import("../zig.zig").Guid.initString("A8BB5D22-3144-4A7B-93CD-F34A16BE513A");
+const IID_IRealTimeStylus_Value = @import("../zig.zig").Guid.initString("a8bb5d22-3144-4a7b-93cd-f34a16be513a");
 pub const IID_IRealTimeStylus = &IID_IRealTimeStylus_Value;
 pub const IRealTimeStylus = extern struct {
     pub const VTable = extern struct {
@@ -8063,7 +8063,7 @@ pub const IRealTimeStylus = extern struct {
         GetStylusSyncPlugin: fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
-            ppiPlugin: **IStylusSyncPlugin,
+            ppiPlugin: ?*?*IStylusSyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStylusSyncPluginCount: fn(
             self: *const IRealTimeStylus,
@@ -8085,7 +8085,7 @@ pub const IRealTimeStylus = extern struct {
         GetStylusAsyncPlugin: fn(
             self: *const IRealTimeStylus,
             iIndex: u32,
-            ppiPlugin: **IStylusAsyncPlugin,
+            ppiPlugin: ?*?*IStylusAsyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStylusAsyncPluginCount: fn(
             self: *const IRealTimeStylus,
@@ -8093,7 +8093,7 @@ pub const IRealTimeStylus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ChildRealTimeStylusPlugin: fn(
             self: *const IRealTimeStylus,
-            ppiRTS: **IRealTimeStylus,
+            ppiRTS: ?*?*IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_ChildRealTimeStylusPlugin: fn(
             self: *const IRealTimeStylus,
@@ -8119,7 +8119,7 @@ pub const IRealTimeStylus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTablet: fn(
             self: *const IRealTimeStylus,
-            ppiSingleTablet: **IInkTablet,
+            ppiSingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTabletContextIdFromTablet: fn(
             self: *const IRealTimeStylus,
@@ -8129,7 +8129,7 @@ pub const IRealTimeStylus = extern struct {
         GetTabletFromTabletContextId: fn(
             self: *const IRealTimeStylus,
             tcid: u32,
-            ppiTablet: **IInkTablet,
+            ppiTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAllTabletContextIds: fn(
             self: *const IRealTimeStylus,
@@ -8138,12 +8138,12 @@ pub const IRealTimeStylus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStyluses: fn(
             self: *const IRealTimeStylus,
-            ppiInkCursors: **IInkCursors,
+            ppiInkCursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStylusForId: fn(
             self: *const IRealTimeStylus,
             sid: u32,
-            ppiInkCursor: **IInkCursor,
+            ppiInkCursor: ?*?*IInkCursor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDesiredPacketDescription: fn(
             self: *const IRealTimeStylus,
@@ -8204,7 +8204,7 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusSyncPlugins(@ptrCast(*const IRealTimeStylus, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: **IStylusSyncPlugin) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8224,7 +8224,7 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusAsyncPlugins(@ptrCast(*const IRealTimeStylus, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: **IStylusAsyncPlugin) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8232,7 +8232,7 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPluginCount(@ptrCast(*const IRealTimeStylus, self), pcPlugins);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_ChildRealTimeStylusPlugin(self: *const T, ppiRTS: **IRealTimeStylus) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_get_ChildRealTimeStylusPlugin(self: *const T, ppiRTS: ?*?*IRealTimeStylus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_ChildRealTimeStylusPlugin(@ptrCast(*const IRealTimeStylus, self), ppiRTS);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8256,7 +8256,7 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetSingleTabletMode(@ptrCast(*const IRealTimeStylus, self), piTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetTablet(self: *const T, ppiSingleTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetTablet(self: *const T, ppiSingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTablet(@ptrCast(*const IRealTimeStylus, self), ppiSingleTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8264,7 +8264,7 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletContextIdFromTablet(@ptrCast(*const IRealTimeStylus, self), piTablet, ptcid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetTabletFromTabletContextId(self: *const T, tcid: u32, ppiTablet: **IInkTablet) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetTabletFromTabletContextId(self: *const T, tcid: u32, ppiTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletFromTabletContextId(@ptrCast(*const IRealTimeStylus, self), tcid, ppiTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8272,11 +8272,11 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetAllTabletContextIds(@ptrCast(*const IRealTimeStylus, self), pcTcidCount, ppTcids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStyluses(self: *const T, ppiInkCursors: **IInkCursors) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetStyluses(self: *const T, ppiInkCursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStyluses(@ptrCast(*const IRealTimeStylus, self), ppiInkCursors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusForId(self: *const T, sid: u32, ppiInkCursor: **IInkCursor) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetStylusForId(self: *const T, sid: u32, ppiInkCursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusForId(@ptrCast(*const IRealTimeStylus, self), sid, ppiInkCursor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8295,7 +8295,7 @@ pub const IRealTimeStylus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRealTimeStylus2_Value = @import("../zig.zig").Guid.initString("B5F2A6CD-3179-4A3E-B9C4-BB5865962BE2");
+const IID_IRealTimeStylus2_Value = @import("../zig.zig").Guid.initString("b5f2a6cd-3179-4a3e-b9c4-bb5865962be2");
 pub const IID_IRealTimeStylus2 = &IID_IRealTimeStylus2_Value;
 pub const IRealTimeStylus2 = extern struct {
     pub const VTable = extern struct {
@@ -8324,7 +8324,7 @@ pub const IRealTimeStylus2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRealTimeStylus3_Value = @import("../zig.zig").Guid.initString("D70230A3-6986-4051-B57A-1CF69F4D9DB5");
+const IID_IRealTimeStylus3_Value = @import("../zig.zig").Guid.initString("d70230a3-6986-4051-b57a-1cf69f4d9db5");
 pub const IID_IRealTimeStylus3 = &IID_IRealTimeStylus3_Value;
 pub const IRealTimeStylus3 = extern struct {
     pub const VTable = extern struct {
@@ -8353,7 +8353,7 @@ pub const IRealTimeStylus3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRealTimeStylusSynchronization_Value = @import("../zig.zig").Guid.initString("AA87EAB8-AB4A-4CEA-B5CB-46D84C6A2509");
+const IID_IRealTimeStylusSynchronization_Value = @import("../zig.zig").Guid.initString("aa87eab8-ab4a-4cea-b5cb-46d84c6a2509");
 pub const IID_IRealTimeStylusSynchronization = &IID_IRealTimeStylusSynchronization_Value;
 pub const IRealTimeStylusSynchronization = extern struct {
     pub const VTable = extern struct {
@@ -8382,7 +8382,7 @@ pub const IRealTimeStylusSynchronization = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStrokeBuilder_Value = @import("../zig.zig").Guid.initString("A5FD4E2D-C44B-4092-9177-260905EB672B");
+const IID_IStrokeBuilder_Value = @import("../zig.zig").Guid.initString("a5fd4e2d-c44b-4092-9177-260905eb672b");
 pub const IID_IStrokeBuilder = &IID_IStrokeBuilder_Value;
 pub const IStrokeBuilder = extern struct {
     pub const VTable = extern struct {
@@ -8424,7 +8424,7 @@ pub const IStrokeBuilder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Ink: fn(
             self: *const IStrokeBuilder,
-            ppiInkObj: **IInkDisp,
+            ppiInkObj: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_Ink: fn(
             self: *const IStrokeBuilder,
@@ -8451,7 +8451,7 @@ pub const IStrokeBuilder = extern struct {
             return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).EndStroke(@ptrCast(*const IStrokeBuilder, self), tcid, sid, ppIInkStroke, pDirtyRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_get_Ink(self: *const T, ppiInkObj: **IInkDisp) callconv(.Inline) HRESULT {
+        pub fn IStrokeBuilder_get_Ink(self: *const T, ppiInkObj: ?*?*IInkDisp) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).get_Ink(@ptrCast(*const IStrokeBuilder, self), ppiInkObj);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8462,7 +8462,7 @@ pub const IStrokeBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStylusPlugin_Value = @import("../zig.zig").Guid.initString("A81436D8-4757-4FD1-A185-133F97C6C545");
+const IID_IStylusPlugin_Value = @import("../zig.zig").Guid.initString("a81436d8-4757-4fd1-a185-133f97c6c545");
 pub const IID_IStylusPlugin = &IID_IStylusPlugin_Value;
 pub const IStylusPlugin = extern struct {
     pub const VTable = extern struct {
@@ -8658,7 +8658,7 @@ pub const IStylusPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStylusSyncPlugin_Value = @import("../zig.zig").Guid.initString("A157B174-482F-4D71-A3F6-3A41DDD11BE9");
+const IID_IStylusSyncPlugin_Value = @import("../zig.zig").Guid.initString("a157b174-482f-4d71-a3f6-3a41ddd11be9");
 pub const IID_IStylusSyncPlugin = &IID_IStylusSyncPlugin_Value;
 pub const IStylusSyncPlugin = extern struct {
     pub const VTable = extern struct {
@@ -8671,7 +8671,7 @@ pub const IStylusSyncPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStylusAsyncPlugin_Value = @import("../zig.zig").Guid.initString("A7CCA85A-31BC-4CD2-AADC-3289A3AF11C8");
+const IID_IStylusAsyncPlugin_Value = @import("../zig.zig").Guid.initString("a7cca85a-31bc-4cd2-aadc-3289a3af11c8");
 pub const IID_IStylusAsyncPlugin = &IID_IStylusAsyncPlugin_Value;
 pub const IStylusAsyncPlugin = extern struct {
     pub const VTable = extern struct {
@@ -8684,7 +8684,7 @@ pub const IStylusAsyncPlugin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDynamicRenderer_Value = @import("../zig.zig").Guid.initString("A079468E-7165-46F9-B7AF-98AD01A93009");
+const IID_IDynamicRenderer_Value = @import("../zig.zig").Guid.initString("a079468e-7165-46f9-b7af-98ad01a93009");
 pub const IID_IDynamicRenderer = &IID_IDynamicRenderer_Value;
 pub const IDynamicRenderer = extern struct {
     pub const VTable = extern struct {
@@ -8723,7 +8723,7 @@ pub const IDynamicRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DrawingAttributes: fn(
             self: *const IDynamicRenderer,
-            ppiDA: **IInkDrawingAttributes,
+            ppiDA: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_DrawingAttributes: fn(
             self: *const IDynamicRenderer,
@@ -8785,7 +8785,7 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRegion(@ptrCast(*const IDynamicRenderer, self), hClipRgn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_DrawingAttributes(self: *const T, ppiDA: **IInkDrawingAttributes) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_get_DrawingAttributes(self: *const T, ppiDA: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IDynamicRenderer, self), ppiDA);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8816,7 +8816,7 @@ pub const IDynamicRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IGestureRecognizer_Value = @import("../zig.zig").Guid.initString("AE9EF86B-7054-45E3-AE22-3174DC8811B7");
+const IID_IGestureRecognizer_Value = @import("../zig.zig").Guid.initString("ae9ef86b-7054-45e3-ae22-3174dc8811b7");
 pub const IID_IGestureRecognizer = &IID_IGestureRecognizer_Value;
 pub const IGestureRecognizer = extern struct {
     pub const VTable = extern struct {
@@ -8991,30 +8991,10 @@ pub const CHARACTER_RANGE = extern struct {
     cChars: u16,
 };
 
-pub const HRECOALT__ = extern struct {
-    unused: i32,
-};
-
-pub const HRECOCONTEXT__ = extern struct {
-    unused: i32,
-};
-
-pub const HRECOGNIZER__ = extern struct {
-    unused: i32,
-};
-
-pub const HRECOLATTICE__ = extern struct {
-    unused: i32,
-};
-
-pub const HRECOWORDLIST__ = extern struct {
-    unused: i32,
-};
-
-const CLSID_TipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("807C1E6C-1D00-453F-B920-B61BB7CDD997");
+const CLSID_TipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("807c1e6c-1d00-453f-b920-b61bb7cdd997");
 pub const CLSID_TipAutoCompleteClient = &CLSID_TipAutoCompleteClient_Value;
 
-const IID_ITipAutoCompleteProvider_Value = @import("../zig.zig").Guid.initString("7C6CF46D-8404-46B9-AD33-F5B6036D4007");
+const IID_ITipAutoCompleteProvider_Value = @import("../zig.zig").Guid.initString("7c6cf46d-8404-46b9-ad33-f5b6036d4007");
 pub const IID_ITipAutoCompleteProvider = &IID_ITipAutoCompleteProvider_Value;
 pub const ITipAutoCompleteProvider = extern struct {
     pub const VTable = extern struct {
@@ -9043,7 +9023,7 @@ pub const ITipAutoCompleteProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("5E078E03-8265-4BBE-9487-D242EDBEF910");
+const IID_ITipAutoCompleteClient_Value = @import("../zig.zig").Guid.initString("5e078e03-8265-4bbe-9487-d242edbef910");
 pub const IID_ITipAutoCompleteClient = &IID_ITipAutoCompleteClient_Value;
 pub const ITipAutoCompleteClient = extern struct {
     pub const VTable = extern struct {
@@ -9101,47 +9081,57 @@ pub const ITipAutoCompleteClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const HRECOALT = ?*c_void;
+
+pub const HRECOCONTEXT = ?*c_void;
+
+pub const HRECOGNIZER = ?*c_void;
+
+pub const HRECOLATTICE = ?*c_void;
+
+pub const HRECOWORDLIST = ?*c_void;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
 //--------------------------------------------------------------------------------
 pub extern "inkobjcore" fn CreateRecognizer(
     pCLSID: *Guid,
-    phrec: **HRECOGNIZER__,
+    phrec: *HRECOGNIZER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn DestroyRecognizer(
-    hrec: *HRECOGNIZER__,
+    hrec: HRECOGNIZER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetRecoAttributes(
-    hrec: *HRECOGNIZER__,
+    hrec: HRECOGNIZER,
     pRecoAttrs: *RECO_ATTRS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn CreateContext(
-    hrec: *HRECOGNIZER__,
-    phrc: **HRECOCONTEXT__,
+    hrec: HRECOGNIZER,
+    phrc: *HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn DestroyContext(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetResultPropertyList(
-    hrec: *HRECOGNIZER__,
+    hrec: HRECOGNIZER,
     pPropertyCount: *u32,
     pPropertyGuid: *Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetUnicodeRanges(
-    hrec: *HRECOGNIZER__,
+    hrec: HRECOGNIZER,
     pcRanges: *u32,
     pcr: *CHARACTER_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn AddStroke(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pPacketDesc: *const PACKET_DESCRIPTION,
     cbPacket: u32,
     pPacket: *const u8,
@@ -9149,49 +9139,49 @@ pub extern "inkobjcore" fn AddStroke(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetBestResultString(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcBestResult: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetGuide(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pGuide: *const RECO_GUIDE,
     iIndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn AdviseInkChange(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     bNewStroke: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn EndInkInput(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn Process(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pbPartialProcessing: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetFactoid(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     cwcFactoid: u32,
     pwcFactoid: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetFlags(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetLatticePtr(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     ppLattice: **RECO_LATTICE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetTextContext(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     cwcBefore: u32,
     pwcBefore: [*:0]const u16,
     cwcAfter: u32,
@@ -9199,47 +9189,47 @@ pub extern "inkobjcore" fn SetTextContext(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetEnabledUnicodeRanges(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     cRanges: u32,
     pcr: *CHARACTER_RANGE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn IsStringSupported(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     wcString: u32,
     pwcString: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn SetWordList(
-    hrc: *HRECOCONTEXT__,
-    hwl: *HRECOWORDLIST__,
+    hrc: HRECOCONTEXT,
+    hwl: HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetRightSeparator(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcRightSeparator: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetLeftSeparator(
-    hrc: *HRECOCONTEXT__,
+    hrc: HRECOCONTEXT,
     pcSize: *u32,
     pwcLeftSeparator: [*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn DestroyWordList(
-    hwl: *HRECOWORDLIST__,
+    hwl: HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn AddWordsToWordList(
-    hwl: *HRECOWORDLIST__,
+    hwl: HRECOWORDLIST,
     pwcWords: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn MakeWordList(
-    hrec: *HRECOGNIZER__,
+    hrec: HRECOGNIZER,
     pBuffer: PWSTR,
-    phwl: **HRECOWORDLIST__,
+    phwl: *HRECOWORDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "inkobjcore" fn GetAllRecognizers(

@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (29)
 //--------------------------------------------------------------------------------
-const CLSID_NetworkListManager_Value = @import("../zig.zig").Guid.initString("DCB00C01-570F-4A9B-8D69-199FDBA5723B");
+const CLSID_NetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
 pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
 
 pub const NLM_CONNECTION_COST = extern enum(i32) {
@@ -112,7 +112,7 @@ pub const NLM_ENUM_NETWORK_CONNECTED = NLM_ENUM_NETWORK.CONNECTED;
 pub const NLM_ENUM_NETWORK_DISCONNECTED = NLM_ENUM_NETWORK.DISCONNECTED;
 pub const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK.ALL;
 
-const IID_INetworkListManager_Value = @import("../zig.zig").Guid.initString("DCB00000-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManager = &IID_INetworkListManager_Value;
 pub const INetworkListManager = extern struct {
     pub const VTable = extern struct {
@@ -199,7 +199,7 @@ pub const INetworkListManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkListManagerEvents_Value = @import("../zig.zig").Guid.initString("DCB00001-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkListManagerEvents_Value = @import("../zig.zig").Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManagerEvents = &IID_INetworkListManagerEvents_Value;
 pub const INetworkListManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -229,7 +229,7 @@ pub const NLM_NETWORK_CATEGORY_PUBLIC = NLM_NETWORK_CATEGORY.PUBLIC;
 pub const NLM_NETWORK_CATEGORY_PRIVATE = NLM_NETWORK_CATEGORY.PRIVATE;
 pub const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = NLM_NETWORK_CATEGORY.DOMAIN_AUTHENTICATED;
 
-const IID_INetwork_Value = @import("../zig.zig").Guid.initString("DCB00002-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetwork_Value = @import("../zig.zig").Guid.initString("dcb00002-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetwork = &IID_INetwork_Value;
 pub const INetwork = extern struct {
     pub const VTable = extern struct {
@@ -349,7 +349,7 @@ pub const INetwork = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetworks_Value = @import("../zig.zig").Guid.initString("DCB00003-570F-4A9B-8D69-199FDBA5723B");
+const IID_IEnumNetworks_Value = @import("../zig.zig").Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
 pub const IEnumNetworks = extern struct {
     pub const VTable = extern struct {
@@ -416,7 +416,7 @@ pub const NLM_NETWORK_PROPERTY_CHANGE_NAME = NLM_NETWORK_PROPERTY_CHANGE.NAME;
 pub const NLM_NETWORK_PROPERTY_CHANGE_ICON = NLM_NETWORK_PROPERTY_CHANGE.ICON;
 pub const NLM_NETWORK_PROPERTY_CHANGE_CATEGORY_VALUE = NLM_NETWORK_PROPERTY_CHANGE.CATEGORY_VALUE;
 
-const IID_INetworkEvents_Value = @import("../zig.zig").Guid.initString("DCB00004-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkEvents_Value = @import("../zig.zig").Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkEvents = &IID_INetworkEvents_Value;
 pub const INetworkEvents = extern struct {
     pub const VTable = extern struct {
@@ -463,7 +463,7 @@ pub const INetworkEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkConnection_Value = @import("../zig.zig").Guid.initString("DCB00005-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkConnection_Value = @import("../zig.zig").Guid.initString("dcb00005-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnection = &IID_INetworkConnection_Value;
 pub const INetworkConnection = extern struct {
     pub const VTable = extern struct {
@@ -532,7 +532,7 @@ pub const INetworkConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetworkConnections_Value = @import("../zig.zig").Guid.initString("DCB00006-570F-4A9B-8D69-199FDBA5723B");
+const IID_IEnumNetworkConnections_Value = @import("../zig.zig").Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
 pub const IEnumNetworkConnections = extern struct {
     pub const VTable = extern struct {
@@ -591,7 +591,7 @@ pub const NLM_CONNECTION_PROPERTY_CHANGE = extern enum(i32) {
 };
 pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERTY_CHANGE.AUTHENTICATION;
 
-const IID_INetworkConnectionEvents_Value = @import("../zig.zig").Guid.initString("DCB00007-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkConnectionEvents_Value = @import("../zig.zig").Guid.initString("dcb00007-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionEvents = &IID_INetworkConnectionEvents_Value;
 pub const INetworkConnectionEvents = extern struct {
     pub const VTable = extern struct {
@@ -622,7 +622,7 @@ pub const INetworkConnectionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkCostManager_Value = @import("../zig.zig").Guid.initString("DCB00008-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkCostManager_Value = @import("../zig.zig").Guid.initString("dcb00008-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManager = &IID_INetworkCostManager_Value;
 pub const INetworkCostManager = extern struct {
     pub const VTable = extern struct {
@@ -663,7 +663,7 @@ pub const INetworkCostManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkCostManagerEvents_Value = @import("../zig.zig").Guid.initString("DCB00009-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkCostManagerEvents_Value = @import("../zig.zig").Guid.initString("dcb00009-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManagerEvents = &IID_INetworkCostManagerEvents_Value;
 pub const INetworkCostManagerEvents = extern struct {
     pub const VTable = extern struct {
@@ -693,7 +693,7 @@ pub const INetworkCostManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkConnectionCost_Value = @import("../zig.zig").Guid.initString("DCB0000A-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkConnectionCost_Value = @import("../zig.zig").Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCost = &IID_INetworkConnectionCost_Value;
 pub const INetworkConnectionCost = extern struct {
     pub const VTable = extern struct {
@@ -722,7 +722,7 @@ pub const INetworkConnectionCost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkConnectionCostEvents_Value = @import("../zig.zig").Guid.initString("DCB0000B-570F-4A9B-8D69-199FDBA5723B");
+const IID_INetworkConnectionCostEvents_Value = @import("../zig.zig").Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCostEvents = &IID_INetworkConnectionCostEvents_Value;
 pub const INetworkConnectionCostEvents = extern struct {
     pub const VTable = extern struct {

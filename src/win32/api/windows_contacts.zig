@@ -6,13 +6,13 @@
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
-const CLSID_Contact_Value = @import("../zig.zig").Guid.initString("61B68808-8EEE-4FD1-ACB8-3D804C8DB056");
+const CLSID_Contact_Value = @import("../zig.zig").Guid.initString("61b68808-8eee-4fd1-acb8-3d804c8db056");
 pub const CLSID_Contact = &CLSID_Contact_Value;
 
-const CLSID_ContactManager_Value = @import("../zig.zig").Guid.initString("7165C8AB-AF88-42BD-86FD-5310B4285A02");
+const CLSID_ContactManager_Value = @import("../zig.zig").Guid.initString("7165c8ab-af88-42bd-86fd-5310b4285a02");
 pub const CLSID_ContactManager = &CLSID_ContactManager_Value;
 
-const IID_IContactManager_Value = @import("../zig.zig").Guid.initString("AD553D98-DEB1-474A-8E17-FC0C2075B738");
+const IID_IContactManager_Value = @import("../zig.zig").Guid.initString("ad553d98-deb1-474a-8e17-fc0c2075b738");
 pub const IID_IContactManager = &IID_IContactManager_Value;
 pub const IContactManager = extern struct {
     pub const VTable = extern struct {
@@ -76,7 +76,7 @@ pub const IContactManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContactCollection_Value = @import("../zig.zig").Guid.initString("B6AFA338-D779-11D9-8BDE-F66BAD1E3F3A");
+const IID_IContactCollection_Value = @import("../zig.zig").Guid.initString("b6afa338-d779-11d9-8bde-f66bad1e3f3a");
 pub const IID_IContactCollection = &IID_IContactCollection_Value;
 pub const IContactCollection = extern struct {
     pub const VTable = extern struct {
@@ -111,7 +111,7 @@ pub const IContactCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContactProperties_Value = @import("../zig.zig").Guid.initString("70DD27DD-5CBD-46E8-BEF0-23B6B346288F");
+const IID_IContactProperties_Value = @import("../zig.zig").Guid.initString("70dd27dd-5cbd-46e8-bef0-23b6b346288f");
 pub const IID_IContactProperties = &IID_IContactProperties_Value;
 pub const IContactProperties = extern struct {
     pub const VTable = extern struct {
@@ -266,7 +266,7 @@ pub const IContactProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContact_Value = @import("../zig.zig").Guid.initString("F941B671-BDA7-4F77-884A-F46462F226A7");
+const IID_IContact_Value = @import("../zig.zig").Guid.initString("f941b671-bda7-4f77-884a-f46462f226a7");
 pub const IID_IContact = &IID_IContact_Value;
 pub const IContact = extern struct {
     pub const VTable = extern struct {
@@ -307,7 +307,7 @@ pub const IContact = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IContactPropertyCollection_Value = @import("../zig.zig").Guid.initString("FFD3ADF8-FA64-4328-B1B6-2E0DB509CB3C");
+const IID_IContactPropertyCollection_Value = @import("../zig.zig").Guid.initString("ffd3adf8-fa64-4328-b1b6-2e0db509cb3c");
 pub const IID_IContactPropertyCollection = &IID_IContactPropertyCollection_Value;
 pub const IContactPropertyCollection = extern struct {
     pub const VTable = extern struct {

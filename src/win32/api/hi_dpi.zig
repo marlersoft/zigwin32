@@ -70,6 +70,12 @@ pub const MDT_DEFAULT = MONITOR_DPI_TYPE.MDT_DEFAULT;
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
+pub extern "UxTheme" fn OpenThemeDataForDpi(
+    hwnd: HWND,
+    pszClassList: [*:0]const u16,
+    dpi: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
 pub extern "USER32" fn SetDialogControlDpiChangeBehavior(
     hWnd: HWND,
     mask: DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
@@ -178,12 +184,6 @@ pub extern "USER32" fn GetThreadDpiHostingBehavior(
 pub extern "USER32" fn GetWindowDpiHostingBehavior(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
-
-pub extern "UxTheme" fn OpenThemeDataForDpi(
-    hwnd: HWND,
-    pszClassList: [*:0]const u16,
-    dpi: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
     value: PROCESS_DPI_AWARENESS,

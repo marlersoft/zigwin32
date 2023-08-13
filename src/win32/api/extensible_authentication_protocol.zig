@@ -368,7 +368,7 @@ pub const LEGACY_INTERACTIVE_UI_PARAMS = extern struct {
     dwError: u32,
 };
 
-const IID_IRouterProtocolConfig_Value = @import("../zig.zig").Guid.initString("66A2DB16-D706-11D0-A37B-00C04FC9DA04");
+const IID_IRouterProtocolConfig_Value = @import("../zig.zig").Guid.initString("66a2db16-d706-11d0-a37b-00c04fc9da04");
 pub const IID_IRouterProtocolConfig = &IID_IRouterProtocolConfig_Value;
 pub const IRouterProtocolConfig = extern struct {
     pub const VTable = extern struct {
@@ -409,7 +409,7 @@ pub const IRouterProtocolConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAuthenticationProviderConfig_Value = @import("../zig.zig").Guid.initString("66A2DB17-D706-11D0-A37B-00C04FC9DA04");
+const IID_IAuthenticationProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db17-d706-11d0-a37b-00c04fc9da04");
 pub const IID_IAuthenticationProviderConfig = &IID_IAuthenticationProviderConfig_Value;
 pub const IAuthenticationProviderConfig = extern struct {
     pub const VTable = extern struct {
@@ -471,7 +471,7 @@ pub const IAuthenticationProviderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAccountingProviderConfig_Value = @import("../zig.zig").Guid.initString("66A2DB18-D706-11D0-A37B-00C04FC9DA04");
+const IID_IAccountingProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db18-d706-11d0-a37b-00c04fc9da04");
 pub const IID_IAccountingProviderConfig = &IID_IAccountingProviderConfig_Value;
 pub const IAccountingProviderConfig = extern struct {
     pub const VTable = extern struct {
@@ -533,7 +533,7 @@ pub const IAccountingProviderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEAPProviderConfig_Value = @import("../zig.zig").Guid.initString("66A2DB19-D706-11D0-A37B-00C04FC9DA04");
+const IID_IEAPProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db19-d706-11d0-a37b-00c04fc9da04");
 pub const IID_IEAPProviderConfig = &IID_IEAPProviderConfig_Value;
 pub const IEAPProviderConfig = extern struct {
     pub const VTable = extern struct {
@@ -609,7 +609,7 @@ pub const IEAPProviderConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEAPProviderConfig2_Value = @import("../zig.zig").Guid.initString("D565917A-85C4-4466-856E-671C3742EA9A");
+const IID_IEAPProviderConfig2_Value = @import("../zig.zig").Guid.initString("d565917a-85c4-4466-856e-671c3742ea9a");
 pub const IID_IEAPProviderConfig2 = &IID_IEAPProviderConfig2_Value;
 pub const IEAPProviderConfig2 = extern struct {
     pub const VTable = extern struct {
@@ -646,7 +646,7 @@ pub const IEAPProviderConfig2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEAPProviderConfig3_Value = @import("../zig.zig").Guid.initString("B78ECD12-68BB-4F86-9BF0-8438DD3BE982");
+const IID_IEAPProviderConfig3_Value = @import("../zig.zig").Guid.initString("b78ecd12-68bb-4f86-9bf0-8438dd3be982");
 pub const IID_IEAPProviderConfig3 = &IID_IEAPProviderConfig3_Value;
 pub const IEAPProviderConfig3 = extern struct {
     pub const VTable = extern struct {

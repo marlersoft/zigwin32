@@ -289,67 +289,67 @@ pub const WDS_TRANSPORTCLIENT_CALLBACKS = extern struct {
     SessionNegotiate: PFN_WdsTransportClientSessionNegotiate,
 };
 
-const CLSID_WdsTransportCacheable_Value = @import("../zig.zig").Guid.initString("70590B16-F146-46BD-BD9D-4AAA90084BF5");
+const CLSID_WdsTransportCacheable_Value = @import("../zig.zig").Guid.initString("70590b16-f146-46bd-bd9d-4aaa90084bf5");
 pub const CLSID_WdsTransportCacheable = &CLSID_WdsTransportCacheable_Value;
 
-const CLSID_WdsTransportCollection_Value = @import("../zig.zig").Guid.initString("C7F18B09-391E-436E-B10B-C3EF46F2C34F");
+const CLSID_WdsTransportCollection_Value = @import("../zig.zig").Guid.initString("c7f18b09-391e-436e-b10b-c3ef46f2c34f");
 pub const CLSID_WdsTransportCollection = &CLSID_WdsTransportCollection_Value;
 
-const CLSID_WdsTransportManager_Value = @import("../zig.zig").Guid.initString("F21523F6-837C-4A58-AF99-8A7E27F8FF59");
+const CLSID_WdsTransportManager_Value = @import("../zig.zig").Guid.initString("f21523f6-837c-4a58-af99-8a7e27f8ff59");
 pub const CLSID_WdsTransportManager = &CLSID_WdsTransportManager_Value;
 
-const CLSID_WdsTransportServer_Value = @import("../zig.zig").Guid.initString("EA19B643-4ADF-4413-942C-14F379118760");
+const CLSID_WdsTransportServer_Value = @import("../zig.zig").Guid.initString("ea19b643-4adf-4413-942c-14f379118760");
 pub const CLSID_WdsTransportServer = &CLSID_WdsTransportServer_Value;
 
-const CLSID_WdsTransportSetupManager_Value = @import("../zig.zig").Guid.initString("C7BEEAAD-9F04-4923-9F0C-FBF52BC7590F");
+const CLSID_WdsTransportSetupManager_Value = @import("../zig.zig").Guid.initString("c7beeaad-9f04-4923-9f0c-fbf52bc7590f");
 pub const CLSID_WdsTransportSetupManager = &CLSID_WdsTransportSetupManager_Value;
 
-const CLSID_WdsTransportConfigurationManager_Value = @import("../zig.zig").Guid.initString("8743F674-904C-47CA-8512-35FE98F6B0AC");
+const CLSID_WdsTransportConfigurationManager_Value = @import("../zig.zig").Guid.initString("8743f674-904c-47ca-8512-35fe98f6b0ac");
 pub const CLSID_WdsTransportConfigurationManager = &CLSID_WdsTransportConfigurationManager_Value;
 
-const CLSID_WdsTransportNamespaceManager_Value = @import("../zig.zig").Guid.initString("F08CDB63-85DE-4A28-A1A9-5CA3E7EFDA73");
+const CLSID_WdsTransportNamespaceManager_Value = @import("../zig.zig").Guid.initString("f08cdb63-85de-4a28-a1a9-5ca3e7efda73");
 pub const CLSID_WdsTransportNamespaceManager = &CLSID_WdsTransportNamespaceManager_Value;
 
-const CLSID_WdsTransportServicePolicy_Value = @import("../zig.zig").Guid.initString("65ACEADC-2F0B-4F43-9F4D-811865D8CEAD");
+const CLSID_WdsTransportServicePolicy_Value = @import("../zig.zig").Guid.initString("65aceadc-2f0b-4f43-9f4d-811865d8cead");
 pub const CLSID_WdsTransportServicePolicy = &CLSID_WdsTransportServicePolicy_Value;
 
-const CLSID_WdsTransportDiagnosticsPolicy_Value = @import("../zig.zig").Guid.initString("EB3333E1-A7AD-46F5-80D6-6B740204E509");
+const CLSID_WdsTransportDiagnosticsPolicy_Value = @import("../zig.zig").Guid.initString("eb3333e1-a7ad-46f5-80d6-6b740204e509");
 pub const CLSID_WdsTransportDiagnosticsPolicy = &CLSID_WdsTransportDiagnosticsPolicy_Value;
 
-const CLSID_WdsTransportMulticastSessionPolicy_Value = @import("../zig.zig").Guid.initString("3C6BC3F4-6418-472A-B6F1-52D457195437");
+const CLSID_WdsTransportMulticastSessionPolicy_Value = @import("../zig.zig").Guid.initString("3c6bc3f4-6418-472a-b6f1-52d457195437");
 pub const CLSID_WdsTransportMulticastSessionPolicy = &CLSID_WdsTransportMulticastSessionPolicy_Value;
 
-const CLSID_WdsTransportNamespace_Value = @import("../zig.zig").Guid.initString("D8385768-0732-4EC1-95EA-16DA581908A1");
+const CLSID_WdsTransportNamespace_Value = @import("../zig.zig").Guid.initString("d8385768-0732-4ec1-95ea-16da581908a1");
 pub const CLSID_WdsTransportNamespace = &CLSID_WdsTransportNamespace_Value;
 
-const CLSID_WdsTransportNamespaceAutoCast_Value = @import("../zig.zig").Guid.initString("B091F5A8-6A99-478D-B23B-09E8FEE04574");
+const CLSID_WdsTransportNamespaceAutoCast_Value = @import("../zig.zig").Guid.initString("b091f5a8-6a99-478d-b23b-09e8fee04574");
 pub const CLSID_WdsTransportNamespaceAutoCast = &CLSID_WdsTransportNamespaceAutoCast_Value;
 
-const CLSID_WdsTransportNamespaceScheduledCast_Value = @import("../zig.zig").Guid.initString("BADC1897-7025-44EB-9108-FB61C4055792");
+const CLSID_WdsTransportNamespaceScheduledCast_Value = @import("../zig.zig").Guid.initString("badc1897-7025-44eb-9108-fb61c4055792");
 pub const CLSID_WdsTransportNamespaceScheduledCast = &CLSID_WdsTransportNamespaceScheduledCast_Value;
 
-const CLSID_WdsTransportNamespaceScheduledCastManualStart_Value = @import("../zig.zig").Guid.initString("D3E1A2AA-CAAC-460E-B98A-47F9F318A1FA");
+const CLSID_WdsTransportNamespaceScheduledCastManualStart_Value = @import("../zig.zig").Guid.initString("d3e1a2aa-caac-460e-b98a-47f9f318a1fa");
 pub const CLSID_WdsTransportNamespaceScheduledCastManualStart = &CLSID_WdsTransportNamespaceScheduledCastManualStart_Value;
 
-const CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value = @import("../zig.zig").Guid.initString("A1107052-122C-4B81-9B7C-386E6855383F");
+const CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value = @import("../zig.zig").Guid.initString("a1107052-122c-4b81-9b7c-386e6855383f");
 pub const CLSID_WdsTransportNamespaceScheduledCastAutoStart = &CLSID_WdsTransportNamespaceScheduledCastAutoStart_Value;
 
-const CLSID_WdsTransportContent_Value = @import("../zig.zig").Guid.initString("0A891FE7-4A3F-4C65-B6F2-1467619679EA");
+const CLSID_WdsTransportContent_Value = @import("../zig.zig").Guid.initString("0a891fe7-4a3f-4c65-b6f2-1467619679ea");
 pub const CLSID_WdsTransportContent = &CLSID_WdsTransportContent_Value;
 
-const CLSID_WdsTransportSession_Value = @import("../zig.zig").Guid.initString("749AC4E0-67BC-4743-BFE5-CACB1F26F57F");
+const CLSID_WdsTransportSession_Value = @import("../zig.zig").Guid.initString("749ac4e0-67bc-4743-bfe5-cacb1f26f57f");
 pub const CLSID_WdsTransportSession = &CLSID_WdsTransportSession_Value;
 
-const CLSID_WdsTransportClient_Value = @import("../zig.zig").Guid.initString("66D2C5E9-0FF6-49EC-9733-DAFB1E01DF1C");
+const CLSID_WdsTransportClient_Value = @import("../zig.zig").Guid.initString("66d2c5e9-0ff6-49ec-9733-dafb1e01df1c");
 pub const CLSID_WdsTransportClient = &CLSID_WdsTransportClient_Value;
 
-const CLSID_WdsTransportTftpClient_Value = @import("../zig.zig").Guid.initString("50343925-7C5C-4C8C-96C4-AD9FA5005FBA");
+const CLSID_WdsTransportTftpClient_Value = @import("../zig.zig").Guid.initString("50343925-7c5c-4c8c-96c4-ad9fa5005fba");
 pub const CLSID_WdsTransportTftpClient = &CLSID_WdsTransportTftpClient_Value;
 
-const CLSID_WdsTransportTftpManager_Value = @import("../zig.zig").Guid.initString("C8E9DCA2-3241-4E4D-B806-BC74019DFEDA");
+const CLSID_WdsTransportTftpManager_Value = @import("../zig.zig").Guid.initString("c8e9dca2-3241-4e4d-b806-bc74019dfeda");
 pub const CLSID_WdsTransportTftpManager = &CLSID_WdsTransportTftpManager_Value;
 
-const CLSID_WdsTransportContentProvider_Value = @import("../zig.zig").Guid.initString("E0BE741F-5A75-4EB9-8A2D-5E189B45F327");
+const CLSID_WdsTransportContentProvider_Value = @import("../zig.zig").Guid.initString("e0be741f-5a75-4eb9-8a2d-5e189b45f327");
 pub const CLSID_WdsTransportContentProvider = &CLSID_WdsTransportContentProvider_Value;
 
 pub const WDSTRANSPORT_FEATURE_FLAGS = extern enum(i32) {
@@ -462,7 +462,7 @@ pub const WDSTRANSPORT_TFTP_CAPABILITY = extern enum(i32) {
 pub const WdsTptTftpCapMaximumBlockSize = WDSTRANSPORT_TFTP_CAPABILITY.WdsTptTftpCapMaximumBlockSize;
 pub const WdsTptTftpCapVariableWindow = WDSTRANSPORT_TFTP_CAPABILITY.WdsTptTftpCapVariableWindow;
 
-const IID_IWdsTransportCacheable_Value = @import("../zig.zig").Guid.initString("46AD894B-0BAB-47DC-84B2-7B553F1D8F80");
+const IID_IWdsTransportCacheable_Value = @import("../zig.zig").Guid.initString("46ad894b-0bab-47dc-84b2-7b553f1d8f80");
 pub const IID_IWdsTransportCacheable = &IID_IWdsTransportCacheable_Value;
 pub const IWdsTransportCacheable = extern struct {
     pub const VTable = extern struct {
@@ -504,7 +504,7 @@ pub const IWdsTransportCacheable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportCollection_Value = @import("../zig.zig").Guid.initString("B8BA4B1A-2FF4-43AB-996C-B2B10A91A6EB");
+const IID_IWdsTransportCollection_Value = @import("../zig.zig").Guid.initString("b8ba4b1a-2ff4-43ab-996c-b2b10a91a6eb");
 pub const IID_IWdsTransportCollection = &IID_IWdsTransportCollection_Value;
 pub const IWdsTransportCollection = extern struct {
     pub const VTable = extern struct {
@@ -542,7 +542,7 @@ pub const IWdsTransportCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportManager_Value = @import("../zig.zig").Guid.initString("5B0D35F5-1B13-4AFD-B878-6526DC340B5D");
+const IID_IWdsTransportManager_Value = @import("../zig.zig").Guid.initString("5b0d35f5-1b13-4afd-b878-6526dc340b5d");
 pub const IID_IWdsTransportManager = &IID_IWdsTransportManager_Value;
 pub const IWdsTransportManager = extern struct {
     pub const VTable = extern struct {
@@ -564,7 +564,7 @@ pub const IWdsTransportManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportServer_Value = @import("../zig.zig").Guid.initString("09CCD093-830D-4344-A30A-73AE8E8FCA90");
+const IID_IWdsTransportServer_Value = @import("../zig.zig").Guid.initString("09ccd093-830d-4344-a30a-73ae8e8fca90");
 pub const IID_IWdsTransportServer = &IID_IWdsTransportServer_Value;
 pub const IWdsTransportServer = extern struct {
     pub const VTable = extern struct {
@@ -618,7 +618,7 @@ pub const IWdsTransportServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportServer2_Value = @import("../zig.zig").Guid.initString("256E999F-6DF4-4538-81B9-857B9AB8FB47");
+const IID_IWdsTransportServer2_Value = @import("../zig.zig").Guid.initString("256e999f-6df4-4538-81b9-857b9ab8fb47");
 pub const IID_IWdsTransportServer2 = &IID_IWdsTransportServer2_Value;
 pub const IWdsTransportServer2 = extern struct {
     pub const VTable = extern struct {
@@ -639,7 +639,7 @@ pub const IWdsTransportServer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportSetupManager_Value = @import("../zig.zig").Guid.initString("F7238425-EFA8-40A4-AEF9-C98D969C0B75");
+const IID_IWdsTransportSetupManager_Value = @import("../zig.zig").Guid.initString("f7238425-efa8-40a4-aef9-c98d969c0b75");
 pub const IID_IWdsTransportSetupManager = &IID_IWdsTransportSetupManager_Value;
 pub const IWdsTransportSetupManager = extern struct {
     pub const VTable = extern struct {
@@ -695,7 +695,7 @@ pub const IWdsTransportSetupManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportSetupManager2_Value = @import("../zig.zig").Guid.initString("02BE79DA-7E9E-4366-8B6E-2AA9A91BE47F");
+const IID_IWdsTransportSetupManager2_Value = @import("../zig.zig").Guid.initString("02be79da-7e9e-4366-8b6e-2aa9a91be47f");
 pub const IID_IWdsTransportSetupManager2 = &IID_IWdsTransportSetupManager2_Value;
 pub const IWdsTransportSetupManager2 = extern struct {
     pub const VTable = extern struct {
@@ -724,7 +724,7 @@ pub const IWdsTransportSetupManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportConfigurationManager_Value = @import("../zig.zig").Guid.initString("84CC4779-42DD-4792-891E-1321D6D74B44");
+const IID_IWdsTransportConfigurationManager_Value = @import("../zig.zig").Guid.initString("84cc4779-42dd-4792-891e-1321d6d74b44");
 pub const IID_IWdsTransportConfigurationManager = &IID_IWdsTransportConfigurationManager_Value;
 pub const IWdsTransportConfigurationManager = extern struct {
     pub const VTable = extern struct {
@@ -805,7 +805,7 @@ pub const IWdsTransportConfigurationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportConfigurationManager2_Value = @import("../zig.zig").Guid.initString("D0D85CAF-A153-4F1D-A9DD-96F431C50717");
+const IID_IWdsTransportConfigurationManager2_Value = @import("../zig.zig").Guid.initString("d0d85caf-a153-4f1d-a9dd-96f431c50717");
 pub const IID_IWdsTransportConfigurationManager2 = &IID_IWdsTransportConfigurationManager2_Value;
 pub const IWdsTransportConfigurationManager2 = extern struct {
     pub const VTable = extern struct {
@@ -826,7 +826,7 @@ pub const IWdsTransportConfigurationManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespaceManager_Value = @import("../zig.zig").Guid.initString("3E22D9F6-3777-4D98-83E1-F98696717BA3");
+const IID_IWdsTransportNamespaceManager_Value = @import("../zig.zig").Guid.initString("3e22d9f6-3777-4d98-83e1-f98696717ba3");
 pub const IID_IWdsTransportNamespaceManager = &IID_IWdsTransportNamespaceManager_Value;
 pub const IWdsTransportNamespaceManager = extern struct {
     pub const VTable = extern struct {
@@ -871,7 +871,7 @@ pub const IWdsTransportNamespaceManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportTftpManager_Value = @import("../zig.zig").Guid.initString("1327A7C8-AE8A-4FB3-8150-136227C37E9A");
+const IID_IWdsTransportTftpManager_Value = @import("../zig.zig").Guid.initString("1327a7c8-ae8a-4fb3-8150-136227c37e9a");
 pub const IID_IWdsTransportTftpManager = &IID_IWdsTransportTftpManager_Value;
 pub const IWdsTransportTftpManager = extern struct {
     pub const VTable = extern struct {
@@ -892,7 +892,7 @@ pub const IWdsTransportTftpManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportServicePolicy_Value = @import("../zig.zig").Guid.initString("B9468578-9F2B-48CC-B27A-A60799C2750C");
+const IID_IWdsTransportServicePolicy_Value = @import("../zig.zig").Guid.initString("b9468578-9f2b-48cc-b27a-a60799c2750c");
 pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value;
 pub const IWdsTransportServicePolicy = extern struct {
     pub const VTable = extern struct {
@@ -1007,7 +1007,7 @@ pub const IWdsTransportServicePolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportServicePolicy2_Value = @import("../zig.zig").Guid.initString("65C19E5C-AA7E-4B91-8944-91E0E5572797");
+const IID_IWdsTransportServicePolicy2_Value = @import("../zig.zig").Guid.initString("65c19e5c-aa7e-4b91-8944-91e0e5572797");
 pub const IID_IWdsTransportServicePolicy2 = &IID_IWdsTransportServicePolicy2_Value;
 pub const IWdsTransportServicePolicy2 = extern struct {
     pub const VTable = extern struct {
@@ -1068,7 +1068,7 @@ pub const IWdsTransportServicePolicy2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportDiagnosticsPolicy_Value = @import("../zig.zig").Guid.initString("13B33EFC-7856-4F61-9A59-8DE67B6B87B6");
+const IID_IWdsTransportDiagnosticsPolicy_Value = @import("../zig.zig").Guid.initString("13b33efc-7856-4f61-9a59-8de67b6b87b6");
 pub const IID_IWdsTransportDiagnosticsPolicy = &IID_IWdsTransportDiagnosticsPolicy_Value;
 pub const IWdsTransportDiagnosticsPolicy = extern struct {
     pub const VTable = extern struct {
@@ -1113,7 +1113,7 @@ pub const IWdsTransportDiagnosticsPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportMulticastSessionPolicy_Value = @import("../zig.zig").Guid.initString("4E5753CF-68EC-4504-A951-4A003266606B");
+const IID_IWdsTransportMulticastSessionPolicy_Value = @import("../zig.zig").Guid.initString("4e5753cf-68ec-4504-a951-4a003266606b");
 pub const IID_IWdsTransportMulticastSessionPolicy = &IID_IWdsTransportMulticastSessionPolicy_Value;
 pub const IWdsTransportMulticastSessionPolicy = extern struct {
     pub const VTable = extern struct {
@@ -1190,7 +1190,7 @@ pub const IWdsTransportMulticastSessionPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespace_Value = @import("../zig.zig").Guid.initString("FA561F57-FBEF-4ED3-B056-127CB1B33B84");
+const IID_IWdsTransportNamespace_Value = @import("../zig.zig").Guid.initString("fa561f57-fbef-4ed3-b056-127cb1b33b84");
 pub const IID_IWdsTransportNamespace = &IID_IWdsTransportNamespace_Value;
 pub const IWdsTransportNamespace = extern struct {
     pub const VTable = extern struct {
@@ -1369,7 +1369,7 @@ pub const IWdsTransportNamespace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespaceAutoCast_Value = @import("../zig.zig").Guid.initString("AD931A72-C4BD-4C41-8FBC-59C9C748DF9E");
+const IID_IWdsTransportNamespaceAutoCast_Value = @import("../zig.zig").Guid.initString("ad931a72-c4bd-4c41-8fbc-59c9c748df9e");
 pub const IID_IWdsTransportNamespaceAutoCast = &IID_IWdsTransportNamespaceAutoCast_Value;
 pub const IWdsTransportNamespaceAutoCast = extern struct {
     pub const VTable = extern struct {
@@ -1382,7 +1382,7 @@ pub const IWdsTransportNamespaceAutoCast = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespaceScheduledCast_Value = @import("../zig.zig").Guid.initString("3840CECF-D76C-416E-A4CC-31C741D2874B");
+const IID_IWdsTransportNamespaceScheduledCast_Value = @import("../zig.zig").Guid.initString("3840cecf-d76c-416e-a4cc-31c741d2874b");
 pub const IID_IWdsTransportNamespaceScheduledCast = &IID_IWdsTransportNamespaceScheduledCast_Value;
 pub const IWdsTransportNamespaceScheduledCast = extern struct {
     pub const VTable = extern struct {
@@ -1402,7 +1402,7 @@ pub const IWdsTransportNamespaceScheduledCast = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespaceScheduledCastManualStart_Value = @import("../zig.zig").Guid.initString("013E6E4C-E6A7-4FB5-B7FF-D9F5DA805C31");
+const IID_IWdsTransportNamespaceScheduledCastManualStart_Value = @import("../zig.zig").Guid.initString("013e6e4c-e6a7-4fb5-b7ff-d9f5da805c31");
 pub const IID_IWdsTransportNamespaceScheduledCastManualStart = &IID_IWdsTransportNamespaceScheduledCastManualStart_Value;
 pub const IWdsTransportNamespaceScheduledCastManualStart = extern struct {
     pub const VTable = extern struct {
@@ -1415,7 +1415,7 @@ pub const IWdsTransportNamespaceScheduledCastManualStart = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportNamespaceScheduledCastAutoStart_Value = @import("../zig.zig").Guid.initString("D606AF3D-EA9C-4219-961E-7491D618D9B9");
+const IID_IWdsTransportNamespaceScheduledCastAutoStart_Value = @import("../zig.zig").Guid.initString("d606af3d-ea9c-4219-961e-7491d618d9b9");
 pub const IID_IWdsTransportNamespaceScheduledCastAutoStart = &IID_IWdsTransportNamespaceScheduledCastAutoStart_Value;
 pub const IWdsTransportNamespaceScheduledCastAutoStart = extern struct {
     pub const VTable = extern struct {
@@ -1460,7 +1460,7 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportContent_Value = @import("../zig.zig").Guid.initString("D405D711-0296-4AB4-A860-AC7D32E65798");
+const IID_IWdsTransportContent_Value = @import("../zig.zig").Guid.initString("d405d711-0296-4ab4-a860-ac7d32e65798");
 pub const IID_IWdsTransportContent = &IID_IWdsTransportContent_Value;
 pub const IWdsTransportContent = extern struct {
     pub const VTable = extern struct {
@@ -1512,7 +1512,7 @@ pub const IWdsTransportContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportSession_Value = @import("../zig.zig").Guid.initString("F4EFEA88-65B1-4F30-A4B9-2793987796FB");
+const IID_IWdsTransportSession_Value = @import("../zig.zig").Guid.initString("f4efea88-65b1-4f30-a4b9-2793987796fb");
 pub const IID_IWdsTransportSession = &IID_IWdsTransportSession_Value;
 pub const IWdsTransportSession = extern struct {
     pub const VTable = extern struct {
@@ -1588,7 +1588,7 @@ pub const IWdsTransportSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportClient_Value = @import("../zig.zig").Guid.initString("B5DBC93A-CABE-46CA-837F-3E44E93C6545");
+const IID_IWdsTransportClient_Value = @import("../zig.zig").Guid.initString("b5dbc93a-cabe-46ca-837f-3e44e93c6545");
 pub const IID_IWdsTransportClient = &IID_IWdsTransportClient_Value;
 pub const IWdsTransportClient = extern struct {
     pub const VTable = extern struct {
@@ -1697,7 +1697,7 @@ pub const IWdsTransportClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportTftpClient_Value = @import("../zig.zig").Guid.initString("B022D3AE-884D-4D85-B146-53320E76EF62");
+const IID_IWdsTransportTftpClient_Value = @import("../zig.zig").Guid.initString("b022d3ae-884d-4d85-b146-53320e76ef62");
 pub const IID_IWdsTransportTftpClient = &IID_IWdsTransportTftpClient_Value;
 pub const IWdsTransportTftpClient = extern struct {
     pub const VTable = extern struct {
@@ -1766,7 +1766,7 @@ pub const IWdsTransportTftpClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWdsTransportContentProvider_Value = @import("../zig.zig").Guid.initString("B9489F24-F219-4ACF-AAD7-265C7C08A6AE");
+const IID_IWdsTransportContentProvider_Value = @import("../zig.zig").Guid.initString("b9489f24-f219-4acf-aad7-265c7c08a6ae");
 pub const IID_IWdsTransportContentProvider = &IID_IWdsTransportContentProvider_Value;
 pub const IWdsTransportContentProvider = extern struct {
     pub const VTable = extern struct {

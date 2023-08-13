@@ -781,7 +781,7 @@ pub const PRINTDLGW = extern struct {
     hSetupTemplate: ?*c_void,
 };
 
-const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852A2C3-6530-11D1-B6A3-0000F8757BF9");
+const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
 pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
 pub const IPrintDialogCallback = extern struct {
     pub const VTable = extern struct {
@@ -820,7 +820,7 @@ pub const IPrintDialogCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509AAEDA-5639-11D1-B6A1-0000F8757BF9");
+const IID_IPrintDialogServices_Value = @import("../zig.zig").Guid.initString("509aaeda-5639-11d1-b6a1-0000f8757bf9");
 pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
 pub const IPrintDialogServices = extern struct {
     pub const VTable = extern struct {

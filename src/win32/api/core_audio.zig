@@ -409,7 +409,7 @@ pub const KSE_NODE = extern struct {
     Reserved: u32,
 };
 
-const CLSID_KSPROPTYPESETID_General_Value = @import("../zig.zig").Guid.initString("97E99BA0-BDEA-11CF-A5D6-28DB04C10000");
+const CLSID_KSPROPTYPESETID_General_Value = @import("../zig.zig").Guid.initString("97e99ba0-bdea-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPTYPESETID_General = &CLSID_KSPROPTYPESETID_General_Value;
 
 pub const KSMULTIPLE_ITEM = extern struct {
@@ -485,7 +485,7 @@ pub const KSINTERVAL = extern struct {
     Interval: i64,
 };
 
-const CLSID_KSPROPSETID_General_Value = @import("../zig.zig").Guid.initString("1464EDA5-6A8F-11D1-9AA7-00A0C9223196");
+const CLSID_KSPROPSETID_General_Value = @import("../zig.zig").Guid.initString("1464eda5-6a8f-11d1-9aa7-00a0c9223196");
 pub const CLSID_KSPROPSETID_General = &CLSID_KSPROPSETID_General_Value;
 
 pub const KSPROPERTY_GENERAL = extern enum(i32) {
@@ -502,7 +502,7 @@ pub const KSCOMPONENTID = extern struct {
     Revision: u32,
 };
 
-const CLSID_KSMETHODSETID_StreamIo_Value = @import("../zig.zig").Guid.initString("65D003CA-1523-11D2-B27A-00A0C9223196");
+const CLSID_KSMETHODSETID_StreamIo_Value = @import("../zig.zig").Guid.initString("65d003ca-1523-11d2-b27a-00a0c9223196");
 pub const CLSID_KSMETHODSETID_StreamIo = &CLSID_KSMETHODSETID_StreamIo_Value;
 
 pub const KSMETHOD_STREAMIO = extern enum(i32) {
@@ -512,7 +512,7 @@ pub const KSMETHOD_STREAMIO = extern enum(i32) {
 pub const KSMETHOD_STREAMIO_READ = KSMETHOD_STREAMIO.READ;
 pub const KSMETHOD_STREAMIO_WRITE = KSMETHOD_STREAMIO.WRITE;
 
-const CLSID_KSPROPSETID_MediaSeeking_Value = @import("../zig.zig").Guid.initString("EE904F0C-D09B-11D0-ABE9-00A0C9223196");
+const CLSID_KSPROPSETID_MediaSeeking_Value = @import("../zig.zig").Guid.initString("ee904f0c-d09b-11d0-abe9-00a0c9223196");
 pub const CLSID_KSPROPSETID_MediaSeeking = &CLSID_KSPROPSETID_MediaSeeking_Value;
 
 pub const KSPROPERTY_MEDIASEEKING = extern enum(i32) {
@@ -591,7 +591,7 @@ pub const KSP_TIMEFORMAT = extern struct {
     Time: i64,
 };
 
-const CLSID_KSPROPSETID_Topology_Value = @import("../zig.zig").Guid.initString("720D4AC0-7533-11D0-A5D6-28DB04C10000");
+const CLSID_KSPROPSETID_Topology_Value = @import("../zig.zig").Guid.initString("720d4ac0-7533-11d0-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Topology = &CLSID_KSPROPSETID_Topology_Value;
 
 pub const KSPROPERTY_TOPOLOGY = extern enum(i32) {
@@ -605,91 +605,91 @@ pub const KSPROPERTY_TOPOLOGY_NODES = KSPROPERTY_TOPOLOGY.NODES;
 pub const KSPROPERTY_TOPOLOGY_CONNECTIONS = KSPROPERTY_TOPOLOGY.CONNECTIONS;
 pub const KSPROPERTY_TOPOLOGY_NAME = KSPROPERTY_TOPOLOGY.NAME;
 
-const CLSID_KSCATEGORY_BRIDGE_Value = @import("../zig.zig").Guid.initString("085AFF00-62CE-11CF-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_BRIDGE_Value = @import("../zig.zig").Guid.initString("085aff00-62ce-11cf-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_BRIDGE = &CLSID_KSCATEGORY_BRIDGE_Value;
 
-const CLSID_KSCATEGORY_CAPTURE_Value = @import("../zig.zig").Guid.initString("65E8773D-8F56-11D0-A3B9-00A0C9223196");
+const CLSID_KSCATEGORY_CAPTURE_Value = @import("../zig.zig").Guid.initString("65e8773d-8f56-11d0-a3b9-00a0c9223196");
 pub const CLSID_KSCATEGORY_CAPTURE = &CLSID_KSCATEGORY_CAPTURE_Value;
 
-const CLSID_KSCATEGORY_VIDEO_CAMERA_Value = @import("../zig.zig").Guid.initString("E5323777-F976-4F5B-9B55-B94699C46E44");
+const CLSID_KSCATEGORY_VIDEO_CAMERA_Value = @import("../zig.zig").Guid.initString("e5323777-f976-4f5b-9b55-b94699c46e44");
 pub const CLSID_KSCATEGORY_VIDEO_CAMERA = &CLSID_KSCATEGORY_VIDEO_CAMERA_Value;
 
-const CLSID_KSCATEGORY_SENSOR_CAMERA_Value = @import("../zig.zig").Guid.initString("24E552D7-6523-47F7-A647-D3465BF1F5CA");
+const CLSID_KSCATEGORY_SENSOR_CAMERA_Value = @import("../zig.zig").Guid.initString("24e552d7-6523-47f7-a647-d3465bf1f5ca");
 pub const CLSID_KSCATEGORY_SENSOR_CAMERA = &CLSID_KSCATEGORY_SENSOR_CAMERA_Value;
 
-const CLSID_KSCATEGORY_NETWORK_CAMERA_Value = @import("../zig.zig").Guid.initString("B8238652-B500-41EB-B4F3-4234F7F5AE99");
+const CLSID_KSCATEGORY_NETWORK_CAMERA_Value = @import("../zig.zig").Guid.initString("b8238652-b500-41eb-b4f3-4234f7f5ae99");
 pub const CLSID_KSCATEGORY_NETWORK_CAMERA = &CLSID_KSCATEGORY_NETWORK_CAMERA_Value;
 
-const CLSID_KSCATEGORY_SENSOR_GROUP_Value = @import("../zig.zig").Guid.initString("669C7214-0A88-4311-A7F3-4E79820E33BD");
+const CLSID_KSCATEGORY_SENSOR_GROUP_Value = @import("../zig.zig").Guid.initString("669c7214-0a88-4311-a7f3-4e79820e33bd");
 pub const CLSID_KSCATEGORY_SENSOR_GROUP = &CLSID_KSCATEGORY_SENSOR_GROUP_Value;
 
-const CLSID_KSCATEGORY_RENDER_Value = @import("../zig.zig").Guid.initString("65E8773E-8F56-11D0-A3B9-00A0C9223196");
+const CLSID_KSCATEGORY_RENDER_Value = @import("../zig.zig").Guid.initString("65e8773e-8f56-11d0-a3b9-00a0c9223196");
 pub const CLSID_KSCATEGORY_RENDER = &CLSID_KSCATEGORY_RENDER_Value;
 
-const CLSID_KSCATEGORY_MIXER_Value = @import("../zig.zig").Guid.initString("AD809C00-7B88-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_MIXER_Value = @import("../zig.zig").Guid.initString("ad809c00-7b88-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_MIXER = &CLSID_KSCATEGORY_MIXER_Value;
 
-const CLSID_KSCATEGORY_SPLITTER_Value = @import("../zig.zig").Guid.initString("0A4252A0-7E70-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_SPLITTER_Value = @import("../zig.zig").Guid.initString("0a4252a0-7e70-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_SPLITTER = &CLSID_KSCATEGORY_SPLITTER_Value;
 
-const CLSID_KSCATEGORY_DATACOMPRESSOR_Value = @import("../zig.zig").Guid.initString("1E84C900-7E70-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_DATACOMPRESSOR_Value = @import("../zig.zig").Guid.initString("1e84c900-7e70-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_DATACOMPRESSOR = &CLSID_KSCATEGORY_DATACOMPRESSOR_Value;
 
-const CLSID_KSCATEGORY_DATADECOMPRESSOR_Value = @import("../zig.zig").Guid.initString("2721AE20-7E70-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_DATADECOMPRESSOR_Value = @import("../zig.zig").Guid.initString("2721ae20-7e70-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_DATADECOMPRESSOR = &CLSID_KSCATEGORY_DATADECOMPRESSOR_Value;
 
-const CLSID_KSCATEGORY_DATATRANSFORM_Value = @import("../zig.zig").Guid.initString("2EB07EA0-7E70-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_DATATRANSFORM_Value = @import("../zig.zig").Guid.initString("2eb07ea0-7e70-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_DATATRANSFORM = &CLSID_KSCATEGORY_DATATRANSFORM_Value;
 
-const CLSID_KSMFT_CATEGORY_VIDEO_DECODER_Value = @import("../zig.zig").Guid.initString("D6C02D4B-6833-45B4-971A-05A4B04BAB91");
+const CLSID_KSMFT_CATEGORY_VIDEO_DECODER_Value = @import("../zig.zig").Guid.initString("d6c02d4b-6833-45b4-971a-05a4b04bab91");
 pub const CLSID_KSMFT_CATEGORY_VIDEO_DECODER = &CLSID_KSMFT_CATEGORY_VIDEO_DECODER_Value;
 
-const CLSID_KSMFT_CATEGORY_VIDEO_ENCODER_Value = @import("../zig.zig").Guid.initString("F79EAC7D-E545-4387-BDEE-D647D7BDE42A");
+const CLSID_KSMFT_CATEGORY_VIDEO_ENCODER_Value = @import("../zig.zig").Guid.initString("f79eac7d-e545-4387-bdee-d647d7bde42a");
 pub const CLSID_KSMFT_CATEGORY_VIDEO_ENCODER = &CLSID_KSMFT_CATEGORY_VIDEO_ENCODER_Value;
 
-const CLSID_KSMFT_CATEGORY_VIDEO_EFFECT_Value = @import("../zig.zig").Guid.initString("12E17C21-532C-4A6E-8A1C-40825A736397");
+const CLSID_KSMFT_CATEGORY_VIDEO_EFFECT_Value = @import("../zig.zig").Guid.initString("12e17c21-532c-4a6e-8a1c-40825a736397");
 pub const CLSID_KSMFT_CATEGORY_VIDEO_EFFECT = &CLSID_KSMFT_CATEGORY_VIDEO_EFFECT_Value;
 
-const CLSID_KSMFT_CATEGORY_MULTIPLEXER_Value = @import("../zig.zig").Guid.initString("059C561E-05AE-4B61-B69D-55B61EE54A7B");
+const CLSID_KSMFT_CATEGORY_MULTIPLEXER_Value = @import("../zig.zig").Guid.initString("059c561e-05ae-4b61-b69d-55b61ee54a7b");
 pub const CLSID_KSMFT_CATEGORY_MULTIPLEXER = &CLSID_KSMFT_CATEGORY_MULTIPLEXER_Value;
 
-const CLSID_KSMFT_CATEGORY_DEMULTIPLEXER_Value = @import("../zig.zig").Guid.initString("A8700A7A-939B-44C5-99D7-76226B23B3F1");
+const CLSID_KSMFT_CATEGORY_DEMULTIPLEXER_Value = @import("../zig.zig").Guid.initString("a8700a7a-939b-44c5-99d7-76226b23b3f1");
 pub const CLSID_KSMFT_CATEGORY_DEMULTIPLEXER = &CLSID_KSMFT_CATEGORY_DEMULTIPLEXER_Value;
 
-const CLSID_KSMFT_CATEGORY_AUDIO_DECODER_Value = @import("../zig.zig").Guid.initString("9EA73FB4-EF7A-4559-8D5D-719D8F0426C7");
+const CLSID_KSMFT_CATEGORY_AUDIO_DECODER_Value = @import("../zig.zig").Guid.initString("9ea73fb4-ef7a-4559-8d5d-719d8f0426c7");
 pub const CLSID_KSMFT_CATEGORY_AUDIO_DECODER = &CLSID_KSMFT_CATEGORY_AUDIO_DECODER_Value;
 
-const CLSID_KSMFT_CATEGORY_AUDIO_ENCODER_Value = @import("../zig.zig").Guid.initString("91C64BD0-F91E-4D8C-9276-DB248279D975");
+const CLSID_KSMFT_CATEGORY_AUDIO_ENCODER_Value = @import("../zig.zig").Guid.initString("91c64bd0-f91e-4d8c-9276-db248279d975");
 pub const CLSID_KSMFT_CATEGORY_AUDIO_ENCODER = &CLSID_KSMFT_CATEGORY_AUDIO_ENCODER_Value;
 
-const CLSID_KSMFT_CATEGORY_AUDIO_EFFECT_Value = @import("../zig.zig").Guid.initString("11064C48-3648-4ED0-932E-05CE8AC811B7");
+const CLSID_KSMFT_CATEGORY_AUDIO_EFFECT_Value = @import("../zig.zig").Guid.initString("11064c48-3648-4ed0-932e-05ce8ac811b7");
 pub const CLSID_KSMFT_CATEGORY_AUDIO_EFFECT = &CLSID_KSMFT_CATEGORY_AUDIO_EFFECT_Value;
 
-const CLSID_KSMFT_CATEGORY_VIDEO_PROCESSOR_Value = @import("../zig.zig").Guid.initString("302EA3FC-AA5F-47F9-9F7A-C2188BB16302");
+const CLSID_KSMFT_CATEGORY_VIDEO_PROCESSOR_Value = @import("../zig.zig").Guid.initString("302ea3fc-aa5f-47f9-9f7a-c2188bb16302");
 pub const CLSID_KSMFT_CATEGORY_VIDEO_PROCESSOR = &CLSID_KSMFT_CATEGORY_VIDEO_PROCESSOR_Value;
 
-const CLSID_KSMFT_CATEGORY_OTHER_Value = @import("../zig.zig").Guid.initString("90175D57-B7EA-4901-AEB3-933A8747756F");
+const CLSID_KSMFT_CATEGORY_OTHER_Value = @import("../zig.zig").Guid.initString("90175d57-b7ea-4901-aeb3-933a8747756f");
 pub const CLSID_KSMFT_CATEGORY_OTHER = &CLSID_KSMFT_CATEGORY_OTHER_Value;
 
-const CLSID_KSCATEGORY_COMMUNICATIONSTRANSFORM_Value = @import("../zig.zig").Guid.initString("CF1DDA2C-9743-11D0-A3EE-00A0C9223196");
+const CLSID_KSCATEGORY_COMMUNICATIONSTRANSFORM_Value = @import("../zig.zig").Guid.initString("cf1dda2c-9743-11d0-a3ee-00a0c9223196");
 pub const CLSID_KSCATEGORY_COMMUNICATIONSTRANSFORM = &CLSID_KSCATEGORY_COMMUNICATIONSTRANSFORM_Value;
 
-const CLSID_KSCATEGORY_INTERFACETRANSFORM_Value = @import("../zig.zig").Guid.initString("CF1DDA2D-9743-11D0-A3EE-00A0C9223196");
+const CLSID_KSCATEGORY_INTERFACETRANSFORM_Value = @import("../zig.zig").Guid.initString("cf1dda2d-9743-11d0-a3ee-00a0c9223196");
 pub const CLSID_KSCATEGORY_INTERFACETRANSFORM = &CLSID_KSCATEGORY_INTERFACETRANSFORM_Value;
 
-const CLSID_KSCATEGORY_MEDIUMTRANSFORM_Value = @import("../zig.zig").Guid.initString("CF1DDA2E-9743-11D0-A3EE-00A0C9223196");
+const CLSID_KSCATEGORY_MEDIUMTRANSFORM_Value = @import("../zig.zig").Guid.initString("cf1dda2e-9743-11d0-a3ee-00a0c9223196");
 pub const CLSID_KSCATEGORY_MEDIUMTRANSFORM = &CLSID_KSCATEGORY_MEDIUMTRANSFORM_Value;
 
-const CLSID_KSCATEGORY_FILESYSTEM_Value = @import("../zig.zig").Guid.initString("760FED5E-9357-11D0-A3CC-00A0C9223196");
+const CLSID_KSCATEGORY_FILESYSTEM_Value = @import("../zig.zig").Guid.initString("760fed5e-9357-11d0-a3cc-00a0c9223196");
 pub const CLSID_KSCATEGORY_FILESYSTEM = &CLSID_KSCATEGORY_FILESYSTEM_Value;
 
-const CLSID_KSCATEGORY_CLOCK_Value = @import("../zig.zig").Guid.initString("53172480-4791-11D0-A5D6-28DB04C10000");
+const CLSID_KSCATEGORY_CLOCK_Value = @import("../zig.zig").Guid.initString("53172480-4791-11d0-a5d6-28db04c10000");
 pub const CLSID_KSCATEGORY_CLOCK = &CLSID_KSCATEGORY_CLOCK_Value;
 
-const CLSID_KSCATEGORY_PROXY_Value = @import("../zig.zig").Guid.initString("97EBAACA-95BD-11D0-A3EA-00A0C9223196");
+const CLSID_KSCATEGORY_PROXY_Value = @import("../zig.zig").Guid.initString("97ebaaca-95bd-11d0-a3ea-00a0c9223196");
 pub const CLSID_KSCATEGORY_PROXY = &CLSID_KSCATEGORY_PROXY_Value;
 
-const CLSID_KSCATEGORY_QUALITY_Value = @import("../zig.zig").Guid.initString("97EBAACB-95BD-11D0-A3EA-00A0C9223196");
+const CLSID_KSCATEGORY_QUALITY_Value = @import("../zig.zig").Guid.initString("97ebaacb-95bd-11d0-a3ea-00a0c9223196");
 pub const CLSID_KSCATEGORY_QUALITY = &CLSID_KSCATEGORY_QUALITY_Value;
 
 pub const KSTOPOLOGY = extern struct {
@@ -708,22 +708,22 @@ pub const KSNODE_CREATE = extern struct {
     Node: u32,
 };
 
-const CLSID_KSTIME_FORMAT_FRAME_Value = @import("../zig.zig").Guid.initString("7B785570-8C82-11CF-BC0C-00AA00AC74F6");
+const CLSID_KSTIME_FORMAT_FRAME_Value = @import("../zig.zig").Guid.initString("7b785570-8c82-11cf-bc0c-00aa00ac74f6");
 pub const CLSID_KSTIME_FORMAT_FRAME = &CLSID_KSTIME_FORMAT_FRAME_Value;
 
-const CLSID_KSTIME_FORMAT_BYTE_Value = @import("../zig.zig").Guid.initString("7B785571-8C82-11CF-BC0C-00AA00AC74F6");
+const CLSID_KSTIME_FORMAT_BYTE_Value = @import("../zig.zig").Guid.initString("7b785571-8c82-11cf-bc0c-00aa00ac74f6");
 pub const CLSID_KSTIME_FORMAT_BYTE = &CLSID_KSTIME_FORMAT_BYTE_Value;
 
-const CLSID_KSTIME_FORMAT_SAMPLE_Value = @import("../zig.zig").Guid.initString("7B785572-8C82-11CF-BC0C-00AA00AC74F6");
+const CLSID_KSTIME_FORMAT_SAMPLE_Value = @import("../zig.zig").Guid.initString("7b785572-8c82-11cf-bc0c-00aa00ac74f6");
 pub const CLSID_KSTIME_FORMAT_SAMPLE = &CLSID_KSTIME_FORMAT_SAMPLE_Value;
 
-const CLSID_KSTIME_FORMAT_FIELD_Value = @import("../zig.zig").Guid.initString("7B785573-8C82-11CF-BC0C-00AA00AC74F6");
+const CLSID_KSTIME_FORMAT_FIELD_Value = @import("../zig.zig").Guid.initString("7b785573-8c82-11cf-bc0c-00aa00ac74f6");
 pub const CLSID_KSTIME_FORMAT_FIELD = &CLSID_KSTIME_FORMAT_FIELD_Value;
 
-const CLSID_KSTIME_FORMAT_MEDIA_TIME_Value = @import("../zig.zig").Guid.initString("7B785574-8C82-11CF-BC0C-00AA00AC74F6");
+const CLSID_KSTIME_FORMAT_MEDIA_TIME_Value = @import("../zig.zig").Guid.initString("7b785574-8c82-11cf-bc0c-00aa00ac74f6");
 pub const CLSID_KSTIME_FORMAT_MEDIA_TIME = &CLSID_KSTIME_FORMAT_MEDIA_TIME_Value;
 
-const CLSID_KSINTERFACESETID_Standard_Value = @import("../zig.zig").Guid.initString("1A8766A0-62CE-11CF-A5D6-28DB04C10000");
+const CLSID_KSINTERFACESETID_Standard_Value = @import("../zig.zig").Guid.initString("1a8766a0-62ce-11cf-a5d6-28db04c10000");
 pub const CLSID_KSINTERFACESETID_Standard = &CLSID_KSINTERFACESETID_Standard_Value;
 
 pub const KSINTERFACE_STANDARD = extern enum(i32) {
@@ -735,7 +735,7 @@ pub const KSINTERFACE_STANDARD_STREAMING = KSINTERFACE_STANDARD.STREAMING;
 pub const KSINTERFACE_STANDARD_LOOPED_STREAMING = KSINTERFACE_STANDARD.LOOPED_STREAMING;
 pub const KSINTERFACE_STANDARD_CONTROL = KSINTERFACE_STANDARD.CONTROL;
 
-const CLSID_KSINTERFACESETID_FileIo_Value = @import("../zig.zig").Guid.initString("8C6F932C-E771-11D0-B8FF-00A0C9223196");
+const CLSID_KSINTERFACESETID_FileIo_Value = @import("../zig.zig").Guid.initString("8c6f932c-e771-11d0-b8ff-00a0c9223196");
 pub const CLSID_KSINTERFACESETID_FileIo = &CLSID_KSINTERFACESETID_FileIo_Value;
 
 pub const KSINTERFACE_FILEIO = extern enum(i32) {
@@ -743,10 +743,10 @@ pub const KSINTERFACE_FILEIO = extern enum(i32) {
 };
 pub const KSINTERFACE_FILEIO_STREAMING = KSINTERFACE_FILEIO.STREAMING;
 
-const CLSID_KSMEDIUMSETID_Standard_Value = @import("../zig.zig").Guid.initString("4747B320-62CE-11CF-A5D6-28DB04C10000");
+const CLSID_KSMEDIUMSETID_Standard_Value = @import("../zig.zig").Guid.initString("4747b320-62ce-11cf-a5d6-28db04c10000");
 pub const CLSID_KSMEDIUMSETID_Standard = &CLSID_KSMEDIUMSETID_Standard_Value;
 
-const CLSID_KSPROPSETID_Pin_Value = @import("../zig.zig").Guid.initString("8C134960-51AD-11CF-878A-94F801C10000");
+const CLSID_KSPROPSETID_Pin_Value = @import("../zig.zig").Guid.initString("8c134960-51ad-11cf-878a-94f801c10000");
 pub const CLSID_KSPROPSETID_Pin = &CLSID_KSPROPSETID_Pin_Value;
 
 pub const KSPROPERTY_PIN = extern enum(i32) {
@@ -846,7 +846,7 @@ pub const KSPIN_PHYSICALCONNECTION = extern struct {
     SymbolicLinkName: [1]u16,
 };
 
-const CLSID_KSEVENTSETID_PinCapsChange_Value = @import("../zig.zig").Guid.initString("DD4F192E-3B78-49AD-A534-2C315B822000");
+const CLSID_KSEVENTSETID_PinCapsChange_Value = @import("../zig.zig").Guid.initString("dd4f192e-3b78-49ad-a534-2c315b822000");
 pub const CLSID_KSEVENTSETID_PinCapsChange = &CLSID_KSEVENTSETID_PinCapsChange_Value;
 
 pub const KSEVENT_PINCAPS_CHANGENOTIFICATIONS = extern enum(i32) {
@@ -856,7 +856,7 @@ pub const KSEVENT_PINCAPS_CHANGENOTIFICATIONS = extern enum(i32) {
 pub const KSEVENT_PINCAPS_FORMATCHANGE = KSEVENT_PINCAPS_CHANGENOTIFICATIONS.KSEVENT_PINCAPS_FORMATCHANGE;
 pub const KSEVENT_PINCAPS_JACKINFOCHANGE = KSEVENT_PINCAPS_CHANGENOTIFICATIONS.KSEVENT_PINCAPS_JACKINFOCHANGE;
 
-const CLSID_KSEVENTSETID_VolumeLimit_Value = @import("../zig.zig").Guid.initString("DA168465-3A7C-4858-9D4A-3E8E24701AEF");
+const CLSID_KSEVENTSETID_VolumeLimit_Value = @import("../zig.zig").Guid.initString("da168465-3a7c-4858-9d4a-3e8e24701aef");
 pub const CLSID_KSEVENTSETID_VolumeLimit = &CLSID_KSEVENTSETID_VolumeLimit_Value;
 
 pub const KSEVENT_VOLUMELIMIT = extern enum(i32) {
@@ -864,37 +864,37 @@ pub const KSEVENT_VOLUMELIMIT = extern enum(i32) {
 };
 pub const KSEVENT_VOLUMELIMIT_CHANGED = KSEVENT_VOLUMELIMIT.CHANGED;
 
-const CLSID_KSNAME_Filter_Value = @import("../zig.zig").Guid.initString("9B365890-165F-11D0-A195-0020AFD156E4");
+const CLSID_KSNAME_Filter_Value = @import("../zig.zig").Guid.initString("9b365890-165f-11d0-a195-0020afd156e4");
 pub const CLSID_KSNAME_Filter = &CLSID_KSNAME_Filter_Value;
 
-const CLSID_KSNAME_Pin_Value = @import("../zig.zig").Guid.initString("146F1A80-4791-11D0-A5D6-28DB04C10000");
+const CLSID_KSNAME_Pin_Value = @import("../zig.zig").Guid.initString("146f1a80-4791-11d0-a5d6-28db04c10000");
 pub const CLSID_KSNAME_Pin = &CLSID_KSNAME_Pin_Value;
 
-const CLSID_KSNAME_Clock_Value = @import("../zig.zig").Guid.initString("53172480-4791-11D0-A5D6-28DB04C10000");
+const CLSID_KSNAME_Clock_Value = @import("../zig.zig").Guid.initString("53172480-4791-11d0-a5d6-28db04c10000");
 pub const CLSID_KSNAME_Clock = &CLSID_KSNAME_Clock_Value;
 
-const CLSID_KSNAME_Allocator_Value = @import("../zig.zig").Guid.initString("642F5D00-4791-11D0-A5D6-28DB04C10000");
+const CLSID_KSNAME_Allocator_Value = @import("../zig.zig").Guid.initString("642f5d00-4791-11d0-a5d6-28db04c10000");
 pub const CLSID_KSNAME_Allocator = &CLSID_KSNAME_Allocator_Value;
 
-const CLSID_KSNAME_TopologyNode_Value = @import("../zig.zig").Guid.initString("0621061A-EE75-11D0-B915-00A0C9223196");
+const CLSID_KSNAME_TopologyNode_Value = @import("../zig.zig").Guid.initString("0621061a-ee75-11d0-b915-00a0c9223196");
 pub const CLSID_KSNAME_TopologyNode = &CLSID_KSNAME_TopologyNode_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_STREAM_Value = @import("../zig.zig").Guid.initString("E436EB83-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_TYPE_STREAM_Value = @import("../zig.zig").Guid.initString("e436eb83-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_TYPE_STREAM = &CLSID_KSDATAFORMAT_TYPE_STREAM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_NONE_Value = @import("../zig.zig").Guid.initString("E436EB8E-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_NONE_Value = @import("../zig.zig").Guid.initString("e436eb8e-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_NONE = &CLSID_KSDATAFORMAT_SUBTYPE_NONE_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_FILENAME_Value = @import("../zig.zig").Guid.initString("AA797B40-E974-11CF-A5D6-28DB04C10000");
+const CLSID_KSDATAFORMAT_SPECIFIER_FILENAME_Value = @import("../zig.zig").Guid.initString("aa797b40-e974-11cf-a5d6-28db04c10000");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_FILENAME = &CLSID_KSDATAFORMAT_SPECIFIER_FILENAME_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_FILEHANDLE_Value = @import("../zig.zig").Guid.initString("65E8773C-8F56-11D0-A3B9-00A0C9223196");
+const CLSID_KSDATAFORMAT_SPECIFIER_FILEHANDLE_Value = @import("../zig.zig").Guid.initString("65e8773c-8f56-11d0-a3b9-00a0c9223196");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_FILEHANDLE = &CLSID_KSDATAFORMAT_SPECIFIER_FILEHANDLE_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_NONE_Value = @import("../zig.zig").Guid.initString("0F6417D6-C318-11D0-A43F-00A0C9223196");
+const CLSID_KSDATAFORMAT_SPECIFIER_NONE_Value = @import("../zig.zig").Guid.initString("0f6417d6-c318-11d0-a43f-00a0c9223196");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_NONE = &CLSID_KSDATAFORMAT_SPECIFIER_NONE_Value;
 
-const CLSID_KSPROPSETID_Quality_Value = @import("../zig.zig").Guid.initString("D16AD380-AC1A-11CF-A5D6-28DB04C10000");
+const CLSID_KSPROPSETID_Quality_Value = @import("../zig.zig").Guid.initString("d16ad380-ac1a-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Quality = &CLSID_KSPROPSETID_Quality_Value;
 
 pub const KSPROPERTY_QUALITY = extern enum(i32) {
@@ -904,7 +904,7 @@ pub const KSPROPERTY_QUALITY = extern enum(i32) {
 pub const KSPROPERTY_QUALITY_REPORT = KSPROPERTY_QUALITY.REPORT;
 pub const KSPROPERTY_QUALITY_ERROR = KSPROPERTY_QUALITY.ERROR;
 
-const CLSID_KSPROPSETID_Connection_Value = @import("../zig.zig").Guid.initString("1D58C920-AC9B-11CF-A5D6-28DB04C10000");
+const CLSID_KSPROPSETID_Connection_Value = @import("../zig.zig").Guid.initString("1d58c920-ac9b-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Connection = &CLSID_KSPROPSETID_Connection_Value;
 
 pub const KSPROPERTY_CONNECTION = extern enum(i32) {
@@ -926,7 +926,7 @@ pub const KSPROPERTY_CONNECTION_ACQUIREORDERING = KSPROPERTY_CONNECTION.ACQUIREO
 pub const KSPROPERTY_CONNECTION_ALLOCATORFRAMING_EX = KSPROPERTY_CONNECTION.ALLOCATORFRAMING_EX;
 pub const KSPROPERTY_CONNECTION_STARTAT = KSPROPERTY_CONNECTION.STARTAT;
 
-const CLSID_KSPROPSETID_MemoryTransport_Value = @import("../zig.zig").Guid.initString("0A3D1C5D-5243-4819-9ED0-AEE8044CEE2B");
+const CLSID_KSPROPSETID_MemoryTransport_Value = @import("../zig.zig").Guid.initString("0a3d1c5d-5243-4819-9ed0-aee8044cee2b");
 pub const CLSID_KSPROPSETID_MemoryTransport = &CLSID_KSPROPSETID_MemoryTransport_Value;
 
 pub const KSALLOCATOR_FRAMING = extern struct {
@@ -980,22 +980,22 @@ pub const KSALLOCATOR_FRAMING_EX = extern struct {
     FramingItem: [1]KS_FRAMING_ITEM,
 };
 
-const CLSID_KSMEMORY_TYPE_SYSTEM_Value = @import("../zig.zig").Guid.initString("091BB638-603F-11D1-B067-00A0C9062802");
+const CLSID_KSMEMORY_TYPE_SYSTEM_Value = @import("../zig.zig").Guid.initString("091bb638-603f-11d1-b067-00a0c9062802");
 pub const CLSID_KSMEMORY_TYPE_SYSTEM = &CLSID_KSMEMORY_TYPE_SYSTEM_Value;
 
-const CLSID_KSMEMORY_TYPE_USER_Value = @import("../zig.zig").Guid.initString("8CB0FC28-7893-11D1-B069-00A0C9062802");
+const CLSID_KSMEMORY_TYPE_USER_Value = @import("../zig.zig").Guid.initString("8cb0fc28-7893-11d1-b069-00a0c9062802");
 pub const CLSID_KSMEMORY_TYPE_USER = &CLSID_KSMEMORY_TYPE_USER_Value;
 
-const CLSID_KSMEMORY_TYPE_KERNEL_PAGED_Value = @import("../zig.zig").Guid.initString("D833F8F8-7894-11D1-B069-00A0C9062802");
+const CLSID_KSMEMORY_TYPE_KERNEL_PAGED_Value = @import("../zig.zig").Guid.initString("d833f8f8-7894-11d1-b069-00a0c9062802");
 pub const CLSID_KSMEMORY_TYPE_KERNEL_PAGED = &CLSID_KSMEMORY_TYPE_KERNEL_PAGED_Value;
 
-const CLSID_KSMEMORY_TYPE_KERNEL_NONPAGED_Value = @import("../zig.zig").Guid.initString("4A6D5FC4-7895-11D1-B069-00A0C9062802");
+const CLSID_KSMEMORY_TYPE_KERNEL_NONPAGED_Value = @import("../zig.zig").Guid.initString("4a6d5fc4-7895-11d1-b069-00a0c9062802");
 pub const CLSID_KSMEMORY_TYPE_KERNEL_NONPAGED = &CLSID_KSMEMORY_TYPE_KERNEL_NONPAGED_Value;
 
-const CLSID_KSMEMORY_TYPE_DEVICE_UNKNOWN_Value = @import("../zig.zig").Guid.initString("091BB639-603F-11D1-B067-00A0C9062802");
+const CLSID_KSMEMORY_TYPE_DEVICE_UNKNOWN_Value = @import("../zig.zig").Guid.initString("091bb639-603f-11d1-b067-00a0c9062802");
 pub const CLSID_KSMEMORY_TYPE_DEVICE_UNKNOWN = &CLSID_KSMEMORY_TYPE_DEVICE_UNKNOWN_Value;
 
-const CLSID_KSEVENTSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("75D95571-073C-11D0-A161-0020AFD156E4");
+const CLSID_KSEVENTSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("75d95571-073c-11d0-a161-0020afd156e4");
 pub const CLSID_KSEVENTSETID_StreamAllocator = &CLSID_KSEVENTSETID_StreamAllocator_Value;
 
 pub const KSEVENT_STREAMALLOCATOR = extern enum(i32) {
@@ -1005,7 +1005,7 @@ pub const KSEVENT_STREAMALLOCATOR = extern enum(i32) {
 pub const KSEVENT_STREAMALLOCATOR_INTERNAL_FREEFRAME = KSEVENT_STREAMALLOCATOR.INTERNAL_FREEFRAME;
 pub const KSEVENT_STREAMALLOCATOR_FREEFRAME = KSEVENT_STREAMALLOCATOR.FREEFRAME;
 
-const CLSID_KSMETHODSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("CF6E4341-EC87-11CF-A130-0020AFD156E4");
+const CLSID_KSMETHODSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("cf6e4341-ec87-11cf-a130-0020afd156e4");
 pub const CLSID_KSMETHODSETID_StreamAllocator = &CLSID_KSMETHODSETID_StreamAllocator_Value;
 
 pub const KSMETHOD_STREAMALLOCATOR = extern enum(i32) {
@@ -1015,7 +1015,7 @@ pub const KSMETHOD_STREAMALLOCATOR = extern enum(i32) {
 pub const KSMETHOD_STREAMALLOCATOR_ALLOC = KSMETHOD_STREAMALLOCATOR.ALLOC;
 pub const KSMETHOD_STREAMALLOCATOR_FREE = KSMETHOD_STREAMALLOCATOR.FREE;
 
-const CLSID_KSPROPSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("CF6E4342-EC87-11CF-A130-0020AFD156E4");
+const CLSID_KSPROPSETID_StreamAllocator_Value = @import("../zig.zig").Guid.initString("cf6e4342-ec87-11cf-a130-0020afd156e4");
 pub const CLSID_KSPROPSETID_StreamAllocator = &CLSID_KSPROPSETID_StreamAllocator_Value;
 
 pub const KSSTREAMALLOCATOR_STATUS = extern struct {
@@ -1091,7 +1091,7 @@ pub const KSPIN_MDL_CACHING_NOTIFICATION32 = extern struct {
     Buffer: u32,
 };
 
-const CLSID_KSPROPSETID_StreamInterface_Value = @import("../zig.zig").Guid.initString("1FDD8EE1-9CD3-11D0-82AA-0000F822FE8A");
+const CLSID_KSPROPSETID_StreamInterface_Value = @import("../zig.zig").Guid.initString("1fdd8ee1-9cd3-11d0-82aa-0000f822fe8a");
 pub const CLSID_KSPROPSETID_StreamInterface = &CLSID_KSPROPSETID_StreamInterface_Value;
 
 pub const KSPROPERTY_STREAMINTERFACE = extern enum(i32) {
@@ -1099,7 +1099,7 @@ pub const KSPROPERTY_STREAMINTERFACE = extern enum(i32) {
 };
 pub const KSPROPERTY_STREAMINTERFACE_HEADERSIZE = KSPROPERTY_STREAMINTERFACE.HEADERSIZE;
 
-const CLSID_KSPROPSETID_Stream_Value = @import("../zig.zig").Guid.initString("65AABA60-98AE-11CF-A10D-0020AFD156E4");
+const CLSID_KSPROPSETID_Stream_Value = @import("../zig.zig").Guid.initString("65aaba60-98ae-11cf-a10d-0020afd156e4");
 pub const CLSID_KSPROPSETID_Stream = &CLSID_KSPROPSETID_Stream_Value;
 
 pub const KSPROPERTY_STREAM = extern enum(i32) {
@@ -1132,7 +1132,7 @@ pub const KSPPROPERTY_ALLOCATOR_MDLCACHING = extern enum(i32) {
 };
 pub const KSPROPERTY_ALLOCATOR_CLEANUP_CACHEDMDLPAGES = KSPPROPERTY_ALLOCATOR_MDLCACHING.KSPROPERTY_ALLOCATOR_CLEANUP_CACHEDMDLPAGES;
 
-const CLSID_KSPROPSETID_PinMDLCacheClearProp_Value = @import("../zig.zig").Guid.initString("BD718A7B-97FC-40C7-88CE-D3FF06F55B16");
+const CLSID_KSPROPSETID_PinMDLCacheClearProp_Value = @import("../zig.zig").Guid.initString("bd718a7b-97fc-40c7-88ce-d3ff06f55b16");
 pub const CLSID_KSPROPSETID_PinMDLCacheClearProp = &CLSID_KSPROPSETID_PinMDLCacheClearProp_Value;
 
 pub const KSQUALITY_MANAGER = extern struct {
@@ -1159,7 +1159,7 @@ pub const KSRATE_CAPABILITY = extern struct {
     Rate: KSRATE,
 };
 
-const CLSID_KSPROPSETID_Clock_Value = @import("../zig.zig").Guid.initString("DF12A4C0-AC17-11CF-A5D6-28DB04C10000");
+const CLSID_KSPROPSETID_Clock_Value = @import("../zig.zig").Guid.initString("df12a4c0-ac17-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Clock = &CLSID_KSPROPSETID_Clock_Value;
 
 pub const KSCLOCK_CREATE = extern struct {
@@ -1191,7 +1191,7 @@ pub const KSPROPERTY_CLOCK_CORRELATEDPHYSICALTIME = KSPROPERTY_CLOCK.CORRELATEDP
 pub const KSPROPERTY_CLOCK_RESOLUTION = KSPROPERTY_CLOCK.RESOLUTION;
 pub const KSPROPERTY_CLOCK_STATE = KSPROPERTY_CLOCK.STATE;
 
-const CLSID_KSEVENTSETID_Clock_Value = @import("../zig.zig").Guid.initString("364D8E20-62C7-11CF-A5D6-28DB04C10000");
+const CLSID_KSEVENTSETID_Clock_Value = @import("../zig.zig").Guid.initString("364d8e20-62c7-11cf-a5d6-28db04c10000");
 pub const CLSID_KSEVENTSETID_Clock = &CLSID_KSEVENTSETID_Clock_Value;
 
 pub const KSEVENT_CLOCK_POSITION = extern enum(i32) {
@@ -1201,7 +1201,7 @@ pub const KSEVENT_CLOCK_POSITION = extern enum(i32) {
 pub const KSEVENT_CLOCK_INTERVAL_MARK = KSEVENT_CLOCK_POSITION.KSEVENT_CLOCK_INTERVAL_MARK;
 pub const KSEVENT_CLOCK_POSITION_MARK = KSEVENT_CLOCK_POSITION.MARK;
 
-const CLSID_KSEVENTSETID_Connection_Value = @import("../zig.zig").Guid.initString("7F4BCBE0-9EA5-11CF-A5D6-28DB04C10000");
+const CLSID_KSEVENTSETID_Connection_Value = @import("../zig.zig").Guid.initString("7f4bcbe0-9ea5-11cf-a5d6-28db04c10000");
 pub const CLSID_KSEVENTSETID_Connection = &CLSID_KSEVENTSETID_Connection_Value;
 
 pub const KSEVENT_CONNECTION = extern enum(i32) {
@@ -1235,7 +1235,7 @@ pub const KSDEVICE_THERMAL_STATE = extern enum(i32) {
 pub const KSDEVICE_THERMAL_STATE_LOW = KSDEVICE_THERMAL_STATE.LOW;
 pub const KSDEVICE_THERMAL_STATE_HIGH = KSDEVICE_THERMAL_STATE.HIGH;
 
-const CLSID_KSEVENTSETID_Device_Value = @import("../zig.zig").Guid.initString("288296EC-9F94-41B4-A153-AA31AEECB33F");
+const CLSID_KSEVENTSETID_Device_Value = @import("../zig.zig").Guid.initString("288296ec-9f94-41b4-a153-aa31aeecb33f");
 pub const CLSID_KSEVENTSETID_Device = &CLSID_KSEVENTSETID_Device_Value;
 
 pub const KSEVENT_DEVICE = extern enum(i32) {
@@ -1249,7 +1249,7 @@ pub const KSEVENT_DEVICE_PREEMPTED = KSEVENT_DEVICE.PREEMPTED;
 pub const KSEVENT_DEVICE_THERMAL_HIGH = KSEVENT_DEVICE.THERMAL_HIGH;
 pub const KSEVENT_DEVICE_THERMAL_LOW = KSEVENT_DEVICE.THERMAL_LOW;
 
-const CLSID_KSDEGRADESETID_Standard_Value = @import("../zig.zig").Guid.initString("9F564180-704C-11D0-A5D6-28DB04C10000");
+const CLSID_KSDEGRADESETID_Standard_Value = @import("../zig.zig").Guid.initString("9f564180-704c-11d0-a5d6-28db04c10000");
 pub const CLSID_KSDEGRADESETID_Standard = &CLSID_KSDEGRADESETID_Standard_Value;
 
 pub const KSDEGRADE_STANDARD = extern enum(i32) {
@@ -1281,13 +1281,13 @@ pub const KSMULTIPLE_DATA_PROP = extern struct {
     MultipleItem: KSMULTIPLE_ITEM,
 };
 
-const CLSID_KSMEDIUMSETID_MidiBus_Value = @import("../zig.zig").Guid.initString("05908040-3246-11D0-A5D6-28DB04C10000");
+const CLSID_KSMEDIUMSETID_MidiBus_Value = @import("../zig.zig").Guid.initString("05908040-3246-11d0-a5d6-28db04c10000");
 pub const CLSID_KSMEDIUMSETID_MidiBus = &CLSID_KSMEDIUMSETID_MidiBus_Value;
 
-const CLSID_KSMEDIUMSETID_VPBus_Value = @import("../zig.zig").Guid.initString("A18C15EC-CE43-11D0-ABE7-00A0C9223196");
+const CLSID_KSMEDIUMSETID_VPBus_Value = @import("../zig.zig").Guid.initString("a18c15ec-ce43-11d0-abe7-00a0c9223196");
 pub const CLSID_KSMEDIUMSETID_VPBus = &CLSID_KSMEDIUMSETID_VPBus_Value;
 
-const CLSID_KSINTERFACESETID_Media_Value = @import("../zig.zig").Guid.initString("3A13EB40-30A7-11D0-A5D6-28DB04C10000");
+const CLSID_KSINTERFACESETID_Media_Value = @import("../zig.zig").Guid.initString("3a13eb40-30a7-11d0-a5d6-28db04c10000");
 pub const CLSID_KSINTERFACESETID_Media = &CLSID_KSINTERFACESETID_Media_Value;
 
 pub const KSINTERFACE_MEDIA = extern enum(i32) {
@@ -1299,280 +1299,280 @@ pub const KSINTERFACE_MEDIA_MUSIC = KSINTERFACE_MEDIA.MUSIC;
 pub const KSINTERFACE_MEDIA_WAVE_BUFFERED = KSINTERFACE_MEDIA.WAVE_BUFFERED;
 pub const KSINTERFACE_MEDIA_WAVE_QUEUED = KSINTERFACE_MEDIA.WAVE_QUEUED;
 
-const CLSID_KSCOMPONENTID_USBAUDIO_Value = @import("../zig.zig").Guid.initString("8F1275F0-26E9-4264-BA4D-39FFF01D94AA");
+const CLSID_KSCOMPONENTID_USBAUDIO_Value = @import("../zig.zig").Guid.initString("8f1275f0-26e9-4264-ba4d-39fff01d94aa");
 pub const CLSID_KSCOMPONENTID_USBAUDIO = &CLSID_KSCOMPONENTID_USBAUDIO_Value;
 
-const CLSID_KSNODETYPE_INPUT_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF21BE0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_INPUT_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff21be0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_INPUT_UNDEFINED = &CLSID_KSNODETYPE_INPUT_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_MICROPHONE_Value = @import("../zig.zig").Guid.initString("DFF21BE1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_MICROPHONE_Value = @import("../zig.zig").Guid.initString("dff21be1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_MICROPHONE = &CLSID_KSNODETYPE_MICROPHONE_Value;
 
-const CLSID_KSNODETYPE_DESKTOP_MICROPHONE_Value = @import("../zig.zig").Guid.initString("DFF21BE2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DESKTOP_MICROPHONE_Value = @import("../zig.zig").Guid.initString("dff21be2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DESKTOP_MICROPHONE = &CLSID_KSNODETYPE_DESKTOP_MICROPHONE_Value;
 
-const CLSID_KSNODETYPE_PERSONAL_MICROPHONE_Value = @import("../zig.zig").Guid.initString("DFF21BE3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_PERSONAL_MICROPHONE_Value = @import("../zig.zig").Guid.initString("dff21be3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_PERSONAL_MICROPHONE = &CLSID_KSNODETYPE_PERSONAL_MICROPHONE_Value;
 
-const CLSID_KSNODETYPE_OMNI_DIRECTIONAL_MICROPHONE_Value = @import("../zig.zig").Guid.initString("DFF21BE4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_OMNI_DIRECTIONAL_MICROPHONE_Value = @import("../zig.zig").Guid.initString("dff21be4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_OMNI_DIRECTIONAL_MICROPHONE = &CLSID_KSNODETYPE_OMNI_DIRECTIONAL_MICROPHONE_Value;
 
-const CLSID_KSNODETYPE_MICROPHONE_ARRAY_Value = @import("../zig.zig").Guid.initString("DFF21BE5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_MICROPHONE_ARRAY_Value = @import("../zig.zig").Guid.initString("dff21be5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_MICROPHONE_ARRAY = &CLSID_KSNODETYPE_MICROPHONE_ARRAY_Value;
 
-const CLSID_KSNODETYPE_PROCESSING_MICROPHONE_ARRAY_Value = @import("../zig.zig").Guid.initString("DFF21BE6-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_PROCESSING_MICROPHONE_ARRAY_Value = @import("../zig.zig").Guid.initString("dff21be6-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_PROCESSING_MICROPHONE_ARRAY = &CLSID_KSNODETYPE_PROCESSING_MICROPHONE_ARRAY_Value;
 
-const CLSID_KSCATEGORY_MICROPHONE_ARRAY_PROCESSOR_Value = @import("../zig.zig").Guid.initString("830A44F2-A32D-476B-BE97-42845673B35A");
+const CLSID_KSCATEGORY_MICROPHONE_ARRAY_PROCESSOR_Value = @import("../zig.zig").Guid.initString("830a44f2-a32d-476b-be97-42845673b35a");
 pub const CLSID_KSCATEGORY_MICROPHONE_ARRAY_PROCESSOR = &CLSID_KSCATEGORY_MICROPHONE_ARRAY_PROCESSOR_Value;
 
-const CLSID_KSNODETYPE_OUTPUT_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF21CE0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_OUTPUT_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff21ce0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_OUTPUT_UNDEFINED = &CLSID_KSNODETYPE_OUTPUT_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_SPEAKER_Value = @import("../zig.zig").Guid.initString("DFF21CE1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_SPEAKER_Value = @import("../zig.zig").Guid.initString("dff21ce1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_SPEAKER = &CLSID_KSNODETYPE_SPEAKER_Value;
 
-const CLSID_KSNODETYPE_HEADPHONES_Value = @import("../zig.zig").Guid.initString("DFF21CE2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_HEADPHONES_Value = @import("../zig.zig").Guid.initString("dff21ce2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_HEADPHONES = &CLSID_KSNODETYPE_HEADPHONES_Value;
 
-const CLSID_KSNODETYPE_HEAD_MOUNTED_DISPLAY_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF21CE3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_HEAD_MOUNTED_DISPLAY_AUDIO_Value = @import("../zig.zig").Guid.initString("dff21ce3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_HEAD_MOUNTED_DISPLAY_AUDIO = &CLSID_KSNODETYPE_HEAD_MOUNTED_DISPLAY_AUDIO_Value;
 
-const CLSID_KSNODETYPE_DESKTOP_SPEAKER_Value = @import("../zig.zig").Guid.initString("DFF21CE4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DESKTOP_SPEAKER_Value = @import("../zig.zig").Guid.initString("dff21ce4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DESKTOP_SPEAKER = &CLSID_KSNODETYPE_DESKTOP_SPEAKER_Value;
 
-const CLSID_KSNODETYPE_ROOM_SPEAKER_Value = @import("../zig.zig").Guid.initString("DFF21CE5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_ROOM_SPEAKER_Value = @import("../zig.zig").Guid.initString("dff21ce5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_ROOM_SPEAKER = &CLSID_KSNODETYPE_ROOM_SPEAKER_Value;
 
-const CLSID_KSNODETYPE_COMMUNICATION_SPEAKER_Value = @import("../zig.zig").Guid.initString("DFF21CE6-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_COMMUNICATION_SPEAKER_Value = @import("../zig.zig").Guid.initString("dff21ce6-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_COMMUNICATION_SPEAKER = &CLSID_KSNODETYPE_COMMUNICATION_SPEAKER_Value;
 
-const CLSID_KSNODETYPE_LOW_FREQUENCY_EFFECTS_SPEAKER_Value = @import("../zig.zig").Guid.initString("DFF21CE7-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_LOW_FREQUENCY_EFFECTS_SPEAKER_Value = @import("../zig.zig").Guid.initString("dff21ce7-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_LOW_FREQUENCY_EFFECTS_SPEAKER = &CLSID_KSNODETYPE_LOW_FREQUENCY_EFFECTS_SPEAKER_Value;
 
-const CLSID_KSNODETYPE_BIDIRECTIONAL_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF21DE0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_BIDIRECTIONAL_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff21de0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_BIDIRECTIONAL_UNDEFINED = &CLSID_KSNODETYPE_BIDIRECTIONAL_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_HANDSET_Value = @import("../zig.zig").Guid.initString("DFF21DE1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_HANDSET_Value = @import("../zig.zig").Guid.initString("dff21de1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_HANDSET = &CLSID_KSNODETYPE_HANDSET_Value;
 
-const CLSID_KSNODETYPE_HEADSET_Value = @import("../zig.zig").Guid.initString("DFF21DE2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_HEADSET_Value = @import("../zig.zig").Guid.initString("dff21de2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_HEADSET = &CLSID_KSNODETYPE_HEADSET_Value;
 
-const CLSID_KSNODETYPE_SPEAKERPHONE_NO_ECHO_REDUCTION_Value = @import("../zig.zig").Guid.initString("DFF21DE3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_SPEAKERPHONE_NO_ECHO_REDUCTION_Value = @import("../zig.zig").Guid.initString("dff21de3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_SPEAKERPHONE_NO_ECHO_REDUCTION = &CLSID_KSNODETYPE_SPEAKERPHONE_NO_ECHO_REDUCTION_Value;
 
-const CLSID_KSNODETYPE_ECHO_SUPPRESSING_SPEAKERPHONE_Value = @import("../zig.zig").Guid.initString("DFF21DE4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_ECHO_SUPPRESSING_SPEAKERPHONE_Value = @import("../zig.zig").Guid.initString("dff21de4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_ECHO_SUPPRESSING_SPEAKERPHONE = &CLSID_KSNODETYPE_ECHO_SUPPRESSING_SPEAKERPHONE_Value;
 
-const CLSID_KSNODETYPE_ECHO_CANCELING_SPEAKERPHONE_Value = @import("../zig.zig").Guid.initString("DFF21DE5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_ECHO_CANCELING_SPEAKERPHONE_Value = @import("../zig.zig").Guid.initString("dff21de5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_ECHO_CANCELING_SPEAKERPHONE = &CLSID_KSNODETYPE_ECHO_CANCELING_SPEAKERPHONE_Value;
 
-const CLSID_KSNODETYPE_TELEPHONY_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF21EE0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_TELEPHONY_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff21ee0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_TELEPHONY_UNDEFINED = &CLSID_KSNODETYPE_TELEPHONY_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_PHONE_LINE_Value = @import("../zig.zig").Guid.initString("DFF21EE1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_PHONE_LINE_Value = @import("../zig.zig").Guid.initString("dff21ee1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_PHONE_LINE = &CLSID_KSNODETYPE_PHONE_LINE_Value;
 
-const CLSID_KSNODETYPE_TELEPHONE_Value = @import("../zig.zig").Guid.initString("DFF21EE2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_TELEPHONE_Value = @import("../zig.zig").Guid.initString("dff21ee2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_TELEPHONE = &CLSID_KSNODETYPE_TELEPHONE_Value;
 
-const CLSID_KSNODETYPE_DOWN_LINE_PHONE_Value = @import("../zig.zig").Guid.initString("DFF21EE3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DOWN_LINE_PHONE_Value = @import("../zig.zig").Guid.initString("dff21ee3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DOWN_LINE_PHONE = &CLSID_KSNODETYPE_DOWN_LINE_PHONE_Value;
 
-const CLSID_KSNODETYPE_EXTERNAL_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF21FE0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_EXTERNAL_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff21fe0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_EXTERNAL_UNDEFINED = &CLSID_KSNODETYPE_EXTERNAL_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_ANALOG_CONNECTOR_Value = @import("../zig.zig").Guid.initString("DFF21FE1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_ANALOG_CONNECTOR_Value = @import("../zig.zig").Guid.initString("dff21fe1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_ANALOG_CONNECTOR = &CLSID_KSNODETYPE_ANALOG_CONNECTOR_Value;
 
-const CLSID_KSNODETYPE_DIGITAL_AUDIO_INTERFACE_Value = @import("../zig.zig").Guid.initString("DFF21FE2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DIGITAL_AUDIO_INTERFACE_Value = @import("../zig.zig").Guid.initString("dff21fe2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DIGITAL_AUDIO_INTERFACE = &CLSID_KSNODETYPE_DIGITAL_AUDIO_INTERFACE_Value;
 
-const CLSID_KSNODETYPE_LINE_CONNECTOR_Value = @import("../zig.zig").Guid.initString("DFF21FE3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_LINE_CONNECTOR_Value = @import("../zig.zig").Guid.initString("dff21fe3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_LINE_CONNECTOR = &CLSID_KSNODETYPE_LINE_CONNECTOR_Value;
 
-const CLSID_KSNODETYPE_LEGACY_AUDIO_CONNECTOR_Value = @import("../zig.zig").Guid.initString("DFF21FE4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_LEGACY_AUDIO_CONNECTOR_Value = @import("../zig.zig").Guid.initString("dff21fe4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_LEGACY_AUDIO_CONNECTOR = &CLSID_KSNODETYPE_LEGACY_AUDIO_CONNECTOR_Value;
 
-const CLSID_KSNODETYPE_SPDIF_INTERFACE_Value = @import("../zig.zig").Guid.initString("DFF21FE5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_SPDIF_INTERFACE_Value = @import("../zig.zig").Guid.initString("dff21fe5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_SPDIF_INTERFACE = &CLSID_KSNODETYPE_SPDIF_INTERFACE_Value;
 
-const CLSID_KSNODETYPE_1394_DA_STREAM_Value = @import("../zig.zig").Guid.initString("DFF21FE6-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_1394_DA_STREAM_Value = @import("../zig.zig").Guid.initString("dff21fe6-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_1394_DA_STREAM = &CLSID_KSNODETYPE_1394_DA_STREAM_Value;
 
-const CLSID_KSNODETYPE_1394_DV_STREAM_SOUNDTRACK_Value = @import("../zig.zig").Guid.initString("DFF21FE7-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_1394_DV_STREAM_SOUNDTRACK_Value = @import("../zig.zig").Guid.initString("dff21fe7-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_1394_DV_STREAM_SOUNDTRACK = &CLSID_KSNODETYPE_1394_DV_STREAM_SOUNDTRACK_Value;
 
-const CLSID_KSNODETYPE_EMBEDDED_UNDEFINED_Value = @import("../zig.zig").Guid.initString("DFF220E0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_EMBEDDED_UNDEFINED_Value = @import("../zig.zig").Guid.initString("dff220e0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_EMBEDDED_UNDEFINED = &CLSID_KSNODETYPE_EMBEDDED_UNDEFINED_Value;
 
-const CLSID_KSNODETYPE_LEVEL_CALIBRATION_NOISE_SOURCE_Value = @import("../zig.zig").Guid.initString("DFF220E1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_LEVEL_CALIBRATION_NOISE_SOURCE_Value = @import("../zig.zig").Guid.initString("dff220e1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_LEVEL_CALIBRATION_NOISE_SOURCE = &CLSID_KSNODETYPE_LEVEL_CALIBRATION_NOISE_SOURCE_Value;
 
-const CLSID_KSNODETYPE_EQUALIZATION_NOISE_Value = @import("../zig.zig").Guid.initString("DFF220E2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_EQUALIZATION_NOISE_Value = @import("../zig.zig").Guid.initString("dff220e2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_EQUALIZATION_NOISE = &CLSID_KSNODETYPE_EQUALIZATION_NOISE_Value;
 
-const CLSID_KSNODETYPE_CD_PLAYER_Value = @import("../zig.zig").Guid.initString("DFF220E3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_CD_PLAYER_Value = @import("../zig.zig").Guid.initString("dff220e3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_CD_PLAYER = &CLSID_KSNODETYPE_CD_PLAYER_Value;
 
-const CLSID_KSNODETYPE_DAT_IO_DIGITAL_AUDIO_TAPE_Value = @import("../zig.zig").Guid.initString("DFF220E4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DAT_IO_DIGITAL_AUDIO_TAPE_Value = @import("../zig.zig").Guid.initString("dff220e4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DAT_IO_DIGITAL_AUDIO_TAPE = &CLSID_KSNODETYPE_DAT_IO_DIGITAL_AUDIO_TAPE_Value;
 
-const CLSID_KSNODETYPE_DCC_IO_DIGITAL_COMPACT_CASSETTE_Value = @import("../zig.zig").Guid.initString("DFF220E5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DCC_IO_DIGITAL_COMPACT_CASSETTE_Value = @import("../zig.zig").Guid.initString("dff220e5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DCC_IO_DIGITAL_COMPACT_CASSETTE = &CLSID_KSNODETYPE_DCC_IO_DIGITAL_COMPACT_CASSETTE_Value;
 
-const CLSID_KSNODETYPE_MINIDISK_Value = @import("../zig.zig").Guid.initString("DFF220E6-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_MINIDISK_Value = @import("../zig.zig").Guid.initString("dff220e6-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_MINIDISK = &CLSID_KSNODETYPE_MINIDISK_Value;
 
-const CLSID_KSNODETYPE_ANALOG_TAPE_Value = @import("../zig.zig").Guid.initString("DFF220E7-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_ANALOG_TAPE_Value = @import("../zig.zig").Guid.initString("dff220e7-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_ANALOG_TAPE = &CLSID_KSNODETYPE_ANALOG_TAPE_Value;
 
-const CLSID_KSNODETYPE_PHONOGRAPH_Value = @import("../zig.zig").Guid.initString("DFF220E8-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_PHONOGRAPH_Value = @import("../zig.zig").Guid.initString("dff220e8-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_PHONOGRAPH = &CLSID_KSNODETYPE_PHONOGRAPH_Value;
 
-const CLSID_KSNODETYPE_VCR_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220E9-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VCR_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220e9-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VCR_AUDIO = &CLSID_KSNODETYPE_VCR_AUDIO_Value;
 
-const CLSID_KSNODETYPE_VIDEO_DISC_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220EA-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_DISC_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220ea-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_DISC_AUDIO = &CLSID_KSNODETYPE_VIDEO_DISC_AUDIO_Value;
 
-const CLSID_KSNODETYPE_DVD_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220EB-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DVD_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220eb-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DVD_AUDIO = &CLSID_KSNODETYPE_DVD_AUDIO_Value;
 
-const CLSID_KSNODETYPE_TV_TUNER_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220EC-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_TV_TUNER_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220ec-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_TV_TUNER_AUDIO = &CLSID_KSNODETYPE_TV_TUNER_AUDIO_Value;
 
-const CLSID_KSNODETYPE_SATELLITE_RECEIVER_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220ED-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_SATELLITE_RECEIVER_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220ed-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_SATELLITE_RECEIVER_AUDIO = &CLSID_KSNODETYPE_SATELLITE_RECEIVER_AUDIO_Value;
 
-const CLSID_KSNODETYPE_CABLE_TUNER_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220EE-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_CABLE_TUNER_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220ee-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_CABLE_TUNER_AUDIO = &CLSID_KSNODETYPE_CABLE_TUNER_AUDIO_Value;
 
-const CLSID_KSNODETYPE_DSS_AUDIO_Value = @import("../zig.zig").Guid.initString("DFF220EF-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_DSS_AUDIO_Value = @import("../zig.zig").Guid.initString("dff220ef-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_DSS_AUDIO = &CLSID_KSNODETYPE_DSS_AUDIO_Value;
 
-const CLSID_KSNODETYPE_RADIO_RECEIVER_Value = @import("../zig.zig").Guid.initString("DFF220F0-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_RADIO_RECEIVER_Value = @import("../zig.zig").Guid.initString("dff220f0-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_RADIO_RECEIVER = &CLSID_KSNODETYPE_RADIO_RECEIVER_Value;
 
-const CLSID_KSNODETYPE_RADIO_TRANSMITTER_Value = @import("../zig.zig").Guid.initString("DFF220F1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_RADIO_TRANSMITTER_Value = @import("../zig.zig").Guid.initString("dff220f1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_RADIO_TRANSMITTER = &CLSID_KSNODETYPE_RADIO_TRANSMITTER_Value;
 
-const CLSID_KSNODETYPE_MULTITRACK_RECORDER_Value = @import("../zig.zig").Guid.initString("DFF220F2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_MULTITRACK_RECORDER_Value = @import("../zig.zig").Guid.initString("dff220f2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_MULTITRACK_RECORDER = &CLSID_KSNODETYPE_MULTITRACK_RECORDER_Value;
 
-const CLSID_KSNODETYPE_SYNTHESIZER_Value = @import("../zig.zig").Guid.initString("DFF220F3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_SYNTHESIZER_Value = @import("../zig.zig").Guid.initString("dff220f3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_SYNTHESIZER = &CLSID_KSNODETYPE_SYNTHESIZER_Value;
 
-const CLSID_KSNODETYPE_HDMI_INTERFACE_Value = @import("../zig.zig").Guid.initString("D1B9CC2A-F519-417F-91C9-55FA65481001");
+const CLSID_KSNODETYPE_HDMI_INTERFACE_Value = @import("../zig.zig").Guid.initString("d1b9cc2a-f519-417f-91c9-55fa65481001");
 pub const CLSID_KSNODETYPE_HDMI_INTERFACE = &CLSID_KSNODETYPE_HDMI_INTERFACE_Value;
 
-const CLSID_KSNODETYPE_DISPLAYPORT_INTERFACE_Value = @import("../zig.zig").Guid.initString("E47E4031-3EA6-418D-8F9B-B73843CCBA97");
+const CLSID_KSNODETYPE_DISPLAYPORT_INTERFACE_Value = @import("../zig.zig").Guid.initString("e47e4031-3ea6-418d-8f9b-b73843ccba97");
 pub const CLSID_KSNODETYPE_DISPLAYPORT_INTERFACE = &CLSID_KSNODETYPE_DISPLAYPORT_INTERFACE_Value;
 
-const CLSID_KSNODETYPE_AUDIO_LOOPBACK_Value = @import("../zig.zig").Guid.initString("8F42C0B2-91CE-4BCF-9CCD-0E599037AB35");
+const CLSID_KSNODETYPE_AUDIO_LOOPBACK_Value = @import("../zig.zig").Guid.initString("8f42c0b2-91ce-4bcf-9ccd-0e599037ab35");
 pub const CLSID_KSNODETYPE_AUDIO_LOOPBACK = &CLSID_KSNODETYPE_AUDIO_LOOPBACK_Value;
 
-const CLSID_KSNODETYPE_AUDIO_KEYWORDDETECTOR_Value = @import("../zig.zig").Guid.initString("3817E0B8-DF58-4375-B669-C49634331F9D");
+const CLSID_KSNODETYPE_AUDIO_KEYWORDDETECTOR_Value = @import("../zig.zig").Guid.initString("3817e0b8-df58-4375-b669-c49634331f9d");
 pub const CLSID_KSNODETYPE_AUDIO_KEYWORDDETECTOR = &CLSID_KSNODETYPE_AUDIO_KEYWORDDETECTOR_Value;
 
-const CLSID_KSNODETYPE_MIDI_JACK_Value = @import("../zig.zig").Guid.initString("265E0C3F-FA39-4DF3-AB04-BE01B91E299A");
+const CLSID_KSNODETYPE_MIDI_JACK_Value = @import("../zig.zig").Guid.initString("265e0c3f-fa39-4df3-ab04-be01b91e299a");
 pub const CLSID_KSNODETYPE_MIDI_JACK = &CLSID_KSNODETYPE_MIDI_JACK_Value;
 
-const CLSID_KSNODETYPE_MIDI_ELEMENT_Value = @import("../zig.zig").Guid.initString("01C6FE66-6E48-4C65-AC9B-52DB5D656C7E");
+const CLSID_KSNODETYPE_MIDI_ELEMENT_Value = @import("../zig.zig").Guid.initString("01c6fe66-6e48-4c65-ac9b-52db5d656c7e");
 pub const CLSID_KSNODETYPE_MIDI_ELEMENT = &CLSID_KSNODETYPE_MIDI_ELEMENT_Value;
 
-const CLSID_KSNODETYPE_AUDIO_ENGINE_Value = @import("../zig.zig").Guid.initString("35CAF6E4-F3B3-4168-BB4B-55E77A461C7E");
+const CLSID_KSNODETYPE_AUDIO_ENGINE_Value = @import("../zig.zig").Guid.initString("35caf6e4-f3b3-4168-bb4b-55e77a461c7e");
 pub const CLSID_KSNODETYPE_AUDIO_ENGINE = &CLSID_KSNODETYPE_AUDIO_ENGINE_Value;
 
-const CLSID_KSNODETYPE_SPEAKERS_STATIC_JACK_Value = @import("../zig.zig").Guid.initString("28E04F87-4DBE-4F8D-8589-025D209DFB4A");
+const CLSID_KSNODETYPE_SPEAKERS_STATIC_JACK_Value = @import("../zig.zig").Guid.initString("28e04f87-4dbe-4f8d-8589-025d209dfb4a");
 pub const CLSID_KSNODETYPE_SPEAKERS_STATIC_JACK = &CLSID_KSNODETYPE_SPEAKERS_STATIC_JACK_Value;
 
-const CLSID_PINNAME_SPDIF_OUT_Value = @import("../zig.zig").Guid.initString("3A264481-E52C-4B82-8E7A-C8E2F91DC380");
+const CLSID_PINNAME_SPDIF_OUT_Value = @import("../zig.zig").Guid.initString("3a264481-e52c-4b82-8e7a-c8e2f91dc380");
 pub const CLSID_PINNAME_SPDIF_OUT = &CLSID_PINNAME_SPDIF_OUT_Value;
 
-const CLSID_PINNAME_SPDIF_IN_Value = @import("../zig.zig").Guid.initString("15DC9025-22AD-41B3-8875-F4CEB0299E20");
+const CLSID_PINNAME_SPDIF_IN_Value = @import("../zig.zig").Guid.initString("15dc9025-22ad-41b3-8875-f4ceb0299e20");
 pub const CLSID_PINNAME_SPDIF_IN = &CLSID_PINNAME_SPDIF_IN_Value;
 
-const CLSID_PINNAME_HDMI_OUT_Value = @import("../zig.zig").Guid.initString("387BFC03-E7EF-4901-86E0-35B7C32B00EF");
+const CLSID_PINNAME_HDMI_OUT_Value = @import("../zig.zig").Guid.initString("387bfc03-e7ef-4901-86e0-35b7c32b00ef");
 pub const CLSID_PINNAME_HDMI_OUT = &CLSID_PINNAME_HDMI_OUT_Value;
 
-const CLSID_PINNAME_DISPLAYPORT_OUT_Value = @import("../zig.zig").Guid.initString("21FBB329-1A4A-48DA-A076-2318A3C59B26");
+const CLSID_PINNAME_DISPLAYPORT_OUT_Value = @import("../zig.zig").Guid.initString("21fbb329-1a4a-48da-a076-2318a3c59b26");
 pub const CLSID_PINNAME_DISPLAYPORT_OUT = &CLSID_PINNAME_DISPLAYPORT_OUT_Value;
 
-const CLSID_KSNODETYPE_DRM_DESCRAMBLE_Value = @import("../zig.zig").Guid.initString("FFBB6E3F-CCFE-4D84-90D9-421418B03A8E");
+const CLSID_KSNODETYPE_DRM_DESCRAMBLE_Value = @import("../zig.zig").Guid.initString("ffbb6e3f-ccfe-4d84-90d9-421418b03a8e");
 pub const CLSID_KSNODETYPE_DRM_DESCRAMBLE = &CLSID_KSNODETYPE_DRM_DESCRAMBLE_Value;
 
-const CLSID_KSNODETYPE_TELEPHONY_BIDI_Value = @import("../zig.zig").Guid.initString("686D7CC0-D903-4258-B443-3A3D3580741C");
+const CLSID_KSNODETYPE_TELEPHONY_BIDI_Value = @import("../zig.zig").Guid.initString("686d7cc0-d903-4258-b443-3a3d3580741c");
 pub const CLSID_KSNODETYPE_TELEPHONY_BIDI = &CLSID_KSNODETYPE_TELEPHONY_BIDI_Value;
 
-const CLSID_KSNODETYPE_FM_RX_Value = @import("../zig.zig").Guid.initString("834A733C-F485-41C0-A62B-513025014E40");
+const CLSID_KSNODETYPE_FM_RX_Value = @import("../zig.zig").Guid.initString("834a733c-f485-41c0-a62b-513025014e40");
 pub const CLSID_KSNODETYPE_FM_RX = &CLSID_KSNODETYPE_FM_RX_Value;
 
-const CLSID_KSCATEGORY_AUDIO_Value = @import("../zig.zig").Guid.initString("6994AD04-93EF-11D0-A3CC-00A0C9223196");
+const CLSID_KSCATEGORY_AUDIO_Value = @import("../zig.zig").Guid.initString("6994ad04-93ef-11d0-a3cc-00a0c9223196");
 pub const CLSID_KSCATEGORY_AUDIO = &CLSID_KSCATEGORY_AUDIO_Value;
 
-const CLSID_KSCATEGORY_VIDEO_Value = @import("../zig.zig").Guid.initString("6994AD05-93EF-11D0-A3CC-00A0C9223196");
+const CLSID_KSCATEGORY_VIDEO_Value = @import("../zig.zig").Guid.initString("6994ad05-93ef-11d0-a3cc-00a0c9223196");
 pub const CLSID_KSCATEGORY_VIDEO = &CLSID_KSCATEGORY_VIDEO_Value;
 
-const CLSID_KSCATEGORY_REALTIME_Value = @import("../zig.zig").Guid.initString("EB115FFC-10C8-4964-831D-6DCB02E6F23F");
+const CLSID_KSCATEGORY_REALTIME_Value = @import("../zig.zig").Guid.initString("eb115ffc-10c8-4964-831d-6dcb02e6f23f");
 pub const CLSID_KSCATEGORY_REALTIME = &CLSID_KSCATEGORY_REALTIME_Value;
 
-const CLSID_KSCATEGORY_TEXT_Value = @import("../zig.zig").Guid.initString("6994AD06-93EF-11D0-A3CC-00A0C9223196");
+const CLSID_KSCATEGORY_TEXT_Value = @import("../zig.zig").Guid.initString("6994ad06-93ef-11d0-a3cc-00a0c9223196");
 pub const CLSID_KSCATEGORY_TEXT = &CLSID_KSCATEGORY_TEXT_Value;
 
-const CLSID_KSCATEGORY_NETWORK_Value = @import("../zig.zig").Guid.initString("67C9CC3C-69C4-11D2-8759-00A0C9223196");
+const CLSID_KSCATEGORY_NETWORK_Value = @import("../zig.zig").Guid.initString("67c9cc3c-69c4-11d2-8759-00a0c9223196");
 pub const CLSID_KSCATEGORY_NETWORK = &CLSID_KSCATEGORY_NETWORK_Value;
 
-const CLSID_KSCATEGORY_TOPOLOGY_Value = @import("../zig.zig").Guid.initString("DDA54A40-1E4C-11D1-A050-405705C10000");
+const CLSID_KSCATEGORY_TOPOLOGY_Value = @import("../zig.zig").Guid.initString("dda54a40-1e4c-11d1-a050-405705c10000");
 pub const CLSID_KSCATEGORY_TOPOLOGY = &CLSID_KSCATEGORY_TOPOLOGY_Value;
 
-const CLSID_KSCATEGORY_VIRTUAL_Value = @import("../zig.zig").Guid.initString("3503EAC4-1F26-11D1-8AB0-00A0C9223196");
+const CLSID_KSCATEGORY_VIRTUAL_Value = @import("../zig.zig").Guid.initString("3503eac4-1f26-11d1-8ab0-00a0c9223196");
 pub const CLSID_KSCATEGORY_VIRTUAL = &CLSID_KSCATEGORY_VIRTUAL_Value;
 
-const CLSID_KSCATEGORY_ACOUSTIC_ECHO_CANCEL_Value = @import("../zig.zig").Guid.initString("BF963D80-C559-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSCATEGORY_ACOUSTIC_ECHO_CANCEL_Value = @import("../zig.zig").Guid.initString("bf963d80-c559-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSCATEGORY_ACOUSTIC_ECHO_CANCEL = &CLSID_KSCATEGORY_ACOUSTIC_ECHO_CANCEL_Value;
 
-const CLSID_KSCATEGORY_WDMAUD_USE_PIN_NAME_Value = @import("../zig.zig").Guid.initString("47A4FA20-A251-11D1-A050-0000F8004788");
+const CLSID_KSCATEGORY_WDMAUD_USE_PIN_NAME_Value = @import("../zig.zig").Guid.initString("47a4fa20-a251-11d1-a050-0000f8004788");
 pub const CLSID_KSCATEGORY_WDMAUD_USE_PIN_NAME = &CLSID_KSCATEGORY_WDMAUD_USE_PIN_NAME_Value;
 
-const CLSID_KSCATEGORY_ESCALANTE_PLATFORM_DRIVER_Value = @import("../zig.zig").Guid.initString("74F3AEA8-9768-11D1-8E07-00A0C95EC22E");
+const CLSID_KSCATEGORY_ESCALANTE_PLATFORM_DRIVER_Value = @import("../zig.zig").Guid.initString("74f3aea8-9768-11d1-8e07-00a0c95ec22e");
 pub const CLSID_KSCATEGORY_ESCALANTE_PLATFORM_DRIVER = &CLSID_KSCATEGORY_ESCALANTE_PLATFORM_DRIVER_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_VIDEO_Value = @import("../zig.zig").Guid.initString("73646976-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_TYPE_VIDEO_Value = @import("../zig.zig").Guid.initString("73646976-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_TYPE_VIDEO = &CLSID_KSDATAFORMAT_TYPE_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_AUDIO_Value = @import("../zig.zig").Guid.initString("73647561-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_TYPE_AUDIO_Value = @import("../zig.zig").Guid.initString("73647561-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_TYPE_AUDIO = &CLSID_KSDATAFORMAT_TYPE_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_TEXT_Value = @import("../zig.zig").Guid.initString("73747874-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_TYPE_TEXT_Value = @import("../zig.zig").Guid.initString("73747874-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_TYPE_TEXT = &CLSID_KSDATAFORMAT_TYPE_TEXT_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_ANALOG_Value = @import("../zig.zig").Guid.initString("6DBA3190-67BD-11CF-A0F7-0020AFD156E4");
+const CLSID_KSDATAFORMAT_SUBTYPE_ANALOG_Value = @import("../zig.zig").Guid.initString("6dba3190-67bd-11cf-a0f7-0020afd156e4");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_ANALOG = &CLSID_KSDATAFORMAT_SUBTYPE_ANALOG_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_DRM_Value = @import("../zig.zig").Guid.initString("00000009-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_DRM_Value = @import("../zig.zig").Guid.initString("00000009-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_DRM = &CLSID_KSDATAFORMAT_SUBTYPE_DRM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_ALAW_Value = @import("../zig.zig").Guid.initString("00000006-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_ALAW_Value = @import("../zig.zig").Guid.initString("00000006-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_ALAW = &CLSID_KSDATAFORMAT_SUBTYPE_ALAW_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MULAW_Value = @import("../zig.zig").Guid.initString("00000007-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MULAW_Value = @import("../zig.zig").Guid.initString("00000007-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MULAW = &CLSID_KSDATAFORMAT_SUBTYPE_MULAW_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_ADPCM_Value = @import("../zig.zig").Guid.initString("00000002-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_ADPCM_Value = @import("../zig.zig").Guid.initString("00000002-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_ADPCM = &CLSID_KSDATAFORMAT_SUBTYPE_ADPCM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG_Value = @import("../zig.zig").Guid.initString("00000050-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG_Value = @import("../zig.zig").Guid.initString("00000050-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_VC_ID_Value = @import("../zig.zig").Guid.initString("AD98D184-AAC3-11D0-A41C-00A0C9223196");
+const CLSID_KSDATAFORMAT_SPECIFIER_VC_ID_Value = @import("../zig.zig").Guid.initString("ad98d184-aac3-11d0-a41c-00a0c9223196");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_VC_ID = &CLSID_KSDATAFORMAT_SPECIFIER_VC_ID_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_WAVEFORMATEX_Value = @import("../zig.zig").Guid.initString("05589F81-C356-11CE-BF01-00AA0055595A");
+const CLSID_KSDATAFORMAT_SPECIFIER_WAVEFORMATEX_Value = @import("../zig.zig").Guid.initString("05589f81-c356-11ce-bf01-00aa0055595a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SPECIFIER_WAVEFORMATEX_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DSOUND_Value = @import("../zig.zig").Guid.initString("518590A2-A184-11D0-8522-00C04FD9BAF3");
+const CLSID_KSDATAFORMAT_SPECIFIER_DSOUND_Value = @import("../zig.zig").Guid.initString("518590a2-a184-11d0-8522-00c04fd9baf3");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DSOUND = &CLSID_KSDATAFORMAT_SPECIFIER_DSOUND_Value;
 
 pub const KSDATAFORMAT_WAVEFORMATEX = extern struct {
@@ -1695,11 +1695,11 @@ pub const DS3DVECTOR = extern struct {
     Anonymous2: DS3DVECTOR._Anonymous2_e__Union,
     Anonymous3: DS3DVECTOR._Anonymous3_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
-const CLSID_KSPROPSETID_DirectSound3DListener_Value = @import("../zig.zig").Guid.initString("437B3414-D060-11D0-8583-00C04FD9BAF3");
+const CLSID_KSPROPSETID_DirectSound3DListener_Value = @import("../zig.zig").Guid.initString("437b3414-d060-11d0-8583-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_DirectSound3DListener = &CLSID_KSPROPSETID_DirectSound3DListener_Value;
 
 pub const KSPROPERTY_DIRECTSOUND3DLISTENER = extern enum(i32) {
@@ -1738,7 +1738,7 @@ pub const KSDS3D_LISTENER_ORIENTATION = extern struct {
     Top: DS3DVECTOR,
 };
 
-const CLSID_KSPROPSETID_DirectSound3DBuffer_Value = @import("../zig.zig").Guid.initString("437B3411-D060-11D0-8583-00C04FD9BAF3");
+const CLSID_KSPROPSETID_DirectSound3DBuffer_Value = @import("../zig.zig").Guid.initString("437b3411-d060-11d0-8583-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_DirectSound3DBuffer = &CLSID_KSPROPSETID_DirectSound3DBuffer_Value;
 
 pub const KSPROPERTY_DIRECTSOUND3DBUFFER = extern enum(i32) {
@@ -1838,7 +1838,7 @@ pub const KSDS3D_HRTF_FILTER_FORMAT_MSG = extern struct {
     Reserved: u32,
 };
 
-const CLSID_KSPROPSETID_Hrtf3d_Value = @import("../zig.zig").Guid.initString("B66DECB0-A083-11D0-851E-00C04FD9BAF3");
+const CLSID_KSPROPSETID_Hrtf3d_Value = @import("../zig.zig").Guid.initString("b66decb0-a083-11d0-851e-00c04fd9baf3");
 pub const CLSID_KSPROPSETID_Hrtf3d = &CLSID_KSPROPSETID_Hrtf3d_Value;
 
 pub const KSPROPERTY_HRTF3D = extern enum(i32) {
@@ -1866,7 +1866,7 @@ pub const KSDS3D_ITD_PARAMS_MSG = extern struct {
     Reserved: u32,
 };
 
-const CLSID_KSPROPSETID_Itd3d_Value = @import("../zig.zig").Guid.initString("6429F090-9FD9-11D0-A75B-00A0C90365E3");
+const CLSID_KSPROPSETID_Itd3d_Value = @import("../zig.zig").Guid.initString("6429f090-9fd9-11d0-a75b-00a0c90365e3");
 pub const CLSID_KSPROPSETID_Itd3d = &CLSID_KSPROPSETID_Itd3d_Value;
 
 pub const KSPROPERTY_ITD3D = extern enum(i32) {
@@ -1883,13 +1883,13 @@ pub const KSDATARANGE_AUDIO = extern struct {
     MaximumSampleFrequency: u32,
 };
 
-const CLSID_KSDATAFORMAT_SUBTYPE_RIFF_Value = @import("../zig.zig").Guid.initString("4995DAEE-9EE6-11D0-A40E-00A0C9223196");
+const CLSID_KSDATAFORMAT_SUBTYPE_RIFF_Value = @import("../zig.zig").Guid.initString("4995daee-9ee6-11d0-a40e-00a0c9223196");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_RIFF = &CLSID_KSDATAFORMAT_SUBTYPE_RIFF_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_RIFFWAVE_Value = @import("../zig.zig").Guid.initString("E436EB8B-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_RIFFWAVE_Value = @import("../zig.zig").Guid.initString("e436eb8b-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_RIFFWAVE = &CLSID_KSDATAFORMAT_SUBTYPE_RIFFWAVE_Value;
 
-const CLSID_KSPROPSETID_Bibliographic_Value = @import("../zig.zig").Guid.initString("07BA150E-E2B1-11D0-AC17-00A0C9223196");
+const CLSID_KSPROPSETID_Bibliographic_Value = @import("../zig.zig").Guid.initString("07ba150e-e2b1-11d0-ac17-00a0c9223196");
 pub const CLSID_KSPROPSETID_Bibliographic = &CLSID_KSPROPSETID_Bibliographic_Value;
 
 pub const KSPROPERTY_BIBLIOGRAPHIC = extern enum(i32) {
@@ -1967,7 +1967,7 @@ pub const KSPROPERTY_BIBLIOGRAPHIC_ADDEDENTRYRELATED = KSPROPERTY_BIBLIOGRAPHIC.
 pub const KSPROPERTY_BIBLIOGRAPHIC_SERIESSTATEMENTPERSONALNAME = KSPROPERTY_BIBLIOGRAPHIC.SERIESSTATEMENTPERSONALNAME;
 pub const KSPROPERTY_BIBLIOGRAPHIC_SERIESSTATEMENTUNIFORMTITLE = KSPROPERTY_BIBLIOGRAPHIC.SERIESSTATEMENTUNIFORMTITLE;
 
-const CLSID_KSPROPSETID_TopologyNode_Value = @import("../zig.zig").Guid.initString("45FFAAA1-6E1B-11D0-BCF2-444553540000");
+const CLSID_KSPROPSETID_TopologyNode_Value = @import("../zig.zig").Guid.initString("45ffaaa1-6e1b-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_TopologyNode = &CLSID_KSPROPSETID_TopologyNode_Value;
 
 pub const KSPROPERTY_TOPOLOGYNODE = extern enum(i32) {
@@ -1977,7 +1977,7 @@ pub const KSPROPERTY_TOPOLOGYNODE = extern enum(i32) {
 pub const KSPROPERTY_TOPOLOGYNODE_ENABLE = KSPROPERTY_TOPOLOGYNODE.ENABLE;
 pub const KSPROPERTY_TOPOLOGYNODE_RESET = KSPROPERTY_TOPOLOGYNODE.RESET;
 
-const CLSID_KSPROPSETID_RtAudio_Value = @import("../zig.zig").Guid.initString("A855A48C-2F78-4729-9051-1968746B9EEF");
+const CLSID_KSPROPSETID_RtAudio_Value = @import("../zig.zig").Guid.initString("a855a48c-2f78-4729-9051-1968746b9eef");
 pub const CLSID_KSPROPSETID_RtAudio = &CLSID_KSPROPSETID_RtAudio_Value;
 
 pub const KSPROPERTY_RTAUDIO = extern enum(i32) {
@@ -2115,7 +2115,7 @@ pub const KSRTAUDIO_PACKETVREGISTER = extern struct {
     CompletedPacketHash: *u64,
 };
 
-const CLSID_KSPROPSETID_BtAudio_Value = @import("../zig.zig").Guid.initString("7FA06C40-B8F6-4C7E-8556-E8C33A12E54D");
+const CLSID_KSPROPSETID_BtAudio_Value = @import("../zig.zig").Guid.initString("7fa06c40-b8f6-4c7e-8556-e8c33a12e54d");
 pub const CLSID_KSPROPSETID_BtAudio = &CLSID_KSPROPSETID_BtAudio_Value;
 
 pub const KSPROPERTY_BTAUDIO = extern enum(i32) {
@@ -2125,7 +2125,7 @@ pub const KSPROPERTY_BTAUDIO = extern enum(i32) {
 pub const KSPROPERTY_ONESHOT_RECONNECT = KSPROPERTY_BTAUDIO.KSPROPERTY_ONESHOT_RECONNECT;
 pub const KSPROPERTY_ONESHOT_DISCONNECT = KSPROPERTY_BTAUDIO.KSPROPERTY_ONESHOT_DISCONNECT;
 
-const CLSID_KSPROPSETID_DrmAudioStream_Value = @import("../zig.zig").Guid.initString("2F2C8DDD-4198-4FAC-BA29-61BB05B7DE06");
+const CLSID_KSPROPSETID_DrmAudioStream_Value = @import("../zig.zig").Guid.initString("2f2c8ddd-4198-4fac-ba29-61bb05b7de06");
 pub const CLSID_KSPROPSETID_DrmAudioStream = &CLSID_KSPROPSETID_DrmAudioStream_Value;
 
 pub const KSPROPERTY_DRMAUDIOSTREAM = extern enum(i32) {
@@ -2133,13 +2133,13 @@ pub const KSPROPERTY_DRMAUDIOSTREAM = extern enum(i32) {
 };
 pub const KSPROPERTY_DRMAUDIOSTREAM_CONTENTID = KSPROPERTY_DRMAUDIOSTREAM.CONTENTID;
 
-const CLSID_KSPROPSETID_SoundDetector_Value = @import("../zig.zig").Guid.initString("113C425E-FD17-4057-B422-ED4074F1AFDF");
+const CLSID_KSPROPSETID_SoundDetector_Value = @import("../zig.zig").Guid.initString("113c425e-fd17-4057-b422-ed4074f1afdf");
 pub const CLSID_KSPROPSETID_SoundDetector = &CLSID_KSPROPSETID_SoundDetector_Value;
 
-const CLSID_KSPROPSETID_SoundDetector2_Value = @import("../zig.zig").Guid.initString("FE07E322-450C-4BD5-84CA-A948500EA6AA");
+const CLSID_KSPROPSETID_SoundDetector2_Value = @import("../zig.zig").Guid.initString("fe07e322-450c-4bd5-84ca-a948500ea6aa");
 pub const CLSID_KSPROPSETID_SoundDetector2 = &CLSID_KSPROPSETID_SoundDetector2_Value;
 
-const CLSID_KSPROPSETID_InterleavedAudio_Value = @import("../zig.zig").Guid.initString("E9EBE550-D619-4C0A-976B-7062322B3006");
+const CLSID_KSPROPSETID_InterleavedAudio_Value = @import("../zig.zig").Guid.initString("e9ebe550-d619-4c0a-976b-7062322b3006");
 pub const CLSID_KSPROPSETID_InterleavedAudio = &CLSID_KSPROPSETID_InterleavedAudio_Value;
 
 pub const KSPROPERTY_INTERLEAVEDAUDIO = extern enum(i32) {
@@ -2182,7 +2182,7 @@ pub const SOUNDDETECTOR_PATTERNHEADER = extern struct {
     PatternType: Guid,
 };
 
-const CLSID_KSEVENTSETID_SoundDetector_Value = @import("../zig.zig").Guid.initString("69785C9B-FC2D-49D6-AC32-4799F87DE9F6");
+const CLSID_KSEVENTSETID_SoundDetector_Value = @import("../zig.zig").Guid.initString("69785c9b-fc2d-49d6-ac32-4799f87de9f6");
 pub const CLSID_KSEVENTSETID_SoundDetector = &CLSID_KSEVENTSETID_SoundDetector_Value;
 
 pub const KSEVENT_SOUNDDETECTOR = extern enum(i32) {
@@ -2190,10 +2190,10 @@ pub const KSEVENT_SOUNDDETECTOR = extern enum(i32) {
 };
 pub const KSEVENT_SOUNDDETECTOR_MATCHDETECTED = KSEVENT_SOUNDDETECTOR.MATCHDETECTED;
 
-const CLSID_KSNOTIFICATIONID_SoundDetector_Value = @import("../zig.zig").Guid.initString("6389D844-BB32-4C4C-A802-F4B4B77AFEAD");
+const CLSID_KSNOTIFICATIONID_SoundDetector_Value = @import("../zig.zig").Guid.initString("6389d844-bb32-4c4c-a802-f4b4b77afead");
 pub const CLSID_KSNOTIFICATIONID_SoundDetector = &CLSID_KSNOTIFICATIONID_SoundDetector_Value;
 
-const CLSID_KSPROPSETID_Audio_Value = @import("../zig.zig").Guid.initString("45FFAAA0-6E1B-11D0-BCF2-444553540000");
+const CLSID_KSPROPSETID_Audio_Value = @import("../zig.zig").Guid.initString("45ffaaa0-6e1b-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_Audio = &CLSID_KSPROPSETID_Audio_Value;
 
 pub const KSPROPERTY_AUDIO = extern enum(i32) {
@@ -2359,7 +2359,7 @@ pub const KSAUDIO_POSITIONEX = extern struct {
     TimeStamp2: LARGE_INTEGER,
 };
 
-const CLSID_KSPROPSETID_TelephonyControl_Value = @import("../zig.zig").Guid.initString("B6DF7EB1-D099-489F-A6A0-C0106F0887A7");
+const CLSID_KSPROPSETID_TelephonyControl_Value = @import("../zig.zig").Guid.initString("b6df7eb1-d099-489f-a6a0-c0106f0887a7");
 pub const CLSID_KSPROPSETID_TelephonyControl = &CLSID_KSPROPSETID_TelephonyControl_Value;
 
 pub const KSPROPERTY_TELEPHONY_CONTROL = extern enum(i32) {
@@ -2428,7 +2428,7 @@ pub const KSTELEPHONY_CALLINFO = extern struct {
     CallState: TELEPHONY_CALLSTATE,
 };
 
-const CLSID_KSPROPSETID_TelephonyTopology_Value = @import("../zig.zig").Guid.initString("ABF25C7E-0E64-4E32-B190-D0F6D7C53E97");
+const CLSID_KSPROPSETID_TelephonyTopology_Value = @import("../zig.zig").Guid.initString("abf25c7e-0e64-4e32-b190-d0f6d7c53e97");
 pub const CLSID_KSPROPSETID_TelephonyTopology = &CLSID_KSPROPSETID_TelephonyTopology_Value;
 
 pub const KSPROPERTY_TELEPHONY_TOPOLOGY = extern enum(i32) {
@@ -2448,7 +2448,7 @@ pub const KSTOPOLOGY_ENDPOINTIDPAIR = extern struct {
     CaptureEndpoint: KSTOPOLOGY_ENDPOINTID,
 };
 
-const CLSID_KSPROPSETID_FMRXTopology_Value = @import("../zig.zig").Guid.initString("0C46CE8F-DC2D-4204-9DC9-F58963366563");
+const CLSID_KSPROPSETID_FMRXTopology_Value = @import("../zig.zig").Guid.initString("0c46ce8f-dc2d-4204-9dc9-f58963366563");
 pub const CLSID_KSPROPSETID_FMRXTopology = &CLSID_KSPROPSETID_FMRXTopology_Value;
 
 pub const KSPROPERTY_FMRX_TOPOLOGY = extern enum(i32) {
@@ -2460,7 +2460,7 @@ pub const KSPROPERTY_FMRX_ENDPOINTID = KSPROPERTY_FMRX_TOPOLOGY.KSPROPERTY_FMRX_
 pub const KSPROPERTY_FMRX_VOLUME = KSPROPERTY_FMRX_TOPOLOGY.KSPROPERTY_FMRX_VOLUME;
 pub const KSPROPERTY_FMRX_ANTENNAENDPOINTID = KSPROPERTY_FMRX_TOPOLOGY.KSPROPERTY_FMRX_ANTENNAENDPOINTID;
 
-const CLSID_KSPROPSETID_FMRXControl_Value = @import("../zig.zig").Guid.initString("947BBA3A-E8EE-4786-90C4-8428185F05BE");
+const CLSID_KSPROPSETID_FMRXControl_Value = @import("../zig.zig").Guid.initString("947bba3a-e8ee-4786-90c4-8428185f05be");
 pub const CLSID_KSPROPSETID_FMRXControl = &CLSID_KSPROPSETID_FMRXControl_Value;
 
 pub const KSPROPERTY_FMRX_CONTROL = extern enum(i32) {
@@ -2468,7 +2468,7 @@ pub const KSPROPERTY_FMRX_CONTROL = extern enum(i32) {
 };
 pub const KSPROPERTY_FMRX_STATE = KSPROPERTY_FMRX_CONTROL.KSPROPERTY_FMRX_STATE;
 
-const CLSID_KSEVENTSETID_Telephony_Value = @import("../zig.zig").Guid.initString("B77F12B4-CEB4-4484-8D5E-52C1E7D8762D");
+const CLSID_KSEVENTSETID_Telephony_Value = @import("../zig.zig").Guid.initString("b77f12b4-ceb4-4484-8d5e-52c1e7d8762d");
 pub const CLSID_KSEVENTSETID_Telephony = &CLSID_KSEVENTSETID_Telephony_Value;
 
 pub const KSEVENT_TELEPHONY = extern enum(i32) {
@@ -2476,250 +2476,250 @@ pub const KSEVENT_TELEPHONY = extern enum(i32) {
 };
 pub const KSEVENT_TELEPHONY_ENDPOINTPAIRS_CHANGED = KSEVENT_TELEPHONY.ENDPOINTPAIRS_CHANGED;
 
-const CLSID_KSNODETYPE_DAC_Value = @import("../zig.zig").Guid.initString("507AE360-C554-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_DAC_Value = @import("../zig.zig").Guid.initString("507ae360-c554-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_DAC = &CLSID_KSNODETYPE_DAC_Value;
 
-const CLSID_KSNODETYPE_ADC_Value = @import("../zig.zig").Guid.initString("4D837FE0-C555-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_ADC_Value = @import("../zig.zig").Guid.initString("4d837fe0-c555-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_ADC = &CLSID_KSNODETYPE_ADC_Value;
 
-const CLSID_KSNODETYPE_SRC_Value = @import("../zig.zig").Guid.initString("9DB7B9E0-C555-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_SRC_Value = @import("../zig.zig").Guid.initString("9db7b9e0-c555-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_SRC = &CLSID_KSNODETYPE_SRC_Value;
 
-const CLSID_KSNODETYPE_SUPERMIX_Value = @import("../zig.zig").Guid.initString("E573ADC0-C555-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_SUPERMIX_Value = @import("../zig.zig").Guid.initString("e573adc0-c555-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_SUPERMIX = &CLSID_KSNODETYPE_SUPERMIX_Value;
 
-const CLSID_KSNODETYPE_MUX_Value = @import("../zig.zig").Guid.initString("2CEAF780-C556-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_MUX_Value = @import("../zig.zig").Guid.initString("2ceaf780-c556-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_MUX = &CLSID_KSNODETYPE_MUX_Value;
 
-const CLSID_KSNODETYPE_DEMUX_Value = @import("../zig.zig").Guid.initString("C0EB67D4-E807-11D0-958A-00C04FB925D3");
+const CLSID_KSNODETYPE_DEMUX_Value = @import("../zig.zig").Guid.initString("c0eb67d4-e807-11d0-958a-00c04fb925d3");
 pub const CLSID_KSNODETYPE_DEMUX = &CLSID_KSNODETYPE_DEMUX_Value;
 
-const CLSID_KSNODETYPE_SUM_Value = @import("../zig.zig").Guid.initString("DA441A60-C556-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_SUM_Value = @import("../zig.zig").Guid.initString("da441a60-c556-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_SUM = &CLSID_KSNODETYPE_SUM_Value;
 
-const CLSID_KSNODETYPE_MUTE_Value = @import("../zig.zig").Guid.initString("02B223C0-C557-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_MUTE_Value = @import("../zig.zig").Guid.initString("02b223c0-c557-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_MUTE = &CLSID_KSNODETYPE_MUTE_Value;
 
-const CLSID_KSNODETYPE_VOLUME_Value = @import("../zig.zig").Guid.initString("3A5ACC00-C557-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_VOLUME_Value = @import("../zig.zig").Guid.initString("3a5acc00-c557-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_VOLUME = &CLSID_KSNODETYPE_VOLUME_Value;
 
-const CLSID_KSNODETYPE_TONE_Value = @import("../zig.zig").Guid.initString("7607E580-C557-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_TONE_Value = @import("../zig.zig").Guid.initString("7607e580-c557-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_TONE = &CLSID_KSNODETYPE_TONE_Value;
 
-const CLSID_KSNODETYPE_EQUALIZER_Value = @import("../zig.zig").Guid.initString("9D41B4A0-C557-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_EQUALIZER_Value = @import("../zig.zig").Guid.initString("9d41b4a0-c557-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_EQUALIZER = &CLSID_KSNODETYPE_EQUALIZER_Value;
 
-const CLSID_KSNODETYPE_AGC_Value = @import("../zig.zig").Guid.initString("E88C9BA0-C557-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_AGC_Value = @import("../zig.zig").Guid.initString("e88c9ba0-c557-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_AGC = &CLSID_KSNODETYPE_AGC_Value;
 
-const CLSID_KSNODETYPE_NOISE_SUPPRESS_Value = @import("../zig.zig").Guid.initString("E07F903F-62FD-4E60-8CDD-DEA7236665B5");
+const CLSID_KSNODETYPE_NOISE_SUPPRESS_Value = @import("../zig.zig").Guid.initString("e07f903f-62fd-4e60-8cdd-dea7236665b5");
 pub const CLSID_KSNODETYPE_NOISE_SUPPRESS = &CLSID_KSNODETYPE_NOISE_SUPPRESS_Value;
 
-const CLSID_KSNODETYPE_DELAY_Value = @import("../zig.zig").Guid.initString("144981E0-C558-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_DELAY_Value = @import("../zig.zig").Guid.initString("144981e0-c558-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_DELAY = &CLSID_KSNODETYPE_DELAY_Value;
 
-const CLSID_KSNODETYPE_LOUDNESS_Value = @import("../zig.zig").Guid.initString("41887440-C558-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_LOUDNESS_Value = @import("../zig.zig").Guid.initString("41887440-c558-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_LOUDNESS = &CLSID_KSNODETYPE_LOUDNESS_Value;
 
-const CLSID_KSNODETYPE_PROLOGIC_DECODER_Value = @import("../zig.zig").Guid.initString("831C2C80-C558-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_PROLOGIC_DECODER_Value = @import("../zig.zig").Guid.initString("831c2c80-c558-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_PROLOGIC_DECODER = &CLSID_KSNODETYPE_PROLOGIC_DECODER_Value;
 
-const CLSID_KSNODETYPE_STEREO_WIDE_Value = @import("../zig.zig").Guid.initString("A9E69800-C558-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_STEREO_WIDE_Value = @import("../zig.zig").Guid.initString("a9e69800-c558-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_STEREO_WIDE = &CLSID_KSNODETYPE_STEREO_WIDE_Value;
 
-const CLSID_KSNODETYPE_REVERB_Value = @import("../zig.zig").Guid.initString("EF0328E0-C558-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_REVERB_Value = @import("../zig.zig").Guid.initString("ef0328e0-c558-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_REVERB = &CLSID_KSNODETYPE_REVERB_Value;
 
-const CLSID_KSNODETYPE_CHORUS_Value = @import("../zig.zig").Guid.initString("20173F20-C559-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_CHORUS_Value = @import("../zig.zig").Guid.initString("20173f20-c559-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_CHORUS = &CLSID_KSNODETYPE_CHORUS_Value;
 
-const CLSID_KSNODETYPE_3D_EFFECTS_Value = @import("../zig.zig").Guid.initString("55515860-C559-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_3D_EFFECTS_Value = @import("../zig.zig").Guid.initString("55515860-c559-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_3D_EFFECTS = &CLSID_KSNODETYPE_3D_EFFECTS_Value;
 
-const CLSID_KSNODETYPE_PARAMETRIC_EQUALIZER_Value = @import("../zig.zig").Guid.initString("19BB3A6A-CE2B-4442-87EC-6727C3CAB477");
+const CLSID_KSNODETYPE_PARAMETRIC_EQUALIZER_Value = @import("../zig.zig").Guid.initString("19bb3a6a-ce2b-4442-87ec-6727c3cab477");
 pub const CLSID_KSNODETYPE_PARAMETRIC_EQUALIZER = &CLSID_KSNODETYPE_PARAMETRIC_EQUALIZER_Value;
 
-const CLSID_KSNODETYPE_UPDOWN_MIX_Value = @import("../zig.zig").Guid.initString("B7EDC5CF-7B63-4EE2-A100-29EE2CB6B2DE");
+const CLSID_KSNODETYPE_UPDOWN_MIX_Value = @import("../zig.zig").Guid.initString("b7edc5cf-7b63-4ee2-a100-29ee2cb6b2de");
 pub const CLSID_KSNODETYPE_UPDOWN_MIX = &CLSID_KSNODETYPE_UPDOWN_MIX_Value;
 
-const CLSID_KSNODETYPE_DYN_RANGE_COMPRESSOR_Value = @import("../zig.zig").Guid.initString("08C8A6A8-601F-4AF8-8793-D905FF4CA97D");
+const CLSID_KSNODETYPE_DYN_RANGE_COMPRESSOR_Value = @import("../zig.zig").Guid.initString("08c8a6a8-601f-4af8-8793-d905ff4ca97d");
 pub const CLSID_KSNODETYPE_DYN_RANGE_COMPRESSOR = &CLSID_KSNODETYPE_DYN_RANGE_COMPRESSOR_Value;
 
-const CLSID_KSALGORITHMINSTANCE_SYSTEM_ACOUSTIC_ECHO_CANCEL_Value = @import("../zig.zig").Guid.initString("1C22C56D-9879-4F5B-A389-27996DDC2810");
+const CLSID_KSALGORITHMINSTANCE_SYSTEM_ACOUSTIC_ECHO_CANCEL_Value = @import("../zig.zig").Guid.initString("1c22c56d-9879-4f5b-a389-27996ddc2810");
 pub const CLSID_KSALGORITHMINSTANCE_SYSTEM_ACOUSTIC_ECHO_CANCEL = &CLSID_KSALGORITHMINSTANCE_SYSTEM_ACOUSTIC_ECHO_CANCEL_Value;
 
-const CLSID_KSALGORITHMINSTANCE_SYSTEM_NOISE_SUPPRESS_Value = @import("../zig.zig").Guid.initString("5AB0882E-7274-4516-877D-4EEE99BA4FD0");
+const CLSID_KSALGORITHMINSTANCE_SYSTEM_NOISE_SUPPRESS_Value = @import("../zig.zig").Guid.initString("5ab0882e-7274-4516-877d-4eee99ba4fd0");
 pub const CLSID_KSALGORITHMINSTANCE_SYSTEM_NOISE_SUPPRESS = &CLSID_KSALGORITHMINSTANCE_SYSTEM_NOISE_SUPPRESS_Value;
 
-const CLSID_KSALGORITHMINSTANCE_SYSTEM_AGC_Value = @import("../zig.zig").Guid.initString("950E55B9-877C-4C67-BE08-E47B5611130A");
+const CLSID_KSALGORITHMINSTANCE_SYSTEM_AGC_Value = @import("../zig.zig").Guid.initString("950e55b9-877c-4c67-be08-e47b5611130a");
 pub const CLSID_KSALGORITHMINSTANCE_SYSTEM_AGC = &CLSID_KSALGORITHMINSTANCE_SYSTEM_AGC_Value;
 
-const CLSID_KSALGORITHMINSTANCE_SYSTEM_MICROPHONE_ARRAY_PROCESSOR_Value = @import("../zig.zig").Guid.initString("B6F5A0A0-9E61-4F8C-91E3-76CF0F3C471F");
+const CLSID_KSALGORITHMINSTANCE_SYSTEM_MICROPHONE_ARRAY_PROCESSOR_Value = @import("../zig.zig").Guid.initString("b6f5a0a0-9e61-4f8c-91e3-76cf0f3c471f");
 pub const CLSID_KSALGORITHMINSTANCE_SYSTEM_MICROPHONE_ARRAY_PROCESSOR = &CLSID_KSALGORITHMINSTANCE_SYSTEM_MICROPHONE_ARRAY_PROCESSOR_Value;
 
-const CLSID_KSNODETYPE_DEV_SPECIFIC_Value = @import("../zig.zig").Guid.initString("941C7AC0-C559-11D0-8A2B-00A0C9255AC1");
+const CLSID_KSNODETYPE_DEV_SPECIFIC_Value = @import("../zig.zig").Guid.initString("941c7ac0-c559-11d0-8a2b-00a0c9255ac1");
 pub const CLSID_KSNODETYPE_DEV_SPECIFIC = &CLSID_KSNODETYPE_DEV_SPECIFIC_Value;
 
-const CLSID_KSNODETYPE_PROLOGIC_ENCODER_Value = @import("../zig.zig").Guid.initString("8074C5B2-3C66-11D2-B45A-3078302C2030");
+const CLSID_KSNODETYPE_PROLOGIC_ENCODER_Value = @import("../zig.zig").Guid.initString("8074c5b2-3c66-11d2-b45a-3078302c2030");
 pub const CLSID_KSNODETYPE_PROLOGIC_ENCODER = &CLSID_KSNODETYPE_PROLOGIC_ENCODER_Value;
 
-const CLSID_KSNODETYPE_PEAKMETER_Value = @import("../zig.zig").Guid.initString("A085651E-5F0D-4B36-A869-D195D6AB4B9E");
+const CLSID_KSNODETYPE_PEAKMETER_Value = @import("../zig.zig").Guid.initString("a085651e-5f0d-4b36-a869-d195d6ab4b9e");
 pub const CLSID_KSNODETYPE_PEAKMETER = &CLSID_KSNODETYPE_PEAKMETER_Value;
 
-const CLSID_KSAUDFNAME_BASS_Value = @import("../zig.zig").Guid.initString("185FEDE0-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_BASS_Value = @import("../zig.zig").Guid.initString("185fede0-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_BASS = &CLSID_KSAUDFNAME_BASS_Value;
 
-const CLSID_KSAUDFNAME_TREBLE_Value = @import("../zig.zig").Guid.initString("185FEDE1-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_TREBLE_Value = @import("../zig.zig").Guid.initString("185fede1-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_TREBLE = &CLSID_KSAUDFNAME_TREBLE_Value;
 
-const CLSID_KSAUDFNAME_MIDRANGE_Value = @import("../zig.zig").Guid.initString("A2CBE478-AE84-49A1-8B72-4AD09B78ED34");
+const CLSID_KSAUDFNAME_MIDRANGE_Value = @import("../zig.zig").Guid.initString("a2cbe478-ae84-49a1-8b72-4ad09b78ed34");
 pub const CLSID_KSAUDFNAME_MIDRANGE = &CLSID_KSAUDFNAME_MIDRANGE_Value;
 
-const CLSID_KSAUDFNAME_3D_STEREO_Value = @import("../zig.zig").Guid.initString("185FEDE2-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_3D_STEREO_Value = @import("../zig.zig").Guid.initString("185fede2-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_3D_STEREO = &CLSID_KSAUDFNAME_3D_STEREO_Value;
 
-const CLSID_KSAUDFNAME_MASTER_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDE3-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MASTER_VOLUME_Value = @import("../zig.zig").Guid.initString("185fede3-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MASTER_VOLUME = &CLSID_KSAUDFNAME_MASTER_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MASTER_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDE4-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MASTER_MUTE_Value = @import("../zig.zig").Guid.initString("185fede4-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MASTER_MUTE = &CLSID_KSAUDFNAME_MASTER_MUTE_Value;
 
-const CLSID_KSAUDFNAME_WAVE_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDE5-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_WAVE_VOLUME_Value = @import("../zig.zig").Guid.initString("185fede5-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_WAVE_VOLUME = &CLSID_KSAUDFNAME_WAVE_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_WAVE_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDE6-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_WAVE_MUTE_Value = @import("../zig.zig").Guid.initString("185fede6-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_WAVE_MUTE = &CLSID_KSAUDFNAME_WAVE_MUTE_Value;
 
-const CLSID_KSAUDFNAME_MIDI_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDE7-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIDI_VOLUME_Value = @import("../zig.zig").Guid.initString("185fede7-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIDI_VOLUME = &CLSID_KSAUDFNAME_MIDI_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MIDI_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDE8-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIDI_MUTE_Value = @import("../zig.zig").Guid.initString("185fede8-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIDI_MUTE = &CLSID_KSAUDFNAME_MIDI_MUTE_Value;
 
-const CLSID_KSAUDFNAME_CD_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDE9-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_CD_VOLUME_Value = @import("../zig.zig").Guid.initString("185fede9-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_CD_VOLUME = &CLSID_KSAUDFNAME_CD_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_CD_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDEA-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_CD_MUTE_Value = @import("../zig.zig").Guid.initString("185fedea-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_CD_MUTE = &CLSID_KSAUDFNAME_CD_MUTE_Value;
 
-const CLSID_KSAUDFNAME_LINE_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDEB-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_LINE_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedeb-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_LINE_VOLUME = &CLSID_KSAUDFNAME_LINE_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_LINE_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDEC-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_LINE_MUTE_Value = @import("../zig.zig").Guid.initString("185fedec-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_LINE_MUTE = &CLSID_KSAUDFNAME_LINE_MUTE_Value;
 
-const CLSID_KSAUDFNAME_MIC_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDED-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIC_VOLUME_Value = @import("../zig.zig").Guid.initString("185feded-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIC_VOLUME = &CLSID_KSAUDFNAME_MIC_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MIC_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDEE-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIC_MUTE_Value = @import("../zig.zig").Guid.initString("185fedee-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIC_MUTE = &CLSID_KSAUDFNAME_MIC_MUTE_Value;
 
-const CLSID_KSAUDFNAME_RECORDING_SOURCE_Value = @import("../zig.zig").Guid.initString("185FEDEF-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_RECORDING_SOURCE_Value = @import("../zig.zig").Guid.initString("185fedef-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_RECORDING_SOURCE = &CLSID_KSAUDFNAME_RECORDING_SOURCE_Value;
 
-const CLSID_KSAUDFNAME_PC_SPEAKER_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF0-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_PC_SPEAKER_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf0-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_PC_SPEAKER_VOLUME = &CLSID_KSAUDFNAME_PC_SPEAKER_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_PC_SPEAKER_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDF1-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_PC_SPEAKER_MUTE_Value = @import("../zig.zig").Guid.initString("185fedf1-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_PC_SPEAKER_MUTE = &CLSID_KSAUDFNAME_PC_SPEAKER_MUTE_Value;
 
-const CLSID_KSAUDFNAME_MIDI_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF2-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIDI_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf2-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIDI_IN_VOLUME = &CLSID_KSAUDFNAME_MIDI_IN_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_CD_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF3-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_CD_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf3-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_CD_IN_VOLUME = &CLSID_KSAUDFNAME_CD_IN_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_LINE_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF4-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_LINE_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf4-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_LINE_IN_VOLUME = &CLSID_KSAUDFNAME_LINE_IN_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MIC_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF5-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIC_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf5-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIC_IN_VOLUME = &CLSID_KSAUDFNAME_MIC_IN_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_WAVE_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDF6-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_WAVE_IN_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedf6-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_WAVE_IN_VOLUME = &CLSID_KSAUDFNAME_WAVE_IN_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_VOLUME_CONTROL_Value = @import("../zig.zig").Guid.initString("185FEDF7-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_VOLUME_CONTROL_Value = @import("../zig.zig").Guid.initString("185fedf7-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_VOLUME_CONTROL = &CLSID_KSAUDFNAME_VOLUME_CONTROL_Value;
 
-const CLSID_KSAUDFNAME_MIDI_Value = @import("../zig.zig").Guid.initString("185FEDF8-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_MIDI_Value = @import("../zig.zig").Guid.initString("185fedf8-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_MIDI = &CLSID_KSAUDFNAME_MIDI_Value;
 
-const CLSID_KSAUDFNAME_LINE_IN_Value = @import("../zig.zig").Guid.initString("185FEDF9-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_LINE_IN_Value = @import("../zig.zig").Guid.initString("185fedf9-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_LINE_IN = &CLSID_KSAUDFNAME_LINE_IN_Value;
 
-const CLSID_KSAUDFNAME_RECORDING_CONTROL_Value = @import("../zig.zig").Guid.initString("185FEDFA-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_RECORDING_CONTROL_Value = @import("../zig.zig").Guid.initString("185fedfa-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_RECORDING_CONTROL = &CLSID_KSAUDFNAME_RECORDING_CONTROL_Value;
 
-const CLSID_KSAUDFNAME_CD_AUDIO_Value = @import("../zig.zig").Guid.initString("185FEDFB-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_CD_AUDIO_Value = @import("../zig.zig").Guid.initString("185fedfb-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_CD_AUDIO = &CLSID_KSAUDFNAME_CD_AUDIO_Value;
 
-const CLSID_KSAUDFNAME_AUX_VOLUME_Value = @import("../zig.zig").Guid.initString("185FEDFC-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_AUX_VOLUME_Value = @import("../zig.zig").Guid.initString("185fedfc-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_AUX_VOLUME = &CLSID_KSAUDFNAME_AUX_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_AUX_MUTE_Value = @import("../zig.zig").Guid.initString("185FEDFD-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_AUX_MUTE_Value = @import("../zig.zig").Guid.initString("185fedfd-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_AUX_MUTE = &CLSID_KSAUDFNAME_AUX_MUTE_Value;
 
-const CLSID_KSAUDFNAME_AUX_Value = @import("../zig.zig").Guid.initString("185FEDFE-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_AUX_Value = @import("../zig.zig").Guid.initString("185fedfe-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_AUX = &CLSID_KSAUDFNAME_AUX_Value;
 
-const CLSID_KSAUDFNAME_PC_SPEAKER_Value = @import("../zig.zig").Guid.initString("185FEDFF-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_PC_SPEAKER_Value = @import("../zig.zig").Guid.initString("185fedff-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_PC_SPEAKER = &CLSID_KSAUDFNAME_PC_SPEAKER_Value;
 
-const CLSID_KSAUDFNAME_WAVE_OUT_MIX_Value = @import("../zig.zig").Guid.initString("185FEE00-9905-11D1-95A9-00C04FB925D3");
+const CLSID_KSAUDFNAME_WAVE_OUT_MIX_Value = @import("../zig.zig").Guid.initString("185fee00-9905-11d1-95a9-00c04fb925d3");
 pub const CLSID_KSAUDFNAME_WAVE_OUT_MIX = &CLSID_KSAUDFNAME_WAVE_OUT_MIX_Value;
 
-const CLSID_KSAUDFNAME_MONO_OUT_Value = @import("../zig.zig").Guid.initString("F9B41DC3-96E2-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_OUT_Value = @import("../zig.zig").Guid.initString("f9b41dc3-96e2-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_OUT = &CLSID_KSAUDFNAME_MONO_OUT_Value;
 
-const CLSID_KSAUDFNAME_STEREO_MIX_Value = @import("../zig.zig").Guid.initString("00DFF077-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_STEREO_MIX_Value = @import("../zig.zig").Guid.initString("00dff077-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_STEREO_MIX = &CLSID_KSAUDFNAME_STEREO_MIX_Value;
 
-const CLSID_KSAUDFNAME_MONO_MIX_Value = @import("../zig.zig").Guid.initString("00DFF078-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_MIX_Value = @import("../zig.zig").Guid.initString("00dff078-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_MIX = &CLSID_KSAUDFNAME_MONO_MIX_Value;
 
-const CLSID_KSAUDFNAME_MONO_OUT_VOLUME_Value = @import("../zig.zig").Guid.initString("1AD247EB-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_OUT_VOLUME_Value = @import("../zig.zig").Guid.initString("1ad247eb-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_OUT_VOLUME = &CLSID_KSAUDFNAME_MONO_OUT_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MONO_OUT_MUTE_Value = @import("../zig.zig").Guid.initString("1AD247EC-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_OUT_MUTE_Value = @import("../zig.zig").Guid.initString("1ad247ec-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_OUT_MUTE = &CLSID_KSAUDFNAME_MONO_OUT_MUTE_Value;
 
-const CLSID_KSAUDFNAME_STEREO_MIX_VOLUME_Value = @import("../zig.zig").Guid.initString("1AD247ED-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_STEREO_MIX_VOLUME_Value = @import("../zig.zig").Guid.initString("1ad247ed-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_STEREO_MIX_VOLUME = &CLSID_KSAUDFNAME_STEREO_MIX_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_STEREO_MIX_MUTE_Value = @import("../zig.zig").Guid.initString("22B0EAFD-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_STEREO_MIX_MUTE_Value = @import("../zig.zig").Guid.initString("22b0eafd-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_STEREO_MIX_MUTE = &CLSID_KSAUDFNAME_STEREO_MIX_MUTE_Value;
 
-const CLSID_KSAUDFNAME_MONO_MIX_VOLUME_Value = @import("../zig.zig").Guid.initString("22B0EAFE-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_MIX_VOLUME_Value = @import("../zig.zig").Guid.initString("22b0eafe-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_MIX_VOLUME = &CLSID_KSAUDFNAME_MONO_MIX_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_MONO_MIX_MUTE_Value = @import("../zig.zig").Guid.initString("2BC31D69-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MONO_MIX_MUTE_Value = @import("../zig.zig").Guid.initString("2bc31d69-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MONO_MIX_MUTE = &CLSID_KSAUDFNAME_MONO_MIX_MUTE_Value;
 
-const CLSID_KSAUDFNAME_MICROPHONE_BOOST_Value = @import("../zig.zig").Guid.initString("2BC31D6A-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_MICROPHONE_BOOST_Value = @import("../zig.zig").Guid.initString("2bc31d6a-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_MICROPHONE_BOOST = &CLSID_KSAUDFNAME_MICROPHONE_BOOST_Value;
 
-const CLSID_KSAUDFNAME_ALTERNATE_MICROPHONE_Value = @import("../zig.zig").Guid.initString("2BC31D6B-96E3-11D2-AC4C-00C04F8EFB68");
+const CLSID_KSAUDFNAME_ALTERNATE_MICROPHONE_Value = @import("../zig.zig").Guid.initString("2bc31d6b-96e3-11d2-ac4c-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_ALTERNATE_MICROPHONE = &CLSID_KSAUDFNAME_ALTERNATE_MICROPHONE_Value;
 
-const CLSID_KSAUDFNAME_3D_DEPTH_Value = @import("../zig.zig").Guid.initString("63FF5747-991F-11D2-AC4D-00C04F8EFB68");
+const CLSID_KSAUDFNAME_3D_DEPTH_Value = @import("../zig.zig").Guid.initString("63ff5747-991f-11d2-ac4d-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_3D_DEPTH = &CLSID_KSAUDFNAME_3D_DEPTH_Value;
 
-const CLSID_KSAUDFNAME_3D_CENTER_Value = @import("../zig.zig").Guid.initString("9F0670B4-991F-11D2-AC4D-00C04F8EFB68");
+const CLSID_KSAUDFNAME_3D_CENTER_Value = @import("../zig.zig").Guid.initString("9f0670b4-991f-11d2-ac4d-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_3D_CENTER = &CLSID_KSAUDFNAME_3D_CENTER_Value;
 
-const CLSID_KSAUDFNAME_VIDEO_VOLUME_Value = @import("../zig.zig").Guid.initString("9B46E708-992A-11D2-AC4D-00C04F8EFB68");
+const CLSID_KSAUDFNAME_VIDEO_VOLUME_Value = @import("../zig.zig").Guid.initString("9b46e708-992a-11d2-ac4d-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_VIDEO_VOLUME = &CLSID_KSAUDFNAME_VIDEO_VOLUME_Value;
 
-const CLSID_KSAUDFNAME_VIDEO_MUTE_Value = @import("../zig.zig").Guid.initString("9B46E709-992A-11D2-AC4D-00C04F8EFB68");
+const CLSID_KSAUDFNAME_VIDEO_MUTE_Value = @import("../zig.zig").Guid.initString("9b46e709-992a-11d2-ac4d-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_VIDEO_MUTE = &CLSID_KSAUDFNAME_VIDEO_MUTE_Value;
 
-const CLSID_KSAUDFNAME_VIDEO_Value = @import("../zig.zig").Guid.initString("915DAEC4-A434-11D2-AC52-00C04F8EFB68");
+const CLSID_KSAUDFNAME_VIDEO_Value = @import("../zig.zig").Guid.initString("915daec4-a434-11d2-ac52-00c04f8efb68");
 pub const CLSID_KSAUDFNAME_VIDEO = &CLSID_KSAUDFNAME_VIDEO_Value;
 
-const CLSID_KSAUDFNAME_PEAKMETER_Value = @import("../zig.zig").Guid.initString("57E24340-FC5B-4612-A562-72B11A29DFAE");
+const CLSID_KSAUDFNAME_PEAKMETER_Value = @import("../zig.zig").Guid.initString("57e24340-fc5b-4612-a562-72b11a29dfae");
 pub const CLSID_KSAUDFNAME_PEAKMETER = &CLSID_KSAUDFNAME_PEAKMETER_Value;
 
-const CLSID_KSMETHODSETID_Wavetable_Value = @import("../zig.zig").Guid.initString("DCEF31EB-D907-11D0-9583-00C04FB925D3");
+const CLSID_KSMETHODSETID_Wavetable_Value = @import("../zig.zig").Guid.initString("dcef31eb-d907-11d0-9583-00c04fb925d3");
 pub const CLSID_KSMETHODSETID_Wavetable = &CLSID_KSMETHODSETID_Wavetable_Value;
 
 pub const KSMETHOD_WAVETABLE = extern enum(i32) {
@@ -2742,7 +2742,7 @@ pub const KSWAVETABLE_WAVE_DESC = extern struct {
     Format: KSDATAFORMAT,
 };
 
-const CLSID_KSPROPSETID_Wave_Value = @import("../zig.zig").Guid.initString("924E54B0-630F-11CF-ADA7-08003E30494A");
+const CLSID_KSPROPSETID_Wave_Value = @import("../zig.zig").Guid.initString("924e54b0-630f-11cf-ada7-08003e30494a");
 pub const CLSID_KSPROPSETID_Wave = &CLSID_KSPROPSETID_Wave_Value;
 
 pub const KSPROPERTY_WAVE = extern enum(i32) {
@@ -2810,19 +2810,19 @@ pub const KSWAVE_BUFFER = extern struct {
     BufferAddress: *c_void,
 };
 
-const CLSID_KSMUSIC_TECHNOLOGY_PORT_Value = @import("../zig.zig").Guid.initString("86C92E60-62E8-11CF-A5D6-28DB04C10000");
+const CLSID_KSMUSIC_TECHNOLOGY_PORT_Value = @import("../zig.zig").Guid.initString("86c92e60-62e8-11cf-a5d6-28db04c10000");
 pub const CLSID_KSMUSIC_TECHNOLOGY_PORT = &CLSID_KSMUSIC_TECHNOLOGY_PORT_Value;
 
-const CLSID_KSMUSIC_TECHNOLOGY_SQSYNTH_Value = @import("../zig.zig").Guid.initString("0ECF4380-62E9-11CF-A5D6-28DB04C10000");
+const CLSID_KSMUSIC_TECHNOLOGY_SQSYNTH_Value = @import("../zig.zig").Guid.initString("0ecf4380-62e9-11cf-a5d6-28db04c10000");
 pub const CLSID_KSMUSIC_TECHNOLOGY_SQSYNTH = &CLSID_KSMUSIC_TECHNOLOGY_SQSYNTH_Value;
 
-const CLSID_KSMUSIC_TECHNOLOGY_FMSYNTH_Value = @import("../zig.zig").Guid.initString("252C5C80-62E9-11CF-A5D6-28DB04C10000");
+const CLSID_KSMUSIC_TECHNOLOGY_FMSYNTH_Value = @import("../zig.zig").Guid.initString("252c5c80-62e9-11cf-a5d6-28db04c10000");
 pub const CLSID_KSMUSIC_TECHNOLOGY_FMSYNTH = &CLSID_KSMUSIC_TECHNOLOGY_FMSYNTH_Value;
 
-const CLSID_KSMUSIC_TECHNOLOGY_WAVETABLE_Value = @import("../zig.zig").Guid.initString("394EC7C0-62E9-11CF-A5D6-28DB04C10000");
+const CLSID_KSMUSIC_TECHNOLOGY_WAVETABLE_Value = @import("../zig.zig").Guid.initString("394ec7c0-62e9-11cf-a5d6-28db04c10000");
 pub const CLSID_KSMUSIC_TECHNOLOGY_WAVETABLE = &CLSID_KSMUSIC_TECHNOLOGY_WAVETABLE_Value;
 
-const CLSID_KSMUSIC_TECHNOLOGY_SWSYNTH_Value = @import("../zig.zig").Guid.initString("37407736-3620-11D1-85D3-0000F8754380");
+const CLSID_KSMUSIC_TECHNOLOGY_SWSYNTH_Value = @import("../zig.zig").Guid.initString("37407736-3620-11d1-85d3-0000f8754380");
 pub const CLSID_KSMUSIC_TECHNOLOGY_SWSYNTH = &CLSID_KSMUSIC_TECHNOLOGY_SWSYNTH_Value;
 
 pub const KSDATARANGE_MUSIC = extern struct {
@@ -2833,7 +2833,7 @@ pub const KSDATARANGE_MUSIC = extern struct {
     ChannelMask: u32,
 };
 
-const CLSID_KSPROPSETID_Cyclic_Value = @import("../zig.zig").Guid.initString("3FFEAEA0-2BEE-11CF-A5D6-28DB04C10000");
+const CLSID_KSPROPSETID_Cyclic_Value = @import("../zig.zig").Guid.initString("3ffeaea0-2bee-11cf-a5d6-28db04c10000");
 pub const CLSID_KSPROPSETID_Cyclic = &CLSID_KSPROPSETID_Cyclic_Value;
 
 pub const KSPROPERTY_CYCLIC = extern enum(i32) {
@@ -2841,7 +2841,7 @@ pub const KSPROPERTY_CYCLIC = extern enum(i32) {
 };
 pub const KSPROPERTY_CYCLIC_POSITION = KSPROPERTY_CYCLIC.POSITION;
 
-const CLSID_KSEVENTSETID_AudioControlChange_Value = @import("../zig.zig").Guid.initString("E85E9698-FA2F-11D1-95BD-00C04FB925D3");
+const CLSID_KSEVENTSETID_AudioControlChange_Value = @import("../zig.zig").Guid.initString("e85e9698-fa2f-11d1-95bd-00c04fb925d3");
 pub const CLSID_KSEVENTSETID_AudioControlChange = &CLSID_KSEVENTSETID_AudioControlChange_Value;
 
 pub const KSEVENT_AUDIO_CONTROL_CHANGE = extern enum(i32) {
@@ -2849,7 +2849,7 @@ pub const KSEVENT_AUDIO_CONTROL_CHANGE = extern enum(i32) {
 };
 pub const KSEVENT_CONTROL_CHANGE = KSEVENT_AUDIO_CONTROL_CHANGE.KSEVENT_CONTROL_CHANGE;
 
-const CLSID_KSEVENTSETID_LoopedStreaming_Value = @import("../zig.zig").Guid.initString("4682B940-C6EF-11D0-96D8-00AA0051E51D");
+const CLSID_KSEVENTSETID_LoopedStreaming_Value = @import("../zig.zig").Guid.initString("4682b940-c6ef-11d0-96d8-00aa0051e51d");
 pub const CLSID_KSEVENTSETID_LoopedStreaming = &CLSID_KSEVENTSETID_LoopedStreaming_Value;
 
 pub const KSEVENT_LOOPEDSTREAMING = extern enum(i32) {
@@ -2894,19 +2894,19 @@ pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
     Reserved: u32,
 };
 
-const CLSID_KSDATAFORMAT_TYPE_MUSIC_Value = @import("../zig.zig").Guid.initString("E725D360-62CC-11CF-A5D6-28DB04C10000");
+const CLSID_KSDATAFORMAT_TYPE_MUSIC_Value = @import("../zig.zig").Guid.initString("e725d360-62cc-11cf-a5d6-28db04c10000");
 pub const CLSID_KSDATAFORMAT_TYPE_MUSIC = &CLSID_KSDATAFORMAT_TYPE_MUSIC_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_MIDI_Value = @import("../zig.zig").Guid.initString("7364696D-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_TYPE_MIDI_Value = @import("../zig.zig").Guid.initString("7364696d-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_TYPE_MIDI = &CLSID_KSDATAFORMAT_TYPE_MIDI_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MIDI_Value = @import("../zig.zig").Guid.initString("1D262760-E957-11CF-A5D6-28DB04C10000");
+const CLSID_KSDATAFORMAT_SUBTYPE_MIDI_Value = @import("../zig.zig").Guid.initString("1d262760-e957-11cf-a5d6-28db04c10000");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MIDI = &CLSID_KSDATAFORMAT_SUBTYPE_MIDI_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MIDI_BUS_Value = @import("../zig.zig").Guid.initString("2CA15FA0-6CFE-11CF-A5D6-28DB04C10000");
+const CLSID_KSDATAFORMAT_SUBTYPE_MIDI_BUS_Value = @import("../zig.zig").Guid.initString("2ca15fa0-6cfe-11cf-a5d6-28db04c10000");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MIDI_BUS = &CLSID_KSDATAFORMAT_SUBTYPE_MIDI_BUS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_RIFFMIDI_Value = @import("../zig.zig").Guid.initString("4995DAF0-9EE6-11D0-A40E-00A0C9223196");
+const CLSID_KSDATAFORMAT_SUBTYPE_RIFFMIDI_Value = @import("../zig.zig").Guid.initString("4995daf0-9ee6-11d0-a40e-00a0c9223196");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_RIFFMIDI = &CLSID_KSDATAFORMAT_SUBTYPE_RIFFMIDI_Value;
 
 pub const KSMUSICFORMAT = extern struct {
@@ -2914,79 +2914,79 @@ pub const KSMUSICFORMAT = extern struct {
     ByteCount: u32,
 };
 
-const CLSID_KSDATAFORMAT_TYPE_STANDARD_ELEMENTARY_STREAM_Value = @import("../zig.zig").Guid.initString("36523B11-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_TYPE_STANDARD_ELEMENTARY_STREAM_Value = @import("../zig.zig").Guid.initString("36523b11-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_TYPE_STANDARD_ELEMENTARY_STREAM = &CLSID_KSDATAFORMAT_TYPE_STANDARD_ELEMENTARY_STREAM_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_STANDARD_PES_PACKET_Value = @import("../zig.zig").Guid.initString("36523B12-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_TYPE_STANDARD_PES_PACKET_Value = @import("../zig.zig").Guid.initString("36523b12-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_TYPE_STANDARD_PES_PACKET = &CLSID_KSDATAFORMAT_TYPE_STANDARD_PES_PACKET_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_STANDARD_PACK_HEADER_Value = @import("../zig.zig").Guid.initString("36523B13-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_TYPE_STANDARD_PACK_HEADER_Value = @import("../zig.zig").Guid.initString("36523b13-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_TYPE_STANDARD_PACK_HEADER = &CLSID_KSDATAFORMAT_TYPE_STANDARD_PACK_HEADER_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("36523B21-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("36523b21-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_VIDEO = &CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B22-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b22-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG1_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("36523B23-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("36523b23-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_VIDEO = &CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B24-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b24-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_MPEG2_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B25-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b25-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_AC3_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_STANDARD_AC3_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("36523B31-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("36523b31-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_VIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B32-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b32-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG1_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("36523B33-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("36523b33-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_VIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B34-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b34-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_MPEG2_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("36523B35-8EE5-11D1-8CA3-0060B057664A");
+const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("36523b35-8ee5-11d1-8ca3-0060b057664a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_AC3_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_DIALECT_AC3_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_DSS_VIDEO_Value = @import("../zig.zig").Guid.initString("A0AF4F81-E163-11D0-BAD9-00609744111A");
+const CLSID_KSDATAFORMAT_SUBTYPE_DSS_VIDEO_Value = @import("../zig.zig").Guid.initString("a0af4f81-e163-11d0-bad9-00609744111a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_DSS_VIDEO = &CLSID_KSDATAFORMAT_SUBTYPE_DSS_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_DSS_AUDIO_Value = @import("../zig.zig").Guid.initString("A0AF4F82-E163-11D0-BAD9-00609744111A");
+const CLSID_KSDATAFORMAT_SUBTYPE_DSS_AUDIO_Value = @import("../zig.zig").Guid.initString("a0af4f82-e163-11d0-bad9-00609744111a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_DSS_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_DSS_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Packet_Value = @import("../zig.zig").Guid.initString("E436EB80-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Packet_Value = @import("../zig.zig").Guid.initString("e436eb80-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Packet = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Packet_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Payload_Value = @import("../zig.zig").Guid.initString("E436EB81-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Payload_Value = @import("../zig.zig").Guid.initString("e436eb81-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Payload = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Payload_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Video_Value = @import("../zig.zig").Guid.initString("E436EB86-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Video_Value = @import("../zig.zig").Guid.initString("e436eb86-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Video = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG1Video_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("05589F82-C356-11CE-BF01-00AA0055595A");
+const CLSID_KSDATAFORMAT_SPECIFIER_MPEG1_VIDEO_Value = @import("../zig.zig").Guid.initString("05589f82-c356-11ce-bf01-00aa0055595a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_MPEG1_VIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_MPEG1_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_MPEG2_PES_Value = @import("../zig.zig").Guid.initString("E06D8020-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_TYPE_MPEG2_PES_Value = @import("../zig.zig").Guid.initString("e06d8020-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_TYPE_MPEG2_PES = &CLSID_KSDATAFORMAT_TYPE_MPEG2_PES_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_MPEG2_PROGRAM_Value = @import("../zig.zig").Guid.initString("E06D8022-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_TYPE_MPEG2_PROGRAM_Value = @import("../zig.zig").Guid.initString("e06d8022-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_TYPE_MPEG2_PROGRAM = &CLSID_KSDATAFORMAT_TYPE_MPEG2_PROGRAM_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_MPEG2_TRANSPORT_Value = @import("../zig.zig").Guid.initString("E06D8023-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_TYPE_MPEG2_TRANSPORT_Value = @import("../zig.zig").Guid.initString("e06d8023-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_TYPE_MPEG2_TRANSPORT = &CLSID_KSDATAFORMAT_TYPE_MPEG2_TRANSPORT_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("E06D8026-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("e06d8026-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_VIDEO = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("E06D80E3-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_VIDEO_Value = @import("../zig.zig").Guid.initString("e06d80e3-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_VIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_VIDEO_Value;
 
-const CLSID_KSPROPSETID_Mpeg2Vid_Value = @import("../zig.zig").Guid.initString("C8E11B60-0CC9-11D0-BD69-003505C103A9");
+const CLSID_KSPROPSETID_Mpeg2Vid_Value = @import("../zig.zig").Guid.initString("c8e11b60-0cc9-11d0-bd69-003505c103a9");
 pub const CLSID_KSPROPSETID_Mpeg2Vid = &CLSID_KSPROPSETID_Mpeg2Vid_Value;
 
 pub const KSPROPERTY_MPEG2VID = extern enum(i32) {
@@ -3009,25 +3009,25 @@ pub const KSMPEGVID_RECT = extern struct {
     EndY: u32,
 };
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D802B-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d802b-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG2_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D80E5-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d80e5-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_MPEG2_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_LPCM_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D8032-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_LPCM_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d8032-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_LPCM_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_LPCM_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_LPCM_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D80E6-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SPECIFIER_LPCM_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d80e6-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_LPCM_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_LPCM_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D802C-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d802c-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_AC3_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_AC3_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D80E4-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SPECIFIER_AC3_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d80e4-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_AC3_AUDIO = &CLSID_KSDATAFORMAT_SPECIFIER_AC3_AUDIO_Value;
 
-const CLSID_KSPROPSETID_AC3_Value = @import("../zig.zig").Guid.initString("BFABE720-6E1F-11D0-BCF2-444553540000");
+const CLSID_KSPROPSETID_AC3_Value = @import("../zig.zig").Guid.initString("bfabe720-6e1f-11d0-bcf2-444553540000");
 pub const CLSID_KSPROPSETID_AC3 = &CLSID_KSPROPSETID_AC3_Value;
 
 pub const KSPROPERTY_AC3 = extern enum(i32) {
@@ -3074,76 +3074,76 @@ pub const KSAC3_ROOM_TYPE = extern struct {
     fLargeRoom: BOOL,
 };
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_Value = @import("../zig.zig").Guid.initString("00000092-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_Value = @import("../zig.zig").Guid.initString("00000092-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_WMA_PRO_Value = @import("../zig.zig").Guid.initString("00000164-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_WMA_PRO_Value = @import("../zig.zig").Guid.initString("00000164-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_WMA_PRO = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_WMA_PRO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_Value = @import("../zig.zig").Guid.initString("00000008-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_Value = @import("../zig.zig").Guid.initString("00000008-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG1_Value = @import("../zig.zig").Guid.initString("00000003-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG1_Value = @import("../zig.zig").Guid.initString("00000003-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG1 = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG1_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG2_Value = @import("../zig.zig").Guid.initString("00000004-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG2_Value = @import("../zig.zig").Guid.initString("00000004-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG2 = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG2_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG3_Value = @import("../zig.zig").Guid.initString("00000005-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG3_Value = @import("../zig.zig").Guid.initString("00000005-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG3 = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_MPEG3_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_AAC_Value = @import("../zig.zig").Guid.initString("00000006-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_AAC_Value = @import("../zig.zig").Guid.initString("00000006-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_AAC = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_AAC_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ATRAC_Value = @import("../zig.zig").Guid.initString("00000008-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ATRAC_Value = @import("../zig.zig").Guid.initString("00000008-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ATRAC = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ATRAC_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ONE_BIT_AUDIO_Value = @import("../zig.zig").Guid.initString("00000009-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ONE_BIT_AUDIO_Value = @import("../zig.zig").Guid.initString("00000009-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ONE_BIT_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_ONE_BIT_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_Value = @import("../zig.zig").Guid.initString("0000000A-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_Value = @import("../zig.zig").Guid.initString("0000000a-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_ATMOS_Value = @import("../zig.zig").Guid.initString("0000010A-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_ATMOS_Value = @import("../zig.zig").Guid.initString("0000010a-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_ATMOS = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_DIGITAL_PLUS_ATMOS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_HD_Value = @import("../zig.zig").Guid.initString("0000000B-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_HD_Value = @import("../zig.zig").Guid.initString("0000000b-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_HD = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DTS_HD_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MLP_Value = @import("../zig.zig").Guid.initString("0000000C-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MLP_Value = @import("../zig.zig").Guid.initString("0000000c-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MLP = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MLP_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT20_Value = @import("../zig.zig").Guid.initString("0000010C-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT20_Value = @import("../zig.zig").Guid.initString("0000010c-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT20 = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT20_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT21_Value = @import("../zig.zig").Guid.initString("0000030C-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT21_Value = @import("../zig.zig").Guid.initString("0000030c-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT21 = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DOLBY_MAT21_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DST_Value = @import("../zig.zig").Guid.initString("0000000D-0CEA-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DST_Value = @import("../zig.zig").Guid.initString("0000000d-0cea-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DST = &CLSID_KSDATAFORMAT_SUBTYPE_IEC61937_DST_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEGLAYER3_Value = @import("../zig.zig").Guid.initString("00000055-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEGLAYER3_Value = @import("../zig.zig").Guid.initString("00000055-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEGLAYER3 = &CLSID_KSDATAFORMAT_SUBTYPE_MPEGLAYER3_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MPEG_HEAAC_Value = @import("../zig.zig").Guid.initString("00001610-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MPEG_HEAAC_Value = @import("../zig.zig").Guid.initString("00001610-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MPEG_HEAAC = &CLSID_KSDATAFORMAT_SUBTYPE_MPEG_HEAAC_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO2_Value = @import("../zig.zig").Guid.initString("00000161-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO2_Value = @import("../zig.zig").Guid.initString("00000161-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO2 = &CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO2_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO3_Value = @import("../zig.zig").Guid.initString("00000162-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO3_Value = @import("../zig.zig").Guid.initString("00000162-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO3 = &CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO3_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO_LOSSLESS_Value = @import("../zig.zig").Guid.initString("00000163-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO_LOSSLESS_Value = @import("../zig.zig").Guid.initString("00000163-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO_LOSSLESS = &CLSID_KSDATAFORMAT_SUBTYPE_WMAUDIO_LOSSLESS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_DTS_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D8033-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_DTS_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d8033-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_DTS_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_DTS_AUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_SDDS_AUDIO_Value = @import("../zig.zig").Guid.initString("E06D8034-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_SDDS_AUDIO_Value = @import("../zig.zig").Guid.initString("e06d8034-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_SDDS_AUDIO = &CLSID_KSDATAFORMAT_SUBTYPE_SDDS_AUDIO_Value;
 
-const CLSID_KSPROPSETID_AudioDecoderOut_Value = @import("../zig.zig").Guid.initString("6CA6E020-43BD-11D0-BD6A-003505C103A9");
+const CLSID_KSPROPSETID_AudioDecoderOut_Value = @import("../zig.zig").Guid.initString("6ca6e020-43bd-11d0-bd6a-003505c103a9");
 pub const CLSID_KSPROPSETID_AudioDecoderOut = &CLSID_KSPROPSETID_AudioDecoderOut_Value;
 
 pub const KSPROPERTY_AUDDECOUT = extern enum(i32) {
@@ -3153,10 +3153,10 @@ pub const KSPROPERTY_AUDDECOUT = extern enum(i32) {
 pub const KSPROPERTY_AUDDECOUT_MODES = KSPROPERTY_AUDDECOUT.MODES;
 pub const KSPROPERTY_AUDDECOUT_CUR_MODE = KSPROPERTY_AUDDECOUT.CUR_MODE;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_SUBPICTURE_Value = @import("../zig.zig").Guid.initString("E06D802D-DB46-11CF-B4D1-00805F6CBBEA");
+const CLSID_KSDATAFORMAT_SUBTYPE_SUBPICTURE_Value = @import("../zig.zig").Guid.initString("e06d802d-db46-11cf-b4d1-00805f6cbbea");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_SUBPICTURE = &CLSID_KSDATAFORMAT_SUBTYPE_SUBPICTURE_Value;
 
-const CLSID_KSPROPSETID_DvdSubPic_Value = @import("../zig.zig").Guid.initString("AC390460-43AF-11D0-BD6A-003505C103A9");
+const CLSID_KSPROPSETID_DvdSubPic_Value = @import("../zig.zig").Guid.initString("ac390460-43af-11d0-bd6a-003505c103a9");
 pub const CLSID_KSPROPSETID_DvdSubPic = &CLSID_KSPROPSETID_DvdSubPic_Value;
 
 pub const KSPROPERTY_DVDSUBPIC = extern enum(i32) {
@@ -3205,7 +3205,7 @@ pub const KSPROPERTY_SPHLI = extern struct {
     ColCon: KS_COLCON,
 };
 
-const CLSID_KSPROPSETID_CopyProt_Value = @import("../zig.zig").Guid.initString("0E8A0A40-6AEF-11D0-9ED0-00A024CA19B3");
+const CLSID_KSPROPSETID_CopyProt_Value = @import("../zig.zig").Guid.initString("0e8a0a40-6aef-11d0-9ed0-00a024ca19b3");
 pub const CLSID_KSPROPSETID_CopyProt = &CLSID_KSPROPSETID_CopyProt_Value;
 
 pub const KSPROPERTY_COPYPROT = extern enum(i32) {
@@ -3286,106 +3286,106 @@ pub const KS_MACROVISION_LEVEL1 = KS_COPY_MACROVISION_LEVEL.KS_MACROVISION_LEVEL
 pub const KS_MACROVISION_LEVEL2 = KS_COPY_MACROVISION_LEVEL.KS_MACROVISION_LEVEL2;
 pub const KS_MACROVISION_LEVEL3 = KS_COPY_MACROVISION_LEVEL.KS_MACROVISION_LEVEL3;
 
-const CLSID_KSCATEGORY_TVTUNER_Value = @import("../zig.zig").Guid.initString("A799A800-A46D-11D0-A18C-00A02401DCD4");
+const CLSID_KSCATEGORY_TVTUNER_Value = @import("../zig.zig").Guid.initString("a799a800-a46d-11d0-a18c-00a02401dcd4");
 pub const CLSID_KSCATEGORY_TVTUNER = &CLSID_KSCATEGORY_TVTUNER_Value;
 
-const CLSID_KSCATEGORY_CROSSBAR_Value = @import("../zig.zig").Guid.initString("A799A801-A46D-11D0-A18C-00A02401DCD4");
+const CLSID_KSCATEGORY_CROSSBAR_Value = @import("../zig.zig").Guid.initString("a799a801-a46d-11d0-a18c-00a02401dcd4");
 pub const CLSID_KSCATEGORY_CROSSBAR = &CLSID_KSCATEGORY_CROSSBAR_Value;
 
-const CLSID_KSCATEGORY_TVAUDIO_Value = @import("../zig.zig").Guid.initString("A799A802-A46D-11D0-A18C-00A02401DCD4");
+const CLSID_KSCATEGORY_TVAUDIO_Value = @import("../zig.zig").Guid.initString("a799a802-a46d-11d0-a18c-00a02401dcd4");
 pub const CLSID_KSCATEGORY_TVAUDIO = &CLSID_KSCATEGORY_TVAUDIO_Value;
 
-const CLSID_KSCATEGORY_VPMUX_Value = @import("../zig.zig").Guid.initString("A799A803-A46D-11D0-A18C-00A02401DCD4");
+const CLSID_KSCATEGORY_VPMUX_Value = @import("../zig.zig").Guid.initString("a799a803-a46d-11d0-a18c-00a02401dcd4");
 pub const CLSID_KSCATEGORY_VPMUX = &CLSID_KSCATEGORY_VPMUX_Value;
 
-const CLSID_KSCATEGORY_VBICODEC_Value = @import("../zig.zig").Guid.initString("07DAD660-22F1-11D1-A9F4-00C04FBBDE8F");
+const CLSID_KSCATEGORY_VBICODEC_Value = @import("../zig.zig").Guid.initString("07dad660-22f1-11d1-a9f4-00c04fbbde8f");
 pub const CLSID_KSCATEGORY_VBICODEC = &CLSID_KSCATEGORY_VBICODEC_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_VPVideo_Value = @import("../zig.zig").Guid.initString("5A9B6A40-1A22-11D1-BAD9-00609744111A");
+const CLSID_KSDATAFORMAT_SUBTYPE_VPVideo_Value = @import("../zig.zig").Guid.initString("5a9b6a40-1a22-11d1-bad9-00609744111a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_VPVideo = &CLSID_KSDATAFORMAT_SUBTYPE_VPVideo_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_VPVBI_Value = @import("../zig.zig").Guid.initString("5A9B6A41-1A22-11D1-BAD9-00609744111A");
+const CLSID_KSDATAFORMAT_SUBTYPE_VPVBI_Value = @import("../zig.zig").Guid.initString("5a9b6a41-1a22-11d1-bad9-00609744111a");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_VPVBI = &CLSID_KSDATAFORMAT_SUBTYPE_VPVBI_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO_Value = @import("../zig.zig").Guid.initString("05589F80-C356-11CE-BF01-00AA0055595A");
+const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO_Value = @import("../zig.zig").Guid.initString("05589f80-c356-11ce-bf01-00aa0055595a");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO = &CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO2_Value = @import("../zig.zig").Guid.initString("F72A76A0-EB0A-11D0-ACE4-0000C0CC16BA");
+const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO2_Value = @import("../zig.zig").Guid.initString("f72a76a0-eb0a-11d0-ace4-0000c0cc16ba");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO2 = &CLSID_KSDATAFORMAT_SPECIFIER_VIDEOINFO2_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_H264_VIDEO_Value = @import("../zig.zig").Guid.initString("2017BE05-6629-4248-AAED-7E1A47BC9B9C");
+const CLSID_KSDATAFORMAT_SPECIFIER_H264_VIDEO_Value = @import("../zig.zig").Guid.initString("2017be05-6629-4248-aaed-7e1a47bc9b9c");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_H264_VIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_H264_VIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_JPEG_IMAGE_Value = @import("../zig.zig").Guid.initString("692FA379-D3E8-4651-B5B4-0B94B013EEAF");
+const CLSID_KSDATAFORMAT_SPECIFIER_JPEG_IMAGE_Value = @import("../zig.zig").Guid.initString("692fa379-d3e8-4651-b5b4-0b94b013eeaf");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_JPEG_IMAGE = &CLSID_KSDATAFORMAT_SPECIFIER_JPEG_IMAGE_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_IMAGE_Value = @import("../zig.zig").Guid.initString("692FA379-D3E8-4651-B5B4-0B94B013EEAF");
+const CLSID_KSDATAFORMAT_SPECIFIER_IMAGE_Value = @import("../zig.zig").Guid.initString("692fa379-d3e8-4651-b5b4-0b94b013eeaf");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_IMAGE = &CLSID_KSDATAFORMAT_SPECIFIER_IMAGE_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_IMAGE_Value = @import("../zig.zig").Guid.initString("72178C23-E45B-11D5-BC2A-00B0D0F3F4AB");
+const CLSID_KSDATAFORMAT_TYPE_IMAGE_Value = @import("../zig.zig").Guid.initString("72178c23-e45b-11d5-bc2a-00b0d0f3f4ab");
 pub const CLSID_KSDATAFORMAT_TYPE_IMAGE = &CLSID_KSDATAFORMAT_TYPE_IMAGE_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_JPEG_Value = @import("../zig.zig").Guid.initString("19E4A5AA-5662-4FC5-A0C0-1758028E1057");
+const CLSID_KSDATAFORMAT_SUBTYPE_JPEG_Value = @import("../zig.zig").Guid.initString("19e4a5aa-5662-4fc5-a0c0-1758028e1057");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_JPEG = &CLSID_KSDATAFORMAT_SUBTYPE_JPEG_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IMAGE_RGB32_Value = @import("../zig.zig").Guid.initString("00000016-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IMAGE_RGB32_Value = @import("../zig.zig").Guid.initString("00000016-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IMAGE_RGB32 = &CLSID_KSDATAFORMAT_SUBTYPE_IMAGE_RGB32_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L8_Value = @import("../zig.zig").Guid.initString("00000032-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L8_Value = @import("../zig.zig").Guid.initString("00000032-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L8 = &CLSID_KSDATAFORMAT_SUBTYPE_L8_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L8_IR_Value = @import("../zig.zig").Guid.initString("00000032-0002-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L8_IR_Value = @import("../zig.zig").Guid.initString("00000032-0002-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L8_IR = &CLSID_KSDATAFORMAT_SUBTYPE_L8_IR_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L8_CUSTOM_Value = @import("../zig.zig").Guid.initString("00000032-8000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L8_CUSTOM_Value = @import("../zig.zig").Guid.initString("00000032-8000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L8_CUSTOM = &CLSID_KSDATAFORMAT_SUBTYPE_L8_CUSTOM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L16_Value = @import("../zig.zig").Guid.initString("00000051-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L16_Value = @import("../zig.zig").Guid.initString("00000051-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L16 = &CLSID_KSDATAFORMAT_SUBTYPE_L16_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L16_IR_Value = @import("../zig.zig").Guid.initString("00000051-0002-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L16_IR_Value = @import("../zig.zig").Guid.initString("00000051-0002-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L16_IR = &CLSID_KSDATAFORMAT_SUBTYPE_L16_IR_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_D16_Value = @import("../zig.zig").Guid.initString("00000050-0004-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_D16_Value = @import("../zig.zig").Guid.initString("00000050-0004-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_D16 = &CLSID_KSDATAFORMAT_SUBTYPE_D16_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_L16_CUSTOM_Value = @import("../zig.zig").Guid.initString("00000051-8000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_L16_CUSTOM_Value = @import("../zig.zig").Guid.initString("00000051-8000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_L16_CUSTOM = &CLSID_KSDATAFORMAT_SUBTYPE_L16_CUSTOM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_IR_Value = @import("../zig.zig").Guid.initString("47504A4D-0002-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_IR_Value = @import("../zig.zig").Guid.initString("47504a4d-0002-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_IR = &CLSID_KSDATAFORMAT_SUBTYPE_MJPG_IR_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_DEPTH_Value = @import("../zig.zig").Guid.initString("47504A4D-0004-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_DEPTH_Value = @import("../zig.zig").Guid.initString("47504a4d-0004-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_DEPTH = &CLSID_KSDATAFORMAT_SUBTYPE_MJPG_DEPTH_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_CUSTOM_Value = @import("../zig.zig").Guid.initString("47504A4D-8000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_CUSTOM_Value = @import("../zig.zig").Guid.initString("47504a4d-8000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_MJPG_CUSTOM = &CLSID_KSDATAFORMAT_SUBTYPE_MJPG_CUSTOM_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_ANALOGVIDEO_Value = @import("../zig.zig").Guid.initString("0482DDE1-7817-11CF-8A03-00AA006ECB65");
+const CLSID_KSDATAFORMAT_TYPE_ANALOGVIDEO_Value = @import("../zig.zig").Guid.initString("0482dde1-7817-11cf-8a03-00aa006ecb65");
 pub const CLSID_KSDATAFORMAT_TYPE_ANALOGVIDEO = &CLSID_KSDATAFORMAT_TYPE_ANALOGVIDEO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_ANALOGVIDEO_Value = @import("../zig.zig").Guid.initString("0482DDE0-7817-11CF-8A03-00AA006ECB65");
+const CLSID_KSDATAFORMAT_SPECIFIER_ANALOGVIDEO_Value = @import("../zig.zig").Guid.initString("0482dde0-7817-11cf-8a03-00aa006ecb65");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_ANALOGVIDEO = &CLSID_KSDATAFORMAT_SPECIFIER_ANALOGVIDEO_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_ANALOGAUDIO_Value = @import("../zig.zig").Guid.initString("0482DEE1-7817-11CF-8A03-00AA006ECB65");
+const CLSID_KSDATAFORMAT_TYPE_ANALOGAUDIO_Value = @import("../zig.zig").Guid.initString("0482dee1-7817-11cf-8a03-00aa006ecb65");
 pub const CLSID_KSDATAFORMAT_TYPE_ANALOGAUDIO = &CLSID_KSDATAFORMAT_TYPE_ANALOGAUDIO_Value;
 
-const CLSID_KSDATAFORMAT_SPECIFIER_VBI_Value = @import("../zig.zig").Guid.initString("F72A76E0-EB0A-11D0-ACE4-0000C0CC16BA");
+const CLSID_KSDATAFORMAT_SPECIFIER_VBI_Value = @import("../zig.zig").Guid.initString("f72a76e0-eb0a-11d0-ace4-0000c0cc16ba");
 pub const CLSID_KSDATAFORMAT_SPECIFIER_VBI = &CLSID_KSDATAFORMAT_SPECIFIER_VBI_Value;
 
-const CLSID_KSDATAFORMAT_TYPE_VBI_Value = @import("../zig.zig").Guid.initString("F72A76E1-EB0A-11D0-ACE4-0000C0CC16BA");
+const CLSID_KSDATAFORMAT_TYPE_VBI_Value = @import("../zig.zig").Guid.initString("f72a76e1-eb0a-11d0-ace4-0000c0cc16ba");
 pub const CLSID_KSDATAFORMAT_TYPE_VBI = &CLSID_KSDATAFORMAT_TYPE_VBI_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_RAW8_Value = @import("../zig.zig").Guid.initString("CA20D9A0-3E3E-11D1-9BF9-00C04FBBDEBF");
+const CLSID_KSDATAFORMAT_SUBTYPE_RAW8_Value = @import("../zig.zig").Guid.initString("ca20d9a0-3e3e-11d1-9bf9-00c04fbbdebf");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_RAW8 = &CLSID_KSDATAFORMAT_SUBTYPE_RAW8_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_CC_Value = @import("../zig.zig").Guid.initString("33214CC1-011F-11D2-B4B1-00A0D102CFBE");
+const CLSID_KSDATAFORMAT_SUBTYPE_CC_Value = @import("../zig.zig").Guid.initString("33214cc1-011f-11d2-b4b1-00a0d102cfbe");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_CC = &CLSID_KSDATAFORMAT_SUBTYPE_CC_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_NABTS_Value = @import("../zig.zig").Guid.initString("F72A76E2-EB0A-11D0-ACE4-0000C0CC16BA");
+const CLSID_KSDATAFORMAT_SUBTYPE_NABTS_Value = @import("../zig.zig").Guid.initString("f72a76e2-eb0a-11d0-ace4-0000c0cc16ba");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_NABTS = &CLSID_KSDATAFORMAT_SUBTYPE_NABTS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_TELETEXT_Value = @import("../zig.zig").Guid.initString("F72A76E3-EB0A-11D0-ACE4-0000C0CC16BA");
+const CLSID_KSDATAFORMAT_SUBTYPE_TELETEXT_Value = @import("../zig.zig").Guid.initString("f72a76e3-eb0a-11d0-ace4-0000c0cc16ba");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_TELETEXT = &CLSID_KSDATAFORMAT_SUBTYPE_TELETEXT_Value;
 
 pub const KS_RGBQUAD = extern struct {
@@ -3708,7 +3708,7 @@ pub const KS_DATARANGE_ANALOGVIDEO = extern struct {
     AnalogVideoInfo: tagKS_AnalogVideoInfo,
 };
 
-const CLSID_KSPROPSETID_VBICAP_PROPERTIES_Value = @import("../zig.zig").Guid.initString("F162C607-7B35-496F-AD7F-2DCA3B46B718");
+const CLSID_KSPROPSETID_VBICAP_PROPERTIES_Value = @import("../zig.zig").Guid.initString("f162c607-7b35-496f-ad7f-2dca3b46b718");
 pub const CLSID_KSPROPSETID_VBICAP_PROPERTIES = &CLSID_KSPROPSETID_VBICAP_PROPERTIES_Value;
 
 pub const KSPROPERTY_VBICAP = extern enum(i32) {
@@ -3722,10 +3722,10 @@ pub const VBICAP_PROPERTIES_PROTECTION_S = extern struct {
     Status: u32,
 };
 
-const CLSID_KSDATAFORMAT_TYPE_NABTS_Value = @import("../zig.zig").Guid.initString("E757BCA0-39AC-11D1-A9F5-00C04FBBDE8F");
+const CLSID_KSDATAFORMAT_TYPE_NABTS_Value = @import("../zig.zig").Guid.initString("e757bca0-39ac-11d1-a9f5-00c04fbbde8f");
 pub const CLSID_KSDATAFORMAT_TYPE_NABTS = &CLSID_KSDATAFORMAT_TYPE_NABTS_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_NABTS_FEC_Value = @import("../zig.zig").Guid.initString("E757BCA1-39AC-11D1-A9F5-00C04FBBDE8F");
+const CLSID_KSDATAFORMAT_SUBTYPE_NABTS_FEC_Value = @import("../zig.zig").Guid.initString("e757bca1-39ac-11d1-a9f5-00c04fbbde8f");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_NABTS_FEC = &CLSID_KSDATAFORMAT_SUBTYPE_NABTS_FEC_Value;
 
 pub const NABTSFEC_BUFFER = extern struct {
@@ -3735,7 +3735,7 @@ pub const NABTSFEC_BUFFER = extern struct {
     data: [448]u8,
 };
 
-const CLSID_KSPROPSETID_VBICodecFiltering_Value = @import("../zig.zig").Guid.initString("CAFEB0CA-8715-11D0-BD6A-0035C0EDBABE");
+const CLSID_KSPROPSETID_VBICodecFiltering_Value = @import("../zig.zig").Guid.initString("cafeb0ca-8715-11d0-bd6a-0035c0edbabe");
 pub const CLSID_KSPROPSETID_VBICodecFiltering = &CLSID_KSPROPSETID_VBICodecFiltering_Value;
 
 pub const KSPROPERTY_VBICODECFILTERING = extern enum(i32) {
@@ -3900,49 +3900,49 @@ pub const KSPROPERTY_VBICODECFILTERING_STATISTICS_CC_PIN_S = extern struct {
     Statistics: VBICODECFILTERING_STATISTICS_CC_PIN,
 };
 
-const CLSID_PINNAME_VIDEO_CAPTURE_Value = @import("../zig.zig").Guid.initString("FB6C4281-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_CAPTURE_Value = @import("../zig.zig").Guid.initString("fb6c4281-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_CAPTURE = &CLSID_PINNAME_VIDEO_CAPTURE_Value;
 
-const CLSID_PINNAME_VIDEO_CC_CAPTURE_Value = @import("../zig.zig").Guid.initString("1AAD8061-012D-11D2-B4B1-00A0D102CFBE");
+const CLSID_PINNAME_VIDEO_CC_CAPTURE_Value = @import("../zig.zig").Guid.initString("1aad8061-012d-11d2-b4b1-00a0d102cfbe");
 pub const CLSID_PINNAME_VIDEO_CC_CAPTURE = &CLSID_PINNAME_VIDEO_CC_CAPTURE_Value;
 
-const CLSID_PINNAME_VIDEO_NABTS_CAPTURE_Value = @import("../zig.zig").Guid.initString("29703660-498A-11D2-B4B1-00A0D102CFBE");
+const CLSID_PINNAME_VIDEO_NABTS_CAPTURE_Value = @import("../zig.zig").Guid.initString("29703660-498a-11d2-b4b1-00a0d102cfbe");
 pub const CLSID_PINNAME_VIDEO_NABTS_CAPTURE = &CLSID_PINNAME_VIDEO_NABTS_CAPTURE_Value;
 
-const CLSID_PINNAME_VIDEO_PREVIEW_Value = @import("../zig.zig").Guid.initString("FB6C4282-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_PREVIEW_Value = @import("../zig.zig").Guid.initString("fb6c4282-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_PREVIEW = &CLSID_PINNAME_VIDEO_PREVIEW_Value;
 
-const CLSID_PINNAME_VIDEO_ANALOGVIDEOIN_Value = @import("../zig.zig").Guid.initString("FB6C4283-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_ANALOGVIDEOIN_Value = @import("../zig.zig").Guid.initString("fb6c4283-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_ANALOGVIDEOIN = &CLSID_PINNAME_VIDEO_ANALOGVIDEOIN_Value;
 
-const CLSID_PINNAME_VIDEO_VBI_Value = @import("../zig.zig").Guid.initString("FB6C4284-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_VBI_Value = @import("../zig.zig").Guid.initString("fb6c4284-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_VBI = &CLSID_PINNAME_VIDEO_VBI_Value;
 
-const CLSID_PINNAME_VIDEO_VIDEOPORT_Value = @import("../zig.zig").Guid.initString("FB6C4285-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_VIDEOPORT_Value = @import("../zig.zig").Guid.initString("fb6c4285-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_VIDEOPORT = &CLSID_PINNAME_VIDEO_VIDEOPORT_Value;
 
-const CLSID_PINNAME_VIDEO_NABTS_Value = @import("../zig.zig").Guid.initString("FB6C4286-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_NABTS_Value = @import("../zig.zig").Guid.initString("fb6c4286-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_NABTS = &CLSID_PINNAME_VIDEO_NABTS_Value;
 
-const CLSID_PINNAME_VIDEO_EDS_Value = @import("../zig.zig").Guid.initString("FB6C4287-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_EDS_Value = @import("../zig.zig").Guid.initString("fb6c4287-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_EDS = &CLSID_PINNAME_VIDEO_EDS_Value;
 
-const CLSID_PINNAME_VIDEO_TELETEXT_Value = @import("../zig.zig").Guid.initString("FB6C4288-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_TELETEXT_Value = @import("../zig.zig").Guid.initString("fb6c4288-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_TELETEXT = &CLSID_PINNAME_VIDEO_TELETEXT_Value;
 
-const CLSID_PINNAME_VIDEO_CC_Value = @import("../zig.zig").Guid.initString("FB6C4289-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_CC_Value = @import("../zig.zig").Guid.initString("fb6c4289-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_CC = &CLSID_PINNAME_VIDEO_CC_Value;
 
-const CLSID_PINNAME_VIDEO_STILL_Value = @import("../zig.zig").Guid.initString("FB6C428A-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_STILL_Value = @import("../zig.zig").Guid.initString("fb6c428a-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_STILL = &CLSID_PINNAME_VIDEO_STILL_Value;
 
-const CLSID_PINNAME_IMAGE_Value = @import("../zig.zig").Guid.initString("38A0CD98-D49B-4CE8-B48A-344667A17830");
+const CLSID_PINNAME_IMAGE_Value = @import("../zig.zig").Guid.initString("38a0cd98-d49b-4ce8-b48a-344667a17830");
 pub const CLSID_PINNAME_IMAGE = &CLSID_PINNAME_IMAGE_Value;
 
-const CLSID_PINNAME_VIDEO_TIMECODE_Value = @import("../zig.zig").Guid.initString("FB6C428B-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_TIMECODE_Value = @import("../zig.zig").Guid.initString("fb6c428b-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_TIMECODE = &CLSID_PINNAME_VIDEO_TIMECODE_Value;
 
-const CLSID_PINNAME_VIDEO_VIDEOPORT_VBI_Value = @import("../zig.zig").Guid.initString("FB6C428C-0353-11D1-905F-0000C0CC16BA");
+const CLSID_PINNAME_VIDEO_VIDEOPORT_VBI_Value = @import("../zig.zig").Guid.initString("fb6c428c-0353-11d1-905f-0000c0cc16ba");
 pub const CLSID_PINNAME_VIDEO_VIDEOPORT_VBI = &CLSID_PINNAME_VIDEO_VIDEOPORT_VBI_Value;
 
 pub const CAPTURE_MEMORY_ALLOCATION_FLAGS = extern enum(i32) {
@@ -3960,7 +3960,7 @@ pub const KS_CAPTURE_ALLOC_SYSTEM_AGP = CAPTURE_MEMORY_ALLOCATION_FLAGS.KS_CAPTU
 pub const KS_CAPTURE_ALLOC_VRAM_MAPPED = CAPTURE_MEMORY_ALLOCATION_FLAGS.KS_CAPTURE_ALLOC_VRAM_MAPPED;
 pub const KS_CAPTURE_ALLOC_SECURE_BUFFER = CAPTURE_MEMORY_ALLOCATION_FLAGS.KS_CAPTURE_ALLOC_SECURE_BUFFER;
 
-const CLSID_KSPROPSETID_VramCapture_Value = @import("../zig.zig").Guid.initString("E73FACE3-2880-4902-B799-88D0CD634E0F");
+const CLSID_KSPROPSETID_VramCapture_Value = @import("../zig.zig").Guid.initString("e73face3-2880-4902-b799-88d0cd634e0f");
 pub const CLSID_KSPROPSETID_VramCapture = &CLSID_KSPROPSETID_VramCapture_Value;
 
 pub const KSPROPERTY_VIDMEM_TRANSPORT = extern enum(i32) {
@@ -3997,10 +3997,10 @@ pub const SECURE_BUFFER_INFO = extern struct {
     ullReserved: [16]u64,
 };
 
-const CLSID_KS_SECURE_CAMERA_SCENARIO_ID_Value = @import("../zig.zig").Guid.initString("AE53FC6E-8D89-4488-9D2E-4D008731C5FD");
+const CLSID_KS_SECURE_CAMERA_SCENARIO_ID_Value = @import("../zig.zig").Guid.initString("ae53fc6e-8d89-4488-9d2e-4d008731c5fd");
 pub const CLSID_KS_SECURE_CAMERA_SCENARIO_ID = &CLSID_KS_SECURE_CAMERA_SCENARIO_ID_Value;
 
-const CLSID_KSPROPSETID_MPEG4_MediaType_Attributes_Value = @import("../zig.zig").Guid.initString("FF6C4BFA-07A9-4C7B-A237-672F9D68065F");
+const CLSID_KSPROPSETID_MPEG4_MediaType_Attributes_Value = @import("../zig.zig").Guid.initString("ff6c4bfa-07a9-4c7b-a237-672f9d68065f");
 pub const CLSID_KSPROPSETID_MPEG4_MediaType_Attributes = &CLSID_KSPROPSETID_MPEG4_MediaType_Attributes_Value;
 
 pub const KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES = extern enum(i32) {
@@ -4008,7 +4008,7 @@ pub const KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES = extern enum(i32) {
 };
 pub const KSPROPERTY_MPEG4_MEDIATYPE_SD_BOX = KSPROPERTY_MPEG4_MEDIATYPE_ATTRIBUTES.KSPROPERTY_MPEG4_MEDIATYPE_SD_BOX;
 
-const CLSID_KSEVENTSETID_DynamicFormatChange_Value = @import("../zig.zig").Guid.initString("162AC456-83D7-4239-96DF-C75FFA138BC6");
+const CLSID_KSEVENTSETID_DynamicFormatChange_Value = @import("../zig.zig").Guid.initString("162ac456-83d7-4239-96df-c75ffa138bc6");
 pub const CLSID_KSEVENTSETID_DynamicFormatChange = &CLSID_KSEVENTSETID_DynamicFormatChange_Value;
 
 pub const KSEVENT_DYNAMICFORMATCHANGE = extern enum(i32) {
@@ -4086,7 +4086,7 @@ pub const KS_AnalogVideo_SECAM_L = KS_AnalogVideoStandard.KS_AnalogVideo_SECAM_L
 pub const KS_AnalogVideo_SECAM_L1 = KS_AnalogVideoStandard.KS_AnalogVideo_SECAM_L1;
 pub const KS_AnalogVideo_PAL_N_COMBO = KS_AnalogVideoStandard.KS_AnalogVideo_PAL_N_COMBO;
 
-const CLSID_PROPSETID_ALLOCATOR_CONTROL_Value = @import("../zig.zig").Guid.initString("53171960-148E-11D2-9979-0000C0CC16BA");
+const CLSID_PROPSETID_ALLOCATOR_CONTROL_Value = @import("../zig.zig").Guid.initString("53171960-148e-11d2-9979-0000c0cc16ba");
 pub const CLSID_PROPSETID_ALLOCATOR_CONTROL = &CLSID_PROPSETID_ALLOCATOR_CONTROL_Value;
 
 pub const KSPROPERTY_ALLOCATOR_CONTROL = extern enum(i32) {
@@ -4113,7 +4113,7 @@ pub const KSPROPERTY_ALLOCATOR_CONTROL_CAPTURE_INTERLEAVE_S = extern struct {
     InterleavedCapPossible: u32,
 };
 
-const CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP_Value = @import("../zig.zig").Guid.initString("C6E13360-30AC-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP_Value = @import("../zig.zig").Guid.initString("c6e13360-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP = &CLSID_PROPSETID_VIDCAP_VIDEOPROCAMP_Value;
 
 pub const KSPROPERTY_VIDCAP_VIDEOPROCAMP = extern enum(i32) {
@@ -4177,7 +4177,7 @@ pub const KSPROPERTY_VIDEOPROCAMP_NODE_S2 = extern struct {
     Value2: i32,
 };
 
-const CLSID_PROPSETID_VIDCAP_SELECTOR_Value = @import("../zig.zig").Guid.initString("1ABDAECA-68B6-4F83-9371-B413907C7B9F");
+const CLSID_PROPSETID_VIDCAP_SELECTOR_Value = @import("../zig.zig").Guid.initString("1abdaeca-68b6-4f83-9371-b413907c7b9f");
 pub const CLSID_PROPSETID_VIDCAP_SELECTOR = &CLSID_PROPSETID_VIDCAP_SELECTOR_Value;
 
 pub const KSPROPERTY_VIDCAP_SELECTOR = extern enum(i32) {
@@ -4201,7 +4201,7 @@ pub const KSPROPERTY_SELECTOR_NODE_S = extern struct {
     Capabilities: u32,
 };
 
-const CLSID_PROPSETID_TUNER_Value = @import("../zig.zig").Guid.initString("6A2E0605-28E4-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_TUNER_Value = @import("../zig.zig").Guid.initString("6a2e0605-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_TUNER = &CLSID_PROPSETID_TUNER_Value;
 
 pub const KSPROPERTY_TUNER = extern enum(i32) {
@@ -4346,7 +4346,7 @@ pub const TUNER_ANALOG_CAPS_S = extern struct {
     FineTuneSensingRange: u32,
 };
 
-const CLSID_EVENTSETID_TUNER_Value = @import("../zig.zig").Guid.initString("6A2E0606-28E4-11D0-A18C-00A0C9118956");
+const CLSID_EVENTSETID_TUNER_Value = @import("../zig.zig").Guid.initString("6a2e0606-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_TUNER = &CLSID_EVENTSETID_TUNER_Value;
 
 pub const KSEVENT_TUNER = extern enum(i32) {
@@ -4383,31 +4383,31 @@ pub const KSEVENT_TUNER_INITIATE_SCAN_S = extern struct {
     EndFrequency: u32,
 };
 
-const CLSID_KSNODETYPE_VIDEO_STREAMING_Value = @import("../zig.zig").Guid.initString("DFF229E1-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_STREAMING_Value = @import("../zig.zig").Guid.initString("dff229e1-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_STREAMING = &CLSID_KSNODETYPE_VIDEO_STREAMING_Value;
 
-const CLSID_KSNODETYPE_VIDEO_INPUT_TERMINAL_Value = @import("../zig.zig").Guid.initString("DFF229E2-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_INPUT_TERMINAL_Value = @import("../zig.zig").Guid.initString("dff229e2-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_INPUT_TERMINAL = &CLSID_KSNODETYPE_VIDEO_INPUT_TERMINAL_Value;
 
-const CLSID_KSNODETYPE_VIDEO_OUTPUT_TERMINAL_Value = @import("../zig.zig").Guid.initString("DFF229E3-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_OUTPUT_TERMINAL_Value = @import("../zig.zig").Guid.initString("dff229e3-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_OUTPUT_TERMINAL = &CLSID_KSNODETYPE_VIDEO_OUTPUT_TERMINAL_Value;
 
-const CLSID_KSNODETYPE_VIDEO_SELECTOR_Value = @import("../zig.zig").Guid.initString("DFF229E4-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_SELECTOR_Value = @import("../zig.zig").Guid.initString("dff229e4-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_SELECTOR = &CLSID_KSNODETYPE_VIDEO_SELECTOR_Value;
 
-const CLSID_KSNODETYPE_VIDEO_PROCESSING_Value = @import("../zig.zig").Guid.initString("DFF229E5-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_PROCESSING_Value = @import("../zig.zig").Guid.initString("dff229e5-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_PROCESSING = &CLSID_KSNODETYPE_VIDEO_PROCESSING_Value;
 
-const CLSID_KSNODETYPE_VIDEO_CAMERA_TERMINAL_Value = @import("../zig.zig").Guid.initString("DFF229E6-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_CAMERA_TERMINAL_Value = @import("../zig.zig").Guid.initString("dff229e6-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_CAMERA_TERMINAL = &CLSID_KSNODETYPE_VIDEO_CAMERA_TERMINAL_Value;
 
-const CLSID_KSNODETYPE_VIDEO_INPUT_MTT_Value = @import("../zig.zig").Guid.initString("DFF229E7-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_INPUT_MTT_Value = @import("../zig.zig").Guid.initString("dff229e7-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_INPUT_MTT = &CLSID_KSNODETYPE_VIDEO_INPUT_MTT_Value;
 
-const CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT_Value = @import("../zig.zig").Guid.initString("DFF229E8-F70F-11D0-B917-00A0C9223196");
+const CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT_Value = @import("../zig.zig").Guid.initString("dff229e8-f70f-11d0-b917-00a0c9223196");
 pub const CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT = &CLSID_KSNODETYPE_VIDEO_OUTPUT_MTT_Value;
 
-const CLSID_PROPSETID_VIDCAP_VIDEOENCODER_Value = @import("../zig.zig").Guid.initString("6A2E0610-28E4-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_VIDEOENCODER_Value = @import("../zig.zig").Guid.initString("6a2e0610-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOENCODER = &CLSID_PROPSETID_VIDCAP_VIDEOENCODER_Value;
 
 pub const KSPROPERTY_VIDCAP_VIDEOENCODER = extern enum(i32) {
@@ -4428,7 +4428,7 @@ pub const KSPROPERTY_VIDEOENCODER_S = extern struct {
     Capabilities: u32,
 };
 
-const CLSID_PROPSETID_VIDCAP_VIDEODECODER_Value = @import("../zig.zig").Guid.initString("C6E13350-30AC-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_VIDEODECODER_Value = @import("../zig.zig").Guid.initString("c6e13350-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEODECODER = &CLSID_PROPSETID_VIDCAP_VIDEODECODER_Value;
 
 pub const KSPROPERTY_VIDCAP_VIDEODECODER = extern enum(i32) {
@@ -4481,7 +4481,7 @@ pub const KSPROPERTY_VIDEODECODER_S = extern struct {
     Value: u32,
 };
 
-const CLSID_EVENTSETID_VIDEODECODER_Value = @import("../zig.zig").Guid.initString("6A2E0621-28E4-11D0-A18C-00A0C9118956");
+const CLSID_EVENTSETID_VIDEODECODER_Value = @import("../zig.zig").Guid.initString("6a2e0621-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_VIDEODECODER = &CLSID_EVENTSETID_VIDEODECODER_Value;
 
 pub const KSEVENT_VIDEODECODER = extern enum(i32) {
@@ -4489,7 +4489,7 @@ pub const KSEVENT_VIDEODECODER = extern enum(i32) {
 };
 pub const KSEVENT_VIDEODECODER_CHANGED = KSEVENT_VIDEODECODER.CHANGED;
 
-const CLSID_KSEVENTSETID_CameraAsyncControl_Value = @import("../zig.zig").Guid.initString("22A11754-9701-4088-B33F-6B9CBC52DF5E");
+const CLSID_KSEVENTSETID_CameraAsyncControl_Value = @import("../zig.zig").Guid.initString("22a11754-9701-4088-b33f-6b9cbc52df5e");
 pub const CLSID_KSEVENTSETID_CameraAsyncControl = &CLSID_KSEVENTSETID_CameraAsyncControl_Value;
 
 pub const KSEVENT_CAMERACONTROL = extern enum(i32) {
@@ -4499,7 +4499,7 @@ pub const KSEVENT_CAMERACONTROL = extern enum(i32) {
 pub const KSEVENT_CAMERACONTROL_FOCUS = KSEVENT_CAMERACONTROL.FOCUS;
 pub const KSEVENT_CAMERACONTROL_ZOOM = KSEVENT_CAMERACONTROL.ZOOM;
 
-const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_Value = @import("../zig.zig").Guid.initString("C6E13370-30AC-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_Value = @import("../zig.zig").Guid.initString("c6e13370-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_Value;
 
 pub const KSPROPERTY_VIDCAP_CAMERACONTROL = extern enum(i32) {
@@ -4606,7 +4606,7 @@ pub const KSPROPERTY_CAMERACONTROL_NODE_FOCAL_LENGTH_S = extern struct {
     lObjectiveFocalLengthMax: i32,
 };
 
-const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH_Value = @import("../zig.zig").Guid.initString("785E8F49-63A2-4144-AB70-FFB278FA26CE");
+const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH_Value = @import("../zig.zig").Guid.initString("785e8f49-63a2-4144-ab70-ffb278fa26ce");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_FLASH_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_FLASH = extern enum(i32) {
@@ -4619,7 +4619,7 @@ pub const KSPROPERTY_CAMERACONTROL_FLASH_S = extern struct {
     Capabilities: u32,
 };
 
-const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION_Value = @import("../zig.zig").Guid.initString("43964BD3-7716-404E-8BE1-D299B20E50FD");
+const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION_Value = @import("../zig.zig").Guid.initString("43964bd3-7716-404e-8be1-d299b20e50fd");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_VIDEO_STABILIZATION_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_VIDEO_STABILIZATION_MODE = extern enum(i32) {
@@ -4632,7 +4632,7 @@ pub const KSPROPERTY_CAMERACONTROL_VIDEOSTABILIZATION_MODE_S = extern struct {
     Capabilities: u32,
 };
 
-const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value = @import("../zig.zig").Guid.initString("9D12D198-F86C-4FED-B023-5D87653DA793");
+const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value = @import("../zig.zig").Guid.initString("9d12d198-f86c-4fed-b023-5d87653da793");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST = extern enum(i32) {
@@ -4640,7 +4640,7 @@ pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST = extern enum(i32) {
 };
 pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_PROPERTY_ID = KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST.PROPERTY_ID;
 
-const CLSID_EVENTSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value = @import("../zig.zig").Guid.initString("2FDFFC5D-C732-4BA6-B5DF-6B4D7FC88B8B");
+const CLSID_EVENTSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value = @import("../zig.zig").Guid.initString("2fdffc5d-c732-4ba6-b5df-6b4d7fc88b8b");
 pub const CLSID_EVENTSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST = &CLSID_EVENTSETID_VIDCAP_CAMERACONTROL_REGION_OF_INTEREST_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_S = extern struct {
@@ -4652,7 +4652,7 @@ pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_S = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY_Value = @import("../zig.zig").Guid.initString("9D3D7BBF-5C6D-4138-BB00-584EDD20F7C5");
+const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY_Value = @import("../zig.zig").Guid.initString("9d3d7bbf-5c6d-4138-bb00-584edd20f7c5");
 pub const CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY = &CLSID_PROPSETID_VIDCAP_CAMERACONTROL_IMAGE_PIN_CAPABILITY_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_IMAGE_PIN_CAPABILITY = extern enum(i32) {
@@ -4752,13 +4752,13 @@ pub const KSPROPERTY_CAMERACONTROL_EXTENDED_RELATIVEPANELOPTIMIZATION = KSPROPER
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_END = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.KSPROPERTY_CAMERACONTROL_EXTENDED_END;
 pub const KSPROPERTY_CAMERACONTROL_EXTENDED_END2 = KSPROPERTY_CAMERACONTROL_EXTENDED_PROPERTY.KSPROPERTY_CAMERACONTROL_EXTENDED_END2;
 
-const CLSID_KSPROPERTYSETID_ExtendedCameraControl_Value = @import("../zig.zig").Guid.initString("1CB79112-C0D2-4213-9CA6-CD4FDB927972");
+const CLSID_KSPROPERTYSETID_ExtendedCameraControl_Value = @import("../zig.zig").Guid.initString("1cb79112-c0d2-4213-9ca6-cd4fdb927972");
 pub const CLSID_KSPROPERTYSETID_ExtendedCameraControl = &CLSID_KSPROPERTYSETID_ExtendedCameraControl_Value;
 
-const CLSID_KSEVENTSETID_ExtendedCameraControl_Value = @import("../zig.zig").Guid.initString("571C92C9-13A2-47E3-A649-D2A778166384");
+const CLSID_KSEVENTSETID_ExtendedCameraControl_Value = @import("../zig.zig").Guid.initString("571c92c9-13a2-47e3-a649-d2a778166384");
 pub const CLSID_KSEVENTSETID_ExtendedCameraControl = &CLSID_KSEVENTSETID_ExtendedCameraControl_Value;
 
-const CLSID_KSEVENTSETID_CameraEvent_Value = @import("../zig.zig").Guid.initString("7899B2E0-6B43-4964-9D2A-A21F4061F576");
+const CLSID_KSEVENTSETID_CameraEvent_Value = @import("../zig.zig").Guid.initString("7899b2e0-6b43-4964-9d2a-a21f4061f576");
 pub const CLSID_KSEVENTSETID_CameraEvent = &CLSID_KSEVENTSETID_CameraEvent_Value;
 
 pub const KSEVENT_CAMERAEVENT = extern enum(i32) {
@@ -5007,7 +5007,7 @@ pub const KSCAMERA_EXTENDEDPROP_ROI_FOCUS = extern struct {
     Reserved: u64,
 };
 
-const CLSID_KSPROPERTYSETID_PerFrameSettingControl_Value = @import("../zig.zig").Guid.initString("F1F3E261-DEE6-4537-BFF5-EE206DB54AAC");
+const CLSID_KSPROPERTYSETID_PerFrameSettingControl_Value = @import("../zig.zig").Guid.initString("f1f3e261-dee6-4537-bff5-ee206db54aac");
 pub const CLSID_KSPROPERTYSETID_PerFrameSettingControl = &CLSID_KSPROPERTYSETID_PerFrameSettingControl_Value;
 
 pub const KSPROPERTY_CAMERACONTROL_PERFRAMESETTING_PROPERTY = extern enum(i32) {
@@ -5082,40 +5082,40 @@ pub const KSCAMERA_EXTENDEDPROP_PROFILE = extern struct {
     Reserved: u32,
 };
 
-const CLSID_KSCAMERAPROFILE_Legacy_Value = @import("../zig.zig").Guid.initString("B4894D81-62B7-4EEC-8740-80658C4A9D3E");
+const CLSID_KSCAMERAPROFILE_Legacy_Value = @import("../zig.zig").Guid.initString("b4894d81-62b7-4eec-8740-80658c4a9d3e");
 pub const CLSID_KSCAMERAPROFILE_Legacy = &CLSID_KSCAMERAPROFILE_Legacy_Value;
 
-const CLSID_KSCAMERAPROFILE_VideoRecording_Value = @import("../zig.zig").Guid.initString("A0E517E8-8F8C-4F6F-9A57-46FC2F647EC0");
+const CLSID_KSCAMERAPROFILE_VideoRecording_Value = @import("../zig.zig").Guid.initString("a0e517e8-8f8c-4f6f-9a57-46fc2f647ec0");
 pub const CLSID_KSCAMERAPROFILE_VideoRecording = &CLSID_KSCAMERAPROFILE_VideoRecording_Value;
 
-const CLSID_KSCAMERAPROFILE_HighQualityPhoto_Value = @import("../zig.zig").Guid.initString("32440725-961B-4CA3-B5B2-854E719D9E1B");
+const CLSID_KSCAMERAPROFILE_HighQualityPhoto_Value = @import("../zig.zig").Guid.initString("32440725-961b-4ca3-b5b2-854e719d9e1b");
 pub const CLSID_KSCAMERAPROFILE_HighQualityPhoto = &CLSID_KSCAMERAPROFILE_HighQualityPhoto_Value;
 
-const CLSID_KSCAMERAPROFILE_BalancedVideoAndPhoto_Value = @import("../zig.zig").Guid.initString("6B52B017-42C7-4A21-BFE3-23F009149887");
+const CLSID_KSCAMERAPROFILE_BalancedVideoAndPhoto_Value = @import("../zig.zig").Guid.initString("6b52b017-42c7-4a21-bfe3-23f009149887");
 pub const CLSID_KSCAMERAPROFILE_BalancedVideoAndPhoto = &CLSID_KSCAMERAPROFILE_BalancedVideoAndPhoto_Value;
 
-const CLSID_KSCAMERAPROFILE_VideoConferencing_Value = @import("../zig.zig").Guid.initString("C5444A88-E1BF-4597-B2DD-9E1EAD864BB8");
+const CLSID_KSCAMERAPROFILE_VideoConferencing_Value = @import("../zig.zig").Guid.initString("c5444a88-e1bf-4597-b2dd-9e1ead864bb8");
 pub const CLSID_KSCAMERAPROFILE_VideoConferencing = &CLSID_KSCAMERAPROFILE_VideoConferencing_Value;
 
-const CLSID_KSCAMERAPROFILE_PhotoSequence_Value = @import("../zig.zig").Guid.initString("02399D9D-4EE8-49BA-BC07-5FF156531413");
+const CLSID_KSCAMERAPROFILE_PhotoSequence_Value = @import("../zig.zig").Guid.initString("02399d9d-4ee8-49ba-bc07-5ff156531413");
 pub const CLSID_KSCAMERAPROFILE_PhotoSequence = &CLSID_KSCAMERAPROFILE_PhotoSequence_Value;
 
-const CLSID_KSCAMERAPROFILE_FaceAuth_Mode_Value = @import("../zig.zig").Guid.initString("81361B22-700B-4546-A2D4-C52E907BFC27");
+const CLSID_KSCAMERAPROFILE_FaceAuth_Mode_Value = @import("../zig.zig").Guid.initString("81361b22-700b-4546-a2d4-c52e907bfc27");
 pub const CLSID_KSCAMERAPROFILE_FaceAuth_Mode = &CLSID_KSCAMERAPROFILE_FaceAuth_Mode_Value;
 
-const CLSID_KSCAMERAPROFILE_HighFrameRate_Value = @import("../zig.zig").Guid.initString("566E6113-8C35-48E7-B89F-D23FDC1219DC");
+const CLSID_KSCAMERAPROFILE_HighFrameRate_Value = @import("../zig.zig").Guid.initString("566e6113-8c35-48e7-b89f-d23fdc1219dc");
 pub const CLSID_KSCAMERAPROFILE_HighFrameRate = &CLSID_KSCAMERAPROFILE_HighFrameRate_Value;
 
-const CLSID_KSCAMERAPROFILE_HDRWithWCGVideo_Value = @import("../zig.zig").Guid.initString("4B27C336-4924-4989-B994-FDAF1DC7CD85");
+const CLSID_KSCAMERAPROFILE_HDRWithWCGVideo_Value = @import("../zig.zig").Guid.initString("4b27c336-4924-4989-b994-fdaf1dc7cd85");
 pub const CLSID_KSCAMERAPROFILE_HDRWithWCGVideo = &CLSID_KSCAMERAPROFILE_HDRWithWCGVideo_Value;
 
-const CLSID_KSCAMERAPROFILE_HDRWithWCGPhoto_Value = @import("../zig.zig").Guid.initString("9BF6F1FF-B555-4625-B326-A46DEF318FB7");
+const CLSID_KSCAMERAPROFILE_HDRWithWCGPhoto_Value = @import("../zig.zig").Guid.initString("9bf6f1ff-b555-4625-b326-a46def318fb7");
 pub const CLSID_KSCAMERAPROFILE_HDRWithWCGPhoto = &CLSID_KSCAMERAPROFILE_HDRWithWCGPhoto_Value;
 
-const CLSID_KSCAMERAPROFILE_VariablePhotoSequence_Value = @import("../zig.zig").Guid.initString("9FF2CB56-E75A-49B1-A928-9985D5946F87");
+const CLSID_KSCAMERAPROFILE_VariablePhotoSequence_Value = @import("../zig.zig").Guid.initString("9ff2cb56-e75a-49b1-a928-9985d5946f87");
 pub const CLSID_KSCAMERAPROFILE_VariablePhotoSequence = &CLSID_KSCAMERAPROFILE_VariablePhotoSequence_Value;
 
-const CLSID_KSCAMERAPROFILE_VideoHDR8_Value = @import("../zig.zig").Guid.initString("D4F3F4EC-BDFF-4314-B1D4-008E281F74E7");
+const CLSID_KSCAMERAPROFILE_VideoHDR8_Value = @import("../zig.zig").Guid.initString("d4f3f4ec-bdff-4314-b1d4-008e281f74e7");
 pub const CLSID_KSCAMERAPROFILE_VideoHDR8 = &CLSID_KSCAMERAPROFILE_VideoHDR8_Value;
 
 pub const KSCAMERA_PROFILE_MEDIAINFO = extern struct {
@@ -5180,7 +5180,7 @@ pub const KSPROPERTY_NETWORKCAMERACONTROL_NTPINFO_HEADER = extern struct {
     Type: KSPROPERTY_NETWORKCAMERACONTROL_NTPINFO_TYPE,
 };
 
-const CLSID_KSPROPERTYSETID_NetworkCameraControl_Value = @import("../zig.zig").Guid.initString("0E780F09-5745-4E3A-BC9F-F226EA43A6EC");
+const CLSID_KSPROPERTYSETID_NetworkCameraControl_Value = @import("../zig.zig").Guid.initString("0e780f09-5745-4e3a-bc9f-f226ea43a6ec");
 pub const CLSID_KSPROPERTYSETID_NetworkCameraControl = &CLSID_KSPROPERTYSETID_NetworkCameraControl_Value;
 
 pub const KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY = extern enum(i32) {
@@ -5190,7 +5190,7 @@ pub const KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY = extern enum(i32) {
 pub const KSPROPERTY_NETWORKCAMERACONTROL_NTP = KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY.KSPROPERTY_NETWORKCAMERACONTROL_NTP;
 pub const KSPROPERTY_NETWORKCAMERACONTROL_URI = KSPROPERTY_NETWORKCAMERACONTROL_PROPERTY.KSPROPERTY_NETWORKCAMERACONTROL_URI;
 
-const CLSID_PROPSETID_EXT_DEVICE_Value = @import("../zig.zig").Guid.initString("B5730A90-1A2C-11CF-8C23-00AA006B6814");
+const CLSID_PROPSETID_EXT_DEVICE_Value = @import("../zig.zig").Guid.initString("b5730a90-1a2c-11cf-8c23-00aa006b6814");
 pub const CLSID_PROPSETID_EXT_DEVICE = &CLSID_PROPSETID_EXT_DEVICE_Value;
 
 pub const KSPROPERTY_EXTDEVICE = extern enum(i32) {
@@ -5238,7 +5238,7 @@ pub const KSPROPERTY_EXTDEVICE_S = extern struct {
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
-const CLSID_PROPSETID_EXT_TRANSPORT_Value = @import("../zig.zig").Guid.initString("A03CD5F0-3045-11CF-8C44-00AA006B6814");
+const CLSID_PROPSETID_EXT_TRANSPORT_Value = @import("../zig.zig").Guid.initString("a03cd5f0-3045-11cf-8c44-00aa006b6814");
 pub const CLSID_PROPSETID_EXT_TRANSPORT = &CLSID_PROPSETID_EXT_TRANSPORT_Value;
 
 pub const KSPROPERTY_EXTXPORT = extern enum(i32) {
@@ -5351,7 +5351,7 @@ pub const KSPROPERTY_EXTXPORT_NODE_S = extern struct {
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
-const CLSID_PROPSETID_TIMECODE_READER_Value = @import("../zig.zig").Guid.initString("9B496CE1-811B-11CF-8C77-00AA006B6814");
+const CLSID_PROPSETID_TIMECODE_READER_Value = @import("../zig.zig").Guid.initString("9b496ce1-811b-11cf-8c77-00aa006b6814");
 pub const CLSID_PROPSETID_TIMECODE_READER = &CLSID_PROPSETID_TIMECODE_READER_Value;
 
 pub const KSPROPERTY_TIMECODE = extern enum(i32) {
@@ -5373,7 +5373,7 @@ pub const KSPROPERTY_TIMECODE_NODE_S = extern struct {
     TimecodeSamp: TIMECODE_SAMPLE,
 };
 
-const CLSID_KSEVENTSETID_EXTDEV_Command_Value = @import("../zig.zig").Guid.initString("109C7988-B3CB-11D2-B48E-006097B3391B");
+const CLSID_KSEVENTSETID_EXTDEV_Command_Value = @import("../zig.zig").Guid.initString("109c7988-b3cb-11d2-b48e-006097b3391b");
 pub const CLSID_KSEVENTSETID_EXTDEV_Command = &CLSID_KSEVENTSETID_EXTDEV_Command_Value;
 
 pub const KSEVENT_DEVCMD = extern enum(i32) {
@@ -5395,7 +5395,7 @@ pub const KSEVENT_EXTDEV_TRANSPORT_STATE_UPDATE = KSEVENT_DEVCMD.KSEVENT_EXTDEV_
 pub const KSEVENT_EXTDEV_NOTIFY_REMOVAL = KSEVENT_DEVCMD.KSEVENT_EXTDEV_NOTIFY_REMOVAL;
 pub const KSEVENT_EXTDEV_NOTIFY_MEDIUM_CHANGE = KSEVENT_DEVCMD.KSEVENT_EXTDEV_NOTIFY_MEDIUM_CHANGE;
 
-const CLSID_PROPSETID_VIDCAP_CROSSBAR_Value = @import("../zig.zig").Guid.initString("6A2E0640-28E4-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_CROSSBAR_Value = @import("../zig.zig").Guid.initString("6a2e0640-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_CROSSBAR = &CLSID_PROPSETID_VIDCAP_CROSSBAR_Value;
 
 pub const KSPROPERTY_VIDCAP_CROSSBAR = extern enum(i32) {
@@ -5439,7 +5439,7 @@ pub const KSPROPERTY_CROSSBAR_ACTIVE_S = extern struct {
     Active: u32,
 };
 
-const CLSID_EVENTSETID_CROSSBAR_Value = @import("../zig.zig").Guid.initString("6A2E0641-28E4-11D0-A18C-00A0C9118956");
+const CLSID_EVENTSETID_CROSSBAR_Value = @import("../zig.zig").Guid.initString("6a2e0641-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_EVENTSETID_CROSSBAR = &CLSID_EVENTSETID_CROSSBAR_Value;
 
 pub const KSEVENT_CROSSBAR = extern enum(i32) {
@@ -5498,7 +5498,7 @@ pub const KS_PhysConn_Audio_1394 = KS_PhysicalConnectorType.KS_PhysConn_Audio_13
 pub const KS_PhysConn_Audio_USB = KS_PhysicalConnectorType.KS_PhysConn_Audio_USB;
 pub const KS_PhysConn_Audio_AudioDecoder = KS_PhysicalConnectorType.KS_PhysConn_Audio_AudioDecoder;
 
-const CLSID_PROPSETID_VIDCAP_TVAUDIO_Value = @import("../zig.zig").Guid.initString("6A2E0650-28E4-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_TVAUDIO_Value = @import("../zig.zig").Guid.initString("6a2e0650-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_TVAUDIO = &CLSID_PROPSETID_VIDCAP_TVAUDIO_Value;
 
 pub const KSPROPERTY_VIDCAP_TVAUDIO = extern enum(i32) {
@@ -5522,7 +5522,7 @@ pub const KSPROPERTY_TVAUDIO_S = extern struct {
     Mode: u32,
 };
 
-const CLSID_KSEVENTSETID_VIDCAP_TVAUDIO_Value = @import("../zig.zig").Guid.initString("6A2E0651-28E4-11D0-A18C-00A0C9118956");
+const CLSID_KSEVENTSETID_VIDCAP_TVAUDIO_Value = @import("../zig.zig").Guid.initString("6a2e0651-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_KSEVENTSETID_VIDCAP_TVAUDIO = &CLSID_KSEVENTSETID_VIDCAP_TVAUDIO_Value;
 
 pub const KSEVENT_TVAUDIO = extern enum(i32) {
@@ -5530,7 +5530,7 @@ pub const KSEVENT_TVAUDIO = extern enum(i32) {
 };
 pub const KSEVENT_TVAUDIO_CHANGED = KSEVENT_TVAUDIO.CHANGED;
 
-const CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION_Value = @import("../zig.zig").Guid.initString("C6E13343-30AC-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION_Value = @import("../zig.zig").Guid.initString("c6e13343-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION = &CLSID_PROPSETID_VIDCAP_VIDEOCOMPRESSION_Value;
 
 pub const KSPROPERTY_VIDCAP_VIDEOCOMPRESSION = extern enum(i32) {
@@ -5599,10 +5599,10 @@ pub const KSPROPERTY_VIDEOCOMPRESSION_S1 = extern struct {
     Flags: u32,
 };
 
-const CLSID_KSDATAFORMAT_SUBTYPE_OVERLAY_Value = @import("../zig.zig").Guid.initString("E436EB7F-524F-11CE-9F53-0020AF0BA770");
+const CLSID_KSDATAFORMAT_SUBTYPE_OVERLAY_Value = @import("../zig.zig").Guid.initString("e436eb7f-524f-11ce-9f53-0020af0ba770");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_OVERLAY = &CLSID_KSDATAFORMAT_SUBTYPE_OVERLAY_Value;
 
-const CLSID_KSPROPSETID_OverlayUpdate_Value = @import("../zig.zig").Guid.initString("490EA5CF-7681-11D1-A21C-00A0C9223196");
+const CLSID_KSPROPSETID_OverlayUpdate_Value = @import("../zig.zig").Guid.initString("490ea5cf-7681-11d1-a21c-00a0c9223196");
 pub const CLSID_KSPROPSETID_OverlayUpdate = &CLSID_KSPROPSETID_OverlayUpdate_Value;
 
 pub const KSPROPERTY_OVERLAYUPDATE = extern enum(i32) {
@@ -5629,7 +5629,7 @@ pub const KSDISPLAYCHANGE = extern struct {
     DeviceID: [1]u16,
 };
 
-const CLSID_PROPSETID_VIDCAP_VIDEOCONTROL_Value = @import("../zig.zig").Guid.initString("6A2E0670-28E4-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_VIDEOCONTROL_Value = @import("../zig.zig").Guid.initString("6a2e0670-28e4-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_VIDEOCONTROL = &CLSID_PROPSETID_VIDCAP_VIDEOCONTROL_Value;
 
 pub const KSPROPERTY_VIDCAP_VIDEOCONTROL = extern enum(i32) {
@@ -5694,7 +5694,7 @@ pub const KSPROPERTY_VIDEOCONTROL_FRAME_RATES_S = extern struct {
     Dimensions: SIZE,
 };
 
-const CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES_Value = @import("../zig.zig").Guid.initString("C6E13344-30AC-11D0-A18C-00A0C9118956");
+const CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES_Value = @import("../zig.zig").Guid.initString("c6e13344-30ac-11d0-a18c-00a0c9118956");
 pub const CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES = &CLSID_PROPSETID_VIDCAP_DROPPEDFRAMES_Value;
 
 pub const KSPROPERTY_VIDCAP_DROPPEDFRAMES = extern enum(i32) {
@@ -5709,10 +5709,10 @@ pub const KSPROPERTY_DROPPEDFRAMES_CURRENT_S = extern struct {
     AverageFrameSize: u32,
 };
 
-const CLSID_KSPROPSETID_VPConfig_Value = @import("../zig.zig").Guid.initString("BC29A660-30E3-11D0-9E69-00C04FD7C15B");
+const CLSID_KSPROPSETID_VPConfig_Value = @import("../zig.zig").Guid.initString("bc29a660-30e3-11d0-9e69-00c04fd7c15b");
 pub const CLSID_KSPROPSETID_VPConfig = &CLSID_KSPROPSETID_VPConfig_Value;
 
-const CLSID_KSPROPSETID_VPVBIConfig_Value = @import("../zig.zig").Guid.initString("EC529B00-1A1F-11D1-BAD9-00609744111A");
+const CLSID_KSPROPSETID_VPVBIConfig_Value = @import("../zig.zig").Guid.initString("ec529b00-1a1f-11d1-bad9-00609744111a");
 pub const CLSID_KSPROPSETID_VPVBIConfig = &CLSID_KSPROPSETID_VPVBIConfig_Value;
 
 pub const KSPROPERTY_VPCONFIG = extern enum(i32) {
@@ -5750,7 +5750,7 @@ pub const KSPROPERTY_VPCONFIG_VIDEOPORTID = KSPROPERTY_VPCONFIG.VIDEOPORTID;
 pub const KSPROPERTY_VPCONFIG_DDRAWSURFACEHANDLE = KSPROPERTY_VPCONFIG.DDRAWSURFACEHANDLE;
 pub const KSPROPERTY_VPCONFIG_SURFACEPARAMS = KSPROPERTY_VPCONFIG.SURFACEPARAMS;
 
-const CLSID_CLSID_KsIBasicAudioInterfaceHandler_Value = @import("../zig.zig").Guid.initString("B9F8AC3E-0F71-11D2-B72C-00C04FB6BD3D");
+const CLSID_CLSID_KsIBasicAudioInterfaceHandler_Value = @import("../zig.zig").Guid.initString("b9f8ac3e-0f71-11d2-b72c-00c04fb6bd3d");
 pub const CLSID_CLSID_KsIBasicAudioInterfaceHandler = &CLSID_CLSID_KsIBasicAudioInterfaceHandler_Value;
 
 pub const DDVIDEOPORTCONNECT = extern struct {
@@ -5840,7 +5840,7 @@ pub const KSVPSURFACEPARAMS = extern struct {
     dwYOrigin: u32,
 };
 
-const CLSID_KSEVENTSETID_VPNotify_Value = @import("../zig.zig").Guid.initString("20C5598E-D3C8-11D0-8DFC-00C04FD7C08B");
+const CLSID_KSEVENTSETID_VPNotify_Value = @import("../zig.zig").Guid.initString("20c5598e-d3c8-11d0-8dfc-00c04fd7c08b");
 pub const CLSID_KSEVENTSETID_VPNotify = &CLSID_KSEVENTSETID_VPNotify_Value;
 
 pub const KSEVENT_VPNOTIFY = extern enum(i32) {
@@ -5848,7 +5848,7 @@ pub const KSEVENT_VPNOTIFY = extern enum(i32) {
 };
 pub const KSEVENT_VPNOTIFY_FORMATCHANGE = KSEVENT_VPNOTIFY.FORMATCHANGE;
 
-const CLSID_KSEVENTSETID_VIDCAPTOSTI_Value = @import("../zig.zig").Guid.initString("DB47DE20-F628-11D1-BA41-00A0C90D2B05");
+const CLSID_KSEVENTSETID_VIDCAPTOSTI_Value = @import("../zig.zig").Guid.initString("db47de20-f628-11d1-ba41-00a0c90d2b05");
 pub const CLSID_KSEVENTSETID_VIDCAPTOSTI = &CLSID_KSEVENTSETID_VIDCAPTOSTI_Value;
 
 pub const KSEVENT_VIDCAPTOSTI = extern enum(i32) {
@@ -5869,7 +5869,7 @@ pub const KSPROPERTY_EXTENSION_UNIT_INFO = KSPROPERTY_EXTENSION_UNIT.INFO;
 pub const KSPROPERTY_EXTENSION_UNIT_CONTROL = KSPROPERTY_EXTENSION_UNIT.CONTROL;
 pub const KSPROPERTY_EXTENSION_UNIT_PASS_THROUGH = KSPROPERTY_EXTENSION_UNIT.PASS_THROUGH;
 
-const CLSID_KSEVENTSETID_VPVBINotify_Value = @import("../zig.zig").Guid.initString("EC529B01-1A1F-11D1-BAD9-00609744111A");
+const CLSID_KSEVENTSETID_VPVBINotify_Value = @import("../zig.zig").Guid.initString("ec529b01-1a1f-11d1-bad9-00609744111a");
 pub const CLSID_KSEVENTSETID_VPVBINotify = &CLSID_KSEVENTSETID_VPVBINotify_Value;
 
 pub const KSEVENT_VPVBINOTIFY = extern enum(i32) {
@@ -5877,13 +5877,13 @@ pub const KSEVENT_VPVBINOTIFY = extern enum(i32) {
 };
 pub const KSEVENT_VPVBINOTIFY_FORMATCHANGE = KSEVENT_VPVBINOTIFY.FORMATCHANGE;
 
-const CLSID_KSDATAFORMAT_TYPE_AUXLine21Data_Value = @import("../zig.zig").Guid.initString("670AEA80-3A82-11D0-B79B-00AA003767A7");
+const CLSID_KSDATAFORMAT_TYPE_AUXLine21Data_Value = @import("../zig.zig").Guid.initString("670aea80-3a82-11d0-b79b-00aa003767a7");
 pub const CLSID_KSDATAFORMAT_TYPE_AUXLine21Data = &CLSID_KSDATAFORMAT_TYPE_AUXLine21Data_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_Line21_BytePair_Value = @import("../zig.zig").Guid.initString("6E8D4A22-310C-11D0-B79A-00AA003767A7");
+const CLSID_KSDATAFORMAT_SUBTYPE_Line21_BytePair_Value = @import("../zig.zig").Guid.initString("6e8d4a22-310c-11d0-b79a-00aa003767a7");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_Line21_BytePair = &CLSID_KSDATAFORMAT_SUBTYPE_Line21_BytePair_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_Line21_GOPPacket_Value = @import("../zig.zig").Guid.initString("6E8D4A23-310C-11D0-B79A-00AA003767A7");
+const CLSID_KSDATAFORMAT_SUBTYPE_Line21_GOPPacket_Value = @import("../zig.zig").Guid.initString("6e8d4a23-310c-11d0-b79a-00aa003767a7");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_Line21_GOPPacket = &CLSID_KSDATAFORMAT_SUBTYPE_Line21_GOPPacket_Value;
 
 pub const KSGOP_USERDATA = extern struct {
@@ -5893,10 +5893,10 @@ pub const KSGOP_USERDATA = extern struct {
     l21Data: [3]i8,
 };
 
-const CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK_Value = @import("../zig.zig").Guid.initString("ED0B916A-044D-11D1-AA78-00C04FC31D60");
+const CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK_Value = @import("../zig.zig").Guid.initString("ed0b916a-044d-11d1-aa78-00c04fc31d60");
 pub const CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK = &CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK_Value;
 
-const CLSID_KSPROPSETID_TSRateChange_Value = @import("../zig.zig").Guid.initString("A503C5C0-1D1D-11D1-AD80-444553540000");
+const CLSID_KSPROPSETID_TSRateChange_Value = @import("../zig.zig").Guid.initString("a503c5c0-1d1d-11d1-ad80-444553540000");
 pub const CLSID_KSPROPSETID_TSRateChange = &CLSID_KSPROPSETID_TSRateChange_Value;
 
 pub const KS_AM_PROPERTY_TS_RATE_CHANGE = extern enum(i32) {
@@ -5920,43 +5920,43 @@ pub const KS_AM_ExactRateChange = extern struct {
     Rate: i32,
 };
 
-const CLSID_KSCATEGORY_ENCODER_Value = @import("../zig.zig").Guid.initString("19689BF6-C384-48FD-AD51-90E58C79F70B");
+const CLSID_KSCATEGORY_ENCODER_Value = @import("../zig.zig").Guid.initString("19689bf6-c384-48fd-ad51-90e58c79f70b");
 pub const CLSID_KSCATEGORY_ENCODER = &CLSID_KSCATEGORY_ENCODER_Value;
 
-const CLSID_KSCATEGORY_MULTIPLEXER_Value = @import("../zig.zig").Guid.initString("7A5DE1D3-01A1-452C-B481-4FA2B96271E8");
+const CLSID_KSCATEGORY_MULTIPLEXER_Value = @import("../zig.zig").Guid.initString("7a5de1d3-01a1-452c-b481-4fa2b96271e8");
 pub const CLSID_KSCATEGORY_MULTIPLEXER = &CLSID_KSCATEGORY_MULTIPLEXER_Value;
 
-const CLSID_ENCAPIPARAM_BITRATE_Value = @import("../zig.zig").Guid.initString("49CC4C43-CA83-4AD4-A9AF-F3696AF666DF");
+const CLSID_ENCAPIPARAM_BITRATE_Value = @import("../zig.zig").Guid.initString("49cc4c43-ca83-4ad4-a9af-f3696af666df");
 pub const CLSID_ENCAPIPARAM_BITRATE = &CLSID_ENCAPIPARAM_BITRATE_Value;
 
-const CLSID_ENCAPIPARAM_PEAK_BITRATE_Value = @import("../zig.zig").Guid.initString("703F16A9-3D48-44A1-B077-018DFF915D19");
+const CLSID_ENCAPIPARAM_PEAK_BITRATE_Value = @import("../zig.zig").Guid.initString("703f16a9-3d48-44a1-b077-018dff915d19");
 pub const CLSID_ENCAPIPARAM_PEAK_BITRATE = &CLSID_ENCAPIPARAM_PEAK_BITRATE_Value;
 
-const CLSID_ENCAPIPARAM_BITRATE_MODE_Value = @import("../zig.zig").Guid.initString("EE5FB25C-C713-40D1-9D58-C0D7241E250F");
+const CLSID_ENCAPIPARAM_BITRATE_MODE_Value = @import("../zig.zig").Guid.initString("ee5fb25c-c713-40d1-9d58-c0d7241e250f");
 pub const CLSID_ENCAPIPARAM_BITRATE_MODE = &CLSID_ENCAPIPARAM_BITRATE_MODE_Value;
 
-const CLSID_CODECAPI_CHANGELISTS_Value = @import("../zig.zig").Guid.initString("62B12ACF-F6B0-47D9-9456-96F22C4E0B9D");
+const CLSID_CODECAPI_CHANGELISTS_Value = @import("../zig.zig").Guid.initString("62b12acf-f6b0-47d9-9456-96f22c4e0b9d");
 pub const CLSID_CODECAPI_CHANGELISTS = &CLSID_CODECAPI_CHANGELISTS_Value;
 
-const CLSID_CODECAPI_VIDEO_ENCODER_Value = @import("../zig.zig").Guid.initString("7112E8E1-3D03-47EF-8E60-03F1CF537301");
+const CLSID_CODECAPI_VIDEO_ENCODER_Value = @import("../zig.zig").Guid.initString("7112e8e1-3d03-47ef-8e60-03f1cf537301");
 pub const CLSID_CODECAPI_VIDEO_ENCODER = &CLSID_CODECAPI_VIDEO_ENCODER_Value;
 
-const CLSID_CODECAPI_AUDIO_ENCODER_Value = @import("../zig.zig").Guid.initString("B9D19A3E-F897-429C-BC46-8138B7272B2D");
+const CLSID_CODECAPI_AUDIO_ENCODER_Value = @import("../zig.zig").Guid.initString("b9d19a3e-f897-429c-bc46-8138b7272b2d");
 pub const CLSID_CODECAPI_AUDIO_ENCODER = &CLSID_CODECAPI_AUDIO_ENCODER_Value;
 
-const CLSID_CODECAPI_SETALLDEFAULTS_Value = @import("../zig.zig").Guid.initString("6C5E6A7C-ACF8-4F55-A999-1A628109051B");
+const CLSID_CODECAPI_SETALLDEFAULTS_Value = @import("../zig.zig").Guid.initString("6c5e6a7c-acf8-4f55-a999-1a628109051b");
 pub const CLSID_CODECAPI_SETALLDEFAULTS = &CLSID_CODECAPI_SETALLDEFAULTS_Value;
 
-const CLSID_CODECAPI_ALLSETTINGS_Value = @import("../zig.zig").Guid.initString("6A577E92-83E1-4113-ADC2-4FCEC32F83A1");
+const CLSID_CODECAPI_ALLSETTINGS_Value = @import("../zig.zig").Guid.initString("6a577e92-83e1-4113-adc2-4fcec32f83a1");
 pub const CLSID_CODECAPI_ALLSETTINGS = &CLSID_CODECAPI_ALLSETTINGS_Value;
 
-const CLSID_CODECAPI_SUPPORTSEVENTS_Value = @import("../zig.zig").Guid.initString("0581AF97-7693-4DBD-9DCA-3F9EBD6585A1");
+const CLSID_CODECAPI_SUPPORTSEVENTS_Value = @import("../zig.zig").Guid.initString("0581af97-7693-4dbd-9dca-3f9ebd6585a1");
 pub const CLSID_CODECAPI_SUPPORTSEVENTS = &CLSID_CODECAPI_SUPPORTSEVENTS_Value;
 
-const CLSID_CODECAPI_CURRENTCHANGELIST_Value = @import("../zig.zig").Guid.initString("1CB14E83-7D72-4657-83FD-47A2C5B9D13D");
+const CLSID_CODECAPI_CURRENTCHANGELIST_Value = @import("../zig.zig").Guid.initString("1cb14e83-7d72-4657-83fd-47a2c5b9d13d");
 pub const CLSID_CODECAPI_CURRENTCHANGELIST = &CLSID_CODECAPI_CURRENTCHANGELIST_Value;
 
-const CLSID_KSPROPSETID_Jack_Value = @import("../zig.zig").Guid.initString("4509F757-2D46-4637-8E62-CE7DB944F57B");
+const CLSID_KSPROPSETID_Jack_Value = @import("../zig.zig").Guid.initString("4509f757-2d46-4637-8e62-ce7db944f57b");
 pub const CLSID_KSPROPSETID_Jack = &CLSID_KSPROPSETID_Jack_Value;
 
 pub const KSPROPERTY_JACK = extern enum(i32) {
@@ -6090,7 +6090,7 @@ pub const KSJACK_DESCRIPTION2 = extern struct {
     JackCapabilities: u32,
 };
 
-const CLSID_KSPROPSETID_AudioPosture_Value = @import("../zig.zig").Guid.initString("DB14E8DA-0267-4AAB-8759-BAC88E46B653");
+const CLSID_KSPROPSETID_AudioPosture_Value = @import("../zig.zig").Guid.initString("db14e8da-0267-4aab-8759-bac88e46b653");
 pub const CLSID_KSPROPSETID_AudioPosture = &CLSID_KSPROPSETID_AudioPosture_Value;
 
 pub const KSPROPERTY_AUDIOPOSTURE = extern enum(i32) {
@@ -6139,10 +6139,10 @@ pub const KSAUDIOPOSTURE_DESCRIPTION = extern struct {
     MembersListCount: u32,
 };
 
-const CLSID_KSPROPSETID_AudioBufferDuration_Value = @import("../zig.zig").Guid.initString("4E73C07F-23CC-4955-A7EA-3DA502496290");
+const CLSID_KSPROPSETID_AudioBufferDuration_Value = @import("../zig.zig").Guid.initString("4e73c07f-23cc-4955-a7ea-3da502496290");
 pub const CLSID_KSPROPSETID_AudioBufferDuration = &CLSID_KSPROPSETID_AudioBufferDuration_Value;
 
-const CLSID_KSPROPSETID_AudioEngine_Value = @import("../zig.zig").Guid.initString("3A2F82DC-886F-4BAA-9EB4-082B9025C536");
+const CLSID_KSPROPSETID_AudioEngine_Value = @import("../zig.zig").Guid.initString("3a2f82dc-886f-4baa-9eb4-082b9025c536");
 pub const CLSID_KSPROPSETID_AudioEngine = &CLSID_KSPROPSETID_AudioEngine_Value;
 
 pub const KSPROPERTY_AUDIOENGINE = extern enum(i32) {
@@ -6190,7 +6190,7 @@ pub const KSAUDIOENGINE_VOLUMELEVEL = extern struct {
     CurveDuration: u64,
 };
 
-const CLSID_KSPROPSETID_AudioSignalProcessing_Value = @import("../zig.zig").Guid.initString("4F67B528-30C9-40DE-B2FB-859DDD1F3470");
+const CLSID_KSPROPSETID_AudioSignalProcessing_Value = @import("../zig.zig").Guid.initString("4f67b528-30c9-40de-b2fb-859ddd1f3470");
 pub const CLSID_KSPROPSETID_AudioSignalProcessing = &CLSID_KSPROPSETID_AudioSignalProcessing_Value;
 
 pub const KSPROPERTY_AUDIOSIGNALPROCESSING = extern enum(i32) {
@@ -6198,7 +6198,7 @@ pub const KSPROPERTY_AUDIOSIGNALPROCESSING = extern enum(i32) {
 };
 pub const KSPROPERTY_AUDIOSIGNALPROCESSING_MODES = KSPROPERTY_AUDIOSIGNALPROCESSING.MODES;
 
-const CLSID_KSATTRIBUTEID_AUDIOSIGNALPROCESSING_MODE_Value = @import("../zig.zig").Guid.initString("E1F89EB5-5F46-419B-967B-FF6770B98401");
+const CLSID_KSATTRIBUTEID_AUDIOSIGNALPROCESSING_MODE_Value = @import("../zig.zig").Guid.initString("e1f89eb5-5f46-419b-967b-ff6770b98401");
 pub const CLSID_KSATTRIBUTEID_AUDIOSIGNALPROCESSING_MODE = &CLSID_KSATTRIBUTEID_AUDIOSIGNALPROCESSING_MODE_Value;
 
 pub const KSATTRIBUTE_AUDIOSIGNALPROCESSING_MODE = extern struct {
@@ -6206,91 +6206,91 @@ pub const KSATTRIBUTE_AUDIOSIGNALPROCESSING_MODE = extern struct {
     SignalProcessingMode: Guid,
 };
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_DEFAULT_Value = @import("../zig.zig").Guid.initString("C18E2F7E-933D-4965-B7D1-1EEF228D2AF3");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_DEFAULT_Value = @import("../zig.zig").Guid.initString("c18e2f7e-933d-4965-b7d1-1eef228d2af3");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_DEFAULT = &CLSID_AUDIO_SIGNALPROCESSINGMODE_DEFAULT_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_RAW_Value = @import("../zig.zig").Guid.initString("9E90EA20-B493-4FD1-A1A8-7E1361A956CF");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_RAW_Value = @import("../zig.zig").Guid.initString("9e90ea20-b493-4fd1-a1a8-7e1361a956cf");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_RAW = &CLSID_AUDIO_SIGNALPROCESSINGMODE_RAW_Value;
 
-const CLSID_BLUETOOTHLE_MIDI_SERVICE_UUID_Value = @import("../zig.zig").Guid.initString("03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
+const CLSID_BLUETOOTHLE_MIDI_SERVICE_UUID_Value = @import("../zig.zig").Guid.initString("03b80e5a-ede8-4b33-a751-6ce34ec4c700");
 pub const CLSID_BLUETOOTHLE_MIDI_SERVICE_UUID = &CLSID_BLUETOOTHLE_MIDI_SERVICE_UUID_Value;
 
-const CLSID_BLUETOOTH_MIDI_DATAIO_CHARACTERISTIC_Value = @import("../zig.zig").Guid.initString("7772E5DB-3868-4112-A1A9-F2669D106BF3");
+const CLSID_BLUETOOTH_MIDI_DATAIO_CHARACTERISTIC_Value = @import("../zig.zig").Guid.initString("7772e5db-3868-4112-a1a9-f2669d106bf3");
 pub const CLSID_BLUETOOTH_MIDI_DATAIO_CHARACTERISTIC = &CLSID_BLUETOOTH_MIDI_DATAIO_CHARACTERISTIC_Value;
 
-const CLSID_APO_CLASS_UUID_Value = @import("../zig.zig").Guid.initString("5989FCE8-9CD0-467D-8A6A-5419E31529D4");
+const CLSID_APO_CLASS_UUID_Value = @import("../zig.zig").Guid.initString("5989fce8-9cd0-467d-8a6a-5419e31529d4");
 pub const CLSID_APO_CLASS_UUID = &CLSID_APO_CLASS_UUID_Value;
 
-const CLSID_AUDIOENDPOINT_CLASS_UUID_Value = @import("../zig.zig").Guid.initString("C166523C-FE0C-4A94-A586-F1A80CFBBF3E");
+const CLSID_AUDIOENDPOINT_CLASS_UUID_Value = @import("../zig.zig").Guid.initString("c166523c-fe0c-4a94-a586-f1a80cfbbf3e");
 pub const CLSID_AUDIOENDPOINT_CLASS_UUID = &CLSID_AUDIOENDPOINT_CLASS_UUID_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_COMMUNICATIONS_Value = @import("../zig.zig").Guid.initString("98951333-B9CD-48B1-A0A3-FF40682D73F7");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_COMMUNICATIONS_Value = @import("../zig.zig").Guid.initString("98951333-b9cd-48b1-a0a3-ff40682d73f7");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_COMMUNICATIONS = &CLSID_AUDIO_SIGNALPROCESSINGMODE_COMMUNICATIONS_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_SPEECH_Value = @import("../zig.zig").Guid.initString("FC1CFC9B-B9D6-4CFA-B5E0-4BB2166878B2");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_SPEECH_Value = @import("../zig.zig").Guid.initString("fc1cfc9b-b9d6-4cfa-b5e0-4bb2166878b2");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_SPEECH = &CLSID_AUDIO_SIGNALPROCESSINGMODE_SPEECH_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_NOTIFICATION_Value = @import("../zig.zig").Guid.initString("9CF2A70B-F377-403B-BD6B-360863E0355C");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_NOTIFICATION_Value = @import("../zig.zig").Guid.initString("9cf2a70b-f377-403b-bd6b-360863e0355c");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_NOTIFICATION = &CLSID_AUDIO_SIGNALPROCESSINGMODE_NOTIFICATION_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_MEDIA_Value = @import("../zig.zig").Guid.initString("4780004E-7133-41D8-8C74-660DADD2C0EE");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_MEDIA_Value = @import("../zig.zig").Guid.initString("4780004e-7133-41d8-8c74-660dadd2c0ee");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_MEDIA = &CLSID_AUDIO_SIGNALPROCESSINGMODE_MEDIA_Value;
 
-const CLSID_AUDIO_SIGNALPROCESSINGMODE_MOVIE_Value = @import("../zig.zig").Guid.initString("B26FEB0D-EC94-477C-9494-D1AB8E753F6E");
+const CLSID_AUDIO_SIGNALPROCESSINGMODE_MOVIE_Value = @import("../zig.zig").Guid.initString("b26feb0d-ec94-477c-9494-d1ab8e753f6e");
 pub const CLSID_AUDIO_SIGNALPROCESSINGMODE_MOVIE = &CLSID_AUDIO_SIGNALPROCESSINGMODE_MOVIE_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_ACOUSTIC_ECHO_CANCELLATION_Value = @import("../zig.zig").Guid.initString("6F64ADBE-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_ACOUSTIC_ECHO_CANCELLATION_Value = @import("../zig.zig").Guid.initString("6f64adbe-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_ACOUSTIC_ECHO_CANCELLATION = &CLSID_AUDIO_EFFECT_TYPE_ACOUSTIC_ECHO_CANCELLATION_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_NOISE_SUPPRESSION_Value = @import("../zig.zig").Guid.initString("6F64ADBF-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_NOISE_SUPPRESSION_Value = @import("../zig.zig").Guid.initString("6f64adbf-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_NOISE_SUPPRESSION = &CLSID_AUDIO_EFFECT_TYPE_NOISE_SUPPRESSION_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_AUTOMATIC_GAIN_CONTROL_Value = @import("../zig.zig").Guid.initString("6F64ADC0-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_AUTOMATIC_GAIN_CONTROL_Value = @import("../zig.zig").Guid.initString("6f64adc0-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_AUTOMATIC_GAIN_CONTROL = &CLSID_AUDIO_EFFECT_TYPE_AUTOMATIC_GAIN_CONTROL_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_BEAMFORMING_Value = @import("../zig.zig").Guid.initString("6F64ADC1-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_BEAMFORMING_Value = @import("../zig.zig").Guid.initString("6f64adc1-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_BEAMFORMING = &CLSID_AUDIO_EFFECT_TYPE_BEAMFORMING_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_CONSTANT_TONE_REMOVAL_Value = @import("../zig.zig").Guid.initString("6F64ADC2-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_CONSTANT_TONE_REMOVAL_Value = @import("../zig.zig").Guid.initString("6f64adc2-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_CONSTANT_TONE_REMOVAL = &CLSID_AUDIO_EFFECT_TYPE_CONSTANT_TONE_REMOVAL_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_EQUALIZER_Value = @import("../zig.zig").Guid.initString("6F64ADC3-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_EQUALIZER_Value = @import("../zig.zig").Guid.initString("6f64adc3-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_EQUALIZER = &CLSID_AUDIO_EFFECT_TYPE_EQUALIZER_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_LOUDNESS_EQUALIZER_Value = @import("../zig.zig").Guid.initString("6F64ADC4-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_LOUDNESS_EQUALIZER_Value = @import("../zig.zig").Guid.initString("6f64adc4-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_LOUDNESS_EQUALIZER = &CLSID_AUDIO_EFFECT_TYPE_LOUDNESS_EQUALIZER_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_BASS_BOOST_Value = @import("../zig.zig").Guid.initString("6F64ADC5-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_BASS_BOOST_Value = @import("../zig.zig").Guid.initString("6f64adc5-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_BASS_BOOST = &CLSID_AUDIO_EFFECT_TYPE_BASS_BOOST_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_SURROUND_Value = @import("../zig.zig").Guid.initString("6F64ADC6-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_SURROUND_Value = @import("../zig.zig").Guid.initString("6f64adc6-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_SURROUND = &CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_SURROUND_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_HEADPHONES_Value = @import("../zig.zig").Guid.initString("6F64ADC7-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_HEADPHONES_Value = @import("../zig.zig").Guid.initString("6f64adc7-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_HEADPHONES = &CLSID_AUDIO_EFFECT_TYPE_VIRTUAL_HEADPHONES_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_FILL_Value = @import("../zig.zig").Guid.initString("6F64ADC8-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_FILL_Value = @import("../zig.zig").Guid.initString("6f64adc8-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_FILL = &CLSID_AUDIO_EFFECT_TYPE_SPEAKER_FILL_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_ROOM_CORRECTION_Value = @import("../zig.zig").Guid.initString("6F64ADC9-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_ROOM_CORRECTION_Value = @import("../zig.zig").Guid.initString("6f64adc9-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_ROOM_CORRECTION = &CLSID_AUDIO_EFFECT_TYPE_ROOM_CORRECTION_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_BASS_MANAGEMENT_Value = @import("../zig.zig").Guid.initString("6F64ADCA-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_BASS_MANAGEMENT_Value = @import("../zig.zig").Guid.initString("6f64adca-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_BASS_MANAGEMENT = &CLSID_AUDIO_EFFECT_TYPE_BASS_MANAGEMENT_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_ENVIRONMENTAL_EFFECTS_Value = @import("../zig.zig").Guid.initString("6F64ADCB-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_ENVIRONMENTAL_EFFECTS_Value = @import("../zig.zig").Guid.initString("6f64adcb-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_ENVIRONMENTAL_EFFECTS = &CLSID_AUDIO_EFFECT_TYPE_ENVIRONMENTAL_EFFECTS_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_PROTECTION_Value = @import("../zig.zig").Guid.initString("6F64ADCC-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_PROTECTION_Value = @import("../zig.zig").Guid.initString("6f64adcc-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_PROTECTION = &CLSID_AUDIO_EFFECT_TYPE_SPEAKER_PROTECTION_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_COMPENSATION_Value = @import("../zig.zig").Guid.initString("6F64ADCD-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_COMPENSATION_Value = @import("../zig.zig").Guid.initString("6f64adcd-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_SPEAKER_COMPENSATION = &CLSID_AUDIO_EFFECT_TYPE_SPEAKER_COMPENSATION_Value;
 
-const CLSID_AUDIO_EFFECT_TYPE_DYNAMIC_RANGE_COMPRESSION_Value = @import("../zig.zig").Guid.initString("6F64ADCE-8211-11E2-8C70-2C27D7F001FA");
+const CLSID_AUDIO_EFFECT_TYPE_DYNAMIC_RANGE_COMPRESSION_Value = @import("../zig.zig").Guid.initString("6f64adce-8211-11e2-8c70-2c27d7f001fa");
 pub const CLSID_AUDIO_EFFECT_TYPE_DYNAMIC_RANGE_COMPRESSION = &CLSID_AUDIO_EFFECT_TYPE_DYNAMIC_RANGE_COMPRESSION_Value;
 
-const CLSID_KSPROPSETID_AudioModule_Value = @import("../zig.zig").Guid.initString("C034FDB0-FF75-47C8-AA3C-EE46716B50C6");
+const CLSID_KSPROPSETID_AudioModule_Value = @import("../zig.zig").Guid.initString("c034fdb0-ff75-47c8-aa3c-ee46716b50c6");
 pub const CLSID_KSPROPSETID_AudioModule = &CLSID_KSPROPSETID_AudioModule_Value;
 
 pub const KSPROPERTY_AUDIOMODULE = extern enum(i32) {
@@ -6316,7 +6316,7 @@ pub const KSAUDIOMODULE_PROPERTY = extern struct {
     InstanceId: u32,
 };
 
-const CLSID_KSNOTIFICATIONID_AudioModule_Value = @import("../zig.zig").Guid.initString("9C2220F0-D9A6-4D5C-A036-573857FD50D2");
+const CLSID_KSNOTIFICATIONID_AudioModule_Value = @import("../zig.zig").Guid.initString("9c2220f0-d9a6-4d5c-a036-573857fd50d2");
 pub const CLSID_KSNOTIFICATIONID_AudioModule = &CLSID_KSNOTIFICATIONID_AudioModule_Value;
 
 pub const KSAUDIOMODULE_NOTIFICATION = extern struct {
@@ -6351,7 +6351,7 @@ pub const AudioClientProperties = extern struct {
     Options: AUDCLNT_STREAMOPTIONS,
 };
 
-const IID_IAudioClient_Value = @import("../zig.zig").Guid.initString("1CB9AD4C-DBFA-4C32-B178-C2F568A703B2");
+const IID_IAudioClient_Value = @import("../zig.zig").Guid.initString("1cb9ad4c-dbfa-4c32-b178-c2f568a703b2");
 pub const IID_IAudioClient = &IID_IAudioClient_Value;
 pub const IAudioClient = extern struct {
     pub const VTable = extern struct {
@@ -6466,7 +6466,7 @@ pub const IAudioClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioClient2_Value = @import("../zig.zig").Guid.initString("726778CD-F60A-4EDA-82DE-E47610CD78AA");
+const IID_IAudioClient2_Value = @import("../zig.zig").Guid.initString("726778cd-f60a-4eda-82de-e47610cd78aa");
 pub const IID_IAudioClient2 = &IID_IAudioClient2_Value;
 pub const IAudioClient2 = extern struct {
     pub const VTable = extern struct {
@@ -6511,7 +6511,7 @@ pub const AudioClient3ActivationParams = extern struct {
     tracingContextId: Guid,
 };
 
-const IID_IAudioClient3_Value = @import("../zig.zig").Guid.initString("7ED4EE07-8E67-4CD4-8C1A-2B7A5987AD42");
+const IID_IAudioClient3_Value = @import("../zig.zig").Guid.initString("7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42");
 pub const IID_IAudioClient3 = &IID_IAudioClient3_Value;
 pub const IAudioClient3 = extern struct {
     pub const VTable = extern struct {
@@ -6556,7 +6556,7 @@ pub const IAudioClient3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioRenderClient_Value = @import("../zig.zig").Guid.initString("F294ACFC-3146-4483-A7BF-ADDCA7C260E2");
+const IID_IAudioRenderClient_Value = @import("../zig.zig").Guid.initString("f294acfc-3146-4483-a7bf-addca7c260e2");
 pub const IID_IAudioRenderClient = &IID_IAudioRenderClient_Value;
 pub const IAudioRenderClient = extern struct {
     pub const VTable = extern struct {
@@ -6587,7 +6587,7 @@ pub const IAudioRenderClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioCaptureClient_Value = @import("../zig.zig").Guid.initString("C8ADBD64-E71E-48A0-A4DE-185C395CD317");
+const IID_IAudioCaptureClient_Value = @import("../zig.zig").Guid.initString("c8adbd64-e71e-48a0-a4de-185c395cd317");
 pub const IID_IAudioCaptureClient = &IID_IAudioCaptureClient_Value;
 pub const IAudioCaptureClient = extern struct {
     pub const VTable = extern struct {
@@ -6628,7 +6628,7 @@ pub const IAudioCaptureClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioClock_Value = @import("../zig.zig").Guid.initString("CD63314F-3FBA-4A1B-812C-EF96358728E7");
+const IID_IAudioClock_Value = @import("../zig.zig").Guid.initString("cd63314f-3fba-4a1b-812c-ef96358728e7");
 pub const IID_IAudioClock = &IID_IAudioClock_Value;
 pub const IAudioClock = extern struct {
     pub const VTable = extern struct {
@@ -6666,7 +6666,7 @@ pub const IAudioClock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioClock2_Value = @import("../zig.zig").Guid.initString("6F49FF73-6727-49AC-A008-D98CF5E70048");
+const IID_IAudioClock2_Value = @import("../zig.zig").Guid.initString("6f49ff73-6727-49ac-a008-d98cf5e70048");
 pub const IID_IAudioClock2 = &IID_IAudioClock2_Value;
 pub const IAudioClock2 = extern struct {
     pub const VTable = extern struct {
@@ -6688,7 +6688,7 @@ pub const IAudioClock2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioClockAdjustment_Value = @import("../zig.zig").Guid.initString("F6E4C0A0-46D9-4FB8-BE21-57A3EF2B626C");
+const IID_IAudioClockAdjustment_Value = @import("../zig.zig").Guid.initString("f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c");
 pub const IID_IAudioClockAdjustment = &IID_IAudioClockAdjustment_Value;
 pub const IAudioClockAdjustment = extern struct {
     pub const VTable = extern struct {
@@ -6709,7 +6709,7 @@ pub const IAudioClockAdjustment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISimpleAudioVolume_Value = @import("../zig.zig").Guid.initString("87CE5498-68D6-44E5-9215-6DA47EF883D8");
+const IID_ISimpleAudioVolume_Value = @import("../zig.zig").Guid.initString("87ce5498-68d6-44e5-9215-6da47ef883d8");
 pub const IID_ISimpleAudioVolume = &IID_ISimpleAudioVolume_Value;
 pub const ISimpleAudioVolume = extern struct {
     pub const VTable = extern struct {
@@ -6756,7 +6756,7 @@ pub const ISimpleAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioStreamVolume_Value = @import("../zig.zig").Guid.initString("93014887-242D-4068-8A15-CF5E93B90FE3");
+const IID_IAudioStreamVolume_Value = @import("../zig.zig").Guid.initString("93014887-242d-4068-8a15-cf5e93b90fe3");
 pub const IID_IAudioStreamVolume = &IID_IAudioStreamVolume_Value;
 pub const IAudioStreamVolume = extern struct {
     pub const VTable = extern struct {
@@ -6841,7 +6841,7 @@ pub const AMBISONICS_PARAMS = extern struct {
     pu32ChannelMap: *u32,
 };
 
-const IID_IAudioAmbisonicsControl_Value = @import("../zig.zig").Guid.initString("28724C91-DF35-4856-9F76-D6A26413F3DF");
+const IID_IAudioAmbisonicsControl_Value = @import("../zig.zig").Guid.initString("28724c91-df35-4856-9f76-d6a26413f3df");
 pub const IID_IAudioAmbisonicsControl = &IID_IAudioAmbisonicsControl_Value;
 pub const IAudioAmbisonicsControl = extern struct {
     pub const VTable = extern struct {
@@ -6890,7 +6890,7 @@ pub const IAudioAmbisonicsControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IChannelAudioVolume_Value = @import("../zig.zig").Guid.initString("1C158861-B533-4B30-B1CF-E853E51C59B8");
+const IID_IChannelAudioVolume_Value = @import("../zig.zig").Guid.initString("1c158861-b533-4b30-b1cf-e853e51c59b8");
 pub const IID_IChannelAudioVolume = &IID_IChannelAudioVolume_Value;
 pub const IChannelAudioVolume = extern struct {
     pub const VTable = extern struct {
@@ -7000,7 +7000,7 @@ pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
     NotifyObject: *ISpatialAudioObjectRenderStreamNotify,
 };
 
-const IID_IAudioFormatEnumerator_Value = @import("../zig.zig").Guid.initString("DCDAA858-895A-4A22-A5EB-67BDA506096D");
+const IID_IAudioFormatEnumerator_Value = @import("../zig.zig").Guid.initString("dcdaa858-895a-4a22-a5eb-67bda506096d");
 pub const IID_IAudioFormatEnumerator = &IID_IAudioFormatEnumerator_Value;
 pub const IAudioFormatEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -7030,7 +7030,7 @@ pub const IAudioFormatEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectBase_Value = @import("../zig.zig").Guid.initString("CCE0B8F2-8D4D-4EFB-A8CF-3D6ECF1C30E0");
+const IID_ISpatialAudioObjectBase_Value = @import("../zig.zig").Guid.initString("cce0b8f2-8d4d-4efb-a8cf-3d6ecf1c30e0");
 pub const IID_ISpatialAudioObjectBase = &IID_ISpatialAudioObjectBase_Value;
 pub const ISpatialAudioObjectBase = extern struct {
     pub const VTable = extern struct {
@@ -7076,7 +7076,7 @@ pub const ISpatialAudioObjectBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObject_Value = @import("../zig.zig").Guid.initString("DDE28967-521B-46E5-8F00-BD6F2BC8AB1D");
+const IID_ISpatialAudioObject_Value = @import("../zig.zig").Guid.initString("dde28967-521b-46e5-8f00-bd6f2bc8ab1d");
 pub const IID_ISpatialAudioObject = &IID_ISpatialAudioObject_Value;
 pub const ISpatialAudioObject = extern struct {
     pub const VTable = extern struct {
@@ -7107,7 +7107,7 @@ pub const ISpatialAudioObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectRenderStreamBase_Value = @import("../zig.zig").Guid.initString("FEAAF403-C1D8-450D-AA05-E0CCEE7502A8");
+const IID_ISpatialAudioObjectRenderStreamBase_Value = @import("../zig.zig").Guid.initString("feaaf403-c1d8-450d-aa05-e0ccee7502a8");
 pub const IID_ISpatialAudioObjectRenderStreamBase = &IID_ISpatialAudioObjectRenderStreamBase_Value;
 pub const ISpatialAudioObjectRenderStreamBase = extern struct {
     pub const VTable = extern struct {
@@ -7174,7 +7174,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectRenderStream_Value = @import("../zig.zig").Guid.initString("BAB5F473-B423-477B-85F5-B5A332A04153");
+const IID_ISpatialAudioObjectRenderStream_Value = @import("../zig.zig").Guid.initString("bab5f473-b423-477b-85f5-b5a332a04153");
 pub const IID_ISpatialAudioObjectRenderStream = &IID_ISpatialAudioObjectRenderStream_Value;
 pub const ISpatialAudioObjectRenderStream = extern struct {
     pub const VTable = extern struct {
@@ -7196,7 +7196,7 @@ pub const ISpatialAudioObjectRenderStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectRenderStreamNotify_Value = @import("../zig.zig").Guid.initString("DDDF83E6-68D7-4C70-883F-A1836AFB4A50");
+const IID_ISpatialAudioObjectRenderStreamNotify_Value = @import("../zig.zig").Guid.initString("dddf83e6-68d7-4c70-883f-a1836afb4a50");
 pub const IID_ISpatialAudioObjectRenderStreamNotify = &IID_ISpatialAudioObjectRenderStreamNotify_Value;
 pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
     pub const VTable = extern struct {
@@ -7219,7 +7219,7 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioClient_Value = @import("../zig.zig").Guid.initString("BBF8E066-AAAA-49BE-9A4D-FD2A858EA27F");
+const IID_ISpatialAudioClient_Value = @import("../zig.zig").Guid.initString("bbf8e066-aaaa-49be-9a4d-fd2a858ea27f");
 pub const IID_ISpatialAudioClient = &IID_ISpatialAudioClient_Value;
 pub const ISpatialAudioClient = extern struct {
     pub const VTable = extern struct {
@@ -7381,7 +7381,7 @@ pub const SpatialAudioHrtfActivationParams = extern struct {
     Orientation: *f32,
 };
 
-const IID_ISpatialAudioObjectForHrtf_Value = @import("../zig.zig").Guid.initString("D7436ADE-1978-4E14-ABA0-555BD8EB83B4");
+const IID_ISpatialAudioObjectForHrtf_Value = @import("../zig.zig").Guid.initString("d7436ade-1978-4e14-aba0-555bd8eb83b4");
 pub const IID_ISpatialAudioObjectForHrtf = &IID_ISpatialAudioObjectForHrtf_Value;
 pub const ISpatialAudioObjectForHrtf = extern struct {
     pub const VTable = extern struct {
@@ -7444,7 +7444,7 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectRenderStreamForHrtf_Value = @import("../zig.zig").Guid.initString("E08DEEF9-5363-406E-9FDC-080EE247BBE0");
+const IID_ISpatialAudioObjectRenderStreamForHrtf_Value = @import("../zig.zig").Guid.initString("e08deef9-5363-406e-9fdc-080ee247bbe0");
 pub const IID_ISpatialAudioObjectRenderStreamForHrtf = &IID_ISpatialAudioObjectRenderStreamForHrtf_Value;
 pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
     pub const VTable = extern struct {
@@ -7466,7 +7466,7 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointFormatControl_Value = @import("../zig.zig").Guid.initString("784CFD40-9F89-456E-A1A6-873B006A664E");
+const IID_IAudioEndpointFormatControl_Value = @import("../zig.zig").Guid.initString("784cfd40-9f89-456e-a1a6-873b006a664e");
 pub const IID_IAudioEndpointFormatControl = &IID_IAudioEndpointFormatControl_Value;
 pub const IAudioEndpointFormatControl = extern struct {
     pub const VTable = extern struct {
@@ -7487,7 +7487,7 @@ pub const IAudioEndpointFormatControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_MMDeviceEnumerator_Value = @import("../zig.zig").Guid.initString("BCDE0395-E52F-467C-8E3D-C4579291692E");
+const CLSID_MMDeviceEnumerator_Value = @import("../zig.zig").Guid.initString("bcde0395-e52f-467c-8e3d-c4579291692e");
 pub const CLSID_MMDeviceEnumerator = &CLSID_MMDeviceEnumerator_Value;
 
 pub const DIRECTX_AUDIO_ACTIVATION_PARAMS = extern struct {
@@ -7545,7 +7545,7 @@ pub const DigitalAudioDisplayDevice = EndpointFormFactor.DigitalAudioDisplayDevi
 pub const UnknownFormFactor = EndpointFormFactor.UnknownFormFactor;
 pub const EndpointFormFactor_enum_count = EndpointFormFactor.enum_count;
 
-const IID_IMMNotificationClient_Value = @import("../zig.zig").Guid.initString("7991EEC9-7E89-4D85-8390-6C703CEC60C0");
+const IID_IMMNotificationClient_Value = @import("../zig.zig").Guid.initString("7991eec9-7e89-4d85-8390-6c703cec60c0");
 pub const IID_IMMNotificationClient = &IID_IMMNotificationClient_Value;
 pub const IMMNotificationClient = extern struct {
     pub const VTable = extern struct {
@@ -7602,7 +7602,7 @@ pub const IMMNotificationClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMMDevice_Value = @import("../zig.zig").Guid.initString("D666063F-1587-4E43-81F1-B948E807363F");
+const IID_IMMDevice_Value = @import("../zig.zig").Guid.initString("d666063f-1587-4e43-81f1-b948e807363f");
 pub const IID_IMMDevice = &IID_IMMDevice_Value;
 pub const IMMDevice = extern struct {
     pub const VTable = extern struct {
@@ -7651,7 +7651,7 @@ pub const IMMDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMMDeviceCollection_Value = @import("../zig.zig").Guid.initString("0BD7A1BE-7A1A-44DB-8397-CC5392387B5E");
+const IID_IMMDeviceCollection_Value = @import("../zig.zig").Guid.initString("0bd7a1be-7a1a-44db-8397-cc5392387b5e");
 pub const IID_IMMDeviceCollection = &IID_IMMDeviceCollection_Value;
 pub const IMMDeviceCollection = extern struct {
     pub const VTable = extern struct {
@@ -7681,7 +7681,7 @@ pub const IMMDeviceCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMMEndpoint_Value = @import("../zig.zig").Guid.initString("1BE09788-6894-4089-8586-9A2A6C265AC5");
+const IID_IMMEndpoint_Value = @import("../zig.zig").Guid.initString("1be09788-6894-4089-8586-9a2a6c265ac5");
 pub const IID_IMMEndpoint = &IID_IMMEndpoint_Value;
 pub const IMMEndpoint = extern struct {
     pub const VTable = extern struct {
@@ -7702,7 +7702,7 @@ pub const IMMEndpoint = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMMDeviceEnumerator_Value = @import("../zig.zig").Guid.initString("A95664D2-9614-4F35-A746-DE8DB63617E6");
+const IID_IMMDeviceEnumerator_Value = @import("../zig.zig").Guid.initString("a95664d2-9614-4f35-a746-de8db63617e6");
 pub const IID_IMMDeviceEnumerator = &IID_IMMDeviceEnumerator_Value;
 pub const IMMDeviceEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -7760,7 +7760,7 @@ pub const IMMDeviceEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMMDeviceActivator_Value = @import("../zig.zig").Guid.initString("3B0D0EA4-D0A9-4B0E-935B-09516746FAC0");
+const IID_IMMDeviceActivator_Value = @import("../zig.zig").Guid.initString("3b0d0ea4-d0a9-4b0e-935b-09516746fac0");
 pub const IID_IMMDeviceActivator = &IID_IMMDeviceActivator_Value;
 pub const IMMDeviceActivator = extern struct {
     pub const VTable = extern struct {
@@ -7784,7 +7784,7 @@ pub const IMMDeviceActivator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IActivateAudioInterfaceCompletionHandler_Value = @import("../zig.zig").Guid.initString("41D949AB-9862-444A-80F6-C261334DA5EB");
+const IID_IActivateAudioInterfaceCompletionHandler_Value = @import("../zig.zig").Guid.initString("41d949ab-9862-444a-80f6-c261334da5eb");
 pub const IID_IActivateAudioInterfaceCompletionHandler = &IID_IActivateAudioInterfaceCompletionHandler_Value;
 pub const IActivateAudioInterfaceCompletionHandler = extern struct {
     pub const VTable = extern struct {
@@ -7805,7 +7805,7 @@ pub const IActivateAudioInterfaceCompletionHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IActivateAudioInterfaceAsyncOperation_Value = @import("../zig.zig").Guid.initString("72A22D78-CDE4-431D-B8CC-843A71199B6D");
+const IID_IActivateAudioInterfaceAsyncOperation_Value = @import("../zig.zig").Guid.initString("72a22d78-cde4-431d-b8cc-843a71199b6d");
 pub const IID_IActivateAudioInterfaceAsyncOperation = &IID_IActivateAudioInterfaceAsyncOperation_Value;
 pub const IActivateAudioInterfaceAsyncOperation = extern struct {
     pub const VTable = extern struct {
@@ -7854,7 +7854,7 @@ pub const AUDIO_ENDPOINT_SHARED_CREATE_PARAMS = extern struct {
     wfxDeviceFormat: WAVEFORMATEX,
 };
 
-const IID_IAudioEndpointOffloadStreamVolume_Value = @import("../zig.zig").Guid.initString("64F1DD49-71CA-4281-8672-3A9EDDD1D0B6");
+const IID_IAudioEndpointOffloadStreamVolume_Value = @import("../zig.zig").Guid.initString("64f1dd49-71ca-4281-8672-3a9eddd1d0b6");
 pub const IID_IAudioEndpointOffloadStreamVolume = &IID_IAudioEndpointOffloadStreamVolume_Value;
 pub const IAudioEndpointOffloadStreamVolume = extern struct {
     pub const VTable = extern struct {
@@ -7895,7 +7895,7 @@ pub const IAudioEndpointOffloadStreamVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointOffloadStreamMute_Value = @import("../zig.zig").Guid.initString("DFE21355-5EC2-40E0-8D6B-710AC3C00249");
+const IID_IAudioEndpointOffloadStreamMute_Value = @import("../zig.zig").Guid.initString("dfe21355-5ec2-40e0-8d6b-710ac3c00249");
 pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStreamMute_Value;
 pub const IAudioEndpointOffloadStreamMute = extern struct {
     pub const VTable = extern struct {
@@ -7924,7 +7924,7 @@ pub const IAudioEndpointOffloadStreamMute = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointOffloadStreamMeter_Value = @import("../zig.zig").Guid.initString("E1546DCE-9DD1-418B-9AB2-348CED161C86");
+const IID_IAudioEndpointOffloadStreamMeter_Value = @import("../zig.zig").Guid.initString("e1546dce-9dd1-418b-9ab2-348ced161c86");
 pub const IID_IAudioEndpointOffloadStreamMeter = &IID_IAudioEndpointOffloadStreamMeter_Value;
 pub const IAudioEndpointOffloadStreamMeter = extern struct {
     pub const VTable = extern struct {
@@ -7954,7 +7954,7 @@ pub const IAudioEndpointOffloadStreamMeter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointLastBufferControl_Value = @import("../zig.zig").Guid.initString("F8520DD3-8F9D-4437-9861-62F584C33DD6");
+const IID_IAudioEndpointLastBufferControl_Value = @import("../zig.zig").Guid.initString("f8520dd3-8f9d-4437-9861-62f584c33dd6");
 pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferControl_Value;
 pub const IAudioEndpointLastBufferControl = extern struct {
     pub const VTable = extern struct {
@@ -7982,7 +7982,7 @@ pub const IAudioEndpointLastBufferControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioLfxControl_Value = @import("../zig.zig").Guid.initString("076A6922-D802-4F83-BAF6-409D9CA11BFE");
+const IID_IAudioLfxControl_Value = @import("../zig.zig").Guid.initString("076a6922-d802-4f83-baf6-409d9ca11bfe");
 pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
 pub const IAudioLfxControl = extern struct {
     pub const VTable = extern struct {
@@ -8011,7 +8011,7 @@ pub const IAudioLfxControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IHardwareAudioEngineBase_Value = @import("../zig.zig").Guid.initString("EDDCE3E4-F3C1-453A-B461-223563CBD886");
+const IID_IHardwareAudioEngineBase_Value = @import("../zig.zig").Guid.initString("eddce3e4-f3c1-453a-b461-223563cbd886");
 pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
 pub const IHardwareAudioEngineBase = extern struct {
     pub const VTable = extern struct {
@@ -8071,10 +8071,10 @@ pub const IHardwareAudioEngineBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value = @import("../zig.zig").Guid.initString("9F2F7B66-65AC-4FA6-8AE4-123C78B89313");
+const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value = @import("../zig.zig").Guid.initString("9f2f7b66-65ac-4fa6-8ae4-123c78b89313");
 pub const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN = &CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN_Value;
 
-const CLSID_DeviceTopology_Value = @import("../zig.zig").Guid.initString("1DF639D0-5EC1-47AA-9379-828DC1AA8C59");
+const CLSID_DeviceTopology_Value = @import("../zig.zig").Guid.initString("1df639d0-5ec1-47aa-9379-828dc1aa8c59");
 pub const CLSID_DeviceTopology = &CLSID_DeviceTopology_Value;
 
 pub const DataFlow = extern enum(i32) {
@@ -8106,7 +8106,7 @@ pub const Software_IO = ConnectorType.Software_IO;
 pub const Software_Fixed = ConnectorType.Software_Fixed;
 pub const Network = ConnectorType.Network;
 
-const IID_IPerChannelDbLevel_Value = @import("../zig.zig").Guid.initString("C2F8E001-F205-4BC9-99BC-C13B1E048CCB");
+const IID_IPerChannelDbLevel_Value = @import("../zig.zig").Guid.initString("c2f8e001-f205-4bc9-99bc-c13b1e048ccb");
 pub const IID_IPerChannelDbLevel = &IID_IPerChannelDbLevel_Value;
 pub const IPerChannelDbLevel = extern struct {
     pub const VTable = extern struct {
@@ -8176,7 +8176,7 @@ pub const IPerChannelDbLevel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioVolumeLevel_Value = @import("../zig.zig").Guid.initString("7FB7B48F-531D-44A2-BCB3-5AD5A134B3DC");
+const IID_IAudioVolumeLevel_Value = @import("../zig.zig").Guid.initString("7fb7b48f-531d-44a2-bcb3-5ad5a134b3dc");
 pub const IID_IAudioVolumeLevel = &IID_IAudioVolumeLevel_Value;
 pub const IAudioVolumeLevel = extern struct {
     pub const VTable = extern struct {
@@ -8189,7 +8189,7 @@ pub const IAudioVolumeLevel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioChannelConfig_Value = @import("../zig.zig").Guid.initString("BB11C46F-EC28-493C-B88A-5DB88062CE98");
+const IID_IAudioChannelConfig_Value = @import("../zig.zig").Guid.initString("bb11c46f-ec28-493c-b88a-5db88062ce98");
 pub const IID_IAudioChannelConfig = &IID_IAudioChannelConfig_Value;
 pub const IAudioChannelConfig = extern struct {
     pub const VTable = extern struct {
@@ -8219,7 +8219,7 @@ pub const IAudioChannelConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioLoudness_Value = @import("../zig.zig").Guid.initString("7D8B1437-DD53-4350-9C1B-1EE2890BD938");
+const IID_IAudioLoudness_Value = @import("../zig.zig").Guid.initString("7d8b1437-dd53-4350-9c1b-1ee2890bd938");
 pub const IID_IAudioLoudness = &IID_IAudioLoudness_Value;
 pub const IAudioLoudness = extern struct {
     pub const VTable = extern struct {
@@ -8249,7 +8249,7 @@ pub const IAudioLoudness = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioInputSelector_Value = @import("../zig.zig").Guid.initString("4F03DC02-5E6E-4653-8F72-A030C123D598");
+const IID_IAudioInputSelector_Value = @import("../zig.zig").Guid.initString("4f03dc02-5e6e-4653-8f72-a030c123d598");
 pub const IID_IAudioInputSelector = &IID_IAudioInputSelector_Value;
 pub const IAudioInputSelector = extern struct {
     pub const VTable = extern struct {
@@ -8279,7 +8279,7 @@ pub const IAudioInputSelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioOutputSelector_Value = @import("../zig.zig").Guid.initString("BB515F69-94A7-429E-8B9C-271B3F11A3AB");
+const IID_IAudioOutputSelector_Value = @import("../zig.zig").Guid.initString("bb515f69-94a7-429e-8b9c-271b3f11a3ab");
 pub const IID_IAudioOutputSelector = &IID_IAudioOutputSelector_Value;
 pub const IAudioOutputSelector = extern struct {
     pub const VTable = extern struct {
@@ -8309,7 +8309,7 @@ pub const IAudioOutputSelector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioMute_Value = @import("../zig.zig").Guid.initString("DF45AEEA-B74A-4B6B-AFAD-2366B6AA012E");
+const IID_IAudioMute_Value = @import("../zig.zig").Guid.initString("df45aeea-b74a-4b6b-afad-2366b6aa012e");
 pub const IID_IAudioMute = &IID_IAudioMute_Value;
 pub const IAudioMute = extern struct {
     pub const VTable = extern struct {
@@ -8339,7 +8339,7 @@ pub const IAudioMute = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioBass_Value = @import("../zig.zig").Guid.initString("A2B1A1D9-4DB3-425D-A2B2-BD335CB3E2E5");
+const IID_IAudioBass_Value = @import("../zig.zig").Guid.initString("a2b1a1d9-4db3-425d-a2b2-bd335cb3e2e5");
 pub const IID_IAudioBass = &IID_IAudioBass_Value;
 pub const IAudioBass = extern struct {
     pub const VTable = extern struct {
@@ -8352,7 +8352,7 @@ pub const IAudioBass = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioMidrange_Value = @import("../zig.zig").Guid.initString("5E54B6D7-B44B-40D9-9A9E-E691D9CE6EDF");
+const IID_IAudioMidrange_Value = @import("../zig.zig").Guid.initString("5e54b6d7-b44b-40d9-9a9e-e691d9ce6edf");
 pub const IID_IAudioMidrange = &IID_IAudioMidrange_Value;
 pub const IAudioMidrange = extern struct {
     pub const VTable = extern struct {
@@ -8365,7 +8365,7 @@ pub const IAudioMidrange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioTreble_Value = @import("../zig.zig").Guid.initString("0A717812-694E-4907-B74B-BAFA5CFDCA7B");
+const IID_IAudioTreble_Value = @import("../zig.zig").Guid.initString("0a717812-694e-4907-b74b-bafa5cfdca7b");
 pub const IID_IAudioTreble = &IID_IAudioTreble_Value;
 pub const IAudioTreble = extern struct {
     pub const VTable = extern struct {
@@ -8378,7 +8378,7 @@ pub const IAudioTreble = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioAutoGainControl_Value = @import("../zig.zig").Guid.initString("85401FD4-6DE4-4B9D-9869-2D6753A82F3C");
+const IID_IAudioAutoGainControl_Value = @import("../zig.zig").Guid.initString("85401fd4-6de4-4b9d-9869-2d6753a82f3c");
 pub const IID_IAudioAutoGainControl = &IID_IAudioAutoGainControl_Value;
 pub const IAudioAutoGainControl = extern struct {
     pub const VTable = extern struct {
@@ -8408,7 +8408,7 @@ pub const IAudioAutoGainControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioPeakMeter_Value = @import("../zig.zig").Guid.initString("DD79923C-0599-45E0-B8B6-C8DF7DB6E796");
+const IID_IAudioPeakMeter_Value = @import("../zig.zig").Guid.initString("dd79923c-0599-45e0-b8b6-c8df7db6e796");
 pub const IID_IAudioPeakMeter = &IID_IAudioPeakMeter_Value;
 pub const IAudioPeakMeter = extern struct {
     pub const VTable = extern struct {
@@ -8438,7 +8438,7 @@ pub const IAudioPeakMeter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDeviceSpecificProperty_Value = @import("../zig.zig").Guid.initString("3B22BCBF-2586-4AF0-8583-205D391B807C");
+const IID_IDeviceSpecificProperty_Value = @import("../zig.zig").Guid.initString("3b22bcbf-2586-4af0-8583-205d391b807c");
 pub const IID_IDeviceSpecificProperty = &IID_IDeviceSpecificProperty_Value;
 pub const IDeviceSpecificProperty = extern struct {
     pub const VTable = extern struct {
@@ -8488,7 +8488,7 @@ pub const IDeviceSpecificProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKsFormatSupport_Value = @import("../zig.zig").Guid.initString("3CB4A69D-BB6F-4D2B-95B7-452D2C155DB5");
+const IID_IKsFormatSupport_Value = @import("../zig.zig").Guid.initString("3cb4a69d-bb6f-4d2b-95b7-452d2c155db5");
 pub const IID_IKsFormatSupport = &IID_IKsFormatSupport_Value;
 pub const IKsFormatSupport = extern struct {
     pub const VTable = extern struct {
@@ -8519,7 +8519,7 @@ pub const IKsFormatSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKsJackDescription_Value = @import("../zig.zig").Guid.initString("4509F757-2D46-4637-8E62-CE7DB944F57B");
+const IID_IKsJackDescription_Value = @import("../zig.zig").Guid.initString("4509f757-2d46-4637-8e62-ce7db944f57b");
 pub const IID_IKsJackDescription = &IID_IKsJackDescription_Value;
 pub const IKsJackDescription = extern struct {
     pub const VTable = extern struct {
@@ -8549,7 +8549,7 @@ pub const IKsJackDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKsJackDescription2_Value = @import("../zig.zig").Guid.initString("478F3A9B-E0C9-4827-9228-6F5505FFE76A");
+const IID_IKsJackDescription2_Value = @import("../zig.zig").Guid.initString("478f3a9b-e0c9-4827-9228-6f5505ffe76a");
 pub const IID_IKsJackDescription2 = &IID_IKsJackDescription2_Value;
 pub const IKsJackDescription2 = extern struct {
     pub const VTable = extern struct {
@@ -8579,7 +8579,7 @@ pub const IKsJackDescription2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKsJackSinkInformation_Value = @import("../zig.zig").Guid.initString("D9BD72ED-290F-4581-9FF3-61027A8FE532");
+const IID_IKsJackSinkInformation_Value = @import("../zig.zig").Guid.initString("d9bd72ed-290f-4581-9ff3-61027a8fe532");
 pub const IID_IKsJackSinkInformation = &IID_IKsJackSinkInformation_Value;
 pub const IKsJackSinkInformation = extern struct {
     pub const VTable = extern struct {
@@ -8600,7 +8600,7 @@ pub const IKsJackSinkInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKsJackContainerId_Value = @import("../zig.zig").Guid.initString("C99AF463-D629-4EC4-8C00-E54D68154248");
+const IID_IKsJackContainerId_Value = @import("../zig.zig").Guid.initString("c99af463-d629-4ec4-8c00-e54d68154248");
 pub const IID_IKsJackContainerId = &IID_IKsJackContainerId_Value;
 pub const IKsJackContainerId = extern struct {
     pub const VTable = extern struct {
@@ -8621,7 +8621,7 @@ pub const IKsJackContainerId = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPartsList_Value = @import("../zig.zig").Guid.initString("6DAA848C-5EB0-45CC-AEA5-998A2CDA1FFB");
+const IID_IPartsList_Value = @import("../zig.zig").Guid.initString("6daa848c-5eb0-45cc-aea5-998a2cda1ffb");
 pub const IID_IPartsList = &IID_IPartsList_Value;
 pub const IPartsList = extern struct {
     pub const VTable = extern struct {
@@ -8651,7 +8651,7 @@ pub const IPartsList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPart_Value = @import("../zig.zig").Guid.initString("AE2DE0E4-5BCA-4F2D-AA46-5D13F8FDB3A9");
+const IID_IPart_Value = @import("../zig.zig").Guid.initString("ae2de0e4-5bca-4f2d-aa46-5d13f8fdb3a9");
 pub const IID_IPart = &IID_IPart_Value;
 pub const IPart = extern struct {
     pub const VTable = extern struct {
@@ -8772,7 +8772,7 @@ pub const IPart = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IConnector_Value = @import("../zig.zig").Guid.initString("9C2C4058-23F5-41DE-877A-DF3AF236A09E");
+const IID_IConnector_Value = @import("../zig.zig").Guid.initString("9c2c4058-23f5-41de-877a-df3af236a09e");
 pub const IID_IConnector = &IID_IConnector_Value;
 pub const IConnector = extern struct {
     pub const VTable = extern struct {
@@ -8848,7 +8848,7 @@ pub const IConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISubunit_Value = @import("../zig.zig").Guid.initString("82149A85-DBA6-4487-86BB-EA8F7FEFCC71");
+const IID_ISubunit_Value = @import("../zig.zig").Guid.initString("82149a85-dba6-4487-86bb-ea8f7fefcc71");
 pub const IID_ISubunit = &IID_ISubunit_Value;
 pub const ISubunit = extern struct {
     pub const VTable = extern struct {
@@ -8861,7 +8861,7 @@ pub const ISubunit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IControlInterface_Value = @import("../zig.zig").Guid.initString("45D37C3F-5140-444A-AE24-400789F3CBF3");
+const IID_IControlInterface_Value = @import("../zig.zig").Guid.initString("45d37c3f-5140-444a-ae24-400789f3cbf3");
 pub const IID_IControlInterface = &IID_IControlInterface_Value;
 pub const IControlInterface = extern struct {
     pub const VTable = extern struct {
@@ -8890,7 +8890,7 @@ pub const IControlInterface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IControlChangeNotify_Value = @import("../zig.zig").Guid.initString("A09513ED-C709-4D21-BD7B-5F34C47F3947");
+const IID_IControlChangeNotify_Value = @import("../zig.zig").Guid.initString("a09513ed-c709-4d21-bd7b-5f34c47f3947");
 pub const IID_IControlChangeNotify = &IID_IControlChangeNotify_Value;
 pub const IControlChangeNotify = extern struct {
     pub const VTable = extern struct {
@@ -8912,7 +8912,7 @@ pub const IControlChangeNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDeviceTopology_Value = @import("../zig.zig").Guid.initString("2A07407E-6497-4A18-9787-32F79BD0D98F");
+const IID_IDeviceTopology_Value = @import("../zig.zig").Guid.initString("2a07407e-6497-4a18-9787-32f79bd0d98f");
 pub const IID_IDeviceTopology = &IID_IDeviceTopology_Value;
 pub const IDeviceTopology = extern struct {
     pub const VTable = extern struct {
@@ -8995,7 +8995,7 @@ pub const AUDIO_VOLUME_NOTIFICATION_DATA = extern struct {
     afChannelVolumes: [1]f32,
 };
 
-const IID_IAudioEndpointVolumeCallback_Value = @import("../zig.zig").Guid.initString("657804FA-D6AD-4496-8A60-352752AF4F89");
+const IID_IAudioEndpointVolumeCallback_Value = @import("../zig.zig").Guid.initString("657804fa-d6ad-4496-8a60-352752af4f89");
 pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_Value;
 pub const IAudioEndpointVolumeCallback = extern struct {
     pub const VTable = extern struct {
@@ -9016,7 +9016,7 @@ pub const IAudioEndpointVolumeCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointVolume_Value = @import("../zig.zig").Guid.initString("5CDF2C82-841E-4546-9722-0CF74078229A");
+const IID_IAudioEndpointVolume_Value = @import("../zig.zig").Guid.initString("5cdf2c82-841e-4546-9722-0cf74078229a");
 pub const IID_IAudioEndpointVolume = &IID_IAudioEndpointVolume_Value;
 pub const IAudioEndpointVolume = extern struct {
     pub const VTable = extern struct {
@@ -9185,7 +9185,7 @@ pub const IAudioEndpointVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioEndpointVolumeEx_Value = @import("../zig.zig").Guid.initString("66E11784-F695-4F28-A505-A7080081A78F");
+const IID_IAudioEndpointVolumeEx_Value = @import("../zig.zig").Guid.initString("66e11784-f695-4f28-a505-a7080081a78f");
 pub const IID_IAudioEndpointVolumeEx = &IID_IAudioEndpointVolumeEx_Value;
 pub const IAudioEndpointVolumeEx = extern struct {
     pub const VTable = extern struct {
@@ -9209,7 +9209,7 @@ pub const IAudioEndpointVolumeEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioMeterInformation_Value = @import("../zig.zig").Guid.initString("C02216F6-8C67-4B5B-9D00-D008E73E0064");
+const IID_IAudioMeterInformation_Value = @import("../zig.zig").Guid.initString("c02216f6-8c67-4b5b-9d00-d008e73e0064");
 pub const IID_IAudioMeterInformation = &IID_IAudioMeterInformation_Value;
 pub const IAudioMeterInformation = extern struct {
     pub const VTable = extern struct {
@@ -9270,7 +9270,7 @@ pub const DisconnectReasonSessionLogoff = AudioSessionDisconnectReason.Disconnec
 pub const DisconnectReasonSessionDisconnected = AudioSessionDisconnectReason.DisconnectReasonSessionDisconnected;
 pub const DisconnectReasonExclusiveModeOverride = AudioSessionDisconnectReason.DisconnectReasonExclusiveModeOverride;
 
-const IID_IAudioSessionEvents_Value = @import("../zig.zig").Guid.initString("24918ACC-64B3-37C1-8CA9-74A66E9957A8");
+const IID_IAudioSessionEvents_Value = @import("../zig.zig").Guid.initString("24918acc-64b3-37c1-8ca9-74a66e9957a8");
 pub const IID_IAudioSessionEvents = &IID_IAudioSessionEvents_Value;
 pub const IAudioSessionEvents = extern struct {
     pub const VTable = extern struct {
@@ -9347,7 +9347,7 @@ pub const IAudioSessionEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionControl_Value = @import("../zig.zig").Guid.initString("F4B1A599-7266-4319-A8CA-E70ACB11E8CD");
+const IID_IAudioSessionControl_Value = @import("../zig.zig").Guid.initString("f4b1a599-7266-4319-a8ca-e70acb11e8cd");
 pub const IID_IAudioSessionControl = &IID_IAudioSessionControl_Value;
 pub const IAudioSessionControl = extern struct {
     pub const VTable = extern struct {
@@ -9435,7 +9435,7 @@ pub const IAudioSessionControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionControl2_Value = @import("../zig.zig").Guid.initString("BFB7FF88-7239-4FC9-8FA2-07C950BE9C6D");
+const IID_IAudioSessionControl2_Value = @import("../zig.zig").Guid.initString("bfb7ff88-7239-4fc9-8fa2-07c950be9c6d");
 pub const IID_IAudioSessionControl2 = &IID_IAudioSessionControl2_Value;
 pub const IAudioSessionControl2 = extern struct {
     pub const VTable = extern struct {
@@ -9487,7 +9487,7 @@ pub const IAudioSessionControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionManager_Value = @import("../zig.zig").Guid.initString("BFA971F1-4D5E-40BB-935E-967039BFBEE4");
+const IID_IAudioSessionManager_Value = @import("../zig.zig").Guid.initString("bfa971f1-4d5e-40bb-935e-967039bfbee4");
 pub const IID_IAudioSessionManager = &IID_IAudioSessionManager_Value;
 pub const IAudioSessionManager = extern struct {
     pub const VTable = extern struct {
@@ -9520,7 +9520,7 @@ pub const IAudioSessionManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioVolumeDuckNotification_Value = @import("../zig.zig").Guid.initString("C3B284D4-6D39-4359-B3CF-B56DDB3BB39C");
+const IID_IAudioVolumeDuckNotification_Value = @import("../zig.zig").Guid.initString("c3b284d4-6d39-4359-b3cf-b56ddb3bb39c");
 pub const IID_IAudioVolumeDuckNotification = &IID_IAudioVolumeDuckNotification_Value;
 pub const IAudioVolumeDuckNotification = extern struct {
     pub const VTable = extern struct {
@@ -9550,7 +9550,7 @@ pub const IAudioVolumeDuckNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionNotification_Value = @import("../zig.zig").Guid.initString("641DD20B-4D41-49CC-ABA3-174B9477BB08");
+const IID_IAudioSessionNotification_Value = @import("../zig.zig").Guid.initString("641dd20b-4d41-49cc-aba3-174b9477bb08");
 pub const IID_IAudioSessionNotification = &IID_IAudioSessionNotification_Value;
 pub const IAudioSessionNotification = extern struct {
     pub const VTable = extern struct {
@@ -9571,7 +9571,7 @@ pub const IAudioSessionNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionEnumerator_Value = @import("../zig.zig").Guid.initString("E2F5BB11-0570-40CA-ACDD-3AA01277DEE8");
+const IID_IAudioSessionEnumerator_Value = @import("../zig.zig").Guid.initString("e2f5bb11-0570-40ca-acdd-3aa01277dee8");
 pub const IID_IAudioSessionEnumerator = &IID_IAudioSessionEnumerator_Value;
 pub const IAudioSessionEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -9601,7 +9601,7 @@ pub const IAudioSessionEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSessionManager2_Value = @import("../zig.zig").Guid.initString("77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F");
+const IID_IAudioSessionManager2_Value = @import("../zig.zig").Guid.initString("77aa99a0-1bd6-484f-8bc7-2c654c9a9b6f");
 pub const IID_IAudioSessionManager2 = &IID_IAudioSessionManager2_Value;
 pub const IAudioSessionManager2 = extern struct {
     pub const VTable = extern struct {
@@ -9695,7 +9695,7 @@ pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern str
     NotifyObject: *ISpatialAudioObjectRenderStreamNotify,
 };
 
-const IID_ISpatialAudioMetadataItems_Value = @import("../zig.zig").Guid.initString("BCD7C78F-3098-4F22-B547-A2F25A381269");
+const IID_ISpatialAudioMetadataItems_Value = @import("../zig.zig").Guid.initString("bcd7c78f-3098-4f22-b547-a2f25a381269");
 pub const IID_ISpatialAudioMetadataItems = &IID_ISpatialAudioMetadataItems_Value;
 pub const ISpatialAudioMetadataItems = extern struct {
     pub const VTable = extern struct {
@@ -9748,7 +9748,7 @@ pub const ISpatialAudioMetadataItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioMetadataWriter_Value = @import("../zig.zig").Guid.initString("1B17CA01-2955-444D-A430-537DC589A844");
+const IID_ISpatialAudioMetadataWriter_Value = @import("../zig.zig").Guid.initString("1b17ca01-2955-444d-a430-537dc589a844");
 pub const IID_ISpatialAudioMetadataWriter = &IID_ISpatialAudioMetadataWriter_Value;
 pub const ISpatialAudioMetadataWriter = extern struct {
     pub const VTable = extern struct {
@@ -9794,7 +9794,7 @@ pub const ISpatialAudioMetadataWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioMetadataReader_Value = @import("../zig.zig").Guid.initString("B78E86A2-31D9-4C32-94D2-7DF40FC7EBEC");
+const IID_ISpatialAudioMetadataReader_Value = @import("../zig.zig").Guid.initString("b78e86a2-31d9-4c32-94d2-7df40fc7ebec");
 pub const IID_ISpatialAudioMetadataReader = &IID_ISpatialAudioMetadataReader_Value;
 pub const ISpatialAudioMetadataReader = extern struct {
     pub const VTable = extern struct {
@@ -9842,7 +9842,7 @@ pub const ISpatialAudioMetadataReader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioMetadataCopier_Value = @import("../zig.zig").Guid.initString("D224B233-E251-4FD0-9CA2-D5ECF9A68404");
+const IID_ISpatialAudioMetadataCopier_Value = @import("../zig.zig").Guid.initString("d224b233-e251-4fd0-9ca2-d5ecf9a68404");
 pub const IID_ISpatialAudioMetadataCopier = &IID_ISpatialAudioMetadataCopier_Value;
 pub const ISpatialAudioMetadataCopier = extern struct {
     pub const VTable = extern struct {
@@ -9881,7 +9881,7 @@ pub const ISpatialAudioMetadataCopier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioMetadataItemsBuffer_Value = @import("../zig.zig").Guid.initString("42640A16-E1BD-42D9-9FF6-031AB71A2DBA");
+const IID_ISpatialAudioMetadataItemsBuffer_Value = @import("../zig.zig").Guid.initString("42640a16-e1bd-42d9-9ff6-031ab71a2dba");
 pub const IID_ISpatialAudioMetadataItemsBuffer = &IID_ISpatialAudioMetadataItemsBuffer_Value;
 pub const ISpatialAudioMetadataItemsBuffer = extern struct {
     pub const VTable = extern struct {
@@ -9919,7 +9919,7 @@ pub const ISpatialAudioMetadataItemsBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioMetadataClient_Value = @import("../zig.zig").Guid.initString("777D4A3B-F6FF-4A26-85DC-68D7CDEDA1D4");
+const IID_ISpatialAudioMetadataClient_Value = @import("../zig.zig").Guid.initString("777d4a3b-f6ff-4a26-85dc-68d7cdeda1d4");
 pub const IID_ISpatialAudioMetadataClient = &IID_ISpatialAudioMetadataClient_Value;
 pub const ISpatialAudioMetadataClient = extern struct {
     pub const VTable = extern struct {
@@ -9977,7 +9977,7 @@ pub const ISpatialAudioMetadataClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectForMetadataCommands_Value = @import("../zig.zig").Guid.initString("0DF2C94B-F5F9-472D-AF6B-C46E0AC9CD05");
+const IID_ISpatialAudioObjectForMetadataCommands_Value = @import("../zig.zig").Guid.initString("0df2c94b-f5f9-472d-af6b-c46e0ac9cd05");
 pub const IID_ISpatialAudioObjectForMetadataCommands = &IID_ISpatialAudioObjectForMetadataCommands_Value;
 pub const ISpatialAudioObjectForMetadataCommands = extern struct {
     pub const VTable = extern struct {
@@ -10000,7 +10000,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectForMetadataItems_Value = @import("../zig.zig").Guid.initString("DDEA49FF-3BC0-4377-8AAD-9FBCFD808566");
+const IID_ISpatialAudioObjectForMetadataItems_Value = @import("../zig.zig").Guid.initString("ddea49ff-3bc0-4377-8aad-9fbcfd808566");
 pub const IID_ISpatialAudioObjectForMetadataItems = &IID_ISpatialAudioObjectForMetadataItems_Value;
 pub const ISpatialAudioObjectForMetadataItems = extern struct {
     pub const VTable = extern struct {
@@ -10021,7 +10021,7 @@ pub const ISpatialAudioObjectForMetadataItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpatialAudioObjectRenderStreamForMetadata_Value = @import("../zig.zig").Guid.initString("BBC9C907-48D5-4A2E-A0C7-F7F0D67C1FB1");
+const IID_ISpatialAudioObjectRenderStreamForMetadata_Value = @import("../zig.zig").Guid.initString("bbc9c907-48d5-4a2e-a0c7-f7f0d67c1fb1");
 pub const IID_ISpatialAudioObjectRenderStreamForMetadata = &IID_ISpatialAudioObjectRenderStreamForMetadata_Value;
 pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     pub const VTable = extern struct {

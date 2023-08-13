@@ -67,7 +67,7 @@ pub const TASK_TRIGGER = extern struct {
     wRandomMinutesInterval: u16,
 };
 
-const IID_ITaskTrigger_Value = @import("../zig.zig").Guid.initString("148BD52B-A2AB-11CE-B11F-00AA00530503");
+const IID_ITaskTrigger_Value = @import("../zig.zig").Guid.initString("148bd52b-a2ab-11ce-b11f-00aa00530503");
 pub const IID_ITaskTrigger = &IID_ITaskTrigger_Value;
 pub const ITaskTrigger = extern struct {
     pub const VTable = extern struct {
@@ -104,7 +104,7 @@ pub const ITaskTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IScheduledWorkItem_Value = @import("../zig.zig").Guid.initString("A6B952F0-A4B1-11D0-997D-00AA006887EC");
+const IID_IScheduledWorkItem_Value = @import("../zig.zig").Guid.initString("a6b952f0-a4b1-11d0-997d-00aa006887ec");
 pub const IID_IScheduledWorkItem = &IID_IScheduledWorkItem_Value;
 pub const IScheduledWorkItem = extern struct {
     pub const VTable = extern struct {
@@ -359,7 +359,7 @@ pub const IScheduledWorkItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITask_Value = @import("../zig.zig").Guid.initString("148BD524-A2AB-11CE-B11F-00AA00530503");
+const IID_ITask_Value = @import("../zig.zig").Guid.initString("148bd524-a2ab-11ce-b11f-00aa00530503");
 pub const IID_ITask = &IID_ITask_Value;
 pub const ITask = extern struct {
     pub const VTable = extern struct {
@@ -468,7 +468,7 @@ pub const ITask = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumWorkItems_Value = @import("../zig.zig").Guid.initString("148BD528-A2AB-11CE-B11F-00AA00530503");
+const IID_IEnumWorkItems_Value = @import("../zig.zig").Guid.initString("148bd528-a2ab-11ce-b11f-00aa00530503");
 pub const IID_IEnumWorkItems = &IID_IEnumWorkItems_Value;
 pub const IEnumWorkItems = extern struct {
     pub const VTable = extern struct {
@@ -514,7 +514,7 @@ pub const IEnumWorkItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskScheduler_Value = @import("../zig.zig").Guid.initString("148BD527-A2AB-11CE-B11F-00AA00530503");
+const IID_ITaskScheduler_Value = @import("../zig.zig").Guid.initString("148bd527-a2ab-11ce-b11f-00aa00530503");
 pub const IID_ITaskScheduler = &IID_ITaskScheduler_Value;
 pub const ITaskScheduler = extern struct {
     pub const VTable = extern struct {
@@ -607,7 +607,7 @@ pub const TASKPAGE_TASK = TASKPAGE.TASK;
 pub const TASKPAGE_SCHEDULE = TASKPAGE.SCHEDULE;
 pub const TASKPAGE_SETTINGS = TASKPAGE.SETTINGS;
 
-const IID_IProvideTaskPage_Value = @import("../zig.zig").Guid.initString("4086658A-CBBB-11CF-B604-00C04FD8D565");
+const IID_IProvideTaskPage_Value = @import("../zig.zig").Guid.initString("4086658a-cbbb-11cf-b604-00c04fd8d565");
 pub const IID_IProvideTaskPage = &IID_IProvideTaskPage_Value;
 pub const IProvideTaskPage = extern struct {
     pub const VTable = extern struct {
@@ -630,13 +630,13 @@ pub const IProvideTaskPage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_TaskScheduler_Value = @import("../zig.zig").Guid.initString("0F87369F-A4E5-4CFC-BD3E-73E6154572DD");
+const CLSID_TaskScheduler_Value = @import("../zig.zig").Guid.initString("0f87369f-a4e5-4cfc-bd3e-73e6154572dd");
 pub const CLSID_TaskScheduler = &CLSID_TaskScheduler_Value;
 
-const CLSID_TaskHandlerPS_Value = @import("../zig.zig").Guid.initString("F2A69DB7-DA2C-4352-9066-86FEE6DACAC9");
+const CLSID_TaskHandlerPS_Value = @import("../zig.zig").Guid.initString("f2a69db7-da2c-4352-9066-86fee6dacac9");
 pub const CLSID_TaskHandlerPS = &CLSID_TaskHandlerPS_Value;
 
-const CLSID_TaskHandlerStatusPS_Value = @import("../zig.zig").Guid.initString("9F15266D-D7BA-48F0-93C1-E6895F6FE5AC");
+const CLSID_TaskHandlerStatusPS_Value = @import("../zig.zig").Guid.initString("9f15266d-d7ba-48f0-93c1-e6895f6fe5ac");
 pub const CLSID_TaskHandlerStatusPS = &CLSID_TaskHandlerStatusPS_Value;
 
 pub const TASK_RUN_FLAGS = extern enum(i32) {
@@ -801,7 +801,7 @@ pub const TASK_COMPATIBILITY_V2_2 = TASK_COMPATIBILITY.V2_2;
 pub const TASK_COMPATIBILITY_V2_3 = TASK_COMPATIBILITY.V2_3;
 pub const TASK_COMPATIBILITY_V2_4 = TASK_COMPATIBILITY.V2_4;
 
-const IID_ITaskFolderCollection_Value = @import("../zig.zig").Guid.initString("79184A66-8664-423F-97F1-637356A5D812");
+const IID_ITaskFolderCollection_Value = @import("../zig.zig").Guid.initString("79184a66-8664-423f-97f1-637356a5d812");
 pub const IID_ITaskFolderCollection = &IID_ITaskFolderCollection_Value;
 pub const ITaskFolderCollection = extern struct {
     pub const VTable = extern struct {
@@ -813,11 +813,11 @@ pub const ITaskFolderCollection = extern struct {
         get_Item: fn(
             self: *const ITaskFolderCollection,
             index: VARIANT,
-            ppFolder: **ITaskFolder,
+            ppFolder: ?*?*ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ITaskFolderCollection,
-            ppEnum: **IUnknown,
+            ppEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -828,18 +828,18 @@ pub const ITaskFolderCollection = extern struct {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get_Count(@ptrCast(*const ITaskFolderCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolderCollection_get_Item(self: *const T, index: VARIANT, ppFolder: **ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolderCollection_get_Item(self: *const T, index: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get_Item(@ptrCast(*const ITaskFolderCollection, self), index, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolderCollection_get__NewEnum(self: *const T, ppEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITaskFolderCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolderCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ITaskFolderCollection, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskService_Value = @import("../zig.zig").Guid.initString("2FABA4C7-4DA9-4013-9697-20CC3FD40F85");
+const IID_ITaskService_Value = @import("../zig.zig").Guid.initString("2faba4c7-4da9-4013-9697-20cc3fd40f85");
 pub const IID_ITaskService = &IID_ITaskService_Value;
 pub const ITaskService = extern struct {
     pub const VTable = extern struct {
@@ -847,17 +847,17 @@ pub const ITaskService = extern struct {
         GetFolder: fn(
             self: *const ITaskService,
             path: BSTR,
-            ppFolder: **ITaskFolder,
+            ppFolder: ?*?*ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRunningTasks: fn(
             self: *const ITaskService,
             flags: i32,
-            ppRunningTasks: **IRunningTaskCollection,
+            ppRunningTasks: ?*?*IRunningTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NewTask: fn(
             self: *const ITaskService,
             flags: u32,
-            ppDefinition: **ITaskDefinition,
+            ppDefinition: ?*?*ITaskDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Connect: fn(
             self: *const ITaskService,
@@ -872,15 +872,15 @@ pub const ITaskService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TargetServer: fn(
             self: *const ITaskService,
-            pServer: *BSTR,
+            pServer: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ConnectedUser: fn(
             self: *const ITaskService,
-            pUser: *BSTR,
+            pUser: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ConnectedDomain: fn(
             self: *const ITaskService,
-            pDomain: *BSTR,
+            pDomain: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HighestVersion: fn(
             self: *const ITaskService,
@@ -891,15 +891,15 @@ pub const ITaskService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_GetFolder(self: *const T, path: BSTR, ppFolder: **ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskService_GetFolder(self: *const T, path: BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).GetFolder(@ptrCast(*const ITaskService, self), path, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_GetRunningTasks(self: *const T, flags: i32, ppRunningTasks: **IRunningTaskCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskService_GetRunningTasks(self: *const T, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).GetRunningTasks(@ptrCast(*const ITaskService, self), flags, ppRunningTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_NewTask(self: *const T, flags: u32, ppDefinition: **ITaskDefinition) callconv(.Inline) HRESULT {
+        pub fn ITaskService_NewTask(self: *const T, flags: u32, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).NewTask(@ptrCast(*const ITaskService, self), flags, ppDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -911,15 +911,15 @@ pub const ITaskService = extern struct {
             return @ptrCast(*const ITaskService.VTable, self.vtable).get_Connected(@ptrCast(*const ITaskService, self), pConnected);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_get_TargetServer(self: *const T, pServer: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskService_get_TargetServer(self: *const T, pServer: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).get_TargetServer(@ptrCast(*const ITaskService, self), pServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_get_ConnectedUser(self: *const T, pUser: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskService_get_ConnectedUser(self: *const T, pUser: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).get_ConnectedUser(@ptrCast(*const ITaskService, self), pUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskService_get_ConnectedDomain(self: *const T, pDomain: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskService_get_ConnectedDomain(self: *const T, pDomain: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskService.VTable, self.vtable).get_ConnectedDomain(@ptrCast(*const ITaskService, self), pDomain);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -930,7 +930,7 @@ pub const ITaskService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskHandler_Value = @import("../zig.zig").Guid.initString("839D7762-5121-4009-9234-4F0D19394F04");
+const IID_ITaskHandler_Value = @import("../zig.zig").Guid.initString("839d7762-5121-4009-9234-4f0d19394f04");
 pub const IID_ITaskHandler = &IID_ITaskHandler_Value;
 pub const ITaskHandler = extern struct {
     pub const VTable = extern struct {
@@ -974,7 +974,7 @@ pub const ITaskHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskHandlerStatus_Value = @import("../zig.zig").Guid.initString("EAEC7A8F-27A0-4DDC-8675-14726A01A38A");
+const IID_ITaskHandlerStatus_Value = @import("../zig.zig").Guid.initString("eaec7a8f-27a0-4ddc-8675-14726a01a38a");
 pub const IID_ITaskHandlerStatus = &IID_ITaskHandlerStatus_Value;
 pub const ITaskHandlerStatus = extern struct {
     pub const VTable = extern struct {
@@ -1004,14 +1004,14 @@ pub const ITaskHandlerStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskVariables_Value = @import("../zig.zig").Guid.initString("3E4C9351-D966-4B8B-BB87-CEBA68BB0107");
+const IID_ITaskVariables_Value = @import("../zig.zig").Guid.initString("3e4c9351-d966-4b8b-bb87-ceba68bb0107");
 pub const IID_ITaskVariables = &IID_ITaskVariables_Value;
 pub const ITaskVariables = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInput: fn(
             self: *const ITaskVariables,
-            pInput: *BSTR,
+            pInput: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetOutput: fn(
             self: *const ITaskVariables,
@@ -1019,14 +1019,14 @@ pub const ITaskVariables = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetContext: fn(
             self: *const ITaskVariables,
-            pContext: *BSTR,
+            pContext: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskVariables_GetInput(self: *const T, pInput: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskVariables_GetInput(self: *const T, pInput: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskVariables.VTable, self.vtable).GetInput(@ptrCast(*const ITaskVariables, self), pInput);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1034,14 +1034,14 @@ pub const ITaskVariables = extern struct {
             return @ptrCast(*const ITaskVariables.VTable, self.vtable).SetOutput(@ptrCast(*const ITaskVariables, self), input);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskVariables_GetContext(self: *const T, pContext: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskVariables_GetContext(self: *const T, pContext: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskVariables.VTable, self.vtable).GetContext(@ptrCast(*const ITaskVariables, self), pContext);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskNamedValuePair_Value = @import("../zig.zig").Guid.initString("39038068-2B46-4AFD-8662-7BB6F868D221");
+const IID_ITaskNamedValuePair_Value = @import("../zig.zig").Guid.initString("39038068-2b46-4afd-8662-7bb6f868d221");
 pub const IID_ITaskNamedValuePair = &IID_ITaskNamedValuePair_Value;
 pub const ITaskNamedValuePair = extern struct {
     pub const VTable = extern struct {
@@ -1086,7 +1086,7 @@ pub const ITaskNamedValuePair = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskNamedValueCollection_Value = @import("../zig.zig").Guid.initString("B4EF826B-63C3-46E4-A504-EF69E4F7EA4D");
+const IID_ITaskNamedValueCollection_Value = @import("../zig.zig").Guid.initString("b4ef826b-63c3-46e4-a504-ef69e4f7ea4d");
 pub const IID_ITaskNamedValueCollection = &IID_ITaskNamedValueCollection_Value;
 pub const ITaskNamedValueCollection = extern struct {
     pub const VTable = extern struct {
@@ -1149,22 +1149,22 @@ pub const ITaskNamedValueCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRunningTask_Value = @import("../zig.zig").Guid.initString("653758FB-7B9A-4F1E-A471-BEEB8E9B834E");
+const IID_IRunningTask_Value = @import("../zig.zig").Guid.initString("653758fb-7b9a-4f1e-a471-beeb8e9b834e");
 pub const IID_IRunningTask = &IID_IRunningTask_Value;
 pub const IRunningTask = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IRunningTask,
-            pName: *BSTR,
+            pName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_InstanceGuid: fn(
             self: *const IRunningTask,
-            pGuid: *BSTR,
+            pGuid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IRunningTask,
-            pPath: *BSTR,
+            pPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_State: fn(
             self: *const IRunningTask,
@@ -1172,7 +1172,7 @@ pub const IRunningTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentAction: fn(
             self: *const IRunningTask,
-            pName: *BSTR,
+            pName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Stop: fn(
             self: *const IRunningTask,
@@ -1189,15 +1189,15 @@ pub const IRunningTask = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTask_get_Name(self: *const T, pName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRunningTask_get_Name(self: *const T, pName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTask.VTable, self.vtable).get_Name(@ptrCast(*const IRunningTask, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTask_get_InstanceGuid(self: *const T, pGuid: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRunningTask_get_InstanceGuid(self: *const T, pGuid: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTask.VTable, self.vtable).get_InstanceGuid(@ptrCast(*const IRunningTask, self), pGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTask_get_Path(self: *const T, pPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRunningTask_get_Path(self: *const T, pPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTask.VTable, self.vtable).get_Path(@ptrCast(*const IRunningTask, self), pPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1205,7 +1205,7 @@ pub const IRunningTask = extern struct {
             return @ptrCast(*const IRunningTask.VTable, self.vtable).get_State(@ptrCast(*const IRunningTask, self), pState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTask_get_CurrentAction(self: *const T, pName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRunningTask_get_CurrentAction(self: *const T, pName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTask.VTable, self.vtable).get_CurrentAction(@ptrCast(*const IRunningTask, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1224,7 +1224,7 @@ pub const IRunningTask = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRunningTaskCollection_Value = @import("../zig.zig").Guid.initString("6A67614B-6828-4FEC-AA54-6D52E8F1F2DB");
+const IID_IRunningTaskCollection_Value = @import("../zig.zig").Guid.initString("6a67614b-6828-4fec-aa54-6d52e8f1f2db");
 pub const IID_IRunningTaskCollection = &IID_IRunningTaskCollection_Value;
 pub const IRunningTaskCollection = extern struct {
     pub const VTable = extern struct {
@@ -1236,11 +1236,11 @@ pub const IRunningTaskCollection = extern struct {
         get_Item: fn(
             self: *const IRunningTaskCollection,
             index: VARIANT,
-            ppRunningTask: **IRunningTask,
+            ppRunningTask: ?*?*IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IRunningTaskCollection,
-            ppEnum: **IUnknown,
+            ppEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1251,29 +1251,29 @@ pub const IRunningTaskCollection = extern struct {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get_Count(@ptrCast(*const IRunningTaskCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTaskCollection_get_Item(self: *const T, index: VARIANT, ppRunningTask: **IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRunningTaskCollection_get_Item(self: *const T, index: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get_Item(@ptrCast(*const IRunningTaskCollection, self), index, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRunningTaskCollection_get__NewEnum(self: *const T, ppEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IRunningTaskCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRunningTaskCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IRunningTaskCollection, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRegisteredTask_Value = @import("../zig.zig").Guid.initString("9C86F320-DEE3-4DD1-B972-A303F26B061E");
+const IID_IRegisteredTask_Value = @import("../zig.zig").Guid.initString("9c86f320-dee3-4dd1-b972-a303f26b061e");
 pub const IID_IRegisteredTask = &IID_IRegisteredTask_Value;
 pub const IRegisteredTask = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IRegisteredTask,
-            pName: *BSTR,
+            pName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IRegisteredTask,
-            pPath: *BSTR,
+            pPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_State: fn(
             self: *const IRegisteredTask,
@@ -1290,7 +1290,7 @@ pub const IRegisteredTask = extern struct {
         Run: fn(
             self: *const IRegisteredTask,
             params: VARIANT,
-            ppRunningTask: **IRunningTask,
+            ppRunningTask: ?*?*IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RunEx: fn(
             self: *const IRegisteredTask,
@@ -1298,12 +1298,12 @@ pub const IRegisteredTask = extern struct {
             flags: i32,
             sessionID: i32,
             user: BSTR,
-            ppRunningTask: **IRunningTask,
+            ppRunningTask: ?*?*IRunningTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInstances: fn(
             self: *const IRegisteredTask,
             flags: i32,
-            ppRunningTasks: **IRunningTaskCollection,
+            ppRunningTasks: ?*?*IRunningTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LastRunTime: fn(
             self: *const IRegisteredTask,
@@ -1323,16 +1323,16 @@ pub const IRegisteredTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Definition: fn(
             self: *const IRegisteredTask,
-            ppDefinition: **ITaskDefinition,
+            ppDefinition: ?*?*ITaskDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Xml: fn(
             self: *const IRegisteredTask,
-            pXml: *BSTR,
+            pXml: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityDescriptor: fn(
             self: *const IRegisteredTask,
             securityInformation: i32,
-            pSddl: *BSTR,
+            pSddl: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityDescriptor: fn(
             self: *const IRegisteredTask,
@@ -1348,18 +1348,18 @@ pub const IRegisteredTask = extern struct {
             pstStart: *const SYSTEMTIME,
             pstEnd: *const SYSTEMTIME,
             pCount: *u32,
-            pRunTimes: **SYSTEMTIME,
+            pRunTimes: ?*?*SYSTEMTIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_get_Name(self: *const T, pName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_get_Name(self: *const T, pName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_Name(@ptrCast(*const IRegisteredTask, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_get_Path(self: *const T, pPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_get_Path(self: *const T, pPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_Path(@ptrCast(*const IRegisteredTask, self), pPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1375,15 +1375,15 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).put_Enabled(@ptrCast(*const IRegisteredTask, self), enabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_Run(self: *const T, params: VARIANT, ppRunningTask: **IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_Run(self: *const T, params: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).Run(@ptrCast(*const IRegisteredTask, self), params, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_RunEx(self: *const T, params: VARIANT, flags: i32, sessionID: i32, user: BSTR, ppRunningTask: **IRunningTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_RunEx(self: *const T, params: VARIANT, flags: i32, sessionID: i32, user: BSTR, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).RunEx(@ptrCast(*const IRegisteredTask, self), params, flags, sessionID, user, ppRunningTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_GetInstances(self: *const T, flags: i32, ppRunningTasks: **IRunningTaskCollection) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_GetInstances(self: *const T, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).GetInstances(@ptrCast(*const IRegisteredTask, self), flags, ppRunningTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1403,15 +1403,15 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_NextRunTime(@ptrCast(*const IRegisteredTask, self), pNextRunTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_get_Definition(self: *const T, ppDefinition: **ITaskDefinition) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_get_Definition(self: *const T, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_Definition(@ptrCast(*const IRegisteredTask, self), ppDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_get_Xml(self: *const T, pXml: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_get_Xml(self: *const T, pXml: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).get_Xml(@ptrCast(*const IRegisteredTask, self), pXml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_GetSecurityDescriptor(self: *const T, securityInformation: i32, pSddl: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_GetSecurityDescriptor(self: *const T, securityInformation: i32, pSddl: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).GetSecurityDescriptor(@ptrCast(*const IRegisteredTask, self), securityInformation, pSddl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1423,14 +1423,14 @@ pub const IRegisteredTask = extern struct {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).Stop(@ptrCast(*const IRegisteredTask, self), flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTask_GetRunTimes(self: *const T, pstStart: *const SYSTEMTIME, pstEnd: *const SYSTEMTIME, pCount: *u32, pRunTimes: **SYSTEMTIME) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTask_GetRunTimes(self: *const T, pstStart: *const SYSTEMTIME, pstEnd: *const SYSTEMTIME, pCount: *u32, pRunTimes: ?*?*SYSTEMTIME) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTask.VTable, self.vtable).GetRunTimes(@ptrCast(*const IRegisteredTask, self), pstStart, pstEnd, pCount, pRunTimes);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITrigger_Value = @import("../zig.zig").Guid.initString("09941815-EA89-4B5B-89E0-2A773801FAC3");
+const IID_ITrigger_Value = @import("../zig.zig").Guid.initString("09941815-ea89-4b5b-89e0-2a773801fac3");
 pub const IID_ITrigger = &IID_ITrigger_Value;
 pub const ITrigger = extern struct {
     pub const VTable = extern struct {
@@ -1547,7 +1547,7 @@ pub const ITrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdleTrigger_Value = @import("../zig.zig").Guid.initString("D537D2B0-9FB3-4D34-9739-1FF5CE7B1EF3");
+const IID_IIdleTrigger_Value = @import("../zig.zig").Guid.initString("d537d2b0-9fb3-4d34-9739-1ff5ce7b1ef3");
 pub const IID_IIdleTrigger = &IID_IIdleTrigger_Value;
 pub const IIdleTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1560,7 +1560,7 @@ pub const IIdleTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILogonTrigger_Value = @import("../zig.zig").Guid.initString("72DADE38-FAE4-4B3E-BAF4-5D009AF02B1C");
+const IID_ILogonTrigger_Value = @import("../zig.zig").Guid.initString("72dade38-fae4-4b3e-baf4-5d009af02b1c");
 pub const IID_ILogonTrigger = &IID_ILogonTrigger_Value;
 pub const ILogonTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1605,7 +1605,7 @@ pub const ILogonTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISessionStateChangeTrigger_Value = @import("../zig.zig").Guid.initString("754DA71B-4385-4475-9DD9-598294FA3641");
+const IID_ISessionStateChangeTrigger_Value = @import("../zig.zig").Guid.initString("754da71b-4385-4475-9dd9-598294fa3641");
 pub const IID_ISessionStateChangeTrigger = &IID_ISessionStateChangeTrigger_Value;
 pub const ISessionStateChangeTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1666,7 +1666,7 @@ pub const ISessionStateChangeTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEventTrigger_Value = @import("../zig.zig").Guid.initString("D45B0167-9653-4EEF-B94F-0732CA7AF251");
+const IID_IEventTrigger_Value = @import("../zig.zig").Guid.initString("d45b0167-9653-4eef-b94f-0732ca7af251");
 pub const IID_IEventTrigger = &IID_IEventTrigger_Value;
 pub const IEventTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1727,7 +1727,7 @@ pub const IEventTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITimeTrigger_Value = @import("../zig.zig").Guid.initString("B45747E0-EBA7-4276-9F29-85C5BB300006");
+const IID_ITimeTrigger_Value = @import("../zig.zig").Guid.initString("b45747e0-eba7-4276-9f29-85c5bb300006");
 pub const IID_ITimeTrigger = &IID_ITimeTrigger_Value;
 pub const ITimeTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1756,7 +1756,7 @@ pub const ITimeTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDailyTrigger_Value = @import("../zig.zig").Guid.initString("126C5CD8-B288-41D5-8DBF-E491446ADC5C");
+const IID_IDailyTrigger_Value = @import("../zig.zig").Guid.initString("126c5cd8-b288-41d5-8dbf-e491446adc5c");
 pub const IID_IDailyTrigger = &IID_IDailyTrigger_Value;
 pub const IDailyTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1801,7 +1801,7 @@ pub const IDailyTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWeeklyTrigger_Value = @import("../zig.zig").Guid.initString("5038FC98-82FF-436D-8728-A512A57C9DC1");
+const IID_IWeeklyTrigger_Value = @import("../zig.zig").Guid.initString("5038fc98-82ff-436d-8728-a512a57c9dc1");
 pub const IID_IWeeklyTrigger = &IID_IWeeklyTrigger_Value;
 pub const IWeeklyTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1862,7 +1862,7 @@ pub const IWeeklyTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMonthlyTrigger_Value = @import("../zig.zig").Guid.initString("97C45EF1-6B02-4A1A-9C0E-1EBFBA1500AC");
+const IID_IMonthlyTrigger_Value = @import("../zig.zig").Guid.initString("97c45ef1-6b02-4a1a-9c0e-1ebfba1500ac");
 pub const IID_IMonthlyTrigger = &IID_IMonthlyTrigger_Value;
 pub const IMonthlyTrigger = extern struct {
     pub const VTable = extern struct {
@@ -1939,7 +1939,7 @@ pub const IMonthlyTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMonthlyDOWTrigger_Value = @import("../zig.zig").Guid.initString("77D025A3-90FA-43AA-B52E-CDA5499B946A");
+const IID_IMonthlyDOWTrigger_Value = @import("../zig.zig").Guid.initString("77d025a3-90fa-43aa-b52e-cda5499b946a");
 pub const IID_IMonthlyDOWTrigger = &IID_IMonthlyDOWTrigger_Value;
 pub const IMonthlyDOWTrigger = extern struct {
     pub const VTable = extern struct {
@@ -2032,7 +2032,7 @@ pub const IMonthlyDOWTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBootTrigger_Value = @import("../zig.zig").Guid.initString("2A9C35DA-D357-41F4-BBC1-207AC1B1F3CB");
+const IID_IBootTrigger_Value = @import("../zig.zig").Guid.initString("2a9c35da-d357-41f4-bbc1-207ac1b1f3cb");
 pub const IID_IBootTrigger = &IID_IBootTrigger_Value;
 pub const IBootTrigger = extern struct {
     pub const VTable = extern struct {
@@ -2061,7 +2061,7 @@ pub const IBootTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRegistrationTrigger_Value = @import("../zig.zig").Guid.initString("4C8FEC3A-C218-4E0C-B23D-629024DB91A2");
+const IID_IRegistrationTrigger_Value = @import("../zig.zig").Guid.initString("4c8fec3a-c218-4e0c-b23d-629024db91a2");
 pub const IID_IRegistrationTrigger = &IID_IRegistrationTrigger_Value;
 pub const IRegistrationTrigger = extern struct {
     pub const VTable = extern struct {
@@ -2090,7 +2090,7 @@ pub const IRegistrationTrigger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAction_Value = @import("../zig.zig").Guid.initString("BAE54997-48B1-4CBE-9965-D6BE263EBEA4");
+const IID_IAction_Value = @import("../zig.zig").Guid.initString("bae54997-48b1-4cbe-9965-d6be263ebea4");
 pub const IID_IAction = &IID_IAction_Value;
 pub const IAction = extern struct {
     pub const VTable = extern struct {
@@ -2127,7 +2127,7 @@ pub const IAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IExecAction_Value = @import("../zig.zig").Guid.initString("4C3D624D-FD6B-49A3-B9B7-09CB3CD3F047");
+const IID_IExecAction_Value = @import("../zig.zig").Guid.initString("4c3d624d-fd6b-49a3-b9b7-09cb3cd3f047");
 pub const IID_IExecAction = &IID_IExecAction_Value;
 pub const IExecAction = extern struct {
     pub const VTable = extern struct {
@@ -2188,7 +2188,7 @@ pub const IExecAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IExecAction2_Value = @import("../zig.zig").Guid.initString("F2A82542-BDA5-4E6B-9143-E2BF4F8987B6");
+const IID_IExecAction2_Value = @import("../zig.zig").Guid.initString("f2a82542-bda5-4e6b-9143-e2bf4f8987b6");
 pub const IID_IExecAction2 = &IID_IExecAction2_Value;
 pub const IExecAction2 = extern struct {
     pub const VTable = extern struct {
@@ -2217,7 +2217,7 @@ pub const IExecAction2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IShowMessageAction_Value = @import("../zig.zig").Guid.initString("505E9E68-AF89-46B8-A30F-56162A83D537");
+const IID_IShowMessageAction_Value = @import("../zig.zig").Guid.initString("505e9e68-af89-46b8-a30f-56162a83d537");
 pub const IID_IShowMessageAction = &IID_IShowMessageAction_Value;
 pub const IShowMessageAction = extern struct {
     pub const VTable = extern struct {
@@ -2262,7 +2262,7 @@ pub const IShowMessageAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IComHandlerAction_Value = @import("../zig.zig").Guid.initString("6D2FD252-75C5-4F66-90BA-2A7D8CC3039F");
+const IID_IComHandlerAction_Value = @import("../zig.zig").Guid.initString("6d2fd252-75c5-4f66-90ba-2a7d8cc3039f");
 pub const IID_IComHandlerAction = &IID_IComHandlerAction_Value;
 pub const IComHandlerAction = extern struct {
     pub const VTable = extern struct {
@@ -2307,7 +2307,7 @@ pub const IComHandlerAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEmailAction_Value = @import("../zig.zig").Guid.initString("10F62C64-7E16-4314-A0C2-0C3683F99D40");
+const IID_IEmailAction_Value = @import("../zig.zig").Guid.initString("10f62c64-7e16-4314-a0c2-0c3683f99d40");
 pub const IID_IEmailAction = &IID_IEmailAction_Value;
 pub const IEmailAction = extern struct {
     pub const VTable = extern struct {
@@ -2480,7 +2480,7 @@ pub const IEmailAction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITriggerCollection_Value = @import("../zig.zig").Guid.initString("85DF5081-1B24-4F32-878A-D9D14DF4CB77");
+const IID_ITriggerCollection_Value = @import("../zig.zig").Guid.initString("85df5081-1b24-4f32-878a-d9d14df4cb77");
 pub const IID_ITriggerCollection = &IID_ITriggerCollection_Value;
 pub const ITriggerCollection = extern struct {
     pub const VTable = extern struct {
@@ -2542,7 +2542,7 @@ pub const ITriggerCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IActionCollection_Value = @import("../zig.zig").Guid.initString("02820E19-7B98-4ED2-B2E8-FDCCCEFF619B");
+const IID_IActionCollection_Value = @import("../zig.zig").Guid.initString("02820e19-7b98-4ed2-b2e8-fdccceff619b");
 pub const IID_IActionCollection = &IID_IActionCollection_Value;
 pub const IActionCollection = extern struct {
     pub const VTable = extern struct {
@@ -2636,7 +2636,7 @@ pub const IActionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrincipal_Value = @import("../zig.zig").Guid.initString("D98D51E5-C9B4-496A-A9C1-18980261CF0F");
+const IID_IPrincipal_Value = @import("../zig.zig").Guid.initString("d98d51e5-c9b4-496a-a9c1-18980261cf0f");
 pub const IID_IPrincipal = &IID_IPrincipal_Value;
 pub const IPrincipal = extern struct {
     pub const VTable = extern struct {
@@ -2745,7 +2745,7 @@ pub const IPrincipal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrincipal2_Value = @import("../zig.zig").Guid.initString("248919AE-E345-4A6D-8AEB-E0D3165C904E");
+const IID_IPrincipal2_Value = @import("../zig.zig").Guid.initString("248919ae-e345-4a6d-8aeb-e0d3165c904e");
 pub const IID_IPrincipal2 = &IID_IPrincipal2_Value;
 pub const IPrincipal2 = extern struct {
     pub const VTable = extern struct {
@@ -2799,7 +2799,7 @@ pub const IPrincipal2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRegistrationInfo_Value = @import("../zig.zig").Guid.initString("416D8B73-CB41-4EA1-805C-9BE9A5AC4A74");
+const IID_IRegistrationInfo_Value = @import("../zig.zig").Guid.initString("416d8b73-cb41-4ea1-805c-9be9a5ac4a74");
 pub const IID_IRegistrationInfo = &IID_IRegistrationInfo_Value;
 pub const IRegistrationInfo = extern struct {
     pub const VTable = extern struct {
@@ -2956,7 +2956,7 @@ pub const IRegistrationInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskDefinition_Value = @import("../zig.zig").Guid.initString("F5BC8FC5-536D-4F77-B852-FBC1356FDEB6");
+const IID_ITaskDefinition_Value = @import("../zig.zig").Guid.initString("f5bc8fc5-536d-4f77-b852-fbc1356fdeb6");
 pub const IID_ITaskDefinition = &IID_ITaskDefinition_Value;
 pub const ITaskDefinition = extern struct {
     pub const VTable = extern struct {
@@ -3081,7 +3081,7 @@ pub const ITaskDefinition = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskSettings_Value = @import("../zig.zig").Guid.initString("8FD4711D-2D02-4C8C-87E3-EFF699DE127E");
+const IID_ITaskSettings_Value = @import("../zig.zig").Guid.initString("8fd4711d-2d02-4c8c-87e3-eff699de127e");
 pub const IID_ITaskSettings = &IID_ITaskSettings_Value;
 pub const ITaskSettings = extern struct {
     pub const VTable = extern struct {
@@ -3414,7 +3414,7 @@ pub const ITaskSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskSettings2_Value = @import("../zig.zig").Guid.initString("2C05C3F0-6EED-4C05-A15F-ED7D7A98A369");
+const IID_ITaskSettings2_Value = @import("../zig.zig").Guid.initString("2c05c3f0-6eed-4c05-a15f-ed7d7a98a369");
 pub const IID_ITaskSettings2 = &IID_ITaskSettings2_Value;
 pub const ITaskSettings2 = extern struct {
     pub const VTable = extern struct {
@@ -3459,7 +3459,7 @@ pub const ITaskSettings2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskSettings3_Value = @import("../zig.zig").Guid.initString("0AD9D0D7-0C7F-4EBB-9A5F-D1C648DCA528");
+const IID_ITaskSettings3_Value = @import("../zig.zig").Guid.initString("0ad9d0d7-0c7f-4ebb-9a5f-d1c648dca528");
 pub const IID_ITaskSettings3 = &IID_ITaskSettings3_Value;
 pub const ITaskSettings3 = extern struct {
     pub const VTable = extern struct {
@@ -3544,7 +3544,7 @@ pub const ITaskSettings3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMaintenanceSettings_Value = @import("../zig.zig").Guid.initString("A6024FA8-9652-4ADB-A6BF-5CFCD877A7BA");
+const IID_IMaintenanceSettings_Value = @import("../zig.zig").Guid.initString("a6024fa8-9652-4adb-a6bf-5cfcd877a7ba");
 pub const IID_IMaintenanceSettings = &IID_IMaintenanceSettings_Value;
 pub const IMaintenanceSettings = extern struct {
     pub const VTable = extern struct {
@@ -3605,7 +3605,7 @@ pub const IMaintenanceSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRegisteredTaskCollection_Value = @import("../zig.zig").Guid.initString("86627EB4-42A7-41E4-A4D9-AC33A72F2D52");
+const IID_IRegisteredTaskCollection_Value = @import("../zig.zig").Guid.initString("86627eb4-42a7-41e4-a4d9-ac33a72f2d52");
 pub const IID_IRegisteredTaskCollection = &IID_IRegisteredTaskCollection_Value;
 pub const IRegisteredTaskCollection = extern struct {
     pub const VTable = extern struct {
@@ -3617,11 +3617,11 @@ pub const IRegisteredTaskCollection = extern struct {
         get_Item: fn(
             self: *const IRegisteredTaskCollection,
             index: VARIANT,
-            ppRegisteredTask: **IRegisteredTask,
+            ppRegisteredTask: ?*?*IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IRegisteredTaskCollection,
-            ppEnum: **IUnknown,
+            ppEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3632,45 +3632,45 @@ pub const IRegisteredTaskCollection = extern struct {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get_Count(@ptrCast(*const IRegisteredTaskCollection, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTaskCollection_get_Item(self: *const T, index: VARIANT, ppRegisteredTask: **IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTaskCollection_get_Item(self: *const T, index: VARIANT, ppRegisteredTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get_Item(@ptrCast(*const IRegisteredTaskCollection, self), index, ppRegisteredTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRegisteredTaskCollection_get__NewEnum(self: *const T, ppEnum: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IRegisteredTaskCollection_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRegisteredTaskCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IRegisteredTaskCollection, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITaskFolder_Value = @import("../zig.zig").Guid.initString("8CFAC062-A080-4C15-9A88-AA7C2AF80DFC");
+const IID_ITaskFolder_Value = @import("../zig.zig").Guid.initString("8cfac062-a080-4c15-9a88-aa7c2af80dfc");
 pub const IID_ITaskFolder = &IID_ITaskFolder_Value;
 pub const ITaskFolder = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const ITaskFolder,
-            pName: *BSTR,
+            pName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const ITaskFolder,
-            pPath: *BSTR,
+            pPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFolder: fn(
             self: *const ITaskFolder,
             path: BSTR,
-            ppFolder: **ITaskFolder,
+            ppFolder: ?*?*ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFolders: fn(
             self: *const ITaskFolder,
             flags: i32,
-            ppFolders: **ITaskFolderCollection,
+            ppFolders: ?*?*ITaskFolderCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateFolder: fn(
             self: *const ITaskFolder,
             subFolderName: BSTR,
             sddl: VARIANT,
-            ppFolder: **ITaskFolder,
+            ppFolder: ?*?*ITaskFolder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteFolder: fn(
             self: *const ITaskFolder,
@@ -3680,12 +3680,12 @@ pub const ITaskFolder = extern struct {
         GetTask: fn(
             self: *const ITaskFolder,
             path: BSTR,
-            ppTask: **IRegisteredTask,
+            ppTask: ?*?*IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTasks: fn(
             self: *const ITaskFolder,
             flags: i32,
-            ppTasks: **IRegisteredTaskCollection,
+            ppTasks: ?*?*IRegisteredTaskCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const ITaskFolder,
@@ -3701,7 +3701,7 @@ pub const ITaskFolder = extern struct {
             password: VARIANT,
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
-            ppTask: **IRegisteredTask,
+            ppTask: ?*?*IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterTaskDefinition: fn(
             self: *const ITaskFolder,
@@ -3712,12 +3712,12 @@ pub const ITaskFolder = extern struct {
             password: VARIANT,
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
-            ppTask: **IRegisteredTask,
+            ppTask: ?*?*IRegisteredTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSecurityDescriptor: fn(
             self: *const ITaskFolder,
             securityInformation: i32,
-            pSddl: *BSTR,
+            pSddl: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityDescriptor: fn(
             self: *const ITaskFolder,
@@ -3729,23 +3729,23 @@ pub const ITaskFolder = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_get_Name(self: *const T, pName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_get_Name(self: *const T, pName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).get_Name(@ptrCast(*const ITaskFolder, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_get_Path(self: *const T, pPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_get_Path(self: *const T, pPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).get_Path(@ptrCast(*const ITaskFolder, self), pPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetFolder(self: *const T, path: BSTR, ppFolder: **ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetFolder(self: *const T, path: BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetFolder(@ptrCast(*const ITaskFolder, self), path, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetFolders(self: *const T, flags: i32, ppFolders: **ITaskFolderCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetFolders(self: *const T, flags: i32, ppFolders: ?*?*ITaskFolderCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetFolders(@ptrCast(*const ITaskFolder, self), flags, ppFolders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_CreateFolder(self: *const T, subFolderName: BSTR, sddl: VARIANT, ppFolder: **ITaskFolder) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_CreateFolder(self: *const T, subFolderName: BSTR, sddl: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).CreateFolder(@ptrCast(*const ITaskFolder, self), subFolderName, sddl, ppFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3753,11 +3753,11 @@ pub const ITaskFolder = extern struct {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).DeleteFolder(@ptrCast(*const ITaskFolder, self), subFolderName, flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetTask(self: *const T, path: BSTR, ppTask: **IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetTask(self: *const T, path: BSTR, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetTask(@ptrCast(*const ITaskFolder, self), path, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetTasks(self: *const T, flags: i32, ppTasks: **IRegisteredTaskCollection) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetTasks(self: *const T, flags: i32, ppTasks: ?*?*IRegisteredTaskCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetTasks(@ptrCast(*const ITaskFolder, self), flags, ppTasks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3765,15 +3765,15 @@ pub const ITaskFolder = extern struct {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).DeleteTask(@ptrCast(*const ITaskFolder, self), name, flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_RegisterTask(self: *const T, path: BSTR, xmlText: BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: **IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_RegisterTask(self: *const T, path: BSTR, xmlText: BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).RegisterTask(@ptrCast(*const ITaskFolder, self), path, xmlText, flags, userId, password, logonType, sddl, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_RegisterTaskDefinition(self: *const T, path: BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: **IRegisteredTask) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_RegisterTaskDefinition(self: *const T, path: BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).RegisterTaskDefinition(@ptrCast(*const ITaskFolder, self), path, pDefinition, flags, userId, password, logonType, sddl, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITaskFolder_GetSecurityDescriptor(self: *const T, securityInformation: i32, pSddl: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ITaskFolder_GetSecurityDescriptor(self: *const T, securityInformation: i32, pSddl: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITaskFolder.VTable, self.vtable).GetSecurityDescriptor(@ptrCast(*const ITaskFolder, self), securityInformation, pSddl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3784,7 +3784,7 @@ pub const ITaskFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdleSettings_Value = @import("../zig.zig").Guid.initString("84594461-0053-4342-A8FD-088FABF11F32");
+const IID_IIdleSettings_Value = @import("../zig.zig").Guid.initString("84594461-0053-4342-a8fd-088fabf11f32");
 pub const IID_IIdleSettings = &IID_IIdleSettings_Value;
 pub const IIdleSettings = extern struct {
     pub const VTable = extern struct {
@@ -3861,7 +3861,7 @@ pub const IIdleSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetworkSettings_Value = @import("../zig.zig").Guid.initString("9F7DEA84-C30B-4245-80B6-00E9F646F1B4");
+const IID_INetworkSettings_Value = @import("../zig.zig").Guid.initString("9f7dea84-c30b-4245-80b6-00e9f646f1b4");
 pub const IID_INetworkSettings = &IID_INetworkSettings_Value;
 pub const INetworkSettings = extern struct {
     pub const VTable = extern struct {
@@ -3906,7 +3906,7 @@ pub const INetworkSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRepetitionPattern_Value = @import("../zig.zig").Guid.initString("7FB9ACF1-26BE-400E-85B5-294B9C75DFD6");
+const IID_IRepetitionPattern_Value = @import("../zig.zig").Guid.initString("7fb9acf1-26be-400e-85b5-294b9c75dfd6");
 pub const IID_IRepetitionPattern = &IID_IRepetitionPattern_Value;
 pub const IRepetitionPattern = extern struct {
     pub const VTable = extern struct {

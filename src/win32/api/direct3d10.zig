@@ -194,7 +194,7 @@ pub const D3D10_BOX = extern struct {
     back: u32,
 };
 
-const IID_ID3D10DeviceChild_Value = @import("../zig.zig").Guid.initString("9B7E4C00-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10DeviceChild_Value = @import("../zig.zig").Guid.initString("9b7e4c00-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10DeviceChild = &IID_ID3D10DeviceChild_Value;
 pub const ID3D10DeviceChild = extern struct {
     pub const VTable = extern struct {
@@ -307,7 +307,7 @@ pub const D3D10_DEPTH_STENCIL_DESC = extern struct {
     BackFace: D3D10_DEPTH_STENCILOP_DESC,
 };
 
-const IID_ID3D10DepthStencilState_Value = @import("../zig.zig").Guid.initString("2B4B1CC8-A4AD-41F8-8322-CA86FC3EC675");
+const IID_ID3D10DepthStencilState_Value = @import("../zig.zig").Guid.initString("2b4b1cc8-a4ad-41f8-8322-ca86fc3ec675");
 pub const IID_ID3D10DepthStencilState = &IID_ID3D10DepthStencilState_Value;
 pub const ID3D10DepthStencilState = extern struct {
     pub const VTable = extern struct {
@@ -403,7 +403,7 @@ pub const D3D10_BLEND_DESC = extern struct {
     RenderTargetWriteMask: [8]u8,
 };
 
-const IID_ID3D10BlendState_Value = @import("../zig.zig").Guid.initString("EDAD8D19-8A35-4D6D-8566-2EA276CDE161");
+const IID_ID3D10BlendState_Value = @import("../zig.zig").Guid.initString("edad8d19-8a35-4d6d-8566-2ea276cde161");
 pub const IID_ID3D10BlendState = &IID_ID3D10BlendState_Value;
 pub const ID3D10BlendState = extern struct {
     pub const VTable = extern struct {
@@ -437,7 +437,7 @@ pub const D3D10_RASTERIZER_DESC = extern struct {
     AntialiasedLineEnable: BOOL,
 };
 
-const IID_ID3D10RasterizerState_Value = @import("../zig.zig").Guid.initString("A2A07292-89AF-4345-BE2E-C53D9FBB6E9F");
+const IID_ID3D10RasterizerState_Value = @import("../zig.zig").Guid.initString("a2a07292-89af-4345-be2e-c53d9fbb6e9f");
 pub const IID_ID3D10RasterizerState = &IID_ID3D10RasterizerState_Value;
 pub const ID3D10RasterizerState = extern struct {
     pub const VTable = extern struct {
@@ -464,7 +464,7 @@ pub const D3D10_SUBRESOURCE_DATA = extern struct {
     SysMemSlicePitch: u32,
 };
 
-const IID_ID3D10Resource_Value = @import("../zig.zig").Guid.initString("9B7E4C01-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Resource_Value = @import("../zig.zig").Guid.initString("9b7e4c01-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Resource = &IID_ID3D10Resource_Value;
 pub const ID3D10Resource = extern struct {
     pub const VTable = extern struct {
@@ -508,7 +508,7 @@ pub const D3D10_BUFFER_DESC = extern struct {
     MiscFlags: u32,
 };
 
-const IID_ID3D10Buffer_Value = @import("../zig.zig").Guid.initString("9B7E4C02-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Buffer_Value = @import("../zig.zig").Guid.initString("9b7e4c02-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Buffer = &IID_ID3D10Buffer_Value;
 pub const ID3D10Buffer = extern struct {
     pub const VTable = extern struct {
@@ -557,7 +557,7 @@ pub const D3D10_TEXTURE1D_DESC = extern struct {
     MiscFlags: u32,
 };
 
-const IID_ID3D10Texture1D_Value = @import("../zig.zig").Guid.initString("9B7E4C03-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Texture1D_Value = @import("../zig.zig").Guid.initString("9b7e4c03-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture1D = &IID_ID3D10Texture1D_Value;
 pub const ID3D10Texture1D = extern struct {
     pub const VTable = extern struct {
@@ -615,7 +615,7 @@ pub const D3D10_MAPPED_TEXTURE2D = extern struct {
     RowPitch: u32,
 };
 
-const IID_ID3D10Texture2D_Value = @import("../zig.zig").Guid.initString("9B7E4C04-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Texture2D_Value = @import("../zig.zig").Guid.initString("9b7e4c04-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture2D = &IID_ID3D10Texture2D_Value;
 pub const ID3D10Texture2D = extern struct {
     pub const VTable = extern struct {
@@ -673,7 +673,7 @@ pub const D3D10_MAPPED_TEXTURE3D = extern struct {
     DepthPitch: u32,
 };
 
-const IID_ID3D10Texture3D_Value = @import("../zig.zig").Guid.initString("9B7E4C05-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Texture3D_Value = @import("../zig.zig").Guid.initString("9b7e4c05-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Texture3D = &IID_ID3D10Texture3D_Value;
 pub const ID3D10Texture3D = extern struct {
     pub const VTable = extern struct {
@@ -728,7 +728,7 @@ pub const D3D10_TEXTURECUBE_FACE_NEGATIVE_Y = D3D10_TEXTURECUBE_FACE.NEGATIVE_Y;
 pub const D3D10_TEXTURECUBE_FACE_POSITIVE_Z = D3D10_TEXTURECUBE_FACE.POSITIVE_Z;
 pub const D3D10_TEXTURECUBE_FACE_NEGATIVE_Z = D3D10_TEXTURECUBE_FACE.NEGATIVE_Z;
 
-const IID_ID3D10View_Value = @import("../zig.zig").Guid.initString("C902B03F-60A7-49BA-9936-2A3AB37A7E33");
+const IID_ID3D10View_Value = @import("../zig.zig").Guid.initString("c902b03f-60a7-49ba-9936-2a3ab37a7e33");
 pub const IID_ID3D10View = &IID_ID3D10View_Value;
 pub const ID3D10View = extern struct {
     pub const VTable = extern struct {
@@ -752,8 +752,8 @@ pub const ID3D10View = extern struct {
 pub const D3D10_BUFFER_SRV = extern struct {
     Anonymous1: D3D10_BUFFER_SRV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_SRV._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_SRV = extern struct {
@@ -806,7 +806,7 @@ pub const D3D10_SHADER_RESOURCE_VIEW_DESC = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_ID3D10ShaderResourceView_Value = @import("../zig.zig").Guid.initString("9B7E4C07-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10ShaderResourceView_Value = @import("../zig.zig").Guid.initString("9b7e4c07-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10ShaderResourceView = &IID_ID3D10ShaderResourceView_Value;
 pub const ID3D10ShaderResourceView = extern struct {
     pub const VTable = extern struct {
@@ -830,8 +830,8 @@ pub const ID3D10ShaderResourceView = extern struct {
 pub const D3D10_BUFFER_RTV = extern struct {
     Anonymous1: D3D10_BUFFER_RTV._Anonymous1_e__Union,
     Anonymous2: D3D10_BUFFER_RTV._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D10_TEX1D_RTV = extern struct {
@@ -876,7 +876,7 @@ pub const D3D10_RENDER_TARGET_VIEW_DESC = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_ID3D10RenderTargetView_Value = @import("../zig.zig").Guid.initString("9B7E4C08-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10RenderTargetView_Value = @import("../zig.zig").Guid.initString("9b7e4c08-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10RenderTargetView = &IID_ID3D10RenderTargetView_Value;
 pub const ID3D10RenderTargetView = extern struct {
     pub const VTable = extern struct {
@@ -933,7 +933,7 @@ pub const D3D10_DEPTH_STENCIL_VIEW_DESC = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_ID3D10DepthStencilView_Value = @import("../zig.zig").Guid.initString("9B7E4C09-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10DepthStencilView_Value = @import("../zig.zig").Guid.initString("9b7e4c09-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10DepthStencilView = &IID_ID3D10DepthStencilView_Value;
 pub const ID3D10DepthStencilView = extern struct {
     pub const VTable = extern struct {
@@ -954,7 +954,7 @@ pub const ID3D10DepthStencilView = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10VertexShader_Value = @import("../zig.zig").Guid.initString("9B7E4C0A-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10VertexShader_Value = @import("../zig.zig").Guid.initString("9b7e4c0a-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10VertexShader = &IID_ID3D10VertexShader_Value;
 pub const ID3D10VertexShader = extern struct {
     pub const VTable = extern struct {
@@ -967,7 +967,7 @@ pub const ID3D10VertexShader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10GeometryShader_Value = @import("../zig.zig").Guid.initString("6316BE88-54CD-4040-AB44-20461BC81F68");
+const IID_ID3D10GeometryShader_Value = @import("../zig.zig").Guid.initString("6316be88-54cd-4040-ab44-20461bc81f68");
 pub const IID_ID3D10GeometryShader = &IID_ID3D10GeometryShader_Value;
 pub const ID3D10GeometryShader = extern struct {
     pub const VTable = extern struct {
@@ -980,7 +980,7 @@ pub const ID3D10GeometryShader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10PixelShader_Value = @import("../zig.zig").Guid.initString("4968B601-9D00-4CDE-8346-8E7F675819B6");
+const IID_ID3D10PixelShader_Value = @import("../zig.zig").Guid.initString("4968b601-9d00-4cde-8346-8e7f675819b6");
 pub const IID_ID3D10PixelShader = &IID_ID3D10PixelShader_Value;
 pub const ID3D10PixelShader = extern struct {
     pub const VTable = extern struct {
@@ -993,7 +993,7 @@ pub const ID3D10PixelShader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10InputLayout_Value = @import("../zig.zig").Guid.initString("9B7E4C0B-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10InputLayout_Value = @import("../zig.zig").Guid.initString("9b7e4c0b-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10InputLayout = &IID_ID3D10InputLayout_Value;
 pub const ID3D10InputLayout = extern struct {
     pub const VTable = extern struct {
@@ -1080,7 +1080,7 @@ pub const D3D10_SAMPLER_DESC = extern struct {
     MaxLOD: f32,
 };
 
-const IID_ID3D10SamplerState_Value = @import("../zig.zig").Guid.initString("9B7E4C0C-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10SamplerState_Value = @import("../zig.zig").Guid.initString("9b7e4c0c-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10SamplerState = &IID_ID3D10SamplerState_Value;
 pub const ID3D10SamplerState = extern struct {
     pub const VTable = extern struct {
@@ -1154,7 +1154,7 @@ pub const D3D10_FORMAT_SUPPORT_MULTISAMPLE_LOAD = D3D10_FORMAT_SUPPORT.MULTISAMP
 pub const D3D10_FORMAT_SUPPORT_SHADER_GATHER = D3D10_FORMAT_SUPPORT.SHADER_GATHER;
 pub const D3D10_FORMAT_SUPPORT_BACK_BUFFER_CAST = D3D10_FORMAT_SUPPORT.BACK_BUFFER_CAST;
 
-const IID_ID3D10Asynchronous_Value = @import("../zig.zig").Guid.initString("9B7E4C0D-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Asynchronous_Value = @import("../zig.zig").Guid.initString("9b7e4c0d-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Asynchronous = &IID_ID3D10Asynchronous_Value;
 pub const ID3D10Asynchronous = extern struct {
     pub const VTable = extern struct {
@@ -1232,7 +1232,7 @@ pub const D3D10_QUERY_DESC = extern struct {
     MiscFlags: u32,
 };
 
-const IID_ID3D10Query_Value = @import("../zig.zig").Guid.initString("9B7E4C0E-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Query_Value = @import("../zig.zig").Guid.initString("9b7e4c0e-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Query = &IID_ID3D10Query_Value;
 pub const ID3D10Query = extern struct {
     pub const VTable = extern struct {
@@ -1253,7 +1253,7 @@ pub const ID3D10Query = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10Predicate_Value = @import("../zig.zig").Guid.initString("9B7E4C10-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Predicate_Value = @import("../zig.zig").Guid.initString("9b7e4c10-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Predicate = &IID_ID3D10Predicate_Value;
 pub const ID3D10Predicate = extern struct {
     pub const VTable = extern struct {
@@ -1350,7 +1350,7 @@ pub const D3D10_COUNTER_INFO = extern struct {
     NumDetectableParallelUnits: u8,
 };
 
-const IID_ID3D10Counter_Value = @import("../zig.zig").Guid.initString("9B7E4C11-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Counter_Value = @import("../zig.zig").Guid.initString("9b7e4c11-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Counter = &IID_ID3D10Counter_Value;
 pub const ID3D10Counter = extern struct {
     pub const VTable = extern struct {
@@ -1371,7 +1371,7 @@ pub const ID3D10Counter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10Device_Value = @import("../zig.zig").Guid.initString("9B7E4C0F-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Device_Value = @import("../zig.zig").Guid.initString("9b7e4c0f-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Device = &IID_ID3D10Device_Value;
 pub const ID3D10Device = extern struct {
     pub const VTable = extern struct {
@@ -2293,7 +2293,7 @@ pub const ID3D10Device = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10Multithread_Value = @import("../zig.zig").Guid.initString("9B7E4E00-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Multithread_Value = @import("../zig.zig").Guid.initString("9b7e4e00-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Multithread = &IID_ID3D10Multithread_Value;
 pub const ID3D10Multithread = extern struct {
     pub const VTable = extern struct {
@@ -2356,7 +2356,7 @@ pub const D3D10_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY = D3
 pub const D3D10_CREATE_DEVICE_STRICT_VALIDATION = D3D10_CREATE_DEVICE_FLAG.D3D10_CREATE_DEVICE_STRICT_VALIDATION;
 pub const D3D10_CREATE_DEVICE_DEBUGGABLE = D3D10_CREATE_DEVICE_FLAG.D3D10_CREATE_DEVICE_DEBUGGABLE;
 
-const IID_ID3D10Debug_Value = @import("../zig.zig").Guid.initString("9B7E4E01-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Debug_Value = @import("../zig.zig").Guid.initString("9b7e4e01-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Debug = &IID_ID3D10Debug_Value;
 pub const ID3D10Debug = extern struct {
     pub const VTable = extern struct {
@@ -2422,7 +2422,7 @@ pub const ID3D10Debug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10SwitchToRef_Value = @import("../zig.zig").Guid.initString("9B7E4E02-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10SwitchToRef_Value = @import("../zig.zig").Guid.initString("9b7e4e02-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10SwitchToRef = &IID_ID3D10SwitchToRef_Value;
 pub const ID3D10SwitchToRef = extern struct {
     pub const VTable = extern struct {
@@ -3527,7 +3527,7 @@ pub const D3D10_INFO_QUEUE_FILTER = extern struct {
     DenyList: D3D10_INFO_QUEUE_FILTER_DESC,
 };
 
-const IID_ID3D10InfoQueue_Value = @import("../zig.zig").Guid.initString("1B940B17-2642-4D1F-AB1F-B99BAD0C395F");
+const IID_ID3D10InfoQueue_Value = @import("../zig.zig").Guid.initString("1b940b17-2642-4d1f-ab1f-b99bad0c395f");
 pub const IID_ID3D10InfoQueue = &IID_ID3D10InfoQueue_Value;
 pub const ID3D10InfoQueue = extern struct {
     pub const VTable = extern struct {
@@ -3904,7 +3904,7 @@ pub const D3D10_SIGNATURE_PARAMETER_DESC = extern struct {
     ReadWriteMask: u8,
 };
 
-const IID_ID3D10ShaderReflectionType_Value = @import("../zig.zig").Guid.initString("C530AD7D-9B16-4395-A979-BA2ECFF83ADD");
+const IID_ID3D10ShaderReflectionType_Value = @import("../zig.zig").Guid.initString("c530ad7d-9b16-4395-a979-ba2ecff83add");
 pub const IID_ID3D10ShaderReflectionType = &IID_ID3D10ShaderReflectionType_Value;
 pub const ID3D10ShaderReflectionType = extern struct {
     pub const VTable = extern struct {
@@ -3947,7 +3947,7 @@ pub const ID3D10ShaderReflectionType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10ShaderReflectionVariable_Value = @import("../zig.zig").Guid.initString("1BF63C95-2650-405D-99C1-3636BD1DA0A1");
+const IID_ID3D10ShaderReflectionVariable_Value = @import("../zig.zig").Guid.initString("1bf63c95-2650-405d-99c1-3636bd1da0a1");
 pub const IID_ID3D10ShaderReflectionVariable = &IID_ID3D10ShaderReflectionVariable_Value;
 pub const ID3D10ShaderReflectionVariable = extern struct {
     pub const VTable = extern struct {
@@ -3973,7 +3973,7 @@ pub const ID3D10ShaderReflectionVariable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10ShaderReflectionConstantBuffer_Value = @import("../zig.zig").Guid.initString("66C66A94-DDDD-4B62-A66A-F0DA33C2B4D0");
+const IID_ID3D10ShaderReflectionConstantBuffer_Value = @import("../zig.zig").Guid.initString("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
 pub const IID_ID3D10ShaderReflectionConstantBuffer = &IID_ID3D10ShaderReflectionConstantBuffer_Value;
 pub const ID3D10ShaderReflectionConstantBuffer = extern struct {
     pub const VTable = extern struct {
@@ -4008,7 +4008,7 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ID3D10ShaderReflection_Value = @import("../zig.zig").Guid.initString("D40E20B6-F8F7-42AD-AB20-4BAF8F15DFAA");
+const IID_ID3D10ShaderReflection_Value = @import("../zig.zig").Guid.initString("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
 pub const IID_ID3D10ShaderReflection = &IID_ID3D10ShaderReflection_Value;
 pub const ID3D10ShaderReflection = extern struct {
     pub const VTable = extern struct {
@@ -5533,7 +5533,7 @@ pub const D3D10_BLEND_DESC1 = extern struct {
     RenderTarget: [8]D3D10_RENDER_TARGET_BLEND_DESC1,
 };
 
-const IID_ID3D10BlendState1_Value = @import("../zig.zig").Guid.initString("EDAD8D99-8A35-4D6D-8566-2EA276CDE161");
+const IID_ID3D10BlendState1_Value = @import("../zig.zig").Guid.initString("edad8d99-8a35-4d6d-8566-2ea276cde161");
 pub const IID_ID3D10BlendState1 = &IID_ID3D10BlendState1_Value;
 pub const ID3D10BlendState1 = extern struct {
     pub const VTable = extern struct {
@@ -5568,7 +5568,7 @@ pub const D3D10_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_ID3D10ShaderResourceView1_Value = @import("../zig.zig").Guid.initString("9B7E4C87-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10ShaderResourceView1_Value = @import("../zig.zig").Guid.initString("9b7e4c87-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10ShaderResourceView1 = &IID_ID3D10ShaderResourceView1_Value;
 pub const ID3D10ShaderResourceView1 = extern struct {
     pub const VTable = extern struct {
@@ -5596,7 +5596,7 @@ pub const D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS = extern enum(i32) {
 pub const D3D10_STANDARD_MULTISAMPLE_PATTERN = D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS.D3D10_STANDARD_MULTISAMPLE_PATTERN;
 pub const D3D10_CENTER_MULTISAMPLE_PATTERN = D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS.D3D10_CENTER_MULTISAMPLE_PATTERN;
 
-const IID_ID3D10Device1_Value = @import("../zig.zig").Guid.initString("9B7E4C8F-342C-4106-A19F-4F2704F689F0");
+const IID_ID3D10Device1_Value = @import("../zig.zig").Guid.initString("9b7e4c8f-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D10Device1 = &IID_ID3D10Device1_Value;
 pub const ID3D10Device1 = extern struct {
     pub const VTable = extern struct {

@@ -6,7 +6,38 @@
 //--------------------------------------------------------------------------------
 // Section: Types (135)
 //--------------------------------------------------------------------------------
-const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0C733A30-2A1C-11CE-ADE5-00AA0044773D");
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
+const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
 pub const ISequentialStream = extern struct {
     pub const VTable = extern struct {
@@ -82,7 +113,7 @@ pub const LOCK_WRITE = LOCKTYPE.LOCK_WRITE;
 pub const LOCK_EXCLUSIVE = LOCKTYPE.LOCK_EXCLUSIVE;
 pub const LOCK_ONLYONCE = LOCKTYPE.LOCK_ONLYONCE;
 
-const IID_IStream_Value = @import("../zig.zig").Guid.initString("0000000C-0000-0000-C000-000000000046");
+const IID_IStream_Value = @import("../zig.zig").Guid.initString("0000000c-0000-0000-c000-000000000046");
 pub const IID_IStream = &IID_IStream_Value;
 pub const IStream = extern struct {
     pub const VTable = extern struct {
@@ -176,7 +207,7 @@ pub const IStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSTATSTG_Value = @import("../zig.zig").Guid.initString("0000000D-0000-0000-C000-000000000046");
+const IID_IEnumSTATSTG_Value = @import("../zig.zig").Guid.initString("0000000d-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATSTG = &IID_IEnumSTATSTG_Value;
 pub const IEnumSTATSTG = extern struct {
     pub const VTable = extern struct {
@@ -228,7 +259,7 @@ pub const RemSNB = extern struct {
     rgString: [1]u16,
 };
 
-const IID_IStorage_Value = @import("../zig.zig").Guid.initString("0000000B-0000-0000-C000-000000000046");
+const IID_IStorage_Value = @import("../zig.zig").Guid.initString("0000000b-0000-0000-c000-000000000046");
 pub const IID_IStorage = &IID_IStorage_Value;
 pub const IStorage = extern struct {
     pub const VTable = extern struct {
@@ -392,7 +423,7 @@ pub const IStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILockBytes_Value = @import("../zig.zig").Guid.initString("0000000A-0000-0000-C000-000000000046");
+const IID_ILockBytes_Value = @import("../zig.zig").Guid.initString("0000000a-0000-0000-c000-000000000046");
 pub const IID_ILockBytes = &IID_ILockBytes_Value;
 pub const ILockBytes = extern struct {
     pub const VTable = extern struct {
@@ -471,7 +502,7 @@ pub const ILockBytes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRootStorage_Value = @import("../zig.zig").Guid.initString("00000012-0000-0000-C000-000000000046");
+const IID_IRootStorage_Value = @import("../zig.zig").Guid.initString("00000012-0000-0000-c000-000000000046");
 pub const IID_IRootStorage = &IID_IRootStorage_Value;
 pub const IRootStorage = extern struct {
     pub const VTable = extern struct {
@@ -492,7 +523,7 @@ pub const IRootStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFillLockBytes_Value = @import("../zig.zig").Guid.initString("99CAF010-415E-11CF-8814-00AA00B569F5");
+const IID_IFillLockBytes_Value = @import("../zig.zig").Guid.initString("99caf010-415e-11cf-8814-00aa00b569f5");
 pub const IID_IFillLockBytes = &IID_IFillLockBytes_Value;
 pub const IFillLockBytes = extern struct {
     pub const VTable = extern struct {
@@ -549,7 +580,7 @@ pub const StorageLayout = extern struct {
     cBytes: LARGE_INTEGER,
 };
 
-const IID_ILayoutStorage_Value = @import("../zig.zig").Guid.initString("0E6D4D90-6738-11CF-9608-00AA00680DB4");
+const IID_ILayoutStorage_Value = @import("../zig.zig").Guid.initString("0e6d4d90-6738-11cf-9608-00aa00680db4");
 pub const IID_ILayoutStorage = &IID_ILayoutStorage_Value;
 pub const ILayoutStorage = extern struct {
     pub const VTable = extern struct {
@@ -602,7 +633,7 @@ pub const ILayoutStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectWriterLock_Value = @import("../zig.zig").Guid.initString("0E6D4D92-6738-11CF-9608-00AA00680DB4");
+const IID_IDirectWriterLock_Value = @import("../zig.zig").Guid.initString("0e6d4d92-6738-11cf-9608-00aa00680db4");
 pub const IID_IDirectWriterLock = &IID_IDirectWriterLock_Value;
 pub const IDirectWriterLock = extern struct {
     pub const VTable = extern struct {
@@ -636,37 +667,6 @@ pub const IDirectWriterLock = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
-
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 pub const VERSIONEDSTREAM = extern struct {
     guidVersion: Guid,
@@ -810,7 +810,7 @@ pub const STATPROPSETSTG = extern struct {
     dwOSVersion: u32,
 };
 
-const IID_IPropertyStorage_Value = @import("../zig.zig").Guid.initString("00000138-0000-0000-C000-000000000046");
+const IID_IPropertyStorage_Value = @import("../zig.zig").Guid.initString("00000138-0000-0000-c000-000000000046");
 pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
 pub const IPropertyStorage = extern struct {
     pub const VTable = extern struct {
@@ -931,7 +931,7 @@ pub const IPropertyStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertySetStorage_Value = @import("../zig.zig").Guid.initString("0000013A-0000-0000-C000-000000000046");
+const IID_IPropertySetStorage_Value = @import("../zig.zig").Guid.initString("0000013a-0000-0000-c000-000000000046");
 pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
 pub const IPropertySetStorage = extern struct {
     pub const VTable = extern struct {
@@ -982,7 +982,7 @@ pub const IPropertySetStorage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSTATPROPSTG_Value = @import("../zig.zig").Guid.initString("00000139-0000-0000-C000-000000000046");
+const IID_IEnumSTATPROPSTG_Value = @import("../zig.zig").Guid.initString("00000139-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
 pub const IEnumSTATPROPSTG = extern struct {
     pub const VTable = extern struct {
@@ -1028,7 +1028,7 @@ pub const IEnumSTATPROPSTG = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSTATPROPSETSTG_Value = @import("../zig.zig").Guid.initString("0000013B-0000-0000-C000-000000000046");
+const IID_IEnumSTATPROPSETSTG_Value = @import("../zig.zig").Guid.initString("0000013b-0000-0000-c000-000000000046");
 pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
 pub const IEnumSTATPROPSETSTG = extern struct {
     pub const VTable = extern struct {

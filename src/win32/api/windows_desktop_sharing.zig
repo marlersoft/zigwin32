@@ -6,55 +6,55 @@
 //--------------------------------------------------------------------------------
 // Section: Types (59)
 //--------------------------------------------------------------------------------
-const CLSID_RDPViewer_Value = @import("../zig.zig").Guid.initString("32BE5ED2-5C86-480F-A914-0FF8885A1B3F");
+const CLSID_RDPViewer_Value = @import("../zig.zig").Guid.initString("32be5ed2-5c86-480f-a914-0ff8885a1b3f");
 pub const CLSID_RDPViewer = &CLSID_RDPViewer_Value;
 
-const CLSID_RDPSRAPISessionProperties_Value = @import("../zig.zig").Guid.initString("DD7594FF-EA2A-4C06-8FDF-132DE48B6510");
+const CLSID_RDPSRAPISessionProperties_Value = @import("../zig.zig").Guid.initString("dd7594ff-ea2a-4c06-8fdf-132de48b6510");
 pub const CLSID_RDPSRAPISessionProperties = &CLSID_RDPSRAPISessionProperties_Value;
 
-const CLSID_RDPSRAPIInvitationManager_Value = @import("../zig.zig").Guid.initString("53D9C9DB-75AB-4271-948A-4C4EB36A8F2B");
+const CLSID_RDPSRAPIInvitationManager_Value = @import("../zig.zig").Guid.initString("53d9c9db-75ab-4271-948a-4c4eb36a8f2b");
 pub const CLSID_RDPSRAPIInvitationManager = &CLSID_RDPSRAPIInvitationManager_Value;
 
-const CLSID_RDPSRAPIInvitation_Value = @import("../zig.zig").Guid.initString("49174DC6-0731-4B5E-8EE1-83A63D3868FA");
+const CLSID_RDPSRAPIInvitation_Value = @import("../zig.zig").Guid.initString("49174dc6-0731-4b5e-8ee1-83a63d3868fa");
 pub const CLSID_RDPSRAPIInvitation = &CLSID_RDPSRAPIInvitation_Value;
 
-const CLSID_RDPSRAPIAttendeeManager_Value = @import("../zig.zig").Guid.initString("D7B13A01-F7D4-42A6-8595-12FC8C24E851");
+const CLSID_RDPSRAPIAttendeeManager_Value = @import("../zig.zig").Guid.initString("d7b13a01-f7d4-42a6-8595-12fc8c24e851");
 pub const CLSID_RDPSRAPIAttendeeManager = &CLSID_RDPSRAPIAttendeeManager_Value;
 
-const CLSID_RDPSRAPIAttendee_Value = @import("../zig.zig").Guid.initString("74F93BB5-755F-488E-8A29-2390108AEF55");
+const CLSID_RDPSRAPIAttendee_Value = @import("../zig.zig").Guid.initString("74f93bb5-755f-488e-8a29-2390108aef55");
 pub const CLSID_RDPSRAPIAttendee = &CLSID_RDPSRAPIAttendee_Value;
 
-const CLSID_RDPSRAPIAttendeeDisconnectInfo_Value = @import("../zig.zig").Guid.initString("B47D7250-5BDB-405D-B487-CAAD9C56F4F8");
+const CLSID_RDPSRAPIAttendeeDisconnectInfo_Value = @import("../zig.zig").Guid.initString("b47d7250-5bdb-405d-b487-caad9c56f4f8");
 pub const CLSID_RDPSRAPIAttendeeDisconnectInfo = &CLSID_RDPSRAPIAttendeeDisconnectInfo_Value;
 
-const CLSID_RDPSRAPIApplicationFilter_Value = @import("../zig.zig").Guid.initString("E35ACE89-C7E8-427E-A4F9-B9DA072826BD");
+const CLSID_RDPSRAPIApplicationFilter_Value = @import("../zig.zig").Guid.initString("e35ace89-c7e8-427e-a4f9-b9da072826bd");
 pub const CLSID_RDPSRAPIApplicationFilter = &CLSID_RDPSRAPIApplicationFilter_Value;
 
-const CLSID_RDPSRAPIApplicationList_Value = @import("../zig.zig").Guid.initString("9E31C815-7433-4876-97FB-ED59FE2BAA22");
+const CLSID_RDPSRAPIApplicationList_Value = @import("../zig.zig").Guid.initString("9e31c815-7433-4876-97fb-ed59fe2baa22");
 pub const CLSID_RDPSRAPIApplicationList = &CLSID_RDPSRAPIApplicationList_Value;
 
-const CLSID_RDPSRAPIApplication_Value = @import("../zig.zig").Guid.initString("C116A484-4B25-4B9F-8A54-B934B06E57FA");
+const CLSID_RDPSRAPIApplication_Value = @import("../zig.zig").Guid.initString("c116a484-4b25-4b9f-8a54-b934b06e57fa");
 pub const CLSID_RDPSRAPIApplication = &CLSID_RDPSRAPIApplication_Value;
 
-const CLSID_RDPSRAPIWindowList_Value = @import("../zig.zig").Guid.initString("9C21E2B8-5DD4-42CC-81BA-1C099852E6FA");
+const CLSID_RDPSRAPIWindowList_Value = @import("../zig.zig").Guid.initString("9c21e2b8-5dd4-42cc-81ba-1c099852e6fa");
 pub const CLSID_RDPSRAPIWindowList = &CLSID_RDPSRAPIWindowList_Value;
 
-const CLSID_RDPSRAPIWindow_Value = @import("../zig.zig").Guid.initString("03CF46DB-CE45-4D36-86ED-ED28B74398BF");
+const CLSID_RDPSRAPIWindow_Value = @import("../zig.zig").Guid.initString("03cf46db-ce45-4d36-86ed-ed28b74398bf");
 pub const CLSID_RDPSRAPIWindow = &CLSID_RDPSRAPIWindow_Value;
 
-const CLSID_RDPSRAPITcpConnectionInfo_Value = @import("../zig.zig").Guid.initString("BE49DB3F-EBB6-4278-8CE0-D5455833EAEE");
+const CLSID_RDPSRAPITcpConnectionInfo_Value = @import("../zig.zig").Guid.initString("be49db3f-ebb6-4278-8ce0-d5455833eaee");
 pub const CLSID_RDPSRAPITcpConnectionInfo = &CLSID_RDPSRAPITcpConnectionInfo_Value;
 
-const CLSID_RDPSession_Value = @import("../zig.zig").Guid.initString("9B78F0E6-3E05-4A5B-B2E8-E743A8956B65");
+const CLSID_RDPSession_Value = @import("../zig.zig").Guid.initString("9b78f0e6-3e05-4a5b-b2e8-e743a8956b65");
 pub const CLSID_RDPSession = &CLSID_RDPSession_Value;
 
-const CLSID_RDPSRAPIFrameBuffer_Value = @import("../zig.zig").Guid.initString("A4F66BCC-538E-4101-951D-30847ADB5101");
+const CLSID_RDPSRAPIFrameBuffer_Value = @import("../zig.zig").Guid.initString("a4f66bcc-538e-4101-951d-30847adb5101");
 pub const CLSID_RDPSRAPIFrameBuffer = &CLSID_RDPSRAPIFrameBuffer_Value;
 
-const CLSID_RDPTransportStreamBuffer_Value = @import("../zig.zig").Guid.initString("8D4A1C69-F17F-4549-A699-761C6E6B5C0A");
+const CLSID_RDPTransportStreamBuffer_Value = @import("../zig.zig").Guid.initString("8d4a1c69-f17f-4549-a699-761c6e6b5c0a");
 pub const CLSID_RDPTransportStreamBuffer = &CLSID_RDPTransportStreamBuffer_Value;
 
-const CLSID_RDPTransportStreamEvents_Value = @import("../zig.zig").Guid.initString("31E3AB20-5350-483F-9DC6-6748665EFDEB");
+const CLSID_RDPTransportStreamEvents_Value = @import("../zig.zig").Guid.initString("31e3ab20-5350-483f-9dc6-6748665efdeb");
 pub const CLSID_RDPTransportStreamEvents = &CLSID_RDPTransportStreamEvents_Value;
 
 pub const CTRL_LEVEL = extern enum(i32) {
@@ -162,7 +162,7 @@ pub const RDPSRAPI_KBD_SYNC_FLAG_NUM_LOCK = RDPSRAPI_KBD_SYNC_FLAG.NUM_LOCK;
 pub const RDPSRAPI_KBD_SYNC_FLAG_CAPS_LOCK = RDPSRAPI_KBD_SYNC_FLAG.CAPS_LOCK;
 pub const RDPSRAPI_KBD_SYNC_FLAG_KANA_LOCK = RDPSRAPI_KBD_SYNC_FLAG.KANA_LOCK;
 
-const IID_IRDPSRAPIDebug_Value = @import("../zig.zig").Guid.initString("AA1E42B5-496D-4CA4-A690-348DCB2EC4AD");
+const IID_IRDPSRAPIDebug_Value = @import("../zig.zig").Guid.initString("aa1e42b5-496d-4ca4-a690-348dcb2ec4ad");
 pub const IID_IRDPSRAPIDebug = &IID_IRDPSRAPIDebug_Value;
 pub const IRDPSRAPIDebug = extern struct {
     pub const VTable = extern struct {
@@ -191,7 +191,7 @@ pub const IRDPSRAPIDebug = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIPerfCounterLogger_Value = @import("../zig.zig").Guid.initString("071C2533-0FA4-4E8F-AE83-9C10B4305AB5");
+const IID_IRDPSRAPIPerfCounterLogger_Value = @import("../zig.zig").Guid.initString("071c2533-0fa4-4e8f-ae83-9c10b4305ab5");
 pub const IID_IRDPSRAPIPerfCounterLogger = &IID_IRDPSRAPIPerfCounterLogger_Value;
 pub const IRDPSRAPIPerfCounterLogger = extern struct {
     pub const VTable = extern struct {
@@ -212,7 +212,7 @@ pub const IRDPSRAPIPerfCounterLogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIPerfCounterLoggingManager_Value = @import("../zig.zig").Guid.initString("9A512C86-AC6E-4A8E-B1A4-FCEF363F6E64");
+const IID_IRDPSRAPIPerfCounterLoggingManager_Value = @import("../zig.zig").Guid.initString("9a512c86-ac6e-4a8e-b1a4-fcef363f6e64");
 pub const IID_IRDPSRAPIPerfCounterLoggingManager = &IID_IRDPSRAPIPerfCounterLoggingManager_Value;
 pub const IRDPSRAPIPerfCounterLoggingManager = extern struct {
     pub const VTable = extern struct {
@@ -234,7 +234,7 @@ pub const IRDPSRAPIPerfCounterLoggingManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIAudioStream_Value = @import("../zig.zig").Guid.initString("E3E30EF9-89C6-4541-BA3B-19336AC6D31C");
+const IID_IRDPSRAPIAudioStream_Value = @import("../zig.zig").Guid.initString("e3e30ef9-89c6-4541-ba3b-19336ac6d31c");
 pub const IID_IRDPSRAPIAudioStream = &IID_IRDPSRAPIAudioStream_Value;
 pub const IRDPSRAPIAudioStream = extern struct {
     pub const VTable = extern struct {
@@ -286,7 +286,7 @@ pub const IRDPSRAPIAudioStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIClipboardUseEvents_Value = @import("../zig.zig").Guid.initString("D559F59A-7A27-4138-8763-247CE5F659A8");
+const IID_IRDPSRAPIClipboardUseEvents_Value = @import("../zig.zig").Guid.initString("d559f59a-7a27-4138-8763-247ce5f659a8");
 pub const IID_IRDPSRAPIClipboardUseEvents = &IID_IRDPSRAPIClipboardUseEvents_Value;
 pub const IRDPSRAPIClipboardUseEvents = extern struct {
     pub const VTable = extern struct {
@@ -309,7 +309,7 @@ pub const IRDPSRAPIClipboardUseEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIWindow_Value = @import("../zig.zig").Guid.initString("BEAFE0F9-C77B-4933-BA9F-A24CDDCC27CF");
+const IID_IRDPSRAPIWindow_Value = @import("../zig.zig").Guid.initString("beafe0f9-c77b-4933-ba9f-a24cddcc27cf");
 pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
 pub const IRDPSRAPIWindow = extern struct {
     pub const VTable = extern struct {
@@ -377,7 +377,7 @@ pub const IRDPSRAPIWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIWindowList_Value = @import("../zig.zig").Guid.initString("8A05CE44-715A-4116-A189-A118F30A07BD");
+const IID_IRDPSRAPIWindowList_Value = @import("../zig.zig").Guid.initString("8a05ce44-715a-4116-a189-a118f30a07bd");
 pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
 pub const IRDPSRAPIWindowList = extern struct {
     pub const VTable = extern struct {
@@ -407,7 +407,7 @@ pub const IRDPSRAPIWindowList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIApplication_Value = @import("../zig.zig").Guid.initString("41E7A09D-EB7A-436E-935D-780CA2628324");
+const IID_IRDPSRAPIApplication_Value = @import("../zig.zig").Guid.initString("41e7a09d-eb7a-436e-935d-780ca2628324");
 pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
 pub const IRDPSRAPIApplication = extern struct {
     pub const VTable = extern struct {
@@ -468,7 +468,7 @@ pub const IRDPSRAPIApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIApplicationList_Value = @import("../zig.zig").Guid.initString("D4B4AEB3-22DC-4837-B3B6-42EA2517849A");
+const IID_IRDPSRAPIApplicationList_Value = @import("../zig.zig").Guid.initString("d4b4aeb3-22dc-4837-b3b6-42ea2517849a");
 pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
 pub const IRDPSRAPIApplicationList = extern struct {
     pub const VTable = extern struct {
@@ -498,7 +498,7 @@ pub const IRDPSRAPIApplicationList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIApplicationFilter_Value = @import("../zig.zig").Guid.initString("D20F10CA-6637-4F06-B1D5-277EA7E5160D");
+const IID_IRDPSRAPIApplicationFilter_Value = @import("../zig.zig").Guid.initString("d20f10ca-6637-4f06-b1d5-277ea7e5160d");
 pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value;
 pub const IRDPSRAPIApplicationFilter = extern struct {
     pub const VTable = extern struct {
@@ -543,7 +543,7 @@ pub const IRDPSRAPIApplicationFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPISessionProperties_Value = @import("../zig.zig").Guid.initString("339B24F2-9BC0-4F16-9AAC-F165433D13D4");
+const IID_IRDPSRAPISessionProperties_Value = @import("../zig.zig").Guid.initString("339b24f2-9bc0-4f16-9aac-f165433d13d4");
 pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value;
 pub const IRDPSRAPISessionProperties = extern struct {
     pub const VTable = extern struct {
@@ -574,7 +574,7 @@ pub const IRDPSRAPISessionProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIInvitation_Value = @import("../zig.zig").Guid.initString("4FAC1D43-FC51-45BB-B1B4-2B53AA562FA3");
+const IID_IRDPSRAPIInvitation_Value = @import("../zig.zig").Guid.initString("4fac1d43-fc51-45bb-b1b4-2b53aa562fa3");
 pub const IID_IRDPSRAPIInvitation = &IID_IRDPSRAPIInvitation_Value;
 pub const IRDPSRAPIInvitation = extern struct {
     pub const VTable = extern struct {
@@ -643,7 +643,7 @@ pub const IRDPSRAPIInvitation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIInvitationManager_Value = @import("../zig.zig").Guid.initString("4722B049-92C3-4C2D-8A65-F7348F644DCF");
+const IID_IRDPSRAPIInvitationManager_Value = @import("../zig.zig").Guid.initString("4722b049-92c3-4c2d-8a65-f7348f644dcf");
 pub const IID_IRDPSRAPIInvitationManager = &IID_IRDPSRAPIInvitationManager_Value;
 pub const IRDPSRAPIInvitationManager = extern struct {
     pub const VTable = extern struct {
@@ -693,7 +693,7 @@ pub const IRDPSRAPIInvitationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPITcpConnectionInfo_Value = @import("../zig.zig").Guid.initString("F74049A4-3D06-4028-8193-0A8C29BC2452");
+const IID_IRDPSRAPITcpConnectionInfo_Value = @import("../zig.zig").Guid.initString("f74049a4-3d06-4028-8193-0a8c29bc2452");
 pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value;
 pub const IRDPSRAPITcpConnectionInfo = extern struct {
     pub const VTable = extern struct {
@@ -746,7 +746,7 @@ pub const IRDPSRAPITcpConnectionInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIAttendee_Value = @import("../zig.zig").Guid.initString("EC0671B3-1B78-4B80-A464-9132247543E3");
+const IID_IRDPSRAPIAttendee_Value = @import("../zig.zig").Guid.initString("ec0671b3-1b78-4b80-a464-9132247543e3");
 pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
 pub const IRDPSRAPIAttendee = extern struct {
     pub const VTable = extern struct {
@@ -822,7 +822,7 @@ pub const IRDPSRAPIAttendee = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIAttendeeManager_Value = @import("../zig.zig").Guid.initString("BA3A37E8-33DA-4749-8DA0-07FA34DA7944");
+const IID_IRDPSRAPIAttendeeManager_Value = @import("../zig.zig").Guid.initString("ba3a37e8-33da-4749-8da0-07fa34da7944");
 pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
 pub const IRDPSRAPIAttendeeManager = extern struct {
     pub const VTable = extern struct {
@@ -852,7 +852,7 @@ pub const IRDPSRAPIAttendeeManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = @import("../zig.zig").Guid.initString("C187689F-447C-44A1-9C14-FFFBB3B7EC17");
+const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = @import("../zig.zig").Guid.initString("c187689f-447c-44a1-9c14-fffbb3b7ec17");
 pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnectInfo_Value;
 pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
     pub const VTable = extern struct {
@@ -889,7 +889,7 @@ pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIVirtualChannel_Value = @import("../zig.zig").Guid.initString("05E12F95-28B3-4C9A-8780-D0248574A1E0");
+const IID_IRDPSRAPIVirtualChannel_Value = @import("../zig.zig").Guid.initString("05e12f95-28b3-4c9a-8780-d0248574a1e0");
 pub const IID_IRDPSRAPIVirtualChannel = &IID_IRDPSRAPIVirtualChannel_Value;
 pub const IRDPSRAPIVirtualChannel = extern struct {
     pub const VTable = extern struct {
@@ -945,7 +945,7 @@ pub const IRDPSRAPIVirtualChannel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIVirtualChannelManager_Value = @import("../zig.zig").Guid.initString("0D11C661-5D0D-4EE4-89DF-2166AE1FDFED");
+const IID_IRDPSRAPIVirtualChannelManager_Value = @import("../zig.zig").Guid.initString("0d11c661-5d0d-4ee4-89df-2166ae1fdfed");
 pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManager_Value;
 pub const IRDPSRAPIVirtualChannelManager = extern struct {
     pub const VTable = extern struct {
@@ -986,7 +986,7 @@ pub const IRDPSRAPIVirtualChannelManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIViewer_Value = @import("../zig.zig").Guid.initString("C6BFCD38-8CE9-404D-8AE8-F31D00C65CB5");
+const IID_IRDPSRAPIViewer_Value = @import("../zig.zig").Guid.initString("c6bfcd38-8ce9-404d-8ae8-f31d00c65cb5");
 pub const IID_IRDPSRAPIViewer = &IID_IRDPSRAPIViewer_Value;
 pub const IRDPSRAPIViewer = extern struct {
     pub const VTable = extern struct {
@@ -1115,7 +1115,7 @@ pub const IRDPSRAPIViewer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPViewerRenderingSurface_Value = @import("../zig.zig").Guid.initString("56BFCE32-83E9-414D-82E8-F31D01C62CB5");
+const IID_IRDPViewerRenderingSurface_Value = @import("../zig.zig").Guid.initString("56bfce32-83e9-414d-82e8-f31d01c62cb5");
 pub const IID_IRDPViewerRenderingSurface = &IID_IRDPViewerRenderingSurface_Value;
 pub const IRDPViewerRenderingSurface = extern struct {
     pub const VTable = extern struct {
@@ -1138,7 +1138,7 @@ pub const IRDPViewerRenderingSurface = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPViewerInputSink_Value = @import("../zig.zig").Guid.initString("BB590853-A6C5-4A7B-8DD4-76B69EEA12D5");
+const IID_IRDPViewerInputSink_Value = @import("../zig.zig").Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
 pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
 pub const IRDPViewerInputSink = extern struct {
     pub const VTable = extern struct {
@@ -1224,7 +1224,7 @@ pub const IRDPViewerInputSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPIFrameBuffer_Value = @import("../zig.zig").Guid.initString("3D67E7D2-B27B-448E-81B3-C6110ED8B4BE");
+const IID_IRDPSRAPIFrameBuffer_Value = @import("../zig.zig").Guid.initString("3d67e7d2-b27b-448e-81b3-c6110ed8b4be");
 pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
 pub const IRDPSRAPIFrameBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1273,7 +1273,7 @@ pub const IRDPSRAPIFrameBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPITransportStreamBuffer_Value = @import("../zig.zig").Guid.initString("81C80290-5085-44B0-B460-F865C39CB4A9");
+const IID_IRDPSRAPITransportStreamBuffer_Value = @import("../zig.zig").Guid.initString("81c80290-5085-44b0-b460-f865c39cb4a9");
 pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuffer_Value;
 pub const IRDPSRAPITransportStreamBuffer = extern struct {
     pub const VTable = extern struct {
@@ -1366,7 +1366,7 @@ pub const IRDPSRAPITransportStreamBuffer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPITransportStreamEvents_Value = @import("../zig.zig").Guid.initString("EA81C254-F5AF-4E40-982E-3E63BB595276");
+const IID_IRDPSRAPITransportStreamEvents_Value = @import("../zig.zig").Guid.initString("ea81c254-f5af-4e40-982e-3e63bb595276");
 pub const IID_IRDPSRAPITransportStreamEvents = &IID_IRDPSRAPITransportStreamEvents_Value;
 pub const IRDPSRAPITransportStreamEvents = extern struct {
     pub const VTable = extern struct {
@@ -1403,7 +1403,7 @@ pub const IRDPSRAPITransportStreamEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPITransportStream_Value = @import("../zig.zig").Guid.initString("36CFA065-43BB-4EF7-AED7-9B88A5053036");
+const IID_IRDPSRAPITransportStream_Value = @import("../zig.zig").Guid.initString("36cfa065-43bb-4ef7-aed7-9b88a5053036");
 pub const IID_IRDPSRAPITransportStream = &IID_IRDPSRAPITransportStream_Value;
 pub const IRDPSRAPITransportStream = extern struct {
     pub const VTable = extern struct {
@@ -1464,7 +1464,7 @@ pub const IRDPSRAPITransportStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPISharingSession_Value = @import("../zig.zig").Guid.initString("EEB20886-E470-4CF6-842B-2739C0EC5CFB");
+const IID_IRDPSRAPISharingSession_Value = @import("../zig.zig").Guid.initString("eeb20886-e470-4cf6-842b-2739c0ec5cfb");
 pub const IID_IRDPSRAPISharingSession = &IID_IRDPSRAPISharingSession_Value;
 pub const IRDPSRAPISharingSession = extern struct {
     pub const VTable = extern struct {
@@ -1591,7 +1591,7 @@ pub const IRDPSRAPISharingSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRDPSRAPISharingSession2_Value = @import("../zig.zig").Guid.initString("FEE4EE57-E3E8-4205-8FB0-8FD1D0675C21");
+const IID_IRDPSRAPISharingSession2_Value = @import("../zig.zig").Guid.initString("fee4ee57-e3e8-4205-8fb0-8fd1d0675c21");
 pub const IID_IRDPSRAPISharingSession2 = &IID_IRDPSRAPISharingSession2_Value;
 pub const IRDPSRAPISharingSession2 = extern struct {
     pub const VTable = extern struct {
@@ -1660,7 +1660,7 @@ pub const __ReferenceRemainingTypes__ = extern struct {
     __rdpsrapiAppFlags__: RDPSRAPI_APP_FLAGS,
 };
 
-const IID__IRDPSessionEvents_Value = @import("../zig.zig").Guid.initString("98A97042-6698-40E9-8EFD-B3200990004B");
+const IID__IRDPSessionEvents_Value = @import("../zig.zig").Guid.initString("98a97042-6698-40e9-8efd-b3200990004b");
 pub const IID__IRDPSessionEvents = &IID__IRDPSessionEvents_Value;
 pub const _IRDPSessionEvents = extern struct {
     pub const VTable = extern struct {

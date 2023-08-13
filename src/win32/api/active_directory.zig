@@ -45,7 +45,7 @@ pub const CQPAGE = extern struct {
     lParam: LPARAM,
 };
 
-const IID_IQueryForm_Value = @import("../zig.zig").Guid.initString("8CFCEE30-39BD-11D0-B8D1-00A024AB2DBB");
+const IID_IQueryForm_Value = @import("../zig.zig").Guid.initString("8cfcee30-39bd-11d0-b8d1-00a024ab2dbb");
 pub const IID_IQueryForm = &IID_IQueryForm_Value;
 pub const IQueryForm = extern struct {
     pub const VTable = extern struct {
@@ -84,7 +84,7 @@ pub const IQueryForm = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPersistQuery_Value = @import("../zig.zig").Guid.initString("1A3114B8-A62E-11D0-A6C5-00A0C906AF45");
+const IID_IPersistQuery_Value = @import("../zig.zig").Guid.initString("1a3114b8-a62e-11d0-a6c5-00a0c906af45");
 pub const IID_IPersistQuery = &IID_IPersistQuery_Value;
 pub const IPersistQuery = extern struct {
     pub const VTable = extern struct {
@@ -178,7 +178,7 @@ pub const OPENQUERYWINDOW = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const IID_ICommonQuery_Value = @import("../zig.zig").Guid.initString("AB50DEC0-6F1D-11D0-A1C4-00AA00C16E65");
+const IID_ICommonQuery_Value = @import("../zig.zig").Guid.initString("ab50dec0-6f1d-11d0-a1c4-00aa00c16e65");
 pub const IID_ICommonQuery = &IID_ICommonQuery_Value;
 pub const ICommonQuery = extern struct {
     pub const VTable = extern struct {
@@ -201,79 +201,79 @@ pub const ICommonQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_PropertyEntry_Value = @import("../zig.zig").Guid.initString("72D3EDC2-A4C4-11D0-8533-00C04FD8D503");
+const CLSID_PropertyEntry_Value = @import("../zig.zig").Guid.initString("72d3edc2-a4c4-11d0-8533-00c04fd8d503");
 pub const CLSID_PropertyEntry = &CLSID_PropertyEntry_Value;
 
-const CLSID_PropertyValue_Value = @import("../zig.zig").Guid.initString("7B9E38B0-A97C-11D0-8534-00C04FD8D503");
+const CLSID_PropertyValue_Value = @import("../zig.zig").Guid.initString("7b9e38b0-a97c-11d0-8534-00c04fd8d503");
 pub const CLSID_PropertyValue = &CLSID_PropertyValue_Value;
 
-const CLSID_AccessControlEntry_Value = @import("../zig.zig").Guid.initString("B75AC000-9BDD-11D0-852C-00C04FD8D503");
+const CLSID_AccessControlEntry_Value = @import("../zig.zig").Guid.initString("b75ac000-9bdd-11d0-852c-00c04fd8d503");
 pub const CLSID_AccessControlEntry = &CLSID_AccessControlEntry_Value;
 
-const CLSID_AccessControlList_Value = @import("../zig.zig").Guid.initString("B85EA052-9BDD-11D0-852C-00C04FD8D503");
+const CLSID_AccessControlList_Value = @import("../zig.zig").Guid.initString("b85ea052-9bdd-11d0-852c-00c04fd8d503");
 pub const CLSID_AccessControlList = &CLSID_AccessControlList_Value;
 
-const CLSID_SecurityDescriptor_Value = @import("../zig.zig").Guid.initString("B958F73C-9BDD-11D0-852C-00C04FD8D503");
+const CLSID_SecurityDescriptor_Value = @import("../zig.zig").Guid.initString("b958f73c-9bdd-11d0-852c-00c04fd8d503");
 pub const CLSID_SecurityDescriptor = &CLSID_SecurityDescriptor_Value;
 
-const CLSID_LargeInteger_Value = @import("../zig.zig").Guid.initString("927971F5-0939-11D1-8BE1-00C04FD8D503");
+const CLSID_LargeInteger_Value = @import("../zig.zig").Guid.initString("927971f5-0939-11d1-8be1-00c04fd8d503");
 pub const CLSID_LargeInteger = &CLSID_LargeInteger_Value;
 
-const CLSID_NameTranslate_Value = @import("../zig.zig").Guid.initString("274FAE1F-3626-11D1-A3A4-00C04FB950DC");
+const CLSID_NameTranslate_Value = @import("../zig.zig").Guid.initString("274fae1f-3626-11d1-a3a4-00c04fb950dc");
 pub const CLSID_NameTranslate = &CLSID_NameTranslate_Value;
 
-const CLSID_CaseIgnoreList_Value = @import("../zig.zig").Guid.initString("15F88A55-4680-11D1-A3B4-00C04FB950DC");
+const CLSID_CaseIgnoreList_Value = @import("../zig.zig").Guid.initString("15f88a55-4680-11d1-a3b4-00c04fb950dc");
 pub const CLSID_CaseIgnoreList = &CLSID_CaseIgnoreList_Value;
 
-const CLSID_FaxNumber_Value = @import("../zig.zig").Guid.initString("A5062215-4681-11D1-A3B4-00C04FB950DC");
+const CLSID_FaxNumber_Value = @import("../zig.zig").Guid.initString("a5062215-4681-11d1-a3b4-00c04fb950dc");
 pub const CLSID_FaxNumber = &CLSID_FaxNumber_Value;
 
-const CLSID_NetAddress_Value = @import("../zig.zig").Guid.initString("B0B71247-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_NetAddress_Value = @import("../zig.zig").Guid.initString("b0b71247-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_NetAddress = &CLSID_NetAddress_Value;
 
-const CLSID_OctetList_Value = @import("../zig.zig").Guid.initString("1241400F-4680-11D1-A3B4-00C04FB950DC");
+const CLSID_OctetList_Value = @import("../zig.zig").Guid.initString("1241400f-4680-11d1-a3b4-00c04fb950dc");
 pub const CLSID_OctetList = &CLSID_OctetList_Value;
 
-const CLSID_Email_Value = @import("../zig.zig").Guid.initString("8F92A857-478E-11D1-A3B4-00C04FB950DC");
+const CLSID_Email_Value = @import("../zig.zig").Guid.initString("8f92a857-478e-11d1-a3b4-00c04fb950dc");
 pub const CLSID_Email = &CLSID_Email_Value;
 
-const CLSID_Path_Value = @import("../zig.zig").Guid.initString("B2538919-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_Path_Value = @import("../zig.zig").Guid.initString("b2538919-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_Path = &CLSID_Path_Value;
 
-const CLSID_ReplicaPointer_Value = @import("../zig.zig").Guid.initString("F5D1BADF-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_ReplicaPointer_Value = @import("../zig.zig").Guid.initString("f5d1badf-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_ReplicaPointer = &CLSID_ReplicaPointer_Value;
 
-const CLSID_Timestamp_Value = @import("../zig.zig").Guid.initString("B2BED2EB-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_Timestamp_Value = @import("../zig.zig").Guid.initString("b2bed2eb-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_Timestamp = &CLSID_Timestamp_Value;
 
-const CLSID_PostalAddress_Value = @import("../zig.zig").Guid.initString("0A75AFCD-4680-11D1-A3B4-00C04FB950DC");
+const CLSID_PostalAddress_Value = @import("../zig.zig").Guid.initString("0a75afcd-4680-11d1-a3b4-00c04fb950dc");
 pub const CLSID_PostalAddress = &CLSID_PostalAddress_Value;
 
-const CLSID_BackLink_Value = @import("../zig.zig").Guid.initString("FCBF906F-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_BackLink_Value = @import("../zig.zig").Guid.initString("fcbf906f-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_BackLink = &CLSID_BackLink_Value;
 
-const CLSID_TypedName_Value = @import("../zig.zig").Guid.initString("B33143CB-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_TypedName_Value = @import("../zig.zig").Guid.initString("b33143cb-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_TypedName = &CLSID_TypedName_Value;
 
-const CLSID_Hold_Value = @import("../zig.zig").Guid.initString("B3AD3E13-4080-11D1-A3AC-00C04FB950DC");
+const CLSID_Hold_Value = @import("../zig.zig").Guid.initString("b3ad3e13-4080-11d1-a3ac-00c04fb950dc");
 pub const CLSID_Hold = &CLSID_Hold_Value;
 
-const CLSID_Pathname_Value = @import("../zig.zig").Guid.initString("080D0D78-F421-11D0-A36E-00C04FB950DC");
+const CLSID_Pathname_Value = @import("../zig.zig").Guid.initString("080d0d78-f421-11d0-a36e-00c04fb950dc");
 pub const CLSID_Pathname = &CLSID_Pathname_Value;
 
-const CLSID_ADSystemInfo_Value = @import("../zig.zig").Guid.initString("50B6327F-AFD1-11D2-9CB9-0000F87A369E");
+const CLSID_ADSystemInfo_Value = @import("../zig.zig").Guid.initString("50b6327f-afd1-11d2-9cb9-0000f87a369e");
 pub const CLSID_ADSystemInfo = &CLSID_ADSystemInfo_Value;
 
-const CLSID_WinNTSystemInfo_Value = @import("../zig.zig").Guid.initString("66182EC4-AFD1-11D2-9CB9-0000F87A369E");
+const CLSID_WinNTSystemInfo_Value = @import("../zig.zig").Guid.initString("66182ec4-afd1-11d2-9cb9-0000f87a369e");
 pub const CLSID_WinNTSystemInfo = &CLSID_WinNTSystemInfo_Value;
 
-const CLSID_DNWithBinary_Value = @import("../zig.zig").Guid.initString("7E99C0A3-F935-11D2-BA96-00C04FB6D0D1");
+const CLSID_DNWithBinary_Value = @import("../zig.zig").Guid.initString("7e99c0a3-f935-11d2-ba96-00c04fb6d0d1");
 pub const CLSID_DNWithBinary = &CLSID_DNWithBinary_Value;
 
-const CLSID_DNWithString_Value = @import("../zig.zig").Guid.initString("334857CC-F934-11D2-BA96-00C04FB6D0D1");
+const CLSID_DNWithString_Value = @import("../zig.zig").Guid.initString("334857cc-f934-11d2-ba96-00c04fb6d0d1");
 pub const CLSID_DNWithString = &CLSID_DNWithString_Value;
 
-const CLSID_ADsSecurityUtility_Value = @import("../zig.zig").Guid.initString("F270C64A-FFB8-4AE4-85FE-3A75E5347966");
+const CLSID_ADsSecurityUtility_Value = @import("../zig.zig").Guid.initString("f270c64a-ffb8-4ae4-85fe-3a75e5347966");
 pub const CLSID_ADsSecurityUtility = &CLSID_ADsSecurityUtility_Value;
 
 pub const ADSTYPEENUM = extern enum(i32) {
@@ -1022,34 +1022,34 @@ pub const ADS_SD_FORMAT_IID = ADS_SD_FORMAT_ENUM.ADS_SD_FORMAT_IID;
 pub const ADS_SD_FORMAT_RAW = ADS_SD_FORMAT_ENUM.ADS_SD_FORMAT_RAW;
 pub const ADS_SD_FORMAT_HEXSTRING = ADS_SD_FORMAT_ENUM.ADS_SD_FORMAT_HEXSTRING;
 
-const IID_IADs_Value = @import("../zig.zig").Guid.initString("FD8256D0-FD15-11CE-ABC4-02608C9E7553");
+const IID_IADs_Value = @import("../zig.zig").Guid.initString("fd8256d0-fd15-11ce-abc4-02608c9e7553");
 pub const IID_IADs = &IID_IADs_Value;
 pub const IADs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Class: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_GUID: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ADsPath: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Parent: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Schema: fn(
             self: *const IADs,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInfo: fn(
             self: *const IADs,
@@ -1088,27 +1088,27 @@ pub const IADs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_Name(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_Name(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_Name(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_Class(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_Class(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_Class(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_GUID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_GUID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_GUID(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_ADsPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_ADsPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_ADsPath(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_Parent(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_Parent(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_Parent(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADs_get_Schema(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADs_get_Schema(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADs.VTable, self.vtable).get_Schema(@ptrCast(*const IADs, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1143,7 +1143,7 @@ pub const IADs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsContainer_Value = @import("../zig.zig").Guid.initString("001677D0-FD16-11CE-ABC4-02608C9E7553");
+const IID_IADsContainer_Value = @import("../zig.zig").Guid.initString("001677d0-fd16-11ce-abc4-02608c9e7553");
 pub const IID_IADsContainer = &IID_IADsContainer_Value;
 pub const IADsContainer = extern struct {
     pub const VTable = extern struct {
@@ -1154,7 +1154,7 @@ pub const IADsContainer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IADsContainer,
-            retval: **IUnknown,
+            retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Filter: fn(
             self: *const IADsContainer,
@@ -1176,13 +1176,13 @@ pub const IADsContainer = extern struct {
             self: *const IADsContainer,
             ClassName: BSTR,
             RelativeName: BSTR,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Create: fn(
             self: *const IADsContainer,
             ClassName: BSTR,
             RelativeName: BSTR,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IADsContainer,
@@ -1193,13 +1193,13 @@ pub const IADsContainer = extern struct {
             self: *const IADsContainer,
             SourceName: BSTR,
             NewName: BSTR,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveHere: fn(
             self: *const IADsContainer,
             SourceName: BSTR,
             NewName: BSTR,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1210,7 +1210,7 @@ pub const IADsContainer = extern struct {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).get_Count(@ptrCast(*const IADsContainer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsContainer_get__NewEnum(self: *const T, retval: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IADsContainer_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).get__NewEnum(@ptrCast(*const IADsContainer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1230,11 +1230,11 @@ pub const IADsContainer = extern struct {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).put_Hints(@ptrCast(*const IADsContainer, self), vHints);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsContainer_GetObject(self: *const T, ClassName: BSTR, RelativeName: BSTR, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsContainer_GetObject(self: *const T, ClassName: BSTR, RelativeName: BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).GetObject(@ptrCast(*const IADsContainer, self), ClassName, RelativeName, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsContainer_Create(self: *const T, ClassName: BSTR, RelativeName: BSTR, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsContainer_Create(self: *const T, ClassName: BSTR, RelativeName: BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).Create(@ptrCast(*const IADsContainer, self), ClassName, RelativeName, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1242,25 +1242,25 @@ pub const IADsContainer = extern struct {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).Delete(@ptrCast(*const IADsContainer, self), bstrClassName, bstrRelativeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsContainer_CopyHere(self: *const T, SourceName: BSTR, NewName: BSTR, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsContainer_CopyHere(self: *const T, SourceName: BSTR, NewName: BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).CopyHere(@ptrCast(*const IADsContainer, self), SourceName, NewName, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsContainer_MoveHere(self: *const T, SourceName: BSTR, NewName: BSTR, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsContainer_MoveHere(self: *const T, SourceName: BSTR, NewName: BSTR, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsContainer.VTable, self.vtable).MoveHere(@ptrCast(*const IADsContainer, self), SourceName, NewName, ppObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsCollection_Value = @import("../zig.zig").Guid.initString("72B945E0-253B-11CF-A988-00AA006BC149");
+const IID_IADsCollection_Value = @import("../zig.zig").Guid.initString("72b945e0-253b-11cf-a988-00aa006bc149");
 pub const IID_IADsCollection = &IID_IADsCollection_Value;
 pub const IADsCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IADsCollection,
-            ppEnumerator: **IUnknown,
+            ppEnumerator: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IADsCollection,
@@ -1281,7 +1281,7 @@ pub const IADsCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsCollection_get__NewEnum(self: *const T, ppEnumerator: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IADsCollection_get__NewEnum(self: *const T, ppEnumerator: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IADsCollection, self), ppEnumerator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1300,7 +1300,7 @@ pub const IADsCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsMembers_Value = @import("../zig.zig").Guid.initString("451A0030-72EC-11CF-B03B-00AA006E0975");
+const IID_IADsMembers_Value = @import("../zig.zig").Guid.initString("451a0030-72ec-11cf-b03b-00aa006e0975");
 pub const IID_IADsMembers = &IID_IADsMembers_Value;
 pub const IADsMembers = extern struct {
     pub const VTable = extern struct {
@@ -1311,7 +1311,7 @@ pub const IADsMembers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IADsMembers,
-            ppEnumerator: **IUnknown,
+            ppEnumerator: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Filter: fn(
             self: *const IADsMembers,
@@ -1330,7 +1330,7 @@ pub const IADsMembers = extern struct {
             return @ptrCast(*const IADsMembers.VTable, self.vtable).get_Count(@ptrCast(*const IADsMembers, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsMembers_get__NewEnum(self: *const T, ppEnumerator: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IADsMembers_get__NewEnum(self: *const T, ppEnumerator: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsMembers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IADsMembers, self), ppEnumerator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1345,7 +1345,7 @@ pub const IADsMembers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPropertyList_Value = @import("../zig.zig").Guid.initString("C6F602B6-8F69-11D0-8528-00C04FD8D503");
+const IID_IADsPropertyList_Value = @import("../zig.zig").Guid.initString("c6f602b6-8f69-11d0-8528-00c04fd8d503");
 pub const IID_IADsPropertyList = &IID_IADsPropertyList_Value;
 pub const IADsPropertyList = extern struct {
     pub const VTable = extern struct {
@@ -1431,7 +1431,7 @@ pub const IADsPropertyList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPropertyEntry_Value = @import("../zig.zig").Guid.initString("05792C8E-941F-11D0-8529-00C04FD8D503");
+const IID_IADsPropertyEntry_Value = @import("../zig.zig").Guid.initString("05792c8e-941f-11d0-8529-00c04fd8d503");
 pub const IID_IADsPropertyEntry = &IID_IADsPropertyEntry_Value;
 pub const IADsPropertyEntry = extern struct {
     pub const VTable = extern struct {
@@ -1441,7 +1441,7 @@ pub const IADsPropertyEntry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IADsPropertyEntry,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IADsPropertyEntry,
@@ -1480,7 +1480,7 @@ pub const IADsPropertyEntry = extern struct {
             return @ptrCast(*const IADsPropertyEntry.VTable, self.vtable).Clear(@ptrCast(*const IADsPropertyEntry, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyEntry_get_Name(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyEntry_get_Name(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyEntry.VTable, self.vtable).get_Name(@ptrCast(*const IADsPropertyEntry, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1515,7 +1515,7 @@ pub const IADsPropertyEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPropertyValue_Value = @import("../zig.zig").Guid.initString("79FA9AD0-A97C-11D0-8534-00C04FD8D503");
+const IID_IADsPropertyValue_Value = @import("../zig.zig").Guid.initString("79fa9ad0-a97c-11d0-8534-00c04fd8d503");
 pub const IID_IADsPropertyValue = &IID_IADsPropertyValue_Value;
 pub const IADsPropertyValue = extern struct {
     pub const VTable = extern struct {
@@ -1533,7 +1533,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DNString: fn(
             self: *const IADsPropertyValue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DNString: fn(
             self: *const IADsPropertyValue,
@@ -1541,7 +1541,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CaseExactString: fn(
             self: *const IADsPropertyValue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CaseExactString: fn(
             self: *const IADsPropertyValue,
@@ -1549,7 +1549,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CaseIgnoreString: fn(
             self: *const IADsPropertyValue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CaseIgnoreString: fn(
             self: *const IADsPropertyValue,
@@ -1557,7 +1557,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrintableString: fn(
             self: *const IADsPropertyValue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PrintableString: fn(
             self: *const IADsPropertyValue,
@@ -1565,7 +1565,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NumericString: fn(
             self: *const IADsPropertyValue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_NumericString: fn(
             self: *const IADsPropertyValue,
@@ -1597,7 +1597,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SecurityDescriptor: fn(
             self: *const IADsPropertyValue,
-            retval: **IDispatch,
+            retval: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SecurityDescriptor: fn(
             self: *const IADsPropertyValue,
@@ -1605,7 +1605,7 @@ pub const IADsPropertyValue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LargeInteger: fn(
             self: *const IADsPropertyValue,
-            retval: **IDispatch,
+            retval: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LargeInteger: fn(
             self: *const IADsPropertyValue,
@@ -1636,7 +1636,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_ADsType(@ptrCast(*const IADsPropertyValue, self), lnADsType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_DNString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_DNString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_DNString(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1644,7 +1644,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_DNString(@ptrCast(*const IADsPropertyValue, self), bstrDNString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_CaseExactString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_CaseExactString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_CaseExactString(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1652,7 +1652,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_CaseExactString(@ptrCast(*const IADsPropertyValue, self), bstrCaseExactString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_CaseIgnoreString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_CaseIgnoreString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_CaseIgnoreString(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1660,7 +1660,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_CaseIgnoreString(@ptrCast(*const IADsPropertyValue, self), bstrCaseIgnoreString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_PrintableString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_PrintableString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_PrintableString(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1668,7 +1668,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_PrintableString(@ptrCast(*const IADsPropertyValue, self), bstrPrintableString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_NumericString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_NumericString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_NumericString(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1700,7 +1700,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_OctetString(@ptrCast(*const IADsPropertyValue, self), vOctetString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_SecurityDescriptor(self: *const T, retval: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_SecurityDescriptor(self: *const T, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_SecurityDescriptor(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1708,7 +1708,7 @@ pub const IADsPropertyValue = extern struct {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).put_SecurityDescriptor(@ptrCast(*const IADsPropertyValue, self), pSecurityDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPropertyValue_get_LargeInteger(self: *const T, retval: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsPropertyValue_get_LargeInteger(self: *const T, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPropertyValue.VTable, self.vtable).get_LargeInteger(@ptrCast(*const IADsPropertyValue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1727,7 +1727,7 @@ pub const IADsPropertyValue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPropertyValue2_Value = @import("../zig.zig").Guid.initString("306E831C-5BC7-11D1-A3B8-00C04FB950DC");
+const IID_IADsPropertyValue2_Value = @import("../zig.zig").Guid.initString("306e831c-5bc7-11d1-a3b8-00c04fb950dc");
 pub const IID_IADsPropertyValue2 = &IID_IADsPropertyValue2_Value;
 pub const IADsPropertyValue2 = extern struct {
     pub const VTable = extern struct {
@@ -1758,7 +1758,7 @@ pub const IADsPropertyValue2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrivateDispatch_Value = @import("../zig.zig").Guid.initString("86AB4BBE-65F6-11D1-8C13-00C04FD8D503");
+const IID_IPrivateDispatch_Value = @import("../zig.zig").Guid.initString("86ab4bbe-65f6-11d1-8c13-00c04fd8d503");
 pub const IID_IPrivateDispatch = &IID_IPrivateDispatch_Value;
 pub const IPrivateDispatch = extern struct {
     pub const VTable = extern struct {
@@ -1775,7 +1775,7 @@ pub const IPrivateDispatch = extern struct {
             self: *const IPrivateDispatch,
             itinfo: u32,
             lcid: u32,
-            pptinfo: **ITypeInfo,
+            pptinfo: ?*?*ITypeInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ADSIGetIDsOfNames: fn(
             self: *const IPrivateDispatch,
@@ -1809,7 +1809,7 @@ pub const IPrivateDispatch = extern struct {
             return @ptrCast(*const IPrivateDispatch.VTable, self.vtable).ADSIGetTypeInfoCount(@ptrCast(*const IPrivateDispatch, self), pctinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrivateDispatch_ADSIGetTypeInfo(self: *const T, itinfo: u32, lcid: u32, pptinfo: **ITypeInfo) callconv(.Inline) HRESULT {
+        pub fn IPrivateDispatch_ADSIGetTypeInfo(self: *const T, itinfo: u32, lcid: u32, pptinfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrivateDispatch.VTable, self.vtable).ADSIGetTypeInfo(@ptrCast(*const IPrivateDispatch, self), itinfo, lcid, pptinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1824,7 +1824,7 @@ pub const IPrivateDispatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPrivateUnknown_Value = @import("../zig.zig").Guid.initString("89126BAB-6EAD-11D1-8C18-00C04FD8D503");
+const IID_IPrivateUnknown_Value = @import("../zig.zig").Guid.initString("89126bab-6ead-11d1-8c18-00c04fd8d503");
 pub const IID_IPrivateUnknown = &IID_IPrivateUnknown_Value;
 pub const IPrivateUnknown = extern struct {
     pub const VTable = extern struct {
@@ -1854,7 +1854,7 @@ pub const IPrivateUnknown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsExtension_Value = @import("../zig.zig").Guid.initString("3D35553C-D2B0-11D1-B17B-0000F87593A0");
+const IID_IADsExtension_Value = @import("../zig.zig").Guid.initString("3d35553c-d2b0-11d1-b17b-0000f87593a0");
 pub const IID_IADsExtension = &IID_IADsExtension_Value;
 pub const IADsExtension = extern struct {
     pub const VTable = extern struct {
@@ -1905,7 +1905,7 @@ pub const IADsExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsDeleteOps_Value = @import("../zig.zig").Guid.initString("B2BD0902-8878-11D1-8C21-00C04FD8D503");
+const IID_IADsDeleteOps_Value = @import("../zig.zig").Guid.initString("b2bd0902-8878-11d1-8c21-00c04fd8d503");
 pub const IID_IADsDeleteOps = &IID_IADsDeleteOps_Value;
 pub const IADsDeleteOps = extern struct {
     pub const VTable = extern struct {
@@ -1926,14 +1926,14 @@ pub const IADsDeleteOps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsNamespaces_Value = @import("../zig.zig").Guid.initString("28B96BA0-B330-11CF-A9AD-00AA006BC149");
+const IID_IADsNamespaces_Value = @import("../zig.zig").Guid.initString("28b96ba0-b330-11cf-a9ad-00aa006bc149");
 pub const IID_IADsNamespaces = &IID_IADsNamespaces_Value;
 pub const IADsNamespaces = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_DefaultContainer: fn(
             self: *const IADsNamespaces,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DefaultContainer: fn(
             self: *const IADsNamespaces,
@@ -1944,7 +1944,7 @@ pub const IADsNamespaces = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsNamespaces_get_DefaultContainer(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsNamespaces_get_DefaultContainer(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsNamespaces.VTable, self.vtable).get_DefaultContainer(@ptrCast(*const IADsNamespaces, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1955,18 +1955,18 @@ pub const IADsNamespaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsClass_Value = @import("../zig.zig").Guid.initString("C8F93DD0-4AE0-11CF-9E73-00AA004A5691");
+const IID_IADsClass_Value = @import("../zig.zig").Guid.initString("c8f93dd0-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsClass = &IID_IADsClass_Value;
 pub const IADsClass = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_PrimaryInterface: fn(
             self: *const IADsClass,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CLSID: fn(
             self: *const IADsClass,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CLSID: fn(
             self: *const IADsClass,
@@ -1974,7 +1974,7 @@ pub const IADsClass = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OID: fn(
             self: *const IADsClass,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OID: fn(
             self: *const IADsClass,
@@ -2062,7 +2062,7 @@ pub const IADsClass = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HelpFileName: fn(
             self: *const IADsClass,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HelpFileName: fn(
             self: *const IADsClass,
@@ -2078,18 +2078,18 @@ pub const IADsClass = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Qualifiers: fn(
             self: *const IADsClass,
-            ppQualifiers: **IADsCollection,
+            ppQualifiers: ?*?*IADsCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsClass_get_PrimaryInterface(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsClass_get_PrimaryInterface(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsClass.VTable, self.vtable).get_PrimaryInterface(@ptrCast(*const IADsClass, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsClass_get_CLSID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsClass_get_CLSID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsClass.VTable, self.vtable).get_CLSID(@ptrCast(*const IADsClass, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2097,7 +2097,7 @@ pub const IADsClass = extern struct {
             return @ptrCast(*const IADsClass.VTable, self.vtable).put_CLSID(@ptrCast(*const IADsClass, self), bstrCLSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsClass_get_OID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsClass_get_OID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsClass.VTable, self.vtable).get_OID(@ptrCast(*const IADsClass, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2185,7 +2185,7 @@ pub const IADsClass = extern struct {
             return @ptrCast(*const IADsClass.VTable, self.vtable).put_Container(@ptrCast(*const IADsClass, self), fContainer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsClass_get_HelpFileName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsClass_get_HelpFileName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsClass.VTable, self.vtable).get_HelpFileName(@ptrCast(*const IADsClass, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2201,21 +2201,21 @@ pub const IADsClass = extern struct {
             return @ptrCast(*const IADsClass.VTable, self.vtable).put_HelpFileContext(@ptrCast(*const IADsClass, self), lnHelpFileContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsClass_Qualifiers(self: *const T, ppQualifiers: **IADsCollection) callconv(.Inline) HRESULT {
+        pub fn IADsClass_Qualifiers(self: *const T, ppQualifiers: ?*?*IADsCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsClass.VTable, self.vtable).Qualifiers(@ptrCast(*const IADsClass, self), ppQualifiers);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsProperty_Value = @import("../zig.zig").Guid.initString("C8F93DD3-4AE0-11CF-9E73-00AA004A5691");
+const IID_IADsProperty_Value = @import("../zig.zig").Guid.initString("c8f93dd3-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsProperty = &IID_IADsProperty_Value;
 pub const IADsProperty = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_OID: fn(
             self: *const IADsProperty,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OID: fn(
             self: *const IADsProperty,
@@ -2223,7 +2223,7 @@ pub const IADsProperty = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Syntax: fn(
             self: *const IADsProperty,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Syntax: fn(
             self: *const IADsProperty,
@@ -2255,14 +2255,14 @@ pub const IADsProperty = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Qualifiers: fn(
             self: *const IADsProperty,
-            ppQualifiers: **IADsCollection,
+            ppQualifiers: ?*?*IADsCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsProperty_get_OID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsProperty_get_OID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsProperty.VTable, self.vtable).get_OID(@ptrCast(*const IADsProperty, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2270,7 +2270,7 @@ pub const IADsProperty = extern struct {
             return @ptrCast(*const IADsProperty.VTable, self.vtable).put_OID(@ptrCast(*const IADsProperty, self), bstrOID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsProperty_get_Syntax(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsProperty_get_Syntax(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsProperty.VTable, self.vtable).get_Syntax(@ptrCast(*const IADsProperty, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2302,14 +2302,14 @@ pub const IADsProperty = extern struct {
             return @ptrCast(*const IADsProperty.VTable, self.vtable).put_MultiValued(@ptrCast(*const IADsProperty, self), fMultiValued);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsProperty_Qualifiers(self: *const T, ppQualifiers: **IADsCollection) callconv(.Inline) HRESULT {
+        pub fn IADsProperty_Qualifiers(self: *const T, ppQualifiers: ?*?*IADsCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsProperty.VTable, self.vtable).Qualifiers(@ptrCast(*const IADsProperty, self), ppQualifiers);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsSyntax_Value = @import("../zig.zig").Guid.initString("C8F93DD2-4AE0-11CF-9E73-00AA004A5691");
+const IID_IADsSyntax_Value = @import("../zig.zig").Guid.initString("c8f93dd2-4ae0-11cf-9e73-00aa004a5691");
 pub const IID_IADsSyntax = &IID_IADsSyntax_Value;
 pub const IADsSyntax = extern struct {
     pub const VTable = extern struct {
@@ -2338,14 +2338,14 @@ pub const IADsSyntax = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsLocality_Value = @import("../zig.zig").Guid.initString("A05E03A2-EFFE-11CF-8ABC-00C04FD8D503");
+const IID_IADsLocality_Value = @import("../zig.zig").Guid.initString("a05e03a2-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsLocality = &IID_IADsLocality_Value;
 pub const IADsLocality = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_Description: fn(
             self: *const IADsLocality,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsLocality,
@@ -2353,7 +2353,7 @@ pub const IADsLocality = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LocalityName: fn(
             self: *const IADsLocality,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LocalityName: fn(
             self: *const IADsLocality,
@@ -2361,7 +2361,7 @@ pub const IADsLocality = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PostalAddress: fn(
             self: *const IADsLocality,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PostalAddress: fn(
             self: *const IADsLocality,
@@ -2380,7 +2380,7 @@ pub const IADsLocality = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsLocality_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsLocality_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsLocality.VTable, self.vtable).get_Description(@ptrCast(*const IADsLocality, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2388,7 +2388,7 @@ pub const IADsLocality = extern struct {
             return @ptrCast(*const IADsLocality.VTable, self.vtable).put_Description(@ptrCast(*const IADsLocality, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsLocality_get_LocalityName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsLocality_get_LocalityName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsLocality.VTable, self.vtable).get_LocalityName(@ptrCast(*const IADsLocality, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2396,7 +2396,7 @@ pub const IADsLocality = extern struct {
             return @ptrCast(*const IADsLocality.VTable, self.vtable).put_LocalityName(@ptrCast(*const IADsLocality, self), bstrLocalityName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsLocality_get_PostalAddress(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsLocality_get_PostalAddress(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsLocality.VTable, self.vtable).get_PostalAddress(@ptrCast(*const IADsLocality, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2415,14 +2415,14 @@ pub const IADsLocality = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsO_Value = @import("../zig.zig").Guid.initString("A1CD2DC6-EFFE-11CF-8ABC-00C04FD8D503");
+const IID_IADsO_Value = @import("../zig.zig").Guid.initString("a1cd2dc6-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsO = &IID_IADsO_Value;
 pub const IADsO = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_Description: fn(
             self: *const IADsO,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsO,
@@ -2430,7 +2430,7 @@ pub const IADsO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LocalityName: fn(
             self: *const IADsO,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LocalityName: fn(
             self: *const IADsO,
@@ -2438,7 +2438,7 @@ pub const IADsO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PostalAddress: fn(
             self: *const IADsO,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PostalAddress: fn(
             self: *const IADsO,
@@ -2446,7 +2446,7 @@ pub const IADsO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TelephoneNumber: fn(
             self: *const IADsO,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TelephoneNumber: fn(
             self: *const IADsO,
@@ -2454,7 +2454,7 @@ pub const IADsO = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FaxNumber: fn(
             self: *const IADsO,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FaxNumber: fn(
             self: *const IADsO,
@@ -2473,7 +2473,7 @@ pub const IADsO = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsO_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsO_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsO.VTable, self.vtable).get_Description(@ptrCast(*const IADsO, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2481,7 +2481,7 @@ pub const IADsO = extern struct {
             return @ptrCast(*const IADsO.VTable, self.vtable).put_Description(@ptrCast(*const IADsO, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsO_get_LocalityName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsO_get_LocalityName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsO.VTable, self.vtable).get_LocalityName(@ptrCast(*const IADsO, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2489,7 +2489,7 @@ pub const IADsO = extern struct {
             return @ptrCast(*const IADsO.VTable, self.vtable).put_LocalityName(@ptrCast(*const IADsO, self), bstrLocalityName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsO_get_PostalAddress(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsO_get_PostalAddress(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsO.VTable, self.vtable).get_PostalAddress(@ptrCast(*const IADsO, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2497,7 +2497,7 @@ pub const IADsO = extern struct {
             return @ptrCast(*const IADsO.VTable, self.vtable).put_PostalAddress(@ptrCast(*const IADsO, self), bstrPostalAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsO_get_TelephoneNumber(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsO_get_TelephoneNumber(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsO.VTable, self.vtable).get_TelephoneNumber(@ptrCast(*const IADsO, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2505,7 +2505,7 @@ pub const IADsO = extern struct {
             return @ptrCast(*const IADsO.VTable, self.vtable).put_TelephoneNumber(@ptrCast(*const IADsO, self), bstrTelephoneNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsO_get_FaxNumber(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsO_get_FaxNumber(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsO.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IADsO, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2524,14 +2524,14 @@ pub const IADsO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsOU_Value = @import("../zig.zig").Guid.initString("A2F733B8-EFFE-11CF-8ABC-00C04FD8D503");
+const IID_IADsOU_Value = @import("../zig.zig").Guid.initString("a2f733b8-effe-11cf-8abc-00c04fd8d503");
 pub const IID_IADsOU = &IID_IADsOU_Value;
 pub const IADsOU = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_Description: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsOU,
@@ -2539,7 +2539,7 @@ pub const IADsOU = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LocalityName: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LocalityName: fn(
             self: *const IADsOU,
@@ -2547,7 +2547,7 @@ pub const IADsOU = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PostalAddress: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PostalAddress: fn(
             self: *const IADsOU,
@@ -2555,7 +2555,7 @@ pub const IADsOU = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TelephoneNumber: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TelephoneNumber: fn(
             self: *const IADsOU,
@@ -2563,7 +2563,7 @@ pub const IADsOU = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FaxNumber: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FaxNumber: fn(
             self: *const IADsOU,
@@ -2579,7 +2579,7 @@ pub const IADsOU = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BusinessCategory: fn(
             self: *const IADsOU,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BusinessCategory: fn(
             self: *const IADsOU,
@@ -2590,7 +2590,7 @@ pub const IADsOU = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_Description(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2598,7 +2598,7 @@ pub const IADsOU = extern struct {
             return @ptrCast(*const IADsOU.VTable, self.vtable).put_Description(@ptrCast(*const IADsOU, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_LocalityName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_LocalityName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_LocalityName(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2606,7 +2606,7 @@ pub const IADsOU = extern struct {
             return @ptrCast(*const IADsOU.VTable, self.vtable).put_LocalityName(@ptrCast(*const IADsOU, self), bstrLocalityName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_PostalAddress(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_PostalAddress(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_PostalAddress(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2614,7 +2614,7 @@ pub const IADsOU = extern struct {
             return @ptrCast(*const IADsOU.VTable, self.vtable).put_PostalAddress(@ptrCast(*const IADsOU, self), bstrPostalAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_TelephoneNumber(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_TelephoneNumber(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_TelephoneNumber(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2622,7 +2622,7 @@ pub const IADsOU = extern struct {
             return @ptrCast(*const IADsOU.VTable, self.vtable).put_TelephoneNumber(@ptrCast(*const IADsOU, self), bstrTelephoneNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_FaxNumber(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_FaxNumber(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2638,7 +2638,7 @@ pub const IADsOU = extern struct {
             return @ptrCast(*const IADsOU.VTable, self.vtable).put_SeeAlso(@ptrCast(*const IADsOU, self), vSeeAlso);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOU_get_BusinessCategory(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsOU_get_BusinessCategory(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOU.VTable, self.vtable).get_BusinessCategory(@ptrCast(*const IADsOU, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2649,7 +2649,7 @@ pub const IADsOU = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsDomain_Value = @import("../zig.zig").Guid.initString("00E4C220-FD16-11CE-ABC4-02608C9E7553");
+const IID_IADsDomain_Value = @import("../zig.zig").Guid.initString("00e4c220-fd16-11ce-abc4-02608c9e7553");
 pub const IID_IADsDomain = &IID_IADsDomain_Value;
 pub const IADsDomain = extern struct {
     pub const VTable = extern struct {
@@ -2798,22 +2798,22 @@ pub const IADsDomain = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsComputer_Value = @import("../zig.zig").Guid.initString("EFE3CC70-1D9F-11CF-B1F3-02608C9E7553");
+const IID_IADsComputer_Value = @import("../zig.zig").Guid.initString("efe3cc70-1d9f-11cf-b1f3-02608c9e7553");
 pub const IID_IADsComputer = &IID_IADsComputer_Value;
 pub const IADsComputer = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_ComputerID: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Site: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsComputer,
@@ -2821,7 +2821,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Location: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Location: fn(
             self: *const IADsComputer,
@@ -2829,7 +2829,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrimaryUser: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PrimaryUser: fn(
             self: *const IADsComputer,
@@ -2837,7 +2837,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Owner: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Owner: fn(
             self: *const IADsComputer,
@@ -2845,7 +2845,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Division: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Division: fn(
             self: *const IADsComputer,
@@ -2853,7 +2853,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Department: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Department: fn(
             self: *const IADsComputer,
@@ -2861,7 +2861,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Role: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Role: fn(
             self: *const IADsComputer,
@@ -2869,7 +2869,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OperatingSystem: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OperatingSystem: fn(
             self: *const IADsComputer,
@@ -2877,7 +2877,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OperatingSystemVersion: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OperatingSystemVersion: fn(
             self: *const IADsComputer,
@@ -2885,7 +2885,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Model: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Model: fn(
             self: *const IADsComputer,
@@ -2893,7 +2893,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Processor: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Processor: fn(
             self: *const IADsComputer,
@@ -2901,7 +2901,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProcessorCount: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProcessorCount: fn(
             self: *const IADsComputer,
@@ -2909,7 +2909,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MemorySize: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MemorySize: fn(
             self: *const IADsComputer,
@@ -2917,7 +2917,7 @@ pub const IADsComputer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StorageCapacity: fn(
             self: *const IADsComputer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_StorageCapacity: fn(
             self: *const IADsComputer,
@@ -2936,15 +2936,15 @@ pub const IADsComputer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_ComputerID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_ComputerID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_ComputerID(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Site(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Site(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Site(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Description(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2952,7 +2952,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Description(@ptrCast(*const IADsComputer, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Location(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Location(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Location(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2960,7 +2960,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Location(@ptrCast(*const IADsComputer, self), bstrLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_PrimaryUser(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_PrimaryUser(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_PrimaryUser(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2968,7 +2968,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_PrimaryUser(@ptrCast(*const IADsComputer, self), bstrPrimaryUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Owner(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Owner(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Owner(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2976,7 +2976,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Owner(@ptrCast(*const IADsComputer, self), bstrOwner);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Division(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Division(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Division(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2984,7 +2984,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Division(@ptrCast(*const IADsComputer, self), bstrDivision);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Department(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Department(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Department(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2992,7 +2992,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Department(@ptrCast(*const IADsComputer, self), bstrDepartment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Role(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Role(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Role(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3000,7 +3000,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Role(@ptrCast(*const IADsComputer, self), bstrRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_OperatingSystem(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_OperatingSystem(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_OperatingSystem(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3008,7 +3008,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_OperatingSystem(@ptrCast(*const IADsComputer, self), bstrOperatingSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_OperatingSystemVersion(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_OperatingSystemVersion(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_OperatingSystemVersion(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3016,7 +3016,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_OperatingSystemVersion(@ptrCast(*const IADsComputer, self), bstrOperatingSystemVersion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Model(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Model(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Model(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3024,7 +3024,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Model(@ptrCast(*const IADsComputer, self), bstrModel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_Processor(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_Processor(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_Processor(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3032,7 +3032,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_Processor(@ptrCast(*const IADsComputer, self), bstrProcessor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_ProcessorCount(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_ProcessorCount(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_ProcessorCount(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3040,7 +3040,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_ProcessorCount(@ptrCast(*const IADsComputer, self), bstrProcessorCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_MemorySize(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_MemorySize(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_MemorySize(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3048,7 +3048,7 @@ pub const IADsComputer = extern struct {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).put_MemorySize(@ptrCast(*const IADsComputer, self), bstrMemorySize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputer_get_StorageCapacity(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsComputer_get_StorageCapacity(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputer.VTable, self.vtable).get_StorageCapacity(@ptrCast(*const IADsComputer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3067,14 +3067,14 @@ pub const IADsComputer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsComputerOperations_Value = @import("../zig.zig").Guid.initString("EF497680-1D9F-11CF-B1F3-02608C9E7553");
+const IID_IADsComputerOperations_Value = @import("../zig.zig").Guid.initString("ef497680-1d9f-11cf-b1f3-02608c9e7553");
 pub const IID_IADsComputerOperations = &IID_IADsComputerOperations_Value;
 pub const IADsComputerOperations = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         Status: fn(
             self: *const IADsComputerOperations,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shutdown: fn(
             self: *const IADsComputerOperations,
@@ -3085,7 +3085,7 @@ pub const IADsComputerOperations = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsComputerOperations_Status(self: *const T, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsComputerOperations_Status(self: *const T, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsComputerOperations.VTable, self.vtable).Status(@ptrCast(*const IADsComputerOperations, self), ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3096,14 +3096,14 @@ pub const IADsComputerOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsGroup_Value = @import("../zig.zig").Guid.initString("27636B00-410F-11CF-B1FF-02608C9E7553");
+const IID_IADsGroup_Value = @import("../zig.zig").Guid.initString("27636b00-410f-11cf-b1ff-02608c9e7553");
 pub const IID_IADsGroup = &IID_IADsGroup_Value;
 pub const IADsGroup = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_Description: fn(
             self: *const IADsGroup,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsGroup,
@@ -3111,7 +3111,7 @@ pub const IADsGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Members: fn(
             self: *const IADsGroup,
-            ppMembers: **IADsMembers,
+            ppMembers: ?*?*IADsMembers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsMember: fn(
             self: *const IADsGroup,
@@ -3131,7 +3131,7 @@ pub const IADsGroup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsGroup_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsGroup_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsGroup.VTable, self.vtable).get_Description(@ptrCast(*const IADsGroup, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3139,7 +3139,7 @@ pub const IADsGroup = extern struct {
             return @ptrCast(*const IADsGroup.VTable, self.vtable).put_Description(@ptrCast(*const IADsGroup, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsGroup_Members(self: *const T, ppMembers: **IADsMembers) callconv(.Inline) HRESULT {
+        pub fn IADsGroup_Members(self: *const T, ppMembers: ?*?*IADsMembers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsGroup.VTable, self.vtable).Members(@ptrCast(*const IADsGroup, self), ppMembers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3158,14 +3158,14 @@ pub const IADsGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsUser_Value = @import("../zig.zig").Guid.initString("3E37E320-17E2-11CF-ABC4-02608C9E7553");
+const IID_IADsUser_Value = @import("../zig.zig").Guid.initString("3e37e320-17e2-11cf-abc4-02608c9e7553");
 pub const IID_IADsUser = &IID_IADsUser_Value;
 pub const IADsUser = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_BadLoginAddress: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BadLoginCount: fn(
             self: *const IADsUser,
@@ -3189,7 +3189,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsUser,
@@ -3197,7 +3197,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Division: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Division: fn(
             self: *const IADsUser,
@@ -3205,7 +3205,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Department: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Department: fn(
             self: *const IADsUser,
@@ -3213,7 +3213,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EmployeeID: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_EmployeeID: fn(
             self: *const IADsUser,
@@ -3221,7 +3221,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FullName: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FullName: fn(
             self: *const IADsUser,
@@ -3229,7 +3229,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FirstName: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FirstName: fn(
             self: *const IADsUser,
@@ -3237,7 +3237,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LastName: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LastName: fn(
             self: *const IADsUser,
@@ -3245,7 +3245,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OtherName: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OtherName: fn(
             self: *const IADsUser,
@@ -3253,7 +3253,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NamePrefix: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_NamePrefix: fn(
             self: *const IADsUser,
@@ -3261,7 +3261,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NameSuffix: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_NameSuffix: fn(
             self: *const IADsUser,
@@ -3269,7 +3269,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Title: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Title: fn(
             self: *const IADsUser,
@@ -3277,7 +3277,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Manager: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Manager: fn(
             self: *const IADsUser,
@@ -3461,7 +3461,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EmailAddress: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_EmailAddress: fn(
             self: *const IADsUser,
@@ -3469,7 +3469,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HomeDirectory: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HomeDirectory: fn(
             self: *const IADsUser,
@@ -3485,7 +3485,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Profile: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Profile: fn(
             self: *const IADsUser,
@@ -3493,7 +3493,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LoginScript: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LoginScript: fn(
             self: *const IADsUser,
@@ -3509,7 +3509,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HomePage: fn(
             self: *const IADsUser,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HomePage: fn(
             self: *const IADsUser,
@@ -3517,7 +3517,7 @@ pub const IADsUser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Groups: fn(
             self: *const IADsUser,
-            ppGroups: **IADsMembers,
+            ppGroups: ?*?*IADsMembers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetPassword: fn(
             self: *const IADsUser,
@@ -3533,7 +3533,7 @@ pub const IADsUser = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_BadLoginAddress(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_BadLoginAddress(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_BadLoginAddress(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3557,7 +3557,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_PasswordLastChanged(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Description(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3565,7 +3565,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Description(@ptrCast(*const IADsUser, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Division(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Division(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Division(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3573,7 +3573,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Division(@ptrCast(*const IADsUser, self), bstrDivision);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Department(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Department(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Department(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3581,7 +3581,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Department(@ptrCast(*const IADsUser, self), bstrDepartment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_EmployeeID(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_EmployeeID(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_EmployeeID(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3589,7 +3589,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_EmployeeID(@ptrCast(*const IADsUser, self), bstrEmployeeID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_FullName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_FullName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_FullName(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3597,7 +3597,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_FullName(@ptrCast(*const IADsUser, self), bstrFullName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_FirstName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_FirstName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_FirstName(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3605,7 +3605,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_FirstName(@ptrCast(*const IADsUser, self), bstrFirstName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_LastName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_LastName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_LastName(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3613,7 +3613,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_LastName(@ptrCast(*const IADsUser, self), bstrLastName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_OtherName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_OtherName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_OtherName(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3621,7 +3621,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_OtherName(@ptrCast(*const IADsUser, self), bstrOtherName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_NamePrefix(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_NamePrefix(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_NamePrefix(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3629,7 +3629,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_NamePrefix(@ptrCast(*const IADsUser, self), bstrNamePrefix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_NameSuffix(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_NameSuffix(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_NameSuffix(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3637,7 +3637,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_NameSuffix(@ptrCast(*const IADsUser, self), bstrNameSuffix);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Title(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Title(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Title(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3645,7 +3645,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Title(@ptrCast(*const IADsUser, self), bstrTitle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Manager(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Manager(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Manager(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3829,7 +3829,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_RequireUniquePassword(@ptrCast(*const IADsUser, self), fRequireUniquePassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_EmailAddress(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_EmailAddress(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_EmailAddress(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3837,7 +3837,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_EmailAddress(@ptrCast(*const IADsUser, self), bstrEmailAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_HomeDirectory(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_HomeDirectory(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_HomeDirectory(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3853,7 +3853,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Languages(@ptrCast(*const IADsUser, self), vLanguages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_Profile(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_Profile(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_Profile(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3861,7 +3861,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Profile(@ptrCast(*const IADsUser, self), bstrProfile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_LoginScript(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_LoginScript(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_LoginScript(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3877,7 +3877,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_Picture(@ptrCast(*const IADsUser, self), vPicture);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_get_HomePage(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsUser_get_HomePage(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).get_HomePage(@ptrCast(*const IADsUser, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3885,7 +3885,7 @@ pub const IADsUser = extern struct {
             return @ptrCast(*const IADsUser.VTable, self.vtable).put_HomePage(@ptrCast(*const IADsUser, self), bstrHomePage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsUser_Groups(self: *const T, ppGroups: **IADsMembers) callconv(.Inline) HRESULT {
+        pub fn IADsUser_Groups(self: *const T, ppGroups: ?*?*IADsMembers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsUser.VTable, self.vtable).Groups(@ptrCast(*const IADsUser, self), ppGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3900,14 +3900,14 @@ pub const IADsUser = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPrintQueue_Value = @import("../zig.zig").Guid.initString("B15160D0-1226-11CF-A985-00AA006BC149");
+const IID_IADsPrintQueue_Value = @import("../zig.zig").Guid.initString("b15160d0-1226-11cf-a985-00aa006bc149");
 pub const IID_IADsPrintQueue = &IID_IADsPrintQueue_Value;
 pub const IADsPrintQueue = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_PrinterPath: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PrinterPath: fn(
             self: *const IADsPrintQueue,
@@ -3915,7 +3915,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Model: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Model: fn(
             self: *const IADsPrintQueue,
@@ -3923,7 +3923,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Datatype: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Datatype: fn(
             self: *const IADsPrintQueue,
@@ -3931,7 +3931,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrintProcessor: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PrintProcessor: fn(
             self: *const IADsPrintQueue,
@@ -3939,7 +3939,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsPrintQueue,
@@ -3947,7 +3947,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Location: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Location: fn(
             self: *const IADsPrintQueue,
@@ -3987,7 +3987,7 @@ pub const IADsPrintQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BannerPage: fn(
             self: *const IADsPrintQueue,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BannerPage: fn(
             self: *const IADsPrintQueue,
@@ -4014,7 +4014,7 @@ pub const IADsPrintQueue = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_PrinterPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_PrinterPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_PrinterPath(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4022,7 +4022,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_PrinterPath(@ptrCast(*const IADsPrintQueue, self), bstrPrinterPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_Model(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_Model(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_Model(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4030,7 +4030,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_Model(@ptrCast(*const IADsPrintQueue, self), bstrModel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_Datatype(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_Datatype(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_Datatype(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4038,7 +4038,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_Datatype(@ptrCast(*const IADsPrintQueue, self), bstrDatatype);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_PrintProcessor(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_PrintProcessor(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_PrintProcessor(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4046,7 +4046,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_PrintProcessor(@ptrCast(*const IADsPrintQueue, self), bstrPrintProcessor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_Description(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4054,7 +4054,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_Description(@ptrCast(*const IADsPrintQueue, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_Location(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_Location(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_Location(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4094,7 +4094,7 @@ pub const IADsPrintQueue = extern struct {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).put_Priority(@ptrCast(*const IADsPrintQueue, self), lnPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueue_get_BannerPage(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueue_get_BannerPage(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueue.VTable, self.vtable).get_BannerPage(@ptrCast(*const IADsPrintQueue, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4121,7 +4121,7 @@ pub const IADsPrintQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPrintQueueOperations_Value = @import("../zig.zig").Guid.initString("124BE5C0-156E-11CF-A986-00AA006BC149");
+const IID_IADsPrintQueueOperations_Value = @import("../zig.zig").Guid.initString("124be5c0-156e-11cf-a986-00aa006bc149");
 pub const IID_IADsPrintQueueOperations = &IID_IADsPrintQueueOperations_Value;
 pub const IADsPrintQueueOperations = extern struct {
     pub const VTable = extern struct {
@@ -4132,7 +4132,7 @@ pub const IADsPrintQueueOperations = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PrintJobs: fn(
             self: *const IADsPrintQueueOperations,
-            pObject: **IADsCollection,
+            pObject: ?*?*IADsCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Pause: fn(
             self: *const IADsPrintQueueOperations,
@@ -4152,7 +4152,7 @@ pub const IADsPrintQueueOperations = extern struct {
             return @ptrCast(*const IADsPrintQueueOperations.VTable, self.vtable).get_Status(@ptrCast(*const IADsPrintQueueOperations, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintQueueOperations_PrintJobs(self: *const T, pObject: **IADsCollection) callconv(.Inline) HRESULT {
+        pub fn IADsPrintQueueOperations_PrintJobs(self: *const T, pObject: ?*?*IADsCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintQueueOperations.VTable, self.vtable).PrintJobs(@ptrCast(*const IADsPrintQueueOperations, self), pObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4171,22 +4171,22 @@ pub const IADsPrintQueueOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPrintJob_Value = @import("../zig.zig").Guid.initString("32FB6780-1ED0-11CF-A988-00AA006BC149");
+const IID_IADsPrintJob_Value = @import("../zig.zig").Guid.initString("32fb6780-1ed0-11cf-a988-00aa006bc149");
 pub const IID_IADsPrintJob = &IID_IADsPrintJob_Value;
 pub const IADsPrintJob = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_HostPrintQueue: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_User: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserPath: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TimeSubmitted: fn(
             self: *const IADsPrintJob,
@@ -4202,7 +4202,7 @@ pub const IADsPrintJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsPrintJob,
@@ -4234,7 +4234,7 @@ pub const IADsPrintJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Notify: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Notify: fn(
             self: *const IADsPrintJob,
@@ -4242,7 +4242,7 @@ pub const IADsPrintJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NotifyPath: fn(
             self: *const IADsPrintJob,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_NotifyPath: fn(
             self: *const IADsPrintJob,
@@ -4253,15 +4253,15 @@ pub const IADsPrintJob = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_HostPrintQueue(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_HostPrintQueue(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_HostPrintQueue(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_User(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_User(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_User(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_UserPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_UserPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_UserPath(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4277,7 +4277,7 @@ pub const IADsPrintJob = extern struct {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_Size(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_Description(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4309,7 +4309,7 @@ pub const IADsPrintJob = extern struct {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).put_UntilTime(@ptrCast(*const IADsPrintJob, self), daUntilTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_Notify(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_Notify(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_Notify(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4317,7 +4317,7 @@ pub const IADsPrintJob = extern struct {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).put_Notify(@ptrCast(*const IADsPrintJob, self), bstrNotify);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPrintJob_get_NotifyPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPrintJob_get_NotifyPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPrintJob.VTable, self.vtable).get_NotifyPath(@ptrCast(*const IADsPrintJob, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4328,7 +4328,7 @@ pub const IADsPrintJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPrintJobOperations_Value = @import("../zig.zig").Guid.initString("9A52DB30-1ECF-11CF-A988-00AA006BC149");
+const IID_IADsPrintJobOperations_Value = @import("../zig.zig").Guid.initString("9a52db30-1ecf-11cf-a988-00aa006bc149");
 pub const IID_IADsPrintJobOperations = &IID_IADsPrintJobOperations_Value;
 pub const IADsPrintJobOperations = extern struct {
     pub const VTable = extern struct {
@@ -4395,14 +4395,14 @@ pub const IADsPrintJobOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsService_Value = @import("../zig.zig").Guid.initString("68AF66E0-31CA-11CF-A98A-00AA006BC149");
+const IID_IADsService_Value = @import("../zig.zig").Guid.initString("68af66e0-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsService = &IID_IADsService_Value;
 pub const IADsService = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_HostComputer: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HostComputer: fn(
             self: *const IADsService,
@@ -4410,7 +4410,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DisplayName: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DisplayName: fn(
             self: *const IADsService,
@@ -4418,7 +4418,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Version: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Version: fn(
             self: *const IADsService,
@@ -4442,7 +4442,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Path: fn(
             self: *const IADsService,
@@ -4450,7 +4450,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StartupParameters: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_StartupParameters: fn(
             self: *const IADsService,
@@ -4466,7 +4466,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LoadOrderGroup: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LoadOrderGroup: fn(
             self: *const IADsService,
@@ -4474,7 +4474,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ServiceAccountName: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ServiceAccountName: fn(
             self: *const IADsService,
@@ -4482,7 +4482,7 @@ pub const IADsService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ServiceAccountPath: fn(
             self: *const IADsService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ServiceAccountPath: fn(
             self: *const IADsService,
@@ -4501,7 +4501,7 @@ pub const IADsService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_HostComputer(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_HostComputer(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_HostComputer(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4509,7 +4509,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_HostComputer(@ptrCast(*const IADsService, self), bstrHostComputer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_DisplayName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_DisplayName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_DisplayName(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4517,7 +4517,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_DisplayName(@ptrCast(*const IADsService, self), bstrDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_Version(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_Version(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_Version(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4541,7 +4541,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_StartType(@ptrCast(*const IADsService, self), lnStartType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_Path(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_Path(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_Path(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4549,7 +4549,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_Path(@ptrCast(*const IADsService, self), bstrPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_StartupParameters(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_StartupParameters(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_StartupParameters(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4565,7 +4565,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_ErrorControl(@ptrCast(*const IADsService, self), lnErrorControl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_LoadOrderGroup(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_LoadOrderGroup(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_LoadOrderGroup(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4573,7 +4573,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_LoadOrderGroup(@ptrCast(*const IADsService, self), bstrLoadOrderGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_ServiceAccountName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_ServiceAccountName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_ServiceAccountName(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4581,7 +4581,7 @@ pub const IADsService = extern struct {
             return @ptrCast(*const IADsService.VTable, self.vtable).put_ServiceAccountName(@ptrCast(*const IADsService, self), bstrServiceAccountName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsService_get_ServiceAccountPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsService_get_ServiceAccountPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsService.VTable, self.vtable).get_ServiceAccountPath(@ptrCast(*const IADsService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4600,7 +4600,7 @@ pub const IADsService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsServiceOperations_Value = @import("../zig.zig").Guid.initString("5D7B33F0-31CA-11CF-A98A-00AA006BC149");
+const IID_IADsServiceOperations_Value = @import("../zig.zig").Guid.initString("5d7b33f0-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsServiceOperations = &IID_IADsServiceOperations_Value;
 pub const IADsServiceOperations = extern struct {
     pub const VTable = extern struct {
@@ -4657,14 +4657,14 @@ pub const IADsServiceOperations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsFileService_Value = @import("../zig.zig").Guid.initString("A89D1900-31CA-11CF-A98A-00AA006BC149");
+const IID_IADsFileService_Value = @import("../zig.zig").Guid.initString("a89d1900-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsFileService = &IID_IADsFileService_Value;
 pub const IADsFileService = extern struct {
     pub const VTable = extern struct {
         base: IADsService.VTable,
         get_Description: fn(
             self: *const IADsFileService,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsFileService,
@@ -4683,7 +4683,7 @@ pub const IADsFileService = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADsService.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileService_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsFileService_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileService.VTable, self.vtable).get_Description(@ptrCast(*const IADsFileService, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4702,36 +4702,36 @@ pub const IADsFileService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsFileServiceOperations_Value = @import("../zig.zig").Guid.initString("A02DED10-31CA-11CF-A98A-00AA006BC149");
+const IID_IADsFileServiceOperations_Value = @import("../zig.zig").Guid.initString("a02ded10-31ca-11cf-a98a-00aa006bc149");
 pub const IID_IADsFileServiceOperations = &IID_IADsFileServiceOperations_Value;
 pub const IADsFileServiceOperations = extern struct {
     pub const VTable = extern struct {
         base: IADsServiceOperations.VTable,
         Sessions: fn(
             self: *const IADsFileServiceOperations,
-            ppSessions: **IADsCollection,
+            ppSessions: ?*?*IADsCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Resources: fn(
             self: *const IADsFileServiceOperations,
-            ppResources: **IADsCollection,
+            ppResources: ?*?*IADsCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADsServiceOperations.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileServiceOperations_Sessions(self: *const T, ppSessions: **IADsCollection) callconv(.Inline) HRESULT {
+        pub fn IADsFileServiceOperations_Sessions(self: *const T, ppSessions: ?*?*IADsCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileServiceOperations.VTable, self.vtable).Sessions(@ptrCast(*const IADsFileServiceOperations, self), ppSessions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileServiceOperations_Resources(self: *const T, ppResources: **IADsCollection) callconv(.Inline) HRESULT {
+        pub fn IADsFileServiceOperations_Resources(self: *const T, ppResources: ?*?*IADsCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileServiceOperations.VTable, self.vtable).Resources(@ptrCast(*const IADsFileServiceOperations, self), ppResources);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsFileShare_Value = @import("../zig.zig").Guid.initString("EB6DCAF0-4B83-11CF-A995-00AA006BC149");
+const IID_IADsFileShare_Value = @import("../zig.zig").Guid.initString("eb6dcaf0-4b83-11cf-a995-00aa006bc149");
 pub const IID_IADsFileShare = &IID_IADsFileShare_Value;
 pub const IADsFileShare = extern struct {
     pub const VTable = extern struct {
@@ -4742,7 +4742,7 @@ pub const IADsFileShare = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IADsFileShare,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IADsFileShare,
@@ -4750,7 +4750,7 @@ pub const IADsFileShare = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HostComputer: fn(
             self: *const IADsFileShare,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HostComputer: fn(
             self: *const IADsFileShare,
@@ -4758,7 +4758,7 @@ pub const IADsFileShare = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IADsFileShare,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Path: fn(
             self: *const IADsFileShare,
@@ -4781,7 +4781,7 @@ pub const IADsFileShare = extern struct {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).get_CurrentUserCount(@ptrCast(*const IADsFileShare, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileShare_get_Description(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsFileShare_get_Description(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).get_Description(@ptrCast(*const IADsFileShare, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4789,7 +4789,7 @@ pub const IADsFileShare = extern struct {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).put_Description(@ptrCast(*const IADsFileShare, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileShare_get_HostComputer(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsFileShare_get_HostComputer(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).get_HostComputer(@ptrCast(*const IADsFileShare, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4797,7 +4797,7 @@ pub const IADsFileShare = extern struct {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).put_HostComputer(@ptrCast(*const IADsFileShare, self), bstrHostComputer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFileShare_get_Path(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsFileShare_get_Path(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFileShare.VTable, self.vtable).get_Path(@ptrCast(*const IADsFileShare, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4816,26 +4816,26 @@ pub const IADsFileShare = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsSession_Value = @import("../zig.zig").Guid.initString("398B7DA0-4AAB-11CF-AE2C-00AA006EBFB9");
+const IID_IADsSession_Value = @import("../zig.zig").Guid.initString("398b7da0-4aab-11cf-ae2c-00aa006ebfb9");
 pub const IID_IADsSession = &IID_IADsSession_Value;
 pub const IADsSession = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_User: fn(
             self: *const IADsSession,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserPath: fn(
             self: *const IADsSession,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Computer: fn(
             self: *const IADsSession,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ComputerPath: fn(
             self: *const IADsSession,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ConnectTime: fn(
             self: *const IADsSession,
@@ -4850,19 +4850,19 @@ pub const IADsSession = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSession_get_User(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSession_get_User(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSession.VTable, self.vtable).get_User(@ptrCast(*const IADsSession, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSession_get_UserPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSession_get_UserPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSession.VTable, self.vtable).get_UserPath(@ptrCast(*const IADsSession, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSession_get_Computer(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSession_get_Computer(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSession.VTable, self.vtable).get_Computer(@ptrCast(*const IADsSession, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSession_get_ComputerPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSession_get_ComputerPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSession.VTable, self.vtable).get_ComputerPath(@ptrCast(*const IADsSession, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4877,22 +4877,22 @@ pub const IADsSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsResource_Value = @import("../zig.zig").Guid.initString("34A05B20-4AAB-11CF-AE2C-00AA006EBFB9");
+const IID_IADsResource_Value = @import("../zig.zig").Guid.initString("34a05b20-4aab-11cf-ae2c-00aa006ebfb9");
 pub const IID_IADsResource = &IID_IADsResource_Value;
 pub const IADsResource = extern struct {
     pub const VTable = extern struct {
         base: IADs.VTable,
         get_User: fn(
             self: *const IADsResource,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserPath: fn(
             self: *const IADsResource,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IADsResource,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LockCount: fn(
             self: *const IADsResource,
@@ -4903,15 +4903,15 @@ pub const IADsResource = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IADs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsResource_get_User(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsResource_get_User(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsResource.VTable, self.vtable).get_User(@ptrCast(*const IADsResource, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsResource_get_UserPath(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsResource_get_UserPath(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsResource.VTable, self.vtable).get_UserPath(@ptrCast(*const IADsResource, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsResource_get_Path(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsResource_get_Path(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsResource.VTable, self.vtable).get_Path(@ptrCast(*const IADsResource, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4922,7 +4922,7 @@ pub const IADsResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsOpenDSObject_Value = @import("../zig.zig").Guid.initString("DDF2891E-0F9C-11D0-8AD4-00C04FD8D503");
+const IID_IADsOpenDSObject_Value = @import("../zig.zig").Guid.initString("ddf2891e-0f9c-11d0-8ad4-00c04fd8d503");
 pub const IID_IADsOpenDSObject = &IID_IADsOpenDSObject_Value;
 pub const IADsOpenDSObject = extern struct {
     pub const VTable = extern struct {
@@ -4933,34 +4933,34 @@ pub const IADsOpenDSObject = extern struct {
             lpszUserName: BSTR,
             lpszPassword: BSTR,
             lnReserved: i32,
-            ppOleDsObj: **IDispatch,
+            ppOleDsObj: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsOpenDSObject_OpenDSObject(self: *const T, lpszDNName: BSTR, lpszUserName: BSTR, lpszPassword: BSTR, lnReserved: i32, ppOleDsObj: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsOpenDSObject_OpenDSObject(self: *const T, lpszDNName: BSTR, lpszUserName: BSTR, lpszPassword: BSTR, lnReserved: i32, ppOleDsObj: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsOpenDSObject.VTable, self.vtable).OpenDSObject(@ptrCast(*const IADsOpenDSObject, self), lpszDNName, lpszUserName, lpszPassword, lnReserved, ppOleDsObj);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectoryObject_Value = @import("../zig.zig").Guid.initString("E798DE2C-22E4-11D0-84FE-00C04FD8D503");
+const IID_IDirectoryObject_Value = @import("../zig.zig").Guid.initString("e798de2c-22e4-11d0-84fe-00c04fd8d503");
 pub const IID_IDirectoryObject = &IID_IDirectoryObject_Value;
 pub const IDirectoryObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetObjectInformation: fn(
             self: *const IDirectoryObject,
-            ppObjInfo: **ADS_OBJECT_INFO,
+            ppObjInfo: ?*?*ADS_OBJECT_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectAttributes: fn(
             self: *const IDirectoryObject,
             pAttributeNames: ?*?PWSTR,
             dwNumberAttributes: u32,
-            ppAttributeEntries: **ADS_ATTR_INFO,
+            ppAttributeEntries: ?*?*ADS_ATTR_INFO,
             pdwNumAttributesReturned: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetObjectAttributes: fn(
@@ -4974,7 +4974,7 @@ pub const IDirectoryObject = extern struct {
             pszRDNName: PWSTR,
             pAttributeEntries: *ADS_ATTR_INFO,
             dwNumAttributes: u32,
-            ppObject: **IDispatch,
+            ppObject: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteDSObject: fn(
             self: *const IDirectoryObject,
@@ -4985,11 +4985,11 @@ pub const IDirectoryObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectoryObject_GetObjectInformation(self: *const T, ppObjInfo: **ADS_OBJECT_INFO) callconv(.Inline) HRESULT {
+        pub fn IDirectoryObject_GetObjectInformation(self: *const T, ppObjInfo: ?*?*ADS_OBJECT_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectoryObject.VTable, self.vtable).GetObjectInformation(@ptrCast(*const IDirectoryObject, self), ppObjInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectoryObject_GetObjectAttributes(self: *const T, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, ppAttributeEntries: **ADS_ATTR_INFO, pdwNumAttributesReturned: *u32) callconv(.Inline) HRESULT {
+        pub fn IDirectoryObject_GetObjectAttributes(self: *const T, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, ppAttributeEntries: ?*?*ADS_ATTR_INFO, pdwNumAttributesReturned: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectoryObject.VTable, self.vtable).GetObjectAttributes(@ptrCast(*const IDirectoryObject, self), pAttributeNames, dwNumberAttributes, ppAttributeEntries, pdwNumAttributesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4997,7 +4997,7 @@ pub const IDirectoryObject = extern struct {
             return @ptrCast(*const IDirectoryObject.VTable, self.vtable).SetObjectAttributes(@ptrCast(*const IDirectoryObject, self), pAttributeEntries, dwNumAttributes, pdwNumAttributesModified);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectoryObject_CreateDSObject(self: *const T, pszRDNName: PWSTR, pAttributeEntries: *ADS_ATTR_INFO, dwNumAttributes: u32, ppObject: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IDirectoryObject_CreateDSObject(self: *const T, pszRDNName: PWSTR, pAttributeEntries: *ADS_ATTR_INFO, dwNumAttributes: u32, ppObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectoryObject.VTable, self.vtable).CreateDSObject(@ptrCast(*const IDirectoryObject, self), pszRDNName, pAttributeEntries, dwNumAttributes, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5008,7 +5008,7 @@ pub const IDirectoryObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectorySearch_Value = @import("../zig.zig").Guid.initString("109BA8EC-92F0-11D0-A790-00C04FD8D5A8");
+const IID_IDirectorySearch_Value = @import("../zig.zig").Guid.initString("109ba8ec-92f0-11d0-a790-00c04fd8d5a8");
 pub const IID_IDirectorySearch = &IID_IDirectorySearch_Value;
 pub const IDirectorySearch = extern struct {
     pub const VTable = extern struct {
@@ -5023,7 +5023,7 @@ pub const IDirectorySearch = extern struct {
             pszSearchFilter: PWSTR,
             pAttributeNames: ?*?PWSTR,
             dwNumberAttributes: u32,
-            phSearchResult: *?*c_void,
+            phSearchResult: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AbandonSearch: fn(
             self: *const IDirectorySearch,
@@ -5044,7 +5044,7 @@ pub const IDirectorySearch = extern struct {
         GetNextColumnName: fn(
             self: *const IDirectorySearch,
             hSearchHandle: ?*c_void,
-            ppszColumnName: *PWSTR,
+            ppszColumnName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetColumn: fn(
             self: *const IDirectorySearch,
@@ -5069,7 +5069,7 @@ pub const IDirectorySearch = extern struct {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).SetSearchPreference(@ptrCast(*const IDirectorySearch, self), pSearchPrefs, dwNumPrefs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: *?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).ExecuteSearch(@ptrCast(*const IDirectorySearch, self), pszSearchFilter, pAttributeNames, dwNumberAttributes, phSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5089,7 +5089,7 @@ pub const IDirectorySearch = extern struct {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetPreviousRow(@ptrCast(*const IDirectorySearch, self), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: ?*c_void, ppszColumnName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: ?*c_void, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectorySearch.VTable, self.vtable).GetNextColumnName(@ptrCast(*const IDirectorySearch, self), hSearchHandle, ppszColumnName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5108,7 +5108,7 @@ pub const IDirectorySearch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectorySchemaMgmt_Value = @import("../zig.zig").Guid.initString("75DB3B9C-A4D8-11D0-A79C-00C04FD8D5A8");
+const IID_IDirectorySchemaMgmt_Value = @import("../zig.zig").Guid.initString("75db3b9c-a4d8-11d0-a79c-00c04fd8d5a8");
 pub const IID_IDirectorySchemaMgmt = &IID_IDirectorySchemaMgmt_Value;
 pub const IDirectorySchemaMgmt = extern struct {
     pub const VTable = extern struct {
@@ -5195,7 +5195,7 @@ pub const IDirectorySchemaMgmt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsAggregatee_Value = @import("../zig.zig").Guid.initString("1346CE8C-9039-11D0-8528-00C04FD8D503");
+const IID_IADsAggregatee_Value = @import("../zig.zig").Guid.initString("1346ce8c-9039-11d0-8528-00c04fd8d503");
 pub const IID_IADsAggregatee = &IID_IADsAggregatee_Value;
 pub const IADsAggregatee = extern struct {
     pub const VTable = extern struct {
@@ -5239,7 +5239,7 @@ pub const IADsAggregatee = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsAggregator_Value = @import("../zig.zig").Guid.initString("52DB5FB0-941F-11D0-8529-00C04FD8D503");
+const IID_IADsAggregator_Value = @import("../zig.zig").Guid.initString("52db5fb0-941f-11d0-8529-00c04fd8d503");
 pub const IID_IADsAggregator = &IID_IADsAggregator_Value;
 pub const IADsAggregator = extern struct {
     pub const VTable = extern struct {
@@ -5267,7 +5267,7 @@ pub const IADsAggregator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsAccessControlEntry_Value = @import("../zig.zig").Guid.initString("B4F3A14C-9BDD-11D0-852C-00C04FD8D503");
+const IID_IADsAccessControlEntry_Value = @import("../zig.zig").Guid.initString("b4f3a14c-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsAccessControlEntry = &IID_IADsAccessControlEntry_Value;
 pub const IADsAccessControlEntry = extern struct {
     pub const VTable = extern struct {
@@ -5306,7 +5306,7 @@ pub const IADsAccessControlEntry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectType: fn(
             self: *const IADsAccessControlEntry,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ObjectType: fn(
             self: *const IADsAccessControlEntry,
@@ -5314,7 +5314,7 @@ pub const IADsAccessControlEntry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_InheritedObjectType: fn(
             self: *const IADsAccessControlEntry,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_InheritedObjectType: fn(
             self: *const IADsAccessControlEntry,
@@ -5322,7 +5322,7 @@ pub const IADsAccessControlEntry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Trustee: fn(
             self: *const IADsAccessControlEntry,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Trustee: fn(
             self: *const IADsAccessControlEntry,
@@ -5365,7 +5365,7 @@ pub const IADsAccessControlEntry = extern struct {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).put_Flags(@ptrCast(*const IADsAccessControlEntry, self), lnFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAccessControlEntry_get_ObjectType(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsAccessControlEntry_get_ObjectType(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).get_ObjectType(@ptrCast(*const IADsAccessControlEntry, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5373,7 +5373,7 @@ pub const IADsAccessControlEntry = extern struct {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).put_ObjectType(@ptrCast(*const IADsAccessControlEntry, self), bstrObjectType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAccessControlEntry_get_InheritedObjectType(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsAccessControlEntry_get_InheritedObjectType(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).get_InheritedObjectType(@ptrCast(*const IADsAccessControlEntry, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5381,7 +5381,7 @@ pub const IADsAccessControlEntry = extern struct {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).put_InheritedObjectType(@ptrCast(*const IADsAccessControlEntry, self), bstrInheritedObjectType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAccessControlEntry_get_Trustee(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsAccessControlEntry_get_Trustee(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAccessControlEntry.VTable, self.vtable).get_Trustee(@ptrCast(*const IADsAccessControlEntry, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5392,7 +5392,7 @@ pub const IADsAccessControlEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsAccessControlList_Value = @import("../zig.zig").Guid.initString("B7EE91CC-9BDD-11D0-852C-00C04FD8D503");
+const IID_IADsAccessControlList_Value = @import("../zig.zig").Guid.initString("b7ee91cc-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsAccessControlList = &IID_IADsAccessControlList_Value;
 pub const IADsAccessControlList = extern struct {
     pub const VTable = extern struct {
@@ -5423,11 +5423,11 @@ pub const IADsAccessControlList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyAccessList: fn(
             self: *const IADsAccessControlList,
-            ppAccessControlList: **IDispatch,
+            ppAccessControlList: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IADsAccessControlList,
-            retval: **IUnknown,
+            retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5458,18 +5458,18 @@ pub const IADsAccessControlList = extern struct {
             return @ptrCast(*const IADsAccessControlList.VTable, self.vtable).RemoveAce(@ptrCast(*const IADsAccessControlList, self), pAccessControlEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAccessControlList_CopyAccessList(self: *const T, ppAccessControlList: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsAccessControlList_CopyAccessList(self: *const T, ppAccessControlList: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAccessControlList.VTable, self.vtable).CopyAccessList(@ptrCast(*const IADsAccessControlList, self), ppAccessControlList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAccessControlList_get__NewEnum(self: *const T, retval: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IADsAccessControlList_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAccessControlList.VTable, self.vtable).get__NewEnum(@ptrCast(*const IADsAccessControlList, self), retval);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsSecurityDescriptor_Value = @import("../zig.zig").Guid.initString("B8C787CA-9BDD-11D0-852C-00C04FD8D503");
+const IID_IADsSecurityDescriptor_Value = @import("../zig.zig").Guid.initString("b8c787ca-9bdd-11d0-852c-00c04fd8d503");
 pub const IID_IADsSecurityDescriptor = &IID_IADsSecurityDescriptor_Value;
 pub const IADsSecurityDescriptor = extern struct {
     pub const VTable = extern struct {
@@ -5492,7 +5492,7 @@ pub const IADsSecurityDescriptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Owner: fn(
             self: *const IADsSecurityDescriptor,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Owner: fn(
             self: *const IADsSecurityDescriptor,
@@ -5508,7 +5508,7 @@ pub const IADsSecurityDescriptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Group: fn(
             self: *const IADsSecurityDescriptor,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Group: fn(
             self: *const IADsSecurityDescriptor,
@@ -5524,7 +5524,7 @@ pub const IADsSecurityDescriptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DiscretionaryAcl: fn(
             self: *const IADsSecurityDescriptor,
-            retval: **IDispatch,
+            retval: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DiscretionaryAcl: fn(
             self: *const IADsSecurityDescriptor,
@@ -5540,7 +5540,7 @@ pub const IADsSecurityDescriptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SystemAcl: fn(
             self: *const IADsSecurityDescriptor,
-            retval: **IDispatch,
+            retval: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SystemAcl: fn(
             self: *const IADsSecurityDescriptor,
@@ -5556,7 +5556,7 @@ pub const IADsSecurityDescriptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopySecurityDescriptor: fn(
             self: *const IADsSecurityDescriptor,
-            ppSecurityDescriptor: **IDispatch,
+            ppSecurityDescriptor: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5579,7 +5579,7 @@ pub const IADsSecurityDescriptor = extern struct {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).put_Control(@ptrCast(*const IADsSecurityDescriptor, self), lnControl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSecurityDescriptor_get_Owner(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSecurityDescriptor_get_Owner(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).get_Owner(@ptrCast(*const IADsSecurityDescriptor, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5595,7 +5595,7 @@ pub const IADsSecurityDescriptor = extern struct {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).put_OwnerDefaulted(@ptrCast(*const IADsSecurityDescriptor, self), fOwnerDefaulted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSecurityDescriptor_get_Group(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsSecurityDescriptor_get_Group(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).get_Group(@ptrCast(*const IADsSecurityDescriptor, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5611,7 +5611,7 @@ pub const IADsSecurityDescriptor = extern struct {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).put_GroupDefaulted(@ptrCast(*const IADsSecurityDescriptor, self), fGroupDefaulted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSecurityDescriptor_get_DiscretionaryAcl(self: *const T, retval: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsSecurityDescriptor_get_DiscretionaryAcl(self: *const T, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).get_DiscretionaryAcl(@ptrCast(*const IADsSecurityDescriptor, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5627,7 +5627,7 @@ pub const IADsSecurityDescriptor = extern struct {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).put_DaclDefaulted(@ptrCast(*const IADsSecurityDescriptor, self), fDaclDefaulted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSecurityDescriptor_get_SystemAcl(self: *const T, retval: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsSecurityDescriptor_get_SystemAcl(self: *const T, retval: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).get_SystemAcl(@ptrCast(*const IADsSecurityDescriptor, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5643,14 +5643,14 @@ pub const IADsSecurityDescriptor = extern struct {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).put_SaclDefaulted(@ptrCast(*const IADsSecurityDescriptor, self), fSaclDefaulted);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsSecurityDescriptor_CopySecurityDescriptor(self: *const T, ppSecurityDescriptor: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsSecurityDescriptor_CopySecurityDescriptor(self: *const T, ppSecurityDescriptor: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsSecurityDescriptor.VTable, self.vtable).CopySecurityDescriptor(@ptrCast(*const IADsSecurityDescriptor, self), ppSecurityDescriptor);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsLargeInteger_Value = @import("../zig.zig").Guid.initString("9068270B-0939-11D1-8BE1-00C04FD8D503");
+const IID_IADsLargeInteger_Value = @import("../zig.zig").Guid.initString("9068270b-0939-11d1-8be1-00c04fd8d503");
 pub const IID_IADsLargeInteger = &IID_IADsLargeInteger_Value;
 pub const IADsLargeInteger = extern struct {
     pub const VTable = extern struct {
@@ -5695,7 +5695,7 @@ pub const IADsLargeInteger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsNameTranslate_Value = @import("../zig.zig").Guid.initString("B1B272A3-3625-11D1-A3A4-00C04FB950DC");
+const IID_IADsNameTranslate_Value = @import("../zig.zig").Guid.initString("b1b272a3-3625-11d1-a3a4-00c04fb950dc");
 pub const IID_IADsNameTranslate = &IID_IADsNameTranslate_Value;
 pub const IADsNameTranslate = extern struct {
     pub const VTable = extern struct {
@@ -5725,7 +5725,7 @@ pub const IADsNameTranslate = extern struct {
         Get: fn(
             self: *const IADsNameTranslate,
             lnFormatType: i32,
-            pbstrADsPath: *BSTR,
+            pbstrADsPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetEx: fn(
             self: *const IADsNameTranslate,
@@ -5758,7 +5758,7 @@ pub const IADsNameTranslate = extern struct {
             return @ptrCast(*const IADsNameTranslate.VTable, self.vtable).Set(@ptrCast(*const IADsNameTranslate, self), lnSetType, bstrADsPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsNameTranslate_Get(self: *const T, lnFormatType: i32, pbstrADsPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsNameTranslate_Get(self: *const T, lnFormatType: i32, pbstrADsPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsNameTranslate.VTable, self.vtable).Get(@ptrCast(*const IADsNameTranslate, self), lnFormatType, pbstrADsPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5773,7 +5773,7 @@ pub const IADsNameTranslate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsCaseIgnoreList_Value = @import("../zig.zig").Guid.initString("7B66B533-4680-11D1-A3B4-00C04FB950DC");
+const IID_IADsCaseIgnoreList_Value = @import("../zig.zig").Guid.initString("7b66b533-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsCaseIgnoreList = &IID_IADsCaseIgnoreList_Value;
 pub const IADsCaseIgnoreList = extern struct {
     pub const VTable = extern struct {
@@ -5802,14 +5802,14 @@ pub const IADsCaseIgnoreList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsFaxNumber_Value = @import("../zig.zig").Guid.initString("A910DEA9-4680-11D1-A3B4-00C04FB950DC");
+const IID_IADsFaxNumber_Value = @import("../zig.zig").Guid.initString("a910dea9-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsFaxNumber = &IID_IADsFaxNumber_Value;
 pub const IADsFaxNumber = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_TelephoneNumber: fn(
             self: *const IADsFaxNumber,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TelephoneNumber: fn(
             self: *const IADsFaxNumber,
@@ -5828,7 +5828,7 @@ pub const IADsFaxNumber = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsFaxNumber_get_TelephoneNumber(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsFaxNumber_get_TelephoneNumber(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsFaxNumber.VTable, self.vtable).get_TelephoneNumber(@ptrCast(*const IADsFaxNumber, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5847,7 +5847,7 @@ pub const IADsFaxNumber = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsNetAddress_Value = @import("../zig.zig").Guid.initString("B21A50A9-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsNetAddress_Value = @import("../zig.zig").Guid.initString("b21a50a9-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsNetAddress = &IID_IADsNetAddress_Value;
 pub const IADsNetAddress = extern struct {
     pub const VTable = extern struct {
@@ -5892,7 +5892,7 @@ pub const IADsNetAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsOctetList_Value = @import("../zig.zig").Guid.initString("7B28B80F-4680-11D1-A3B4-00C04FB950DC");
+const IID_IADsOctetList_Value = @import("../zig.zig").Guid.initString("7b28b80f-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsOctetList = &IID_IADsOctetList_Value;
 pub const IADsOctetList = extern struct {
     pub const VTable = extern struct {
@@ -5921,7 +5921,7 @@ pub const IADsOctetList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsEmail_Value = @import("../zig.zig").Guid.initString("97AF011A-478E-11D1-A3B4-00C04FB950DC");
+const IID_IADsEmail_Value = @import("../zig.zig").Guid.initString("97af011a-478e-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsEmail = &IID_IADsEmail_Value;
 pub const IADsEmail = extern struct {
     pub const VTable = extern struct {
@@ -5936,7 +5936,7 @@ pub const IADsEmail = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Address: fn(
             self: *const IADsEmail,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Address: fn(
             self: *const IADsEmail,
@@ -5955,7 +5955,7 @@ pub const IADsEmail = extern struct {
             return @ptrCast(*const IADsEmail.VTable, self.vtable).put_Type(@ptrCast(*const IADsEmail, self), lnType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsEmail_get_Address(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsEmail_get_Address(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsEmail.VTable, self.vtable).get_Address(@ptrCast(*const IADsEmail, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5966,7 +5966,7 @@ pub const IADsEmail = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPath_Value = @import("../zig.zig").Guid.initString("B287FCD5-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsPath_Value = @import("../zig.zig").Guid.initString("b287fcd5-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsPath = &IID_IADsPath_Value;
 pub const IADsPath = extern struct {
     pub const VTable = extern struct {
@@ -5981,7 +5981,7 @@ pub const IADsPath = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_VolumeName: fn(
             self: *const IADsPath,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_VolumeName: fn(
             self: *const IADsPath,
@@ -5989,7 +5989,7 @@ pub const IADsPath = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Path: fn(
             self: *const IADsPath,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Path: fn(
             self: *const IADsPath,
@@ -6008,7 +6008,7 @@ pub const IADsPath = extern struct {
             return @ptrCast(*const IADsPath.VTable, self.vtable).put_Type(@ptrCast(*const IADsPath, self), lnType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPath_get_VolumeName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPath_get_VolumeName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPath.VTable, self.vtable).get_VolumeName(@ptrCast(*const IADsPath, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6016,7 +6016,7 @@ pub const IADsPath = extern struct {
             return @ptrCast(*const IADsPath.VTable, self.vtable).put_VolumeName(@ptrCast(*const IADsPath, self), bstrVolumeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPath_get_Path(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPath_get_Path(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPath.VTable, self.vtable).get_Path(@ptrCast(*const IADsPath, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6027,14 +6027,14 @@ pub const IADsPath = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsReplicaPointer_Value = @import("../zig.zig").Guid.initString("F60FB803-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsReplicaPointer_Value = @import("../zig.zig").Guid.initString("f60fb803-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsReplicaPointer = &IID_IADsReplicaPointer_Value;
 pub const IADsReplicaPointer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ServerName: fn(
             self: *const IADsReplicaPointer,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ServerName: fn(
             self: *const IADsReplicaPointer,
@@ -6077,7 +6077,7 @@ pub const IADsReplicaPointer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsReplicaPointer_get_ServerName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsReplicaPointer_get_ServerName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsReplicaPointer.VTable, self.vtable).get_ServerName(@ptrCast(*const IADsReplicaPointer, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6120,14 +6120,14 @@ pub const IADsReplicaPointer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsAcl_Value = @import("../zig.zig").Guid.initString("8452D3AB-0869-11D1-A377-00C04FB950DC");
+const IID_IADsAcl_Value = @import("../zig.zig").Guid.initString("8452d3ab-0869-11d1-a377-00c04fb950dc");
 pub const IID_IADsAcl = &IID_IADsAcl_Value;
 pub const IADsAcl = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ProtectedAttrName: fn(
             self: *const IADsAcl,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProtectedAttrName: fn(
             self: *const IADsAcl,
@@ -6135,7 +6135,7 @@ pub const IADsAcl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SubjectName: fn(
             self: *const IADsAcl,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SubjectName: fn(
             self: *const IADsAcl,
@@ -6151,14 +6151,14 @@ pub const IADsAcl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyAcl: fn(
             self: *const IADsAcl,
-            ppAcl: **IDispatch,
+            ppAcl: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAcl_get_ProtectedAttrName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsAcl_get_ProtectedAttrName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAcl.VTable, self.vtable).get_ProtectedAttrName(@ptrCast(*const IADsAcl, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6166,7 +6166,7 @@ pub const IADsAcl = extern struct {
             return @ptrCast(*const IADsAcl.VTable, self.vtable).put_ProtectedAttrName(@ptrCast(*const IADsAcl, self), bstrProtectedAttrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAcl_get_SubjectName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsAcl_get_SubjectName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAcl.VTable, self.vtable).get_SubjectName(@ptrCast(*const IADsAcl, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6182,14 +6182,14 @@ pub const IADsAcl = extern struct {
             return @ptrCast(*const IADsAcl.VTable, self.vtable).put_Privileges(@ptrCast(*const IADsAcl, self), lnPrivileges);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsAcl_CopyAcl(self: *const T, ppAcl: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsAcl_CopyAcl(self: *const T, ppAcl: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsAcl.VTable, self.vtable).CopyAcl(@ptrCast(*const IADsAcl, self), ppAcl);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsTimestamp_Value = @import("../zig.zig").Guid.initString("B2F5A901-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsTimestamp_Value = @import("../zig.zig").Guid.initString("b2f5a901-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsTimestamp = &IID_IADsTimestamp_Value;
 pub const IADsTimestamp = extern struct {
     pub const VTable = extern struct {
@@ -6234,7 +6234,7 @@ pub const IADsTimestamp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPostalAddress_Value = @import("../zig.zig").Guid.initString("7ADECF29-4680-11D1-A3B4-00C04FB950DC");
+const IID_IADsPostalAddress_Value = @import("../zig.zig").Guid.initString("7adecf29-4680-11d1-a3b4-00c04fb950dc");
 pub const IID_IADsPostalAddress = &IID_IADsPostalAddress_Value;
 pub const IADsPostalAddress = extern struct {
     pub const VTable = extern struct {
@@ -6263,7 +6263,7 @@ pub const IADsPostalAddress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsBackLink_Value = @import("../zig.zig").Guid.initString("FD1302BD-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsBackLink_Value = @import("../zig.zig").Guid.initString("fd1302bd-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsBackLink = &IID_IADsBackLink_Value;
 pub const IADsBackLink = extern struct {
     pub const VTable = extern struct {
@@ -6278,7 +6278,7 @@ pub const IADsBackLink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectName: fn(
             self: *const IADsBackLink,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ObjectName: fn(
             self: *const IADsBackLink,
@@ -6297,7 +6297,7 @@ pub const IADsBackLink = extern struct {
             return @ptrCast(*const IADsBackLink.VTable, self.vtable).put_RemoteID(@ptrCast(*const IADsBackLink, self), lnRemoteID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsBackLink_get_ObjectName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsBackLink_get_ObjectName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsBackLink.VTable, self.vtable).get_ObjectName(@ptrCast(*const IADsBackLink, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6308,14 +6308,14 @@ pub const IADsBackLink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsTypedName_Value = @import("../zig.zig").Guid.initString("B371A349-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsTypedName_Value = @import("../zig.zig").Guid.initString("b371a349-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsTypedName = &IID_IADsTypedName_Value;
 pub const IADsTypedName = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ObjectName: fn(
             self: *const IADsTypedName,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ObjectName: fn(
             self: *const IADsTypedName,
@@ -6342,7 +6342,7 @@ pub const IADsTypedName = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsTypedName_get_ObjectName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsTypedName_get_ObjectName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsTypedName.VTable, self.vtable).get_ObjectName(@ptrCast(*const IADsTypedName, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6369,14 +6369,14 @@ pub const IADsTypedName = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsHold_Value = @import("../zig.zig").Guid.initString("B3EB3B37-4080-11D1-A3AC-00C04FB950DC");
+const IID_IADsHold_Value = @import("../zig.zig").Guid.initString("b3eb3b37-4080-11d1-a3ac-00c04fb950dc");
 pub const IID_IADsHold = &IID_IADsHold_Value;
 pub const IADsHold = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ObjectName: fn(
             self: *const IADsHold,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ObjectName: fn(
             self: *const IADsHold,
@@ -6395,7 +6395,7 @@ pub const IADsHold = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsHold_get_ObjectName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsHold_get_ObjectName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsHold.VTable, self.vtable).get_ObjectName(@ptrCast(*const IADsHold, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6414,7 +6414,7 @@ pub const IADsHold = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsObjectOptions_Value = @import("../zig.zig").Guid.initString("46F14FDA-232B-11D1-A808-00C04FD8D5A8");
+const IID_IADsObjectOptions_Value = @import("../zig.zig").Guid.initString("46f14fda-232b-11d1-a808-00c04fd8d5a8");
 pub const IID_IADsObjectOptions = &IID_IADsObjectOptions_Value;
 pub const IADsObjectOptions = extern struct {
     pub const VTable = extern struct {
@@ -6445,7 +6445,7 @@ pub const IADsObjectOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsPathname_Value = @import("../zig.zig").Guid.initString("D592AED4-F420-11D0-A36E-00C04FB950DC");
+const IID_IADsPathname_Value = @import("../zig.zig").Guid.initString("d592aed4-f420-11d0-a36e-00c04fb950dc");
 pub const IID_IADsPathname = &IID_IADsPathname_Value;
 pub const IADsPathname = extern struct {
     pub const VTable = extern struct {
@@ -6462,7 +6462,7 @@ pub const IADsPathname = extern struct {
         Retrieve: fn(
             self: *const IADsPathname,
             lnFormatType: i32,
-            pbstrADsPath: *BSTR,
+            pbstrADsPath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumElements: fn(
             self: *const IADsPathname,
@@ -6471,7 +6471,7 @@ pub const IADsPathname = extern struct {
         GetElement: fn(
             self: *const IADsPathname,
             lnElementIndex: i32,
-            pbstrElement: *BSTR,
+            pbstrElement: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddLeafElement: fn(
             self: *const IADsPathname,
@@ -6482,13 +6482,13 @@ pub const IADsPathname = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyPath: fn(
             self: *const IADsPathname,
-            ppAdsPath: **IDispatch,
+            ppAdsPath: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEscapedElement: fn(
             self: *const IADsPathname,
             lnReserved: i32,
             bstrInStr: BSTR,
-            pbstrOutStr: *BSTR,
+            pbstrOutStr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EscapedMode: fn(
             self: *const IADsPathname,
@@ -6511,7 +6511,7 @@ pub const IADsPathname = extern struct {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).SetDisplayType(@ptrCast(*const IADsPathname, self), lnDisplayType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPathname_Retrieve(self: *const T, lnFormatType: i32, pbstrADsPath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPathname_Retrieve(self: *const T, lnFormatType: i32, pbstrADsPath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).Retrieve(@ptrCast(*const IADsPathname, self), lnFormatType, pbstrADsPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6519,7 +6519,7 @@ pub const IADsPathname = extern struct {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).GetNumElements(@ptrCast(*const IADsPathname, self), plnNumPathElements);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPathname_GetElement(self: *const T, lnElementIndex: i32, pbstrElement: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPathname_GetElement(self: *const T, lnElementIndex: i32, pbstrElement: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).GetElement(@ptrCast(*const IADsPathname, self), lnElementIndex, pbstrElement);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6531,11 +6531,11 @@ pub const IADsPathname = extern struct {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).RemoveLeafElement(@ptrCast(*const IADsPathname, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPathname_CopyPath(self: *const T, ppAdsPath: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IADsPathname_CopyPath(self: *const T, ppAdsPath: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).CopyPath(@ptrCast(*const IADsPathname, self), ppAdsPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsPathname_GetEscapedElement(self: *const T, lnReserved: i32, bstrInStr: BSTR, pbstrOutStr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsPathname_GetEscapedElement(self: *const T, lnReserved: i32, bstrInStr: BSTR, pbstrOutStr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsPathname.VTable, self.vtable).GetEscapedElement(@ptrCast(*const IADsPathname, self), lnReserved, bstrInStr, pbstrOutStr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6550,42 +6550,42 @@ pub const IADsPathname = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsADSystemInfo_Value = @import("../zig.zig").Guid.initString("5BB11929-AFD1-11D2-9CB9-0000F87A369E");
+const IID_IADsADSystemInfo_Value = @import("../zig.zig").Guid.initString("5bb11929-afd1-11d2-9cb9-0000f87a369e");
 pub const IID_IADsADSystemInfo = &IID_IADsADSystemInfo_Value;
 pub const IADsADSystemInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_UserName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ComputerName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SiteName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DomainShortName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DomainDNSName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ForestDNSName: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PDCRoleOwner: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SchemaRoleOwner: fn(
             self: *const IADsADSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IsNativeMode: fn(
             self: *const IADsADSystemInfo,
@@ -6593,12 +6593,12 @@ pub const IADsADSystemInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAnyDCName: fn(
             self: *const IADsADSystemInfo,
-            pszDCName: *BSTR,
+            pszDCName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDCSiteName: fn(
             self: *const IADsADSystemInfo,
             szServer: BSTR,
-            pszSiteName: *BSTR,
+            pszSiteName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RefreshSchemaCache: fn(
             self: *const IADsADSystemInfo,
@@ -6612,35 +6612,35 @@ pub const IADsADSystemInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_UserName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_UserName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_UserName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_ComputerName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_ComputerName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_ComputerName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_SiteName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_SiteName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_SiteName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_DomainShortName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_DomainShortName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_DomainShortName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_DomainDNSName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_DomainDNSName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_DomainDNSName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_ForestDNSName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_ForestDNSName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_ForestDNSName(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_PDCRoleOwner(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_PDCRoleOwner(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_PDCRoleOwner(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_get_SchemaRoleOwner(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_get_SchemaRoleOwner(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_SchemaRoleOwner(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6648,11 +6648,11 @@ pub const IADsADSystemInfo = extern struct {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).get_IsNativeMode(@ptrCast(*const IADsADSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_GetAnyDCName(self: *const T, pszDCName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_GetAnyDCName(self: *const T, pszDCName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).GetAnyDCName(@ptrCast(*const IADsADSystemInfo, self), pszDCName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsADSystemInfo_GetDCSiteName(self: *const T, szServer: BSTR, pszSiteName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsADSystemInfo_GetDCSiteName(self: *const T, szServer: BSTR, pszSiteName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsADSystemInfo.VTable, self.vtable).GetDCSiteName(@ptrCast(*const IADsADSystemInfo, self), szServer, pszSiteName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6667,52 +6667,52 @@ pub const IADsADSystemInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsWinNTSystemInfo_Value = @import("../zig.zig").Guid.initString("6C6D65DC-AFD1-11D2-9CB9-0000F87A369E");
+const IID_IADsWinNTSystemInfo_Value = @import("../zig.zig").Guid.initString("6c6d65dc-afd1-11d2-9cb9-0000f87a369e");
 pub const IID_IADsWinNTSystemInfo = &IID_IADsWinNTSystemInfo_Value;
 pub const IADsWinNTSystemInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_UserName: fn(
             self: *const IADsWinNTSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ComputerName: fn(
             self: *const IADsWinNTSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DomainName: fn(
             self: *const IADsWinNTSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PDC: fn(
             self: *const IADsWinNTSystemInfo,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsWinNTSystemInfo_get_UserName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsWinNTSystemInfo_get_UserName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsWinNTSystemInfo.VTable, self.vtable).get_UserName(@ptrCast(*const IADsWinNTSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsWinNTSystemInfo_get_ComputerName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsWinNTSystemInfo_get_ComputerName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsWinNTSystemInfo.VTable, self.vtable).get_ComputerName(@ptrCast(*const IADsWinNTSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsWinNTSystemInfo_get_DomainName(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsWinNTSystemInfo_get_DomainName(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsWinNTSystemInfo.VTable, self.vtable).get_DomainName(@ptrCast(*const IADsWinNTSystemInfo, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsWinNTSystemInfo_get_PDC(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsWinNTSystemInfo_get_PDC(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsWinNTSystemInfo.VTable, self.vtable).get_PDC(@ptrCast(*const IADsWinNTSystemInfo, self), retval);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsDNWithBinary_Value = @import("../zig.zig").Guid.initString("7E99C0A2-F935-11D2-BA96-00C04FB6D0D1");
+const IID_IADsDNWithBinary_Value = @import("../zig.zig").Guid.initString("7e99c0a2-f935-11d2-ba96-00c04fb6d0d1");
 pub const IID_IADsDNWithBinary = &IID_IADsDNWithBinary_Value;
 pub const IADsDNWithBinary = extern struct {
     pub const VTable = extern struct {
@@ -6727,7 +6727,7 @@ pub const IADsDNWithBinary = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DNString: fn(
             self: *const IADsDNWithBinary,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DNString: fn(
             self: *const IADsDNWithBinary,
@@ -6746,7 +6746,7 @@ pub const IADsDNWithBinary = extern struct {
             return @ptrCast(*const IADsDNWithBinary.VTable, self.vtable).put_BinaryValue(@ptrCast(*const IADsDNWithBinary, self), vBinaryValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsDNWithBinary_get_DNString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsDNWithBinary_get_DNString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsDNWithBinary.VTable, self.vtable).get_DNString(@ptrCast(*const IADsDNWithBinary, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6757,14 +6757,14 @@ pub const IADsDNWithBinary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsDNWithString_Value = @import("../zig.zig").Guid.initString("370DF02E-F934-11D2-BA96-00C04FB6D0D1");
+const IID_IADsDNWithString_Value = @import("../zig.zig").Guid.initString("370df02e-f934-11d2-ba96-00c04fb6d0d1");
 pub const IID_IADsDNWithString = &IID_IADsDNWithString_Value;
 pub const IADsDNWithString = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_StringValue: fn(
             self: *const IADsDNWithString,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_StringValue: fn(
             self: *const IADsDNWithString,
@@ -6772,7 +6772,7 @@ pub const IADsDNWithString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DNString: fn(
             self: *const IADsDNWithString,
-            retval: *BSTR,
+            retval: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DNString: fn(
             self: *const IADsDNWithString,
@@ -6783,7 +6783,7 @@ pub const IADsDNWithString = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsDNWithString_get_StringValue(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsDNWithString_get_StringValue(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsDNWithString.VTable, self.vtable).get_StringValue(@ptrCast(*const IADsDNWithString, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6791,7 +6791,7 @@ pub const IADsDNWithString = extern struct {
             return @ptrCast(*const IADsDNWithString.VTable, self.vtable).put_StringValue(@ptrCast(*const IADsDNWithString, self), bstrStringValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADsDNWithString_get_DNString(self: *const T, retval: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IADsDNWithString_get_DNString(self: *const T, retval: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IADsDNWithString.VTable, self.vtable).get_DNString(@ptrCast(*const IADsDNWithString, self), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6802,7 +6802,7 @@ pub const IADsDNWithString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADsSecurityUtility_Value = @import("../zig.zig").Guid.initString("A63251B2-5F21-474B-AB52-4A8EFAD10895");
+const IID_IADsSecurityUtility_Value = @import("../zig.zig").Guid.initString("a63251b2-5f21-474b-ab52-4a8efad10895");
 pub const IID_IADsSecurityUtility = &IID_IADsSecurityUtility_Value;
 pub const IADsSecurityUtility = extern struct {
     pub const VTable = extern struct {
@@ -6909,7 +6909,7 @@ pub const DOMAIN_TREE = extern struct {
     aDomains: [1]DOMAINDESC,
 };
 
-const IID_IDsBrowseDomainTree_Value = @import("../zig.zig").Guid.initString("7CABCF1E-78F5-11D2-960C-00C04FA31A86");
+const IID_IDsBrowseDomainTree_Value = @import("../zig.zig").Guid.initString("7cabcf1e-78f5-11d2-960c-00c04fa31a86");
 pub const IID_IDsBrowseDomainTree = &IID_IDsBrowseDomainTree_Value;
 pub const IDsBrowseDomainTree = extern struct {
     pub const VTable = extern struct {
@@ -6981,7 +6981,7 @@ pub const DSCLASSCREATIONINFO = extern struct {
     aWizardExtensions: [1]Guid,
 };
 
-const IID_IDsDisplaySpecifier_Value = @import("../zig.zig").Guid.initString("1AB4A8C0-6A0B-11D2-AD49-00C04FA31A86");
+const IID_IDsDisplaySpecifier_Value = @import("../zig.zig").Guid.initString("1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86");
 pub const IID_IDsDisplaySpecifier = &IID_IDsDisplaySpecifier_Value;
 pub const IDsDisplaySpecifier = extern struct {
     pub const VTable = extern struct {

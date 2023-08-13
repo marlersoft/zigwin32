@@ -656,16 +656,16 @@ pub const WPC_SETTINGS_USER_TIME_ALLOWANCE_RESTRICTIONS = WPC_SETTINGS.USER_TIME
 pub const WPC_SETTINGS_GAME_RESTRICTED = WPC_SETTINGS.GAME_RESTRICTED;
 pub const WPC_SETTING_COUNT = WPC_SETTINGS.WPC_SETTING_COUNT;
 
-const CLSID_WpcSettingsProvider_Value = @import("../zig.zig").Guid.initString("355DFFAA-3B9F-435C-B428-5D44290BC5F2");
+const CLSID_WpcSettingsProvider_Value = @import("../zig.zig").Guid.initString("355dffaa-3b9f-435c-b428-5d44290bc5f2");
 pub const CLSID_WpcSettingsProvider = &CLSID_WpcSettingsProvider_Value;
 
-const CLSID_WpcProviderSupport_Value = @import("../zig.zig").Guid.initString("BB18C7A0-2186-4BE0-97D8-04847B628E02");
+const CLSID_WpcProviderSupport_Value = @import("../zig.zig").Guid.initString("bb18c7a0-2186-4be0-97d8-04847b628e02");
 pub const CLSID_WpcProviderSupport = &CLSID_WpcProviderSupport_Value;
 
-const CLSID_WindowsParentalControls_Value = @import("../zig.zig").Guid.initString("E77CC89B-7401-4C04-8CED-149DB35ADD04");
+const CLSID_WindowsParentalControls_Value = @import("../zig.zig").Guid.initString("e77cc89b-7401-4c04-8ced-149db35add04");
 pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
 
-const IID_IWPCProviderState_Value = @import("../zig.zig").Guid.initString("50B6A267-C4BD-450B-ADB5-759073837C9E");
+const IID_IWPCProviderState_Value = @import("../zig.zig").Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
 pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
 pub const IWPCProviderState = extern struct {
     pub const VTable = extern struct {
@@ -697,7 +697,7 @@ pub const WPCFLAG_OVERRIDE = extern enum(i32) {
 };
 pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.WPCFLAG_APPLICATION;
 
-const IID_IWPCProviderConfig_Value = @import("../zig.zig").Guid.initString("BEF54196-2D02-4A26-B6E5-D65AF295D0F1");
+const IID_IWPCProviderConfig_Value = @import("../zig.zig").Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
 pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
 pub const IWPCProviderConfig = extern struct {
     pub const VTable = extern struct {
@@ -757,7 +757,7 @@ pub const WPCFLAG_APPS_RESTRICTED = WPCFLAG_RESTRICTION.WPCFLAG_APPS_RESTRICTED;
 pub const WPCFLAG_TIME_ALLOWANCE_RESTRICTED = WPCFLAG_RESTRICTION.WPCFLAG_TIME_ALLOWANCE_RESTRICTED;
 pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.WPCFLAG_GAMES_RESTRICTED;
 
-const IID_IWPCSettings_Value = @import("../zig.zig").Guid.initString("8FDF6CA1-0189-47E4-B670-1A8A4636E340");
+const IID_IWPCSettings_Value = @import("../zig.zig").Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
 pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
 pub const IWPCSettings = extern struct {
     pub const VTable = extern struct {
@@ -794,7 +794,7 @@ pub const IWPCSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWPCGamesSettings_Value = @import("../zig.zig").Guid.initString("95E87780-E158-489E-B452-BBB850790715");
+const IID_IWPCGamesSettings_Value = @import("../zig.zig").Guid.initString("95e87780-e158-489e-b452-bbb850790715");
 pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
 pub const IWPCGamesSettings = extern struct {
     pub const VTable = extern struct {
@@ -823,7 +823,7 @@ pub const WPCFLAG_WEB_SETTING = extern enum(i32) {
 pub const WPCFLAG_WEB_SETTING_NOTBLOCKED = WPCFLAG_WEB_SETTING.NOTBLOCKED;
 pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBLOCKED;
 
-const IID_IWPCWebSettings_Value = @import("../zig.zig").Guid.initString("FFCCBDB8-0992-4C30-B0F1-1CBB09C240AA");
+const IID_IWPCWebSettings_Value = @import("../zig.zig").Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
 pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
 pub const IWPCWebSettings = extern struct {
     pub const VTable = extern struct {
@@ -863,7 +863,7 @@ pub const WPCFLAG_VISIBILITY = extern enum(i32) {
 pub const WPCFLAG_WPC_VISIBLE = WPCFLAG_VISIBILITY.WPCFLAG_WPC_VISIBLE;
 pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.WPCFLAG_WPC_HIDDEN;
 
-const IID_IWindowsParentalControlsCore_Value = @import("../zig.zig").Guid.initString("4FF40A0F-3F3B-4D7C-A41B-4F39D7B44D05");
+const IID_IWindowsParentalControlsCore_Value = @import("../zig.zig").Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
 pub const IID_IWindowsParentalControlsCore = &IID_IWindowsParentalControlsCore_Value;
 pub const IWindowsParentalControlsCore = extern struct {
     pub const VTable = extern struct {
@@ -875,12 +875,12 @@ pub const IWindowsParentalControlsCore = extern struct {
         GetUserSettings: fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
-            ppSettings: **IWPCSettings,
+            ppSettings: ?*?*IWPCSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWebSettings: fn(
             self: *const IWindowsParentalControlsCore,
             pcszSID: ?[*:0]const u16,
-            ppSettings: **IWPCWebSettings,
+            ppSettings: ?*?*IWPCWebSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWebFilterInfo: fn(
             self: *const IWindowsParentalControlsCore,
@@ -896,11 +896,11 @@ pub const IWindowsParentalControlsCore = extern struct {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetVisibility(@ptrCast(*const IWindowsParentalControlsCore, self), peVisibility);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetUserSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: **IWPCSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetUserSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetUserSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControlsCore_GetWebSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: **IWPCWebSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControlsCore_GetWebSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetWebSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -911,7 +911,7 @@ pub const IWindowsParentalControlsCore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsParentalControls_Value = @import("../zig.zig").Guid.initString("28B4D88B-E072-49E6-804D-26EDBE21A7B9");
+const IID_IWindowsParentalControls_Value = @import("../zig.zig").Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
 pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
 pub const IWindowsParentalControls = extern struct {
     pub const VTable = extern struct {
@@ -919,21 +919,21 @@ pub const IWindowsParentalControls = extern struct {
         GetGamesSettings: fn(
             self: *const IWindowsParentalControls,
             pcszSID: ?[*:0]const u16,
-            ppSettings: **IWPCGamesSettings,
+            ppSettings: ?*?*IWPCGamesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWindowsParentalControlsCore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsParentalControls_GetGamesSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: **IWPCGamesSettings) callconv(.Inline) HRESULT {
+        pub fn IWindowsParentalControls_GetGamesSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWindowsParentalControls.VTable, self.vtable).GetGamesSettings(@ptrCast(*const IWindowsParentalControls, self), pcszSID, ppSettings);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWPCProviderSupport_Value = @import("../zig.zig").Guid.initString("41EBA572-23ED-4779-BEC1-8DF96206C44C");
+const IID_IWPCProviderSupport_Value = @import("../zig.zig").Guid.initString("41eba572-23ed-4779-bec1-8df96206c44c");
 pub const IID_IWPCProviderSupport = &IID_IWPCProviderSupport_Value;
 pub const IWPCProviderSupport = extern struct {
     pub const VTable = extern struct {

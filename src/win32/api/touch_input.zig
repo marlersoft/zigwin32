@@ -52,10 +52,10 @@ pub const HGESTUREINFO = ?*c_void;
 
 pub const HTOUCHINPUT = ?*c_void;
 
-const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("ABB27087-4CE0-4E58-A0CB-E24DF96814BE");
+const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
-const CLSID_ManipulationProcessor_Value = @import("../zig.zig").Guid.initString("597D4FB0-47FD-4AFF-89B9-C6CFAE8CF08E");
+const CLSID_ManipulationProcessor_Value = @import("../zig.zig").Guid.initString("597d4fb0-47fd-4aff-89b9-c6cfae8cf08e");
 pub const CLSID_ManipulationProcessor = &CLSID_ManipulationProcessor_Value;
 
 pub const MANIPULATION_PROCESSOR_MANIPULATIONS = extern enum(i32) {
@@ -73,7 +73,7 @@ pub const MANIPULATION_SCALE = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION
 pub const MANIPULATION_ROTATE = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_ROTATE;
 pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.MANIPULATION_ALL;
 
-const IID__IManipulationEvents_Value = @import("../zig.zig").Guid.initString("4F62C8DA-9C53-4B22-93DF-927A862BBB03");
+const IID__IManipulationEvents_Value = @import("../zig.zig").Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
 pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
 pub const _IManipulationEvents = extern struct {
     pub const VTable = extern struct {
@@ -128,7 +128,7 @@ pub const _IManipulationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInertiaProcessor_Value = @import("../zig.zig").Guid.initString("18B00C6D-C5EE-41B1-90A9-9D4A929095AD");
+const IID_IInertiaProcessor_Value = @import("../zig.zig").Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
 pub const IID_IInertiaProcessor = &IID_IInertiaProcessor_Value;
 pub const IInertiaProcessor = extern struct {
     pub const VTable = extern struct {
@@ -532,7 +532,7 @@ pub const IInertiaProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IManipulationProcessor_Value = @import("../zig.zig").Guid.initString("A22AC519-8300-48A0-BEF4-F1BE8737DBA4");
+const IID_IManipulationProcessor_Value = @import("../zig.zig").Guid.initString("a22ac519-8300-48a0-bef4-f1be8737dba4");
 pub const IID_IManipulationProcessor = &IID_IManipulationProcessor_Value;
 pub const IManipulationProcessor = extern struct {
     pub const VTable = extern struct {

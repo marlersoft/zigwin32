@@ -11,7 +11,7 @@ pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
     Value: [*:0]const u16,
 };
 
-const IID_INotificationActivationCallback_Value = @import("../zig.zig").Guid.initString("53E31837-6600-4A81-9395-75CFFE746F94");
+const IID_INotificationActivationCallback_Value = @import("../zig.zig").Guid.initString("53e31837-6600-4a81-9395-75cffe746f94");
 pub const IID_INotificationActivationCallback = &IID_INotificationActivationCallback_Value;
 pub const INotificationActivationCallback = extern struct {
     pub const VTable = extern struct {

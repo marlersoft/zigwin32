@@ -151,7 +151,7 @@ pub const ErrorResolved = VisualElementState.ErrorResolved;
 pub const ErrorResourceNotFound = VisualElementState.ErrorResourceNotFound;
 pub const ErrorInvalidResource = VisualElementState.ErrorInvalidResource;
 
-const IID_IVisualTreeServiceCallback_Value = @import("../zig.zig").Guid.initString("AA7A8931-80E4-4FEC-8F3B-553F87B4966E");
+const IID_IVisualTreeServiceCallback_Value = @import("../zig.zig").Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
 pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
 pub const IVisualTreeServiceCallback = extern struct {
     pub const VTable = extern struct {
@@ -174,7 +174,7 @@ pub const IVisualTreeServiceCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVisualTreeServiceCallback2_Value = @import("../zig.zig").Guid.initString("BAD9EB88-AE77-4397-B948-5FA2DB0A19EA");
+const IID_IVisualTreeServiceCallback2_Value = @import("../zig.zig").Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
 pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
 pub const IVisualTreeServiceCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -197,7 +197,7 @@ pub const IVisualTreeServiceCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVisualTreeService_Value = @import("../zig.zig").Guid.initString("A593B11A-D17F-48BB-8F66-83910731C8A5");
+const IID_IVisualTreeService_Value = @import("../zig.zig").Guid.initString("a593b11a-d17f-48bb-8f66-83910731c8a5");
 pub const IID_IVisualTreeService = &IID_IVisualTreeService_Value;
 pub const IVisualTreeService = extern struct {
     pub const VTable = extern struct {
@@ -323,7 +323,7 @@ pub const IVisualTreeService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXamlDiagnostics_Value = @import("../zig.zig").Guid.initString("18C9E2B6-3F43-4116-9F2B-FF935D7770D2");
+const IID_IXamlDiagnostics_Value = @import("../zig.zig").Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
 pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
 pub const IXamlDiagnostics = extern struct {
     pub const VTable = extern struct {
@@ -405,7 +405,7 @@ pub const IXamlDiagnostics = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBitmapData_Value = @import("../zig.zig").Guid.initString("D1A34EF2-CAD8-4635-A3D2-FCDA8D3F3CAF");
+const IID_IBitmapData_Value = @import("../zig.zig").Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
 pub const IID_IBitmapData = &IID_IBitmapData_Value;
 pub const IBitmapData = extern struct {
     pub const VTable = extern struct {
@@ -453,7 +453,7 @@ pub const IBitmapData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVisualTreeService2_Value = @import("../zig.zig").Guid.initString("130F5136-EC43-4F61-89C7-9801A36D2E95");
+const IID_IVisualTreeService2_Value = @import("../zig.zig").Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
 pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
 pub const IVisualTreeService2 = extern struct {
     pub const VTable = extern struct {
@@ -508,7 +508,7 @@ pub const IVisualTreeService2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVisualTreeService3_Value = @import("../zig.zig").Guid.initString("0E79C6E0-85A0-4BE8-B41A-655CF1FD19BD");
+const IID_IVisualTreeService3_Value = @import("../zig.zig").Guid.initString("0e79c6e0-85a0-4be8-b41a-655cf1fd19bd");
 pub const IID_IVisualTreeService3 = &IID_IVisualTreeService3_Value;
 pub const IVisualTreeService3 = extern struct {
     pub const VTable = extern struct {

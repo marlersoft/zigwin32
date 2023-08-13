@@ -154,7 +154,7 @@ pub const KCCR_COOKIE_KNOWLEDGE_CONTAINED = KNOWLEDGE_COOKIE_COMPARISON_RESULT.K
 pub const KCCR_COOKIE_KNOWLEDGE_CONTAINS = KNOWLEDGE_COOKIE_COMPARISON_RESULT.KCCR_COOKIE_KNOWLEDGE_CONTAINS;
 pub const KCCR_COOKIE_KNOWLEDGE_NOT_COMPARABLE = KNOWLEDGE_COOKIE_COMPARISON_RESULT.KCCR_COOKIE_KNOWLEDGE_NOT_COMPARABLE;
 
-const IID_IClockVectorElement_Value = @import("../zig.zig").Guid.initString("E71C4250-ADF8-4A07-8FAE-5669596909C1");
+const IID_IClockVectorElement_Value = @import("../zig.zig").Guid.initString("e71c4250-adf8-4a07-8fae-5669596909c1");
 pub const IID_IClockVectorElement = &IID_IClockVectorElement_Value;
 pub const IClockVectorElement = extern struct {
     pub const VTable = extern struct {
@@ -183,7 +183,7 @@ pub const IClockVectorElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFeedClockVectorElement_Value = @import("../zig.zig").Guid.initString("A40B46D2-E97B-4156-B6DA-991F501B0F05");
+const IID_IFeedClockVectorElement_Value = @import("../zig.zig").Guid.initString("a40b46d2-e97b-4156-b6da-991f501b0f05");
 pub const IID_IFeedClockVectorElement = &IID_IFeedClockVectorElement_Value;
 pub const IFeedClockVectorElement = extern struct {
     pub const VTable = extern struct {
@@ -212,7 +212,7 @@ pub const IFeedClockVectorElement = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IClockVector_Value = @import("../zig.zig").Guid.initString("14B2274A-8698-4CC6-9333-F89BD1D47BC4");
+const IID_IClockVector_Value = @import("../zig.zig").Guid.initString("14b2274a-8698-4cc6-9333-f89bd1d47bc4");
 pub const IID_IClockVector = &IID_IClockVector_Value;
 pub const IClockVector = extern struct {
     pub const VTable = extern struct {
@@ -242,7 +242,7 @@ pub const IClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFeedClockVector_Value = @import("../zig.zig").Guid.initString("8D1D98D1-9FB8-4EC9-A553-54DD924E0F67");
+const IID_IFeedClockVector_Value = @import("../zig.zig").Guid.initString("8d1d98d1-9fb8-4ec9-a553-54dd924e0f67");
 pub const IID_IFeedClockVector = &IID_IFeedClockVector_Value;
 pub const IFeedClockVector = extern struct {
     pub const VTable = extern struct {
@@ -271,7 +271,7 @@ pub const IFeedClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumClockVector_Value = @import("../zig.zig").Guid.initString("525844DB-2837-4799-9E80-81A66E02220C");
+const IID_IEnumClockVector_Value = @import("../zig.zig").Guid.initString("525844db-2837-4799-9e80-81a66e02220c");
 pub const IID_IEnumClockVector = &IID_IEnumClockVector_Value;
 pub const IEnumClockVector = extern struct {
     pub const VTable = extern struct {
@@ -317,7 +317,7 @@ pub const IEnumClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumFeedClockVector_Value = @import("../zig.zig").Guid.initString("550F763D-146A-48F6-ABEB-6C88C7F70514");
+const IID_IEnumFeedClockVector_Value = @import("../zig.zig").Guid.initString("550f763d-146a-48f6-abeb-6c88c7f70514");
 pub const IID_IEnumFeedClockVector = &IID_IEnumFeedClockVector_Value;
 pub const IEnumFeedClockVector = extern struct {
     pub const VTable = extern struct {
@@ -363,7 +363,7 @@ pub const IEnumFeedClockVector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICoreFragment_Value = @import("../zig.zig").Guid.initString("613B2AB5-B304-47D9-9C31-CE6C54401A15");
+const IID_ICoreFragment_Value = @import("../zig.zig").Guid.initString("613b2ab5-b304-47d9-9c31-ce6c54401a15");
 pub const IID_ICoreFragment = &IID_ICoreFragment_Value;
 pub const ICoreFragment = extern struct {
     pub const VTable = extern struct {
@@ -418,7 +418,7 @@ pub const ICoreFragment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICoreFragmentInspector_Value = @import("../zig.zig").Guid.initString("F7FCC5FD-AE26-4679-BA16-96AAC583C134");
+const IID_ICoreFragmentInspector_Value = @import("../zig.zig").Guid.initString("f7fcc5fd-ae26-4679-ba16-96aac583c134");
 pub const IID_ICoreFragmentInspector = &IID_ICoreFragmentInspector_Value;
 pub const ICoreFragmentInspector = extern struct {
     pub const VTable = extern struct {
@@ -448,7 +448,7 @@ pub const ICoreFragmentInspector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRangeException_Value = @import("../zig.zig").Guid.initString("75AE8777-6848-49F7-956C-A3A92F5096E8");
+const IID_IRangeException_Value = @import("../zig.zig").Guid.initString("75ae8777-6848-49f7-956c-a3a92f5096e8");
 pub const IID_IRangeException = &IID_IRangeException_Value;
 pub const IRangeException = extern struct {
     pub const VTable = extern struct {
@@ -488,7 +488,7 @@ pub const IRangeException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumRangeExceptions_Value = @import("../zig.zig").Guid.initString("0944439F-DDB1-4176-B703-046FF22A2386");
+const IID_IEnumRangeExceptions_Value = @import("../zig.zig").Guid.initString("0944439f-ddb1-4176-b703-046ff22a2386");
 pub const IID_IEnumRangeExceptions = &IID_IEnumRangeExceptions_Value;
 pub const IEnumRangeExceptions = extern struct {
     pub const VTable = extern struct {
@@ -534,7 +534,7 @@ pub const IEnumRangeExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISingleItemException_Value = @import("../zig.zig").Guid.initString("892FB9B0-7C55-4A18-9316-FDF449569B64");
+const IID_ISingleItemException_Value = @import("../zig.zig").Guid.initString("892fb9b0-7c55-4a18-9316-fdf449569b64");
 pub const IID_ISingleItemException = &IID_ISingleItemException_Value;
 pub const ISingleItemException = extern struct {
     pub const VTable = extern struct {
@@ -565,7 +565,7 @@ pub const ISingleItemException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSingleItemExceptions_Value = @import("../zig.zig").Guid.initString("E563381C-1B4D-4C66-9796-C86FACCDCD40");
+const IID_IEnumSingleItemExceptions_Value = @import("../zig.zig").Guid.initString("e563381c-1b4d-4c66-9796-c86faccdcd40");
 pub const IID_IEnumSingleItemExceptions = &IID_IEnumSingleItemExceptions_Value;
 pub const IEnumSingleItemExceptions = extern struct {
     pub const VTable = extern struct {
@@ -611,7 +611,7 @@ pub const IEnumSingleItemExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IChangeUnitException_Value = @import("../zig.zig").Guid.initString("0CD7EE7C-FEC0-4021-99EE-F0E5348F2A5F");
+const IID_IChangeUnitException_Value = @import("../zig.zig").Guid.initString("0cd7ee7c-fec0-4021-99ee-f0e5348f2a5f");
 pub const IID_IChangeUnitException = &IID_IChangeUnitException_Value;
 pub const IChangeUnitException = extern struct {
     pub const VTable = extern struct {
@@ -651,7 +651,7 @@ pub const IChangeUnitException = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumChangeUnitExceptions_Value = @import("../zig.zig").Guid.initString("3074E802-9319-4420-BE21-1022E2E21DA8");
+const IID_IEnumChangeUnitExceptions_Value = @import("../zig.zig").Guid.initString("3074e802-9319-4420-be21-1022e2e21da8");
 pub const IID_IEnumChangeUnitExceptions = &IID_IEnumChangeUnitExceptions_Value;
 pub const IEnumChangeUnitExceptions = extern struct {
     pub const VTable = extern struct {
@@ -697,7 +697,7 @@ pub const IEnumChangeUnitExceptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("2209F4FC-FD10-4FF0-84A8-F0A1982E440E");
+const IID_IReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("2209f4fc-fd10-4ff0-84a8-f0a1982e440e");
 pub const IID_IReplicaKeyMap = &IID_IReplicaKeyMap_Value;
 pub const IReplicaKeyMap = extern struct {
     pub const VTable = extern struct {
@@ -738,7 +738,7 @@ pub const IReplicaKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IConstructReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("DED10970-EC85-4115-B52C-4405845642A5");
+const IID_IConstructReplicaKeyMap_Value = @import("../zig.zig").Guid.initString("ded10970-ec85-4115-b52c-4405845642a5");
 pub const IID_IConstructReplicaKeyMap = &IID_IConstructReplicaKeyMap_Value;
 pub const IConstructReplicaKeyMap = extern struct {
     pub const VTable = extern struct {
@@ -760,7 +760,7 @@ pub const IConstructReplicaKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncKnowledge_Value = @import("../zig.zig").Guid.initString("615BBB53-C945-4203-BF4B-2CB65919A0AA");
+const IID_ISyncKnowledge_Value = @import("../zig.zig").Guid.initString("615bbb53-c945-4203-bf4b-2cb65919a0aa");
 pub const IID_ISyncKnowledge = &IID_ISyncKnowledge_Value;
 pub const ISyncKnowledge = extern struct {
     pub const VTable = extern struct {
@@ -994,7 +994,7 @@ pub const ISyncKnowledge = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IForgottenKnowledge_Value = @import("../zig.zig").Guid.initString("456E0F96-6036-452B-9F9D-BCC4B4A85DB2");
+const IID_IForgottenKnowledge_Value = @import("../zig.zig").Guid.initString("456e0f96-6036-452b-9f9d-bcc4b4a85db2");
 pub const IID_IForgottenKnowledge = &IID_IForgottenKnowledge_Value;
 pub const IForgottenKnowledge = extern struct {
     pub const VTable = extern struct {
@@ -1016,7 +1016,7 @@ pub const IForgottenKnowledge = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncKnowledge2_Value = @import("../zig.zig").Guid.initString("ED0ADDC0-3B4B-46A1-9A45-45661D2114C8");
+const IID_ISyncKnowledge2_Value = @import("../zig.zig").Guid.initString("ed0addc0-3b4b-46a1-9a45-45661d2114c8");
 pub const IID_ISyncKnowledge2 = &IID_ISyncKnowledge2_Value;
 pub const ISyncKnowledge2 = extern struct {
     pub const VTable = extern struct {
@@ -1157,7 +1157,7 @@ pub const ISyncKnowledge2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRecoverableErrorData_Value = @import("../zig.zig").Guid.initString("B37C4A0A-4B7D-4C2D-9711-3B00D119B1C8");
+const IID_IRecoverableErrorData_Value = @import("../zig.zig").Guid.initString("b37c4a0a-4b7d-4c2d-9711-3b00d119b1c8");
 pub const IID_IRecoverableErrorData = &IID_IRecoverableErrorData_Value;
 pub const IRecoverableErrorData = extern struct {
     pub const VTable = extern struct {
@@ -1197,7 +1197,7 @@ pub const IRecoverableErrorData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRecoverableError_Value = @import("../zig.zig").Guid.initString("0F5625E8-0A7B-45EE-9637-1CE13645909E");
+const IID_IRecoverableError_Value = @import("../zig.zig").Guid.initString("0f5625e8-0a7b-45ee-9637-1ce13645909e");
 pub const IID_IRecoverableError = &IID_IRecoverableError_Value;
 pub const IRecoverableError = extern struct {
     pub const VTable = extern struct {
@@ -1253,7 +1253,7 @@ pub const IRecoverableError = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IChangeConflict_Value = @import("../zig.zig").Guid.initString("014EBF97-9F20-4F7A-BDD4-25979C77C002");
+const IID_IChangeConflict_Value = @import("../zig.zig").Guid.initString("014ebf97-9f20-4f7a-bdd4-25979c77c002");
 pub const IID_IChangeConflict = &IID_IChangeConflict_Value;
 pub const IChangeConflict = extern struct {
     pub const VTable = extern struct {
@@ -1332,7 +1332,7 @@ pub const IChangeConflict = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IConstraintConflict_Value = @import("../zig.zig").Guid.initString("00D2302E-1CF8-4835-B85F-B7CA4F799E0A");
+const IID_IConstraintConflict_Value = @import("../zig.zig").Guid.initString("00d2302e-1cf8-4835-b85f-b7ca4f799e0a");
 pub const IID_IConstraintConflict = &IID_IConstraintConflict_Value;
 pub const IConstraintConflict = extern struct {
     pub const VTable = extern struct {
@@ -1442,7 +1442,7 @@ pub const IConstraintConflict = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncCallback_Value = @import("../zig.zig").Guid.initString("0599797F-5ED9-485C-AE36-0C5D1BF2E7A5");
+const IID_ISyncCallback_Value = @import("../zig.zig").Guid.initString("0599797f-5ed9-485c-ae36-0c5d1bf2e7a5");
 pub const IID_ISyncCallback = &IID_ISyncCallback_Value;
 pub const ISyncCallback = extern struct {
     pub const VTable = extern struct {
@@ -1498,7 +1498,7 @@ pub const ISyncCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncCallback2_Value = @import("../zig.zig").Guid.initString("47CE84AF-7442-4EAD-8630-12015E030AD7");
+const IID_ISyncCallback2_Value = @import("../zig.zig").Guid.initString("47ce84af-7442-4ead-8630-12015e030ad7");
 pub const IID_ISyncCallback2 = &IID_ISyncCallback2_Value;
 pub const ISyncCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -1529,7 +1529,7 @@ pub const ISyncCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncConstraintCallback_Value = @import("../zig.zig").Guid.initString("8AF3843E-75B3-438C-BB51-6F020D70D3CB");
+const IID_ISyncConstraintCallback_Value = @import("../zig.zig").Guid.initString("8af3843e-75b3-438c-bb51-6f020d70d3cb");
 pub const IID_ISyncConstraintCallback = &IID_ISyncConstraintCallback_Value;
 pub const ISyncConstraintCallback = extern struct {
     pub const VTable = extern struct {
@@ -1550,7 +1550,7 @@ pub const ISyncConstraintCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncProvider_Value = @import("../zig.zig").Guid.initString("8F657056-2BCE-4A17-8C68-C7BB7898B56F");
+const IID_ISyncProvider_Value = @import("../zig.zig").Guid.initString("8f657056-2bce-4a17-8c68-c7bb7898b56f");
 pub const IID_ISyncProvider = &IID_ISyncProvider_Value;
 pub const ISyncProvider = extern struct {
     pub const VTable = extern struct {
@@ -1571,7 +1571,7 @@ pub const ISyncProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncSessionState_Value = @import("../zig.zig").Guid.initString("B8A940FE-9F01-483B-9434-C37D361225D9");
+const IID_ISyncSessionState_Value = @import("../zig.zig").Guid.initString("b8a940fe-9f01-483b-9434-c37d361225d9");
 pub const IID_ISyncSessionState = &IID_ISyncSessionState_Value;
 pub const ISyncSessionState = extern struct {
     pub const VTable = extern struct {
@@ -1647,7 +1647,7 @@ pub const ISyncSessionState = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncSessionExtendedErrorInfo_Value = @import("../zig.zig").Guid.initString("326C6810-790A-409B-B741-6999388761EB");
+const IID_ISyncSessionExtendedErrorInfo_Value = @import("../zig.zig").Guid.initString("326c6810-790a-409b-b741-6999388761eb");
 pub const IID_ISyncSessionExtendedErrorInfo = &IID_ISyncSessionExtendedErrorInfo_Value;
 pub const ISyncSessionExtendedErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -1668,7 +1668,7 @@ pub const ISyncSessionExtendedErrorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncSessionState2_Value = @import("../zig.zig").Guid.initString("9E37CFA3-9E38-4C61-9CA3-FFE810B45CA2");
+const IID_ISyncSessionState2_Value = @import("../zig.zig").Guid.initString("9e37cfa3-9e38-4c61-9ca3-ffe810b45ca2");
 pub const IID_ISyncSessionState2 = &IID_ISyncSessionState2_Value;
 pub const ISyncSessionState2 = extern struct {
     pub const VTable = extern struct {
@@ -1697,7 +1697,7 @@ pub const ISyncSessionState2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFilterInfo_Value = @import("../zig.zig").Guid.initString("794EAAF8-3F2E-47E6-9728-17E6FCF94CB7");
+const IID_ISyncFilterInfo_Value = @import("../zig.zig").Guid.initString("794eaaf8-3f2e-47e6-9728-17e6fcf94cb7");
 pub const IID_ISyncFilterInfo = &IID_ISyncFilterInfo_Value;
 pub const ISyncFilterInfo = extern struct {
     pub const VTable = extern struct {
@@ -1719,7 +1719,7 @@ pub const ISyncFilterInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFilterInfo2_Value = @import("../zig.zig").Guid.initString("19B394BA-E3D0-468C-934D-321968B2AB34");
+const IID_ISyncFilterInfo2_Value = @import("../zig.zig").Guid.initString("19b394ba-e3d0-468c-934d-321968b2ab34");
 pub const IID_ISyncFilterInfo2 = &IID_ISyncFilterInfo2_Value;
 pub const ISyncFilterInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -1740,7 +1740,7 @@ pub const ISyncFilterInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IChangeUnitListFilterInfo_Value = @import("../zig.zig").Guid.initString("F2837671-0BDF-43FA-B502-232375FB50C2");
+const IID_IChangeUnitListFilterInfo_Value = @import("../zig.zig").Guid.initString("f2837671-0bdf-43fa-b502-232375fb50c2");
 pub const IID_IChangeUnitListFilterInfo = &IID_IChangeUnitListFilterInfo_Value;
 pub const IChangeUnitListFilterInfo = extern struct {
     pub const VTable = extern struct {
@@ -1780,7 +1780,7 @@ pub const IChangeUnitListFilterInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFilter_Value = @import("../zig.zig").Guid.initString("087A3F15-0FCB-44C1-9639-53C14E2B5506");
+const IID_ISyncFilter_Value = @import("../zig.zig").Guid.initString("087a3f15-0fcb-44c1-9639-53c14e2b5506");
 pub const IID_ISyncFilter = &IID_ISyncFilter_Value;
 pub const ISyncFilter = extern struct {
     pub const VTable = extern struct {
@@ -1810,7 +1810,7 @@ pub const ISyncFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFilterDeserializer_Value = @import("../zig.zig").Guid.initString("B45B7A72-E5C7-46BE-9C82-77B8B15DAB8A");
+const IID_ISyncFilterDeserializer_Value = @import("../zig.zig").Guid.initString("b45b7a72-e5c7-46be-9c82-77b8b15dab8a");
 pub const IID_ISyncFilterDeserializer = &IID_ISyncFilterDeserializer_Value;
 pub const ISyncFilterDeserializer = extern struct {
     pub const VTable = extern struct {
@@ -1833,7 +1833,7 @@ pub const ISyncFilterDeserializer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICustomFilterInfo_Value = @import("../zig.zig").Guid.initString("1D335DFF-6F88-4E4D-91A8-A3F351CFD473");
+const IID_ICustomFilterInfo_Value = @import("../zig.zig").Guid.initString("1d335dff-6f88-4e4d-91a8-a3f351cfd473");
 pub const IID_ICustomFilterInfo = &IID_ICustomFilterInfo_Value;
 pub const ICustomFilterInfo = extern struct {
     pub const VTable = extern struct {
@@ -1859,7 +1859,7 @@ pub const __MIDL___MIDL_itf_winsync_0000_0036_0001 = extern enum(i32) {
 };
 pub const FCT_INTERSECTION = __MIDL___MIDL_itf_winsync_0000_0036_0001.FCT_INTERSECTION;
 
-const IID_ICombinedFilterInfo_Value = @import("../zig.zig").Guid.initString("11F9DE71-2818-4779-B2AC-42D450565F45");
+const IID_ICombinedFilterInfo_Value = @import("../zig.zig").Guid.initString("11f9de71-2818-4779-b2ac-42d450565f45");
 pub const IID_ICombinedFilterInfo = &IID_ICombinedFilterInfo_Value;
 pub const ICombinedFilterInfo = extern struct {
     pub const VTable = extern struct {
@@ -1897,7 +1897,7 @@ pub const ICombinedFilterInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSyncChanges_Value = @import("../zig.zig").Guid.initString("5F86BE4A-5E78-4E32-AC1C-C24FD223EF85");
+const IID_IEnumSyncChanges_Value = @import("../zig.zig").Guid.initString("5f86be4a-5e78-4e32-ac1c-c24fd223ef85");
 pub const IID_IEnumSyncChanges = &IID_IEnumSyncChanges_Value;
 pub const IEnumSyncChanges = extern struct {
     pub const VTable = extern struct {
@@ -1943,7 +1943,7 @@ pub const IEnumSyncChanges = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBuilder_Value = @import("../zig.zig").Guid.initString("56F14771-8677-484F-A170-E386E418A676");
+const IID_ISyncChangeBuilder_Value = @import("../zig.zig").Guid.initString("56f14771-8677-484f-a170-e386e418a676");
 pub const IID_ISyncChangeBuilder = &IID_ISyncChangeBuilder_Value;
 pub const ISyncChangeBuilder = extern struct {
     pub const VTable = extern struct {
@@ -1965,7 +1965,7 @@ pub const ISyncChangeBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFilterTrackingSyncChangeBuilder_Value = @import("../zig.zig").Guid.initString("295024A0-70DA-4C58-883C-CE2AFB308D0B");
+const IID_IFilterTrackingSyncChangeBuilder_Value = @import("../zig.zig").Guid.initString("295024a0-70da-4c58-883c-ce2afb308d0b");
 pub const IID_IFilterTrackingSyncChangeBuilder = &IID_IFilterTrackingSyncChangeBuilder_Value;
 pub const IFilterTrackingSyncChangeBuilder = extern struct {
     pub const VTable = extern struct {
@@ -1994,7 +1994,7 @@ pub const IFilterTrackingSyncChangeBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatchBase_Value = @import("../zig.zig").Guid.initString("52F6E694-6A71-4494-A184-A8311BF5D227");
+const IID_ISyncChangeBatchBase_Value = @import("../zig.zig").Guid.initString("52f6e694-6a71-4494-a184-a8311bf5d227");
 pub const IID_ISyncChangeBatchBase = &IID_ISyncChangeBatchBase_Value;
 pub const ISyncChangeBatchBase = extern struct {
     pub const VTable = extern struct {
@@ -2126,7 +2126,7 @@ pub const ISyncChangeBatchBase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatch_Value = @import("../zig.zig").Guid.initString("70C64DEE-380F-4C2E-8F70-31C55BD5F9B3");
+const IID_ISyncChangeBatch_Value = @import("../zig.zig").Guid.initString("70c64dee-380f-4c2e-8f70-31c55bd5f9b3");
 pub const IID_ISyncChangeBatch = &IID_ISyncChangeBatch_Value;
 pub const ISyncChangeBatch = extern struct {
     pub const VTable = extern struct {
@@ -2170,7 +2170,7 @@ pub const ISyncChangeBatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFullEnumerationChangeBatch_Value = @import("../zig.zig").Guid.initString("EF64197D-4F44-4EA2-B355-4524713E3BED");
+const IID_ISyncFullEnumerationChangeBatch_Value = @import("../zig.zig").Guid.initString("ef64197d-4f44-4ea2-b355-4524713e3bed");
 pub const IID_ISyncFullEnumerationChangeBatch = &IID_ISyncFullEnumerationChangeBatch_Value;
 pub const ISyncFullEnumerationChangeBatch = extern struct {
     pub const VTable = extern struct {
@@ -2209,7 +2209,7 @@ pub const ISyncFullEnumerationChangeBatch = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatchWithPrerequisite_Value = @import("../zig.zig").Guid.initString("097F13BE-5B92-4048-B3F2-7B42A2515E07");
+const IID_ISyncChangeBatchWithPrerequisite_Value = @import("../zig.zig").Guid.initString("097f13be-5b92-4048-b3f2-7b42a2515e07");
 pub const IID_ISyncChangeBatchWithPrerequisite = &IID_ISyncChangeBatchWithPrerequisite_Value;
 pub const ISyncChangeBatchWithPrerequisite = extern struct {
     pub const VTable = extern struct {
@@ -2247,7 +2247,7 @@ pub const ISyncChangeBatchWithPrerequisite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatchBase2_Value = @import("../zig.zig").Guid.initString("6FDB596A-D755-4584-BD0C-C0C23A548FBF");
+const IID_ISyncChangeBatchBase2_Value = @import("../zig.zig").Guid.initString("6fdb596a-d755-4584-bd0c-c0c23a548fbf");
 pub const IID_ISyncChangeBatchBase2 = &IID_ISyncChangeBatchBase2_Value;
 pub const ISyncChangeBatchBase2 = extern struct {
     pub const VTable = extern struct {
@@ -2271,7 +2271,7 @@ pub const ISyncChangeBatchBase2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatchAdvanced_Value = @import("../zig.zig").Guid.initString("0F1A4995-CBC8-421D-B550-5D0BEBF3E9A5");
+const IID_ISyncChangeBatchAdvanced_Value = @import("../zig.zig").Guid.initString("0f1a4995-cbc8-421d-b550-5d0bebf3e9a5");
 pub const IID_ISyncChangeBatchAdvanced = &IID_ISyncChangeBatchAdvanced_Value;
 pub const ISyncChangeBatchAdvanced = extern struct {
     pub const VTable = extern struct {
@@ -2317,7 +2317,7 @@ pub const ISyncChangeBatchAdvanced = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatch2_Value = @import("../zig.zig").Guid.initString("225F4A33-F5EE-4CC7-B039-67A262B4B2AC");
+const IID_ISyncChangeBatch2_Value = @import("../zig.zig").Guid.initString("225f4a33-f5ee-4cc7-b039-67a262b4b2ac");
 pub const IID_ISyncChangeBatch2 = &IID_ISyncChangeBatch2_Value;
 pub const ISyncChangeBatch2 = extern struct {
     pub const VTable = extern struct {
@@ -2359,7 +2359,7 @@ pub const ISyncChangeBatch2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFullEnumerationChangeBatch2_Value = @import("../zig.zig").Guid.initString("E06449F4-A205-4B65-9724-01B22101EEC1");
+const IID_ISyncFullEnumerationChangeBatch2_Value = @import("../zig.zig").Guid.initString("e06449f4-a205-4b65-9724-01b22101eec1");
 pub const IID_ISyncFullEnumerationChangeBatch2 = &IID_ISyncFullEnumerationChangeBatch2_Value;
 pub const ISyncFullEnumerationChangeBatch2 = extern struct {
     pub const VTable = extern struct {
@@ -2386,7 +2386,7 @@ pub const ISyncFullEnumerationChangeBatch2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IKnowledgeSyncProvider_Value = @import("../zig.zig").Guid.initString("43434A49-8DA4-47F2-8172-AD7B8B024978");
+const IID_IKnowledgeSyncProvider_Value = @import("../zig.zig").Guid.initString("43434a49-8da4-47f2-8172-ad7b8b024978");
 pub const IID_IKnowledgeSyncProvider = &IID_IKnowledgeSyncProvider_Value;
 pub const IKnowledgeSyncProvider = extern struct {
     pub const VTable = extern struct {
@@ -2472,7 +2472,7 @@ pub const IKnowledgeSyncProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeUnit_Value = @import("../zig.zig").Guid.initString("60EDD8CA-7341-4BB7-95CE-FAB6394B51CB");
+const IID_ISyncChangeUnit_Value = @import("../zig.zig").Guid.initString("60edd8ca-7341-4bb7-95ce-fab6394b51cb");
 pub const IID_ISyncChangeUnit = &IID_ISyncChangeUnit_Value;
 pub const ISyncChangeUnit = extern struct {
     pub const VTable = extern struct {
@@ -2511,7 +2511,7 @@ pub const ISyncChangeUnit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSyncChangeUnits_Value = @import("../zig.zig").Guid.initString("346B35F1-8703-4C6D-AB1A-4DBCA2CFF97F");
+const IID_IEnumSyncChangeUnits_Value = @import("../zig.zig").Guid.initString("346b35f1-8703-4c6d-ab1a-4dbca2cff97f");
 pub const IID_IEnumSyncChangeUnits = &IID_IEnumSyncChangeUnits_Value;
 pub const IEnumSyncChangeUnits = extern struct {
     pub const VTable = extern struct {
@@ -2557,7 +2557,7 @@ pub const IEnumSyncChangeUnits = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChange_Value = @import("../zig.zig").Guid.initString("A1952BEB-0F6B-4711-B136-01DA85B968A6");
+const IID_ISyncChange_Value = @import("../zig.zig").Guid.initString("a1952beb-0f6b-4711-b136-01da85b968a6");
 pub const IID_ISyncChange = &IID_ISyncChange_Value;
 pub const ISyncChange = extern struct {
     pub const VTable = extern struct {
@@ -2654,7 +2654,7 @@ pub const ISyncChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeWithPrerequisite_Value = @import("../zig.zig").Guid.initString("9E38382F-1589-48C3-92E4-05ECDCB4F3F7");
+const IID_ISyncChangeWithPrerequisite_Value = @import("../zig.zig").Guid.initString("9e38382f-1589-48c3-92e4-05ecdcb4f3f7");
 pub const IID_ISyncChangeWithPrerequisite = &IID_ISyncChangeWithPrerequisite_Value;
 pub const ISyncChangeWithPrerequisite = extern struct {
     pub const VTable = extern struct {
@@ -2684,7 +2684,7 @@ pub const ISyncChangeWithPrerequisite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncFullEnumerationChange_Value = @import("../zig.zig").Guid.initString("9785E0BD-BDFF-40C4-98C5-B34B2F1991B3");
+const IID_ISyncFullEnumerationChange_Value = @import("../zig.zig").Guid.initString("9785e0bd-bdff-40c4-98c5-b34b2f1991b3");
 pub const IID_ISyncFullEnumerationChange = &IID_ISyncFullEnumerationChange_Value;
 pub const ISyncFullEnumerationChange = extern struct {
     pub const VTable = extern struct {
@@ -2713,7 +2713,7 @@ pub const ISyncFullEnumerationChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncMergeTombstoneChange_Value = @import("../zig.zig").Guid.initString("6EC62597-0903-484C-AD61-36D6E938F47B");
+const IID_ISyncMergeTombstoneChange_Value = @import("../zig.zig").Guid.initString("6ec62597-0903-484c-ad61-36d6e938f47b");
 pub const IID_ISyncMergeTombstoneChange = &IID_ISyncMergeTombstoneChange_Value;
 pub const ISyncMergeTombstoneChange = extern struct {
     pub const VTable = extern struct {
@@ -2735,7 +2735,7 @@ pub const ISyncMergeTombstoneChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumItemIds_Value = @import("../zig.zig").Guid.initString("43AA3F61-4B2E-4B60-83DF-B110D3E148F1");
+const IID_IEnumItemIds_Value = @import("../zig.zig").Guid.initString("43aa3f61-4b2e-4b60-83df-b110d3e148f1");
 pub const IID_IEnumItemIds = &IID_IEnumItemIds_Value;
 pub const IEnumItemIds = extern struct {
     pub const VTable = extern struct {
@@ -2757,7 +2757,7 @@ pub const IEnumItemIds = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFilterKeyMap_Value = @import("../zig.zig").Guid.initString("CA169652-07C6-4708-A3DA-6E4EBA8D2297");
+const IID_IFilterKeyMap_Value = @import("../zig.zig").Guid.initString("ca169652-07c6-4708-a3da-6e4eba8d2297");
 pub const IID_IFilterKeyMap = &IID_IFilterKeyMap_Value;
 pub const IFilterKeyMap = extern struct {
     pub const VTable = extern struct {
@@ -2805,7 +2805,7 @@ pub const IFilterKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeWithFilterKeyMap_Value = @import("../zig.zig").Guid.initString("BFE1EF00-E87D-42FD-A4E9-242D70414AEF");
+const IID_ISyncChangeWithFilterKeyMap_Value = @import("../zig.zig").Guid.initString("bfe1ef00-e87d-42fd-a4e9-242d70414aef");
 pub const IID_ISyncChangeWithFilterKeyMap = &IID_ISyncChangeWithFilterKeyMap_Value;
 pub const ISyncChangeWithFilterKeyMap = extern struct {
     pub const VTable = extern struct {
@@ -2904,7 +2904,7 @@ pub const ISyncChangeWithFilterKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncChangeBatchWithFilterKeyMap_Value = @import("../zig.zig").Guid.initString("DE247002-566D-459A-A6ED-A5AAB3459FB7");
+const IID_ISyncChangeBatchWithFilterKeyMap_Value = @import("../zig.zig").Guid.initString("de247002-566d-459a-a6ed-a5aab3459fb7");
 pub const IID_ISyncChangeBatchWithFilterKeyMap = &IID_ISyncChangeBatchWithFilterKeyMap_Value;
 pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
     pub const VTable = extern struct {
@@ -2994,7 +2994,7 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDataRetrieverCallback_Value = @import("../zig.zig").Guid.initString("71B4863B-F969-4676-BBC3-3D9FDC3FB2C7");
+const IID_IDataRetrieverCallback_Value = @import("../zig.zig").Guid.initString("71b4863b-f969-4676-bbc3-3d9fdc3fb2c7");
 pub const IID_IDataRetrieverCallback = &IID_IDataRetrieverCallback_Value;
 pub const IDataRetrieverCallback = extern struct {
     pub const VTable = extern struct {
@@ -3023,7 +3023,7 @@ pub const IDataRetrieverCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILoadChangeContext_Value = @import("../zig.zig").Guid.initString("44A4AACA-EC39-46D5-B5C9-D633C0EE67E2");
+const IID_ILoadChangeContext_Value = @import("../zig.zig").Guid.initString("44a4aaca-ec39-46d5-b5c9-d633c0ee67e2");
 pub const IID_ILoadChangeContext = &IID_ILoadChangeContext_Value;
 pub const ILoadChangeContext = extern struct {
     pub const VTable = extern struct {
@@ -3063,7 +3063,7 @@ pub const ILoadChangeContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9B22F2A9-A4CD-4648-9D8E-3A510D4DA04B");
+const IID_ISynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9b22f2a9-a4cd-4648-9d8e-3a510d4da04b");
 pub const IID_ISynchronousDataRetriever = &IID_ISynchronousDataRetriever_Value;
 pub const ISynchronousDataRetriever = extern struct {
     pub const VTable = extern struct {
@@ -3093,7 +3093,7 @@ pub const ISynchronousDataRetriever = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAsynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9FC7E470-61EA-4A88-9BE4-DF56A27CFEF2");
+const IID_IAsynchronousDataRetriever_Value = @import("../zig.zig").Guid.initString("9fc7e470-61ea-4a88-9be4-df56a27cfef2");
 pub const IID_IAsynchronousDataRetriever = &IID_IAsynchronousDataRetriever_Value;
 pub const IAsynchronousDataRetriever = extern struct {
     pub const VTable = extern struct {
@@ -3138,7 +3138,7 @@ pub const IAsynchronousDataRetriever = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFilterRequestCallback_Value = @import("../zig.zig").Guid.initString("82DF8873-6360-463A-A8A1-EDE5E1A1594D");
+const IID_IFilterRequestCallback_Value = @import("../zig.zig").Guid.initString("82df8873-6360-463a-a8a1-ede5e1a1594d");
 pub const IID_IFilterRequestCallback = &IID_IFilterRequestCallback_Value;
 pub const IFilterRequestCallback = extern struct {
     pub const VTable = extern struct {
@@ -3160,7 +3160,7 @@ pub const IFilterRequestCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRequestFilteredSync_Value = @import("../zig.zig").Guid.initString("2E020184-6D18-46A7-A32A-DA4AEB06696C");
+const IID_IRequestFilteredSync_Value = @import("../zig.zig").Guid.initString("2e020184-6d18-46a7-a32a-da4aeb06696c");
 pub const IID_IRequestFilteredSync = &IID_IRequestFilteredSync_Value;
 pub const IRequestFilteredSync = extern struct {
     pub const VTable = extern struct {
@@ -3181,7 +3181,7 @@ pub const IRequestFilteredSync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISupportFilteredSync_Value = @import("../zig.zig").Guid.initString("3D128DED-D555-4E0D-BF4B-FB213A8A9302");
+const IID_ISupportFilteredSync_Value = @import("../zig.zig").Guid.initString("3d128ded-d555-4e0d-bf4b-fb213a8a9302");
 pub const IID_ISupportFilteredSync = &IID_ISupportFilteredSync_Value;
 pub const ISupportFilteredSync = extern struct {
     pub const VTable = extern struct {
@@ -3203,7 +3203,7 @@ pub const ISupportFilteredSync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFilterTrackingRequestCallback_Value = @import("../zig.zig").Guid.initString("713CA7BB-C858-4674-B4B6-1122436587A9");
+const IID_IFilterTrackingRequestCallback_Value = @import("../zig.zig").Guid.initString("713ca7bb-c858-4674-b4b6-1122436587a9");
 pub const IID_IFilterTrackingRequestCallback = &IID_IFilterTrackingRequestCallback_Value;
 pub const IFilterTrackingRequestCallback = extern struct {
     pub const VTable = extern struct {
@@ -3224,7 +3224,7 @@ pub const IFilterTrackingRequestCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFilterTrackingProvider_Value = @import("../zig.zig").Guid.initString("743383C0-FC4E-45BA-AD81-D9D84C7A24F8");
+const IID_IFilterTrackingProvider_Value = @import("../zig.zig").Guid.initString("743383c0-fc4e-45ba-ad81-d9d84c7a24f8");
 pub const IID_IFilterTrackingProvider = &IID_IFilterTrackingProvider_Value;
 pub const IFilterTrackingProvider = extern struct {
     pub const VTable = extern struct {
@@ -3253,7 +3253,7 @@ pub const IFilterTrackingProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISupportLastWriteTime_Value = @import("../zig.zig").Guid.initString("EADF816F-D0BD-43CA-8F40-5ACDC6C06F7A");
+const IID_ISupportLastWriteTime_Value = @import("../zig.zig").Guid.initString("eadf816f-d0bd-43ca-8f40-5acdc6c06f7a");
 pub const IID_ISupportLastWriteTime = &IID_ISupportLastWriteTime_Value;
 pub const ISupportLastWriteTime = extern struct {
     pub const VTable = extern struct {
@@ -3285,7 +3285,7 @@ pub const ISupportLastWriteTime = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProviderConverter_Value = @import("../zig.zig").Guid.initString("809B7276-98CF-4957-93A5-0EBDD3DDDFFD");
+const IID_IProviderConverter_Value = @import("../zig.zig").Guid.initString("809b7276-98cf-4957-93a5-0ebdd3dddffd");
 pub const IID_IProviderConverter = &IID_IProviderConverter_Value;
 pub const IProviderConverter = extern struct {
     pub const VTable = extern struct {
@@ -3306,7 +3306,7 @@ pub const IProviderConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncDataConverter_Value = @import("../zig.zig").Guid.initString("435D4861-68D5-44AA-A0F9-72A0B00EF9CF");
+const IID_ISyncDataConverter_Value = @import("../zig.zig").Guid.initString("435d4861-68d5-44aa-a0f9-72a0b00ef9cf");
 pub const IID_ISyncDataConverter = &IID_ISyncDataConverter_Value;
 pub const ISyncDataConverter = extern struct {
     pub const VTable = extern struct {
@@ -3359,7 +3359,7 @@ pub const ISyncDataConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_SyncProviderRegistration_Value = @import("../zig.zig").Guid.initString("F82B4EF1-93A9-4DDE-8015-F7950A1A6E31");
+const CLSID_SyncProviderRegistration_Value = @import("../zig.zig").Guid.initString("f82b4ef1-93a9-4dde-8015-f7950a1a6e31");
 pub const CLSID_SyncProviderRegistration = &CLSID_SyncProviderRegistration_Value;
 
 pub const SyncProviderConfiguration = extern struct {
@@ -3382,7 +3382,7 @@ pub const SyncProviderConfigUIConfiguration = extern struct {
     fIsGlobal: BOOL,
 };
 
-const IID_ISyncProviderRegistration_Value = @import("../zig.zig").Guid.initString("CB45953B-7624-47BC-A472-EB8CAC6B222E");
+const IID_ISyncProviderRegistration_Value = @import("../zig.zig").Guid.initString("cb45953b-7624-47bc-a472-eb8cac6b222e");
 pub const IID_ISyncProviderRegistration = &IID_ISyncProviderRegistration_Value;
 pub const ISyncProviderRegistration = extern struct {
     pub const VTable = extern struct {
@@ -3390,7 +3390,7 @@ pub const ISyncProviderRegistration = extern struct {
         CreateSyncProviderConfigUIRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
             pConfigUIConfig: *const SyncProviderConfigUIConfiguration,
-            ppConfigUIInfo: **ISyncProviderConfigUIInfo,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProviderConfigUI: fn(
             self: *const ISyncProviderRegistration,
@@ -3400,12 +3400,12 @@ pub const ISyncProviderRegistration = extern struct {
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderConfigUIInfos: **IEnumSyncProviderConfigUIInfos,
+            ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSyncProviderRegistrationInstance: fn(
             self: *const ISyncProviderRegistration,
             pProviderConfiguration: *const SyncProviderConfiguration,
-            ppProviderInfo: **ISyncProviderInfo,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterSyncProvider: fn(
             self: *const ISyncProviderRegistration,
@@ -3414,7 +3414,7 @@ pub const ISyncProviderRegistration = extern struct {
         GetSyncProviderConfigUIInfoforProvider: fn(
             self: *const ISyncProviderRegistration,
             pguidProviderInstanceId: *Guid,
-            ppProviderConfigUIInfo: **ISyncProviderConfigUIInfo,
+            ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateSyncProviders: fn(
             self: *const ISyncProviderRegistration,
@@ -3423,29 +3423,29 @@ pub const ISyncProviderRegistration = extern struct {
             dwStateFlagsToFilter: u32,
             refProviderClsId: *const Guid,
             dwSupportedArchitecture: u32,
-            ppEnumSyncProviderInfos: **IEnumSyncProviderInfos,
+            ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderInfo: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *Guid,
-            ppProviderInfo: **ISyncProviderInfo,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *Guid,
             dwClsContext: u32,
-            ppSyncProvider: **IRegisteredSyncProvider,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIInfo: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *Guid,
-            ppConfigUIInfo: **ISyncProviderConfigUIInfo,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderConfigUIFromInstanceId: fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: *Guid,
             dwClsContext: u32,
-            ppConfigUI: **ISyncProviderConfigUI,
+            ppConfigUI: ?*?*ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSyncProviderState: fn(
             self: *const ISyncProviderRegistration,
@@ -3476,7 +3476,7 @@ pub const ISyncProviderRegistration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: *const SyncProviderConfigUIConfiguration, ppConfigUIInfo: **ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: *const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderConfigUIRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pConfigUIConfig, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3484,11 +3484,11 @@ pub const ISyncProviderRegistration = extern struct {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProviderConfigUI(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: **IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviderConfigUIs(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: *const SyncProviderConfiguration, ppProviderInfo: **ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: *const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).CreateSyncProviderRegistrationInstance(@ptrCast(*const ISyncProviderRegistration, self), pProviderConfiguration, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3496,27 +3496,27 @@ pub const ISyncProviderRegistration = extern struct {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).UnregisterSyncProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: *Guid, ppProviderConfigUIInfo: **ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: *Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfoforProvider(@ptrCast(*const ISyncProviderRegistration, self), pguidProviderInstanceId, ppProviderConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: *const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: **IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: *const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).EnumerateSyncProviders(@ptrCast(*const ISyncProviderRegistration, self), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: *Guid, ppProviderInfo: **ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: *Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: *Guid, dwClsContext: u32, ppSyncProvider: **IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: *Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppSyncProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: *Guid, ppConfigUIInfo: **ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: *Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIInfo(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, ppConfigUIInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: *Guid, dwClsContext: u32, ppConfigUI: **ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: *Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderRegistration.VTable, self.vtable).GetSyncProviderConfigUIFromInstanceId(@ptrCast(*const ISyncProviderRegistration, self), pguidInstanceId, dwClsContext, ppConfigUI);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3543,7 +3543,7 @@ pub const ISyncProviderRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSyncProviderConfigUIInfos_Value = @import("../zig.zig").Guid.initString("F6BE2602-17C6-4658-A2D7-68ED3330F641");
+const IID_IEnumSyncProviderConfigUIInfos_Value = @import("../zig.zig").Guid.initString("f6be2602-17c6-4658-a2d7-68ed3330f641");
 pub const IID_IEnumSyncProviderConfigUIInfos = &IID_IEnumSyncProviderConfigUIInfos_Value;
 pub const IEnumSyncProviderConfigUIInfos = extern struct {
     pub const VTable = extern struct {
@@ -3563,7 +3563,7 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderConfigUIInfos,
-            ppEnum: **IEnumSyncProviderConfigUIInfos,
+            ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3582,14 +3582,14 @@ pub const IEnumSyncProviderConfigUIInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: **IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderConfigUIInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderConfigUIInfos, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumSyncProviderInfos_Value = @import("../zig.zig").Guid.initString("A04BA850-5EB1-460D-A973-393FCB608A11");
+const IID_IEnumSyncProviderInfos_Value = @import("../zig.zig").Guid.initString("a04ba850-5eb1-460d-a973-393fcb608a11");
 pub const IID_IEnumSyncProviderInfos = &IID_IEnumSyncProviderInfos_Value;
 pub const IEnumSyncProviderInfos = extern struct {
     pub const VTable = extern struct {
@@ -3609,7 +3609,7 @@ pub const IEnumSyncProviderInfos = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumSyncProviderInfos,
-            ppEnum: **IEnumSyncProviderInfos,
+            ppEnum: ?*?*IEnumSyncProviderInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3628,14 +3628,14 @@ pub const IEnumSyncProviderInfos = extern struct {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Reset(@ptrCast(*const IEnumSyncProviderInfos, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: **IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        pub fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumSyncProviderInfos.VTable, self.vtable).Clone(@ptrCast(*const IEnumSyncProviderInfos, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncProviderInfo_Value = @import("../zig.zig").Guid.initString("1EE135DE-88A4-4504-B0D0-F7920D7E5BA6");
+const IID_ISyncProviderInfo_Value = @import("../zig.zig").Guid.initString("1ee135de-88a4-4504-b0d0-f7920d7e5ba6");
 pub const IID_ISyncProviderInfo = &IID_ISyncProviderInfo_Value;
 pub const ISyncProviderInfo = extern struct {
     pub const VTable = extern struct {
@@ -3643,21 +3643,21 @@ pub const ISyncProviderInfo = extern struct {
         GetSyncProvider: fn(
             self: *const ISyncProviderInfo,
             dwClsContext: u32,
-            ppSyncProvider: **IRegisteredSyncProvider,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: **IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderInfo.VTable, self.vtable).GetSyncProvider(@ptrCast(*const ISyncProviderInfo, self), dwClsContext, ppSyncProvider);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncProviderConfigUIInfo_Value = @import("../zig.zig").Guid.initString("214141AE-33D7-4D8D-8E37-F227E880CE50");
+const IID_ISyncProviderConfigUIInfo_Value = @import("../zig.zig").Guid.initString("214141ae-33d7-4d8d-8e37-f227e880ce50");
 pub const IID_ISyncProviderConfigUIInfo = &IID_ISyncProviderConfigUIInfo_Value;
 pub const ISyncProviderConfigUIInfo = extern struct {
     pub const VTable = extern struct {
@@ -3665,21 +3665,21 @@ pub const ISyncProviderConfigUIInfo = extern struct {
         GetSyncProviderConfigUI: fn(
             self: *const ISyncProviderConfigUIInfo,
             dwClsContext: u32,
-            ppSyncProviderConfigUI: **ISyncProviderConfigUI,
+            ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: **ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUIInfo.VTable, self.vtable).GetSyncProviderConfigUI(@ptrCast(*const ISyncProviderConfigUIInfo, self), dwClsContext, ppSyncProviderConfigUI);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISyncProviderConfigUI_Value = @import("../zig.zig").Guid.initString("7B0705F6-CBCD-4071-AB05-3BDC364D4A0C");
+const IID_ISyncProviderConfigUI_Value = @import("../zig.zig").Guid.initString("7b0705f6-cbcd-4071-ab05-3bdc364d4a0c");
 pub const IID_ISyncProviderConfigUI = &IID_ISyncProviderConfigUI_Value;
 pub const ISyncProviderConfigUI = extern struct {
     pub const VTable = extern struct {
@@ -3692,13 +3692,13 @@ pub const ISyncProviderConfigUI = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRegisteredProperties: fn(
             self: *const ISyncProviderConfigUI,
-            ppConfigUIProperties: **IPropertyStore,
+            ppConfigUIProperties: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndRegisterNewSyncProvider: fn(
             self: *const ISyncProviderConfigUI,
             hwndParent: HWND,
             pUnkContext: ?*IUnknown,
-            ppProviderInfo: **ISyncProviderInfo,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ModifySyncProvider: fn(
             self: *const ISyncProviderConfigUI,
@@ -3715,11 +3715,11 @@ pub const ISyncProviderConfigUI = extern struct {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).Init(@ptrCast(*const ISyncProviderConfigUI, self), pguidInstanceId, pguidContentType, pConfigurationProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).GetRegisteredProperties(@ptrCast(*const ISyncProviderConfigUI, self), ppConfigUIProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: HWND, pUnkContext: ?*IUnknown, ppProviderInfo: **ISyncProviderInfo) callconv(.Inline) HRESULT {
+        pub fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncProviderConfigUI.VTable, self.vtable).CreateAndRegisterNewSyncProvider(@ptrCast(*const ISyncProviderConfigUI, self), hwndParent, pUnkContext, ppProviderInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3730,7 +3730,7 @@ pub const ISyncProviderConfigUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IRegisteredSyncProvider_Value = @import("../zig.zig").Guid.initString("913BCF76-47C1-40B5-A896-5E8A9C414C14");
+const IID_IRegisteredSyncProvider_Value = @import("../zig.zig").Guid.initString("913bcf76-47c1-40b5-a896-5e8a9c414c14");
 pub const IID_IRegisteredSyncProvider = &IID_IRegisteredSyncProvider_Value;
 pub const IRegisteredSyncProvider = extern struct {
     pub const VTable = extern struct {
@@ -3785,7 +3785,7 @@ pub const SRE_CONFIGUI_ADDED = SYNC_REGISTRATION_EVENT.SRE_CONFIGUI_ADDED;
 pub const SRE_CONFIGUI_REMOVED = SYNC_REGISTRATION_EVENT.SRE_CONFIGUI_REMOVED;
 pub const SRE_CONFIGUI_UPDATED = SYNC_REGISTRATION_EVENT.SRE_CONFIGUI_UPDATED;
 
-const IID_ISyncRegistrationChange_Value = @import("../zig.zig").Guid.initString("EEA0D9AE-6B29-43B4-9E70-E3AE33BB2C3B");
+const IID_ISyncRegistrationChange_Value = @import("../zig.zig").Guid.initString("eea0d9ae-6b29-43b4-9e70-e3ae33bb2c3b");
 pub const IID_ISyncRegistrationChange = &IID_ISyncRegistrationChange_Value;
 pub const ISyncRegistrationChange = extern struct {
     pub const VTable = extern struct {

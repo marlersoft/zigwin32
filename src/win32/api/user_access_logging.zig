@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-const IID_IEnumSpeechCommands_Value = @import("../zig.zig").Guid.initString("8C5DAC4F-083C-4B85-A4C9-71746048ADCA");
+const IID_IEnumSpeechCommands_Value = @import("../zig.zig").Guid.initString("8c5dac4f-083c-4b85-a4c9-71746048adca");
 pub const IID_IEnumSpeechCommands = &IID_IEnumSpeechCommands_Value;
 pub const IEnumSpeechCommands = extern struct {
     pub const VTable = extern struct {
@@ -52,7 +52,7 @@ pub const IEnumSpeechCommands = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISpeechCommandProvider_Value = @import("../zig.zig").Guid.initString("38E09D4C-586D-435A-B592-C8A86691DEC6");
+const IID_ISpeechCommandProvider_Value = @import("../zig.zig").Guid.initString("38e09d4c-586d-435a-b592-c8a86691dec6");
 pub const IID_ISpeechCommandProvider = &IID_ISpeechCommandProvider_Value;
 pub const ISpeechCommandProvider = extern struct {
     pub const VTable = extern struct {
@@ -84,7 +84,7 @@ pub const ISpeechCommandProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITfFnCustomSpeechCommand_Value = @import("../zig.zig").Guid.initString("FCA6C349-A12F-43A3-8DD6-5A5A4282577B");
+const IID_ITfFnCustomSpeechCommand_Value = @import("../zig.zig").Guid.initString("fca6c349-a12f-43a3-8dd6-5a5a4282577b");
 pub const IID_ITfFnCustomSpeechCommand = &IID_ITfFnCustomSpeechCommand_Value;
 pub const ITfFnCustomSpeechCommand = extern struct {
     pub const VTable = extern struct {

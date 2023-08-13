@@ -6,22 +6,22 @@
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
-const CLSID_CInitiateWinSAT_Value = @import("../zig.zig").Guid.initString("489331DC-F5E0-4528-9FDA-45331BF4A571");
+const CLSID_CInitiateWinSAT_Value = @import("../zig.zig").Guid.initString("489331dc-f5e0-4528-9fda-45331bf4a571");
 pub const CLSID_CInitiateWinSAT = &CLSID_CInitiateWinSAT_Value;
 
-const CLSID_CQueryWinSAT_Value = @import("../zig.zig").Guid.initString("F3BDFAD3-F276-49E9-9B17-C474F48F0764");
+const CLSID_CQueryWinSAT_Value = @import("../zig.zig").Guid.initString("f3bdfad3-f276-49e9-9b17-c474f48f0764");
 pub const CLSID_CQueryWinSAT = &CLSID_CQueryWinSAT_Value;
 
-const CLSID_CQueryAllWinSAT_Value = @import("../zig.zig").Guid.initString("05DF8D13-C355-47F4-A11E-851B338CEFB8");
+const CLSID_CQueryAllWinSAT_Value = @import("../zig.zig").Guid.initString("05df8d13-c355-47f4-a11e-851b338cefb8");
 pub const CLSID_CQueryAllWinSAT = &CLSID_CQueryAllWinSAT_Value;
 
-const CLSID_CProvideWinSATVisuals_Value = @import("../zig.zig").Guid.initString("9F377D7E-E551-44F8-9F94-9DB392B03B7B");
+const CLSID_CProvideWinSATVisuals_Value = @import("../zig.zig").Guid.initString("9f377d7e-e551-44f8-9f94-9db392b03b7b");
 pub const CLSID_CProvideWinSATVisuals = &CLSID_CProvideWinSATVisuals_Value;
 
-const CLSID_CAccessiblityWinSAT_Value = @import("../zig.zig").Guid.initString("6E18F9C6-A3EB-495A-89B7-956482E19F7A");
+const CLSID_CAccessiblityWinSAT_Value = @import("../zig.zig").Guid.initString("6e18f9c6-a3eb-495a-89b7-956482e19f7a");
 pub const CLSID_CAccessiblityWinSAT = &CLSID_CAccessiblityWinSAT_Value;
 
-const CLSID_CQueryOEMWinSATCustomization_Value = @import("../zig.zig").Guid.initString("C47A41B7-B729-424F-9AF9-5CB3934F2DFA");
+const CLSID_CQueryOEMWinSATCustomization_Value = @import("../zig.zig").Guid.initString("c47a41b7-b729-424f-9af9-5cb3934f2dfa");
 pub const CLSID_CQueryOEMWinSATCustomization = &CLSID_CQueryOEMWinSATCustomization_Value;
 
 pub const __MIDL___MIDL_itf_winsatcominterfacei_0000_0000_0001 = extern enum(i32) {
@@ -72,7 +72,7 @@ pub const WINSAT_BITMAP_SIZE = extern enum(i32) {
 pub const WINSAT_BITMAP_SIZE_SMALL = WINSAT_BITMAP_SIZE.SMALL;
 pub const WINSAT_BITMAP_SIZE_NORMAL = WINSAT_BITMAP_SIZE.NORMAL;
 
-const IID_IProvideWinSATAssessmentInfo_Value = @import("../zig.zig").Guid.initString("0CD1C380-52D3-4678-AC6F-E929E480BE9E");
+const IID_IProvideWinSATAssessmentInfo_Value = @import("../zig.zig").Guid.initString("0cd1c380-52d3-4678-ac6f-e929e480be9e");
 pub const IID_IProvideWinSATAssessmentInfo = &IID_IProvideWinSATAssessmentInfo_Value;
 pub const IProvideWinSATAssessmentInfo = extern struct {
     pub const VTable = extern struct {
@@ -109,7 +109,7 @@ pub const IProvideWinSATAssessmentInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProvideWinSATResultsInfo_Value = @import("../zig.zig").Guid.initString("F8334D5D-568E-4075-875F-9DF341506640");
+const IID_IProvideWinSATResultsInfo_Value = @import("../zig.zig").Guid.initString("f8334d5d-568e-4075-875f-9df341506640");
 pub const IID_IProvideWinSATResultsInfo = &IID_IProvideWinSATResultsInfo_Value;
 pub const IProvideWinSATResultsInfo = extern struct {
     pub const VTable = extern struct {
@@ -117,7 +117,7 @@ pub const IProvideWinSATResultsInfo = extern struct {
         GetAssessmentInfo: fn(
             self: *const IProvideWinSATResultsInfo,
             assessment: WINSAT_ASSESSMENT_TYPE,
-            ppinfo: **IProvideWinSATAssessmentInfo,
+            ppinfo: ?*?*IProvideWinSATAssessmentInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AssessmentState: fn(
             self: *const IProvideWinSATResultsInfo,
@@ -133,14 +133,14 @@ pub const IProvideWinSATResultsInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RatingStateDesc: fn(
             self: *const IProvideWinSATResultsInfo,
-            description: *BSTR,
+            description: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_GetAssessmentInfo(self: *const T, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: **IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
+        pub fn IProvideWinSATResultsInfo_GetAssessmentInfo(self: *const T, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).GetAssessmentInfo(@ptrCast(*const IProvideWinSATResultsInfo, self), assessment, ppinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -156,14 +156,14 @@ pub const IProvideWinSATResultsInfo = extern struct {
             return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_SystemRating(@ptrCast(*const IProvideWinSATResultsInfo, self), level);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATResultsInfo_get_RatingStateDesc(self: *const T, description: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IProvideWinSATResultsInfo_get_RatingStateDesc(self: *const T, description: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_RatingStateDesc(@ptrCast(*const IProvideWinSATResultsInfo, self), description);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IQueryRecentWinSATAssessment_Value = @import("../zig.zig").Guid.initString("F8AD5D1F-3B47-4BDC-9375-7C6B1DA4ECA7");
+const IID_IQueryRecentWinSATAssessment_Value = @import("../zig.zig").Guid.initString("f8ad5d1f-3b47-4bdc-9375-7c6b1da4eca7");
 pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_Value;
 pub const IQueryRecentWinSATAssessment = extern struct {
     pub const VTable = extern struct {
@@ -172,29 +172,29 @@ pub const IQueryRecentWinSATAssessment = extern struct {
             self: *const IQueryRecentWinSATAssessment,
             xPath: BSTR,
             namespaces: BSTR,
-            ppDomNodeList: **IXMLDOMNodeList,
+            ppDomNodeList: ?*?*IXMLDOMNodeList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Info: fn(
             self: *const IQueryRecentWinSATAssessment,
-            ppWinSATAssessmentInfo: **IProvideWinSATResultsInfo,
+            ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryRecentWinSATAssessment_get_XML(self: *const T, xPath: BSTR, namespaces: BSTR, ppDomNodeList: **IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        pub fn IQueryRecentWinSATAssessment_get_XML(self: *const T, xPath: BSTR, namespaces: BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryRecentWinSATAssessment.VTable, self.vtable).get_XML(@ptrCast(*const IQueryRecentWinSATAssessment, self), xPath, namespaces, ppDomNodeList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryRecentWinSATAssessment_get_Info(self: *const T, ppWinSATAssessmentInfo: **IProvideWinSATResultsInfo) callconv(.Inline) HRESULT {
+        pub fn IQueryRecentWinSATAssessment_get_Info(self: *const T, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryRecentWinSATAssessment.VTable, self.vtable).get_Info(@ptrCast(*const IQueryRecentWinSATAssessment, self), ppWinSATAssessmentInfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IProvideWinSATVisuals_Value = @import("../zig.zig").Guid.initString("A9F4ADE0-871A-42A3-B813-3078D25162C9");
+const IID_IProvideWinSATVisuals_Value = @import("../zig.zig").Guid.initString("a9f4ade0-871a-42a3-b813-3078d25162c9");
 pub const IID_IProvideWinSATVisuals = &IID_IProvideWinSATVisuals_Value;
 pub const IProvideWinSATVisuals = extern struct {
     pub const VTable = extern struct {
@@ -204,21 +204,21 @@ pub const IProvideWinSATVisuals = extern struct {
             bitmapSize: WINSAT_BITMAP_SIZE,
             state: WINSAT_ASSESSMENT_STATE,
             rating: f32,
-            pBitmap: *HBITMAP,
+            pBitmap: ?*HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideWinSATVisuals_get_Bitmap(self: *const T, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: *HBITMAP) callconv(.Inline) HRESULT {
+        pub fn IProvideWinSATVisuals_get_Bitmap(self: *const T, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProvideWinSATVisuals.VTable, self.vtable).get_Bitmap(@ptrCast(*const IProvideWinSATVisuals, self), bitmapSize, state, rating, pBitmap);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IQueryAllWinSATAssessments_Value = @import("../zig.zig").Guid.initString("0B89ED1D-6398-4FEA-87FC-567D8D19176F");
+const IID_IQueryAllWinSATAssessments_Value = @import("../zig.zig").Guid.initString("0b89ed1d-6398-4fea-87fc-567d8d19176f");
 pub const IID_IQueryAllWinSATAssessments = &IID_IQueryAllWinSATAssessments_Value;
 pub const IQueryAllWinSATAssessments = extern struct {
     pub const VTable = extern struct {
@@ -227,21 +227,21 @@ pub const IQueryAllWinSATAssessments = extern struct {
             self: *const IQueryAllWinSATAssessments,
             xPath: BSTR,
             namespaces: BSTR,
-            ppDomNodeList: **IXMLDOMNodeList,
+            ppDomNodeList: ?*?*IXMLDOMNodeList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryAllWinSATAssessments_get_AllXML(self: *const T, xPath: BSTR, namespaces: BSTR, ppDomNodeList: **IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        pub fn IQueryAllWinSATAssessments_get_AllXML(self: *const T, xPath: BSTR, namespaces: BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryAllWinSATAssessments.VTable, self.vtable).get_AllXML(@ptrCast(*const IQueryAllWinSATAssessments, self), xPath, namespaces, ppDomNodeList);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWinSATInitiateEvents_Value = @import("../zig.zig").Guid.initString("262A1918-BA0D-41D5-92C2-FAB4633EE74F");
+const IID_IWinSATInitiateEvents_Value = @import("../zig.zig").Guid.initString("262a1918-ba0d-41d5-92c2-fab4633ee74f");
 pub const IID_IWinSATInitiateEvents = &IID_IWinSATInitiateEvents_Value;
 pub const IWinSATInitiateEvents = extern struct {
     pub const VTable = extern struct {
@@ -273,7 +273,7 @@ pub const IWinSATInitiateEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IInitiateWinSATAssessment_Value = @import("../zig.zig").Guid.initString("D983FC50-F5BF-49D5-B5ED-CCCB18AA7FC1");
+const IID_IInitiateWinSATAssessment_Value = @import("../zig.zig").Guid.initString("d983fc50-f5bf-49d5-b5ed-cccb18aa7fc1");
 pub const IID_IInitiateWinSATAssessment = &IID_IInitiateWinSATAssessment_Value;
 pub const IInitiateWinSATAssessment = extern struct {
     pub const VTable = extern struct {
@@ -312,7 +312,7 @@ pub const IInitiateWinSATAssessment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAccessibleWinSAT_Value = @import("../zig.zig").Guid.initString("30E6018A-94A8-4FF8-A69A-71B67413F07B");
+const IID_IAccessibleWinSAT_Value = @import("../zig.zig").Guid.initString("30e6018a-94a8-4ff8-a69a-71b67413f07b");
 pub const IID_IAccessibleWinSAT = &IID_IAccessibleWinSAT_Value;
 pub const IAccessibleWinSAT = extern struct {
     pub const VTable = extern struct {
@@ -335,7 +335,7 @@ pub const IAccessibleWinSAT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IQueryOEMWinSATCustomization_Value = @import("../zig.zig").Guid.initString("BC9A6A9F-AD4E-420E-9953-B34671E9DF22");
+const IID_IQueryOEMWinSATCustomization_Value = @import("../zig.zig").Guid.initString("bc9a6a9f-ad4e-420e-9953-b34671e9df22");
 pub const IID_IQueryOEMWinSATCustomization = &IID_IQueryOEMWinSATCustomization_Value;
 pub const IQueryOEMWinSATCustomization = extern struct {
     pub const VTable = extern struct {

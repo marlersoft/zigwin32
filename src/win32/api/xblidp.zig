@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_XblIdpAuthManager_Value = @import("../zig.zig").Guid.initString("CE23534B-56D8-4978-86A2-7EE570640468");
+const CLSID_XblIdpAuthManager_Value = @import("../zig.zig").Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
 pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
 
-const CLSID_XblIdpAuthTokenResult_Value = @import("../zig.zig").Guid.initString("9F493441-744A-410C-AE2B-9A22F7C7731F");
+const CLSID_XblIdpAuthTokenResult_Value = @import("../zig.zig").Guid.initString("9f493441-744a-410c-ae2b-9a22f7c7731f");
 pub const CLSID_XblIdpAuthTokenResult = &CLSID_XblIdpAuthTokenResult_Value;
 
 pub const XBL_IDP_AUTH_TOKEN_STATUS = extern enum(i32) {
@@ -33,7 +33,7 @@ pub const XBL_IDP_AUTH_TOKEN_STATUS_OFFLINE_NO_CONSENT = XBL_IDP_AUTH_TOKEN_STAT
 pub const XBL_IDP_AUTH_TOKEN_STATUS_VIEW_NOT_SET = XBL_IDP_AUTH_TOKEN_STATUS.VIEW_NOT_SET;
 pub const XBL_IDP_AUTH_TOKEN_STATUS_UNKNOWN = XBL_IDP_AUTH_TOKEN_STATUS.UNKNOWN;
 
-const IID_IXblIdpAuthManager_Value = @import("../zig.zig").Guid.initString("EB5DDB08-8BBF-449B-AC21-B02DDEB3B136");
+const IID_IXblIdpAuthManager_Value = @import("../zig.zig").Guid.initString("eb5ddb08-8bbf-449b-ac21-b02ddeb3b136");
 pub const IID_IXblIdpAuthManager = &IID_IXblIdpAuthManager_Value;
 pub const IXblIdpAuthManager = extern struct {
     pub const VTable = extern struct {
@@ -107,7 +107,7 @@ pub const IXblIdpAuthManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXblIdpAuthTokenResult_Value = @import("../zig.zig").Guid.initString("46CE0225-F267-4D68-B299-B2762552DEC1");
+const IID_IXblIdpAuthTokenResult_Value = @import("../zig.zig").Guid.initString("46ce0225-f267-4d68-b299-b2762552dec1");
 pub const IID_IXblIdpAuthTokenResult = &IID_IXblIdpAuthTokenResult_Value;
 pub const IXblIdpAuthTokenResult = extern struct {
     pub const VTable = extern struct {
@@ -280,7 +280,7 @@ pub const IXblIdpAuthTokenResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXblIdpAuthTokenResult2_Value = @import("../zig.zig").Guid.initString("75D760B0-60B9-412D-994F-26B2CD5F7812");
+const IID_IXblIdpAuthTokenResult2_Value = @import("../zig.zig").Guid.initString("75d760b0-60b9-412d-994f-26b2cd5f7812");
 pub const IID_IXblIdpAuthTokenResult2 = &IID_IXblIdpAuthTokenResult2_Value;
 pub const IXblIdpAuthTokenResult2 = extern struct {
     pub const VTable = extern struct {

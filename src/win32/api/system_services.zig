@@ -17869,7 +17869,7 @@ pub const PRINT_EXECUTION_DATA = extern struct {
     clientAppPID: u32,
 };
 
-const IID_IServiceProvider_Value = @import("../zig.zig").Guid.initString("6D5140C1-7436-11CE-8034-00AA006009FA");
+const IID_IServiceProvider_Value = @import("../zig.zig").Guid.initString("6d5140c1-7436-11ce-8034-00aa006009fa");
 pub const IID_IServiceProvider = &IID_IServiceProvider_Value;
 pub const IServiceProvider = extern struct {
     pub const VTable = extern struct {
@@ -18709,7 +18709,7 @@ pub const VDS_PATH_POLICY = extern struct {
     ulWeight: u32,
 };
 
-const IID_IEnumVdsObject_Value = @import("../zig.zig").Guid.initString("118610B7-8D94-4030-B5B8-500889788E4E");
+const IID_IEnumVdsObject_Value = @import("../zig.zig").Guid.initString("118610b7-8d94-4030-b5b8-500889788e4e");
 pub const IID_IEnumVdsObject = &IID_IEnumVdsObject_Value;
 pub const IEnumVdsObject = extern struct {
     pub const VTable = extern struct {
@@ -18729,7 +18729,7 @@ pub const IEnumVdsObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumVdsObject,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -18748,14 +18748,14 @@ pub const IEnumVdsObject = extern struct {
             return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Reset(@ptrCast(*const IEnumVdsObject, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumVdsObject_Clone(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IEnumVdsObject_Clone(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Clone(@ptrCast(*const IEnumVdsObject, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsAsync_Value = @import("../zig.zig").Guid.initString("D5D23B6D-5A55-4492-9889-397A3C2D2DBC");
+const IID_IVdsAsync_Value = @import("../zig.zig").Guid.initString("d5d23b6d-5a55-4492-9889-397a3c2d2dbc");
 pub const IID_IVdsAsync = &IID_IVdsAsync_Value;
 pub const IVdsAsync = extern struct {
     pub const VTable = extern struct {
@@ -18793,7 +18793,7 @@ pub const IVdsAsync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsAdviseSink_Value = @import("../zig.zig").Guid.initString("8326CD1D-CF59-4936-B786-5EFC08798E25");
+const IID_IVdsAdviseSink_Value = @import("../zig.zig").Guid.initString("8326cd1d-cf59-4936-b786-5efc08798e25");
 pub const IID_IVdsAdviseSink = &IID_IVdsAdviseSink_Value;
 pub const IVdsAdviseSink = extern struct {
     pub const VTable = extern struct {
@@ -18815,7 +18815,7 @@ pub const IVdsAdviseSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsProvider_Value = @import("../zig.zig").Guid.initString("10C5E575-7984-4E81-A56B-431F5F92AE42");
+const IID_IVdsProvider_Value = @import("../zig.zig").Guid.initString("10c5e575-7984-4e81-a56b-431f5f92ae42");
 pub const IID_IVdsProvider = &IID_IVdsProvider_Value;
 pub const IVdsProvider = extern struct {
     pub const VTable = extern struct {
@@ -18836,7 +18836,7 @@ pub const IVdsProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsProviderSupport_Value = @import("../zig.zig").Guid.initString("1732BE13-E8F9-4A03-BFBC-5F616AA66CE1");
+const IID_IVdsProviderSupport_Value = @import("../zig.zig").Guid.initString("1732be13-e8f9-4a03-bfbc-5f616aa66ce1");
 pub const IID_IVdsProviderSupport = &IID_IVdsProviderSupport_Value;
 pub const IVdsProviderSupport = extern struct {
     pub const VTable = extern struct {
@@ -18857,7 +18857,7 @@ pub const IVdsProviderSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsProviderPrivate_Value = @import("../zig.zig").Guid.initString("11F3CD41-B7E8-48FF-9472-9DFF018AA292");
+const IID_IVdsProviderPrivate_Value = @import("../zig.zig").Guid.initString("11f3cd41-b7e8-48ff-9472-9dff018aa292");
 pub const IID_IVdsProviderPrivate = &IID_IVdsProviderPrivate_Value;
 pub const IVdsProviderPrivate = extern struct {
     pub const VTable = extern struct {
@@ -18866,7 +18866,7 @@ pub const IVdsProviderPrivate = extern struct {
             self: *const IVdsProviderPrivate,
             ObjectId: Guid,
             type: VDS_OBJECT_TYPE,
-            ppObjectUnk: **IUnknown,
+            ppObjectUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnLoad: fn(
             self: *const IVdsProviderPrivate,
@@ -18882,7 +18882,7 @@ pub const IVdsProviderPrivate = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsProviderPrivate_GetObject(self: *const T, ObjectId: Guid, type: VDS_OBJECT_TYPE, ppObjectUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IVdsProviderPrivate_GetObject(self: *const T, ObjectId: Guid, type: VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsProviderPrivate.VTable, self.vtable).GetObject(@ptrCast(*const IVdsProviderPrivate, self), ObjectId, type, ppObjectUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19541,14 +19541,14 @@ pub const VDS_STORAGE_POOL_DRIVE_EXTENT = extern struct {
     bUsed: BOOL,
 };
 
-const IID_IVdsHwProvider_Value = @import("../zig.zig").Guid.initString("D99BDAAE-B13A-4178-9FDB-E27F16B4603E");
+const IID_IVdsHwProvider_Value = @import("../zig.zig").Guid.initString("d99bdaae-b13a-4178-9fdb-e27f16b4603e");
 pub const IID_IVdsHwProvider = &IID_IVdsHwProvider_Value;
 pub const IVdsHwProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QuerySubSystems: fn(
             self: *const IVdsHwProvider,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reenumerate: fn(
             self: *const IVdsHwProvider,
@@ -19561,7 +19561,7 @@ pub const IVdsHwProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsHwProvider_QuerySubSystems(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsHwProvider_QuerySubSystems(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsHwProvider.VTable, self.vtable).QuerySubSystems(@ptrCast(*const IVdsHwProvider, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19576,7 +19576,7 @@ pub const IVdsHwProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsHwProviderType_Value = @import("../zig.zig").Guid.initString("3E0F5166-542D-4FC6-947A-012174240B7E");
+const IID_IVdsHwProviderType_Value = @import("../zig.zig").Guid.initString("3e0f5166-542d-4fc6-947a-012174240b7e");
 pub const IID_IVdsHwProviderType = &IID_IVdsHwProviderType_Value;
 pub const IVdsHwProviderType = extern struct {
     pub const VTable = extern struct {
@@ -19597,7 +19597,7 @@ pub const IVdsHwProviderType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsHwProviderType2_Value = @import("../zig.zig").Guid.initString("8190236F-C4D0-4E81-8011-D69512FCC984");
+const IID_IVdsHwProviderType2_Value = @import("../zig.zig").Guid.initString("8190236f-c4d0-4e81-8011-d69512fcc984");
 pub const IID_IVdsHwProviderType2 = &IID_IVdsHwProviderType2_Value;
 pub const IVdsHwProviderType2 = extern struct {
     pub const VTable = extern struct {
@@ -19618,7 +19618,7 @@ pub const IVdsHwProviderType2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsHwProviderStoragePools_Value = @import("../zig.zig").Guid.initString("D5B5937A-F188-4C79-B86C-11C920AD11B8");
+const IID_IVdsHwProviderStoragePools_Value = @import("../zig.zig").Guid.initString("d5b5937a-f188-4c79-b86c-11c920ad11b8");
 pub const IID_IVdsHwProviderStoragePools = &IID_IVdsHwProviderStoragePools_Value;
 pub const IVdsHwProviderStoragePools = extern struct {
     pub const VTable = extern struct {
@@ -19628,7 +19628,7 @@ pub const IVdsHwProviderStoragePools = extern struct {
             ulFlags: u32,
             ullRemainingFreeSpace: u64,
             pPoolAttributes: ?*VDS_POOL_ATTRIBUTES,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLunInStoragePool: fn(
             self: *const IVdsHwProviderStoragePools,
@@ -19637,7 +19637,7 @@ pub const IVdsHwProviderStoragePools = extern struct {
             StoragePoolId: Guid,
             pwszUnmaskingList: PWSTR,
             pHints2: ?*VDS_HINTS2,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryMaxLunCreateSizeInStoragePool: fn(
             self: *const IVdsHwProviderStoragePools,
@@ -19651,11 +19651,11 @@ pub const IVdsHwProviderStoragePools = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsHwProviderStoragePools_QueryStoragePools(self: *const T, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsHwProviderStoragePools_QueryStoragePools(self: *const T, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsHwProviderStoragePools.VTable, self.vtable).QueryStoragePools(@ptrCast(*const IVdsHwProviderStoragePools, self), ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsHwProviderStoragePools_CreateLunInStoragePool(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsHwProviderStoragePools_CreateLunInStoragePool(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsHwProviderStoragePools.VTable, self.vtable).CreateLunInStoragePool(@ptrCast(*const IVdsHwProviderStoragePools, self), type, ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19666,7 +19666,7 @@ pub const IVdsHwProviderStoragePools = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsSubSystem_Value = @import("../zig.zig").Guid.initString("6FCEE2D3-6D90-4F91-80E2-A5C7CAACA9D8");
+const IID_IVdsSubSystem_Value = @import("../zig.zig").Guid.initString("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8");
 pub const IID_IVdsSubSystem = &IID_IVdsSubSystem_Value;
 pub const IVdsSubSystem = extern struct {
     pub const VTable = extern struct {
@@ -19677,25 +19677,25 @@ pub const IVdsSubSystem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProvider: fn(
             self: *const IVdsSubSystem,
-            ppProvider: **IVdsProvider,
+            ppProvider: ?*?*IVdsProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryControllers: fn(
             self: *const IVdsSubSystem,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryLuns: fn(
             self: *const IVdsSubSystem,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryDrives: fn(
             self: *const IVdsSubSystem,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDrive: fn(
             self: *const IVdsSubSystem,
             sBusNumber: i16,
             sSlotNumber: i16,
-            ppDrive: **IVdsDrive,
+            ppDrive: ?*?*IVdsDrive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reenumerate: fn(
             self: *const IVdsSubSystem,
@@ -19715,7 +19715,7 @@ pub const IVdsSubSystem = extern struct {
             lNumberOfDrives: i32,
             pwszUnmaskingList: PWSTR,
             pHints: ?*VDS_HINTS,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReplaceDrive: fn(
             self: *const IVdsSubSystem,
@@ -19743,23 +19743,23 @@ pub const IVdsSubSystem = extern struct {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsSubSystem, self), pSubSystemProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_GetProvider(self: *const T, ppProvider: **IVdsProvider) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_GetProvider(self: *const T, ppProvider: ?*?*IVdsProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetProvider(@ptrCast(*const IVdsSubSystem, self), ppProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_QueryControllers(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_QueryControllers(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryControllers(@ptrCast(*const IVdsSubSystem, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_QueryLuns(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_QueryLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryLuns(@ptrCast(*const IVdsSubSystem, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_QueryDrives(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_QueryDrives(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryDrives(@ptrCast(*const IVdsSubSystem, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_GetDrive(self: *const T, sBusNumber: i16, sSlotNumber: i16, ppDrive: **IVdsDrive) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_GetDrive(self: *const T, sBusNumber: i16, sSlotNumber: i16, ppDrive: ?*?*IVdsDrive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetDrive(@ptrCast(*const IVdsSubSystem, self), sBusNumber, sSlotNumber, ppDrive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19771,7 +19771,7 @@ pub const IVdsSubSystem = extern struct {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).SetControllerStatus(@ptrCast(*const IVdsSubSystem, self), pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem_CreateLun(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: PWSTR, pHints: ?*VDS_HINTS, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem_CreateLun(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).CreateLun(@ptrCast(*const IVdsSubSystem, self), type, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19790,7 +19790,7 @@ pub const IVdsSubSystem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsSubSystem2_Value = @import("../zig.zig").Guid.initString("BE666735-7800-4A77-9D9C-40F85B87E292");
+const IID_IVdsSubSystem2_Value = @import("../zig.zig").Guid.initString("be666735-7800-4a77-9d9c-40f85b87e292");
 pub const IID_IVdsSubSystem2 = &IID_IVdsSubSystem2_Value;
 pub const IVdsSubSystem2 = extern struct {
     pub const VTable = extern struct {
@@ -19804,7 +19804,7 @@ pub const IVdsSubSystem2 = extern struct {
             sBusNumber: i16,
             sSlotNumber: i16,
             ulEnclosureNumber: u32,
-            ppDrive: **IVdsDrive,
+            ppDrive: ?*?*IVdsDrive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateLun2: fn(
             self: *const IVdsSubSystem2,
@@ -19814,7 +19814,7 @@ pub const IVdsSubSystem2 = extern struct {
             lNumberOfDrives: i32,
             pwszUnmaskingList: PWSTR,
             pHints2: ?*VDS_HINTS2,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryMaxLunCreateSize2: fn(
             self: *const IVdsSubSystem2,
@@ -19833,11 +19833,11 @@ pub const IVdsSubSystem2 = extern struct {
             return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).GetProperties2(@ptrCast(*const IVdsSubSystem2, self), pSubSystemProp2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem2_GetDrive2(self: *const T, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: **IVdsDrive) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem2_GetDrive2(self: *const T, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).GetDrive2(@ptrCast(*const IVdsSubSystem2, self), sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystem2_CreateLun2(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystem2_CreateLun2(self: *const T, type: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).CreateLun2(@ptrCast(*const IVdsSubSystem2, self), type, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19848,7 +19848,7 @@ pub const IVdsSubSystem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsSubSystemNaming_Value = @import("../zig.zig").Guid.initString("0D70FAA3-9CD4-4900-AA20-6981B6AAFC75");
+const IID_IVdsSubSystemNaming_Value = @import("../zig.zig").Guid.initString("0d70faa3-9cd4-4900-aa20-6981b6aafc75");
 pub const IID_IVdsSubSystemNaming = &IID_IVdsSubSystemNaming_Value;
 pub const IVdsSubSystemNaming = extern struct {
     pub const VTable = extern struct {
@@ -19869,24 +19869,24 @@ pub const IVdsSubSystemNaming = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsSubSystemIscsi_Value = @import("../zig.zig").Guid.initString("0027346F-40D0-4B45-8CEC-5906DC0380C8");
+const IID_IVdsSubSystemIscsi_Value = @import("../zig.zig").Guid.initString("0027346f-40d0-4b45-8cec-5906dc0380c8");
 pub const IID_IVdsSubSystemIscsi = &IID_IVdsSubSystemIscsi_Value;
 pub const IVdsSubSystemIscsi = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryTargets: fn(
             self: *const IVdsSubSystemIscsi,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryPortals: fn(
             self: *const IVdsSubSystemIscsi,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTarget: fn(
             self: *const IVdsSubSystemIscsi,
             pwszIscsiName: ?PWSTR,
             pwszFriendlyName: PWSTR,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetIpsecGroupPresharedKey: fn(
             self: *const IVdsSubSystemIscsi,
@@ -19897,15 +19897,15 @@ pub const IVdsSubSystemIscsi = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystemIscsi_QueryTargets(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystemIscsi_QueryTargets(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).QueryTargets(@ptrCast(*const IVdsSubSystemIscsi, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystemIscsi_QueryPortals(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystemIscsi_QueryPortals(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).QueryPortals(@ptrCast(*const IVdsSubSystemIscsi, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsSubSystemIscsi_CreateTarget(self: *const T, pwszIscsiName: ?PWSTR, pwszFriendlyName: PWSTR, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsSubSystemIscsi_CreateTarget(self: *const T, pwszIscsiName: ?PWSTR, pwszFriendlyName: PWSTR, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).CreateTarget(@ptrCast(*const IVdsSubSystemIscsi, self), pwszIscsiName, pwszFriendlyName, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19916,7 +19916,7 @@ pub const IVdsSubSystemIscsi = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsSubSystemInterconnect_Value = @import("../zig.zig").Guid.initString("9E6FA560-C141-477B-83BA-0B6C38F7FEBF");
+const IID_IVdsSubSystemInterconnect_Value = @import("../zig.zig").Guid.initString("9e6fa560-c141-477b-83ba-0b6c38f7febf");
 pub const IID_IVdsSubSystemInterconnect = &IID_IVdsSubSystemInterconnect_Value;
 pub const IVdsSubSystemInterconnect = extern struct {
     pub const VTable = extern struct {
@@ -19937,7 +19937,7 @@ pub const IVdsSubSystemInterconnect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsControllerPort_Value = @import("../zig.zig").Guid.initString("18691D0D-4E7F-43E8-92E4-CF44BEEED11C");
+const IID_IVdsControllerPort_Value = @import("../zig.zig").Guid.initString("18691d0d-4e7f-43e8-92e4-cf44beeed11c");
 pub const IID_IVdsControllerPort = &IID_IVdsControllerPort_Value;
 pub const IVdsControllerPort = extern struct {
     pub const VTable = extern struct {
@@ -19948,11 +19948,11 @@ pub const IVdsControllerPort = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetController: fn(
             self: *const IVdsControllerPort,
-            ppController: **IVdsController,
+            ppController: ?*?*IVdsController,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedLuns: fn(
             self: *const IVdsControllerPort,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IVdsControllerPort,
@@ -19970,11 +19970,11 @@ pub const IVdsControllerPort = extern struct {
             return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsControllerPort, self), pPortProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsControllerPort_GetController(self: *const T, ppController: **IVdsController) callconv(.Inline) HRESULT {
+        pub fn IVdsControllerPort_GetController(self: *const T, ppController: ?*?*IVdsController) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).GetController(@ptrCast(*const IVdsControllerPort, self), ppController);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsControllerPort_QueryAssociatedLuns(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsControllerPort_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsControllerPort, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19989,7 +19989,7 @@ pub const IVdsControllerPort = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsController_Value = @import("../zig.zig").Guid.initString("CB53D96E-DFFB-474A-A078-790D1E2BC082");
+const IID_IVdsController_Value = @import("../zig.zig").Guid.initString("cb53d96e-dffb-474a-a078-790d1e2bc082");
 pub const IID_IVdsController = &IID_IVdsController_Value;
 pub const IVdsController = extern struct {
     pub const VTable = extern struct {
@@ -20000,7 +20000,7 @@ pub const IVdsController = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubSystem: fn(
             self: *const IVdsController,
-            ppSubSystem: **IVdsSubSystem,
+            ppSubSystem: ?*?*IVdsSubSystem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPortProperties: fn(
             self: *const IVdsController,
@@ -20018,7 +20018,7 @@ pub const IVdsController = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedLuns: fn(
             self: *const IVdsController,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStatus: fn(
             self: *const IVdsController,
@@ -20033,7 +20033,7 @@ pub const IVdsController = extern struct {
             return @ptrCast(*const IVdsController.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsController, self), pControllerProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsController_GetSubSystem(self: *const T, ppSubSystem: **IVdsSubSystem) callconv(.Inline) HRESULT {
+        pub fn IVdsController_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsController.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsController, self), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20053,7 +20053,7 @@ pub const IVdsController = extern struct {
             return @ptrCast(*const IVdsController.VTable, self.vtable).Reset(@ptrCast(*const IVdsController, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsController_QueryAssociatedLuns(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsController_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsController.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsController, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20064,28 +20064,28 @@ pub const IVdsController = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsControllerControllerPort_Value = @import("../zig.zig").Guid.initString("CA5D735F-6BAE-42C0-B30E-F2666045CE71");
+const IID_IVdsControllerControllerPort_Value = @import("../zig.zig").Guid.initString("ca5d735f-6bae-42c0-b30e-f2666045ce71");
 pub const IID_IVdsControllerControllerPort = &IID_IVdsControllerControllerPort_Value;
 pub const IVdsControllerControllerPort = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryControllerPorts: fn(
             self: *const IVdsControllerControllerPort,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsControllerControllerPort_QueryControllerPorts(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsControllerControllerPort_QueryControllerPorts(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsControllerControllerPort.VTable, self.vtable).QueryControllerPorts(@ptrCast(*const IVdsControllerControllerPort, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsDrive_Value = @import("../zig.zig").Guid.initString("FF24EFA4-AADE-4B6B-898B-EAA6A20887C7");
+const IID_IVdsDrive_Value = @import("../zig.zig").Guid.initString("ff24efa4-aade-4b6b-898b-eaa6a20887c7");
 pub const IID_IVdsDrive = &IID_IVdsDrive_Value;
 pub const IVdsDrive = extern struct {
     pub const VTable = extern struct {
@@ -20096,7 +20096,7 @@ pub const IVdsDrive = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubSystem: fn(
             self: *const IVdsDrive,
-            ppSubSystem: **IVdsSubSystem,
+            ppSubSystem: ?*?*IVdsSubSystem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryExtents: fn(
             self: *const IVdsDrive,
@@ -20124,7 +20124,7 @@ pub const IVdsDrive = extern struct {
             return @ptrCast(*const IVdsDrive.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsDrive, self), pDriveProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsDrive_GetSubSystem(self: *const T, ppSubSystem: **IVdsSubSystem) callconv(.Inline) HRESULT {
+        pub fn IVdsDrive_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsDrive.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsDrive, self), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20147,7 +20147,7 @@ pub const IVdsDrive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsDrive2_Value = @import("../zig.zig").Guid.initString("60B5A730-ADDF-4436-8CA7-5769E2D1FFA4");
+const IID_IVdsDrive2_Value = @import("../zig.zig").Guid.initString("60b5a730-addf-4436-8ca7-5769e2d1ffa4");
 pub const IID_IVdsDrive2 = &IID_IVdsDrive2_Value;
 pub const IVdsDrive2 = extern struct {
     pub const VTable = extern struct {
@@ -20168,7 +20168,7 @@ pub const IVdsDrive2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLun_Value = @import("../zig.zig").Guid.initString("3540A9C7-E60F-4111-A840-8BBA6C2C83D8");
+const IID_IVdsLun_Value = @import("../zig.zig").Guid.initString("3540a9c7-e60f-4111-a840-8bba6c2c83d8");
 pub const IID_IVdsLun = &IID_IVdsLun_Value;
 pub const IVdsLun = extern struct {
     pub const VTable = extern struct {
@@ -20179,7 +20179,7 @@ pub const IVdsLun = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubSystem: fn(
             self: *const IVdsLun,
-            ppSubSystem: **IVdsSubSystem,
+            ppSubSystem: ?*?*IVdsSubSystem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIdentificationData: fn(
             self: *const IVdsLun,
@@ -20187,37 +20187,37 @@ pub const IVdsLun = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryActiveControllers: fn(
             self: *const IVdsLun,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Extend: fn(
             self: *const IVdsLun,
             ullNumberOfBytesToAdd: u64,
             pDriveIdArray: ?[*]Guid,
             lNumberOfDrives: i32,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Shrink: fn(
             self: *const IVdsLun,
             ullNumberOfBytesToRemove: u64,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryPlexes: fn(
             self: *const IVdsLun,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPlex: fn(
             self: *const IVdsLun,
             lunId: Guid,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemovePlex: fn(
             self: *const IVdsLun,
             plexId: Guid,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Recover: fn(
             self: *const IVdsLun,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMask: fn(
             self: *const IVdsLun,
@@ -20260,7 +20260,7 @@ pub const IVdsLun = extern struct {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsLun, self), pLunProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_GetSubSystem(self: *const T, ppSubSystem: **IVdsSubSystem) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsLun, self), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20268,31 +20268,31 @@ pub const IVdsLun = extern struct {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).GetIdentificationData(@ptrCast(*const IVdsLun, self), pLunInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_QueryActiveControllers(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_QueryActiveControllers(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryActiveControllers(@ptrCast(*const IVdsLun, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_Extend(self: *const T, ullNumberOfBytesToAdd: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_Extend(self: *const T, ullNumberOfBytesToAdd: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).Extend(@ptrCast(*const IVdsLun, self), ullNumberOfBytesToAdd, pDriveIdArray, lNumberOfDrives, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_Shrink(self: *const T, ullNumberOfBytesToRemove: u64, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_Shrink(self: *const T, ullNumberOfBytesToRemove: u64, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).Shrink(@ptrCast(*const IVdsLun, self), ullNumberOfBytesToRemove, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_QueryPlexes(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_QueryPlexes(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryPlexes(@ptrCast(*const IVdsLun, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_AddPlex(self: *const T, lunId: Guid, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_AddPlex(self: *const T, lunId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).AddPlex(@ptrCast(*const IVdsLun, self), lunId, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_RemovePlex(self: *const T, plexId: Guid, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_RemovePlex(self: *const T, plexId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).RemovePlex(@ptrCast(*const IVdsLun, self), plexId, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLun_Recover(self: *const T, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsLun_Recover(self: *const T, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLun.VTable, self.vtable).Recover(@ptrCast(*const IVdsLun, self), ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20327,7 +20327,7 @@ pub const IVdsLun = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLun2_Value = @import("../zig.zig").Guid.initString("E5B3A735-9EFB-499A-8071-4394D9EE6FCB");
+const IID_IVdsLun2_Value = @import("../zig.zig").Guid.initString("e5b3a735-9efb-499a-8071-4394d9ee6fcb");
 pub const IID_IVdsLun2 = &IID_IVdsLun2_Value;
 pub const IVdsLun2 = extern struct {
     pub const VTable = extern struct {
@@ -20356,7 +20356,7 @@ pub const IVdsLun2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunNaming_Value = @import("../zig.zig").Guid.initString("907504CB-6B4E-4D88-A34D-17BA661FBB06");
+const IID_IVdsLunNaming_Value = @import("../zig.zig").Guid.initString("907504cb-6b4e-4d88-a34d-17ba661fbb06");
 pub const IID_IVdsLunNaming = &IID_IVdsLunNaming_Value;
 pub const IVdsLunNaming = extern struct {
     pub const VTable = extern struct {
@@ -20377,7 +20377,7 @@ pub const IVdsLunNaming = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunNumber_Value = @import("../zig.zig").Guid.initString("D3F95E46-54B3-41F9-B678-0F1871443A08");
+const IID_IVdsLunNumber_Value = @import("../zig.zig").Guid.initString("d3f95e46-54b3-41f9-b678-0f1871443a08");
 pub const IID_IVdsLunNumber = &IID_IVdsLunNumber_Value;
 pub const IVdsLunNumber = extern struct {
     pub const VTable = extern struct {
@@ -20398,7 +20398,7 @@ pub const IVdsLunNumber = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunControllerPorts_Value = @import("../zig.zig").Guid.initString("451FE266-DA6D-406A-BB60-82E534F85AEB");
+const IID_IVdsLunControllerPorts_Value = @import("../zig.zig").Guid.initString("451fe266-da6d-406a-bb60-82e534f85aeb");
 pub const IID_IVdsLunControllerPorts = &IID_IVdsLunControllerPorts_Value;
 pub const IVdsLunControllerPorts = extern struct {
     pub const VTable = extern struct {
@@ -20412,7 +20412,7 @@ pub const IVdsLunControllerPorts = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryActiveControllerPorts: fn(
             self: *const IVdsLunControllerPorts,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20423,14 +20423,14 @@ pub const IVdsLunControllerPorts = extern struct {
             return @ptrCast(*const IVdsLunControllerPorts.VTable, self.vtable).AssociateControllerPorts(@ptrCast(*const IVdsLunControllerPorts, self), pActiveControllerPortIdArray, lNumberOfActiveControllerPorts, pInactiveControllerPortIdArray, lNumberOfInactiveControllerPorts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunControllerPorts_QueryActiveControllerPorts(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsLunControllerPorts_QueryActiveControllerPorts(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLunControllerPorts.VTable, self.vtable).QueryActiveControllerPorts(@ptrCast(*const IVdsLunControllerPorts, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunMpio_Value = @import("../zig.zig").Guid.initString("7C5FBAE3-333A-48A1-A982-33C15788CDE3");
+const IID_IVdsLunMpio_Value = @import("../zig.zig").Guid.initString("7c5fbae3-333a-48a1-a982-33c15788cde3");
 pub const IID_IVdsLunMpio = &IID_IVdsLunMpio_Value;
 pub const IVdsLunMpio = extern struct {
     pub const VTable = extern struct {
@@ -20480,7 +20480,7 @@ pub const IVdsLunMpio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunIscsi_Value = @import("../zig.zig").Guid.initString("0D7C1E64-B59B-45AE-B86A-2C2CC6A42067");
+const IID_IVdsLunIscsi_Value = @import("../zig.zig").Guid.initString("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067");
 pub const IID_IVdsLunIscsi = &IID_IVdsLunIscsi_Value;
 pub const IVdsLunIscsi = extern struct {
     pub const VTable = extern struct {
@@ -20492,7 +20492,7 @@ pub const IVdsLunIscsi = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedTargets: fn(
             self: *const IVdsLunIscsi,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20503,14 +20503,14 @@ pub const IVdsLunIscsi = extern struct {
             return @ptrCast(*const IVdsLunIscsi.VTable, self.vtable).AssociateTargets(@ptrCast(*const IVdsLunIscsi, self), pTargetIdArray, lNumberOfTargets);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunIscsi_QueryAssociatedTargets(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsLunIscsi_QueryAssociatedTargets(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLunIscsi.VTable, self.vtable).QueryAssociatedTargets(@ptrCast(*const IVdsLunIscsi, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsLunPlex_Value = @import("../zig.zig").Guid.initString("0EE1A790-5D2E-4ABB-8C99-C481E8BE2138");
+const IID_IVdsLunPlex_Value = @import("../zig.zig").Guid.initString("0ee1a790-5d2e-4abb-8c99-c481e8be2138");
 pub const IID_IVdsLunPlex = &IID_IVdsLunPlex_Value;
 pub const IVdsLunPlex = extern struct {
     pub const VTable = extern struct {
@@ -20521,7 +20521,7 @@ pub const IVdsLunPlex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLun: fn(
             self: *const IVdsLunPlex,
-            ppLun: **IVdsLun,
+            ppLun: ?*?*IVdsLun,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryExtents: fn(
             self: *const IVdsLunPlex,
@@ -20545,7 +20545,7 @@ pub const IVdsLunPlex = extern struct {
             return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsLunPlex, self), pPlexProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunPlex_GetLun(self: *const T, ppLun: **IVdsLun) callconv(.Inline) HRESULT {
+        pub fn IVdsLunPlex_GetLun(self: *const T, ppLun: ?*?*IVdsLun) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).GetLun(@ptrCast(*const IVdsLunPlex, self), ppLun);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20564,7 +20564,7 @@ pub const IVdsLunPlex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsIscsiPortal_Value = @import("../zig.zig").Guid.initString("7FA1499D-EC85-4A8A-A47B-FF69201FCD34");
+const IID_IVdsIscsiPortal_Value = @import("../zig.zig").Guid.initString("7fa1499d-ec85-4a8a-a47b-ff69201fcd34");
 pub const IID_IVdsIscsiPortal = &IID_IVdsIscsiPortal_Value;
 pub const IVdsIscsiPortal = extern struct {
     pub const VTable = extern struct {
@@ -20575,11 +20575,11 @@ pub const IVdsIscsiPortal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubSystem: fn(
             self: *const IVdsIscsiPortal,
-            ppSubSystem: **IVdsSubSystem,
+            ppSubSystem: ?*?*IVdsSubSystem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedPortalGroups: fn(
             self: *const IVdsIscsiPortal,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStatus: fn(
             self: *const IVdsIscsiPortal,
@@ -20610,11 +20610,11 @@ pub const IVdsIscsiPortal = extern struct {
             return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiPortal, self), pPortalProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortal_GetSubSystem(self: *const T, ppSubSystem: **IVdsSubSystem) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortal_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsIscsiPortal, self), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortal_QueryAssociatedPortalGroups(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortal_QueryAssociatedPortalGroups(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).QueryAssociatedPortalGroups(@ptrCast(*const IVdsIscsiPortal, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20637,7 +20637,7 @@ pub const IVdsIscsiPortal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsIscsiTarget_Value = @import("../zig.zig").Guid.initString("AA8F5055-83E5-4BCC-AA73-19851A36A849");
+const IID_IVdsIscsiTarget_Value = @import("../zig.zig").Guid.initString("aa8f5055-83e5-4bcc-aa73-19851a36a849");
 pub const IID_IVdsIscsiTarget = &IID_IVdsIscsiTarget_Value;
 pub const IVdsIscsiTarget = extern struct {
     pub const VTable = extern struct {
@@ -20648,23 +20648,23 @@ pub const IVdsIscsiTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubSystem: fn(
             self: *const IVdsIscsiTarget,
-            ppSubSystem: **IVdsSubSystem,
+            ppSubSystem: ?*?*IVdsSubSystem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryPortalGroups: fn(
             self: *const IVdsIscsiTarget,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedLuns: fn(
             self: *const IVdsIscsiTarget,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreatePortalGroup: fn(
             self: *const IVdsIscsiTarget,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IVdsIscsiTarget,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFriendlyName: fn(
             self: *const IVdsIscsiTarget,
@@ -20694,23 +20694,23 @@ pub const IVdsIscsiTarget = extern struct {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiTarget, self), pTargetProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_GetSubSystem(self: *const T, ppSubSystem: **IVdsSubSystem) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsIscsiTarget, self), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_QueryPortalGroups(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_QueryPortalGroups(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).QueryPortalGroups(@ptrCast(*const IVdsIscsiTarget, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_QueryAssociatedLuns(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsIscsiTarget, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_CreatePortalGroup(self: *const T, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_CreatePortalGroup(self: *const T, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).CreatePortalGroup(@ptrCast(*const IVdsIscsiTarget, self), ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_Delete(self: *const T, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_Delete(self: *const T, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).Delete(@ptrCast(*const IVdsIscsiTarget, self), ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20733,7 +20733,7 @@ pub const IVdsIscsiTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsIscsiPortalGroup_Value = @import("../zig.zig").Guid.initString("FEF5F89D-A3DD-4B36-BF28-E7DDE045C593");
+const IID_IVdsIscsiPortalGroup_Value = @import("../zig.zig").Guid.initString("fef5f89d-a3dd-4b36-bf28-e7dde045c593");
 pub const IID_IVdsIscsiPortalGroup = &IID_IVdsIscsiPortalGroup_Value;
 pub const IVdsIscsiPortalGroup = extern struct {
     pub const VTable = extern struct {
@@ -20744,25 +20744,25 @@ pub const IVdsIscsiPortalGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTarget: fn(
             self: *const IVdsIscsiPortalGroup,
-            ppTarget: **IVdsIscsiTarget,
+            ppTarget: ?*?*IVdsIscsiTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssociatedPortals: fn(
             self: *const IVdsIscsiPortalGroup,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPortal: fn(
             self: *const IVdsIscsiPortalGroup,
             portalId: Guid,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemovePortal: fn(
             self: *const IVdsIscsiPortalGroup,
             portalId: Guid,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IVdsIscsiPortalGroup,
-            ppAsync: **IVdsAsync,
+            ppAsync: ?*?*IVdsAsync,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20773,37 +20773,37 @@ pub const IVdsIscsiPortalGroup = extern struct {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiPortalGroup, self), pPortalGroupProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortalGroup_GetTarget(self: *const T, ppTarget: **IVdsIscsiTarget) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortalGroup_GetTarget(self: *const T, ppTarget: ?*?*IVdsIscsiTarget) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).GetTarget(@ptrCast(*const IVdsIscsiPortalGroup, self), ppTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortalGroup_QueryAssociatedPortals(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortalGroup_QueryAssociatedPortals(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).QueryAssociatedPortals(@ptrCast(*const IVdsIscsiPortalGroup, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortalGroup_AddPortal(self: *const T, portalId: Guid, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortalGroup_AddPortal(self: *const T, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).AddPortal(@ptrCast(*const IVdsIscsiPortalGroup, self), portalId, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortalGroup_RemovePortal(self: *const T, portalId: Guid, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortalGroup_RemovePortal(self: *const T, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).RemovePortal(@ptrCast(*const IVdsIscsiPortalGroup, self), portalId, ppAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiPortalGroup_Delete(self: *const T, ppAsync: **IVdsAsync) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiPortalGroup_Delete(self: *const T, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).Delete(@ptrCast(*const IVdsIscsiPortalGroup, self), ppAsync);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsStoragePool_Value = @import("../zig.zig").Guid.initString("932CA8CF-0EB3-4BA8-9620-22665D7F8450");
+const IID_IVdsStoragePool_Value = @import("../zig.zig").Guid.initString("932ca8cf-0eb3-4ba8-9620-22665d7f8450");
 pub const IID_IVdsStoragePool = &IID_IVdsStoragePool_Value;
 pub const IVdsStoragePool = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProvider: fn(
             self: *const IVdsStoragePool,
-            ppProvider: **IVdsProvider,
+            ppProvider: ?*?*IVdsProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperties: fn(
             self: *const IVdsStoragePool,
@@ -20820,18 +20820,18 @@ pub const IVdsStoragePool = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAllocatedLuns: fn(
             self: *const IVdsStoragePool,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAllocatedStoragePools: fn(
             self: *const IVdsStoragePool,
-            ppEnum: **IEnumVdsObject,
+            ppEnum: ?*?*IEnumVdsObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsStoragePool_GetProvider(self: *const T, ppProvider: **IVdsProvider) callconv(.Inline) HRESULT {
+        pub fn IVdsStoragePool_GetProvider(self: *const T, ppProvider: ?*?*IVdsProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).GetProvider(@ptrCast(*const IVdsStoragePool, self), ppProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20847,18 +20847,18 @@ pub const IVdsStoragePool = extern struct {
             return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryDriveExtents(@ptrCast(*const IVdsStoragePool, self), ppExtentArray, plNumberOfExtents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsStoragePool_QueryAllocatedLuns(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsStoragePool_QueryAllocatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryAllocatedLuns(@ptrCast(*const IVdsStoragePool, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsStoragePool_QueryAllocatedStoragePools(self: *const T, ppEnum: **IEnumVdsObject) callconv(.Inline) HRESULT {
+        pub fn IVdsStoragePool_QueryAllocatedStoragePools(self: *const T, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryAllocatedStoragePools(@ptrCast(*const IVdsStoragePool, self), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsMaintenance_Value = @import("../zig.zig").Guid.initString("DAEBEEF3-8523-47ED-A2B9-05CECCE2A1AE");
+const IID_IVdsMaintenance_Value = @import("../zig.zig").Guid.initString("daebeef3-8523-47ed-a2b9-05cecce2a1ae");
 pub const IID_IVdsMaintenance = &IID_IVdsMaintenance_Value;
 pub const IVdsMaintenance = extern struct {
     pub const VTable = extern struct {
@@ -20896,7 +20896,7 @@ pub const IVdsMaintenance = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsHwProviderPrivate_Value = @import("../zig.zig").Guid.initString("98F17BF3-9F33-4F12-8714-8B4075092C2E");
+const IID_IVdsHwProviderPrivate_Value = @import("../zig.zig").Guid.initString("98f17bf3-9f33-4f12-8714-8b4075092c2e");
 pub const IID_IVdsHwProviderPrivate = &IID_IVdsHwProviderPrivate_Value;
 pub const IVdsHwProviderPrivate = extern struct {
     pub const VTable = extern struct {
@@ -20919,7 +20919,7 @@ pub const IVdsHwProviderPrivate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsHwProviderPrivateMpio_Value = @import("../zig.zig").Guid.initString("310A7715-AC2B-4C6F-9827-3D742F351676");
+const IID_IVdsHwProviderPrivateMpio_Value = @import("../zig.zig").Guid.initString("310a7715-ac2b-4c6f-9827-3d742f351676");
 pub const IID_IVdsHwProviderPrivateMpio = &IID_IVdsHwProviderPrivateMpio_Value;
 pub const IVdsHwProviderPrivateMpio = extern struct {
     pub const VTable = extern struct {
@@ -20941,7 +20941,7 @@ pub const IVdsHwProviderPrivateMpio = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVdsAdmin_Value = @import("../zig.zig").Guid.initString("D188E97D-85AA-4D33-ABC6-26299A10FFC1");
+const IID_IVdsAdmin_Value = @import("../zig.zig").Guid.initString("d188e97d-85aa-4d33-abc6-26299a10ffc1");
 pub const IID_IVdsAdmin = &IID_IVdsAdmin_Value;
 pub const IVdsAdmin = extern struct {
     pub const VTable = extern struct {
@@ -21369,7 +21369,7 @@ pub const VSS_OBJECT_PROP = extern struct {
     Obj: __MIDL___MIDL_itf_vss_0000_0000_0001,
 };
 
-const IID_IVssEnumObject_Value = @import("../zig.zig").Guid.initString("AE1C7110-2F60-11D3-8A39-00C04F72D8E3");
+const IID_IVssEnumObject_Value = @import("../zig.zig").Guid.initString("ae1c7110-2f60-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssEnumObject = &IID_IVssEnumObject_Value;
 pub const IVssEnumObject = extern struct {
     pub const VTable = extern struct {
@@ -21415,7 +21415,7 @@ pub const IVssEnumObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssAsync_Value = @import("../zig.zig").Guid.initString("507C37B4-CF5B-4E95-B0AF-14EB9767467E");
+const IID_IVssAsync_Value = @import("../zig.zig").Guid.initString("507c37b4-cf5b-4e95-b0af-14eb9767467e");
 pub const IID_IVssAsync = &IID_IVssAsync_Value;
 pub const IVssAsync = extern struct {
     pub const VTable = extern struct {
@@ -21662,7 +21662,7 @@ pub const IVssWMDependency = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssComponent_Value = @import("../zig.zig").Guid.initString("D2C72C96-C121-4518-B627-E5A93D010EAD");
+const IID_IVssComponent_Value = @import("../zig.zig").Guid.initString("d2c72c96-c121-4518-b627-e5a93d010ead");
 pub const IID_IVssComponent = &IID_IVssComponent_Value;
 pub const IVssComponent = extern struct {
     pub const VTable = extern struct {
@@ -22048,7 +22048,7 @@ pub const IVssWriterComponents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssComponentEx_Value = @import("../zig.zig").Guid.initString("156C8B5E-F131-4BD7-9C97-D1923BE7E1FA");
+const IID_IVssComponentEx_Value = @import("../zig.zig").Guid.initString("156c8b5e-f131-4bd7-9c97-d1923be7e1fa");
 pub const IID_IVssComponentEx = &IID_IVssComponentEx_Value;
 pub const IVssComponentEx = extern struct {
     pub const VTable = extern struct {
@@ -22118,7 +22118,7 @@ pub const IVssComponentEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssComponentEx2_Value = @import("../zig.zig").Guid.initString("3B5BE0F2-07A9-4E4B-BDD3-CFDC8E2C0D2D");
+const IID_IVssComponentEx2_Value = @import("../zig.zig").Guid.initString("3b5be0f2-07a9-4e4b-bdd3-cfdc8e2c0d2d");
 pub const IID_IVssComponentEx2 = &IID_IVssComponentEx2_Value;
 pub const IVssComponentEx2 = extern struct {
     pub const VTable = extern struct {
@@ -22298,7 +22298,7 @@ pub const IVssCreateWriterMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssCreateWriterMetadataEx_Value = @import("../zig.zig").Guid.initString("9F21981D-D469-4349-B807-39E64E4674E1");
+const IID_IVssCreateWriterMetadataEx_Value = @import("../zig.zig").Guid.initString("9f21981d-d469-4349-b807-39e64e4674e1");
 pub const IID_IVssCreateWriterMetadataEx = &IID_IVssCreateWriterMetadataEx_Value;
 pub const IVssCreateWriterMetadataEx = extern struct {
     pub const VTable = extern struct {
@@ -22629,7 +22629,7 @@ pub const IVssWriterImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssCreateExpressWriterMetadata_Value = @import("../zig.zig").Guid.initString("9C772E77-B26E-427F-92DD-C996F41EA5E3");
+const IID_IVssCreateExpressWriterMetadata_Value = @import("../zig.zig").Guid.initString("9c772e77-b26e-427f-92dd-c996f41ea5e3");
 pub const IID_IVssCreateExpressWriterMetadata = &IID_IVssCreateExpressWriterMetadata_Value;
 pub const IVssCreateExpressWriterMetadata = extern struct {
     pub const VTable = extern struct {
@@ -22724,7 +22724,7 @@ pub const IVssCreateExpressWriterMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssExpressWriter_Value = @import("../zig.zig").Guid.initString("E33AFFDC-59C7-47B1-97D5-4266598F6235");
+const IID_IVssExpressWriter_Value = @import("../zig.zig").Guid.initString("e33affdc-59c7-47b1-97d5-4266598f6235");
 pub const IID_IVssExpressWriter = &IID_IVssExpressWriter_Value;
 pub const IVssExpressWriter = extern struct {
     pub const VTable = extern struct {
@@ -22775,7 +22775,7 @@ pub const IVssExpressWriter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_VssSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("0B5A2C52-3EB9-470A-96E2-6C6D4570E40F");
+const CLSID_VssSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("0b5a2c52-3eb9-470a-96e2-6c6d4570e40f");
 pub const CLSID_VssSnapshotMgmt = &CLSID_VssSnapshotMgmt_Value;
 
 pub const VSS_MGMT_OBJECT_TYPE = extern enum(i32) {
@@ -22869,7 +22869,7 @@ pub const VSS_VOLUME_PROTECTION_INFO = extern struct {
     m_reserved: u32,
 };
 
-const IID_IVssSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("FA7DF749-66E7-4986-A27F-E2F04AE53772");
+const IID_IVssSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("fa7df749-66e7-4986-a27f-e2f04ae53772");
 pub const IID_IVssSnapshotMgmt = &IID_IVssSnapshotMgmt_Value;
 pub const IVssSnapshotMgmt = extern struct {
     pub const VTable = extern struct {
@@ -22878,7 +22878,7 @@ pub const IVssSnapshotMgmt = extern struct {
             self: *const IVssSnapshotMgmt,
             ProviderId: Guid,
             InterfaceId: *const Guid,
-            ppItf: **IUnknown,
+            ppItf: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryVolumesSupportedForSnapshots: fn(
             self: *const IVssSnapshotMgmt,
@@ -22897,7 +22897,7 @@ pub const IVssSnapshotMgmt = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVssSnapshotMgmt_GetProviderMgmtInterface(self: *const T, ProviderId: Guid, InterfaceId: *const Guid, ppItf: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IVssSnapshotMgmt_GetProviderMgmtInterface(self: *const T, ProviderId: Guid, InterfaceId: *const Guid, ppItf: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVssSnapshotMgmt.VTable, self.vtable).GetProviderMgmtInterface(@ptrCast(*const IVssSnapshotMgmt, self), ProviderId, InterfaceId, ppItf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22912,7 +22912,7 @@ pub const IVssSnapshotMgmt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssSnapshotMgmt2_Value = @import("../zig.zig").Guid.initString("0F61EC39-FE82-45F2-A3F0-768B5D427102");
+const IID_IVssSnapshotMgmt2_Value = @import("../zig.zig").Guid.initString("0f61ec39-fe82-45f2-a3f0-768b5d427102");
 pub const IID_IVssSnapshotMgmt2 = &IID_IVssSnapshotMgmt2_Value;
 pub const IVssSnapshotMgmt2 = extern struct {
     pub const VTable = extern struct {
@@ -22933,7 +22933,7 @@ pub const IVssSnapshotMgmt2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssDifferentialSoftwareSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("214A0F28-B737-4026-B847-4F9E37D79529");
+const IID_IVssDifferentialSoftwareSnapshotMgmt_Value = @import("../zig.zig").Guid.initString("214a0f28-b737-4026-b847-4f9e37d79529");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt = &IID_IVssDifferentialSoftwareSnapshotMgmt_Value;
 pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
     pub const VTable = extern struct {
@@ -23002,7 +23002,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssDifferentialSoftwareSnapshotMgmt2_Value = @import("../zig.zig").Guid.initString("949D7353-675F-4275-8969-F044C6277815");
+const IID_IVssDifferentialSoftwareSnapshotMgmt2_Value = @import("../zig.zig").Guid.initString("949d7353-675f-4275-8969-f044c6277815");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt2 = &IID_IVssDifferentialSoftwareSnapshotMgmt2_Value;
 pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
     pub const VTable = extern struct {
@@ -23055,7 +23055,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssDifferentialSoftwareSnapshotMgmt3_Value = @import("../zig.zig").Guid.initString("383F7E71-A4C5-401F-B27F-F826289F8458");
+const IID_IVssDifferentialSoftwareSnapshotMgmt3_Value = @import("../zig.zig").Guid.initString("383f7e71-a4c5-401f-b27f-f826289f8458");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt3 = &IID_IVssDifferentialSoftwareSnapshotMgmt3_Value;
 pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
     pub const VTable = extern struct {
@@ -23114,7 +23114,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssEnumMgmtObject_Value = @import("../zig.zig").Guid.initString("01954E6B-9254-4E6E-808C-C9E05D007696");
+const IID_IVssEnumMgmtObject_Value = @import("../zig.zig").Guid.initString("01954e6b-9254-4e6e-808c-c9e05d007696");
 pub const IID_IVssEnumMgmtObject = &IID_IVssEnumMgmtObject_Value;
 pub const IVssEnumMgmtObject = extern struct {
     pub const VTable = extern struct {
@@ -23160,10 +23160,10 @@ pub const IVssEnumMgmtObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_VSSCoordinator_Value = @import("../zig.zig").Guid.initString("E579AB5F-1CC4-44B4-BED9-DE0991FF0623");
+const CLSID_VSSCoordinator_Value = @import("../zig.zig").Guid.initString("e579ab5f-1cc4-44b4-bed9-de0991ff0623");
 pub const CLSID_VSSCoordinator = &CLSID_VSSCoordinator_Value;
 
-const IID_IVssAdmin_Value = @import("../zig.zig").Guid.initString("77ED5996-2F63-11D3-8A39-00C04F72D8E3");
+const IID_IVssAdmin_Value = @import("../zig.zig").Guid.initString("77ed5996-2f63-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssAdmin = &IID_IVssAdmin_Value;
 pub const IVssAdmin = extern struct {
     pub const VTable = extern struct {
@@ -23212,7 +23212,7 @@ pub const IVssAdmin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssAdminEx_Value = @import("../zig.zig").Guid.initString("7858A9F8-B1FA-41A6-964F-B9B36B8CD8D8");
+const IID_IVssAdminEx_Value = @import("../zig.zig").Guid.initString("7858a9f8-b1fa-41a6-964f-b9b36b8cd8d8");
 pub const IID_IVssAdminEx = &IID_IVssAdminEx_Value;
 pub const IVssAdminEx = extern struct {
     pub const VTable = extern struct {
@@ -23252,7 +23252,7 @@ pub const IVssAdminEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssSoftwareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("609E123E-2C5A-44D3-8F01-0B1D9A47D1FF");
+const IID_IVssSoftwareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff");
 pub const IID_IVssSoftwareSnapshotProvider = &IID_IVssSoftwareSnapshotProvider_Value;
 pub const IVssSoftwareSnapshotProvider = extern struct {
     pub const VTable = extern struct {
@@ -23362,7 +23362,7 @@ pub const IVssSoftwareSnapshotProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssProviderCreateSnapshotSet_Value = @import("../zig.zig").Guid.initString("5F894E5B-1E39-4778-8E23-9ABAD9F0E08C");
+const IID_IVssProviderCreateSnapshotSet_Value = @import("../zig.zig").Guid.initString("5f894e5b-1e39-4778-8e23-9abad9f0e08c");
 pub const IID_IVssProviderCreateSnapshotSet = &IID_IVssProviderCreateSnapshotSet_Value;
 pub const IVssProviderCreateSnapshotSet = extern struct {
     pub const VTable = extern struct {
@@ -23432,7 +23432,7 @@ pub const IVssProviderCreateSnapshotSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssProviderNotifications_Value = @import("../zig.zig").Guid.initString("E561901F-03A5-4AFE-86D0-72BAEECE7004");
+const IID_IVssProviderNotifications_Value = @import("../zig.zig").Guid.initString("e561901f-03a5-4afe-86d0-72baeece7004");
 pub const IID_IVssProviderNotifications = &IID_IVssProviderNotifications_Value;
 pub const IVssProviderNotifications = extern struct {
     pub const VTable = extern struct {
@@ -23461,7 +23461,7 @@ pub const IVssProviderNotifications = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssHardwareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("9593A157-44E9-4344-BBEB-44FBF9B06B10");
+const IID_IVssHardwareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("9593a157-44e9-4344-bbeb-44fbf9b06b10");
 pub const IID_IVssHardwareSnapshotProvider = &IID_IVssHardwareSnapshotProvider_Value;
 pub const IVssHardwareSnapshotProvider = extern struct {
     pub const VTable = extern struct {
@@ -23538,7 +23538,7 @@ pub const IVssHardwareSnapshotProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssHardwareSnapshotProviderEx_Value = @import("../zig.zig").Guid.initString("7F5BA925-CDB1-4D11-A71F-339EB7E709FD");
+const IID_IVssHardwareSnapshotProviderEx_Value = @import("../zig.zig").Guid.initString("7f5ba925-cdb1-4d11-a71f-339eb7e709fd");
 pub const IID_IVssHardwareSnapshotProviderEx = &IID_IVssHardwareSnapshotProviderEx_Value;
 pub const IVssHardwareSnapshotProviderEx = extern struct {
     pub const VTable = extern struct {
@@ -23591,7 +23591,7 @@ pub const IVssHardwareSnapshotProviderEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IVssFileShareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("C8636060-7C2E-11DF-8C4A-0800200C9A66");
+const IID_IVssFileShareSnapshotProvider_Value = @import("../zig.zig").Guid.initString("c8636060-7c2e-11df-8c4a-0800200c9a66");
 pub const IID_IVssFileShareSnapshotProvider = &IID_IVssFileShareSnapshotProvider_Value;
 pub const IVssFileShareSnapshotProvider = extern struct {
     pub const VTable = extern struct {
@@ -29340,43 +29340,6 @@ pub extern "KERNEL32" fn SetThreadGroupAffinity(
     PreviousGroupAffinity: ?*GROUP_AFFINITY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "KERNEL32" fn DeviceIoControl(
-    hDevice: HANDLE,
-    dwIoControlCode: u32,
-    lpInBuffer: ?[*]u8,
-    nInBufferSize: u32,
-    lpOutBuffer: ?[*]u8,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetOverlappedResult(
-    hFile: HANDLE,
-    lpOverlapped: *OVERLAPPED,
-    lpNumberOfBytesTransferred: *u32,
-    bWait: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn GetOverlappedResultEx(
-    hFile: HANDLE,
-    lpOverlapped: *OVERLAPPED,
-    lpNumberOfBytesTransferred: *u32,
-    dwMilliseconds: u32,
-    bAlertable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn IsWow64Process(
-    hProcess: HANDLE,
-    Wow64Process: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn IsWow64Process2(
-    hProcess: HANDLE,
-    pProcessMachine: *u16,
-    pNativeMachine: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub extern "KERNEL32" fn CreatePipe(
     hReadPipe: *HANDLE,
     hWritePipe: *HANDLE,
@@ -32292,6 +32255,43 @@ pub extern "POWRPROF" fn DevicePowerClose(
 pub extern "POWRPROF" fn PowerReportThermalEvent(
     Event: *THERMAL_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "KERNEL32" fn DeviceIoControl(
+    hDevice: HANDLE,
+    dwIoControlCode: u32,
+    lpInBuffer: ?[*]u8,
+    nInBufferSize: u32,
+    lpOutBuffer: ?[*]u8,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetOverlappedResult(
+    hFile: HANDLE,
+    lpOverlapped: *OVERLAPPED,
+    lpNumberOfBytesTransferred: *u32,
+    bWait: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn GetOverlappedResultEx(
+    hFile: HANDLE,
+    lpOverlapped: *OVERLAPPED,
+    lpNumberOfBytesTransferred: *u32,
+    dwMilliseconds: u32,
+    bAlertable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn IsWow64Process(
+    hProcess: HANDLE,
+    Wow64Process: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn IsWow64Process2(
+    hProcess: HANDLE,
+    pProcessMachine: *u16,
+    pNativeMachine: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn GetCommandLineA(
 ) callconv(@import("std").os.windows.WINAPI) PSTR;

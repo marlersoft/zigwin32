@@ -37,7 +37,7 @@ pub const XAPO_PROCESS_BUFFER_PARAMETERS = extern struct {
     ValidFrameCount: u32,
 };
 
-const IID_IXAPO_Value = @import("../zig.zig").Guid.initString("A410B984-9839-4819-A0BE-2856AE6B3ADB");
+const IID_IXAPO_Value = @import("../zig.zig").Guid.initString("a410b984-9839-4819-a0be-2856ae6b3adb");
 pub const IID_IXAPO = &IID_IXAPO_Value;
 pub const IXAPO = extern struct {
     pub const VTable = extern struct {
@@ -140,7 +140,7 @@ pub const IXAPO = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXAPOParameters_Value = @import("../zig.zig").Guid.initString("26D95C66-80F2-499A-AD54-5AE7F01C6D98");
+const IID_IXAPOParameters_Value = @import("../zig.zig").Guid.initString("26d95c66-80f2-499a-ad54-5ae7f01c6d98");
 pub const IID_IXAPOParameters = &IID_IXAPOParameters_Value;
 pub const IXAPOParameters = extern struct {
     pub const VTable = extern struct {
@@ -171,16 +171,16 @@ pub const IXAPOParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_FXEQ_Value = @import("../zig.zig").Guid.initString("F5E01117-D6C4-485A-A3F5-695196F3DBFA");
+const CLSID_FXEQ_Value = @import("../zig.zig").Guid.initString("f5e01117-d6c4-485a-a3f5-695196f3dbfa");
 pub const CLSID_FXEQ = &CLSID_FXEQ_Value;
 
-const CLSID_FXMasteringLimiter_Value = @import("../zig.zig").Guid.initString("C4137916-2BE1-46FD-8599-441536F49856");
+const CLSID_FXMasteringLimiter_Value = @import("../zig.zig").Guid.initString("c4137916-2be1-46fd-8599-441536f49856");
 pub const CLSID_FXMasteringLimiter = &CLSID_FXMasteringLimiter_Value;
 
-const CLSID_FXReverb_Value = @import("../zig.zig").Guid.initString("7D9ACA56-CB68-4807-B632-B137352E8596");
+const CLSID_FXReverb_Value = @import("../zig.zig").Guid.initString("7d9aca56-cb68-4807-b632-b137352e8596");
 pub const CLSID_FXReverb = &CLSID_FXReverb_Value;
 
-const CLSID_FXEcho_Value = @import("../zig.zig").Guid.initString("5039D740-F736-449A-84D3-A56202557B87");
+const CLSID_FXEcho_Value = @import("../zig.zig").Guid.initString("5039d740-f736-449a-84d3-a56202557b87");
 pub const CLSID_FXEcho = &CLSID_FXEcho_Value;
 
 pub const FXEQ_PARAMETERS = extern struct {
@@ -316,7 +316,7 @@ pub const XAUDIO2_DEBUG_CONFIGURATION = extern struct {
     LogTiming: BOOL,
 };
 
-const IID_IXAudio2_Value = @import("../zig.zig").Guid.initString("2B02E3CF-2E0B-4EC3-BE45-1B2A3FE7210D");
+const IID_IXAudio2_Value = @import("../zig.zig").Guid.initString("2b02e3cf-2e0b-4ec3-be45-1b2a3fe7210d");
 pub const IID_IXAudio2 = &IID_IXAudio2_Value;
 pub const IXAudio2 = extern struct {
     pub const VTable = extern struct {
@@ -426,7 +426,7 @@ pub const IXAudio2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IXAudio2Extension_Value = @import("../zig.zig").Guid.initString("84AC29BB-D619-44D2-B197-E4ACF7DF3ED6");
+const IID_IXAudio2Extension_Value = @import("../zig.zig").Guid.initString("84ac29bb-d619-44d2-b197-e4acf7df3ed6");
 pub const IID_IXAudio2Extension = &IID_IXAudio2Extension_Value;
 pub const IXAudio2Extension = extern struct {
     pub const VTable = extern struct {
@@ -858,10 +858,10 @@ pub const IXAudio2VoiceCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_AudioVolumeMeter_Value = @import("../zig.zig").Guid.initString("4FC3B166-972A-40CF-BC37-7DB03DB2FBA3");
+const CLSID_AudioVolumeMeter_Value = @import("../zig.zig").Guid.initString("4fc3b166-972a-40cf-bc37-7db03db2fba3");
 pub const CLSID_AudioVolumeMeter = &CLSID_AudioVolumeMeter_Value;
 
-const CLSID_AudioReverb_Value = @import("../zig.zig").Guid.initString("C2633B16-471B-4498-B8C5-4F0959E2EC09");
+const CLSID_AudioReverb_Value = @import("../zig.zig").Guid.initString("c2633b16-471b-4498-b8c5-4f0959e2ec09");
 pub const CLSID_AudioReverb = &CLSID_AudioReverb_Value;
 
 pub const XAUDIO2FX_VOLUMEMETER_LEVELS = extern struct {
@@ -979,7 +979,7 @@ pub const HrtfApoInit = extern struct {
     directivity: *HrtfDirectivity,
 };
 
-const IID_IXAPOHrtfParameters_Value = @import("../zig.zig").Guid.initString("15B3CD66-E9DE-4464-B6E6-2BC3CF63D455");
+const IID_IXAPOHrtfParameters_Value = @import("../zig.zig").Guid.initString("15b3cd66-e9de-4464-b6e6-2bc3cf63d455");
 pub const IID_IXAPOHrtfParameters = &IID_IXAPOHrtfParameters_Value;
 pub const IXAPOHrtfParameters = extern struct {
     pub const VTable = extern struct {

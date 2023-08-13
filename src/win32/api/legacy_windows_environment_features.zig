@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-const IID_IEmptyVolumeCacheCallBack_Value = @import("../zig.zig").Guid.initString("6E793361-73C6-11D0-8469-00AA00442901");
+const IID_IEmptyVolumeCacheCallBack_Value = @import("../zig.zig").Guid.initString("6e793361-73c6-11d0-8469-00aa00442901");
 pub const IID_IEmptyVolumeCacheCallBack = &IID_IEmptyVolumeCacheCallBack_Value;
 pub const IEmptyVolumeCacheCallBack = extern struct {
     pub const VTable = extern struct {
@@ -40,7 +40,7 @@ pub const IEmptyVolumeCacheCallBack = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEmptyVolumeCache_Value = @import("../zig.zig").Guid.initString("8FCE5227-04DA-11D1-A004-00805F8ABE06");
+const IID_IEmptyVolumeCache_Value = @import("../zig.zig").Guid.initString("8fce5227-04da-11d1-a004-00805f8abe06");
 pub const IID_IEmptyVolumeCache = &IID_IEmptyVolumeCache_Value;
 pub const IEmptyVolumeCache = extern struct {
     pub const VTable = extern struct {
@@ -99,7 +99,7 @@ pub const IEmptyVolumeCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEmptyVolumeCache2_Value = @import("../zig.zig").Guid.initString("02B7E3BA-4DB3-11D2-B2D9-00C04F8EEC8C");
+const IID_IEmptyVolumeCache2_Value = @import("../zig.zig").Guid.initString("02b7e3ba-4db3-11d2-b2d9-00c04f8eec8c");
 pub const IID_IEmptyVolumeCache2 = &IID_IEmptyVolumeCache2_Value;
 pub const IEmptyVolumeCache2 = extern struct {
     pub const VTable = extern struct {
@@ -126,7 +126,7 @@ pub const IEmptyVolumeCache2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IReconcileInitiator_Value = @import("../zig.zig").Guid.initString("99180161-DA16-101A-935C-444553540000");
+const IID_IReconcileInitiator_Value = @import("../zig.zig").Guid.initString("99180161-da16-101a-935c-444553540000");
 pub const IID_IReconcileInitiator = &IID_IReconcileInitiator_Value;
 pub const IReconcileInitiator = extern struct {
     pub const VTable = extern struct {
@@ -175,7 +175,7 @@ pub const RECONCILEF_YOUMAYDOTHEUPDATES = _reconcilef.RECONCILEF_YOUMAYDOTHEUPDA
 pub const RECONCILEF_ONLYYOUWERECHANGED = _reconcilef.RECONCILEF_ONLYYOUWERECHANGED;
 pub const ALL_RECONCILE_FLAGS = _reconcilef.ALL_RECONCILE_FLAGS;
 
-const IID_IReconcilableObject_Value = @import("../zig.zig").Guid.initString("99180162-DA16-101A-935C-444553540000");
+const IID_IReconcilableObject_Value = @import("../zig.zig").Guid.initString("99180162-da16-101a-935c-444553540000");
 pub const IID_IReconcilableObject = &IID_IReconcilableObject_Value;
 pub const IReconcilableObject = extern struct {
     pub const VTable = extern struct {
@@ -212,7 +212,7 @@ pub const IReconcilableObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBriefcaseInitiator_Value = @import("../zig.zig").Guid.initString("99180164-DA16-101A-935C-444553540000");
+const IID_IBriefcaseInitiator_Value = @import("../zig.zig").Guid.initString("99180164-da16-101a-935c-444553540000");
 pub const IID_IBriefcaseInitiator = &IID_IBriefcaseInitiator_Value;
 pub const IBriefcaseInitiator = extern struct {
     pub const VTable = extern struct {
@@ -240,7 +240,7 @@ pub const _ColumnSortOrder = extern enum(i32) {
 pub const SortOrder_Ascending = _ColumnSortOrder.SortOrder_Ascending;
 pub const SortOrder_Descending = _ColumnSortOrder.SortOrder_Descending;
 
-const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502EE0-EC80-11D0-89AB-00C04FC2972D");
+const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
 pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
 pub const IActiveDesktopP = extern struct {
     pub const VTable = extern struct {
@@ -287,7 +287,7 @@ pub const IActiveDesktopP = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IADesktopP2_Value = @import("../zig.zig").Guid.initString("B22754E2-4574-11D1-9888-006097DEACF9");
+const IID_IADesktopP2_Value = @import("../zig.zig").Guid.initString("b22754e2-4574-11d1-9888-006097deacf9");
 pub const IID_IADesktopP2 = &IID_IADesktopP2_Value;
 pub const IADesktopP2 = extern struct {
     pub const VTable = extern struct {

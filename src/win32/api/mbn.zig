@@ -6,19 +6,19 @@
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-const CLSID_MbnConnectionProfileManager_Value = @import("../zig.zig").Guid.initString("BDFEE05A-4418-11DD-90ED-001C257CCFF1");
+const CLSID_MbnConnectionProfileManager_Value = @import("../zig.zig").Guid.initString("bdfee05a-4418-11dd-90ed-001c257ccff1");
 pub const CLSID_MbnConnectionProfileManager = &CLSID_MbnConnectionProfileManager_Value;
 
-const CLSID_MbnInterfaceManager_Value = @import("../zig.zig").Guid.initString("BDFEE05B-4418-11DD-90ED-001C257CCFF1");
+const CLSID_MbnInterfaceManager_Value = @import("../zig.zig").Guid.initString("bdfee05b-4418-11dd-90ed-001c257ccff1");
 pub const CLSID_MbnInterfaceManager = &CLSID_MbnInterfaceManager_Value;
 
-const CLSID_MbnConnectionManager_Value = @import("../zig.zig").Guid.initString("BDFEE05C-4418-11DD-90ED-001C257CCFF1");
+const CLSID_MbnConnectionManager_Value = @import("../zig.zig").Guid.initString("bdfee05c-4418-11dd-90ed-001c257ccff1");
 pub const CLSID_MbnConnectionManager = &CLSID_MbnConnectionManager_Value;
 
-const CLSID_MbnDeviceServicesManager_Value = @import("../zig.zig").Guid.initString("2269DAA3-2A9F-4165-A501-CE00A6F7A75B");
+const CLSID_MbnDeviceServicesManager_Value = @import("../zig.zig").Guid.initString("2269daa3-2a9f-4165-a501-ce00a6f7a75b");
 pub const CLSID_MbnDeviceServicesManager = &CLSID_MbnDeviceServicesManager_Value;
 
-const IID_IDummyMBNUCMExt_Value = @import("../zig.zig").Guid.initString("DCBBBAB6-FFFF-4BBB-AAEE-338E368AF6FA");
+const IID_IDummyMBNUCMExt_Value = @import("../zig.zig").Guid.initString("dcbbbab6-ffff-4bbb-aaee-338e368af6fa");
 pub const IID_IDummyMBNUCMExt = &IID_IDummyMBNUCMExt_Value;
 pub const IDummyMBNUCMExt = extern struct {
     pub const VTable = extern struct {
@@ -36,7 +36,7 @@ pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = extern enum(i32) {
 };
 pub const MBN_DEVICE_SERVICE_SESSIONS_RESTORED = MBN_DEVICE_SERVICE_SESSIONS_STATE.MBN_DEVICE_SERVICE_SESSIONS_RESTORED;
 
-const IID_IMbnDeviceServiceStateEvents_Value = @import("../zig.zig").Guid.initString("5D3FF196-89EE-49D8-8B60-33FFDDFFC58D");
+const IID_IMbnDeviceServiceStateEvents_Value = @import("../zig.zig").Guid.initString("5d3ff196-89ee-49d8-8b60-33ffddffc58d");
 pub const IID_IMbnDeviceServiceStateEvents = &IID_IMbnDeviceServiceStateEvents_Value;
 pub const IMbnDeviceServiceStateEvents = extern struct {
     pub const VTable = extern struct {

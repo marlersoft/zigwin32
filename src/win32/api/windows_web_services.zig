@@ -4003,7 +4003,7 @@ pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE = extern 
     securityContextSecurityBinding: WS_SECURITY_CONTEXT_SECURITY_BINDING_TEMPLATE,
 };
 
-const IID_IContentPrefetcherTaskTrigger_Value = @import("../zig.zig").Guid.initString("1B35A14A-6094-4799-A60E-E474E15D4DC9");
+const IID_IContentPrefetcherTaskTrigger_Value = @import("../zig.zig").Guid.initString("1b35a14a-6094-4799-a60e-e474e15d4dc9");
 pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger_Value;
 pub const IContentPrefetcherTaskTrigger = extern struct {
     pub const VTable = extern struct {

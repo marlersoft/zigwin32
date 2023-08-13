@@ -6,6 +6,15 @@
 //--------------------------------------------------------------------------------
 // Section: Types (24)
 //--------------------------------------------------------------------------------
+pub const MilMatrix3x2D = extern struct {
+    S_11: f64,
+    S_12: f64,
+    S_21: f64,
+    S_22: f64,
+    DX: f64,
+    DY: f64,
+};
+
 pub const MilRectD = extern struct {
     left: f64,
     top: f64,
@@ -37,7 +46,7 @@ pub const MILMatrixF = extern struct {
     _44: f64,
 };
 
-const IID_IMILBitmapEffectConnectorInfo_Value = @import("../zig.zig").Guid.initString("F66D2E4B-B46B-42FC-859E-3DA0ECDB3C43");
+const IID_IMILBitmapEffectConnectorInfo_Value = @import("../zig.zig").Guid.initString("f66d2e4b-b46b-42fc-859e-3da0ecdb3c43");
 pub const IID_IMILBitmapEffectConnectorInfo = &IID_IMILBitmapEffectConnectorInfo_Value;
 pub const IMILBitmapEffectConnectorInfo = extern struct {
     pub const VTable = extern struct {
@@ -83,7 +92,7 @@ pub const IMILBitmapEffectConnectorInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectConnectionsInfo_Value = @import("../zig.zig").Guid.initString("476B538A-C765-4237-BA4A-D6A880FF0CFC");
+const IID_IMILBitmapEffectConnectionsInfo_Value = @import("../zig.zig").Guid.initString("476b538a-c765-4237-ba4a-d6a880ff0cfc");
 pub const IID_IMILBitmapEffectConnectionsInfo = &IID_IMILBitmapEffectConnectionsInfo_Value;
 pub const IMILBitmapEffectConnectionsInfo = extern struct {
     pub const VTable = extern struct {
@@ -130,7 +139,7 @@ pub const IMILBitmapEffectConnectionsInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectConnections_Value = @import("../zig.zig").Guid.initString("C2B5D861-9B1A-4374-89B0-DEC4874D6A81");
+const IID_IMILBitmapEffectConnections_Value = @import("../zig.zig").Guid.initString("c2b5d861-9b1a-4374-89b0-dec4874d6a81");
 pub const IID_IMILBitmapEffectConnections = &IID_IMILBitmapEffectConnections_Value;
 pub const IMILBitmapEffectConnections = extern struct {
     pub const VTable = extern struct {
@@ -161,7 +170,7 @@ pub const IMILBitmapEffectConnections = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffect_Value = @import("../zig.zig").Guid.initString("8A6FF321-C944-4A1B-9944-9954AF301258");
+const IID_IMILBitmapEffect_Value = @import("../zig.zig").Guid.initString("8a6ff321-c944-4a1b-9944-9954af301258");
 pub const IID_IMILBitmapEffect = &IID_IMILBitmapEffect_Value;
 pub const IMILBitmapEffect = extern struct {
     pub const VTable = extern struct {
@@ -201,7 +210,7 @@ pub const IMILBitmapEffect = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectImpl_Value = @import("../zig.zig").Guid.initString("CC2468F2-9936-47BE-B4AF-06B5DF5DBCBB");
+const IID_IMILBitmapEffectImpl_Value = @import("../zig.zig").Guid.initString("cc2468f2-9936-47be-b4af-06b5df5dbcbb");
 pub const IID_IMILBitmapEffectImpl = &IID_IMILBitmapEffectImpl_Value;
 pub const IMILBitmapEffectImpl = extern struct {
     pub const VTable = extern struct {
@@ -279,7 +288,7 @@ pub const IMILBitmapEffectImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectGroup_Value = @import("../zig.zig").Guid.initString("2F952360-698A-4AC6-81A1-BCFDF08EB8E8");
+const IID_IMILBitmapEffectGroup_Value = @import("../zig.zig").Guid.initString("2f952360-698a-4ac6-81a1-bcfdf08eb8e8");
 pub const IID_IMILBitmapEffectGroup = &IID_IMILBitmapEffectGroup_Value;
 pub const IMILBitmapEffectGroup = extern struct {
     pub const VTable = extern struct {
@@ -318,7 +327,7 @@ pub const IMILBitmapEffectGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectGroupImpl_Value = @import("../zig.zig").Guid.initString("78FED518-1CFC-4807-8B85-6B6E51398F62");
+const IID_IMILBitmapEffectGroupImpl_Value = @import("../zig.zig").Guid.initString("78fed518-1cfc-4807-8b85-6b6e51398f62");
 pub const IID_IMILBitmapEffectGroupImpl = &IID_IMILBitmapEffectGroupImpl_Value;
 pub const IMILBitmapEffectGroupImpl = extern struct {
     pub const VTable = extern struct {
@@ -355,7 +364,7 @@ pub const IMILBitmapEffectGroupImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectRenderContext_Value = @import("../zig.zig").Guid.initString("12A2EC7E-2D33-44B2-B334-1ABB7846E390");
+const IID_IMILBitmapEffectRenderContext_Value = @import("../zig.zig").Guid.initString("12a2ec7e-2d33-44b2-b334-1abb7846e390");
 pub const IID_IMILBitmapEffectRenderContext = &IID_IMILBitmapEffectRenderContext_Value;
 pub const IMILBitmapEffectRenderContext = extern struct {
     pub const VTable = extern struct {
@@ -434,7 +443,7 @@ pub const IMILBitmapEffectRenderContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectRenderContextImpl_Value = @import("../zig.zig").Guid.initString("4D25ACCB-797D-4FD2-B128-DFFEFF84FCC3");
+const IID_IMILBitmapEffectRenderContextImpl_Value = @import("../zig.zig").Guid.initString("4d25accb-797d-4fd2-b128-dffeff84fcc3");
 pub const IID_IMILBitmapEffectRenderContextImpl = &IID_IMILBitmapEffectRenderContextImpl_Value;
 pub const IMILBitmapEffectRenderContextImpl = extern struct {
     pub const VTable = extern struct {
@@ -487,7 +496,7 @@ pub const IMILBitmapEffectRenderContextImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectFactory_Value = @import("../zig.zig").Guid.initString("33A9DF34-A403-4EC7-B07E-BC0682370845");
+const IID_IMILBitmapEffectFactory_Value = @import("../zig.zig").Guid.initString("33a9df34-a403-4ec7-b07e-bc0682370845");
 pub const IID_IMILBitmapEffectFactory = &IID_IMILBitmapEffectFactory_Value;
 pub const IMILBitmapEffectFactory = extern struct {
     pub const VTable = extern struct {
@@ -525,7 +534,7 @@ pub const IMILBitmapEffectFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectPrimitive_Value = @import("../zig.zig").Guid.initString("67E31025-3091-4DFC-98D6-DD494551461D");
+const IID_IMILBitmapEffectPrimitive_Value = @import("../zig.zig").Guid.initString("67e31025-3091-4dfc-98d6-dd494551461d");
 pub const IID_IMILBitmapEffectPrimitive = &IID_IMILBitmapEffectPrimitive_Value;
 pub const IMILBitmapEffectPrimitive = extern struct {
     pub const VTable = extern struct {
@@ -599,7 +608,7 @@ pub const IMILBitmapEffectPrimitive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectPrimitiveImpl_Value = @import("../zig.zig").Guid.initString("CE41E00B-EFA6-44E7-B007-DD042E3AE126");
+const IID_IMILBitmapEffectPrimitiveImpl_Value = @import("../zig.zig").Guid.initString("ce41e00b-efa6-44e7-b007-dd042e3ae126");
 pub const IID_IMILBitmapEffectPrimitiveImpl = &IID_IMILBitmapEffectPrimitiveImpl_Value;
 pub const IMILBitmapEffectPrimitiveImpl = extern struct {
     pub const VTable = extern struct {
@@ -630,7 +639,7 @@ pub const IMILBitmapEffectPrimitiveImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffects_Value = @import("../zig.zig").Guid.initString("51AC3DCE-67C5-448B-9180-AD3EABDDD5DD");
+const IID_IMILBitmapEffects_Value = @import("../zig.zig").Guid.initString("51ac3dce-67c5-448b-9180-ad3eabddd5dd");
 pub const IID_IMILBitmapEffects = &IID_IMILBitmapEffects_Value;
 pub const IMILBitmapEffects = extern struct {
     pub const VTable = extern struct {
@@ -676,7 +685,7 @@ pub const IMILBitmapEffects = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectConnector_Value = @import("../zig.zig").Guid.initString("F59567B3-76C1-4D47-BA1E-79F955E350EF");
+const IID_IMILBitmapEffectConnector_Value = @import("../zig.zig").Guid.initString("f59567b3-76c1-4d47-ba1e-79f955e350ef");
 pub const IID_IMILBitmapEffectConnector = &IID_IMILBitmapEffectConnector_Value;
 pub const IMILBitmapEffectConnector = extern struct {
     pub const VTable = extern struct {
@@ -705,7 +714,7 @@ pub const IMILBitmapEffectConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectInputConnector_Value = @import("../zig.zig").Guid.initString("A9B4ECAA-7A3C-45E7-8573-F4B81B60DD6C");
+const IID_IMILBitmapEffectInputConnector_Value = @import("../zig.zig").Guid.initString("a9b4ecaa-7a3c-45e7-8573-f4b81b60dd6c");
 pub const IID_IMILBitmapEffectInputConnector = &IID_IMILBitmapEffectInputConnector_Value;
 pub const IMILBitmapEffectInputConnector = extern struct {
     pub const VTable = extern struct {
@@ -734,7 +743,7 @@ pub const IMILBitmapEffectInputConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectOutputConnector_Value = @import("../zig.zig").Guid.initString("92957AAD-841B-4866-82EC-8752468B07FD");
+const IID_IMILBitmapEffectOutputConnector_Value = @import("../zig.zig").Guid.initString("92957aad-841b-4866-82ec-8752468b07fd");
 pub const IID_IMILBitmapEffectOutputConnector = &IID_IMILBitmapEffectOutputConnector_Value;
 pub const IMILBitmapEffectOutputConnector = extern struct {
     pub const VTable = extern struct {
@@ -764,7 +773,7 @@ pub const IMILBitmapEffectOutputConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectOutputConnectorImpl_Value = @import("../zig.zig").Guid.initString("21FAE777-8B39-4BFA-9F2D-F3941ED36913");
+const IID_IMILBitmapEffectOutputConnectorImpl_Value = @import("../zig.zig").Guid.initString("21fae777-8b39-4bfa-9f2d-f3941ed36913");
 pub const IID_IMILBitmapEffectOutputConnectorImpl = &IID_IMILBitmapEffectOutputConnectorImpl_Value;
 pub const IMILBitmapEffectOutputConnectorImpl = extern struct {
     pub const VTable = extern struct {
@@ -793,7 +802,7 @@ pub const IMILBitmapEffectOutputConnectorImpl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectInteriorInputConnector_Value = @import("../zig.zig").Guid.initString("20287E9E-86A2-4E15-953D-EB1438A5B842");
+const IID_IMILBitmapEffectInteriorInputConnector_Value = @import("../zig.zig").Guid.initString("20287e9e-86a2-4e15-953d-eb1438a5b842");
 pub const IID_IMILBitmapEffectInteriorInputConnector = &IID_IMILBitmapEffectInteriorInputConnector_Value;
 pub const IMILBitmapEffectInteriorInputConnector = extern struct {
     pub const VTable = extern struct {
@@ -814,7 +823,7 @@ pub const IMILBitmapEffectInteriorInputConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectInteriorOutputConnector_Value = @import("../zig.zig").Guid.initString("00BBB6DC-ACC9-4BFC-B344-8BEE383DFEFA");
+const IID_IMILBitmapEffectInteriorOutputConnector_Value = @import("../zig.zig").Guid.initString("00bbb6dc-acc9-4bfc-b344-8bee383dfefa");
 pub const IID_IMILBitmapEffectInteriorOutputConnector = &IID_IMILBitmapEffectInteriorOutputConnector_Value;
 pub const IMILBitmapEffectInteriorOutputConnector = extern struct {
     pub const VTable = extern struct {
@@ -835,7 +844,7 @@ pub const IMILBitmapEffectInteriorOutputConnector = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IMILBitmapEffectEvents_Value = @import("../zig.zig").Guid.initString("2E880DD8-F8CE-457B-8199-D60BB3D7EF98");
+const IID_IMILBitmapEffectEvents_Value = @import("../zig.zig").Guid.initString("2e880dd8-f8ce-457b-8199-d60bb3d7ef98");
 pub const IID_IMILBitmapEffectEvents = &IID_IMILBitmapEffectEvents_Value;
 pub const IMILBitmapEffectEvents = extern struct {
     pub const VTable = extern struct {
@@ -864,15 +873,6 @@ pub const IMILBitmapEffectEvents = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const MilMatrix3x2D = extern struct {
-    S_11: f64,
-    S_12: f64,
-    S_21: f64,
-    S_22: f64,
-    DX: f64,
-    DY: f64,
 };
 
 

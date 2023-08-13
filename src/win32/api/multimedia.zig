@@ -6,6 +6,22 @@
 //--------------------------------------------------------------------------------
 // Section: Types (256)
 //--------------------------------------------------------------------------------
+pub const HMIDI = ?*c_void;
+
+pub const HMIDIIN = ?*c_void;
+
+pub const HMIDIOUT = ?*c_void;
+
+pub const HMIDISTRM = ?*c_void;
+
+pub const HMIXER = ?*c_void;
+
+pub const HMIXEROBJ = ?*c_void;
+
+pub const HWAVEIN = ?*c_void;
+
+pub const HWAVEOUT = ?*c_void;
+
 pub const MMTIME = extern struct {
     wType: u32,
     u: MMTIME._u_e__Union,
@@ -715,13 +731,13 @@ pub const JOYINFOEX = extern struct {
     dwReserved2: u32,
 };
 
-const CLSID_KSDATAFORMAT_SUBTYPE_PCM_Value = @import("../zig.zig").Guid.initString("00000001-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_PCM_Value = @import("../zig.zig").Guid.initString("00000001-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_PCM = &CLSID_KSDATAFORMAT_SUBTYPE_PCM_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = @import("../zig.zig").Guid.initString("00000003-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = @import("../zig.zig").Guid.initString("00000003-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value;
 
-const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX_Value = @import("../zig.zig").Guid.initString("00000000-0000-0010-8000-00AA00389B71");
+const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX_Value = @import("../zig.zig").Guid.initString("00000000-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX_Value;
 
 pub const WAVEFORMATEXTENSIBLE = extern struct {
@@ -2423,26 +2439,14 @@ pub const TASKCALLBACK = fn(
 pub const LPTASKCALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HMIDI = ?*c_void;
-
-pub const HMIDIIN = ?*c_void;
-
-pub const HMIDIOUT = ?*c_void;
-
-pub const HMIDISTRM = ?*c_void;
-
-pub const HMIXER = ?*c_void;
-
-pub const HMIXEROBJ = ?*c_void;
-
-pub const HWAVEIN = ?*c_void;
-
-pub const HWAVEOUT = ?*c_void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (305)
 //--------------------------------------------------------------------------------
+pub extern "WINMM" fn joyConfigChanged(
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 pub extern "WINMM" fn CloseDriver(
     hDriver: ?*c_void,
     lParam1: LPARAM,
@@ -4258,10 +4262,6 @@ pub extern "WINMM" fn mmTaskYield(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "WINMM" fn mmGetCurrentTask(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "WINMM" fn joyConfigChanged(
-    dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

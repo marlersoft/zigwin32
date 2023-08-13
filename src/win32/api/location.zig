@@ -6,28 +6,28 @@
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-const CLSID_Location_Value = @import("../zig.zig").Guid.initString("E5B8E079-EE6D-4E33-A438-C87F2E959254");
+const CLSID_Location_Value = @import("../zig.zig").Guid.initString("e5b8e079-ee6d-4e33-a438-c87f2e959254");
 pub const CLSID_Location = &CLSID_Location_Value;
 
-const CLSID_DefaultLocation_Value = @import("../zig.zig").Guid.initString("8B7FBFE0-5CD7-494A-AF8C-283A65707506");
+const CLSID_DefaultLocation_Value = @import("../zig.zig").Guid.initString("8b7fbfe0-5cd7-494a-af8c-283a65707506");
 pub const CLSID_DefaultLocation = &CLSID_DefaultLocation_Value;
 
-const CLSID_LatLongReport_Value = @import("../zig.zig").Guid.initString("ED81C073-1F84-4CA8-A161-183C776BC651");
+const CLSID_LatLongReport_Value = @import("../zig.zig").Guid.initString("ed81c073-1f84-4ca8-a161-183c776bc651");
 pub const CLSID_LatLongReport = &CLSID_LatLongReport_Value;
 
-const CLSID_CivicAddressReport_Value = @import("../zig.zig").Guid.initString("D39E7BDD-7D05-46B8-8721-80CF035F57D7");
+const CLSID_CivicAddressReport_Value = @import("../zig.zig").Guid.initString("d39e7bdd-7d05-46b8-8721-80cf035f57d7");
 pub const CLSID_CivicAddressReport = &CLSID_CivicAddressReport_Value;
 
-const CLSID_LatLongReportFactory_Value = @import("../zig.zig").Guid.initString("9DCC3CC8-8609-4863-BAD4-03601F4C65E8");
+const CLSID_LatLongReportFactory_Value = @import("../zig.zig").Guid.initString("9dcc3cc8-8609-4863-bad4-03601f4c65e8");
 pub const CLSID_LatLongReportFactory = &CLSID_LatLongReportFactory_Value;
 
-const CLSID_CivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("2A11F42C-3E81-4AD4-9CBE-45579D89671A");
+const CLSID_CivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("2a11f42c-3e81-4ad4-9cbe-45579d89671a");
 pub const CLSID_CivicAddressReportFactory = &CLSID_CivicAddressReportFactory_Value;
 
-const CLSID_DispLatLongReport_Value = @import("../zig.zig").Guid.initString("7A7C3277-8F84-4636-95B2-EBB5507FF77E");
+const CLSID_DispLatLongReport_Value = @import("../zig.zig").Guid.initString("7a7c3277-8f84-4636-95b2-ebb5507ff77e");
 pub const CLSID_DispLatLongReport = &CLSID_DispLatLongReport_Value;
 
-const CLSID_DispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("4C596AEC-8544-4082-BA9F-EB0A7D8E65C6");
+const CLSID_DispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("4c596aec-8544-4082-ba9f-eb0a7d8e65c6");
 pub const CLSID_DispCivicAddressReport = &CLSID_DispCivicAddressReport_Value;
 
 pub const LOCATION_REPORT_STATUS = extern enum(i32) {
@@ -43,7 +43,7 @@ pub const REPORT_ACCESS_DENIED = LOCATION_REPORT_STATUS.REPORT_ACCESS_DENIED;
 pub const REPORT_INITIALIZING = LOCATION_REPORT_STATUS.REPORT_INITIALIZING;
 pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.REPORT_RUNNING;
 
-const IID_ILocationReport_Value = @import("../zig.zig").Guid.initString("C8B7F7EE-75D0-4DB9-B62D-7A0F369CA456");
+const IID_ILocationReport_Value = @import("../zig.zig").Guid.initString("c8b7f7ee-75d0-4db9-b62d-7a0f369ca456");
 pub const IID_ILocationReport = &IID_ILocationReport_Value;
 pub const ILocationReport = extern struct {
     pub const VTable = extern struct {
@@ -81,7 +81,7 @@ pub const ILocationReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILatLongReport_Value = @import("../zig.zig").Guid.initString("7FED806D-0EF8-4F07-80AC-36A0BEAE3134");
+const IID_ILatLongReport_Value = @import("../zig.zig").Guid.initString("7fed806d-0ef8-4f07-80ac-36a0beae3134");
 pub const IID_ILatLongReport = &IID_ILatLongReport_Value;
 pub const ILatLongReport = extern struct {
     pub const VTable = extern struct {
@@ -134,34 +134,34 @@ pub const ILatLongReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICivicAddressReport_Value = @import("../zig.zig").Guid.initString("C0B19F70-4ADF-445D-87F2-CAD8FD711792");
+const IID_ICivicAddressReport_Value = @import("../zig.zig").Guid.initString("c0b19f70-4adf-445d-87f2-cad8fd711792");
 pub const IID_ICivicAddressReport = &IID_ICivicAddressReport_Value;
 pub const ICivicAddressReport = extern struct {
     pub const VTable = extern struct {
         base: ILocationReport.VTable,
         GetAddressLine1: fn(
             self: *const ICivicAddressReport,
-            pbstrAddress1: *BSTR,
+            pbstrAddress1: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAddressLine2: fn(
             self: *const ICivicAddressReport,
-            pbstrAddress2: *BSTR,
+            pbstrAddress2: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCity: fn(
             self: *const ICivicAddressReport,
-            pbstrCity: *BSTR,
+            pbstrCity: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStateProvince: fn(
             self: *const ICivicAddressReport,
-            pbstrStateProvince: *BSTR,
+            pbstrStateProvince: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPostalCode: fn(
             self: *const ICivicAddressReport,
-            pbstrPostalCode: *BSTR,
+            pbstrPostalCode: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCountryRegion: fn(
             self: *const ICivicAddressReport,
-            pbstrCountryRegion: *BSTR,
+            pbstrCountryRegion: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDetailLevel: fn(
             self: *const ICivicAddressReport,
@@ -172,27 +172,27 @@ pub const ICivicAddressReport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetAddressLine1(self: *const T, pbstrAddress1: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetAddressLine1(self: *const T, pbstrAddress1: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine1(@ptrCast(*const ICivicAddressReport, self), pbstrAddress1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetAddressLine2(self: *const T, pbstrAddress2: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetAddressLine2(self: *const T, pbstrAddress2: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine2(@ptrCast(*const ICivicAddressReport, self), pbstrAddress2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetCity(self: *const T, pbstrCity: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetCity(self: *const T, pbstrCity: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCity(@ptrCast(*const ICivicAddressReport, self), pbstrCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetStateProvince(self: *const T, pbstrStateProvince: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetStateProvince(self: *const T, pbstrStateProvince: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetStateProvince(@ptrCast(*const ICivicAddressReport, self), pbstrStateProvince);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetPostalCode(self: *const T, pbstrPostalCode: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetPostalCode(self: *const T, pbstrPostalCode: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetPostalCode(@ptrCast(*const ICivicAddressReport, self), pbstrPostalCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReport_GetCountryRegion(self: *const T, pbstrCountryRegion: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReport_GetCountryRegion(self: *const T, pbstrCountryRegion: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCountryRegion(@ptrCast(*const ICivicAddressReport, self), pbstrCountryRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -203,7 +203,7 @@ pub const ICivicAddressReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILocation_Value = @import("../zig.zig").Guid.initString("AB2ECE69-56D9-4F28-B525-DE1B0EE44237");
+const IID_ILocation_Value = @import("../zig.zig").Guid.initString("ab2ece69-56d9-4f28-b525-de1b0ee44237");
 pub const IID_ILocation = &IID_ILocation_Value;
 pub const ILocation = extern struct {
     pub const VTable = extern struct {
@@ -221,7 +221,7 @@ pub const ILocation = extern struct {
         GetReport: fn(
             self: *const ILocation,
             reportType: *const Guid,
-            ppLocationReport: **ILocationReport,
+            ppLocationReport: ?*?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetReportStatus: fn(
             self: *const ILocation,
@@ -268,7 +268,7 @@ pub const ILocation = extern struct {
             return @ptrCast(*const ILocation.VTable, self.vtable).UnregisterForReport(@ptrCast(*const ILocation, self), reportType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: **ILocationReport) callconv(.Inline) HRESULT {
+        pub fn ILocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILocation.VTable, self.vtable).GetReport(@ptrCast(*const ILocation, self), reportType, ppLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -299,7 +299,7 @@ pub const ILocation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILocationPower_Value = @import("../zig.zig").Guid.initString("193E7729-AB6B-4B12-8617-7596E1BB191C");
+const IID_ILocationPower_Value = @import("../zig.zig").Guid.initString("193e7729-ab6b-4b12-8617-7596e1bb191c");
 pub const IID_ILocationPower = &IID_ILocationPower_Value;
 pub const ILocationPower = extern struct {
     pub const VTable = extern struct {
@@ -326,7 +326,7 @@ pub const ILocationPower = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDefaultLocation_Value = @import("../zig.zig").Guid.initString("A65AF77E-969A-4A2E-8ACA-33BB7CBB1235");
+const IID_IDefaultLocation_Value = @import("../zig.zig").Guid.initString("a65af77e-969a-4a2e-8aca-33bb7cbb1235");
 pub const IID_IDefaultLocation = &IID_IDefaultLocation_Value;
 pub const IDefaultLocation = extern struct {
     pub const VTable = extern struct {
@@ -339,7 +339,7 @@ pub const IDefaultLocation = extern struct {
         GetReport: fn(
             self: *const IDefaultLocation,
             reportType: *const Guid,
-            ppLocationReport: **ILocationReport,
+            ppLocationReport: ?*?*ILocationReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -350,14 +350,14 @@ pub const IDefaultLocation = extern struct {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).SetReport(@ptrCast(*const IDefaultLocation, self), reportType, pLocationReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultLocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: **ILocationReport) callconv(.Inline) HRESULT {
+        pub fn IDefaultLocation_GetReport(self: *const T, reportType: *const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDefaultLocation.VTable, self.vtable).GetReport(@ptrCast(*const IDefaultLocation, self), reportType, ppLocationReport);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILocationEvents_Value = @import("../zig.zig").Guid.initString("CAE02BBF-798B-4508-A207-35A7906DC73D");
+const IID_ILocationEvents_Value = @import("../zig.zig").Guid.initString("cae02bbf-798b-4508-a207-35a7906dc73d");
 pub const IID_ILocationEvents = &IID_ILocationEvents_Value;
 pub const ILocationEvents = extern struct {
     pub const VTable = extern struct {
@@ -388,7 +388,7 @@ pub const ILocationEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDispLatLongReport_Value = @import("../zig.zig").Guid.initString("8AE32723-389B-4A11-9957-5BDD48FC9617");
+const IID_IDispLatLongReport_Value = @import("../zig.zig").Guid.initString("8ae32723-389b-4a11-9957-5bdd48fc9617");
 pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
 pub const IDispLatLongReport = extern struct {
     pub const VTable = extern struct {
@@ -449,34 +449,34 @@ pub const IDispLatLongReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("16FF1A34-9E30-42C3-B44D-E22513B5767A");
+const IID_IDispCivicAddressReport_Value = @import("../zig.zig").Guid.initString("16ff1a34-9e30-42c3-b44d-e22513b5767a");
 pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
 pub const IDispCivicAddressReport = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_AddressLine1: fn(
             self: *const IDispCivicAddressReport,
-            pAddress1: *BSTR,
+            pAddress1: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AddressLine2: fn(
             self: *const IDispCivicAddressReport,
-            pAddress2: *BSTR,
+            pAddress2: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_City: fn(
             self: *const IDispCivicAddressReport,
-            pCity: *BSTR,
+            pCity: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StateProvince: fn(
             self: *const IDispCivicAddressReport,
-            pStateProvince: *BSTR,
+            pStateProvince: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PostalCode: fn(
             self: *const IDispCivicAddressReport,
-            pPostalCode: *BSTR,
+            pPostalCode: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CountryRegion: fn(
             self: *const IDispCivicAddressReport,
-            pCountryRegion: *BSTR,
+            pCountryRegion: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DetailLevel: fn(
             self: *const IDispCivicAddressReport,
@@ -491,27 +491,27 @@ pub const IDispCivicAddressReport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_AddressLine1(self: *const T, pAddress1: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_AddressLine1(self: *const T, pAddress1: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine1(@ptrCast(*const IDispCivicAddressReport, self), pAddress1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_AddressLine2(self: *const T, pAddress2: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_AddressLine2(self: *const T, pAddress2: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine2(@ptrCast(*const IDispCivicAddressReport, self), pAddress2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_City(self: *const T, pCity: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_City(self: *const T, pCity: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_City(@ptrCast(*const IDispCivicAddressReport, self), pCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_StateProvince(self: *const T, pStateProvince: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_StateProvince(self: *const T, pStateProvince: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_StateProvince(@ptrCast(*const IDispCivicAddressReport, self), pStateProvince);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_PostalCode(self: *const T, pPostalCode: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_PostalCode(self: *const T, pPostalCode: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_PostalCode(@ptrCast(*const IDispCivicAddressReport, self), pPostalCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDispCivicAddressReport_get_CountryRegion(self: *const T, pCountryRegion: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IDispCivicAddressReport_get_CountryRegion(self: *const T, pCountryRegion: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_CountryRegion(@ptrCast(*const IDispCivicAddressReport, self), pCountryRegion);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -526,7 +526,7 @@ pub const IDispCivicAddressReport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILocationReportFactory_Value = @import("../zig.zig").Guid.initString("2DAEC322-90B2-47E4-BB08-0DA841935A6B");
+const IID_ILocationReportFactory_Value = @import("../zig.zig").Guid.initString("2daec322-90b2-47e4-bb08-0da841935a6b");
 pub const IID_ILocationReportFactory = &IID_ILocationReportFactory_Value;
 pub const ILocationReportFactory = extern struct {
     pub const VTable = extern struct {
@@ -602,49 +602,49 @@ pub const ILocationReportFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ILatLongReportFactory_Value = @import("../zig.zig").Guid.initString("3F0804CB-B114-447D-83DD-390174EBB082");
+const IID_ILatLongReportFactory_Value = @import("../zig.zig").Guid.initString("3f0804cb-b114-447d-83dd-390174ebb082");
 pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
 pub const ILatLongReportFactory = extern struct {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
         get_LatLongReport: fn(
             self: *const ILatLongReportFactory,
-            pVal: **IDispLatLongReport,
+            pVal: ?*?*IDispLatLongReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: **IDispLatLongReport) callconv(.Inline) HRESULT {
+        pub fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?*?*IDispLatLongReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ILatLongReportFactory.VTable, self.vtable).get_LatLongReport(@ptrCast(*const ILatLongReportFactory, self), pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("BF773B93-C64F-4BEE-BEB2-67C0B8DF66E0");
+const IID_ICivicAddressReportFactory_Value = @import("../zig.zig").Guid.initString("bf773b93-c64f-4bee-beb2-67c0b8df66e0");
 pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value;
 pub const ICivicAddressReportFactory = extern struct {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
         get_CivicAddressReport: fn(
             self: *const ICivicAddressReportFactory,
-            pVal: **IDispCivicAddressReport,
+            pVal: ?*?*IDispCivicAddressReport,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILocationReportFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: **IDispCivicAddressReport) callconv(.Inline) HRESULT {
+        pub fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?*?*IDispCivicAddressReport) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICivicAddressReportFactory.VTable, self.vtable).get_CivicAddressReport(@ptrCast(*const ICivicAddressReportFactory, self), pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ILatLongReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("16EE6CB7-AB3C-424B-849F-269BE551FCBC");
+const IID__ILatLongReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("16ee6cb7-ab3c-424b-849f-269be551fcbc");
 pub const IID__ILatLongReportFactoryEvents = &IID__ILatLongReportFactoryEvents_Value;
 pub const _ILatLongReportFactoryEvents = extern struct {
     pub const VTable = extern struct {
@@ -657,7 +657,7 @@ pub const _ILatLongReportFactoryEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__ICivicAddressReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("C96039FF-72EC-4617-89BD-84D88BEDC722");
+const IID__ICivicAddressReportFactoryEvents_Value = @import("../zig.zig").Guid.initString("c96039ff-72ec-4617-89bd-84d88bedc722");
 pub const IID__ICivicAddressReportFactoryEvents = &IID__ICivicAddressReportFactoryEvents_Value;
 pub const _ICivicAddressReportFactoryEvents = extern struct {
     pub const VTable = extern struct {

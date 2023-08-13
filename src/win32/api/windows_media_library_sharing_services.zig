@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
-const CLSID_WindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Guid.initString("AD581B00-7B64-4E59-A38D-D2C5BF51DDB3");
+const CLSID_WindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Guid.initString("ad581b00-7b64-4e59-a38d-d2c5bf51ddb3");
 pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibrarySharingServices_Value;
 
 pub const WindowsMediaLibrarySharingDeviceAuthorizationStatus = extern enum(i32) {
@@ -18,7 +18,7 @@ pub const DEVICE_AUTHORIZATION_UNKNOWN = WindowsMediaLibrarySharingDeviceAuthori
 pub const DEVICE_AUTHORIZATION_ALLOWED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DEVICE_AUTHORIZATION_ALLOWED;
 pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthorizationStatus.DEVICE_AUTHORIZATION_DENIED;
 
-const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = @import("../zig.zig").Guid.initString("81E26927-7A7D-40A7-81D4-BDDC02960E3E");
+const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = @import("../zig.zig").Guid.initString("81e26927-7a7d-40a7-81d4-bddc02960e3e");
 pub const IID_IWindowsMediaLibrarySharingDeviceProperty = &IID_IWindowsMediaLibrarySharingDeviceProperty_Value;
 pub const IWindowsMediaLibrarySharingDeviceProperty = extern struct {
     pub const VTable = extern struct {
@@ -47,7 +47,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsMediaLibrarySharingDeviceProperties_Value = @import("../zig.zig").Guid.initString("C4623214-6B06-40C5-A623-B2FF4C076BFD");
+const IID_IWindowsMediaLibrarySharingDeviceProperties_Value = @import("../zig.zig").Guid.initString("c4623214-6b06-40c5-a623-b2ff4c076bfd");
 pub const IID_IWindowsMediaLibrarySharingDeviceProperties = &IID_IWindowsMediaLibrarySharingDeviceProperties_Value;
 pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
     pub const VTable = extern struct {
@@ -86,7 +86,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsMediaLibrarySharingDevice_Value = @import("../zig.zig").Guid.initString("3DCCC293-4FD9-4191-A25B-8E57C5D27BD4");
+const IID_IWindowsMediaLibrarySharingDevice_Value = @import("../zig.zig").Guid.initString("3dccc293-4fd9-4191-a25b-8e57c5d27bd4");
 pub const IID_IWindowsMediaLibrarySharingDevice = &IID_IWindowsMediaLibrarySharingDevice_Value;
 pub const IWindowsMediaLibrarySharingDevice = extern struct {
     pub const VTable = extern struct {
@@ -131,7 +131,7 @@ pub const IWindowsMediaLibrarySharingDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsMediaLibrarySharingDevices_Value = @import("../zig.zig").Guid.initString("1803F9D6-FE6D-4546-BF5B-992FE8EC12D1");
+const IID_IWindowsMediaLibrarySharingDevices_Value = @import("../zig.zig").Guid.initString("1803f9d6-fe6d-4546-bf5b-992fe8ec12d1");
 pub const IID_IWindowsMediaLibrarySharingDevices = &IID_IWindowsMediaLibrarySharingDevices_Value;
 pub const IWindowsMediaLibrarySharingDevices = extern struct {
     pub const VTable = extern struct {
@@ -170,7 +170,7 @@ pub const IWindowsMediaLibrarySharingDevices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Guid.initString("01F5F85E-0A81-40DA-A7C8-21EF3AF8440C");
+const IID_IWindowsMediaLibrarySharingServices_Value = @import("../zig.zig").Guid.initString("01f5f85e-0a81-40da-a7c8-21ef3af8440c");
 pub const IID_IWindowsMediaLibrarySharingServices = &IID_IWindowsMediaLibrarySharingServices_Value;
 pub const IWindowsMediaLibrarySharingServices = extern struct {
     pub const VTable = extern struct {

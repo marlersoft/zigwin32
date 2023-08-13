@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-const IID_IWsbApplicationBackupSupport_Value = @import("../zig.zig").Guid.initString("1EFF3510-4A27-46AD-B9E0-08332F0F4F6D");
+const IID_IWsbApplicationBackupSupport_Value = @import("../zig.zig").Guid.initString("1eff3510-4a27-46ad-b9e0-08332f0f4f6d");
 pub const IID_IWsbApplicationBackupSupport = &IID_IWsbApplicationBackupSupport_Value;
 pub const IWsbApplicationBackupSupport = extern struct {
     pub const VTable = extern struct {
@@ -33,7 +33,7 @@ pub const IWsbApplicationBackupSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWsbApplicationRestoreSupport_Value = @import("../zig.zig").Guid.initString("8D3BDB38-4EE8-4718-85F9-C7DBC4AB77AA");
+const IID_IWsbApplicationRestoreSupport_Value = @import("../zig.zig").Guid.initString("8d3bdb38-4ee8-4718-85f9-c7dbc4ab77aa");
 pub const IID_IWsbApplicationRestoreSupport = &IID_IWsbApplicationRestoreSupport_Value;
 pub const IWsbApplicationRestoreSupport = extern struct {
     pub const VTable = extern struct {
@@ -88,7 +88,7 @@ pub const IWsbApplicationRestoreSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWsbApplicationAsync_Value = @import("../zig.zig").Guid.initString("0843F6F7-895C-44A6-B0C2-05A5022AA3A1");
+const IID_IWsbApplicationAsync_Value = @import("../zig.zig").Guid.initString("0843f6f7-895c-44a6-b0c2-05a5022aa3a1");
 pub const IID_IWsbApplicationAsync = &IID_IWsbApplicationAsync_Value;
 pub const IWsbApplicationAsync = extern struct {
     pub const VTable = extern struct {

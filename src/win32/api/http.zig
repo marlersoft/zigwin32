@@ -1308,8 +1308,8 @@ pub const WINHTTP_REQUEST_STATS = extern struct {
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
     Anonymous1: WINHTTP_EXTENDED_HEADER._Anonymous1_e__Union,
     Anonymous2: WINHTTP_EXTENDED_HEADER._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINHTTP_CREDS = extern struct {

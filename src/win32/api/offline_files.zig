@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-const CLSID_OfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("FD3659E9-A920-4123-AD64-7FC76C7AACDF");
+const CLSID_OfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("fd3659e9-a920-4123-ad64-7fc76c7aacdf");
 pub const CLSID_OfflineFilesSetting = &CLSID_OfflineFilesSetting_Value;
 
-const CLSID_OfflineFilesCache_Value = @import("../zig.zig").Guid.initString("48C6BE7C-3871-43CC-B46F-1449A1BB2FF3");
+const CLSID_OfflineFilesCache_Value = @import("../zig.zig").Guid.initString("48c6be7c-3871-43cc-b46f-1449a1bb2ff3");
 pub const CLSID_OfflineFilesCache = &CLSID_OfflineFilesCache_Value;
 
 pub const OFFLINEFILES_ITEM_TYPE = extern enum(i32) {
@@ -370,7 +370,7 @@ pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirOnServer = O
 pub const OFFLINEFILES_SYNC_STATE_FileReplacedAndDeletedOnClient_DirChangedOnServer = OFFLINEFILES_SYNC_STATE.FileReplacedAndDeletedOnClient_DirChangedOnServer;
 pub const OFFLINEFILES_SYNC_STATE_NUMSTATES = OFFLINEFILES_SYNC_STATE.NUMSTATES;
 
-const IID_IOfflineFilesEvents_Value = @import("../zig.zig").Guid.initString("E25585C1-0CAA-4EB1-873B-1CAE5B77C314");
+const IID_IOfflineFilesEvents_Value = @import("../zig.zig").Guid.initString("e25585c1-0caa-4eb1-873b-1cae5b77c314");
 pub const IID_IOfflineFilesEvents = &IID_IOfflineFilesEvents_Value;
 pub const IOfflineFilesEvents = extern struct {
     pub const VTable = extern struct {
@@ -603,7 +603,7 @@ pub const IOfflineFilesEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesEvents2_Value = @import("../zig.zig").Guid.initString("1EAD8F56-FF76-4FAA-A795-6F6EF792498B");
+const IID_IOfflineFilesEvents2_Value = @import("../zig.zig").Guid.initString("1ead8f56-ff76-4faa-a795-6f6ef792498b");
 pub const IID_IOfflineFilesEvents2 = &IID_IOfflineFilesEvents2_Value;
 pub const IOfflineFilesEvents2 = extern struct {
     pub const VTable = extern struct {
@@ -681,7 +681,7 @@ pub const IOfflineFilesEvents2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesEvents3_Value = @import("../zig.zig").Guid.initString("9BA04A45-EE69-42F0-9AB1-7DB5C8805808");
+const IID_IOfflineFilesEvents3_Value = @import("../zig.zig").Guid.initString("9ba04a45-ee69-42f0-9ab1-7db5c8805808");
 pub const IID_IOfflineFilesEvents3 = &IID_IOfflineFilesEvents3_Value;
 pub const IOfflineFilesEvents3 = extern struct {
     pub const VTable = extern struct {
@@ -724,7 +724,7 @@ pub const IOfflineFilesEvents3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesEvents4_Value = @import("../zig.zig").Guid.initString("DBD69B1E-C7D2-473E-B35F-9D8C24C0C484");
+const IID_IOfflineFilesEvents4_Value = @import("../zig.zig").Guid.initString("dbd69b1e-c7d2-473e-b35f-9d8c24c0c484");
 pub const IID_IOfflineFilesEvents4 = &IID_IOfflineFilesEvents4_Value;
 pub const IOfflineFilesEvents4 = extern struct {
     pub const VTable = extern struct {
@@ -754,7 +754,7 @@ pub const IOfflineFilesEvents4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesEventsFilter_Value = @import("../zig.zig").Guid.initString("33FC4E1B-0716-40FA-BA65-6E62A84A846F");
+const IID_IOfflineFilesEventsFilter_Value = @import("../zig.zig").Guid.initString("33fc4e1b-0716-40fa-ba65-6e62a84a846f");
 pub const IID_IOfflineFilesEventsFilter = &IID_IOfflineFilesEventsFilter_Value;
 pub const IOfflineFilesEventsFilter = extern struct {
     pub const VTable = extern struct {
@@ -796,36 +796,36 @@ pub const IOfflineFilesEventsFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesErrorInfo_Value = @import("../zig.zig").Guid.initString("7112FA5F-7571-435A-8EB7-195C7C1429BC");
+const IID_IOfflineFilesErrorInfo_Value = @import("../zig.zig").Guid.initString("7112fa5f-7571-435a-8eb7-195c7c1429bc");
 pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
 pub const IOfflineFilesErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRawData: fn(
             self: *const IOfflineFilesErrorInfo,
-            ppBlob: **BYTE_BLOB,
+            ppBlob: ?*?*BYTE_BLOB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDescription: fn(
             self: *const IOfflineFilesErrorInfo,
-            ppszDescription: *PWSTR,
+            ppszDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesErrorInfo_GetRawData(self: *const T, ppBlob: **BYTE_BLOB) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesErrorInfo_GetRawData(self: *const T, ppBlob: ?*?*BYTE_BLOB) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetRawData(@ptrCast(*const IOfflineFilesErrorInfo, self), ppBlob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesErrorInfo_GetDescription(self: *const T, ppszDescription: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesErrorInfo_GetDescription(self: *const T, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetDescription(@ptrCast(*const IOfflineFilesErrorInfo, self), ppszDescription);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSyncErrorItemInfo_Value = @import("../zig.zig").Guid.initString("ECDBAF0D-6A18-4D55-8017-108F7660BA44");
+const IID_IOfflineFilesSyncErrorItemInfo_Value = @import("../zig.zig").Guid.initString("ecdbaf0d-6a18-4d55-8017-108f7660ba44");
 pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemInfo_Value;
 pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub const VTable = extern struct {
@@ -863,7 +863,7 @@ pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSyncErrorInfo_Value = @import("../zig.zig").Guid.initString("59F95E46-EB54-49D1-BE76-DE95458D01B0");
+const IID_IOfflineFilesSyncErrorInfo_Value = @import("../zig.zig").Guid.initString("59f95e46-eb54-49d1-be76-de95458d01b0");
 pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value;
 pub const IOfflineFilesSyncErrorInfo = extern struct {
     pub const VTable = extern struct {
@@ -890,15 +890,15 @@ pub const IOfflineFilesSyncErrorInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLocalInfo: fn(
             self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: **IOfflineFilesSyncErrorItemInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRemoteInfo: fn(
             self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: **IOfflineFilesSyncErrorItemInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOriginalInfo: fn(
             self: *const IOfflineFilesSyncErrorInfo,
-            ppInfo: **IOfflineFilesSyncErrorItemInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -921,22 +921,22 @@ pub const IOfflineFilesSyncErrorInfo = extern struct {
             return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).InfoAvailable(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetLocalInfo(self: *const T, ppInfo: **IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesSyncErrorInfo_GetLocalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetLocalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetRemoteInfo(self: *const T, ppInfo: **IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesSyncErrorInfo_GetRemoteInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetRemoteInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetOriginalInfo(self: *const T, ppInfo: **IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesSyncErrorInfo_GetOriginalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetOriginalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesProgress_Value = @import("../zig.zig").Guid.initString("FAD63237-C55B-4911-9850-BCF96D4C979E");
+const IID_IOfflineFilesProgress_Value = @import("../zig.zig").Guid.initString("fad63237-c55b-4911-9850-bcf96d4c979e");
 pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
 pub const IOfflineFilesProgress = extern struct {
     pub const VTable = extern struct {
@@ -973,7 +973,7 @@ pub const IOfflineFilesProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSimpleProgress_Value = @import("../zig.zig").Guid.initString("C34F7F9B-C43D-4F9D-A776-C0EB6DE5D401");
+const IID_IOfflineFilesSimpleProgress_Value = @import("../zig.zig").Guid.initString("c34f7f9b-c43d-4f9d-a776-c0eb6de5d401");
 pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Value;
 pub const IOfflineFilesSimpleProgress = extern struct {
     pub const VTable = extern struct {
@@ -1005,7 +1005,7 @@ pub const IOfflineFilesSimpleProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSyncProgress_Value = @import("../zig.zig").Guid.initString("6931F49A-6FC7-4C1B-B265-56793FC451B7");
+const IID_IOfflineFilesSyncProgress_Value = @import("../zig.zig").Guid.initString("6931f49a-6fc7-4c1b-b265-56793fc451b7");
 pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
 pub const IOfflineFilesSyncProgress = extern struct {
     pub const VTable = extern struct {
@@ -1038,7 +1038,7 @@ pub const IOfflineFilesSyncProgress = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSyncConflictHandler_Value = @import("../zig.zig").Guid.initString("B6DD5092-C65C-46B6-97B8-FADD08E7E1BE");
+const IID_IOfflineFilesSyncConflictHandler_Value = @import("../zig.zig").Guid.initString("b6dd5092-c65c-46b6-97b8-fadd08e7e1be");
 pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictHandler_Value;
 pub const IOfflineFilesSyncConflictHandler = extern struct {
     pub const VTable = extern struct {
@@ -1064,7 +1064,7 @@ pub const IOfflineFilesSyncConflictHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesItemFilter_Value = @import("../zig.zig").Guid.initString("F4B5A26C-DC05-4F20-ADA4-551F1077BE5C");
+const IID_IOfflineFilesItemFilter_Value = @import("../zig.zig").Guid.initString("f4b5a26c-dc05-4f20-ada4-551f1077be5c");
 pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
 pub const IOfflineFilesItemFilter = extern struct {
     pub const VTable = extern struct {
@@ -1106,7 +1106,7 @@ pub const IOfflineFilesItemFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesItem_Value = @import("../zig.zig").Guid.initString("4A753DA6-E044-4F12-A718-5D14D079A906");
+const IID_IOfflineFilesItem_Value = @import("../zig.zig").Guid.initString("4a753da6-e044-4f12-a718-5d14d079a906");
 pub const IID_IOfflineFilesItem = &IID_IOfflineFilesItem_Value;
 pub const IOfflineFilesItem = extern struct {
     pub const VTable = extern struct {
@@ -1121,7 +1121,7 @@ pub const IOfflineFilesItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParentItem: fn(
             self: *const IOfflineFilesItem,
-            ppItem: **IOfflineFilesItem,
+            ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Refresh: fn(
             self: *const IOfflineFilesItem,
@@ -1144,7 +1144,7 @@ pub const IOfflineFilesItem = extern struct {
             return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetPath(@ptrCast(*const IOfflineFilesItem, self), ppszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_GetParentItem(self: *const T, ppItem: **IOfflineFilesItem) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesItem_GetParentItem(self: *const T, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IOfflineFilesItem, self), ppItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1159,7 +1159,7 @@ pub const IOfflineFilesItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesServerItem_Value = @import("../zig.zig").Guid.initString("9B1C9576-A92B-4151-8E9E-7C7B3EC2E016");
+const IID_IOfflineFilesServerItem_Value = @import("../zig.zig").Guid.initString("9b1c9576-a92b-4151-8e9e-7c7b3ec2e016");
 pub const IID_IOfflineFilesServerItem = &IID_IOfflineFilesServerItem_Value;
 pub const IOfflineFilesServerItem = extern struct {
     pub const VTable = extern struct {
@@ -1172,7 +1172,7 @@ pub const IOfflineFilesServerItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesShareItem_Value = @import("../zig.zig").Guid.initString("BAB7E48D-4804-41B5-A44D-0F199B06B145");
+const IID_IOfflineFilesShareItem_Value = @import("../zig.zig").Guid.initString("bab7e48d-4804-41b5-a44d-0f199b06b145");
 pub const IID_IOfflineFilesShareItem = &IID_IOfflineFilesShareItem_Value;
 pub const IOfflineFilesShareItem = extern struct {
     pub const VTable = extern struct {
@@ -1185,7 +1185,7 @@ pub const IOfflineFilesShareItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesDirectoryItem_Value = @import("../zig.zig").Guid.initString("2273597A-A08C-4A00-A37A-C1AE4E9A1CFD");
+const IID_IOfflineFilesDirectoryItem_Value = @import("../zig.zig").Guid.initString("2273597a-a08c-4a00-a37a-c1ae4e9a1cfd");
 pub const IID_IOfflineFilesDirectoryItem = &IID_IOfflineFilesDirectoryItem_Value;
 pub const IOfflineFilesDirectoryItem = extern struct {
     pub const VTable = extern struct {
@@ -1198,7 +1198,7 @@ pub const IOfflineFilesDirectoryItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesFileItem_Value = @import("../zig.zig").Guid.initString("8DFADEAD-26C2-4EFF-8A72-6B50723D9A00");
+const IID_IOfflineFilesFileItem_Value = @import("../zig.zig").Guid.initString("8dfadead-26c2-4eff-8a72-6b50723d9a00");
 pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
 pub const IOfflineFilesFileItem = extern struct {
     pub const VTable = extern struct {
@@ -1227,7 +1227,7 @@ pub const IOfflineFilesFileItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumOfflineFilesItems_Value = @import("../zig.zig").Guid.initString("DA70E815-C361-4407-BC0B-0D7046E5F2CD");
+const IID_IEnumOfflineFilesItems_Value = @import("../zig.zig").Guid.initString("da70e815-c361-4407-bc0b-0d7046e5f2cd");
 pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
 pub const IEnumOfflineFilesItems = extern struct {
     pub const VTable = extern struct {
@@ -1247,7 +1247,7 @@ pub const IEnumOfflineFilesItems = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumOfflineFilesItems,
-            ppenum: **IEnumOfflineFilesItems,
+            ppenum: ?*?*IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1266,14 +1266,14 @@ pub const IEnumOfflineFilesItems = extern struct {
             return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesItems, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesItems_Clone(self: *const T, ppenum: **IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        pub fn IEnumOfflineFilesItems_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesItems, self), ppenum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesItemContainer_Value = @import("../zig.zig").Guid.initString("3836F049-9413-45DD-BF46-B5AAA82DC310");
+const IID_IOfflineFilesItemContainer_Value = @import("../zig.zig").Guid.initString("3836f049-9413-45dd-bf46-b5aaa82dc310");
 pub const IID_IOfflineFilesItemContainer = &IID_IOfflineFilesItemContainer_Value;
 pub const IOfflineFilesItemContainer = extern struct {
     pub const VTable = extern struct {
@@ -1281,7 +1281,7 @@ pub const IOfflineFilesItemContainer = extern struct {
         EnumItems: fn(
             self: *const IOfflineFilesItemContainer,
             dwQueryFlags: u32,
-            ppenum: **IEnumOfflineFilesItems,
+            ppenum: ?*?*IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumItemsEx: fn(
             self: *const IOfflineFilesItemContainer,
@@ -1291,25 +1291,25 @@ pub const IOfflineFilesItemContainer = extern struct {
             pExcludeDirFilter: ?*IOfflineFilesItemFilter,
             dwEnumFlags: u32,
             dwQueryFlags: u32,
-            ppenum: **IEnumOfflineFilesItems,
+            ppenum: ?*?*IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemContainer_EnumItems(self: *const T, dwQueryFlags: u32, ppenum: **IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesItemContainer_EnumItems(self: *const T, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItems(@ptrCast(*const IOfflineFilesItemContainer, self), dwQueryFlags, ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemContainer_EnumItemsEx(self: *const T, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: **IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesItemContainer_EnumItemsEx(self: *const T, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItemsEx(@ptrCast(*const IOfflineFilesItemContainer, self), pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesChangeInfo_Value = @import("../zig.zig").Guid.initString("A96E6FA4-E0D1-4C29-960B-EE508FE68C72");
+const IID_IOfflineFilesChangeInfo_Value = @import("../zig.zig").Guid.initString("a96e6fa4-e0d1-4c29-960b-ee508fe68c72");
 pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
 pub const IOfflineFilesChangeInfo = extern struct {
     pub const VTable = extern struct {
@@ -1370,7 +1370,7 @@ pub const IOfflineFilesChangeInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesDirtyInfo_Value = @import("../zig.zig").Guid.initString("0F50CE33-BAC9-4EAA-A11D-DA0E527D047D");
+const IID_IOfflineFilesDirtyInfo_Value = @import("../zig.zig").Guid.initString("0f50ce33-bac9-4eaa-a11d-da0e527d047d");
 pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
 pub const IOfflineFilesDirtyInfo = extern struct {
     pub const VTable = extern struct {
@@ -1399,7 +1399,7 @@ pub const IOfflineFilesDirtyInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesFileSysInfo_Value = @import("../zig.zig").Guid.initString("BC1A163F-7BFD-4D88-9C66-96EA9A6A3D6B");
+const IID_IOfflineFilesFileSysInfo_Value = @import("../zig.zig").Guid.initString("bc1a163f-7bfd-4d88-9c66-96ea9a6a3d6b");
 pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
 pub const IOfflineFilesFileSysInfo = extern struct {
     pub const VTable = extern struct {
@@ -1442,7 +1442,7 @@ pub const IOfflineFilesFileSysInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesPinInfo_Value = @import("../zig.zig").Guid.initString("5B2B0655-B3FD-497D-ADEB-BD156BC8355B");
+const IID_IOfflineFilesPinInfo_Value = @import("../zig.zig").Guid.initString("5b2b0655-b3fd-497d-adeb-bd156bc8355b");
 pub const IID_IOfflineFilesPinInfo = &IID_IOfflineFilesPinInfo_Value;
 pub const IOfflineFilesPinInfo = extern struct {
     pub const VTable = extern struct {
@@ -1499,7 +1499,7 @@ pub const IOfflineFilesPinInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesPinInfo2_Value = @import("../zig.zig").Guid.initString("623C58A2-42ED-4AD7-B69A-0F1B30A72D0D");
+const IID_IOfflineFilesPinInfo2_Value = @import("../zig.zig").Guid.initString("623c58a2-42ed-4ad7-b69a-0f1b30a72d0d");
 pub const IID_IOfflineFilesPinInfo2 = &IID_IOfflineFilesPinInfo2_Value;
 pub const IOfflineFilesPinInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -1520,7 +1520,7 @@ pub const IOfflineFilesPinInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesTransparentCacheInfo_Value = @import("../zig.zig").Guid.initString("BCAF4A01-5B68-4B56-A6A1-8D2786EDE8E3");
+const IID_IOfflineFilesTransparentCacheInfo_Value = @import("../zig.zig").Guid.initString("bcaf4a01-5b68-4b56-a6a1-8d2786ede8e3");
 pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentCacheInfo_Value;
 pub const IOfflineFilesTransparentCacheInfo = extern struct {
     pub const VTable = extern struct {
@@ -1541,7 +1541,7 @@ pub const IOfflineFilesTransparentCacheInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesGhostInfo_Value = @import("../zig.zig").Guid.initString("2B09D48C-8AB5-464F-A755-A59D92F99429");
+const IID_IOfflineFilesGhostInfo_Value = @import("../zig.zig").Guid.initString("2b09d48c-8ab5-464f-a755-a59d92f99429");
 pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
 pub const IOfflineFilesGhostInfo = extern struct {
     pub const VTable = extern struct {
@@ -1562,7 +1562,7 @@ pub const IOfflineFilesGhostInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesConnectionInfo_Value = @import("../zig.zig").Guid.initString("EFB23A09-A867-4BE8-83A6-86969A7D0856");
+const IID_IOfflineFilesConnectionInfo_Value = @import("../zig.zig").Guid.initString("efb23a09-a867-4be8-83a6-86969a7d0856");
 pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Value;
 pub const IOfflineFilesConnectionInfo = extern struct {
     pub const VTable = extern struct {
@@ -1614,14 +1614,14 @@ pub const IOfflineFilesConnectionInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesShareInfo_Value = @import("../zig.zig").Guid.initString("7BCC43E7-31CE-4CA4-8CCD-1CFF2DC494DA");
+const IID_IOfflineFilesShareInfo_Value = @import("../zig.zig").Guid.initString("7bcc43e7-31ce-4ca4-8ccd-1cff2dc494da");
 pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
 pub const IOfflineFilesShareInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetShareItem: fn(
             self: *const IOfflineFilesShareInfo,
-            ppShareItem: **IOfflineFilesShareItem,
+            ppShareItem: ?*?*IOfflineFilesShareItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetShareCachingMode: fn(
             self: *const IOfflineFilesShareInfo,
@@ -1636,7 +1636,7 @@ pub const IOfflineFilesShareInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesShareInfo_GetShareItem(self: *const T, ppShareItem: **IOfflineFilesShareItem) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesShareInfo_GetShareItem(self: *const T, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).GetShareItem(@ptrCast(*const IOfflineFilesShareInfo, self), ppShareItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1651,7 +1651,7 @@ pub const IOfflineFilesShareInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSuspend_Value = @import("../zig.zig").Guid.initString("62C4560F-BC0B-48CA-AD9D-34CB528D99A9");
+const IID_IOfflineFilesSuspend_Value = @import("../zig.zig").Guid.initString("62c4560f-bc0b-48ca-ad9d-34cb528d99a9");
 pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
 pub const IOfflineFilesSuspend = extern struct {
     pub const VTable = extern struct {
@@ -1672,7 +1672,7 @@ pub const IOfflineFilesSuspend = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSuspendInfo_Value = @import("../zig.zig").Guid.initString("A457C25B-4E9C-4B04-85AF-8932CCD97889");
+const IID_IOfflineFilesSuspendInfo_Value = @import("../zig.zig").Guid.initString("a457c25b-4e9c-4b04-85af-8932ccd97889");
 pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
 pub const IOfflineFilesSuspendInfo = extern struct {
     pub const VTable = extern struct {
@@ -1694,7 +1694,7 @@ pub const IOfflineFilesSuspendInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("D871D3F7-F613-48A1-827E-7A34E560FFF6");
+const IID_IOfflineFilesSetting_Value = @import("../zig.zig").Guid.initString("d871d3f7-f613-48a1-827e-7a34e560fff6");
 pub const IID_IOfflineFilesSetting = &IID_IOfflineFilesSetting_Value;
 pub const IOfflineFilesSetting = extern struct {
     pub const VTable = extern struct {
@@ -1783,7 +1783,7 @@ pub const IOfflineFilesSetting = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumOfflineFilesSettings_Value = @import("../zig.zig").Guid.initString("729680C4-1A38-47BC-9E5C-02C51562AC30");
+const IID_IEnumOfflineFilesSettings_Value = @import("../zig.zig").Guid.initString("729680c4-1a38-47bc-9e5c-02c51562ac30");
 pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
 pub const IEnumOfflineFilesSettings = extern struct {
     pub const VTable = extern struct {
@@ -1803,7 +1803,7 @@ pub const IEnumOfflineFilesSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IEnumOfflineFilesSettings,
-            ppenum: **IEnumOfflineFilesSettings,
+            ppenum: ?*?*IEnumOfflineFilesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1822,14 +1822,14 @@ pub const IEnumOfflineFilesSettings = extern struct {
             return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesSettings, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesSettings_Clone(self: *const T, ppenum: **IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+        pub fn IEnumOfflineFilesSettings_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesSettings, self), ppenum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesCache_Value = @import("../zig.zig").Guid.initString("855D6203-7914-48B9-8D40-4C56F5ACFFC5");
+const IID_IOfflineFilesCache_Value = @import("../zig.zig").Guid.initString("855d6203-7914-48b9-8d40-4c56f5acffc5");
 pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
 pub const IOfflineFilesCache = extern struct {
     pub const VTable = extern struct {
@@ -1899,7 +1899,7 @@ pub const IOfflineFilesCache = extern struct {
             self: *const IOfflineFilesCache,
             pszPath: [*:0]const u16,
             dwQueryFlags: u32,
-            ppItem: **IOfflineFilesItem,
+            ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindItemEx: fn(
             self: *const IOfflineFilesCache,
@@ -1909,7 +1909,7 @@ pub const IOfflineFilesCache = extern struct {
             pExcludeFileFilter: ?*IOfflineFilesItemFilter,
             pExcludeDirFilter: ?*IOfflineFilesItemFilter,
             dwQueryFlags: u32,
-            ppItem: **IOfflineFilesItem,
+            ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RenameItem: fn(
             self: *const IOfflineFilesCache,
@@ -1942,11 +1942,11 @@ pub const IOfflineFilesCache = extern struct {
         GetSettingObject: fn(
             self: *const IOfflineFilesCache,
             pszSettingName: [*:0]const u16,
-            ppSetting: **IOfflineFilesSetting,
+            ppSetting: ?*?*IOfflineFilesSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumSettingObjects: fn(
             self: *const IOfflineFilesCache,
-            ppEnum: **IEnumOfflineFilesSettings,
+            ppEnum: ?*?*IEnumOfflineFilesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsPathCacheable: fn(
             self: *const IOfflineFilesCache,
@@ -1987,11 +1987,11 @@ pub const IOfflineFilesCache = extern struct {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Encrypt(@ptrCast(*const IOfflineFilesCache, self), hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_FindItem(self: *const T, pszPath: [*:0]const u16, dwQueryFlags: u32, ppItem: **IOfflineFilesItem) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesCache_FindItem(self: *const T, pszPath: [*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItem(@ptrCast(*const IOfflineFilesCache, self), pszPath, dwQueryFlags, ppItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_FindItemEx(self: *const T, pszPath: [*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: **IOfflineFilesItem) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesCache_FindItemEx(self: *const T, pszPath: [*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItemEx(@ptrCast(*const IOfflineFilesCache, self), pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2015,11 +2015,11 @@ pub const IOfflineFilesCache = extern struct {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).ProcessAdminPinPolicy(@ptrCast(*const IOfflineFilesCache, self), pPinProgress, pUnpinProgress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetSettingObject(self: *const T, pszSettingName: [*:0]const u16, ppSetting: **IOfflineFilesSetting) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesCache_GetSettingObject(self: *const T, pszSettingName: [*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetSettingObject(@ptrCast(*const IOfflineFilesCache, self), pszSettingName, ppSetting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_EnumSettingObjects(self: *const T, ppEnum: **IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+        pub fn IOfflineFilesCache_EnumSettingObjects(self: *const T, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).EnumSettingObjects(@ptrCast(*const IOfflineFilesCache, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2030,7 +2030,7 @@ pub const IOfflineFilesCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOfflineFilesCache2_Value = @import("../zig.zig").Guid.initString("8C075039-1551-4ED9-8781-56705C04D3C0");
+const IID_IOfflineFilesCache2_Value = @import("../zig.zig").Guid.initString("8c075039-1551-4ed9-8781-56705c04d3c0");
 pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
 pub const IOfflineFilesCache2 = extern struct {
     pub const VTable = extern struct {

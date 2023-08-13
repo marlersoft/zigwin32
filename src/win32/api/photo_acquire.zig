@@ -6,37 +6,37 @@
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-const CLSID_PhotoAcquire_Value = @import("../zig.zig").Guid.initString("00F26E02-E9F2-4A9F-9FDD-5A962FB26A98");
+const CLSID_PhotoAcquire_Value = @import("../zig.zig").Guid.initString("00f26e02-e9f2-4a9f-9fdd-5a962fb26a98");
 pub const CLSID_PhotoAcquire = &CLSID_PhotoAcquire_Value;
 
-const CLSID_PhotoAcquireAutoPlayDropTarget_Value = @import("../zig.zig").Guid.initString("00F20EB5-8FD6-4D9D-B75E-36801766C8F1");
+const CLSID_PhotoAcquireAutoPlayDropTarget_Value = @import("../zig.zig").Guid.initString("00f20eb5-8fd6-4d9d-b75e-36801766c8f1");
 pub const CLSID_PhotoAcquireAutoPlayDropTarget = &CLSID_PhotoAcquireAutoPlayDropTarget_Value;
 
-const CLSID_PhotoAcquireAutoPlayHWEventHandler_Value = @import("../zig.zig").Guid.initString("00F2B433-44E4-4D88-B2B0-2698A0A91DBA");
+const CLSID_PhotoAcquireAutoPlayHWEventHandler_Value = @import("../zig.zig").Guid.initString("00f2b433-44e4-4d88-b2b0-2698a0a91dba");
 pub const CLSID_PhotoAcquireAutoPlayHWEventHandler = &CLSID_PhotoAcquireAutoPlayHWEventHandler_Value;
 
-const CLSID_PhotoAcquireOptionsDialog_Value = @import("../zig.zig").Guid.initString("00F210A1-62F0-438B-9F7E-9618D72A1831");
+const CLSID_PhotoAcquireOptionsDialog_Value = @import("../zig.zig").Guid.initString("00f210a1-62f0-438b-9f7e-9618d72a1831");
 pub const CLSID_PhotoAcquireOptionsDialog = &CLSID_PhotoAcquireOptionsDialog_Value;
 
-const CLSID_PhotoProgressDialog_Value = @import("../zig.zig").Guid.initString("00F24CA0-748F-4E8A-894F-0E0357C6799F");
+const CLSID_PhotoProgressDialog_Value = @import("../zig.zig").Guid.initString("00f24ca0-748f-4e8a-894f-0e0357c6799f");
 pub const CLSID_PhotoProgressDialog = &CLSID_PhotoProgressDialog_Value;
 
-const CLSID_PhotoAcquireDeviceSelectionDialog_Value = @import("../zig.zig").Guid.initString("00F29A34-B8A1-482C-BCF8-3AC7B0FE8F62");
+const CLSID_PhotoAcquireDeviceSelectionDialog_Value = @import("../zig.zig").Guid.initString("00f29a34-b8a1-482c-bcf8-3ac7b0fe8f62");
 pub const CLSID_PhotoAcquireDeviceSelectionDialog = &CLSID_PhotoAcquireDeviceSelectionDialog_Value;
 
-const IID_IPhotoAcquireItem_Value = @import("../zig.zig").Guid.initString("00F21C97-28BF-4C02-B842-5E4E90139A30");
+const IID_IPhotoAcquireItem_Value = @import("../zig.zig").Guid.initString("00f21c97-28bf-4c02-b842-5e4e90139a30");
 pub const IID_IPhotoAcquireItem = &IID_IPhotoAcquireItem_Value;
 pub const IPhotoAcquireItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetItemName: fn(
             self: *const IPhotoAcquireItem,
-            pbstrItemName: *BSTR,
+            pbstrItemName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetThumbnail: fn(
             self: *const IPhotoAcquireItem,
             sizeThumbnail: SIZE,
-            phbmpThumbnail: *HBITMAP,
+            phbmpThumbnail: ?*HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IPhotoAcquireItem,
@@ -50,7 +50,7 @@ pub const IPhotoAcquireItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStream: fn(
             self: *const IPhotoAcquireItem,
-            ppStream: **IStream,
+            ppStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CanDelete: fn(
             self: *const IPhotoAcquireItem,
@@ -66,18 +66,18 @@ pub const IPhotoAcquireItem = extern struct {
         GetSubItemAt: fn(
             self: *const IPhotoAcquireItem,
             nItemIndex: u32,
-            ppPhotoAcquireItem: **IPhotoAcquireItem,
+            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetItemName(self: *const T, pbstrItemName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetItemName(self: *const T, pbstrItemName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetItemName(@ptrCast(*const IPhotoAcquireItem, self), pbstrItemName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetThumbnail(self: *const T, sizeThumbnail: SIZE, phbmpThumbnail: *HBITMAP) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetThumbnail(self: *const T, sizeThumbnail: SIZE, phbmpThumbnail: ?*HBITMAP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetThumbnail(@ptrCast(*const IPhotoAcquireItem, self), sizeThumbnail, phbmpThumbnail);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -89,7 +89,7 @@ pub const IPhotoAcquireItem = extern struct {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).SetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: **IStream) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetStream(@ptrCast(*const IPhotoAcquireItem, self), ppStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -105,7 +105,7 @@ pub const IPhotoAcquireItem = extern struct {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemCount(@ptrCast(*const IPhotoAcquireItem, self), pnCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: **IPhotoAcquireItem) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemAt(@ptrCast(*const IPhotoAcquireItem, self), nItemIndex, ppPhotoAcquireItem);
         }
     };}
@@ -119,22 +119,22 @@ pub const USER_INPUT_STRING_TYPE = extern enum(i32) {
 pub const USER_INPUT_DEFAULT = USER_INPUT_STRING_TYPE.USER_INPUT_DEFAULT;
 pub const USER_INPUT_PATH_ELEMENT = USER_INPUT_STRING_TYPE.USER_INPUT_PATH_ELEMENT;
 
-const IID_IUserInputString_Value = @import("../zig.zig").Guid.initString("00F243A1-205B-45BA-AE26-ABBC53AA7A6F");
+const IID_IUserInputString_Value = @import("../zig.zig").Guid.initString("00f243a1-205b-45ba-ae26-abbc53aa7a6f");
 pub const IID_IUserInputString = &IID_IUserInputString_Value;
 pub const IUserInputString = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSubmitButtonText: fn(
             self: *const IUserInputString,
-            pbstrSubmitButtonText: *BSTR,
+            pbstrSubmitButtonText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPrompt: fn(
             self: *const IUserInputString,
-            pbstrPromptTitle: *BSTR,
+            pbstrPromptTitle: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringId: fn(
             self: *const IUserInputString,
-            pbstrStringId: *BSTR,
+            pbstrStringId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringType: fn(
             self: *const IUserInputString,
@@ -142,7 +142,7 @@ pub const IUserInputString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTooltipText: fn(
             self: *const IUserInputString,
-            pbstrTooltipText: *BSTR,
+            pbstrTooltipText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMaxLength: fn(
             self: *const IUserInputString,
@@ -150,7 +150,7 @@ pub const IUserInputString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefault: fn(
             self: *const IUserInputString,
-            pbstrDefault: *BSTR,
+            pbstrDefault: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMruCount: fn(
             self: *const IUserInputString,
@@ -159,7 +159,7 @@ pub const IUserInputString = extern struct {
         GetMruEntryAt: fn(
             self: *const IUserInputString,
             nIndex: u32,
-            pbstrMruEntry: *BSTR,
+            pbstrMruEntry: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImage: fn(
             self: *const IUserInputString,
@@ -172,15 +172,15 @@ pub const IUserInputString = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetSubmitButtonText(self: *const T, pbstrSubmitButtonText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetSubmitButtonText(self: *const T, pbstrSubmitButtonText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetSubmitButtonText(@ptrCast(*const IUserInputString, self), pbstrSubmitButtonText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetPrompt(self: *const T, pbstrPromptTitle: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetPrompt(self: *const T, pbstrPromptTitle: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetPrompt(@ptrCast(*const IUserInputString, self), pbstrPromptTitle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetStringId(self: *const T, pbstrStringId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetStringId(self: *const T, pbstrStringId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringId(@ptrCast(*const IUserInputString, self), pbstrStringId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -188,7 +188,7 @@ pub const IUserInputString = extern struct {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringType(@ptrCast(*const IUserInputString, self), pnStringType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetTooltipText(self: *const T, pbstrTooltipText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetTooltipText(self: *const T, pbstrTooltipText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetTooltipText(@ptrCast(*const IUserInputString, self), pbstrTooltipText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -196,7 +196,7 @@ pub const IUserInputString = extern struct {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMaxLength(@ptrCast(*const IUserInputString, self), pcchMaxLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetDefault(self: *const T, pbstrDefault: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetDefault(self: *const T, pbstrDefault: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetDefault(@ptrCast(*const IUserInputString, self), pbstrDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -204,7 +204,7 @@ pub const IUserInputString = extern struct {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruCount(@ptrCast(*const IUserInputString, self), pnMruCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetMruEntryAt(self: *const T, nIndex: u32, pbstrMruEntry: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IUserInputString_GetMruEntryAt(self: *const T, nIndex: u32, pbstrMruEntry: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruEntryAt(@ptrCast(*const IUserInputString, self), nIndex, pbstrMruEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -243,7 +243,7 @@ pub const PHOTOACQUIRE_RESULT_SKIP_ALL = ERROR_ADVISE_RESULT.PHOTOACQUIRE_RESULT
 pub const PHOTOACQUIRE_RESULT_RETRY = ERROR_ADVISE_RESULT.PHOTOACQUIRE_RESULT_RETRY;
 pub const PHOTOACQUIRE_RESULT_ABORT = ERROR_ADVISE_RESULT.PHOTOACQUIRE_RESULT_ABORT;
 
-const IID_IPhotoAcquireProgressCB_Value = @import("../zig.zig").Guid.initString("00F2CE1E-935E-4248-892C-130F32C45CB4");
+const IID_IPhotoAcquireProgressCB_Value = @import("../zig.zig").Guid.initString("00f2ce1e-935e-4248-892c-130f32c45cb4");
 pub const IID_IPhotoAcquireProgressCB = &IID_IPhotoAcquireProgressCB_Value;
 pub const IPhotoAcquireProgressCB = extern struct {
     pub const VTable = extern struct {
@@ -421,7 +421,7 @@ pub const IPhotoAcquireProgressCB = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoProgressActionCB_Value = @import("../zig.zig").Guid.initString("00F242D0-B206-4E7D-B4C1-4755BCBB9C9F");
+const IID_IPhotoProgressActionCB_Value = @import("../zig.zig").Guid.initString("00f242d0-b206-4e7d-b4c1-4755bcbb9c9f");
 pub const IID_IPhotoProgressActionCB = &IID_IPhotoProgressActionCB_Value;
 pub const IPhotoProgressActionCB = extern struct {
     pub const VTable = extern struct {
@@ -458,7 +458,7 @@ pub const PROGRESS_DIALOG_CHECKBOX_ID = extern enum(i32) {
 };
 pub const PROGRESS_DIALOG_CHECKBOX_ID_DEFAULT = PROGRESS_DIALOG_CHECKBOX_ID.DEFAULT;
 
-const IID_IPhotoProgressDialog_Value = @import("../zig.zig").Guid.initString("00F246F9-0750-4F08-9381-2CD8E906A4AE");
+const IID_IPhotoProgressDialog_Value = @import("../zig.zig").Guid.initString("00f246f9-0750-4f08-9381-2cd8e906a4ae");
 pub const IID_IPhotoProgressDialog = &IID_IPhotoProgressDialog_Value;
 pub const IPhotoProgressDialog = extern struct {
     pub const VTable = extern struct {
@@ -469,7 +469,7 @@ pub const IPhotoProgressDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWindow: fn(
             self: *const IPhotoProgressDialog,
-            phwndProgressDialog: *HWND,
+            phwndProgressDialog: ?*HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Destroy: fn(
             self: *const IPhotoProgressDialog,
@@ -553,7 +553,7 @@ pub const IPhotoProgressDialog = extern struct {
             return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoProgressDialog, self), hwndParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_GetWindow(self: *const T, phwndProgressDialog: *HWND) callconv(.Inline) HRESULT {
+        pub fn IPhotoProgressDialog_GetWindow(self: *const T, phwndProgressDialog: ?*HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).GetWindow(@ptrCast(*const IPhotoProgressDialog, self), phwndProgressDialog);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -624,14 +624,14 @@ pub const IPhotoProgressDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoAcquireSource_Value = @import("../zig.zig").Guid.initString("00F2C703-8613-4282-A53B-6EC59C5883AC");
+const IID_IPhotoAcquireSource_Value = @import("../zig.zig").Guid.initString("00f2c703-8613-4282-a53b-6ec59c5883ac");
 pub const IID_IPhotoAcquireSource = &IID_IPhotoAcquireSource_Value;
 pub const IPhotoAcquireSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFriendlyName: fn(
             self: *const IPhotoAcquireSource,
-            pbstrFriendlyName: *BSTR,
+            pbstrFriendlyName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceIcons: fn(
             self: *const IPhotoAcquireSource,
@@ -652,27 +652,27 @@ pub const IPhotoAcquireSource = extern struct {
         GetItemAt: fn(
             self: *const IPhotoAcquireSource,
             nIndex: u32,
-            ppPhotoAcquireItem: **IPhotoAcquireItem,
+            ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPhotoAcquireSettings: fn(
             self: *const IPhotoAcquireSource,
-            ppPhotoAcquireSettings: **IPhotoAcquireSettings,
+            ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceId: fn(
             self: *const IPhotoAcquireSource,
-            pbstrDeviceId: *BSTR,
+            pbstrDeviceId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindToObject: fn(
             self: *const IPhotoAcquireSource,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetFriendlyName(self: *const T, pbstrFriendlyName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetFriendlyName(self: *const T, pbstrFriendlyName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IPhotoAcquireSource, self), pbstrFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -688,26 +688,26 @@ pub const IPhotoAcquireSource = extern struct {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemCount(@ptrCast(*const IPhotoAcquireSource, self), pnItemCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: **IPhotoAcquireItem) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemAt(@ptrCast(*const IPhotoAcquireSource, self), nIndex, ppPhotoAcquireItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: **IPhotoAcquireSettings) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetPhotoAcquireSettings(@ptrCast(*const IPhotoAcquireSource, self), ppPhotoAcquireSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetDeviceId(self: *const T, pbstrDeviceId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_GetDeviceId(self: *const T, pbstrDeviceId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceId(@ptrCast(*const IPhotoAcquireSource, self), pbstrDeviceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_BindToObject(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSource_BindToObject(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).BindToObject(@ptrCast(*const IPhotoAcquireSource, self), riid, ppv);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoAcquire_Value = @import("../zig.zig").Guid.initString("00F23353-E31B-4955-A8AD-CA5EBF31E2CE");
+const IID_IPhotoAcquire_Value = @import("../zig.zig").Guid.initString("00f23353-e31b-4955-a8ad-ca5ebf31e2ce");
 pub const IID_IPhotoAcquire = &IID_IPhotoAcquire_Value;
 pub const IPhotoAcquire = extern struct {
     pub const VTable = extern struct {
@@ -715,7 +715,7 @@ pub const IPhotoAcquire = extern struct {
         CreatePhotoSource: fn(
             self: *const IPhotoAcquire,
             pszDevice: [*:0]const u16,
-            ppPhotoAcquireSource: **IPhotoAcquireSource,
+            ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Acquire: fn(
             self: *const IPhotoAcquire,
@@ -727,14 +727,14 @@ pub const IPhotoAcquire = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumResults: fn(
             self: *const IPhotoAcquire,
-            ppEnumFilePaths: **IEnumString,
+            ppEnumFilePaths: ?*?*IEnumString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: [*:0]const u16, ppPhotoAcquireSource: **IPhotoAcquireSource) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: [*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).CreatePhotoSource(@ptrCast(*const IPhotoAcquire, self), pszDevice, ppPhotoAcquireSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -742,14 +742,14 @@ pub const IPhotoAcquire = extern struct {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).Acquire(@ptrCast(*const IPhotoAcquire, self), pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: **IEnumString) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: ?*?*IEnumString) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).EnumResults(@ptrCast(*const IPhotoAcquire, self), ppEnumFilePaths);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoAcquireSettings_Value = @import("../zig.zig").Guid.initString("00F2B868-DD67-487C-9553-049240767E91");
+const IID_IPhotoAcquireSettings_Value = @import("../zig.zig").Guid.initString("00f2b868-dd67-487c-9553-049240767e91");
 pub const IID_IPhotoAcquireSettings = &IID_IPhotoAcquireSettings_Value;
 pub const IPhotoAcquireSettings = extern struct {
     pub const VTable = extern struct {
@@ -788,7 +788,7 @@ pub const IPhotoAcquireSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetOutputFilenameTemplate: fn(
             self: *const IPhotoAcquireSettings,
-            pbstrTemplate: *BSTR,
+            pbstrTemplate: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSequencePaddingWidth: fn(
             self: *const IPhotoAcquireSettings,
@@ -800,7 +800,7 @@ pub const IPhotoAcquireSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroupTag: fn(
             self: *const IPhotoAcquireSettings,
-            pbstrGroupTag: *BSTR,
+            pbstrGroupTag: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAcquisitionTime: fn(
             self: *const IPhotoAcquireSettings,
@@ -843,7 +843,7 @@ pub const IPhotoAcquireSettings = extern struct {
             return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetFlags(@ptrCast(*const IPhotoAcquireSettings, self), pdwPhotoAcquireFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetOutputFilenameTemplate(self: *const T, pbstrTemplate: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSettings_GetOutputFilenameTemplate(self: *const T, pbstrTemplate: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetOutputFilenameTemplate(@ptrCast(*const IPhotoAcquireSettings, self), pbstrTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -855,7 +855,7 @@ pub const IPhotoAcquireSettings = extern struct {
             return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetSequenceZeroPadding(@ptrCast(*const IPhotoAcquireSettings, self), pfZeroPad);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetGroupTag(self: *const T, pbstrGroupTag: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireSettings_GetGroupTag(self: *const T, pbstrGroupTag: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetGroupTag(@ptrCast(*const IPhotoAcquireSettings, self), pbstrGroupTag);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -866,7 +866,7 @@ pub const IPhotoAcquireSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoAcquireOptionsDialog_Value = @import("../zig.zig").Guid.initString("00F2B3EE-BF64-47EE-89F4-4DEDD79643F2");
+const IID_IPhotoAcquireOptionsDialog_Value = @import("../zig.zig").Guid.initString("00f2b3ee-bf64-47ee-89f4-4dedd79643f2");
 pub const IID_IPhotoAcquireOptionsDialog = &IID_IPhotoAcquireOptionsDialog_Value;
 pub const IPhotoAcquireOptionsDialog = extern struct {
     pub const VTable = extern struct {
@@ -878,7 +878,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
         Create: fn(
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: HWND,
-            phWndDialog: *HWND,
+            phWndDialog: ?*HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Destroy: fn(
             self: *const IPhotoAcquireOptionsDialog,
@@ -900,7 +900,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
             return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Initialize(@ptrCast(*const IPhotoAcquireOptionsDialog, self), pszRegistryRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_Create(self: *const T, hWndParent: HWND, phWndDialog: *HWND) callconv(.Inline) HRESULT {
+        pub fn IPhotoAcquireOptionsDialog_Create(self: *const T, hWndParent: HWND, phWndDialog: ?*HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, phWndDialog);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -936,7 +936,7 @@ pub const DSF_TWAIN_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.DSF_TWAIN_DEVICE;
 pub const DST_FS_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.DST_FS_DEVICE;
 pub const DST_DV_DEVICE = DEVICE_SELECTION_DEVICE_TYPE.DST_DV_DEVICE;
 
-const IID_IPhotoAcquireDeviceSelectionDialog_Value = @import("../zig.zig").Guid.initString("00F28837-55DD-4F37-AAF5-6855A9640467");
+const IID_IPhotoAcquireDeviceSelectionDialog_Value = @import("../zig.zig").Guid.initString("00f28837-55dd-4f37-aaf5-6855a9640467");
 pub const IID_IPhotoAcquireDeviceSelectionDialog = &IID_IPhotoAcquireDeviceSelectionDialog_Value;
 pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
     pub const VTable = extern struct {
@@ -976,7 +976,7 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPhotoAcquirePlugin_Value = @import("../zig.zig").Guid.initString("00F2DCEB-ECB8-4F77-8E47-E7A987C83DD0");
+const IID_IPhotoAcquirePlugin_Value = @import("../zig.zig").Guid.initString("00f2dceb-ecb8-4f77-8e47-e7a987c83dd0");
 pub const IID_IPhotoAcquirePlugin = &IID_IPhotoAcquirePlugin_Value;
 pub const IPhotoAcquirePlugin = extern struct {
     pub const VTable = extern struct {

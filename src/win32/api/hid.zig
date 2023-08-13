@@ -6,12 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (128)
 //--------------------------------------------------------------------------------
-pub const JOYREGHWVALUES = extern struct {
-    jrvHardware: joyrange_tag,
-    dwPOVValues: [4]u32,
-    dwCalFlags: u32,
-};
-
 pub const DICONSTANTFORCE = extern struct {
     lMagnitude: i32,
 };
@@ -2922,6 +2916,12 @@ pub const HIDD_ATTRIBUTES = extern struct {
     VersionNumber: u16,
 };
 
+pub const JOYREGHWVALUES = extern struct {
+    jrvHardware: joyrange_tag,
+    dwPOVValues: [4]u32,
+    dwCalFlags: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (44)
@@ -3371,9 +3371,9 @@ const HRESULT = @import("com.zig").HRESULT;
 const joyreguservalues_tag = @import("multimedia.zig").joyreguservalues_tag;
 const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
+const joyreghwsettings_tag = @import("multimedia.zig").joyreghwsettings_tag;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
-const joyreghwsettings_tag = @import("multimedia.zig").joyreghwsettings_tag;
 const joyrange_tag = @import("multimedia.zig").joyrange_tag;
 const joyreghwconfig_tag = @import("multimedia.zig").joyreghwconfig_tag;
 const POINT = @import("display_devices.zig").POINT;

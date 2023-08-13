@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-const CLSID_DedupBackupSupport_Value = @import("../zig.zig").Guid.initString("73D6B2AD-2984-4715-B2E3-924C149744DD");
+const CLSID_DedupBackupSupport_Value = @import("../zig.zig").Guid.initString("73d6b2ad-2984-4715-b2e3-924c149744dd");
 pub const CLSID_DedupBackupSupport = &CLSID_DedupBackupSupport_Value;
 
 pub const DEDUP_CONTAINER_EXTENT = extern struct {
@@ -27,7 +27,7 @@ pub const DEDUP_BACKUP_SUPPORT_PARAM_TYPE = extern enum(i32) {
 pub const DEDUP_RECONSTRUCT_UNOPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.DEDUP_RECONSTRUCT_UNOPTIMIZED;
 pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.DEDUP_RECONSTRUCT_OPTIMIZED;
 
-const IID_IDedupReadFileCallback_Value = @import("../zig.zig").Guid.initString("7BACC67A-2F1D-42D0-897E-6FF62DD533BB");
+const IID_IDedupReadFileCallback_Value = @import("../zig.zig").Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
 pub const IDedupReadFileCallback = extern struct {
     pub const VTable = extern struct {
@@ -74,7 +74,7 @@ pub const IDedupReadFileCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDedupBackupSupport_Value = @import("../zig.zig").Guid.initString("C719D963-2B2D-415E-ACF7-7EB7CA596FF4");
+const IID_IDedupBackupSupport_Value = @import("../zig.zig").Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
 pub const IDedupBackupSupport = extern struct {
     pub const VTable = extern struct {

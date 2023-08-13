@@ -6,22 +6,22 @@
 //--------------------------------------------------------------------------------
 // Section: Types (39)
 //--------------------------------------------------------------------------------
-const CLSID_DirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("34E211B6-3650-4F75-8334-FA359598E1C5");
+const CLSID_DirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("34e211b6-3650-4f75-8334-fa359598e1c5");
 pub const CLSID_DirectManipulationViewport = &CLSID_DirectManipulationViewport_Value;
 
-const CLSID_DirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("9FC1BFD5-1835-441A-B3B1-B6CC74B727D0");
+const CLSID_DirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("9fc1bfd5-1835-441a-b3b1-b6cc74b727d0");
 pub const CLSID_DirectManipulationUpdateManager = &CLSID_DirectManipulationUpdateManager_Value;
 
-const CLSID_DirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("CAA02661-D59E-41C7-8393-3BA3BACB6B57");
+const CLSID_DirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("caa02661-d59e-41c7-8393-3ba3bacb6b57");
 pub const CLSID_DirectManipulationPrimaryContent = &CLSID_DirectManipulationPrimaryContent_Value;
 
-const CLSID_DirectManipulationManager_Value = @import("../zig.zig").Guid.initString("54E211B6-3650-4F75-8334-FA359598E1C5");
+const CLSID_DirectManipulationManager_Value = @import("../zig.zig").Guid.initString("54e211b6-3650-4f75-8334-fa359598e1c5");
 pub const CLSID_DirectManipulationManager = &CLSID_DirectManipulationManager_Value;
 
-const CLSID_DirectManipulationSharedManager_Value = @import("../zig.zig").Guid.initString("99793286-77CC-4B57-96DB-3B354F6F9FB5");
+const CLSID_DirectManipulationSharedManager_Value = @import("../zig.zig").Guid.initString("99793286-77cc-4b57-96db-3b354f6f9fb5");
 pub const CLSID_DirectManipulationSharedManager = &CLSID_DirectManipulationSharedManager_Value;
 
-const CLSID_DCompManipulationCompositor_Value = @import("../zig.zig").Guid.initString("79DEA627-A08A-43AC-8EF5-6900B9299126");
+const CLSID_DCompManipulationCompositor_Value = @import("../zig.zig").Guid.initString("79dea627-a08a-43ac-8ef5-6900b9299126");
 pub const CLSID_DCompManipulationCompositor = &CLSID_DCompManipulationCompositor_Value;
 
 pub const DIRECTMANIPULATION_STATUS = extern enum(i32) {
@@ -169,7 +169,7 @@ pub const DIRECTMANIPULATION_INPUT_MODE = extern enum(i32) {
 pub const DIRECTMANIPULATION_INPUT_MODE_AUTOMATIC = DIRECTMANIPULATION_INPUT_MODE.AUTOMATIC;
 pub const DIRECTMANIPULATION_INPUT_MODE_MANUAL = DIRECTMANIPULATION_INPUT_MODE.MANUAL;
 
-const IID_IDirectManipulationManager_Value = @import("../zig.zig").Guid.initString("FBF5D3B4-70C7-4163-9322-5A6F660D6FBC");
+const IID_IDirectManipulationManager_Value = @import("../zig.zig").Guid.initString("fbf5d3b4-70c7-4163-9322-5a6f660d6fbc");
 pub const IID_IDirectManipulationManager = &IID_IDirectManipulationManager_Value;
 pub const IDirectManipulationManager = extern struct {
     pub const VTable = extern struct {
@@ -248,7 +248,7 @@ pub const IDirectManipulationManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationManager2_Value = @import("../zig.zig").Guid.initString("FA1005E9-3D16-484C-BFC9-62B61E56EC4E");
+const IID_IDirectManipulationManager2_Value = @import("../zig.zig").Guid.initString("fa1005e9-3d16-484c-bfc9-62b61e56ec4e");
 pub const IID_IDirectManipulationManager2 = &IID_IDirectManipulationManager2_Value;
 pub const IDirectManipulationManager2 = extern struct {
     pub const VTable = extern struct {
@@ -271,7 +271,7 @@ pub const IDirectManipulationManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationManager3_Value = @import("../zig.zig").Guid.initString("2CB6B33D-FFE8-488C-B750-FBDFE88DCA8C");
+const IID_IDirectManipulationManager3_Value = @import("../zig.zig").Guid.initString("2cb6b33d-ffe8-488c-b750-fbdfe88dca8c");
 pub const IID_IDirectManipulationManager3 = &IID_IDirectManipulationManager3_Value;
 pub const IDirectManipulationManager3 = extern struct {
     pub const VTable = extern struct {
@@ -294,7 +294,7 @@ pub const IDirectManipulationManager3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("28B85A3D-60A0-48BD-9BA1-5CE8D9EA3A6D");
+const IID_IDirectManipulationViewport_Value = @import("../zig.zig").Guid.initString("28b85a3d-60a0-48bd-9ba1-5ce8d9ea3a6d");
 pub const IID_IDirectManipulationViewport = &IID_IDirectManipulationViewport_Value;
 pub const IDirectManipulationViewport = extern struct {
     pub const VTable = extern struct {
@@ -538,7 +538,7 @@ pub const IDirectManipulationViewport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationViewport2_Value = @import("../zig.zig").Guid.initString("923CCAAC-61E1-4385-B726-017AF189882A");
+const IID_IDirectManipulationViewport2_Value = @import("../zig.zig").Guid.initString("923ccaac-61e1-4385-b726-017af189882a");
 pub const IID_IDirectManipulationViewport2 = &IID_IDirectManipulationViewport2_Value;
 pub const IDirectManipulationViewport2 = extern struct {
     pub const VTable = extern struct {
@@ -575,7 +575,7 @@ pub const IDirectManipulationViewport2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationViewportEventHandler_Value = @import("../zig.zig").Guid.initString("952121DA-D69F-45F9-B0F9-F23944321A6D");
+const IID_IDirectManipulationViewportEventHandler_Value = @import("../zig.zig").Guid.initString("952121da-d69f-45f9-b0f9-f23944321a6d");
 pub const IID_IDirectManipulationViewportEventHandler = &IID_IDirectManipulationViewportEventHandler_Value;
 pub const IDirectManipulationViewportEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -615,7 +615,7 @@ pub const IDirectManipulationViewportEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationContent_Value = @import("../zig.zig").Guid.initString("B89962CB-3D89-442B-BB58-5098FA0F9F16");
+const IID_IDirectManipulationContent_Value = @import("../zig.zig").Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
 pub const IID_IDirectManipulationContent = &IID_IDirectManipulationContent_Value;
 pub const IDirectManipulationContent = extern struct {
     pub const VTable = extern struct {
@@ -699,7 +699,7 @@ pub const IDirectManipulationContent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("C12851E4-1698-4625-B9B1-7CA3EC18630B");
+const IID_IDirectManipulationPrimaryContent_Value = @import("../zig.zig").Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
 pub const IID_IDirectManipulationPrimaryContent = &IID_IDirectManipulationPrimaryContent_Value;
 pub const IDirectManipulationPrimaryContent = extern struct {
     pub const VTable = extern struct {
@@ -809,7 +809,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_DRAGGING = DIRECTMANIPULATION_DRAG_DROP_S
 pub const DIRECTMANIPULATION_DRAG_DROP_CANCELLED = DIRECTMANIPULATION_DRAG_DROP_STATUS.DIRECTMANIPULATION_DRAG_DROP_CANCELLED;
 pub const DIRECTMANIPULATION_DRAG_DROP_COMMITTED = DIRECTMANIPULATION_DRAG_DROP_STATUS.DIRECTMANIPULATION_DRAG_DROP_COMMITTED;
 
-const IID_IDirectManipulationDragDropEventHandler_Value = @import("../zig.zig").Guid.initString("1FA11B10-701B-41AE-B5F2-49E36BD595AA");
+const IID_IDirectManipulationDragDropEventHandler_Value = @import("../zig.zig").Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
 pub const IID_IDirectManipulationDragDropEventHandler = &IID_IDirectManipulationDragDropEventHandler_Value;
 pub const IDirectManipulationDragDropEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -845,7 +845,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_ONLY = DIRECTMANIPUL
 pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_SELECT_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.SELECT_DRAG;
 pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HOLD_DRAG = DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION.HOLD_DRAG;
 
-const IID_IDirectManipulationDragDropBehavior_Value = @import("../zig.zig").Guid.initString("814B5AF5-C2C8-4270-A9B7-A198CE8D02FA");
+const IID_IDirectManipulationDragDropBehavior_Value = @import("../zig.zig").Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
 pub const IID_IDirectManipulationDragDropBehavior = &IID_IDirectManipulationDragDropBehavior_Value;
 pub const IDirectManipulationDragDropBehavior = extern struct {
     pub const VTable = extern struct {
@@ -891,7 +891,7 @@ pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_CROSS_SLIDE = DIRECTMANIPU
 pub const DIRECTMANIPULATION_INTERACTION_TYPE_GESTURE_PINCH_ZOOM = DIRECTMANIPULATION_INTERACTION_TYPE.GESTURE_PINCH_ZOOM;
 pub const DIRECTMANIPULATION_INTERACTION_END = DIRECTMANIPULATION_INTERACTION_TYPE.DIRECTMANIPULATION_INTERACTION_END;
 
-const IID_IDirectManipulationInteractionEventHandler_Value = @import("../zig.zig").Guid.initString("E43F45B8-42B4-403E-B1F2-273B8F510830");
+const IID_IDirectManipulationInteractionEventHandler_Value = @import("../zig.zig").Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
 pub const IID_IDirectManipulationInteractionEventHandler = &IID_IDirectManipulationInteractionEventHandler_Value;
 pub const IDirectManipulationInteractionEventHandler = extern struct {
     pub const VTable = extern struct {
@@ -913,7 +913,7 @@ pub const IDirectManipulationInteractionEventHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationFrameInfoProvider_Value = @import("../zig.zig").Guid.initString("FB759DBA-6F4C-4C01-874E-19C8A05907F9");
+const IID_IDirectManipulationFrameInfoProvider_Value = @import("../zig.zig").Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
 pub const IID_IDirectManipulationFrameInfoProvider = &IID_IDirectManipulationFrameInfoProvider_Value;
 pub const IDirectManipulationFrameInfoProvider = extern struct {
     pub const VTable = extern struct {
@@ -936,7 +936,7 @@ pub const IDirectManipulationFrameInfoProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationCompositor_Value = @import("../zig.zig").Guid.initString("537A0825-0387-4EFA-B62F-71EB1F085A7E");
+const IID_IDirectManipulationCompositor_Value = @import("../zig.zig").Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
 pub const IID_IDirectManipulationCompositor = &IID_IDirectManipulationCompositor_Value;
 pub const IDirectManipulationCompositor = extern struct {
     pub const VTable = extern struct {
@@ -983,7 +983,7 @@ pub const IDirectManipulationCompositor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationCompositor2_Value = @import("../zig.zig").Guid.initString("D38C7822-F1CB-43CB-B4B9-AC0C767A412E");
+const IID_IDirectManipulationCompositor2_Value = @import("../zig.zig").Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
 pub const IID_IDirectManipulationCompositor2 = &IID_IDirectManipulationCompositor2_Value;
 pub const IDirectManipulationCompositor2 = extern struct {
     pub const VTable = extern struct {
@@ -1007,7 +1007,7 @@ pub const IDirectManipulationCompositor2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationUpdateHandler_Value = @import("../zig.zig").Guid.initString("790B6337-64F8-4FF5-A269-B32BC2AF27A7");
+const IID_IDirectManipulationUpdateHandler_Value = @import("../zig.zig").Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
 pub const IID_IDirectManipulationUpdateHandler = &IID_IDirectManipulationUpdateHandler_Value;
 pub const IDirectManipulationUpdateHandler = extern struct {
     pub const VTable = extern struct {
@@ -1027,7 +1027,7 @@ pub const IDirectManipulationUpdateHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("B0AE62FD-BE34-46E7-9CAA-D361FACBB9CC");
+const IID_IDirectManipulationUpdateManager_Value = @import("../zig.zig").Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
 pub const IID_IDirectManipulationUpdateManager = &IID_IDirectManipulationUpdateManager_Value;
 pub const IDirectManipulationUpdateManager = extern struct {
     pub const VTable = extern struct {
@@ -1075,7 +1075,7 @@ pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_STOP = DIRECTMANIPULATION_
 pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_FORWARD = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.FORWARD;
 pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_REVERSE = DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION.REVERSE;
 
-const IID_IDirectManipulationAutoScrollBehavior_Value = @import("../zig.zig").Guid.initString("6D5954D4-2003-4356-9B31-D051C9FF0AF7");
+const IID_IDirectManipulationAutoScrollBehavior_Value = @import("../zig.zig").Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
 pub const IID_IDirectManipulationAutoScrollBehavior = &IID_IDirectManipulationAutoScrollBehavior_Value;
 pub const IDirectManipulationAutoScrollBehavior = extern struct {
     pub const VTable = extern struct {
@@ -1097,7 +1097,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDirectManipulationDeferContactService_Value = @import("../zig.zig").Guid.initString("652D5C71-FE60-4A98-BE70-E5F21291E7F1");
+const IID_IDirectManipulationDeferContactService_Value = @import("../zig.zig").Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
 pub const IID_IDirectManipulationDeferContactService = &IID_IDirectManipulationDeferContactService_Value;
 pub const IDirectManipulationDeferContactService = extern struct {
     pub const VTable = extern struct {

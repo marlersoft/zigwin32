@@ -7,6 +7,9 @@ pub const CLSID_TraceRelogger = @import("../zig.zig").Guid.initString("7b40792d-
 //--------------------------------------------------------------------------------
 // Section: Types (98)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'TdhCloseDecodingHandle', what can Zig do with this information?
+pub const TDH_HANDLE = ?*c_void;
+
 pub const WNODE_HEADER = extern struct {
     BufferSize: u32,
     ProviderId: u32,
@@ -1104,10 +1107,10 @@ pub const TDH_CONTEXT = extern struct {
     ParameterSize: u32,
 };
 
-const CLSID_CTraceRelogger_Value = @import("../zig.zig").Guid.initString("7B40792D-05FF-44C4-9058-F440C71F17D4");
+const CLSID_CTraceRelogger_Value = @import("../zig.zig").Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const CLSID_CTraceRelogger = &CLSID_CTraceRelogger_Value;
 
-const IID_ITraceEvent_Value = @import("../zig.zig").Guid.initString("8CC97F40-9028-4FF3-9B62-7D1F79CA7BCB");
+const IID_ITraceEvent_Value = @import("../zig.zig").Guid.initString("8cc97f40-9028-4ff3-9b62-7d1f79ca7bcb");
 pub const IID_ITraceEvent = &IID_ITraceEvent_Value;
 pub const ITraceEvent = extern struct {
     pub const VTable = extern struct {
@@ -1218,7 +1221,7 @@ pub const ITraceEvent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITraceEventCallback_Value = @import("../zig.zig").Guid.initString("3ED25501-593F-43E9-8F38-3AB46F5A4A52");
+const IID_ITraceEventCallback_Value = @import("../zig.zig").Guid.initString("3ed25501-593f-43e9-8f38-3ab46f5a4a52");
 pub const IID_ITraceEventCallback = &IID_ITraceEventCallback_Value;
 pub const ITraceEventCallback = extern struct {
     pub const VTable = extern struct {
@@ -1257,7 +1260,7 @@ pub const ITraceEventCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITraceRelogger_Value = @import("../zig.zig").Guid.initString("F754AD43-3BCC-4286-8009-9C5DA214E84E");
+const IID_ITraceRelogger_Value = @import("../zig.zig").Guid.initString("f754ad43-3bcc-4286-8009-9c5da214e84e");
 pub const IID_ITraceRelogger = &IID_ITraceRelogger_Value;
 pub const ITraceRelogger = extern struct {
     pub const VTable = extern struct {
@@ -1346,18 +1349,10 @@ pub const ITraceRelogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: this type has a FreeFunc 'TdhCloseDecodingHandle', what can Zig do with this information?
-pub const TDH_HANDLE = ?*c_void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
 //--------------------------------------------------------------------------------
-pub extern "ADVAPI32" fn CveEventWrite(
-    CveId: [*:0]const u16,
-    AdditionalDetails: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 pub extern "ADVAPI32" fn StartTraceW(
     TraceHandle: *u64,
     InstanceName: [*:0]const u16,
@@ -1867,6 +1862,11 @@ pub extern "TDH" fn TdhGetManifestEventInformation(
     Buffer: ?[*]TRACE_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ADVAPI32" fn CveEventWrite(
+    CveId: [*:0]const u16,
+    AdditionalDetails: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 //--------------------------------------------------------------------------------

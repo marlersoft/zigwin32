@@ -906,154 +906,154 @@ pub const PFAXDEVCONFIGURE = fn(
 pub const PFAXDEVSHUTDOWN = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_FaxServer_Value = @import("../zig.zig").Guid.initString("CDA8ACB0-8CF5-4F6C-9BA2-5931D40C8CAE");
+const CLSID_FaxServer_Value = @import("../zig.zig").Guid.initString("cda8acb0-8cf5-4f6c-9ba2-5931d40c8cae");
 pub const CLSID_FaxServer = &CLSID_FaxServer_Value;
 
-const CLSID_FaxDeviceProviders_Value = @import("../zig.zig").Guid.initString("EB8FE768-875A-4F5F-82C5-03F23AAC1BD7");
+const CLSID_FaxDeviceProviders_Value = @import("../zig.zig").Guid.initString("eb8fe768-875a-4f5f-82c5-03f23aac1bd7");
 pub const CLSID_FaxDeviceProviders = &CLSID_FaxDeviceProviders_Value;
 
-const CLSID_FaxDevices_Value = @import("../zig.zig").Guid.initString("5589E28E-23CB-4919-8808-E6101846E80D");
+const CLSID_FaxDevices_Value = @import("../zig.zig").Guid.initString("5589e28e-23cb-4919-8808-e6101846e80d");
 pub const CLSID_FaxDevices = &CLSID_FaxDevices_Value;
 
-const CLSID_FaxInboundRouting_Value = @import("../zig.zig").Guid.initString("E80248ED-AD65-4218-8108-991924D4E7ED");
+const CLSID_FaxInboundRouting_Value = @import("../zig.zig").Guid.initString("e80248ed-ad65-4218-8108-991924d4e7ed");
 pub const CLSID_FaxInboundRouting = &CLSID_FaxInboundRouting_Value;
 
-const CLSID_FaxFolders_Value = @import("../zig.zig").Guid.initString("C35211D7-5776-48CB-AF44-C31BE3B2CFE5");
+const CLSID_FaxFolders_Value = @import("../zig.zig").Guid.initString("c35211d7-5776-48cb-af44-c31be3b2cfe5");
 pub const CLSID_FaxFolders = &CLSID_FaxFolders_Value;
 
-const CLSID_FaxLoggingOptions_Value = @import("../zig.zig").Guid.initString("1BF9EEA6-ECE0-4785-A18B-DE56E9EEF96A");
+const CLSID_FaxLoggingOptions_Value = @import("../zig.zig").Guid.initString("1bf9eea6-ece0-4785-a18b-de56e9eef96a");
 pub const CLSID_FaxLoggingOptions = &CLSID_FaxLoggingOptions_Value;
 
-const CLSID_FaxActivity_Value = @import("../zig.zig").Guid.initString("CFEF5D0E-E84D-462E-AABB-87D31EB04FEF");
+const CLSID_FaxActivity_Value = @import("../zig.zig").Guid.initString("cfef5d0e-e84d-462e-aabb-87d31eb04fef");
 pub const CLSID_FaxActivity = &CLSID_FaxActivity_Value;
 
-const CLSID_FaxOutboundRouting_Value = @import("../zig.zig").Guid.initString("C81B385E-B869-4AFD-86C0-616498ED9BE2");
+const CLSID_FaxOutboundRouting_Value = @import("../zig.zig").Guid.initString("c81b385e-b869-4afd-86c0-616498ed9be2");
 pub const CLSID_FaxOutboundRouting = &CLSID_FaxOutboundRouting_Value;
 
-const CLSID_FaxReceiptOptions_Value = @import("../zig.zig").Guid.initString("6982487B-227B-4C96-A61C-248348B05AB6");
+const CLSID_FaxReceiptOptions_Value = @import("../zig.zig").Guid.initString("6982487b-227b-4c96-a61c-248348b05ab6");
 pub const CLSID_FaxReceiptOptions = &CLSID_FaxReceiptOptions_Value;
 
-const CLSID_FaxSecurity_Value = @import("../zig.zig").Guid.initString("10C4DDDE-ABF0-43DF-964F-7F3AC21A4C7B");
+const CLSID_FaxSecurity_Value = @import("../zig.zig").Guid.initString("10c4ddde-abf0-43df-964f-7f3ac21a4c7b");
 pub const CLSID_FaxSecurity = &CLSID_FaxSecurity_Value;
 
-const CLSID_FaxDocument_Value = @import("../zig.zig").Guid.initString("0F3F9F91-C838-415E-A4F3-3E828CA445E0");
+const CLSID_FaxDocument_Value = @import("../zig.zig").Guid.initString("0f3f9f91-c838-415e-a4f3-3e828ca445e0");
 pub const CLSID_FaxDocument = &CLSID_FaxDocument_Value;
 
-const CLSID_FaxSender_Value = @import("../zig.zig").Guid.initString("265D84D0-1850-4360-B7C8-758BBB5F0B96");
+const CLSID_FaxSender_Value = @import("../zig.zig").Guid.initString("265d84d0-1850-4360-b7c8-758bbb5f0b96");
 pub const CLSID_FaxSender = &CLSID_FaxSender_Value;
 
-const CLSID_FaxRecipients_Value = @import("../zig.zig").Guid.initString("EA9BDF53-10A9-4D4F-A067-63C8F84F01B0");
+const CLSID_FaxRecipients_Value = @import("../zig.zig").Guid.initString("ea9bdf53-10a9-4d4f-a067-63c8f84f01b0");
 pub const CLSID_FaxRecipients = &CLSID_FaxRecipients_Value;
 
-const CLSID_FaxIncomingArchive_Value = @import("../zig.zig").Guid.initString("8426C56A-35A1-4C6F-AF93-FC952422E2C2");
+const CLSID_FaxIncomingArchive_Value = @import("../zig.zig").Guid.initString("8426c56a-35a1-4c6f-af93-fc952422e2c2");
 pub const CLSID_FaxIncomingArchive = &CLSID_FaxIncomingArchive_Value;
 
-const CLSID_FaxIncomingQueue_Value = @import("../zig.zig").Guid.initString("69131717-F3F1-40E3-809D-A6CBF7BD85E5");
+const CLSID_FaxIncomingQueue_Value = @import("../zig.zig").Guid.initString("69131717-f3f1-40e3-809d-a6cbf7bd85e5");
 pub const CLSID_FaxIncomingQueue = &CLSID_FaxIncomingQueue_Value;
 
-const CLSID_FaxOutgoingArchive_Value = @import("../zig.zig").Guid.initString("43C28403-E04F-474D-990C-B94669148F59");
+const CLSID_FaxOutgoingArchive_Value = @import("../zig.zig").Guid.initString("43c28403-e04f-474d-990c-b94669148f59");
 pub const CLSID_FaxOutgoingArchive = &CLSID_FaxOutgoingArchive_Value;
 
-const CLSID_FaxOutgoingQueue_Value = @import("../zig.zig").Guid.initString("7421169E-8C43-4B0D-BB16-645C8FA40357");
+const CLSID_FaxOutgoingQueue_Value = @import("../zig.zig").Guid.initString("7421169e-8c43-4b0d-bb16-645c8fa40357");
 pub const CLSID_FaxOutgoingQueue = &CLSID_FaxOutgoingQueue_Value;
 
-const CLSID_FaxIncomingMessageIterator_Value = @import("../zig.zig").Guid.initString("6088E1D8-3FC8-45C2-87B1-909A29607EA9");
+const CLSID_FaxIncomingMessageIterator_Value = @import("../zig.zig").Guid.initString("6088e1d8-3fc8-45c2-87b1-909a29607ea9");
 pub const CLSID_FaxIncomingMessageIterator = &CLSID_FaxIncomingMessageIterator_Value;
 
-const CLSID_FaxIncomingMessage_Value = @import("../zig.zig").Guid.initString("1932FCF7-9D43-4D5A-89FF-03861B321736");
+const CLSID_FaxIncomingMessage_Value = @import("../zig.zig").Guid.initString("1932fcf7-9d43-4d5a-89ff-03861b321736");
 pub const CLSID_FaxIncomingMessage = &CLSID_FaxIncomingMessage_Value;
 
-const CLSID_FaxOutgoingJobs_Value = @import("../zig.zig").Guid.initString("92BF2A6C-37BE-43FA-A37D-CB0E5F753B35");
+const CLSID_FaxOutgoingJobs_Value = @import("../zig.zig").Guid.initString("92bf2a6c-37be-43fa-a37d-cb0e5f753b35");
 pub const CLSID_FaxOutgoingJobs = &CLSID_FaxOutgoingJobs_Value;
 
-const CLSID_FaxOutgoingJob_Value = @import("../zig.zig").Guid.initString("71BB429C-0EF9-4915-BEC5-A5D897A3E924");
+const CLSID_FaxOutgoingJob_Value = @import("../zig.zig").Guid.initString("71bb429c-0ef9-4915-bec5-a5d897a3e924");
 pub const CLSID_FaxOutgoingJob = &CLSID_FaxOutgoingJob_Value;
 
-const CLSID_FaxOutgoingMessageIterator_Value = @import("../zig.zig").Guid.initString("8A3224D0-D30B-49DE-9813-CB385790FBBB");
+const CLSID_FaxOutgoingMessageIterator_Value = @import("../zig.zig").Guid.initString("8a3224d0-d30b-49de-9813-cb385790fbbb");
 pub const CLSID_FaxOutgoingMessageIterator = &CLSID_FaxOutgoingMessageIterator_Value;
 
-const CLSID_FaxOutgoingMessage_Value = @import("../zig.zig").Guid.initString("91B4A378-4AD8-4AEF-A4DC-97D96E939A3A");
+const CLSID_FaxOutgoingMessage_Value = @import("../zig.zig").Guid.initString("91b4a378-4ad8-4aef-a4dc-97d96e939a3a");
 pub const CLSID_FaxOutgoingMessage = &CLSID_FaxOutgoingMessage_Value;
 
-const CLSID_FaxIncomingJobs_Value = @import("../zig.zig").Guid.initString("A1BB8A43-8866-4FB7-A15D-6266C875A5CC");
+const CLSID_FaxIncomingJobs_Value = @import("../zig.zig").Guid.initString("a1bb8a43-8866-4fb7-a15d-6266c875a5cc");
 pub const CLSID_FaxIncomingJobs = &CLSID_FaxIncomingJobs_Value;
 
-const CLSID_FaxIncomingJob_Value = @import("../zig.zig").Guid.initString("C47311EC-AE32-41B8-AE4B-3EAE0629D0C9");
+const CLSID_FaxIncomingJob_Value = @import("../zig.zig").Guid.initString("c47311ec-ae32-41b8-ae4b-3eae0629d0c9");
 pub const CLSID_FaxIncomingJob = &CLSID_FaxIncomingJob_Value;
 
-const CLSID_FaxDeviceProvider_Value = @import("../zig.zig").Guid.initString("17CF1AA3-F5EB-484A-9C9A-4440A5BAABFC");
+const CLSID_FaxDeviceProvider_Value = @import("../zig.zig").Guid.initString("17cf1aa3-f5eb-484a-9c9a-4440a5baabfc");
 pub const CLSID_FaxDeviceProvider = &CLSID_FaxDeviceProvider_Value;
 
-const CLSID_FaxDevice_Value = @import("../zig.zig").Guid.initString("59E3A5B2-D676-484B-A6DE-720BFA89B5AF");
+const CLSID_FaxDevice_Value = @import("../zig.zig").Guid.initString("59e3a5b2-d676-484b-a6de-720bfa89b5af");
 pub const CLSID_FaxDevice = &CLSID_FaxDevice_Value;
 
-const CLSID_FaxActivityLogging_Value = @import("../zig.zig").Guid.initString("F0A0294E-3BBD-48B8-8F13-8C591A55BDBC");
+const CLSID_FaxActivityLogging_Value = @import("../zig.zig").Guid.initString("f0a0294e-3bbd-48b8-8f13-8c591a55bdbc");
 pub const CLSID_FaxActivityLogging = &CLSID_FaxActivityLogging_Value;
 
-const CLSID_FaxEventLogging_Value = @import("../zig.zig").Guid.initString("A6850930-A0F6-4A6F-95B7-DB2EBF3D02E3");
+const CLSID_FaxEventLogging_Value = @import("../zig.zig").Guid.initString("a6850930-a0f6-4a6f-95b7-db2ebf3d02e3");
 pub const CLSID_FaxEventLogging = &CLSID_FaxEventLogging_Value;
 
-const CLSID_FaxOutboundRoutingGroups_Value = @import("../zig.zig").Guid.initString("CCBEA1A5-E2B4-4B57-9421-B04B6289464B");
+const CLSID_FaxOutboundRoutingGroups_Value = @import("../zig.zig").Guid.initString("ccbea1a5-e2b4-4b57-9421-b04b6289464b");
 pub const CLSID_FaxOutboundRoutingGroups = &CLSID_FaxOutboundRoutingGroups_Value;
 
-const CLSID_FaxOutboundRoutingGroup_Value = @import("../zig.zig").Guid.initString("0213F3E0-6791-4D77-A271-04D2357C50D6");
+const CLSID_FaxOutboundRoutingGroup_Value = @import("../zig.zig").Guid.initString("0213f3e0-6791-4d77-a271-04d2357c50d6");
 pub const CLSID_FaxOutboundRoutingGroup = &CLSID_FaxOutboundRoutingGroup_Value;
 
-const CLSID_FaxDeviceIds_Value = @import("../zig.zig").Guid.initString("CDC539EA-7277-460E-8DE0-48A0A5760D1F");
+const CLSID_FaxDeviceIds_Value = @import("../zig.zig").Guid.initString("cdc539ea-7277-460e-8de0-48a0a5760d1f");
 pub const CLSID_FaxDeviceIds = &CLSID_FaxDeviceIds_Value;
 
-const CLSID_FaxOutboundRoutingRules_Value = @import("../zig.zig").Guid.initString("D385BECA-E624-4473-BFAA-9F4000831F54");
+const CLSID_FaxOutboundRoutingRules_Value = @import("../zig.zig").Guid.initString("d385beca-e624-4473-bfaa-9f4000831f54");
 pub const CLSID_FaxOutboundRoutingRules = &CLSID_FaxOutboundRoutingRules_Value;
 
-const CLSID_FaxOutboundRoutingRule_Value = @import("../zig.zig").Guid.initString("6549EEBF-08D1-475A-828B-3BF105952FA0");
+const CLSID_FaxOutboundRoutingRule_Value = @import("../zig.zig").Guid.initString("6549eebf-08d1-475a-828b-3bf105952fa0");
 pub const CLSID_FaxOutboundRoutingRule = &CLSID_FaxOutboundRoutingRule_Value;
 
-const CLSID_FaxInboundRoutingExtensions_Value = @import("../zig.zig").Guid.initString("189A48ED-623C-4C0D-80F2-D66C7B9EFEC2");
+const CLSID_FaxInboundRoutingExtensions_Value = @import("../zig.zig").Guid.initString("189a48ed-623c-4c0d-80f2-d66c7b9efec2");
 pub const CLSID_FaxInboundRoutingExtensions = &CLSID_FaxInboundRoutingExtensions_Value;
 
-const CLSID_FaxInboundRoutingExtension_Value = @import("../zig.zig").Guid.initString("1D7DFB51-7207-4436-A0D9-24E32EE56988");
+const CLSID_FaxInboundRoutingExtension_Value = @import("../zig.zig").Guid.initString("1d7dfb51-7207-4436-a0d9-24e32ee56988");
 pub const CLSID_FaxInboundRoutingExtension = &CLSID_FaxInboundRoutingExtension_Value;
 
-const CLSID_FaxInboundRoutingMethods_Value = @import("../zig.zig").Guid.initString("25FCB76A-B750-4B82-9266-FBBBAE8922BA");
+const CLSID_FaxInboundRoutingMethods_Value = @import("../zig.zig").Guid.initString("25fcb76a-b750-4b82-9266-fbbbae8922ba");
 pub const CLSID_FaxInboundRoutingMethods = &CLSID_FaxInboundRoutingMethods_Value;
 
-const CLSID_FaxInboundRoutingMethod_Value = @import("../zig.zig").Guid.initString("4B9FD75C-0194-4B72-9CE5-02A8205AC7D4");
+const CLSID_FaxInboundRoutingMethod_Value = @import("../zig.zig").Guid.initString("4b9fd75c-0194-4b72-9ce5-02a8205ac7d4");
 pub const CLSID_FaxInboundRoutingMethod = &CLSID_FaxInboundRoutingMethod_Value;
 
-const CLSID_FaxJobStatus_Value = @import("../zig.zig").Guid.initString("7BF222F4-BE8D-442F-841D-6132742423BB");
+const CLSID_FaxJobStatus_Value = @import("../zig.zig").Guid.initString("7bf222f4-be8d-442f-841d-6132742423bb");
 pub const CLSID_FaxJobStatus = &CLSID_FaxJobStatus_Value;
 
-const CLSID_FaxRecipient_Value = @import("../zig.zig").Guid.initString("60BF3301-7DF8-4BD8-9148-7B5801F9EFDF");
+const CLSID_FaxRecipient_Value = @import("../zig.zig").Guid.initString("60bf3301-7df8-4bd8-9148-7b5801f9efdf");
 pub const CLSID_FaxRecipient = &CLSID_FaxRecipient_Value;
 
-const CLSID_FaxConfiguration_Value = @import("../zig.zig").Guid.initString("5857326F-E7B3-41A7-9C19-A91B463E2D56");
+const CLSID_FaxConfiguration_Value = @import("../zig.zig").Guid.initString("5857326f-e7b3-41a7-9c19-a91b463e2d56");
 pub const CLSID_FaxConfiguration = &CLSID_FaxConfiguration_Value;
 
-const CLSID_FaxAccountSet_Value = @import("../zig.zig").Guid.initString("FBC23C4B-79E0-4291-BC56-C12E253BBF3A");
+const CLSID_FaxAccountSet_Value = @import("../zig.zig").Guid.initString("fbc23c4b-79e0-4291-bc56-c12e253bbf3a");
 pub const CLSID_FaxAccountSet = &CLSID_FaxAccountSet_Value;
 
-const CLSID_FaxAccounts_Value = @import("../zig.zig").Guid.initString("DA1F94AA-EE2C-47C0-8F4F-2A217075B76E");
+const CLSID_FaxAccounts_Value = @import("../zig.zig").Guid.initString("da1f94aa-ee2c-47c0-8f4f-2a217075b76e");
 pub const CLSID_FaxAccounts = &CLSID_FaxAccounts_Value;
 
-const CLSID_FaxAccount_Value = @import("../zig.zig").Guid.initString("A7E0647F-4524-4464-A56D-B9FE666F715E");
+const CLSID_FaxAccount_Value = @import("../zig.zig").Guid.initString("a7e0647f-4524-4464-a56d-b9fe666f715e");
 pub const CLSID_FaxAccount = &CLSID_FaxAccount_Value;
 
-const CLSID_FaxAccountFolders_Value = @import("../zig.zig").Guid.initString("85398F49-C034-4A3F-821C-DB7D685E8129");
+const CLSID_FaxAccountFolders_Value = @import("../zig.zig").Guid.initString("85398f49-c034-4a3f-821c-db7d685e8129");
 pub const CLSID_FaxAccountFolders = &CLSID_FaxAccountFolders_Value;
 
-const CLSID_FaxAccountIncomingQueue_Value = @import("../zig.zig").Guid.initString("9BCF6094-B4DA-45F4-B8D6-DDEB2186652C");
+const CLSID_FaxAccountIncomingQueue_Value = @import("../zig.zig").Guid.initString("9bcf6094-b4da-45f4-b8d6-ddeb2186652c");
 pub const CLSID_FaxAccountIncomingQueue = &CLSID_FaxAccountIncomingQueue_Value;
 
-const CLSID_FaxAccountOutgoingQueue_Value = @import("../zig.zig").Guid.initString("FEECEEFB-C149-48BA-BAB8-B791E101F62F");
+const CLSID_FaxAccountOutgoingQueue_Value = @import("../zig.zig").Guid.initString("feeceefb-c149-48ba-bab8-b791e101f62f");
 pub const CLSID_FaxAccountOutgoingQueue = &CLSID_FaxAccountOutgoingQueue_Value;
 
-const CLSID_FaxAccountIncomingArchive_Value = @import("../zig.zig").Guid.initString("14B33DB5-4C40-4ECF-9EF8-A360CBE809ED");
+const CLSID_FaxAccountIncomingArchive_Value = @import("../zig.zig").Guid.initString("14b33db5-4c40-4ecf-9ef8-a360cbe809ed");
 pub const CLSID_FaxAccountIncomingArchive = &CLSID_FaxAccountIncomingArchive_Value;
 
-const CLSID_FaxAccountOutgoingArchive_Value = @import("../zig.zig").Guid.initString("851E7AF5-433A-4739-A2DF-AD245C2CB98E");
+const CLSID_FaxAccountOutgoingArchive_Value = @import("../zig.zig").Guid.initString("851e7af5-433a-4739-a2df-ad245c2cb98e");
 pub const CLSID_FaxAccountOutgoingArchive = &CLSID_FaxAccountOutgoingArchive_Value;
 
-const CLSID_FaxSecurity2_Value = @import("../zig.zig").Guid.initString("735C1248-EC89-4C30-A127-656E92E3C4EA");
+const CLSID_FaxSecurity2_Value = @import("../zig.zig").Guid.initString("735c1248-ec89-4c30-a127-656e92e3c4ea");
 pub const CLSID_FaxSecurity2 = &CLSID_FaxSecurity2_Value;
 
 pub const FAX_JOB_STATUS_ENUM = extern enum(i32) {
@@ -1152,7 +1152,7 @@ pub const fjtSEND = FAX_JOB_TYPE_ENUM.fjtSEND;
 pub const fjtRECEIVE = FAX_JOB_TYPE_ENUM.fjtRECEIVE;
 pub const fjtROUTING = FAX_JOB_TYPE_ENUM.fjtROUTING;
 
-const IID_IFaxJobStatus_Value = @import("../zig.zig").Guid.initString("8B86F485-FD7F-4824-886B-40C5CAA617CC");
+const IID_IFaxJobStatus_Value = @import("../zig.zig").Guid.initString("8b86f485-fd7f-4824-886b-40c5caa617cc");
 pub const IID_IFaxJobStatus = &IID_IFaxJobStatus_Value;
 pub const IFaxJobStatus = extern struct {
     pub const VTable = extern struct {
@@ -1179,11 +1179,11 @@ pub const IFaxJobStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxJobStatus,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxJobStatus,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedStatusCode: fn(
             self: *const IFaxJobStatus,
@@ -1191,7 +1191,7 @@ pub const IFaxJobStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedStatus: fn(
             self: *const IFaxJobStatus,
-            pbstrExtendedStatus: *BSTR,
+            pbstrExtendedStatus: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AvailableOperations: fn(
             self: *const IFaxJobStatus,
@@ -1219,11 +1219,11 @@ pub const IFaxJobStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CallerId: fn(
             self: *const IFaxJobStatus,
-            pbstrCallerId: *BSTR,
+            pbstrCallerId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoutingInformation: fn(
             self: *const IFaxJobStatus,
-            pbstrRoutingInformation: *BSTR,
+            pbstrRoutingInformation: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1250,11 +1250,11 @@ pub const IFaxJobStatus = extern struct {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_DeviceId(@ptrCast(*const IFaxJobStatus, self), plDeviceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxJobStatus_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxJobStatus_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxJobStatus, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxJobStatus_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxJobStatus_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxJobStatus, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1262,7 +1262,7 @@ pub const IFaxJobStatus = extern struct {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxJobStatus, self), pExtendedStatusCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxJobStatus_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxJobStatus_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxJobStatus, self), pbstrExtendedStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1290,11 +1290,11 @@ pub const IFaxJobStatus = extern struct {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxJobStatus, self), pdateTransmissionEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxJobStatus_get_CallerId(self: *const T, pbstrCallerId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxJobStatus_get_CallerId(self: *const T, pbstrCallerId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxJobStatus, self), pbstrCallerId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxJobStatus_get_RoutingInformation(self: *const T, pbstrRoutingInformation: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxJobStatus_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxJobStatus, self), pbstrRoutingInformation);
         }
     };}
@@ -1337,7 +1337,7 @@ pub const fsAPI_VERSION_1 = FAX_SERVER_APIVERSION_ENUM.fsAPI_VERSION_1;
 pub const fsAPI_VERSION_2 = FAX_SERVER_APIVERSION_ENUM.fsAPI_VERSION_2;
 pub const fsAPI_VERSION_3 = FAX_SERVER_APIVERSION_ENUM.fsAPI_VERSION_3;
 
-const IID_IFaxServer_Value = @import("../zig.zig").Guid.initString("475B6469-90A5-4878-A577-17A86E8E3462");
+const IID_IFaxServer_Value = @import("../zig.zig").Guid.initString("475b6469-90a5-4878-a577-17a86e8e3462");
 pub const IID_IFaxServer = &IID_IFaxServer_Value;
 pub const IFaxServer = extern struct {
     pub const VTable = extern struct {
@@ -1348,27 +1348,27 @@ pub const IFaxServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ServerName: fn(
             self: *const IFaxServer,
-            pbstrServerName: *BSTR,
+            pbstrServerName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceProviders: fn(
             self: *const IFaxServer,
-            ppFaxDeviceProviders: **IFaxDeviceProviders,
+            ppFaxDeviceProviders: ?*?*IFaxDeviceProviders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDevices: fn(
             self: *const IFaxServer,
-            ppFaxDevices: **IFaxDevices,
+            ppFaxDevices: ?*?*IFaxDevices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_InboundRouting: fn(
             self: *const IFaxServer,
-            ppFaxInboundRouting: **IFaxInboundRouting,
+            ppFaxInboundRouting: ?*?*IFaxInboundRouting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Folders: fn(
             self: *const IFaxServer,
-            pFaxFolders: **IFaxFolders,
+            pFaxFolders: ?*?*IFaxFolders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LoggingOptions: fn(
             self: *const IFaxServer,
-            ppFaxLoggingOptions: **IFaxLoggingOptions,
+            ppFaxLoggingOptions: ?*?*IFaxLoggingOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MajorVersion: fn(
             self: *const IFaxServer,
@@ -1392,19 +1392,19 @@ pub const IFaxServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Activity: fn(
             self: *const IFaxServer,
-            ppFaxActivity: **IFaxActivity,
+            ppFaxActivity: ?*?*IFaxActivity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OutboundRouting: fn(
             self: *const IFaxServer,
-            ppFaxOutboundRouting: **IFaxOutboundRouting,
+            ppFaxOutboundRouting: ?*?*IFaxOutboundRouting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ReceiptOptions: fn(
             self: *const IFaxServer,
-            ppFaxReceiptOptions: **IFaxReceiptOptions,
+            ppFaxReceiptOptions: ?*?*IFaxReceiptOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Security: fn(
             self: *const IFaxServer,
-            ppFaxSecurity: **IFaxSecurity,
+            ppFaxSecurity: ?*?*IFaxSecurity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
             self: *const IFaxServer,
@@ -1463,27 +1463,27 @@ pub const IFaxServer = extern struct {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).Connect(@ptrCast(*const IFaxServer, self), bstrServerName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_ServerName(self: *const T, pbstrServerName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_ServerName(self: *const T, pbstrServerName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_ServerName(@ptrCast(*const IFaxServer, self), pbstrServerName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_GetDeviceProviders(self: *const T, ppFaxDeviceProviders: **IFaxDeviceProviders) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_GetDeviceProviders(self: *const T, ppFaxDeviceProviders: ?*?*IFaxDeviceProviders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).GetDeviceProviders(@ptrCast(*const IFaxServer, self), ppFaxDeviceProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_GetDevices(self: *const T, ppFaxDevices: **IFaxDevices) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_GetDevices(self: *const T, ppFaxDevices: ?*?*IFaxDevices) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).GetDevices(@ptrCast(*const IFaxServer, self), ppFaxDevices);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_InboundRouting(self: *const T, ppFaxInboundRouting: **IFaxInboundRouting) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_InboundRouting(self: *const T, ppFaxInboundRouting: ?*?*IFaxInboundRouting) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_InboundRouting(@ptrCast(*const IFaxServer, self), ppFaxInboundRouting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_Folders(self: *const T, pFaxFolders: **IFaxFolders) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_Folders(self: *const T, pFaxFolders: ?*?*IFaxFolders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Folders(@ptrCast(*const IFaxServer, self), pFaxFolders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_LoggingOptions(self: *const T, ppFaxLoggingOptions: **IFaxLoggingOptions) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_LoggingOptions(self: *const T, ppFaxLoggingOptions: ?*?*IFaxLoggingOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_LoggingOptions(@ptrCast(*const IFaxServer, self), ppFaxLoggingOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1507,19 +1507,19 @@ pub const IFaxServer = extern struct {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Debug(@ptrCast(*const IFaxServer, self), pbDebug);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_Activity(self: *const T, ppFaxActivity: **IFaxActivity) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_Activity(self: *const T, ppFaxActivity: ?*?*IFaxActivity) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Activity(@ptrCast(*const IFaxServer, self), ppFaxActivity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_OutboundRouting(self: *const T, ppFaxOutboundRouting: **IFaxOutboundRouting) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_OutboundRouting(self: *const T, ppFaxOutboundRouting: ?*?*IFaxOutboundRouting) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_OutboundRouting(@ptrCast(*const IFaxServer, self), ppFaxOutboundRouting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_ReceiptOptions(self: *const T, ppFaxReceiptOptions: **IFaxReceiptOptions) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_ReceiptOptions(self: *const T, ppFaxReceiptOptions: ?*?*IFaxReceiptOptions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_ReceiptOptions(@ptrCast(*const IFaxServer, self), ppFaxReceiptOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer_get_Security(self: *const T, ppFaxSecurity: **IFaxSecurity) callconv(.Inline) HRESULT {
+        pub fn IFaxServer_get_Security(self: *const T, ppFaxSecurity: ?*?*IFaxSecurity) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Security(@ptrCast(*const IFaxServer, self), ppFaxSecurity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1566,19 +1566,19 @@ pub const IFaxServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxDeviceProviders_Value = @import("../zig.zig").Guid.initString("9FB76F62-4C7E-43A5-B6FD-502893F7E13E");
+const IID_IFaxDeviceProviders_Value = @import("../zig.zig").Guid.initString("9fb76f62-4c7e-43a5-b6fd-502893f7e13e");
 pub const IID_IFaxDeviceProviders = &IID_IFaxDeviceProviders_Value;
 pub const IFaxDeviceProviders = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxDeviceProviders,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxDeviceProviders,
             vIndex: VARIANT,
-            pFaxDeviceProvider: **IFaxDeviceProvider,
+            pFaxDeviceProvider: ?*?*IFaxDeviceProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxDeviceProviders,
@@ -1589,11 +1589,11 @@ pub const IFaxDeviceProviders = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProviders_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProviders_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProviders.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDeviceProviders, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProviders_get_Item(self: *const T, vIndex: VARIANT, pFaxDeviceProvider: **IFaxDeviceProvider) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProviders_get_Item(self: *const T, vIndex: VARIANT, pFaxDeviceProvider: ?*?*IFaxDeviceProvider) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProviders.VTable, self.vtable).get_Item(@ptrCast(*const IFaxDeviceProviders, self), vIndex, pFaxDeviceProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1604,19 +1604,19 @@ pub const IFaxDeviceProviders = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxDevices_Value = @import("../zig.zig").Guid.initString("9E46783E-F34F-482E-A360-0416BECBBD96");
+const IID_IFaxDevices_Value = @import("../zig.zig").Guid.initString("9e46783e-f34f-482e-a360-0416becbbd96");
 pub const IID_IFaxDevices = &IID_IFaxDevices_Value;
 pub const IFaxDevices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxDevices,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxDevices,
             vIndex: VARIANT,
-            pFaxDevice: **IFaxDevice,
+            pFaxDevice: ?*?*IFaxDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxDevices,
@@ -1625,18 +1625,18 @@ pub const IFaxDevices = extern struct {
         get_ItemById: fn(
             self: *const IFaxDevices,
             lId: i32,
-            ppFaxDevice: **IFaxDevice,
+            ppFaxDevice: ?*?*IFaxDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevices_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxDevices_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevices.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDevices, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevices_get_Item(self: *const T, vIndex: VARIANT, pFaxDevice: **IFaxDevice) callconv(.Inline) HRESULT {
+        pub fn IFaxDevices_get_Item(self: *const T, vIndex: VARIANT, pFaxDevice: ?*?*IFaxDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_Item(@ptrCast(*const IFaxDevices, self), vIndex, pFaxDevice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1644,117 +1644,117 @@ pub const IFaxDevices = extern struct {
             return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_Count(@ptrCast(*const IFaxDevices, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevices_get_ItemById(self: *const T, lId: i32, ppFaxDevice: **IFaxDevice) callconv(.Inline) HRESULT {
+        pub fn IFaxDevices_get_ItemById(self: *const T, lId: i32, ppFaxDevice: ?*?*IFaxDevice) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_ItemById(@ptrCast(*const IFaxDevices, self), lId, ppFaxDevice);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxInboundRouting_Value = @import("../zig.zig").Guid.initString("8148C20F-9D52-45B1-BF96-38FC12713527");
+const IID_IFaxInboundRouting_Value = @import("../zig.zig").Guid.initString("8148c20f-9d52-45b1-bf96-38fc12713527");
 pub const IID_IFaxInboundRouting = &IID_IFaxInboundRouting_Value;
 pub const IFaxInboundRouting = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetExtensions: fn(
             self: *const IFaxInboundRouting,
-            pFaxInboundRoutingExtensions: **IFaxInboundRoutingExtensions,
+            pFaxInboundRoutingExtensions: ?*?*IFaxInboundRoutingExtensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMethods: fn(
             self: *const IFaxInboundRouting,
-            pFaxInboundRoutingMethods: **IFaxInboundRoutingMethods,
+            pFaxInboundRoutingMethods: ?*?*IFaxInboundRoutingMethods,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRouting_GetExtensions(self: *const T, pFaxInboundRoutingExtensions: **IFaxInboundRoutingExtensions) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRouting_GetExtensions(self: *const T, pFaxInboundRoutingExtensions: ?*?*IFaxInboundRoutingExtensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRouting.VTable, self.vtable).GetExtensions(@ptrCast(*const IFaxInboundRouting, self), pFaxInboundRoutingExtensions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRouting_GetMethods(self: *const T, pFaxInboundRoutingMethods: **IFaxInboundRoutingMethods) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRouting_GetMethods(self: *const T, pFaxInboundRoutingMethods: ?*?*IFaxInboundRoutingMethods) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRouting.VTable, self.vtable).GetMethods(@ptrCast(*const IFaxInboundRouting, self), pFaxInboundRoutingMethods);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxFolders_Value = @import("../zig.zig").Guid.initString("DCE3B2A8-A7AB-42BC-9D0A-3149457261A0");
+const IID_IFaxFolders_Value = @import("../zig.zig").Guid.initString("dce3b2a8-a7ab-42bc-9d0a-3149457261a0");
 pub const IID_IFaxFolders = &IID_IFaxFolders_Value;
 pub const IFaxFolders = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_OutgoingQueue: fn(
             self: *const IFaxFolders,
-            pFaxOutgoingQueue: **IFaxOutgoingQueue,
+            pFaxOutgoingQueue: ?*?*IFaxOutgoingQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IncomingQueue: fn(
             self: *const IFaxFolders,
-            pFaxIncomingQueue: **IFaxIncomingQueue,
+            pFaxIncomingQueue: ?*?*IFaxIncomingQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IncomingArchive: fn(
             self: *const IFaxFolders,
-            pFaxIncomingArchive: **IFaxIncomingArchive,
+            pFaxIncomingArchive: ?*?*IFaxIncomingArchive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OutgoingArchive: fn(
             self: *const IFaxFolders,
-            pFaxOutgoingArchive: **IFaxOutgoingArchive,
+            pFaxOutgoingArchive: ?*?*IFaxOutgoingArchive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: **IFaxOutgoingQueue) callconv(.Inline) HRESULT {
+        pub fn IFaxFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: ?*?*IFaxOutgoingQueue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_OutgoingQueue(@ptrCast(*const IFaxFolders, self), pFaxOutgoingQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: **IFaxIncomingQueue) callconv(.Inline) HRESULT {
+        pub fn IFaxFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: ?*?*IFaxIncomingQueue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_IncomingQueue(@ptrCast(*const IFaxFolders, self), pFaxIncomingQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: **IFaxIncomingArchive) callconv(.Inline) HRESULT {
+        pub fn IFaxFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: ?*?*IFaxIncomingArchive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_IncomingArchive(@ptrCast(*const IFaxFolders, self), pFaxIncomingArchive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: **IFaxOutgoingArchive) callconv(.Inline) HRESULT {
+        pub fn IFaxFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: ?*?*IFaxOutgoingArchive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_OutgoingArchive(@ptrCast(*const IFaxFolders, self), pFaxOutgoingArchive);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxLoggingOptions_Value = @import("../zig.zig").Guid.initString("34E64FB9-6B31-4D32-8B27-D286C0C33606");
+const IID_IFaxLoggingOptions_Value = @import("../zig.zig").Guid.initString("34e64fb9-6b31-4d32-8b27-d286c0c33606");
 pub const IID_IFaxLoggingOptions = &IID_IFaxLoggingOptions_Value;
 pub const IFaxLoggingOptions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_EventLogging: fn(
             self: *const IFaxLoggingOptions,
-            pFaxEventLogging: **IFaxEventLogging,
+            pFaxEventLogging: ?*?*IFaxEventLogging,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ActivityLogging: fn(
             self: *const IFaxLoggingOptions,
-            pFaxActivityLogging: **IFaxActivityLogging,
+            pFaxActivityLogging: ?*?*IFaxActivityLogging,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxLoggingOptions_get_EventLogging(self: *const T, pFaxEventLogging: **IFaxEventLogging) callconv(.Inline) HRESULT {
+        pub fn IFaxLoggingOptions_get_EventLogging(self: *const T, pFaxEventLogging: ?*?*IFaxEventLogging) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxLoggingOptions.VTable, self.vtable).get_EventLogging(@ptrCast(*const IFaxLoggingOptions, self), pFaxEventLogging);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxLoggingOptions_get_ActivityLogging(self: *const T, pFaxActivityLogging: **IFaxActivityLogging) callconv(.Inline) HRESULT {
+        pub fn IFaxLoggingOptions_get_ActivityLogging(self: *const T, pFaxActivityLogging: ?*?*IFaxActivityLogging) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxLoggingOptions.VTable, self.vtable).get_ActivityLogging(@ptrCast(*const IFaxLoggingOptions, self), pFaxActivityLogging);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxActivity_Value = @import("../zig.zig").Guid.initString("4B106F97-3DF5-40F2-BC3C-44CB8115EBDF");
+const IID_IFaxActivity_Value = @import("../zig.zig").Guid.initString("4b106f97-3df5-40f2-bc3c-44cb8115ebdf");
 pub const IID_IFaxActivity = &IID_IFaxActivity_Value;
 pub const IFaxActivity = extern struct {
     pub const VTable = extern struct {
@@ -1806,29 +1806,29 @@ pub const IFaxActivity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutboundRouting_Value = @import("../zig.zig").Guid.initString("25DC05A4-9909-41BD-A95B-7E5D1DEC1D43");
+const IID_IFaxOutboundRouting_Value = @import("../zig.zig").Guid.initString("25dc05a4-9909-41bd-a95b-7e5d1dec1d43");
 pub const IID_IFaxOutboundRouting = &IID_IFaxOutboundRouting_Value;
 pub const IFaxOutboundRouting = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetGroups: fn(
             self: *const IFaxOutboundRouting,
-            pFaxOutboundRoutingGroups: **IFaxOutboundRoutingGroups,
+            pFaxOutboundRoutingGroups: ?*?*IFaxOutboundRoutingGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRules: fn(
             self: *const IFaxOutboundRouting,
-            pFaxOutboundRoutingRules: **IFaxOutboundRoutingRules,
+            pFaxOutboundRoutingRules: ?*?*IFaxOutboundRoutingRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRouting_GetGroups(self: *const T, pFaxOutboundRoutingGroups: **IFaxOutboundRoutingGroups) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRouting_GetGroups(self: *const T, pFaxOutboundRoutingGroups: ?*?*IFaxOutboundRoutingGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRouting.VTable, self.vtable).GetGroups(@ptrCast(*const IFaxOutboundRouting, self), pFaxOutboundRoutingGroups);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRouting_GetRules(self: *const T, pFaxOutboundRoutingRules: **IFaxOutboundRoutingRules) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRouting_GetRules(self: *const T, pFaxOutboundRoutingRules: ?*?*IFaxOutboundRoutingRules) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRouting.VTable, self.vtable).GetRules(@ptrCast(*const IFaxOutboundRouting, self), pFaxOutboundRoutingRules);
         }
     };}
@@ -1853,7 +1853,7 @@ pub const frtNONE = FAX_RECEIPT_TYPE_ENUM.frtNONE;
 pub const frtMAIL = FAX_RECEIPT_TYPE_ENUM.frtMAIL;
 pub const frtMSGBOX = FAX_RECEIPT_TYPE_ENUM.frtMSGBOX;
 
-const IID_IFaxReceiptOptions_Value = @import("../zig.zig").Guid.initString("378EFAEB-5FCB-4AFB-B2EE-E16E80614487");
+const IID_IFaxReceiptOptions_Value = @import("../zig.zig").Guid.initString("378efaeb-5fcb-4afb-b2ee-e16e80614487");
 pub const IID_IFaxReceiptOptions = &IID_IFaxReceiptOptions_Value;
 pub const IFaxReceiptOptions = extern struct {
     pub const VTable = extern struct {
@@ -1868,7 +1868,7 @@ pub const IFaxReceiptOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SMTPServer: fn(
             self: *const IFaxReceiptOptions,
-            pbstrSMTPServer: *BSTR,
+            pbstrSMTPServer: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SMTPServer: fn(
             self: *const IFaxReceiptOptions,
@@ -1884,7 +1884,7 @@ pub const IFaxReceiptOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SMTPSender: fn(
             self: *const IFaxReceiptOptions,
-            pbstrSMTPSender: *BSTR,
+            pbstrSMTPSender: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SMTPSender: fn(
             self: *const IFaxReceiptOptions,
@@ -1892,7 +1892,7 @@ pub const IFaxReceiptOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SMTPUser: fn(
             self: *const IFaxReceiptOptions,
-            pbstrSMTPUser: *BSTR,
+            pbstrSMTPUser: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SMTPUser: fn(
             self: *const IFaxReceiptOptions,
@@ -1908,7 +1908,7 @@ pub const IFaxReceiptOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SMTPPassword: fn(
             self: *const IFaxReceiptOptions,
-            pbstrSMTPPassword: *BSTR,
+            pbstrSMTPPassword: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SMTPPassword: fn(
             self: *const IFaxReceiptOptions,
@@ -1941,7 +1941,7 @@ pub const IFaxReceiptOptions = extern struct {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_AuthenticationType(@ptrCast(*const IFaxReceiptOptions, self), Type);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxReceiptOptions_get_SMTPServer(self: *const T, pbstrSMTPServer: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxReceiptOptions_get_SMTPServer(self: *const T, pbstrSMTPServer: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPServer(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1957,7 +1957,7 @@ pub const IFaxReceiptOptions = extern struct {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPPort(@ptrCast(*const IFaxReceiptOptions, self), lSMTPPort);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxReceiptOptions_get_SMTPSender(self: *const T, pbstrSMTPSender: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxReceiptOptions_get_SMTPSender(self: *const T, pbstrSMTPSender: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPSender(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPSender);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1965,7 +1965,7 @@ pub const IFaxReceiptOptions = extern struct {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPSender(@ptrCast(*const IFaxReceiptOptions, self), bstrSMTPSender);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxReceiptOptions_get_SMTPUser(self: *const T, pbstrSMTPUser: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxReceiptOptions_get_SMTPUser(self: *const T, pbstrSMTPUser: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPUser(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPUser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1981,7 +1981,7 @@ pub const IFaxReceiptOptions = extern struct {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_AllowedReceipts(@ptrCast(*const IFaxReceiptOptions, self), AllowedReceipts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxReceiptOptions_get_SMTPPassword(self: *const T, pbstrSMTPPassword: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxReceiptOptions_get_SMTPPassword(self: *const T, pbstrSMTPPassword: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPPassword(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2033,7 +2033,7 @@ pub const farMANAGE_IN_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.farMANAGE_IN_ARCHIVE;
 pub const farQUERY_OUT_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.farQUERY_OUT_ARCHIVE;
 pub const farMANAGE_OUT_ARCHIVE = FAX_ACCESS_RIGHTS_ENUM.farMANAGE_OUT_ARCHIVE;
 
-const IID_IFaxSecurity_Value = @import("../zig.zig").Guid.initString("77B508C1-09C0-47A2-91EB-FCE7FDF2690E");
+const IID_IFaxSecurity_Value = @import("../zig.zig").Guid.initString("77b508c1-09c0-47a2-91eb-fce7fdf2690e");
 pub const IID_IFaxSecurity = &IID_IFaxSecurity_Value;
 pub const IFaxSecurity = extern struct {
     pub const VTable = extern struct {
@@ -2127,14 +2127,14 @@ pub const fstNOW = FAX_SCHEDULE_TYPE_ENUM.fstNOW;
 pub const fstSPECIFIC_TIME = FAX_SCHEDULE_TYPE_ENUM.fstSPECIFIC_TIME;
 pub const fstDISCOUNT_PERIOD = FAX_SCHEDULE_TYPE_ENUM.fstDISCOUNT_PERIOD;
 
-const IID_IFaxDocument_Value = @import("../zig.zig").Guid.initString("B207A246-09E3-4A4E-A7DC-FEA31D29458F");
+const IID_IFaxDocument_Value = @import("../zig.zig").Guid.initString("b207a246-09e3-4a4e-a7dc-fea31d29458f");
 pub const IID_IFaxDocument = &IID_IFaxDocument_Value;
 pub const IFaxDocument = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Body: fn(
             self: *const IFaxDocument,
-            pbstrBody: *BSTR,
+            pbstrBody: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Body: fn(
             self: *const IFaxDocument,
@@ -2142,15 +2142,15 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Sender: fn(
             self: *const IFaxDocument,
-            ppFaxSender: **IFaxSender,
+            ppFaxSender: ?*?*IFaxSender,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recipients: fn(
             self: *const IFaxDocument,
-            ppFaxRecipients: **IFaxRecipients,
+            ppFaxRecipients: ?*?*IFaxRecipients,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CoverPage: fn(
             self: *const IFaxDocument,
-            pbstrCoverPage: *BSTR,
+            pbstrCoverPage: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CoverPage: fn(
             self: *const IFaxDocument,
@@ -2158,7 +2158,7 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Subject: fn(
             self: *const IFaxDocument,
-            pbstrSubject: *BSTR,
+            pbstrSubject: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Subject: fn(
             self: *const IFaxDocument,
@@ -2166,7 +2166,7 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Note: fn(
             self: *const IFaxDocument,
-            pbstrNote: *BSTR,
+            pbstrNote: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Note: fn(
             self: *const IFaxDocument,
@@ -2182,7 +2182,7 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ReceiptAddress: fn(
             self: *const IFaxDocument,
-            pbstrReceiptAddress: *BSTR,
+            pbstrReceiptAddress: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ReceiptAddress: fn(
             self: *const IFaxDocument,
@@ -2190,7 +2190,7 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DocumentName: fn(
             self: *const IFaxDocument,
-            pbstrDocumentName: *BSTR,
+            pbstrDocumentName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DocumentName: fn(
             self: *const IFaxDocument,
@@ -2246,7 +2246,7 @@ pub const IFaxDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TapiConnection: fn(
             self: *const IFaxDocument,
-            ppTapiConnection: **IDispatch,
+            ppTapiConnection: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         putref_TapiConnection: fn(
             self: *const IFaxDocument,
@@ -2275,7 +2275,7 @@ pub const IFaxDocument = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_Body(self: *const T, pbstrBody: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_Body(self: *const T, pbstrBody: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Body(@ptrCast(*const IFaxDocument, self), pbstrBody);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2283,15 +2283,15 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Body(@ptrCast(*const IFaxDocument, self), bstrBody);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_Sender(self: *const T, ppFaxSender: **IFaxSender) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxDocument, self), ppFaxSender);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_Recipients(self: *const T, ppFaxRecipients: **IFaxRecipients) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_Recipients(self: *const T, ppFaxRecipients: ?*?*IFaxRecipients) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Recipients(@ptrCast(*const IFaxDocument, self), ppFaxRecipients);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_CoverPage(self: *const T, pbstrCoverPage: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_CoverPage(self: *const T, pbstrCoverPage: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_CoverPage(@ptrCast(*const IFaxDocument, self), pbstrCoverPage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2299,7 +2299,7 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_CoverPage(@ptrCast(*const IFaxDocument, self), bstrCoverPage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_Subject(self: *const T, pbstrSubject: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_Subject(self: *const T, pbstrSubject: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxDocument, self), pbstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2307,7 +2307,7 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Subject(@ptrCast(*const IFaxDocument, self), bstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_Note(self: *const T, pbstrNote: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_Note(self: *const T, pbstrNote: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Note(@ptrCast(*const IFaxDocument, self), pbstrNote);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2323,7 +2323,7 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ScheduleTime(@ptrCast(*const IFaxDocument, self), dateScheduleTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxDocument, self), pbstrReceiptAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2331,7 +2331,7 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ReceiptAddress(@ptrCast(*const IFaxDocument, self), bstrReceiptAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_DocumentName(self: *const T, pbstrDocumentName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_DocumentName(self: *const T, pbstrDocumentName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxDocument, self), pbstrDocumentName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2387,7 +2387,7 @@ pub const IFaxDocument = extern struct {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Priority(@ptrCast(*const IFaxDocument, self), Priority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument_get_TapiConnection(self: *const T, ppTapiConnection: **IDispatch) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument_get_TapiConnection(self: *const T, ppTapiConnection: ?*?*IDispatch) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_TapiConnection(@ptrCast(*const IFaxDocument, self), ppTapiConnection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2414,14 +2414,14 @@ pub const IFaxDocument = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxSender_Value = @import("../zig.zig").Guid.initString("0D879D7D-F57A-4CC6-A6F9-3EE5D527B46A");
+const IID_IFaxSender_Value = @import("../zig.zig").Guid.initString("0d879d7d-f57a-4cc6-a6f9-3ee5d527b46a");
 pub const IID_IFaxSender = &IID_IFaxSender_Value;
 pub const IFaxSender = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_BillingCode: fn(
             self: *const IFaxSender,
-            pbstrBillingCode: *BSTR,
+            pbstrBillingCode: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BillingCode: fn(
             self: *const IFaxSender,
@@ -2429,7 +2429,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_City: fn(
             self: *const IFaxSender,
-            pbstrCity: *BSTR,
+            pbstrCity: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_City: fn(
             self: *const IFaxSender,
@@ -2437,7 +2437,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Company: fn(
             self: *const IFaxSender,
-            pbstrCompany: *BSTR,
+            pbstrCompany: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Company: fn(
             self: *const IFaxSender,
@@ -2445,7 +2445,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Country: fn(
             self: *const IFaxSender,
-            pbstrCountry: *BSTR,
+            pbstrCountry: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Country: fn(
             self: *const IFaxSender,
@@ -2453,7 +2453,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Department: fn(
             self: *const IFaxSender,
-            pbstrDepartment: *BSTR,
+            pbstrDepartment: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Department: fn(
             self: *const IFaxSender,
@@ -2461,7 +2461,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Email: fn(
             self: *const IFaxSender,
-            pbstrEmail: *BSTR,
+            pbstrEmail: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Email: fn(
             self: *const IFaxSender,
@@ -2469,7 +2469,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FaxNumber: fn(
             self: *const IFaxSender,
-            pbstrFaxNumber: *BSTR,
+            pbstrFaxNumber: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FaxNumber: fn(
             self: *const IFaxSender,
@@ -2477,7 +2477,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HomePhone: fn(
             self: *const IFaxSender,
-            pbstrHomePhone: *BSTR,
+            pbstrHomePhone: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HomePhone: fn(
             self: *const IFaxSender,
@@ -2485,7 +2485,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IFaxSender,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IFaxSender,
@@ -2493,7 +2493,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxSender,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TSID: fn(
             self: *const IFaxSender,
@@ -2501,7 +2501,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OfficePhone: fn(
             self: *const IFaxSender,
-            pbstrOfficePhone: *BSTR,
+            pbstrOfficePhone: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OfficePhone: fn(
             self: *const IFaxSender,
@@ -2509,7 +2509,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OfficeLocation: fn(
             self: *const IFaxSender,
-            pbstrOfficeLocation: *BSTR,
+            pbstrOfficeLocation: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OfficeLocation: fn(
             self: *const IFaxSender,
@@ -2517,7 +2517,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_State: fn(
             self: *const IFaxSender,
-            pbstrState: *BSTR,
+            pbstrState: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_State: fn(
             self: *const IFaxSender,
@@ -2525,7 +2525,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StreetAddress: fn(
             self: *const IFaxSender,
-            pbstrStreetAddress: *BSTR,
+            pbstrStreetAddress: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_StreetAddress: fn(
             self: *const IFaxSender,
@@ -2533,7 +2533,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Title: fn(
             self: *const IFaxSender,
-            pbstrTitle: *BSTR,
+            pbstrTitle: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Title: fn(
             self: *const IFaxSender,
@@ -2541,7 +2541,7 @@ pub const IFaxSender = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ZipCode: fn(
             self: *const IFaxSender,
-            pbstrZipCode: *BSTR,
+            pbstrZipCode: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ZipCode: fn(
             self: *const IFaxSender,
@@ -2558,7 +2558,7 @@ pub const IFaxSender = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_BillingCode(self: *const T, pbstrBillingCode: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_BillingCode(self: *const T, pbstrBillingCode: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_BillingCode(@ptrCast(*const IFaxSender, self), pbstrBillingCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2566,7 +2566,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_BillingCode(@ptrCast(*const IFaxSender, self), bstrBillingCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_City(self: *const T, pbstrCity: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_City(self: *const T, pbstrCity: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_City(@ptrCast(*const IFaxSender, self), pbstrCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2574,7 +2574,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_City(@ptrCast(*const IFaxSender, self), bstrCity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Company(self: *const T, pbstrCompany: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Company(self: *const T, pbstrCompany: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Company(@ptrCast(*const IFaxSender, self), pbstrCompany);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2582,7 +2582,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Company(@ptrCast(*const IFaxSender, self), bstrCompany);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Country(self: *const T, pbstrCountry: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Country(self: *const T, pbstrCountry: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Country(@ptrCast(*const IFaxSender, self), pbstrCountry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2590,7 +2590,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Country(@ptrCast(*const IFaxSender, self), bstrCountry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Department(self: *const T, pbstrDepartment: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Department(self: *const T, pbstrDepartment: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Department(@ptrCast(*const IFaxSender, self), pbstrDepartment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2598,7 +2598,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Department(@ptrCast(*const IFaxSender, self), bstrDepartment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Email(self: *const T, pbstrEmail: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Email(self: *const T, pbstrEmail: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Email(@ptrCast(*const IFaxSender, self), pbstrEmail);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2606,7 +2606,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Email(@ptrCast(*const IFaxSender, self), bstrEmail);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_FaxNumber(self: *const T, pbstrFaxNumber: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_FaxNumber(self: *const T, pbstrFaxNumber: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IFaxSender, self), pbstrFaxNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2614,7 +2614,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_FaxNumber(@ptrCast(*const IFaxSender, self), bstrFaxNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_HomePhone(self: *const T, pbstrHomePhone: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_HomePhone(self: *const T, pbstrHomePhone: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_HomePhone(@ptrCast(*const IFaxSender, self), pbstrHomePhone);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2622,7 +2622,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_HomePhone(@ptrCast(*const IFaxSender, self), bstrHomePhone);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Name(@ptrCast(*const IFaxSender, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2630,7 +2630,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Name(@ptrCast(*const IFaxSender, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxSender, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2638,7 +2638,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_TSID(@ptrCast(*const IFaxSender, self), bstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_OfficePhone(self: *const T, pbstrOfficePhone: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_OfficePhone(self: *const T, pbstrOfficePhone: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_OfficePhone(@ptrCast(*const IFaxSender, self), pbstrOfficePhone);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2646,7 +2646,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_OfficePhone(@ptrCast(*const IFaxSender, self), bstrOfficePhone);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_OfficeLocation(self: *const T, pbstrOfficeLocation: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_OfficeLocation(self: *const T, pbstrOfficeLocation: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_OfficeLocation(@ptrCast(*const IFaxSender, self), pbstrOfficeLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2654,7 +2654,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_OfficeLocation(@ptrCast(*const IFaxSender, self), bstrOfficeLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_State(self: *const T, pbstrState: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_State(self: *const T, pbstrState: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_State(@ptrCast(*const IFaxSender, self), pbstrState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2662,7 +2662,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_State(@ptrCast(*const IFaxSender, self), bstrState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_StreetAddress(self: *const T, pbstrStreetAddress: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_StreetAddress(self: *const T, pbstrStreetAddress: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_StreetAddress(@ptrCast(*const IFaxSender, self), pbstrStreetAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2670,7 +2670,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_StreetAddress(@ptrCast(*const IFaxSender, self), bstrStreetAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_Title(self: *const T, pbstrTitle: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_Title(self: *const T, pbstrTitle: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Title(@ptrCast(*const IFaxSender, self), pbstrTitle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2678,7 +2678,7 @@ pub const IFaxSender = extern struct {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Title(@ptrCast(*const IFaxSender, self), bstrTitle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxSender_get_ZipCode(self: *const T, pbstrZipCode: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxSender_get_ZipCode(self: *const T, pbstrZipCode: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxSender.VTable, self.vtable).get_ZipCode(@ptrCast(*const IFaxSender, self), pbstrZipCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2697,14 +2697,14 @@ pub const IFaxSender = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxRecipient_Value = @import("../zig.zig").Guid.initString("9A3DA3A0-538D-42B6-9444-AAA57D0CE2BC");
+const IID_IFaxRecipient_Value = @import("../zig.zig").Guid.initString("9a3da3a0-538d-42b6-9444-aaa57d0ce2bc");
 pub const IID_IFaxRecipient = &IID_IFaxRecipient_Value;
 pub const IFaxRecipient = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_FaxNumber: fn(
             self: *const IFaxRecipient,
-            pbstrFaxNumber: *BSTR,
+            pbstrFaxNumber: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FaxNumber: fn(
             self: *const IFaxRecipient,
@@ -2712,7 +2712,7 @@ pub const IFaxRecipient = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IFaxRecipient,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IFaxRecipient,
@@ -2723,7 +2723,7 @@ pub const IFaxRecipient = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxRecipient_get_FaxNumber(self: *const T, pbstrFaxNumber: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxRecipient_get_FaxNumber(self: *const T, pbstrFaxNumber: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxRecipient.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IFaxRecipient, self), pbstrFaxNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2731,7 +2731,7 @@ pub const IFaxRecipient = extern struct {
             return @ptrCast(*const IFaxRecipient.VTable, self.vtable).put_FaxNumber(@ptrCast(*const IFaxRecipient, self), bstrFaxNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxRecipient_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxRecipient_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxRecipient.VTable, self.vtable).get_Name(@ptrCast(*const IFaxRecipient, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2742,19 +2742,19 @@ pub const IFaxRecipient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxRecipients_Value = @import("../zig.zig").Guid.initString("B9C9DE5A-894E-4492-9FA3-08C627C11D5D");
+const IID_IFaxRecipients_Value = @import("../zig.zig").Guid.initString("b9c9de5a-894e-4492-9fa3-08c627c11d5d");
 pub const IID_IFaxRecipients = &IID_IFaxRecipients_Value;
 pub const IFaxRecipients = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxRecipients,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxRecipients,
             lIndex: i32,
-            ppFaxRecipient: **IFaxRecipient,
+            ppFaxRecipient: ?*?*IFaxRecipient,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxRecipients,
@@ -2764,7 +2764,7 @@ pub const IFaxRecipients = extern struct {
             self: *const IFaxRecipients,
             bstrFaxNumber: BSTR,
             bstrRecipientName: BSTR,
-            ppFaxRecipient: **IFaxRecipient,
+            ppFaxRecipient: ?*?*IFaxRecipient,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IFaxRecipients,
@@ -2775,11 +2775,11 @@ pub const IFaxRecipients = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxRecipients_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxRecipients_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxRecipients, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxRecipients_get_Item(self: *const T, lIndex: i32, ppFaxRecipient: **IFaxRecipient) callconv(.Inline) HRESULT {
+        pub fn IFaxRecipients_get_Item(self: *const T, lIndex: i32, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get_Item(@ptrCast(*const IFaxRecipients, self), lIndex, ppFaxRecipient);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2787,7 +2787,7 @@ pub const IFaxRecipients = extern struct {
             return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get_Count(@ptrCast(*const IFaxRecipients, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxRecipients_Add(self: *const T, bstrFaxNumber: BSTR, bstrRecipientName: BSTR, ppFaxRecipient: **IFaxRecipient) callconv(.Inline) HRESULT {
+        pub fn IFaxRecipients_Add(self: *const T, bstrFaxNumber: BSTR, bstrRecipientName: BSTR, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxRecipients.VTable, self.vtable).Add(@ptrCast(*const IFaxRecipients, self), bstrFaxNumber, bstrRecipientName, ppFaxRecipient);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2798,7 +2798,7 @@ pub const IFaxRecipients = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingArchive_Value = @import("../zig.zig").Guid.initString("76062CC7-F714-4FBD-AA06-ED6E4A4B70F3");
+const IID_IFaxIncomingArchive_Value = @import("../zig.zig").Guid.initString("76062cc7-f714-4fbd-aa06-ed6e4a4b70f3");
 pub const IID_IFaxIncomingArchive = &IID_IFaxIncomingArchive_Value;
 pub const IFaxIncomingArchive = extern struct {
     pub const VTable = extern struct {
@@ -2813,7 +2813,7 @@ pub const IFaxIncomingArchive = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ArchiveFolder: fn(
             self: *const IFaxIncomingArchive,
-            pbstrArchiveFolder: *BSTR,
+            pbstrArchiveFolder: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ArchiveFolder: fn(
             self: *const IFaxIncomingArchive,
@@ -2868,12 +2868,12 @@ pub const IFaxIncomingArchive = extern struct {
         GetMessages: fn(
             self: *const IFaxIncomingArchive,
             lPrefetchSize: i32,
-            pFaxIncomingMessageIterator: **IFaxIncomingMessageIterator,
+            pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageA: fn(
             self: *const IFaxIncomingArchive,
             bstrMessageId: BSTR,
-            pFaxIncomingMessage: **IFaxIncomingMessage,
+            pFaxIncomingMessage: ?*?*IFaxIncomingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2888,7 +2888,7 @@ pub const IFaxIncomingArchive = extern struct {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxIncomingArchive, self), bUseArchive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_ArchiveFolder(@ptrCast(*const IFaxIncomingArchive, self), pbstrArchiveFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2944,18 +2944,18 @@ pub const IFaxIncomingArchive = extern struct {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).Save(@ptrCast(*const IFaxIncomingArchive, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: **IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: **IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingQueue_Value = @import("../zig.zig").Guid.initString("902E64EF-8FD8-4B75-9725-6014DF161545");
+const IID_IFaxIncomingQueue_Value = @import("../zig.zig").Guid.initString("902e64ef-8fd8-4b75-9725-6014df161545");
 pub const IID_IFaxIncomingQueue = &IID_IFaxIncomingQueue_Value;
 pub const IFaxIncomingQueue = extern struct {
     pub const VTable = extern struct {
@@ -2976,12 +2976,12 @@ pub const IFaxIncomingQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobs: fn(
             self: *const IFaxIncomingQueue,
-            pFaxIncomingJobs: **IFaxIncomingJobs,
+            pFaxIncomingJobs: ?*?*IFaxIncomingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobA: fn(
             self: *const IFaxIncomingQueue,
             bstrJobId: BSTR,
-            pFaxIncomingJob: **IFaxIncomingJob,
+            pFaxIncomingJob: ?*?*IFaxIncomingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3004,18 +3004,18 @@ pub const IFaxIncomingQueue = extern struct {
             return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).Save(@ptrCast(*const IFaxIncomingQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: **IFaxIncomingJobs) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxIncomingQueue, self), pFaxIncomingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: **IFaxIncomingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxIncomingQueue, self), bstrJobId, pFaxIncomingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingArchive_Value = @import("../zig.zig").Guid.initString("C9C28F40-8D80-4E53-810F-9A79919B49FD");
+const IID_IFaxOutgoingArchive_Value = @import("../zig.zig").Guid.initString("c9c28f40-8d80-4e53-810f-9a79919b49fd");
 pub const IID_IFaxOutgoingArchive = &IID_IFaxOutgoingArchive_Value;
 pub const IFaxOutgoingArchive = extern struct {
     pub const VTable = extern struct {
@@ -3030,7 +3030,7 @@ pub const IFaxOutgoingArchive = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ArchiveFolder: fn(
             self: *const IFaxOutgoingArchive,
-            pbstrArchiveFolder: *BSTR,
+            pbstrArchiveFolder: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ArchiveFolder: fn(
             self: *const IFaxOutgoingArchive,
@@ -3085,12 +3085,12 @@ pub const IFaxOutgoingArchive = extern struct {
         GetMessages: fn(
             self: *const IFaxOutgoingArchive,
             lPrefetchSize: i32,
-            pFaxOutgoingMessageIterator: **IFaxOutgoingMessageIterator,
+            pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageA: fn(
             self: *const IFaxOutgoingArchive,
             bstrMessageId: BSTR,
-            pFaxOutgoingMessage: **IFaxOutgoingMessage,
+            pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3105,7 +3105,7 @@ pub const IFaxOutgoingArchive = extern struct {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxOutgoingArchive, self), bUseArchive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_ArchiveFolder(@ptrCast(*const IFaxOutgoingArchive, self), pbstrArchiveFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3161,18 +3161,18 @@ pub const IFaxOutgoingArchive = extern struct {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).Save(@ptrCast(*const IFaxOutgoingArchive, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: **IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: **IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingQueue_Value = @import("../zig.zig").Guid.initString("80B1DF24-D9AC-4333-B373-487CEDC80CE5");
+const IID_IFaxOutgoingQueue_Value = @import("../zig.zig").Guid.initString("80b1df24-d9ac-4333-b373-487cedc80ce5");
 pub const IID_IFaxOutgoingQueue = &IID_IFaxOutgoingQueue_Value;
 pub const IFaxOutgoingQueue = extern struct {
     pub const VTable = extern struct {
@@ -3265,12 +3265,12 @@ pub const IFaxOutgoingQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobs: fn(
             self: *const IFaxOutgoingQueue,
-            pFaxOutgoingJobs: **IFaxOutgoingJobs,
+            pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobA: fn(
             self: *const IFaxOutgoingQueue,
             bstrJobId: BSTR,
-            pFaxOutgoingJob: **IFaxOutgoingJob,
+            pFaxOutgoingJob: ?*?*IFaxOutgoingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3365,25 +3365,25 @@ pub const IFaxOutgoingQueue = extern struct {
             return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).Save(@ptrCast(*const IFaxOutgoingQueue, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: **IFaxOutgoingJobs) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxOutgoingQueue, self), pFaxOutgoingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: **IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingMessageIterator_Value = @import("../zig.zig").Guid.initString("FD73ECC4-6F06-4F52-82A8-F7BA06AE3108");
+const IID_IFaxIncomingMessageIterator_Value = @import("../zig.zig").Guid.initString("fd73ecc4-6f06-4f52-82a8-f7ba06ae3108");
 pub const IID_IFaxIncomingMessageIterator = &IID_IFaxIncomingMessageIterator_Value;
 pub const IFaxIncomingMessageIterator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Message: fn(
             self: *const IFaxIncomingMessageIterator,
-            pFaxIncomingMessage: **IFaxIncomingMessage,
+            pFaxIncomingMessage: ?*?*IFaxIncomingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrefetchSize: fn(
             self: *const IFaxIncomingMessageIterator,
@@ -3408,7 +3408,7 @@ pub const IFaxIncomingMessageIterator = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessageIterator_get_Message(self: *const T, pFaxIncomingMessage: **IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessageIterator_get_Message(self: *const T, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).get_Message(@ptrCast(*const IFaxIncomingMessageIterator, self), pFaxIncomingMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3435,14 +3435,14 @@ pub const IFaxIncomingMessageIterator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingMessage_Value = @import("../zig.zig").Guid.initString("7CAB88FA-2EF9-4851-B2F3-1D148FED8447");
+const IID_IFaxIncomingMessage_Value = @import("../zig.zig").Guid.initString("7cab88fa-2ef9-4851-b2f3-1d148fed8447");
 pub const IID_IFaxIncomingMessage = &IID_IFaxIncomingMessage_Value;
 pub const IFaxIncomingMessage = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Id: fn(
             self: *const IFaxIncomingMessage,
-            pbstrId: *BSTR,
+            pbstrId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Pages: fn(
             self: *const IFaxIncomingMessage,
@@ -3454,7 +3454,7 @@ pub const IFaxIncomingMessage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceName: fn(
             self: *const IFaxIncomingMessage,
-            pbstrDeviceName: *BSTR,
+            pbstrDeviceName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Retries: fn(
             self: *const IFaxIncomingMessage,
@@ -3470,19 +3470,19 @@ pub const IFaxIncomingMessage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxIncomingMessage,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxIncomingMessage,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CallerId: fn(
             self: *const IFaxIncomingMessage,
-            pbstrCallerId: *BSTR,
+            pbstrCallerId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoutingInformation: fn(
             self: *const IFaxIncomingMessage,
-            pbstrRoutingInformation: *BSTR,
+            pbstrRoutingInformation: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTiff: fn(
             self: *const IFaxIncomingMessage,
@@ -3496,7 +3496,7 @@ pub const IFaxIncomingMessage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_Id(self: *const T, pbstrId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_Id(self: *const T, pbstrId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Id(@ptrCast(*const IFaxIncomingMessage, self), pbstrId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3508,7 +3508,7 @@ pub const IFaxIncomingMessage = extern struct {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Size(@ptrCast(*const IFaxIncomingMessage, self), plSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_DeviceName(self: *const T, pbstrDeviceName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_DeviceName(self: *const T, pbstrDeviceName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxIncomingMessage, self), pbstrDeviceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3524,19 +3524,19 @@ pub const IFaxIncomingMessage = extern struct {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxIncomingMessage, self), pdateTransmissionEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxIncomingMessage, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxIncomingMessage, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_CallerId(self: *const T, pbstrCallerId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_CallerId(self: *const T, pbstrCallerId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxIncomingMessage, self), pbstrCallerId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage_get_RoutingInformation(self: *const T, pbstrRoutingInformation: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxIncomingMessage, self), pbstrRoutingInformation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3551,19 +3551,19 @@ pub const IFaxIncomingMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingJobs_Value = @import("../zig.zig").Guid.initString("2C56D8E6-8C2F-4573-944C-E505F8F5AEED");
+const IID_IFaxOutgoingJobs_Value = @import("../zig.zig").Guid.initString("2c56d8e6-8c2f-4573-944c-e505f8f5aeed");
 pub const IID_IFaxOutgoingJobs = &IID_IFaxOutgoingJobs_Value;
 pub const IFaxOutgoingJobs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxOutgoingJobs,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxOutgoingJobs,
             vIndex: VARIANT,
-            pFaxOutgoingJob: **IFaxOutgoingJob,
+            pFaxOutgoingJob: ?*?*IFaxOutgoingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxOutgoingJobs,
@@ -3574,11 +3574,11 @@ pub const IFaxOutgoingJobs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJobs_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJobs_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJobs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutgoingJobs, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxOutgoingJob: **IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJobs.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutgoingJobs, self), vIndex, pFaxOutgoingJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3589,18 +3589,18 @@ pub const IFaxOutgoingJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingJob_Value = @import("../zig.zig").Guid.initString("6356DAAD-6614-4583-BF7A-3AD67BBFC71C");
+const IID_IFaxOutgoingJob_Value = @import("../zig.zig").Guid.initString("6356daad-6614-4583-bf7a-3ad67bbfc71c");
 pub const IID_IFaxOutgoingJob = &IID_IFaxOutgoingJob_Value;
 pub const IFaxOutgoingJob = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Subject: fn(
             self: *const IFaxOutgoingJob,
-            pbstrSubject: *BSTR,
+            pbstrSubject: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DocumentName: fn(
             self: *const IFaxOutgoingJob,
-            pbstrDocumentName: *BSTR,
+            pbstrDocumentName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Pages: fn(
             self: *const IFaxOutgoingJob,
@@ -3612,11 +3612,11 @@ pub const IFaxOutgoingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SubmissionId: fn(
             self: *const IFaxOutgoingJob,
-            pbstrSubmissionId: *BSTR,
+            pbstrSubmissionId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Id: fn(
             self: *const IFaxOutgoingJob,
-            pbstrId: *BSTR,
+            pbstrId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OriginalScheduledTime: fn(
             self: *const IFaxOutgoingJob,
@@ -3636,11 +3636,11 @@ pub const IFaxOutgoingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Sender: fn(
             self: *const IFaxOutgoingJob,
-            ppFaxSender: **IFaxSender,
+            ppFaxSender: ?*?*IFaxSender,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recipient: fn(
             self: *const IFaxOutgoingJob,
-            ppFaxRecipient: **IFaxRecipient,
+            ppFaxRecipient: ?*?*IFaxRecipient,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentPage: fn(
             self: *const IFaxOutgoingJob,
@@ -3660,7 +3660,7 @@ pub const IFaxOutgoingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedStatus: fn(
             self: *const IFaxOutgoingJob,
-            pbstrExtendedStatus: *BSTR,
+            pbstrExtendedStatus: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AvailableOperations: fn(
             self: *const IFaxOutgoingJob,
@@ -3684,11 +3684,11 @@ pub const IFaxOutgoingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxOutgoingJob,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxOutgoingJob,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_GroupBroadcastReceipts: fn(
             self: *const IFaxOutgoingJob,
@@ -3718,11 +3718,11 @@ pub const IFaxOutgoingJob = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_Subject(self: *const T, pbstrSubject: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_Subject(self: *const T, pbstrSubject: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxOutgoingJob, self), pbstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_DocumentName(self: *const T, pbstrDocumentName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_DocumentName(self: *const T, pbstrDocumentName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxOutgoingJob, self), pbstrDocumentName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3734,11 +3734,11 @@ pub const IFaxOutgoingJob = extern struct {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Size(@ptrCast(*const IFaxOutgoingJob, self), plSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_SubmissionId(self: *const T, pbstrSubmissionId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxOutgoingJob, self), pbstrSubmissionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_Id(self: *const T, pbstrId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_Id(self: *const T, pbstrId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Id(@ptrCast(*const IFaxOutgoingJob, self), pbstrId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3758,11 +3758,11 @@ pub const IFaxOutgoingJob = extern struct {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxOutgoingJob, self), pPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_Sender(self: *const T, ppFaxSender: **IFaxSender) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxOutgoingJob, self), ppFaxSender);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_Recipient(self: *const T, ppFaxRecipient: **IFaxRecipient) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_Recipient(self: *const T, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Recipient(@ptrCast(*const IFaxOutgoingJob, self), ppFaxRecipient);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3782,7 +3782,7 @@ pub const IFaxOutgoingJob = extern struct {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxOutgoingJob, self), pExtendedStatusCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxOutgoingJob, self), pbstrExtendedStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3806,11 +3806,11 @@ pub const IFaxOutgoingJob = extern struct {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxOutgoingJob, self), pdateTransmissionEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxOutgoingJob, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxOutgoingJob, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3845,14 +3845,14 @@ pub const IFaxOutgoingJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingMessageIterator_Value = @import("../zig.zig").Guid.initString("F5EC5D4F-B840-432F-9980-112FE42A9B7A");
+const IID_IFaxOutgoingMessageIterator_Value = @import("../zig.zig").Guid.initString("f5ec5d4f-b840-432f-9980-112fe42a9b7a");
 pub const IID_IFaxOutgoingMessageIterator = &IID_IFaxOutgoingMessageIterator_Value;
 pub const IFaxOutgoingMessageIterator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Message: fn(
             self: *const IFaxOutgoingMessageIterator,
-            pFaxOutgoingMessage: **IFaxOutgoingMessage,
+            pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AtEOF: fn(
             self: *const IFaxOutgoingMessageIterator,
@@ -3877,7 +3877,7 @@ pub const IFaxOutgoingMessageIterator = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessageIterator_get_Message(self: *const T, pFaxOutgoingMessage: **IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessageIterator_get_Message(self: *const T, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).get_Message(@ptrCast(*const IFaxOutgoingMessageIterator, self), pFaxOutgoingMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3904,26 +3904,26 @@ pub const IFaxOutgoingMessageIterator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingMessage_Value = @import("../zig.zig").Guid.initString("F0EA35DE-CAA5-4A7C-82C7-2B60BA5F2BE2");
+const IID_IFaxOutgoingMessage_Value = @import("../zig.zig").Guid.initString("f0ea35de-caa5-4a7c-82c7-2b60ba5f2be2");
 pub const IID_IFaxOutgoingMessage = &IID_IFaxOutgoingMessage_Value;
 pub const IFaxOutgoingMessage = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_SubmissionId: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrSubmissionId: *BSTR,
+            pbstrSubmissionId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Id: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrId: *BSTR,
+            pbstrId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Subject: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrSubject: *BSTR,
+            pbstrSubject: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DocumentName: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrDocumentName: *BSTR,
+            pbstrDocumentName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Retries: fn(
             self: *const IFaxOutgoingMessage,
@@ -3951,15 +3951,15 @@ pub const IFaxOutgoingMessage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Sender: fn(
             self: *const IFaxOutgoingMessage,
-            ppFaxSender: **IFaxSender,
+            ppFaxSender: ?*?*IFaxSender,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recipient: fn(
             self: *const IFaxOutgoingMessage,
-            ppFaxRecipient: **IFaxRecipient,
+            ppFaxRecipient: ?*?*IFaxRecipient,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceName: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrDeviceName: *BSTR,
+            pbstrDeviceName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TransmissionStart: fn(
             self: *const IFaxOutgoingMessage,
@@ -3971,11 +3971,11 @@ pub const IFaxOutgoingMessage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxOutgoingMessage,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyTiff: fn(
             self: *const IFaxOutgoingMessage,
@@ -3989,19 +3989,19 @@ pub const IFaxOutgoingMessage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_SubmissionId(self: *const T, pbstrSubmissionId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxOutgoingMessage, self), pbstrSubmissionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_Id(self: *const T, pbstrId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_Id(self: *const T, pbstrId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Id(@ptrCast(*const IFaxOutgoingMessage, self), pbstrId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_Subject(self: *const T, pbstrSubject: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_Subject(self: *const T, pbstrSubject: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxOutgoingMessage, self), pbstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_DocumentName(self: *const T, pbstrDocumentName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_DocumentName(self: *const T, pbstrDocumentName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxOutgoingMessage, self), pbstrDocumentName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4029,15 +4029,15 @@ pub const IFaxOutgoingMessage = extern struct {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxOutgoingMessage, self), pPriority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_Sender(self: *const T, ppFaxSender: **IFaxSender) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxOutgoingMessage, self), ppFaxSender);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_Recipient(self: *const T, ppFaxRecipient: **IFaxRecipient) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_Recipient(self: *const T, ppFaxRecipient: ?*?*IFaxRecipient) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Recipient(@ptrCast(*const IFaxOutgoingMessage, self), ppFaxRecipient);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_DeviceName(self: *const T, pbstrDeviceName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_DeviceName(self: *const T, pbstrDeviceName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxOutgoingMessage, self), pbstrDeviceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4049,11 +4049,11 @@ pub const IFaxOutgoingMessage = extern struct {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxOutgoingMessage, self), pdateTransmissionEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxOutgoingMessage, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxOutgoingMessage, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4068,19 +4068,19 @@ pub const IFaxOutgoingMessage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingJobs_Value = @import("../zig.zig").Guid.initString("011F04E9-4FD6-4C23-9513-B6B66BB26BE9");
+const IID_IFaxIncomingJobs_Value = @import("../zig.zig").Guid.initString("011f04e9-4fd6-4c23-9513-b6b66bb26be9");
 pub const IID_IFaxIncomingJobs = &IID_IFaxIncomingJobs_Value;
 pub const IFaxIncomingJobs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxIncomingJobs,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxIncomingJobs,
             vIndex: VARIANT,
-            pFaxIncomingJob: **IFaxIncomingJob,
+            pFaxIncomingJob: ?*?*IFaxIncomingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxIncomingJobs,
@@ -4091,11 +4091,11 @@ pub const IFaxIncomingJobs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJobs_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJobs_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJobs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxIncomingJobs, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxIncomingJob: **IFaxIncomingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJobs.VTable, self.vtable).get_Item(@ptrCast(*const IFaxIncomingJobs, self), vIndex, pFaxIncomingJob);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4106,7 +4106,7 @@ pub const IFaxIncomingJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingJob_Value = @import("../zig.zig").Guid.initString("207529E6-654A-4916-9F88-4D232EE8A107");
+const IID_IFaxIncomingJob_Value = @import("../zig.zig").Guid.initString("207529e6-654a-4916-9f88-4d232ee8a107");
 pub const IID_IFaxIncomingJob = &IID_IFaxIncomingJob_Value;
 pub const IFaxIncomingJob = extern struct {
     pub const VTable = extern struct {
@@ -4117,7 +4117,7 @@ pub const IFaxIncomingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Id: fn(
             self: *const IFaxIncomingJob,
-            pbstrId: *BSTR,
+            pbstrId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentPage: fn(
             self: *const IFaxIncomingJob,
@@ -4137,7 +4137,7 @@ pub const IFaxIncomingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtendedStatus: fn(
             self: *const IFaxIncomingJob,
-            pbstrExtendedStatus: *BSTR,
+            pbstrExtendedStatus: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AvailableOperations: fn(
             self: *const IFaxIncomingJob,
@@ -4157,19 +4157,19 @@ pub const IFaxIncomingJob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxIncomingJob,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxIncomingJob,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CallerId: fn(
             self: *const IFaxIncomingJob,
-            pbstrCallerId: *BSTR,
+            pbstrCallerId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoutingInformation: fn(
             self: *const IFaxIncomingJob,
-            pbstrRoutingInformation: *BSTR,
+            pbstrRoutingInformation: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_JobType: fn(
             self: *const IFaxIncomingJob,
@@ -4194,7 +4194,7 @@ pub const IFaxIncomingJob = extern struct {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Size(@ptrCast(*const IFaxIncomingJob, self), plSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_Id(self: *const T, pbstrId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_Id(self: *const T, pbstrId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Id(@ptrCast(*const IFaxIncomingJob, self), pbstrId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4214,7 +4214,7 @@ pub const IFaxIncomingJob = extern struct {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxIncomingJob, self), pExtendedStatusCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxIncomingJob, self), pbstrExtendedStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4234,19 +4234,19 @@ pub const IFaxIncomingJob = extern struct {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxIncomingJob, self), pdateTransmissionEnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxIncomingJob, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxIncomingJob, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_CallerId(self: *const T, pbstrCallerId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_CallerId(self: *const T, pbstrCallerId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxIncomingJob, self), pbstrCallerId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingJob_get_RoutingInformation(self: *const T, pbstrRoutingInformation: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingJob_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxIncomingJob, self), pbstrRoutingInformation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4286,26 +4286,26 @@ pub const fpsCANT_LOAD = FAX_PROVIDER_STATUS_ENUM.fpsCANT_LOAD;
 pub const fpsCANT_LINK = FAX_PROVIDER_STATUS_ENUM.fpsCANT_LINK;
 pub const fpsCANT_INIT = FAX_PROVIDER_STATUS_ENUM.fpsCANT_INIT;
 
-const IID_IFaxDeviceProvider_Value = @import("../zig.zig").Guid.initString("290EAC63-83EC-449C-8417-F148DF8C682A");
+const IID_IFaxDeviceProvider_Value = @import("../zig.zig").Guid.initString("290eac63-83ec-449c-8417-f148df8c682a");
 pub const IID_IFaxDeviceProvider = &IID_IFaxDeviceProvider_Value;
 pub const IFaxDeviceProvider = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_FriendlyName: fn(
             self: *const IFaxDeviceProvider,
-            pbstrFriendlyName: *BSTR,
+            pbstrFriendlyName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ImageName: fn(
             self: *const IFaxDeviceProvider,
-            pbstrImageName: *BSTR,
+            pbstrImageName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UniqueName: fn(
             self: *const IFaxDeviceProvider,
-            pbstrUniqueName: *BSTR,
+            pbstrUniqueName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TapiProviderName: fn(
             self: *const IFaxDeviceProvider,
-            pbstrTapiProviderName: *BSTR,
+            pbstrTapiProviderName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MajorVersion: fn(
             self: *const IFaxDeviceProvider,
@@ -4344,19 +4344,19 @@ pub const IFaxDeviceProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProvider_get_FriendlyName(self: *const T, pbstrFriendlyName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProvider_get_FriendlyName(self: *const T, pbstrFriendlyName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IFaxDeviceProvider, self), pbstrFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProvider_get_ImageName(self: *const T, pbstrImageName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProvider_get_ImageName(self: *const T, pbstrImageName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_ImageName(@ptrCast(*const IFaxDeviceProvider, self), pbstrImageName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProvider_get_UniqueName(self: *const T, pbstrUniqueName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProvider_get_UniqueName(self: *const T, pbstrUniqueName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_UniqueName(@ptrCast(*const IFaxDeviceProvider, self), pbstrUniqueName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceProvider_get_TapiProviderName(self: *const T, pbstrTapiProviderName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceProvider_get_TapiProviderName(self: *const T, pbstrTapiProviderName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_TapiProviderName(@ptrCast(*const IFaxDeviceProvider, self), pbstrTapiProviderName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4404,7 +4404,7 @@ pub const fdrmNO_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.fdrmNO_ANSWER;
 pub const fdrmAUTO_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.fdrmAUTO_ANSWER;
 pub const fdrmMANUAL_ANSWER = FAX_DEVICE_RECEIVE_MODE_ENUM.fdrmMANUAL_ANSWER;
 
-const IID_IFaxDevice_Value = @import("../zig.zig").Guid.initString("49306C59-B52E-4867-9DF4-CA5841C956D0");
+const IID_IFaxDevice_Value = @import("../zig.zig").Guid.initString("49306c59-b52e-4867-9df4-ca5841c956d0");
 pub const IID_IFaxDevice = &IID_IFaxDevice_Value;
 pub const IFaxDevice = extern struct {
     pub const VTable = extern struct {
@@ -4415,11 +4415,11 @@ pub const IFaxDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceName: fn(
             self: *const IFaxDevice,
-            pbstrDeviceName: *BSTR,
+            pbstrDeviceName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProviderUniqueName: fn(
             self: *const IFaxDevice,
-            pbstrProviderUniqueName: *BSTR,
+            pbstrProviderUniqueName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PoweredOff: fn(
             self: *const IFaxDevice,
@@ -4439,7 +4439,7 @@ pub const IFaxDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IFaxDevice,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IFaxDevice,
@@ -4471,7 +4471,7 @@ pub const IFaxDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSID: fn(
             self: *const IFaxDevice,
-            pbstrCSID: *BSTR,
+            pbstrCSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CSID: fn(
             self: *const IFaxDevice,
@@ -4479,7 +4479,7 @@ pub const IFaxDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TSID: fn(
             self: *const IFaxDevice,
-            pbstrTSID: *BSTR,
+            pbstrTSID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TSID: fn(
             self: *const IFaxDevice,
@@ -4522,11 +4522,11 @@ pub const IFaxDevice = extern struct {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_Id(@ptrCast(*const IFaxDevice, self), plId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevice_get_DeviceName(self: *const T, pbstrDeviceName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDevice_get_DeviceName(self: *const T, pbstrDeviceName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxDevice, self), pbstrDeviceName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevice_get_ProviderUniqueName(self: *const T, pbstrProviderUniqueName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDevice_get_ProviderUniqueName(self: *const T, pbstrProviderUniqueName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_ProviderUniqueName(@ptrCast(*const IFaxDevice, self), pbstrProviderUniqueName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4546,7 +4546,7 @@ pub const IFaxDevice = extern struct {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_UsedRoutingMethods(@ptrCast(*const IFaxDevice, self), pvUsedRoutingMethods);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevice_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDevice_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_Description(@ptrCast(*const IFaxDevice, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4578,7 +4578,7 @@ pub const IFaxDevice = extern struct {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_RingsBeforeAnswer(@ptrCast(*const IFaxDevice, self), lRingsBeforeAnswer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevice_get_CSID(self: *const T, pbstrCSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDevice_get_CSID(self: *const T, pbstrCSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxDevice, self), pbstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4586,7 +4586,7 @@ pub const IFaxDevice = extern struct {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_CSID(@ptrCast(*const IFaxDevice, self), bstrCSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDevice_get_TSID(self: *const T, pbstrTSID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDevice_get_TSID(self: *const T, pbstrTSID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxDevice, self), pbstrTSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4625,7 +4625,7 @@ pub const IFaxDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxActivityLogging_Value = @import("../zig.zig").Guid.initString("1E29078B-5A69-497B-9592-49B7E7FADDB5");
+const IID_IFaxActivityLogging_Value = @import("../zig.zig").Guid.initString("1e29078b-5a69-497b-9592-49b7e7faddb5");
 pub const IID_IFaxActivityLogging = &IID_IFaxActivityLogging_Value;
 pub const IFaxActivityLogging = extern struct {
     pub const VTable = extern struct {
@@ -4648,7 +4648,7 @@ pub const IFaxActivityLogging = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DatabasePath: fn(
             self: *const IFaxActivityLogging,
-            pbstrDatabasePath: *BSTR,
+            pbstrDatabasePath: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_DatabasePath: fn(
             self: *const IFaxActivityLogging,
@@ -4681,7 +4681,7 @@ pub const IFaxActivityLogging = extern struct {
             return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).put_LogOutgoing(@ptrCast(*const IFaxActivityLogging, self), bLogOutgoing);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxActivityLogging_get_DatabasePath(self: *const T, pbstrDatabasePath: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxActivityLogging_get_DatabasePath(self: *const T, pbstrDatabasePath: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).get_DatabasePath(@ptrCast(*const IFaxActivityLogging, self), pbstrDatabasePath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4711,7 +4711,7 @@ pub const fllMIN = FAX_LOG_LEVEL_ENUM.fllMIN;
 pub const fllMED = FAX_LOG_LEVEL_ENUM.fllMED;
 pub const fllMAX = FAX_LOG_LEVEL_ENUM.fllMAX;
 
-const IID_IFaxEventLogging_Value = @import("../zig.zig").Guid.initString("0880D965-20E8-42E4-8E17-944F192CAAD4");
+const IID_IFaxEventLogging_Value = @import("../zig.zig").Guid.initString("0880d965-20e8-42e4-8e17-944f192caad4");
 pub const IID_IFaxEventLogging = &IID_IFaxEventLogging_Value;
 pub const IFaxEventLogging = extern struct {
     pub const VTable = extern struct {
@@ -4802,19 +4802,19 @@ pub const IFaxEventLogging = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutboundRoutingGroups_Value = @import("../zig.zig").Guid.initString("235CBEF7-C2DE-4BFD-B8DA-75097C82C87F");
+const IID_IFaxOutboundRoutingGroups_Value = @import("../zig.zig").Guid.initString("235cbef7-c2de-4bfd-b8da-75097c82c87f");
 pub const IID_IFaxOutboundRoutingGroups = &IID_IFaxOutboundRoutingGroups_Value;
 pub const IFaxOutboundRoutingGroups = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxOutboundRoutingGroups,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxOutboundRoutingGroups,
             vIndex: VARIANT,
-            pFaxOutboundRoutingGroup: **IFaxOutboundRoutingGroup,
+            pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxOutboundRoutingGroups,
@@ -4823,7 +4823,7 @@ pub const IFaxOutboundRoutingGroups = extern struct {
         Add: fn(
             self: *const IFaxOutboundRoutingGroups,
             bstrName: BSTR,
-            pFaxOutboundRoutingGroup: **IFaxOutboundRoutingGroup,
+            pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Remove: fn(
             self: *const IFaxOutboundRoutingGroups,
@@ -4834,11 +4834,11 @@ pub const IFaxOutboundRoutingGroups = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingGroups_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingGroups_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutboundRoutingGroups, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingGroups_get_Item(self: *const T, vIndex: VARIANT, pFaxOutboundRoutingGroup: **IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingGroups_get_Item(self: *const T, vIndex: VARIANT, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutboundRoutingGroups, self), vIndex, pFaxOutboundRoutingGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4846,7 +4846,7 @@ pub const IFaxOutboundRoutingGroups = extern struct {
             return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get_Count(@ptrCast(*const IFaxOutboundRoutingGroups, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingGroups_Add(self: *const T, bstrName: BSTR, pFaxOutboundRoutingGroup: **IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingGroups_Add(self: *const T, bstrName: BSTR, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).Add(@ptrCast(*const IFaxOutboundRoutingGroups, self), bstrName, pFaxOutboundRoutingGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4868,14 +4868,14 @@ pub const fgsEMPTY = FAX_GROUP_STATUS_ENUM.fgsEMPTY;
 pub const fgsALL_DEV_NOT_VALID = FAX_GROUP_STATUS_ENUM.fgsALL_DEV_NOT_VALID;
 pub const fgsSOME_DEV_NOT_VALID = FAX_GROUP_STATUS_ENUM.fgsSOME_DEV_NOT_VALID;
 
-const IID_IFaxOutboundRoutingGroup_Value = @import("../zig.zig").Guid.initString("CA6289A1-7E25-4F87-9A0B-93365734962C");
+const IID_IFaxOutboundRoutingGroup_Value = @import("../zig.zig").Guid.initString("ca6289a1-7e25-4f87-9a0b-93365734962c");
 pub const IID_IFaxOutboundRoutingGroup = &IID_IFaxOutboundRoutingGroup_Value;
 pub const IFaxOutboundRoutingGroup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IFaxOutboundRoutingGroup,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Status: fn(
             self: *const IFaxOutboundRoutingGroup,
@@ -4883,14 +4883,14 @@ pub const IFaxOutboundRoutingGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DeviceIds: fn(
             self: *const IFaxOutboundRoutingGroup,
-            pFaxDeviceIds: **IFaxDeviceIds,
+            pFaxDeviceIds: ?*?*IFaxDeviceIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingGroup_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingGroup_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_Name(@ptrCast(*const IFaxOutboundRoutingGroup, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4898,21 +4898,21 @@ pub const IFaxOutboundRoutingGroup = extern struct {
             return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_Status(@ptrCast(*const IFaxOutboundRoutingGroup, self), pStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingGroup_get_DeviceIds(self: *const T, pFaxDeviceIds: **IFaxDeviceIds) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingGroup_get_DeviceIds(self: *const T, pFaxDeviceIds: ?*?*IFaxDeviceIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_DeviceIds(@ptrCast(*const IFaxOutboundRoutingGroup, self), pFaxDeviceIds);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxDeviceIds_Value = @import("../zig.zig").Guid.initString("2F0F813F-4CE9-443E-8CA1-738CFAEEE149");
+const IID_IFaxDeviceIds_Value = @import("../zig.zig").Guid.initString("2f0f813f-4ce9-443e-8ca1-738cfaeee149");
 pub const IID_IFaxDeviceIds = &IID_IFaxDeviceIds_Value;
 pub const IFaxDeviceIds = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxDeviceIds,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxDeviceIds,
@@ -4941,7 +4941,7 @@ pub const IFaxDeviceIds = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDeviceIds_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxDeviceIds_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDeviceIds, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4968,19 +4968,19 @@ pub const IFaxDeviceIds = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutboundRoutingRules_Value = @import("../zig.zig").Guid.initString("DCEFA1E7-AE7D-4ED6-8521-369EDCCA5120");
+const IID_IFaxOutboundRoutingRules_Value = @import("../zig.zig").Guid.initString("dcefa1e7-ae7d-4ed6-8521-369edcca5120");
 pub const IID_IFaxOutboundRoutingRules = &IID_IFaxOutboundRoutingRules_Value;
 pub const IFaxOutboundRoutingRules = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxOutboundRoutingRules,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxOutboundRoutingRules,
             lIndex: i32,
-            pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule,
+            pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxOutboundRoutingRules,
@@ -4990,7 +4990,7 @@ pub const IFaxOutboundRoutingRules = extern struct {
             self: *const IFaxOutboundRoutingRules,
             lCountryCode: i32,
             lAreaCode: i32,
-            pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule,
+            pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveByCountryAndArea: fn(
             self: *const IFaxOutboundRoutingRules,
@@ -5008,18 +5008,18 @@ pub const IFaxOutboundRoutingRules = extern struct {
             bUseDevice: i16,
             bstrGroupName: BSTR,
             lDeviceId: i32,
-            pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule,
+            pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingRules_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingRules_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutboundRoutingRules, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingRules_get_Item(self: *const T, lIndex: i32, pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingRules_get_Item(self: *const T, lIndex: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutboundRoutingRules, self), lIndex, pFaxOutboundRoutingRule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5027,7 +5027,7 @@ pub const IFaxOutboundRoutingRules = extern struct {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get_Count(@ptrCast(*const IFaxOutboundRoutingRules, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingRules_ItemByCountryAndArea(self: *const T, lCountryCode: i32, lAreaCode: i32, pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingRules_ItemByCountryAndArea(self: *const T, lCountryCode: i32, lAreaCode: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).ItemByCountryAndArea(@ptrCast(*const IFaxOutboundRoutingRules, self), lCountryCode, lAreaCode, pFaxOutboundRoutingRule);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5039,7 +5039,7 @@ pub const IFaxOutboundRoutingRules = extern struct {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).Remove(@ptrCast(*const IFaxOutboundRoutingRules, self), lIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingRules_Add(self: *const T, lCountryCode: i32, lAreaCode: i32, bUseDevice: i16, bstrGroupName: BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: **IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingRules_Add(self: *const T, lCountryCode: i32, lAreaCode: i32, bUseDevice: i16, bstrGroupName: BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).Add(@ptrCast(*const IFaxOutboundRoutingRules, self), lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
         }
     };}
@@ -5059,7 +5059,7 @@ pub const frsALL_GROUP_DEV_NOT_VALID = FAX_RULE_STATUS_ENUM.frsALL_GROUP_DEV_NOT
 pub const frsSOME_GROUP_DEV_NOT_VALID = FAX_RULE_STATUS_ENUM.frsSOME_GROUP_DEV_NOT_VALID;
 pub const frsBAD_DEVICE = FAX_RULE_STATUS_ENUM.frsBAD_DEVICE;
 
-const IID_IFaxOutboundRoutingRule_Value = @import("../zig.zig").Guid.initString("E1F795D5-07C2-469F-B027-ACACC23219DA");
+const IID_IFaxOutboundRoutingRule_Value = @import("../zig.zig").Guid.initString("e1f795d5-07c2-469f-b027-acacc23219da");
 pub const IID_IFaxOutboundRoutingRule = &IID_IFaxOutboundRoutingRule_Value;
 pub const IFaxOutboundRoutingRule = extern struct {
     pub const VTable = extern struct {
@@ -5094,7 +5094,7 @@ pub const IFaxOutboundRoutingRule = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_GroupName: fn(
             self: *const IFaxOutboundRoutingRule,
-            pbstrGroupName: *BSTR,
+            pbstrGroupName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_GroupName: fn(
             self: *const IFaxOutboundRoutingRule,
@@ -5139,7 +5139,7 @@ pub const IFaxOutboundRoutingRule = extern struct {
             return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).put_DeviceId(@ptrCast(*const IFaxOutboundRoutingRule, self), DeviceId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutboundRoutingRule_get_GroupName(self: *const T, pbstrGroupName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutboundRoutingRule_get_GroupName(self: *const T, pbstrGroupName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_GroupName(@ptrCast(*const IFaxOutboundRoutingRule, self), pbstrGroupName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5158,19 +5158,19 @@ pub const IFaxOutboundRoutingRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxInboundRoutingExtensions_Value = @import("../zig.zig").Guid.initString("2F6C9673-7B26-42DE-8EB0-915DCD2A4F4C");
+const IID_IFaxInboundRoutingExtensions_Value = @import("../zig.zig").Guid.initString("2f6c9673-7b26-42de-8eb0-915dcd2a4f4c");
 pub const IID_IFaxInboundRoutingExtensions = &IID_IFaxInboundRoutingExtensions_Value;
 pub const IFaxInboundRoutingExtensions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxInboundRoutingExtensions,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxInboundRoutingExtensions,
             vIndex: VARIANT,
-            pFaxInboundRoutingExtension: **IFaxInboundRoutingExtension,
+            pFaxInboundRoutingExtension: ?*?*IFaxInboundRoutingExtension,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxInboundRoutingExtensions,
@@ -5181,11 +5181,11 @@ pub const IFaxInboundRoutingExtensions = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingExtensions_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingExtensions_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingExtensions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxInboundRoutingExtensions, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingExtensions_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingExtension: **IFaxInboundRoutingExtension) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingExtensions_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingExtension: ?*?*IFaxInboundRoutingExtension) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingExtensions.VTable, self.vtable).get_Item(@ptrCast(*const IFaxInboundRoutingExtensions, self), vIndex, pFaxInboundRoutingExtension);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5196,22 +5196,22 @@ pub const IFaxInboundRoutingExtensions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxInboundRoutingExtension_Value = @import("../zig.zig").Guid.initString("885B5E08-C26C-4EF9-AF83-51580A750BE1");
+const IID_IFaxInboundRoutingExtension_Value = @import("../zig.zig").Guid.initString("885b5e08-c26c-4ef9-af83-51580a750be1");
 pub const IID_IFaxInboundRoutingExtension = &IID_IFaxInboundRoutingExtension_Value;
 pub const IFaxInboundRoutingExtension = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_FriendlyName: fn(
             self: *const IFaxInboundRoutingExtension,
-            pbstrFriendlyName: *BSTR,
+            pbstrFriendlyName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ImageName: fn(
             self: *const IFaxInboundRoutingExtension,
-            pbstrImageName: *BSTR,
+            pbstrImageName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UniqueName: fn(
             self: *const IFaxInboundRoutingExtension,
-            pbstrUniqueName: *BSTR,
+            pbstrUniqueName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MajorVersion: fn(
             self: *const IFaxInboundRoutingExtension,
@@ -5250,15 +5250,15 @@ pub const IFaxInboundRoutingExtension = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingExtension_get_FriendlyName(self: *const T, pbstrFriendlyName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingExtension_get_FriendlyName(self: *const T, pbstrFriendlyName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingExtension_get_ImageName(self: *const T, pbstrImageName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingExtension_get_ImageName(self: *const T, pbstrImageName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_ImageName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrImageName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingExtension_get_UniqueName(self: *const T, pbstrUniqueName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingExtension_get_UniqueName(self: *const T, pbstrUniqueName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_UniqueName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrUniqueName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5297,19 +5297,19 @@ pub const IFaxInboundRoutingExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxInboundRoutingMethods_Value = @import("../zig.zig").Guid.initString("783FCA10-8908-4473-9D69-F67FBEA0C6B9");
+const IID_IFaxInboundRoutingMethods_Value = @import("../zig.zig").Guid.initString("783fca10-8908-4473-9d69-f67fbea0c6b9");
 pub const IID_IFaxInboundRoutingMethods = &IID_IFaxInboundRoutingMethods_Value;
 pub const IFaxInboundRoutingMethods = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxInboundRoutingMethods,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxInboundRoutingMethods,
             vIndex: VARIANT,
-            pFaxInboundRoutingMethod: **IFaxInboundRoutingMethod,
+            pFaxInboundRoutingMethod: ?*?*IFaxInboundRoutingMethod,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxInboundRoutingMethods,
@@ -5320,11 +5320,11 @@ pub const IFaxInboundRoutingMethods = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethods_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethods_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethods.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxInboundRoutingMethods, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethods_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingMethod: **IFaxInboundRoutingMethod) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethods_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingMethod: ?*?*IFaxInboundRoutingMethod) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethods.VTable, self.vtable).get_Item(@ptrCast(*const IFaxInboundRoutingMethods, self), vIndex, pFaxInboundRoutingMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5335,30 +5335,30 @@ pub const IFaxInboundRoutingMethods = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxInboundRoutingMethod_Value = @import("../zig.zig").Guid.initString("45700061-AD9D-4776-A8C4-64065492CF4B");
+const IID_IFaxInboundRoutingMethod_Value = @import("../zig.zig").Guid.initString("45700061-ad9d-4776-a8c4-64065492cf4b");
 pub const IID_IFaxInboundRoutingMethod = &IID_IFaxInboundRoutingMethod_Value;
 pub const IFaxInboundRoutingMethod = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IFaxInboundRoutingMethod,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_GUID: fn(
             self: *const IFaxInboundRoutingMethod,
-            pbstrGUID: *BSTR,
+            pbstrGUID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FunctionName: fn(
             self: *const IFaxInboundRoutingMethod,
-            pbstrFunctionName: *BSTR,
+            pbstrFunctionName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtensionFriendlyName: fn(
             self: *const IFaxInboundRoutingMethod,
-            pbstrExtensionFriendlyName: *BSTR,
+            pbstrExtensionFriendlyName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ExtensionImageName: fn(
             self: *const IFaxInboundRoutingMethod,
-            pbstrExtensionImageName: *BSTR,
+            pbstrExtensionImageName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Priority: fn(
             self: *const IFaxInboundRoutingMethod,
@@ -5379,23 +5379,23 @@ pub const IFaxInboundRoutingMethod = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethod_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethod_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_Name(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethod_get_GUID(self: *const T, pbstrGUID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethod_get_GUID(self: *const T, pbstrGUID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_GUID(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrGUID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethod_get_FunctionName(self: *const T, pbstrFunctionName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethod_get_FunctionName(self: *const T, pbstrFunctionName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_FunctionName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrFunctionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethod_get_ExtensionFriendlyName(self: *const T, pbstrExtensionFriendlyName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethod_get_ExtensionFriendlyName(self: *const T, pbstrExtensionFriendlyName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_ExtensionFriendlyName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrExtensionFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxInboundRoutingMethod_get_ExtensionImageName(self: *const T, pbstrExtensionImageName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxInboundRoutingMethod_get_ExtensionImageName(self: *const T, pbstrExtensionImageName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_ExtensionImageName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrExtensionImageName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5418,14 +5418,14 @@ pub const IFaxInboundRoutingMethod = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxDocument2_Value = @import("../zig.zig").Guid.initString("E1347661-F9EF-4D6D-B4A5-C0A068B65CFF");
+const IID_IFaxDocument2_Value = @import("../zig.zig").Guid.initString("e1347661-f9ef-4d6d-b4a5-c0a068b65cff");
 pub const IID_IFaxDocument2 = &IID_IFaxDocument2_Value;
 pub const IFaxDocument2 = extern struct {
     pub const VTable = extern struct {
         base: IFaxDocument.VTable,
         get_SubmissionId: fn(
             self: *const IFaxDocument2,
-            pbstrSubmissionId: *BSTR,
+            pbstrSubmissionId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Bodies: fn(
             self: *const IFaxDocument2,
@@ -5452,7 +5452,7 @@ pub const IFaxDocument2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFaxDocument.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxDocument2_get_SubmissionId(self: *const T, pbstrSubmissionId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxDocument2_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxDocument2.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxDocument2, self), pbstrSubmissionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5475,7 +5475,7 @@ pub const IFaxDocument2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxConfiguration_Value = @import("../zig.zig").Guid.initString("10F4D0F7-0994-4543-AB6E-506949128C40");
+const IID_IFaxConfiguration_Value = @import("../zig.zig").Guid.initString("10f4d0f7-0994-4543-ab6e-506949128c40");
 pub const IID_IFaxConfiguration = &IID_IFaxConfiguration_Value;
 pub const IFaxConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -5490,7 +5490,7 @@ pub const IFaxConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ArchiveLocation: fn(
             self: *const IFaxConfiguration,
-            pbstrArchiveLocation: *BSTR,
+            pbstrArchiveLocation: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ArchiveLocation: fn(
             self: *const IFaxConfiguration,
@@ -5659,7 +5659,7 @@ pub const IFaxConfiguration = extern struct {
             return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxConfiguration, self), bUseArchive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxConfiguration_get_ArchiveLocation(self: *const T, pbstrArchiveLocation: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxConfiguration_get_ArchiveLocation(self: *const T, pbstrArchiveLocation: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_ArchiveLocation(@ptrCast(*const IFaxConfiguration, self), pbstrArchiveLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5822,69 +5822,69 @@ pub const IFaxConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxServer2_Value = @import("../zig.zig").Guid.initString("571CED0F-5609-4F40-9176-547E3A72CA7C");
+const IID_IFaxServer2_Value = @import("../zig.zig").Guid.initString("571ced0f-5609-4f40-9176-547e3a72ca7c");
 pub const IID_IFaxServer2 = &IID_IFaxServer2_Value;
 pub const IFaxServer2 = extern struct {
     pub const VTable = extern struct {
         base: IFaxServer.VTable,
         get_Configuration: fn(
             self: *const IFaxServer2,
-            ppFaxConfiguration: **IFaxConfiguration,
+            ppFaxConfiguration: ?*?*IFaxConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CurrentAccount: fn(
             self: *const IFaxServer2,
-            ppCurrentAccount: **IFaxAccount,
+            ppCurrentAccount: ?*?*IFaxAccount,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FaxAccountSet: fn(
             self: *const IFaxServer2,
-            ppFaxAccountSet: **IFaxAccountSet,
+            ppFaxAccountSet: ?*?*IFaxAccountSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Security2: fn(
             self: *const IFaxServer2,
-            ppFaxSecurity2: **IFaxSecurity2,
+            ppFaxSecurity2: ?*?*IFaxSecurity2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFaxServer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer2_get_Configuration(self: *const T, ppFaxConfiguration: **IFaxConfiguration) callconv(.Inline) HRESULT {
+        pub fn IFaxServer2_get_Configuration(self: *const T, ppFaxConfiguration: ?*?*IFaxConfiguration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_Configuration(@ptrCast(*const IFaxServer2, self), ppFaxConfiguration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer2_get_CurrentAccount(self: *const T, ppCurrentAccount: **IFaxAccount) callconv(.Inline) HRESULT {
+        pub fn IFaxServer2_get_CurrentAccount(self: *const T, ppCurrentAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_CurrentAccount(@ptrCast(*const IFaxServer2, self), ppCurrentAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer2_get_FaxAccountSet(self: *const T, ppFaxAccountSet: **IFaxAccountSet) callconv(.Inline) HRESULT {
+        pub fn IFaxServer2_get_FaxAccountSet(self: *const T, ppFaxAccountSet: ?*?*IFaxAccountSet) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_FaxAccountSet(@ptrCast(*const IFaxServer2, self), ppFaxAccountSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxServer2_get_Security2(self: *const T, ppFaxSecurity2: **IFaxSecurity2) callconv(.Inline) HRESULT {
+        pub fn IFaxServer2_get_Security2(self: *const T, ppFaxSecurity2: ?*?*IFaxSecurity2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_Security2(@ptrCast(*const IFaxServer2, self), ppFaxSecurity2);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountSet_Value = @import("../zig.zig").Guid.initString("7428FBAE-841E-47B8-86F4-2288946DCA1B");
+const IID_IFaxAccountSet_Value = @import("../zig.zig").Guid.initString("7428fbae-841e-47b8-86f4-2288946dca1b");
 pub const IID_IFaxAccountSet = &IID_IFaxAccountSet_Value;
 pub const IFaxAccountSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetAccounts: fn(
             self: *const IFaxAccountSet,
-            ppFaxAccounts: **IFaxAccounts,
+            ppFaxAccounts: ?*?*IFaxAccounts,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAccount: fn(
             self: *const IFaxAccountSet,
             bstrAccountName: BSTR,
-            pFaxAccount: **IFaxAccount,
+            pFaxAccount: ?*?*IFaxAccount,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddAccount: fn(
             self: *const IFaxAccountSet,
             bstrAccountName: BSTR,
-            pFaxAccount: **IFaxAccount,
+            pFaxAccount: ?*?*IFaxAccount,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveAccount: fn(
             self: *const IFaxAccountSet,
@@ -5895,15 +5895,15 @@ pub const IFaxAccountSet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountSet_GetAccounts(self: *const T, ppFaxAccounts: **IFaxAccounts) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountSet_GetAccounts(self: *const T, ppFaxAccounts: ?*?*IFaxAccounts) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).GetAccounts(@ptrCast(*const IFaxAccountSet, self), ppFaxAccounts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountSet_GetAccount(self: *const T, bstrAccountName: BSTR, pFaxAccount: **IFaxAccount) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountSet_GetAccount(self: *const T, bstrAccountName: BSTR, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).GetAccount(@ptrCast(*const IFaxAccountSet, self), bstrAccountName, pFaxAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountSet_AddAccount(self: *const T, bstrAccountName: BSTR, pFaxAccount: **IFaxAccount) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountSet_AddAccount(self: *const T, bstrAccountName: BSTR, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).AddAccount(@ptrCast(*const IFaxAccountSet, self), bstrAccountName, pFaxAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5914,19 +5914,19 @@ pub const IFaxAccountSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccounts_Value = @import("../zig.zig").Guid.initString("93EA8162-8BE7-42D1-AE7B-EC74E2D989DA");
+const IID_IFaxAccounts_Value = @import("../zig.zig").Guid.initString("93ea8162-8be7-42d1-ae7b-ec74e2d989da");
 pub const IID_IFaxAccounts = &IID_IFaxAccounts_Value;
 pub const IFaxAccounts = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IFaxAccounts,
-            ppUnk: **IUnknown,
+            ppUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IFaxAccounts,
             vIndex: VARIANT,
-            pFaxAccount: **IFaxAccount,
+            pFaxAccount: ?*?*IFaxAccount,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IFaxAccounts,
@@ -5937,11 +5937,11 @@ pub const IFaxAccounts = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccounts_get__NewEnum(self: *const T, ppUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFaxAccounts_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccounts.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxAccounts, self), ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccounts_get_Item(self: *const T, vIndex: VARIANT, pFaxAccount: **IFaxAccount) callconv(.Inline) HRESULT {
+        pub fn IFaxAccounts_get_Item(self: *const T, vIndex: VARIANT, pFaxAccount: ?*?*IFaxAccount) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccounts.VTable, self.vtable).get_Item(@ptrCast(*const IFaxAccounts, self), vIndex, pFaxAccount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5967,18 +5967,18 @@ pub const faetIN_ARCHIVE = FAX_ACCOUNT_EVENTS_TYPE_ENUM.faetIN_ARCHIVE;
 pub const faetOUT_ARCHIVE = FAX_ACCOUNT_EVENTS_TYPE_ENUM.faetOUT_ARCHIVE;
 pub const faetFXSSVC_ENDED = FAX_ACCOUNT_EVENTS_TYPE_ENUM.faetFXSSVC_ENDED;
 
-const IID_IFaxAccount_Value = @import("../zig.zig").Guid.initString("68535B33-5DC4-4086-BE26-B76F9B711006");
+const IID_IFaxAccount_Value = @import("../zig.zig").Guid.initString("68535b33-5dc4-4086-be26-b76f9b711006");
 pub const IID_IFaxAccount = &IID_IFaxAccount_Value;
 pub const IFaxAccount = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_AccountName: fn(
             self: *const IFaxAccount,
-            pbstrAccountName: *BSTR,
+            pbstrAccountName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Folders: fn(
             self: *const IFaxAccount,
-            ppFolders: **IFaxAccountFolders,
+            ppFolders: ?*?*IFaxAccountFolders,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ListenToAccountEvents: fn(
             self: *const IFaxAccount,
@@ -5993,11 +5993,11 @@ pub const IFaxAccount = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccount_get_AccountName(self: *const T, pbstrAccountName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxAccount_get_AccountName(self: *const T, pbstrAccountName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccount.VTable, self.vtable).get_AccountName(@ptrCast(*const IFaxAccount, self), pbstrAccountName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccount_get_Folders(self: *const T, ppFolders: **IFaxAccountFolders) callconv(.Inline) HRESULT {
+        pub fn IFaxAccount_get_Folders(self: *const T, ppFolders: ?*?*IFaxAccountFolders) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccount.VTable, self.vtable).get_Folders(@ptrCast(*const IFaxAccount, self), ppFolders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6012,7 +6012,7 @@ pub const IFaxAccount = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingJob2_Value = @import("../zig.zig").Guid.initString("418A8D96-59A0-4789-B176-EDF3DC8FA8F7");
+const IID_IFaxOutgoingJob2_Value = @import("../zig.zig").Guid.initString("418a8d96-59a0-4789-b176-edf3dc8fa8f7");
 pub const IID_IFaxOutgoingJob2 = &IID_IFaxOutgoingJob2_Value;
 pub const IFaxOutgoingJob2 = extern struct {
     pub const VTable = extern struct {
@@ -6023,7 +6023,7 @@ pub const IFaxOutgoingJob2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ReceiptAddress: fn(
             self: *const IFaxOutgoingJob2,
-            pbstrReceiptAddress: *BSTR,
+            pbstrReceiptAddress: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ScheduleType: fn(
             self: *const IFaxOutgoingJob2,
@@ -6038,7 +6038,7 @@ pub const IFaxOutgoingJob2 = extern struct {
             return @ptrCast(*const IFaxOutgoingJob2.VTable, self.vtable).get_HasCoverPage(@ptrCast(*const IFaxOutgoingJob2, self), pbHasCoverPage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingJob2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingJob2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingJob2.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxOutgoingJob2, self), pbstrReceiptAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6049,112 +6049,112 @@ pub const IFaxOutgoingJob2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountFolders_Value = @import("../zig.zig").Guid.initString("6463F89D-23D8-46A9-8F86-C47B77CA7926");
+const IID_IFaxAccountFolders_Value = @import("../zig.zig").Guid.initString("6463f89d-23d8-46a9-8f86-c47b77ca7926");
 pub const IID_IFaxAccountFolders = &IID_IFaxAccountFolders_Value;
 pub const IFaxAccountFolders = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_OutgoingQueue: fn(
             self: *const IFaxAccountFolders,
-            pFaxOutgoingQueue: **IFaxAccountOutgoingQueue,
+            pFaxOutgoingQueue: ?*?*IFaxAccountOutgoingQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IncomingQueue: fn(
             self: *const IFaxAccountFolders,
-            pFaxIncomingQueue: **IFaxAccountIncomingQueue,
+            pFaxIncomingQueue: ?*?*IFaxAccountIncomingQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IncomingArchive: fn(
             self: *const IFaxAccountFolders,
-            pFaxIncomingArchive: **IFaxAccountIncomingArchive,
+            pFaxIncomingArchive: ?*?*IFaxAccountIncomingArchive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OutgoingArchive: fn(
             self: *const IFaxAccountFolders,
-            pFaxOutgoingArchive: **IFaxAccountOutgoingArchive,
+            pFaxOutgoingArchive: ?*?*IFaxAccountOutgoingArchive,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: **IFaxAccountOutgoingQueue) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: ?*?*IFaxAccountOutgoingQueue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_OutgoingQueue(@ptrCast(*const IFaxAccountFolders, self), pFaxOutgoingQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: **IFaxAccountIncomingQueue) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: ?*?*IFaxAccountIncomingQueue) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_IncomingQueue(@ptrCast(*const IFaxAccountFolders, self), pFaxIncomingQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: **IFaxAccountIncomingArchive) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: ?*?*IFaxAccountIncomingArchive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_IncomingArchive(@ptrCast(*const IFaxAccountFolders, self), pFaxIncomingArchive);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: **IFaxAccountOutgoingArchive) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: ?*?*IFaxAccountOutgoingArchive) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_OutgoingArchive(@ptrCast(*const IFaxAccountFolders, self), pFaxOutgoingArchive);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountIncomingQueue_Value = @import("../zig.zig").Guid.initString("DD142D92-0186-4A95-A090-CBC3EADBA6B4");
+const IID_IFaxAccountIncomingQueue_Value = @import("../zig.zig").Guid.initString("dd142d92-0186-4a95-a090-cbc3eadba6b4");
 pub const IID_IFaxAccountIncomingQueue = &IID_IFaxAccountIncomingQueue_Value;
 pub const IFaxAccountIncomingQueue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetJobs: fn(
             self: *const IFaxAccountIncomingQueue,
-            pFaxIncomingJobs: **IFaxIncomingJobs,
+            pFaxIncomingJobs: ?*?*IFaxIncomingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobA: fn(
             self: *const IFaxAccountIncomingQueue,
             bstrJobId: BSTR,
-            pFaxIncomingJob: **IFaxIncomingJob,
+            pFaxIncomingJob: ?*?*IFaxIncomingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: **IFaxIncomingJobs) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountIncomingQueue, self), pFaxIncomingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: **IFaxIncomingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountIncomingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxAccountIncomingQueue, self), bstrJobId, pFaxIncomingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountOutgoingQueue_Value = @import("../zig.zig").Guid.initString("0F1424E9-F22D-4553-B7A5-0D24BD0D7E46");
+const IID_IFaxAccountOutgoingQueue_Value = @import("../zig.zig").Guid.initString("0f1424e9-f22d-4553-b7a5-0d24bd0d7e46");
 pub const IID_IFaxAccountOutgoingQueue = &IID_IFaxAccountOutgoingQueue_Value;
 pub const IFaxAccountOutgoingQueue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetJobs: fn(
             self: *const IFaxAccountOutgoingQueue,
-            pFaxOutgoingJobs: **IFaxOutgoingJobs,
+            pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetJobA: fn(
             self: *const IFaxAccountOutgoingQueue,
             bstrJobId: BSTR,
-            pFaxOutgoingJob: **IFaxOutgoingJob,
+            pFaxOutgoingJob: ?*?*IFaxOutgoingJob,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: **IFaxOutgoingJobs) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountOutgoingQueue, self), pFaxOutgoingJobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: **IFaxOutgoingJob) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountOutgoingQueue_GetJobA(self: *const T, bstrJobId: BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJobA(@ptrCast(*const IFaxAccountOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxOutgoingMessage2_Value = @import("../zig.zig").Guid.initString("B37DF687-BC88-4B46-B3BE-B458B3EA9E7F");
+const IID_IFaxOutgoingMessage2_Value = @import("../zig.zig").Guid.initString("b37df687-bc88-4b46-b3be-b458b3ea9e7f");
 pub const IID_IFaxOutgoingMessage2 = &IID_IFaxOutgoingMessage2_Value;
 pub const IFaxOutgoingMessage2 = extern struct {
     pub const VTable = extern struct {
@@ -6169,7 +6169,7 @@ pub const IFaxOutgoingMessage2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ReceiptAddress: fn(
             self: *const IFaxOutgoingMessage2,
-            pbstrReceiptAddress: *BSTR,
+            pbstrReceiptAddress: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Read: fn(
             self: *const IFaxOutgoingMessage2,
@@ -6198,7 +6198,7 @@ pub const IFaxOutgoingMessage2 = extern struct {
             return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_ReceiptType(@ptrCast(*const IFaxOutgoingMessage2, self), pReceiptType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxOutgoingMessage2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxOutgoingMessage2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxOutgoingMessage2, self), pbstrReceiptAddress);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6221,7 +6221,7 @@ pub const IFaxOutgoingMessage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountIncomingArchive_Value = @import("../zig.zig").Guid.initString("A8A5B6EF-E0D6-4AEE-955C-91625BEC9DB4");
+const IID_IFaxAccountIncomingArchive_Value = @import("../zig.zig").Guid.initString("a8a5b6ef-e0d6-4aee-955c-91625bec9db4");
 pub const IID_IFaxAccountIncomingArchive = &IID_IFaxAccountIncomingArchive_Value;
 pub const IFaxAccountIncomingArchive = extern struct {
     pub const VTable = extern struct {
@@ -6240,12 +6240,12 @@ pub const IFaxAccountIncomingArchive = extern struct {
         GetMessages: fn(
             self: *const IFaxAccountIncomingArchive,
             lPrefetchSize: i32,
-            pFaxIncomingMessageIterator: **IFaxIncomingMessageIterator,
+            pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageA: fn(
             self: *const IFaxAccountIncomingArchive,
             bstrMessageId: BSTR,
-            pFaxIncomingMessage: **IFaxIncomingMessage,
+            pFaxIncomingMessage: ?*?*IFaxIncomingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6264,18 +6264,18 @@ pub const IFaxAccountIncomingArchive = extern struct {
             return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxAccountIncomingArchive, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: **IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: **IFaxIncomingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountIncomingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxAccountIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountOutgoingArchive_Value = @import("../zig.zig").Guid.initString("5463076D-EC14-491F-926E-B3CEDA5E5662");
+const IID_IFaxAccountOutgoingArchive_Value = @import("../zig.zig").Guid.initString("5463076d-ec14-491f-926e-b3ceda5e5662");
 pub const IID_IFaxAccountOutgoingArchive = &IID_IFaxAccountOutgoingArchive_Value;
 pub const IFaxAccountOutgoingArchive = extern struct {
     pub const VTable = extern struct {
@@ -6294,12 +6294,12 @@ pub const IFaxAccountOutgoingArchive = extern struct {
         GetMessages: fn(
             self: *const IFaxAccountOutgoingArchive,
             lPrefetchSize: i32,
-            pFaxOutgoingMessageIterator: **IFaxOutgoingMessageIterator,
+            pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMessageA: fn(
             self: *const IFaxAccountOutgoingArchive,
             bstrMessageId: BSTR,
-            pFaxOutgoingMessage: **IFaxOutgoingMessage,
+            pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6318,11 +6318,11 @@ pub const IFaxAccountOutgoingArchive = extern struct {
             return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxAccountOutgoingArchive, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: **IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxAccountOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: **IFaxOutgoingMessage) callconv(.Inline) HRESULT {
+        pub fn IFaxAccountOutgoingArchive_GetMessageA(self: *const T, bstrMessageId: BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessageA(@ptrCast(*const IFaxAccountOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
         }
     };}
@@ -6352,7 +6352,7 @@ pub const far2QUERY_ARCHIVES = FAX_ACCESS_RIGHTS_ENUM_2.far2QUERY_ARCHIVES;
 pub const far2MANAGE_ARCHIVES = FAX_ACCESS_RIGHTS_ENUM_2.far2MANAGE_ARCHIVES;
 pub const far2MANAGE_RECEIVE_FOLDER = FAX_ACCESS_RIGHTS_ENUM_2.far2MANAGE_RECEIVE_FOLDER;
 
-const IID_IFaxSecurity2_Value = @import("../zig.zig").Guid.initString("17D851F4-D09B-48FC-99C9-8F24C4DB9AB1");
+const IID_IFaxSecurity2_Value = @import("../zig.zig").Guid.initString("17d851f4-d09b-48fc-99c9-8f24c4db9ab1");
 pub const IID_IFaxSecurity2 = &IID_IFaxSecurity2_Value;
 pub const IFaxSecurity2 = extern struct {
     pub const VTable = extern struct {
@@ -6419,14 +6419,14 @@ pub const IFaxSecurity2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxIncomingMessage2_Value = @import("../zig.zig").Guid.initString("F9208503-E2BC-48F3-9EC0-E6236F9B509A");
+const IID_IFaxIncomingMessage2_Value = @import("../zig.zig").Guid.initString("f9208503-e2bc-48f3-9ec0-e6236f9b509a");
 pub const IID_IFaxIncomingMessage2 = &IID_IFaxIncomingMessage2_Value;
 pub const IFaxIncomingMessage2 = extern struct {
     pub const VTable = extern struct {
         base: IFaxIncomingMessage.VTable,
         get_Subject: fn(
             self: *const IFaxIncomingMessage2,
-            pbstrSubject: *BSTR,
+            pbstrSubject: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Subject: fn(
             self: *const IFaxIncomingMessage2,
@@ -6434,7 +6434,7 @@ pub const IFaxIncomingMessage2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SenderName: fn(
             self: *const IFaxIncomingMessage2,
-            pbstrSenderName: *BSTR,
+            pbstrSenderName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SenderName: fn(
             self: *const IFaxIncomingMessage2,
@@ -6442,7 +6442,7 @@ pub const IFaxIncomingMessage2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SenderFaxNumber: fn(
             self: *const IFaxIncomingMessage2,
-            pbstrSenderFaxNumber: *BSTR,
+            pbstrSenderFaxNumber: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SenderFaxNumber: fn(
             self: *const IFaxIncomingMessage2,
@@ -6458,7 +6458,7 @@ pub const IFaxIncomingMessage2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Recipients: fn(
             self: *const IFaxIncomingMessage2,
-            pbstrRecipients: *BSTR,
+            pbstrRecipients: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Recipients: fn(
             self: *const IFaxIncomingMessage2,
@@ -6490,7 +6490,7 @@ pub const IFaxIncomingMessage2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IFaxIncomingMessage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage2_get_Subject(self: *const T, pbstrSubject: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage2_get_Subject(self: *const T, pbstrSubject: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6498,7 +6498,7 @@ pub const IFaxIncomingMessage2 = extern struct {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_Subject(@ptrCast(*const IFaxIncomingMessage2, self), bstrSubject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage2_get_SenderName(self: *const T, pbstrSenderName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage2_get_SenderName(self: *const T, pbstrSenderName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_SenderName(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSenderName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6506,7 +6506,7 @@ pub const IFaxIncomingMessage2 = extern struct {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_SenderName(@ptrCast(*const IFaxIncomingMessage2, self), bstrSenderName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage2_get_SenderFaxNumber(self: *const T, pbstrSenderFaxNumber: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage2_get_SenderFaxNumber(self: *const T, pbstrSenderFaxNumber: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_SenderFaxNumber(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSenderFaxNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6522,7 +6522,7 @@ pub const IFaxIncomingMessage2 = extern struct {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_HasCoverPage(@ptrCast(*const IFaxIncomingMessage2, self), bHasCoverPage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFaxIncomingMessage2_get_Recipients(self: *const T, pbstrRecipients: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IFaxIncomingMessage2_get_Recipients(self: *const T, pbstrRecipients: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_Recipients(@ptrCast(*const IFaxIncomingMessage2, self), pbstrRecipients);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6562,7 +6562,7 @@ pub const FAX_ROUTING_RULE_CODE_ENUM = extern enum(i32) {
 };
 pub const frrcANY_CODE = FAX_ROUTING_RULE_CODE_ENUM.frrcANY_CODE;
 
-const IID_IFaxServerNotify_Value = @import("../zig.zig").Guid.initString("2E037B27-CF8A-4ABD-B1E0-5704943BEA6F");
+const IID_IFaxServerNotify_Value = @import("../zig.zig").Guid.initString("2e037b27-cf8a-4abd-b1e0-5704943bea6f");
 pub const IID_IFaxServerNotify = &IID_IFaxServerNotify_Value;
 pub const IFaxServerNotify = extern struct {
     pub const VTable = extern struct {
@@ -6575,7 +6575,7 @@ pub const IFaxServerNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("EC9C69B9-5FE7-4805-9467-82FCD96AF903");
+const IID__IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("ec9c69b9-5fe7-4805-9467-82fcd96af903");
 pub const IID__IFaxServerNotify2 = &IID__IFaxServerNotify2_Value;
 pub const _IFaxServerNotify2 = extern struct {
     pub const VTable = extern struct {
@@ -6823,7 +6823,7 @@ pub const _IFaxServerNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("616CA8D6-A77A-4062-ABFD-0E471241C7AA");
+const IID_IFaxServerNotify2_Value = @import("../zig.zig").Guid.initString("616ca8d6-a77a-4062-abfd-0e471241c7aa");
 pub const IID_IFaxServerNotify2 = &IID_IFaxServerNotify2_Value;
 pub const IFaxServerNotify2 = extern struct {
     pub const VTable = extern struct {
@@ -6836,7 +6836,7 @@ pub const IFaxServerNotify2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID__IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("B9B3BC81-AC1B-46F3-B39D-0ADC30E1B788");
+const IID__IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("b9b3bc81-ac1b-46f3-b39d-0adc30e1b788");
 pub const IID__IFaxAccountNotify = &IID__IFaxAccountNotify_Value;
 pub const _IFaxAccountNotify = extern struct {
     pub const VTable = extern struct {
@@ -6951,7 +6951,7 @@ pub const _IFaxAccountNotify = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("0B5E5BD1-B8A9-47A0-A323-EF4A293BA06A");
+const IID_IFaxAccountNotify_Value = @import("../zig.zig").Guid.initString("0b5e5bd1-b8a9-47a0-a323-ef4a293ba06a");
 pub const IID_IFaxAccountNotify = &IID_IFaxAccountNotify_Value;
 pub const IFaxAccountNotify = extern struct {
     pub const VTable = extern struct {

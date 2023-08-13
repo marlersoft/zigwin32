@@ -60,7 +60,7 @@ pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
     dwChannelMask: u32,
 };
 
-const IID_IAudioMediaType_Value = @import("../zig.zig").Guid.initString("4E997F73-B71F-4798-873B-ED7DFCF15B4D");
+const IID_IAudioMediaType_Value = @import("../zig.zig").Guid.initString("4e997f73-b71f-4798-873b-ed7dfcf15b4d");
 pub const IID_IAudioMediaType = &IID_IAudioMediaType_Value;
 pub const IAudioMediaType = extern struct {
     pub const VTable = extern struct {
@@ -180,7 +180,7 @@ pub const eAudioConstriction44_16 = EAudioConstriction.eAudioConstriction44_16;
 pub const eAudioConstriction14_14 = EAudioConstriction.eAudioConstriction14_14;
 pub const eAudioConstrictionMute = EAudioConstriction.eAudioConstrictionMute;
 
-const IID_IAudioProcessingObjectRT_Value = @import("../zig.zig").Guid.initString("9E1D6A6D-DDBC-4E95-A4C7-AD64BA37846C");
+const IID_IAudioProcessingObjectRT_Value = @import("../zig.zig").Guid.initString("9e1d6a6d-ddbc-4e95-a4c7-ad64ba37846c");
 pub const IID_IAudioProcessingObjectRT = &IID_IAudioProcessingObjectRT_Value;
 pub const IAudioProcessingObjectRT = extern struct {
     pub const VTable = extern struct {
@@ -220,7 +220,7 @@ pub const IAudioProcessingObjectRT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObjectVBR_Value = @import("../zig.zig").Guid.initString("7BA1DB8F-78AD-49CD-9591-F79D80A17C81");
+const IID_IAudioProcessingObjectVBR_Value = @import("../zig.zig").Guid.initString("7ba1db8f-78ad-49cd-9591-f79d80a17c81");
 pub const IID_IAudioProcessingObjectVBR = &IID_IAudioProcessingObjectVBR_Value;
 pub const IAudioProcessingObjectVBR = extern struct {
     pub const VTable = extern struct {
@@ -251,7 +251,7 @@ pub const IAudioProcessingObjectVBR = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObjectConfiguration_Value = @import("../zig.zig").Guid.initString("0E5ED805-ABA6-49C3-8F9A-2B8C889C4FA8");
+const IID_IAudioProcessingObjectConfiguration_Value = @import("../zig.zig").Guid.initString("0e5ed805-aba6-49c3-8f9a-2b8c889c4fa8");
 pub const IID_IAudioProcessingObjectConfiguration = &IID_IAudioProcessingObjectConfiguration_Value;
 pub const IAudioProcessingObjectConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -282,7 +282,7 @@ pub const IAudioProcessingObjectConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioProcessingObject_Value = @import("../zig.zig").Guid.initString("FD7F2B29-24D0-4B5C-B177-592C39F9CA10");
+const IID_IAudioProcessingObject_Value = @import("../zig.zig").Guid.initString("fd7f2b29-24d0-4b5c-b177-592c39f9ca10");
 pub const IID_IAudioProcessingObject = &IID_IAudioProcessingObject_Value;
 pub const IAudioProcessingObject = extern struct {
     pub const VTable = extern struct {
@@ -355,7 +355,7 @@ pub const IAudioProcessingObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioDeviceModulesClient_Value = @import("../zig.zig").Guid.initString("98F37DAC-D0B6-49F5-896A-AA4D169A4C48");
+const IID_IAudioDeviceModulesClient_Value = @import("../zig.zig").Guid.initString("98f37dac-d0b6-49f5-896a-aa4d169a4c48");
 pub const IID_IAudioDeviceModulesClient = &IID_IAudioDeviceModulesClient_Value;
 pub const IAudioDeviceModulesClient = extern struct {
     pub const VTable = extern struct {
@@ -381,7 +381,7 @@ pub const FNAPONOTIFICATIONCALLBACK = fn(
     pvRefData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const IID_IAudioSystemEffects_Value = @import("../zig.zig").Guid.initString("5FA00F27-ADD6-499A-8A9D-6B98521FA75B");
+const IID_IAudioSystemEffects_Value = @import("../zig.zig").Guid.initString("5fa00f27-add6-499a-8a9d-6b98521fa75b");
 pub const IID_IAudioSystemEffects = &IID_IAudioSystemEffects_Value;
 pub const IAudioSystemEffects = extern struct {
     pub const VTable = extern struct {
@@ -394,7 +394,7 @@ pub const IAudioSystemEffects = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSystemEffects2_Value = @import("../zig.zig").Guid.initString("BAFE99D2-7436-44CE-9E0E-4D89AFBFFF56");
+const IID_IAudioSystemEffects2_Value = @import("../zig.zig").Guid.initString("bafe99d2-7436-44ce-9e0e-4d89afbfff56");
 pub const IID_IAudioSystemEffects2 = &IID_IAudioSystemEffects2_Value;
 pub const IAudioSystemEffects2 = extern struct {
     pub const VTable = extern struct {
@@ -417,7 +417,7 @@ pub const IAudioSystemEffects2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAudioSystemEffectsCustomFormats_Value = @import("../zig.zig").Guid.initString("B1176E34-BB7F-4F05-BEBD-1B18A534E097");
+const IID_IAudioSystemEffectsCustomFormats_Value = @import("../zig.zig").Guid.initString("b1176e34-bb7f-4f05-bebd-1b18a534e097");
 pub const IID_IAudioSystemEffectsCustomFormats = &IID_IAudioSystemEffectsCustomFormats_Value;
 pub const IAudioSystemEffectsCustomFormats = extern struct {
     pub const VTable = extern struct {
@@ -3087,7 +3087,7 @@ pub const IDirectMusicSynthSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_KSPROPSETID_AudioEffectsDiscovery_Value = @import("../zig.zig").Guid.initString("0B217A72-16B8-4A4D-BDED-F9D6BBEDCD8F");
+const CLSID_KSPROPSETID_AudioEffectsDiscovery_Value = @import("../zig.zig").Guid.initString("0b217a72-16b8-4a4d-bded-f9d6bbedcd8f");
 pub const CLSID_KSPROPSETID_AudioEffectsDiscovery = &CLSID_KSPROPSETID_AudioEffectsDiscovery_Value;
 
 pub const KSPROPERTY_AUDIOEFFECTSDISCOVERY = extern enum(i32) {
@@ -3100,21 +3100,7 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: HMIDI,
-    dwCallback: ?*c_void,
-    dwInstance: ?*c_void,
-    dnDevNode: ?*c_void,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
-};
-
-const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99");
+const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
     pub const VTable = extern struct {
@@ -3167,6 +3153,20 @@ pub const IPropertyStore = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = extern struct {
+    hMidi: HMIDI,
+    dwCallback: ?*c_void,
+    dwInstance: ?*c_void,
+    dnDevNode: ?*c_void,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
 };
 
 

@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (73)
 //--------------------------------------------------------------------------------
-const CLSID_BackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("4991D34B-80A1-4291-83B6-3328366B9097");
+const CLSID_BackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("4991d34b-80a1-4291-83b6-3328366b9097");
 pub const CLSID_BackgroundCopyManager = &CLSID_BackgroundCopyManager_Value;
 
 pub const BG_FILE_PROGRESS = extern struct {
@@ -15,7 +15,7 @@ pub const BG_FILE_PROGRESS = extern struct {
     Completed: BOOL,
 };
 
-const IID_IBackgroundCopyFile_Value = @import("../zig.zig").Guid.initString("01B7BD23-FB88-4A77-8490-5891D3E4653A");
+const IID_IBackgroundCopyFile_Value = @import("../zig.zig").Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
 pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
 pub const IBackgroundCopyFile = extern struct {
     pub const VTable = extern struct {
@@ -52,7 +52,7 @@ pub const IBackgroundCopyFile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBackgroundCopyFiles_Value = @import("../zig.zig").Guid.initString("CA51E165-C365-424C-8D41-24AAA4FF3C40");
+const IID_IEnumBackgroundCopyFiles_Value = @import("../zig.zig").Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
 pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
 pub const IEnumBackgroundCopyFiles = extern struct {
     pub const VTable = extern struct {
@@ -60,7 +60,7 @@ pub const IEnumBackgroundCopyFiles = extern struct {
         Next: fn(
             self: *const IEnumBackgroundCopyFiles,
             celt: u32,
-            rgelt: [*]*IBackgroundCopyFile,
+            rgelt: **IBackgroundCopyFile,
             pceltFetched: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
@@ -83,7 +83,7 @@ pub const IEnumBackgroundCopyFiles = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: [*]*IBackgroundCopyFile, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: **IBackgroundCopyFile, pceltFetched: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyFiles, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -127,7 +127,7 @@ pub const BG_ERROR_CONTEXT_GENERAL_TRANSPORT = BG_ERROR_CONTEXT.GENERAL_TRANSPOR
 pub const BG_ERROR_CONTEXT_REMOTE_APPLICATION = BG_ERROR_CONTEXT.REMOTE_APPLICATION;
 pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER_CERTIFICATE_CALLBACK;
 
-const IID_IBackgroundCopyError_Value = @import("../zig.zig").Guid.initString("19C613A0-FCB8-4F28-81AE-897C3D078F81");
+const IID_IBackgroundCopyError_Value = @import("../zig.zig").Guid.initString("19c613a0-fcb8-4f28-81ae-897c3d078f81");
 pub const IID_IBackgroundCopyError = &IID_IBackgroundCopyError_Value;
 pub const IBackgroundCopyError = extern struct {
     pub const VTable = extern struct {
@@ -144,16 +144,16 @@ pub const IBackgroundCopyError = extern struct {
         GetErrorDescription: fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pErrorDescription: *PWSTR,
+            pErrorDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetErrorContextDescription: fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pContextDescription: *PWSTR,
+            pContextDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProtocol: fn(
             self: *const IBackgroundCopyError,
-            pProtocol: *PWSTR,
+            pProtocol: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -168,15 +168,15 @@ pub const IBackgroundCopyError = extern struct {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetFile(@ptrCast(*const IBackgroundCopyError, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pErrorDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorContextDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pContextDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetProtocol(@ptrCast(*const IBackgroundCopyError, self), pProtocol);
         }
     };}
@@ -253,7 +253,7 @@ pub const BG_JOB_PROXY_USAGE_NO_PROXY = BG_JOB_PROXY_USAGE.NO_PROXY;
 pub const BG_JOB_PROXY_USAGE_OVERRIDE = BG_JOB_PROXY_USAGE.OVERRIDE;
 pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
 
-const IID_IBackgroundCopyJob_Value = @import("../zig.zig").Guid.initString("37668D37-507E-4160-9316-26306D150B12");
+const IID_IBackgroundCopyJob_Value = @import("../zig.zig").Guid.initString("37668d37-507e-4160-9316-26306d150b12");
 pub const IID_IBackgroundCopyJob = &IID_IBackgroundCopyJob_Value;
 pub const IBackgroundCopyJob = extern struct {
     pub const VTable = extern struct {
@@ -523,7 +523,7 @@ pub const IBackgroundCopyJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBackgroundCopyJobs_Value = @import("../zig.zig").Guid.initString("1AF4F612-3B71-466F-8F58-7B6F73AC57AD");
+const IID_IEnumBackgroundCopyJobs_Value = @import("../zig.zig").Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
 pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
 pub const IEnumBackgroundCopyJobs = extern struct {
     pub const VTable = extern struct {
@@ -531,7 +531,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
         Next: fn(
             self: *const IEnumBackgroundCopyJobs,
             celt: u32,
-            rgelt: [*]*IBackgroundCopyJob,
+            rgelt: **IBackgroundCopyJob,
             pceltFetched: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
@@ -554,7 +554,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: [*]*IBackgroundCopyJob, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: **IBackgroundCopyJob, pceltFetched: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyJobs, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -577,7 +577,7 @@ pub const IEnumBackgroundCopyJobs = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyCallback_Value = @import("../zig.zig").Guid.initString("97EA99C7-0186-4AD4-8DF9-C5B4E0ED6B22");
+const IID_IBackgroundCopyCallback_Value = @import("../zig.zig").Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
 pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
 pub const IBackgroundCopyCallback = extern struct {
     pub const VTable = extern struct {
@@ -616,7 +616,7 @@ pub const IBackgroundCopyCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIBackgroundCopyCallback_Value = @import("../zig.zig").Guid.initString("CA29D251-B4BB-4679-A3D9-AE8006119D54");
+const IID_AsyncIBackgroundCopyCallback_Value = @import("../zig.zig").Guid.initString("ca29d251-b4bb-4679-a3d9-ae8006119d54");
 pub const IID_AsyncIBackgroundCopyCallback = &IID_AsyncIBackgroundCopyCallback_Value;
 pub const AsyncIBackgroundCopyCallback = extern struct {
     pub const VTable = extern struct {
@@ -676,7 +676,7 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("5CE34C0D-0DC9-4C1F-897C-DAA1B78CEE7C");
+const IID_IBackgroundCopyManager_Value = @import("../zig.zig").Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
 pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
 pub const IBackgroundCopyManager = extern struct {
     pub const VTable = extern struct {
@@ -728,7 +728,7 @@ pub const IBackgroundCopyManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager1_5_Value = @import("../zig.zig").Guid.initString("F087771F-D74F-4C1A-BB8A-E16ACA9124EA");
+const CLSID_BackgroundCopyManager1_5_Value = @import("../zig.zig").Guid.initString("f087771f-d74f-4c1a-bb8a-e16aca9124ea");
 pub const CLSID_BackgroundCopyManager1_5 = &CLSID_BackgroundCopyManager1_5_Value;
 
 pub const BG_JOB_REPLY_PROGRESS = extern struct {
@@ -769,7 +769,7 @@ pub const BG_AUTH_CREDENTIALS = extern struct {
     Credentials: BG_AUTH_CREDENTIALS_UNION,
 };
 
-const IID_IBackgroundCopyJob2_Value = @import("../zig.zig").Guid.initString("54B50739-686F-45EB-9DFF-D6A9A0FAA9AF");
+const IID_IBackgroundCopyJob2_Value = @import("../zig.zig").Guid.initString("54b50739-686f-45eb-9dff-d6a9a0faa9af");
 pub const IID_IBackgroundCopyJob2 = &IID_IBackgroundCopyJob2_Value;
 pub const IBackgroundCopyJob2 = extern struct {
     pub const VTable = extern struct {
@@ -850,7 +850,7 @@ pub const IBackgroundCopyJob2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager2_0_Value = @import("../zig.zig").Guid.initString("6D18AD12-BDE3-4393-B311-099C346E6DF9");
+const CLSID_BackgroundCopyManager2_0_Value = @import("../zig.zig").Guid.initString("6d18ad12-bde3-4393-b311-099c346e6df9");
 pub const CLSID_BackgroundCopyManager2_0 = &CLSID_BackgroundCopyManager2_0_Value;
 
 pub const BG_FILE_RANGE = extern struct {
@@ -858,7 +858,7 @@ pub const BG_FILE_RANGE = extern struct {
     Length: u64,
 };
 
-const IID_IBackgroundCopyJob3_Value = @import("../zig.zig").Guid.initString("443C8934-90FF-48ED-BCDE-26F5C7450042");
+const IID_IBackgroundCopyJob3_Value = @import("../zig.zig").Guid.initString("443c8934-90ff-48ed-bcde-26f5c7450042");
 pub const IID_IBackgroundCopyJob3 = &IID_IBackgroundCopyJob3_Value;
 pub const IBackgroundCopyJob3 = extern struct {
     pub const VTable = extern struct {
@@ -907,7 +907,7 @@ pub const IBackgroundCopyJob3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyFile2_Value = @import("../zig.zig").Guid.initString("83E81B93-0873-474D-8A8C-F2018B1A939C");
+const IID_IBackgroundCopyFile2_Value = @import("../zig.zig").Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
 pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
 pub const IBackgroundCopyFile2 = extern struct {
     pub const VTable = extern struct {
@@ -937,7 +937,7 @@ pub const IBackgroundCopyFile2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager2_5_Value = @import("../zig.zig").Guid.initString("03CA98D6-FF5D-49B8-ABC6-03DD84127020");
+const CLSID_BackgroundCopyManager2_5_Value = @import("../zig.zig").Guid.initString("03ca98d6-ff5d-49b8-abc6-03dd84127020");
 pub const CLSID_BackgroundCopyManager2_5 = &CLSID_BackgroundCopyManager2_5_Value;
 
 pub const BG_CERT_STORE_LOCATION = extern enum(i32) {
@@ -959,7 +959,7 @@ pub const BG_CERT_STORE_LOCATION_CURRENT_USER_GROUP_POLICY = BG_CERT_STORE_LOCAT
 pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_GROUP_POLICY = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_GROUP_POLICY;
 pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATION.LOCAL_MACHINE_ENTERPRISE;
 
-const IID_IBackgroundCopyJobHttpOptions_Value = @import("../zig.zig").Guid.initString("F1BD1079-9F01-4BDC-8036-F09B70095066");
+const IID_IBackgroundCopyJobHttpOptions_Value = @import("../zig.zig").Guid.initString("f1bd1079-9f01-4bdc-8036-f09b70095066");
 pub const IID_IBackgroundCopyJobHttpOptions = &IID_IBackgroundCopyJobHttpOptions_Value;
 pub const IBackgroundCopyJobHttpOptions = extern struct {
     pub const VTable = extern struct {
@@ -982,9 +982,9 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
         GetClientCertificate: fn(
             self: *const IBackgroundCopyJobHttpOptions,
             pStoreLocation: *BG_CERT_STORE_LOCATION,
-            pStoreName: *PWSTR,
+            pStoreName: ?*?PWSTR,
             ppCertHashBlob: ?*[20]?*u8,
-            pSubjectName: *PWSTR,
+            pSubjectName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCustomHeaders: fn(
             self: *const IBackgroundCopyJobHttpOptions,
@@ -992,7 +992,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCustomHeaders: fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            pRequestHeaders: *PWSTR,
+            pRequestHeaders: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetSecurityFlags: fn(
             self: *const IBackgroundCopyJobHttpOptions,
@@ -1019,7 +1019,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).RemoveClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: *BG_CERT_STORE_LOCATION, pStoreName: *PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: *BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1027,7 +1027,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), RequestHeaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pRequestHeaders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1042,10 +1042,10 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager3_0_Value = @import("../zig.zig").Guid.initString("659CDEA7-489E-11D9-A9CD-000D56965251");
+const CLSID_BackgroundCopyManager3_0_Value = @import("../zig.zig").Guid.initString("659cdea7-489e-11d9-a9cd-000d56965251");
 pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value;
 
-const IID_IBitsPeerCacheRecord_Value = @import("../zig.zig").Guid.initString("659CDEAF-489E-11D9-A9CD-000D56965251");
+const IID_IBitsPeerCacheRecord_Value = @import("../zig.zig").Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
 pub const IBitsPeerCacheRecord = extern struct {
     pub const VTable = extern struct {
@@ -1114,7 +1114,7 @@ pub const IBitsPeerCacheRecord = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBitsPeerCacheRecords_Value = @import("../zig.zig").Guid.initString("659CDEA4-489E-11D9-A9CD-000D56965251");
+const IID_IEnumBitsPeerCacheRecords_Value = @import("../zig.zig").Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
 pub const IEnumBitsPeerCacheRecords = extern struct {
     pub const VTable = extern struct {
@@ -1122,7 +1122,7 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
         Next: fn(
             self: *const IEnumBitsPeerCacheRecords,
             celt: u32,
-            rgelt: [*]*IBitsPeerCacheRecord,
+            rgelt: **IBitsPeerCacheRecord,
             pceltFetched: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
@@ -1145,7 +1145,7 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: [*]*IBitsPeerCacheRecord, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: **IBitsPeerCacheRecord, pceltFetched: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeerCacheRecords, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1168,14 +1168,14 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBitsPeer_Value = @import("../zig.zig").Guid.initString("659CDEA2-489E-11D9-A9CD-000D56965251");
+const IID_IBitsPeer_Value = @import("../zig.zig").Guid.initString("659cdea2-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeer = &IID_IBitsPeer_Value;
 pub const IBitsPeer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPeerName: fn(
             self: *const IBitsPeer,
-            pName: *PWSTR,
+            pName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsAuthenticated: fn(
             self: *const IBitsPeer,
@@ -1190,7 +1190,7 @@ pub const IBitsPeer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeer_GetPeerName(self: *const T, pName: *PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBitsPeer_GetPeerName(self: *const T, pName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeer.VTable, self.vtable).GetPeerName(@ptrCast(*const IBitsPeer, self), pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1205,7 +1205,7 @@ pub const IBitsPeer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBitsPeers_Value = @import("../zig.zig").Guid.initString("659CDEA5-489E-11D9-A9CD-000D56965251");
+const IID_IEnumBitsPeers_Value = @import("../zig.zig").Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
 pub const IEnumBitsPeers = extern struct {
     pub const VTable = extern struct {
@@ -1213,7 +1213,7 @@ pub const IEnumBitsPeers = extern struct {
         Next: fn(
             self: *const IEnumBitsPeers,
             celt: u32,
-            rgelt: [*]*IBitsPeer,
+            rgelt: **IBitsPeer,
             pceltFetched: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
@@ -1236,7 +1236,7 @@ pub const IEnumBitsPeers = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: [*]*IBitsPeer, pceltFetched: *u32) callconv(.Inline) HRESULT {
+        pub fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: **IBitsPeer, pceltFetched: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeers, self), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1259,7 +1259,7 @@ pub const IEnumBitsPeers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBitsPeerCacheAdministration_Value = @import("../zig.zig").Guid.initString("659CDEAD-489E-11D9-A9CD-000D56965251");
+const IID_IBitsPeerCacheAdministration_Value = @import("../zig.zig").Guid.initString("659cdead-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheAdministration = &IID_IBitsPeerCacheAdministration_Value;
 pub const IBitsPeerCacheAdministration = extern struct {
     pub const VTable = extern struct {
@@ -1310,7 +1310,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumPeers: fn(
             self: *const IBitsPeerCacheAdministration,
-            ppEnum: **IEnumBitsPeers,
+            ppEnum: ?*?*IEnumBitsPeers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ClearPeers: fn(
             self: *const IBitsPeerCacheAdministration,
@@ -1367,7 +1367,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DeleteUrl(@ptrCast(*const IBitsPeerCacheAdministration, self), url);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: **IEnumBitsPeers) callconv(.Inline) HRESULT {
+        pub fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).EnumPeers(@ptrCast(*const IBitsPeerCacheAdministration, self), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1382,7 +1382,7 @@ pub const IBitsPeerCacheAdministration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyJob4_Value = @import("../zig.zig").Guid.initString("659CDEAE-489E-11D9-A9CD-000D56965251");
+const IID_IBackgroundCopyJob4_Value = @import("../zig.zig").Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
 pub const IBackgroundCopyJob4 = extern struct {
     pub const VTable = extern struct {
@@ -1443,7 +1443,7 @@ pub const IBackgroundCopyJob4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyFile3_Value = @import("../zig.zig").Guid.initString("659CDEAA-489E-11D9-A9CD-000D56965251");
+const IID_IBackgroundCopyFile3_Value = @import("../zig.zig").Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
 pub const IBackgroundCopyFile3 = extern struct {
     pub const VTable = extern struct {
@@ -1488,7 +1488,7 @@ pub const IBackgroundCopyFile3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyCallback2_Value = @import("../zig.zig").Guid.initString("659CDEAC-489E-11D9-A9CD-000D56965251");
+const IID_IBackgroundCopyCallback2_Value = @import("../zig.zig").Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
 pub const IBackgroundCopyCallback2 = extern struct {
     pub const VTable = extern struct {
@@ -1510,10 +1510,10 @@ pub const IBackgroundCopyCallback2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager4_0_Value = @import("../zig.zig").Guid.initString("BB6DF56B-CACE-11DC-9992-0019B93A3A84");
+const CLSID_BackgroundCopyManager4_0_Value = @import("../zig.zig").Guid.initString("bb6df56b-cace-11dc-9992-0019b93a3a84");
 pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value;
 
-const IID_IBitsTokenOptions_Value = @import("../zig.zig").Guid.initString("9A2584C3-F7D2-457A-9A5E-22B67BFFC7D2");
+const IID_IBitsTokenOptions_Value = @import("../zig.zig").Guid.initString("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2");
 pub const IID_IBitsTokenOptions = &IID_IBitsTokenOptions_Value;
 pub const IBitsTokenOptions = extern struct {
     pub const VTable = extern struct {
@@ -1564,7 +1564,7 @@ pub const IBitsTokenOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyFile4_Value = @import("../zig.zig").Guid.initString("EF7E0655-7888-4960-B0E5-730846E03492");
+const IID_IBackgroundCopyFile4_Value = @import("../zig.zig").Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
 pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
 pub const IBackgroundCopyFile4 = extern struct {
     pub const VTable = extern struct {
@@ -1586,7 +1586,7 @@ pub const IBackgroundCopyFile4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager5_0_Value = @import("../zig.zig").Guid.initString("1ECCA34C-E88A-44E3-8D6A-8921BDE9E452");
+const CLSID_BackgroundCopyManager5_0_Value = @import("../zig.zig").Guid.initString("1ecca34c-e88a-44e3-8d6a-8921bde9e452");
 pub const CLSID_BackgroundCopyManager5_0 = &CLSID_BackgroundCopyManager5_0_Value;
 
 pub const BITS_JOB_TRANSFER_POLICY = extern enum(i32) {
@@ -1630,7 +1630,7 @@ pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.HT
 
 pub const BITS_FILE_PROPERTY_VALUE = u32; // TODO: implement StructOrUnion types?
 
-const IID_IBackgroundCopyJob5_Value = @import("../zig.zig").Guid.initString("E847030C-BBBA-4657-AF6D-484AA42BF1FE");
+const IID_IBackgroundCopyJob5_Value = @import("../zig.zig").Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
 pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
 pub const IBackgroundCopyJob5 = extern struct {
     pub const VTable = extern struct {
@@ -1661,7 +1661,7 @@ pub const IBackgroundCopyJob5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyFile5_Value = @import("../zig.zig").Guid.initString("85C1657F-DAFC-40E8-8834-DF18EA25717E");
+const IID_IBackgroundCopyFile5_Value = @import("../zig.zig").Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
 pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
 pub const IBackgroundCopyFile5 = extern struct {
     pub const VTable = extern struct {
@@ -1692,10 +1692,10 @@ pub const IBackgroundCopyFile5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager10_1_Value = @import("../zig.zig").Guid.initString("4BD3E4E1-7BD4-4A2B-9964-496400DE5193");
+const CLSID_BackgroundCopyManager10_1_Value = @import("../zig.zig").Guid.initString("4bd3e4e1-7bd4-4a2b-9964-496400de5193");
 pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Value;
 
-const IID_IBackgroundCopyCallback3_Value = @import("../zig.zig").Guid.initString("98C97BD2-E32B-4AD8-A528-95FD8B16BD42");
+const IID_IBackgroundCopyCallback3_Value = @import("../zig.zig").Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
 pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
 pub const IBackgroundCopyCallback3 = extern struct {
     pub const VTable = extern struct {
@@ -1719,7 +1719,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyFile6_Value = @import("../zig.zig").Guid.initString("CF6784F7-D677-49FD-9368-CB47AEE9D1AD");
+const IID_IBackgroundCopyFile6_Value = @import("../zig.zig").Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
 pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
 pub const IBackgroundCopyFile6 = extern struct {
     pub const VTable = extern struct {
@@ -1758,10 +1758,10 @@ pub const IBackgroundCopyFile6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager10_2_Value = @import("../zig.zig").Guid.initString("4575438F-A6C8-4976-B0FE-2F26B80D959E");
+const CLSID_BackgroundCopyManager10_2_Value = @import("../zig.zig").Guid.initString("4575438f-a6c8-4976-b0fe-2f26b80d959e");
 pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Value;
 
-const IID_IBackgroundCopyJobHttpOptions2_Value = @import("../zig.zig").Guid.initString("B591A192-A405-4FC3-8323-4C5C542578FC");
+const IID_IBackgroundCopyJobHttpOptions2_Value = @import("../zig.zig").Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
 pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
 pub const IBackgroundCopyJobHttpOptions2 = extern struct {
     pub const VTable = extern struct {
@@ -1790,10 +1790,10 @@ pub const IBackgroundCopyJobHttpOptions2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyManager10_3_Value = @import("../zig.zig").Guid.initString("5FD42AD5-C04E-4D36-ADC7-E08FF15737AD");
+const CLSID_BackgroundCopyManager10_3_Value = @import("../zig.zig").Guid.initString("5fd42ad5-c04e-4d36-adc7-e08ff15737ad");
 pub const CLSID_BackgroundCopyManager10_3 = &CLSID_BackgroundCopyManager10_3_Value;
 
-const IID_IBackgroundCopyServerCertificateValidationCallback_Value = @import("../zig.zig").Guid.initString("4CEC0D02-DEF7-4158-813A-C32A46945FF7");
+const IID_IBackgroundCopyServerCertificateValidationCallback_Value = @import("../zig.zig").Guid.initString("4cec0d02-def7-4158-813a-c32a46945ff7");
 pub const IID_IBackgroundCopyServerCertificateValidationCallback = &IID_IBackgroundCopyServerCertificateValidationCallback_Value;
 pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
     pub const VTable = extern struct {
@@ -1820,7 +1820,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyJobHttpOptions3_Value = @import("../zig.zig").Guid.initString("8A9263D3-FD4C-4EDA-9B28-30132A4D4E3C");
+const IID_IBackgroundCopyJobHttpOptions3_Value = @import("../zig.zig").Guid.initString("8a9263d3-fd4c-4eda-9b28-30132a4d4e3c");
 pub const IID_IBackgroundCopyJobHttpOptions3 = &IID_IBackgroundCopyJobHttpOptions3_Value;
 pub const IBackgroundCopyJobHttpOptions3 = extern struct {
     pub const VTable = extern struct {
@@ -1848,10 +1848,10 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("EFBBAB68-7286-4783-94BF-9461D8B7E7E9");
+const CLSID_BITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("efbbab68-7286-4783-94bf-9461d8b7e7e9");
 pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Value;
 
-const IID_IBITSExtensionSetup_Value = @import("../zig.zig").Guid.initString("29CFBBF7-09E4-4B97-B0BC-F2287E3D8EB3");
+const IID_IBITSExtensionSetup_Value = @import("../zig.zig").Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
 pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
 pub const IBITSExtensionSetup = extern struct {
     pub const VTable = extern struct {
@@ -1895,7 +1895,7 @@ pub const IBITSExtensionSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("D5D2D542-5503-4E64-8B48-72EF91A32EE1");
+const IID_IBITSExtensionSetupFactory_Value = @import("../zig.zig").Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
 pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
 pub const IBITSExtensionSetupFactory = extern struct {
     pub const VTable = extern struct {
@@ -1917,7 +1917,7 @@ pub const IBITSExtensionSetupFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_BackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("69AD4AEE-51BE-439B-A92C-86AE490E8B30");
+const CLSID_BackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("69ad4aee-51be-439b-a92c-86ae490e8b30");
 pub const CLSID_BackgroundCopyQMgr = &CLSID_BackgroundCopyQMgr_Value;
 
 pub const FILESETINFO = extern struct {
@@ -1926,7 +1926,7 @@ pub const FILESETINFO = extern struct {
     dwSizeHint: u32,
 };
 
-const IID_IBackgroundCopyJob1_Value = @import("../zig.zig").Guid.initString("59F5553C-2031-4629-BB18-2645A6970947");
+const IID_IBackgroundCopyJob1_Value = @import("../zig.zig").Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
 pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
 pub const IBackgroundCopyJob1 = extern struct {
     pub const VTable = extern struct {
@@ -2007,7 +2007,7 @@ pub const IBackgroundCopyJob1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBackgroundCopyJobs1_Value = @import("../zig.zig").Guid.initString("8BAEBA9D-8F1C-42C4-B82C-09AE79980D25");
+const IID_IEnumBackgroundCopyJobs1_Value = @import("../zig.zig").Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
 pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
 pub const IEnumBackgroundCopyJobs1 = extern struct {
     pub const VTable = extern struct {
@@ -2090,7 +2090,7 @@ pub const GROUPPROP_PROGRESSTIME = GROUPPROP.PROGRESSTIME;
 pub const GROUPPROP_DISPLAYNAME = GROUPPROP.DISPLAYNAME;
 pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
 
-const IID_IBackgroundCopyGroup_Value = @import("../zig.zig").Guid.initString("1DED80A7-53EA-424F-8A04-17FEA9ADC4F5");
+const IID_IBackgroundCopyGroup_Value = @import("../zig.zig").Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
 pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
 pub const IBackgroundCopyGroup = extern struct {
     pub const VTable = extern struct {
@@ -2153,7 +2153,7 @@ pub const IBackgroundCopyGroup = extern struct {
         QueryNewJobInterface: fn(
             self: *const IBackgroundCopyGroup,
             iid: *const Guid,
-            pUnk: **IUnknown,
+            pUnk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotificationPointer: fn(
             self: *const IBackgroundCopyGroup,
@@ -2217,7 +2217,7 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyGroup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: *const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: *const Guid, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).QueryNewJobInterface(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2228,7 +2228,7 @@ pub const IBackgroundCopyGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumBackgroundCopyGroups_Value = @import("../zig.zig").Guid.initString("D993E603-4AA4-47C5-8665-C20D39C2BA4F");
+const IID_IEnumBackgroundCopyGroups_Value = @import("../zig.zig").Guid.initString("d993e603-4aa4-47c5-8665-c20d39c2ba4f");
 pub const IID_IEnumBackgroundCopyGroups = &IID_IEnumBackgroundCopyGroups_Value;
 pub const IEnumBackgroundCopyGroups = extern struct {
     pub const VTable = extern struct {
@@ -2282,7 +2282,7 @@ pub const IEnumBackgroundCopyGroups = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyCallback1_Value = @import("../zig.zig").Guid.initString("084F6593-3800-4E08-9B59-99FA59ADDF82");
+const IID_IBackgroundCopyCallback1_Value = @import("../zig.zig").Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
 pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
 pub const IBackgroundCopyCallback1 = extern struct {
     pub const VTable = extern struct {
@@ -2335,7 +2335,7 @@ pub const IBackgroundCopyCallback1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("16F41C69-09F5-41D2-8CD8-3C08C47BC8A8");
+const IID_IBackgroundCopyQMgr_Value = @import("../zig.zig").Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
 pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
 pub const IBackgroundCopyQMgr = extern struct {
     pub const VTable = extern struct {

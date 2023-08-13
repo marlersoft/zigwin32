@@ -99,6 +99,884 @@ pub const UNICODE_STRING = extern struct {
     Buffer: [*]u16,
 };
 
+// TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
+pub const HCERTCHAINENGINE = ?*c_void;
+
+// TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
+pub const HCRYPTASYNC = ?*c_void;
+
+// TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
+pub const LsaHandle = ?*c_void;
+
+pub const GENERIC_MAPPING = extern struct {
+    GenericRead: u32,
+    GenericWrite: u32,
+    GenericExecute: u32,
+    GenericAll: u32,
+};
+
+pub const LUID_AND_ATTRIBUTES = extern struct {
+    Luid: LUID,
+    Attributes: u32,
+};
+
+pub const SID_IDENTIFIER_AUTHORITY = extern struct {
+    Value: [6]u8,
+};
+
+pub const SID = extern struct {
+    Revision: u8,
+    SubAuthorityCount: u8,
+    IdentifierAuthority: SID_IDENTIFIER_AUTHORITY,
+    SubAuthority: [1]u32,
+};
+
+pub const SID_NAME_USE = extern enum(i32) {
+    SidTypeUser = 1,
+    SidTypeGroup = 2,
+    SidTypeDomain = 3,
+    SidTypeAlias = 4,
+    SidTypeWellKnownGroup = 5,
+    SidTypeDeletedAccount = 6,
+    SidTypeInvalid = 7,
+    SidTypeUnknown = 8,
+    SidTypeComputer = 9,
+    SidTypeLabel = 10,
+    SidTypeLogonSession = 11,
+};
+pub const SidTypeUser = SID_NAME_USE.SidTypeUser;
+pub const SidTypeGroup = SID_NAME_USE.SidTypeGroup;
+pub const SidTypeDomain = SID_NAME_USE.SidTypeDomain;
+pub const SidTypeAlias = SID_NAME_USE.SidTypeAlias;
+pub const SidTypeWellKnownGroup = SID_NAME_USE.SidTypeWellKnownGroup;
+pub const SidTypeDeletedAccount = SID_NAME_USE.SidTypeDeletedAccount;
+pub const SidTypeInvalid = SID_NAME_USE.SidTypeInvalid;
+pub const SidTypeUnknown = SID_NAME_USE.SidTypeUnknown;
+pub const SidTypeComputer = SID_NAME_USE.SidTypeComputer;
+pub const SidTypeLabel = SID_NAME_USE.SidTypeLabel;
+pub const SidTypeLogonSession = SID_NAME_USE.SidTypeLogonSession;
+
+pub const SID_AND_ATTRIBUTES = extern struct {
+    Sid: *c_void,
+    Attributes: u32,
+};
+
+pub const SID_AND_ATTRIBUTES_HASH = extern struct {
+    SidCount: u32,
+    SidAttr: *SID_AND_ATTRIBUTES,
+    Hash: [32]?*c_void,
+};
+
+pub const WELL_KNOWN_SID_TYPE = extern enum(i32) {
+    WinNullSid = 0,
+    WinWorldSid = 1,
+    WinLocalSid = 2,
+    WinCreatorOwnerSid = 3,
+    WinCreatorGroupSid = 4,
+    WinCreatorOwnerServerSid = 5,
+    WinCreatorGroupServerSid = 6,
+    WinNtAuthoritySid = 7,
+    WinDialupSid = 8,
+    WinNetworkSid = 9,
+    WinBatchSid = 10,
+    WinInteractiveSid = 11,
+    WinServiceSid = 12,
+    WinAnonymousSid = 13,
+    WinProxySid = 14,
+    WinEnterpriseControllersSid = 15,
+    WinSelfSid = 16,
+    WinAuthenticatedUserSid = 17,
+    WinRestrictedCodeSid = 18,
+    WinTerminalServerSid = 19,
+    WinRemoteLogonIdSid = 20,
+    WinLogonIdsSid = 21,
+    WinLocalSystemSid = 22,
+    WinLocalServiceSid = 23,
+    WinNetworkServiceSid = 24,
+    WinBuiltinDomainSid = 25,
+    WinBuiltinAdministratorsSid = 26,
+    WinBuiltinUsersSid = 27,
+    WinBuiltinGuestsSid = 28,
+    WinBuiltinPowerUsersSid = 29,
+    WinBuiltinAccountOperatorsSid = 30,
+    WinBuiltinSystemOperatorsSid = 31,
+    WinBuiltinPrintOperatorsSid = 32,
+    WinBuiltinBackupOperatorsSid = 33,
+    WinBuiltinReplicatorSid = 34,
+    WinBuiltinPreWindows2000CompatibleAccessSid = 35,
+    WinBuiltinRemoteDesktopUsersSid = 36,
+    WinBuiltinNetworkConfigurationOperatorsSid = 37,
+    WinAccountAdministratorSid = 38,
+    WinAccountGuestSid = 39,
+    WinAccountKrbtgtSid = 40,
+    WinAccountDomainAdminsSid = 41,
+    WinAccountDomainUsersSid = 42,
+    WinAccountDomainGuestsSid = 43,
+    WinAccountComputersSid = 44,
+    WinAccountControllersSid = 45,
+    WinAccountCertAdminsSid = 46,
+    WinAccountSchemaAdminsSid = 47,
+    WinAccountEnterpriseAdminsSid = 48,
+    WinAccountPolicyAdminsSid = 49,
+    WinAccountRasAndIasServersSid = 50,
+    WinNTLMAuthenticationSid = 51,
+    WinDigestAuthenticationSid = 52,
+    WinSChannelAuthenticationSid = 53,
+    WinThisOrganizationSid = 54,
+    WinOtherOrganizationSid = 55,
+    WinBuiltinIncomingForestTrustBuildersSid = 56,
+    WinBuiltinPerfMonitoringUsersSid = 57,
+    WinBuiltinPerfLoggingUsersSid = 58,
+    WinBuiltinAuthorizationAccessSid = 59,
+    WinBuiltinTerminalServerLicenseServersSid = 60,
+    WinBuiltinDCOMUsersSid = 61,
+    WinBuiltinIUsersSid = 62,
+    WinIUserSid = 63,
+    WinBuiltinCryptoOperatorsSid = 64,
+    WinUntrustedLabelSid = 65,
+    WinLowLabelSid = 66,
+    WinMediumLabelSid = 67,
+    WinHighLabelSid = 68,
+    WinSystemLabelSid = 69,
+    WinWriteRestrictedCodeSid = 70,
+    WinCreatorOwnerRightsSid = 71,
+    WinCacheablePrincipalsGroupSid = 72,
+    WinNonCacheablePrincipalsGroupSid = 73,
+    WinEnterpriseReadonlyControllersSid = 74,
+    WinAccountReadonlyControllersSid = 75,
+    WinBuiltinEventLogReadersGroup = 76,
+    WinNewEnterpriseReadonlyControllersSid = 77,
+    WinBuiltinCertSvcDComAccessGroup = 78,
+    WinMediumPlusLabelSid = 79,
+    WinLocalLogonSid = 80,
+    WinConsoleLogonSid = 81,
+    WinThisOrganizationCertificateSid = 82,
+    WinApplicationPackageAuthoritySid = 83,
+    WinBuiltinAnyPackageSid = 84,
+    WinCapabilityInternetClientSid = 85,
+    WinCapabilityInternetClientServerSid = 86,
+    WinCapabilityPrivateNetworkClientServerSid = 87,
+    WinCapabilityPicturesLibrarySid = 88,
+    WinCapabilityVideosLibrarySid = 89,
+    WinCapabilityMusicLibrarySid = 90,
+    WinCapabilityDocumentsLibrarySid = 91,
+    WinCapabilitySharedUserCertificatesSid = 92,
+    WinCapabilityEnterpriseAuthenticationSid = 93,
+    WinCapabilityRemovableStorageSid = 94,
+    WinBuiltinRDSRemoteAccessServersSid = 95,
+    WinBuiltinRDSEndpointServersSid = 96,
+    WinBuiltinRDSManagementServersSid = 97,
+    WinUserModeDriversSid = 98,
+    WinBuiltinHyperVAdminsSid = 99,
+    WinAccountCloneableControllersSid = 100,
+    WinBuiltinAccessControlAssistanceOperatorsSid = 101,
+    WinBuiltinRemoteManagementUsersSid = 102,
+    WinAuthenticationAuthorityAssertedSid = 103,
+    WinAuthenticationServiceAssertedSid = 104,
+    WinLocalAccountSid = 105,
+    WinLocalAccountAndAdministratorSid = 106,
+    WinAccountProtectedUsersSid = 107,
+    WinCapabilityAppointmentsSid = 108,
+    WinCapabilityContactsSid = 109,
+    WinAccountDefaultSystemManagedSid = 110,
+    WinBuiltinDefaultSystemManagedGroupSid = 111,
+    WinBuiltinStorageReplicaAdminsSid = 112,
+    WinAccountKeyAdminsSid = 113,
+    WinAccountEnterpriseKeyAdminsSid = 114,
+    WinAuthenticationKeyTrustSid = 115,
+    WinAuthenticationKeyPropertyMFASid = 116,
+    WinAuthenticationKeyPropertyAttestationSid = 117,
+    WinAuthenticationFreshKeyAuthSid = 118,
+    WinBuiltinDeviceOwnersSid = 119,
+};
+pub const WinNullSid = WELL_KNOWN_SID_TYPE.WinNullSid;
+pub const WinWorldSid = WELL_KNOWN_SID_TYPE.WinWorldSid;
+pub const WinLocalSid = WELL_KNOWN_SID_TYPE.WinLocalSid;
+pub const WinCreatorOwnerSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerSid;
+pub const WinCreatorGroupSid = WELL_KNOWN_SID_TYPE.WinCreatorGroupSid;
+pub const WinCreatorOwnerServerSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerServerSid;
+pub const WinCreatorGroupServerSid = WELL_KNOWN_SID_TYPE.WinCreatorGroupServerSid;
+pub const WinNtAuthoritySid = WELL_KNOWN_SID_TYPE.WinNtAuthoritySid;
+pub const WinDialupSid = WELL_KNOWN_SID_TYPE.WinDialupSid;
+pub const WinNetworkSid = WELL_KNOWN_SID_TYPE.WinNetworkSid;
+pub const WinBatchSid = WELL_KNOWN_SID_TYPE.WinBatchSid;
+pub const WinInteractiveSid = WELL_KNOWN_SID_TYPE.WinInteractiveSid;
+pub const WinServiceSid = WELL_KNOWN_SID_TYPE.WinServiceSid;
+pub const WinAnonymousSid = WELL_KNOWN_SID_TYPE.WinAnonymousSid;
+pub const WinProxySid = WELL_KNOWN_SID_TYPE.WinProxySid;
+pub const WinEnterpriseControllersSid = WELL_KNOWN_SID_TYPE.WinEnterpriseControllersSid;
+pub const WinSelfSid = WELL_KNOWN_SID_TYPE.WinSelfSid;
+pub const WinAuthenticatedUserSid = WELL_KNOWN_SID_TYPE.WinAuthenticatedUserSid;
+pub const WinRestrictedCodeSid = WELL_KNOWN_SID_TYPE.WinRestrictedCodeSid;
+pub const WinTerminalServerSid = WELL_KNOWN_SID_TYPE.WinTerminalServerSid;
+pub const WinRemoteLogonIdSid = WELL_KNOWN_SID_TYPE.WinRemoteLogonIdSid;
+pub const WinLogonIdsSid = WELL_KNOWN_SID_TYPE.WinLogonIdsSid;
+pub const WinLocalSystemSid = WELL_KNOWN_SID_TYPE.WinLocalSystemSid;
+pub const WinLocalServiceSid = WELL_KNOWN_SID_TYPE.WinLocalServiceSid;
+pub const WinNetworkServiceSid = WELL_KNOWN_SID_TYPE.WinNetworkServiceSid;
+pub const WinBuiltinDomainSid = WELL_KNOWN_SID_TYPE.WinBuiltinDomainSid;
+pub const WinBuiltinAdministratorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAdministratorsSid;
+pub const WinBuiltinUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinUsersSid;
+pub const WinBuiltinGuestsSid = WELL_KNOWN_SID_TYPE.WinBuiltinGuestsSid;
+pub const WinBuiltinPowerUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPowerUsersSid;
+pub const WinBuiltinAccountOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAccountOperatorsSid;
+pub const WinBuiltinSystemOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinSystemOperatorsSid;
+pub const WinBuiltinPrintOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinPrintOperatorsSid;
+pub const WinBuiltinBackupOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinBackupOperatorsSid;
+pub const WinBuiltinReplicatorSid = WELL_KNOWN_SID_TYPE.WinBuiltinReplicatorSid;
+pub const WinBuiltinPreWindows2000CompatibleAccessSid = WELL_KNOWN_SID_TYPE.WinBuiltinPreWindows2000CompatibleAccessSid;
+pub const WinBuiltinRemoteDesktopUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRemoteDesktopUsersSid;
+pub const WinBuiltinNetworkConfigurationOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinNetworkConfigurationOperatorsSid;
+pub const WinAccountAdministratorSid = WELL_KNOWN_SID_TYPE.WinAccountAdministratorSid;
+pub const WinAccountGuestSid = WELL_KNOWN_SID_TYPE.WinAccountGuestSid;
+pub const WinAccountKrbtgtSid = WELL_KNOWN_SID_TYPE.WinAccountKrbtgtSid;
+pub const WinAccountDomainAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountDomainAdminsSid;
+pub const WinAccountDomainUsersSid = WELL_KNOWN_SID_TYPE.WinAccountDomainUsersSid;
+pub const WinAccountDomainGuestsSid = WELL_KNOWN_SID_TYPE.WinAccountDomainGuestsSid;
+pub const WinAccountComputersSid = WELL_KNOWN_SID_TYPE.WinAccountComputersSid;
+pub const WinAccountControllersSid = WELL_KNOWN_SID_TYPE.WinAccountControllersSid;
+pub const WinAccountCertAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountCertAdminsSid;
+pub const WinAccountSchemaAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountSchemaAdminsSid;
+pub const WinAccountEnterpriseAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountEnterpriseAdminsSid;
+pub const WinAccountPolicyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountPolicyAdminsSid;
+pub const WinAccountRasAndIasServersSid = WELL_KNOWN_SID_TYPE.WinAccountRasAndIasServersSid;
+pub const WinNTLMAuthenticationSid = WELL_KNOWN_SID_TYPE.WinNTLMAuthenticationSid;
+pub const WinDigestAuthenticationSid = WELL_KNOWN_SID_TYPE.WinDigestAuthenticationSid;
+pub const WinSChannelAuthenticationSid = WELL_KNOWN_SID_TYPE.WinSChannelAuthenticationSid;
+pub const WinThisOrganizationSid = WELL_KNOWN_SID_TYPE.WinThisOrganizationSid;
+pub const WinOtherOrganizationSid = WELL_KNOWN_SID_TYPE.WinOtherOrganizationSid;
+pub const WinBuiltinIncomingForestTrustBuildersSid = WELL_KNOWN_SID_TYPE.WinBuiltinIncomingForestTrustBuildersSid;
+pub const WinBuiltinPerfMonitoringUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPerfMonitoringUsersSid;
+pub const WinBuiltinPerfLoggingUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPerfLoggingUsersSid;
+pub const WinBuiltinAuthorizationAccessSid = WELL_KNOWN_SID_TYPE.WinBuiltinAuthorizationAccessSid;
+pub const WinBuiltinTerminalServerLicenseServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinTerminalServerLicenseServersSid;
+pub const WinBuiltinDCOMUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinDCOMUsersSid;
+pub const WinBuiltinIUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinIUsersSid;
+pub const WinIUserSid = WELL_KNOWN_SID_TYPE.WinIUserSid;
+pub const WinBuiltinCryptoOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinCryptoOperatorsSid;
+pub const WinUntrustedLabelSid = WELL_KNOWN_SID_TYPE.WinUntrustedLabelSid;
+pub const WinLowLabelSid = WELL_KNOWN_SID_TYPE.WinLowLabelSid;
+pub const WinMediumLabelSid = WELL_KNOWN_SID_TYPE.WinMediumLabelSid;
+pub const WinHighLabelSid = WELL_KNOWN_SID_TYPE.WinHighLabelSid;
+pub const WinSystemLabelSid = WELL_KNOWN_SID_TYPE.WinSystemLabelSid;
+pub const WinWriteRestrictedCodeSid = WELL_KNOWN_SID_TYPE.WinWriteRestrictedCodeSid;
+pub const WinCreatorOwnerRightsSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerRightsSid;
+pub const WinCacheablePrincipalsGroupSid = WELL_KNOWN_SID_TYPE.WinCacheablePrincipalsGroupSid;
+pub const WinNonCacheablePrincipalsGroupSid = WELL_KNOWN_SID_TYPE.WinNonCacheablePrincipalsGroupSid;
+pub const WinEnterpriseReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinEnterpriseReadonlyControllersSid;
+pub const WinAccountReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinAccountReadonlyControllersSid;
+pub const WinBuiltinEventLogReadersGroup = WELL_KNOWN_SID_TYPE.WinBuiltinEventLogReadersGroup;
+pub const WinNewEnterpriseReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinNewEnterpriseReadonlyControllersSid;
+pub const WinBuiltinCertSvcDComAccessGroup = WELL_KNOWN_SID_TYPE.WinBuiltinCertSvcDComAccessGroup;
+pub const WinMediumPlusLabelSid = WELL_KNOWN_SID_TYPE.WinMediumPlusLabelSid;
+pub const WinLocalLogonSid = WELL_KNOWN_SID_TYPE.WinLocalLogonSid;
+pub const WinConsoleLogonSid = WELL_KNOWN_SID_TYPE.WinConsoleLogonSid;
+pub const WinThisOrganizationCertificateSid = WELL_KNOWN_SID_TYPE.WinThisOrganizationCertificateSid;
+pub const WinApplicationPackageAuthoritySid = WELL_KNOWN_SID_TYPE.WinApplicationPackageAuthoritySid;
+pub const WinBuiltinAnyPackageSid = WELL_KNOWN_SID_TYPE.WinBuiltinAnyPackageSid;
+pub const WinCapabilityInternetClientSid = WELL_KNOWN_SID_TYPE.WinCapabilityInternetClientSid;
+pub const WinCapabilityInternetClientServerSid = WELL_KNOWN_SID_TYPE.WinCapabilityInternetClientServerSid;
+pub const WinCapabilityPrivateNetworkClientServerSid = WELL_KNOWN_SID_TYPE.WinCapabilityPrivateNetworkClientServerSid;
+pub const WinCapabilityPicturesLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityPicturesLibrarySid;
+pub const WinCapabilityVideosLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityVideosLibrarySid;
+pub const WinCapabilityMusicLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityMusicLibrarySid;
+pub const WinCapabilityDocumentsLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityDocumentsLibrarySid;
+pub const WinCapabilitySharedUserCertificatesSid = WELL_KNOWN_SID_TYPE.WinCapabilitySharedUserCertificatesSid;
+pub const WinCapabilityEnterpriseAuthenticationSid = WELL_KNOWN_SID_TYPE.WinCapabilityEnterpriseAuthenticationSid;
+pub const WinCapabilityRemovableStorageSid = WELL_KNOWN_SID_TYPE.WinCapabilityRemovableStorageSid;
+pub const WinBuiltinRDSRemoteAccessServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSRemoteAccessServersSid;
+pub const WinBuiltinRDSEndpointServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSEndpointServersSid;
+pub const WinBuiltinRDSManagementServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSManagementServersSid;
+pub const WinUserModeDriversSid = WELL_KNOWN_SID_TYPE.WinUserModeDriversSid;
+pub const WinBuiltinHyperVAdminsSid = WELL_KNOWN_SID_TYPE.WinBuiltinHyperVAdminsSid;
+pub const WinAccountCloneableControllersSid = WELL_KNOWN_SID_TYPE.WinAccountCloneableControllersSid;
+pub const WinBuiltinAccessControlAssistanceOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAccessControlAssistanceOperatorsSid;
+pub const WinBuiltinRemoteManagementUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRemoteManagementUsersSid;
+pub const WinAuthenticationAuthorityAssertedSid = WELL_KNOWN_SID_TYPE.WinAuthenticationAuthorityAssertedSid;
+pub const WinAuthenticationServiceAssertedSid = WELL_KNOWN_SID_TYPE.WinAuthenticationServiceAssertedSid;
+pub const WinLocalAccountSid = WELL_KNOWN_SID_TYPE.WinLocalAccountSid;
+pub const WinLocalAccountAndAdministratorSid = WELL_KNOWN_SID_TYPE.WinLocalAccountAndAdministratorSid;
+pub const WinAccountProtectedUsersSid = WELL_KNOWN_SID_TYPE.WinAccountProtectedUsersSid;
+pub const WinCapabilityAppointmentsSid = WELL_KNOWN_SID_TYPE.WinCapabilityAppointmentsSid;
+pub const WinCapabilityContactsSid = WELL_KNOWN_SID_TYPE.WinCapabilityContactsSid;
+pub const WinAccountDefaultSystemManagedSid = WELL_KNOWN_SID_TYPE.WinAccountDefaultSystemManagedSid;
+pub const WinBuiltinDefaultSystemManagedGroupSid = WELL_KNOWN_SID_TYPE.WinBuiltinDefaultSystemManagedGroupSid;
+pub const WinBuiltinStorageReplicaAdminsSid = WELL_KNOWN_SID_TYPE.WinBuiltinStorageReplicaAdminsSid;
+pub const WinAccountKeyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountKeyAdminsSid;
+pub const WinAccountEnterpriseKeyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountEnterpriseKeyAdminsSid;
+pub const WinAuthenticationKeyTrustSid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyTrustSid;
+pub const WinAuthenticationKeyPropertyMFASid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyPropertyMFASid;
+pub const WinAuthenticationKeyPropertyAttestationSid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyPropertyAttestationSid;
+pub const WinAuthenticationFreshKeyAuthSid = WELL_KNOWN_SID_TYPE.WinAuthenticationFreshKeyAuthSid;
+pub const WinBuiltinDeviceOwnersSid = WELL_KNOWN_SID_TYPE.WinBuiltinDeviceOwnersSid;
+
+pub const ACL = extern struct {
+    AclRevision: u8,
+    Sbz1: u8,
+    AclSize: u16,
+    AceCount: u16,
+    Sbz2: u16,
+};
+
+pub const ACE_HEADER = extern struct {
+    AceType: u8,
+    AceFlags: u8,
+    AceSize: u16,
+};
+
+pub const ACCESS_ALLOWED_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_RESOURCE_ATTRIBUTE_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_SCOPED_POLICY_ID_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_MANDATORY_LABEL_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_ALLOWED_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACCESS_ALLOWED_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_CALLBACK_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    SidStart: u32,
+};
+
+pub const ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACCESS_DENIED_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const SYSTEM_ALARM_CALLBACK_OBJECT_ACE = extern struct {
+    Header: ACE_HEADER,
+    Mask: u32,
+    Flags: u32,
+    ObjectType: Guid,
+    InheritedObjectType: Guid,
+    SidStart: u32,
+};
+
+pub const ACL_INFORMATION_CLASS = extern enum(i32) {
+    AclRevisionInformation = 1,
+    AclSizeInformation = 2,
+};
+pub const AclRevisionInformation = ACL_INFORMATION_CLASS.AclRevisionInformation;
+pub const AclSizeInformation = ACL_INFORMATION_CLASS.AclSizeInformation;
+
+pub const ACL_REVISION_INFORMATION = extern struct {
+    AclRevision: u32,
+};
+
+pub const ACL_SIZE_INFORMATION = extern struct {
+    AceCount: u32,
+    AclBytesInUse: u32,
+    AclBytesFree: u32,
+};
+
+pub const SECURITY_DESCRIPTOR = extern struct {
+    Revision: u8,
+    Sbz1: u8,
+    Control: u16,
+    Owner: *c_void,
+    Group: *c_void,
+    Sacl: *ACL,
+    Dacl: *ACL,
+};
+
+pub const OBJECT_TYPE_LIST = extern struct {
+    Level: u16,
+    Sbz: u16,
+    ObjectType: *Guid,
+};
+
+pub const AUDIT_EVENT_TYPE = extern enum(i32) {
+    AuditEventObjectAccess = 0,
+    AuditEventDirectoryServiceAccess = 1,
+};
+pub const AuditEventObjectAccess = AUDIT_EVENT_TYPE.AuditEventObjectAccess;
+pub const AuditEventDirectoryServiceAccess = AUDIT_EVENT_TYPE.AuditEventDirectoryServiceAccess;
+
+pub const PRIVILEGE_SET = extern struct {
+    PrivilegeCount: u32,
+    Control: u32,
+    Privilege: [1]LUID_AND_ATTRIBUTES,
+};
+
+pub const SECURITY_IMPERSONATION_LEVEL = extern enum(i32) {
+    SecurityAnonymous = 0,
+    SecurityIdentification = 1,
+    SecurityImpersonation = 2,
+    SecurityDelegation = 3,
+};
+pub const SecurityAnonymous = SECURITY_IMPERSONATION_LEVEL.SecurityAnonymous;
+pub const SecurityIdentification = SECURITY_IMPERSONATION_LEVEL.SecurityIdentification;
+pub const SecurityImpersonation = SECURITY_IMPERSONATION_LEVEL.SecurityImpersonation;
+pub const SecurityDelegation = SECURITY_IMPERSONATION_LEVEL.SecurityDelegation;
+
+pub const TOKEN_TYPE = extern enum(i32) {
+    TokenPrimary = 1,
+    TokenImpersonation = 2,
+};
+pub const TokenPrimary = TOKEN_TYPE.TokenPrimary;
+pub const TokenImpersonation = TOKEN_TYPE.TokenImpersonation;
+
+pub const TOKEN_ELEVATION_TYPE = extern enum(i32) {
+    TokenElevationTypeDefault = 1,
+    TokenElevationTypeFull = 2,
+    TokenElevationTypeLimited = 3,
+};
+pub const TokenElevationTypeDefault = TOKEN_ELEVATION_TYPE.TokenElevationTypeDefault;
+pub const TokenElevationTypeFull = TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
+pub const TokenElevationTypeLimited = TOKEN_ELEVATION_TYPE.TokenElevationTypeLimited;
+
+pub const TOKEN_INFORMATION_CLASS = extern enum(i32) {
+    TokenUser = 1,
+    TokenGroups = 2,
+    TokenPrivileges = 3,
+    TokenOwner = 4,
+    TokenPrimaryGroup = 5,
+    TokenDefaultDacl = 6,
+    TokenSource = 7,
+    TokenType = 8,
+    TokenImpersonationLevel = 9,
+    TokenStatistics = 10,
+    TokenRestrictedSids = 11,
+    TokenSessionId = 12,
+    TokenGroupsAndPrivileges = 13,
+    TokenSessionReference = 14,
+    TokenSandBoxInert = 15,
+    TokenAuditPolicy = 16,
+    TokenOrigin = 17,
+    TokenElevationType = 18,
+    TokenLinkedToken = 19,
+    TokenElevation = 20,
+    TokenHasRestrictions = 21,
+    TokenAccessInformation = 22,
+    TokenVirtualizationAllowed = 23,
+    TokenVirtualizationEnabled = 24,
+    TokenIntegrityLevel = 25,
+    TokenUIAccess = 26,
+    TokenMandatoryPolicy = 27,
+    TokenLogonSid = 28,
+    TokenIsAppContainer = 29,
+    TokenCapabilities = 30,
+    TokenAppContainerSid = 31,
+    TokenAppContainerNumber = 32,
+    TokenUserClaimAttributes = 33,
+    TokenDeviceClaimAttributes = 34,
+    TokenRestrictedUserClaimAttributes = 35,
+    TokenRestrictedDeviceClaimAttributes = 36,
+    TokenDeviceGroups = 37,
+    TokenRestrictedDeviceGroups = 38,
+    TokenSecurityAttributes = 39,
+    TokenIsRestricted = 40,
+    TokenProcessTrustLevel = 41,
+    TokenPrivateNameSpace = 42,
+    TokenSingletonAttributes = 43,
+    TokenBnoIsolation = 44,
+    TokenChildProcessFlags = 45,
+    TokenIsLessPrivilegedAppContainer = 46,
+    TokenIsSandboxed = 47,
+    TokenOriginatingProcessTrustLevel = 48,
+    MaxTokenInfoClass = 49,
+};
+pub const TokenUser = TOKEN_INFORMATION_CLASS.TokenUser;
+pub const TokenGroups = TOKEN_INFORMATION_CLASS.TokenGroups;
+pub const TokenPrivileges = TOKEN_INFORMATION_CLASS.TokenPrivileges;
+pub const TokenOwner = TOKEN_INFORMATION_CLASS.TokenOwner;
+pub const TokenPrimaryGroup = TOKEN_INFORMATION_CLASS.TokenPrimaryGroup;
+pub const TokenDefaultDacl = TOKEN_INFORMATION_CLASS.TokenDefaultDacl;
+pub const TokenSource = TOKEN_INFORMATION_CLASS.TokenSource;
+pub const TokenType = TOKEN_INFORMATION_CLASS.TokenType;
+pub const TokenImpersonationLevel = TOKEN_INFORMATION_CLASS.TokenImpersonationLevel;
+pub const TokenStatistics = TOKEN_INFORMATION_CLASS.TokenStatistics;
+pub const TokenRestrictedSids = TOKEN_INFORMATION_CLASS.TokenRestrictedSids;
+pub const TokenSessionId = TOKEN_INFORMATION_CLASS.TokenSessionId;
+pub const TokenGroupsAndPrivileges = TOKEN_INFORMATION_CLASS.TokenGroupsAndPrivileges;
+pub const TokenSessionReference = TOKEN_INFORMATION_CLASS.TokenSessionReference;
+pub const TokenSandBoxInert = TOKEN_INFORMATION_CLASS.TokenSandBoxInert;
+pub const TokenAuditPolicy = TOKEN_INFORMATION_CLASS.TokenAuditPolicy;
+pub const TokenOrigin = TOKEN_INFORMATION_CLASS.TokenOrigin;
+pub const TokenElevationType = TOKEN_INFORMATION_CLASS.TokenElevationType;
+pub const TokenLinkedToken = TOKEN_INFORMATION_CLASS.TokenLinkedToken;
+pub const TokenElevation = TOKEN_INFORMATION_CLASS.TokenElevation;
+pub const TokenHasRestrictions = TOKEN_INFORMATION_CLASS.TokenHasRestrictions;
+pub const TokenAccessInformation = TOKEN_INFORMATION_CLASS.TokenAccessInformation;
+pub const TokenVirtualizationAllowed = TOKEN_INFORMATION_CLASS.TokenVirtualizationAllowed;
+pub const TokenVirtualizationEnabled = TOKEN_INFORMATION_CLASS.TokenVirtualizationEnabled;
+pub const TokenIntegrityLevel = TOKEN_INFORMATION_CLASS.TokenIntegrityLevel;
+pub const TokenUIAccess = TOKEN_INFORMATION_CLASS.TokenUIAccess;
+pub const TokenMandatoryPolicy = TOKEN_INFORMATION_CLASS.TokenMandatoryPolicy;
+pub const TokenLogonSid = TOKEN_INFORMATION_CLASS.TokenLogonSid;
+pub const TokenIsAppContainer = TOKEN_INFORMATION_CLASS.TokenIsAppContainer;
+pub const TokenCapabilities = TOKEN_INFORMATION_CLASS.TokenCapabilities;
+pub const TokenAppContainerSid = TOKEN_INFORMATION_CLASS.TokenAppContainerSid;
+pub const TokenAppContainerNumber = TOKEN_INFORMATION_CLASS.TokenAppContainerNumber;
+pub const TokenUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenUserClaimAttributes;
+pub const TokenDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenDeviceClaimAttributes;
+pub const TokenRestrictedUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedUserClaimAttributes;
+pub const TokenRestrictedDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceClaimAttributes;
+pub const TokenDeviceGroups = TOKEN_INFORMATION_CLASS.TokenDeviceGroups;
+pub const TokenRestrictedDeviceGroups = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceGroups;
+pub const TokenSecurityAttributes = TOKEN_INFORMATION_CLASS.TokenSecurityAttributes;
+pub const TokenIsRestricted = TOKEN_INFORMATION_CLASS.TokenIsRestricted;
+pub const TokenProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenProcessTrustLevel;
+pub const TokenPrivateNameSpace = TOKEN_INFORMATION_CLASS.TokenPrivateNameSpace;
+pub const TokenSingletonAttributes = TOKEN_INFORMATION_CLASS.TokenSingletonAttributes;
+pub const TokenBnoIsolation = TOKEN_INFORMATION_CLASS.TokenBnoIsolation;
+pub const TokenChildProcessFlags = TOKEN_INFORMATION_CLASS.TokenChildProcessFlags;
+pub const TokenIsLessPrivilegedAppContainer = TOKEN_INFORMATION_CLASS.TokenIsLessPrivilegedAppContainer;
+pub const TokenIsSandboxed = TOKEN_INFORMATION_CLASS.TokenIsSandboxed;
+pub const TokenOriginatingProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenOriginatingProcessTrustLevel;
+pub const MaxTokenInfoClass = TOKEN_INFORMATION_CLASS.MaxTokenInfoClass;
+
+pub const TOKEN_USER = extern struct {
+    User: SID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_GROUPS = extern struct {
+    GroupCount: u32,
+    Groups: [1]SID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_PRIVILEGES = extern struct {
+    PrivilegeCount: u32,
+    Privileges: [1]LUID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_OWNER = extern struct {
+    Owner: *c_void,
+};
+
+pub const TOKEN_PRIMARY_GROUP = extern struct {
+    PrimaryGroup: *c_void,
+};
+
+pub const TOKEN_DEFAULT_DACL = extern struct {
+    DefaultDacl: *ACL,
+};
+
+pub const TOKEN_USER_CLAIMS = extern struct {
+    UserClaims: *c_void,
+};
+
+pub const TOKEN_DEVICE_CLAIMS = extern struct {
+    DeviceClaims: *c_void,
+};
+
+pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
+    SidCount: u32,
+    SidLength: u32,
+    Sids: *SID_AND_ATTRIBUTES,
+    RestrictedSidCount: u32,
+    RestrictedSidLength: u32,
+    RestrictedSids: *SID_AND_ATTRIBUTES,
+    PrivilegeCount: u32,
+    PrivilegeLength: u32,
+    Privileges: *LUID_AND_ATTRIBUTES,
+    AuthenticationId: LUID,
+};
+
+pub const TOKEN_LINKED_TOKEN = extern struct {
+    LinkedToken: HANDLE,
+};
+
+pub const TOKEN_ELEVATION = extern struct {
+    TokenIsElevated: u32,
+};
+
+pub const TOKEN_MANDATORY_LABEL = extern struct {
+    Label: SID_AND_ATTRIBUTES,
+};
+
+pub const TOKEN_MANDATORY_POLICY = extern struct {
+    Policy: u32,
+};
+
+pub const TOKEN_ACCESS_INFORMATION = extern struct {
+    SidHash: *SID_AND_ATTRIBUTES_HASH,
+    RestrictedSidHash: *SID_AND_ATTRIBUTES_HASH,
+    Privileges: *TOKEN_PRIVILEGES,
+    AuthenticationId: LUID,
+    TokenType: TOKEN_TYPE,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    MandatoryPolicy: TOKEN_MANDATORY_POLICY,
+    Flags: u32,
+    AppContainerNumber: u32,
+    PackageSid: *c_void,
+    CapabilitiesHash: *SID_AND_ATTRIBUTES_HASH,
+    TrustLevelSid: *c_void,
+    SecurityAttributes: *c_void,
+};
+
+pub const TOKEN_AUDIT_POLICY = extern struct {
+    PerUserPolicy: [30]u8,
+};
+
+pub const TOKEN_SOURCE = extern struct {
+    SourceName: [8]i8,
+    SourceIdentifier: LUID,
+};
+
+pub const TOKEN_STATISTICS = extern struct {
+    TokenId: LUID,
+    AuthenticationId: LUID,
+    ExpirationTime: LARGE_INTEGER,
+    TokenType: TOKEN_TYPE,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    DynamicCharged: u32,
+    DynamicAvailable: u32,
+    GroupCount: u32,
+    PrivilegeCount: u32,
+    ModifiedId: LUID,
+};
+
+pub const TOKEN_CONTROL = extern struct {
+    TokenId: LUID,
+    AuthenticationId: LUID,
+    ModifiedId: LUID,
+    TokenSource: TOKEN_SOURCE,
+};
+
+pub const TOKEN_ORIGIN = extern struct {
+    OriginatingLogonSession: LUID,
+};
+
+pub const MANDATORY_LEVEL = extern enum(i32) {
+    MandatoryLevelUntrusted = 0,
+    MandatoryLevelLow = 1,
+    MandatoryLevelMedium = 2,
+    MandatoryLevelHigh = 3,
+    MandatoryLevelSystem = 4,
+    MandatoryLevelSecureProcess = 5,
+    MandatoryLevelCount = 6,
+};
+pub const MandatoryLevelUntrusted = MANDATORY_LEVEL.MandatoryLevelUntrusted;
+pub const MandatoryLevelLow = MANDATORY_LEVEL.MandatoryLevelLow;
+pub const MandatoryLevelMedium = MANDATORY_LEVEL.MandatoryLevelMedium;
+pub const MandatoryLevelHigh = MANDATORY_LEVEL.MandatoryLevelHigh;
+pub const MandatoryLevelSystem = MANDATORY_LEVEL.MandatoryLevelSystem;
+pub const MandatoryLevelSecureProcess = MANDATORY_LEVEL.MandatoryLevelSecureProcess;
+pub const MandatoryLevelCount = MANDATORY_LEVEL.MandatoryLevelCount;
+
+pub const TOKEN_APPCONTAINER_INFORMATION = extern struct {
+    TokenAppContainer: *c_void,
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
+    Version: u64,
+    Name: PWSTR,
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
+    pValue: *c_void,
+    ValueLength: u32,
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
+    Name: PWSTR,
+    ValueType: u16,
+    Reserved: u16,
+    Flags: u32,
+    ValueCount: u32,
+    Values: CLAIM_SECURITY_ATTRIBUTE_V1._Values_e__Union,
+    const _Values_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
+    Name: u32,
+    ValueType: u16,
+    Reserved: u16,
+    Flags: u32,
+    ValueCount: u32,
+    Values: CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1._Values_e__Union,
+    const _Values_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
+    Version: u16,
+    Reserved: u16,
+    AttributeCount: u32,
+    Attribute: CLAIM_SECURITY_ATTRIBUTES_INFORMATION._Attribute_e__Union,
+    const _Attribute_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
+    Length: u32,
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
+    ContextTrackingMode: u8,
+    EffectiveOnly: u8,
+};
+
+pub const SECURITY_CAPABILITIES = extern struct {
+    AppContainerSid: *c_void,
+    Capabilities: *SID_AND_ATTRIBUTES,
+    CapabilityCount: u32,
+    Reserved: u32,
+};
+
+pub const QUOTA_LIMITS = extern struct {
+    PagedPoolLimit: ?*c_void,
+    NonPagedPoolLimit: ?*c_void,
+    MinimumWorkingSetSize: ?*c_void,
+    MaximumWorkingSetSize: ?*c_void,
+    PagefileLimit: ?*c_void,
+    TimeLimit: LARGE_INTEGER,
+};
+
+pub const MSA_INFO_LEVEL = extern enum(i32) {
+    MsaInfoLevel0 = 0,
+    MsaInfoLevelMax = 1,
+};
+pub const MsaInfoLevel0 = MSA_INFO_LEVEL.MsaInfoLevel0;
+pub const MsaInfoLevelMax = MSA_INFO_LEVEL.MsaInfoLevelMax;
+
+pub const MSA_INFO_STATE = extern enum(i32) {
+    MsaInfoNotExist = 1,
+    MsaInfoNotService = 2,
+    MsaInfoCannotInstall = 3,
+    MsaInfoCanInstall = 4,
+    MsaInfoInstalled = 5,
+};
+pub const MsaInfoNotExist = MSA_INFO_STATE.MsaInfoNotExist;
+pub const MsaInfoNotService = MSA_INFO_STATE.MsaInfoNotService;
+pub const MsaInfoCannotInstall = MSA_INFO_STATE.MsaInfoCannotInstall;
+pub const MsaInfoCanInstall = MSA_INFO_STATE.MsaInfoCanInstall;
+pub const MsaInfoInstalled = MSA_INFO_STATE.MsaInfoInstalled;
+
+pub const MSA_INFO_0 = extern struct {
+    State: MSA_INFO_STATE,
+};
+
+pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
+    ProcessMemoryPriority = 0,
+    ProcessMemoryExhaustionInfo = 1,
+    ProcessAppMemoryInfo = 2,
+    ProcessInPrivateInfo = 3,
+    ProcessPowerThrottling = 4,
+    ProcessReservedValue1 = 5,
+    ProcessTelemetryCoverageInfo = 6,
+    ProcessProtectionLevelInfo = 7,
+    ProcessLeapSecondInfo = 8,
+    ProcessInformationClassMax = 9,
+};
+pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.ProcessMemoryPriority;
+pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.ProcessMemoryExhaustionInfo;
+pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.ProcessAppMemoryInfo;
+pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.ProcessInPrivateInfo;
+pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.ProcessPowerThrottling;
+pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ProcessReservedValue1;
+pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.ProcessTelemetryCoverageInfo;
+pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProcessProtectionLevelInfo;
+pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.ProcessLeapSecondInfo;
+pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.ProcessInformationClassMax;
+
 pub const CMS_KEY_INFO = extern struct {
     dwVersion: u32,
     Algid: u32,
@@ -9028,10 +9906,10 @@ pub const WLX_NOTIFICATION_INFO = extern struct {
     pStatusCallback: PFNMSGECALLBACK,
 };
 
-const CLSID_TpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("16A18E86-7F6E-4C20-AD89-4FFC0DB7A96A");
+const CLSID_TpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("16a18e86-7f6e-4c20-ad89-4ffc0db7a96a");
 pub const CLSID_TpmVirtualSmartCardManager = &CLSID_TpmVirtualSmartCardManager_Value;
 
-const CLSID_RemoteTpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("152EA2A8-70DC-4C59-8B2A-32AA3CA0DCAC");
+const CLSID_RemoteTpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("152ea2a8-70dc-4c59-8b2a-32aa3ca0dcac");
 pub const CLSID_RemoteTpmVirtualSmartCardManager = &CLSID_RemoteTpmVirtualSmartCardManager_Value;
 
 pub const TPMVSC_ATTESTATION_TYPE = extern enum(i32) {
@@ -9115,7 +9993,7 @@ pub const TPMVSCMGR_ERROR_GENERATE_FILESYSTEM = TPMVSCMGR_ERROR.GENERATE_FILESYS
 pub const TPMVSCMGR_ERROR_CARD_CREATE = TPMVSCMGR_ERROR.CARD_CREATE;
 pub const TPMVSCMGR_ERROR_CARD_DESTROY = TPMVSCMGR_ERROR.CARD_DESTROY;
 
-const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = @import("../zig.zig").Guid.initString("1A1BB35F-ABB8-451C-A1AE-33D98F1BEF4A");
+const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = @import("../zig.zig").Guid.initString("1a1bb35f-abb8-451c-a1ae-33d98f1bef4a");
 pub const IID_ITpmVirtualSmartCardManagerStatusCallback = &IID_ITpmVirtualSmartCardManagerStatusCallback_Value;
 pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
     pub const VTable = extern struct {
@@ -9144,7 +10022,7 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("112B1DFF-D9DC-41F7-869F-D67FEE7CB591");
+const IID_ITpmVirtualSmartCardManager_Value = @import("../zig.zig").Guid.initString("112b1dff-d9dc-41f7-869f-d67fee7cb591");
 pub const IID_ITpmVirtualSmartCardManager = &IID_ITpmVirtualSmartCardManager_Value;
 pub const ITpmVirtualSmartCardManager = extern struct {
     pub const VTable = extern struct {
@@ -9188,7 +10066,7 @@ pub const ITpmVirtualSmartCardManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITpmVirtualSmartCardManager2_Value = @import("../zig.zig").Guid.initString("FDF8A2B9-02DE-47F4-BC26-AA85AB5E5267");
+const IID_ITpmVirtualSmartCardManager2_Value = @import("../zig.zig").Guid.initString("fdf8a2b9-02de-47f4-bc26-aa85ab5e5267");
 pub const IID_ITpmVirtualSmartCardManager2 = &IID_ITpmVirtualSmartCardManager2_Value;
 pub const ITpmVirtualSmartCardManager2 = extern struct {
     pub const VTable = extern struct {
@@ -9224,7 +10102,7 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ITpmVirtualSmartCardManager3_Value = @import("../zig.zig").Guid.initString("3C745A97-F375-4150-BE17-5950F694C699");
+const IID_ITpmVirtualSmartCardManager3_Value = @import("../zig.zig").Guid.initString("3c745a97-f375-4150-be17-5950f694c699");
 pub const IID_ITpmVirtualSmartCardManager3 = &IID_ITpmVirtualSmartCardManager3_Value;
 pub const ITpmVirtualSmartCardManager3 = extern struct {
     pub const VTable = extern struct {
@@ -9657,7 +10535,7 @@ pub const IDENTITY_PROPCHANGED = tag_IdentityUpdateEvent.IDENTITY_PROPCHANGED;
 pub const IDENTITY_CONNECTED = tag_IdentityUpdateEvent.IDENTITY_CONNECTED;
 pub const IDENTITY_DISCONNECTED = tag_IdentityUpdateEvent.IDENTITY_DISCONNECTED;
 
-const IID_IIdentityAdvise_Value = @import("../zig.zig").Guid.initString("4E982FED-D14B-440C-B8D6-BB386453D386");
+const IID_IIdentityAdvise_Value = @import("../zig.zig").Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");
 pub const IID_IIdentityAdvise = &IID_IIdentityAdvise_Value;
 pub const IIdentityAdvise = extern struct {
     pub const VTable = extern struct {
@@ -9679,7 +10557,7 @@ pub const IIdentityAdvise = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityAdvise_Value = @import("../zig.zig").Guid.initString("3AB4C8DA-D038-4830-8DD9-3253C55A127F");
+const IID_AsyncIIdentityAdvise_Value = @import("../zig.zig").Guid.initString("3ab4c8da-d038-4830-8dd9-3253c55a127f");
 pub const IID_AsyncIIdentityAdvise = &IID_AsyncIIdentityAdvise_Value;
 pub const AsyncIIdentityAdvise = extern struct {
     pub const VTable = extern struct {
@@ -9708,7 +10586,7 @@ pub const AsyncIIdentityAdvise = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdentityProvider_Value = @import("../zig.zig").Guid.initString("0D1B9E0C-E8BA-4F55-A81B-BCE934B948F5");
+const IID_IIdentityProvider_Value = @import("../zig.zig").Guid.initString("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5");
 pub const IID_IIdentityProvider = &IID_IIdentityProvider_Value;
 pub const IIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -9718,12 +10596,12 @@ pub const IIdentityProvider = extern struct {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: **IEnumUnknown,
+            ppIdentityEnum: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Create: fn(
             self: *const IIdentityProvider,
             lpszUserName: [*:0]const u16,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
             pKeywordsToAdd: *const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Import: fn(
@@ -9738,11 +10616,11 @@ pub const IIdentityProvider = extern struct {
         FindByUniqueID: fn(
             self: *const IIdentityProvider,
             lpszUniqueID: [*:0]const u16,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProviderPropertyStore: fn(
             self: *const IIdentityProvider,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Advise: fn(
             self: *const IIdentityProvider,
@@ -9759,11 +10637,11 @@ pub const IIdentityProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_GetIdentityEnum(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).GetIdentityEnum(@ptrCast(*const IIdentityProvider, self), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_Create(self: *const T, lpszUserName: [*:0]const u16, ppPropertyStore: **IPropertyStore, pKeywordsToAdd: *const PROPVARIANT) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_Create(self: *const T, lpszUserName: [*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: *const PROPVARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).Create(@ptrCast(*const IIdentityProvider, self), lpszUserName, ppPropertyStore, pKeywordsToAdd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9775,11 +10653,11 @@ pub const IIdentityProvider = extern struct {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).Delete(@ptrCast(*const IIdentityProvider, self), lpszUniqueID, pKeywordsToDelete);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_FindByUniqueID(self: *const T, lpszUniqueID: [*:0]const u16, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_FindByUniqueID(self: *const T, lpszUniqueID: [*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).FindByUniqueID(@ptrCast(*const IIdentityProvider, self), lpszUniqueID, ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityProvider_GetProviderPropertyStore(self: *const T, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IIdentityProvider_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityProvider.VTable, self.vtable).GetProviderPropertyStore(@ptrCast(*const IIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9794,7 +10672,7 @@ pub const IIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityProvider_Value = @import("../zig.zig").Guid.initString("C6FC9901-C433-4646-8F48-4E4687AAE2A0");
+const IID_AsyncIIdentityProvider_Value = @import("../zig.zig").Guid.initString("c6fc9901-c433-4646-8f48-4e4687aae2a0");
 pub const IID_AsyncIIdentityProvider = &IID_AsyncIIdentityProvider_Value;
 pub const AsyncIIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -9807,7 +10685,7 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_GetIdentityEnum: fn(
             self: *const AsyncIIdentityProvider,
-            ppIdentityEnum: **IEnumUnknown,
+            ppIdentityEnum: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Create: fn(
             self: *const AsyncIIdentityProvider,
@@ -9816,7 +10694,7 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_Create: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Import: fn(
             self: *const AsyncIIdentityProvider,
@@ -9839,14 +10717,14 @@ pub const AsyncIIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_FindByUniqueID: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_GetProviderPropertyStore: fn(
             self: *const AsyncIIdentityProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_GetProviderPropertyStore: fn(
             self: *const AsyncIIdentityProvider,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Advise: fn(
             self: *const AsyncIIdentityProvider,
@@ -9873,7 +10751,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_GetIdentityEnum(@ptrCast(*const AsyncIIdentityProvider, self), eIdentityType, pFilterkey, pFilterPropVarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetIdentityEnum(self: *const T, ppIdentityEnum: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_GetIdentityEnum(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_GetIdentityEnum(@ptrCast(*const AsyncIIdentityProvider, self), ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9881,7 +10759,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_Create(@ptrCast(*const AsyncIIdentityProvider, self), lpszUserName, pKeywordsToAdd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_Create(self: *const T, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_Create(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_Create(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9905,7 +10783,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_FindByUniqueID(@ptrCast(*const AsyncIIdentityProvider, self), lpszUniqueID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_FindByUniqueID(self: *const T, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_FindByUniqueID(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_FindByUniqueID(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9913,7 +10791,7 @@ pub const AsyncIIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Begin_GetProviderPropertyStore(@ptrCast(*const AsyncIIdentityProvider, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityProvider_Finish_GetProviderPropertyStore(self: *const T, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityProvider_Finish_GetProviderPropertyStore(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityProvider.VTable, self.vtable).Finish_GetProviderPropertyStore(@ptrCast(*const AsyncIIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9936,7 +10814,7 @@ pub const AsyncIIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAssociatedIdentityProvider_Value = @import("../zig.zig").Guid.initString("2AF066B3-4CBB-4CBA-A798-204B6AF68CC0");
+const IID_IAssociatedIdentityProvider_Value = @import("../zig.zig").Guid.initString("2af066b3-4cbb-4cba-a798-204b6af68cc0");
 pub const IID_IAssociatedIdentityProvider = &IID_IAssociatedIdentityProvider_Value;
 pub const IAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -9944,7 +10822,7 @@ pub const IAssociatedIdentityProvider = extern struct {
         AssociateIdentity: fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: HWND,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DisassociateIdentity: fn(
             self: *const IAssociatedIdentityProvider,
@@ -9961,7 +10839,7 @@ pub const IAssociatedIdentityProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssociatedIdentityProvider_AssociateIdentity(self: *const T, hwndParent: HWND, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn IAssociatedIdentityProvider_AssociateIdentity(self: *const T, hwndParent: HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssociatedIdentityProvider.VTable, self.vtable).AssociateIdentity(@ptrCast(*const IAssociatedIdentityProvider, self), hwndParent, ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9976,7 +10854,7 @@ pub const IAssociatedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIAssociatedIdentityProvider_Value = @import("../zig.zig").Guid.initString("2834D6ED-297E-4E72-8A51-961E86F05152");
+const IID_AsyncIAssociatedIdentityProvider_Value = @import("../zig.zig").Guid.initString("2834d6ed-297e-4e72-8a51-961e86f05152");
 pub const IID_AsyncIAssociatedIdentityProvider = &IID_AsyncIAssociatedIdentityProvider_Value;
 pub const AsyncIAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -9987,7 +10865,7 @@ pub const AsyncIAssociatedIdentityProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_AssociateIdentity: fn(
             self: *const AsyncIAssociatedIdentityProvider,
-            ppPropertyStore: **IPropertyStore,
+            ppPropertyStore: ?*?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_DisassociateIdentity: fn(
             self: *const AsyncIAssociatedIdentityProvider,
@@ -10014,7 +10892,7 @@ pub const AsyncIAssociatedIdentityProvider = extern struct {
             return @ptrCast(*const AsyncIAssociatedIdentityProvider.VTable, self.vtable).Begin_AssociateIdentity(@ptrCast(*const AsyncIAssociatedIdentityProvider, self), hwndParent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIAssociatedIdentityProvider_Finish_AssociateIdentity(self: *const T, ppPropertyStore: **IPropertyStore) callconv(.Inline) HRESULT {
+        pub fn AsyncIAssociatedIdentityProvider_Finish_AssociateIdentity(self: *const T, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIAssociatedIdentityProvider.VTable, self.vtable).Finish_AssociateIdentity(@ptrCast(*const AsyncIAssociatedIdentityProvider, self), ppPropertyStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10063,7 +10941,7 @@ pub const NOT_CONNECTED = __MIDL___MIDL_itf_identityprovider_0000_0003_0002.NOT_
 pub const CONNECTING = __MIDL___MIDL_itf_identityprovider_0000_0003_0002.CONNECTING;
 pub const CONNECT_COMPLETED = __MIDL___MIDL_itf_identityprovider_0000_0003_0002.CONNECT_COMPLETED;
 
-const IID_IConnectedIdentityProvider_Value = @import("../zig.zig").Guid.initString("B7417B54-E08C-429B-96C8-678D1369ECB1");
+const IID_IConnectedIdentityProvider_Value = @import("../zig.zig").Guid.initString("b7417b54-e08c-429b-96c8-678d1369ecb1");
 pub const IID_IConnectedIdentityProvider = &IID_IConnectedIdentityProvider_Value;
 pub const IConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -10119,7 +10997,7 @@ pub const IConnectedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIConnectedIdentityProvider_Value = @import("../zig.zig").Guid.initString("9CE55141-BCE9-4E15-824D-43D79F512F93");
+const IID_AsyncIConnectedIdentityProvider_Value = @import("../zig.zig").Guid.initString("9ce55141-bce9-4e15-824d-43d79f512f93");
 pub const IID_AsyncIConnectedIdentityProvider = &IID_AsyncIConnectedIdentityProvider_Value;
 pub const AsyncIConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
@@ -10210,7 +11088,7 @@ pub const AsyncIConnectedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdentityAuthentication_Value = @import("../zig.zig").Guid.initString("5E7EF254-979F-43B5-B74E-06E4EB7DF0F9");
+const IID_IIdentityAuthentication_Value = @import("../zig.zig").Guid.initString("5e7ef254-979f-43b5-b74e-06e4eb7df0f9");
 pub const IID_IIdentityAuthentication = &IID_IIdentityAuthentication_Value;
 pub const IIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
@@ -10242,7 +11120,7 @@ pub const IIdentityAuthentication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityAuthentication_Value = @import("../zig.zig").Guid.initString("F9A2F918-FECA-4E9C-9633-61CBF13ED34D");
+const IID_AsyncIIdentityAuthentication_Value = @import("../zig.zig").Guid.initString("f9a2f918-feca-4e9c-9633-61cbf13ed34d");
 pub const IID_AsyncIIdentityAuthentication = &IID_AsyncIIdentityAuthentication_Value;
 pub const AsyncIIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
@@ -10289,13 +11167,13 @@ pub const AsyncIIdentityAuthentication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_CoClassIdentityStore_Value = @import("../zig.zig").Guid.initString("30D49246-D217-465F-B00B-AC9DDD652EB7");
+const CLSID_CoClassIdentityStore_Value = @import("../zig.zig").Guid.initString("30d49246-d217-465f-b00b-ac9ddd652eb7");
 pub const CLSID_CoClassIdentityStore = &CLSID_CoClassIdentityStore_Value;
 
-const CLSID_CIdentityProfileHandler_Value = @import("../zig.zig").Guid.initString("ECF5BF46-E3B6-449A-B56B-43F58F867814");
+const CLSID_CIdentityProfileHandler_Value = @import("../zig.zig").Guid.initString("ecf5bf46-e3b6-449a-b56b-43f58f867814");
 pub const CLSID_CIdentityProfileHandler = &CLSID_CIdentityProfileHandler_Value;
 
-const IID_IIdentityStore_Value = @import("../zig.zig").Guid.initString("DF586FA5-6F35-44F1-B209-B38E169772EB");
+const IID_IIdentityStore_Value = @import("../zig.zig").Guid.initString("df586fa5-6f35-44f1-b209-b38e169772eb");
 pub const IID_IIdentityStore = &IID_IIdentityStore_Value;
 pub const IIdentityStore = extern struct {
     pub const VTable = extern struct {
@@ -10308,7 +11186,7 @@ pub const IIdentityStore = extern struct {
             self: *const IIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
-            ppIdentityProvider: **IUnknown,
+            ppIdentityProvider: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddToCache: fn(
             self: *const IIdentityStore,
@@ -10328,7 +11206,7 @@ pub const IIdentityStore = extern struct {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-            ppIdentityEnum: **IEnumUnknown,
+            ppIdentityEnum: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const IIdentityStore,
@@ -10342,7 +11220,7 @@ pub const IIdentityStore = extern struct {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).GetCount(@ptrCast(*const IIdentityStore, self), pdwProviders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityStore_GetAt(self: *const T, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).GetAt(@ptrCast(*const IIdentityStore, self), dwProvider, pProvGuid, ppIdentityProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10354,7 +11232,7 @@ pub const IIdentityStore = extern struct {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).ConvertToSid(@ptrCast(*const IIdentityStore, self), lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIdentityStore_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn IIdentityStore_EnumerateIdentities(self: *const T, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IIdentityStore.VTable, self.vtable).EnumerateIdentities(@ptrCast(*const IIdentityStore, self), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10365,7 +11243,7 @@ pub const IIdentityStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityStore_Value = @import("../zig.zig").Guid.initString("EEFA1616-48DE-4872-AA64-6E6206535A51");
+const IID_AsyncIIdentityStore_Value = @import("../zig.zig").Guid.initString("eefa1616-48de-4872-aa64-6e6206535a51");
 pub const IID_AsyncIIdentityStore = &IID_AsyncIIdentityStore_Value;
 pub const AsyncIIdentityStore = extern struct {
     pub const VTable = extern struct {
@@ -10385,7 +11263,7 @@ pub const AsyncIIdentityStore = extern struct {
         Finish_GetAt: fn(
             self: *const AsyncIIdentityStore,
             pProvGuid: ?*Guid,
-            ppIdentityProvider: **IUnknown,
+            ppIdentityProvider: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_AddToCache: fn(
             self: *const AsyncIIdentityStore,
@@ -10415,7 +11293,7 @@ pub const AsyncIIdentityStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Finish_EnumerateIdentities: fn(
             self: *const AsyncIIdentityStore,
-            ppIdentityEnum: **IEnumUnknown,
+            ppIdentityEnum: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Begin_Reset: fn(
             self: *const AsyncIIdentityStore,
@@ -10440,7 +11318,7 @@ pub const AsyncIIdentityStore = extern struct {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Begin_GetAt(@ptrCast(*const AsyncIIdentityStore, self), dwProvider, pProvGuid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_GetAt(self: *const T, pProvGuid: ?*Guid, ppIdentityProvider: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityStore_Finish_GetAt(self: *const T, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Finish_GetAt(@ptrCast(*const AsyncIIdentityStore, self), pProvGuid, ppIdentityProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10464,7 +11342,7 @@ pub const AsyncIIdentityStore = extern struct {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Begin_EnumerateIdentities(@ptrCast(*const AsyncIIdentityStore, self), eIdentityType, pFilterkey, pFilterPropVarValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIIdentityStore_Finish_EnumerateIdentities(self: *const T, ppIdentityEnum: **IEnumUnknown) callconv(.Inline) HRESULT {
+        pub fn AsyncIIdentityStore_Finish_EnumerateIdentities(self: *const T, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const AsyncIIdentityStore.VTable, self.vtable).Finish_EnumerateIdentities(@ptrCast(*const AsyncIIdentityStore, self), ppIdentityEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10479,7 +11357,7 @@ pub const AsyncIIdentityStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IIdentityStoreEx_Value = @import("../zig.zig").Guid.initString("F9F9EB98-8F7F-4E38-9577-6980114CE32B");
+const IID_IIdentityStoreEx_Value = @import("../zig.zig").Guid.initString("f9f9eb98-8f7f-4e38-9577-6980114ce32b");
 pub const IID_IIdentityStoreEx = &IID_IIdentityStoreEx_Value;
 pub const IIdentityStoreEx = extern struct {
     pub const VTable = extern struct {
@@ -10511,7 +11389,7 @@ pub const IIdentityStoreEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_AsyncIIdentityStoreEx_Value = @import("../zig.zig").Guid.initString("FCA3AF9A-8A07-4EAE-8632-EC3DE658A36A");
+const IID_AsyncIIdentityStoreEx_Value = @import("../zig.zig").Guid.initString("fca3af9a-8a07-4eae-8632-ec3de658a36a");
 pub const IID_AsyncIIdentityStoreEx = &IID_AsyncIIdentityStoreEx_Value;
 pub const AsyncIIdentityStoreEx = extern struct {
     pub const VTable = extern struct {
@@ -10852,23 +11730,23 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-const CLSID_AzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("B2BCFF59-A757-4B0B-A1BC-EA69981DA69E");
+const CLSID_AzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("b2bcff59-a757-4b0b-a1bc-ea69981da69e");
 pub const CLSID_AzAuthorizationStore = &CLSID_AzAuthorizationStore_Value;
 
-const CLSID_AzBizRuleContext_Value = @import("../zig.zig").Guid.initString("5C2DC96F-8D51-434B-B33C-379BCCAE77C3");
+const CLSID_AzBizRuleContext_Value = @import("../zig.zig").Guid.initString("5c2dc96f-8d51-434b-b33c-379bccae77c3");
 pub const CLSID_AzBizRuleContext = &CLSID_AzBizRuleContext_Value;
 
-const CLSID_AzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("483AFB5D-70DF-4E16-ABDC-A1DE4D015A3E");
+const CLSID_AzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("483afb5d-70df-4e16-abdc-a1de4d015a3e");
 pub const CLSID_AzPrincipalLocator = &CLSID_AzPrincipalLocator_Value;
 
-const IID_IAzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("EDBD9CA9-9B82-4F6A-9E8B-98301E450F14");
+const IID_IAzAuthorizationStore_Value = @import("../zig.zig").Guid.initString("edbd9ca9-9b82-4f6a-9e8b-98301e450f14");
 pub const IID_IAzAuthorizationStore = &IID_IAzAuthorizationStore_Value;
 pub const IAzAuthorizationStore = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Description: fn(
             self: *const IAzAuthorizationStore,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzAuthorizationStore,
@@ -10876,7 +11754,7 @@ pub const IAzAuthorizationStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzAuthorizationStore,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzAuthorizationStore,
@@ -10986,19 +11864,19 @@ pub const IAzAuthorizationStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Applications: fn(
             self: *const IAzAuthorizationStore,
-            ppAppCollection: **IAzApplications,
+            ppAppCollection: ?*?*IAzApplications,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplication: fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: BSTR,
             varReserved: VARIANT,
-            ppApplication: **IAzApplication,
+            ppApplication: ?*?*IAzApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplication: fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: BSTR,
             varReserved: VARIANT,
-            ppApplication: **IAzApplication,
+            ppApplication: ?*?*IAzApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplication: fn(
             self: *const IAzAuthorizationStore,
@@ -11007,19 +11885,19 @@ pub const IAzAuthorizationStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationGroups: fn(
             self: *const IAzAuthorizationStore,
-            ppGroupCollection: **IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzAuthorizationStore,
@@ -11047,7 +11925,7 @@ pub const IAzAuthorizationStore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TargetMachine: fn(
             self: *const IAzAuthorizationStore,
-            pbstrTargetMachine: *BSTR,
+            pbstrTargetMachine: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplyStoreSacl: fn(
             self: *const IAzAuthorizationStore,
@@ -11109,7 +11987,7 @@ pub const IAzAuthorizationStore = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_Description(@ptrCast(*const IAzAuthorizationStore, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11117,7 +11995,7 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).put_Description(@ptrCast(*const IAzAuthorizationStore, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzAuthorizationStore, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11213,15 +12091,15 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).Delete(@ptrCast(*const IAzAuthorizationStore, self), varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_Applications(self: *const T, ppAppCollection: **IAzApplications) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_Applications(self: *const T, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_Applications(@ptrCast(*const IAzAuthorizationStore, self), ppAppCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: **IAzApplication) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_OpenApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).OpenApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: **IAzApplication) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_CreateApplication(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).CreateApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11229,15 +12107,15 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteApplication(@ptrCast(*const IAzAuthorizationStore, self), bstrApplicationName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_ApplicationGroups(self: *const T, ppGroupCollection: **IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzAuthorizationStore, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzAuthorizationStore, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzAuthorizationStore, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11261,7 +12139,7 @@ pub const IAzAuthorizationStore = extern struct {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).DeleteDelegatedPolicyUser(@ptrCast(*const IAzAuthorizationStore, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore_get_TargetMachine(self: *const T, pbstrTargetMachine: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore_get_TargetMachine(self: *const T, pbstrTargetMachine: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore.VTable, self.vtable).get_TargetMachine(@ptrCast(*const IAzAuthorizationStore, self), pbstrTargetMachine);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11316,7 +12194,7 @@ pub const IAzAuthorizationStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzAuthorizationStore2_Value = @import("../zig.zig").Guid.initString("B11E5584-D577-4273-B6C5-0973E0F8E80D");
+const IID_IAzAuthorizationStore2_Value = @import("../zig.zig").Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
 pub const IID_IAzAuthorizationStore2 = &IID_IAzAuthorizationStore2_Value;
 pub const IAzAuthorizationStore2 = extern struct {
     pub const VTable = extern struct {
@@ -11325,31 +12203,31 @@ pub const IAzAuthorizationStore2 = extern struct {
             self: *const IAzAuthorizationStore2,
             bstrApplicationName: BSTR,
             varReserved: VARIANT,
-            ppApplication: **IAzApplication2,
+            ppApplication: ?*?*IAzApplication2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplication2: fn(
             self: *const IAzAuthorizationStore2,
             bstrApplicationName: BSTR,
             varReserved: VARIANT,
-            ppApplication: **IAzApplication2,
+            ppApplication: ?*?*IAzApplication2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzAuthorizationStore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_OpenApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: **IAzApplication2) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore2_OpenApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore2.VTable, self.vtable).OpenApplication2(@ptrCast(*const IAzAuthorizationStore2, self), bstrApplicationName, varReserved, ppApplication);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzAuthorizationStore2_CreateApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: **IAzApplication2) callconv(.Inline) HRESULT {
+        pub fn IAzAuthorizationStore2_CreateApplication2(self: *const T, bstrApplicationName: BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzAuthorizationStore2.VTable, self.vtable).CreateApplication2(@ptrCast(*const IAzAuthorizationStore2, self), bstrApplicationName, varReserved, ppApplication);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzAuthorizationStore3_Value = @import("../zig.zig").Guid.initString("ABC08425-0C86-4FA0-9BE3-7189956C926E");
+const IID_IAzAuthorizationStore3_Value = @import("../zig.zig").Guid.initString("abc08425-0c86-4fa0-9be3-7189956c926e");
 pub const IID_IAzAuthorizationStore3 = &IID_IAzAuthorizationStore3_Value;
 pub const IAzAuthorizationStore3 = extern struct {
     pub const VTable = extern struct {
@@ -11404,14 +12282,14 @@ pub const IAzAuthorizationStore3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplication_Value = @import("../zig.zig").Guid.initString("987BC7C7-B813-4D27-BEDE-6BA5AE867E95");
+const IID_IAzApplication_Value = @import("../zig.zig").Guid.initString("987bc7c7-b813-4d27-bede-6ba5ae867e95");
 pub const IID_IAzApplication = &IID_IAzApplication_Value;
 pub const IAzApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzApplication,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzApplication,
@@ -11419,7 +12297,7 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzApplication,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzApplication,
@@ -11427,7 +12305,7 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzApplication,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzApplication,
@@ -11435,7 +12313,7 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AuthzInterfaceClsid: fn(
             self: *const IAzApplication,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AuthzInterfaceClsid: fn(
             self: *const IAzApplication,
@@ -11443,7 +12321,7 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Version: fn(
             self: *const IAzApplication,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Version: fn(
             self: *const IAzApplication,
@@ -11511,19 +12389,19 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Scopes: fn(
             self: *const IAzApplication,
-            ppScopeCollection: **IAzScopes,
+            ppScopeCollection: ?*?*IAzScopes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenScope: fn(
             self: *const IAzApplication,
             bstrScopeName: BSTR,
             varReserved: VARIANT,
-            ppScope: **IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScope: fn(
             self: *const IAzApplication,
             bstrScopeName: BSTR,
             varReserved: VARIANT,
-            ppScope: **IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteScope: fn(
             self: *const IAzApplication,
@@ -11532,19 +12410,19 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Operations: fn(
             self: *const IAzApplication,
-            ppOperationCollection: **IAzOperations,
+            ppOperationCollection: ?*?*IAzOperations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenOperation: fn(
             self: *const IAzApplication,
             bstrOperationName: BSTR,
             varReserved: VARIANT,
-            ppOperation: **IAzOperation,
+            ppOperation: ?*?*IAzOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateOperation: fn(
             self: *const IAzApplication,
             bstrOperationName: BSTR,
             varReserved: VARIANT,
-            ppOperation: **IAzOperation,
+            ppOperation: ?*?*IAzOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteOperation: fn(
             self: *const IAzApplication,
@@ -11553,19 +12431,19 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tasks: fn(
             self: *const IAzApplication,
-            ppTaskCollection: **IAzTasks,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenTask: fn(
             self: *const IAzApplication,
             bstrTaskName: BSTR,
             varReserved: VARIANT,
-            ppTask: **IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTask: fn(
             self: *const IAzApplication,
             bstrTaskName: BSTR,
             varReserved: VARIANT,
-            ppTask: **IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzApplication,
@@ -11574,19 +12452,19 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationGroups: fn(
             self: *const IAzApplication,
-            ppGroupCollection: **IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzApplication,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzApplication,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzApplication,
@@ -11595,19 +12473,19 @@ pub const IAzApplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Roles: fn(
             self: *const IAzApplication,
-            ppRoleCollection: **IAzRoles,
+            ppRoleCollection: ?*?*IAzRoles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRole: fn(
             self: *const IAzApplication,
             bstrRoleName: BSTR,
             varReserved: VARIANT,
-            ppRole: **IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRole: fn(
             self: *const IAzApplication,
             bstrRoleName: BSTR,
             varReserved: VARIANT,
-            ppRole: **IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRole: fn(
             self: *const IAzApplication,
@@ -11618,7 +12496,7 @@ pub const IAzApplication = extern struct {
             self: *const IAzApplication,
             ullTokenHandle: u64,
             varReserved: VARIANT,
-            ppClientContext: **IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddPropertyItem: fn(
             self: *const IAzApplication,
@@ -11642,7 +12520,7 @@ pub const IAzApplication = extern struct {
             ClientName: BSTR,
             DomainName: BSTR,
             varReserved: VARIANT,
-            ppClientContext: **IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DelegatedPolicyUsers: fn(
             self: *const IAzApplication,
@@ -11663,7 +12541,7 @@ pub const IAzApplication = extern struct {
             SidString: BSTR,
             lOptions: i32,
             varReserved: VARIANT,
-            ppClientContext: **IAzClientContext,
+            ppClientContext: ?*?*IAzClientContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyAdministratorsName: fn(
             self: *const IAzApplication,
@@ -11712,7 +12590,7 @@ pub const IAzApplication = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Name(@ptrCast(*const IAzApplication, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11720,7 +12598,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_Name(@ptrCast(*const IAzApplication, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Description(@ptrCast(*const IAzApplication, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11728,7 +12606,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_Description(@ptrCast(*const IAzApplication, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzApplication, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11736,7 +12614,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzApplication, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_AuthzInterfaceClsid(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_AuthzInterfaceClsid(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_AuthzInterfaceClsid(@ptrCast(*const IAzApplication, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11744,7 +12622,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).put_AuthzInterfaceClsid(@ptrCast(*const IAzApplication, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Version(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Version(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Version(@ptrCast(*const IAzApplication, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11804,15 +12682,15 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeletePolicyReader(@ptrCast(*const IAzApplication, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Scopes(self: *const T, ppScopeCollection: **IAzScopes) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Scopes(self: *const T, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Scopes(@ptrCast(*const IAzApplication, self), ppScopeCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: **IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved, ppScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: **IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateScope(self: *const T, bstrScopeName: BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved, ppScope);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11820,15 +12698,15 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteScope(@ptrCast(*const IAzApplication, self), bstrScopeName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Operations(self: *const T, ppOperationCollection: **IAzOperations) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Operations(self: *const T, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Operations(@ptrCast(*const IAzApplication, self), ppOperationCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: **IAzOperation) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved, ppOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: **IAzOperation) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateOperation(self: *const T, bstrOperationName: BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved, ppOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11836,15 +12714,15 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteOperation(@ptrCast(*const IAzApplication, self), bstrOperationName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Tasks(self: *const T, ppTaskCollection: **IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzApplication, self), ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: **IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: **IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11852,15 +12730,15 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteTask(@ptrCast(*const IAzApplication, self), bstrTaskName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_ApplicationGroups(self: *const T, ppGroupCollection: **IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzApplication, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11868,15 +12746,15 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteApplicationGroup(@ptrCast(*const IAzApplication, self), bstrGroupName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_get_Roles(self: *const T, ppRoleCollection: **IAzRoles) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).get_Roles(@ptrCast(*const IAzApplication, self), ppRoleCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: **IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).OpenRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: **IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).CreateRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11884,7 +12762,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteRole(@ptrCast(*const IAzApplication, self), bstrRoleName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromToken(self: *const T, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: **IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromToken(self: *const T, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromToken(@ptrCast(*const IAzApplication, self), ullTokenHandle, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11900,7 +12778,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).Submit(@ptrCast(*const IAzApplication, self), lFlags, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromName(self: *const T, ClientName: BSTR, DomainName: BSTR, varReserved: VARIANT, ppClientContext: **IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromName(self: *const T, ClientName: BSTR, DomainName: BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromName(@ptrCast(*const IAzApplication, self), ClientName, DomainName, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11916,7 +12794,7 @@ pub const IAzApplication = extern struct {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).DeleteDelegatedPolicyUser(@ptrCast(*const IAzApplication, self), bstrDelegatedPolicyUser, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication_InitializeClientContextFromStringSid(self: *const T, SidString: BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: **IAzClientContext) callconv(.Inline) HRESULT {
+        pub fn IAzApplication_InitializeClientContextFromStringSid(self: *const T, SidString: BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication.VTable, self.vtable).InitializeClientContextFromStringSid(@ptrCast(*const IAzApplication, self), SidString, lOptions, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11959,7 +12837,7 @@ pub const IAzApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplication2_Value = @import("../zig.zig").Guid.initString("086A68AF-A249-437C-B18D-D4D86D6A9660");
+const IID_IAzApplication2_Value = @import("../zig.zig").Guid.initString("086a68af-a249-437c-b18d-d4d86d6a9660");
 pub const IID_IAzApplication2 = &IID_IAzApplication2_Value;
 pub const IAzApplication2 = extern struct {
     pub const VTable = extern struct {
@@ -11969,31 +12847,31 @@ pub const IAzApplication2 = extern struct {
             ulTokenHandleLowPart: u32,
             ulTokenHandleHighPart: u32,
             varReserved: VARIANT,
-            ppClientContext: **IAzClientContext2,
+            ppClientContext: ?*?*IAzClientContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeClientContext2: fn(
             self: *const IAzApplication2,
             IdentifyingString: BSTR,
             varReserved: VARIANT,
-            ppClientContext: **IAzClientContext2,
+            ppClientContext: ?*?*IAzClientContext2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzApplication.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContextFromToken2(self: *const T, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: **IAzClientContext2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication2_InitializeClientContextFromToken2(self: *const T, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication2.VTable, self.vtable).InitializeClientContextFromToken2(@ptrCast(*const IAzApplication2, self), ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication2_InitializeClientContext2(self: *const T, IdentifyingString: BSTR, varReserved: VARIANT, ppClientContext: **IAzClientContext2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication2_InitializeClientContext2(self: *const T, IdentifyingString: BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication2.VTable, self.vtable).InitializeClientContext2(@ptrCast(*const IAzApplication2, self), IdentifyingString, varReserved, ppClientContext);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplications_Value = @import("../zig.zig").Guid.initString("929B11A9-95C5-4A84-A29A-20AD42C2F16C");
+const IID_IAzApplications_Value = @import("../zig.zig").Guid.initString("929b11a9-95c5-4a84-a29a-20ad42c2f16c");
 pub const IID_IAzApplications = &IID_IAzApplications_Value;
 pub const IAzApplications = extern struct {
     pub const VTable = extern struct {
@@ -12009,7 +12887,7 @@ pub const IAzApplications = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzApplications,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12024,21 +12902,21 @@ pub const IAzApplications = extern struct {
             return @ptrCast(*const IAzApplications.VTable, self.vtable).get_Count(@ptrCast(*const IAzApplications, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplications_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzApplications_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplications.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzApplications, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzOperation_Value = @import("../zig.zig").Guid.initString("5E56B24F-EA01-4D61-BE44-C49B5E4EAF74");
+const IID_IAzOperation_Value = @import("../zig.zig").Guid.initString("5e56b24f-ea01-4d61-be44-c49b5e4eaf74");
 pub const IID_IAzOperation = &IID_IAzOperation_Value;
 pub const IAzOperation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzOperation,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzOperation,
@@ -12046,7 +12924,7 @@ pub const IAzOperation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzOperation,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzOperation,
@@ -12054,7 +12932,7 @@ pub const IAzOperation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzOperation,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzOperation,
@@ -12094,7 +12972,7 @@ pub const IAzOperation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_Name(@ptrCast(*const IAzOperation, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12102,7 +12980,7 @@ pub const IAzOperation = extern struct {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_Name(@ptrCast(*const IAzOperation, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_Description(@ptrCast(*const IAzOperation, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12110,7 +12988,7 @@ pub const IAzOperation = extern struct {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).put_Description(@ptrCast(*const IAzOperation, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzOperation_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzOperation, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12145,7 +13023,7 @@ pub const IAzOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzOperations_Value = @import("../zig.zig").Guid.initString("90EF9C07-9706-49D9-AF80-0438A5F3EC35");
+const IID_IAzOperations_Value = @import("../zig.zig").Guid.initString("90ef9c07-9706-49d9-af80-0438a5f3ec35");
 pub const IID_IAzOperations = &IID_IAzOperations_Value;
 pub const IAzOperations = extern struct {
     pub const VTable = extern struct {
@@ -12161,7 +13039,7 @@ pub const IAzOperations = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzOperations,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12176,21 +13054,21 @@ pub const IAzOperations = extern struct {
             return @ptrCast(*const IAzOperations.VTable, self.vtable).get_Count(@ptrCast(*const IAzOperations, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperations_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzOperations_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperations.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzOperations, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzTask_Value = @import("../zig.zig").Guid.initString("CB94E592-2E0E-4A6C-A336-B89A6DC1E388");
+const IID_IAzTask_Value = @import("../zig.zig").Guid.initString("cb94e592-2e0e-4a6c-a336-b89a6dc1e388");
 pub const IID_IAzTask = &IID_IAzTask_Value;
 pub const IAzTask = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzTask,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzTask,
@@ -12198,7 +13076,7 @@ pub const IAzTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzTask,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzTask,
@@ -12206,7 +13084,7 @@ pub const IAzTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzTask,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzTask,
@@ -12214,7 +13092,7 @@ pub const IAzTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRule: fn(
             self: *const IAzTask,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRule: fn(
             self: *const IAzTask,
@@ -12222,7 +13100,7 @@ pub const IAzTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleLanguage: fn(
             self: *const IAzTask,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRuleLanguage: fn(
             self: *const IAzTask,
@@ -12230,7 +13108,7 @@ pub const IAzTask = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleImportedPath: fn(
             self: *const IAzTask,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRuleImportedPath: fn(
             self: *const IAzTask,
@@ -12310,7 +13188,7 @@ pub const IAzTask = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Name(@ptrCast(*const IAzTask, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12318,7 +13196,7 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_Name(@ptrCast(*const IAzTask, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_Description(@ptrCast(*const IAzTask, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12326,7 +13204,7 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_Description(@ptrCast(*const IAzTask, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzTask, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12334,7 +13212,7 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_ApplicationData(@ptrCast(*const IAzTask, self), bstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRule(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRule(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRule(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12342,7 +13220,7 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_BizRule(@ptrCast(*const IAzTask, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleLanguage(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRuleLanguage(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRuleLanguage(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12350,7 +13228,7 @@ pub const IAzTask = extern struct {
             return @ptrCast(*const IAzTask.VTable, self.vtable).put_BizRuleLanguage(@ptrCast(*const IAzTask, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask_get_BizRuleImportedPath(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzTask_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask.VTable, self.vtable).get_BizRuleImportedPath(@ptrCast(*const IAzTask, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12417,7 +13295,7 @@ pub const IAzTask = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzTasks_Value = @import("../zig.zig").Guid.initString("B338CCAB-4C85-4388-8C0A-C58592BAD398");
+const IID_IAzTasks_Value = @import("../zig.zig").Guid.initString("b338ccab-4c85-4388-8c0a-c58592bad398");
 pub const IID_IAzTasks = &IID_IAzTasks_Value;
 pub const IAzTasks = extern struct {
     pub const VTable = extern struct {
@@ -12433,7 +13311,7 @@ pub const IAzTasks = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzTasks,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12448,21 +13326,21 @@ pub const IAzTasks = extern struct {
             return @ptrCast(*const IAzTasks.VTable, self.vtable).get_Count(@ptrCast(*const IAzTasks, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTasks_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzTasks_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTasks.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzTasks, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzScope_Value = @import("../zig.zig").Guid.initString("00E52487-E08D-4514-B62E-877D5645F5AB");
+const IID_IAzScope_Value = @import("../zig.zig").Guid.initString("00e52487-e08d-4514-b62e-877d5645f5ab");
 pub const IID_IAzScope = &IID_IAzScope_Value;
 pub const IAzScope = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzScope,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzScope,
@@ -12470,7 +13348,7 @@ pub const IAzScope = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzScope,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzScope,
@@ -12478,7 +13356,7 @@ pub const IAzScope = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzScope,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzScope,
@@ -12542,19 +13420,19 @@ pub const IAzScope = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationGroups: fn(
             self: *const IAzScope,
-            ppGroupCollection: **IAzApplicationGroups,
+            ppGroupCollection: ?*?*IAzApplicationGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenApplicationGroup: fn(
             self: *const IAzScope,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateApplicationGroup: fn(
             self: *const IAzScope,
             bstrGroupName: BSTR,
             varReserved: VARIANT,
-            ppGroup: **IAzApplicationGroup,
+            ppGroup: ?*?*IAzApplicationGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteApplicationGroup: fn(
             self: *const IAzScope,
@@ -12563,19 +13441,19 @@ pub const IAzScope = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Roles: fn(
             self: *const IAzScope,
-            ppRoleCollection: **IAzRoles,
+            ppRoleCollection: ?*?*IAzRoles,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRole: fn(
             self: *const IAzScope,
             bstrRoleName: BSTR,
             varReserved: VARIANT,
-            ppRole: **IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRole: fn(
             self: *const IAzScope,
             bstrRoleName: BSTR,
             varReserved: VARIANT,
-            ppRole: **IAzRole,
+            ppRole: ?*?*IAzRole,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRole: fn(
             self: *const IAzScope,
@@ -12584,19 +13462,19 @@ pub const IAzScope = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Tasks: fn(
             self: *const IAzScope,
-            ppTaskCollection: **IAzTasks,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenTask: fn(
             self: *const IAzScope,
             bstrTaskName: BSTR,
             varReserved: VARIANT,
-            ppTask: **IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateTask: fn(
             self: *const IAzScope,
             bstrTaskName: BSTR,
             varReserved: VARIANT,
-            ppTask: **IAzTask,
+            ppTask: ?*?*IAzTask,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteTask: fn(
             self: *const IAzScope,
@@ -12649,7 +13527,7 @@ pub const IAzScope = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Name(@ptrCast(*const IAzScope, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12657,7 +13535,7 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).put_Name(@ptrCast(*const IAzScope, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Description(@ptrCast(*const IAzScope, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12665,7 +13543,7 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).put_Description(@ptrCast(*const IAzScope, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzScope, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12717,15 +13595,15 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeletePolicyReader(@ptrCast(*const IAzScope, self), bstrReader, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_ApplicationGroups(self: *const T, ppGroupCollection: **IAzApplicationGroups) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_ApplicationGroups(self: *const T, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_ApplicationGroups(@ptrCast(*const IAzScope, self), ppGroupCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: **IAzApplicationGroup) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateApplicationGroup(self: *const T, bstrGroupName: BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved, ppGroup);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12733,15 +13611,15 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeleteApplicationGroup(@ptrCast(*const IAzScope, self), bstrGroupName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Roles(self: *const T, ppRoleCollection: **IAzRoles) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Roles(self: *const T, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Roles(@ptrCast(*const IAzScope, self), ppRoleCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: **IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: **IAzRole) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateRole(self: *const T, bstrRoleName: BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved, ppRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12749,15 +13627,15 @@ pub const IAzScope = extern struct {
             return @ptrCast(*const IAzScope.VTable, self.vtable).DeleteRole(@ptrCast(*const IAzScope, self), bstrRoleName, varReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_get_Tasks(self: *const T, ppTaskCollection: **IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzScope_get_Tasks(self: *const T, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).get_Tasks(@ptrCast(*const IAzScope, self), ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: **IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzScope_OpenTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).OpenTask(@ptrCast(*const IAzScope, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: **IAzTask) callconv(.Inline) HRESULT {
+        pub fn IAzScope_CreateTask(self: *const T, bstrTaskName: BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope.VTable, self.vtable).CreateTask(@ptrCast(*const IAzScope, self), bstrTaskName, varReserved, ppTask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12804,7 +13682,7 @@ pub const IAzScope = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzScopes_Value = @import("../zig.zig").Guid.initString("78E14853-9F5E-406D-9B91-6BDBA6973510");
+const IID_IAzScopes_Value = @import("../zig.zig").Guid.initString("78e14853-9f5e-406d-9b91-6bdba6973510");
 pub const IID_IAzScopes = &IID_IAzScopes_Value;
 pub const IAzScopes = extern struct {
     pub const VTable = extern struct {
@@ -12820,7 +13698,7 @@ pub const IAzScopes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzScopes,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12835,21 +13713,21 @@ pub const IAzScopes = extern struct {
             return @ptrCast(*const IAzScopes.VTable, self.vtable).get_Count(@ptrCast(*const IAzScopes, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScopes_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzScopes_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScopes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzScopes, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplicationGroup_Value = @import("../zig.zig").Guid.initString("F1B744CD-58A6-4E06-9FBF-36F6D779E21E");
+const IID_IAzApplicationGroup_Value = @import("../zig.zig").Guid.initString("f1b744cd-58a6-4e06-9fbf-36f6d779e21e");
 pub const IID_IAzApplicationGroup = &IID_IAzApplicationGroup_Value;
 pub const IAzApplicationGroup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzApplicationGroup,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzApplicationGroup,
@@ -12865,7 +13743,7 @@ pub const IAzApplicationGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LdapQuery: fn(
             self: *const IAzApplicationGroup,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_LdapQuery: fn(
             self: *const IAzApplicationGroup,
@@ -12889,7 +13767,7 @@ pub const IAzApplicationGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzApplicationGroup,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzApplicationGroup,
@@ -13001,7 +13879,7 @@ pub const IAzApplicationGroup = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Name(@ptrCast(*const IAzApplicationGroup, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13017,7 +13895,7 @@ pub const IAzApplicationGroup = extern struct {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).put_Type(@ptrCast(*const IAzApplicationGroup, self), lProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_LdapQuery(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_LdapQuery(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_LdapQuery(@ptrCast(*const IAzApplicationGroup, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13041,7 +13919,7 @@ pub const IAzApplicationGroup = extern struct {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_NonMembers(@ptrCast(*const IAzApplicationGroup, self), pvarProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup.VTable, self.vtable).get_Description(@ptrCast(*const IAzApplicationGroup, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13132,7 +14010,7 @@ pub const IAzApplicationGroup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplicationGroups_Value = @import("../zig.zig").Guid.initString("4CE66AD5-9F3C-469D-A911-B99887A7E685");
+const IID_IAzApplicationGroups_Value = @import("../zig.zig").Guid.initString("4ce66ad5-9f3c-469d-a911-b99887a7e685");
 pub const IID_IAzApplicationGroups = &IID_IAzApplicationGroups_Value;
 pub const IAzApplicationGroups = extern struct {
     pub const VTable = extern struct {
@@ -13148,7 +14026,7 @@ pub const IAzApplicationGroups = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzApplicationGroups,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -13163,21 +14041,21 @@ pub const IAzApplicationGroups = extern struct {
             return @ptrCast(*const IAzApplicationGroups.VTable, self.vtable).get_Count(@ptrCast(*const IAzApplicationGroups, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroups_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroups_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzApplicationGroups, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRole_Value = @import("../zig.zig").Guid.initString("859E0D8D-62D7-41D8-A034-C0CD5D43FDFA");
+const IID_IAzRole_Value = @import("../zig.zig").Guid.initString("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa");
 pub const IID_IAzRole = &IID_IAzRole_Value;
 pub const IAzRole = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IAzRole,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Name: fn(
             self: *const IAzRole,
@@ -13185,7 +14063,7 @@ pub const IAzRole = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IAzRole,
-            pbstrDescription: *BSTR,
+            pbstrDescription: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IAzRole,
@@ -13193,7 +14071,7 @@ pub const IAzRole = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ApplicationData: fn(
             self: *const IAzRole,
-            pbstrApplicationData: *BSTR,
+            pbstrApplicationData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ApplicationData: fn(
             self: *const IAzRole,
@@ -13307,7 +14185,7 @@ pub const IAzRole = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Name(@ptrCast(*const IAzRole, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13315,7 +14193,7 @@ pub const IAzRole = extern struct {
             return @ptrCast(*const IAzRole.VTable, self.vtable).put_Name(@ptrCast(*const IAzRole, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_Description(self: *const T, pbstrDescription: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_Description(self: *const T, pbstrDescription: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_Description(@ptrCast(*const IAzRole, self), pbstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13323,7 +14201,7 @@ pub const IAzRole = extern struct {
             return @ptrCast(*const IAzRole.VTable, self.vtable).put_Description(@ptrCast(*const IAzRole, self), bstrDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRole_get_ApplicationData(self: *const T, pbstrApplicationData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzRole_get_ApplicationData(self: *const T, pbstrApplicationData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRole.VTable, self.vtable).get_ApplicationData(@ptrCast(*const IAzRole, self), pbstrApplicationData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13418,7 +14296,7 @@ pub const IAzRole = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRoles_Value = @import("../zig.zig").Guid.initString("95E0F119-13B4-4DAE-B65F-2F7D60D822E4");
+const IID_IAzRoles_Value = @import("../zig.zig").Guid.initString("95e0f119-13b4-4dae-b65f-2f7d60d822e4");
 pub const IID_IAzRoles = &IID_IAzRoles_Value;
 pub const IAzRoles = extern struct {
     pub const VTable = extern struct {
@@ -13434,7 +14312,7 @@ pub const IAzRoles = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzRoles,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -13449,14 +14327,14 @@ pub const IAzRoles = extern struct {
             return @ptrCast(*const IAzRoles.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoles, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoles_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoles_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoles.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoles, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzClientContext_Value = @import("../zig.zig").Guid.initString("EFF1F00B-488A-466D-AFD9-A401C5F9EEF5");
+const IID_IAzClientContext_Value = @import("../zig.zig").Guid.initString("eff1f00b-488a-466d-afd9-a401c5f9eef5");
 pub const IID_IAzClientContext = &IID_IAzClientContext_Value;
 pub const IAzClientContext = extern struct {
     pub const VTable = extern struct {
@@ -13475,35 +14353,35 @@ pub const IAzClientContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBusinessRuleString: fn(
             self: *const IAzClientContext,
-            pbstrBusinessRuleString: *BSTR,
+            pbstrBusinessRuleString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserDn: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserSamCompat: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserDisplay: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserGuid: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserCanonical: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserUpn: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserDnsSamCompat: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
             self: *const IAzClientContext,
@@ -13518,7 +14396,7 @@ pub const IAzClientContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleForAccessCheck: fn(
             self: *const IAzClientContext,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RoleForAccessCheck: fn(
             self: *const IAzClientContext,
@@ -13533,35 +14411,35 @@ pub const IAzClientContext = extern struct {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).AccessCheck(@ptrCast(*const IAzClientContext, self), bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_GetBusinessRuleString(self: *const T, pbstrBusinessRuleString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_GetBusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).GetBusinessRuleString(@ptrCast(*const IAzClientContext, self), pbstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDn(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDn(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDn(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserSamCompat(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserSamCompat(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserSamCompat(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDisplay(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDisplay(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDisplay(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserGuid(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserGuid(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserGuid(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserCanonical(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserCanonical(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserCanonical(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserUpn(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserUpn(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserUpn(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_UserDnsSamCompat(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_UserDnsSamCompat(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_UserDnsSamCompat(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13573,7 +14451,7 @@ pub const IAzClientContext = extern struct {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).GetRoles(@ptrCast(*const IAzClientContext, self), bstrScopeName, pvarRoleNames);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext_get_RoleForAccessCheck(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext_get_RoleForAccessCheck(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext.VTable, self.vtable).get_RoleForAccessCheck(@ptrCast(*const IAzClientContext, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13584,7 +14462,7 @@ pub const IAzClientContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzClientContext2_Value = @import("../zig.zig").Guid.initString("2B0C92B8-208A-488A-8F81-E4EDB22111CD");
+const IID_IAzClientContext2_Value = @import("../zig.zig").Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
 pub const IID_IAzClientContext2 = &IID_IAzClientContext2_Value;
 pub const IAzClientContext2 = extern struct {
     pub const VTable = extern struct {
@@ -13615,7 +14493,7 @@ pub const IAzClientContext2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LDAPQueryDN: fn(
             self: *const IAzClientContext2,
-            pbstrLDAPQueryDN: *BSTR,
+            pbstrLDAPQueryDN: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -13642,14 +14520,14 @@ pub const IAzClientContext2 = extern struct {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).put_LDAPQueryDN(@ptrCast(*const IAzClientContext2, self), bstrLDAPQueryDN);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext2_get_LDAPQueryDN(self: *const T, pbstrLDAPQueryDN: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext2_get_LDAPQueryDN(self: *const T, pbstrLDAPQueryDN: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext2.VTable, self.vtable).get_LDAPQueryDN(@ptrCast(*const IAzClientContext2, self), pbstrLDAPQueryDN);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzBizRuleContext_Value = @import("../zig.zig").Guid.initString("E192F17D-D59F-455E-A152-940316CD77B2");
+const IID_IAzBizRuleContext_Value = @import("../zig.zig").Guid.initString("e192f17d-d59f-455e-a152-940316cd77b2");
 pub const IID_IAzBizRuleContext = &IID_IAzBizRuleContext_Value;
 pub const IAzBizRuleContext = extern struct {
     pub const VTable = extern struct {
@@ -13664,7 +14542,7 @@ pub const IAzBizRuleContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BusinessRuleString: fn(
             self: *const IAzBizRuleContext,
-            pbstrBusinessRuleString: *BSTR,
+            pbstrBusinessRuleString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParameter: fn(
             self: *const IAzBizRuleContext,
@@ -13684,7 +14562,7 @@ pub const IAzBizRuleContext = extern struct {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).put_BusinessRuleString(@ptrCast(*const IAzBizRuleContext, self), bstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzBizRuleContext_get_BusinessRuleString(self: *const T, pbstrBusinessRuleString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzBizRuleContext_get_BusinessRuleString(self: *const T, pbstrBusinessRuleString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzBizRuleContext.VTable, self.vtable).get_BusinessRuleString(@ptrCast(*const IAzBizRuleContext, self), pbstrBusinessRuleString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13695,7 +14573,7 @@ pub const IAzBizRuleContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzBizRuleParameters_Value = @import("../zig.zig").Guid.initString("FC17685F-E25D-4DCD-BAE1-276EC9533CB5");
+const IID_IAzBizRuleParameters_Value = @import("../zig.zig").Guid.initString("fc17685f-e25d-4dcd-bae1-276ec9533cb5");
 pub const IID_IAzBizRuleParameters = &IID_IAzBizRuleParameters_Value;
 pub const IAzBizRuleParameters = extern struct {
     pub const VTable = extern struct {
@@ -13758,7 +14636,7 @@ pub const IAzBizRuleParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzBizRuleInterfaces_Value = @import("../zig.zig").Guid.initString("E94128C7-E9DA-44CC-B0BD-53036F3AAB3D");
+const IID_IAzBizRuleInterfaces_Value = @import("../zig.zig").Guid.initString("e94128c7-e9da-44cc-b0bd-53036f3aab3d");
 pub const IID_IAzBizRuleInterfaces = &IID_IAzBizRuleInterfaces_Value;
 pub const IAzBizRuleInterfaces = extern struct {
     pub const VTable = extern struct {
@@ -13824,7 +14702,7 @@ pub const IAzBizRuleInterfaces = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzClientContext3_Value = @import("../zig.zig").Guid.initString("11894FDE-1DEB-4B4B-8907-6D1CDA1F5D4F");
+const IID_IAzClientContext3_Value = @import("../zig.zig").Guid.initString("11894fde-1deb-4b4b-8907-6d1cda1f5d4f");
 pub const IID_IAzClientContext3 = &IID_IAzClientContext3_Value;
 pub const IAzClientContext3 = extern struct {
     pub const VTable = extern struct {
@@ -13845,20 +14723,20 @@ pub const IAzClientContext3 = extern struct {
         GetOperations: fn(
             self: *const IAzClientContext3,
             bstrScopeName: BSTR,
-            ppOperationCollection: **IAzOperations,
+            ppOperationCollection: ?*?*IAzOperations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTasks: fn(
             self: *const IAzClientContext3,
             bstrScopeName: BSTR,
-            ppTaskCollection: **IAzTasks,
+            ppTaskCollection: ?*?*IAzTasks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleParameters: fn(
             self: *const IAzClientContext3,
-            ppBizRuleParam: **IAzBizRuleParameters,
+            ppBizRuleParam: ?*?*IAzBizRuleParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleInterfaces: fn(
             self: *const IAzClientContext3,
-            ppBizRuleInterfaces: **IAzBizRuleInterfaces,
+            ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroups: fn(
             self: *const IAzClientContext3,
@@ -13883,19 +14761,19 @@ pub const IAzClientContext3 = extern struct {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).IsInRoleAssignment(@ptrCast(*const IAzClientContext3, self), bstrScopeName, bstrRoleName, pbIsInRole);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetOperations(self: *const T, bstrScopeName: BSTR, ppOperationCollection: **IAzOperations) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_GetOperations(self: *const T, bstrScopeName: BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).GetOperations(@ptrCast(*const IAzClientContext3, self), bstrScopeName, ppOperationCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_GetTasks(self: *const T, bstrScopeName: BSTR, ppTaskCollection: **IAzTasks) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_GetTasks(self: *const T, bstrScopeName: BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).GetTasks(@ptrCast(*const IAzClientContext3, self), bstrScopeName, ppTaskCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleParameters(self: *const T, ppBizRuleParam: **IAzBizRuleParameters) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_get_BizRuleParameters(self: *const T, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).get_BizRuleParameters(@ptrCast(*const IAzClientContext3, self), ppBizRuleParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzClientContext3_get_BizRuleInterfaces(self: *const T, ppBizRuleInterfaces: **IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+        pub fn IAzClientContext3_get_BizRuleInterfaces(self: *const T, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzClientContext3.VTable, self.vtable).get_BizRuleInterfaces(@ptrCast(*const IAzClientContext3, self), ppBizRuleInterfaces);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13910,24 +14788,24 @@ pub const IAzClientContext3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzScope2_Value = @import("../zig.zig").Guid.initString("EE9FE8C9-C9F3-40E2-AA12-D1D8599727FD");
+const IID_IAzScope2_Value = @import("../zig.zig").Guid.initString("ee9fe8c9-c9f3-40e2-aa12-d1d8599727fd");
 pub const IID_IAzScope2 = &IID_IAzScope2_Value;
 pub const IAzScope2 = extern struct {
     pub const VTable = extern struct {
         base: IAzScope.VTable,
         get_RoleDefinitions: fn(
             self: *const IAzScope2,
-            ppRoleDefinitions: **IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleDefinition: fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: **IAzRoleDefinition,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleDefinition: fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: **IAzRoleDefinition,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzScope2,
@@ -13935,17 +14813,17 @@ pub const IAzScope2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleAssignments: fn(
             self: *const IAzScope2,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleAssignment: fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: **IAzRoleAssignment,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleAssignment: fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: **IAzRoleAssignment,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleAssignment: fn(
             self: *const IAzScope2,
@@ -13956,15 +14834,15 @@ pub const IAzScope2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzScope.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleDefinitions(self: *const T, ppRoleDefinitions: **IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzScope2, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: **IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).CreateRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: **IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).OpenRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13972,15 +14850,15 @@ pub const IAzScope2 = extern struct {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzScope2, self), bstrRoleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_get_RoleAssignments(self: *const T, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).get_RoleAssignments(@ptrCast(*const IAzScope2, self), ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: **IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).CreateRoleAssignment(@ptrCast(*const IAzScope2, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzScope2_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: **IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzScope2_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzScope2.VTable, self.vtable).OpenRoleAssignment(@ptrCast(*const IAzScope2, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13991,7 +14869,7 @@ pub const IAzScope2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplication3_Value = @import("../zig.zig").Guid.initString("181C845E-7196-4A7D-AC2E-020C0BB7A303");
+const IID_IAzApplication3_Value = @import("../zig.zig").Guid.initString("181c845e-7196-4a7d-ac2e-020c0bb7a303");
 pub const IID_IAzApplication3 = &IID_IAzApplication3_Value;
 pub const IAzApplication3 = extern struct {
     pub const VTable = extern struct {
@@ -14004,12 +14882,12 @@ pub const IAzApplication3 = extern struct {
         OpenScope2: fn(
             self: *const IAzApplication3,
             bstrScopeName: BSTR,
-            ppScope2: **IAzScope2,
+            ppScope2: ?*?*IAzScope2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateScope2: fn(
             self: *const IAzApplication3,
             bstrScopeName: BSTR,
-            ppScope2: **IAzScope2,
+            ppScope2: ?*?*IAzScope2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteScope2: fn(
             self: *const IAzApplication3,
@@ -14017,17 +14895,17 @@ pub const IAzApplication3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleDefinitions: fn(
             self: *const IAzApplication3,
-            ppRoleDefinitions: **IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleDefinition: fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: **IAzRoleDefinition,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleDefinition: fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: BSTR,
-            ppRoleDefinitions: **IAzRoleDefinition,
+            ppRoleDefinitions: ?*?*IAzRoleDefinition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleDefinition: fn(
             self: *const IAzApplication3,
@@ -14035,17 +14913,17 @@ pub const IAzApplication3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleAssignments: fn(
             self: *const IAzApplication3,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRoleAssignment: fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: **IAzRoleAssignment,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenRoleAssignment: fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: BSTR,
-            ppRoleAssignment: **IAzRoleAssignment,
+            ppRoleAssignment: ?*?*IAzRoleAssignment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteRoleAssignment: fn(
             self: *const IAzApplication3,
@@ -14068,11 +14946,11 @@ pub const IAzApplication3 = extern struct {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).ScopeExists(@ptrCast(*const IAzApplication3, self), bstrScopeName, pbExist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenScope2(self: *const T, bstrScopeName: BSTR, ppScope2: **IAzScope2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenScope2(self: *const T, bstrScopeName: BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName, ppScope2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateScope2(self: *const T, bstrScopeName: BSTR, ppScope2: **IAzScope2) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateScope2(self: *const T, bstrScopeName: BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName, ppScope2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14080,15 +14958,15 @@ pub const IAzApplication3 = extern struct {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).DeleteScope2(@ptrCast(*const IAzApplication3, self), bstrScopeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleDefinitions(self: *const T, ppRoleDefinitions: **IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzApplication3, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: **IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: **IAzRoleDefinition) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenRoleDefinition(self: *const T, bstrRoleDefinitionName: BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName, ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14096,15 +14974,15 @@ pub const IAzApplication3 = extern struct {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzApplication3, self), bstrRoleDefinitionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_get_RoleAssignments(self: *const T, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_get_RoleAssignments(self: *const T, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).get_RoleAssignments(@ptrCast(*const IAzApplication3, self), ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: **IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_CreateRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).CreateRoleAssignment(@ptrCast(*const IAzApplication3, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplication3_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: **IAzRoleAssignment) callconv(.Inline) HRESULT {
+        pub fn IAzApplication3_OpenRoleAssignment(self: *const T, bstrRoleAssignmentName: BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplication3.VTable, self.vtable).OpenRoleAssignment(@ptrCast(*const IAzApplication3, self), bstrRoleAssignmentName, ppRoleAssignment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14123,7 +15001,7 @@ pub const IAzApplication3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzOperation2_Value = @import("../zig.zig").Guid.initString("1F5EA01F-44A2-4184-9C48-A75B4DCC8CCC");
+const IID_IAzOperation2_Value = @import("../zig.zig").Guid.initString("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc");
 pub const IID_IAzOperation2 = &IID_IAzOperation2_Value;
 pub const IAzOperation2 = extern struct {
     pub const VTable = extern struct {
@@ -14132,21 +15010,21 @@ pub const IAzOperation2 = extern struct {
             self: *const IAzOperation2,
             bstrScopeName: BSTR,
             bRecursive: i16,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzOperation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzOperation2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzOperation2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzOperation2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzOperation2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRoleDefinitions_Value = @import("../zig.zig").Guid.initString("881F25A5-D755-4550-957A-D503A3B34001");
+const IID_IAzRoleDefinitions_Value = @import("../zig.zig").Guid.initString("881f25a5-d755-4550-957a-d503a3b34001");
 pub const IID_IAzRoleDefinitions = &IID_IAzRoleDefinitions_Value;
 pub const IAzRoleDefinitions = extern struct {
     pub const VTable = extern struct {
@@ -14162,7 +15040,7 @@ pub const IAzRoleDefinitions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzRoleDefinitions,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -14177,14 +15055,14 @@ pub const IAzRoleDefinitions = extern struct {
             return @ptrCast(*const IAzRoleDefinitions.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoleDefinitions, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinitions_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinitions_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoleDefinitions, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRoleDefinition_Value = @import("../zig.zig").Guid.initString("D97FCEA1-2599-44F1-9FC3-58E9FBE09466");
+const IID_IAzRoleDefinition_Value = @import("../zig.zig").Guid.initString("d97fcea1-2599-44f1-9fc3-58e9fbe09466");
 pub const IID_IAzRoleDefinition = &IID_IAzRoleDefinition_Value;
 pub const IAzRoleDefinition = extern struct {
     pub const VTable = extern struct {
@@ -14193,7 +15071,7 @@ pub const IAzRoleDefinition = extern struct {
             self: *const IAzRoleDefinition,
             bstrScopeName: BSTR,
             bRecursive: i16,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AddRoleDefinition: fn(
             self: *const IAzRoleDefinition,
@@ -14205,14 +15083,14 @@ pub const IAzRoleDefinition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleDefinitions: fn(
             self: *const IAzRoleDefinition,
-            ppRoleDefinitions: **IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzTask.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzRoleDefinition, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14224,14 +15102,14 @@ pub const IAzRoleDefinition = extern struct {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzRoleDefinition, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleDefinition_get_RoleDefinitions(self: *const T, ppRoleDefinitions: **IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzRoleDefinition_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleDefinition.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzRoleDefinition, self), ppRoleDefinitions);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRoleAssignment_Value = @import("../zig.zig").Guid.initString("55647D31-0D5A-4FA3-B4AC-2B5F9AD5AB76");
+const IID_IAzRoleAssignment_Value = @import("../zig.zig").Guid.initString("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76");
 pub const IID_IAzRoleAssignment = &IID_IAzRoleAssignment_Value;
 pub const IAzRoleAssignment = extern struct {
     pub const VTable = extern struct {
@@ -14246,11 +15124,11 @@ pub const IAzRoleAssignment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RoleDefinitions: fn(
             self: *const IAzRoleAssignment,
-            ppRoleDefinitions: **IAzRoleDefinitions,
+            ppRoleDefinitions: ?*?*IAzRoleDefinitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Scope: fn(
             self: *const IAzRoleAssignment,
-            ppScope: **IAzScope,
+            ppScope: ?*?*IAzScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -14265,18 +15143,18 @@ pub const IAzRoleAssignment = extern struct {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).DeleteRoleDefinition(@ptrCast(*const IAzRoleAssignment, self), bstrRoleDefinition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_RoleDefinitions(self: *const T, ppRoleDefinitions: **IAzRoleDefinitions) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_get_RoleDefinitions(self: *const T, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).get_RoleDefinitions(@ptrCast(*const IAzRoleAssignment, self), ppRoleDefinitions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignment_get_Scope(self: *const T, ppScope: **IAzScope) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignment_get_Scope(self: *const T, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignment.VTable, self.vtable).get_Scope(@ptrCast(*const IAzRoleAssignment, self), ppScope);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzRoleAssignments_Value = @import("../zig.zig").Guid.initString("9C80B900-FCEB-4D73-A0F4-C83B0BBF2481");
+const IID_IAzRoleAssignments_Value = @import("../zig.zig").Guid.initString("9c80b900-fceb-4d73-a0f4-c83b0bbf2481");
 pub const IID_IAzRoleAssignments = &IID_IAzRoleAssignments_Value;
 pub const IAzRoleAssignments = extern struct {
     pub const VTable = extern struct {
@@ -14292,7 +15170,7 @@ pub const IAzRoleAssignments = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAzRoleAssignments,
-            ppEnumPtr: **IUnknown,
+            ppEnumPtr: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -14307,43 +15185,43 @@ pub const IAzRoleAssignments = extern struct {
             return @ptrCast(*const IAzRoleAssignments.VTable, self.vtable).get_Count(@ptrCast(*const IAzRoleAssignments, self), plCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzRoleAssignments_get__NewEnum(self: *const T, ppEnumPtr: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAzRoleAssignments_get__NewEnum(self: *const T, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzRoleAssignments.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAzRoleAssignments, self), ppEnumPtr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("E5C3507D-AD6A-4992-9C7F-74AB480B44CC");
+const IID_IAzPrincipalLocator_Value = @import("../zig.zig").Guid.initString("e5c3507d-ad6a-4992-9c7f-74ab480b44cc");
 pub const IID_IAzPrincipalLocator = &IID_IAzPrincipalLocator_Value;
 pub const IAzPrincipalLocator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_NameResolver: fn(
             self: *const IAzPrincipalLocator,
-            ppNameResolver: **IAzNameResolver,
+            ppNameResolver: ?*?*IAzNameResolver,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectPicker: fn(
             self: *const IAzPrincipalLocator,
-            ppObjectPicker: **IAzObjectPicker,
+            ppObjectPicker: ?*?*IAzObjectPicker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_NameResolver(self: *const T, ppNameResolver: **IAzNameResolver) callconv(.Inline) HRESULT {
+        pub fn IAzPrincipalLocator_get_NameResolver(self: *const T, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzPrincipalLocator.VTable, self.vtable).get_NameResolver(@ptrCast(*const IAzPrincipalLocator, self), ppNameResolver);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzPrincipalLocator_get_ObjectPicker(self: *const T, ppObjectPicker: **IAzObjectPicker) callconv(.Inline) HRESULT {
+        pub fn IAzPrincipalLocator_get_ObjectPicker(self: *const T, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzPrincipalLocator.VTable, self.vtable).get_ObjectPicker(@ptrCast(*const IAzPrincipalLocator, self), ppObjectPicker);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzNameResolver_Value = @import("../zig.zig").Guid.initString("504D0F15-73E2-43DF-A870-A64F40714F53");
+const IID_IAzNameResolver_Value = @import("../zig.zig").Guid.initString("504d0f15-73e2-43df-a870-a64f40714f53");
 pub const IID_IAzNameResolver = &IID_IAzNameResolver_Value;
 pub const IAzNameResolver = extern struct {
     pub const VTable = extern struct {
@@ -14352,7 +15230,7 @@ pub const IAzNameResolver = extern struct {
             self: *const IAzNameResolver,
             bstrSid: BSTR,
             pSidType: *i32,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NamesFromSids: fn(
             self: *const IAzNameResolver,
@@ -14365,7 +15243,7 @@ pub const IAzNameResolver = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzNameResolver_NameFromSid(self: *const T, bstrSid: BSTR, pSidType: *i32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzNameResolver_NameFromSid(self: *const T, bstrSid: BSTR, pSidType: *i32, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzNameResolver.VTable, self.vtable).NameFromSid(@ptrCast(*const IAzNameResolver, self), bstrSid, pSidType, pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14376,7 +15254,7 @@ pub const IAzNameResolver = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzObjectPicker_Value = @import("../zig.zig").Guid.initString("63130A48-699A-42D8-BF01-C62AC3FB79F9");
+const IID_IAzObjectPicker_Value = @import("../zig.zig").Guid.initString("63130a48-699a-42d8-bf01-c62ac3fb79f9");
 pub const IID_IAzObjectPicker = &IID_IAzObjectPicker_Value;
 pub const IAzObjectPicker = extern struct {
     pub const VTable = extern struct {
@@ -14391,7 +15269,7 @@ pub const IAzObjectPicker = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IAzObjectPicker,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -14402,21 +15280,21 @@ pub const IAzObjectPicker = extern struct {
             return @ptrCast(*const IAzObjectPicker.VTable, self.vtable).GetPrincipals(@ptrCast(*const IAzObjectPicker, self), hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzObjectPicker_get_Name(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzObjectPicker_get_Name(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzObjectPicker.VTable, self.vtable).get_Name(@ptrCast(*const IAzObjectPicker, self), pbstrName);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzApplicationGroup2_Value = @import("../zig.zig").Guid.initString("3F0613FC-B71A-464E-A11D-5B881A56CEFA");
+const IID_IAzApplicationGroup2_Value = @import("../zig.zig").Guid.initString("3f0613fc-b71a-464e-a11d-5b881a56cefa");
 pub const IID_IAzApplicationGroup2 = &IID_IAzApplicationGroup2_Value;
 pub const IAzApplicationGroup2 = extern struct {
     pub const VTable = extern struct {
         base: IAzApplicationGroup.VTable,
         get_BizRule: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRule: fn(
             self: *const IAzApplicationGroup2,
@@ -14424,7 +15302,7 @@ pub const IAzApplicationGroup2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleLanguage: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRuleLanguage: fn(
             self: *const IAzApplicationGroup2,
@@ -14432,7 +15310,7 @@ pub const IAzApplicationGroup2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BizRuleImportedPath: fn(
             self: *const IAzApplicationGroup2,
-            pbstrProp: *BSTR,
+            pbstrProp: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_BizRuleImportedPath: fn(
             self: *const IAzApplicationGroup2,
@@ -14442,14 +15320,14 @@ pub const IAzApplicationGroup2 = extern struct {
             self: *const IAzApplicationGroup2,
             bstrScopeName: BSTR,
             bRecursive: i16,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzApplicationGroup.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRule(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRule(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRule(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14457,7 +15335,7 @@ pub const IAzApplicationGroup2 = extern struct {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRule(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleLanguage(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRuleLanguage(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRuleLanguage(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14465,7 +15343,7 @@ pub const IAzApplicationGroup2 = extern struct {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRuleLanguage(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_get_BizRuleImportedPath(self: *const T, pbstrProp: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_get_BizRuleImportedPath(self: *const T, pbstrProp: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).get_BizRuleImportedPath(@ptrCast(*const IAzApplicationGroup2, self), pbstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14473,14 +15351,14 @@ pub const IAzApplicationGroup2 = extern struct {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).put_BizRuleImportedPath(@ptrCast(*const IAzApplicationGroup2, self), bstrProp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzApplicationGroup2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzApplicationGroup2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzApplicationGroup2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzApplicationGroup2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAzTask2_Value = @import("../zig.zig").Guid.initString("03A9A5EE-48C8-4832-9025-AAD503C46526");
+const IID_IAzTask2_Value = @import("../zig.zig").Guid.initString("03a9a5ee-48c8-4832-9025-aad503c46526");
 pub const IID_IAzTask2 = &IID_IAzTask2_Value;
 pub const IAzTask2 = extern struct {
     pub const VTable = extern struct {
@@ -14489,14 +15367,14 @@ pub const IAzTask2 = extern struct {
             self: *const IAzTask2,
             bstrScopeName: BSTR,
             bRecursive: i16,
-            ppRoleAssignments: **IAzRoleAssignments,
+            ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAzTask.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAzTask2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: **IAzRoleAssignments) callconv(.Inline) HRESULT {
+        pub fn IAzTask2_RoleAssignments(self: *const T, bstrScopeName: BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAzTask2.VTable, self.vtable).RoleAssignments(@ptrCast(*const IAzTask2, self), bstrScopeName, bRecursive, ppRoleAssignments);
         }
     };}
@@ -14758,7 +15636,7 @@ pub const SI_SHOW_EFFECTIVE_ACTIVATED = SI_PAGE_ACTIVATED.SI_SHOW_EFFECTIVE_ACTI
 pub const SI_SHOW_SHARE_ACTIVATED = SI_PAGE_ACTIVATED.SI_SHOW_SHARE_ACTIVATED;
 pub const SI_SHOW_CENTRAL_POLICY_ACTIVATED = SI_PAGE_ACTIVATED.SI_SHOW_CENTRAL_POLICY_ACTIVATED;
 
-const IID_ISecurityInformation_Value = @import("../zig.zig").Guid.initString("965FC360-16FF-11D0-91CB-00AA00BBB723");
+const IID_ISecurityInformation_Value = @import("../zig.zig").Guid.initString("965fc360-16ff-11d0-91cb-00aa00bbb723");
 pub const IID_ISecurityInformation = &IID_ISecurityInformation_Value;
 pub const ISecurityInformation = extern struct {
     pub const VTable = extern struct {
@@ -14839,7 +15717,7 @@ pub const ISecurityInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISecurityInformation2_Value = @import("../zig.zig").Guid.initString("C3CCFDB4-6F88-11D2-A3CE-00C04FB1782A");
+const IID_ISecurityInformation2_Value = @import("../zig.zig").Guid.initString("c3ccfdb4-6f88-11d2-a3ce-00c04fb1782a");
 pub const IID_ISecurityInformation2 = &IID_ISecurityInformation2_Value;
 pub const ISecurityInformation2 = extern struct {
     pub const VTable = extern struct {
@@ -14882,7 +15760,7 @@ pub const SID_INFO_LIST = extern struct {
     aSidInfo: [1]SID_INFO,
 };
 
-const IID_IEffectivePermission_Value = @import("../zig.zig").Guid.initString("3853DC76-9F35-407C-88A1-D19344365FBC");
+const IID_IEffectivePermission_Value = @import("../zig.zig").Guid.initString("3853dc76-9f35-407c-88a1-d19344365fbc");
 pub const IID_IEffectivePermission = &IID_IEffectivePermission_Value;
 pub const IEffectivePermission = extern struct {
     pub const VTable = extern struct {
@@ -14910,7 +15788,7 @@ pub const IEffectivePermission = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISecurityObjectTypeInfo_Value = @import("../zig.zig").Guid.initString("FC3066EB-79EF-444B-9111-D18A75EBF2FA");
+const IID_ISecurityObjectTypeInfo_Value = @import("../zig.zig").Guid.initString("fc3066eb-79ef-444b-9111-d18a75ebf2fa");
 pub const IID_ISecurityObjectTypeInfo = &IID_ISecurityObjectTypeInfo_Value;
 pub const ISecurityObjectTypeInfo = extern struct {
     pub const VTable = extern struct {
@@ -14933,7 +15811,7 @@ pub const ISecurityObjectTypeInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISecurityInformation3_Value = @import("../zig.zig").Guid.initString("E2CDC9CC-31BD-4F8F-8C8B-B641AF516A1A");
+const IID_ISecurityInformation3_Value = @import("../zig.zig").Guid.initString("e2cdc9cc-31bd-4f8f-8c8b-b641af516a1a");
 pub const IID_ISecurityInformation3 = &IID_ISecurityInformation3_Value;
 pub const ISecurityInformation3 = extern struct {
     pub const VTable = extern struct {
@@ -14980,7 +15858,7 @@ pub const EFFPERM_RESULT_LIST = extern struct {
     pGrantedAccessList: *u32,
 };
 
-const IID_ISecurityInformation4_Value = @import("../zig.zig").Guid.initString("EA961070-CD14-4621-ACE4-F63C03E583E4");
+const IID_ISecurityInformation4_Value = @import("../zig.zig").Guid.initString("ea961070-cd14-4621-ace4-f63c03e583e4");
 pub const IID_ISecurityInformation4 = &IID_ISecurityInformation4_Value;
 pub const ISecurityInformation4 = extern struct {
     pub const VTable = extern struct {
@@ -15002,7 +15880,7 @@ pub const ISecurityInformation4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEffectivePermission2_Value = @import("../zig.zig").Guid.initString("941FABCA-DD47-4FCA-90BB-B0E10255F20D");
+const IID_IEffectivePermission2_Value = @import("../zig.zig").Guid.initString("941fabca-dd47-4fca-90bb-b0e10255f20d");
 pub const IID_IEffectivePermission2 = &IID_IEffectivePermission2_Value;
 pub const IEffectivePermission2 = extern struct {
     pub const VTable = extern struct {
@@ -15102,253 +15980,253 @@ pub const PFNDSEDITSECURITY = fn(
     param7: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_CObjectId_Value = @import("../zig.zig").Guid.initString("884E2000-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CObjectId_Value = @import("../zig.zig").Guid.initString("884e2000-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CObjectId = &CLSID_CObjectId_Value;
 
-const CLSID_CObjectIds_Value = @import("../zig.zig").Guid.initString("884E2001-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CObjectIds_Value = @import("../zig.zig").Guid.initString("884e2001-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CObjectIds = &CLSID_CObjectIds_Value;
 
-const CLSID_CBinaryConverter_Value = @import("../zig.zig").Guid.initString("884E2002-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CBinaryConverter_Value = @import("../zig.zig").Guid.initString("884e2002-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CBinaryConverter = &CLSID_CBinaryConverter_Value;
 
-const CLSID_CX500DistinguishedName_Value = @import("../zig.zig").Guid.initString("884E2003-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX500DistinguishedName_Value = @import("../zig.zig").Guid.initString("884e2003-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX500DistinguishedName = &CLSID_CX500DistinguishedName_Value;
 
-const CLSID_CCspInformation_Value = @import("../zig.zig").Guid.initString("884E2007-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCspInformation_Value = @import("../zig.zig").Guid.initString("884e2007-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspInformation = &CLSID_CCspInformation_Value;
 
-const CLSID_CCspInformations_Value = @import("../zig.zig").Guid.initString("884E2008-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCspInformations_Value = @import("../zig.zig").Guid.initString("884e2008-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspInformations = &CLSID_CCspInformations_Value;
 
-const CLSID_CCspStatus_Value = @import("../zig.zig").Guid.initString("884E2009-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCspStatus_Value = @import("../zig.zig").Guid.initString("884e2009-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCspStatus = &CLSID_CCspStatus_Value;
 
-const CLSID_CX509PublicKey_Value = @import("../zig.zig").Guid.initString("884E200B-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509PublicKey_Value = @import("../zig.zig").Guid.initString("884e200b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PublicKey = &CLSID_CX509PublicKey_Value;
 
-const CLSID_CX509PrivateKey_Value = @import("../zig.zig").Guid.initString("884E200C-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509PrivateKey_Value = @import("../zig.zig").Guid.initString("884e200c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PrivateKey = &CLSID_CX509PrivateKey_Value;
 
-const CLSID_CX509EndorsementKey_Value = @import("../zig.zig").Guid.initString("11A25A1D-B9A3-4EDD-AF83-3B59ADBED361");
+const CLSID_CX509EndorsementKey_Value = @import("../zig.zig").Guid.initString("11a25a1d-b9a3-4edd-af83-3b59adbed361");
 pub const CLSID_CX509EndorsementKey = &CLSID_CX509EndorsementKey_Value;
 
-const CLSID_CX509Extension_Value = @import("../zig.zig").Guid.initString("884E200D-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509Extension_Value = @import("../zig.zig").Guid.initString("884e200d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Extension = &CLSID_CX509Extension_Value;
 
-const CLSID_CX509Extensions_Value = @import("../zig.zig").Guid.initString("884E200E-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509Extensions_Value = @import("../zig.zig").Guid.initString("884e200e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Extensions = &CLSID_CX509Extensions_Value;
 
-const CLSID_CX509ExtensionKeyUsage_Value = @import("../zig.zig").Guid.initString("884E200F-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionKeyUsage_Value = @import("../zig.zig").Guid.initString("884e200f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionKeyUsage = &CLSID_CX509ExtensionKeyUsage_Value;
 
-const CLSID_CX509ExtensionEnhancedKeyUsage_Value = @import("../zig.zig").Guid.initString("884E2010-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionEnhancedKeyUsage_Value = @import("../zig.zig").Guid.initString("884e2010-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionEnhancedKeyUsage = &CLSID_CX509ExtensionEnhancedKeyUsage_Value;
 
-const CLSID_CX509ExtensionTemplateName_Value = @import("../zig.zig").Guid.initString("884E2011-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionTemplateName_Value = @import("../zig.zig").Guid.initString("884e2011-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionTemplateName = &CLSID_CX509ExtensionTemplateName_Value;
 
-const CLSID_CX509ExtensionTemplate_Value = @import("../zig.zig").Guid.initString("884E2012-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionTemplate_Value = @import("../zig.zig").Guid.initString("884e2012-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionTemplate = &CLSID_CX509ExtensionTemplate_Value;
 
-const CLSID_CAlternativeName_Value = @import("../zig.zig").Guid.initString("884E2013-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CAlternativeName_Value = @import("../zig.zig").Guid.initString("884e2013-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CAlternativeName = &CLSID_CAlternativeName_Value;
 
-const CLSID_CAlternativeNames_Value = @import("../zig.zig").Guid.initString("884E2014-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CAlternativeNames_Value = @import("../zig.zig").Guid.initString("884e2014-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CAlternativeNames = &CLSID_CAlternativeNames_Value;
 
-const CLSID_CX509ExtensionAlternativeNames_Value = @import("../zig.zig").Guid.initString("884E2015-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionAlternativeNames_Value = @import("../zig.zig").Guid.initString("884e2015-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionAlternativeNames = &CLSID_CX509ExtensionAlternativeNames_Value;
 
-const CLSID_CX509ExtensionBasicConstraints_Value = @import("../zig.zig").Guid.initString("884E2016-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionBasicConstraints_Value = @import("../zig.zig").Guid.initString("884e2016-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionBasicConstraints = &CLSID_CX509ExtensionBasicConstraints_Value;
 
-const CLSID_CX509ExtensionSubjectKeyIdentifier_Value = @import("../zig.zig").Guid.initString("884E2017-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionSubjectKeyIdentifier_Value = @import("../zig.zig").Guid.initString("884e2017-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionSubjectKeyIdentifier = &CLSID_CX509ExtensionSubjectKeyIdentifier_Value;
 
-const CLSID_CX509ExtensionAuthorityKeyIdentifier_Value = @import("../zig.zig").Guid.initString("884E2018-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionAuthorityKeyIdentifier_Value = @import("../zig.zig").Guid.initString("884e2018-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionAuthorityKeyIdentifier = &CLSID_CX509ExtensionAuthorityKeyIdentifier_Value;
 
-const CLSID_CSmimeCapability_Value = @import("../zig.zig").Guid.initString("884E2019-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CSmimeCapability_Value = @import("../zig.zig").Guid.initString("884e2019-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSmimeCapability = &CLSID_CSmimeCapability_Value;
 
-const CLSID_CSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("884E201A-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("884e201a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSmimeCapabilities = &CLSID_CSmimeCapabilities_Value;
 
-const CLSID_CX509ExtensionSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("884E201B-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("884e201b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionSmimeCapabilities = &CLSID_CX509ExtensionSmimeCapabilities_Value;
 
-const CLSID_CPolicyQualifier_Value = @import("../zig.zig").Guid.initString("884E201C-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CPolicyQualifier_Value = @import("../zig.zig").Guid.initString("884e201c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CPolicyQualifier = &CLSID_CPolicyQualifier_Value;
 
-const CLSID_CPolicyQualifiers_Value = @import("../zig.zig").Guid.initString("884E201D-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CPolicyQualifiers_Value = @import("../zig.zig").Guid.initString("884e201d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CPolicyQualifiers = &CLSID_CPolicyQualifiers_Value;
 
-const CLSID_CCertificatePolicy_Value = @import("../zig.zig").Guid.initString("884E201E-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertificatePolicy_Value = @import("../zig.zig").Guid.initString("884e201e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertificatePolicy = &CLSID_CCertificatePolicy_Value;
 
-const CLSID_CCertificatePolicies_Value = @import("../zig.zig").Guid.initString("884E201F-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertificatePolicies_Value = @import("../zig.zig").Guid.initString("884e201f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertificatePolicies = &CLSID_CCertificatePolicies_Value;
 
-const CLSID_CX509ExtensionCertificatePolicies_Value = @import("../zig.zig").Guid.initString("884E2020-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionCertificatePolicies_Value = @import("../zig.zig").Guid.initString("884e2020-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionCertificatePolicies = &CLSID_CX509ExtensionCertificatePolicies_Value;
 
-const CLSID_CX509ExtensionMSApplicationPolicies_Value = @import("../zig.zig").Guid.initString("884E2021-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509ExtensionMSApplicationPolicies_Value = @import("../zig.zig").Guid.initString("884e2021-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509ExtensionMSApplicationPolicies = &CLSID_CX509ExtensionMSApplicationPolicies_Value;
 
-const CLSID_CX509Attribute_Value = @import("../zig.zig").Guid.initString("884E2022-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509Attribute_Value = @import("../zig.zig").Guid.initString("884e2022-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Attribute = &CLSID_CX509Attribute_Value;
 
-const CLSID_CX509Attributes_Value = @import("../zig.zig").Guid.initString("884E2023-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509Attributes_Value = @import("../zig.zig").Guid.initString("884e2023-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Attributes = &CLSID_CX509Attributes_Value;
 
-const CLSID_CX509AttributeExtensions_Value = @import("../zig.zig").Guid.initString("884E2024-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeExtensions_Value = @import("../zig.zig").Guid.initString("884e2024-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeExtensions = &CLSID_CX509AttributeExtensions_Value;
 
-const CLSID_CX509AttributeClientId_Value = @import("../zig.zig").Guid.initString("884E2025-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeClientId_Value = @import("../zig.zig").Guid.initString("884e2025-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeClientId = &CLSID_CX509AttributeClientId_Value;
 
-const CLSID_CX509AttributeRenewalCertificate_Value = @import("../zig.zig").Guid.initString("884E2026-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeRenewalCertificate_Value = @import("../zig.zig").Guid.initString("884e2026-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeRenewalCertificate = &CLSID_CX509AttributeRenewalCertificate_Value;
 
-const CLSID_CX509AttributeArchiveKey_Value = @import("../zig.zig").Guid.initString("884E2027-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeArchiveKey_Value = @import("../zig.zig").Guid.initString("884e2027-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeArchiveKey = &CLSID_CX509AttributeArchiveKey_Value;
 
-const CLSID_CX509AttributeArchiveKeyHash_Value = @import("../zig.zig").Guid.initString("884E2028-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeArchiveKeyHash_Value = @import("../zig.zig").Guid.initString("884e2028-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeArchiveKeyHash = &CLSID_CX509AttributeArchiveKeyHash_Value;
 
-const CLSID_CX509AttributeOSVersion_Value = @import("../zig.zig").Guid.initString("884E202A-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeOSVersion_Value = @import("../zig.zig").Guid.initString("884e202a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeOSVersion = &CLSID_CX509AttributeOSVersion_Value;
 
-const CLSID_CX509AttributeCspProvider_Value = @import("../zig.zig").Guid.initString("884E202B-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509AttributeCspProvider_Value = @import("../zig.zig").Guid.initString("884e202b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509AttributeCspProvider = &CLSID_CX509AttributeCspProvider_Value;
 
-const CLSID_CCryptAttribute_Value = @import("../zig.zig").Guid.initString("884E202C-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCryptAttribute_Value = @import("../zig.zig").Guid.initString("884e202c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCryptAttribute = &CLSID_CCryptAttribute_Value;
 
-const CLSID_CCryptAttributes_Value = @import("../zig.zig").Guid.initString("884E202D-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCryptAttributes_Value = @import("../zig.zig").Guid.initString("884e202d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCryptAttributes = &CLSID_CCryptAttributes_Value;
 
-const CLSID_CCertProperty_Value = @import("../zig.zig").Guid.initString("884E202E-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertProperty_Value = @import("../zig.zig").Guid.initString("884e202e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertProperty = &CLSID_CCertProperty_Value;
 
-const CLSID_CCertProperties_Value = @import("../zig.zig").Guid.initString("884E202F-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertProperties_Value = @import("../zig.zig").Guid.initString("884e202f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertProperties = &CLSID_CCertProperties_Value;
 
-const CLSID_CCertPropertyFriendlyName_Value = @import("../zig.zig").Guid.initString("884E2030-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyFriendlyName_Value = @import("../zig.zig").Guid.initString("884e2030-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyFriendlyName = &CLSID_CCertPropertyFriendlyName_Value;
 
-const CLSID_CCertPropertyDescription_Value = @import("../zig.zig").Guid.initString("884E2031-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyDescription_Value = @import("../zig.zig").Guid.initString("884e2031-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyDescription = &CLSID_CCertPropertyDescription_Value;
 
-const CLSID_CCertPropertyAutoEnroll_Value = @import("../zig.zig").Guid.initString("884E2032-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyAutoEnroll_Value = @import("../zig.zig").Guid.initString("884e2032-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyAutoEnroll = &CLSID_CCertPropertyAutoEnroll_Value;
 
-const CLSID_CCertPropertyRequestOriginator_Value = @import("../zig.zig").Guid.initString("884E2033-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyRequestOriginator_Value = @import("../zig.zig").Guid.initString("884e2033-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyRequestOriginator = &CLSID_CCertPropertyRequestOriginator_Value;
 
-const CLSID_CCertPropertySHA1Hash_Value = @import("../zig.zig").Guid.initString("884E2034-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertySHA1Hash_Value = @import("../zig.zig").Guid.initString("884e2034-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertySHA1Hash = &CLSID_CCertPropertySHA1Hash_Value;
 
-const CLSID_CCertPropertyKeyProvInfo_Value = @import("../zig.zig").Guid.initString("884E2036-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyKeyProvInfo_Value = @import("../zig.zig").Guid.initString("884e2036-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyKeyProvInfo = &CLSID_CCertPropertyKeyProvInfo_Value;
 
-const CLSID_CCertPropertyArchived_Value = @import("../zig.zig").Guid.initString("884E2037-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyArchived_Value = @import("../zig.zig").Guid.initString("884e2037-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyArchived = &CLSID_CCertPropertyArchived_Value;
 
-const CLSID_CCertPropertyBackedUp_Value = @import("../zig.zig").Guid.initString("884E2038-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyBackedUp_Value = @import("../zig.zig").Guid.initString("884e2038-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyBackedUp = &CLSID_CCertPropertyBackedUp_Value;
 
-const CLSID_CCertPropertyEnrollment_Value = @import("../zig.zig").Guid.initString("884E2039-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyEnrollment_Value = @import("../zig.zig").Guid.initString("884e2039-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyEnrollment = &CLSID_CCertPropertyEnrollment_Value;
 
-const CLSID_CCertPropertyRenewal_Value = @import("../zig.zig").Guid.initString("884E203A-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyRenewal_Value = @import("../zig.zig").Guid.initString("884e203a-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyRenewal = &CLSID_CCertPropertyRenewal_Value;
 
-const CLSID_CCertPropertyArchivedKeyHash_Value = @import("../zig.zig").Guid.initString("884E203B-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyArchivedKeyHash_Value = @import("../zig.zig").Guid.initString("884e203b-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyArchivedKeyHash = &CLSID_CCertPropertyArchivedKeyHash_Value;
 
-const CLSID_CCertPropertyEnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("884E204C-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CCertPropertyEnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("884e204c-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CCertPropertyEnrollmentPolicyServer = &CLSID_CCertPropertyEnrollmentPolicyServer_Value;
 
-const CLSID_CSignerCertificate_Value = @import("../zig.zig").Guid.initString("884E203D-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CSignerCertificate_Value = @import("../zig.zig").Guid.initString("884e203d-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CSignerCertificate = &CLSID_CSignerCertificate_Value;
 
-const CLSID_CX509NameValuePair_Value = @import("../zig.zig").Guid.initString("884E203F-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509NameValuePair_Value = @import("../zig.zig").Guid.initString("884e203f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509NameValuePair = &CLSID_CX509NameValuePair_Value;
 
-const CLSID_CCertificateAttestationChallenge_Value = @import("../zig.zig").Guid.initString("1362ADA1-EB60-456A-B6E1-118050DB741B");
+const CLSID_CCertificateAttestationChallenge_Value = @import("../zig.zig").Guid.initString("1362ada1-eb60-456a-b6e1-118050db741b");
 pub const CLSID_CCertificateAttestationChallenge = &CLSID_CCertificateAttestationChallenge_Value;
 
-const CLSID_CX509CertificateRequestPkcs10_Value = @import("../zig.zig").Guid.initString("884E2042-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRequestPkcs10_Value = @import("../zig.zig").Guid.initString("884e2042-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestPkcs10 = &CLSID_CX509CertificateRequestPkcs10_Value;
 
-const CLSID_CX509CertificateRequestCertificate_Value = @import("../zig.zig").Guid.initString("884E2043-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRequestCertificate_Value = @import("../zig.zig").Guid.initString("884e2043-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestCertificate = &CLSID_CX509CertificateRequestCertificate_Value;
 
-const CLSID_CX509CertificateRequestPkcs7_Value = @import("../zig.zig").Guid.initString("884E2044-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRequestPkcs7_Value = @import("../zig.zig").Guid.initString("884e2044-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestPkcs7 = &CLSID_CX509CertificateRequestPkcs7_Value;
 
-const CLSID_CX509CertificateRequestCmc_Value = @import("../zig.zig").Guid.initString("884E2045-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRequestCmc_Value = @import("../zig.zig").Guid.initString("884e2045-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRequestCmc = &CLSID_CX509CertificateRequestCmc_Value;
 
-const CLSID_CX509Enrollment_Value = @import("../zig.zig").Guid.initString("884E2046-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509Enrollment_Value = @import("../zig.zig").Guid.initString("884e2046-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509Enrollment = &CLSID_CX509Enrollment_Value;
 
-const CLSID_CX509EnrollmentWebClassFactory_Value = @import("../zig.zig").Guid.initString("884E2049-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509EnrollmentWebClassFactory_Value = @import("../zig.zig").Guid.initString("884e2049-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentWebClassFactory = &CLSID_CX509EnrollmentWebClassFactory_Value;
 
-const CLSID_CX509EnrollmentHelper_Value = @import("../zig.zig").Guid.initString("884E2050-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509EnrollmentHelper_Value = @import("../zig.zig").Guid.initString("884e2050-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentHelper = &CLSID_CX509EnrollmentHelper_Value;
 
-const CLSID_CX509MachineEnrollmentFactory_Value = @import("../zig.zig").Guid.initString("884E2051-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509MachineEnrollmentFactory_Value = @import("../zig.zig").Guid.initString("884e2051-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509MachineEnrollmentFactory = &CLSID_CX509MachineEnrollmentFactory_Value;
 
-const CLSID_CX509EnrollmentPolicyActiveDirectory_Value = @import("../zig.zig").Guid.initString("91F39027-217F-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509EnrollmentPolicyActiveDirectory_Value = @import("../zig.zig").Guid.initString("91f39027-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentPolicyActiveDirectory = &CLSID_CX509EnrollmentPolicyActiveDirectory_Value;
 
-const CLSID_CX509EnrollmentPolicyWebService_Value = @import("../zig.zig").Guid.initString("91F39028-217F-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509EnrollmentPolicyWebService_Value = @import("../zig.zig").Guid.initString("91f39028-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509EnrollmentPolicyWebService = &CLSID_CX509EnrollmentPolicyWebService_Value;
 
-const CLSID_CX509PolicyServerListManager_Value = @import("../zig.zig").Guid.initString("91F39029-217F-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509PolicyServerListManager_Value = @import("../zig.zig").Guid.initString("91f39029-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PolicyServerListManager = &CLSID_CX509PolicyServerListManager_Value;
 
-const CLSID_CX509PolicyServerUrl_Value = @import("../zig.zig").Guid.initString("91F3902A-217F-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509PolicyServerUrl_Value = @import("../zig.zig").Guid.initString("91f3902a-217f-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509PolicyServerUrl = &CLSID_CX509PolicyServerUrl_Value;
 
-const CLSID_CX509CertificateTemplateADWritable_Value = @import("../zig.zig").Guid.initString("8336E323-2E6A-4A04-937C-548F681839B3");
+const CLSID_CX509CertificateTemplateADWritable_Value = @import("../zig.zig").Guid.initString("8336e323-2e6a-4a04-937c-548f681839b3");
 pub const CLSID_CX509CertificateTemplateADWritable = &CLSID_CX509CertificateTemplateADWritable_Value;
 
-const CLSID_CX509CertificateRevocationListEntry_Value = @import("../zig.zig").Guid.initString("884E205E-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRevocationListEntry_Value = @import("../zig.zig").Guid.initString("884e205e-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationListEntry = &CLSID_CX509CertificateRevocationListEntry_Value;
 
-const CLSID_CX509CertificateRevocationListEntries_Value = @import("../zig.zig").Guid.initString("884E205F-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRevocationListEntries_Value = @import("../zig.zig").Guid.initString("884e205f-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationListEntries = &CLSID_CX509CertificateRevocationListEntries_Value;
 
-const CLSID_CX509CertificateRevocationList_Value = @import("../zig.zig").Guid.initString("884E2060-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509CertificateRevocationList_Value = @import("../zig.zig").Guid.initString("884e2060-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509CertificateRevocationList = &CLSID_CX509CertificateRevocationList_Value;
 
-const CLSID_CX509SCEPEnrollment_Value = @import("../zig.zig").Guid.initString("884E2061-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509SCEPEnrollment_Value = @import("../zig.zig").Guid.initString("884e2061-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509SCEPEnrollment = &CLSID_CX509SCEPEnrollment_Value;
 
-const CLSID_CX509SCEPEnrollmentHelper_Value = @import("../zig.zig").Guid.initString("884E2062-217D-11DA-B2A4-000E7BBB2B09");
+const CLSID_CX509SCEPEnrollmentHelper_Value = @import("../zig.zig").Guid.initString("884e2062-217d-11da-b2a4-000e7bbb2b09");
 pub const CLSID_CX509SCEPEnrollmentHelper = &CLSID_CX509SCEPEnrollmentHelper_Value;
 
-const CLSID_CCertGetConfig_Value = @import("../zig.zig").Guid.initString("C6CC49B0-CE17-11D0-8833-00A0C903B83C");
+const CLSID_CCertGetConfig_Value = @import("../zig.zig").Guid.initString("c6cc49b0-ce17-11d0-8833-00a0c903b83c");
 pub const CLSID_CCertGetConfig = &CLSID_CCertGetConfig_Value;
 
-const CLSID_CCertConfig_Value = @import("../zig.zig").Guid.initString("372FCE38-4324-11D0-8810-00A0C903B83C");
+const CLSID_CCertConfig_Value = @import("../zig.zig").Guid.initString("372fce38-4324-11d0-8810-00a0c903b83c");
 pub const CLSID_CCertConfig = &CLSID_CCertConfig_Value;
 
-const CLSID_CCertRequest_Value = @import("../zig.zig").Guid.initString("98AFF3F0-5524-11D0-8812-00A0C903B83C");
+const CLSID_CCertRequest_Value = @import("../zig.zig").Guid.initString("98aff3f0-5524-11d0-8812-00a0c903b83c");
 pub const CLSID_CCertRequest = &CLSID_CCertRequest_Value;
 
-const CLSID_CCertServerPolicy_Value = @import("../zig.zig").Guid.initString("AA000926-FFBE-11CF-8800-00A0C903B83C");
+const CLSID_CCertServerPolicy_Value = @import("../zig.zig").Guid.initString("aa000926-ffbe-11cf-8800-00a0c903b83c");
 pub const CLSID_CCertServerPolicy = &CLSID_CCertServerPolicy_Value;
 
-const CLSID_CCertServerExit_Value = @import("../zig.zig").Guid.initString("4C4A5E40-732C-11D0-8816-00A0C903B83C");
+const CLSID_CCertServerExit_Value = @import("../zig.zig").Guid.initString("4c4a5e40-732c-11d0-8816-00a0c903b83c");
 pub const CLSID_CCertServerExit = &CLSID_CCertServerExit_Value;
 
-const IID_ICertServerPolicy_Value = @import("../zig.zig").Guid.initString("AA000922-FFBE-11CF-8800-00A0C903B83C");
+const IID_ICertServerPolicy_Value = @import("../zig.zig").Guid.initString("aa000922-ffbe-11cf-8800-00a0c903b83c");
 pub const IID_ICertServerPolicy = &IID_ICertServerPolicy_Value;
 pub const ICertServerPolicy = extern struct {
     pub const VTable = extern struct {
@@ -15366,7 +16244,7 @@ pub const ICertServerPolicy = extern struct {
         GetRequestAttribute: fn(
             self: *const ICertServerPolicy,
             strAttributeName: BSTR,
-            pstrAttributeValue: *BSTR,
+            pstrAttributeValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCertificateProperty: fn(
             self: *const ICertServerPolicy,
@@ -15403,7 +16281,7 @@ pub const ICertServerPolicy = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateExtensions: fn(
             self: *const ICertServerPolicy,
-            pstrExtensionName: *BSTR,
+            pstrExtensionName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateExtensionsClose: fn(
             self: *const ICertServerPolicy,
@@ -15414,7 +16292,7 @@ pub const ICertServerPolicy = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateAttributes: fn(
             self: *const ICertServerPolicy,
-            pstrAttributeName: *BSTR,
+            pstrAttributeName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateAttributesClose: fn(
             self: *const ICertServerPolicy,
@@ -15432,7 +16310,7 @@ pub const ICertServerPolicy = extern struct {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetRequestProperty(@ptrCast(*const ICertServerPolicy, self), strPropertyName, PropertyType, pvarPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerPolicy_GetRequestAttribute(self: *const T, strAttributeName: BSTR, pstrAttributeValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerPolicy_GetRequestAttribute(self: *const T, strAttributeName: BSTR, pstrAttributeValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetRequestAttribute(@ptrCast(*const ICertServerPolicy, self), strAttributeName, pstrAttributeValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15460,7 +16338,7 @@ pub const ICertServerPolicy = extern struct {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateExtensionsSetup(@ptrCast(*const ICertServerPolicy, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerPolicy_EnumerateExtensions(self: *const T, pstrExtensionName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerPolicy_EnumerateExtensions(self: *const T, pstrExtensionName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateExtensions(@ptrCast(*const ICertServerPolicy, self), pstrExtensionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15472,7 +16350,7 @@ pub const ICertServerPolicy = extern struct {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateAttributesSetup(@ptrCast(*const ICertServerPolicy, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerPolicy_EnumerateAttributes(self: *const T, pstrAttributeName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerPolicy_EnumerateAttributes(self: *const T, pstrAttributeName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateAttributes(@ptrCast(*const ICertServerPolicy, self), pstrAttributeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15483,7 +16361,7 @@ pub const ICertServerPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertServerExit_Value = @import("../zig.zig").Guid.initString("4BA9EB90-732C-11D0-8816-00A0C903B83C");
+const IID_ICertServerExit_Value = @import("../zig.zig").Guid.initString("4ba9eb90-732c-11d0-8816-00a0c903b83c");
 pub const IID_ICertServerExit = &IID_ICertServerExit_Value;
 pub const ICertServerExit = extern struct {
     pub const VTable = extern struct {
@@ -15501,7 +16379,7 @@ pub const ICertServerExit = extern struct {
         GetRequestAttribute: fn(
             self: *const ICertServerExit,
             strAttributeName: BSTR,
-            pstrAttributeValue: *BSTR,
+            pstrAttributeValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCertificateProperty: fn(
             self: *const ICertServerExit,
@@ -15525,7 +16403,7 @@ pub const ICertServerExit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateExtensions: fn(
             self: *const ICertServerExit,
-            pstrExtensionName: *BSTR,
+            pstrExtensionName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateExtensionsClose: fn(
             self: *const ICertServerExit,
@@ -15536,7 +16414,7 @@ pub const ICertServerExit = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateAttributes: fn(
             self: *const ICertServerExit,
-            pstrAttributeName: *BSTR,
+            pstrAttributeName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateAttributesClose: fn(
             self: *const ICertServerExit,
@@ -15554,7 +16432,7 @@ pub const ICertServerExit = extern struct {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetRequestProperty(@ptrCast(*const ICertServerExit, self), strPropertyName, PropertyType, pvarPropertyValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerExit_GetRequestAttribute(self: *const T, strAttributeName: BSTR, pstrAttributeValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerExit_GetRequestAttribute(self: *const T, strAttributeName: BSTR, pstrAttributeValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetRequestAttribute(@ptrCast(*const ICertServerExit, self), strAttributeName, pstrAttributeValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15574,7 +16452,7 @@ pub const ICertServerExit = extern struct {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateExtensionsSetup(@ptrCast(*const ICertServerExit, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerExit_EnumerateExtensions(self: *const T, pstrExtensionName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerExit_EnumerateExtensions(self: *const T, pstrExtensionName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateExtensions(@ptrCast(*const ICertServerExit, self), pstrExtensionName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15586,7 +16464,7 @@ pub const ICertServerExit = extern struct {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateAttributesSetup(@ptrCast(*const ICertServerExit, self), Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertServerExit_EnumerateAttributes(self: *const T, pstrAttributeName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertServerExit_EnumerateAttributes(self: *const T, pstrAttributeName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateAttributes(@ptrCast(*const ICertServerExit, self), pstrAttributeName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15597,7 +16475,7 @@ pub const ICertServerExit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertGetConfig_Value = @import("../zig.zig").Guid.initString("C7EA09C0-CE17-11D0-8833-00A0C903B83C");
+const IID_ICertGetConfig_Value = @import("../zig.zig").Guid.initString("c7ea09c0-ce17-11d0-8833-00a0c903b83c");
 pub const IID_ICertGetConfig = &IID_ICertGetConfig_Value;
 pub const ICertGetConfig = extern struct {
     pub const VTable = extern struct {
@@ -15605,21 +16483,21 @@ pub const ICertGetConfig = extern struct {
         GetConfig: fn(
             self: *const ICertGetConfig,
             Flags: i32,
-            pstrOut: *BSTR,
+            pstrOut: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertGetConfig_GetConfig(self: *const T, Flags: i32, pstrOut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertGetConfig_GetConfig(self: *const T, Flags: i32, pstrOut: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertGetConfig.VTable, self.vtable).GetConfig(@ptrCast(*const ICertGetConfig, self), Flags, pstrOut);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertConfig_Value = @import("../zig.zig").Guid.initString("372FCE34-4324-11D0-8810-00A0C903B83C");
+const IID_ICertConfig_Value = @import("../zig.zig").Guid.initString("372fce34-4324-11d0-8810-00a0c903b83c");
 pub const IID_ICertConfig = &IID_ICertConfig_Value;
 pub const ICertConfig = extern struct {
     pub const VTable = extern struct {
@@ -15636,12 +16514,12 @@ pub const ICertConfig = extern struct {
         GetField: fn(
             self: *const ICertConfig,
             strFieldName: BSTR,
-            pstrOut: *BSTR,
+            pstrOut: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConfig: fn(
             self: *const ICertConfig,
             Flags: i32,
-            pstrOut: *BSTR,
+            pstrOut: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -15656,18 +16534,18 @@ pub const ICertConfig = extern struct {
             return @ptrCast(*const ICertConfig.VTable, self.vtable).Next(@ptrCast(*const ICertConfig, self), pIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertConfig_GetField(self: *const T, strFieldName: BSTR, pstrOut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertConfig_GetField(self: *const T, strFieldName: BSTR, pstrOut: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertConfig.VTable, self.vtable).GetField(@ptrCast(*const ICertConfig, self), strFieldName, pstrOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertConfig_GetConfig(self: *const T, Flags: i32, pstrOut: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertConfig_GetConfig(self: *const T, Flags: i32, pstrOut: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertConfig.VTable, self.vtable).GetConfig(@ptrCast(*const ICertConfig, self), Flags, pstrOut);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertConfig2_Value = @import("../zig.zig").Guid.initString("7A18EDDE-7E78-4163-8DED-78E2C9CEE924");
+const IID_ICertConfig2_Value = @import("../zig.zig").Guid.initString("7a18edde-7e78-4163-8ded-78e2c9cee924");
 pub const IID_ICertConfig2 = &IID_ICertConfig2_Value;
 pub const ICertConfig2 = extern struct {
     pub const VTable = extern struct {
@@ -15688,7 +16566,7 @@ pub const ICertConfig2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertRequest_Value = @import("../zig.zig").Guid.initString("014E4840-5523-11D0-8812-00A0C903B83C");
+const IID_ICertRequest_Value = @import("../zig.zig").Guid.initString("014e4840-5523-11d0-8812-00a0c903b83c");
 pub const IID_ICertRequest = &IID_ICertRequest_Value;
 pub const ICertRequest = extern struct {
     pub const VTable = extern struct {
@@ -15717,19 +16595,19 @@ pub const ICertRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDispositionMessage: fn(
             self: *const ICertRequest,
-            pstrDispositionMessage: *BSTR,
+            pstrDispositionMessage: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCACertificate: fn(
             self: *const ICertRequest,
             fExchangeCertificate: i32,
             strConfig: BSTR,
             Flags: i32,
-            pstrCertificate: *BSTR,
+            pstrCertificate: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCertificate: fn(
             self: *const ICertRequest,
             Flags: i32,
-            pstrCertificate: *BSTR,
+            pstrCertificate: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -15752,22 +16630,22 @@ pub const ICertRequest = extern struct {
             return @ptrCast(*const ICertRequest.VTable, self.vtable).GetRequestId(@ptrCast(*const ICertRequest, self), pRequestId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest_GetDispositionMessage(self: *const T, pstrDispositionMessage: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest_GetDispositionMessage(self: *const T, pstrDispositionMessage: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest.VTable, self.vtable).GetDispositionMessage(@ptrCast(*const ICertRequest, self), pstrDispositionMessage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest_GetCACertificate(self: *const T, fExchangeCertificate: i32, strConfig: BSTR, Flags: i32, pstrCertificate: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest_GetCACertificate(self: *const T, fExchangeCertificate: i32, strConfig: BSTR, Flags: i32, pstrCertificate: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest.VTable, self.vtable).GetCACertificate(@ptrCast(*const ICertRequest, self), fExchangeCertificate, strConfig, Flags, pstrCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest_GetCertificate(self: *const T, Flags: i32, pstrCertificate: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest_GetCertificate(self: *const T, Flags: i32, pstrCertificate: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest.VTable, self.vtable).GetCertificate(@ptrCast(*const ICertRequest, self), Flags, pstrCertificate);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertRequest2_Value = @import("../zig.zig").Guid.initString("A4772988-4A85-4FA9-824E-B5CF5C16405A");
+const IID_ICertRequest2_Value = @import("../zig.zig").Guid.initString("a4772988-4a85-4fa9-824e-b5cf5c16405a");
 pub const IID_ICertRequest2 = &IID_ICertRequest2_Value;
 pub const ICertRequest2 = extern struct {
     pub const VTable = extern struct {
@@ -15783,7 +16661,7 @@ pub const ICertRequest2 = extern struct {
             self: *const ICertRequest2,
             hrMessage: i32,
             Flags: i32,
-            pstrErrorMessageText: *BSTR,
+            pstrErrorMessageText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCAProperty: fn(
             self: *const ICertRequest2,
@@ -15804,7 +16682,7 @@ pub const ICertRequest2 = extern struct {
             self: *const ICertRequest2,
             strConfig: BSTR,
             PropId: i32,
-            pstrDisplayName: *BSTR,
+            pstrDisplayName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFullResponseProperty: fn(
             self: *const ICertRequest2,
@@ -15823,7 +16701,7 @@ pub const ICertRequest2 = extern struct {
             return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetIssuedCertificate(@ptrCast(*const ICertRequest2, self), strConfig, RequestId, strSerialNumber, pDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest2_GetErrorMessageText(self: *const T, hrMessage: i32, Flags: i32, pstrErrorMessageText: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest2_GetErrorMessageText(self: *const T, hrMessage: i32, Flags: i32, pstrErrorMessageText: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetErrorMessageText(@ptrCast(*const ICertRequest2, self), hrMessage, Flags, pstrErrorMessageText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15835,7 +16713,7 @@ pub const ICertRequest2 = extern struct {
             return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetCAPropertyFlags(@ptrCast(*const ICertRequest2, self), strConfig, PropId, pPropFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest2_GetCAPropertyDisplayName(self: *const T, strConfig: BSTR, PropId: i32, pstrDisplayName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest2_GetCAPropertyDisplayName(self: *const T, strConfig: BSTR, PropId: i32, pstrDisplayName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetCAPropertyDisplayName(@ptrCast(*const ICertRequest2, self), strConfig, PropId, pstrDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15859,7 +16737,7 @@ pub const X509AuthKerberos = X509EnrollmentAuthFlags.X509AuthKerberos;
 pub const X509AuthUsername = X509EnrollmentAuthFlags.X509AuthUsername;
 pub const X509AuthCertificate = X509EnrollmentAuthFlags.X509AuthCertificate;
 
-const IID_ICertRequest3_Value = @import("../zig.zig").Guid.initString("AFC8F92B-33A2-4861-BF36-2933B7CD67B3");
+const IID_ICertRequest3_Value = @import("../zig.zig").Guid.initString("afc8f92b-33a2-4861-bf36-2933b7cd67b3");
 pub const IID_ICertRequest3 = &IID_ICertRequest3_Value;
 pub const ICertRequest3 = extern struct {
     pub const VTable = extern struct {
@@ -15873,7 +16751,7 @@ pub const ICertRequest3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRequestIdString: fn(
             self: *const ICertRequest3,
-            pstrRequestId: *BSTR,
+            pstrRequestId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIssuedCertificate2: fn(
             self: *const ICertRequest3,
@@ -15895,7 +16773,7 @@ pub const ICertRequest3 = extern struct {
             return @ptrCast(*const ICertRequest3.VTable, self.vtable).SetCredential(@ptrCast(*const ICertRequest3, self), hWnd, AuthType, strCredential, strPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertRequest3_GetRequestIdString(self: *const T, pstrRequestId: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertRequest3_GetRequestIdString(self: *const T, pstrRequestId: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertRequest3.VTable, self.vtable).GetRequestIdString(@ptrCast(*const ICertRequest3, self), pstrRequestId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15910,7 +16788,7 @@ pub const ICertRequest3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertManageModule_Value = @import("../zig.zig").Guid.initString("E7D7AD42-BD3D-11D1-9A4D-00C04FC297EB");
+const IID_ICertManageModule_Value = @import("../zig.zig").Guid.initString("e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb");
 pub const IID_ICertManageModule = &IID_ICertManageModule_Value;
 pub const ICertManageModule = extern struct {
     pub const VTable = extern struct {
@@ -16074,7 +16952,7 @@ pub const FNCERTSRVSERVERCONTROLW = fn(
     ppbOut: **u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const IID_ICertPolicy_Value = @import("../zig.zig").Guid.initString("38BB5A00-7636-11D0-B413-00A0C91BBF8C");
+const IID_ICertPolicy_Value = @import("../zig.zig").Guid.initString("38bb5a00-7636-11d0-b413-00a0c91bbf8c");
 pub const IID_ICertPolicy = &IID_ICertPolicy_Value;
 pub const ICertPolicy = extern struct {
     pub const VTable = extern struct {
@@ -16122,7 +17000,7 @@ pub const ICertPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPolicy2_Value = @import("../zig.zig").Guid.initString("3DB4910E-8001-4BF1-AA1B-F43A808317A0");
+const IID_ICertPolicy2_Value = @import("../zig.zig").Guid.initString("3db4910e-8001-4bf1-aa1b-f43a808317a0");
 pub const IID_ICertPolicy2 = &IID_ICertPolicy2_Value;
 pub const ICertPolicy2 = extern struct {
     pub const VTable = extern struct {
@@ -16188,7 +17066,7 @@ pub const SCEPFailBadRequest = X509SCEPFailInfo.SCEPFailBadRequest;
 pub const SCEPFailBadTime = X509SCEPFailInfo.SCEPFailBadTime;
 pub const SCEPFailBadCertId = X509SCEPFailInfo.SCEPFailBadCertId;
 
-const IID_INDESPolicy_Value = @import("../zig.zig").Guid.initString("13CA515D-431D-46CC-8C2E-1DA269BBD625");
+const IID_INDESPolicy_Value = @import("../zig.zig").Guid.initString("13ca515d-431d-46cc-8c2e-1da269bbd625");
 pub const IID_INDESPolicy = &IID_INDESPolicy_Value;
 pub const INDESPolicy = extern struct {
     pub const VTable = extern struct {
@@ -17250,7 +18128,7 @@ pub const AlgorithmFlags = extern enum(i32) {
 pub const AlgorithmFlagsNone = AlgorithmFlags.AlgorithmFlagsNone;
 pub const AlgorithmFlagsWrap = AlgorithmFlags.AlgorithmFlagsWrap;
 
-const IID_IObjectId_Value = @import("../zig.zig").Guid.initString("728AB300-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IObjectId_Value = @import("../zig.zig").Guid.initString("728ab300-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IObjectId = &IID_IObjectId_Value;
 pub const IObjectId = extern struct {
     pub const VTable = extern struct {
@@ -17276,7 +18154,7 @@ pub const IObjectId = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FriendlyName: fn(
             self: *const IObjectId,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FriendlyName: fn(
             self: *const IObjectId,
@@ -17284,13 +18162,13 @@ pub const IObjectId = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Value: fn(
             self: *const IObjectId,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAlgorithmName: fn(
             self: *const IObjectId,
             GroupId: ObjectIdGroupId,
             KeyFlags: ObjectIdPublicKeyFlags,
-            pstrAlgorithmName: *BSTR,
+            pstrAlgorithmName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17313,7 +18191,7 @@ pub const IObjectId = extern struct {
             return @ptrCast(*const IObjectId.VTable, self.vtable).get_Name(@ptrCast(*const IObjectId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectId_get_FriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IObjectId_get_FriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectId.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IObjectId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17321,18 +18199,18 @@ pub const IObjectId = extern struct {
             return @ptrCast(*const IObjectId.VTable, self.vtable).put_FriendlyName(@ptrCast(*const IObjectId, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectId_get_Value(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IObjectId_get_Value(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectId.VTable, self.vtable).get_Value(@ptrCast(*const IObjectId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectId_GetAlgorithmName(self: *const T, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, pstrAlgorithmName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IObjectId_GetAlgorithmName(self: *const T, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, pstrAlgorithmName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectId.VTable, self.vtable).GetAlgorithmName(@ptrCast(*const IObjectId, self), GroupId, KeyFlags, pstrAlgorithmName);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IObjectIds_Value = @import("../zig.zig").Guid.initString("728AB301-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IObjectIds_Value = @import("../zig.zig").Guid.initString("728ab301-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IObjectIds = &IID_IObjectIds_Value;
 pub const IObjectIds = extern struct {
     pub const VTable = extern struct {
@@ -17340,7 +18218,7 @@ pub const IObjectIds = extern struct {
         get_ItemByIndex: fn(
             self: *const IObjectIds,
             Index: i32,
-            pVal: **IObjectId,
+            pVal: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IObjectIds,
@@ -17348,7 +18226,7 @@ pub const IObjectIds = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IObjectIds,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IObjectIds,
@@ -17370,7 +18248,7 @@ pub const IObjectIds = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectIds_get_ItemByIndex(self: *const T, Index: i32, pVal: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IObjectIds_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectIds.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IObjectIds, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17378,7 +18256,7 @@ pub const IObjectIds = extern struct {
             return @ptrCast(*const IObjectIds.VTable, self.vtable).get_Count(@ptrCast(*const IObjectIds, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectIds_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IObjectIds_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectIds.VTable, self.vtable).get__NewEnum(@ptrCast(*const IObjectIds, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17401,7 +18279,7 @@ pub const IObjectIds = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBinaryConverter_Value = @import("../zig.zig").Guid.initString("728AB302-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IBinaryConverter_Value = @import("../zig.zig").Guid.initString("728ab302-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IBinaryConverter = &IID_IBinaryConverter_Value;
 pub const IBinaryConverter = extern struct {
     pub const VTable = extern struct {
@@ -17411,13 +18289,13 @@ pub const IBinaryConverter = extern struct {
             strEncodedIn: BSTR,
             EncodingIn: EncodingType,
             Encoding: EncodingType,
-            pstrEncoded: *BSTR,
+            pstrEncoded: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         VariantByteArrayToString: fn(
             self: *const IBinaryConverter,
             pvarByteArray: *VARIANT,
             Encoding: EncodingType,
-            pstrEncoded: *BSTR,
+            pstrEncoded: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StringToVariantByteArray: fn(
             self: *const IBinaryConverter,
@@ -17430,11 +18308,11 @@ pub const IBinaryConverter = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBinaryConverter_StringToString(self: *const T, strEncodedIn: BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncoded: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IBinaryConverter_StringToString(self: *const T, strEncodedIn: BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncoded: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBinaryConverter.VTable, self.vtable).StringToString(@ptrCast(*const IBinaryConverter, self), strEncodedIn, EncodingIn, Encoding, pstrEncoded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBinaryConverter_VariantByteArrayToString(self: *const T, pvarByteArray: *VARIANT, Encoding: EncodingType, pstrEncoded: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IBinaryConverter_VariantByteArrayToString(self: *const T, pvarByteArray: *VARIANT, Encoding: EncodingType, pstrEncoded: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBinaryConverter.VTable, self.vtable).VariantByteArrayToString(@ptrCast(*const IBinaryConverter, self), pvarByteArray, Encoding, pstrEncoded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17445,7 +18323,7 @@ pub const IBinaryConverter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IBinaryConverter2_Value = @import("../zig.zig").Guid.initString("8D7928B4-4E17-428D-9A17-728DF00D1B2B");
+const IID_IBinaryConverter2_Value = @import("../zig.zig").Guid.initString("8d7928b4-4e17-428d-9a17-728df00d1b2b");
 pub const IID_IBinaryConverter2 = &IID_IBinaryConverter2_Value;
 pub const IBinaryConverter2 = extern struct {
     pub const VTable = extern struct {
@@ -17519,7 +18397,7 @@ pub const XCN_CERT_NAME_STR_DISABLE_UTF8_DIR_STR_FLAG = X500NameFlags.XCN_CERT_N
 pub const XCN_CERT_NAME_STR_ENABLE_PUNYCODE_FLAG = X500NameFlags.XCN_CERT_NAME_STR_ENABLE_PUNYCODE_FLAG;
 pub const XCN_CERT_NAME_STR_DS_ESCAPED = X500NameFlags.XCN_CERT_NAME_STR_DS_ESCAPED;
 
-const IID_IX500DistinguishedName_Value = @import("../zig.zig").Guid.initString("728AB303-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX500DistinguishedName_Value = @import("../zig.zig").Guid.initString("728ab303-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX500DistinguishedName = &IID_IX500DistinguishedName_Value;
 pub const IX500DistinguishedName = extern struct {
     pub const VTable = extern struct {
@@ -17537,12 +18415,12 @@ pub const IX500DistinguishedName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IX500DistinguishedName,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncodedName: fn(
             self: *const IX500DistinguishedName,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17557,11 +18435,11 @@ pub const IX500DistinguishedName = extern struct {
             return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).Encode(@ptrCast(*const IX500DistinguishedName, self), strName, NameFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX500DistinguishedName_get_Name(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX500DistinguishedName_get_Name(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).get_Name(@ptrCast(*const IX500DistinguishedName, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX500DistinguishedName_get_EncodedName(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX500DistinguishedName_get_EncodedName(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).get_EncodedName(@ptrCast(*const IX500DistinguishedName, self), Encoding, pValue);
         }
     };}
@@ -17610,7 +18488,7 @@ pub const EnrollmentDisplayStatus = extern enum(i32) {
 pub const DisplayNo = EnrollmentDisplayStatus.DisplayNo;
 pub const DisplayYes = EnrollmentDisplayStatus.DisplayYes;
 
-const IID_IX509EnrollmentStatus_Value = @import("../zig.zig").Guid.initString("728AB304-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509EnrollmentStatus_Value = @import("../zig.zig").Guid.initString("728ab304-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentStatus = &IID_IX509EnrollmentStatus_Value;
 pub const IX509EnrollmentStatus = extern struct {
     pub const VTable = extern struct {
@@ -17621,7 +18499,7 @@ pub const IX509EnrollmentStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Text: fn(
             self: *const IX509EnrollmentStatus,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Text: fn(
             self: *const IX509EnrollmentStatus,
@@ -17661,7 +18539,7 @@ pub const IX509EnrollmentStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ErrorText: fn(
             self: *const IX509EnrollmentStatus,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17672,7 +18550,7 @@ pub const IX509EnrollmentStatus = extern struct {
             return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).AppendText(@ptrCast(*const IX509EnrollmentStatus, self), strText);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentStatus_get_Text(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentStatus_get_Text(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Text(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17712,7 +18590,7 @@ pub const IX509EnrollmentStatus = extern struct {
             return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Error(@ptrCast(*const IX509EnrollmentStatus, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentStatus_get_ErrorText(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentStatus_get_ErrorText(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_ErrorText(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
         }
     };}
@@ -17808,7 +18686,7 @@ pub const XCN_NCRYPT_PREFER_NON_SIGNATURE_OPERATION = AlgorithmOperationFlags.XC
 pub const XCN_NCRYPT_EXACT_MATCH_OPERATION = AlgorithmOperationFlags.XCN_NCRYPT_EXACT_MATCH_OPERATION;
 pub const XCN_NCRYPT_PREFERENCE_MASK_OPERATION = AlgorithmOperationFlags.XCN_NCRYPT_PREFERENCE_MASK_OPERATION;
 
-const IID_ICspAlgorithm_Value = @import("../zig.zig").Guid.initString("728AB305-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspAlgorithm_Value = @import("../zig.zig").Guid.initString("728ab305-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspAlgorithm = &IID_ICspAlgorithm_Value;
 pub const ICspAlgorithm = extern struct {
     pub const VTable = extern struct {
@@ -17817,7 +18695,7 @@ pub const ICspAlgorithm = extern struct {
             self: *const ICspAlgorithm,
             Length: i32,
             AlgFlags: AlgorithmFlags,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DefaultLength: fn(
             self: *const ICspAlgorithm,
@@ -17829,7 +18707,7 @@ pub const ICspAlgorithm = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LongName: fn(
             self: *const ICspAlgorithm,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Valid: fn(
             self: *const ICspAlgorithm,
@@ -17845,7 +18723,7 @@ pub const ICspAlgorithm = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const ICspAlgorithm,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Type: fn(
             self: *const ICspAlgorithm,
@@ -17860,7 +18738,7 @@ pub const ICspAlgorithm = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithm_GetAlgorithmOid(self: *const T, Length: i32, AlgFlags: AlgorithmFlags, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithm_GetAlgorithmOid(self: *const T, Length: i32, AlgFlags: AlgorithmFlags, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).GetAlgorithmOid(@ptrCast(*const ICspAlgorithm, self), Length, AlgFlags, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17872,7 +18750,7 @@ pub const ICspAlgorithm = extern struct {
             return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_IncrementLength(@ptrCast(*const ICspAlgorithm, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithm_get_LongName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithm_get_LongName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_LongName(@ptrCast(*const ICspAlgorithm, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17888,7 +18766,7 @@ pub const ICspAlgorithm = extern struct {
             return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_MinLength(@ptrCast(*const ICspAlgorithm, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithm_get_Name(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithm_get_Name(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_Name(@ptrCast(*const ICspAlgorithm, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17903,7 +18781,7 @@ pub const ICspAlgorithm = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICspAlgorithms_Value = @import("../zig.zig").Guid.initString("728AB306-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspAlgorithms_Value = @import("../zig.zig").Guid.initString("728ab306-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspAlgorithms = &IID_ICspAlgorithms_Value;
 pub const ICspAlgorithms = extern struct {
     pub const VTable = extern struct {
@@ -17911,7 +18789,7 @@ pub const ICspAlgorithms = extern struct {
         get_ItemByIndex: fn(
             self: *const ICspAlgorithms,
             Index: i32,
-            pVal: **ICspAlgorithm,
+            pVal: ?*?*ICspAlgorithm,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICspAlgorithms,
@@ -17919,7 +18797,7 @@ pub const ICspAlgorithms = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICspAlgorithms,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICspAlgorithms,
@@ -17935,7 +18813,7 @@ pub const ICspAlgorithms = extern struct {
         get_ItemByName: fn(
             self: *const ICspAlgorithms,
             strName: BSTR,
-            ppValue: **ICspAlgorithm,
+            ppValue: ?*?*ICspAlgorithm,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_IndexByObjectId: fn(
             self: *const ICspAlgorithms,
@@ -17947,7 +18825,7 @@ pub const ICspAlgorithms = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithms_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICspAlgorithm) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithms_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspAlgorithms, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17955,7 +18833,7 @@ pub const ICspAlgorithms = extern struct {
             return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_Count(@ptrCast(*const ICspAlgorithms, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithms_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithms_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspAlgorithms, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17971,7 +18849,7 @@ pub const ICspAlgorithms = extern struct {
             return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).Clear(@ptrCast(*const ICspAlgorithms, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspAlgorithms_get_ItemByName(self: *const T, strName: BSTR, ppValue: **ICspAlgorithm) callconv(.Inline) HRESULT {
+        pub fn ICspAlgorithms_get_ItemByName(self: *const T, strName: BSTR, ppValue: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspAlgorithms, self), strName, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17991,7 +18869,7 @@ pub const XCN_AT_NONE = X509KeySpec.XCN_AT_NONE;
 pub const XCN_AT_KEYEXCHANGE = X509KeySpec.XCN_AT_KEYEXCHANGE;
 pub const XCN_AT_SIGNATURE = X509KeySpec.XCN_AT_SIGNATURE;
 
-const IID_ICspInformation_Value = @import("../zig.zig").Guid.initString("728AB307-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspInformation_Value = @import("../zig.zig").Guid.initString("728ab307-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspInformation = &IID_ICspInformation_Value;
 pub const ICspInformation = extern struct {
     pub const VTable = extern struct {
@@ -18008,7 +18886,7 @@ pub const ICspInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspAlgorithms: fn(
             self: *const ICspInformation,
-            ppValue: **ICspAlgorithms,
+            ppValue: ?*?*ICspAlgorithms,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HasHardwareRandomNumberGenerator: fn(
             self: *const ICspInformation,
@@ -18036,7 +18914,7 @@ pub const ICspInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const ICspInformation,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Type: fn(
             self: *const ICspInformation,
@@ -18057,7 +18935,7 @@ pub const ICspInformation = extern struct {
         GetDefaultSecurityDescriptor: fn(
             self: *const ICspInformation,
             MachineContext: i16,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_LegacyCsp: fn(
             self: *const ICspInformation,
@@ -18067,7 +18945,7 @@ pub const ICspInformation = extern struct {
             self: *const ICspInformation,
             pAlgorithm: ?*IObjectId,
             Operations: AlgorithmOperationFlags,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -18082,7 +18960,7 @@ pub const ICspInformation = extern struct {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).InitializeFromType(@ptrCast(*const ICspInformation, self), Type, pAlgorithm, MachineContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformation_get_CspAlgorithms(self: *const T, ppValue: **ICspAlgorithms) callconv(.Inline) HRESULT {
+        pub fn ICspInformation_get_CspAlgorithms(self: *const T, ppValue: ?*?*ICspAlgorithms) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).get_CspAlgorithms(@ptrCast(*const ICspInformation, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18110,7 +18988,7 @@ pub const ICspInformation = extern struct {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).get_MaxKeyContainerNameLength(@ptrCast(*const ICspInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformation_get_Name(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICspInformation_get_Name(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).get_Name(@ptrCast(*const ICspInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18130,7 +19008,7 @@ pub const ICspInformation = extern struct {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).get_IsSmartCard(@ptrCast(*const ICspInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformation_GetDefaultSecurityDescriptor(self: *const T, MachineContext: i16, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICspInformation_GetDefaultSecurityDescriptor(self: *const T, MachineContext: i16, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).GetDefaultSecurityDescriptor(@ptrCast(*const ICspInformation, self), MachineContext, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18138,14 +19016,14 @@ pub const ICspInformation = extern struct {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).get_LegacyCsp(@ptrCast(*const ICspInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformation_GetCspStatusFromOperations(self: *const T, pAlgorithm: ?*IObjectId, Operations: AlgorithmOperationFlags, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspInformation_GetCspStatusFromOperations(self: *const T, pAlgorithm: ?*IObjectId, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformation.VTable, self.vtable).GetCspStatusFromOperations(@ptrCast(*const ICspInformation, self), pAlgorithm, Operations, ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICspInformations_Value = @import("../zig.zig").Guid.initString("728AB308-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspInformations_Value = @import("../zig.zig").Guid.initString("728ab308-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspInformations = &IID_ICspInformations_Value;
 pub const ICspInformations = extern struct {
     pub const VTable = extern struct {
@@ -18153,7 +19031,7 @@ pub const ICspInformations = extern struct {
         get_ItemByIndex: fn(
             self: *const ICspInformations,
             Index: i32,
-            pVal: **ICspInformation,
+            pVal: ?*?*ICspInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICspInformations,
@@ -18161,7 +19039,7 @@ pub const ICspInformations = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICspInformations,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICspInformations,
@@ -18180,36 +19058,36 @@ pub const ICspInformations = extern struct {
         get_ItemByName: fn(
             self: *const ICspInformations,
             strName: BSTR,
-            ppCspInformation: **ICspInformation,
+            ppCspInformation: ?*?*ICspInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCspStatusFromProviderName: fn(
             self: *const ICspInformations,
             strProviderName: BSTR,
             LegacyKeySpec: X509KeySpec,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCspStatusesFromOperations: fn(
             self: *const ICspInformations,
             Operations: AlgorithmOperationFlags,
             pCspInformation: ?*ICspInformation,
-            ppValue: **ICspStatuses,
+            ppValue: ?*?*ICspStatuses,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEncryptionCspAlgorithms: fn(
             self: *const ICspInformations,
             pCspInformation: ?*ICspInformation,
-            ppValue: **ICspAlgorithms,
+            ppValue: ?*?*ICspAlgorithms,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetHashAlgorithms: fn(
             self: *const ICspInformations,
             pCspInformation: ?*ICspInformation,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICspInformation) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspInformations, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18217,7 +19095,7 @@ pub const ICspInformations = extern struct {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).get_Count(@ptrCast(*const ICspInformations, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspInformations, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18237,30 +19115,30 @@ pub const ICspInformations = extern struct {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).AddAvailableCsps(@ptrCast(*const ICspInformations, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_get_ItemByName(self: *const T, strName: BSTR, ppCspInformation: **ICspInformation) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_get_ItemByName(self: *const T, strName: BSTR, ppCspInformation: ?*?*ICspInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspInformations, self), strName, ppCspInformation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_GetCspStatusFromProviderName(self: *const T, strProviderName: BSTR, LegacyKeySpec: X509KeySpec, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_GetCspStatusFromProviderName(self: *const T, strProviderName: BSTR, LegacyKeySpec: X509KeySpec, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).GetCspStatusFromProviderName(@ptrCast(*const ICspInformations, self), strProviderName, LegacyKeySpec, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_GetCspStatusesFromOperations(self: *const T, Operations: AlgorithmOperationFlags, pCspInformation: ?*ICspInformation, ppValue: **ICspStatuses) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_GetCspStatusesFromOperations(self: *const T, Operations: AlgorithmOperationFlags, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).GetCspStatusesFromOperations(@ptrCast(*const ICspInformations, self), Operations, pCspInformation, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_GetEncryptionCspAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: **ICspAlgorithms) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_GetEncryptionCspAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspAlgorithms) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).GetEncryptionCspAlgorithms(@ptrCast(*const ICspInformations, self), pCspInformation, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspInformations_GetHashAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn ICspInformations_GetHashAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspInformations.VTable, self.vtable).GetHashAlgorithms(@ptrCast(*const ICspInformations, self), pCspInformation, ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICspStatus_Value = @import("../zig.zig").Guid.initString("728AB309-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspStatus_Value = @import("../zig.zig").Guid.initString("728ab309-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspStatus = &IID_ICspStatus_Value;
 pub const ICspStatus = extern struct {
     pub const VTable = extern struct {
@@ -18280,19 +19158,19 @@ pub const ICspStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspAlgorithm: fn(
             self: *const ICspStatus,
-            ppValue: **ICspAlgorithm,
+            ppValue: ?*?*ICspAlgorithm,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspInformation: fn(
             self: *const ICspStatus,
-            ppValue: **ICspInformation,
+            ppValue: ?*?*ICspInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EnrollmentStatus: fn(
             self: *const ICspStatus,
-            ppValue: **IX509EnrollmentStatus,
+            ppValue: ?*?*IX509EnrollmentStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DisplayName: fn(
             self: *const ICspStatus,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -18311,26 +19189,26 @@ pub const ICspStatus = extern struct {
             return @ptrCast(*const ICspStatus.VTable, self.vtable).put_Ordinal(@ptrCast(*const ICspStatus, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatus_get_CspAlgorithm(self: *const T, ppValue: **ICspAlgorithm) callconv(.Inline) HRESULT {
+        pub fn ICspStatus_get_CspAlgorithm(self: *const T, ppValue: ?*?*ICspAlgorithm) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatus.VTable, self.vtable).get_CspAlgorithm(@ptrCast(*const ICspStatus, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatus_get_CspInformation(self: *const T, ppValue: **ICspInformation) callconv(.Inline) HRESULT {
+        pub fn ICspStatus_get_CspInformation(self: *const T, ppValue: ?*?*ICspInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatus.VTable, self.vtable).get_CspInformation(@ptrCast(*const ICspStatus, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatus_get_EnrollmentStatus(self: *const T, ppValue: **IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatus_get_EnrollmentStatus(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatus.VTable, self.vtable).get_EnrollmentStatus(@ptrCast(*const ICspStatus, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatus_get_DisplayName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICspStatus_get_DisplayName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatus.VTable, self.vtable).get_DisplayName(@ptrCast(*const ICspStatus, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICspStatuses_Value = @import("../zig.zig").Guid.initString("728AB30A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICspStatuses_Value = @import("../zig.zig").Guid.initString("728ab30a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICspStatuses = &IID_ICspStatuses_Value;
 pub const ICspStatuses = extern struct {
     pub const VTable = extern struct {
@@ -18338,7 +19216,7 @@ pub const ICspStatuses = extern struct {
         get_ItemByIndex: fn(
             self: *const ICspStatuses,
             Index: i32,
-            pVal: **ICspStatus,
+            pVal: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICspStatuses,
@@ -18346,7 +19224,7 @@ pub const ICspStatuses = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICspStatuses,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICspStatuses,
@@ -18363,31 +19241,31 @@ pub const ICspStatuses = extern struct {
             self: *const ICspStatuses,
             strCspName: BSTR,
             strAlgorithmName: BSTR,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ItemByOrdinal: fn(
             self: *const ICspStatuses,
             Ordinal: i32,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ItemByOperations: fn(
             self: *const ICspStatuses,
             strCspName: BSTR,
             strAlgorithmName: BSTR,
             Operations: AlgorithmOperationFlags,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ItemByProvider: fn(
             self: *const ICspStatuses,
             pCspStatus: ?*ICspStatus,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspStatuses, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18395,7 +19273,7 @@ pub const ICspStatuses = extern struct {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_Count(@ptrCast(*const ICspStatuses, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspStatuses, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18411,19 +19289,19 @@ pub const ICspStatuses = extern struct {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).Clear(@ptrCast(*const ICspStatuses, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get_ItemByName(self: *const T, strCspName: BSTR, strAlgorithmName: BSTR, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get_ItemByName(self: *const T, strCspName: BSTR, strAlgorithmName: BSTR, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspStatuses, self), strCspName, strAlgorithmName, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get_ItemByOrdinal(self: *const T, Ordinal: i32, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get_ItemByOrdinal(self: *const T, Ordinal: i32, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByOrdinal(@ptrCast(*const ICspStatuses, self), Ordinal, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get_ItemByOperations(self: *const T, strCspName: BSTR, strAlgorithmName: BSTR, Operations: AlgorithmOperationFlags, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get_ItemByOperations(self: *const T, strCspName: BSTR, strAlgorithmName: BSTR, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByOperations(@ptrCast(*const ICspStatuses, self), strCspName, strAlgorithmName, Operations, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICspStatuses_get_ItemByProvider(self: *const T, pCspStatus: ?*ICspStatus, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn ICspStatuses_get_ItemByProvider(self: *const T, pCspStatus: ?*ICspStatus, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByProvider(@ptrCast(*const ICspStatuses, self), pCspStatus, ppValue);
         }
     };}
@@ -18443,7 +19321,7 @@ pub const SKIHashCapiSha1 = KeyIdentifierHashAlgorithm.SKIHashCapiSha1;
 pub const SKIHashSha256 = KeyIdentifierHashAlgorithm.SKIHashSha256;
 pub const SKIHashHPKP = KeyIdentifierHashAlgorithm.SKIHashHPKP;
 
-const IID_IX509PublicKey_Value = @import("../zig.zig").Guid.initString("728AB30B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509PublicKey_Value = @import("../zig.zig").Guid.initString("728ab30b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PublicKey = &IID_IX509PublicKey_Value;
 pub const IX509PublicKey = extern struct {
     pub const VTable = extern struct {
@@ -18462,7 +19340,7 @@ pub const IX509PublicKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Algorithm: fn(
             self: *const IX509PublicKey,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Length: fn(
             self: *const IX509PublicKey,
@@ -18471,18 +19349,18 @@ pub const IX509PublicKey = extern struct {
         get_EncodedKey: fn(
             self: *const IX509PublicKey,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncodedParameters: fn(
             self: *const IX509PublicKey,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ComputeKeyIdentifier: fn(
             self: *const IX509PublicKey,
             Algorithm: KeyIdentifierHashAlgorithm,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -18497,7 +19375,7 @@ pub const IX509PublicKey = extern struct {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).InitializeFromEncodedPublicKeyInfo(@ptrCast(*const IX509PublicKey, self), strEncodedPublicKeyInfo, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PublicKey_get_Algorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509PublicKey_get_Algorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_Algorithm(@ptrCast(*const IX509PublicKey, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18505,15 +19383,15 @@ pub const IX509PublicKey = extern struct {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_Length(@ptrCast(*const IX509PublicKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PublicKey_get_EncodedKey(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PublicKey_get_EncodedKey(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_EncodedKey(@ptrCast(*const IX509PublicKey, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PublicKey_get_EncodedParameters(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PublicKey_get_EncodedParameters(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_EncodedParameters(@ptrCast(*const IX509PublicKey, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PublicKey_ComputeKeyIdentifier(self: *const T, Algorithm: KeyIdentifierHashAlgorithm, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PublicKey_ComputeKeyIdentifier(self: *const T, Algorithm: KeyIdentifierHashAlgorithm, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PublicKey.VTable, self.vtable).ComputeKeyIdentifier(@ptrCast(*const IX509PublicKey, self), Algorithm, Encoding, pValue);
         }
     };}
@@ -18574,7 +19452,7 @@ pub const VerifySmartCardNone = X509PrivateKeyVerify.VerifySmartCardNone;
 pub const VerifySmartCardSilent = X509PrivateKeyVerify.VerifySmartCardSilent;
 pub const VerifyAllowUI = X509PrivateKeyVerify.VerifyAllowUI;
 
-const IID_IX509PrivateKey_Value = @import("../zig.zig").Guid.initString("728AB30C-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509PrivateKey_Value = @import("../zig.zig").Guid.initString("728ab30c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PrivateKey = &IID_IX509PrivateKey_Value;
 pub const IX509PrivateKey = extern struct {
     pub const VTable = extern struct {
@@ -18605,15 +19483,15 @@ pub const IX509PrivateKey = extern struct {
             self: *const IX509PrivateKey,
             strExportType: BSTR,
             Encoding: EncodingType,
-            pstrEncodedKey: *BSTR,
+            pstrEncodedKey: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportPublicKey: fn(
             self: *const IX509PrivateKey,
-            ppPublicKey: **IX509PublicKey,
+            ppPublicKey: ?*?*IX509PublicKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ContainerName: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ContainerName: fn(
             self: *const IX509PrivateKey,
@@ -18621,7 +19499,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ContainerNamePrefix: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ContainerNamePrefix: fn(
             self: *const IX509PrivateKey,
@@ -18629,7 +19507,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ReaderName: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ReaderName: fn(
             self: *const IX509PrivateKey,
@@ -18637,7 +19515,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspInformations: fn(
             self: *const IX509PrivateKey,
-            ppValue: **ICspInformations,
+            ppValue: ?*?*ICspInformations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CspInformations: fn(
             self: *const IX509PrivateKey,
@@ -18645,7 +19523,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspStatus: fn(
             self: *const IX509PrivateKey,
-            ppValue: **ICspStatus,
+            ppValue: ?*?*ICspStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CspStatus: fn(
             self: *const IX509PrivateKey,
@@ -18653,7 +19531,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProviderName: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProviderName: fn(
             self: *const IX509PrivateKey,
@@ -18677,7 +19555,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Algorithm: fn(
             self: *const IX509PrivateKey,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Algorithm: fn(
             self: *const IX509PrivateKey,
@@ -18733,7 +19611,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SecurityDescriptor: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SecurityDescriptor: fn(
             self: *const IX509PrivateKey,
@@ -18742,7 +19620,7 @@ pub const IX509PrivateKey = extern struct {
         get_Certificate: fn(
             self: *const IX509PrivateKey,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Certificate: fn(
             self: *const IX509PrivateKey,
@@ -18751,7 +19629,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UniqueContainerName: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Opened: fn(
             self: *const IX509PrivateKey,
@@ -18787,7 +19665,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UIContextMessage: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_UIContextMessage: fn(
             self: *const IX509PrivateKey,
@@ -18799,7 +19677,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FriendlyName: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_FriendlyName: fn(
             self: *const IX509PrivateKey,
@@ -18807,7 +19685,7 @@ pub const IX509PrivateKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const IX509PrivateKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Description: fn(
             self: *const IX509PrivateKey,
@@ -18842,15 +19720,15 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Import(@ptrCast(*const IX509PrivateKey, self), strExportType, strEncodedKey, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_Export(self: *const T, strExportType: BSTR, Encoding: EncodingType, pstrEncodedKey: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_Export(self: *const T, strExportType: BSTR, Encoding: EncodingType, pstrEncodedKey: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Export(@ptrCast(*const IX509PrivateKey, self), strExportType, Encoding, pstrEncodedKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_ExportPublicKey(self: *const T, ppPublicKey: **IX509PublicKey) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_ExportPublicKey(self: *const T, ppPublicKey: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).ExportPublicKey(@ptrCast(*const IX509PrivateKey, self), ppPublicKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_ContainerName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_ContainerName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ContainerName(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18858,7 +19736,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ContainerName(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_ContainerNamePrefix(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_ContainerNamePrefix(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ContainerNamePrefix(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18866,7 +19744,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ContainerNamePrefix(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_ReaderName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_ReaderName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ReaderName(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18874,7 +19752,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ReaderName(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_CspInformations(self: *const T, ppValue: **ICspInformations) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_CspInformations(self: *const T, ppValue: ?*?*ICspInformations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_CspInformations(@ptrCast(*const IX509PrivateKey, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18882,7 +19760,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_CspInformations(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_CspStatus(self: *const T, ppValue: **ICspStatus) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_CspStatus(self: *const T, ppValue: ?*?*ICspStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_CspStatus(@ptrCast(*const IX509PrivateKey, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18890,7 +19768,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_CspStatus(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_ProviderName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_ProviderName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18914,7 +19792,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_LegacyCsp(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_Algorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_Algorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Algorithm(@ptrCast(*const IX509PrivateKey, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18970,7 +19848,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_MachineContext(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_SecurityDescriptor(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_SecurityDescriptor(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_SecurityDescriptor(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18978,7 +19856,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_SecurityDescriptor(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_Certificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509PrivateKey, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18986,7 +19864,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Certificate(@ptrCast(*const IX509PrivateKey, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_UniqueContainerName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_UniqueContainerName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_UniqueContainerName(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19022,7 +19900,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_UIContextMessage(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_UIContextMessage(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19034,7 +19912,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Pin(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_FriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_FriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19042,7 +19920,7 @@ pub const IX509PrivateKey = extern struct {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_FriendlyName(@ptrCast(*const IX509PrivateKey, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey_get_Description(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey_get_Description(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Description(@ptrCast(*const IX509PrivateKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19079,7 +19957,7 @@ pub const XCN_CRYPT_OID_USE_CURVE_NONE = X509KeyParametersExportType.XCN_CRYPT_O
 pub const XCN_CRYPT_OID_USE_CURVE_NAME_FOR_ENCODE_FLAG = X509KeyParametersExportType.XCN_CRYPT_OID_USE_CURVE_NAME_FOR_ENCODE_FLAG;
 pub const XCN_CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG = X509KeyParametersExportType.XCN_CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG;
 
-const IID_IX509PrivateKey2_Value = @import("../zig.zig").Guid.initString("728AB362-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509PrivateKey2_Value = @import("../zig.zig").Guid.initString("728ab362-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PrivateKey2 = &IID_IX509PrivateKey2_Value;
 pub const IX509PrivateKey2 = extern struct {
     pub const VTable = extern struct {
@@ -19094,7 +19972,7 @@ pub const IX509PrivateKey2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AlternateStorageLocation: fn(
             self: *const IX509PrivateKey2,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AlternateStorageLocation: fn(
             self: *const IX509PrivateKey2,
@@ -19102,7 +19980,7 @@ pub const IX509PrivateKey2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AlgorithmName: fn(
             self: *const IX509PrivateKey2,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AlgorithmName: fn(
             self: *const IX509PrivateKey2,
@@ -19111,7 +19989,7 @@ pub const IX509PrivateKey2 = extern struct {
         get_AlgorithmParameters: fn(
             self: *const IX509PrivateKey2,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AlgorithmParameters: fn(
             self: *const IX509PrivateKey2,
@@ -19139,7 +20017,7 @@ pub const IX509PrivateKey2 = extern struct {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_HardwareKeyUsage(@ptrCast(*const IX509PrivateKey2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey2_get_AlternateStorageLocation(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey2_get_AlternateStorageLocation(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlternateStorageLocation(@ptrCast(*const IX509PrivateKey2, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19147,7 +20025,7 @@ pub const IX509PrivateKey2 = extern struct {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_AlternateStorageLocation(@ptrCast(*const IX509PrivateKey2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey2_get_AlgorithmName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey2_get_AlgorithmName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlgorithmName(@ptrCast(*const IX509PrivateKey2, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19155,7 +20033,7 @@ pub const IX509PrivateKey2 = extern struct {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_AlgorithmName(@ptrCast(*const IX509PrivateKey2, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PrivateKey2_get_AlgorithmParameters(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PrivateKey2_get_AlgorithmParameters(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlgorithmParameters(@ptrCast(*const IX509PrivateKey2, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19174,14 +20052,14 @@ pub const IX509PrivateKey2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509EndorsementKey_Value = @import("../zig.zig").Guid.initString("B11CD855-F4C4-4FC6-B710-4422237F09E9");
+const IID_IX509EndorsementKey_Value = @import("../zig.zig").Guid.initString("b11cd855-f4c4-4fc6-b710-4422237f09e9");
 pub const IID_IX509EndorsementKey = &IID_IX509EndorsementKey_Value;
 pub const IX509EndorsementKey = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_ProviderName: fn(
             self: *const IX509EndorsementKey,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProviderName: fn(
             self: *const IX509EndorsementKey,
@@ -19210,7 +20088,7 @@ pub const IX509EndorsementKey = extern struct {
             ManufacturerOnly: i16,
             dwIndex: i32,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCertificateCount: fn(
             self: *const IX509EndorsementKey,
@@ -19219,7 +20097,7 @@ pub const IX509EndorsementKey = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExportPublicKey: fn(
             self: *const IX509EndorsementKey,
-            ppPublicKey: **IX509PublicKey,
+            ppPublicKey: ?*?*IX509PublicKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Open: fn(
             self: *const IX509EndorsementKey,
@@ -19232,7 +20110,7 @@ pub const IX509EndorsementKey = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EndorsementKey_get_ProviderName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EndorsementKey_get_ProviderName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509EndorsementKey, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19256,7 +20134,7 @@ pub const IX509EndorsementKey = extern struct {
             return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).RemoveCertificate(@ptrCast(*const IX509EndorsementKey, self), Encoding, strCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EndorsementKey_GetCertificateByIndex(self: *const T, ManufacturerOnly: i16, dwIndex: i32, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EndorsementKey_GetCertificateByIndex(self: *const T, ManufacturerOnly: i16, dwIndex: i32, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).GetCertificateByIndex(@ptrCast(*const IX509EndorsementKey, self), ManufacturerOnly, dwIndex, Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19264,7 +20142,7 @@ pub const IX509EndorsementKey = extern struct {
             return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).GetCertificateCount(@ptrCast(*const IX509EndorsementKey, self), ManufacturerOnly, pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EndorsementKey_ExportPublicKey(self: *const T, ppPublicKey: **IX509PublicKey) callconv(.Inline) HRESULT {
+        pub fn IX509EndorsementKey_ExportPublicKey(self: *const T, ppPublicKey: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).ExportPublicKey(@ptrCast(*const IX509EndorsementKey, self), ppPublicKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19279,7 +20157,7 @@ pub const IX509EndorsementKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509Extension_Value = @import("../zig.zig").Guid.initString("728AB30D-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Extension_Value = @import("../zig.zig").Guid.initString("728ab30d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Extension = &IID_IX509Extension_Value;
 pub const IX509Extension = extern struct {
     pub const VTable = extern struct {
@@ -19292,12 +20170,12 @@ pub const IX509Extension = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const IX509Extension,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawData: fn(
             self: *const IX509Extension,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Critical: fn(
             self: *const IX509Extension,
@@ -19316,11 +20194,11 @@ pub const IX509Extension = extern struct {
             return @ptrCast(*const IX509Extension.VTable, self.vtable).Initialize(@ptrCast(*const IX509Extension, self), pObjectId, Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Extension_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509Extension_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Extension.VTable, self.vtable).get_ObjectId(@ptrCast(*const IX509Extension, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Extension_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Extension_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Extension.VTable, self.vtable).get_RawData(@ptrCast(*const IX509Extension, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19335,7 +20213,7 @@ pub const IX509Extension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509Extensions_Value = @import("../zig.zig").Guid.initString("728AB30E-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Extensions_Value = @import("../zig.zig").Guid.initString("728ab30e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Extensions = &IID_IX509Extensions_Value;
 pub const IX509Extensions = extern struct {
     pub const VTable = extern struct {
@@ -19343,7 +20221,7 @@ pub const IX509Extensions = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509Extensions,
             Index: i32,
-            pVal: **IX509Extension,
+            pVal: ?*?*IX509Extension,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509Extensions,
@@ -19351,7 +20229,7 @@ pub const IX509Extensions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509Extensions,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509Extensions,
@@ -19378,7 +20256,7 @@ pub const IX509Extensions = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Extensions_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509Extension) callconv(.Inline) HRESULT {
+        pub fn IX509Extensions_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509Extension) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Extensions.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509Extensions, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19386,7 +20264,7 @@ pub const IX509Extensions = extern struct {
             return @ptrCast(*const IX509Extensions.VTable, self.vtable).get_Count(@ptrCast(*const IX509Extensions, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Extensions_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509Extensions_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Extensions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509Extensions, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19438,7 +20316,7 @@ pub const XCN_CERT_CRL_SIGN_KEY_USAGE = X509KeyUsageFlags.XCN_CERT_CRL_SIGN_KEY_
 pub const XCN_CERT_ENCIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.XCN_CERT_ENCIPHER_ONLY_KEY_USAGE;
 pub const XCN_CERT_DECIPHER_ONLY_KEY_USAGE = X509KeyUsageFlags.XCN_CERT_DECIPHER_ONLY_KEY_USAGE;
 
-const IID_IX509ExtensionKeyUsage_Value = @import("../zig.zig").Guid.initString("728AB30F-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionKeyUsage_Value = @import("../zig.zig").Guid.initString("728ab30f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionKeyUsage = &IID_IX509ExtensionKeyUsage_Value;
 pub const IX509ExtensionKeyUsage = extern struct {
     pub const VTable = extern struct {
@@ -19476,7 +20354,7 @@ pub const IX509ExtensionKeyUsage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionEnhancedKeyUsage_Value = @import("../zig.zig").Guid.initString("728AB310-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionEnhancedKeyUsage_Value = @import("../zig.zig").Guid.initString("728ab310-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionEnhancedKeyUsage = &IID_IX509ExtensionEnhancedKeyUsage_Value;
 pub const IX509ExtensionEnhancedKeyUsage = extern struct {
     pub const VTable = extern struct {
@@ -19492,7 +20370,7 @@ pub const IX509ExtensionEnhancedKeyUsage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EnhancedKeyUsage: fn(
             self: *const IX509ExtensionEnhancedKeyUsage,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19507,14 +20385,14 @@ pub const IX509ExtensionEnhancedKeyUsage = extern struct {
             return @ptrCast(*const IX509ExtensionEnhancedKeyUsage.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionEnhancedKeyUsage, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionEnhancedKeyUsage_get_EnhancedKeyUsage(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionEnhancedKeyUsage_get_EnhancedKeyUsage(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionEnhancedKeyUsage.VTable, self.vtable).get_EnhancedKeyUsage(@ptrCast(*const IX509ExtensionEnhancedKeyUsage, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionTemplateName_Value = @import("../zig.zig").Guid.initString("728AB311-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionTemplateName_Value = @import("../zig.zig").Guid.initString("728ab311-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionTemplateName = &IID_IX509ExtensionTemplateName_Value;
 pub const IX509ExtensionTemplateName = extern struct {
     pub const VTable = extern struct {
@@ -19530,7 +20408,7 @@ pub const IX509ExtensionTemplateName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TemplateName: fn(
             self: *const IX509ExtensionTemplateName,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19545,14 +20423,14 @@ pub const IX509ExtensionTemplateName = extern struct {
             return @ptrCast(*const IX509ExtensionTemplateName.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionTemplateName, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionTemplateName_get_TemplateName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionTemplateName_get_TemplateName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionTemplateName.VTable, self.vtable).get_TemplateName(@ptrCast(*const IX509ExtensionTemplateName, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionTemplate_Value = @import("../zig.zig").Guid.initString("728AB312-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionTemplate_Value = @import("../zig.zig").Guid.initString("728ab312-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionTemplate = &IID_IX509ExtensionTemplate_Value;
 pub const IX509ExtensionTemplate = extern struct {
     pub const VTable = extern struct {
@@ -19570,7 +20448,7 @@ pub const IX509ExtensionTemplate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TemplateOid: fn(
             self: *const IX509ExtensionTemplate,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MajorVersion: fn(
             self: *const IX509ExtensionTemplate,
@@ -19593,7 +20471,7 @@ pub const IX509ExtensionTemplate = extern struct {
             return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionTemplate, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionTemplate_get_TemplateOid(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionTemplate_get_TemplateOid(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).get_TemplateOid(@ptrCast(*const IX509ExtensionTemplate, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19635,7 +20513,7 @@ pub const XCN_CERT_ALT_NAME_REGISTERED_ID = AlternativeNameType.XCN_CERT_ALT_NAM
 pub const XCN_CERT_ALT_NAME_GUID = AlternativeNameType.XCN_CERT_ALT_NAME_GUID;
 pub const XCN_CERT_ALT_NAME_USER_PRINCIPLE_NAME = AlternativeNameType.XCN_CERT_ALT_NAME_USER_PRINCIPLE_NAME;
 
-const IID_IAlternativeName_Value = @import("../zig.zig").Guid.initString("728AB313-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IAlternativeName_Value = @import("../zig.zig").Guid.initString("728ab313-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IAlternativeName = &IID_IAlternativeName_Value;
 pub const IAlternativeName = extern struct {
     pub const VTable = extern struct {
@@ -19664,16 +20542,16 @@ pub const IAlternativeName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_StrValue: fn(
             self: *const IAlternativeName,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const IAlternativeName,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawData: fn(
             self: *const IAlternativeName,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19696,22 +20574,22 @@ pub const IAlternativeName = extern struct {
             return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_Type(@ptrCast(*const IAlternativeName, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlternativeName_get_StrValue(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAlternativeName_get_StrValue(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_StrValue(@ptrCast(*const IAlternativeName, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlternativeName_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IAlternativeName_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_ObjectId(@ptrCast(*const IAlternativeName, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlternativeName_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IAlternativeName_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_RawData(@ptrCast(*const IAlternativeName, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IAlternativeNames_Value = @import("../zig.zig").Guid.initString("728AB314-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IAlternativeNames_Value = @import("../zig.zig").Guid.initString("728ab314-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IAlternativeNames = &IID_IAlternativeNames_Value;
 pub const IAlternativeNames = extern struct {
     pub const VTable = extern struct {
@@ -19719,7 +20597,7 @@ pub const IAlternativeNames = extern struct {
         get_ItemByIndex: fn(
             self: *const IAlternativeNames,
             Index: i32,
-            pVal: **IAlternativeName,
+            pVal: ?*?*IAlternativeName,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IAlternativeNames,
@@ -19727,7 +20605,7 @@ pub const IAlternativeNames = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IAlternativeNames,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IAlternativeNames,
@@ -19745,7 +20623,7 @@ pub const IAlternativeNames = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlternativeNames_get_ItemByIndex(self: *const T, Index: i32, pVal: **IAlternativeName) callconv(.Inline) HRESULT {
+        pub fn IAlternativeNames_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IAlternativeName) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IAlternativeNames, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19753,7 +20631,7 @@ pub const IAlternativeNames = extern struct {
             return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get_Count(@ptrCast(*const IAlternativeNames, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAlternativeNames_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAlternativeNames_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAlternativeNames, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19772,7 +20650,7 @@ pub const IAlternativeNames = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionAlternativeNames_Value = @import("../zig.zig").Guid.initString("728AB315-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionAlternativeNames_Value = @import("../zig.zig").Guid.initString("728ab315-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionAlternativeNames = &IID_IX509ExtensionAlternativeNames_Value;
 pub const IX509ExtensionAlternativeNames = extern struct {
     pub const VTable = extern struct {
@@ -19788,7 +20666,7 @@ pub const IX509ExtensionAlternativeNames = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_AlternativeNames: fn(
             self: *const IX509ExtensionAlternativeNames,
-            ppValue: **IAlternativeNames,
+            ppValue: ?*?*IAlternativeNames,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19803,14 +20681,14 @@ pub const IX509ExtensionAlternativeNames = extern struct {
             return @ptrCast(*const IX509ExtensionAlternativeNames.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionAlternativeNames, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionAlternativeNames_get_AlternativeNames(self: *const T, ppValue: **IAlternativeNames) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionAlternativeNames_get_AlternativeNames(self: *const T, ppValue: ?*?*IAlternativeNames) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionAlternativeNames.VTable, self.vtable).get_AlternativeNames(@ptrCast(*const IX509ExtensionAlternativeNames, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionBasicConstraints_Value = @import("../zig.zig").Guid.initString("728AB316-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionBasicConstraints_Value = @import("../zig.zig").Guid.initString("728ab316-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionBasicConstraints = &IID_IX509ExtensionBasicConstraints_Value;
 pub const IX509ExtensionBasicConstraints = extern struct {
     pub const VTable = extern struct {
@@ -19857,7 +20735,7 @@ pub const IX509ExtensionBasicConstraints = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionSubjectKeyIdentifier_Value = @import("../zig.zig").Guid.initString("728AB317-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionSubjectKeyIdentifier_Value = @import("../zig.zig").Guid.initString("728ab317-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionSubjectKeyIdentifier = &IID_IX509ExtensionSubjectKeyIdentifier_Value;
 pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
     pub const VTable = extern struct {
@@ -19875,7 +20753,7 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
         get_SubjectKeyIdentifier: fn(
             self: *const IX509ExtensionSubjectKeyIdentifier,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19890,14 +20768,14 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
             return @ptrCast(*const IX509ExtensionSubjectKeyIdentifier.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionSubjectKeyIdentifier, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionSubjectKeyIdentifier_get_SubjectKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionSubjectKeyIdentifier_get_SubjectKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionSubjectKeyIdentifier.VTable, self.vtable).get_SubjectKeyIdentifier(@ptrCast(*const IX509ExtensionSubjectKeyIdentifier, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionAuthorityKeyIdentifier_Value = @import("../zig.zig").Guid.initString("728AB318-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionAuthorityKeyIdentifier_Value = @import("../zig.zig").Guid.initString("728ab318-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionAuthorityKeyIdentifier = &IID_IX509ExtensionAuthorityKeyIdentifier_Value;
 pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
     pub const VTable = extern struct {
@@ -19915,7 +20793,7 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
         get_AuthorityKeyIdentifier: fn(
             self: *const IX509ExtensionAuthorityKeyIdentifier,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19930,14 +20808,14 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
             return @ptrCast(*const IX509ExtensionAuthorityKeyIdentifier.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionAuthorityKeyIdentifier, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionAuthorityKeyIdentifier_get_AuthorityKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionAuthorityKeyIdentifier_get_AuthorityKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionAuthorityKeyIdentifier.VTable, self.vtable).get_AuthorityKeyIdentifier(@ptrCast(*const IX509ExtensionAuthorityKeyIdentifier, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISmimeCapability_Value = @import("../zig.zig").Guid.initString("728AB319-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ISmimeCapability_Value = @import("../zig.zig").Guid.initString("728ab319-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISmimeCapability = &IID_ISmimeCapability_Value;
 pub const ISmimeCapability = extern struct {
     pub const VTable = extern struct {
@@ -19949,7 +20827,7 @@ pub const ISmimeCapability = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const ISmimeCapability,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_BitCount: fn(
             self: *const ISmimeCapability,
@@ -19964,7 +20842,7 @@ pub const ISmimeCapability = extern struct {
             return @ptrCast(*const ISmimeCapability.VTable, self.vtable).Initialize(@ptrCast(*const ISmimeCapability, self), pObjectId, BitCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISmimeCapability_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn ISmimeCapability_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISmimeCapability.VTable, self.vtable).get_ObjectId(@ptrCast(*const ISmimeCapability, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19975,7 +20853,7 @@ pub const ISmimeCapability = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISmimeCapabilities_Value = @import("../zig.zig").Guid.initString("728AB31A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ISmimeCapabilities_Value = @import("../zig.zig").Guid.initString("728ab31a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISmimeCapabilities = &IID_ISmimeCapabilities_Value;
 pub const ISmimeCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -19983,7 +20861,7 @@ pub const ISmimeCapabilities = extern struct {
         get_ItemByIndex: fn(
             self: *const ISmimeCapabilities,
             Index: i32,
-            pVal: **ISmimeCapability,
+            pVal: ?*?*ISmimeCapability,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ISmimeCapabilities,
@@ -19991,7 +20869,7 @@ pub const ISmimeCapabilities = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ISmimeCapabilities,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ISmimeCapabilities,
@@ -20017,7 +20895,7 @@ pub const ISmimeCapabilities = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISmimeCapabilities_get_ItemByIndex(self: *const T, Index: i32, pVal: **ISmimeCapability) callconv(.Inline) HRESULT {
+        pub fn ISmimeCapabilities_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ISmimeCapability) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ISmimeCapabilities, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20025,7 +20903,7 @@ pub const ISmimeCapabilities = extern struct {
             return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get_Count(@ptrCast(*const ISmimeCapabilities, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISmimeCapabilities_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISmimeCapabilities_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISmimeCapabilities, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20052,7 +20930,7 @@ pub const ISmimeCapabilities = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("728AB31B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionSmimeCapabilities_Value = @import("../zig.zig").Guid.initString("728ab31b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionSmimeCapabilities = &IID_IX509ExtensionSmimeCapabilities_Value;
 pub const IX509ExtensionSmimeCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -20068,7 +20946,7 @@ pub const IX509ExtensionSmimeCapabilities = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SmimeCapabilities: fn(
             self: *const IX509ExtensionSmimeCapabilities,
-            ppValue: **ISmimeCapabilities,
+            ppValue: ?*?*ISmimeCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20083,7 +20961,7 @@ pub const IX509ExtensionSmimeCapabilities = extern struct {
             return @ptrCast(*const IX509ExtensionSmimeCapabilities.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionSmimeCapabilities, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionSmimeCapabilities_get_SmimeCapabilities(self: *const T, ppValue: **ISmimeCapabilities) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionSmimeCapabilities_get_SmimeCapabilities(self: *const T, ppValue: ?*?*ISmimeCapabilities) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionSmimeCapabilities.VTable, self.vtable).get_SmimeCapabilities(@ptrCast(*const IX509ExtensionSmimeCapabilities, self), ppValue);
         }
     };}
@@ -20101,7 +20979,7 @@ pub const PolicyQualifierTypeUrl = PolicyQualifierType.PolicyQualifierTypeUrl;
 pub const PolicyQualifierTypeUserNotice = PolicyQualifierType.PolicyQualifierTypeUserNotice;
 pub const PolicyQualifierTypeFlags = PolicyQualifierType.PolicyQualifierTypeFlags;
 
-const IID_IPolicyQualifier_Value = @import("../zig.zig").Guid.initString("728AB31C-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IPolicyQualifier_Value = @import("../zig.zig").Guid.initString("728ab31c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IPolicyQualifier = &IID_IPolicyQualifier_Value;
 pub const IPolicyQualifier = extern struct {
     pub const VTable = extern struct {
@@ -20113,11 +20991,11 @@ pub const IPolicyQualifier = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const IPolicyQualifier,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Qualifier: fn(
             self: *const IPolicyQualifier,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Type: fn(
             self: *const IPolicyQualifier,
@@ -20126,7 +21004,7 @@ pub const IPolicyQualifier = extern struct {
         get_RawData: fn(
             self: *const IPolicyQualifier,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20137,11 +21015,11 @@ pub const IPolicyQualifier = extern struct {
             return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).InitializeEncode(@ptrCast(*const IPolicyQualifier, self), strQualifier, Type);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPolicyQualifier_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IPolicyQualifier_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_ObjectId(@ptrCast(*const IPolicyQualifier, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPolicyQualifier_get_Qualifier(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPolicyQualifier_get_Qualifier(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_Qualifier(@ptrCast(*const IPolicyQualifier, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20149,14 +21027,14 @@ pub const IPolicyQualifier = extern struct {
             return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_Type(@ptrCast(*const IPolicyQualifier, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPolicyQualifier_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IPolicyQualifier_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_RawData(@ptrCast(*const IPolicyQualifier, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPolicyQualifiers_Value = @import("../zig.zig").Guid.initString("728AB31D-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IPolicyQualifiers_Value = @import("../zig.zig").Guid.initString("728ab31d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IPolicyQualifiers = &IID_IPolicyQualifiers_Value;
 pub const IPolicyQualifiers = extern struct {
     pub const VTable = extern struct {
@@ -20164,7 +21042,7 @@ pub const IPolicyQualifiers = extern struct {
         get_ItemByIndex: fn(
             self: *const IPolicyQualifiers,
             Index: i32,
-            pVal: **IPolicyQualifier,
+            pVal: ?*?*IPolicyQualifier,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IPolicyQualifiers,
@@ -20172,7 +21050,7 @@ pub const IPolicyQualifiers = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IPolicyQualifiers,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IPolicyQualifiers,
@@ -20190,7 +21068,7 @@ pub const IPolicyQualifiers = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPolicyQualifiers_get_ItemByIndex(self: *const T, Index: i32, pVal: **IPolicyQualifier) callconv(.Inline) HRESULT {
+        pub fn IPolicyQualifiers_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IPolicyQualifier) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IPolicyQualifiers, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20198,7 +21076,7 @@ pub const IPolicyQualifiers = extern struct {
             return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get_Count(@ptrCast(*const IPolicyQualifiers, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPolicyQualifiers_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IPolicyQualifiers_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPolicyQualifiers, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20217,7 +21095,7 @@ pub const IPolicyQualifiers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificatePolicy_Value = @import("../zig.zig").Guid.initString("728AB31E-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertificatePolicy_Value = @import("../zig.zig").Guid.initString("728ab31e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificatePolicy = &IID_ICertificatePolicy_Value;
 pub const ICertificatePolicy = extern struct {
     pub const VTable = extern struct {
@@ -20228,11 +21106,11 @@ pub const ICertificatePolicy = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const ICertificatePolicy,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyQualifiers: fn(
             self: *const ICertificatePolicy,
-            ppValue: **IPolicyQualifiers,
+            ppValue: ?*?*IPolicyQualifiers,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20243,18 +21121,18 @@ pub const ICertificatePolicy = extern struct {
             return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).Initialize(@ptrCast(*const ICertificatePolicy, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificatePolicy_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn ICertificatePolicy_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).get_ObjectId(@ptrCast(*const ICertificatePolicy, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificatePolicy_get_PolicyQualifiers(self: *const T, ppValue: **IPolicyQualifiers) callconv(.Inline) HRESULT {
+        pub fn ICertificatePolicy_get_PolicyQualifiers(self: *const T, ppValue: ?*?*IPolicyQualifiers) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).get_PolicyQualifiers(@ptrCast(*const ICertificatePolicy, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificatePolicies_Value = @import("../zig.zig").Guid.initString("728AB31F-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertificatePolicies_Value = @import("../zig.zig").Guid.initString("728ab31f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificatePolicies = &IID_ICertificatePolicies_Value;
 pub const ICertificatePolicies = extern struct {
     pub const VTable = extern struct {
@@ -20262,7 +21140,7 @@ pub const ICertificatePolicies = extern struct {
         get_ItemByIndex: fn(
             self: *const ICertificatePolicies,
             Index: i32,
-            pVal: **ICertificatePolicy,
+            pVal: ?*?*ICertificatePolicy,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICertificatePolicies,
@@ -20270,7 +21148,7 @@ pub const ICertificatePolicies = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICertificatePolicies,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICertificatePolicies,
@@ -20288,7 +21166,7 @@ pub const ICertificatePolicies = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificatePolicies_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICertificatePolicy) callconv(.Inline) HRESULT {
+        pub fn ICertificatePolicies_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertificatePolicy) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertificatePolicies, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20296,7 +21174,7 @@ pub const ICertificatePolicies = extern struct {
             return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get_Count(@ptrCast(*const ICertificatePolicies, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificatePolicies_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICertificatePolicies_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertificatePolicies, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20315,7 +21193,7 @@ pub const ICertificatePolicies = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionCertificatePolicies_Value = @import("../zig.zig").Guid.initString("728AB320-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionCertificatePolicies_Value = @import("../zig.zig").Guid.initString("728ab320-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionCertificatePolicies = &IID_IX509ExtensionCertificatePolicies_Value;
 pub const IX509ExtensionCertificatePolicies = extern struct {
     pub const VTable = extern struct {
@@ -20331,7 +21209,7 @@ pub const IX509ExtensionCertificatePolicies = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Policies: fn(
             self: *const IX509ExtensionCertificatePolicies,
-            ppValue: **ICertificatePolicies,
+            ppValue: ?*?*ICertificatePolicies,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20346,14 +21224,14 @@ pub const IX509ExtensionCertificatePolicies = extern struct {
             return @ptrCast(*const IX509ExtensionCertificatePolicies.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionCertificatePolicies, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionCertificatePolicies_get_Policies(self: *const T, ppValue: **ICertificatePolicies) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionCertificatePolicies_get_Policies(self: *const T, ppValue: ?*?*ICertificatePolicies) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionCertificatePolicies.VTable, self.vtable).get_Policies(@ptrCast(*const IX509ExtensionCertificatePolicies, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509ExtensionMSApplicationPolicies_Value = @import("../zig.zig").Guid.initString("728AB321-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509ExtensionMSApplicationPolicies_Value = @import("../zig.zig").Guid.initString("728ab321-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509ExtensionMSApplicationPolicies = &IID_IX509ExtensionMSApplicationPolicies_Value;
 pub const IX509ExtensionMSApplicationPolicies = extern struct {
     pub const VTable = extern struct {
@@ -20369,7 +21247,7 @@ pub const IX509ExtensionMSApplicationPolicies = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Policies: fn(
             self: *const IX509ExtensionMSApplicationPolicies,
-            ppValue: **ICertificatePolicies,
+            ppValue: ?*?*ICertificatePolicies,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20384,14 +21262,14 @@ pub const IX509ExtensionMSApplicationPolicies = extern struct {
             return @ptrCast(*const IX509ExtensionMSApplicationPolicies.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionMSApplicationPolicies, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509ExtensionMSApplicationPolicies_get_Policies(self: *const T, ppValue: **ICertificatePolicies) callconv(.Inline) HRESULT {
+        pub fn IX509ExtensionMSApplicationPolicies_get_Policies(self: *const T, ppValue: ?*?*ICertificatePolicies) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509ExtensionMSApplicationPolicies.VTable, self.vtable).get_Policies(@ptrCast(*const IX509ExtensionMSApplicationPolicies, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509Attribute_Value = @import("../zig.zig").Guid.initString("728AB322-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Attribute_Value = @import("../zig.zig").Guid.initString("728ab322-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Attribute = &IID_IX509Attribute_Value;
 pub const IX509Attribute = extern struct {
     pub const VTable = extern struct {
@@ -20404,12 +21282,12 @@ pub const IX509Attribute = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const IX509Attribute,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawData: fn(
             self: *const IX509Attribute,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20420,18 +21298,18 @@ pub const IX509Attribute = extern struct {
             return @ptrCast(*const IX509Attribute.VTable, self.vtable).Initialize(@ptrCast(*const IX509Attribute, self), pObjectId, Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Attribute_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509Attribute_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Attribute.VTable, self.vtable).get_ObjectId(@ptrCast(*const IX509Attribute, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Attribute_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Attribute_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Attribute.VTable, self.vtable).get_RawData(@ptrCast(*const IX509Attribute, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509Attributes_Value = @import("../zig.zig").Guid.initString("728AB323-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Attributes_Value = @import("../zig.zig").Guid.initString("728ab323-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Attributes = &IID_IX509Attributes_Value;
 pub const IX509Attributes = extern struct {
     pub const VTable = extern struct {
@@ -20439,7 +21317,7 @@ pub const IX509Attributes = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509Attributes,
             Index: i32,
-            pVal: **IX509Attribute,
+            pVal: ?*?*IX509Attribute,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509Attributes,
@@ -20447,7 +21325,7 @@ pub const IX509Attributes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509Attributes,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509Attributes,
@@ -20465,7 +21343,7 @@ pub const IX509Attributes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Attributes_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509Attribute) callconv(.Inline) HRESULT {
+        pub fn IX509Attributes_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509Attribute) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Attributes.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509Attributes, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20473,7 +21351,7 @@ pub const IX509Attributes = extern struct {
             return @ptrCast(*const IX509Attributes.VTable, self.vtable).get_Count(@ptrCast(*const IX509Attributes, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Attributes_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509Attributes_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Attributes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509Attributes, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20492,7 +21370,7 @@ pub const IX509Attributes = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeExtensions_Value = @import("../zig.zig").Guid.initString("728AB324-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeExtensions_Value = @import("../zig.zig").Guid.initString("728ab324-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeExtensions = &IID_IX509AttributeExtensions_Value;
 pub const IX509AttributeExtensions = extern struct {
     pub const VTable = extern struct {
@@ -20508,7 +21386,7 @@ pub const IX509AttributeExtensions = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509Extensions: fn(
             self: *const IX509AttributeExtensions,
-            ppValue: **IX509Extensions,
+            ppValue: ?*?*IX509Extensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20523,7 +21401,7 @@ pub const IX509AttributeExtensions = extern struct {
             return @ptrCast(*const IX509AttributeExtensions.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeExtensions, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeExtensions_get_X509Extensions(self: *const T, ppValue: **IX509Extensions) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeExtensions_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeExtensions.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509AttributeExtensions, self), ppValue);
         }
     };}
@@ -20559,7 +21437,7 @@ pub const ClientIdTest = RequestClientInfoClientId.ClientIdTest;
 pub const ClientIdWinRT = RequestClientInfoClientId.ClientIdWinRT;
 pub const ClientIdUserStart = RequestClientInfoClientId.ClientIdUserStart;
 
-const IID_IX509AttributeClientId_Value = @import("../zig.zig").Guid.initString("728AB325-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeClientId_Value = @import("../zig.zig").Guid.initString("728ab325-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeClientId = &IID_IX509AttributeClientId_Value;
 pub const IX509AttributeClientId = extern struct {
     pub const VTable = extern struct {
@@ -20582,15 +21460,15 @@ pub const IX509AttributeClientId = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MachineDnsName: fn(
             self: *const IX509AttributeClientId,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UserSamName: fn(
             self: *const IX509AttributeClientId,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProcessName: fn(
             self: *const IX509AttributeClientId,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20609,22 +21487,22 @@ pub const IX509AttributeClientId = extern struct {
             return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_ClientId(@ptrCast(*const IX509AttributeClientId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeClientId_get_MachineDnsName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeClientId_get_MachineDnsName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_MachineDnsName(@ptrCast(*const IX509AttributeClientId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeClientId_get_UserSamName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeClientId_get_UserSamName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_UserSamName(@ptrCast(*const IX509AttributeClientId, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeClientId_get_ProcessName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeClientId_get_ProcessName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_ProcessName(@ptrCast(*const IX509AttributeClientId, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeRenewalCertificate_Value = @import("../zig.zig").Guid.initString("728AB326-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeRenewalCertificate_Value = @import("../zig.zig").Guid.initString("728ab326-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeRenewalCertificate = &IID_IX509AttributeRenewalCertificate_Value;
 pub const IX509AttributeRenewalCertificate = extern struct {
     pub const VTable = extern struct {
@@ -20642,7 +21520,7 @@ pub const IX509AttributeRenewalCertificate = extern struct {
         get_RenewalCertificate: fn(
             self: *const IX509AttributeRenewalCertificate,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20657,14 +21535,14 @@ pub const IX509AttributeRenewalCertificate = extern struct {
             return @ptrCast(*const IX509AttributeRenewalCertificate.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeRenewalCertificate, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeRenewalCertificate_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeRenewalCertificate_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeRenewalCertificate.VTable, self.vtable).get_RenewalCertificate(@ptrCast(*const IX509AttributeRenewalCertificate, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeArchiveKey_Value = @import("../zig.zig").Guid.initString("728AB327-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeArchiveKey_Value = @import("../zig.zig").Guid.initString("728ab327-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeArchiveKey = &IID_IX509AttributeArchiveKey_Value;
 pub const IX509AttributeArchiveKey = extern struct {
     pub const VTable = extern struct {
@@ -20685,11 +21563,11 @@ pub const IX509AttributeArchiveKey = extern struct {
         get_EncryptedKeyBlob: fn(
             self: *const IX509AttributeArchiveKey,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncryptionAlgorithm: fn(
             self: *const IX509AttributeArchiveKey,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncryptionStrength: fn(
             self: *const IX509AttributeArchiveKey,
@@ -20708,11 +21586,11 @@ pub const IX509AttributeArchiveKey = extern struct {
             return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeArchiveKey, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeArchiveKey_get_EncryptedKeyBlob(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeArchiveKey_get_EncryptedKeyBlob(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).get_EncryptedKeyBlob(@ptrCast(*const IX509AttributeArchiveKey, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeArchiveKey_get_EncryptionAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeArchiveKey_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509AttributeArchiveKey, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20723,7 +21601,7 @@ pub const IX509AttributeArchiveKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeArchiveKeyHash_Value = @import("../zig.zig").Guid.initString("728AB328-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeArchiveKeyHash_Value = @import("../zig.zig").Guid.initString("728ab328-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeArchiveKeyHash = &IID_IX509AttributeArchiveKeyHash_Value;
 pub const IX509AttributeArchiveKeyHash = extern struct {
     pub const VTable = extern struct {
@@ -20741,7 +21619,7 @@ pub const IX509AttributeArchiveKeyHash = extern struct {
         get_EncryptedKeyHashBlob: fn(
             self: *const IX509AttributeArchiveKeyHash,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20756,14 +21634,14 @@ pub const IX509AttributeArchiveKeyHash = extern struct {
             return @ptrCast(*const IX509AttributeArchiveKeyHash.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeArchiveKeyHash, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeArchiveKeyHash_get_EncryptedKeyHashBlob(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeArchiveKeyHash_get_EncryptedKeyHashBlob(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeArchiveKeyHash.VTable, self.vtable).get_EncryptedKeyHashBlob(@ptrCast(*const IX509AttributeArchiveKeyHash, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeOSVersion_Value = @import("../zig.zig").Guid.initString("728AB32A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeOSVersion_Value = @import("../zig.zig").Guid.initString("728ab32a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeOSVersion = &IID_IX509AttributeOSVersion_Value;
 pub const IX509AttributeOSVersion = extern struct {
     pub const VTable = extern struct {
@@ -20779,7 +21657,7 @@ pub const IX509AttributeOSVersion = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OSVersion: fn(
             self: *const IX509AttributeOSVersion,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20794,14 +21672,14 @@ pub const IX509AttributeOSVersion = extern struct {
             return @ptrCast(*const IX509AttributeOSVersion.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeOSVersion, self), Encoding, strEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeOSVersion_get_OSVersion(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeOSVersion_get_OSVersion(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeOSVersion.VTable, self.vtable).get_OSVersion(@ptrCast(*const IX509AttributeOSVersion, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509AttributeCspProvider_Value = @import("../zig.zig").Guid.initString("728AB32B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509AttributeCspProvider_Value = @import("../zig.zig").Guid.initString("728ab32b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509AttributeCspProvider = &IID_IX509AttributeCspProvider_Value;
 pub const IX509AttributeCspProvider = extern struct {
     pub const VTable = extern struct {
@@ -20824,12 +21702,12 @@ pub const IX509AttributeCspProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProviderName: fn(
             self: *const IX509AttributeCspProvider,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Signature: fn(
             self: *const IX509AttributeCspProvider,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20848,18 +21726,18 @@ pub const IX509AttributeCspProvider = extern struct {
             return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_KeySpec(@ptrCast(*const IX509AttributeCspProvider, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeCspProvider_get_ProviderName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeCspProvider_get_ProviderName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509AttributeCspProvider, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509AttributeCspProvider_get_Signature(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509AttributeCspProvider_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_Signature(@ptrCast(*const IX509AttributeCspProvider, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICryptAttribute_Value = @import("../zig.zig").Guid.initString("728AB32C-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICryptAttribute_Value = @import("../zig.zig").Guid.initString("728ab32c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICryptAttribute = &IID_ICryptAttribute_Value;
 pub const ICryptAttribute = extern struct {
     pub const VTable = extern struct {
@@ -20874,11 +21752,11 @@ pub const ICryptAttribute = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ObjectId: fn(
             self: *const ICryptAttribute,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Values: fn(
             self: *const ICryptAttribute,
-            ppValue: **IX509Attributes,
+            ppValue: ?*?*IX509Attributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -20893,18 +21771,18 @@ pub const ICryptAttribute = extern struct {
             return @ptrCast(*const ICryptAttribute.VTable, self.vtable).InitializeFromValues(@ptrCast(*const ICryptAttribute, self), pAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICryptAttribute_get_ObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn ICryptAttribute_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICryptAttribute.VTable, self.vtable).get_ObjectId(@ptrCast(*const ICryptAttribute, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICryptAttribute_get_Values(self: *const T, ppValue: **IX509Attributes) callconv(.Inline) HRESULT {
+        pub fn ICryptAttribute_get_Values(self: *const T, ppValue: ?*?*IX509Attributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICryptAttribute.VTable, self.vtable).get_Values(@ptrCast(*const ICryptAttribute, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICryptAttributes_Value = @import("../zig.zig").Guid.initString("728AB32D-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICryptAttributes_Value = @import("../zig.zig").Guid.initString("728ab32d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICryptAttributes = &IID_ICryptAttributes_Value;
 pub const ICryptAttributes = extern struct {
     pub const VTable = extern struct {
@@ -20912,7 +21790,7 @@ pub const ICryptAttributes = extern struct {
         get_ItemByIndex: fn(
             self: *const ICryptAttributes,
             Index: i32,
-            pVal: **ICryptAttribute,
+            pVal: ?*?*ICryptAttribute,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICryptAttributes,
@@ -20920,7 +21798,7 @@ pub const ICryptAttributes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICryptAttributes,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICryptAttributes,
@@ -20947,7 +21825,7 @@ pub const ICryptAttributes = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICryptAttributes_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICryptAttribute) callconv(.Inline) HRESULT {
+        pub fn ICryptAttributes_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICryptAttribute) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICryptAttributes, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20955,7 +21833,7 @@ pub const ICryptAttributes = extern struct {
             return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get_Count(@ptrCast(*const ICryptAttributes, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICryptAttributes_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICryptAttributes_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICryptAttributes, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21185,7 +22063,7 @@ pub const XCN_CERT_FIRST_USER_PROP_ID = CERTENROLL_PROPERTYID.XCN_CERT_FIRST_USE
 pub const XCN_CERT_LAST_USER_PROP_ID = CERTENROLL_PROPERTYID.XCN_CERT_LAST_USER_PROP_ID;
 pub const XCN_CERT_STORE_LOCALIZED_NAME_PROP_ID = CERTENROLL_PROPERTYID.XCN_CERT_STORE_LOCALIZED_NAME_PROP_ID;
 
-const IID_ICertProperty_Value = @import("../zig.zig").Guid.initString("728AB32E-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertProperty_Value = @import("../zig.zig").Guid.initString("728ab32e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertProperty = &IID_ICertProperty_Value;
 pub const ICertProperty = extern struct {
     pub const VTable = extern struct {
@@ -21212,7 +22090,7 @@ pub const ICertProperty = extern struct {
         get_RawData: fn(
             self: *const ICertProperty,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveFromCertificate: fn(
             self: *const ICertProperty,
@@ -21247,7 +22125,7 @@ pub const ICertProperty = extern struct {
             return @ptrCast(*const ICertProperty.VTable, self.vtable).put_PropertyId(@ptrCast(*const ICertProperty, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertProperty_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertProperty_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertProperty.VTable, self.vtable).get_RawData(@ptrCast(*const ICertProperty, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21262,7 +22140,7 @@ pub const ICertProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertProperties_Value = @import("../zig.zig").Guid.initString("728AB32F-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertProperties_Value = @import("../zig.zig").Guid.initString("728ab32f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertProperties = &IID_ICertProperties_Value;
 pub const ICertProperties = extern struct {
     pub const VTable = extern struct {
@@ -21270,7 +22148,7 @@ pub const ICertProperties = extern struct {
         get_ItemByIndex: fn(
             self: *const ICertProperties,
             Index: i32,
-            pVal: **ICertProperty,
+            pVal: ?*?*ICertProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICertProperties,
@@ -21278,7 +22156,7 @@ pub const ICertProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICertProperties,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICertProperties,
@@ -21302,7 +22180,7 @@ pub const ICertProperties = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertProperties_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICertProperty) callconv(.Inline) HRESULT {
+        pub fn ICertProperties_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertProperties.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertProperties, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21310,7 +22188,7 @@ pub const ICertProperties = extern struct {
             return @ptrCast(*const ICertProperties.VTable, self.vtable).get_Count(@ptrCast(*const ICertProperties, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertProperties_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICertProperties_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertProperties, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21333,7 +22211,7 @@ pub const ICertProperties = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyFriendlyName_Value = @import("../zig.zig").Guid.initString("728AB330-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyFriendlyName_Value = @import("../zig.zig").Guid.initString("728ab330-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyFriendlyName = &IID_ICertPropertyFriendlyName_Value;
 pub const ICertPropertyFriendlyName = extern struct {
     pub const VTable = extern struct {
@@ -21344,7 +22222,7 @@ pub const ICertPropertyFriendlyName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FriendlyName: fn(
             self: *const ICertPropertyFriendlyName,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21355,14 +22233,14 @@ pub const ICertPropertyFriendlyName = extern struct {
             return @ptrCast(*const ICertPropertyFriendlyName.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyFriendlyName, self), strFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyFriendlyName_get_FriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyFriendlyName_get_FriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyFriendlyName.VTable, self.vtable).get_FriendlyName(@ptrCast(*const ICertPropertyFriendlyName, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyDescription_Value = @import("../zig.zig").Guid.initString("728AB331-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyDescription_Value = @import("../zig.zig").Guid.initString("728ab331-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyDescription = &IID_ICertPropertyDescription_Value;
 pub const ICertPropertyDescription = extern struct {
     pub const VTable = extern struct {
@@ -21373,7 +22251,7 @@ pub const ICertPropertyDescription = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Description: fn(
             self: *const ICertPropertyDescription,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21384,14 +22262,14 @@ pub const ICertPropertyDescription = extern struct {
             return @ptrCast(*const ICertPropertyDescription.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyDescription, self), strDescription);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyDescription_get_Description(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyDescription_get_Description(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyDescription.VTable, self.vtable).get_Description(@ptrCast(*const ICertPropertyDescription, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyAutoEnroll_Value = @import("../zig.zig").Guid.initString("728AB332-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyAutoEnroll_Value = @import("../zig.zig").Guid.initString("728ab332-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyAutoEnroll = &IID_ICertPropertyAutoEnroll_Value;
 pub const ICertPropertyAutoEnroll = extern struct {
     pub const VTable = extern struct {
@@ -21402,7 +22280,7 @@ pub const ICertPropertyAutoEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TemplateName: fn(
             self: *const ICertPropertyAutoEnroll,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21413,14 +22291,14 @@ pub const ICertPropertyAutoEnroll = extern struct {
             return @ptrCast(*const ICertPropertyAutoEnroll.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyAutoEnroll, self), strTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyAutoEnroll_get_TemplateName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyAutoEnroll_get_TemplateName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyAutoEnroll.VTable, self.vtable).get_TemplateName(@ptrCast(*const ICertPropertyAutoEnroll, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyRequestOriginator_Value = @import("../zig.zig").Guid.initString("728AB333-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyRequestOriginator_Value = @import("../zig.zig").Guid.initString("728ab333-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyRequestOriginator = &IID_ICertPropertyRequestOriginator_Value;
 pub const ICertPropertyRequestOriginator = extern struct {
     pub const VTable = extern struct {
@@ -21434,7 +22312,7 @@ pub const ICertPropertyRequestOriginator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestOriginator: fn(
             self: *const ICertPropertyRequestOriginator,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21449,14 +22327,14 @@ pub const ICertPropertyRequestOriginator = extern struct {
             return @ptrCast(*const ICertPropertyRequestOriginator.VTable, self.vtable).InitializeFromLocalRequestOriginator(@ptrCast(*const ICertPropertyRequestOriginator, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyRequestOriginator_get_RequestOriginator(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyRequestOriginator_get_RequestOriginator(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyRequestOriginator.VTable, self.vtable).get_RequestOriginator(@ptrCast(*const ICertPropertyRequestOriginator, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertySHA1Hash_Value = @import("../zig.zig").Guid.initString("728AB334-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertySHA1Hash_Value = @import("../zig.zig").Guid.initString("728ab334-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertySHA1Hash = &IID_ICertPropertySHA1Hash_Value;
 pub const ICertPropertySHA1Hash = extern struct {
     pub const VTable = extern struct {
@@ -21469,7 +22347,7 @@ pub const ICertPropertySHA1Hash = extern struct {
         get_SHA1Hash: fn(
             self: *const ICertPropertySHA1Hash,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21480,14 +22358,14 @@ pub const ICertPropertySHA1Hash = extern struct {
             return @ptrCast(*const ICertPropertySHA1Hash.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertySHA1Hash, self), Encoding, strRenewalValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertySHA1Hash_get_SHA1Hash(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertySHA1Hash_get_SHA1Hash(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertySHA1Hash.VTable, self.vtable).get_SHA1Hash(@ptrCast(*const ICertPropertySHA1Hash, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyKeyProvInfo_Value = @import("../zig.zig").Guid.initString("728AB336-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyKeyProvInfo_Value = @import("../zig.zig").Guid.initString("728ab336-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyKeyProvInfo = &IID_ICertPropertyKeyProvInfo_Value;
 pub const ICertPropertyKeyProvInfo = extern struct {
     pub const VTable = extern struct {
@@ -21498,7 +22376,7 @@ pub const ICertPropertyKeyProvInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrivateKey: fn(
             self: *const ICertPropertyKeyProvInfo,
-            ppValue: **IX509PrivateKey,
+            ppValue: ?*?*IX509PrivateKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21509,14 +22387,14 @@ pub const ICertPropertyKeyProvInfo = extern struct {
             return @ptrCast(*const ICertPropertyKeyProvInfo.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyKeyProvInfo, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyKeyProvInfo_get_PrivateKey(self: *const T, ppValue: **IX509PrivateKey) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyKeyProvInfo_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyKeyProvInfo.VTable, self.vtable).get_PrivateKey(@ptrCast(*const ICertPropertyKeyProvInfo, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyArchived_Value = @import("../zig.zig").Guid.initString("728AB337-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyArchived_Value = @import("../zig.zig").Guid.initString("728ab337-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyArchived = &IID_ICertPropertyArchived_Value;
 pub const ICertPropertyArchived = extern struct {
     pub const VTable = extern struct {
@@ -21545,7 +22423,7 @@ pub const ICertPropertyArchived = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyBackedUp_Value = @import("../zig.zig").Guid.initString("728AB338-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyBackedUp_Value = @import("../zig.zig").Guid.initString("728ab338-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyBackedUp = &IID_ICertPropertyBackedUp_Value;
 pub const ICertPropertyBackedUp = extern struct {
     pub const VTable = extern struct {
@@ -21591,7 +22469,7 @@ pub const ICertPropertyBackedUp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyEnrollment_Value = @import("../zig.zig").Guid.initString("728AB339-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyEnrollment_Value = @import("../zig.zig").Guid.initString("728ab339-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyEnrollment = &IID_ICertPropertyEnrollment_Value;
 pub const ICertPropertyEnrollment = extern struct {
     pub const VTable = extern struct {
@@ -21609,15 +22487,15 @@ pub const ICertPropertyEnrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CADnsName: fn(
             self: *const ICertPropertyEnrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CAName: fn(
             self: *const ICertPropertyEnrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_FriendlyName: fn(
             self: *const ICertPropertyEnrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21632,22 +22510,22 @@ pub const ICertPropertyEnrollment = extern struct {
             return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_RequestId(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollment_get_CADnsName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollment_get_CADnsName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_CADnsName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollment_get_CAName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollment_get_CAName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_CAName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollment_get_FriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollment_get_FriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_FriendlyName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyRenewal_Value = @import("../zig.zig").Guid.initString("728AB33A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyRenewal_Value = @import("../zig.zig").Guid.initString("728ab33a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyRenewal = &IID_ICertPropertyRenewal_Value;
 pub const ICertPropertyRenewal = extern struct {
     pub const VTable = extern struct {
@@ -21666,7 +22544,7 @@ pub const ICertPropertyRenewal = extern struct {
         get_Renewal: fn(
             self: *const ICertPropertyRenewal,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21681,14 +22559,14 @@ pub const ICertPropertyRenewal = extern struct {
             return @ptrCast(*const ICertPropertyRenewal.VTable, self.vtable).InitializeFromCertificateHash(@ptrCast(*const ICertPropertyRenewal, self), MachineContext, Encoding, strCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyRenewal_get_Renewal(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyRenewal_get_Renewal(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyRenewal.VTable, self.vtable).get_Renewal(@ptrCast(*const ICertPropertyRenewal, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertPropertyArchivedKeyHash_Value = @import("../zig.zig").Guid.initString("728AB33B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyArchivedKeyHash_Value = @import("../zig.zig").Guid.initString("728ab33b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyArchivedKeyHash = &IID_ICertPropertyArchivedKeyHash_Value;
 pub const ICertPropertyArchivedKeyHash = extern struct {
     pub const VTable = extern struct {
@@ -21701,7 +22579,7 @@ pub const ICertPropertyArchivedKeyHash = extern struct {
         get_ArchivedKeyHash: fn(
             self: *const ICertPropertyArchivedKeyHash,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -21712,7 +22590,7 @@ pub const ICertPropertyArchivedKeyHash = extern struct {
             return @ptrCast(*const ICertPropertyArchivedKeyHash.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyArchivedKeyHash, self), Encoding, strArchivedKeyHashValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyArchivedKeyHash_get_ArchivedKeyHash(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyArchivedKeyHash_get_ArchivedKeyHash(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyArchivedKeyHash.VTable, self.vtable).get_ArchivedKeyHash(@ptrCast(*const ICertPropertyArchivedKeyHash, self), Encoding, pValue);
         }
     };}
@@ -21741,7 +22619,7 @@ pub const PsfUseClientId = PolicyServerUrlFlags.PsfUseClientId;
 pub const PsfAutoEnrollmentEnabled = PolicyServerUrlFlags.PsfAutoEnrollmentEnabled;
 pub const PsfAllowUnTrustedCA = PolicyServerUrlFlags.PsfAllowUnTrustedCA;
 
-const IID_ICertPropertyEnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("728AB34A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ICertPropertyEnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("728ab34a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertPropertyEnrollmentPolicyServer = &IID_ICertPropertyEnrollmentPolicyServer_Value;
 pub const ICertPropertyEnrollmentPolicyServer = extern struct {
     pub const VTable = extern struct {
@@ -21759,19 +22637,19 @@ pub const ICertPropertyEnrollmentPolicyServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPolicyServerUrl: fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPolicyServerId: fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnrollmentServerUrl: fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRequestIdString: fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyFlags: fn(
             self: *const ICertPropertyEnrollmentPolicyServer,
@@ -21798,19 +22676,19 @@ pub const ICertPropertyEnrollmentPolicyServer = extern struct {
             return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), PropertyFlags, AuthFlags, EnrollmentServerAuthFlags, UrlFlags, strRequestId, strUrl, strId, strEnrollmentServerUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerUrl(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerId(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollmentPolicyServer_GetEnrollmentServerUrl(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollmentPolicyServer_GetEnrollmentServerUrl(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetEnrollmentServerUrl(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertPropertyEnrollmentPolicyServer_GetRequestIdString(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertPropertyEnrollmentPolicyServer_GetRequestIdString(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetRequestIdString(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21833,14 +22711,14 @@ pub const ICertPropertyEnrollmentPolicyServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509SignatureInformation_Value = @import("../zig.zig").Guid.initString("728AB33C-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509SignatureInformation_Value = @import("../zig.zig").Guid.initString("728ab33c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SignatureInformation = &IID_IX509SignatureInformation_Value;
 pub const IX509SignatureInformation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_HashAlgorithm: fn(
             self: *const IX509SignatureInformation,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HashAlgorithm: fn(
             self: *const IX509SignatureInformation,
@@ -21848,7 +22726,7 @@ pub const IX509SignatureInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PublicKeyAlgorithm: fn(
             self: *const IX509SignatureInformation,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PublicKeyAlgorithm: fn(
             self: *const IX509SignatureInformation,
@@ -21857,7 +22735,7 @@ pub const IX509SignatureInformation = extern struct {
         get_Parameters: fn(
             self: *const IX509SignatureInformation,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Parameters: fn(
             self: *const IX509SignatureInformation,
@@ -21888,7 +22766,7 @@ pub const IX509SignatureInformation = extern struct {
             self: *const IX509SignatureInformation,
             Pkcs7Signature: i16,
             SignatureKey: i16,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultValues: fn(
             self: *const IX509SignatureInformation,
@@ -21898,7 +22776,7 @@ pub const IX509SignatureInformation = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SignatureInformation_get_HashAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509SignatureInformation_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509SignatureInformation, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21906,7 +22784,7 @@ pub const IX509SignatureInformation = extern struct {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IX509SignatureInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SignatureInformation_get_PublicKeyAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509SignatureInformation_get_PublicKeyAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_PublicKeyAlgorithm(@ptrCast(*const IX509SignatureInformation, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21914,7 +22792,7 @@ pub const IX509SignatureInformation = extern struct {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_PublicKeyAlgorithm(@ptrCast(*const IX509SignatureInformation, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SignatureInformation_get_Parameters(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SignatureInformation_get_Parameters(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_Parameters(@ptrCast(*const IX509SignatureInformation, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21942,7 +22820,7 @@ pub const IX509SignatureInformation = extern struct {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_NullSigned(@ptrCast(*const IX509SignatureInformation, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SignatureInformation_GetSignatureAlgorithm(self: *const T, Pkcs7Signature: i16, SignatureKey: i16, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509SignatureInformation_GetSignatureAlgorithm(self: *const T, Pkcs7Signature: i16, SignatureKey: i16, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).GetSignatureAlgorithm(@ptrCast(*const IX509SignatureInformation, self), Pkcs7Signature, SignatureKey, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21953,7 +22831,7 @@ pub const IX509SignatureInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISignerCertificate_Value = @import("../zig.zig").Guid.initString("728AB33D-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ISignerCertificate_Value = @import("../zig.zig").Guid.initString("728ab33d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISignerCertificate = &IID_ISignerCertificate_Value;
 pub const ISignerCertificate = extern struct {
     pub const VTable = extern struct {
@@ -21968,11 +22846,11 @@ pub const ISignerCertificate = extern struct {
         get_Certificate: fn(
             self: *const ISignerCertificate,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrivateKey: fn(
             self: *const ISignerCertificate,
-            ppValue: **IX509PrivateKey,
+            ppValue: ?*?*IX509PrivateKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Silent: fn(
             self: *const ISignerCertificate,
@@ -21992,7 +22870,7 @@ pub const ISignerCertificate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UIContextMessage: fn(
             self: *const ISignerCertificate,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_UIContextMessage: fn(
             self: *const ISignerCertificate,
@@ -22004,7 +22882,7 @@ pub const ISignerCertificate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignatureInformation: fn(
             self: *const ISignerCertificate,
-            ppValue: **IX509SignatureInformation,
+            ppValue: ?*?*IX509SignatureInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -22015,11 +22893,11 @@ pub const ISignerCertificate = extern struct {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).Initialize(@ptrCast(*const ISignerCertificate, self), MachineContext, VerifyType, Encoding, strCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificate_get_Certificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificate_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_Certificate(@ptrCast(*const ISignerCertificate, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificate_get_PrivateKey(self: *const T, ppValue: **IX509PrivateKey) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificate_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_PrivateKey(@ptrCast(*const ISignerCertificate, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22039,7 +22917,7 @@ pub const ISignerCertificate = extern struct {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_ParentWindow(@ptrCast(*const ISignerCertificate, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificate_get_UIContextMessage(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificate_get_UIContextMessage(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const ISignerCertificate, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22051,14 +22929,14 @@ pub const ISignerCertificate = extern struct {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_Pin(@ptrCast(*const ISignerCertificate, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificate_get_SignatureInformation(self: *const T, ppValue: **IX509SignatureInformation) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificate_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const ISignerCertificate, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISignerCertificates_Value = @import("../zig.zig").Guid.initString("728AB33E-217D-11DA-B2A4-000E7BBB2B09");
+const IID_ISignerCertificates_Value = @import("../zig.zig").Guid.initString("728ab33e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_ISignerCertificates = &IID_ISignerCertificates_Value;
 pub const ISignerCertificates = extern struct {
     pub const VTable = extern struct {
@@ -22066,7 +22944,7 @@ pub const ISignerCertificates = extern struct {
         get_ItemByIndex: fn(
             self: *const ISignerCertificates,
             Index: i32,
-            pVal: **ISignerCertificate,
+            pVal: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ISignerCertificates,
@@ -22074,7 +22952,7 @@ pub const ISignerCertificates = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ISignerCertificates,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ISignerCertificates,
@@ -22097,7 +22975,7 @@ pub const ISignerCertificates = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificates_get_ItemByIndex(self: *const T, Index: i32, pVal: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificates_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ISignerCertificates, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22105,7 +22983,7 @@ pub const ISignerCertificates = extern struct {
             return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get_Count(@ptrCast(*const ISignerCertificates, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISignerCertificates_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ISignerCertificates_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISignerCertificates, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22128,7 +23006,7 @@ pub const ISignerCertificates = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509NameValuePair_Value = @import("../zig.zig").Guid.initString("728AB33F-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509NameValuePair_Value = @import("../zig.zig").Guid.initString("728ab33f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509NameValuePair = &IID_IX509NameValuePair_Value;
 pub const IX509NameValuePair = extern struct {
     pub const VTable = extern struct {
@@ -22140,11 +23018,11 @@ pub const IX509NameValuePair = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Value: fn(
             self: *const IX509NameValuePair,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Name: fn(
             self: *const IX509NameValuePair,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -22155,18 +23033,18 @@ pub const IX509NameValuePair = extern struct {
             return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).Initialize(@ptrCast(*const IX509NameValuePair, self), strName, strValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509NameValuePair_get_Value(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509NameValuePair_get_Value(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).get_Value(@ptrCast(*const IX509NameValuePair, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509NameValuePair_get_Name(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509NameValuePair_get_Name(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).get_Name(@ptrCast(*const IX509NameValuePair, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509NameValuePairs_Value = @import("../zig.zig").Guid.initString("728AB340-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509NameValuePairs_Value = @import("../zig.zig").Guid.initString("728ab340-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509NameValuePairs = &IID_IX509NameValuePairs_Value;
 pub const IX509NameValuePairs = extern struct {
     pub const VTable = extern struct {
@@ -22174,7 +23052,7 @@ pub const IX509NameValuePairs = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509NameValuePairs,
             Index: i32,
-            pVal: **IX509NameValuePair,
+            pVal: ?*?*IX509NameValuePair,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509NameValuePairs,
@@ -22182,7 +23060,7 @@ pub const IX509NameValuePairs = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509NameValuePairs,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509NameValuePairs,
@@ -22200,7 +23078,7 @@ pub const IX509NameValuePairs = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509NameValuePairs_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509NameValuePair) callconv(.Inline) HRESULT {
+        pub fn IX509NameValuePairs_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509NameValuePair) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509NameValuePairs, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22208,7 +23086,7 @@ pub const IX509NameValuePairs = extern struct {
             return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get_Count(@ptrCast(*const IX509NameValuePairs, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509NameValuePairs_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509NameValuePairs_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509NameValuePairs, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22292,7 +23170,7 @@ pub const TemplatePropExtensions = EnrollmentTemplateProperty.TemplatePropExtens
 pub const TemplatePropValidityPeriod = EnrollmentTemplateProperty.TemplatePropValidityPeriod;
 pub const TemplatePropRenewalPeriod = EnrollmentTemplateProperty.TemplatePropRenewalPeriod;
 
-const IID_IX509CertificateTemplate_Value = @import("../zig.zig").Guid.initString("54244A13-555A-4E22-896D-1B0E52F76406");
+const IID_IX509CertificateTemplate_Value = @import("../zig.zig").Guid.initString("54244a13-555a-4e22-896d-1b0e52f76406");
 pub const IID_IX509CertificateTemplate = &IID_IX509CertificateTemplate_Value;
 pub const IX509CertificateTemplate = extern struct {
     pub const VTable = extern struct {
@@ -22314,7 +23192,7 @@ pub const IX509CertificateTemplate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateTemplates_Value = @import("../zig.zig").Guid.initString("13B79003-2181-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateTemplates_Value = @import("../zig.zig").Guid.initString("13b79003-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateTemplates = &IID_IX509CertificateTemplates_Value;
 pub const IX509CertificateTemplates = extern struct {
     pub const VTable = extern struct {
@@ -22322,7 +23200,7 @@ pub const IX509CertificateTemplates = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509CertificateTemplates,
             Index: i32,
-            pVal: **IX509CertificateTemplate,
+            pVal: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509CertificateTemplates,
@@ -22330,7 +23208,7 @@ pub const IX509CertificateTemplates = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509CertificateTemplates,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509CertificateTemplates,
@@ -22346,19 +23224,19 @@ pub const IX509CertificateTemplates = extern struct {
         get_ItemByName: fn(
             self: *const IX509CertificateTemplates,
             bstrName: BSTR,
-            ppValue: **IX509CertificateTemplate,
+            ppValue: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ItemByOid: fn(
             self: *const IX509CertificateTemplates,
             pOid: ?*IObjectId,
-            ppValue: **IX509CertificateTemplate,
+            ppValue: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateTemplates_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateTemplates_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509CertificateTemplates, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22366,7 +23244,7 @@ pub const IX509CertificateTemplates = extern struct {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_Count(@ptrCast(*const IX509CertificateTemplates, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateTemplates_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateTemplates_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509CertificateTemplates, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22382,11 +23260,11 @@ pub const IX509CertificateTemplates = extern struct {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).Clear(@ptrCast(*const IX509CertificateTemplates, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateTemplates_get_ItemByName(self: *const T, bstrName: BSTR, ppValue: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateTemplates_get_ItemByName(self: *const T, bstrName: BSTR, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByName(@ptrCast(*const IX509CertificateTemplates, self), bstrName, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateTemplates_get_ItemByOid(self: *const T, pOid: ?*IObjectId, ppValue: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateTemplates_get_ItemByOid(self: *const T, pOid: ?*IObjectId, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByOid(@ptrCast(*const IX509CertificateTemplates, self), pOid, ppValue);
         }
     };}
@@ -22404,7 +23282,7 @@ pub const CommitFlagSaveTemplateUseCurrentOID = CommitTemplateFlags.CommitFlagSa
 pub const CommitFlagSaveTemplateOverwrite = CommitTemplateFlags.CommitFlagSaveTemplateOverwrite;
 pub const CommitFlagDeleteTemplate = CommitTemplateFlags.CommitFlagDeleteTemplate;
 
-const IID_IX509CertificateTemplateWritable_Value = @import("../zig.zig").Guid.initString("F49466A7-395A-4E9E-B6E7-32B331600DC0");
+const IID_IX509CertificateTemplateWritable_Value = @import("../zig.zig").Guid.initString("f49466a7-395a-4e9e-b6e7-32b331600dc0");
 pub const IID_IX509CertificateTemplateWritable = &IID_IX509CertificateTemplateWritable_Value;
 pub const IX509CertificateTemplateWritable = extern struct {
     pub const VTable = extern struct {
@@ -22430,7 +23308,7 @@ pub const IX509CertificateTemplateWritable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509CertificateTemplateWritable,
-            ppValue: **IX509CertificateTemplate,
+            ppValue: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -22453,7 +23331,7 @@ pub const IX509CertificateTemplateWritable = extern struct {
             return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).put_Property(@ptrCast(*const IX509CertificateTemplateWritable, self), property, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateTemplateWritable_get_Template(self: *const T, ppValue: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateTemplateWritable_get_Template(self: *const T, ppValue: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateTemplateWritable, self), ppValue);
         }
     };}
@@ -22487,7 +23365,7 @@ pub const CAPropSiteName = EnrollmentCAProperty.CAPropSiteName;
 pub const CAPropSecurity = EnrollmentCAProperty.CAPropSecurity;
 pub const CAPropRenewalOnly = EnrollmentCAProperty.CAPropRenewalOnly;
 
-const IID_ICertificationAuthority_Value = @import("../zig.zig").Guid.initString("835D1F61-1E95-4BC8-B4D3-976C42B968F7");
+const IID_ICertificationAuthority_Value = @import("../zig.zig").Guid.initString("835d1f61-1e95-4bc8-b4d3-976c42b968f7");
 pub const IID_ICertificationAuthority = &IID_ICertificationAuthority_Value;
 pub const ICertificationAuthority = extern struct {
     pub const VTable = extern struct {
@@ -22509,7 +23387,7 @@ pub const ICertificationAuthority = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificationAuthorities_Value = @import("../zig.zig").Guid.initString("13B79005-2181-11DA-B2A4-000E7BBB2B09");
+const IID_ICertificationAuthorities_Value = @import("../zig.zig").Guid.initString("13b79005-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_ICertificationAuthorities = &IID_ICertificationAuthorities_Value;
 pub const ICertificationAuthorities = extern struct {
     pub const VTable = extern struct {
@@ -22517,7 +23395,7 @@ pub const ICertificationAuthorities = extern struct {
         get_ItemByIndex: fn(
             self: *const ICertificationAuthorities,
             Index: i32,
-            pVal: **ICertificationAuthority,
+            pVal: ?*?*ICertificationAuthority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const ICertificationAuthorities,
@@ -22525,7 +23403,7 @@ pub const ICertificationAuthorities = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const ICertificationAuthorities,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const ICertificationAuthorities,
@@ -22544,14 +23422,14 @@ pub const ICertificationAuthorities = extern struct {
         get_ItemByName: fn(
             self: *const ICertificationAuthorities,
             strName: BSTR,
-            ppValue: **ICertificationAuthority,
+            ppValue: ?*?*ICertificationAuthority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificationAuthorities_get_ItemByIndex(self: *const T, Index: i32, pVal: **ICertificationAuthority) callconv(.Inline) HRESULT {
+        pub fn ICertificationAuthorities_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertificationAuthority) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertificationAuthorities, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22559,7 +23437,7 @@ pub const ICertificationAuthorities = extern struct {
             return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_Count(@ptrCast(*const ICertificationAuthorities, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificationAuthorities_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn ICertificationAuthorities_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertificationAuthorities, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22579,7 +23457,7 @@ pub const ICertificationAuthorities = extern struct {
             return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).ComputeSiteCosts(@ptrCast(*const ICertificationAuthorities, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificationAuthorities_get_ItemByName(self: *const T, strName: BSTR, ppValue: **ICertificationAuthority) callconv(.Inline) HRESULT {
+        pub fn ICertificationAuthorities_get_ItemByName(self: *const T, strName: BSTR, ppValue: ?*?*ICertificationAuthority) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICertificationAuthorities, self), strName, ppValue);
         }
     };}
@@ -22620,7 +23498,7 @@ pub const ExportTemplates = X509EnrollmentPolicyExportFlags.ExportTemplates;
 pub const ExportOIDs = X509EnrollmentPolicyExportFlags.ExportOIDs;
 pub const ExportCAs = X509EnrollmentPolicyExportFlags.ExportCAs;
 
-const IID_IX509EnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("13B79026-2181-11DA-B2A4-000E7BBB2B09");
+const IID_IX509EnrollmentPolicyServer_Value = @import("../zig.zig").Guid.initString("13b79026-2181-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentPolicyServer = &IID_IX509EnrollmentPolicyServer_Value;
 pub const IX509EnrollmentPolicyServer = extern struct {
     pub const VTable = extern struct {
@@ -22639,23 +23517,23 @@ pub const IX509EnrollmentPolicyServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTemplates: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pTemplates: **IX509CertificateTemplates,
+            pTemplates: ?*?*IX509CertificateTemplates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCAsForTemplate: fn(
             self: *const IX509EnrollmentPolicyServer,
             pTemplate: ?*IX509CertificateTemplate,
-            ppCAs: **ICertificationAuthorities,
+            ppCAs: ?*?*ICertificationAuthorities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCAs: fn(
             self: *const IX509EnrollmentPolicyServer,
-            ppCAs: **ICertificationAuthorities,
+            ppCAs: ?*?*ICertificationAuthorities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Validate: fn(
             self: *const IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCustomOids: fn(
             self: *const IX509EnrollmentPolicyServer,
-            ppObjectIds: **IObjectIds,
+            ppObjectIds: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNextUpdateTime: fn(
             self: *const IX509EnrollmentPolicyServer,
@@ -22667,15 +23545,15 @@ pub const IX509EnrollmentPolicyServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPolicyServerUrl: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPolicyServerId: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFriendlyName: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIsDefaultCEP: fn(
             self: *const IX509EnrollmentPolicyServer,
@@ -22691,11 +23569,11 @@ pub const IX509EnrollmentPolicyServer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachePath: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCacheDir: fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAuthFlags: fn(
             self: *const IX509EnrollmentPolicyServer,
@@ -22742,15 +23620,15 @@ pub const IX509EnrollmentPolicyServer = extern struct {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).LoadPolicy(@ptrCast(*const IX509EnrollmentPolicyServer, self), option);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetTemplates(self: *const T, pTemplates: **IX509CertificateTemplates) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetTemplates(self: *const T, pTemplates: ?*?*IX509CertificateTemplates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetTemplates(@ptrCast(*const IX509EnrollmentPolicyServer, self), pTemplates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetCAsForTemplate(self: *const T, pTemplate: ?*IX509CertificateTemplate, ppCAs: **ICertificationAuthorities) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetCAsForTemplate(self: *const T, pTemplate: ?*IX509CertificateTemplate, ppCAs: ?*?*ICertificationAuthorities) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCAsForTemplate(@ptrCast(*const IX509EnrollmentPolicyServer, self), pTemplate, ppCAs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetCAs(self: *const T, ppCAs: **ICertificationAuthorities) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetCAs(self: *const T, ppCAs: ?*?*ICertificationAuthorities) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCAs(@ptrCast(*const IX509EnrollmentPolicyServer, self), ppCAs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22758,7 +23636,7 @@ pub const IX509EnrollmentPolicyServer = extern struct {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).Validate(@ptrCast(*const IX509EnrollmentPolicyServer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetCustomOids(self: *const T, ppObjectIds: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetCustomOids(self: *const T, ppObjectIds: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCustomOids(@ptrCast(*const IX509EnrollmentPolicyServer, self), ppObjectIds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22770,15 +23648,15 @@ pub const IX509EnrollmentPolicyServer = extern struct {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetLastUpdateTime(@ptrCast(*const IX509EnrollmentPolicyServer, self), pDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerUrl(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerId(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetFriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetFriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22794,11 +23672,11 @@ pub const IX509EnrollmentPolicyServer = extern struct {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetAllowUnTrustedCA(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetCachePath(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetCachePath(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCachePath(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentPolicyServer_GetCacheDir(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentPolicyServer_GetCacheDir(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCacheDir(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22833,7 +23711,7 @@ pub const IX509EnrollmentPolicyServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509PolicyServerUrl_Value = @import("../zig.zig").Guid.initString("884E204A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509PolicyServerUrl_Value = @import("../zig.zig").Guid.initString("884e204a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PolicyServerUrl = &IID_IX509PolicyServerUrl_Value;
 pub const IX509PolicyServerUrl = extern struct {
     pub const VTable = extern struct {
@@ -22844,7 +23722,7 @@ pub const IX509PolicyServerUrl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Url: fn(
             self: *const IX509PolicyServerUrl,
-            ppValue: *BSTR,
+            ppValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Url: fn(
             self: *const IX509PolicyServerUrl,
@@ -22885,7 +23763,7 @@ pub const IX509PolicyServerUrl = extern struct {
         GetStringProperty: fn(
             self: *const IX509PolicyServerUrl,
             propertyId: PolicyServerUrlPropertyID,
-            ppValue: *BSTR,
+            ppValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetStringProperty: fn(
             self: *const IX509PolicyServerUrl,
@@ -22909,7 +23787,7 @@ pub const IX509PolicyServerUrl = extern struct {
             return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).Initialize(@ptrCast(*const IX509PolicyServerUrl, self), context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PolicyServerUrl_get_Url(self: *const T, ppValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PolicyServerUrl_get_Url(self: *const T, ppValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_Url(@ptrCast(*const IX509PolicyServerUrl, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22949,7 +23827,7 @@ pub const IX509PolicyServerUrl = extern struct {
             return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_Cost(@ptrCast(*const IX509PolicyServerUrl, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PolicyServerUrl_GetStringProperty(self: *const T, propertyId: PolicyServerUrlPropertyID, ppValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509PolicyServerUrl_GetStringProperty(self: *const T, propertyId: PolicyServerUrlPropertyID, ppValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).GetStringProperty(@ptrCast(*const IX509PolicyServerUrl, self), propertyId, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22968,7 +23846,7 @@ pub const IX509PolicyServerUrl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509PolicyServerListManager_Value = @import("../zig.zig").Guid.initString("884E204B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509PolicyServerListManager_Value = @import("../zig.zig").Guid.initString("884e204b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509PolicyServerListManager = &IID_IX509PolicyServerListManager_Value;
 pub const IX509PolicyServerListManager = extern struct {
     pub const VTable = extern struct {
@@ -22976,7 +23854,7 @@ pub const IX509PolicyServerListManager = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509PolicyServerListManager,
             Index: i32,
-            pVal: **IX509PolicyServerUrl,
+            pVal: ?*?*IX509PolicyServerUrl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509PolicyServerListManager,
@@ -22984,7 +23862,7 @@ pub const IX509PolicyServerListManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509PolicyServerListManager,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509PolicyServerListManager,
@@ -23007,7 +23885,7 @@ pub const IX509PolicyServerListManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PolicyServerListManager_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509PolicyServerUrl) callconv(.Inline) HRESULT {
+        pub fn IX509PolicyServerListManager_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509PolicyServerUrl) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509PolicyServerListManager, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23015,7 +23893,7 @@ pub const IX509PolicyServerListManager = extern struct {
             return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get_Count(@ptrCast(*const IX509PolicyServerListManager, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509PolicyServerListManager_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509PolicyServerListManager_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509PolicyServerListManager, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23089,7 +23967,7 @@ pub const InnerRequestLevel = extern enum(i32) {
 pub const LevelInnermost = InnerRequestLevel.LevelInnermost;
 pub const LevelNext = InnerRequestLevel.LevelNext;
 
-const IID_IX509CertificateRequest_Value = @import("../zig.zig").Guid.initString("728AB341-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequest_Value = @import("../zig.zig").Guid.initString("728ab341-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequest = &IID_IX509CertificateRequest_Value;
 pub const IX509CertificateRequest = extern struct {
     pub const VTable = extern struct {
@@ -23107,7 +23985,7 @@ pub const IX509CertificateRequest = extern struct {
         GetInnerRequest: fn(
             self: *const IX509CertificateRequest,
             Level: InnerRequestLevel,
-            ppValue: **IX509CertificateRequest,
+            ppValue: ?*?*IX509CertificateRequest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Type: fn(
             self: *const IX509CertificateRequest,
@@ -23135,7 +24013,7 @@ pub const IX509CertificateRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_UIContextMessage: fn(
             self: *const IX509CertificateRequest,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_UIContextMessage: fn(
             self: *const IX509CertificateRequest,
@@ -23152,7 +24030,7 @@ pub const IX509CertificateRequest = extern struct {
         get_RenewalCertificate: fn(
             self: *const IX509CertificateRequest,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RenewalCertificate: fn(
             self: *const IX509CertificateRequest,
@@ -23169,7 +24047,7 @@ pub const IX509CertificateRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspInformations: fn(
             self: *const IX509CertificateRequest,
-            ppValue: **ICspInformations,
+            ppValue: ?*?*ICspInformations,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CspInformations: fn(
             self: *const IX509CertificateRequest,
@@ -23177,7 +24055,7 @@ pub const IX509CertificateRequest = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HashAlgorithm: fn(
             self: *const IX509CertificateRequest,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HashAlgorithm: fn(
             self: *const IX509CertificateRequest,
@@ -23194,7 +24072,7 @@ pub const IX509CertificateRequest = extern struct {
         get_RawData: fn(
             self: *const IX509CertificateRequest,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23213,7 +24091,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).ResetForEncode(@ptrCast(*const IX509CertificateRequest, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_GetInnerRequest(self: *const T, Level: InnerRequestLevel, ppValue: **IX509CertificateRequest) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_GetInnerRequest(self: *const T, Level: InnerRequestLevel, ppValue: ?*?*IX509CertificateRequest) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).GetInnerRequest(@ptrCast(*const IX509CertificateRequest, self), Level, ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23241,7 +24119,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509CertificateRequest, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_get_UIContextMessage(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_get_UIContextMessage(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const IX509CertificateRequest, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23257,7 +24135,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_SuppressDefaults(@ptrCast(*const IX509CertificateRequest, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_RenewalCertificate(@ptrCast(*const IX509CertificateRequest, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23273,7 +24151,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_ClientId(@ptrCast(*const IX509CertificateRequest, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_get_CspInformations(self: *const T, ppValue: **ICspInformations) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_get_CspInformations(self: *const T, ppValue: ?*?*ICspInformations) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_CspInformations(@ptrCast(*const IX509CertificateRequest, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23281,7 +24159,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_CspInformations(@ptrCast(*const IX509CertificateRequest, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_get_HashAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509CertificateRequest, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23297,7 +24175,7 @@ pub const IX509CertificateRequest = extern struct {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRequest, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequest_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequest_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_RawData(@ptrCast(*const IX509CertificateRequest, self), Encoding, pValue);
         }
     };}
@@ -23311,7 +24189,7 @@ pub const Pkcs10AllowedSignatureTypes = extern enum(i32) {
 pub const AllowedKeySignature = Pkcs10AllowedSignatureTypes.AllowedKeySignature;
 pub const AllowedNullSignature = Pkcs10AllowedSignatureTypes.AllowedNullSignature;
 
-const IID_IX509CertificateRequestPkcs10_Value = @import("../zig.zig").Guid.initString("728AB342-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestPkcs10_Value = @import("../zig.zig").Guid.initString("728ab342-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10 = &IID_IX509CertificateRequestPkcs10_Value;
 pub const IX509CertificateRequestPkcs10 = extern struct {
     pub const VTable = extern struct {
@@ -23355,15 +24233,15 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TemplateObjectId: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PublicKey: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IX509PublicKey,
+            ppValue: ?*?*IX509PublicKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrivateKey: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IX509PrivateKey,
+            ppValue: ?*?*IX509PrivateKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NullSigned: fn(
             self: *const IX509CertificateRequestPkcs10,
@@ -23376,11 +24254,11 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
         get_OldCertificate: fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Subject: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IX500DistinguishedName,
+            ppValue: ?*?*IX500DistinguishedName,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Subject: fn(
             self: *const IX509CertificateRequestPkcs10,
@@ -23388,7 +24266,7 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CspStatuses: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **ICspStatuses,
+            ppValue: ?*?*ICspStatuses,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SmimeCapabilities: fn(
             self: *const IX509CertificateRequestPkcs10,
@@ -23400,11 +24278,11 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignatureInformation: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IX509SignatureInformation,
+            ppValue: ?*?*IX509SignatureInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_KeyContainerNamePrefix: fn(
             self: *const IX509CertificateRequestPkcs10,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_KeyContainerNamePrefix: fn(
             self: *const IX509CertificateRequestPkcs10,
@@ -23412,34 +24290,34 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CryptAttributes: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **ICryptAttributes,
+            ppValue: ?*?*ICryptAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509Extensions: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IX509Extensions,
+            ppValue: ?*?*IX509Extensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CriticalExtensions: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SuppressOids: fn(
             self: *const IX509CertificateRequestPkcs10,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawDataToBeSigned: fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Signature: fn(
             self: *const IX509CertificateRequestPkcs10,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCspStatuses: fn(
             self: *const IX509CertificateRequestPkcs10,
             KeySpec: X509KeySpec,
-            ppCspStatuses: **ICspStatuses,
+            ppCspStatuses: ?*?*ICspStatuses,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23474,15 +24352,15 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).IsSmartCard(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_TemplateObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_TemplateObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_TemplateObjectId(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_PublicKey(self: *const T, ppValue: **IX509PublicKey) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_PublicKey(self: *const T, ppValue: ?*?*IX509PublicKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_PublicKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_PrivateKey(self: *const T, ppValue: **IX509PrivateKey) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_PrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23494,11 +24372,11 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_ReuseKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_OldCertificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_OldCertificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_OldCertificate(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_Subject(self: *const T, ppValue: **IX500DistinguishedName) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_Subject(self: *const T, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_Subject(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23506,7 +24384,7 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_Subject(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_CspStatuses(self: *const T, ppValue: **ICspStatuses) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_CspStatuses(self: *const T, ppValue: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CspStatuses(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23518,11 +24396,11 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_SmimeCapabilities(@ptrCast(*const IX509CertificateRequestPkcs10, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_SignatureInformation(self: *const T, ppValue: **IX509SignatureInformation) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_KeyContainerNamePrefix(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_KeyContainerNamePrefix(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_KeyContainerNamePrefix(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23530,38 +24408,38 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_KeyContainerNamePrefix(@ptrCast(*const IX509CertificateRequestPkcs10, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_CryptAttributes(self: *const T, ppValue: **ICryptAttributes) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_CryptAttributes(self: *const T, ppValue: ?*?*ICryptAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CryptAttributes(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_X509Extensions(self: *const T, ppValue: **IX509Extensions) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_CriticalExtensions(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_SuppressOids(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_SuppressOids(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_SuppressOids(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_RawDataToBeSigned(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_get_Signature(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_Signature(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10_GetCspStatuses(self: *const T, KeySpec: X509KeySpec, ppCspStatuses: **ICspStatuses) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10_GetCspStatuses(self: *const T, KeySpec: X509KeySpec, ppCspStatuses: ?*?*ICspStatuses) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).GetCspStatuses(@ptrCast(*const IX509CertificateRequestPkcs10, self), KeySpec, ppCspStatuses);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestPkcs10V2_Value = @import("../zig.zig").Guid.initString("728AB35B-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestPkcs10V2_Value = @import("../zig.zig").Guid.initString("728ab35b-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10V2 = &IID_IX509CertificateRequestPkcs10V2_Value;
 pub const IX509CertificateRequestPkcs10V2 = extern struct {
     pub const VTable = extern struct {
@@ -23588,11 +24466,11 @@ pub const IX509CertificateRequestPkcs10V2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyServer: fn(
             self: *const IX509CertificateRequestPkcs10V2,
-            ppPolicyServer: **IX509EnrollmentPolicyServer,
+            ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509CertificateRequestPkcs10V2,
-            ppTemplate: **IX509CertificateTemplate,
+            ppTemplate: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23611,18 +24489,18 @@ pub const IX509CertificateRequestPkcs10V2 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).InitializeFromPublicKeyTemplate(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), Context, pPublicKey, pPolicyServer, pTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V2_get_PolicyServer(self: *const T, ppPolicyServer: **IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), ppPolicyServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V2_get_Template(self: *const T, ppTemplate: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), ppTemplate);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestPkcs10V3_Value = @import("../zig.zig").Guid.initString("54EA9942-3D66-4530-B76E-7C9170D3EC52");
+const IID_IX509CertificateRequestPkcs10V3_Value = @import("../zig.zig").Guid.initString("54ea9942-3d66-4530-b76e-7c9170d3ec52");
 pub const IID_IX509CertificateRequestPkcs10V3 = &IID_IX509CertificateRequestPkcs10V3_Value;
 pub const IX509CertificateRequestPkcs10V3 = extern struct {
     pub const VTable = extern struct {
@@ -23638,7 +24516,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
         get_AttestationEncryptionCertificate: fn(
             self: *const IX509CertificateRequestPkcs10V3,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_AttestationEncryptionCertificate: fn(
             self: *const IX509CertificateRequestPkcs10V3,
@@ -23647,7 +24525,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncryptionAlgorithm: fn(
             self: *const IX509CertificateRequestPkcs10V3,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_EncryptionAlgorithm: fn(
             self: *const IX509CertificateRequestPkcs10V3,
@@ -23663,7 +24541,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ChallengePassword: fn(
             self: *const IX509CertificateRequestPkcs10V3,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ChallengePassword: fn(
             self: *const IX509CertificateRequestPkcs10V3,
@@ -23671,7 +24549,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NameValuePairs: fn(
             self: *const IX509CertificateRequestPkcs10V3,
-            ppValue: **IX509NameValuePairs,
+            ppValue: ?*?*IX509NameValuePairs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23686,7 +24564,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_AttestPrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V3_get_AttestationEncryptionCertificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V3_get_AttestationEncryptionCertificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_AttestationEncryptionCertificate(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23694,7 +24572,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_AttestationEncryptionCertificate(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V3_get_EncryptionAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V3_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23710,7 +24588,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_EncryptionStrength(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V3_get_ChallengePassword(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V3_get_ChallengePassword(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_ChallengePassword(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23718,7 +24596,7 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_ChallengePassword(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs10V3_get_NameValuePairs(self: *const T, ppValue: **IX509NameValuePairs) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs10V3_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), ppValue);
         }
     };}
@@ -23738,7 +24616,7 @@ pub const XCN_NCRYPT_CLAIM_AUTHORITY_ONLY = KeyAttestationClaimType.XCN_NCRYPT_C
 pub const XCN_NCRYPT_CLAIM_SUBJECT_ONLY = KeyAttestationClaimType.XCN_NCRYPT_CLAIM_SUBJECT_ONLY;
 pub const XCN_NCRYPT_CLAIM_UNKNOWN = KeyAttestationClaimType.XCN_NCRYPT_CLAIM_UNKNOWN;
 
-const IID_IX509CertificateRequestPkcs10V4_Value = @import("../zig.zig").Guid.initString("728AB363-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestPkcs10V4_Value = @import("../zig.zig").Guid.initString("728ab363-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs10V4 = &IID_IX509CertificateRequestPkcs10V4_Value;
 pub const IX509CertificateRequestPkcs10V4 = extern struct {
     pub const VTable = extern struct {
@@ -23783,7 +24661,7 @@ pub const IX509CertificateRequestPkcs10V4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestCertificate_Value = @import("../zig.zig").Guid.initString("728AB343-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestCertificate_Value = @import("../zig.zig").Guid.initString("728ab343-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCertificate = &IID_IX509CertificateRequestCertificate_Value;
 pub const IX509CertificateRequestCertificate = extern struct {
     pub const VTable = extern struct {
@@ -23794,7 +24672,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Issuer: fn(
             self: *const IX509CertificateRequestCertificate,
-            ppValue: **IX500DistinguishedName,
+            ppValue: ?*?*IX500DistinguishedName,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Issuer: fn(
             self: *const IX509CertificateRequestCertificate,
@@ -23819,7 +24697,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
         get_SerialNumber: fn(
             self: *const IX509CertificateRequestCertificate,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SerialNumber: fn(
             self: *const IX509CertificateRequestCertificate,
@@ -23828,7 +24706,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignerCertificate: fn(
             self: *const IX509CertificateRequestCertificate,
-            ppValue: **ISignerCertificate,
+            ppValue: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SignerCertificate: fn(
             self: *const IX509CertificateRequestCertificate,
@@ -23843,7 +24721,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).CheckPublicKeySignature(@ptrCast(*const IX509CertificateRequestCertificate, self), pPublicKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCertificate_get_Issuer(self: *const T, ppValue: **IX500DistinguishedName) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCertificate_get_Issuer(self: *const T, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_Issuer(@ptrCast(*const IX509CertificateRequestCertificate, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23867,7 +24745,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_NotAfter(@ptrCast(*const IX509CertificateRequestCertificate, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCertificate_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCertificate_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IX509CertificateRequestCertificate, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23875,7 +24753,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_SerialNumber(@ptrCast(*const IX509CertificateRequestCertificate, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCertificate_get_SignerCertificate(self: *const T, ppValue: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCertificate_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRequestCertificate, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23886,7 +24764,7 @@ pub const IX509CertificateRequestCertificate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestCertificate2_Value = @import("../zig.zig").Guid.initString("728AB35A-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestCertificate2_Value = @import("../zig.zig").Guid.initString("728ab35a-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCertificate2 = &IID_IX509CertificateRequestCertificate2_Value;
 pub const IX509CertificateRequestCertificate2 = extern struct {
     pub const VTable = extern struct {
@@ -23906,11 +24784,11 @@ pub const IX509CertificateRequestCertificate2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyServer: fn(
             self: *const IX509CertificateRequestCertificate2,
-            ppPolicyServer: **IX509EnrollmentPolicyServer,
+            ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509CertificateRequestCertificate2,
-            ppTemplate: **IX509CertificateTemplate,
+            ppTemplate: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23925,18 +24803,18 @@ pub const IX509CertificateRequestCertificate2 = extern struct {
             return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).InitializeFromPrivateKeyTemplate(@ptrCast(*const IX509CertificateRequestCertificate2, self), Context, pPrivateKey, pPolicyServer, pTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCertificate2_get_PolicyServer(self: *const T, ppPolicyServer: **IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCertificate2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestCertificate2, self), ppPolicyServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCertificate2_get_Template(self: *const T, ppTemplate: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCertificate2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestCertificate2, self), ppTemplate);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestPkcs7_Value = @import("../zig.zig").Guid.initString("728AB344-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestPkcs7_Value = @import("../zig.zig").Guid.initString("728ab344-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs7 = &IID_IX509CertificateRequestPkcs7_Value;
 pub const IX509CertificateRequestPkcs7 = extern struct {
     pub const VTable = extern struct {
@@ -23965,7 +24843,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequesterName: fn(
             self: *const IX509CertificateRequestPkcs7,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RequesterName: fn(
             self: *const IX509CertificateRequestPkcs7,
@@ -23973,7 +24851,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignerCertificate: fn(
             self: *const IX509CertificateRequestPkcs7,
-            ppValue: **ISignerCertificate,
+            ppValue: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SignerCertificate: fn(
             self: *const IX509CertificateRequestPkcs7,
@@ -24000,7 +24878,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509CertificateRequestPkcs7, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs7_get_RequesterName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs7_get_RequesterName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).get_RequesterName(@ptrCast(*const IX509CertificateRequestPkcs7, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24008,7 +24886,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).put_RequesterName(@ptrCast(*const IX509CertificateRequestPkcs7, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs7_get_SignerCertificate(self: *const T, ppValue: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs7_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRequestPkcs7, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24019,7 +24897,7 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestPkcs7V2_Value = @import("../zig.zig").Guid.initString("728AB35C-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestPkcs7V2_Value = @import("../zig.zig").Guid.initString("728ab35c-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestPkcs7V2 = &IID_IX509CertificateRequestPkcs7V2_Value;
 pub const IX509CertificateRequestPkcs7V2 = extern struct {
     pub const VTable = extern struct {
@@ -24032,11 +24910,11 @@ pub const IX509CertificateRequestPkcs7V2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyServer: fn(
             self: *const IX509CertificateRequestPkcs7V2,
-            ppPolicyServer: **IX509EnrollmentPolicyServer,
+            ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509CertificateRequestPkcs7V2,
-            ppTemplate: **IX509CertificateTemplate,
+            ppTemplate: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckCertificateSignature: fn(
             self: *const IX509CertificateRequestPkcs7V2,
@@ -24051,11 +24929,11 @@ pub const IX509CertificateRequestPkcs7V2 = extern struct {
             return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), context, pPolicyServer, pTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs7V2_get_PolicyServer(self: *const T, ppPolicyServer: **IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs7V2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), ppPolicyServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestPkcs7V2_get_Template(self: *const T, ppTemplate: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestPkcs7V2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), ppTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24066,7 +24944,7 @@ pub const IX509CertificateRequestPkcs7V2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestCmc_Value = @import("../zig.zig").Guid.initString("728AB345-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestCmc_Value = @import("../zig.zig").Guid.initString("728ab345-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCmc = &IID_IX509CertificateRequestCmc_Value;
 pub const IX509CertificateRequestCmc = extern struct {
     pub const VTable = extern struct {
@@ -24078,7 +24956,7 @@ pub const IX509CertificateRequestCmc = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TemplateObjectId: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NullSigned: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24086,23 +24964,23 @@ pub const IX509CertificateRequestCmc = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CryptAttributes: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **ICryptAttributes,
+            ppValue: ?*?*ICryptAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NameValuePairs: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IX509NameValuePairs,
+            ppValue: ?*?*IX509NameValuePairs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509Extensions: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IX509Extensions,
+            ppValue: ?*?*IX509Extensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CriticalExtensions: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SuppressOids: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_TransactionId: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24115,7 +24993,7 @@ pub const IX509CertificateRequestCmc = extern struct {
         get_SenderNonce: fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SenderNonce: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24124,7 +25002,7 @@ pub const IX509CertificateRequestCmc = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignatureInformation: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IX509SignatureInformation,
+            ppValue: ?*?*IX509SignatureInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ArchivePrivateKey: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24137,7 +25015,7 @@ pub const IX509CertificateRequestCmc = extern struct {
         get_KeyArchivalCertificate: fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_KeyArchivalCertificate: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24146,7 +25024,7 @@ pub const IX509CertificateRequestCmc = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EncryptionAlgorithm: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_EncryptionAlgorithm: fn(
             self: *const IX509CertificateRequestCmc,
@@ -24163,11 +25041,11 @@ pub const IX509CertificateRequestCmc = extern struct {
         get_EncryptedKeyHash: fn(
             self: *const IX509CertificateRequestCmc,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignerCertificates: fn(
             self: *const IX509CertificateRequestCmc,
-            ppValue: **ISignerCertificates,
+            ppValue: ?*?*ISignerCertificates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24178,7 +25056,7 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).InitializeFromInnerRequestTemplateName(@ptrCast(*const IX509CertificateRequestCmc, self), pInnerRequest, strTemplateName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_TemplateObjectId(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_TemplateObjectId(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_TemplateObjectId(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24186,23 +25064,23 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_CryptAttributes(self: *const T, ppValue: **ICryptAttributes) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_CryptAttributes(self: *const T, ppValue: ?*?*ICryptAttributes) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_CryptAttributes(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_NameValuePairs(self: *const T, ppValue: **IX509NameValuePairs) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_X509Extensions(self: *const T, ppValue: **IX509Extensions) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_CriticalExtensions(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_SuppressOids(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_SuppressOids(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SuppressOids(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24214,7 +25092,7 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_TransactionId(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_SenderNonce(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_SenderNonce(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SenderNonce(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24222,7 +25100,7 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_SenderNonce(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_SignatureInformation(self: *const T, ppValue: **IX509SignatureInformation) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24234,7 +25112,7 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_ArchivePrivateKey(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_KeyArchivalCertificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_KeyArchivalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_KeyArchivalCertificate(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24242,7 +25120,7 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_KeyArchivalCertificate(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_EncryptionAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24258,18 +25136,18 @@ pub const IX509CertificateRequestCmc = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_EncryptionStrength(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_EncryptedKeyHash(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_EncryptedKeyHash(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_EncryptedKeyHash(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc_get_SignerCertificates(self: *const T, ppValue: **ISignerCertificates) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc_get_SignerCertificates(self: *const T, ppValue: ?*?*ISignerCertificates) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SignerCertificates(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRequestCmc2_Value = @import("../zig.zig").Guid.initString("728AB35D-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRequestCmc2_Value = @import("../zig.zig").Guid.initString("728ab35d-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRequestCmc2 = &IID_IX509CertificateRequestCmc2_Value;
 pub const IX509CertificateRequestCmc2 = extern struct {
     pub const VTable = extern struct {
@@ -24288,11 +25166,11 @@ pub const IX509CertificateRequestCmc2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyServer: fn(
             self: *const IX509CertificateRequestCmc2,
-            ppPolicyServer: **IX509EnrollmentPolicyServer,
+            ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509CertificateRequestCmc2,
-            ppTemplate: **IX509CertificateTemplate,
+            ppTemplate: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CheckSignature: fn(
             self: *const IX509CertificateRequestCmc2,
@@ -24316,11 +25194,11 @@ pub const IX509CertificateRequestCmc2 = extern struct {
             return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).InitializeFromInnerRequestTemplate(@ptrCast(*const IX509CertificateRequestCmc2, self), pInnerRequest, pPolicyServer, pTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc2_get_PolicyServer(self: *const T, ppPolicyServer: **IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestCmc2, self), ppPolicyServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRequestCmc2_get_Template(self: *const T, ppTemplate: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRequestCmc2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestCmc2, self), ppTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24346,7 +25224,7 @@ pub const AllowNoOutstandingRequest = InstallResponseRestrictionFlags.AllowNoOut
 pub const AllowUntrustedCertificate = InstallResponseRestrictionFlags.AllowUntrustedCertificate;
 pub const AllowUntrustedRoot = InstallResponseRestrictionFlags.AllowUntrustedRoot;
 
-const IID_IX509Enrollment_Value = @import("../zig.zig").Guid.initString("728AB346-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Enrollment_Value = @import("../zig.zig").Guid.initString("728ab346-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Enrollment = &IID_IX509Enrollment_Value;
 pub const IX509Enrollment = extern struct {
     pub const VTable = extern struct {
@@ -24367,7 +25245,7 @@ pub const IX509Enrollment = extern struct {
         CreateRequest: fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Enroll: fn(
             self: *const IX509Enrollment,
@@ -24384,11 +25262,11 @@ pub const IX509Enrollment = extern struct {
             strPassword: BSTR,
             ExportOptions: PFXExportOptions,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Request: fn(
             self: *const IX509Enrollment,
-            pValue: **IX509CertificateRequest,
+            pValue: ?*?*IX509CertificateRequest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Silent: fn(
             self: *const IX509Enrollment,
@@ -24408,7 +25286,7 @@ pub const IX509Enrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_NameValuePairs: fn(
             self: *const IX509Enrollment,
-            ppValue: **IX509NameValuePairs,
+            ppValue: ?*?*IX509NameValuePairs,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_EnrollmentContext: fn(
             self: *const IX509Enrollment,
@@ -24416,21 +25294,21 @@ pub const IX509Enrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Status: fn(
             self: *const IX509Enrollment,
-            ppValue: **IX509EnrollmentStatus,
+            ppValue: ?*?*IX509EnrollmentStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Certificate: fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Response: fn(
             self: *const IX509Enrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CertificateFriendlyName: fn(
             self: *const IX509Enrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CertificateFriendlyName: fn(
             self: *const IX509Enrollment,
@@ -24438,7 +25316,7 @@ pub const IX509Enrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CertificateDescription: fn(
             self: *const IX509Enrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CertificateDescription: fn(
             self: *const IX509Enrollment,
@@ -24450,7 +25328,7 @@ pub const IX509Enrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CAConfigString: fn(
             self: *const IX509Enrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24469,7 +25347,7 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).InitializeFromRequest(@ptrCast(*const IX509Enrollment, self), pRequest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_CreateRequest(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_CreateRequest(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).CreateRequest(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24481,11 +25359,11 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).InstallResponse(@ptrCast(*const IX509Enrollment, self), Restrictions, strResponse, Encoding, strPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_CreatePFX(self: *const T, strPassword: BSTR, ExportOptions: PFXExportOptions, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_CreatePFX(self: *const T, strPassword: BSTR, ExportOptions: PFXExportOptions, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).CreatePFX(@ptrCast(*const IX509Enrollment, self), strPassword, ExportOptions, Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_Request(self: *const T, pValue: **IX509CertificateRequest) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_Request(self: *const T, pValue: ?*?*IX509CertificateRequest) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Request(@ptrCast(*const IX509Enrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24505,7 +25383,7 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509Enrollment, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_NameValuePairs(self: *const T, ppValue: **IX509NameValuePairs) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509Enrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24513,19 +25391,19 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_EnrollmentContext(@ptrCast(*const IX509Enrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_Status(self: *const T, ppValue: **IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_Status(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Status(@ptrCast(*const IX509Enrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_Response(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_Response(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Response(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_CertificateFriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_CertificateFriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CertificateFriendlyName(@ptrCast(*const IX509Enrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24533,7 +25411,7 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_CertificateFriendlyName(@ptrCast(*const IX509Enrollment, self), strValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_CertificateDescription(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_CertificateDescription(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CertificateDescription(@ptrCast(*const IX509Enrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24545,14 +25423,14 @@ pub const IX509Enrollment = extern struct {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_RequestId(@ptrCast(*const IX509Enrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment_get_CAConfigString(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment_get_CAConfigString(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CAConfigString(@ptrCast(*const IX509Enrollment, self), pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509Enrollment2_Value = @import("../zig.zig").Guid.initString("728AB350-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509Enrollment2_Value = @import("../zig.zig").Guid.initString("728ab350-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509Enrollment2 = &IID_IX509Enrollment2_Value;
 pub const IX509Enrollment2 = extern struct {
     pub const VTable = extern struct {
@@ -24576,15 +25454,15 @@ pub const IX509Enrollment2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PolicyServer: fn(
             self: *const IX509Enrollment2,
-            ppPolicyServer: **IX509EnrollmentPolicyServer,
+            ppPolicyServer: ?*?*IX509EnrollmentPolicyServer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Template: fn(
             self: *const IX509Enrollment2,
-            ppTemplate: **IX509CertificateTemplate,
+            ppTemplate: ?*?*IX509CertificateTemplate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestIdString: fn(
             self: *const IX509Enrollment2,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24599,15 +25477,15 @@ pub const IX509Enrollment2 = extern struct {
             return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).InstallResponse2(@ptrCast(*const IX509Enrollment2, self), Restrictions, strResponse, Encoding, strPassword, strEnrollmentPolicyServerUrl, strEnrollmentPolicyServerID, EnrollmentPolicyServerFlags, authFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment2_get_PolicyServer(self: *const T, ppPolicyServer: **IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509Enrollment2, self), ppPolicyServer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment2_get_Template(self: *const T, ppTemplate: **IX509CertificateTemplate) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_Template(@ptrCast(*const IX509Enrollment2, self), ppTemplate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509Enrollment2_get_RequestIdString(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509Enrollment2_get_RequestIdString(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_RequestIdString(@ptrCast(*const IX509Enrollment2, self), pValue);
         }
     };}
@@ -24619,7 +25497,7 @@ pub const WebEnrollmentFlags = extern enum(i32) {
 };
 pub const EnrollPrompt = WebEnrollmentFlags.EnrollPrompt;
 
-const IID_IX509EnrollmentHelper_Value = @import("../zig.zig").Guid.initString("728AB351-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509EnrollmentHelper_Value = @import("../zig.zig").Guid.initString("728ab351-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentHelper = &IID_IX509EnrollmentHelper_Value;
 pub const IX509EnrollmentHelper = extern struct {
     pub const VTable = extern struct {
@@ -24646,7 +25524,7 @@ pub const IX509EnrollmentHelper = extern struct {
             strTemplateName: BSTR,
             Encoding: EncodingType,
             enrollFlags: WebEnrollmentFlags,
-            pstrCertificate: *BSTR,
+            pstrCertificate: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Initialize: fn(
             self: *const IX509EnrollmentHelper,
@@ -24665,7 +25543,7 @@ pub const IX509EnrollmentHelper = extern struct {
             return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).AddEnrollmentServer(@ptrCast(*const IX509EnrollmentHelper, self), strEnrollmentServerURI, authFlags, strCredential, strPassword);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentHelper_Enroll(self: *const T, strEnrollmentPolicyServerURI: BSTR, strTemplateName: BSTR, Encoding: EncodingType, enrollFlags: WebEnrollmentFlags, pstrCertificate: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentHelper_Enroll(self: *const T, strEnrollmentPolicyServerURI: BSTR, strTemplateName: BSTR, Encoding: EncodingType, enrollFlags: WebEnrollmentFlags, pstrCertificate: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).Enroll(@ptrCast(*const IX509EnrollmentHelper, self), strEnrollmentPolicyServerURI, strTemplateName, Encoding, enrollFlags, pstrCertificate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24676,7 +25554,7 @@ pub const IX509EnrollmentHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509EnrollmentWebClassFactory_Value = @import("../zig.zig").Guid.initString("728AB349-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509EnrollmentWebClassFactory_Value = @import("../zig.zig").Guid.initString("728ab349-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509EnrollmentWebClassFactory = &IID_IX509EnrollmentWebClassFactory_Value;
 pub const IX509EnrollmentWebClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -24684,21 +25562,21 @@ pub const IX509EnrollmentWebClassFactory = extern struct {
         CreateObject: fn(
             self: *const IX509EnrollmentWebClassFactory,
             strProgID: BSTR,
-            ppIUnknown: **IUnknown,
+            ppIUnknown: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509EnrollmentWebClassFactory_CreateObject(self: *const T, strProgID: BSTR, ppIUnknown: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509EnrollmentWebClassFactory_CreateObject(self: *const T, strProgID: BSTR, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509EnrollmentWebClassFactory.VTable, self.vtable).CreateObject(@ptrCast(*const IX509EnrollmentWebClassFactory, self), strProgID, ppIUnknown);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509MachineEnrollmentFactory_Value = @import("../zig.zig").Guid.initString("728AB352-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509MachineEnrollmentFactory_Value = @import("../zig.zig").Guid.initString("728ab352-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509MachineEnrollmentFactory = &IID_IX509MachineEnrollmentFactory_Value;
 pub const IX509MachineEnrollmentFactory = extern struct {
     pub const VTable = extern struct {
@@ -24706,14 +25584,14 @@ pub const IX509MachineEnrollmentFactory = extern struct {
         CreateObject: fn(
             self: *const IX509MachineEnrollmentFactory,
             strProgID: BSTR,
-            ppIHelper: **IX509EnrollmentHelper,
+            ppIHelper: ?*?*IX509EnrollmentHelper,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509MachineEnrollmentFactory_CreateObject(self: *const T, strProgID: BSTR, ppIHelper: **IX509EnrollmentHelper) callconv(.Inline) HRESULT {
+        pub fn IX509MachineEnrollmentFactory_CreateObject(self: *const T, strProgID: BSTR, ppIHelper: ?*?*IX509EnrollmentHelper) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509MachineEnrollmentFactory.VTable, self.vtable).CreateObject(@ptrCast(*const IX509MachineEnrollmentFactory, self), strProgID, ppIHelper);
         }
     };}
@@ -24743,7 +25621,7 @@ pub const XCN_CRL_REASON_REMOVE_FROM_CRL = CRLRevocationReason.XCN_CRL_REASON_RE
 pub const XCN_CRL_REASON_PRIVILEGE_WITHDRAWN = CRLRevocationReason.XCN_CRL_REASON_PRIVILEGE_WITHDRAWN;
 pub const XCN_CRL_REASON_AA_COMPROMISE = CRLRevocationReason.XCN_CRL_REASON_AA_COMPROMISE;
 
-const IID_IX509CertificateRevocationListEntry_Value = @import("../zig.zig").Guid.initString("728AB35E-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRevocationListEntry_Value = @import("../zig.zig").Guid.initString("728ab35e-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationListEntry = &IID_IX509CertificateRevocationListEntry_Value;
 pub const IX509CertificateRevocationListEntry = extern struct {
     pub const VTable = extern struct {
@@ -24757,7 +25635,7 @@ pub const IX509CertificateRevocationListEntry = extern struct {
         get_SerialNumber: fn(
             self: *const IX509CertificateRevocationListEntry,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RevocationDate: fn(
             self: *const IX509CertificateRevocationListEntry,
@@ -24773,11 +25651,11 @@ pub const IX509CertificateRevocationListEntry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509Extensions: fn(
             self: *const IX509CertificateRevocationListEntry,
-            ppValue: **IX509Extensions,
+            ppValue: ?*?*IX509Extensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CriticalExtensions: fn(
             self: *const IX509CertificateRevocationListEntry,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24788,7 +25666,7 @@ pub const IX509CertificateRevocationListEntry = extern struct {
             return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).Initialize(@ptrCast(*const IX509CertificateRevocationListEntry, self), Encoding, SerialNumber, RevocationDate);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationListEntry_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationListEntry_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IX509CertificateRevocationListEntry, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24804,18 +25682,18 @@ pub const IX509CertificateRevocationListEntry = extern struct {
             return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).put_RevocationReason(@ptrCast(*const IX509CertificateRevocationListEntry, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationListEntry_get_X509Extensions(self: *const T, ppValue: **IX509Extensions) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationListEntry_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRevocationListEntry, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationListEntry_get_CriticalExtensions(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationListEntry_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRevocationListEntry, self), ppValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRevocationListEntries_Value = @import("../zig.zig").Guid.initString("728AB35F-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRevocationListEntries_Value = @import("../zig.zig").Guid.initString("728ab35f-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationListEntries = &IID_IX509CertificateRevocationListEntries_Value;
 pub const IX509CertificateRevocationListEntries = extern struct {
     pub const VTable = extern struct {
@@ -24823,7 +25701,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
         get_ItemByIndex: fn(
             self: *const IX509CertificateRevocationListEntries,
             Index: i32,
-            pVal: **IX509CertificateRevocationListEntry,
+            pVal: ?*?*IX509CertificateRevocationListEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Count: fn(
             self: *const IX509CertificateRevocationListEntries,
@@ -24831,7 +25709,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get__NewEnum: fn(
             self: *const IX509CertificateRevocationListEntries,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Add: fn(
             self: *const IX509CertificateRevocationListEntries,
@@ -24859,7 +25737,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationListEntries_get_ItemByIndex(self: *const T, Index: i32, pVal: **IX509CertificateRevocationListEntry) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationListEntries_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509CertificateRevocationListEntry) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509CertificateRevocationListEntries, self), Index, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24867,7 +25745,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
             return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get_Count(@ptrCast(*const IX509CertificateRevocationListEntries, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationListEntries_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationListEntries_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509CertificateRevocationListEntries, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24894,7 +25772,7 @@ pub const IX509CertificateRevocationListEntries = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509CertificateRevocationList_Value = @import("../zig.zig").Guid.initString("728AB360-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509CertificateRevocationList_Value = @import("../zig.zig").Guid.initString("728ab360-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509CertificateRevocationList = &IID_IX509CertificateRevocationList_Value;
 pub const IX509CertificateRevocationList = extern struct {
     pub const VTable = extern struct {
@@ -24922,7 +25800,7 @@ pub const IX509CertificateRevocationList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Issuer: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IX500DistinguishedName,
+            ppValue: ?*?*IX500DistinguishedName,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_Issuer: fn(
             self: *const IX509CertificateRevocationList,
@@ -24946,19 +25824,19 @@ pub const IX509CertificateRevocationList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509CRLEntries: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IX509CertificateRevocationListEntries,
+            ppValue: ?*?*IX509CertificateRevocationListEntries,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509Extensions: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IX509Extensions,
+            ppValue: ?*?*IX509Extensions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CriticalExtensions: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IObjectIds,
+            ppValue: ?*?*IObjectIds,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignerCertificate: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **ISignerCertificate,
+            ppValue: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SignerCertificate: fn(
             self: *const IX509CertificateRevocationList,
@@ -24967,7 +25845,7 @@ pub const IX509CertificateRevocationList = extern struct {
         get_CRLNumber: fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CRLNumber: fn(
             self: *const IX509CertificateRevocationList,
@@ -24992,7 +25870,7 @@ pub const IX509CertificateRevocationList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HashAlgorithm: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IObjectId,
+            ppValue: ?*?*IObjectId,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HashAlgorithm: fn(
             self: *const IX509CertificateRevocationList,
@@ -25008,22 +25886,22 @@ pub const IX509CertificateRevocationList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignatureInformation: fn(
             self: *const IX509CertificateRevocationList,
-            ppValue: **IX509SignatureInformation,
+            ppValue: ?*?*IX509SignatureInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawData: fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RawDataToBeSigned: fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Signature: fn(
             self: *const IX509CertificateRevocationList,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -25054,7 +25932,7 @@ pub const IX509CertificateRevocationList = extern struct {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).CheckSignature(@ptrCast(*const IX509CertificateRevocationList, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_Issuer(self: *const T, ppValue: **IX500DistinguishedName) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_Issuer(self: *const T, ppValue: ?*?*IX500DistinguishedName) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_Issuer(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25078,19 +25956,19 @@ pub const IX509CertificateRevocationList = extern struct {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_NextUpdate(@ptrCast(*const IX509CertificateRevocationList, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_X509CRLEntries(self: *const T, ppValue: **IX509CertificateRevocationListEntries) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_X509CRLEntries(self: *const T, ppValue: ?*?*IX509CertificateRevocationListEntries) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_X509CRLEntries(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_X509Extensions(self: *const T, ppValue: **IX509Extensions) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_CriticalExtensions(self: *const T, ppValue: **IObjectIds) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_SignerCertificate(self: *const T, ppValue: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25098,7 +25976,7 @@ pub const IX509CertificateRevocationList = extern struct {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_CRLNumber(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_CRLNumber(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_CRLNumber(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25122,7 +26000,7 @@ pub const IX509CertificateRevocationList = extern struct {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_HashAlgorithm(self: *const T, ppValue: **IObjectId) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25138,26 +26016,26 @@ pub const IX509CertificateRevocationList = extern struct {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_SignatureInformation(self: *const T, ppValue: **IX509SignatureInformation) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_RawData(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_RawData(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_RawDataToBeSigned(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509CertificateRevocationList_get_Signature(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509CertificateRevocationList_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_Signature(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificateAttestationChallenge_Value = @import("../zig.zig").Guid.initString("6F175A7C-4A3A-40AE-9DBA-592FD6BBF9B8");
+const IID_ICertificateAttestationChallenge_Value = @import("../zig.zig").Guid.initString("6f175a7c-4a3a-40ae-9dba-592fd6bbf9b8");
 pub const IID_ICertificateAttestationChallenge = &IID_ICertificateAttestationChallenge_Value;
 pub const ICertificateAttestationChallenge = extern struct {
     pub const VTable = extern struct {
@@ -25170,11 +26048,11 @@ pub const ICertificateAttestationChallenge = extern struct {
         DecryptChallenge: fn(
             self: *const ICertificateAttestationChallenge,
             Encoding: EncodingType,
-            pstrEnvelopedPkcs7ReencryptedToCA: *BSTR,
+            pstrEnvelopedPkcs7ReencryptedToCA: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestID: fn(
             self: *const ICertificateAttestationChallenge,
-            pstrRequestID: *BSTR,
+            pstrRequestID: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -25185,18 +26063,18 @@ pub const ICertificateAttestationChallenge = extern struct {
             return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).Initialize(@ptrCast(*const ICertificateAttestationChallenge, self), Encoding, strPendingFullCmcResponseWithChallenge);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateAttestationChallenge_DecryptChallenge(self: *const T, Encoding: EncodingType, pstrEnvelopedPkcs7ReencryptedToCA: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertificateAttestationChallenge_DecryptChallenge(self: *const T, Encoding: EncodingType, pstrEnvelopedPkcs7ReencryptedToCA: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).DecryptChallenge(@ptrCast(*const ICertificateAttestationChallenge, self), Encoding, pstrEnvelopedPkcs7ReencryptedToCA);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateAttestationChallenge_get_RequestID(self: *const T, pstrRequestID: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertificateAttestationChallenge_get_RequestID(self: *const T, pstrRequestID: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).get_RequestID(@ptrCast(*const ICertificateAttestationChallenge, self), pstrRequestID);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertificateAttestationChallenge2_Value = @import("../zig.zig").Guid.initString("4631334D-E266-47D6-BD79-BE53CB2E2753");
+const IID_ICertificateAttestationChallenge2_Value = @import("../zig.zig").Guid.initString("4631334d-e266-47d6-bd79-be53cb2e2753");
 pub const IID_ICertificateAttestationChallenge2 = &IID_ICertificateAttestationChallenge2_Value;
 pub const ICertificateAttestationChallenge2 = extern struct {
     pub const VTable = extern struct {
@@ -25226,7 +26104,7 @@ pub const ICertificateAttestationChallenge2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509SCEPEnrollment_Value = @import("../zig.zig").Guid.initString("728AB361-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509SCEPEnrollment_Value = @import("../zig.zig").Guid.initString("728ab361-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollment = &IID_IX509SCEPEnrollment_Value;
 pub const IX509SCEPEnrollment = extern struct {
     pub const VTable = extern struct {
@@ -25246,12 +26124,12 @@ pub const IX509SCEPEnrollment = extern struct {
         CreateRequestMessage: fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRetrievePendingMessage: fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateRetrieveCertificateMessage: fn(
             self: *const IX509SCEPEnrollment,
@@ -25261,7 +26139,7 @@ pub const IX509SCEPEnrollment = extern struct {
             strSerialNumber: BSTR,
             SerialNumberEncoding: EncodingType,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessResponseMessage: fn(
             self: *const IX509SCEPEnrollment,
@@ -25279,7 +26157,7 @@ pub const IX509SCEPEnrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SignerCertificate: fn(
             self: *const IX509SCEPEnrollment,
-            ppValue: **ISignerCertificate,
+            ppValue: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SignerCertificate: fn(
             self: *const IX509SCEPEnrollment,
@@ -25287,7 +26165,7 @@ pub const IX509SCEPEnrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OldCertificate: fn(
             self: *const IX509SCEPEnrollment,
-            ppValue: **ISignerCertificate,
+            ppValue: ?*?*ISignerCertificate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_OldCertificate: fn(
             self: *const IX509SCEPEnrollment,
@@ -25296,7 +26174,7 @@ pub const IX509SCEPEnrollment = extern struct {
         get_TransactionId: fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_TransactionId: fn(
             self: *const IX509SCEPEnrollment,
@@ -25305,11 +26183,11 @@ pub const IX509SCEPEnrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Request: fn(
             self: *const IX509SCEPEnrollment,
-            ppValue: **IX509CertificateRequestPkcs10,
+            ppValue: ?*?*IX509CertificateRequestPkcs10,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CertificateFriendlyName: fn(
             self: *const IX509SCEPEnrollment,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CertificateFriendlyName: fn(
             self: *const IX509SCEPEnrollment,
@@ -25317,12 +26195,12 @@ pub const IX509SCEPEnrollment = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Status: fn(
             self: *const IX509SCEPEnrollment,
-            ppValue: **IX509EnrollmentStatus,
+            ppValue: ?*?*IX509EnrollmentStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Certificate: fn(
             self: *const IX509SCEPEnrollment,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Silent: fn(
             self: *const IX509SCEPEnrollment,
@@ -25348,15 +26226,15 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).InitializeForPending(@ptrCast(*const IX509SCEPEnrollment, self), Context);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_CreateRequestMessage(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_CreateRequestMessage(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRequestMessage(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_CreateRetrievePendingMessage(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_CreateRetrievePendingMessage(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRetrievePendingMessage(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_CreateRetrieveCertificateMessage(self: *const T, Context: X509CertificateEnrollmentContext, strIssuer: BSTR, IssuerEncoding: EncodingType, strSerialNumber: BSTR, SerialNumberEncoding: EncodingType, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_CreateRetrieveCertificateMessage(self: *const T, Context: X509CertificateEnrollmentContext, strIssuer: BSTR, IssuerEncoding: EncodingType, strSerialNumber: BSTR, SerialNumberEncoding: EncodingType, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRetrieveCertificateMessage(@ptrCast(*const IX509SCEPEnrollment, self), Context, strIssuer, IssuerEncoding, strSerialNumber, SerialNumberEncoding, Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25372,7 +26250,7 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_FailInfo(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_SignerCertificate(self: *const T, ppValue: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25380,7 +26258,7 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_OldCertificate(self: *const T, ppValue: **ISignerCertificate) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_OldCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_OldCertificate(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25388,7 +26266,7 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_OldCertificate(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_TransactionId(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_TransactionId(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_TransactionId(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25396,11 +26274,11 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_TransactionId(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_Request(self: *const T, ppValue: **IX509CertificateRequestPkcs10) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_Request(self: *const T, ppValue: ?*?*IX509CertificateRequestPkcs10) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Request(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_CertificateFriendlyName(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_CertificateFriendlyName(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_CertificateFriendlyName(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25408,11 +26286,11 @@ pub const IX509SCEPEnrollment = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_CertificateFriendlyName(@ptrCast(*const IX509SCEPEnrollment, self), Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_Status(self: *const T, ppValue: **IX509EnrollmentStatus) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_Status(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Status(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25453,7 +26331,7 @@ pub const DelayRetryLong = DelayRetryAction.DelayRetryLong;
 pub const DelayRetrySuccess = DelayRetryAction.DelayRetrySuccess;
 pub const DelayRetryPastSuccess = DelayRetryAction.DelayRetryPastSuccess;
 
-const IID_IX509SCEPEnrollment2_Value = @import("../zig.zig").Guid.initString("728AB364-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509SCEPEnrollment2_Value = @import("../zig.zig").Guid.initString("728ab364-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollment2 = &IID_IX509SCEPEnrollment2_Value;
 pub const IX509SCEPEnrollment2 = extern struct {
     pub const VTable = extern struct {
@@ -25461,7 +26339,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
         CreateChallengeAnswerMessage: fn(
             self: *const IX509SCEPEnrollment2,
             Encoding: EncodingType,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ProcessResponseMessage2: fn(
             self: *const IX509SCEPEnrollment2,
@@ -25472,7 +26350,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ResultMessageText: fn(
             self: *const IX509SCEPEnrollment2,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_DelayRetry: fn(
             self: *const IX509SCEPEnrollment2,
@@ -25480,7 +26358,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ActivityId: fn(
             self: *const IX509SCEPEnrollment2,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ActivityId: fn(
             self: *const IX509SCEPEnrollment2,
@@ -25491,7 +26369,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IX509SCEPEnrollment.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment2_CreateChallengeAnswerMessage(self: *const T, Encoding: EncodingType, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment2_CreateChallengeAnswerMessage(self: *const T, Encoding: EncodingType, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).CreateChallengeAnswerMessage(@ptrCast(*const IX509SCEPEnrollment2, self), Encoding, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25499,7 +26377,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).ProcessResponseMessage2(@ptrCast(*const IX509SCEPEnrollment2, self), Flags, strResponse, Encoding, pDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment2_get_ResultMessageText(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment2_get_ResultMessageText(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_ResultMessageText(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25507,7 +26385,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
             return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_DelayRetry(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollment2_get_ActivityId(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollment2_get_ActivityId(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_ActivityId(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25518,7 +26396,7 @@ pub const IX509SCEPEnrollment2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IX509SCEPEnrollmentHelper_Value = @import("../zig.zig").Guid.initString("728AB365-217D-11DA-B2A4-000E7BBB2B09");
+const IID_IX509SCEPEnrollmentHelper_Value = @import("../zig.zig").Guid.initString("728ab365-217d-11da-b2a4-000e7bbb2b09");
 pub const IID_IX509SCEPEnrollmentHelper = &IID_IX509SCEPEnrollmentHelper_Value;
 pub const IX509SCEPEnrollmentHelper = extern struct {
     pub const VTable = extern struct {
@@ -25549,11 +26427,11 @@ pub const IX509SCEPEnrollmentHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_X509SCEPEnrollment: fn(
             self: *const IX509SCEPEnrollmentHelper,
-            ppValue: **IX509SCEPEnrollment,
+            ppValue: ?*?*IX509SCEPEnrollment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ResultMessageText: fn(
             self: *const IX509SCEPEnrollmentHelper,
-            pValue: *BSTR,
+            pValue: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -25576,11 +26454,11 @@ pub const IX509SCEPEnrollmentHelper = extern struct {
             return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).FetchPending(@ptrCast(*const IX509SCEPEnrollmentHelper, self), ProcessFlags, pDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollmentHelper_get_X509SCEPEnrollment(self: *const T, ppValue: **IX509SCEPEnrollment) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollmentHelper_get_X509SCEPEnrollment(self: *const T, ppValue: ?*?*IX509SCEPEnrollment) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).get_X509SCEPEnrollment(@ptrCast(*const IX509SCEPEnrollmentHelper, self), ppValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IX509SCEPEnrollmentHelper_get_ResultMessageText(self: *const T, pValue: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IX509SCEPEnrollmentHelper_get_ResultMessageText(self: *const T, pValue: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).get_ResultMessageText(@ptrCast(*const IX509SCEPEnrollmentHelper, self), pValue);
         }
     };}
@@ -26176,22 +27054,22 @@ pub const CryptXmlDllCreateKey = fn(
     phKey: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-const CLSID_CCertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("38373906-5433-4633-B0FB-29B7E78262E1");
+const CLSID_CCertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("38373906-5433-4633-b0fb-29b7e78262e1");
 pub const CLSID_CCertSrvSetupKeyInformation = &CLSID_CCertSrvSetupKeyInformation_Value;
 
-const CLSID_CCertSrvSetup_Value = @import("../zig.zig").Guid.initString("961F180F-F55C-413D-A9B3-7D2AF4D8E42F");
+const CLSID_CCertSrvSetup_Value = @import("../zig.zig").Guid.initString("961f180f-f55c-413d-a9b3-7d2af4d8e42f");
 pub const CLSID_CCertSrvSetup = &CLSID_CCertSrvSetup_Value;
 
-const CLSID_CMSCEPSetup_Value = @import("../zig.zig").Guid.initString("AA4F5C02-8E7C-49C4-94FA-67A5CC5EADB4");
+const CLSID_CMSCEPSetup_Value = @import("../zig.zig").Guid.initString("aa4f5c02-8e7c-49c4-94fa-67a5cc5eadb4");
 pub const CLSID_CMSCEPSetup = &CLSID_CMSCEPSetup_Value;
 
-const CLSID_CCertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("9902F3BC-88AF-4CF8-AE62-7140531552B6");
+const CLSID_CCertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("9902f3bc-88af-4cf8-ae62-7140531552b6");
 pub const CLSID_CCertificateEnrollmentServerSetup = &CLSID_CCertificateEnrollmentServerSetup_Value;
 
-const CLSID_CCertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("AFE2FA32-41B1-459D-A5DE-49ADD8A72182");
+const CLSID_CCertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("afe2fa32-41b1-459d-a5de-49add8a72182");
 pub const CLSID_CCertificateEnrollmentPolicyServerSetup = &CLSID_CCertificateEnrollmentPolicyServerSetup_Value;
 
-const IID_ICertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("6BA73778-36DA-4C39-8A85-BCFA7D000793");
+const IID_ICertSrvSetupKeyInformation_Value = @import("../zig.zig").Guid.initString("6ba73778-36da-4c39-8a85-bcfa7d000793");
 pub const IID_ICertSrvSetupKeyInformation = &IID_ICertSrvSetupKeyInformation_Value;
 pub const ICertSrvSetupKeyInformation = extern struct {
     pub const VTable = extern struct {
@@ -26300,7 +27178,7 @@ pub const ICertSrvSetupKeyInformation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertSrvSetupKeyInformationCollection_Value = @import("../zig.zig").Guid.initString("E65C8B00-E58F-41F9-A9EC-A28D7427C844");
+const IID_ICertSrvSetupKeyInformationCollection_Value = @import("../zig.zig").Guid.initString("e65c8b00-e58f-41f9-a9ec-a28d7427c844");
 pub const IID_ICertSrvSetupKeyInformationCollection = &IID_ICertSrvSetupKeyInformationCollection_Value;
 pub const ICertSrvSetupKeyInformationCollection = extern struct {
     pub const VTable = extern struct {
@@ -26385,7 +27263,7 @@ pub const ENUM_SETUPPROP_REQUESTFILE = CASetupProperty.ENUM_SETUPPROP_REQUESTFIL
 pub const ENUM_SETUPPROP_WEBCAMACHINE = CASetupProperty.ENUM_SETUPPROP_WEBCAMACHINE;
 pub const ENUM_SETUPPROP_WEBCANAME = CASetupProperty.ENUM_SETUPPROP_WEBCANAME;
 
-const IID_ICertSrvSetup_Value = @import("../zig.zig").Guid.initString("B760A1BB-4784-44C0-8F12-555F0780FF25");
+const IID_ICertSrvSetup_Value = @import("../zig.zig").Guid.initString("b760a1bb-4784-44c0-8f12-555f0780ff25");
 pub const IID_ICertSrvSetup = &IID_ICertSrvSetup_Value;
 pub const ICertSrvSetup = extern struct {
     pub const VTable = extern struct {
@@ -26603,7 +27481,7 @@ pub const ENUM_CEPSETUPPROP_CAINFORMATION = MSCEPSetupProperty.ENUM_CEPSETUPPROP
 pub const ENUM_CEPSETUPPROP_MSCEPURL = MSCEPSetupProperty.ENUM_CEPSETUPPROP_MSCEPURL;
 pub const ENUM_CEPSETUPPROP_CHALLENGEURL = MSCEPSetupProperty.ENUM_CEPSETUPPROP_CHALLENGEURL;
 
-const IID_IMSCEPSetup_Value = @import("../zig.zig").Guid.initString("4F7761BB-9F3B-4592-9EE0-9A73259C313E");
+const IID_IMSCEPSetup_Value = @import("../zig.zig").Guid.initString("4f7761bb-9f3b-4592-9ee0-9a73259c313e");
 pub const IID_IMSCEPSetup = &IID_IMSCEPSetup_Value;
 pub const IMSCEPSetup = extern struct {
     pub const VTable = extern struct {
@@ -26731,7 +27609,7 @@ pub const ENUM_CESSETUPPROP_URL = CESSetupProperty.ENUM_CESSETUPPROP_URL;
 pub const ENUM_CESSETUPPROP_RENEWALONLY = CESSetupProperty.ENUM_CESSETUPPROP_RENEWALONLY;
 pub const ENUM_CESSETUPPROP_ALLOW_KEYBASED_RENEWAL = CESSetupProperty.ENUM_CESSETUPPROP_ALLOW_KEYBASED_RENEWAL;
 
-const IID_ICertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("70027FDB-9DD9-4921-8944-B35CB31BD2EC");
+const IID_ICertificateEnrollmentServerSetup_Value = @import("../zig.zig").Guid.initString("70027fdb-9dd9-4921-8944-b35cb31bd2ec");
 pub const IID_ICertificateEnrollmentServerSetup = &IID_ICertificateEnrollmentServerSetup_Value;
 pub const ICertificateEnrollmentServerSetup = extern struct {
     pub const VTable = extern struct {
@@ -26813,7 +27691,7 @@ pub const ENUM_CEPSETUPPROP_SSLCERTHASH = CEPSetupProperty.ENUM_CEPSETUPPROP_SSL
 pub const ENUM_CEPSETUPPROP_URL = CEPSetupProperty.ENUM_CEPSETUPPROP_URL;
 pub const ENUM_CEPSETUPPROP_KEYBASED_RENEWAL = CEPSetupProperty.ENUM_CEPSETUPPROP_KEYBASED_RENEWAL;
 
-const IID_ICertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("859252CC-238C-4A88-B8FD-A37E7D04E68B");
+const IID_ICertificateEnrollmentPolicyServerSetup_Value = @import("../zig.zig").Guid.initString("859252cc-238c-4a88-b8fd-a37e7d04e68b");
 pub const IID_ICertificateEnrollmentPolicyServerSetup = &IID_ICertificateEnrollmentPolicyServerSetup_Value;
 pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
     pub const VTable = extern struct {
@@ -26874,19 +27752,19 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_CCertAdmin_Value = @import("../zig.zig").Guid.initString("37EABAF0-7FB6-11D0-8817-00A0C903B83C");
+const CLSID_CCertAdmin_Value = @import("../zig.zig").Guid.initString("37eabaf0-7fb6-11d0-8817-00a0c903b83c");
 pub const CLSID_CCertAdmin = &CLSID_CCertAdmin_Value;
 
-const CLSID_CCertView_Value = @import("../zig.zig").Guid.initString("A12D0F7A-1E84-11D1-9BD6-00C04FB683FA");
+const CLSID_CCertView_Value = @import("../zig.zig").Guid.initString("a12d0f7a-1e84-11d1-9bd6-00c04fb683fa");
 pub const CLSID_CCertView = &CLSID_CCertView_Value;
 
-const CLSID_OCSPPropertyCollection_Value = @import("../zig.zig").Guid.initString("F935A528-BA8A-4DD9-BA79-F283275CB2DE");
+const CLSID_OCSPPropertyCollection_Value = @import("../zig.zig").Guid.initString("f935a528-ba8a-4dd9-ba79-f283275cb2de");
 pub const CLSID_OCSPPropertyCollection = &CLSID_OCSPPropertyCollection_Value;
 
-const CLSID_OCSPAdmin_Value = @import("../zig.zig").Guid.initString("D3F73511-92C9-47CB-8FF2-8D891A7C4DE4");
+const CLSID_OCSPAdmin_Value = @import("../zig.zig").Guid.initString("d3f73511-92c9-47cb-8ff2-8d891a7c4de4");
 pub const CLSID_OCSPAdmin = &CLSID_OCSPAdmin_Value;
 
-const IID_IEnumCERTVIEWCOLUMN_Value = @import("../zig.zig").Guid.initString("9C735BE2-57A5-11D1-9BDB-00C04FB683FA");
+const IID_IEnumCERTVIEWCOLUMN_Value = @import("../zig.zig").Guid.initString("9c735be2-57a5-11d1-9bdb-00c04fb683fa");
 pub const IID_IEnumCERTVIEWCOLUMN = &IID_IEnumCERTVIEWCOLUMN_Value;
 pub const IEnumCERTVIEWCOLUMN = extern struct {
     pub const VTable = extern struct {
@@ -26979,7 +27857,7 @@ pub const IEnumCERTVIEWCOLUMN = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumCERTVIEWATTRIBUTE_Value = @import("../zig.zig").Guid.initString("E77DB656-7653-11D1-9BDE-00C04FB683FA");
+const IID_IEnumCERTVIEWATTRIBUTE_Value = @import("../zig.zig").Guid.initString("e77db656-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWATTRIBUTE = &IID_IEnumCERTVIEWATTRIBUTE_Value;
 pub const IEnumCERTVIEWATTRIBUTE = extern struct {
     pub const VTable = extern struct {
@@ -27039,7 +27917,7 @@ pub const IEnumCERTVIEWATTRIBUTE = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumCERTVIEWEXTENSION_Value = @import("../zig.zig").Guid.initString("E7DD1466-7653-11D1-9BDE-00C04FB683FA");
+const IID_IEnumCERTVIEWEXTENSION_Value = @import("../zig.zig").Guid.initString("e7dd1466-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWEXTENSION = &IID_IEnumCERTVIEWEXTENSION_Value;
 pub const IEnumCERTVIEWEXTENSION = extern struct {
     pub const VTable = extern struct {
@@ -27109,7 +27987,7 @@ pub const IEnumCERTVIEWEXTENSION = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumCERTVIEWROW_Value = @import("../zig.zig").Guid.initString("D1157F4C-5AF2-11D1-9BDC-00C04FB683FA");
+const IID_IEnumCERTVIEWROW_Value = @import("../zig.zig").Guid.initString("d1157f4c-5af2-11d1-9bdc-00c04fb683fa");
 pub const IID_IEnumCERTVIEWROW = &IID_IEnumCERTVIEWROW_Value;
 pub const IEnumCERTVIEWROW = extern struct {
     pub const VTable = extern struct {
@@ -27187,7 +28065,7 @@ pub const IEnumCERTVIEWROW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertView_Value = @import("../zig.zig").Guid.initString("C3FAC344-1E84-11D1-9BD6-00C04FB683FA");
+const IID_ICertView_Value = @import("../zig.zig").Guid.initString("c3fac344-1e84-11d1-9bd6-00c04fb683fa");
 pub const IID_ICertView = &IID_ICertView_Value;
 pub const ICertView = extern struct {
     pub const VTable = extern struct {
@@ -27271,7 +28149,7 @@ pub const ICertView = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertView2_Value = @import("../zig.zig").Guid.initString("D594B282-8851-4B61-9C66-3EDADF848863");
+const IID_ICertView2_Value = @import("../zig.zig").Guid.initString("d594b282-8851-4b61-9c66-3edadf848863");
 pub const IID_ICertView2 = &IID_ICertView2_Value;
 pub const ICertView2 = extern struct {
     pub const VTable = extern struct {
@@ -27292,7 +28170,7 @@ pub const ICertView2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertAdmin_Value = @import("../zig.zig").Guid.initString("34DF6950-7FB6-11D0-8817-00A0C903B83C");
+const IID_ICertAdmin_Value = @import("../zig.zig").Guid.initString("34df6950-7fb6-11d0-8817-00a0c903b83c");
 pub const IID_ICertAdmin = &IID_ICertAdmin_Value;
 pub const ICertAdmin = extern struct {
     pub const VTable = extern struct {
@@ -27349,7 +28227,7 @@ pub const ICertAdmin = extern struct {
             self: *const ICertAdmin,
             strConfig: BSTR,
             Flags: i32,
-            pstrCRL: *BSTR,
+            pstrCRL: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ImportCertificate: fn(
             self: *const ICertAdmin,
@@ -27395,7 +28273,7 @@ pub const ICertAdmin = extern struct {
             return @ptrCast(*const ICertAdmin.VTable, self.vtable).PublishCRL(@ptrCast(*const ICertAdmin, self), strConfig, Date);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertAdmin_GetCRL(self: *const T, strConfig: BSTR, Flags: i32, pstrCRL: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertAdmin_GetCRL(self: *const T, strConfig: BSTR, Flags: i32, pstrCRL: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertAdmin.VTable, self.vtable).GetCRL(@ptrCast(*const ICertAdmin, self), strConfig, Flags, pstrCRL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27406,7 +28284,7 @@ pub const ICertAdmin = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertAdmin2_Value = @import("../zig.zig").Guid.initString("F7C3AC41-B8CE-4FB4-AA58-3D1DC0E36B39");
+const IID_ICertAdmin2_Value = @import("../zig.zig").Guid.initString("f7c3ac41-b8ce-4fb4-aa58-3d1dc0e36b39");
 pub const IID_ICertAdmin2 = &IID_ICertAdmin2_Value;
 pub const ICertAdmin2 = extern struct {
     pub const VTable = extern struct {
@@ -27444,14 +28322,14 @@ pub const ICertAdmin2 = extern struct {
             self: *const ICertAdmin2,
             strConfig: BSTR,
             PropId: i32,
-            pstrDisplayName: *BSTR,
+            pstrDisplayName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetArchivedKey: fn(
             self: *const ICertAdmin2,
             strConfig: BSTR,
             RequestId: i32,
             Flags: i32,
-            pstrArchivedKey: *BSTR,
+            pstrArchivedKey: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConfigEntry: fn(
             self: *const ICertAdmin2,
@@ -27510,11 +28388,11 @@ pub const ICertAdmin2 = extern struct {
             return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetCAPropertyFlags(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, pPropFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertAdmin2_GetCAPropertyDisplayName(self: *const T, strConfig: BSTR, PropId: i32, pstrDisplayName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertAdmin2_GetCAPropertyDisplayName(self: *const T, strConfig: BSTR, PropId: i32, pstrDisplayName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetCAPropertyDisplayName(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, pstrDisplayName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertAdmin2_GetArchivedKey(self: *const T, strConfig: BSTR, RequestId: i32, Flags: i32, pstrArchivedKey: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertAdmin2_GetArchivedKey(self: *const T, strConfig: BSTR, RequestId: i32, Flags: i32, pstrArchivedKey: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetArchivedKey(@ptrCast(*const ICertAdmin2, self), strConfig, RequestId, Flags, pstrArchivedKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27541,14 +28419,14 @@ pub const ICertAdmin2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOCSPProperty_Value = @import("../zig.zig").Guid.initString("66FB7839-5F04-4C25-AD18-9FF1A8376EE0");
+const IID_IOCSPProperty_Value = @import("../zig.zig").Guid.initString("66fb7839-5f04-4c25-ad18-9ff1a8376ee0");
 pub const IID_IOCSPProperty = &IID_IOCSPProperty_Value;
 pub const IOCSPProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Name: fn(
             self: *const IOCSPProperty,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Value: fn(
             self: *const IOCSPProperty,
@@ -27567,7 +28445,7 @@ pub const IOCSPProperty = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPProperty_get_Name(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPProperty_get_Name(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPProperty.VTable, self.vtable).get_Name(@ptrCast(*const IOCSPProperty, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27586,14 +28464,14 @@ pub const IOCSPProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOCSPPropertyCollection_Value = @import("../zig.zig").Guid.initString("2597C18D-54E6-4B74-9FA9-A6BFDA99CBBE");
+const IID_IOCSPPropertyCollection_Value = @import("../zig.zig").Guid.initString("2597c18d-54e6-4b74-9fa9-a6bfda99cbbe");
 pub const IID_IOCSPPropertyCollection = &IID_IOCSPPropertyCollection_Value;
 pub const IOCSPPropertyCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IOCSPPropertyCollection,
-            ppVal: **IUnknown,
+            ppVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IOCSPPropertyCollection,
@@ -27613,7 +28491,7 @@ pub const IOCSPPropertyCollection = extern struct {
             self: *const IOCSPPropertyCollection,
             bstrPropName: BSTR,
             pVarPropValue: *const VARIANT,
-            ppVal: **IOCSPProperty,
+            ppVal: ?*?*IOCSPProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteProperty: fn(
             self: *const IOCSPPropertyCollection,
@@ -27632,7 +28510,7 @@ pub const IOCSPPropertyCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPPropertyCollection_get__NewEnum(self: *const T, ppVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IOCSPPropertyCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IOCSPPropertyCollection, self), ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27648,7 +28526,7 @@ pub const IOCSPPropertyCollection = extern struct {
             return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get_ItemByName(@ptrCast(*const IOCSPPropertyCollection, self), bstrPropName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPPropertyCollection_CreateProperty(self: *const T, bstrPropName: BSTR, pVarPropValue: *const VARIANT, ppVal: **IOCSPProperty) callconv(.Inline) HRESULT {
+        pub fn IOCSPPropertyCollection_CreateProperty(self: *const T, bstrPropName: BSTR, pVarPropValue: *const VARIANT, ppVal: ?*?*IOCSPProperty) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).CreateProperty(@ptrCast(*const IOCSPPropertyCollection, self), bstrPropName, pVarPropValue, ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27667,14 +28545,14 @@ pub const IOCSPPropertyCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOCSPCAConfiguration_Value = @import("../zig.zig").Guid.initString("AEC92B40-3D46-433F-87D1-B84D5C1E790D");
+const IID_IOCSPCAConfiguration_Value = @import("../zig.zig").Guid.initString("aec92b40-3d46-433f-87d1-b84d5c1e790d");
 pub const IID_IOCSPCAConfiguration = &IID_IOCSPCAConfiguration_Value;
 pub const IOCSPCAConfiguration = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Identifier: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CACertificate: fn(
             self: *const IOCSPCAConfiguration,
@@ -27682,7 +28560,7 @@ pub const IOCSPCAConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HashAlgorithm: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HashAlgorithm: fn(
             self: *const IOCSPCAConfiguration,
@@ -27718,7 +28596,7 @@ pub const IOCSPCAConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CSPName: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_KeySpec: fn(
             self: *const IOCSPCAConfiguration,
@@ -27726,7 +28604,7 @@ pub const IOCSPCAConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProviderCLSID: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProviderCLSID: fn(
             self: *const IOCSPCAConfiguration,
@@ -27754,7 +28632,7 @@ pub const IOCSPCAConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SigningCertificateTemplate: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SigningCertificateTemplate: fn(
             self: *const IOCSPCAConfiguration,
@@ -27762,7 +28640,7 @@ pub const IOCSPCAConfiguration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CAConfig: fn(
             self: *const IOCSPCAConfiguration,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CAConfig: fn(
             self: *const IOCSPCAConfiguration,
@@ -27773,7 +28651,7 @@ pub const IOCSPCAConfiguration = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_Identifier(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_Identifier(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_Identifier(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27781,7 +28659,7 @@ pub const IOCSPCAConfiguration = extern struct {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CACertificate(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_HashAlgorithm(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_HashAlgorithm(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27817,7 +28695,7 @@ pub const IOCSPCAConfiguration = extern struct {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ErrorCode(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_CSPName(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_CSPName(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CSPName(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27825,7 +28703,7 @@ pub const IOCSPCAConfiguration = extern struct {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_KeySpec(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_ProviderCLSID(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_ProviderCLSID(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ProviderCLSID(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27853,7 +28731,7 @@ pub const IOCSPCAConfiguration = extern struct {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_LocalRevocationInformation(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_SigningCertificateTemplate(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_SigningCertificateTemplate(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_SigningCertificateTemplate(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27861,7 +28739,7 @@ pub const IOCSPCAConfiguration = extern struct {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_SigningCertificateTemplate(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfiguration_get_CAConfig(self: *const T, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfiguration_get_CAConfig(self: *const T, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CAConfig(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27872,14 +28750,14 @@ pub const IOCSPCAConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOCSPCAConfigurationCollection_Value = @import("../zig.zig").Guid.initString("2BEBEA0B-5ECE-4F28-A91C-86B4BB20F0D3");
+const IID_IOCSPCAConfigurationCollection_Value = @import("../zig.zig").Guid.initString("2bebea0b-5ece-4f28-a91c-86b4bb20f0d3");
 pub const IID_IOCSPCAConfigurationCollection = &IID_IOCSPCAConfigurationCollection_Value;
 pub const IOCSPCAConfigurationCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get__NewEnum: fn(
             self: *const IOCSPCAConfigurationCollection,
-            pVal: **IUnknown,
+            pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_Item: fn(
             self: *const IOCSPCAConfigurationCollection,
@@ -27899,7 +28777,7 @@ pub const IOCSPCAConfigurationCollection = extern struct {
             self: *const IOCSPCAConfigurationCollection,
             bstrIdentifier: BSTR,
             varCACert: VARIANT,
-            ppVal: **IOCSPCAConfiguration,
+            ppVal: ?*?*IOCSPCAConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteCAConfiguration: fn(
             self: *const IOCSPCAConfigurationCollection,
@@ -27910,7 +28788,7 @@ pub const IOCSPCAConfigurationCollection = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfigurationCollection_get__NewEnum(self: *const T, pVal: **IUnknown) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfigurationCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IOCSPCAConfigurationCollection, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27926,7 +28804,7 @@ pub const IOCSPCAConfigurationCollection = extern struct {
             return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get_ItemByName(@ptrCast(*const IOCSPCAConfigurationCollection, self), bstrIdentifier, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPCAConfigurationCollection_CreateCAConfiguration(self: *const T, bstrIdentifier: BSTR, varCACert: VARIANT, ppVal: **IOCSPCAConfiguration) callconv(.Inline) HRESULT {
+        pub fn IOCSPCAConfigurationCollection_CreateCAConfiguration(self: *const T, bstrIdentifier: BSTR, varCACert: VARIANT, ppVal: ?*?*IOCSPCAConfiguration) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).CreateCAConfiguration(@ptrCast(*const IOCSPCAConfigurationCollection, self), bstrIdentifier, varCACert, ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27937,18 +28815,18 @@ pub const IOCSPCAConfigurationCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IOCSPAdmin_Value = @import("../zig.zig").Guid.initString("322E830D-67DB-4FE9-9577-4596D9F09294");
+const IID_IOCSPAdmin_Value = @import("../zig.zig").Guid.initString("322e830d-67db-4fe9-9577-4596d9f09294");
 pub const IID_IOCSPAdmin = &IID_IOCSPAdmin_Value;
 pub const IOCSPAdmin = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_OCSPServiceProperties: fn(
             self: *const IOCSPAdmin,
-            ppVal: **IOCSPPropertyCollection,
+            ppVal: ?*?*IOCSPPropertyCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_OCSPCAConfigurationCollection: fn(
             self: *const IOCSPAdmin,
-            pVal: **IOCSPCAConfigurationCollection,
+            pVal: ?*?*IOCSPCAConfigurationCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConfiguration: fn(
             self: *const IOCSPAdmin,
@@ -27977,7 +28855,7 @@ pub const IOCSPAdmin = extern struct {
         GetSecurity: fn(
             self: *const IOCSPAdmin,
             bstrServerName: BSTR,
-            pVal: *BSTR,
+            pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSigningCertificates: fn(
             self: *const IOCSPAdmin,
@@ -27996,11 +28874,11 @@ pub const IOCSPAdmin = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPAdmin_get_OCSPServiceProperties(self: *const T, ppVal: **IOCSPPropertyCollection) callconv(.Inline) HRESULT {
+        pub fn IOCSPAdmin_get_OCSPServiceProperties(self: *const T, ppVal: ?*?*IOCSPPropertyCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).get_OCSPServiceProperties(@ptrCast(*const IOCSPAdmin, self), ppVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPAdmin_get_OCSPCAConfigurationCollection(self: *const T, pVal: **IOCSPCAConfigurationCollection) callconv(.Inline) HRESULT {
+        pub fn IOCSPAdmin_get_OCSPCAConfigurationCollection(self: *const T, pVal: ?*?*IOCSPCAConfigurationCollection) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).get_OCSPCAConfigurationCollection(@ptrCast(*const IOCSPAdmin, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28024,7 +28902,7 @@ pub const IOCSPAdmin = extern struct {
             return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).SetSecurity(@ptrCast(*const IOCSPAdmin, self), bstrServerName, bstrVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOCSPAdmin_GetSecurity(self: *const T, bstrServerName: BSTR, pVal: *BSTR) callconv(.Inline) HRESULT {
+        pub fn IOCSPAdmin_GetSecurity(self: *const T, bstrServerName: BSTR, pVal: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetSecurity(@ptrCast(*const IOCSPAdmin, self), bstrServerName, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28067,25 +28945,25 @@ pub const OCSPRequestFlag = extern enum(i32) {
 };
 pub const OCSP_RF_REJECT_SIGNED_REQUESTS = OCSPRequestFlag.OCSP_RF_REJECT_SIGNED_REQUESTS;
 
-const CLSID_CCertEncodeStringArray_Value = @import("../zig.zig").Guid.initString("19A76FE0-7494-11D0-8816-00A0C903B83C");
+const CLSID_CCertEncodeStringArray_Value = @import("../zig.zig").Guid.initString("19a76fe0-7494-11d0-8816-00a0c903b83c");
 pub const CLSID_CCertEncodeStringArray = &CLSID_CCertEncodeStringArray_Value;
 
-const CLSID_CCertEncodeLongArray_Value = @import("../zig.zig").Guid.initString("4E0680A0-A0A2-11D0-8821-00A0C903B83C");
+const CLSID_CCertEncodeLongArray_Value = @import("../zig.zig").Guid.initString("4e0680a0-a0a2-11d0-8821-00a0c903b83c");
 pub const CLSID_CCertEncodeLongArray = &CLSID_CCertEncodeLongArray_Value;
 
-const CLSID_CCertEncodeDateArray_Value = @import("../zig.zig").Guid.initString("301F77B0-A470-11D0-8821-00A0C903B83C");
+const CLSID_CCertEncodeDateArray_Value = @import("../zig.zig").Guid.initString("301f77b0-a470-11d0-8821-00a0c903b83c");
 pub const CLSID_CCertEncodeDateArray = &CLSID_CCertEncodeDateArray_Value;
 
-const CLSID_CCertEncodeCRLDistInfo_Value = @import("../zig.zig").Guid.initString("01FA60A0-BBFF-11D0-8825-00A0C903B83C");
+const CLSID_CCertEncodeCRLDistInfo_Value = @import("../zig.zig").Guid.initString("01fa60a0-bbff-11d0-8825-00a0c903b83c");
 pub const CLSID_CCertEncodeCRLDistInfo = &CLSID_CCertEncodeCRLDistInfo_Value;
 
-const CLSID_CCertEncodeAltName_Value = @import("../zig.zig").Guid.initString("1CFC4CDA-1271-11D1-9BD4-00C04FB683FA");
+const CLSID_CCertEncodeAltName_Value = @import("../zig.zig").Guid.initString("1cfc4cda-1271-11d1-9bd4-00c04fb683fa");
 pub const CLSID_CCertEncodeAltName = &CLSID_CCertEncodeAltName_Value;
 
-const CLSID_CCertEncodeBitString_Value = @import("../zig.zig").Guid.initString("6D6B3CD8-1278-11D1-9BD4-00C04FB683FA");
+const CLSID_CCertEncodeBitString_Value = @import("../zig.zig").Guid.initString("6d6b3cd8-1278-11d1-9bd4-00c04fb683fa");
 pub const CLSID_CCertEncodeBitString = &CLSID_CCertEncodeBitString_Value;
 
-const IID_ICertEncodeStringArray_Value = @import("../zig.zig").Guid.initString("12A88820-7494-11D0-8816-00A0C903B83C");
+const IID_ICertEncodeStringArray_Value = @import("../zig.zig").Guid.initString("12a88820-7494-11d0-8816-00a0c903b83c");
 pub const IID_ICertEncodeStringArray = &IID_ICertEncodeStringArray_Value;
 pub const ICertEncodeStringArray = extern struct {
     pub const VTable = extern struct {
@@ -28105,7 +28983,7 @@ pub const ICertEncodeStringArray = extern struct {
         GetValue: fn(
             self: *const ICertEncodeStringArray,
             Index: i32,
-            pstr: *BSTR,
+            pstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ICertEncodeStringArray,
@@ -28119,7 +28997,7 @@ pub const ICertEncodeStringArray = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeStringArray,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28138,7 +29016,7 @@ pub const ICertEncodeStringArray = extern struct {
             return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).GetCount(@ptrCast(*const ICertEncodeStringArray, self), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeStringArray_GetValue(self: *const T, Index: i32, pstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeStringArray_GetValue(self: *const T, Index: i32, pstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).GetValue(@ptrCast(*const ICertEncodeStringArray, self), Index, pstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28150,14 +29028,14 @@ pub const ICertEncodeStringArray = extern struct {
             return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeStringArray, self), Index, str);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeStringArray_Encode(self: *const T, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeStringArray_Encode(self: *const T, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeStringArray, self), pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeStringArray2_Value = @import("../zig.zig").Guid.initString("9C680D93-9B7D-4E95-9018-4FFE10BA5ADA");
+const IID_ICertEncodeStringArray2_Value = @import("../zig.zig").Guid.initString("9c680d93-9b7d-4e95-9018-4ffe10ba5ada");
 pub const IID_ICertEncodeStringArray2 = &IID_ICertEncodeStringArray2_Value;
 pub const ICertEncodeStringArray2 = extern struct {
     pub const VTable = extern struct {
@@ -28170,7 +29048,7 @@ pub const ICertEncodeStringArray2 = extern struct {
         EncodeBlob: fn(
             self: *const ICertEncodeStringArray2,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28181,14 +29059,14 @@ pub const ICertEncodeStringArray2 = extern struct {
             return @ptrCast(*const ICertEncodeStringArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeStringArray2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeStringArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeStringArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeStringArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeStringArray2, self), Encoding, pstrEncodedData);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeLongArray_Value = @import("../zig.zig").Guid.initString("15E2F230-A0A2-11D0-8821-00A0C903B83C");
+const IID_ICertEncodeLongArray_Value = @import("../zig.zig").Guid.initString("15e2f230-a0a2-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeLongArray = &IID_ICertEncodeLongArray_Value;
 pub const ICertEncodeLongArray = extern struct {
     pub const VTable = extern struct {
@@ -28217,7 +29095,7 @@ pub const ICertEncodeLongArray = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeLongArray,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28244,14 +29122,14 @@ pub const ICertEncodeLongArray = extern struct {
             return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeLongArray, self), Index, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeLongArray_Encode(self: *const T, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeLongArray_Encode(self: *const T, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeLongArray, self), pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeLongArray2_Value = @import("../zig.zig").Guid.initString("4EFDE84A-BD9B-4FC2-A108-C347D478840F");
+const IID_ICertEncodeLongArray2_Value = @import("../zig.zig").Guid.initString("4efde84a-bd9b-4fc2-a108-c347d478840f");
 pub const IID_ICertEncodeLongArray2 = &IID_ICertEncodeLongArray2_Value;
 pub const ICertEncodeLongArray2 = extern struct {
     pub const VTable = extern struct {
@@ -28264,7 +29142,7 @@ pub const ICertEncodeLongArray2 = extern struct {
         EncodeBlob: fn(
             self: *const ICertEncodeLongArray2,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28275,14 +29153,14 @@ pub const ICertEncodeLongArray2 = extern struct {
             return @ptrCast(*const ICertEncodeLongArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeLongArray2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeLongArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeLongArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeLongArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeLongArray2, self), Encoding, pstrEncodedData);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeDateArray_Value = @import("../zig.zig").Guid.initString("2F9469A0-A470-11D0-8821-00A0C903B83C");
+const IID_ICertEncodeDateArray_Value = @import("../zig.zig").Guid.initString("2f9469a0-a470-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeDateArray = &IID_ICertEncodeDateArray_Value;
 pub const ICertEncodeDateArray = extern struct {
     pub const VTable = extern struct {
@@ -28311,7 +29189,7 @@ pub const ICertEncodeDateArray = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeDateArray,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28338,14 +29216,14 @@ pub const ICertEncodeDateArray = extern struct {
             return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeDateArray, self), Index, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeDateArray_Encode(self: *const T, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeDateArray_Encode(self: *const T, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeDateArray, self), pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeDateArray2_Value = @import("../zig.zig").Guid.initString("99A4EDB5-2B8E-448D-BF95-BBA8D7789DC8");
+const IID_ICertEncodeDateArray2_Value = @import("../zig.zig").Guid.initString("99a4edb5-2b8e-448d-bf95-bba8d7789dc8");
 pub const IID_ICertEncodeDateArray2 = &IID_ICertEncodeDateArray2_Value;
 pub const ICertEncodeDateArray2 = extern struct {
     pub const VTable = extern struct {
@@ -28358,7 +29236,7 @@ pub const ICertEncodeDateArray2 = extern struct {
         EncodeBlob: fn(
             self: *const ICertEncodeDateArray2,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28369,14 +29247,14 @@ pub const ICertEncodeDateArray2 = extern struct {
             return @ptrCast(*const ICertEncodeDateArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeDateArray2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeDateArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeDateArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeDateArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeDateArray2, self), Encoding, pstrEncodedData);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeCRLDistInfo_Value = @import("../zig.zig").Guid.initString("01958640-BBFF-11D0-8825-00A0C903B83C");
+const IID_ICertEncodeCRLDistInfo_Value = @import("../zig.zig").Guid.initString("01958640-bbff-11d0-8825-00a0c903b83c");
 pub const IID_ICertEncodeCRLDistInfo = &IID_ICertEncodeCRLDistInfo_Value;
 pub const ICertEncodeCRLDistInfo = extern struct {
     pub const VTable = extern struct {
@@ -28404,7 +29282,7 @@ pub const ICertEncodeCRLDistInfo = extern struct {
             self: *const ICertEncodeCRLDistInfo,
             DistPointIndex: i32,
             NameIndex: i32,
-            pstrName: *BSTR,
+            pstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ICertEncodeCRLDistInfo,
@@ -28424,7 +29302,7 @@ pub const ICertEncodeCRLDistInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeCRLDistInfo,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28447,7 +29325,7 @@ pub const ICertEncodeCRLDistInfo = extern struct {
             return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetNameChoice(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, pNameChoice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeCRLDistInfo_GetName(self: *const T, DistPointIndex: i32, NameIndex: i32, pstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeCRLDistInfo_GetName(self: *const T, DistPointIndex: i32, NameIndex: i32, pstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetName(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, pstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28463,14 +29341,14 @@ pub const ICertEncodeCRLDistInfo = extern struct {
             return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).SetNameEntry(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, NameChoice, strName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeCRLDistInfo_Encode(self: *const T, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeCRLDistInfo_Encode(self: *const T, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeCRLDistInfo, self), pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeCRLDistInfo2_Value = @import("../zig.zig").Guid.initString("B4275D4B-3E30-446F-AD36-09D03120B078");
+const IID_ICertEncodeCRLDistInfo2_Value = @import("../zig.zig").Guid.initString("b4275d4b-3e30-446f-ad36-09d03120b078");
 pub const IID_ICertEncodeCRLDistInfo2 = &IID_ICertEncodeCRLDistInfo2_Value;
 pub const ICertEncodeCRLDistInfo2 = extern struct {
     pub const VTable = extern struct {
@@ -28483,7 +29361,7 @@ pub const ICertEncodeCRLDistInfo2 = extern struct {
         EncodeBlob: fn(
             self: *const ICertEncodeCRLDistInfo2,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28494,14 +29372,14 @@ pub const ICertEncodeCRLDistInfo2 = extern struct {
             return @ptrCast(*const ICertEncodeCRLDistInfo2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeCRLDistInfo2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeCRLDistInfo2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeCRLDistInfo2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeCRLDistInfo2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeCRLDistInfo2, self), Encoding, pstrEncodedData);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeAltName_Value = @import("../zig.zig").Guid.initString("1C9A8C70-1271-11D1-9BD4-00C04FB683FA");
+const IID_ICertEncodeAltName_Value = @import("../zig.zig").Guid.initString("1c9a8c70-1271-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeAltName = &IID_ICertEncodeAltName_Value;
 pub const ICertEncodeAltName = extern struct {
     pub const VTable = extern struct {
@@ -28522,7 +29400,7 @@ pub const ICertEncodeAltName = extern struct {
         GetName: fn(
             self: *const ICertEncodeAltName,
             NameIndex: i32,
-            pstrName: *BSTR,
+            pstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
             self: *const ICertEncodeAltName,
@@ -28536,7 +29414,7 @@ pub const ICertEncodeAltName = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeAltName,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28555,7 +29433,7 @@ pub const ICertEncodeAltName = extern struct {
             return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).GetNameChoice(@ptrCast(*const ICertEncodeAltName, self), NameIndex, pNameChoice);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeAltName_GetName(self: *const T, NameIndex: i32, pstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeAltName_GetName(self: *const T, NameIndex: i32, pstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).GetName(@ptrCast(*const ICertEncodeAltName, self), NameIndex, pstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28567,14 +29445,14 @@ pub const ICertEncodeAltName = extern struct {
             return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).SetNameEntry(@ptrCast(*const ICertEncodeAltName, self), NameIndex, NameChoice, strName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeAltName_Encode(self: *const T, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeAltName_Encode(self: *const T, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeAltName, self), pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeAltName2_Value = @import("../zig.zig").Guid.initString("F67FE177-5EF1-4535-B4CE-29DF15E2E0C3");
+const IID_ICertEncodeAltName2_Value = @import("../zig.zig").Guid.initString("f67fe177-5ef1-4535-b4ce-29df15e2e0c3");
 pub const IID_ICertEncodeAltName2 = &IID_ICertEncodeAltName2_Value;
 pub const ICertEncodeAltName2 = extern struct {
     pub const VTable = extern struct {
@@ -28587,13 +29465,13 @@ pub const ICertEncodeAltName2 = extern struct {
         EncodeBlob: fn(
             self: *const ICertEncodeAltName2,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNameBlob: fn(
             self: *const ICertEncodeAltName2,
             NameIndex: i32,
             Encoding: EncodingType,
-            pstrName: *BSTR,
+            pstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNameEntryBlob: fn(
             self: *const ICertEncodeAltName2,
@@ -28611,11 +29489,11 @@ pub const ICertEncodeAltName2 = extern struct {
             return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeAltName2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeAltName2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeAltName2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeAltName2, self), Encoding, pstrEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeAltName2_GetNameBlob(self: *const T, NameIndex: i32, Encoding: EncodingType, pstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeAltName2_GetNameBlob(self: *const T, NameIndex: i32, Encoding: EncodingType, pstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).GetNameBlob(@ptrCast(*const ICertEncodeAltName2, self), NameIndex, Encoding, pstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28626,7 +29504,7 @@ pub const ICertEncodeAltName2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeBitString_Value = @import("../zig.zig").Guid.initString("6DB525BE-1278-11D1-9BD4-00C04FB683FA");
+const IID_ICertEncodeBitString_Value = @import("../zig.zig").Guid.initString("6db525be-1278-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeBitString = &IID_ICertEncodeBitString_Value;
 pub const ICertEncodeBitString = extern struct {
     pub const VTable = extern struct {
@@ -28641,13 +29519,13 @@ pub const ICertEncodeBitString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBitString: fn(
             self: *const ICertEncodeBitString,
-            pstrBitString: *BSTR,
+            pstrBitString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Encode: fn(
             self: *const ICertEncodeBitString,
             BitCount: i32,
             strBitString: BSTR,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28662,18 +29540,18 @@ pub const ICertEncodeBitString = extern struct {
             return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).GetBitCount(@ptrCast(*const ICertEncodeBitString, self), pBitCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeBitString_GetBitString(self: *const T, pstrBitString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeBitString_GetBitString(self: *const T, pstrBitString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).GetBitString(@ptrCast(*const ICertEncodeBitString, self), pstrBitString);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeBitString_Encode(self: *const T, BitCount: i32, strBitString: BSTR, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeBitString_Encode(self: *const T, BitCount: i32, strBitString: BSTR, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeBitString, self), BitCount, strBitString, pstrBinary);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertEncodeBitString2_Value = @import("../zig.zig").Guid.initString("E070D6E7-23EF-4DD2-8242-EBD9C928CB30");
+const IID_ICertEncodeBitString2_Value = @import("../zig.zig").Guid.initString("e070d6e7-23ef-4dd2-8242-ebd9c928cb30");
 pub const IID_ICertEncodeBitString2 = &IID_ICertEncodeBitString2_Value;
 pub const ICertEncodeBitString2 = extern struct {
     pub const VTable = extern struct {
@@ -28689,12 +29567,12 @@ pub const ICertEncodeBitString2 = extern struct {
             strBitString: BSTR,
             EncodingIn: EncodingType,
             Encoding: EncodingType,
-            pstrEncodedData: *BSTR,
+            pstrEncodedData: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetBitStringBlob: fn(
             self: *const ICertEncodeBitString2,
             Encoding: EncodingType,
-            pstrBitString: *BSTR,
+            pstrBitString: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -28705,18 +29583,18 @@ pub const ICertEncodeBitString2 = extern struct {
             return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeBitString2, self), strEncodedData, Encoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeBitString2_EncodeBlob(self: *const T, BitCount: i32, strBitString: BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncodedData: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeBitString2_EncodeBlob(self: *const T, BitCount: i32, strBitString: BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncodedData: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeBitString2, self), BitCount, strBitString, EncodingIn, Encoding, pstrEncodedData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertEncodeBitString2_GetBitStringBlob(self: *const T, Encoding: EncodingType, pstrBitString: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICertEncodeBitString2_GetBitStringBlob(self: *const T, Encoding: EncodingType, pstrBitString: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).GetBitStringBlob(@ptrCast(*const ICertEncodeBitString2, self), Encoding, pstrBitString);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertExit_Value = @import("../zig.zig").Guid.initString("E19AE1A0-7364-11D0-8816-00A0C903B83C");
+const IID_ICertExit_Value = @import("../zig.zig").Guid.initString("e19ae1a0-7364-11d0-8816-00a0c903b83c");
 pub const IID_ICertExit = &IID_ICertExit_Value;
 pub const ICertExit = extern struct {
     pub const VTable = extern struct {
@@ -28755,7 +29633,7 @@ pub const ICertExit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICertExit2_Value = @import("../zig.zig").Guid.initString("0ABF484B-D049-464D-A7ED-552E7529B0FF");
+const IID_ICertExit2_Value = @import("../zig.zig").Guid.initString("0abf484b-d049-464d-a7ed-552e7529b0ff");
 pub const IID_ICertExit2 = &IID_ICertExit2_Value;
 pub const ICertExit2 = extern struct {
     pub const VTable = extern struct {
@@ -29798,13 +30676,13 @@ pub const PFN_CDF_PARSE_ERROR_CALLBACK = fn(
     pwszLine: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const CLSID_CEnroll2_Value = @import("../zig.zig").Guid.initString("127698E4-E730-4E5C-A2B1-21490A70C8A1");
+const CLSID_CEnroll2_Value = @import("../zig.zig").Guid.initString("127698e4-e730-4e5c-a2b1-21490a70c8a1");
 pub const CLSID_CEnroll2 = &CLSID_CEnroll2_Value;
 
-const CLSID_CEnroll_Value = @import("../zig.zig").Guid.initString("43F8F289-7A20-11D0-8F06-00C04FC295E1");
+const CLSID_CEnroll_Value = @import("../zig.zig").Guid.initString("43f8f289-7a20-11d0-8f06-00c04fc295e1");
 pub const CLSID_CEnroll = &CLSID_CEnroll_Value;
 
-const IID_ICEnroll_Value = @import("../zig.zig").Guid.initString("43F8F288-7A20-11D0-8F06-00C04FC295E1");
+const IID_ICEnroll_Value = @import("../zig.zig").Guid.initString("43f8f288-7a20-11d0-8f06-00c04fc295e1");
 pub const IID_ICEnroll = &IID_ICEnroll_Value;
 pub const ICEnroll = extern struct {
     pub const VTable = extern struct {
@@ -29823,7 +30701,7 @@ pub const ICEnroll = extern struct {
             self: *const ICEnroll,
             DNName: BSTR,
             Usage: BSTR,
-            pPKCS10: *BSTR,
+            pPKCS10: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         acceptPKCS7: fn(
             self: *const ICEnroll,
@@ -29832,18 +30710,18 @@ pub const ICEnroll = extern struct {
         getCertFromPKCS7: fn(
             self: *const ICEnroll,
             wszPKCS7: BSTR,
-            pbstrCert: *BSTR,
+            pbstrCert: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         enumProviders: fn(
             self: *const ICEnroll,
             dwIndex: i32,
             dwFlags: i32,
-            pbstrProvName: *BSTR,
+            pbstrProvName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         enumContainers: fn(
             self: *const ICEnroll,
             dwIndex: i32,
-            pbstr: *BSTR,
+            pbstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         freeRequestInfo: fn(
             self: *const ICEnroll,
@@ -29851,7 +30729,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MyStoreName: fn(
             self: *const ICEnroll,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MyStoreName: fn(
             self: *const ICEnroll,
@@ -29859,7 +30737,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_MyStoreType: fn(
             self: *const ICEnroll,
-            pbstrType: *BSTR,
+            pbstrType: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_MyStoreType: fn(
             self: *const ICEnroll,
@@ -29875,7 +30753,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CAStoreName: fn(
             self: *const ICEnroll,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CAStoreName: fn(
             self: *const ICEnroll,
@@ -29883,7 +30761,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_CAStoreType: fn(
             self: *const ICEnroll,
-            pbstrType: *BSTR,
+            pbstrType: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_CAStoreType: fn(
             self: *const ICEnroll,
@@ -29899,7 +30777,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RootStoreName: fn(
             self: *const ICEnroll,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RootStoreName: fn(
             self: *const ICEnroll,
@@ -29907,7 +30785,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RootStoreType: fn(
             self: *const ICEnroll,
-            pbstrType: *BSTR,
+            pbstrType: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RootStoreType: fn(
             self: *const ICEnroll,
@@ -29923,7 +30801,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestStoreName: fn(
             self: *const ICEnroll,
-            pbstrName: *BSTR,
+            pbstrName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RequestStoreName: fn(
             self: *const ICEnroll,
@@ -29931,7 +30809,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_RequestStoreType: fn(
             self: *const ICEnroll,
-            pbstrType: *BSTR,
+            pbstrType: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_RequestStoreType: fn(
             self: *const ICEnroll,
@@ -29947,7 +30825,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ContainerName: fn(
             self: *const ICEnroll,
-            pbstrContainer: *BSTR,
+            pbstrContainer: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ContainerName: fn(
             self: *const ICEnroll,
@@ -29955,7 +30833,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ProviderName: fn(
             self: *const ICEnroll,
-            pbstrProvider: *BSTR,
+            pbstrProvider: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ProviderName: fn(
             self: *const ICEnroll,
@@ -30019,7 +30897,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_SPCFileName: fn(
             self: *const ICEnroll,
-            pbstr: *BSTR,
+            pbstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_SPCFileName: fn(
             self: *const ICEnroll,
@@ -30027,7 +30905,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PVKFileName: fn(
             self: *const ICEnroll,
-            pbstr: *BSTR,
+            pbstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_PVKFileName: fn(
             self: *const ICEnroll,
@@ -30035,7 +30913,7 @@ pub const ICEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_HashAlgorithm: fn(
             self: *const ICEnroll,
-            pbstr: *BSTR,
+            pbstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_HashAlgorithm: fn(
             self: *const ICEnroll,
@@ -30054,7 +30932,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).acceptFilePKCS7(@ptrCast(*const ICEnroll, self), wszPKCS7FileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_createPKCS10(self: *const T, DNName: BSTR, Usage: BSTR, pPKCS10: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_createPKCS10(self: *const T, DNName: BSTR, Usage: BSTR, pPKCS10: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).createPKCS10(@ptrCast(*const ICEnroll, self), DNName, Usage, pPKCS10);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30062,15 +30940,15 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).acceptPKCS7(@ptrCast(*const ICEnroll, self), PKCS7);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_getCertFromPKCS7(self: *const T, wszPKCS7: BSTR, pbstrCert: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_getCertFromPKCS7(self: *const T, wszPKCS7: BSTR, pbstrCert: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).getCertFromPKCS7(@ptrCast(*const ICEnroll, self), wszPKCS7, pbstrCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_enumProviders(self: *const T, dwIndex: i32, dwFlags: i32, pbstrProvName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_enumProviders(self: *const T, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).enumProviders(@ptrCast(*const ICEnroll, self), dwIndex, dwFlags, pbstrProvName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_enumContainers(self: *const T, dwIndex: i32, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_enumContainers(self: *const T, dwIndex: i32, pbstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).enumContainers(@ptrCast(*const ICEnroll, self), dwIndex, pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30078,7 +30956,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).freeRequestInfo(@ptrCast(*const ICEnroll, self), PKCS7OrPKCS10);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_MyStoreName(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_MyStoreName(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_MyStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30086,7 +30964,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_MyStoreName(@ptrCast(*const ICEnroll, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_MyStoreType(self: *const T, pbstrType: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_MyStoreType(self: *const T, pbstrType: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_MyStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30102,7 +30980,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_MyStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_CAStoreName(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_CAStoreName(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_CAStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30110,7 +30988,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_CAStoreName(@ptrCast(*const ICEnroll, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_CAStoreType(self: *const T, pbstrType: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_CAStoreType(self: *const T, pbstrType: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_CAStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30126,7 +31004,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_CAStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_RootStoreName(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_RootStoreName(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RootStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30134,7 +31012,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RootStoreName(@ptrCast(*const ICEnroll, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_RootStoreType(self: *const T, pbstrType: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_RootStoreType(self: *const T, pbstrType: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RootStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30150,7 +31028,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RootStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_RequestStoreName(self: *const T, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_RequestStoreName(self: *const T, pbstrName: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RequestStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30158,7 +31036,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RequestStoreName(@ptrCast(*const ICEnroll, self), bstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_RequestStoreType(self: *const T, pbstrType: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_RequestStoreType(self: *const T, pbstrType: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RequestStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30174,7 +31052,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RequestStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_ContainerName(self: *const T, pbstrContainer: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_ContainerName(self: *const T, pbstrContainer: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ContainerName(@ptrCast(*const ICEnroll, self), pbstrContainer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30182,7 +31060,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_ContainerName(@ptrCast(*const ICEnroll, self), bstrContainer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_ProviderName(self: *const T, pbstrProvider: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_ProviderName(self: *const T, pbstrProvider: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ProviderName(@ptrCast(*const ICEnroll, self), pbstrProvider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30246,7 +31124,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_WriteCertToCSP(@ptrCast(*const ICEnroll, self), fBool);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_SPCFileName(self: *const T, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_SPCFileName(self: *const T, pbstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_SPCFileName(@ptrCast(*const ICEnroll, self), pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30254,7 +31132,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_SPCFileName(@ptrCast(*const ICEnroll, self), bstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_PVKFileName(self: *const T, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_PVKFileName(self: *const T, pbstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_PVKFileName(@ptrCast(*const ICEnroll, self), pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30262,7 +31140,7 @@ pub const ICEnroll = extern struct {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).put_PVKFileName(@ptrCast(*const ICEnroll, self), bstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll_get_HashAlgorithm(self: *const T, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll_get_HashAlgorithm(self: *const T, pbstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const ICEnroll, self), pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30273,7 +31151,7 @@ pub const ICEnroll = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICEnroll2_Value = @import("../zig.zig").Guid.initString("704CA730-C90B-11D1-9BEC-00C04FC295E1");
+const IID_ICEnroll2_Value = @import("../zig.zig").Guid.initString("704ca730-c90b-11d1-9bec-00c04fc295e1");
 pub const IID_ICEnroll2 = &IID_ICEnroll2_Value;
 pub const ICEnroll2 = extern struct {
     pub const VTable = extern struct {
@@ -30335,7 +31213,7 @@ pub const ICEnroll2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICEnroll3_Value = @import("../zig.zig").Guid.initString("C28C2D95-B7DE-11D2-A421-00C04F79FE8E");
+const IID_ICEnroll3_Value = @import("../zig.zig").Guid.initString("c28c2d95-b7de-11d2-a421-00c04f79fe8e");
 pub const IID_ICEnroll3 = &IID_ICEnroll3_Value;
 pub const ICEnroll3 = extern struct {
     pub const VTable = extern struct {
@@ -30366,7 +31244,7 @@ pub const ICEnroll3 = extern struct {
         GetAlgName: fn(
             self: *const ICEnroll3,
             algID: i32,
-            pbstr: *BSTR,
+            pbstr: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ReuseHardwareKeyIfUnableToGenNew: fn(
             self: *const ICEnroll3,
@@ -30425,7 +31303,7 @@ pub const ICEnroll3 = extern struct {
             return @ptrCast(*const ICEnroll3.VTable, self.vtable).EnumAlgs(@ptrCast(*const ICEnroll3, self), dwIndex, algClass, pdwAlgID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll3_GetAlgName(self: *const T, algID: i32, pbstr: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll3_GetAlgName(self: *const T, algID: i32, pbstr: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll3.VTable, self.vtable).GetAlgName(@ptrCast(*const ICEnroll3, self), algID, pbstr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30464,7 +31342,7 @@ pub const ICEnroll3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ICEnroll4_Value = @import("../zig.zig").Guid.initString("C1F1188A-2EB5-4A80-841B-7E729A356D90");
+const IID_ICEnroll4_Value = @import("../zig.zig").Guid.initString("c1f1188a-2eb5-4a80-841b-7e729a356d90");
 pub const IID_ICEnroll4 = &IID_ICEnroll4_Value;
 pub const ICEnroll4 = extern struct {
     pub const VTable = extern struct {
@@ -30475,7 +31353,7 @@ pub const ICEnroll4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_PrivateKeyArchiveCertificate: fn(
             self: *const ICEnroll4,
-            pbstrCert: *BSTR,
+            pbstrCert: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         put_ThumbPrint: fn(
             self: *const ICEnroll4,
@@ -30483,19 +31361,19 @@ pub const ICEnroll4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         get_ThumbPrint: fn(
             self: *const ICEnroll4,
-            pbstrThumbPrint: *BSTR,
+            pbstrThumbPrint: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         binaryToString: fn(
             self: *const ICEnroll4,
             Flags: i32,
             strBinary: BSTR,
-            pstrEncoded: *BSTR,
+            pstrEncoded: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         stringToBinary: fn(
             self: *const ICEnroll4,
             Flags: i32,
             strEncoded: BSTR,
-            pstrBinary: *BSTR,
+            pstrBinary: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         addExtensionToRequest: fn(
             self: *const ICEnroll4,
@@ -30526,7 +31404,7 @@ pub const ICEnroll4 = extern struct {
             Flags: i32,
             strDNName: BSTR,
             Usage: BSTR,
-            pstrRequest: *BSTR,
+            pstrRequest: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         createFileRequest: fn(
             self: *const ICEnroll4,
@@ -30546,17 +31424,17 @@ pub const ICEnroll4 = extern struct {
         getCertFromResponse: fn(
             self: *const ICEnroll4,
             strResponse: BSTR,
-            pstrCert: *BSTR,
+            pstrCert: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         getCertFromFileResponse: fn(
             self: *const ICEnroll4,
             strResponseFileName: BSTR,
-            pstrCert: *BSTR,
+            pstrCert: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         createPFX: fn(
             self: *const ICEnroll4,
             strPassword: BSTR,
-            pstrPFX: *BSTR,
+            pstrPFX: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         createFilePFX: fn(
             self: *const ICEnroll4,
@@ -30642,7 +31520,7 @@ pub const ICEnroll4 = extern struct {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_PrivateKeyArchiveCertificate(@ptrCast(*const ICEnroll4, self), bstrCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_get_PrivateKeyArchiveCertificate(self: *const T, pbstrCert: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_get_PrivateKeyArchiveCertificate(self: *const T, pbstrCert: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_PrivateKeyArchiveCertificate(@ptrCast(*const ICEnroll4, self), pbstrCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30650,15 +31528,15 @@ pub const ICEnroll4 = extern struct {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_ThumbPrint(@ptrCast(*const ICEnroll4, self), bstrThumbPrint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_get_ThumbPrint(self: *const T, pbstrThumbPrint: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_get_ThumbPrint(self: *const T, pbstrThumbPrint: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_ThumbPrint(@ptrCast(*const ICEnroll4, self), pbstrThumbPrint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_binaryToString(self: *const T, Flags: i32, strBinary: BSTR, pstrEncoded: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_binaryToString(self: *const T, Flags: i32, strBinary: BSTR, pstrEncoded: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).binaryToString(@ptrCast(*const ICEnroll4, self), Flags, strBinary, pstrEncoded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_stringToBinary(self: *const T, Flags: i32, strEncoded: BSTR, pstrBinary: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_stringToBinary(self: *const T, Flags: i32, strEncoded: BSTR, pstrBinary: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).stringToBinary(@ptrCast(*const ICEnroll4, self), Flags, strEncoded, pstrBinary);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30682,7 +31560,7 @@ pub const ICEnroll4 = extern struct {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).resetAttributes(@ptrCast(*const ICEnroll4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_createRequest(self: *const T, Flags: i32, strDNName: BSTR, Usage: BSTR, pstrRequest: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_createRequest(self: *const T, Flags: i32, strDNName: BSTR, Usage: BSTR, pstrRequest: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).createRequest(@ptrCast(*const ICEnroll4, self), Flags, strDNName, Usage, pstrRequest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30698,15 +31576,15 @@ pub const ICEnroll4 = extern struct {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).acceptFileResponse(@ptrCast(*const ICEnroll4, self), strResponseFileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_getCertFromResponse(self: *const T, strResponse: BSTR, pstrCert: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_getCertFromResponse(self: *const T, strResponse: BSTR, pstrCert: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).getCertFromResponse(@ptrCast(*const ICEnroll4, self), strResponse, pstrCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_getCertFromFileResponse(self: *const T, strResponseFileName: BSTR, pstrCert: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_getCertFromFileResponse(self: *const T, strResponseFileName: BSTR, pstrCert: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).getCertFromFileResponse(@ptrCast(*const ICEnroll4, self), strResponseFileName, pstrCert);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICEnroll4_createPFX(self: *const T, strPassword: BSTR, pstrPFX: *BSTR) callconv(.Inline) HRESULT {
+        pub fn ICEnroll4_createPFX(self: *const T, strPassword: BSTR, pstrPFX: ?*BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICEnroll4.VTable, self.vtable).createPFX(@ptrCast(*const ICEnroll4, self), strPassword, pstrPFX);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30773,7 +31651,7 @@ pub const ICEnroll4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnroll_Value = @import("../zig.zig").Guid.initString("ACAA7838-4585-11D1-AB57-00C04FC295E1");
+const IID_IEnroll_Value = @import("../zig.zig").Guid.initString("acaa7838-4585-11d1-ab57-00c04fc295e1");
 pub const IID_IEnroll = &IID_IEnroll_Value;
 pub const IEnroll = extern struct {
     pub const VTable = extern struct {
@@ -31353,7 +32231,7 @@ pub const IEnroll = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnroll2_Value = @import("../zig.zig").Guid.initString("C080E199-B7DF-11D2-A421-00C04F79FE8E");
+const IID_IEnroll2_Value = @import("../zig.zig").Guid.initString("c080e199-b7df-11d2-a421-00c04f79fe8e");
 pub const IID_IEnroll2 = &IID_IEnroll2_Value;
 pub const IEnroll2 = extern struct {
     pub const VTable = extern struct {
@@ -31514,7 +32392,7 @@ pub const IEnroll2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnroll4_Value = @import("../zig.zig").Guid.initString("F8053FE5-78F4-448F-A0DB-41D61B73446B");
+const IID_IEnroll4_Value = @import("../zig.zig").Guid.initString("f8053fe5-78f4-448f-a0db-41d61b73446b");
 pub const IID_IEnroll4 = &IID_IEnroll4_Value;
 pub const IEnroll4 = extern struct {
     pub const VTable = extern struct {
@@ -31894,7 +32772,7 @@ pub const PF_UpdateService = fn(
     ServiceInfo: *SCESVC_CONFIGURATION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-const IID_ISceSvcAttachmentPersistInfo_Value = @import("../zig.zig").Guid.initString("6D90E0D0-200D-11D1-AFFB-00C04FB984F9");
+const IID_ISceSvcAttachmentPersistInfo_Value = @import("../zig.zig").Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentPersistInfo = &IID_ISceSvcAttachmentPersistInfo_Value;
 pub const ISceSvcAttachmentPersistInfo = extern struct {
     pub const VTable = extern struct {
@@ -31934,7 +32812,7 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_ISceSvcAttachmentData_Value = @import("../zig.zig").Guid.initString("17C35FDE-200D-11D1-AFFB-00C04FB984F9");
+const IID_ISceSvcAttachmentData_Value = @import("../zig.zig").Guid.initString("17c35fde-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentData = &IID_ISceSvcAttachmentData_Value;
 pub const ISceSvcAttachmentData = extern struct {
     pub const VTable = extern struct {
@@ -32372,861 +33250,6 @@ pub const HDIAGNOSTIC_RECORD__ = extern struct {
     unused: i32,
 };
 
-pub const MSA_INFO_LEVEL = extern enum(i32) {
-    MsaInfoLevel0 = 0,
-    MsaInfoLevelMax = 1,
-};
-pub const MsaInfoLevel0 = MSA_INFO_LEVEL.MsaInfoLevel0;
-pub const MsaInfoLevelMax = MSA_INFO_LEVEL.MsaInfoLevelMax;
-
-pub const MSA_INFO_STATE = extern enum(i32) {
-    MsaInfoNotExist = 1,
-    MsaInfoNotService = 2,
-    MsaInfoCannotInstall = 3,
-    MsaInfoCanInstall = 4,
-    MsaInfoInstalled = 5,
-};
-pub const MsaInfoNotExist = MSA_INFO_STATE.MsaInfoNotExist;
-pub const MsaInfoNotService = MSA_INFO_STATE.MsaInfoNotService;
-pub const MsaInfoCannotInstall = MSA_INFO_STATE.MsaInfoCannotInstall;
-pub const MsaInfoCanInstall = MSA_INFO_STATE.MsaInfoCanInstall;
-pub const MsaInfoInstalled = MSA_INFO_STATE.MsaInfoInstalled;
-
-pub const MSA_INFO_0 = extern struct {
-    State: MSA_INFO_STATE,
-};
-
-// TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
-pub const HCERTCHAINENGINE = ?*c_void;
-
-// TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
-pub const HCRYPTASYNC = ?*c_void;
-
-// TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
-pub const LsaHandle = ?*c_void;
-
-pub const GENERIC_MAPPING = extern struct {
-    GenericRead: u32,
-    GenericWrite: u32,
-    GenericExecute: u32,
-    GenericAll: u32,
-};
-
-pub const LUID_AND_ATTRIBUTES = extern struct {
-    Luid: LUID,
-    Attributes: u32,
-};
-
-pub const SID_IDENTIFIER_AUTHORITY = extern struct {
-    Value: [6]u8,
-};
-
-pub const SID = extern struct {
-    Revision: u8,
-    SubAuthorityCount: u8,
-    IdentifierAuthority: SID_IDENTIFIER_AUTHORITY,
-    SubAuthority: [1]u32,
-};
-
-pub const SID_NAME_USE = extern enum(i32) {
-    SidTypeUser = 1,
-    SidTypeGroup = 2,
-    SidTypeDomain = 3,
-    SidTypeAlias = 4,
-    SidTypeWellKnownGroup = 5,
-    SidTypeDeletedAccount = 6,
-    SidTypeInvalid = 7,
-    SidTypeUnknown = 8,
-    SidTypeComputer = 9,
-    SidTypeLabel = 10,
-    SidTypeLogonSession = 11,
-};
-pub const SidTypeUser = SID_NAME_USE.SidTypeUser;
-pub const SidTypeGroup = SID_NAME_USE.SidTypeGroup;
-pub const SidTypeDomain = SID_NAME_USE.SidTypeDomain;
-pub const SidTypeAlias = SID_NAME_USE.SidTypeAlias;
-pub const SidTypeWellKnownGroup = SID_NAME_USE.SidTypeWellKnownGroup;
-pub const SidTypeDeletedAccount = SID_NAME_USE.SidTypeDeletedAccount;
-pub const SidTypeInvalid = SID_NAME_USE.SidTypeInvalid;
-pub const SidTypeUnknown = SID_NAME_USE.SidTypeUnknown;
-pub const SidTypeComputer = SID_NAME_USE.SidTypeComputer;
-pub const SidTypeLabel = SID_NAME_USE.SidTypeLabel;
-pub const SidTypeLogonSession = SID_NAME_USE.SidTypeLogonSession;
-
-pub const SID_AND_ATTRIBUTES = extern struct {
-    Sid: *c_void,
-    Attributes: u32,
-};
-
-pub const SID_AND_ATTRIBUTES_HASH = extern struct {
-    SidCount: u32,
-    SidAttr: *SID_AND_ATTRIBUTES,
-    Hash: [32]?*c_void,
-};
-
-pub const WELL_KNOWN_SID_TYPE = extern enum(i32) {
-    WinNullSid = 0,
-    WinWorldSid = 1,
-    WinLocalSid = 2,
-    WinCreatorOwnerSid = 3,
-    WinCreatorGroupSid = 4,
-    WinCreatorOwnerServerSid = 5,
-    WinCreatorGroupServerSid = 6,
-    WinNtAuthoritySid = 7,
-    WinDialupSid = 8,
-    WinNetworkSid = 9,
-    WinBatchSid = 10,
-    WinInteractiveSid = 11,
-    WinServiceSid = 12,
-    WinAnonymousSid = 13,
-    WinProxySid = 14,
-    WinEnterpriseControllersSid = 15,
-    WinSelfSid = 16,
-    WinAuthenticatedUserSid = 17,
-    WinRestrictedCodeSid = 18,
-    WinTerminalServerSid = 19,
-    WinRemoteLogonIdSid = 20,
-    WinLogonIdsSid = 21,
-    WinLocalSystemSid = 22,
-    WinLocalServiceSid = 23,
-    WinNetworkServiceSid = 24,
-    WinBuiltinDomainSid = 25,
-    WinBuiltinAdministratorsSid = 26,
-    WinBuiltinUsersSid = 27,
-    WinBuiltinGuestsSid = 28,
-    WinBuiltinPowerUsersSid = 29,
-    WinBuiltinAccountOperatorsSid = 30,
-    WinBuiltinSystemOperatorsSid = 31,
-    WinBuiltinPrintOperatorsSid = 32,
-    WinBuiltinBackupOperatorsSid = 33,
-    WinBuiltinReplicatorSid = 34,
-    WinBuiltinPreWindows2000CompatibleAccessSid = 35,
-    WinBuiltinRemoteDesktopUsersSid = 36,
-    WinBuiltinNetworkConfigurationOperatorsSid = 37,
-    WinAccountAdministratorSid = 38,
-    WinAccountGuestSid = 39,
-    WinAccountKrbtgtSid = 40,
-    WinAccountDomainAdminsSid = 41,
-    WinAccountDomainUsersSid = 42,
-    WinAccountDomainGuestsSid = 43,
-    WinAccountComputersSid = 44,
-    WinAccountControllersSid = 45,
-    WinAccountCertAdminsSid = 46,
-    WinAccountSchemaAdminsSid = 47,
-    WinAccountEnterpriseAdminsSid = 48,
-    WinAccountPolicyAdminsSid = 49,
-    WinAccountRasAndIasServersSid = 50,
-    WinNTLMAuthenticationSid = 51,
-    WinDigestAuthenticationSid = 52,
-    WinSChannelAuthenticationSid = 53,
-    WinThisOrganizationSid = 54,
-    WinOtherOrganizationSid = 55,
-    WinBuiltinIncomingForestTrustBuildersSid = 56,
-    WinBuiltinPerfMonitoringUsersSid = 57,
-    WinBuiltinPerfLoggingUsersSid = 58,
-    WinBuiltinAuthorizationAccessSid = 59,
-    WinBuiltinTerminalServerLicenseServersSid = 60,
-    WinBuiltinDCOMUsersSid = 61,
-    WinBuiltinIUsersSid = 62,
-    WinIUserSid = 63,
-    WinBuiltinCryptoOperatorsSid = 64,
-    WinUntrustedLabelSid = 65,
-    WinLowLabelSid = 66,
-    WinMediumLabelSid = 67,
-    WinHighLabelSid = 68,
-    WinSystemLabelSid = 69,
-    WinWriteRestrictedCodeSid = 70,
-    WinCreatorOwnerRightsSid = 71,
-    WinCacheablePrincipalsGroupSid = 72,
-    WinNonCacheablePrincipalsGroupSid = 73,
-    WinEnterpriseReadonlyControllersSid = 74,
-    WinAccountReadonlyControllersSid = 75,
-    WinBuiltinEventLogReadersGroup = 76,
-    WinNewEnterpriseReadonlyControllersSid = 77,
-    WinBuiltinCertSvcDComAccessGroup = 78,
-    WinMediumPlusLabelSid = 79,
-    WinLocalLogonSid = 80,
-    WinConsoleLogonSid = 81,
-    WinThisOrganizationCertificateSid = 82,
-    WinApplicationPackageAuthoritySid = 83,
-    WinBuiltinAnyPackageSid = 84,
-    WinCapabilityInternetClientSid = 85,
-    WinCapabilityInternetClientServerSid = 86,
-    WinCapabilityPrivateNetworkClientServerSid = 87,
-    WinCapabilityPicturesLibrarySid = 88,
-    WinCapabilityVideosLibrarySid = 89,
-    WinCapabilityMusicLibrarySid = 90,
-    WinCapabilityDocumentsLibrarySid = 91,
-    WinCapabilitySharedUserCertificatesSid = 92,
-    WinCapabilityEnterpriseAuthenticationSid = 93,
-    WinCapabilityRemovableStorageSid = 94,
-    WinBuiltinRDSRemoteAccessServersSid = 95,
-    WinBuiltinRDSEndpointServersSid = 96,
-    WinBuiltinRDSManagementServersSid = 97,
-    WinUserModeDriversSid = 98,
-    WinBuiltinHyperVAdminsSid = 99,
-    WinAccountCloneableControllersSid = 100,
-    WinBuiltinAccessControlAssistanceOperatorsSid = 101,
-    WinBuiltinRemoteManagementUsersSid = 102,
-    WinAuthenticationAuthorityAssertedSid = 103,
-    WinAuthenticationServiceAssertedSid = 104,
-    WinLocalAccountSid = 105,
-    WinLocalAccountAndAdministratorSid = 106,
-    WinAccountProtectedUsersSid = 107,
-    WinCapabilityAppointmentsSid = 108,
-    WinCapabilityContactsSid = 109,
-    WinAccountDefaultSystemManagedSid = 110,
-    WinBuiltinDefaultSystemManagedGroupSid = 111,
-    WinBuiltinStorageReplicaAdminsSid = 112,
-    WinAccountKeyAdminsSid = 113,
-    WinAccountEnterpriseKeyAdminsSid = 114,
-    WinAuthenticationKeyTrustSid = 115,
-    WinAuthenticationKeyPropertyMFASid = 116,
-    WinAuthenticationKeyPropertyAttestationSid = 117,
-    WinAuthenticationFreshKeyAuthSid = 118,
-    WinBuiltinDeviceOwnersSid = 119,
-};
-pub const WinNullSid = WELL_KNOWN_SID_TYPE.WinNullSid;
-pub const WinWorldSid = WELL_KNOWN_SID_TYPE.WinWorldSid;
-pub const WinLocalSid = WELL_KNOWN_SID_TYPE.WinLocalSid;
-pub const WinCreatorOwnerSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerSid;
-pub const WinCreatorGroupSid = WELL_KNOWN_SID_TYPE.WinCreatorGroupSid;
-pub const WinCreatorOwnerServerSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerServerSid;
-pub const WinCreatorGroupServerSid = WELL_KNOWN_SID_TYPE.WinCreatorGroupServerSid;
-pub const WinNtAuthoritySid = WELL_KNOWN_SID_TYPE.WinNtAuthoritySid;
-pub const WinDialupSid = WELL_KNOWN_SID_TYPE.WinDialupSid;
-pub const WinNetworkSid = WELL_KNOWN_SID_TYPE.WinNetworkSid;
-pub const WinBatchSid = WELL_KNOWN_SID_TYPE.WinBatchSid;
-pub const WinInteractiveSid = WELL_KNOWN_SID_TYPE.WinInteractiveSid;
-pub const WinServiceSid = WELL_KNOWN_SID_TYPE.WinServiceSid;
-pub const WinAnonymousSid = WELL_KNOWN_SID_TYPE.WinAnonymousSid;
-pub const WinProxySid = WELL_KNOWN_SID_TYPE.WinProxySid;
-pub const WinEnterpriseControllersSid = WELL_KNOWN_SID_TYPE.WinEnterpriseControllersSid;
-pub const WinSelfSid = WELL_KNOWN_SID_TYPE.WinSelfSid;
-pub const WinAuthenticatedUserSid = WELL_KNOWN_SID_TYPE.WinAuthenticatedUserSid;
-pub const WinRestrictedCodeSid = WELL_KNOWN_SID_TYPE.WinRestrictedCodeSid;
-pub const WinTerminalServerSid = WELL_KNOWN_SID_TYPE.WinTerminalServerSid;
-pub const WinRemoteLogonIdSid = WELL_KNOWN_SID_TYPE.WinRemoteLogonIdSid;
-pub const WinLogonIdsSid = WELL_KNOWN_SID_TYPE.WinLogonIdsSid;
-pub const WinLocalSystemSid = WELL_KNOWN_SID_TYPE.WinLocalSystemSid;
-pub const WinLocalServiceSid = WELL_KNOWN_SID_TYPE.WinLocalServiceSid;
-pub const WinNetworkServiceSid = WELL_KNOWN_SID_TYPE.WinNetworkServiceSid;
-pub const WinBuiltinDomainSid = WELL_KNOWN_SID_TYPE.WinBuiltinDomainSid;
-pub const WinBuiltinAdministratorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAdministratorsSid;
-pub const WinBuiltinUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinUsersSid;
-pub const WinBuiltinGuestsSid = WELL_KNOWN_SID_TYPE.WinBuiltinGuestsSid;
-pub const WinBuiltinPowerUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPowerUsersSid;
-pub const WinBuiltinAccountOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAccountOperatorsSid;
-pub const WinBuiltinSystemOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinSystemOperatorsSid;
-pub const WinBuiltinPrintOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinPrintOperatorsSid;
-pub const WinBuiltinBackupOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinBackupOperatorsSid;
-pub const WinBuiltinReplicatorSid = WELL_KNOWN_SID_TYPE.WinBuiltinReplicatorSid;
-pub const WinBuiltinPreWindows2000CompatibleAccessSid = WELL_KNOWN_SID_TYPE.WinBuiltinPreWindows2000CompatibleAccessSid;
-pub const WinBuiltinRemoteDesktopUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRemoteDesktopUsersSid;
-pub const WinBuiltinNetworkConfigurationOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinNetworkConfigurationOperatorsSid;
-pub const WinAccountAdministratorSid = WELL_KNOWN_SID_TYPE.WinAccountAdministratorSid;
-pub const WinAccountGuestSid = WELL_KNOWN_SID_TYPE.WinAccountGuestSid;
-pub const WinAccountKrbtgtSid = WELL_KNOWN_SID_TYPE.WinAccountKrbtgtSid;
-pub const WinAccountDomainAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountDomainAdminsSid;
-pub const WinAccountDomainUsersSid = WELL_KNOWN_SID_TYPE.WinAccountDomainUsersSid;
-pub const WinAccountDomainGuestsSid = WELL_KNOWN_SID_TYPE.WinAccountDomainGuestsSid;
-pub const WinAccountComputersSid = WELL_KNOWN_SID_TYPE.WinAccountComputersSid;
-pub const WinAccountControllersSid = WELL_KNOWN_SID_TYPE.WinAccountControllersSid;
-pub const WinAccountCertAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountCertAdminsSid;
-pub const WinAccountSchemaAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountSchemaAdminsSid;
-pub const WinAccountEnterpriseAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountEnterpriseAdminsSid;
-pub const WinAccountPolicyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountPolicyAdminsSid;
-pub const WinAccountRasAndIasServersSid = WELL_KNOWN_SID_TYPE.WinAccountRasAndIasServersSid;
-pub const WinNTLMAuthenticationSid = WELL_KNOWN_SID_TYPE.WinNTLMAuthenticationSid;
-pub const WinDigestAuthenticationSid = WELL_KNOWN_SID_TYPE.WinDigestAuthenticationSid;
-pub const WinSChannelAuthenticationSid = WELL_KNOWN_SID_TYPE.WinSChannelAuthenticationSid;
-pub const WinThisOrganizationSid = WELL_KNOWN_SID_TYPE.WinThisOrganizationSid;
-pub const WinOtherOrganizationSid = WELL_KNOWN_SID_TYPE.WinOtherOrganizationSid;
-pub const WinBuiltinIncomingForestTrustBuildersSid = WELL_KNOWN_SID_TYPE.WinBuiltinIncomingForestTrustBuildersSid;
-pub const WinBuiltinPerfMonitoringUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPerfMonitoringUsersSid;
-pub const WinBuiltinPerfLoggingUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinPerfLoggingUsersSid;
-pub const WinBuiltinAuthorizationAccessSid = WELL_KNOWN_SID_TYPE.WinBuiltinAuthorizationAccessSid;
-pub const WinBuiltinTerminalServerLicenseServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinTerminalServerLicenseServersSid;
-pub const WinBuiltinDCOMUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinDCOMUsersSid;
-pub const WinBuiltinIUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinIUsersSid;
-pub const WinIUserSid = WELL_KNOWN_SID_TYPE.WinIUserSid;
-pub const WinBuiltinCryptoOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinCryptoOperatorsSid;
-pub const WinUntrustedLabelSid = WELL_KNOWN_SID_TYPE.WinUntrustedLabelSid;
-pub const WinLowLabelSid = WELL_KNOWN_SID_TYPE.WinLowLabelSid;
-pub const WinMediumLabelSid = WELL_KNOWN_SID_TYPE.WinMediumLabelSid;
-pub const WinHighLabelSid = WELL_KNOWN_SID_TYPE.WinHighLabelSid;
-pub const WinSystemLabelSid = WELL_KNOWN_SID_TYPE.WinSystemLabelSid;
-pub const WinWriteRestrictedCodeSid = WELL_KNOWN_SID_TYPE.WinWriteRestrictedCodeSid;
-pub const WinCreatorOwnerRightsSid = WELL_KNOWN_SID_TYPE.WinCreatorOwnerRightsSid;
-pub const WinCacheablePrincipalsGroupSid = WELL_KNOWN_SID_TYPE.WinCacheablePrincipalsGroupSid;
-pub const WinNonCacheablePrincipalsGroupSid = WELL_KNOWN_SID_TYPE.WinNonCacheablePrincipalsGroupSid;
-pub const WinEnterpriseReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinEnterpriseReadonlyControllersSid;
-pub const WinAccountReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinAccountReadonlyControllersSid;
-pub const WinBuiltinEventLogReadersGroup = WELL_KNOWN_SID_TYPE.WinBuiltinEventLogReadersGroup;
-pub const WinNewEnterpriseReadonlyControllersSid = WELL_KNOWN_SID_TYPE.WinNewEnterpriseReadonlyControllersSid;
-pub const WinBuiltinCertSvcDComAccessGroup = WELL_KNOWN_SID_TYPE.WinBuiltinCertSvcDComAccessGroup;
-pub const WinMediumPlusLabelSid = WELL_KNOWN_SID_TYPE.WinMediumPlusLabelSid;
-pub const WinLocalLogonSid = WELL_KNOWN_SID_TYPE.WinLocalLogonSid;
-pub const WinConsoleLogonSid = WELL_KNOWN_SID_TYPE.WinConsoleLogonSid;
-pub const WinThisOrganizationCertificateSid = WELL_KNOWN_SID_TYPE.WinThisOrganizationCertificateSid;
-pub const WinApplicationPackageAuthoritySid = WELL_KNOWN_SID_TYPE.WinApplicationPackageAuthoritySid;
-pub const WinBuiltinAnyPackageSid = WELL_KNOWN_SID_TYPE.WinBuiltinAnyPackageSid;
-pub const WinCapabilityInternetClientSid = WELL_KNOWN_SID_TYPE.WinCapabilityInternetClientSid;
-pub const WinCapabilityInternetClientServerSid = WELL_KNOWN_SID_TYPE.WinCapabilityInternetClientServerSid;
-pub const WinCapabilityPrivateNetworkClientServerSid = WELL_KNOWN_SID_TYPE.WinCapabilityPrivateNetworkClientServerSid;
-pub const WinCapabilityPicturesLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityPicturesLibrarySid;
-pub const WinCapabilityVideosLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityVideosLibrarySid;
-pub const WinCapabilityMusicLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityMusicLibrarySid;
-pub const WinCapabilityDocumentsLibrarySid = WELL_KNOWN_SID_TYPE.WinCapabilityDocumentsLibrarySid;
-pub const WinCapabilitySharedUserCertificatesSid = WELL_KNOWN_SID_TYPE.WinCapabilitySharedUserCertificatesSid;
-pub const WinCapabilityEnterpriseAuthenticationSid = WELL_KNOWN_SID_TYPE.WinCapabilityEnterpriseAuthenticationSid;
-pub const WinCapabilityRemovableStorageSid = WELL_KNOWN_SID_TYPE.WinCapabilityRemovableStorageSid;
-pub const WinBuiltinRDSRemoteAccessServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSRemoteAccessServersSid;
-pub const WinBuiltinRDSEndpointServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSEndpointServersSid;
-pub const WinBuiltinRDSManagementServersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRDSManagementServersSid;
-pub const WinUserModeDriversSid = WELL_KNOWN_SID_TYPE.WinUserModeDriversSid;
-pub const WinBuiltinHyperVAdminsSid = WELL_KNOWN_SID_TYPE.WinBuiltinHyperVAdminsSid;
-pub const WinAccountCloneableControllersSid = WELL_KNOWN_SID_TYPE.WinAccountCloneableControllersSid;
-pub const WinBuiltinAccessControlAssistanceOperatorsSid = WELL_KNOWN_SID_TYPE.WinBuiltinAccessControlAssistanceOperatorsSid;
-pub const WinBuiltinRemoteManagementUsersSid = WELL_KNOWN_SID_TYPE.WinBuiltinRemoteManagementUsersSid;
-pub const WinAuthenticationAuthorityAssertedSid = WELL_KNOWN_SID_TYPE.WinAuthenticationAuthorityAssertedSid;
-pub const WinAuthenticationServiceAssertedSid = WELL_KNOWN_SID_TYPE.WinAuthenticationServiceAssertedSid;
-pub const WinLocalAccountSid = WELL_KNOWN_SID_TYPE.WinLocalAccountSid;
-pub const WinLocalAccountAndAdministratorSid = WELL_KNOWN_SID_TYPE.WinLocalAccountAndAdministratorSid;
-pub const WinAccountProtectedUsersSid = WELL_KNOWN_SID_TYPE.WinAccountProtectedUsersSid;
-pub const WinCapabilityAppointmentsSid = WELL_KNOWN_SID_TYPE.WinCapabilityAppointmentsSid;
-pub const WinCapabilityContactsSid = WELL_KNOWN_SID_TYPE.WinCapabilityContactsSid;
-pub const WinAccountDefaultSystemManagedSid = WELL_KNOWN_SID_TYPE.WinAccountDefaultSystemManagedSid;
-pub const WinBuiltinDefaultSystemManagedGroupSid = WELL_KNOWN_SID_TYPE.WinBuiltinDefaultSystemManagedGroupSid;
-pub const WinBuiltinStorageReplicaAdminsSid = WELL_KNOWN_SID_TYPE.WinBuiltinStorageReplicaAdminsSid;
-pub const WinAccountKeyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountKeyAdminsSid;
-pub const WinAccountEnterpriseKeyAdminsSid = WELL_KNOWN_SID_TYPE.WinAccountEnterpriseKeyAdminsSid;
-pub const WinAuthenticationKeyTrustSid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyTrustSid;
-pub const WinAuthenticationKeyPropertyMFASid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyPropertyMFASid;
-pub const WinAuthenticationKeyPropertyAttestationSid = WELL_KNOWN_SID_TYPE.WinAuthenticationKeyPropertyAttestationSid;
-pub const WinAuthenticationFreshKeyAuthSid = WELL_KNOWN_SID_TYPE.WinAuthenticationFreshKeyAuthSid;
-pub const WinBuiltinDeviceOwnersSid = WELL_KNOWN_SID_TYPE.WinBuiltinDeviceOwnersSid;
-
-pub const ACL = extern struct {
-    AclRevision: u8,
-    Sbz1: u8,
-    AclSize: u16,
-    AceCount: u16,
-    Sbz2: u16,
-};
-
-pub const ACE_HEADER = extern struct {
-    AceType: u8,
-    AceFlags: u8,
-    AceSize: u16,
-};
-
-pub const ACCESS_ALLOWED_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_RESOURCE_ATTRIBUTE_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_SCOPED_POLICY_ID_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_MANDATORY_LABEL_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_CALLBACK_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    SidStart: u32,
-};
-
-pub const ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACCESS_DENIED_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const SYSTEM_ALARM_CALLBACK_OBJECT_ACE = extern struct {
-    Header: ACE_HEADER,
-    Mask: u32,
-    Flags: u32,
-    ObjectType: Guid,
-    InheritedObjectType: Guid,
-    SidStart: u32,
-};
-
-pub const ACL_INFORMATION_CLASS = extern enum(i32) {
-    AclRevisionInformation = 1,
-    AclSizeInformation = 2,
-};
-pub const AclRevisionInformation = ACL_INFORMATION_CLASS.AclRevisionInformation;
-pub const AclSizeInformation = ACL_INFORMATION_CLASS.AclSizeInformation;
-
-pub const ACL_REVISION_INFORMATION = extern struct {
-    AclRevision: u32,
-};
-
-pub const ACL_SIZE_INFORMATION = extern struct {
-    AceCount: u32,
-    AclBytesInUse: u32,
-    AclBytesFree: u32,
-};
-
-pub const SECURITY_DESCRIPTOR = extern struct {
-    Revision: u8,
-    Sbz1: u8,
-    Control: u16,
-    Owner: *c_void,
-    Group: *c_void,
-    Sacl: *ACL,
-    Dacl: *ACL,
-};
-
-pub const OBJECT_TYPE_LIST = extern struct {
-    Level: u16,
-    Sbz: u16,
-    ObjectType: *Guid,
-};
-
-pub const AUDIT_EVENT_TYPE = extern enum(i32) {
-    AuditEventObjectAccess = 0,
-    AuditEventDirectoryServiceAccess = 1,
-};
-pub const AuditEventObjectAccess = AUDIT_EVENT_TYPE.AuditEventObjectAccess;
-pub const AuditEventDirectoryServiceAccess = AUDIT_EVENT_TYPE.AuditEventDirectoryServiceAccess;
-
-pub const PRIVILEGE_SET = extern struct {
-    PrivilegeCount: u32,
-    Control: u32,
-    Privilege: [1]LUID_AND_ATTRIBUTES,
-};
-
-pub const SECURITY_IMPERSONATION_LEVEL = extern enum(i32) {
-    SecurityAnonymous = 0,
-    SecurityIdentification = 1,
-    SecurityImpersonation = 2,
-    SecurityDelegation = 3,
-};
-pub const SecurityAnonymous = SECURITY_IMPERSONATION_LEVEL.SecurityAnonymous;
-pub const SecurityIdentification = SECURITY_IMPERSONATION_LEVEL.SecurityIdentification;
-pub const SecurityImpersonation = SECURITY_IMPERSONATION_LEVEL.SecurityImpersonation;
-pub const SecurityDelegation = SECURITY_IMPERSONATION_LEVEL.SecurityDelegation;
-
-pub const TOKEN_TYPE = extern enum(i32) {
-    TokenPrimary = 1,
-    TokenImpersonation = 2,
-};
-pub const TokenPrimary = TOKEN_TYPE.TokenPrimary;
-pub const TokenImpersonation = TOKEN_TYPE.TokenImpersonation;
-
-pub const TOKEN_ELEVATION_TYPE = extern enum(i32) {
-    TokenElevationTypeDefault = 1,
-    TokenElevationTypeFull = 2,
-    TokenElevationTypeLimited = 3,
-};
-pub const TokenElevationTypeDefault = TOKEN_ELEVATION_TYPE.TokenElevationTypeDefault;
-pub const TokenElevationTypeFull = TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
-pub const TokenElevationTypeLimited = TOKEN_ELEVATION_TYPE.TokenElevationTypeLimited;
-
-pub const TOKEN_INFORMATION_CLASS = extern enum(i32) {
-    TokenUser = 1,
-    TokenGroups = 2,
-    TokenPrivileges = 3,
-    TokenOwner = 4,
-    TokenPrimaryGroup = 5,
-    TokenDefaultDacl = 6,
-    TokenSource = 7,
-    TokenType = 8,
-    TokenImpersonationLevel = 9,
-    TokenStatistics = 10,
-    TokenRestrictedSids = 11,
-    TokenSessionId = 12,
-    TokenGroupsAndPrivileges = 13,
-    TokenSessionReference = 14,
-    TokenSandBoxInert = 15,
-    TokenAuditPolicy = 16,
-    TokenOrigin = 17,
-    TokenElevationType = 18,
-    TokenLinkedToken = 19,
-    TokenElevation = 20,
-    TokenHasRestrictions = 21,
-    TokenAccessInformation = 22,
-    TokenVirtualizationAllowed = 23,
-    TokenVirtualizationEnabled = 24,
-    TokenIntegrityLevel = 25,
-    TokenUIAccess = 26,
-    TokenMandatoryPolicy = 27,
-    TokenLogonSid = 28,
-    TokenIsAppContainer = 29,
-    TokenCapabilities = 30,
-    TokenAppContainerSid = 31,
-    TokenAppContainerNumber = 32,
-    TokenUserClaimAttributes = 33,
-    TokenDeviceClaimAttributes = 34,
-    TokenRestrictedUserClaimAttributes = 35,
-    TokenRestrictedDeviceClaimAttributes = 36,
-    TokenDeviceGroups = 37,
-    TokenRestrictedDeviceGroups = 38,
-    TokenSecurityAttributes = 39,
-    TokenIsRestricted = 40,
-    TokenProcessTrustLevel = 41,
-    TokenPrivateNameSpace = 42,
-    TokenSingletonAttributes = 43,
-    TokenBnoIsolation = 44,
-    TokenChildProcessFlags = 45,
-    TokenIsLessPrivilegedAppContainer = 46,
-    TokenIsSandboxed = 47,
-    TokenOriginatingProcessTrustLevel = 48,
-    MaxTokenInfoClass = 49,
-};
-pub const TokenUser = TOKEN_INFORMATION_CLASS.TokenUser;
-pub const TokenGroups = TOKEN_INFORMATION_CLASS.TokenGroups;
-pub const TokenPrivileges = TOKEN_INFORMATION_CLASS.TokenPrivileges;
-pub const TokenOwner = TOKEN_INFORMATION_CLASS.TokenOwner;
-pub const TokenPrimaryGroup = TOKEN_INFORMATION_CLASS.TokenPrimaryGroup;
-pub const TokenDefaultDacl = TOKEN_INFORMATION_CLASS.TokenDefaultDacl;
-pub const TokenSource = TOKEN_INFORMATION_CLASS.TokenSource;
-pub const TokenType = TOKEN_INFORMATION_CLASS.TokenType;
-pub const TokenImpersonationLevel = TOKEN_INFORMATION_CLASS.TokenImpersonationLevel;
-pub const TokenStatistics = TOKEN_INFORMATION_CLASS.TokenStatistics;
-pub const TokenRestrictedSids = TOKEN_INFORMATION_CLASS.TokenRestrictedSids;
-pub const TokenSessionId = TOKEN_INFORMATION_CLASS.TokenSessionId;
-pub const TokenGroupsAndPrivileges = TOKEN_INFORMATION_CLASS.TokenGroupsAndPrivileges;
-pub const TokenSessionReference = TOKEN_INFORMATION_CLASS.TokenSessionReference;
-pub const TokenSandBoxInert = TOKEN_INFORMATION_CLASS.TokenSandBoxInert;
-pub const TokenAuditPolicy = TOKEN_INFORMATION_CLASS.TokenAuditPolicy;
-pub const TokenOrigin = TOKEN_INFORMATION_CLASS.TokenOrigin;
-pub const TokenElevationType = TOKEN_INFORMATION_CLASS.TokenElevationType;
-pub const TokenLinkedToken = TOKEN_INFORMATION_CLASS.TokenLinkedToken;
-pub const TokenElevation = TOKEN_INFORMATION_CLASS.TokenElevation;
-pub const TokenHasRestrictions = TOKEN_INFORMATION_CLASS.TokenHasRestrictions;
-pub const TokenAccessInformation = TOKEN_INFORMATION_CLASS.TokenAccessInformation;
-pub const TokenVirtualizationAllowed = TOKEN_INFORMATION_CLASS.TokenVirtualizationAllowed;
-pub const TokenVirtualizationEnabled = TOKEN_INFORMATION_CLASS.TokenVirtualizationEnabled;
-pub const TokenIntegrityLevel = TOKEN_INFORMATION_CLASS.TokenIntegrityLevel;
-pub const TokenUIAccess = TOKEN_INFORMATION_CLASS.TokenUIAccess;
-pub const TokenMandatoryPolicy = TOKEN_INFORMATION_CLASS.TokenMandatoryPolicy;
-pub const TokenLogonSid = TOKEN_INFORMATION_CLASS.TokenLogonSid;
-pub const TokenIsAppContainer = TOKEN_INFORMATION_CLASS.TokenIsAppContainer;
-pub const TokenCapabilities = TOKEN_INFORMATION_CLASS.TokenCapabilities;
-pub const TokenAppContainerSid = TOKEN_INFORMATION_CLASS.TokenAppContainerSid;
-pub const TokenAppContainerNumber = TOKEN_INFORMATION_CLASS.TokenAppContainerNumber;
-pub const TokenUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenUserClaimAttributes;
-pub const TokenDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenDeviceClaimAttributes;
-pub const TokenRestrictedUserClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedUserClaimAttributes;
-pub const TokenRestrictedDeviceClaimAttributes = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceClaimAttributes;
-pub const TokenDeviceGroups = TOKEN_INFORMATION_CLASS.TokenDeviceGroups;
-pub const TokenRestrictedDeviceGroups = TOKEN_INFORMATION_CLASS.TokenRestrictedDeviceGroups;
-pub const TokenSecurityAttributes = TOKEN_INFORMATION_CLASS.TokenSecurityAttributes;
-pub const TokenIsRestricted = TOKEN_INFORMATION_CLASS.TokenIsRestricted;
-pub const TokenProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenProcessTrustLevel;
-pub const TokenPrivateNameSpace = TOKEN_INFORMATION_CLASS.TokenPrivateNameSpace;
-pub const TokenSingletonAttributes = TOKEN_INFORMATION_CLASS.TokenSingletonAttributes;
-pub const TokenBnoIsolation = TOKEN_INFORMATION_CLASS.TokenBnoIsolation;
-pub const TokenChildProcessFlags = TOKEN_INFORMATION_CLASS.TokenChildProcessFlags;
-pub const TokenIsLessPrivilegedAppContainer = TOKEN_INFORMATION_CLASS.TokenIsLessPrivilegedAppContainer;
-pub const TokenIsSandboxed = TOKEN_INFORMATION_CLASS.TokenIsSandboxed;
-pub const TokenOriginatingProcessTrustLevel = TOKEN_INFORMATION_CLASS.TokenOriginatingProcessTrustLevel;
-pub const MaxTokenInfoClass = TOKEN_INFORMATION_CLASS.MaxTokenInfoClass;
-
-pub const TOKEN_USER = extern struct {
-    User: SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_GROUPS = extern struct {
-    GroupCount: u32,
-    Groups: [1]SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_PRIVILEGES = extern struct {
-    PrivilegeCount: u32,
-    Privileges: [1]LUID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_OWNER = extern struct {
-    Owner: *c_void,
-};
-
-pub const TOKEN_PRIMARY_GROUP = extern struct {
-    PrimaryGroup: *c_void,
-};
-
-pub const TOKEN_DEFAULT_DACL = extern struct {
-    DefaultDacl: *ACL,
-};
-
-pub const TOKEN_USER_CLAIMS = extern struct {
-    UserClaims: *c_void,
-};
-
-pub const TOKEN_DEVICE_CLAIMS = extern struct {
-    DeviceClaims: *c_void,
-};
-
-pub const TOKEN_GROUPS_AND_PRIVILEGES = extern struct {
-    SidCount: u32,
-    SidLength: u32,
-    Sids: *SID_AND_ATTRIBUTES,
-    RestrictedSidCount: u32,
-    RestrictedSidLength: u32,
-    RestrictedSids: *SID_AND_ATTRIBUTES,
-    PrivilegeCount: u32,
-    PrivilegeLength: u32,
-    Privileges: *LUID_AND_ATTRIBUTES,
-    AuthenticationId: LUID,
-};
-
-pub const TOKEN_LINKED_TOKEN = extern struct {
-    LinkedToken: HANDLE,
-};
-
-pub const TOKEN_ELEVATION = extern struct {
-    TokenIsElevated: u32,
-};
-
-pub const TOKEN_MANDATORY_LABEL = extern struct {
-    Label: SID_AND_ATTRIBUTES,
-};
-
-pub const TOKEN_MANDATORY_POLICY = extern struct {
-    Policy: u32,
-};
-
-pub const TOKEN_ACCESS_INFORMATION = extern struct {
-    SidHash: *SID_AND_ATTRIBUTES_HASH,
-    RestrictedSidHash: *SID_AND_ATTRIBUTES_HASH,
-    Privileges: *TOKEN_PRIVILEGES,
-    AuthenticationId: LUID,
-    TokenType: TOKEN_TYPE,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    MandatoryPolicy: TOKEN_MANDATORY_POLICY,
-    Flags: u32,
-    AppContainerNumber: u32,
-    PackageSid: *c_void,
-    CapabilitiesHash: *SID_AND_ATTRIBUTES_HASH,
-    TrustLevelSid: *c_void,
-    SecurityAttributes: *c_void,
-};
-
-pub const TOKEN_AUDIT_POLICY = extern struct {
-    PerUserPolicy: [30]u8,
-};
-
-pub const TOKEN_SOURCE = extern struct {
-    SourceName: [8]i8,
-    SourceIdentifier: LUID,
-};
-
-pub const TOKEN_STATISTICS = extern struct {
-    TokenId: LUID,
-    AuthenticationId: LUID,
-    ExpirationTime: LARGE_INTEGER,
-    TokenType: TOKEN_TYPE,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    DynamicCharged: u32,
-    DynamicAvailable: u32,
-    GroupCount: u32,
-    PrivilegeCount: u32,
-    ModifiedId: LUID,
-};
-
-pub const TOKEN_CONTROL = extern struct {
-    TokenId: LUID,
-    AuthenticationId: LUID,
-    ModifiedId: LUID,
-    TokenSource: TOKEN_SOURCE,
-};
-
-pub const TOKEN_ORIGIN = extern struct {
-    OriginatingLogonSession: LUID,
-};
-
-pub const MANDATORY_LEVEL = extern enum(i32) {
-    MandatoryLevelUntrusted = 0,
-    MandatoryLevelLow = 1,
-    MandatoryLevelMedium = 2,
-    MandatoryLevelHigh = 3,
-    MandatoryLevelSystem = 4,
-    MandatoryLevelSecureProcess = 5,
-    MandatoryLevelCount = 6,
-};
-pub const MandatoryLevelUntrusted = MANDATORY_LEVEL.MandatoryLevelUntrusted;
-pub const MandatoryLevelLow = MANDATORY_LEVEL.MandatoryLevelLow;
-pub const MandatoryLevelMedium = MANDATORY_LEVEL.MandatoryLevelMedium;
-pub const MandatoryLevelHigh = MANDATORY_LEVEL.MandatoryLevelHigh;
-pub const MandatoryLevelSystem = MANDATORY_LEVEL.MandatoryLevelSystem;
-pub const MandatoryLevelSecureProcess = MANDATORY_LEVEL.MandatoryLevelSecureProcess;
-pub const MandatoryLevelCount = MANDATORY_LEVEL.MandatoryLevelCount;
-
-pub const TOKEN_APPCONTAINER_INFORMATION = extern struct {
-    TokenAppContainer: *c_void,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
-    Version: u64,
-    Name: PWSTR,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
-    pValue: *c_void,
-    ValueLength: u32,
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
-    Name: PWSTR,
-    ValueType: u16,
-    Reserved: u16,
-    Flags: u32,
-    ValueCount: u32,
-    Values: CLAIM_SECURITY_ATTRIBUTE_V1._Values_e__Union,
-    const _Values_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
-    Name: u32,
-    ValueType: u16,
-    Reserved: u16,
-    Flags: u32,
-    ValueCount: u32,
-    Values: CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1._Values_e__Union,
-    const _Values_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
-    Version: u16,
-    Reserved: u16,
-    AttributeCount: u32,
-    Attribute: CLAIM_SECURITY_ATTRIBUTES_INFORMATION._Attribute_e__Union,
-    const _Attribute_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
-    Length: u32,
-    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
-    ContextTrackingMode: u8,
-    EffectiveOnly: u8,
-};
-
-pub const SECURITY_CAPABILITIES = extern struct {
-    AppContainerSid: *c_void,
-    Capabilities: *SID_AND_ATTRIBUTES,
-    CapabilityCount: u32,
-    Reserved: u32,
-};
-
-pub const QUOTA_LIMITS = extern struct {
-    PagedPoolLimit: ?*c_void,
-    NonPagedPoolLimit: ?*c_void,
-    MinimumWorkingSetSize: ?*c_void,
-    MaximumWorkingSetSize: ?*c_void,
-    PagefileLimit: ?*c_void,
-    TimeLimit: LARGE_INTEGER,
-};
-
 pub const NETRESOURCEA = extern struct {
     dwScope: u32,
     dwType: u32,
@@ -33277,33 +33300,376 @@ pub const NETCONNECTINFOSTRUCT = extern struct {
     dwOptDataSize: u32,
 };
 
-pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
-    ProcessMemoryPriority = 0,
-    ProcessMemoryExhaustionInfo = 1,
-    ProcessAppMemoryInfo = 2,
-    ProcessInPrivateInfo = 3,
-    ProcessPowerThrottling = 4,
-    ProcessReservedValue1 = 5,
-    ProcessTelemetryCoverageInfo = 6,
-    ProcessProtectionLevelInfo = 7,
-    ProcessLeapSecondInfo = 8,
-    ProcessInformationClassMax = 9,
-};
-pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.ProcessMemoryPriority;
-pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.ProcessMemoryExhaustionInfo;
-pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.ProcessAppMemoryInfo;
-pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.ProcessInPrivateInfo;
-pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.ProcessPowerThrottling;
-pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ProcessReservedValue1;
-pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.ProcessTelemetryCoverageInfo;
-pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProcessProtectionLevelInfo;
-pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.ProcessLeapSecondInfo;
-pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.ProcessInformationClassMax;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1169)
 //--------------------------------------------------------------------------------
+pub extern "USER32" fn SetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    pSID: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "USER32" fn GetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    pSID: ?[*]u8,
+    nLength: u32,
+    lpnLengthNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
+    hNamedPipe: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "logoncli" fn NetAddServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    Password: PWSTR,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "logoncli" fn NetRemoveServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "logoncli" fn NetEnumerateServiceAccounts(
+    ServerName: ?PWSTR,
+    Flags: u32,
+    AccountsCount: *u32,
+    Accounts: ***u16,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "logoncli" fn NetIsServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    IsService: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "logoncli" fn NetQueryServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    InfoLevel: u32,
+    Buffer: **u8,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "ADVAPI32" fn SetServiceBits(
+    hServiceStatus: *SERVICE_STATUS_HANDLE__,
+    dwServiceBits: u32,
+    bSetBitsOn: BOOL,
+    bUpdateImmediately: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn SetThreadToken(
+    Thread: ?*HANDLE,
+    Token: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn OpenProcessToken(
+    ProcessHandle: HANDLE,
+    DesiredAccess: u32,
+    TokenHandle: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn OpenThreadToken(
+    ThreadHandle: HANDLE,
+    DesiredAccess: u32,
+    OpenAsSelf: BOOL,
+    TokenHandle: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn InstallELAMCertificateInfo(
+    ELAMFile: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: PSTR,
+    ObjectName: ?PSTR,
+    SecurityDescriptor: *c_void,
+    DesiredAccess: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: *u32,
+    AccessStatus: *i32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: *u32,
+    AccessStatus: *i32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ClientToken: HANDLE,
+    ObjectTypeName: [*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: *c_void,
+    PrincipalSelfSid: ?*c_void,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: *GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ObjectTypeName: PSTR,
+    ObjectName: ?PSTR,
+    pSecurityDescriptor: *c_void,
+    ClientToken: HANDLE,
+    DesiredAccess: u32,
+    GrantedAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    ObjectCreation: BOOL,
+    AccessGranted: BOOL,
+    GenerateOnClose: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    ClientToken: HANDLE,
+    DesiredAccess: u32,
+    Privileges: *PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    HandleId: *c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
+    SubsystemName: [*:0]const u8,
+    ServiceName: [*:0]const u8,
+    ClientToken: HANDLE,
+    Privileges: *PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn AddConditionalAce(
+    pAcl: *ACL,
+    dwAceRevision: u32,
+    AceFlags: u32,
+    AceType: u8,
+    AccessMask: u32,
+    pSid: *c_void,
+    ConditionStr: [*]u16,
+    ReturnLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn SetFileSecurityA(
+    lpFileName: [*:0]const u8,
+    SecurityInformation: u32,
+    pSecurityDescriptor: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn GetFileSecurityA(
+    lpFileName: [*:0]const u8,
+    RequestedInformation: u32,
+    pSecurityDescriptor: ?[*]u8,
+    nLength: u32,
+    lpnLengthNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountSidA(
+    lpSystemName: ?[*:0]const u8,
+    Sid: *c_void,
+    Name: ?[*:0]u8,
+    cchName: *u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountSidW(
+    lpSystemName: ?[*:0]const u16,
+    Sid: *c_void,
+    Name: ?[*:0]u16,
+    cchName: *u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpAccountName: [*:0]const u8,
+    Sid: ?[*]u8,
+    cbSid: *u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupAccountNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpAccountName: [*:0]const u16,
+    Sid: ?[*]u8,
+    cbSid: *u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: *u32,
+    peUse: *SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeValueA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: [*:0]const u8,
+    lpLuid: *LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeValueW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: [*:0]const u16,
+    lpLuid: *LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpLuid: *LUID,
+    lpName: ?[*:0]u8,
+    cchName: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpLuid: *LUID,
+    lpName: ?[*:0]u16,
+    cchName: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: [*:0]const u8,
+    lpDisplayName: ?[*:0]u8,
+    cchDisplayName: *u32,
+    lpLanguageId: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: [*:0]const u16,
+    lpDisplayName: ?[*:0]u16,
+    cchDisplayName: *u32,
+    lpLanguageId: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserA(
+    lpszUsername: [*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserW(
+    lpszUsername: [*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserExA(
+    lpszUsername: [*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: ?*HANDLE,
+    ppLogonSid: ?*?*c_void,
+    ppProfileBuffer: ?[*]?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn LogonUserExW(
+    lpszUsername: [*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: u32,
+    dwLogonProvider: u32,
+    phToken: ?*HANDLE,
+    ppLogonSid: ?*?*c_void,
+    ppProfileBuffer: ?[*]?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ADVAPI32" fn RegGetKeySecurity(
+    hKey: HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?[*]u8,
+    lpcbSecurityDescriptor: *u32,
+) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+
+pub extern "ADVAPI32" fn RegSetKeySecurity(
+    hKey: HKEY,
+    SecurityInformation: u32,
+    pSecurityDescriptor: *c_void,
+) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+
+pub extern "ntdll" fn RtlConvertSidToUnicodeString(
+    UnicodeString: *UNICODE_STRING,
+    Sid: *c_void,
+    AllocateDestinationString: u8,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
 pub extern "ADVAPI32" fn AccessCheck(
     pSecurityDescriptor: *c_void,
     ClientToken: HANDLE,
@@ -41222,372 +41588,6 @@ pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
     currentConfig: *DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "USER32" fn SetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    pSID: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "USER32" fn GetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    pSID: ?[*]u8,
-    nLength: u32,
-    lpnLengthNeeded: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "logoncli" fn NetAddServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    Password: PWSTR,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "logoncli" fn NetRemoveServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "logoncli" fn NetEnumerateServiceAccounts(
-    ServerName: ?PWSTR,
-    Flags: u32,
-    AccountsCount: *u32,
-    Accounts: ***u16,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "logoncli" fn NetIsServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    IsService: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "logoncli" fn NetQueryServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    InfoLevel: u32,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "ADVAPI32" fn SetServiceBits(
-    hServiceStatus: *SERVICE_STATUS_HANDLE__,
-    dwServiceBits: u32,
-    bSetBitsOn: BOOL,
-    bUpdateImmediately: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
-    hNamedPipe: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn SetThreadToken(
-    Thread: ?*HANDLE,
-    Token: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn OpenProcessToken(
-    ProcessHandle: HANDLE,
-    DesiredAccess: u32,
-    TokenHandle: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn OpenThreadToken(
-    ThreadHandle: HANDLE,
-    DesiredAccess: u32,
-    OpenAsSelf: BOOL,
-    TokenHandle: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "KERNEL32" fn InstallELAMCertificateInfo(
-    ELAMFile: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: PSTR,
-    ObjectName: ?PSTR,
-    SecurityDescriptor: *c_void,
-    DesiredAccess: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: *u32,
-    AccessStatus: *i32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    ObjectTypeName: [*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: *c_void,
-    PrincipalSelfSid: ?*c_void,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: *GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ObjectTypeName: PSTR,
-    ObjectName: ?PSTR,
-    pSecurityDescriptor: *c_void,
-    ClientToken: HANDLE,
-    DesiredAccess: u32,
-    GrantedAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    ObjectCreation: BOOL,
-    AccessGranted: BOOL,
-    GenerateOnClose: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    ClientToken: HANDLE,
-    DesiredAccess: u32,
-    Privileges: *PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    HandleId: *c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
-    SubsystemName: [*:0]const u8,
-    ServiceName: [*:0]const u8,
-    ClientToken: HANDLE,
-    Privileges: *PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn AddConditionalAce(
-    pAcl: *ACL,
-    dwAceRevision: u32,
-    AceFlags: u32,
-    AceType: u8,
-    AccessMask: u32,
-    pSid: *c_void,
-    ConditionStr: [*]u16,
-    ReturnLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn SetFileSecurityA(
-    lpFileName: [*:0]const u8,
-    SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn GetFileSecurityA(
-    lpFileName: [*:0]const u8,
-    RequestedInformation: u32,
-    pSecurityDescriptor: ?[*]u8,
-    nLength: u32,
-    lpnLengthNeeded: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountSidA(
-    lpSystemName: ?[*:0]const u8,
-    Sid: *c_void,
-    Name: ?[*:0]u8,
-    cchName: *u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountSidW(
-    lpSystemName: ?[*:0]const u16,
-    Sid: *c_void,
-    Name: ?[*:0]u16,
-    cchName: *u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpAccountName: [*:0]const u8,
-    Sid: ?[*]u8,
-    cbSid: *u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupAccountNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpAccountName: [*:0]const u16,
-    Sid: ?[*]u8,
-    cbSid: *u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: *u32,
-    peUse: *SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeValueA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
-    lpLuid: *LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeValueW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
-    lpLuid: *LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpLuid: *LUID,
-    lpName: ?[*:0]u8,
-    cchName: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpLuid: *LUID,
-    lpName: ?[*:0]u16,
-    cchName: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: [*:0]const u8,
-    lpDisplayName: ?[*:0]u8,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: [*:0]const u16,
-    lpDisplayName: ?[*:0]u16,
-    cchDisplayName: *u32,
-    lpLanguageId: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserA(
-    lpszUsername: [*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserW(
-    lpszUsername: [*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserExA(
-    lpszUsername: [*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*?*c_void,
-    ppProfileBuffer: ?[*]?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn LogonUserExW(
-    lpszUsername: [*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: u32,
-    dwLogonProvider: u32,
-    phToken: ?*HANDLE,
-    ppLogonSid: ?*?*c_void,
-    ppProfileBuffer: ?[*]?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ADVAPI32" fn RegGetKeySecurity(
-    hKey: HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?[*]u8,
-    lpcbSecurityDescriptor: *u32,
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
-
-pub extern "ADVAPI32" fn RegSetKeySecurity(
-    hKey: HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: *c_void,
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
-
-pub extern "ntdll" fn RtlConvertSidToUnicodeString(
-    UnicodeString: *UNICODE_STRING,
-    Sid: *c_void,
-    AllocateDestinationString: u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (221)
@@ -41662,13 +41662,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleA;
-        pub const GetFileSecurity = GetFileSecurityA;
-        pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmA;
-        pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmA;
         pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmA;
         pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmA;
+        pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmA;
+        pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmA;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmA;
         pub const SetFileSecurity = SetFileSecurityA;
+        pub const GetFileSecurity = GetFileSecurityA;
+        pub const LookupAccountSid = LookupAccountSidA;
+        pub const LookupAccountName = LookupAccountNameA;
+        pub const LookupPrivilegeValue = LookupPrivilegeValueA;
+        pub const LookupPrivilegeName = LookupPrivilegeNameA;
+        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameA;
+        pub const LogonUser = LogonUserA;
+        pub const LogonUserEx = LogonUserExA;
         pub const CryptAcquireContext = CryptAcquireContextA;
         pub const CryptSignHash = CryptSignHashA;
         pub const CryptVerifySignature = CryptVerifySignatureA;
@@ -41808,13 +41815,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = ConvertStringSecurityDescriptorToSecurityDescriptorA;
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = ConvertSecurityDescriptorToStringSecurityDescriptorA;
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateA;
-        pub const LookupAccountSid = LookupAccountSidA;
-        pub const LookupAccountName = LookupAccountNameA;
-        pub const LookupPrivilegeValue = LookupPrivilegeValueA;
-        pub const LookupPrivilegeName = LookupPrivilegeNameA;
-        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameA;
-        pub const LogonUser = LogonUserA;
-        pub const LogonUserEx = LogonUserExA;
     },
     .wide => struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_W;
@@ -41885,13 +41885,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleW;
-        pub const GetFileSecurity = GetFileSecurityW;
-        pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmW;
-        pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmW;
         pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW;
         pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmW;
+        pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmW;
+        pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmW;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmW;
         pub const SetFileSecurity = SetFileSecurityW;
+        pub const GetFileSecurity = GetFileSecurityW;
+        pub const LookupAccountSid = LookupAccountSidW;
+        pub const LookupAccountName = LookupAccountNameW;
+        pub const LookupPrivilegeValue = LookupPrivilegeValueW;
+        pub const LookupPrivilegeName = LookupPrivilegeNameW;
+        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameW;
+        pub const LogonUser = LogonUserW;
+        pub const LogonUserEx = LogonUserExW;
         pub const CryptAcquireContext = CryptAcquireContextW;
         pub const CryptSignHash = CryptSignHashW;
         pub const CryptVerifySignature = CryptVerifySignatureW;
@@ -42031,13 +42038,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = ConvertStringSecurityDescriptorToSecurityDescriptorW;
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = ConvertSecurityDescriptorToStringSecurityDescriptorW;
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateW;
-        pub const LookupAccountSid = LookupAccountSidW;
-        pub const LookupAccountName = LookupAccountNameW;
-        pub const LookupPrivilegeValue = LookupPrivilegeValueW;
-        pub const LookupPrivilegeName = LookupPrivilegeNameW;
-        pub const LookupPrivilegeDisplayName = LookupPrivilegeDisplayNameW;
-        pub const LogonUser = LogonUserW;
-        pub const LogonUserEx = LogonUserExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
@@ -42108,13 +42108,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque{};
-        pub const GetFileSecurity = *opaque{};
-        pub const ObjectCloseAuditAlarm = *opaque{};
-        pub const ObjectDeleteAuditAlarm = *opaque{};
         pub const ObjectOpenAuditAlarm = *opaque{};
         pub const ObjectPrivilegeAuditAlarm = *opaque{};
+        pub const ObjectCloseAuditAlarm = *opaque{};
+        pub const ObjectDeleteAuditAlarm = *opaque{};
         pub const PrivilegedServiceAuditAlarm = *opaque{};
         pub const SetFileSecurity = *opaque{};
+        pub const GetFileSecurity = *opaque{};
+        pub const LookupAccountSid = *opaque{};
+        pub const LookupAccountName = *opaque{};
+        pub const LookupPrivilegeValue = *opaque{};
+        pub const LookupPrivilegeName = *opaque{};
+        pub const LookupPrivilegeDisplayName = *opaque{};
+        pub const LogonUser = *opaque{};
+        pub const LogonUserEx = *opaque{};
         pub const CryptAcquireContext = *opaque{};
         pub const CryptSignHash = *opaque{};
         pub const CryptVerifySignature = *opaque{};
@@ -42254,13 +42261,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = *opaque{};
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = *opaque{};
         pub const CryptUIDlgViewCertificate = *opaque{};
-        pub const LookupAccountSid = *opaque{};
-        pub const LookupAccountName = *opaque{};
-        pub const LookupPrivilegeValue = *opaque{};
-        pub const LookupPrivilegeName = *opaque{};
-        pub const LookupPrivilegeDisplayName = *opaque{};
-        pub const LogonUser = *opaque{};
-        pub const LogonUserEx = *opaque{};
     } else struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
         pub const CRYPT_PASSWORD_CREDENTIALS = @compileError("'CRYPT_PASSWORD_CREDENTIALS' requires that UNICODE be set to true or false in the root module");
@@ -42330,13 +42330,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarm = @compileError("'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = @compileError("'AccessCheckByTypeResultListAndAuditAlarmByHandle' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectCloseAuditAlarm = @compileError("'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectDeleteAuditAlarm = @compileError("'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectCloseAuditAlarm = @compileError("'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectDeleteAuditAlarm = @compileError("'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const PrivilegedServiceAuditAlarm = @compileError("'PrivilegedServiceAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const SetFileSecurity = @compileError("'SetFileSecurity' requires that UNICODE be set to true or false in the root module");
+        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
+        pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
+        pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeName = @compileError("'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module");
+        pub const LookupPrivilegeDisplayName = @compileError("'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module");
+        pub const LogonUser = @compileError("'LogonUser' requires that UNICODE be set to true or false in the root module");
+        pub const LogonUserEx = @compileError("'LogonUserEx' requires that UNICODE be set to true or false in the root module");
         pub const CryptAcquireContext = @compileError("'CryptAcquireContext' requires that UNICODE be set to true or false in the root module");
         pub const CryptSignHash = @compileError("'CryptSignHash' requires that UNICODE be set to true or false in the root module");
         pub const CryptVerifySignature = @compileError("'CryptVerifySignature' requires that UNICODE be set to true or false in the root module");
@@ -42476,13 +42483,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertStringSecurityDescriptorToSecurityDescriptor = @compileError("'ConvertStringSecurityDescriptorToSecurityDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = @compileError("'ConvertSecurityDescriptorToStringSecurityDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const CryptUIDlgViewCertificate = @compileError("'CryptUIDlgViewCertificate' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
-        pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeName = @compileError("'LookupPrivilegeName' requires that UNICODE be set to true or false in the root module");
-        pub const LookupPrivilegeDisplayName = @compileError("'LookupPrivilegeDisplayName' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUser = @compileError("'LogonUser' requires that UNICODE be set to true or false in the root module");
-        pub const LogonUserEx = @compileError("'LogonUserEx' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

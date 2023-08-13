@@ -11,222 +11,13 @@ pub const PROPERTYKEY = extern struct {
     pid: u32,
 };
 
-pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
-    STS_NONE = 0,
-    STS_NEEDSUPLOAD = 1,
-    STS_NEEDSDOWNLOAD = 2,
-    STS_TRANSFERRING = 4,
-    STS_PAUSED = 8,
-    STS_HASERROR = 16,
-    STS_FETCHING_METADATA = 32,
-    STS_USER_REQUESTED_REFRESH = 64,
-    STS_HASWARNING = 128,
-    STS_EXCLUDED = 256,
-    STS_INCOMPLETE = 512,
-    STS_PLACEHOLDER_IFEMPTY = 1024,
-};
-pub const STS_NONE = SYNC_TRANSFER_STATUS.STS_NONE;
-pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS.STS_NEEDSUPLOAD;
-pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS.STS_NEEDSDOWNLOAD;
-pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS.STS_TRANSFERRING;
-pub const STS_PAUSED = SYNC_TRANSFER_STATUS.STS_PAUSED;
-pub const STS_HASERROR = SYNC_TRANSFER_STATUS.STS_HASERROR;
-pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS.STS_FETCHING_METADATA;
-pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS.STS_USER_REQUESTED_REFRESH;
-pub const STS_HASWARNING = SYNC_TRANSFER_STATUS.STS_HASWARNING;
-pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.STS_EXCLUDED;
-pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.STS_INCOMPLETE;
-pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.STS_PLACEHOLDER_IFEMPTY;
-
-pub const PLACEHOLDER_STATES = extern enum(i32) {
-    PS_NONE = 0,
-    PS_MARKED_FOR_OFFLINE_AVAILABILITY = 1,
-    PS_FULL_PRIMARY_STREAM_AVAILABLE = 2,
-    PS_CREATE_FILE_ACCESSIBLE = 4,
-    PS_CLOUDFILE_PLACEHOLDER = 8,
-    PS_DEFAULT = 7,
-    PS_ALL = 15,
-};
-pub const PS_NONE = PLACEHOLDER_STATES.PS_NONE;
-pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES.PS_MARKED_FOR_OFFLINE_AVAILABILITY;
-pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES.PS_FULL_PRIMARY_STREAM_AVAILABLE;
-pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES.PS_CREATE_FILE_ACCESSIBLE;
-pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.PS_CLOUDFILE_PLACEHOLDER;
-pub const PS_DEFAULT = PLACEHOLDER_STATES.PS_DEFAULT;
-pub const PS_ALL = PLACEHOLDER_STATES.PS_ALL;
-
-pub const _PROPERTYUI_FLAGS = extern enum(i32) {
-    PUIF_DEFAULT = 0,
-    PUIF_RIGHTALIGN = 1,
-    PUIF_NOLABELININFOTIP = 2,
-};
-pub const PUIF_DEFAULT = _PROPERTYUI_FLAGS.PUIF_DEFAULT;
-pub const PUIF_RIGHTALIGN = _PROPERTYUI_FLAGS.PUIF_RIGHTALIGN;
-pub const PUIF_NOLABELININFOTIP = _PROPERTYUI_FLAGS.PUIF_NOLABELININFOTIP;
-
-const IID_IPropertyUI_Value = @import("../zig.zig").Guid.initString("757A7D9F-919A-4118-99D7-DBB208C8CC66");
-pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
-pub const IPropertyUI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParsePropertyName: fn(
-            self: *const IPropertyUI,
-            pszName: [*:0]const u16,
-            pfmtid: *Guid,
-            ppid: *u32,
-            pchEaten: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCannonicalName: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayName: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            flags: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyDescription: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultWidth: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pcxChars: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlags: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pflags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplay: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            ppropvar: *const PROPVARIANT,
-            puiff: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHelpInfo: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszHelpFile: [*:0]u16,
-            cch: u32,
-            puHelpID: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_ParsePropertyName(self: *const T, pszName: [*:0]const u16, pfmtid: *Guid, ppid: *u32, pchEaten: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).ParsePropertyName(@ptrCast(*const IPropertyUI, self), pszName, pfmtid, ppid, pchEaten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetCannonicalName(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetCannonicalName(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetDisplayName(self: *const T, fmtid: *const Guid, pid: u32, flags: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyUI, self), fmtid, pid, flags, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetPropertyDescription(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetDefaultWidth(self: *const T, fmtid: *const Guid, pid: u32, pcxChars: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDefaultWidth(@ptrCast(*const IPropertyUI, self), fmtid, pid, pcxChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetFlags(self: *const T, fmtid: *const Guid, pid: u32, pflags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetFlags(@ptrCast(*const IPropertyUI, self), fmtid, pid, pflags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_FormatForDisplay(self: *const T, fmtid: *const Guid, pid: u32, ppropvar: *const PROPVARIANT, puiff: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyUI, self), fmtid, pid, ppropvar, puiff, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetHelpInfo(self: *const T, fmtid: *const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszHelpFile, cch, puHelpID);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PDOPSTATUS = extern enum(i32) {
-    PDOPS_RUNNING = 1,
-    PDOPS_PAUSED = 2,
-    PDOPS_CANCELLED = 3,
-    PDOPS_STOPPED = 4,
-    PDOPS_ERRORS = 5,
-};
-pub const PDOPS_RUNNING = PDOPSTATUS.PDOPS_RUNNING;
-pub const PDOPS_PAUSED = PDOPSTATUS.PDOPS_PAUSED;
-pub const PDOPS_CANCELLED = PDOPSTATUS.PDOPS_CANCELLED;
-pub const PDOPS_STOPPED = PDOPSTATUS.PDOPS_STOPPED;
-pub const PDOPS_ERRORS = PDOPSTATUS.PDOPS_ERRORS;
-
-pub const SYNC_ENGINE_STATE_FLAGS = extern enum(i32) {
-    SESF_NONE = 0,
-    SESF_SERVICE_QUOTA_NEARING_LIMIT = 1,
-    SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = 2,
-    SESF_AUTHENTICATION_ERROR = 4,
-    SESF_PAUSED_DUE_TO_METERED_NETWORK = 8,
-    SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = 16,
-    SESF_PAUSED_DUE_TO_CLIENT_POLICY = 32,
-    SESF_PAUSED_DUE_TO_SERVICE_POLICY = 64,
-    SESF_SERVICE_UNAVAILABLE = 128,
-    SESF_PAUSED_DUE_TO_USER_REQUEST = 256,
-    SESF_ALL_FLAGS = 511,
-};
-pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS.SESF_NONE;
-pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_QUOTA_NEARING_LIMIT;
-pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_QUOTA_EXCEEDED_LIMIT;
-pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS.SESF_AUTHENTICATION_ERROR;
-pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_METERED_NETWORK;
-pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_DISK_SPACE_FULL;
-pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_CLIENT_POLICY;
-pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_SERVICE_POLICY;
-pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_UNAVAILABLE;
-pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_USER_REQUEST;
-pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.SESF_ALL_FLAGS;
-
-pub const PROPPRG = extern struct {
-    flPrg: u16,
-    flPrgInit: u16,
-    achTitle: [30]i8,
-    achCmdLine: [128]i8,
-    achWorkDir: [64]i8,
-    wHotKey: u16,
-    achIconFile: [80]i8,
-    wIconIndex: u16,
-    dwEnhModeFlags: u32,
-    dwRealModeFlags: u32,
-    achOtherFile: [80]i8,
-    achPIFFile: [260]i8,
-};
-
-const CLSID_InMemoryPropertyStore_Value = @import("../zig.zig").Guid.initString("9A02E012-6303-4E1E-B9A1-630F802592C5");
+const CLSID_InMemoryPropertyStore_Value = @import("../zig.zig").Guid.initString("9a02e012-6303-4e1e-b9a1-630f802592c5");
 pub const CLSID_InMemoryPropertyStore = &CLSID_InMemoryPropertyStore_Value;
 
-const CLSID_InMemoryPropertyStoreMarshalByValue_Value = @import("../zig.zig").Guid.initString("D4CA0E2D-6DA7-4B75-A97C-5F306F0EAEDC");
+const CLSID_InMemoryPropertyStoreMarshalByValue_Value = @import("../zig.zig").Guid.initString("d4ca0e2d-6da7-4b75-a97c-5f306f0eaedc");
 pub const CLSID_InMemoryPropertyStoreMarshalByValue = &CLSID_InMemoryPropertyStoreMarshalByValue_Value;
 
-const CLSID_PropertySystem_Value = @import("../zig.zig").Guid.initString("B8967F85-58AE-4F46-9FB2-5D7904798F4B");
+const CLSID_PropertySystem_Value = @import("../zig.zig").Guid.initString("b8967f85-58ae-4f46-9fb2-5d7904798f4b");
 pub const CLSID_PropertySystem = &CLSID_PropertySystem_Value;
 
 pub const GETPROPERTYSTOREFLAGS = extern enum(i32) {
@@ -271,7 +62,7 @@ pub const PKA_SET = PKA_FLAGS.PKA_SET;
 pub const PKA_APPEND = PKA_FLAGS.PKA_APPEND;
 pub const PKA_DELETE = PKA_FLAGS.PKA_DELETE;
 
-const IID_IPropertyChange_Value = @import("../zig.zig").Guid.initString("F917BC8A-1BBA-4478-A245-1BDE03EB9431");
+const IID_IPropertyChange_Value = @import("../zig.zig").Guid.initString("f917bc8a-1bba-4478-a245-1bde03eb9431");
 pub const IID_IPropertyChange = &IID_IPropertyChange_Value;
 pub const IPropertyChange = extern struct {
     pub const VTable = extern struct {
@@ -293,7 +84,7 @@ pub const IPropertyChange = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyChangeArray_Value = @import("../zig.zig").Guid.initString("380F5CAD-1B5E-42F2-805D-637FD392D31E");
+const IID_IPropertyChangeArray_Value = @import("../zig.zig").Guid.initString("380f5cad-1b5e-42f2-805d-637fd392d31e");
 pub const IID_IPropertyChangeArray = &IID_IPropertyChangeArray_Value;
 pub const IPropertyChangeArray = extern struct {
     pub const VTable = extern struct {
@@ -306,7 +97,7 @@ pub const IPropertyChangeArray = extern struct {
             self: *const IPropertyChangeArray,
             iIndex: u32,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertAt: fn(
             self: *const IPropertyChangeArray,
@@ -338,7 +129,7 @@ pub const IPropertyChangeArray = extern struct {
             return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyChangeArray, self), pcOperations);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyChangeArray_GetAt(self: *const T, iIndex: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyChangeArray_GetAt(self: *const T, iIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyChangeArray, self), iIndex, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -365,7 +156,7 @@ pub const IPropertyChangeArray = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyStoreCapabilities_Value = @import("../zig.zig").Guid.initString("C8E2D566-186E-4D49-BF41-6909EAD56ACC");
+const IID_IPropertyStoreCapabilities_Value = @import("../zig.zig").Guid.initString("c8e2d566-186e-4d49-bf41-6909ead56acc");
 pub const IID_IPropertyStoreCapabilities = &IID_IPropertyStoreCapabilities_Value;
 pub const IPropertyStoreCapabilities = extern struct {
     pub const VTable = extern struct {
@@ -397,7 +188,7 @@ pub const PSC_NOTINSOURCE = PSC_STATE.PSC_NOTINSOURCE;
 pub const PSC_DIRTY = PSC_STATE.PSC_DIRTY;
 pub const PSC_READONLY = PSC_STATE.PSC_READONLY;
 
-const IID_IPropertyStoreCache_Value = @import("../zig.zig").Guid.initString("3017056D-9A91-4E90-937D-746C72ABBF4F");
+const IID_IPropertyStoreCache_Value = @import("../zig.zig").Guid.initString("3017056d-9a91-4e90-937d-746c72abbf4f");
 pub const IID_IPropertyStoreCache = &IID_IPropertyStoreCache_Value;
 pub const IPropertyStoreCache = extern struct {
     pub const VTable = extern struct {
@@ -459,7 +250,7 @@ pub const PET_RANGEDVALUE = PROPENUMTYPE.PET_RANGEDVALUE;
 pub const PET_DEFAULTVALUE = PROPENUMTYPE.PET_DEFAULTVALUE;
 pub const PET_ENDRANGE = PROPENUMTYPE.PET_ENDRANGE;
 
-const IID_IPropertyEnumType_Value = @import("../zig.zig").Guid.initString("11E1FBF9-2D56-4A6B-8DB3-7CD193A471F2");
+const IID_IPropertyEnumType_Value = @import("../zig.zig").Guid.initString("11e1fbf9-2d56-4a6b-8db3-7cd193a471f2");
 pub const IID_IPropertyEnumType = &IID_IPropertyEnumType_Value;
 pub const IPropertyEnumType = extern struct {
     pub const VTable = extern struct {
@@ -512,7 +303,7 @@ pub const IPropertyEnumType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyEnumType2_Value = @import("../zig.zig").Guid.initString("9B6E051C-5DDD-4321-9070-FE2ACB55E794");
+const IID_IPropertyEnumType2_Value = @import("../zig.zig").Guid.initString("9b6e051c-5ddd-4321-9070-fe2acb55e794");
 pub const IID_IPropertyEnumType2 = &IID_IPropertyEnumType2_Value;
 pub const IPropertyEnumType2 = extern struct {
     pub const VTable = extern struct {
@@ -533,7 +324,7 @@ pub const IPropertyEnumType2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyEnumTypeList_Value = @import("../zig.zig").Guid.initString("A99400F4-3D84-4557-94BA-1242FB2CC9A6");
+const IID_IPropertyEnumTypeList_Value = @import("../zig.zig").Guid.initString("a99400f4-3d84-4557-94ba-1242fb2cc9a6");
 pub const IID_IPropertyEnumTypeList = &IID_IPropertyEnumTypeList_Value;
 pub const IPropertyEnumTypeList = extern struct {
     pub const VTable = extern struct {
@@ -546,13 +337,13 @@ pub const IPropertyEnumTypeList = extern struct {
             self: *const IPropertyEnumTypeList,
             itype: u32,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConditionAt: fn(
             self: *const IPropertyEnumTypeList,
             nIndex: u32,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindMatchingIndex: fn(
             self: *const IPropertyEnumTypeList,
@@ -568,11 +359,11 @@ pub const IPropertyEnumTypeList = extern struct {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyEnumTypeList, self), pctypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyEnumTypeList_GetAt(self: *const T, itype: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyEnumTypeList_GetAt(self: *const T, itype: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyEnumTypeList, self), itype, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyEnumTypeList_GetConditionAt(self: *const T, nIndex: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyEnumTypeList_GetConditionAt(self: *const T, nIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetConditionAt(@ptrCast(*const IPropertyEnumTypeList, self), nIndex, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -784,7 +575,7 @@ pub const PDCOT_DATETIME = PROPDESC_CONDITION_TYPE.PDCOT_DATETIME;
 pub const PDCOT_BOOLEAN = PROPDESC_CONDITION_TYPE.PDCOT_BOOLEAN;
 pub const PDCOT_NUMBER = PROPDESC_CONDITION_TYPE.PDCOT_NUMBER;
 
-const IID_IPropertyDescription_Value = @import("../zig.zig").Guid.initString("6F79D558-3E96-4549-A1D1-7D75D2288814");
+const IID_IPropertyDescription_Value = @import("../zig.zig").Guid.initString("6f79d558-3e96-4549-a1d1-7d75d2288814");
 pub const IID_IPropertyDescription = &IID_IPropertyDescription_Value;
 pub const IPropertyDescription = extern struct {
     pub const VTable = extern struct {
@@ -866,7 +657,7 @@ pub const IPropertyDescription = extern struct {
         GetEnumTypeList: fn(
             self: *const IPropertyDescription,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CoerceToCanonicalValue: fn(
             self: *const IPropertyDescription,
@@ -955,7 +746,7 @@ pub const IPropertyDescription = extern struct {
             return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetConditionType(@ptrCast(*const IPropertyDescription, self), pcontype, popDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescription_GetEnumTypeList(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescription_GetEnumTypeList(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetEnumTypeList(@ptrCast(*const IPropertyDescription, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -974,7 +765,7 @@ pub const IPropertyDescription = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyDescription2_Value = @import("../zig.zig").Guid.initString("57D2EDED-5062-400E-B107-5DAE79FE57A6");
+const IID_IPropertyDescription2_Value = @import("../zig.zig").Guid.initString("57d2eded-5062-400e-b107-5dae79fe57a6");
 pub const IID_IPropertyDescription2 = &IID_IPropertyDescription2_Value;
 pub const IPropertyDescription2 = extern struct {
     pub const VTable = extern struct {
@@ -996,7 +787,7 @@ pub const IPropertyDescription2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyDescriptionAliasInfo_Value = @import("../zig.zig").Guid.initString("F67104FC-2AF9-46FD-B32D-243C1404F3D1");
+const IID_IPropertyDescriptionAliasInfo_Value = @import("../zig.zig").Guid.initString("f67104fc-2af9-46fd-b32d-243c1404f3d1");
 pub const IID_IPropertyDescriptionAliasInfo = &IID_IPropertyDescriptionAliasInfo_Value;
 pub const IPropertyDescriptionAliasInfo = extern struct {
     pub const VTable = extern struct {
@@ -1004,23 +795,23 @@ pub const IPropertyDescriptionAliasInfo = extern struct {
         GetSortByAlias: fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdditionalSortByAliases: fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyDescription.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionAliasInfo_GetSortByAlias(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionAliasInfo_GetSortByAlias(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetSortByAlias(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionAliasInfo_GetAdditionalSortByAliases(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionAliasInfo_GetAdditionalSortByAliases(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetAdditionalSortByAliases(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
         }
     };}
@@ -1057,7 +848,7 @@ pub const PDCIT_ONDEMAND = PROPDESC_COLUMNINDEX_TYPE.PDCIT_ONDEMAND;
 pub const PDCIT_ONDISKALL = PROPDESC_COLUMNINDEX_TYPE.PDCIT_ONDISKALL;
 pub const PDCIT_ONDISKVECTOR = PROPDESC_COLUMNINDEX_TYPE.PDCIT_ONDISKVECTOR;
 
-const IID_IPropertyDescriptionSearchInfo_Value = @import("../zig.zig").Guid.initString("078F91BD-29A2-440F-924E-46A291524520");
+const IID_IPropertyDescriptionSearchInfo_Value = @import("../zig.zig").Guid.initString("078f91bd-29a2-440f-924e-46a291524520");
 pub const IID_IPropertyDescriptionSearchInfo = &IID_IPropertyDescriptionSearchInfo_Value;
 pub const IPropertyDescriptionSearchInfo = extern struct {
     pub const VTable = extern struct {
@@ -1102,7 +893,7 @@ pub const IPropertyDescriptionSearchInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyDescriptionRelatedPropertyInfo_Value = @import("../zig.zig").Guid.initString("507393F4-2A3D-4A60-B59E-D9C75716C2DD");
+const IID_IPropertyDescriptionRelatedPropertyInfo_Value = @import("../zig.zig").Guid.initString("507393f4-2a3d-4a60-b59e-d9c75716c2dd");
 pub const IID_IPropertyDescriptionRelatedPropertyInfo = &IID_IPropertyDescriptionRelatedPropertyInfo_Value;
 pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
     pub const VTable = extern struct {
@@ -1111,14 +902,14 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
             self: *const IPropertyDescriptionRelatedPropertyInfo,
             pszRelationshipName: [*:0]const u16,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyDescription.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionRelatedPropertyInfo_GetRelatedProperty(self: *const T, pszRelationshipName: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionRelatedPropertyInfo_GetRelatedProperty(self: *const T, pszRelationshipName: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionRelatedPropertyInfo.VTable, self.vtable).GetRelatedProperty(@ptrCast(*const IPropertyDescriptionRelatedPropertyInfo, self), pszRelationshipName, riid, ppv);
         }
     };}
@@ -1142,7 +933,7 @@ pub const PDEF_QUERYABLE = PROPDESC_ENUMFILTER.PDEF_QUERYABLE;
 pub const PDEF_INFULLTEXTQUERY = PROPDESC_ENUMFILTER.PDEF_INFULLTEXTQUERY;
 pub const PDEF_COLUMN = PROPDESC_ENUMFILTER.PDEF_COLUMN;
 
-const IID_IPropertySystem_Value = @import("../zig.zig").Guid.initString("CA724E8A-C3E6-442B-88A4-6FB0DB8035A3");
+const IID_IPropertySystem_Value = @import("../zig.zig").Guid.initString("ca724e8a-c3e6-442b-88a4-6fb0db8035a3");
 pub const IID_IPropertySystem = &IID_IPropertySystem_Value;
 pub const IPropertySystem = extern struct {
     pub const VTable = extern struct {
@@ -1151,25 +942,25 @@ pub const IPropertySystem = extern struct {
             self: *const IPropertySystem,
             propkey: *const PROPERTYKEY,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionByName: fn(
             self: *const IPropertySystem,
             pszCanonicalName: [*:0]const u16,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionListFromString: fn(
             self: *const IPropertySystem,
             pszPropList: [*:0]const u16,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumeratePropertyDescriptions: fn(
             self: *const IPropertySystem,
             filterOn: PROPDESC_ENUMFILTER,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FormatForDisplay: fn(
             self: *const IPropertySystem,
@@ -1202,19 +993,19 @@ pub const IPropertySystem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescription(self: *const T, propkey: *const PROPERTYKEY, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescription(self: *const T, propkey: *const PROPERTYKEY, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertySystem, self), propkey, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescriptionByName(self: *const T, pszCanonicalName: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescriptionByName(self: *const T, pszCanonicalName: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionByName(@ptrCast(*const IPropertySystem, self), pszCanonicalName, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescriptionListFromString(self: *const T, pszPropList: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescriptionListFromString(self: *const T, pszPropList: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionListFromString(@ptrCast(*const IPropertySystem, self), pszPropList, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_EnumeratePropertyDescriptions(self: *const T, filterOn: PROPDESC_ENUMFILTER, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_EnumeratePropertyDescriptions(self: *const T, filterOn: PROPDESC_ENUMFILTER, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).EnumeratePropertyDescriptions(@ptrCast(*const IPropertySystem, self), filterOn, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1241,7 +1032,7 @@ pub const IPropertySystem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyDescriptionList_Value = @import("../zig.zig").Guid.initString("1F9FC1D0-C39B-4B26-817F-011967D3440E");
+const IID_IPropertyDescriptionList_Value = @import("../zig.zig").Guid.initString("1f9fc1d0-c39b-4b26-817f-011967d3440e");
 pub const IID_IPropertyDescriptionList = &IID_IPropertyDescriptionList_Value;
 pub const IPropertyDescriptionList = extern struct {
     pub const VTable = extern struct {
@@ -1254,7 +1045,7 @@ pub const IPropertyDescriptionList = extern struct {
             self: *const IPropertyDescriptionList,
             iElem: u32,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1265,14 +1056,14 @@ pub const IPropertyDescriptionList = extern struct {
             return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyDescriptionList, self), pcElem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionList_GetAt(self: *const T, iElem: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionList_GetAt(self: *const T, iElem: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyDescriptionList, self), iElem, riid, ppv);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("BC110B6D-57E8-4148-A9C6-91015AB2F3A5");
+const IID_IPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("bc110b6d-57e8-4148-a9c6-91015ab2f3a5");
 pub const IID_IPropertyStoreFactory = &IID_IPropertyStoreFactory_Value;
 pub const IPropertyStoreFactory = extern struct {
     pub const VTable = extern struct {
@@ -1282,7 +1073,7 @@ pub const IPropertyStoreFactory = extern struct {
             flags: GETPROPERTYSTOREFLAGS,
             pUnkFactory: *IUnknown,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: fn(
             self: *const IPropertyStoreFactory,
@@ -1290,18 +1081,18 @@ pub const IPropertyStoreFactory = extern struct {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: *const Guid,
-            ppv: **c_void,
+            ppv: ?*?*c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreFactory_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyStoreFactory_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IPropertyStoreFactory, self), flags, pUnkFactory, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreFactory_GetPropertyStoreForKeys(self: *const T, rgKeys: *const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyStoreFactory_GetPropertyStoreForKeys(self: *const T, rgKeys: *const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStoreForKeys(@ptrCast(*const IPropertyStoreFactory, self), rgKeys, cKeys, flags, riid, ppv);
         }
     };}
@@ -1319,7 +1110,7 @@ pub const FPSPS_TREAT_NEW_VALUES_AS_DIRTY = _PERSIST_SPROPSTORE_FLAGS.FPSPS_TREA
 
 pub const SERIALIZEDPROPSTORAGE = extern struct { comment: [*]const u8 = "TODO: why is this struct empty?" };
 
-const IID_IPropertySystemChangeNotify_Value = @import("../zig.zig").Guid.initString("FA955FD9-38BE-4879-A6CE-824CF52D609F");
+const IID_IPropertySystemChangeNotify_Value = @import("../zig.zig").Guid.initString("fa955fd9-38be-4879-a6ce-824cf52d609f");
 pub const IID_IPropertySystemChangeNotify = &IID_IPropertySystemChangeNotify_Value;
 pub const IPropertySystemChangeNotify = extern struct {
     pub const VTable = extern struct {
@@ -1410,92 +1201,219 @@ pub const DPF_ERROR = DRAWPROGRESSFLAGS.DPF_ERROR;
 pub const DPF_WARNING = DRAWPROGRESSFLAGS.DPF_WARNING;
 pub const DPF_STOPPED = DRAWPROGRESSFLAGS.DPF_STOPPED;
 
+pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
+    STS_NONE = 0,
+    STS_NEEDSUPLOAD = 1,
+    STS_NEEDSDOWNLOAD = 2,
+    STS_TRANSFERRING = 4,
+    STS_PAUSED = 8,
+    STS_HASERROR = 16,
+    STS_FETCHING_METADATA = 32,
+    STS_USER_REQUESTED_REFRESH = 64,
+    STS_HASWARNING = 128,
+    STS_EXCLUDED = 256,
+    STS_INCOMPLETE = 512,
+    STS_PLACEHOLDER_IFEMPTY = 1024,
+};
+pub const STS_NONE = SYNC_TRANSFER_STATUS.STS_NONE;
+pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS.STS_NEEDSUPLOAD;
+pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS.STS_NEEDSDOWNLOAD;
+pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS.STS_TRANSFERRING;
+pub const STS_PAUSED = SYNC_TRANSFER_STATUS.STS_PAUSED;
+pub const STS_HASERROR = SYNC_TRANSFER_STATUS.STS_HASERROR;
+pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS.STS_FETCHING_METADATA;
+pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS.STS_USER_REQUESTED_REFRESH;
+pub const STS_HASWARNING = SYNC_TRANSFER_STATUS.STS_HASWARNING;
+pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.STS_EXCLUDED;
+pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.STS_INCOMPLETE;
+pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.STS_PLACEHOLDER_IFEMPTY;
+
+pub const PLACEHOLDER_STATES = extern enum(i32) {
+    PS_NONE = 0,
+    PS_MARKED_FOR_OFFLINE_AVAILABILITY = 1,
+    PS_FULL_PRIMARY_STREAM_AVAILABLE = 2,
+    PS_CREATE_FILE_ACCESSIBLE = 4,
+    PS_CLOUDFILE_PLACEHOLDER = 8,
+    PS_DEFAULT = 7,
+    PS_ALL = 15,
+};
+pub const PS_NONE = PLACEHOLDER_STATES.PS_NONE;
+pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES.PS_MARKED_FOR_OFFLINE_AVAILABILITY;
+pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES.PS_FULL_PRIMARY_STREAM_AVAILABLE;
+pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES.PS_CREATE_FILE_ACCESSIBLE;
+pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.PS_CLOUDFILE_PLACEHOLDER;
+pub const PS_DEFAULT = PLACEHOLDER_STATES.PS_DEFAULT;
+pub const PS_ALL = PLACEHOLDER_STATES.PS_ALL;
+
+pub const _PROPERTYUI_FLAGS = extern enum(i32) {
+    PUIF_DEFAULT = 0,
+    PUIF_RIGHTALIGN = 1,
+    PUIF_NOLABELININFOTIP = 2,
+};
+pub const PUIF_DEFAULT = _PROPERTYUI_FLAGS.PUIF_DEFAULT;
+pub const PUIF_RIGHTALIGN = _PROPERTYUI_FLAGS.PUIF_RIGHTALIGN;
+pub const PUIF_NOLABELININFOTIP = _PROPERTYUI_FLAGS.PUIF_NOLABELININFOTIP;
+
+const IID_IPropertyUI_Value = @import("../zig.zig").Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
+pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
+pub const IPropertyUI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParsePropertyName: fn(
+            self: *const IPropertyUI,
+            pszName: [*:0]const u16,
+            pfmtid: *Guid,
+            ppid: *u32,
+            pchEaten: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCannonicalName: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplayName: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            flags: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyDescription: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultWidth: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pcxChars: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pflags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FormatForDisplay: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            ppropvar: *const PROPVARIANT,
+            puiff: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelpInfo: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszHelpFile: [*:0]u16,
+            cch: u32,
+            puHelpID: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_ParsePropertyName(self: *const T, pszName: [*:0]const u16, pfmtid: *Guid, ppid: *u32, pchEaten: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).ParsePropertyName(@ptrCast(*const IPropertyUI, self), pszName, pfmtid, ppid, pchEaten);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetCannonicalName(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetCannonicalName(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetDisplayName(self: *const T, fmtid: *const Guid, pid: u32, flags: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyUI, self), fmtid, pid, flags, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetPropertyDescription(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetDefaultWidth(self: *const T, fmtid: *const Guid, pid: u32, pcxChars: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDefaultWidth(@ptrCast(*const IPropertyUI, self), fmtid, pid, pcxChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetFlags(self: *const T, fmtid: *const Guid, pid: u32, pflags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetFlags(@ptrCast(*const IPropertyUI, self), fmtid, pid, pflags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_FormatForDisplay(self: *const T, fmtid: *const Guid, pid: u32, ppropvar: *const PROPVARIANT, puiff: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyUI, self), fmtid, pid, ppropvar, puiff, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetHelpInfo(self: *const T, fmtid: *const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszHelpFile, cch, puHelpID);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PDOPSTATUS = extern enum(i32) {
+    PDOPS_RUNNING = 1,
+    PDOPS_PAUSED = 2,
+    PDOPS_CANCELLED = 3,
+    PDOPS_STOPPED = 4,
+    PDOPS_ERRORS = 5,
+};
+pub const PDOPS_RUNNING = PDOPSTATUS.PDOPS_RUNNING;
+pub const PDOPS_PAUSED = PDOPSTATUS.PDOPS_PAUSED;
+pub const PDOPS_CANCELLED = PDOPSTATUS.PDOPS_CANCELLED;
+pub const PDOPS_STOPPED = PDOPSTATUS.PDOPS_STOPPED;
+pub const PDOPS_ERRORS = PDOPSTATUS.PDOPS_ERRORS;
+
+pub const SYNC_ENGINE_STATE_FLAGS = extern enum(i32) {
+    SESF_NONE = 0,
+    SESF_SERVICE_QUOTA_NEARING_LIMIT = 1,
+    SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = 2,
+    SESF_AUTHENTICATION_ERROR = 4,
+    SESF_PAUSED_DUE_TO_METERED_NETWORK = 8,
+    SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = 16,
+    SESF_PAUSED_DUE_TO_CLIENT_POLICY = 32,
+    SESF_PAUSED_DUE_TO_SERVICE_POLICY = 64,
+    SESF_SERVICE_UNAVAILABLE = 128,
+    SESF_PAUSED_DUE_TO_USER_REQUEST = 256,
+    SESF_ALL_FLAGS = 511,
+};
+pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS.SESF_NONE;
+pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_QUOTA_NEARING_LIMIT;
+pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_QUOTA_EXCEEDED_LIMIT;
+pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS.SESF_AUTHENTICATION_ERROR;
+pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_METERED_NETWORK;
+pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_DISK_SPACE_FULL;
+pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_CLIENT_POLICY;
+pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_SERVICE_POLICY;
+pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SESF_SERVICE_UNAVAILABLE;
+pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.SESF_PAUSED_DUE_TO_USER_REQUEST;
+pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.SESF_ALL_FLAGS;
+
+pub const PROPPRG = extern struct {
+    flPrg: u16,
+    flPrgInit: u16,
+    achTitle: [30]i8,
+    achCmdLine: [128]i8,
+    achWorkDir: [64]i8,
+    wHotKey: u16,
+    achIconFile: [80]i8,
+    wIconIndex: u16,
+    dwEnhModeFlags: u32,
+    dwRealModeFlags: u32,
+    achOtherFile: [80]i8,
+    achPIFFile: [260]i8,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (227)
 //--------------------------------------------------------------------------------
-pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
-    hwnd: HWND,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
-    pidl: *ITEMIDLIST,
-    flags: GETPROPERTYSTOREFLAGS,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
-    pszPath: [*:0]const u16,
-    pbc: ?*IBindCtx,
-    flags: GETPROPERTYSTOREFLAGS,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn SHAddDefaultPropertiesByExt(
-    pszExt: [*:0]const u16,
-    pPropStore: *IPropertyStore,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn PifMgr_OpenProperties(
-    pszApp: [*:0]const u16,
-    pszPIF: ?[*:0]const u16,
-    hInf: u32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "SHELL32" fn PifMgr_GetProperties(
-    hProps: HANDLE,
-    pszGroup: ?[*:0]const u8,
-    lpProps: ?[*]u8,
-    cbProps: i32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "SHELL32" fn PifMgr_SetProperties(
-    hProps: HANDLE,
-    pszGroup: ?[*:0]const u8,
-    lpProps: [*]const u8,
-    cbProps: i32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "SHELL32" fn PifMgr_CloseProperties(
-    hProps: HANDLE,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "SHELL32" fn SHPropStgCreate(
-    psstg: *IPropertySetStorage,
-    fmtid: *const Guid,
-    pclsid: ?*const Guid,
-    grfFlags: u32,
-    grfMode: u32,
-    dwDisposition: u32,
-    ppstg: **IPropertyStorage,
-    puCodePage: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn SHPropStgReadMultiple(
-    pps: *IPropertyStorage,
-    uCodePage: u32,
-    cpspec: u32,
-    rgpspec: [*]const PROPSPEC,
-    rgvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "SHELL32" fn SHPropStgWriteMultiple(
-    pps: *IPropertyStorage,
-    puCodePage: ?*u32,
-    cpspec: u32,
-    rgpspec: [*]const PROPSPEC,
-    rgvar: [*]PROPVARIANT,
-    propidNameFirst: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub extern "PROPSYS" fn PropVariantToWinRTPropertyValue(
     propvar: *const PROPVARIANT,
     riid: *const Guid,
@@ -2763,6 +2681,88 @@ pub extern "PROPSYS" fn VariantCompare(
     var2: *const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
+    hwnd: HWND,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
+    pidl: *ITEMIDLIST,
+    flags: GETPROPERTYSTOREFLAGS,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
+    pszPath: [*:0]const u16,
+    pbc: ?*IBindCtx,
+    flags: GETPROPERTYSTOREFLAGS,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn SHAddDefaultPropertiesByExt(
+    pszExt: [*:0]const u16,
+    pPropStore: *IPropertyStore,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn PifMgr_OpenProperties(
+    pszApp: [*:0]const u16,
+    pszPIF: ?[*:0]const u16,
+    hInf: u32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "SHELL32" fn PifMgr_GetProperties(
+    hProps: HANDLE,
+    pszGroup: ?[*:0]const u8,
+    lpProps: ?[*]u8,
+    cbProps: i32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "SHELL32" fn PifMgr_SetProperties(
+    hProps: HANDLE,
+    pszGroup: ?[*:0]const u8,
+    lpProps: [*]const u8,
+    cbProps: i32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub extern "SHELL32" fn PifMgr_CloseProperties(
+    hProps: HANDLE,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "SHELL32" fn SHPropStgCreate(
+    psstg: *IPropertySetStorage,
+    fmtid: *const Guid,
+    pclsid: ?*const Guid,
+    grfFlags: u32,
+    grfMode: u32,
+    dwDisposition: u32,
+    ppstg: **IPropertyStorage,
+    puCodePage: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn SHPropStgReadMultiple(
+    pps: *IPropertyStorage,
+    uCodePage: u32,
+    cpspec: u32,
+    rgpspec: [*]const PROPSPEC,
+    rgvar: *PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "SHELL32" fn SHPropStgWriteMultiple(
+    pps: *IPropertyStorage,
+    puCodePage: ?*u32,
+    cpspec: u32,
+    rgpspec: [*]const PROPSPEC,
+    rgvar: [*]PROPVARIANT,
+    propidNameFirst: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -2789,15 +2789,15 @@ const POINTS = @import("display_devices.zig").POINTS;
 const PROPSPEC = @import("structured_storage.zig").PROPSPEC;
 const IPropertyStore = @import("audio.zig").IPropertyStore;
 const IObjectWithPropertyKey = @import("shell.zig").IObjectWithPropertyKey;
-const IPropertyStorage = @import("structured_storage.zig").IPropertyStorage;
 const IStream = @import("structured_storage.zig").IStream;
+const IPropertyStorage = @import("structured_storage.zig").IPropertyStorage;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IBindCtx = @import("com.zig").IBindCtx;
 const IUnknown = @import("com.zig").IUnknown;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;
+const BSTR = @import("automation.zig").BSTR;
 const ITEMIDLIST = @import("shell.zig").ITEMIDLIST;
 const PSTR = @import("system_services.zig").PSTR;
-const BSTR = @import("automation.zig").BSTR;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const IPropertyBag = @import("automation.zig").IPropertyBag;
 const IPropertySetStorage = @import("structured_storage.zig").IPropertySetStorage;

@@ -141,6 +141,10 @@ pub const HRAWINPUT = ?*c_void;
 //--------------------------------------------------------------------------------
 // Section: Functions (60)
 //--------------------------------------------------------------------------------
+pub extern "COMCTL32" fn _TrackMouseEvent(
+    lpEventTrack: *TRACKMOUSEEVENT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "USER32" fn LoadKeyboardLayoutA(
     pwszKLID: [*:0]const u8,
     Flags: u32,
@@ -445,10 +449,6 @@ pub extern "USER32" fn DefRawInputProc(
     nInput: i32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub extern "COMCTL32" fn _TrackMouseEvent(
-    lpEventTrack: *TRACKMOUSEEVENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

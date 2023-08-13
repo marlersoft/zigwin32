@@ -13,12 +13,6 @@ pub const GUAR_ADSPARM_Dsum : i32 = 136;
 //--------------------------------------------------------------------------------
 // Section: Types (81)
 //--------------------------------------------------------------------------------
-pub const QOS = extern struct {
-    SendingFlowspec: FLOWSPEC,
-    ReceivingFlowspec: FLOWSPEC,
-    ProviderSpecific: WSABUF,
-};
-
 pub const FLOWSPEC = extern struct {
     TokenRate: u32,
     TokenBucketSize: u32,
@@ -570,6 +564,12 @@ pub const ENUMERATION_BUFFER = extern struct {
     pFlow: *TC_GEN_FLOW,
     NumberOfFilters: u32,
     GenericFilter: [1]TC_GEN_FILTER,
+};
+
+pub const QOS = extern struct {
+    SendingFlowspec: FLOWSPEC,
+    ReceivingFlowspec: FLOWSPEC,
+    ProviderSpecific: WSABUF,
 };
 
 

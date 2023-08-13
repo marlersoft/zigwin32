@@ -229,7 +229,7 @@ pub const DWRITE_FACTORY_TYPE = extern enum(i32) {
 pub const DWRITE_FACTORY_TYPE_SHARED = DWRITE_FACTORY_TYPE.SHARED;
 pub const DWRITE_FACTORY_TYPE_ISOLATED = DWRITE_FACTORY_TYPE.ISOLATED;
 
-const IID_IDWriteFontFileLoader_Value = @import("../zig.zig").Guid.initString("727CAD4E-D6AF-4C9E-8A08-D695B11CAA49");
+const IID_IDWriteFontFileLoader_Value = @import("../zig.zig").Guid.initString("727cad4e-d6af-4c9e-8a08-d695b11caa49");
 pub const IID_IDWriteFontFileLoader = &IID_IDWriteFontFileLoader_Value;
 pub const IDWriteFontFileLoader = extern struct {
     pub const VTable = extern struct {
@@ -252,7 +252,7 @@ pub const IDWriteFontFileLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteLocalFontFileLoader_Value = @import("../zig.zig").Guid.initString("B2D9F3EC-C9FE-4A11-A2EC-D86208F7C0A2");
+const IID_IDWriteLocalFontFileLoader_Value = @import("../zig.zig").Guid.initString("b2d9f3ec-c9fe-4a11-a2ec-d86208f7c0a2");
 pub const IID_IDWriteLocalFontFileLoader = &IID_IDWriteLocalFontFileLoader_Value;
 pub const IDWriteLocalFontFileLoader = extern struct {
     pub const VTable = extern struct {
@@ -296,7 +296,7 @@ pub const IDWriteLocalFontFileLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFileStream_Value = @import("../zig.zig").Guid.initString("6D4865FE-0AB8-4D91-8F62-5DD6BE34A3E0");
+const IID_IDWriteFontFileStream_Value = @import("../zig.zig").Guid.initString("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0");
 pub const IID_IDWriteFontFileStream = &IID_IDWriteFontFileStream_Value;
 pub const IDWriteFontFileStream = extern struct {
     pub const VTable = extern struct {
@@ -344,7 +344,7 @@ pub const IDWriteFontFileStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFile_Value = @import("../zig.zig").Guid.initString("739D886A-CEF5-47DC-8769-1A8B41BEBBB0");
+const IID_IDWriteFontFile_Value = @import("../zig.zig").Guid.initString("739d886a-cef5-47dc-8769-1a8b41bebbb0");
 pub const IID_IDWriteFontFile = &IID_IDWriteFontFile_Value;
 pub const IDWriteFontFile = extern struct {
     pub const VTable = extern struct {
@@ -428,7 +428,7 @@ pub const DWRITE_MATRIX = extern struct {
     dy: f32,
 };
 
-const IID_IDWriteRenderingParams_Value = @import("../zig.zig").Guid.initString("2F0DA53A-2ADD-47CD-82EE-D9EC34688E75");
+const IID_IDWriteRenderingParams_Value = @import("../zig.zig").Guid.initString("2f0da53a-2add-47cd-82ee-d9ec34688e75");
 pub const IID_IDWriteRenderingParams = &IID_IDWriteRenderingParams_Value;
 pub const IDWriteRenderingParams = extern struct {
     pub const VTable = extern struct {
@@ -476,7 +476,7 @@ pub const IDWriteRenderingParams = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace_Value = @import("../zig.zig").Guid.initString("5F49804D-7024-4D43-BFA9-D25984F53849");
+const IID_IDWriteFontFace_Value = @import("../zig.zig").Guid.initString("5f49804d-7024-4d43-bfa9-d25984f53849");
 pub const IID_IDWriteFontFace = &IID_IDWriteFontFace_Value;
 pub const IDWriteFontFace = extern struct {
     pub const VTable = extern struct {
@@ -635,7 +635,7 @@ pub const IDWriteFontFace = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontCollectionLoader_Value = @import("../zig.zig").Guid.initString("CCA920E4-52F0-492B-BFA8-29C72EE0A468");
+const IID_IDWriteFontCollectionLoader_Value = @import("../zig.zig").Guid.initString("cca920e4-52f0-492b-bfa8-29c72ee0a468");
 pub const IID_IDWriteFontCollectionLoader = &IID_IDWriteFontCollectionLoader_Value;
 pub const IDWriteFontCollectionLoader = extern struct {
     pub const VTable = extern struct {
@@ -659,7 +659,7 @@ pub const IDWriteFontCollectionLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFileEnumerator_Value = @import("../zig.zig").Guid.initString("72755049-5FF7-435D-8348-4BE97CFA6C7C");
+const IID_IDWriteFontFileEnumerator_Value = @import("../zig.zig").Guid.initString("72755049-5ff7-435d-8348-4be97cfa6c7c");
 pub const IID_IDWriteFontFileEnumerator = &IID_IDWriteFontFileEnumerator_Value;
 pub const IDWriteFontFileEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -688,7 +688,7 @@ pub const IDWriteFontFileEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteLocalizedStrings_Value = @import("../zig.zig").Guid.initString("08256209-099A-4B34-B86D-C22B110E7771");
+const IID_IDWriteLocalizedStrings_Value = @import("../zig.zig").Guid.initString("08256209-099a-4b34-b86d-c22b110e7771");
 pub const IID_IDWriteLocalizedStrings = &IID_IDWriteLocalizedStrings_Value;
 pub const IDWriteLocalizedStrings = extern struct {
     pub const VTable = extern struct {
@@ -756,7 +756,7 @@ pub const IDWriteLocalizedStrings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontCollection_Value = @import("../zig.zig").Guid.initString("A84CEE02-3EEA-4EEE-A827-87C1A02A0FCC");
+const IID_IDWriteFontCollection_Value = @import("../zig.zig").Guid.initString("a84cee02-3eea-4eee-a827-87c1a02a0fcc");
 pub const IID_IDWriteFontCollection = &IID_IDWriteFontCollection_Value;
 pub const IDWriteFontCollection = extern struct {
     pub const VTable = extern struct {
@@ -804,7 +804,7 @@ pub const IDWriteFontCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontList_Value = @import("../zig.zig").Guid.initString("1A0D8438-1D97-4EC1-AEF9-A2FB86ED6ACB");
+const IID_IDWriteFontList_Value = @import("../zig.zig").Guid.initString("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb");
 pub const IID_IDWriteFontList = &IID_IDWriteFontList_Value;
 pub const IDWriteFontList = extern struct {
     pub const VTable = extern struct {
@@ -841,7 +841,7 @@ pub const IDWriteFontList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFamily_Value = @import("../zig.zig").Guid.initString("DA20D8EF-812A-4C43-9802-62EC4ABD7ADD");
+const IID_IDWriteFontFamily_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7add");
 pub const IID_IDWriteFontFamily = &IID_IDWriteFontFamily_Value;
 pub const IDWriteFontFamily = extern struct {
     pub const VTable = extern struct {
@@ -884,7 +884,7 @@ pub const IDWriteFontFamily = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFont_Value = @import("../zig.zig").Guid.initString("ACD16696-8C14-4F5D-877E-FE3FC1D32737");
+const IID_IDWriteFont_Value = @import("../zig.zig").Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32737");
 pub const IID_IDWriteFont = &IID_IDWriteFont_Value;
 pub const IDWriteFont = extern struct {
     pub const VTable = extern struct {
@@ -1242,7 +1242,7 @@ pub const DWRITE_TRIMMING = extern struct {
     delimiterCount: u32,
 };
 
-const IID_IDWriteTextFormat_Value = @import("../zig.zig").Guid.initString("9C906818-31D7-4FD3-A151-7C5E225DB55A");
+const IID_IDWriteTextFormat_Value = @import("../zig.zig").Guid.initString("9c906818-31d7-4fd3-a151-7c5e225db55a");
 pub const IID_IDWriteTextFormat = &IID_IDWriteTextFormat_Value;
 pub const IDWriteTextFormat = extern struct {
     pub const VTable = extern struct {
@@ -1451,7 +1451,7 @@ pub const IDWriteTextFormat = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTypography_Value = @import("../zig.zig").Guid.initString("55F1112B-1DC2-4B3C-9541-F46894ED85B6");
+const IID_IDWriteTypography_Value = @import("../zig.zig").Guid.initString("55f1112b-1dc2-4b3c-9541-f46894ed85b6");
 pub const IID_IDWriteTypography = &IID_IDWriteTypography_Value;
 pub const IDWriteTypography = extern struct {
     pub const VTable = extern struct {
@@ -1528,7 +1528,7 @@ pub const DWRITE_NUMBER_SUBSTITUTION_METHOD_NONE = DWRITE_NUMBER_SUBSTITUTION_ME
 pub const DWRITE_NUMBER_SUBSTITUTION_METHOD_NATIONAL = DWRITE_NUMBER_SUBSTITUTION_METHOD.NATIONAL;
 pub const DWRITE_NUMBER_SUBSTITUTION_METHOD_TRADITIONAL = DWRITE_NUMBER_SUBSTITUTION_METHOD.TRADITIONAL;
 
-const IID_IDWriteNumberSubstitution_Value = @import("../zig.zig").Guid.initString("14885CC9-BAB0-4F90-B6ED-5C366A2CD03D");
+const IID_IDWriteNumberSubstitution_Value = @import("../zig.zig").Guid.initString("14885cc9-bab0-4f90-b6ed-5c366a2cd03d");
 pub const IID_IDWriteNumberSubstitution = &IID_IDWriteNumberSubstitution_Value;
 pub const IDWriteNumberSubstitution = extern struct {
     pub const VTable = extern struct {
@@ -1549,7 +1549,7 @@ pub const DWRITE_SHAPING_GLYPH_PROPERTIES = extern struct {
     _bitfield: u16,
 };
 
-const IID_IDWriteTextAnalysisSource_Value = @import("../zig.zig").Guid.initString("688E1A58-5094-47C8-ADC8-FBCEA60AE92B");
+const IID_IDWriteTextAnalysisSource_Value = @import("../zig.zig").Guid.initString("688e1a58-5094-47c8-adc8-fbcea60ae92b");
 pub const IID_IDWriteTextAnalysisSource = &IID_IDWriteTextAnalysisSource_Value;
 pub const IDWriteTextAnalysisSource = extern struct {
     pub const VTable = extern struct {
@@ -1609,7 +1609,7 @@ pub const IDWriteTextAnalysisSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalysisSink_Value = @import("../zig.zig").Guid.initString("5810CD44-0CA0-4701-B3FA-BEC5182AE4F6");
+const IID_IDWriteTextAnalysisSink_Value = @import("../zig.zig").Guid.initString("5810cd44-0ca0-4701-b3fa-bec5182ae4f6");
 pub const IID_IDWriteTextAnalysisSink = &IID_IDWriteTextAnalysisSink_Value;
 pub const IDWriteTextAnalysisSink = extern struct {
     pub const VTable = extern struct {
@@ -1663,7 +1663,7 @@ pub const IDWriteTextAnalysisSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalyzer_Value = @import("../zig.zig").Guid.initString("B7E6163E-7F46-43B4-84B3-E4E6249C365D");
+const IID_IDWriteTextAnalyzer_Value = @import("../zig.zig").Guid.initString("b7e6163e-7f46-43b4-84b3-e4e6249c365d");
 pub const IID_IDWriteTextAnalyzer = &IID_IDWriteTextAnalyzer_Value;
 pub const IDWriteTextAnalyzer = extern struct {
     pub const VTable = extern struct {
@@ -1890,7 +1890,7 @@ pub const DWRITE_HIT_TEST_METRICS = extern struct {
     isTrimmed: BOOL,
 };
 
-const IID_IDWriteInlineObject_Value = @import("../zig.zig").Guid.initString("8339FDE3-106F-47AB-8373-1C6295EB10B3");
+const IID_IDWriteInlineObject_Value = @import("../zig.zig").Guid.initString("8339fde3-106f-47ab-8373-1c6295eb10b3");
 pub const IID_IDWriteInlineObject = &IID_IDWriteInlineObject_Value;
 pub const IDWriteInlineObject = extern struct {
     pub const VTable = extern struct {
@@ -1942,7 +1942,7 @@ pub const IDWriteInlineObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWritePixelSnapping_Value = @import("../zig.zig").Guid.initString("EAF3A2DA-ECF4-4D24-B644-B34F6842024B");
+const IID_IDWritePixelSnapping_Value = @import("../zig.zig").Guid.initString("eaf3a2da-ecf4-4d24-b644-b34f6842024b");
 pub const IID_IDWritePixelSnapping = &IID_IDWritePixelSnapping_Value;
 pub const IDWritePixelSnapping = extern struct {
     pub const VTable = extern struct {
@@ -1982,7 +1982,7 @@ pub const IDWritePixelSnapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextRenderer_Value = @import("../zig.zig").Guid.initString("EF8A8135-5CC6-45FE-8825-C5A0724EB819");
+const IID_IDWriteTextRenderer_Value = @import("../zig.zig").Guid.initString("ef8a8135-5cc6-45fe-8825-c5a0724eb819");
 pub const IID_IDWriteTextRenderer = &IID_IDWriteTextRenderer_Value;
 pub const IDWriteTextRenderer = extern struct {
     pub const VTable = extern struct {
@@ -2047,7 +2047,7 @@ pub const IDWriteTextRenderer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextLayout_Value = @import("../zig.zig").Guid.initString("53737037-6D14-410B-9BFE-0B182BB70961");
+const IID_IDWriteTextLayout_Value = @import("../zig.zig").Guid.initString("53737037-6d14-410b-9bfe-0b182bb70961");
 pub const IID_IDWriteTextLayout = &IID_IDWriteTextLayout_Value;
 pub const IDWriteTextLayout = extern struct {
     pub const VTable = extern struct {
@@ -2433,7 +2433,7 @@ pub const IDWriteTextLayout = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteBitmapRenderTarget_Value = @import("../zig.zig").Guid.initString("5E5A32A3-8DFF-4773-9FF6-0696EAB77267");
+const IID_IDWriteBitmapRenderTarget_Value = @import("../zig.zig").Guid.initString("5e5a32a3-8dff-4773-9ff6-0696eab77267");
 pub const IID_IDWriteBitmapRenderTarget = &IID_IDWriteBitmapRenderTarget_Value;
 pub const IDWriteBitmapRenderTarget = extern struct {
     pub const VTable = extern struct {
@@ -2515,7 +2515,7 @@ pub const IDWriteBitmapRenderTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteGdiInterop_Value = @import("../zig.zig").Guid.initString("1EDD9491-9853-4299-898F-6432983B6F3A");
+const IID_IDWriteGdiInterop_Value = @import("../zig.zig").Guid.initString("1edd9491-9853-4299-898f-6432983b6f3a");
 pub const IID_IDWriteGdiInterop = &IID_IDWriteGdiInterop_Value;
 pub const IDWriteGdiInterop = extern struct {
     pub const VTable = extern struct {
@@ -2583,7 +2583,7 @@ pub const DWRITE_TEXTURE_TYPE = extern enum(i32) {
 pub const DWRITE_TEXTURE_ALIASED_1x1 = DWRITE_TEXTURE_TYPE.DWRITE_TEXTURE_ALIASED_1x1;
 pub const DWRITE_TEXTURE_CLEARTYPE_3x1 = DWRITE_TEXTURE_TYPE.DWRITE_TEXTURE_CLEARTYPE_3x1;
 
-const IID_IDWriteGlyphRunAnalysis_Value = @import("../zig.zig").Guid.initString("7D97DBF7-E085-42D4-81E3-6A883BDED118");
+const IID_IDWriteGlyphRunAnalysis_Value = @import("../zig.zig").Guid.initString("7d97dbf7-e085-42d4-81e3-6a883bded118");
 pub const IID_IDWriteGlyphRunAnalysis = &IID_IDWriteGlyphRunAnalysis_Value;
 pub const IDWriteGlyphRunAnalysis = extern struct {
     pub const VTable = extern struct {
@@ -2627,7 +2627,7 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory_Value = @import("../zig.zig").Guid.initString("B859EE5A-D838-4B5B-A2E8-1ADC7D93DB48");
+const IID_IDWriteFactory_Value = @import("../zig.zig").Guid.initString("b859ee5a-d838-4b5b-a2e8-1adc7d93db48");
 pub const IID_IDWriteFactory = &IID_IDWriteFactory_Value;
 pub const IDWriteFactory = extern struct {
     pub const VTable = extern struct {
@@ -3595,7 +3595,7 @@ pub const DWRITE_JUSTIFICATION_OPPORTUNITY = extern struct {
     _bitfield: u32,
 };
 
-const IID_IDWriteFactory1_Value = @import("../zig.zig").Guid.initString("30572F99-DAC6-41DB-A16E-0486307E606A");
+const IID_IDWriteFactory1_Value = @import("../zig.zig").Guid.initString("30572f99-dac6-41db-a16e-0486307e606a");
 pub const IID_IDWriteFactory1 = &IID_IDWriteFactory1_Value;
 pub const IDWriteFactory1 = extern struct {
     pub const VTable = extern struct {
@@ -3631,7 +3631,7 @@ pub const IDWriteFactory1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace1_Value = @import("../zig.zig").Guid.initString("A71EFDB4-9FDB-4838-AD90-CFC3BE8C3DAF");
+const IID_IDWriteFontFace1_Value = @import("../zig.zig").Guid.initString("a71efdb4-9fdb-4838-ad90-cfc3be8c3daf");
 pub const IID_IDWriteFontFace1 = &IID_IDWriteFontFace1_Value;
 pub const IDWriteFontFace1 = extern struct {
     pub const VTable = extern struct {
@@ -3763,7 +3763,7 @@ pub const IDWriteFontFace1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFont1_Value = @import("../zig.zig").Guid.initString("ACD16696-8C14-4F5D-877E-FE3FC1D32738");
+const IID_IDWriteFont1_Value = @import("../zig.zig").Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32738");
 pub const IID_IDWriteFont1 = &IID_IDWriteFont1_Value;
 pub const IDWriteFont1 = extern struct {
     pub const VTable = extern struct {
@@ -3809,7 +3809,7 @@ pub const IDWriteFont1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteRenderingParams1_Value = @import("../zig.zig").Guid.initString("94413CF4-A6FC-4248-8B50-6674348FCAD3");
+const IID_IDWriteRenderingParams1_Value = @import("../zig.zig").Guid.initString("94413cf4-a6fc-4248-8b50-6674348fcad3");
 pub const IID_IDWriteRenderingParams1 = &IID_IDWriteRenderingParams1_Value;
 pub const IDWriteRenderingParams1 = extern struct {
     pub const VTable = extern struct {
@@ -3829,7 +3829,7 @@ pub const IDWriteRenderingParams1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalyzer1_Value = @import("../zig.zig").Guid.initString("80DAD800-E21F-4E83-96CE-BFCCE500DB7C");
+const IID_IDWriteTextAnalyzer1_Value = @import("../zig.zig").Guid.initString("80dad800-e21f-4e83-96ce-bfcce500db7c");
 pub const IID_IDWriteTextAnalyzer1 = &IID_IDWriteTextAnalyzer1_Value;
 pub const IDWriteTextAnalyzer1 = extern struct {
     pub const VTable = extern struct {
@@ -3972,7 +3972,7 @@ pub const IDWriteTextAnalyzer1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalysisSource1_Value = @import("../zig.zig").Guid.initString("639CFAD8-0FB4-4B21-A58A-067920120009");
+const IID_IDWriteTextAnalysisSource1_Value = @import("../zig.zig").Guid.initString("639cfad8-0fb4-4b21-a58a-067920120009");
 pub const IID_IDWriteTextAnalysisSource1 = &IID_IDWriteTextAnalysisSource1_Value;
 pub const IDWriteTextAnalysisSource1 = extern struct {
     pub const VTable = extern struct {
@@ -3996,7 +3996,7 @@ pub const IDWriteTextAnalysisSource1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalysisSink1_Value = @import("../zig.zig").Guid.initString("B0D941A0-85E7-4D8B-9FD3-5CED9934482A");
+const IID_IDWriteTextAnalysisSink1_Value = @import("../zig.zig").Guid.initString("b0d941a0-85e7-4d8b-9fd3-5ced9934482a");
 pub const IID_IDWriteTextAnalysisSink1 = &IID_IDWriteTextAnalysisSink1_Value;
 pub const IDWriteTextAnalysisSink1 = extern struct {
     pub const VTable = extern struct {
@@ -4022,7 +4022,7 @@ pub const IDWriteTextAnalysisSink1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextLayout1_Value = @import("../zig.zig").Guid.initString("9064D822-80A7-465C-A986-DF65F78B8FEB");
+const IID_IDWriteTextLayout1_Value = @import("../zig.zig").Guid.initString("9064d822-80a7-465c-a986-df65f78b8feb");
 pub const IID_IDWriteTextLayout1 = &IID_IDWriteTextLayout1_Value;
 pub const IDWriteTextLayout1 = extern struct {
     pub const VTable = extern struct {
@@ -4084,7 +4084,7 @@ pub const DWRITE_TEXT_ANTIALIAS_MODE = extern enum(i32) {
 pub const DWRITE_TEXT_ANTIALIAS_MODE_CLEARTYPE = DWRITE_TEXT_ANTIALIAS_MODE.CLEARTYPE;
 pub const DWRITE_TEXT_ANTIALIAS_MODE_GRAYSCALE = DWRITE_TEXT_ANTIALIAS_MODE.GRAYSCALE;
 
-const IID_IDWriteBitmapRenderTarget1_Value = @import("../zig.zig").Guid.initString("791E8298-3EF3-4230-9880-C9BDECC42064");
+const IID_IDWriteBitmapRenderTarget1_Value = @import("../zig.zig").Guid.initString("791e8298-3ef3-4230-9880-c9bdecc42064");
 pub const IID_IDWriteBitmapRenderTarget1 = &IID_IDWriteBitmapRenderTarget1_Value;
 pub const IDWriteBitmapRenderTarget1 = extern struct {
     pub const VTable = extern struct {
@@ -4133,7 +4133,7 @@ pub const DWRITE_TEXT_METRICS1 = extern struct {
     heightIncludingTrailingWhitespace: f32,
 };
 
-const IID_IDWriteTextRenderer1_Value = @import("../zig.zig").Guid.initString("D3E0E934-22A0-427E-AAE4-7D9574B59DB1");
+const IID_IDWriteTextRenderer1_Value = @import("../zig.zig").Guid.initString("d3e0e934-22a0-427e-aae4-7d9574b59db1");
 pub const IID_IDWriteTextRenderer1 = &IID_IDWriteTextRenderer1_Value;
 pub const IDWriteTextRenderer1 = extern struct {
     pub const VTable = extern struct {
@@ -4202,7 +4202,7 @@ pub const IDWriteTextRenderer1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextFormat1_Value = @import("../zig.zig").Guid.initString("5F174B49-0D8B-4CFB-8BCA-F1CCE9D06C67");
+const IID_IDWriteTextFormat1_Value = @import("../zig.zig").Guid.initString("5f174b49-0d8b-4cfb-8bca-f1cce9d06c67");
 pub const IID_IDWriteTextFormat1 = &IID_IDWriteTextFormat1_Value;
 pub const IDWriteTextFormat1 = extern struct {
     pub const VTable = extern struct {
@@ -4276,7 +4276,7 @@ pub const IDWriteTextFormat1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextLayout2_Value = @import("../zig.zig").Guid.initString("1093C18F-8D5E-43F0-B064-0917311B525E");
+const IID_IDWriteTextLayout2_Value = @import("../zig.zig").Guid.initString("1093c18f-8d5e-43f0-b064-0917311b525e");
 pub const IID_IDWriteTextLayout2 = &IID_IDWriteTextLayout2_Value;
 pub const IDWriteTextLayout2 = extern struct {
     pub const VTable = extern struct {
@@ -4358,7 +4358,7 @@ pub const IDWriteTextLayout2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextAnalyzer2_Value = @import("../zig.zig").Guid.initString("553A9FF3-5693-4DF7-B52B-74806F7F2EB9");
+const IID_IDWriteTextAnalyzer2_Value = @import("../zig.zig").Guid.initString("553a9ff3-5693-4df7-b52b-74806f7f2eb9");
 pub const IID_IDWriteTextAnalyzer2 = &IID_IDWriteTextAnalyzer2_Value;
 pub const IDWriteTextAnalyzer2 = extern struct {
     pub const VTable = extern struct {
@@ -4410,7 +4410,7 @@ pub const IDWriteTextAnalyzer2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFallback_Value = @import("../zig.zig").Guid.initString("EFA008F9-F7A1-48BF-B05C-F224713CC0FF");
+const IID_IDWriteFontFallback_Value = @import("../zig.zig").Guid.initString("efa008f9-f7a1-48bf-b05c-f224713cc0ff");
 pub const IID_IDWriteFontFallback = &IID_IDWriteFontFallback_Value;
 pub const IDWriteFontFallback = extern struct {
     pub const VTable = extern struct {
@@ -4441,7 +4441,7 @@ pub const IDWriteFontFallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFallbackBuilder_Value = @import("../zig.zig").Guid.initString("FD882D06-8ABA-4FB8-B849-8BE8B73E14DE");
+const IID_IDWriteFontFallbackBuilder_Value = @import("../zig.zig").Guid.initString("fd882d06-8aba-4fb8-b849-8be8b73e14de");
 pub const IID_IDWriteFontFallbackBuilder = &IID_IDWriteFontFallbackBuilder_Value;
 pub const IDWriteFontFallbackBuilder = extern struct {
     pub const VTable = extern struct {
@@ -4485,7 +4485,7 @@ pub const IDWriteFontFallbackBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFont2_Value = @import("../zig.zig").Guid.initString("29748ED6-8C9C-4A6A-BE0B-D912E8538944");
+const IID_IDWriteFont2_Value = @import("../zig.zig").Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont2 = &IID_IDWriteFont2_Value;
 pub const IDWriteFont2 = extern struct {
     pub const VTable = extern struct {
@@ -4505,7 +4505,7 @@ pub const IDWriteFont2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace2_Value = @import("../zig.zig").Guid.initString("D8B768FF-64BC-4E66-982B-EC8E87F693F7");
+const IID_IDWriteFontFace2_Value = @import("../zig.zig").Guid.initString("d8b768ff-64bc-4e66-982b-ec8e87f693f7");
 pub const IID_IDWriteFontFace2 = &IID_IDWriteFontFace2_Value;
 pub const IDWriteFontFace2 = extern struct {
     pub const VTable = extern struct {
@@ -4576,7 +4576,7 @@ pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
     paletteIndex: u16,
 };
 
-const IID_IDWriteColorGlyphRunEnumerator_Value = @import("../zig.zig").Guid.initString("D31FBE17-F157-41A2-8D24-CB779E0560E8");
+const IID_IDWriteColorGlyphRunEnumerator_Value = @import("../zig.zig").Guid.initString("d31fbe17-f157-41a2-8d24-cb779e0560e8");
 pub const IID_IDWriteColorGlyphRunEnumerator = &IID_IDWriteColorGlyphRunEnumerator_Value;
 pub const IDWriteColorGlyphRunEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -4605,7 +4605,7 @@ pub const IDWriteColorGlyphRunEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteRenderingParams2_Value = @import("../zig.zig").Guid.initString("F9D711C3-9777-40AE-87E8-3E5AF9BF0948");
+const IID_IDWriteRenderingParams2_Value = @import("../zig.zig").Guid.initString("f9d711c3-9777-40ae-87e8-3e5af9bf0948");
 pub const IID_IDWriteRenderingParams2 = &IID_IDWriteRenderingParams2_Value;
 pub const IDWriteRenderingParams2 = extern struct {
     pub const VTable = extern struct {
@@ -4625,7 +4625,7 @@ pub const IDWriteRenderingParams2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory2_Value = @import("../zig.zig").Guid.initString("0439FC60-CA44-4994-8DEE-3A9AF7B732EC");
+const IID_IDWriteFactory2_Value = @import("../zig.zig").Guid.initString("0439fc60-ca44-4994-8dee-3a9af7b732ec");
 pub const IID_IDWriteFactory2 = &IID_IDWriteFactory2_Value;
 pub const IDWriteFactory2 = extern struct {
     pub const VTable = extern struct {
@@ -4775,7 +4775,7 @@ pub const DWRITE_RENDERING_MODE1_NATURAL_SYMMETRIC = DWRITE_RENDERING_MODE1.NATU
 pub const DWRITE_RENDERING_MODE1_OUTLINE = DWRITE_RENDERING_MODE1.OUTLINE;
 pub const DWRITE_RENDERING_MODE1_NATURAL_SYMMETRIC_DOWNSAMPLED = DWRITE_RENDERING_MODE1.NATURAL_SYMMETRIC_DOWNSAMPLED;
 
-const IID_IDWriteRenderingParams3_Value = @import("../zig.zig").Guid.initString("B7924BAA-391B-412A-8C5C-E44CC2D867DC");
+const IID_IDWriteRenderingParams3_Value = @import("../zig.zig").Guid.initString("b7924baa-391b-412a-8c5c-e44cc2d867dc");
 pub const IID_IDWriteRenderingParams3 = &IID_IDWriteRenderingParams3_Value;
 pub const IDWriteRenderingParams3 = extern struct {
     pub const VTable = extern struct {
@@ -4795,7 +4795,7 @@ pub const IDWriteRenderingParams3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory3_Value = @import("../zig.zig").Guid.initString("9A1B41C3-D3BB-466A-87FC-FE67556A3B65");
+const IID_IDWriteFactory3_Value = @import("../zig.zig").Guid.initString("9a1b41c3-d3bb-466a-87fc-fe67556a3b65");
 pub const IID_IDWriteFactory3 = &IID_IDWriteFactory3_Value;
 pub const IDWriteFactory3 = extern struct {
     pub const VTable = extern struct {
@@ -4905,7 +4905,7 @@ pub const IDWriteFactory3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSet_Value = @import("../zig.zig").Guid.initString("53585141-D9F8-4095-8321-D73CF6BD116B");
+const IID_IDWriteFontSet_Value = @import("../zig.zig").Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116b");
 pub const IID_IDWriteFontSet = &IID_IDWriteFontSet_Value;
 pub const IDWriteFontSet = extern struct {
     pub const VTable = extern struct {
@@ -5015,7 +5015,7 @@ pub const IDWriteFontSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSetBuilder_Value = @import("../zig.zig").Guid.initString("2F642AFE-9C68-4F40-B8BE-457401AFCB3D");
+const IID_IDWriteFontSetBuilder_Value = @import("../zig.zig").Guid.initString("2f642afe-9c68-4f40-b8be-457401afcb3d");
 pub const IID_IDWriteFontSetBuilder = &IID_IDWriteFontSetBuilder_Value;
 pub const IDWriteFontSetBuilder = extern struct {
     pub const VTable = extern struct {
@@ -5062,7 +5062,7 @@ pub const IDWriteFontSetBuilder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontCollection1_Value = @import("../zig.zig").Guid.initString("53585141-D9F8-4095-8321-D73CF6BD116C");
+const IID_IDWriteFontCollection1_Value = @import("../zig.zig").Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116c");
 pub const IID_IDWriteFontCollection1 = &IID_IDWriteFontCollection1_Value;
 pub const IDWriteFontCollection1 = extern struct {
     pub const VTable = extern struct {
@@ -5092,7 +5092,7 @@ pub const IDWriteFontCollection1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFamily1_Value = @import("../zig.zig").Guid.initString("DA20D8EF-812A-4C43-9802-62EC4ABD7ADF");
+const IID_IDWriteFontFamily1_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7adf");
 pub const IID_IDWriteFontFamily1 = &IID_IDWriteFontFamily1_Value;
 pub const IDWriteFontFamily1 = extern struct {
     pub const VTable = extern struct {
@@ -5131,7 +5131,7 @@ pub const IDWriteFontFamily1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontList1_Value = @import("../zig.zig").Guid.initString("DA20D8EF-812A-4C43-9802-62EC4ABD7ADE");
+const IID_IDWriteFontList1_Value = @import("../zig.zig").Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7ade");
 pub const IID_IDWriteFontList1 = &IID_IDWriteFontList1_Value;
 pub const IDWriteFontList1 = extern struct {
     pub const VTable = extern struct {
@@ -5170,7 +5170,7 @@ pub const IDWriteFontList1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFaceReference_Value = @import("../zig.zig").Guid.initString("5E7FA7CA-DDE3-424C-89F0-9FCD6FED58CD");
+const IID_IDWriteFontFaceReference_Value = @import("../zig.zig").Guid.initString("5e7fa7ca-dde3-424c-89f0-9fcd6fed58cd");
 pub const IID_IDWriteFontFaceReference = &IID_IDWriteFontFaceReference_Value;
 pub const IDWriteFontFaceReference = extern struct {
     pub const VTable = extern struct {
@@ -5293,7 +5293,7 @@ pub const IDWriteFontFaceReference = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFont3_Value = @import("../zig.zig").Guid.initString("29748ED6-8C9C-4A6A-BE0B-D912E8538944");
+const IID_IDWriteFont3_Value = @import("../zig.zig").Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont3 = &IID_IDWriteFont3_Value;
 pub const IDWriteFont3 = extern struct {
     pub const VTable = extern struct {
@@ -5345,7 +5345,7 @@ pub const IDWriteFont3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace3_Value = @import("../zig.zig").Guid.initString("D37D7598-09BE-4222-A236-2081341CC1F2");
+const IID_IDWriteFontFace3_Value = @import("../zig.zig").Guid.initString("d37d7598-09be-4222-a236-2081341cc1f2");
 pub const IID_IDWriteFontFace3 = &IID_IDWriteFontFace3_Value;
 pub const IDWriteFontFace3 = extern struct {
     pub const VTable = extern struct {
@@ -5484,7 +5484,7 @@ pub const IDWriteFontFace3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteStringList_Value = @import("../zig.zig").Guid.initString("CFEE3140-1157-47CA-8B85-31BFCF3F2D0E");
+const IID_IDWriteStringList_Value = @import("../zig.zig").Guid.initString("cfee3140-1157-47ca-8b85-31bfcf3f2d0e");
 pub const IID_IDWriteStringList = &IID_IDWriteStringList_Value;
 pub const IDWriteStringList = extern struct {
     pub const VTable = extern struct {
@@ -5542,7 +5542,7 @@ pub const IDWriteStringList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontDownloadListener_Value = @import("../zig.zig").Guid.initString("B06FE5B9-43EC-4393-881B-DBE4DC72FDA7");
+const IID_IDWriteFontDownloadListener_Value = @import("../zig.zig").Guid.initString("b06fe5b9-43ec-4393-881b-dbe4dc72fda7");
 pub const IID_IDWriteFontDownloadListener = &IID_IDWriteFontDownloadListener_Value;
 pub const IDWriteFontDownloadListener = extern struct {
     pub const VTable = extern struct {
@@ -5565,7 +5565,7 @@ pub const IDWriteFontDownloadListener = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontDownloadQueue_Value = @import("../zig.zig").Guid.initString("B71E6052-5AEA-4FA3-832E-F60D431F7E91");
+const IID_IDWriteFontDownloadQueue_Value = @import("../zig.zig").Guid.initString("b71e6052-5aea-4fa3-832e-f60d431f7e91");
 pub const IID_IDWriteFontDownloadQueue = &IID_IDWriteFontDownloadQueue_Value;
 pub const IDWriteFontDownloadQueue = extern struct {
     pub const VTable = extern struct {
@@ -5624,7 +5624,7 @@ pub const IDWriteFontDownloadQueue = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteGdiInterop1_Value = @import("../zig.zig").Guid.initString("4556BE70-3ABD-4F70-90BE-421780A6F515");
+const IID_IDWriteGdiInterop1_Value = @import("../zig.zig").Guid.initString("4556be70-3abd-4f70-90be-421780a6f515");
 pub const IID_IDWriteGdiInterop1 = &IID_IDWriteGdiInterop1_Value;
 pub const IDWriteGdiInterop1 = extern struct {
     pub const VTable = extern struct {
@@ -5698,7 +5698,7 @@ pub const DWRITE_LINE_SPACING = extern struct {
     fontLineGapUsage: DWRITE_FONT_LINE_GAP_USAGE,
 };
 
-const IID_IDWriteTextFormat2_Value = @import("../zig.zig").Guid.initString("F67E0EDD-9E3D-4ECC-8C32-4183253DFE70");
+const IID_IDWriteTextFormat2_Value = @import("../zig.zig").Guid.initString("f67e0edd-9e3d-4ecc-8c32-4183253dfe70");
 pub const IID_IDWriteTextFormat2 = &IID_IDWriteTextFormat2_Value;
 pub const IDWriteTextFormat2 = extern struct {
     pub const VTable = extern struct {
@@ -5727,7 +5727,7 @@ pub const IDWriteTextFormat2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextLayout3_Value = @import("../zig.zig").Guid.initString("07DDCD52-020E-4DE8-AC33-6C953D83F92D");
+const IID_IDWriteTextLayout3_Value = @import("../zig.zig").Guid.initString("07ddcd52-020e-4de8-ac33-6c953d83f92d");
 pub const IID_IDWriteTextLayout3 = &IID_IDWriteTextLayout3_Value;
 pub const IDWriteTextLayout3 = extern struct {
     pub const VTable = extern struct {
@@ -5791,7 +5791,7 @@ pub const DWRITE_GLYPH_IMAGE_DATA = extern struct {
     verticalBottomOrigin: POINT,
 };
 
-const IID_IDWriteColorGlyphRunEnumerator1_Value = @import("../zig.zig").Guid.initString("7C5F86DA-C7A1-4F05-B8E1-55A179FE5A35");
+const IID_IDWriteColorGlyphRunEnumerator1_Value = @import("../zig.zig").Guid.initString("7c5f86da-c7a1-4f05-b8e1-55a179fe5a35");
 pub const IID_IDWriteColorGlyphRunEnumerator1 = &IID_IDWriteColorGlyphRunEnumerator1_Value;
 pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
     pub const VTable = extern struct {
@@ -5812,7 +5812,7 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace4_Value = @import("../zig.zig").Guid.initString("27F2A904-4EB8-441D-9678-0563F53E3E2F");
+const IID_IDWriteFontFace4_Value = @import("../zig.zig").Guid.initString("27f2a904-4eb8-441d-9678-0563f53e3e2f");
 pub const IID_IDWriteFontFace4 = &IID_IDWriteFontFace4_Value;
 pub const IDWriteFontFace4 = extern struct {
     pub const VTable = extern struct {
@@ -5863,7 +5863,7 @@ pub const IDWriteFontFace4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory4_Value = @import("../zig.zig").Guid.initString("4B0B5BD3-0797-4549-8AC5-FE915CC53856");
+const IID_IDWriteFactory4_Value = @import("../zig.zig").Guid.initString("4b0b5bd3-0797-4549-8ac5-fe915cc53856");
 pub const IID_IDWriteFactory4 = &IID_IDWriteFactory4_Value;
 pub const IDWriteFactory4 = extern struct {
     pub const VTable = extern struct {
@@ -5913,7 +5913,7 @@ pub const IDWriteFactory4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSetBuilder1_Value = @import("../zig.zig").Guid.initString("3FF7715F-3CDC-4DC6-9B72-EC5621DCCAFD");
+const IID_IDWriteFontSetBuilder1_Value = @import("../zig.zig").Guid.initString("3ff7715f-3cdc-4dc6-9b72-ec5621dccafd");
 pub const IID_IDWriteFontSetBuilder1 = &IID_IDWriteFontSetBuilder1_Value;
 pub const IDWriteFontSetBuilder1 = extern struct {
     pub const VTable = extern struct {
@@ -5934,7 +5934,7 @@ pub const IDWriteFontSetBuilder1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteAsyncResult_Value = @import("../zig.zig").Guid.initString("CE25F8FD-863B-4D13-9651-C1F88DC73FE2");
+const IID_IDWriteAsyncResult_Value = @import("../zig.zig").Guid.initString("ce25f8fd-863b-4d13-9651-c1f88dc73fe2");
 pub const IID_IDWriteAsyncResult = &IID_IDWriteAsyncResult_Value;
 pub const IDWriteAsyncResult = extern struct {
     pub const VTable = extern struct {
@@ -5966,7 +5966,7 @@ pub const DWRITE_FILE_FRAGMENT = extern struct {
     fragmentSize: u64,
 };
 
-const IID_IDWriteRemoteFontFileStream_Value = @import("../zig.zig").Guid.initString("4DB3757A-2C72-4ED9-B2B6-1ABABE1AFF9C");
+const IID_IDWriteRemoteFontFileStream_Value = @import("../zig.zig").Guid.initString("4db3757a-2c72-4ed9-b2b6-1ababe1aff9c");
 pub const IID_IDWriteRemoteFontFileStream = &IID_IDWriteRemoteFontFileStream_Value;
 pub const IDWriteRemoteFontFileStream = extern struct {
     pub const VTable = extern struct {
@@ -6025,7 +6025,7 @@ pub const DWRITE_CONTAINER_TYPE_UNKNOWN = DWRITE_CONTAINER_TYPE.UNKNOWN;
 pub const DWRITE_CONTAINER_TYPE_WOFF = DWRITE_CONTAINER_TYPE.WOFF;
 pub const DWRITE_CONTAINER_TYPE_WOFF2 = DWRITE_CONTAINER_TYPE.WOFF2;
 
-const IID_IDWriteRemoteFontFileLoader_Value = @import("../zig.zig").Guid.initString("68648C83-6EDE-46C0-AB46-20083A887FDE");
+const IID_IDWriteRemoteFontFileLoader_Value = @import("../zig.zig").Guid.initString("68648c83-6ede-46c0-ab46-20083a887fde");
 pub const IID_IDWriteRemoteFontFileLoader = &IID_IDWriteRemoteFontFileLoader_Value;
 pub const IDWriteRemoteFontFileLoader = extern struct {
     pub const VTable = extern struct {
@@ -6069,7 +6069,7 @@ pub const IDWriteRemoteFontFileLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteInMemoryFontFileLoader_Value = @import("../zig.zig").Guid.initString("DC102F47-A12D-4B1C-822D-9E117E33043F");
+const IID_IDWriteInMemoryFontFileLoader_Value = @import("../zig.zig").Guid.initString("dc102f47-a12d-4b1c-822d-9e117e33043f");
 pub const IID_IDWriteInMemoryFontFileLoader = &IID_IDWriteInMemoryFontFileLoader_Value;
 pub const IDWriteInMemoryFontFileLoader = extern struct {
     pub const VTable = extern struct {
@@ -6101,7 +6101,7 @@ pub const IDWriteInMemoryFontFileLoader = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory5_Value = @import("../zig.zig").Guid.initString("958DB99A-BE2A-4F09-AF7D-65189803D1D3");
+const IID_IDWriteFactory5_Value = @import("../zig.zig").Guid.initString("958db99a-be2a-4f09-af7d-65189803d1d3");
 pub const IID_IDWriteFactory5 = &IID_IDWriteFactory5_Value;
 pub const IDWriteFactory5 = extern struct {
     pub const VTable = extern struct {
@@ -6194,7 +6194,7 @@ pub const DWRITE_FONT_AXIS_ATTRIBUTES_NONE = DWRITE_FONT_AXIS_ATTRIBUTES.NONE;
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_VARIABLE = DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE;
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_HIDDEN = DWRITE_FONT_AXIS_ATTRIBUTES.HIDDEN;
 
-const IID_IDWriteFactory6_Value = @import("../zig.zig").Guid.initString("F3744D80-21F7-42EB-B35D-995BC72FC223");
+const IID_IDWriteFactory6_Value = @import("../zig.zig").Guid.initString("f3744d80-21f7-42eb-b35d-995bc72fc223");
 pub const IID_IDWriteFactory6 = &IID_IDWriteFactory6_Value;
 pub const IDWriteFactory6 = extern struct {
     pub const VTable = extern struct {
@@ -6281,7 +6281,7 @@ pub const IDWriteFactory6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFace5_Value = @import("../zig.zig").Guid.initString("98EFF3A5-B667-479A-B145-E2FA5B9FDC29");
+const IID_IDWriteFontFace5_Value = @import("../zig.zig").Guid.initString("98eff3a5-b667-479a-b145-e2fa5b9fdc29");
 pub const IID_IDWriteFontFace5 = &IID_IDWriteFontFace5_Value;
 pub const IDWriteFontFace5 = extern struct {
     pub const VTable = extern struct {
@@ -6333,7 +6333,7 @@ pub const IDWriteFontFace5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontResource_Value = @import("../zig.zig").Guid.initString("1F803A76-6871-48E8-987F-B975551C50F2");
+const IID_IDWriteFontResource_Value = @import("../zig.zig").Guid.initString("1f803a76-6871-48e8-987f-b975551c50f2");
 pub const IID_IDWriteFontResource = &IID_IDWriteFontResource_Value;
 pub const IDWriteFontResource = extern struct {
     pub const VTable = extern struct {
@@ -6451,7 +6451,7 @@ pub const IDWriteFontResource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFaceReference1_Value = @import("../zig.zig").Guid.initString("C081FE77-2FD1-41AC-A5A3-34983C4BA61A");
+const IID_IDWriteFontFaceReference1_Value = @import("../zig.zig").Guid.initString("c081fe77-2fd1-41ac-a5a3-34983c4ba61a");
 pub const IID_IDWriteFontFaceReference1 = &IID_IDWriteFontFaceReference1_Value;
 pub const IDWriteFontFaceReference1 = extern struct {
     pub const VTable = extern struct {
@@ -6488,7 +6488,7 @@ pub const IDWriteFontFaceReference1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSetBuilder2_Value = @import("../zig.zig").Guid.initString("EE5BA612-B131-463C-8F4F-3189B9401E45");
+const IID_IDWriteFontSetBuilder2_Value = @import("../zig.zig").Guid.initString("ee5ba612-b131-463c-8f4f-3189b9401e45");
 pub const IID_IDWriteFontSetBuilder2 = &IID_IDWriteFontSetBuilder2_Value;
 pub const IDWriteFontSetBuilder2 = extern struct {
     pub const VTable = extern struct {
@@ -6525,7 +6525,7 @@ pub const IDWriteFontSetBuilder2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSet1_Value = @import("../zig.zig").Guid.initString("7E9FDA85-6C92-4053-BC47-7AE3530DB4D3");
+const IID_IDWriteFontSet1_Value = @import("../zig.zig").Guid.initString("7e9fda85-6c92-4053-bc47-7ae3530db4d3");
 pub const IID_IDWriteFontSet1 = &IID_IDWriteFontSet1_Value;
 pub const IDWriteFontSet1 = extern struct {
     pub const VTable = extern struct {
@@ -6671,7 +6671,7 @@ pub const IDWriteFontSet1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontList2_Value = @import("../zig.zig").Guid.initString("C0763A34-77AF-445A-B735-08C37B0A5BF5");
+const IID_IDWriteFontList2_Value = @import("../zig.zig").Guid.initString("c0763a34-77af-445a-b735-08c37b0a5bf5");
 pub const IID_IDWriteFontList2 = &IID_IDWriteFontList2_Value;
 pub const IDWriteFontList2 = extern struct {
     pub const VTable = extern struct {
@@ -6692,7 +6692,7 @@ pub const IDWriteFontList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFamily2_Value = @import("../zig.zig").Guid.initString("3ED49E77-A398-4261-B9CF-C126C2131EF3");
+const IID_IDWriteFontFamily2_Value = @import("../zig.zig").Guid.initString("3ed49e77-a398-4261-b9cf-c126c2131ef3");
 pub const IID_IDWriteFontFamily2 = &IID_IDWriteFontFamily2_Value;
 pub const IDWriteFontFamily2 = extern struct {
     pub const VTable = extern struct {
@@ -6723,7 +6723,7 @@ pub const IDWriteFontFamily2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontCollection2_Value = @import("../zig.zig").Guid.initString("514039C6-4617-4064-BF8B-92EA83E506E0");
+const IID_IDWriteFontCollection2_Value = @import("../zig.zig").Guid.initString("514039c6-4617-4064-bf8b-92ea83e506e0");
 pub const IID_IDWriteFontCollection2 = &IID_IDWriteFontCollection2_Value;
 pub const IDWriteFontCollection2 = extern struct {
     pub const VTable = extern struct {
@@ -6771,7 +6771,7 @@ pub const IDWriteFontCollection2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextLayout4_Value = @import("../zig.zig").Guid.initString("05A9BF42-223F-4441-B5FB-8263685F55E9");
+const IID_IDWriteTextLayout4_Value = @import("../zig.zig").Guid.initString("05a9bf42-223f-4441-b5fb-8263685f55e9");
 pub const IID_IDWriteTextLayout4 = &IID_IDWriteTextLayout4_Value;
 pub const IDWriteTextLayout4 = extern struct {
     pub const VTable = extern struct {
@@ -6828,7 +6828,7 @@ pub const IDWriteTextLayout4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteTextFormat3_Value = @import("../zig.zig").Guid.initString("6D3B5641-E550-430D-A85B-B7BF48A93427");
+const IID_IDWriteTextFormat3_Value = @import("../zig.zig").Guid.initString("6d3b5641-e550-430d-a85b-b7bf48a93427");
 pub const IID_IDWriteTextFormat3 = &IID_IDWriteTextFormat3_Value;
 pub const IDWriteTextFormat3 = extern struct {
     pub const VTable = extern struct {
@@ -6881,7 +6881,7 @@ pub const IDWriteTextFormat3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontFallback1_Value = @import("../zig.zig").Guid.initString("2397599D-DD0D-4681-BD6A-F4F31EAADE77");
+const IID_IDWriteFontFallback1_Value = @import("../zig.zig").Guid.initString("2397599d-dd0d-4681-bd6a-f4f31eaade77");
 pub const IID_IDWriteFontFallback1 = &IID_IDWriteFontFallback1_Value;
 pub const IDWriteFontFallback1 = extern struct {
     pub const VTable = extern struct {
@@ -6911,7 +6911,7 @@ pub const IDWriteFontFallback1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontSet2_Value = @import("../zig.zig").Guid.initString("DC7EAD19-E54C-43AF-B2DA-4E2B79BA3F7F");
+const IID_IDWriteFontSet2_Value = @import("../zig.zig").Guid.initString("dc7ead19-e54c-43af-b2da-4e2b79ba3f7f");
 pub const IID_IDWriteFontSet2 = &IID_IDWriteFontSet2_Value;
 pub const IDWriteFontSet2 = extern struct {
     pub const VTable = extern struct {
@@ -6931,7 +6931,7 @@ pub const IDWriteFontSet2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFontCollection3_Value = @import("../zig.zig").Guid.initString("A4D055A6-F9E3-4E25-93B7-9E309F3AF8E9");
+const IID_IDWriteFontCollection3_Value = @import("../zig.zig").Guid.initString("a4d055a6-f9e3-4e25-93b7-9e309f3af8e9");
 pub const IID_IDWriteFontCollection3 = &IID_IDWriteFontCollection3_Value;
 pub const IDWriteFontCollection3 = extern struct {
     pub const VTable = extern struct {
@@ -6951,7 +6951,7 @@ pub const IDWriteFontCollection3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDWriteFactory7_Value = @import("../zig.zig").Guid.initString("35D0E0B3-9076-4D2E-A016-A91B568A06B4");
+const IID_IDWriteFactory7_Value = @import("../zig.zig").Guid.initString("35d0e0b3-9076-4d2e-a016-a91b568a06b4");
 pub const IID_IDWriteFactory7 = &IID_IDWriteFactory7_Value;
 pub const IDWriteFactory7 = extern struct {
     pub const VTable = extern struct {
@@ -6996,7 +6996,7 @@ pub const DWRITE_FONT_SOURCE_TYPE_PER_USER = DWRITE_FONT_SOURCE_TYPE.PER_USER;
 pub const DWRITE_FONT_SOURCE_TYPE_APPX_PACKAGE = DWRITE_FONT_SOURCE_TYPE.APPX_PACKAGE;
 pub const DWRITE_FONT_SOURCE_TYPE_REMOTE_FONT_PROVIDER = DWRITE_FONT_SOURCE_TYPE.REMOTE_FONT_PROVIDER;
 
-const IID_IDWriteFontSet3_Value = @import("../zig.zig").Guid.initString("7C073EF2-A7F4-4045-8C32-8AB8AE640F90");
+const IID_IDWriteFontSet3_Value = @import("../zig.zig").Guid.initString("7c073ef2-a7f4-4045-8c32-8ab8ae640f90");
 pub const IID_IDWriteFontSet3 = &IID_IDWriteFontSet3_Value;
 pub const IDWriteFontSet3 = extern struct {
     pub const VTable = extern struct {

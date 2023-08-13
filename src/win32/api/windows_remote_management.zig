@@ -437,10 +437,10 @@ pub const WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT = fn(
     userAuthorizationContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const CLSID_WSMan_Value = @import("../zig.zig").Guid.initString("BCED617B-EC03-420B-8508-977DC7A686BD");
+const CLSID_WSMan_Value = @import("../zig.zig").Guid.initString("bced617b-ec03-420b-8508-977dc7a686bd");
 pub const CLSID_WSMan = &CLSID_WSMan_Value;
 
-const CLSID_WSManInternal_Value = @import("../zig.zig").Guid.initString("7DE087A5-5DCB-4DF7-BB12-0924AD8FBD9A");
+const CLSID_WSManInternal_Value = @import("../zig.zig").Guid.initString("7de087a5-5dcb-4df7-bb12-0924ad8fbd9a");
 pub const CLSID_WSManInternal = &CLSID_WSManInternal_Value;
 
 pub const WSManSessionFlags = extern enum(i32) {
@@ -521,7 +521,7 @@ pub const WSManFlagProxyAuthenticationUseNegotiate = WSManProxyAuthenticationFla
 pub const WSManFlagProxyAuthenticationUseBasic = WSManProxyAuthenticationFlags.WSManFlagProxyAuthenticationUseBasic;
 pub const WSManFlagProxyAuthenticationUseDigest = WSManProxyAuthenticationFlags.WSManFlagProxyAuthenticationUseDigest;
 
-const IID_IWSMan_Value = @import("../zig.zig").Guid.initString("190D8637-5CD3-496D-AD24-69636BB5A3B5");
+const IID_IWSMan_Value = @import("../zig.zig").Guid.initString("190d8637-5cd3-496d-ad24-69636bb5a3b5");
 pub const IID_IWSMan = &IID_IWSMan_Value;
 pub const IWSMan = extern struct {
     pub const VTable = extern struct {
@@ -569,7 +569,7 @@ pub const IWSMan = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManEx_Value = @import("../zig.zig").Guid.initString("2D53BDAA-798E-49E6-A1AA-74D01256F411");
+const IID_IWSManEx_Value = @import("../zig.zig").Guid.initString("2d53bdaa-798e-49e6-a1aa-74d01256f411");
 pub const IID_IWSManEx = &IID_IWSManEx_Value;
 pub const IWSManEx = extern struct {
     pub const VTable = extern struct {
@@ -744,7 +744,7 @@ pub const IWSManEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManEx2_Value = @import("../zig.zig").Guid.initString("1D1B5AE0-42D9-4021-8261-3987619512E9");
+const IID_IWSManEx2_Value = @import("../zig.zig").Guid.initString("1d1b5ae0-42d9-4021-8261-3987619512e9");
 pub const IID_IWSManEx2 = &IID_IWSManEx2_Value;
 pub const IWSManEx2 = extern struct {
     pub const VTable = extern struct {
@@ -765,7 +765,7 @@ pub const IWSManEx2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManEx3_Value = @import("../zig.zig").Guid.initString("6400E966-011D-4EAC-8474-049E0848AFAD");
+const IID_IWSManEx3_Value = @import("../zig.zig").Guid.initString("6400e966-011d-4eac-8474-049e0848afad");
 pub const IID_IWSManEx3 = &IID_IWSManEx3_Value;
 pub const IWSManEx3 = extern struct {
     pub const VTable = extern struct {
@@ -834,7 +834,7 @@ pub const IWSManEx3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManConnectionOptions_Value = @import("../zig.zig").Guid.initString("F704E861-9E52-464F-B786-DA5EB2320FDD");
+const IID_IWSManConnectionOptions_Value = @import("../zig.zig").Guid.initString("f704e861-9e52-464f-b786-da5eb2320fdd");
 pub const IID_IWSManConnectionOptions = &IID_IWSManConnectionOptions_Value;
 pub const IWSManConnectionOptions = extern struct {
     pub const VTable = extern struct {
@@ -871,7 +871,7 @@ pub const IWSManConnectionOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManConnectionOptionsEx_Value = @import("../zig.zig").Guid.initString("EF43EDF7-2A48-4D93-9526-8BD6AB6D4A6B");
+const IID_IWSManConnectionOptionsEx_Value = @import("../zig.zig").Guid.initString("ef43edf7-2a48-4d93-9526-8bd6ab6d4a6b");
 pub const IID_IWSManConnectionOptionsEx = &IID_IWSManConnectionOptionsEx_Value;
 pub const IWSManConnectionOptionsEx = extern struct {
     pub const VTable = extern struct {
@@ -900,7 +900,7 @@ pub const IWSManConnectionOptionsEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManConnectionOptionsEx2_Value = @import("../zig.zig").Guid.initString("F500C9EC-24EE-48AB-B38D-FC9A164C658E");
+const IID_IWSManConnectionOptionsEx2_Value = @import("../zig.zig").Guid.initString("f500c9ec-24ee-48ab-b38d-fc9a164c658e");
 pub const IID_IWSManConnectionOptionsEx2 = &IID_IWSManConnectionOptionsEx2_Value;
 pub const IWSManConnectionOptionsEx2 = extern struct {
     pub const VTable = extern struct {
@@ -980,7 +980,7 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManSession_Value = @import("../zig.zig").Guid.initString("FC84FC58-1286-40C4-9DA0-C8EF6EC241E0");
+const IID_IWSManSession_Value = @import("../zig.zig").Guid.initString("fc84fc58-1286-40c4-9da0-c8ef6ec241e0");
 pub const IID_IWSManSession = &IID_IWSManSession_Value;
 pub const IWSManSession = extern struct {
     pub const VTable = extern struct {
@@ -1107,7 +1107,7 @@ pub const IWSManSession = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManEnumerator_Value = @import("../zig.zig").Guid.initString("F3457CA9-ABB9-4FA5-B850-90E8CA300E7F");
+const IID_IWSManEnumerator_Value = @import("../zig.zig").Guid.initString("f3457ca9-abb9-4fa5-b850-90e8ca300e7f");
 pub const IID_IWSManEnumerator = &IID_IWSManEnumerator_Value;
 pub const IWSManEnumerator = extern struct {
     pub const VTable = extern struct {
@@ -1144,7 +1144,7 @@ pub const IWSManEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManResourceLocator_Value = @import("../zig.zig").Guid.initString("A7A1BA28-DE41-466A-AD0A-C4059EAD7428");
+const IID_IWSManResourceLocator_Value = @import("../zig.zig").Guid.initString("a7a1ba28-de41-466a-ad0a-c4059ead7428");
 pub const IID_IWSManResourceLocator = &IID_IWSManResourceLocator_Value;
 pub const IWSManResourceLocator = extern struct {
     pub const VTable = extern struct {
@@ -1262,7 +1262,7 @@ pub const IWSManResourceLocator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManResourceLocatorInternal_Value = @import("../zig.zig").Guid.initString("EFFAEAD7-7EC8-4716-B9BE-F2E7E9FB4ADB");
+const IID_IWSManResourceLocatorInternal_Value = @import("../zig.zig").Guid.initString("effaead7-7ec8-4716-b9be-f2e7e9fb4adb");
 pub const IID_IWSManResourceLocatorInternal = &IID_IWSManResourceLocatorInternal_Value;
 pub const IWSManResourceLocatorInternal = extern struct {
     pub const VTable = extern struct {
@@ -1275,7 +1275,7 @@ pub const IWSManResourceLocatorInternal = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWSManInternal_Value = @import("../zig.zig").Guid.initString("04AE2B1D-9954-4D99-94A9-A961E72C3A13");
+const IID_IWSManInternal_Value = @import("../zig.zig").Guid.initString("04ae2b1d-9954-4d99-94a9-a961e72c3a13");
 pub const IID_IWSManInternal = &IID_IWSManInternal_Value;
 pub const IWSManInternal = extern struct {
     pub const VTable = extern struct {

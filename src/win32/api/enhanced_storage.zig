@@ -35,16 +35,16 @@ pub const ENHANCED_STORAGE_PASSWORD_SILO_INFORMATION = extern struct {
     MaxChallengeSize: u16,
 };
 
-const CLSID_EnumEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("FE841493-835C-4FA3-B6CC-B4B2D4719848");
+const CLSID_EnumEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("fe841493-835c-4fa3-b6cc-b4b2d4719848");
 pub const CLSID_EnumEnhancedStorageACT = &CLSID_EnumEnhancedStorageACT_Value;
 
-const CLSID_EnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("AF076A15-2ECE-4AD4-BB21-29F040E176D8");
+const CLSID_EnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("af076a15-2ece-4ad4-bb21-29f040e176d8");
 pub const CLSID_EnhancedStorageACT = &CLSID_EnhancedStorageACT_Value;
 
-const CLSID_EnhancedStorageSilo_Value = @import("../zig.zig").Guid.initString("CB25220C-76C7-4FEE-842B-F3383CD022BC");
+const CLSID_EnhancedStorageSilo_Value = @import("../zig.zig").Guid.initString("cb25220c-76c7-4fee-842b-f3383cd022bc");
 pub const CLSID_EnhancedStorageSilo = &CLSID_EnhancedStorageSilo_Value;
 
-const CLSID_EnhancedStorageSiloAction_Value = @import("../zig.zig").Guid.initString("886D29DD-B506-466B-9FBF-B44FF383FB3F");
+const CLSID_EnhancedStorageSiloAction_Value = @import("../zig.zig").Guid.initString("886d29dd-b506-466b-9fbf-b44ff383fb3f");
 pub const CLSID_EnhancedStorageSiloAction = &CLSID_EnhancedStorageSiloAction_Value;
 
 pub const ACT_AUTHORIZATION_STATE = extern struct {
@@ -68,7 +68,7 @@ pub const ACT_AUTHORIZATION_STATE_VALUE = extern enum(i32) {
 pub const ACT_UNAUTHORIZED = ACT_AUTHORIZATION_STATE_VALUE.ACT_UNAUTHORIZED;
 pub const ACT_AUTHORIZED = ACT_AUTHORIZATION_STATE_VALUE.ACT_AUTHORIZED;
 
-const IID_IEnumEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("09B224BD-1335-4631-A7FF-CFD3A92646D7");
+const IID_IEnumEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("09b224bd-1335-4631-a7ff-cfd3a92646d7");
 pub const IID_IEnumEnhancedStorageACT = &IID_IEnumEnhancedStorageACT_Value;
 pub const IEnumEnhancedStorageACT = extern struct {
     pub const VTable = extern struct {
@@ -99,7 +99,7 @@ pub const IEnumEnhancedStorageACT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("6E7781F4-E0F2-4239-B976-A01ABAB52930");
+const IID_IEnhancedStorageACT_Value = @import("../zig.zig").Guid.initString("6e7781f4-e0f2-4239-b976-a01abab52930");
 pub const IID_IEnhancedStorageACT = &IID_IEnhancedStorageACT_Value;
 pub const IEnhancedStorageACT = extern struct {
     pub const VTable = extern struct {
@@ -161,7 +161,7 @@ pub const IEnhancedStorageACT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnhancedStorageACT2_Value = @import("../zig.zig").Guid.initString("4DA57D2E-8EB3-41F6-A07E-98B52B88242B");
+const IID_IEnhancedStorageACT2_Value = @import("../zig.zig").Guid.initString("4da57d2e-8eb3-41f6-a07e-98b52b88242b");
 pub const IID_IEnhancedStorageACT2 = &IID_IEnhancedStorageACT2_Value;
 pub const IEnhancedStorageACT2 = extern struct {
     pub const VTable = extern struct {
@@ -190,7 +190,7 @@ pub const IEnhancedStorageACT2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnhancedStorageACT3_Value = @import("../zig.zig").Guid.initString("022150A1-113D-11DF-BB61-001AA01BBC58");
+const IID_IEnhancedStorageACT3_Value = @import("../zig.zig").Guid.initString("022150a1-113d-11df-bb61-001aa01bbc58");
 pub const IID_IEnhancedStorageACT3 = &IID_IEnhancedStorageACT3_Value;
 pub const IEnhancedStorageACT3 = extern struct {
     pub const VTable = extern struct {
@@ -227,7 +227,7 @@ pub const IEnhancedStorageACT3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnhancedStorageSilo_Value = @import("../zig.zig").Guid.initString("5AEF78C6-2242-4703-BF49-44B29357A359");
+const IID_IEnhancedStorageSilo_Value = @import("../zig.zig").Guid.initString("5aef78c6-2242-4703-bf49-44b29357a359");
 pub const IID_IEnhancedStorageSilo = &IID_IEnhancedStorageSilo_Value;
 pub const IEnhancedStorageSilo = extern struct {
     pub const VTable = extern struct {
@@ -285,7 +285,7 @@ pub const IEnhancedStorageSilo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnhancedStorageSiloAction_Value = @import("../zig.zig").Guid.initString("B6F7F311-206F-4FF8-9C4B-27EFEE77A86F");
+const IID_IEnhancedStorageSiloAction_Value = @import("../zig.zig").Guid.initString("b6f7f311-206f-4ff8-9c4b-27efee77a86f");
 pub const IID_IEnhancedStorageSiloAction = &IID_IEnhancedStorageSiloAction_Value;
 pub const IEnhancedStorageSiloAction = extern struct {
     pub const VTable = extern struct {

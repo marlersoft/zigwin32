@@ -6,10 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (86)
 //--------------------------------------------------------------------------------
-const CLSID_UPnPNAT_Value = @import("../zig.zig").Guid.initString("AE1E00AA-3FD5-403C-8A27-2BBDC30CD0E1");
+const CLSID_UPnPNAT_Value = @import("../zig.zig").Guid.initString("ae1e00aa-3fd5-403c-8a27-2bbdc30cd0e1");
 pub const CLSID_UPnPNAT = &CLSID_UPnPNAT_Value;
 
-const IID_IUPnPNAT_Value = @import("../zig.zig").Guid.initString("B171C812-CC76-485A-94D8-B6B3A2794E99");
+const IID_IUPnPNAT_Value = @import("../zig.zig").Guid.initString("b171c812-cc76-485a-94d8-b6b3a2794e99");
 pub const IID_IUPnPNAT = &IID_IUPnPNAT_Value;
 pub const IUPnPNAT = extern struct {
     pub const VTable = extern struct {
@@ -46,7 +46,7 @@ pub const IUPnPNAT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INATEventManager_Value = @import("../zig.zig").Guid.initString("624BD588-9060-4109-B0B0-1ADBBCAC32DF");
+const IID_INATEventManager_Value = @import("../zig.zig").Guid.initString("624bd588-9060-4109-b0b0-1adbbcac32df");
 pub const IID_INATEventManager = &IID_INATEventManager_Value;
 pub const INATEventManager = extern struct {
     pub const VTable = extern struct {
@@ -75,7 +75,7 @@ pub const INATEventManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INATExternalIPAddressCallback_Value = @import("../zig.zig").Guid.initString("9C416740-A34E-446F-BA06-ABD04C3149AE");
+const IID_INATExternalIPAddressCallback_Value = @import("../zig.zig").Guid.initString("9c416740-a34e-446f-ba06-abd04c3149ae");
 pub const IID_INATExternalIPAddressCallback = &IID_INATExternalIPAddressCallback_Value;
 pub const INATExternalIPAddressCallback = extern struct {
     pub const VTable = extern struct {
@@ -96,7 +96,7 @@ pub const INATExternalIPAddressCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INATNumberOfEntriesCallback_Value = @import("../zig.zig").Guid.initString("C83A0A74-91EE-41B6-B67A-67E0F00BBD78");
+const IID_INATNumberOfEntriesCallback_Value = @import("../zig.zig").Guid.initString("c83a0a74-91ee-41b6-b67a-67e0f00bbd78");
 pub const IID_INATNumberOfEntriesCallback = &IID_INATNumberOfEntriesCallback_Value;
 pub const INATNumberOfEntriesCallback = extern struct {
     pub const VTable = extern struct {
@@ -117,7 +117,7 @@ pub const INATNumberOfEntriesCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDynamicPortMappingCollection_Value = @import("../zig.zig").Guid.initString("B60DE00F-156E-4E8D-9EC1-3A2342C10899");
+const IID_IDynamicPortMappingCollection_Value = @import("../zig.zig").Guid.initString("b60de00f-156e-4e8d-9ec1-3a2342c10899");
 pub const IID_IDynamicPortMappingCollection = &IID_IDynamicPortMappingCollection_Value;
 pub const IDynamicPortMappingCollection = extern struct {
     pub const VTable = extern struct {
@@ -183,7 +183,7 @@ pub const IDynamicPortMappingCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IDynamicPortMapping_Value = @import("../zig.zig").Guid.initString("4FC80282-23B6-4378-9A27-CD8F17C9400C");
+const IID_IDynamicPortMapping_Value = @import("../zig.zig").Guid.initString("4fc80282-23b6-4378-9a27-cd8f17c9400c");
 pub const IID_IDynamicPortMapping = &IID_IDynamicPortMapping_Value;
 pub const IDynamicPortMapping = extern struct {
     pub const VTable = extern struct {
@@ -309,7 +309,7 @@ pub const IDynamicPortMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStaticPortMappingCollection_Value = @import("../zig.zig").Guid.initString("CD1F3E77-66D6-4664-82C7-36DBB641D0F1");
+const IID_IStaticPortMappingCollection_Value = @import("../zig.zig").Guid.initString("cd1f3e77-66d6-4664-82c7-36dbb641d0f1");
 pub const IID_IStaticPortMappingCollection = &IID_IStaticPortMappingCollection_Value;
 pub const IStaticPortMappingCollection = extern struct {
     pub const VTable = extern struct {
@@ -371,7 +371,7 @@ pub const IStaticPortMappingCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IStaticPortMapping_Value = @import("../zig.zig").Guid.initString("6F10711F-729B-41E5-93B8-F21D0F818DF1");
+const IID_IStaticPortMapping_Value = @import("../zig.zig").Guid.initString("6f10711f-729b-41e5-93b8-f21d0f818df1");
 pub const IID_IStaticPortMapping = &IID_IStaticPortMapping_Value;
 pub const IStaticPortMapping = extern struct {
     pub const VTable = extern struct {
@@ -472,10 +472,10 @@ pub const IStaticPortMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_NetSharingManager_Value = @import("../zig.zig").Guid.initString("5C63C1AD-3956-4FF8-8486-40034758315B");
+const CLSID_NetSharingManager_Value = @import("../zig.zig").Guid.initString("5c63c1ad-3956-4ff8-8486-40034758315b");
 pub const CLSID_NetSharingManager = &CLSID_NetSharingManager_Value;
 
-const IID_IEnumNetConnection_Value = @import("../zig.zig").Guid.initString("C08956A0-1CD3-11D1-B1C5-00805FC1270E");
+const IID_IEnumNetConnection_Value = @import("../zig.zig").Guid.initString("c08956a0-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetConnection = &IID_IEnumNetConnection_Value;
 pub const IEnumNetConnection = extern struct {
     pub const VTable = extern struct {
@@ -652,7 +652,7 @@ pub const NETCON_PROPERTIES = extern struct {
     clsidUiObject: Guid,
 };
 
-const IID_INetConnection_Value = @import("../zig.zig").Guid.initString("C08956A1-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetConnection_Value = @import("../zig.zig").Guid.initString("c08956a1-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetConnection = &IID_INetConnection_Value;
 pub const INetConnection = extern struct {
     pub const VTable = extern struct {
@@ -726,7 +726,7 @@ pub const NETCONMGR_ENUM_FLAGS = extern enum(i32) {
 pub const NCME_DEFAULT = NETCONMGR_ENUM_FLAGS.NCME_DEFAULT;
 pub const NCME_HIDDEN = NETCONMGR_ENUM_FLAGS.NCME_HIDDEN;
 
-const IID_INetConnectionManager_Value = @import("../zig.zig").Guid.initString("C08956A2-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetConnectionManager_Value = @import("../zig.zig").Guid.initString("c08956a2-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetConnectionManager = &IID_INetConnectionManager_Value;
 pub const INetConnectionManager = extern struct {
     pub const VTable = extern struct {
@@ -757,7 +757,7 @@ pub const NCUC_DEFAULT = NETCONUI_CONNECT_FLAGS.NCUC_DEFAULT;
 pub const NCUC_NO_UI = NETCONUI_CONNECT_FLAGS.NCUC_NO_UI;
 pub const NCUC_ENABLE_DISABLE = NETCONUI_CONNECT_FLAGS.NCUC_ENABLE_DISABLE;
 
-const IID_INetConnectionConnectUi_Value = @import("../zig.zig").Guid.initString("C08956A3-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetConnectionConnectUi_Value = @import("../zig.zig").Guid.initString("c08956a3-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetConnectionConnectUi = &IID_INetConnectionConnectUi_Value;
 pub const INetConnectionConnectUi = extern struct {
     pub const VTable = extern struct {
@@ -796,7 +796,7 @@ pub const INetConnectionConnectUi = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetSharingPortMapping_Value = @import("../zig.zig").Guid.initString("C08956B0-1CD3-11D1-B1C5-00805FC1270E");
+const IID_IEnumNetSharingPortMapping_Value = @import("../zig.zig").Guid.initString("c08956b0-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetSharingPortMapping = &IID_IEnumNetSharingPortMapping_Value;
 pub const IEnumNetSharingPortMapping = extern struct {
     pub const VTable = extern struct {
@@ -842,7 +842,7 @@ pub const IEnumNetSharingPortMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingPortMappingProps_Value = @import("../zig.zig").Guid.initString("24B7E9B5-E38F-4685-851B-00892CF5F940");
+const IID_INetSharingPortMappingProps_Value = @import("../zig.zig").Guid.initString("24b7e9b5-e38f-4685-851b-00892cf5f940");
 pub const IID_INetSharingPortMappingProps = &IID_INetSharingPortMappingProps_Value;
 pub const INetSharingPortMappingProps = extern struct {
     pub const VTable = extern struct {
@@ -919,7 +919,7 @@ pub const INetSharingPortMappingProps = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingPortMapping_Value = @import("../zig.zig").Guid.initString("C08956B1-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetSharingPortMapping_Value = @import("../zig.zig").Guid.initString("c08956b1-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetSharingPortMapping = &IID_INetSharingPortMapping_Value;
 pub const INetSharingPortMapping = extern struct {
     pub const VTable = extern struct {
@@ -961,7 +961,7 @@ pub const INetSharingPortMapping = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetSharingEveryConnection_Value = @import("../zig.zig").Guid.initString("C08956B8-1CD3-11D1-B1C5-00805FC1270E");
+const IID_IEnumNetSharingEveryConnection_Value = @import("../zig.zig").Guid.initString("c08956b8-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetSharingEveryConnection = &IID_IEnumNetSharingEveryConnection_Value;
 pub const IEnumNetSharingEveryConnection = extern struct {
     pub const VTable = extern struct {
@@ -1007,7 +1007,7 @@ pub const IEnumNetSharingEveryConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetSharingPublicConnection_Value = @import("../zig.zig").Guid.initString("C08956B4-1CD3-11D1-B1C5-00805FC1270E");
+const IID_IEnumNetSharingPublicConnection_Value = @import("../zig.zig").Guid.initString("c08956b4-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetSharingPublicConnection = &IID_IEnumNetSharingPublicConnection_Value;
 pub const IEnumNetSharingPublicConnection = extern struct {
     pub const VTable = extern struct {
@@ -1053,7 +1053,7 @@ pub const IEnumNetSharingPublicConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IEnumNetSharingPrivateConnection_Value = @import("../zig.zig").Guid.initString("C08956B5-1CD3-11D1-B1C5-00805FC1270E");
+const IID_IEnumNetSharingPrivateConnection_Value = @import("../zig.zig").Guid.initString("c08956b5-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_IEnumNetSharingPrivateConnection = &IID_IEnumNetSharingPrivateConnection_Value;
 pub const IEnumNetSharingPrivateConnection = extern struct {
     pub const VTable = extern struct {
@@ -1099,7 +1099,7 @@ pub const IEnumNetSharingPrivateConnection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingPortMappingCollection_Value = @import("../zig.zig").Guid.initString("02E4A2DE-DA20-4E34-89C8-AC22275A010B");
+const IID_INetSharingPortMappingCollection_Value = @import("../zig.zig").Guid.initString("02e4a2de-da20-4e34-89c8-ac22275a010b");
 pub const IID_INetSharingPortMappingCollection = &IID_INetSharingPortMappingCollection_Value;
 pub const INetSharingPortMappingCollection = extern struct {
     pub const VTable = extern struct {
@@ -1128,7 +1128,7 @@ pub const INetSharingPortMappingCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetConnectionProps_Value = @import("../zig.zig").Guid.initString("F4277C95-CE5B-463D-8167-5662D9BCAA72");
+const IID_INetConnectionProps_Value = @import("../zig.zig").Guid.initString("f4277c95-ce5b-463d-8167-5662d9bcaa72");
 pub const IID_INetConnectionProps = &IID_INetConnectionProps_Value;
 pub const INetConnectionProps = extern struct {
     pub const VTable = extern struct {
@@ -1210,7 +1210,7 @@ pub const ICS_TARGETTYPE = extern enum(i32) {
 pub const ICSTT_NAME = ICS_TARGETTYPE.ICSTT_NAME;
 pub const ICSTT_IPADDRESS = ICS_TARGETTYPE.ICSTT_IPADDRESS;
 
-const IID_INetSharingConfiguration_Value = @import("../zig.zig").Guid.initString("C08956B6-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetSharingConfiguration_Value = @import("../zig.zig").Guid.initString("c08956b6-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetSharingConfiguration = &IID_INetSharingConfiguration_Value;
 pub const INetSharingConfiguration = extern struct {
     pub const VTable = extern struct {
@@ -1308,7 +1308,7 @@ pub const INetSharingConfiguration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingEveryConnectionCollection_Value = @import("../zig.zig").Guid.initString("33C4643C-7811-46FA-A89A-768597BD7223");
+const IID_INetSharingEveryConnectionCollection_Value = @import("../zig.zig").Guid.initString("33c4643c-7811-46fa-a89a-768597bd7223");
 pub const IID_INetSharingEveryConnectionCollection = &IID_INetSharingEveryConnectionCollection_Value;
 pub const INetSharingEveryConnectionCollection = extern struct {
     pub const VTable = extern struct {
@@ -1337,7 +1337,7 @@ pub const INetSharingEveryConnectionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingPublicConnectionCollection_Value = @import("../zig.zig").Guid.initString("7D7A6355-F372-4971-A149-BFC927BE762A");
+const IID_INetSharingPublicConnectionCollection_Value = @import("../zig.zig").Guid.initString("7d7a6355-f372-4971-a149-bfc927be762a");
 pub const IID_INetSharingPublicConnectionCollection = &IID_INetSharingPublicConnectionCollection_Value;
 pub const INetSharingPublicConnectionCollection = extern struct {
     pub const VTable = extern struct {
@@ -1366,7 +1366,7 @@ pub const INetSharingPublicConnectionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingPrivateConnectionCollection_Value = @import("../zig.zig").Guid.initString("38AE69E0-4409-402A-A2CB-E965C727F840");
+const IID_INetSharingPrivateConnectionCollection_Value = @import("../zig.zig").Guid.initString("38ae69e0-4409-402a-a2cb-e965c727f840");
 pub const IID_INetSharingPrivateConnectionCollection = &IID_INetSharingPrivateConnectionCollection_Value;
 pub const INetSharingPrivateConnectionCollection = extern struct {
     pub const VTable = extern struct {
@@ -1395,7 +1395,7 @@ pub const INetSharingPrivateConnectionCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetSharingManager_Value = @import("../zig.zig").Guid.initString("C08956B7-1CD3-11D1-B1C5-00805FC1270E");
+const IID_INetSharingManager_Value = @import("../zig.zig").Guid.initString("c08956b7-1cd3-11d1-b1c5-00805fc1270e");
 pub const IID_INetSharingManager = &IID_INetSharingManager_Value;
 pub const INetSharingManager = extern struct {
     pub const VTable = extern struct {
@@ -1460,25 +1460,25 @@ pub const INetSharingManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const CLSID_NetFwRule_Value = @import("../zig.zig").Guid.initString("2C5BC43E-3369-4C33-AB0C-BE9469677AF4");
+const CLSID_NetFwRule_Value = @import("../zig.zig").Guid.initString("2c5bc43e-3369-4c33-ab0c-be9469677af4");
 pub const CLSID_NetFwRule = &CLSID_NetFwRule_Value;
 
-const CLSID_NetFwOpenPort_Value = @import("../zig.zig").Guid.initString("0CA545C6-37AD-4A6C-BF92-9F7610067EF5");
+const CLSID_NetFwOpenPort_Value = @import("../zig.zig").Guid.initString("0ca545c6-37ad-4a6c-bf92-9f7610067ef5");
 pub const CLSID_NetFwOpenPort = &CLSID_NetFwOpenPort_Value;
 
-const CLSID_NetFwAuthorizedApplication_Value = @import("../zig.zig").Guid.initString("EC9846B3-2762-4A6B-A214-6ACB603462D2");
+const CLSID_NetFwAuthorizedApplication_Value = @import("../zig.zig").Guid.initString("ec9846b3-2762-4a6b-a214-6acb603462d2");
 pub const CLSID_NetFwAuthorizedApplication = &CLSID_NetFwAuthorizedApplication_Value;
 
-const CLSID_NetFwPolicy2_Value = @import("../zig.zig").Guid.initString("E2B3C97F-6AE1-41AC-817A-F6F92166D7DD");
+const CLSID_NetFwPolicy2_Value = @import("../zig.zig").Guid.initString("e2b3c97f-6ae1-41ac-817a-f6f92166d7dd");
 pub const CLSID_NetFwPolicy2 = &CLSID_NetFwPolicy2_Value;
 
-const CLSID_NetFwProduct_Value = @import("../zig.zig").Guid.initString("9D745ED8-C514-4D1D-BF42-751FED2D5AC7");
+const CLSID_NetFwProduct_Value = @import("../zig.zig").Guid.initString("9d745ed8-c514-4d1d-bf42-751fed2d5ac7");
 pub const CLSID_NetFwProduct = &CLSID_NetFwProduct_Value;
 
-const CLSID_NetFwProducts_Value = @import("../zig.zig").Guid.initString("CC19079B-8272-4D73-BB70-CDB533527B61");
+const CLSID_NetFwProducts_Value = @import("../zig.zig").Guid.initString("cc19079b-8272-4d73-bb70-cdb533527b61");
 pub const CLSID_NetFwProducts = &CLSID_NetFwProducts_Value;
 
-const CLSID_NetFwMgr_Value = @import("../zig.zig").Guid.initString("304CE942-6E39-40D8-943A-B913C40C9CD4");
+const CLSID_NetFwMgr_Value = @import("../zig.zig").Guid.initString("304ce942-6e39-40d8-943a-b913c40c9cd4");
 pub const CLSID_NetFwMgr = &CLSID_NetFwMgr_Value;
 
 pub const NET_FW_POLICY_TYPE = extern enum(i32) {
@@ -1707,7 +1707,7 @@ pub const PNETISO_EDP_ID_CALLBACK_FN = fn(
     dwErr: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-const IID_INetFwRemoteAdminSettings_Value = @import("../zig.zig").Guid.initString("D4BECDDF-6F73-4A83-B832-9C66874CD20E");
+const IID_INetFwRemoteAdminSettings_Value = @import("../zig.zig").Guid.initString("d4becddf-6f73-4a83-b832-9c66874cd20e");
 pub const IID_INetFwRemoteAdminSettings = &IID_INetFwRemoteAdminSettings_Value;
 pub const INetFwRemoteAdminSettings = extern struct {
     pub const VTable = extern struct {
@@ -1784,7 +1784,7 @@ pub const INetFwRemoteAdminSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwIcmpSettings_Value = @import("../zig.zig").Guid.initString("A6207B2E-7CDD-426A-951E-5E1CBC5AFEAD");
+const IID_INetFwIcmpSettings_Value = @import("../zig.zig").Guid.initString("a6207b2e-7cdd-426a-951e-5e1cbc5afead");
 pub const IID_INetFwIcmpSettings = &IID_INetFwIcmpSettings_Value;
 pub const INetFwIcmpSettings = extern struct {
     pub const VTable = extern struct {
@@ -1957,7 +1957,7 @@ pub const INetFwIcmpSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwOpenPort_Value = @import("../zig.zig").Guid.initString("E0483BA0-47FF-4D9C-A6D6-7741D0B195F7");
+const IID_INetFwOpenPort_Value = @import("../zig.zig").Guid.initString("e0483ba0-47ff-4d9c-a6d6-7741d0b195f7");
 pub const IID_INetFwOpenPort = &IID_INetFwOpenPort_Value;
 pub const INetFwOpenPort = extern struct {
     pub const VTable = extern struct {
@@ -2090,7 +2090,7 @@ pub const INetFwOpenPort = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwOpenPorts_Value = @import("../zig.zig").Guid.initString("C0E9D7FA-E07E-430A-B19A-090CE82D92E2");
+const IID_INetFwOpenPorts_Value = @import("../zig.zig").Guid.initString("c0e9d7fa-e07e-430a-b19a-090ce82d92e2");
 pub const IID_INetFwOpenPorts = &IID_INetFwOpenPorts_Value;
 pub const INetFwOpenPorts = extern struct {
     pub const VTable = extern struct {
@@ -2146,7 +2146,7 @@ pub const INetFwOpenPorts = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwService_Value = @import("../zig.zig").Guid.initString("79FD57C8-908E-4A36-9888-D5B3F0A444CF");
+const IID_INetFwService_Value = @import("../zig.zig").Guid.initString("79fd57c8-908e-4a36-9888-d5b3f0a444cf");
 pub const IID_INetFwService = &IID_INetFwService_Value;
 pub const INetFwService = extern struct {
     pub const VTable = extern struct {
@@ -2255,7 +2255,7 @@ pub const INetFwService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwServices_Value = @import("../zig.zig").Guid.initString("79649BB4-903E-421B-94C9-79848E79F6EE");
+const IID_INetFwServices_Value = @import("../zig.zig").Guid.initString("79649bb4-903e-421b-94c9-79848e79f6ee");
 pub const IID_INetFwServices = &IID_INetFwServices_Value;
 pub const INetFwServices = extern struct {
     pub const VTable = extern struct {
@@ -2293,7 +2293,7 @@ pub const INetFwServices = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwAuthorizedApplication_Value = @import("../zig.zig").Guid.initString("B5E64FFA-C2C5-444E-A301-FB5E00018050");
+const IID_INetFwAuthorizedApplication_Value = @import("../zig.zig").Guid.initString("b5e64ffa-c2c5-444e-a301-fb5e00018050");
 pub const IID_INetFwAuthorizedApplication = &IID_INetFwAuthorizedApplication_Value;
 pub const INetFwAuthorizedApplication = extern struct {
     pub const VTable = extern struct {
@@ -2402,7 +2402,7 @@ pub const INetFwAuthorizedApplication = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwAuthorizedApplications_Value = @import("../zig.zig").Guid.initString("644EFD52-CCF9-486C-97A2-39F352570B30");
+const IID_INetFwAuthorizedApplications_Value = @import("../zig.zig").Guid.initString("644efd52-ccf9-486c-97a2-39f352570b30");
 pub const IID_INetFwAuthorizedApplications = &IID_INetFwAuthorizedApplications_Value;
 pub const INetFwAuthorizedApplications = extern struct {
     pub const VTable = extern struct {
@@ -2456,7 +2456,7 @@ pub const INetFwAuthorizedApplications = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwRule_Value = @import("../zig.zig").Guid.initString("AF230D27-BABA-4E42-ACED-F524F22CFCE2");
+const IID_INetFwRule_Value = @import("../zig.zig").Guid.initString("af230d27-baba-4e42-aced-f524f22cfce2");
 pub const IID_INetFwRule = &IID_INetFwRule_Value;
 pub const INetFwRule = extern struct {
     pub const VTable = extern struct {
@@ -2757,7 +2757,7 @@ pub const INetFwRule = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwRule2_Value = @import("../zig.zig").Guid.initString("9C27C8DA-189B-4DDE-89F7-8B39A316782C");
+const IID_INetFwRule2_Value = @import("../zig.zig").Guid.initString("9c27c8da-189b-4dde-89f7-8b39a316782c");
 pub const IID_INetFwRule2 = &IID_INetFwRule2_Value;
 pub const INetFwRule2 = extern struct {
     pub const VTable = extern struct {
@@ -2786,7 +2786,7 @@ pub const INetFwRule2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwRule3_Value = @import("../zig.zig").Guid.initString("B21563FF-D696-4222-AB46-4E89B73AB34A");
+const IID_INetFwRule3_Value = @import("../zig.zig").Guid.initString("b21563ff-d696-4222-ab46-4e89b73ab34a");
 pub const IID_INetFwRule3 = &IID_INetFwRule3_Value;
 pub const INetFwRule3 = extern struct {
     pub const VTable = extern struct {
@@ -2895,7 +2895,7 @@ pub const INetFwRule3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwRules_Value = @import("../zig.zig").Guid.initString("9C4C6277-5027-441E-AFAE-CA1F542DA009");
+const IID_INetFwRules_Value = @import("../zig.zig").Guid.initString("9c4c6277-5027-441e-afae-ca1f542da009");
 pub const IID_INetFwRules = &IID_INetFwRules_Value;
 pub const INetFwRules = extern struct {
     pub const VTable = extern struct {
@@ -2949,7 +2949,7 @@ pub const INetFwRules = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwServiceRestriction_Value = @import("../zig.zig").Guid.initString("8267BBE3-F890-491C-B7B6-2DB1EF0E5D2B");
+const IID_INetFwServiceRestriction_Value = @import("../zig.zig").Guid.initString("8267bbe3-f890-491c-b7b6-2db1ef0e5d2b");
 pub const IID_INetFwServiceRestriction = &IID_INetFwServiceRestriction_Value;
 pub const INetFwServiceRestriction = extern struct {
     pub const VTable = extern struct {
@@ -2991,7 +2991,7 @@ pub const INetFwServiceRestriction = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwProfile_Value = @import("../zig.zig").Guid.initString("174A0DDA-E9F9-449D-993B-21AB667CA456");
+const IID_INetFwProfile_Value = @import("../zig.zig").Guid.initString("174a0dda-e9f9-449d-993b-21ab667ca456");
 pub const IID_INetFwProfile = &IID_INetFwProfile_Value;
 pub const INetFwProfile = extern struct {
     pub const VTable = extern struct {
@@ -3116,7 +3116,7 @@ pub const INetFwProfile = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwPolicy_Value = @import("../zig.zig").Guid.initString("D46D2478-9AC9-4008-9DC7-5563CE5536CC");
+const IID_INetFwPolicy_Value = @import("../zig.zig").Guid.initString("d46d2478-9ac9-4008-9dc7-5563ce5536cc");
 pub const IID_INetFwPolicy = &IID_INetFwPolicy_Value;
 pub const INetFwPolicy = extern struct {
     pub const VTable = extern struct {
@@ -3146,7 +3146,7 @@ pub const INetFwPolicy = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwPolicy2_Value = @import("../zig.zig").Guid.initString("98325047-C671-4174-8D81-DEFCD3F03186");
+const IID_INetFwPolicy2_Value = @import("../zig.zig").Guid.initString("98325047-c671-4174-8d81-defcd3f03186");
 pub const IID_INetFwPolicy2 = &IID_INetFwPolicy2_Value;
 pub const INetFwPolicy2 = extern struct {
     pub const VTable = extern struct {
@@ -3353,7 +3353,7 @@ pub const INetFwPolicy2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwMgr_Value = @import("../zig.zig").Guid.initString("F7898AF5-CAC4-4632-A2EC-DA06E5111AF2");
+const IID_INetFwMgr_Value = @import("../zig.zig").Guid.initString("f7898af5-cac4-4632-a2ec-da06e5111af2");
 pub const IID_INetFwMgr = &IID_INetFwMgr_Value;
 pub const INetFwMgr = extern struct {
     pub const VTable = extern struct {
@@ -3415,7 +3415,7 @@ pub const INetFwMgr = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwProduct_Value = @import("../zig.zig").Guid.initString("71881699-18F4-458B-B892-3FFCE5E07F75");
+const IID_INetFwProduct_Value = @import("../zig.zig").Guid.initString("71881699-18f4-458b-b892-3ffce5e07f75");
 pub const IID_INetFwProduct = &IID_INetFwProduct_Value;
 pub const INetFwProduct = extern struct {
     pub const VTable = extern struct {
@@ -3468,7 +3468,7 @@ pub const INetFwProduct = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_INetFwProducts_Value = @import("../zig.zig").Guid.initString("39EB36E0-2097-40BD-8AF2-63A13B525362");
+const IID_INetFwProducts_Value = @import("../zig.zig").Guid.initString("39eb36e0-2097-40bd-8af2-63a13b525362");
 pub const IID_INetFwProducts = &IID_INetFwProducts_Value;
 pub const INetFwProducts = extern struct {
     pub const VTable = extern struct {
