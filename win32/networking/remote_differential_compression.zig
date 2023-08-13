@@ -2,11 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (24)
 //--------------------------------------------------------------------------------
-pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
-pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
-pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
-pub const SimilarityFileIdMinSize = @as(u32, 4);
-pub const SimilarityFileIdMaxSize = @as(u32, 32);
 pub const MSRDC_VERSION = @as(u32, 65536);
 pub const MSRDC_MINIMUM_COMPATIBLE_APP_VERSION = @as(u32, 65536);
 pub const MSRDC_MINIMUM_DEPTH = @as(u32, 1);
@@ -26,6 +21,11 @@ pub const MSRDC_DEFAULT_HORIZONSIZE_N = @as(u32, 128);
 pub const MSRDC_MAXIMUM_TRAITVALUE = @as(u32, 63);
 pub const MSRDC_MINIMUM_MATCHESREQUIRED = @as(u32, 1);
 pub const MSRDC_MAXIMUM_MATCHESREQUIRED = @as(u32, 16);
+pub const RDCE_TABLE_FULL = @as(u32, 2147745793);
+pub const RDCE_TABLE_CORRUPT = @as(u32, 2147745794);
+pub const MSRDC_SIGNATURE_HASHSIZE = @as(u32, 16);
+pub const SimilarityFileIdMinSize = @as(u32, 4);
+pub const SimilarityFileIdMaxSize = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
 // Section: Types (48)

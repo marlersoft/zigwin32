@@ -2,6 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1109)
 //--------------------------------------------------------------------------------
+pub const ACTIVPROF_E_PROFILER_PRESENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const ACTIVPROF_E_PROFILER_ABSENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
+pub const sevMax = @as(i32, 4);
+pub const DBGKD_SIMULATION_NONE = @as(i32, 0);
+pub const DBGKD_SIMULATION_EXDI = @as(i32, 1);
 pub const WOW64_CONTEXT_i386 = @as(u32, 65536);
 pub const WOW64_CONTEXT_i486 = @as(u32, 65536);
 pub const WOW64_CONTEXT_EXCEPTION_ACTIVE = @as(u32, 134217728);
@@ -1104,13 +1111,6 @@ pub const CANNOT_ALLOCATE_MEMORY = @as(u32, 9);
 pub const INSUFFICIENT_SPACE_TO_COPY = @as(u32, 10);
 pub const ADDRESS_TYPE_INDEX_NOT_FOUND = @as(u32, 11);
 pub const UNAVAILABLE_ERROR = @as(u32, 12);
-pub const DBGKD_SIMULATION_NONE = @as(i32, 0);
-pub const DBGKD_SIMULATION_EXDI = @as(i32, 1);
-pub const ACTIVPROF_E_PROFILER_PRESENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
-pub const ACTIVPROF_E_PROFILER_ABSENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
-pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
-pub const sevMax = @as(i32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (733)
@@ -1166,6 +1166,106 @@ pub const CONTEXT = extern struct {
     Bvr: [8]u64,
     Wcr: [2]u32,
     Wvr: [2]u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    ExceptionPointers: ?*EXCEPTION_POINTERS,
+    ClientPointers: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_USER_STREAM = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Type: u32,
+    BufferSize: u32,
+    Buffer: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    UserStreamCount: u32,
+    UserStreamArray: ?*MINIDUMP_USER_STREAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.Arm64 => struct {
+
+pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: ?HANDLE,
+    Pad: u32,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.Arm64 => struct {
+
+pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: ?HANDLE,
+    Pad: u32,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+    BackingStoreBase: u64,
+    BackingStoreEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
+    CallbackParam: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const LOADED_IMAGE = extern struct {
+    ModuleName: ?PSTR,
+    hFile: ?HANDLE,
+    MappedAddress: ?*u8,
+    FileHeader: ?*IMAGE_NT_HEADERS64,
+    LastRvaSection: ?*IMAGE_SECTION_HEADER,
+    NumberOfSections: u32,
+    Sections: ?*IMAGE_SECTION_HEADER,
+    Characteristics: IMAGE_FILE_CHARACTERISTICS,
+    fSystemImage: BOOLEAN,
+    fDOSImage: BOOLEAN,
+    fReadOnly: BOOLEAN,
+    Version: u8,
+    Links: LIST_ENTRY,
+    SizeOfImage: u32,
 };
 
 }, else => struct { } };
@@ -1679,48 +1779,840 @@ pub const DEBUG_EVENT = extern struct {
     },
 };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
+    ExceptionInfo: ?*EXCEPTION_POINTERS,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+pub const WCT_OBJECT_TYPE = enum(i32) {
+    CriticalSectionType = 1,
+    SendMessageType = 2,
+    MutexType = 3,
+    AlpcType = 4,
+    ComType = 5,
+    ThreadWaitType = 6,
+    ProcessWaitType = 7,
+    ThreadType = 8,
+    ComActivationType = 9,
+    UnknownType = 10,
+    SocketIoType = 11,
+    SmbIoType = 12,
+    MaxType = 13,
+};
+pub const WctCriticalSectionType = WCT_OBJECT_TYPE.CriticalSectionType;
+pub const WctSendMessageType = WCT_OBJECT_TYPE.SendMessageType;
+pub const WctMutexType = WCT_OBJECT_TYPE.MutexType;
+pub const WctAlpcType = WCT_OBJECT_TYPE.AlpcType;
+pub const WctComType = WCT_OBJECT_TYPE.ComType;
+pub const WctThreadWaitType = WCT_OBJECT_TYPE.ThreadWaitType;
+pub const WctProcessWaitType = WCT_OBJECT_TYPE.ProcessWaitType;
+pub const WctThreadType = WCT_OBJECT_TYPE.ThreadType;
+pub const WctComActivationType = WCT_OBJECT_TYPE.ComActivationType;
+pub const WctUnknownType = WCT_OBJECT_TYPE.UnknownType;
+pub const WctSocketIoType = WCT_OBJECT_TYPE.SocketIoType;
+pub const WctSmbIoType = WCT_OBJECT_TYPE.SmbIoType;
+pub const WctMaxType = WCT_OBJECT_TYPE.MaxType;
+
+pub const WCT_OBJECT_STATUS = enum(i32) {
+    NoAccess = 1,
+    Running = 2,
+    Blocked = 3,
+    PidOnly = 4,
+    PidOnlyRpcss = 5,
+    Owned = 6,
+    NotOwned = 7,
+    Abandoned = 8,
+    Unknown = 9,
+    Error = 10,
+    Max = 11,
+};
+pub const WctStatusNoAccess = WCT_OBJECT_STATUS.NoAccess;
+pub const WctStatusRunning = WCT_OBJECT_STATUS.Running;
+pub const WctStatusBlocked = WCT_OBJECT_STATUS.Blocked;
+pub const WctStatusPidOnly = WCT_OBJECT_STATUS.PidOnly;
+pub const WctStatusPidOnlyRpcss = WCT_OBJECT_STATUS.PidOnlyRpcss;
+pub const WctStatusOwned = WCT_OBJECT_STATUS.Owned;
+pub const WctStatusNotOwned = WCT_OBJECT_STATUS.NotOwned;
+pub const WctStatusAbandoned = WCT_OBJECT_STATUS.Abandoned;
+pub const WctStatusUnknown = WCT_OBJECT_STATUS.Unknown;
+pub const WctStatusError = WCT_OBJECT_STATUS.Error;
+pub const WctStatusMax = WCT_OBJECT_STATUS.Max;
+
+pub const WAITCHAIN_NODE_INFO = extern struct {
+    ObjectType: WCT_OBJECT_TYPE,
+    ObjectStatus: WCT_OBJECT_STATUS,
+    Anonymous: extern union {
+        LockObject: extern struct {
+            ObjectName: [128]u16,
+            Timeout: LARGE_INTEGER,
+            Alertable: BOOL,
+        },
+        ThreadObject: extern struct {
+            ProcessId: u32,
+            ThreadId: u32,
+            WaitTime: u32,
+            ContextSwitches: u32,
+        },
+    },
+};
+
+pub const PWAITCHAINCALLBACK = fn(
+    WctHandle: ?*c_void,
+    Context: usize,
+    CallbackStatus: u32,
+    NodeCount: ?*u32,
+    NodeInfoArray: ?*WAITCHAIN_NODE_INFO,
+    IsCycle: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PCOGETCALLSTATE = fn(
+    param0: i32,
+    param1: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const PCOGETACTIVATIONSTATE = fn(
+    param0: Guid,
+    param1: u32,
+    param2: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
+    DataSize: u32,
+    Rva: u32,
+};
+
+pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    DataSize: u64,
+    Rva: u64,
+};
+
+pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    StartOfMemoryRange: u64,
+    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
+};
+
+pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    StartOfMemoryRange: u64,
+    DataSize: u64,
+};
+
+pub const MINIDUMP_HEADER = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Signature: u32,
+    Version: u32,
+    NumberOfStreams: u32,
+    StreamDirectoryRva: u32,
+    CheckSum: u32,
+    Anonymous: extern union {
+        Reserved: u32,
+        TimeDateStamp: u32,
+    },
+    Flags: u64,
+};
+
+pub const MINIDUMP_DIRECTORY = extern struct {
+    StreamType: u32,
+    Location: MINIDUMP_LOCATION_DESCRIPTOR,
+};
+
+pub const MINIDUMP_STRING = extern struct {
+    Length: u32,
+    Buffer: [1]u16,
+};
+
+pub const MINIDUMP_STREAM_TYPE = enum(i32) {
+    UnusedStream = 0,
+    ReservedStream0 = 1,
+    ReservedStream1 = 2,
+    ThreadListStream = 3,
+    ModuleListStream = 4,
+    MemoryListStream = 5,
+    ExceptionStream = 6,
+    SystemInfoStream = 7,
+    ThreadExListStream = 8,
+    Memory64ListStream = 9,
+    CommentStreamA = 10,
+    CommentStreamW = 11,
+    HandleDataStream = 12,
+    FunctionTableStream = 13,
+    UnloadedModuleListStream = 14,
+    MiscInfoStream = 15,
+    MemoryInfoListStream = 16,
+    ThreadInfoListStream = 17,
+    HandleOperationListStream = 18,
+    TokenStream = 19,
+    JavaScriptDataStream = 20,
+    SystemMemoryInfoStream = 21,
+    ProcessVmCountersStream = 22,
+    IptTraceStream = 23,
+    ThreadNamesStream = 24,
+    ceStreamNull = 32768,
+    ceStreamSystemInfo = 32769,
+    ceStreamException = 32770,
+    ceStreamModuleList = 32771,
+    ceStreamProcessList = 32772,
+    ceStreamThreadList = 32773,
+    ceStreamThreadContextList = 32774,
+    ceStreamThreadCallStackList = 32775,
+    ceStreamMemoryVirtualList = 32776,
+    ceStreamMemoryPhysicalList = 32777,
+    ceStreamBucketParameters = 32778,
+    ceStreamProcessModuleMap = 32779,
+    ceStreamDiagnosisList = 32780,
+    LastReservedStream = 65535,
+};
+pub const UnusedStream = MINIDUMP_STREAM_TYPE.UnusedStream;
+pub const ReservedStream0 = MINIDUMP_STREAM_TYPE.ReservedStream0;
+pub const ReservedStream1 = MINIDUMP_STREAM_TYPE.ReservedStream1;
+pub const ThreadListStream = MINIDUMP_STREAM_TYPE.ThreadListStream;
+pub const ModuleListStream = MINIDUMP_STREAM_TYPE.ModuleListStream;
+pub const MemoryListStream = MINIDUMP_STREAM_TYPE.MemoryListStream;
+pub const ExceptionStream = MINIDUMP_STREAM_TYPE.ExceptionStream;
+pub const SystemInfoStream = MINIDUMP_STREAM_TYPE.SystemInfoStream;
+pub const ThreadExListStream = MINIDUMP_STREAM_TYPE.ThreadExListStream;
+pub const Memory64ListStream = MINIDUMP_STREAM_TYPE.Memory64ListStream;
+pub const CommentStreamA = MINIDUMP_STREAM_TYPE.CommentStreamA;
+pub const CommentStreamW = MINIDUMP_STREAM_TYPE.CommentStreamW;
+pub const HandleDataStream = MINIDUMP_STREAM_TYPE.HandleDataStream;
+pub const FunctionTableStream = MINIDUMP_STREAM_TYPE.FunctionTableStream;
+pub const UnloadedModuleListStream = MINIDUMP_STREAM_TYPE.UnloadedModuleListStream;
+pub const MiscInfoStream = MINIDUMP_STREAM_TYPE.MiscInfoStream;
+pub const MemoryInfoListStream = MINIDUMP_STREAM_TYPE.MemoryInfoListStream;
+pub const ThreadInfoListStream = MINIDUMP_STREAM_TYPE.ThreadInfoListStream;
+pub const HandleOperationListStream = MINIDUMP_STREAM_TYPE.HandleOperationListStream;
+pub const TokenStream = MINIDUMP_STREAM_TYPE.TokenStream;
+pub const JavaScriptDataStream = MINIDUMP_STREAM_TYPE.JavaScriptDataStream;
+pub const SystemMemoryInfoStream = MINIDUMP_STREAM_TYPE.SystemMemoryInfoStream;
+pub const ProcessVmCountersStream = MINIDUMP_STREAM_TYPE.ProcessVmCountersStream;
+pub const IptTraceStream = MINIDUMP_STREAM_TYPE.IptTraceStream;
+pub const ThreadNamesStream = MINIDUMP_STREAM_TYPE.ThreadNamesStream;
+pub const ceStreamNull = MINIDUMP_STREAM_TYPE.ceStreamNull;
+pub const ceStreamSystemInfo = MINIDUMP_STREAM_TYPE.ceStreamSystemInfo;
+pub const ceStreamException = MINIDUMP_STREAM_TYPE.ceStreamException;
+pub const ceStreamModuleList = MINIDUMP_STREAM_TYPE.ceStreamModuleList;
+pub const ceStreamProcessList = MINIDUMP_STREAM_TYPE.ceStreamProcessList;
+pub const ceStreamThreadList = MINIDUMP_STREAM_TYPE.ceStreamThreadList;
+pub const ceStreamThreadContextList = MINIDUMP_STREAM_TYPE.ceStreamThreadContextList;
+pub const ceStreamThreadCallStackList = MINIDUMP_STREAM_TYPE.ceStreamThreadCallStackList;
+pub const ceStreamMemoryVirtualList = MINIDUMP_STREAM_TYPE.ceStreamMemoryVirtualList;
+pub const ceStreamMemoryPhysicalList = MINIDUMP_STREAM_TYPE.ceStreamMemoryPhysicalList;
+pub const ceStreamBucketParameters = MINIDUMP_STREAM_TYPE.ceStreamBucketParameters;
+pub const ceStreamProcessModuleMap = MINIDUMP_STREAM_TYPE.ceStreamProcessModuleMap;
+pub const ceStreamDiagnosisList = MINIDUMP_STREAM_TYPE.ceStreamDiagnosisList;
+pub const LastReservedStream = MINIDUMP_STREAM_TYPE.LastReservedStream;
+
+pub const CPU_INFORMATION = extern union {
+    X86CpuInfo: extern struct {
+        VendorId: [3]u32,
+        VersionInformation: u32,
+        FeatureInformation: u32,
+        AMDExtendedCpuFeatures: u32,
+    },
+    OtherCpuInfo: extern struct {
+        // WARNING: unable to add field alignment because it's causing a compiler bug
+        ProcessorFeatures: [2]u64,
+    },
+};
+
+pub const MINIDUMP_SYSTEM_INFO = extern struct {
+    ProcessorArchitecture: PROCESSOR_ARCHITECTURE,
+    ProcessorLevel: u16,
+    ProcessorRevision: u16,
+    Anonymous1: extern union {
+        Reserved0: u16,
+        Anonymous: extern struct {
+            NumberOfProcessors: u8,
+            ProductType: u8,
+        },
+    },
+    MajorVersion: u32,
+    MinorVersion: u32,
+    BuildNumber: u32,
+    PlatformId: VER_PLATFORM,
+    CSDVersionRva: u32,
+    Anonymous2: extern union {
+        Reserved1: u32,
+        Anonymous: extern struct {
+            SuiteMask: u16,
+            Reserved2: u16,
+        },
+    },
+    Cpu: CPU_INFORMATION,
+};
+
+pub const MINIDUMP_THREAD = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     ThreadId: u32,
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
+    SuspendCount: u32,
+    PriorityClass: u32,
+    Priority: u32,
+    Teb: u64,
+    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
+};
+
+pub const MINIDUMP_THREAD_LIST = extern struct {
+    NumberOfThreads: u32,
+    Threads: [1]MINIDUMP_THREAD,
+};
+
+pub const MINIDUMP_THREAD_EX = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    SuspendCount: u32,
+    PriorityClass: u32,
+    Priority: u32,
+    Teb: u64,
+    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
+    BackingStore: MINIDUMP_MEMORY_DESCRIPTOR,
+};
+
+pub const MINIDUMP_THREAD_EX_LIST = extern struct {
+    NumberOfThreads: u32,
+    Threads: [1]MINIDUMP_THREAD_EX,
+};
+
+pub const MINIDUMP_EXCEPTION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ExceptionCode: u32,
+    ExceptionFlags: u32,
+    ExceptionRecord: u64,
+    ExceptionAddress: u64,
+    NumberParameters: u32,
+    __unusedAlignment: u32,
+    ExceptionInformation: [15]u64,
+};
+
+pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
+    ThreadId: u32,
+    __alignment: u32,
+    ExceptionRecord: MINIDUMP_EXCEPTION,
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
+};
+
+pub const MINIDUMP_MODULE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    BaseOfImage: u64,
+    SizeOfImage: u32,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    ModuleNameRva: u32,
+    VersionInfo: VS_FIXEDFILEINFO,
+    CvRecord: MINIDUMP_LOCATION_DESCRIPTOR,
+    MiscRecord: MINIDUMP_LOCATION_DESCRIPTOR,
+    Reserved0: u64,
+    Reserved1: u64,
+};
+
+pub const MINIDUMP_MODULE_LIST = extern struct {
+    NumberOfModules: u32,
+    Modules: [1]MINIDUMP_MODULE,
+};
+
+pub const MINIDUMP_MEMORY_LIST = extern struct {
+    NumberOfMemoryRanges: u32,
+    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR,
+};
+
+pub const MINIDUMP_MEMORY64_LIST = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    NumberOfMemoryRanges: u64,
+    BaseRva: u64,
+    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
+};
+
+pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    ExceptionRecord: u64,
+    ContextRecord: u64,
     ClientPointers: BOOL,
 };
 
-}, else => struct { } };
+pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = enum(i32) {
+    HandleObjectInformationNone = 0,
+    ThreadInformation1 = 1,
+    MutantInformation1 = 2,
+    MutantInformation2 = 3,
+    ProcessInformation1 = 4,
+    ProcessInformation2 = 5,
+    EventInformation1 = 6,
+    SectionInformation1 = 7,
+    SemaphoreInformation1 = 8,
+    HandleObjectInformationTypeMax = 9,
+};
+pub const MiniHandleObjectInformationNone = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.HandleObjectInformationNone;
+pub const MiniThreadInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ThreadInformation1;
+pub const MiniMutantInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.MutantInformation1;
+pub const MiniMutantInformation2 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.MutantInformation2;
+pub const MiniProcessInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ProcessInformation1;
+pub const MiniProcessInformation2 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ProcessInformation2;
+pub const MiniEventInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.EventInformation1;
+pub const MiniSectionInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.SectionInformation1;
+pub const MiniSemaphoreInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.SemaphoreInformation1;
+pub const MiniHandleObjectInformationTypeMax = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.HandleObjectInformationTypeMax;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
+pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
+    NextInfoRva: u32,
+    InfoType: u32,
+    SizeOfInfo: u32,
+};
 
-pub const MINIDUMP_USER_STREAM = extern struct {
+pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
+    Handle: u64,
+    TypeNameRva: u32,
+    ObjectNameRva: u32,
+    Attributes: u32,
+    GrantedAccess: u32,
+    HandleCount: u32,
+    PointerCount: u32,
+};
+
+pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Handle: u64,
+    TypeNameRva: u32,
+    ObjectNameRva: u32,
+    Attributes: u32,
+    GrantedAccess: u32,
+    HandleCount: u32,
+    PointerCount: u32,
+    ObjectInfoRva: u32,
+    Reserved0: u32,
+};
+
+pub const MINIDUMP_HANDLE_DATA_STREAM = extern struct {
+    SizeOfHeader: u32,
+    SizeOfDescriptor: u32,
+    NumberOfDescriptors: u32,
+    Reserved: u32,
+};
+
+pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
+    SizeOfHeader: u32,
+    SizeOfEntry: u32,
+    NumberOfEntries: u32,
+    Reserved: u32,
+};
+
+pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    MinimumAddress: u64,
+    MaximumAddress: u64,
+    BaseAddress: u64,
+    EntryCount: u32,
+    SizeOfAlignPad: u32,
+};
+
+pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
+    SizeOfHeader: u32,
+    SizeOfDescriptor: u32,
+    SizeOfNativeDescriptor: u32,
+    SizeOfFunctionEntry: u32,
+    NumberOfDescriptors: u32,
+    SizeOfAlignPad: u32,
+};
+
+pub const MINIDUMP_UNLOADED_MODULE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    BaseOfImage: u64,
+    SizeOfImage: u32,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    ModuleNameRva: u32,
+};
+
+pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
+    SizeOfHeader: u32,
+    SizeOfEntry: u32,
+    NumberOfEntries: u32,
+};
+
+pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    SizeOfInfo: u32,
+    ContextSize: u32,
+    EnabledFeatures: u64,
+    Features: [64]XSTATE_FEATURE,
+};
+
+pub const MINIDUMP_MISC_INFO = extern struct {
+    SizeOfInfo: u32,
+    Flags1: MINIDUMP_MISC_INFO_FLAGS,
+    ProcessId: u32,
+    ProcessCreateTime: u32,
+    ProcessUserTime: u32,
+    ProcessKernelTime: u32,
+};
+
+pub const MINIDUMP_MISC_INFO_2 = extern struct {
+    SizeOfInfo: u32,
+    Flags1: u32,
+    ProcessId: u32,
+    ProcessCreateTime: u32,
+    ProcessUserTime: u32,
+    ProcessKernelTime: u32,
+    ProcessorMaxMhz: u32,
+    ProcessorCurrentMhz: u32,
+    ProcessorMhzLimit: u32,
+    ProcessorMaxIdleState: u32,
+    ProcessorCurrentIdleState: u32,
+};
+
+pub const MINIDUMP_MISC_INFO_3 = extern struct {
+    SizeOfInfo: u32,
+    Flags1: u32,
+    ProcessId: u32,
+    ProcessCreateTime: u32,
+    ProcessUserTime: u32,
+    ProcessKernelTime: u32,
+    ProcessorMaxMhz: u32,
+    ProcessorCurrentMhz: u32,
+    ProcessorMhzLimit: u32,
+    ProcessorMaxIdleState: u32,
+    ProcessorCurrentIdleState: u32,
+    ProcessIntegrityLevel: u32,
+    ProcessExecuteFlags: u32,
+    ProtectedProcess: u32,
+    TimeZoneId: u32,
+    TimeZone: TIME_ZONE_INFORMATION,
+};
+
+pub const MINIDUMP_MISC_INFO_4 = extern struct {
+    SizeOfInfo: u32,
+    Flags1: u32,
+    ProcessId: u32,
+    ProcessCreateTime: u32,
+    ProcessUserTime: u32,
+    ProcessKernelTime: u32,
+    ProcessorMaxMhz: u32,
+    ProcessorCurrentMhz: u32,
+    ProcessorMhzLimit: u32,
+    ProcessorMaxIdleState: u32,
+    ProcessorCurrentIdleState: u32,
+    ProcessIntegrityLevel: u32,
+    ProcessExecuteFlags: u32,
+    ProtectedProcess: u32,
+    TimeZoneId: u32,
+    TimeZone: TIME_ZONE_INFORMATION,
+    BuildString: [260]u16,
+    DbgBldStr: [40]u16,
+};
+
+pub const MINIDUMP_MISC_INFO_5 = extern struct {
+    SizeOfInfo: u32,
+    Flags1: u32,
+    ProcessId: u32,
+    ProcessCreateTime: u32,
+    ProcessUserTime: u32,
+    ProcessKernelTime: u32,
+    ProcessorMaxMhz: u32,
+    ProcessorCurrentMhz: u32,
+    ProcessorMhzLimit: u32,
+    ProcessorMaxIdleState: u32,
+    ProcessorCurrentIdleState: u32,
+    ProcessIntegrityLevel: u32,
+    ProcessExecuteFlags: u32,
+    ProtectedProcess: u32,
+    TimeZoneId: u32,
+    TimeZone: TIME_ZONE_INFORMATION,
+    BuildString: [260]u16,
+    DbgBldStr: [40]u16,
+    XStateData: XSTATE_CONFIG_FEATURE_MSC_INFO,
+    ProcessCookie: u32,
+};
+
+pub const MINIDUMP_MEMORY_INFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: u32,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: u32,
     Type: u32,
-    BufferSize: u32,
-    Buffer: ?*c_void,
+    __alignment2: u32,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
-    UserStreamCount: u32,
-    UserStreamArray: ?*MINIDUMP_USER_STREAM,
+    SizeOfHeader: u32,
+    SizeOfEntry: u32,
+    NumberOfEntries: u64,
 };
 
-}, else => struct { } };
+pub const MINIDUMP_THREAD_NAME = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    RvaOfThreadName: u64,
+};
+
+pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
+    NumberOfThreadNames: u32,
+    ThreadNames: [1]MINIDUMP_THREAD_NAME,
+};
+
+pub const MINIDUMP_THREAD_INFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
+    DumpError: u32,
+    ExitStatus: u32,
+    CreateTime: u64,
+    ExitTime: u64,
+    KernelTime: u64,
+    UserTime: u64,
+    StartAddress: u64,
+    Affinity: u64,
+};
+
+pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
+    SizeOfHeader: u32,
+    SizeOfEntry: u32,
+    NumberOfEntries: u32,
+};
+
+pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    TokenSize: u32,
+    TokenId: u32,
+    TokenHandle: u64,
+};
+
+pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
+    TokenListSize: u32,
+    TokenListEntries: u32,
+    ListHeaderSize: u32,
+    ElementHeaderSize: u32,
+};
+
+pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    TimerResolution: u32,
+    PageSize: u32,
+    NumberOfPhysicalPages: u32,
+    LowestPhysicalPageNumber: u32,
+    HighestPhysicalPageNumber: u32,
+    AllocationGranularity: u32,
+    MinimumUserModeAddress: u64,
+    MaximumUserModeAddress: u64,
+    ActiveProcessorsAffinityMask: u64,
+    NumberOfProcessors: u32,
+};
+
+pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    CurrentSize: u64,
+    PeakSize: u64,
+    PageFaultCount: u32,
+    MinimumWorkingSet: u64,
+    MaximumWorkingSet: u64,
+    CurrentSizeIncludingTransitionInPages: u64,
+    PeakSizeIncludingTransitionInPages: u64,
+    TransitionRePurposeCount: u32,
+    Flags: u32,
+};
+
+pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    AvailablePages: u64,
+    CommittedPages: u64,
+    CommitLimit: u64,
+    PeakCommitment: u64,
+};
+
+pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    IdleProcessTime: u64,
+    IoReadTransferCount: u64,
+    IoWriteTransferCount: u64,
+    IoOtherTransferCount: u64,
+    IoReadOperationCount: u32,
+    IoWriteOperationCount: u32,
+    IoOtherOperationCount: u32,
+    AvailablePages: u32,
+    CommittedPages: u32,
+    CommitLimit: u32,
+    PeakCommitment: u32,
+    PageFaultCount: u32,
+    CopyOnWriteCount: u32,
+    TransitionCount: u32,
+    CacheTransitionCount: u32,
+    DemandZeroCount: u32,
+    PageReadCount: u32,
+    PageReadIoCount: u32,
+    CacheReadCount: u32,
+    CacheIoCount: u32,
+    DirtyPagesWriteCount: u32,
+    DirtyWriteIoCount: u32,
+    MappedPagesWriteCount: u32,
+    MappedWriteIoCount: u32,
+    PagedPoolPages: u32,
+    NonPagedPoolPages: u32,
+    PagedPoolAllocs: u32,
+    PagedPoolFrees: u32,
+    NonPagedPoolAllocs: u32,
+    NonPagedPoolFrees: u32,
+    FreeSystemPtes: u32,
+    ResidentSystemCodePage: u32,
+    TotalSystemDriverPages: u32,
+    TotalSystemCodePages: u32,
+    NonPagedPoolLookasideHits: u32,
+    PagedPoolLookasideHits: u32,
+    AvailablePagedPoolPages: u32,
+    ResidentSystemCachePage: u32,
+    ResidentPagedPoolPage: u32,
+    ResidentSystemDriverPage: u32,
+    CcFastReadNoWait: u32,
+    CcFastReadWait: u32,
+    CcFastReadResourceMiss: u32,
+    CcFastReadNotPossible: u32,
+    CcFastMdlReadNoWait: u32,
+    CcFastMdlReadWait: u32,
+    CcFastMdlReadResourceMiss: u32,
+    CcFastMdlReadNotPossible: u32,
+    CcMapDataNoWait: u32,
+    CcMapDataWait: u32,
+    CcMapDataNoWaitMiss: u32,
+    CcMapDataWaitMiss: u32,
+    CcPinMappedDataCount: u32,
+    CcPinReadNoWait: u32,
+    CcPinReadWait: u32,
+    CcPinReadNoWaitMiss: u32,
+    CcPinReadWaitMiss: u32,
+    CcCopyReadNoWait: u32,
+    CcCopyReadWait: u32,
+    CcCopyReadNoWaitMiss: u32,
+    CcCopyReadWaitMiss: u32,
+    CcMdlReadNoWait: u32,
+    CcMdlReadWait: u32,
+    CcMdlReadNoWaitMiss: u32,
+    CcMdlReadWaitMiss: u32,
+    CcReadAheadIos: u32,
+    CcLazyWriteIos: u32,
+    CcLazyWritePages: u32,
+    CcDataFlushes: u32,
+    CcDataPages: u32,
+    ContextSwitches: u32,
+    FirstLevelTbFills: u32,
+    SecondLevelTbFills: u32,
+    SystemCalls: u32,
+    CcTotalDirtyPages: u64,
+    CcDirtyPageThreshold: u64,
+    ResidentAvailablePages: i64,
+    SharedCommittedPages: u64,
+};
+
+pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
+    Revision: u16,
+    Flags: u16,
+    BasicInfo: MINIDUMP_SYSTEM_BASIC_INFORMATION,
+    FileCacheInfo: MINIDUMP_SYSTEM_FILECACHE_INFORMATION,
+    BasicPerfInfo: MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION,
+    PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION,
+};
+
+pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Revision: u16,
+    PageFaultCount: u32,
+    PeakWorkingSetSize: u64,
+    WorkingSetSize: u64,
+    QuotaPeakPagedPoolUsage: u64,
+    QuotaPagedPoolUsage: u64,
+    QuotaPeakNonPagedPoolUsage: u64,
+    QuotaNonPagedPoolUsage: u64,
+    PagefileUsage: u64,
+    PeakPagefileUsage: u64,
+    PrivateUsage: u64,
+};
+
+pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Revision: u16,
+    Flags: u16,
+    PageFaultCount: u32,
+    PeakWorkingSetSize: u64,
+    WorkingSetSize: u64,
+    QuotaPeakPagedPoolUsage: u64,
+    QuotaPagedPoolUsage: u64,
+    QuotaPeakNonPagedPoolUsage: u64,
+    QuotaNonPagedPoolUsage: u64,
+    PagefileUsage: u64,
+    PeakPagefileUsage: u64,
+    PeakVirtualSize: u64,
+    VirtualSize: u64,
+    PrivateUsage: u64,
+    PrivateWorkingSetSize: u64,
+    SharedCommitUsage: u64,
+    JobSharedCommitUsage: u64,
+    JobPrivateCommitUsage: u64,
+    JobPeakPrivateCommitUsage: u64,
+    JobPrivateCommitLimit: u64,
+    JobTotalCommitLimit: u64,
+};
+
+pub const MINIDUMP_USER_RECORD = extern struct {
+    Type: u32,
+    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
+};
+
+pub const MINIDUMP_CALLBACK_TYPE = enum(i32) {
+    ModuleCallback = 0,
+    ThreadCallback = 1,
+    ThreadExCallback = 2,
+    IncludeThreadCallback = 3,
+    IncludeModuleCallback = 4,
+    MemoryCallback = 5,
+    CancelCallback = 6,
+    WriteKernelMinidumpCallback = 7,
+    KernelMinidumpStatusCallback = 8,
+    RemoveMemoryCallback = 9,
+    IncludeVmRegionCallback = 10,
+    IoStartCallback = 11,
+    IoWriteAllCallback = 12,
+    IoFinishCallback = 13,
+    ReadMemoryFailureCallback = 14,
+    SecondaryFlagsCallback = 15,
+    IsProcessSnapshotCallback = 16,
+    VmStartCallback = 17,
+    VmQueryCallback = 18,
+    VmPreReadCallback = 19,
+    VmPostReadCallback = 20,
+};
+pub const ModuleCallback = MINIDUMP_CALLBACK_TYPE.ModuleCallback;
+pub const ThreadCallback = MINIDUMP_CALLBACK_TYPE.ThreadCallback;
+pub const ThreadExCallback = MINIDUMP_CALLBACK_TYPE.ThreadExCallback;
+pub const IncludeThreadCallback = MINIDUMP_CALLBACK_TYPE.IncludeThreadCallback;
+pub const IncludeModuleCallback = MINIDUMP_CALLBACK_TYPE.IncludeModuleCallback;
+pub const MemoryCallback = MINIDUMP_CALLBACK_TYPE.MemoryCallback;
+pub const CancelCallback = MINIDUMP_CALLBACK_TYPE.CancelCallback;
+pub const WriteKernelMinidumpCallback = MINIDUMP_CALLBACK_TYPE.WriteKernelMinidumpCallback;
+pub const KernelMinidumpStatusCallback = MINIDUMP_CALLBACK_TYPE.KernelMinidumpStatusCallback;
+pub const RemoveMemoryCallback = MINIDUMP_CALLBACK_TYPE.RemoveMemoryCallback;
+pub const IncludeVmRegionCallback = MINIDUMP_CALLBACK_TYPE.IncludeVmRegionCallback;
+pub const IoStartCallback = MINIDUMP_CALLBACK_TYPE.IoStartCallback;
+pub const IoWriteAllCallback = MINIDUMP_CALLBACK_TYPE.IoWriteAllCallback;
+pub const IoFinishCallback = MINIDUMP_CALLBACK_TYPE.IoFinishCallback;
+pub const ReadMemoryFailureCallback = MINIDUMP_CALLBACK_TYPE.ReadMemoryFailureCallback;
+pub const SecondaryFlagsCallback = MINIDUMP_CALLBACK_TYPE.SecondaryFlagsCallback;
+pub const IsProcessSnapshotCallback = MINIDUMP_CALLBACK_TYPE.IsProcessSnapshotCallback;
+pub const VmStartCallback = MINIDUMP_CALLBACK_TYPE.VmStartCallback;
+pub const VmQueryCallback = MINIDUMP_CALLBACK_TYPE.VmQueryCallback;
+pub const VmPreReadCallback = MINIDUMP_CALLBACK_TYPE.VmPreReadCallback;
+pub const VmPostReadCallback = MINIDUMP_CALLBACK_TYPE.VmPostReadCallback;
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+.X64 => struct {
 
 pub const MINIDUMP_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
     ThreadHandle: ?HANDLE,
-    Pad: u32,
     Context: CONTEXT,
     SizeOfContext: u32,
     StackBase: u64,
@@ -1730,12 +2622,11 @@ pub const MINIDUMP_THREAD_CALLBACK = extern struct {
 }, else => struct { } };
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
-.Arm64 => struct {
+.X64 => struct {
 
 pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
     ThreadId: u32,
     ThreadHandle: ?HANDLE,
-    Pad: u32,
     Context: CONTEXT,
     SizeOfContext: u32,
     StackBase: u64,
@@ -1746,427 +2637,6240 @@ pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
 
 }, else => struct { } };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const LOADED_IMAGE = extern struct {
-    ModuleName: ?PSTR,
-    hFile: ?HANDLE,
-    MappedAddress: ?*u8,
-    FileHeader: ?*IMAGE_NT_HEADERS64,
-    LastRvaSection: ?*IMAGE_SECTION_HEADER,
-    NumberOfSections: u32,
-    Sections: ?*IMAGE_SECTION_HEADER,
-    Characteristics: IMAGE_FILE_CHARACTERISTICS,
-    fSystemImage: u8,
-    fDOSImage: u8,
-    fReadOnly: u8,
-    Version: u8,
-    Links: LIST_ENTRY,
-    SizeOfImage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
-    ClientPointers: BOOL,
 };
 
-}, else => struct { } };
+pub const THREAD_WRITE_FLAGS = enum(i32) {
+    Thread = 1,
+    Stack = 2,
+    Context = 4,
+    BackingStore = 8,
+    InstructionWindow = 16,
+    ThreadData = 32,
+    ThreadInfo = 64,
+};
+pub const ThreadWriteThread = THREAD_WRITE_FLAGS.Thread;
+pub const ThreadWriteStack = THREAD_WRITE_FLAGS.Stack;
+pub const ThreadWriteContext = THREAD_WRITE_FLAGS.Context;
+pub const ThreadWriteBackingStore = THREAD_WRITE_FLAGS.BackingStore;
+pub const ThreadWriteInstructionWindow = THREAD_WRITE_FLAGS.InstructionWindow;
+pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
+pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const MINIDUMP_MODULE_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    FullPath: ?[*]u16,
+    BaseOfImage: u64,
+    SizeOfImage: u32,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    VersionInfo: VS_FIXEDFILEINFO,
+    CvRecord: ?*c_void,
+    SizeOfCvRecord: u32,
+    MiscRecord: ?*c_void,
+    SizeOfMiscRecord: u32,
+};
 
-pub const MINIDUMP_USER_STREAM = extern struct {
-    Type: u32,
-    BufferSize: u32,
+pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    BaseOfImage: u64,
+};
+
+pub const MODULE_WRITE_FLAGS = enum(i32) {
+    WriteModule = 1,
+    WriteDataSeg = 2,
+    WriteMiscRecord = 4,
+    WriteCvRecord = 8,
+    ReferencedByMemory = 16,
+    WriteTlsData = 32,
+    WriteCodeSegs = 64,
+};
+pub const ModuleWriteModule = MODULE_WRITE_FLAGS.WriteModule;
+pub const ModuleWriteDataSeg = MODULE_WRITE_FLAGS.WriteDataSeg;
+pub const ModuleWriteMiscRecord = MODULE_WRITE_FLAGS.WriteMiscRecord;
+pub const ModuleWriteCvRecord = MODULE_WRITE_FLAGS.WriteCvRecord;
+pub const ModuleReferencedByMemory = MODULE_WRITE_FLAGS.ReferencedByMemory;
+pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
+pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
+
+pub const MINIDUMP_IO_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Handle: ?HANDLE,
+    Offset: u64,
     Buffer: ?*c_void,
+    BufferBytes: u32,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    UserStreamCount: u32,
-    UserStreamArray: ?*MINIDUMP_USER_STREAM,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
+    Offset: u64,
+    Bytes: u32,
+    FailureStatus: HRESULT,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-    BackingStoreBase: u64,
-    BackingStoreEnd: u64,
+    Offset: u64,
 };
 
-}, else => struct { } };
+pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Offset: u64,
+    Buffer: ?*c_void,
+    Size: u32,
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Offset: u64,
+    Buffer: ?*c_void,
+    Size: u32,
+    Completed: u32,
+    Status: HRESULT,
+};
 
-pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
+pub const MINIDUMP_CALLBACK_INPUT = extern struct {
+    ProcessId: u32,
+    ProcessHandle: ?HANDLE,
+    CallbackType: u32,
+    Anonymous: extern union {
+        Status: HRESULT,
+        Thread: MINIDUMP_THREAD_CALLBACK,
+        ThreadEx: MINIDUMP_THREAD_EX_CALLBACK,
+        Module: MINIDUMP_MODULE_CALLBACK,
+        IncludeThread: MINIDUMP_INCLUDE_THREAD_CALLBACK,
+        IncludeModule: MINIDUMP_INCLUDE_MODULE_CALLBACK,
+        Io: MINIDUMP_IO_CALLBACK,
+        ReadMemoryFailure: MINIDUMP_READ_MEMORY_FAILURE_CALLBACK,
+        SecondaryFlags: u32,
+        VmQuery: MINIDUMP_VM_QUERY_CALLBACK,
+        VmPreRead: MINIDUMP_VM_PRE_READ_CALLBACK,
+        VmPostRead: MINIDUMP_VM_POST_READ_CALLBACK,
+    },
+};
+
+pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
+    Anonymous: extern union {
+        // WARNING: unable to add field alignment because it's not implemented for unions
+        ModuleWriteFlags: u32,
+        ThreadWriteFlags: u32,
+        SecondaryFlags: u32,
+        Anonymous1: extern struct {
+            // WARNING: unable to add field alignment because it's causing a compiler bug
+            MemoryBase: u64,
+            MemorySize: u32,
+        },
+        Anonymous2: extern struct {
+            CheckCancel: BOOL,
+            Cancel: BOOL,
+        },
+        Handle: ?HANDLE,
+        Anonymous3: extern struct {
+            VmRegion: MINIDUMP_MEMORY_INFO,
+            Continue: BOOL,
+        },
+        Anonymous4: extern struct {
+            VmQueryStatus: HRESULT,
+            VmQueryResult: MINIDUMP_MEMORY_INFO,
+        },
+        Anonymous5: extern struct {
+            VmReadStatus: HRESULT,
+            VmReadBytesCompleted: u32,
+        },
+        Status: HRESULT,
+    },
+};
+
+pub const MINIDUMP_TYPE = enum(u32) {
+    Normal = 0,
+    WithDataSegs = 1,
+    WithFullMemory = 2,
+    WithHandleData = 4,
+    FilterMemory = 8,
+    ScanMemory = 16,
+    WithUnloadedModules = 32,
+    WithIndirectlyReferencedMemory = 64,
+    FilterModulePaths = 128,
+    WithProcessThreadData = 256,
+    WithPrivateReadWriteMemory = 512,
+    WithoutOptionalData = 1024,
+    WithFullMemoryInfo = 2048,
+    WithThreadInfo = 4096,
+    WithCodeSegs = 8192,
+    WithoutAuxiliaryState = 16384,
+    WithFullAuxiliaryState = 32768,
+    WithPrivateWriteCopyMemory = 65536,
+    IgnoreInaccessibleMemory = 131072,
+    WithTokenInformation = 262144,
+    WithModuleHeaders = 524288,
+    FilterTriage = 1048576,
+    WithAvxXStateContext = 2097152,
+    WithIptTrace = 4194304,
+    ScanInaccessiblePartialPages = 8388608,
+    ValidTypeFlags = 16777215,
+    _,
+    pub fn initFlags(o: struct {
+        Normal: u1 = 0,
+        WithDataSegs: u1 = 0,
+        WithFullMemory: u1 = 0,
+        WithHandleData: u1 = 0,
+        FilterMemory: u1 = 0,
+        ScanMemory: u1 = 0,
+        WithUnloadedModules: u1 = 0,
+        WithIndirectlyReferencedMemory: u1 = 0,
+        FilterModulePaths: u1 = 0,
+        WithProcessThreadData: u1 = 0,
+        WithPrivateReadWriteMemory: u1 = 0,
+        WithoutOptionalData: u1 = 0,
+        WithFullMemoryInfo: u1 = 0,
+        WithThreadInfo: u1 = 0,
+        WithCodeSegs: u1 = 0,
+        WithoutAuxiliaryState: u1 = 0,
+        WithFullAuxiliaryState: u1 = 0,
+        WithPrivateWriteCopyMemory: u1 = 0,
+        IgnoreInaccessibleMemory: u1 = 0,
+        WithTokenInformation: u1 = 0,
+        WithModuleHeaders: u1 = 0,
+        FilterTriage: u1 = 0,
+        WithAvxXStateContext: u1 = 0,
+        WithIptTrace: u1 = 0,
+        ScanInaccessiblePartialPages: u1 = 0,
+        ValidTypeFlags: u1 = 0,
+    }) MINIDUMP_TYPE {
+        return @intToEnum(MINIDUMP_TYPE,
+              (if (o.Normal == 1) @enumToInt(MINIDUMP_TYPE.Normal) else 0)
+            | (if (o.WithDataSegs == 1) @enumToInt(MINIDUMP_TYPE.WithDataSegs) else 0)
+            | (if (o.WithFullMemory == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemory) else 0)
+            | (if (o.WithHandleData == 1) @enumToInt(MINIDUMP_TYPE.WithHandleData) else 0)
+            | (if (o.FilterMemory == 1) @enumToInt(MINIDUMP_TYPE.FilterMemory) else 0)
+            | (if (o.ScanMemory == 1) @enumToInt(MINIDUMP_TYPE.ScanMemory) else 0)
+            | (if (o.WithUnloadedModules == 1) @enumToInt(MINIDUMP_TYPE.WithUnloadedModules) else 0)
+            | (if (o.WithIndirectlyReferencedMemory == 1) @enumToInt(MINIDUMP_TYPE.WithIndirectlyReferencedMemory) else 0)
+            | (if (o.FilterModulePaths == 1) @enumToInt(MINIDUMP_TYPE.FilterModulePaths) else 0)
+            | (if (o.WithProcessThreadData == 1) @enumToInt(MINIDUMP_TYPE.WithProcessThreadData) else 0)
+            | (if (o.WithPrivateReadWriteMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateReadWriteMemory) else 0)
+            | (if (o.WithoutOptionalData == 1) @enumToInt(MINIDUMP_TYPE.WithoutOptionalData) else 0)
+            | (if (o.WithFullMemoryInfo == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemoryInfo) else 0)
+            | (if (o.WithThreadInfo == 1) @enumToInt(MINIDUMP_TYPE.WithThreadInfo) else 0)
+            | (if (o.WithCodeSegs == 1) @enumToInt(MINIDUMP_TYPE.WithCodeSegs) else 0)
+            | (if (o.WithoutAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithoutAuxiliaryState) else 0)
+            | (if (o.WithFullAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithFullAuxiliaryState) else 0)
+            | (if (o.WithPrivateWriteCopyMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateWriteCopyMemory) else 0)
+            | (if (o.IgnoreInaccessibleMemory == 1) @enumToInt(MINIDUMP_TYPE.IgnoreInaccessibleMemory) else 0)
+            | (if (o.WithTokenInformation == 1) @enumToInt(MINIDUMP_TYPE.WithTokenInformation) else 0)
+            | (if (o.WithModuleHeaders == 1) @enumToInt(MINIDUMP_TYPE.WithModuleHeaders) else 0)
+            | (if (o.FilterTriage == 1) @enumToInt(MINIDUMP_TYPE.FilterTriage) else 0)
+            | (if (o.WithAvxXStateContext == 1) @enumToInt(MINIDUMP_TYPE.WithAvxXStateContext) else 0)
+            | (if (o.WithIptTrace == 1) @enumToInt(MINIDUMP_TYPE.WithIptTrace) else 0)
+            | (if (o.ScanInaccessiblePartialPages == 1) @enumToInt(MINIDUMP_TYPE.ScanInaccessiblePartialPages) else 0)
+            | (if (o.ValidTypeFlags == 1) @enumToInt(MINIDUMP_TYPE.ValidTypeFlags) else 0)
+        );
+    }
+};
+pub const MiniDumpNormal = MINIDUMP_TYPE.Normal;
+pub const MiniDumpWithDataSegs = MINIDUMP_TYPE.WithDataSegs;
+pub const MiniDumpWithFullMemory = MINIDUMP_TYPE.WithFullMemory;
+pub const MiniDumpWithHandleData = MINIDUMP_TYPE.WithHandleData;
+pub const MiniDumpFilterMemory = MINIDUMP_TYPE.FilterMemory;
+pub const MiniDumpScanMemory = MINIDUMP_TYPE.ScanMemory;
+pub const MiniDumpWithUnloadedModules = MINIDUMP_TYPE.WithUnloadedModules;
+pub const MiniDumpWithIndirectlyReferencedMemory = MINIDUMP_TYPE.WithIndirectlyReferencedMemory;
+pub const MiniDumpFilterModulePaths = MINIDUMP_TYPE.FilterModulePaths;
+pub const MiniDumpWithProcessThreadData = MINIDUMP_TYPE.WithProcessThreadData;
+pub const MiniDumpWithPrivateReadWriteMemory = MINIDUMP_TYPE.WithPrivateReadWriteMemory;
+pub const MiniDumpWithoutOptionalData = MINIDUMP_TYPE.WithoutOptionalData;
+pub const MiniDumpWithFullMemoryInfo = MINIDUMP_TYPE.WithFullMemoryInfo;
+pub const MiniDumpWithThreadInfo = MINIDUMP_TYPE.WithThreadInfo;
+pub const MiniDumpWithCodeSegs = MINIDUMP_TYPE.WithCodeSegs;
+pub const MiniDumpWithoutAuxiliaryState = MINIDUMP_TYPE.WithoutAuxiliaryState;
+pub const MiniDumpWithFullAuxiliaryState = MINIDUMP_TYPE.WithFullAuxiliaryState;
+pub const MiniDumpWithPrivateWriteCopyMemory = MINIDUMP_TYPE.WithPrivateWriteCopyMemory;
+pub const MiniDumpIgnoreInaccessibleMemory = MINIDUMP_TYPE.IgnoreInaccessibleMemory;
+pub const MiniDumpWithTokenInformation = MINIDUMP_TYPE.WithTokenInformation;
+pub const MiniDumpWithModuleHeaders = MINIDUMP_TYPE.WithModuleHeaders;
+pub const MiniDumpFilterTriage = MINIDUMP_TYPE.FilterTriage;
+pub const MiniDumpWithAvxXStateContext = MINIDUMP_TYPE.WithAvxXStateContext;
+pub const MiniDumpWithIptTrace = MINIDUMP_TYPE.WithIptTrace;
+pub const MiniDumpScanInaccessiblePartialPages = MINIDUMP_TYPE.ScanInaccessiblePartialPages;
+pub const MiniDumpValidTypeFlags = MINIDUMP_TYPE.ValidTypeFlags;
+
+pub const MINIDUMP_SECONDARY_FLAGS = enum(i32) {
+    WithoutPowerInfo = 1,
+    // ValidFlags = 1, this enum value conflicts with WithoutPowerInfo
+};
+pub const MiniSecondaryWithoutPowerInfo = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
+pub const MiniSecondaryValidFlags = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
+
+pub const MINIDUMP_CALLBACK_ROUTINE = fn(
     CallbackParam: ?*c_void,
+    CallbackInput: ?*MINIDUMP_CALLBACK_INPUT,
+    CallbackOutput: ?*MINIDUMP_CALLBACK_OUTPUT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+const CLSID_ProcessDebugManager_Value = @import("../../zig.zig").Guid.initString("78a51822-51f4-11d0-8f20-00805f2cd064");
+pub const CLSID_ProcessDebugManager = &CLSID_ProcessDebugManager_Value;
+
+const CLSID_DebugHelper_Value = @import("../../zig.zig").Guid.initString("0bfcc060-8c1d-11d0-accd-00aa0060275c");
+pub const CLSID_DebugHelper = &CLSID_DebugHelper_Value;
+
+const CLSID_CDebugDocumentHelper_Value = @import("../../zig.zig").Guid.initString("83b8bca6-687c-11d0-a405-00aa0060275c");
+pub const CLSID_CDebugDocumentHelper = &CLSID_CDebugDocumentHelper_Value;
+
+const CLSID_MachineDebugManager_RETAIL_Value = @import("../../zig.zig").Guid.initString("0c0a3666-30c9-11d0-8f20-00805f2cd064");
+pub const CLSID_MachineDebugManager_RETAIL = &CLSID_MachineDebugManager_RETAIL_Value;
+
+const CLSID_MachineDebugManager_DEBUG_Value = @import("../../zig.zig").Guid.initString("49769cec-3a55-4bb0-b697-88fede77e8ea");
+pub const CLSID_MachineDebugManager_DEBUG = &CLSID_MachineDebugManager_DEBUG_Value;
+
+const CLSID_DefaultDebugSessionProvider_Value = @import("../../zig.zig").Guid.initString("834128a2-51f4-11d0-8f20-00805f2cd064");
+pub const CLSID_DefaultDebugSessionProvider = &CLSID_DefaultDebugSessionProvider_Value;
+
+pub const SCRIPTLANGUAGEVERSION = enum(i32) {
+    DEFAULT = 0,
+    @"5_7" = 1,
+    @"5_8" = 2,
+    MAX = 255,
+};
+pub const SCRIPTLANGUAGEVERSION_DEFAULT = SCRIPTLANGUAGEVERSION.DEFAULT;
+pub const SCRIPTLANGUAGEVERSION_5_7 = SCRIPTLANGUAGEVERSION.@"5_7";
+pub const SCRIPTLANGUAGEVERSION_5_8 = SCRIPTLANGUAGEVERSION.@"5_8";
+pub const SCRIPTLANGUAGEVERSION_MAX = SCRIPTLANGUAGEVERSION.MAX;
+
+pub const SCRIPTSTATE = enum(i32) {
+    UNINITIALIZED = 0,
+    INITIALIZED = 5,
+    STARTED = 1,
+    CONNECTED = 2,
+    DISCONNECTED = 3,
+    CLOSED = 4,
+};
+pub const SCRIPTSTATE_UNINITIALIZED = SCRIPTSTATE.UNINITIALIZED;
+pub const SCRIPTSTATE_INITIALIZED = SCRIPTSTATE.INITIALIZED;
+pub const SCRIPTSTATE_STARTED = SCRIPTSTATE.STARTED;
+pub const SCRIPTSTATE_CONNECTED = SCRIPTSTATE.CONNECTED;
+pub const SCRIPTSTATE_DISCONNECTED = SCRIPTSTATE.DISCONNECTED;
+pub const SCRIPTSTATE_CLOSED = SCRIPTSTATE.CLOSED;
+
+pub const SCRIPTTRACEINFO = enum(i32) {
+    SCRIPTSTART = 0,
+    SCRIPTEND = 1,
+    COMCALLSTART = 2,
+    COMCALLEND = 3,
+    CREATEOBJSTART = 4,
+    CREATEOBJEND = 5,
+    GETOBJSTART = 6,
+    GETOBJEND = 7,
+};
+pub const SCRIPTTRACEINFO_SCRIPTSTART = SCRIPTTRACEINFO.SCRIPTSTART;
+pub const SCRIPTTRACEINFO_SCRIPTEND = SCRIPTTRACEINFO.SCRIPTEND;
+pub const SCRIPTTRACEINFO_COMCALLSTART = SCRIPTTRACEINFO.COMCALLSTART;
+pub const SCRIPTTRACEINFO_COMCALLEND = SCRIPTTRACEINFO.COMCALLEND;
+pub const SCRIPTTRACEINFO_CREATEOBJSTART = SCRIPTTRACEINFO.CREATEOBJSTART;
+pub const SCRIPTTRACEINFO_CREATEOBJEND = SCRIPTTRACEINFO.CREATEOBJEND;
+pub const SCRIPTTRACEINFO_GETOBJSTART = SCRIPTTRACEINFO.GETOBJSTART;
+pub const SCRIPTTRACEINFO_GETOBJEND = SCRIPTTRACEINFO.GETOBJEND;
+
+pub const SCRIPTTHREADSTATE = enum(i32) {
+    NOTINSCRIPT = 0,
+    RUNNING = 1,
+};
+pub const SCRIPTTHREADSTATE_NOTINSCRIPT = SCRIPTTHREADSTATE.NOTINSCRIPT;
+pub const SCRIPTTHREADSTATE_RUNNING = SCRIPTTHREADSTATE.RUNNING;
+
+pub const SCRIPTGCTYPE = enum(i32) {
+    NORMAL = 0,
+    EXHAUSTIVE = 1,
+};
+pub const SCRIPTGCTYPE_NORMAL = SCRIPTGCTYPE.NORMAL;
+pub const SCRIPTGCTYPE_EXHAUSTIVE = SCRIPTGCTYPE.EXHAUSTIVE;
+
+pub const SCRIPTUICITEM = enum(i32) {
+    INPUTBOX = 1,
+    MSGBOX = 2,
+};
+pub const SCRIPTUICITEM_INPUTBOX = SCRIPTUICITEM.INPUTBOX;
+pub const SCRIPTUICITEM_MSGBOX = SCRIPTUICITEM.MSGBOX;
+
+pub const SCRIPTUICHANDLING = enum(i32) {
+    ALLOW = 0,
+    NOUIERROR = 1,
+    NOUIDEFAULT = 2,
+};
+pub const SCRIPTUICHANDLING_ALLOW = SCRIPTUICHANDLING.ALLOW;
+pub const SCRIPTUICHANDLING_NOUIERROR = SCRIPTUICHANDLING.NOUIERROR;
+pub const SCRIPTUICHANDLING_NOUIDEFAULT = SCRIPTUICHANDLING.NOUIDEFAULT;
+
+const IID_IActiveScriptSite_Value = @import("../../zig.zig").Guid.initString("db01a1e3-a42b-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScriptSite = &IID_IActiveScriptSite_Value;
+pub const IActiveScriptSite = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetLCID: fn(
+            self: *const IActiveScriptSite,
+            plcid: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemInfo: fn(
+            self: *const IActiveScriptSite,
+            pstrName: ?[*:0]const u16,
+            dwReturnMask: u32,
+            ppiunkItem: ?*?*IUnknown,
+            ppti: ?*?*ITypeInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocVersionString: fn(
+            self: *const IActiveScriptSite,
+            pbstrVersion: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnScriptTerminate: fn(
+            self: *const IActiveScriptSite,
+            pvarResult: ?*const VARIANT,
+            pexcepinfo: ?*const EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnStateChange: fn(
+            self: *const IActiveScriptSite,
+            ssScriptState: SCRIPTSTATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnScriptError: fn(
+            self: *const IActiveScriptSite,
+            pscripterror: ?*IActiveScriptError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEnterScript: fn(
+            self: *const IActiveScriptSite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnLeaveScript: fn(
+            self: *const IActiveScriptSite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_GetLCID(self: *const T, plcid: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetLCID(@ptrCast(*const IActiveScriptSite, self), plcid);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_GetItemInfo(self: *const T, pstrName: ?[*:0]const u16, dwReturnMask: u32, ppiunkItem: ?*?*IUnknown, ppti: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetItemInfo(@ptrCast(*const IActiveScriptSite, self), pstrName, dwReturnMask, ppiunkItem, ppti);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_GetDocVersionString(self: *const T, pbstrVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetDocVersionString(@ptrCast(*const IActiveScriptSite, self), pbstrVersion);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_OnScriptTerminate(self: *const T, pvarResult: ?*const VARIANT, pexcepinfo: ?*const EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnScriptTerminate(@ptrCast(*const IActiveScriptSite, self), pvarResult, pexcepinfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_OnStateChange(self: *const T, ssScriptState: SCRIPTSTATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnStateChange(@ptrCast(*const IActiveScriptSite, self), ssScriptState);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_OnScriptError(self: *const T, pscripterror: ?*IActiveScriptError) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnScriptError(@ptrCast(*const IActiveScriptSite, self), pscripterror);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_OnEnterScript(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnEnterScript(@ptrCast(*const IActiveScriptSite, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSite_OnLeaveScript(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnLeaveScript(@ptrCast(*const IActiveScriptSite, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const LOADED_IMAGE = extern struct {
-    ModuleName: ?PSTR,
-    hFile: ?HANDLE,
-    MappedAddress: ?*u8,
-    FileHeader: ?*IMAGE_NT_HEADERS32,
-    LastRvaSection: ?*IMAGE_SECTION_HEADER,
-    NumberOfSections: u32,
-    Sections: ?*IMAGE_SECTION_HEADER,
-    Characteristics: IMAGE_FILE_CHARACTERISTICS,
-    fSystemImage: u8,
-    fDOSImage: u8,
-    fReadOnly: u8,
-    Version: u8,
-    Links: LIST_ENTRY,
-    SizeOfImage: u32,
+const IID_IActiveScriptError_Value = @import("../../zig.zig").Guid.initString("eae1ba61-a4ed-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScriptError = &IID_IActiveScriptError_Value;
+pub const IActiveScriptError = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetExceptionInfo: fn(
+            self: *const IActiveScriptError,
+            pexcepinfo: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourcePosition: fn(
+            self: *const IActiveScriptError,
+            pdwSourceContext: ?*u32,
+            pulLineNumber: ?*u32,
+            plCharacterPosition: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceLineText: fn(
+            self: *const IActiveScriptError,
+            pbstrSourceLine: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptError_GetExceptionInfo(self: *const T, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetExceptionInfo(@ptrCast(*const IActiveScriptError, self), pexcepinfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptError_GetSourcePosition(self: *const T, pdwSourceContext: ?*u32, pulLineNumber: ?*u32, plCharacterPosition: ?*i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetSourcePosition(@ptrCast(*const IActiveScriptError, self), pdwSourceContext, pulLineNumber, plCharacterPosition);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptError_GetSourceLineText(self: *const T, pbstrSourceLine: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetSourceLineText(@ptrCast(*const IActiveScriptError, self), pbstrSourceLine);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGE_DEBUG_INFORMATION = extern struct {
-    List: LIST_ENTRY,
-    ReservedSize: u32,
-    ReservedMappedBase: ?*c_void,
-    ReservedMachine: u16,
-    ReservedCharacteristics: u16,
-    ReservedCheckSum: u32,
-    ImageBase: u32,
-    SizeOfImage: u32,
-    ReservedNumberOfSections: u32,
-    ReservedSections: ?*IMAGE_SECTION_HEADER,
-    ReservedExportedNamesSize: u32,
-    ReservedExportedNames: ?PSTR,
-    ReservedNumberOfFunctionTableEntries: u32,
-    ReservedFunctionTableEntries: ?*IMAGE_FUNCTION_ENTRY,
-    ReservedLowestFunctionStartingAddress: u32,
-    ReservedHighestFunctionEndingAddress: u32,
-    ReservedNumberOfFpoTableEntries: u32,
-    ReservedFpoTableEntries: ?*FPO_DATA,
-    SizeOfCoffSymbols: u32,
-    CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
-    ReservedSizeOfCodeViewSymbols: u32,
-    ReservedCodeViewSymbols: ?*c_void,
-    ImageFilePath: ?PSTR,
-    ImageFileName: ?PSTR,
-    ReservedDebugFilePath: ?PSTR,
-    ReservedTimeDateStamp: u32,
-    ReservedRomImage: BOOL,
-    ReservedDebugDirectory: ?*IMAGE_DEBUG_DIRECTORY,
-    ReservedNumberOfDebugDirectories: u32,
-    ReservedOriginalFunctionTableBaseAddress: u32,
-    Reserved: [2]u32,
+const IID_IActiveScriptError64_Value = @import("../../zig.zig").Guid.initString("b21fb2a1-5b8f-4963-8c21-21450f84ed7f");
+pub const IID_IActiveScriptError64 = &IID_IActiveScriptError64_Value;
+pub const IActiveScriptError64 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptError.VTable,
+        GetSourcePosition64: fn(
+            self: *const IActiveScriptError64,
+            pdwSourceContext: ?*u64,
+            pulLineNumber: ?*u32,
+            plCharacterPosition: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptError.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptError64_GetSourcePosition64(self: *const T, pdwSourceContext: ?*u64, pulLineNumber: ?*u32, plCharacterPosition: ?*i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptError64.VTable, self.vtable).GetSourcePosition64(@ptrCast(*const IActiveScriptError64, self), pdwSourceContext, pulLineNumber, plCharacterPosition);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-}, else => struct { } };
+const IID_IActiveScriptSiteWindow_Value = @import("../../zig.zig").Guid.initString("d10f6761-83e9-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScriptSiteWindow = &IID_IActiveScriptSiteWindow_Value;
+pub const IActiveScriptSiteWindow = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetWindow: fn(
+            self: *const IActiveScriptSiteWindow,
+            phwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnableModeless: fn(
+            self: *const IActiveScriptSiteWindow,
+            fEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteWindow_GetWindow(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteWindow.VTable, self.vtable).GetWindow(@ptrCast(*const IActiveScriptSiteWindow, self), phwnd);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteWindow_EnableModeless(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteWindow.VTable, self.vtable).EnableModeless(@ptrCast(*const IActiveScriptSiteWindow, self), fEnable);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+const IID_IActiveScriptSiteUIControl_Value = @import("../../zig.zig").Guid.initString("aedae97e-d7ee-4796-b960-7f092ae844ab");
+pub const IID_IActiveScriptSiteUIControl = &IID_IActiveScriptSiteUIControl_Value;
+pub const IActiveScriptSiteUIControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetUIBehavior: fn(
+            self: *const IActiveScriptSiteUIControl,
+            UicItem: SCRIPTUICITEM,
+            pUicHandling: ?*SCRIPTUICHANDLING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteUIControl_GetUIBehavior(self: *const T, UicItem: SCRIPTUICITEM, pUicHandling: ?*SCRIPTUICHANDLING) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteUIControl.VTable, self.vtable).GetUIBehavior(@ptrCast(*const IActiveScriptSiteUIControl, self), UicItem, pUicHandling);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
-pub const ADDRESS = extern struct {
-    Offset: u32,
+const IID_IActiveScriptSiteInterruptPoll_Value = @import("../../zig.zig").Guid.initString("539698a0-cdca-11cf-a5eb-00aa0047a063");
+pub const IID_IActiveScriptSiteInterruptPoll = &IID_IActiveScriptSiteInterruptPoll_Value;
+pub const IActiveScriptSiteInterruptPoll = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryContinue: fn(
+            self: *const IActiveScriptSiteInterruptPoll,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteInterruptPoll_QueryContinue(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteInterruptPoll.VTable, self.vtable).QueryContinue(@ptrCast(*const IActiveScriptSiteInterruptPoll, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScript_Value = @import("../../zig.zig").Guid.initString("bb1a2ae1-a4f9-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScript = &IID_IActiveScript_Value;
+pub const IActiveScript = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetScriptSite: fn(
+            self: *const IActiveScript,
+            pass: ?*IActiveScriptSite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptSite: fn(
+            self: *const IActiveScript,
+            riid: ?*const Guid,
+            ppvObject: ?*?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScriptState: fn(
+            self: *const IActiveScript,
+            ss: SCRIPTSTATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptState: fn(
+            self: *const IActiveScript,
+            pssState: ?*SCRIPTSTATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IActiveScript,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNamedItem: fn(
+            self: *const IActiveScript,
+            pstrName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTypeLib: fn(
+            self: *const IActiveScript,
+            rguidTypeLib: ?*const Guid,
+            dwMajor: u32,
+            dwMinor: u32,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptDispatch: fn(
+            self: *const IActiveScript,
+            pstrItemName: ?[*:0]const u16,
+            ppdisp: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentScriptThreadID: fn(
+            self: *const IActiveScript,
+            pstidThread: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptThreadID: fn(
+            self: *const IActiveScript,
+            dwWin32ThreadId: u32,
+            pstidThread: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptThreadState: fn(
+            self: *const IActiveScript,
+            stidThread: u32,
+            pstsState: ?*SCRIPTTHREADSTATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InterruptScriptThread: fn(
+            self: *const IActiveScript,
+            stidThread: u32,
+            pexcepinfo: ?*const EXCEPINFO,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IActiveScript,
+            ppscript: ?*?*IActiveScript,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_SetScriptSite(self: *const T, pass: ?*IActiveScriptSite) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).SetScriptSite(@ptrCast(*const IActiveScript, self), pass);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetScriptSite(self: *const T, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptSite(@ptrCast(*const IActiveScript, self), riid, ppvObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_SetScriptState(self: *const T, ss: SCRIPTSTATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).SetScriptState(@ptrCast(*const IActiveScript, self), ss);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetScriptState(self: *const T, pssState: ?*SCRIPTSTATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptState(@ptrCast(*const IActiveScript, self), pssState);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).Close(@ptrCast(*const IActiveScript, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_AddNamedItem(self: *const T, pstrName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).AddNamedItem(@ptrCast(*const IActiveScript, self), pstrName, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_AddTypeLib(self: *const T, rguidTypeLib: ?*const Guid, dwMajor: u32, dwMinor: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).AddTypeLib(@ptrCast(*const IActiveScript, self), rguidTypeLib, dwMajor, dwMinor, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetScriptDispatch(self: *const T, pstrItemName: ?[*:0]const u16, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptDispatch(@ptrCast(*const IActiveScript, self), pstrItemName, ppdisp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetCurrentScriptThreadID(self: *const T, pstidThread: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetCurrentScriptThreadID(@ptrCast(*const IActiveScript, self), pstidThread);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetScriptThreadID(self: *const T, dwWin32ThreadId: u32, pstidThread: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptThreadID(@ptrCast(*const IActiveScript, self), dwWin32ThreadId, pstidThread);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_GetScriptThreadState(self: *const T, stidThread: u32, pstsState: ?*SCRIPTTHREADSTATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptThreadState(@ptrCast(*const IActiveScript, self), stidThread, pstsState);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_InterruptScriptThread(self: *const T, stidThread: u32, pexcepinfo: ?*const EXCEPINFO, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).InterruptScriptThread(@ptrCast(*const IActiveScript, self), stidThread, pexcepinfo, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScript_Clone(self: *const T, ppscript: ?*?*IActiveScript) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScript.VTable, self.vtable).Clone(@ptrCast(*const IActiveScript, self), ppscript);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParse32_Value = @import("../../zig.zig").Guid.initString("bb1a2ae2-a4f9-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScriptParse32 = &IID_IActiveScriptParse32_Value;
+pub const IActiveScriptParse32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitNew: fn(
+            self: *const IActiveScriptParse32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddScriptlet: fn(
+            self: *const IActiveScriptParse32,
+            pstrDefaultName: ?[*:0]const u16,
+            pstrCode: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            pstrSubItemName: ?[*:0]const u16,
+            pstrEventName: ?[*:0]const u16,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u32,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            pbstrName: ?*?BSTR,
+            pexcepinfo: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ParseScriptText: fn(
+            self: *const IActiveScriptParse32,
+            pstrCode: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u32,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            pvarResult: ?*VARIANT,
+            pexcepinfo: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse32_InitNew(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).InitNew(@ptrCast(*const IActiveScriptParse32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse32_AddScriptlet(self: *const T, pstrDefaultName: ?[*:0]const u16, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, pstrSubItemName: ?[*:0]const u16, pstrEventName: ?[*:0]const u16, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, pbstrName: ?*?BSTR, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).AddScriptlet(@ptrCast(*const IActiveScriptParse32, self), pstrDefaultName, pstrCode, pstrItemName, pstrSubItemName, pstrEventName, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pbstrName, pexcepinfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse32_ParseScriptText(self: *const T, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).ParseScriptText(@ptrCast(*const IActiveScriptParse32, self), pstrCode, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pvarResult, pexcepinfo);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParse64_Value = @import("../../zig.zig").Guid.initString("c7ef7658-e1ee-480e-97ea-d52cb4d76d17");
+pub const IID_IActiveScriptParse64 = &IID_IActiveScriptParse64_Value;
+pub const IActiveScriptParse64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitNew: fn(
+            self: *const IActiveScriptParse64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddScriptlet: fn(
+            self: *const IActiveScriptParse64,
+            pstrDefaultName: ?[*:0]const u16,
+            pstrCode: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            pstrSubItemName: ?[*:0]const u16,
+            pstrEventName: ?[*:0]const u16,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u64,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            pbstrName: ?*?BSTR,
+            pexcepinfo: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ParseScriptText: fn(
+            self: *const IActiveScriptParse64,
+            pstrCode: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u64,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            pvarResult: ?*VARIANT,
+            pexcepinfo: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse64_InitNew(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).InitNew(@ptrCast(*const IActiveScriptParse64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse64_AddScriptlet(self: *const T, pstrDefaultName: ?[*:0]const u16, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, pstrSubItemName: ?[*:0]const u16, pstrEventName: ?[*:0]const u16, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, pbstrName: ?*?BSTR, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).AddScriptlet(@ptrCast(*const IActiveScriptParse64, self), pstrDefaultName, pstrCode, pstrItemName, pstrSubItemName, pstrEventName, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pbstrName, pexcepinfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParse64_ParseScriptText(self: *const T, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).ParseScriptText(@ptrCast(*const IActiveScriptParse64, self), pstrCode, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pvarResult, pexcepinfo);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedureOld32_Value = @import("../../zig.zig").Guid.initString("1cff0050-6fdd-11d0-9328-00a0c90dcaa9");
+pub const IID_IActiveScriptParseProcedureOld32 = &IID_IActiveScriptParseProcedureOld32_Value;
+pub const IActiveScriptParseProcedureOld32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseProcedureText: fn(
+            self: *const IActiveScriptParseProcedureOld32,
+            pstrCode: ?[*:0]const u16,
+            pstrFormalParams: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u32,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            ppdisp: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParseProcedureOld32_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParseProcedureOld32.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedureOld32, self), pstrCode, pstrFormalParams, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedureOld64_Value = @import("../../zig.zig").Guid.initString("21f57128-08c9-4638-ba12-22d15d88dc5c");
+pub const IID_IActiveScriptParseProcedureOld64 = &IID_IActiveScriptParseProcedureOld64_Value;
+pub const IActiveScriptParseProcedureOld64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseProcedureText: fn(
+            self: *const IActiveScriptParseProcedureOld64,
+            pstrCode: ?[*:0]const u16,
+            pstrFormalParams: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u64,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            ppdisp: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParseProcedureOld64_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParseProcedureOld64.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedureOld64, self), pstrCode, pstrFormalParams, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedure32_Value = @import("../../zig.zig").Guid.initString("aa5b6a80-b834-11d0-932f-00a0c90dcaa9");
+pub const IID_IActiveScriptParseProcedure32 = &IID_IActiveScriptParseProcedure32_Value;
+pub const IActiveScriptParseProcedure32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseProcedureText: fn(
+            self: *const IActiveScriptParseProcedure32,
+            pstrCode: ?[*:0]const u16,
+            pstrFormalParams: ?[*:0]const u16,
+            pstrProcedureName: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u32,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            ppdisp: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParseProcedure32_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrProcedureName: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParseProcedure32.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedure32, self), pstrCode, pstrFormalParams, pstrProcedureName, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedure64_Value = @import("../../zig.zig").Guid.initString("c64713b6-e029-4cc5-9200-438b72890b6a");
+pub const IID_IActiveScriptParseProcedure64 = &IID_IActiveScriptParseProcedure64_Value;
+pub const IActiveScriptParseProcedure64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseProcedureText: fn(
+            self: *const IActiveScriptParseProcedure64,
+            pstrCode: ?[*:0]const u16,
+            pstrFormalParams: ?[*:0]const u16,
+            pstrProcedureName: ?[*:0]const u16,
+            pstrItemName: ?[*:0]const u16,
+            punkContext: ?*IUnknown,
+            pstrDelimiter: ?[*:0]const u16,
+            dwSourceContextCookie: u64,
+            ulStartingLineNumber: u32,
+            dwFlags: u32,
+            ppdisp: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptParseProcedure64_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrProcedureName: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptParseProcedure64.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedure64, self), pstrCode, pstrFormalParams, pstrProcedureName, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedure2_32_Value = @import("../../zig.zig").Guid.initString("71ee5b20-fb04-11d1-b3a8-00a0c911e8b2");
+pub const IID_IActiveScriptParseProcedure2_32 = &IID_IActiveScriptParseProcedure2_32_Value;
+pub const IActiveScriptParseProcedure2_32 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptParseProcedure32.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptParseProcedure32.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptParseProcedure2_64_Value = @import("../../zig.zig").Guid.initString("fe7c4271-210c-448d-9f54-76dab7047b28");
+pub const IID_IActiveScriptParseProcedure2_64 = &IID_IActiveScriptParseProcedure2_64_Value;
+pub const IActiveScriptParseProcedure2_64 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptParseProcedure64.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptParseProcedure64.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptEncode_Value = @import("../../zig.zig").Guid.initString("bb1a2ae3-a4f9-11cf-8f20-00805f2cd064");
+pub const IID_IActiveScriptEncode = &IID_IActiveScriptEncode_Value;
+pub const IActiveScriptEncode = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EncodeSection: fn(
+            self: *const IActiveScriptEncode,
+            pchIn: ?[*:0]const u16,
+            cchIn: u32,
+            pchOut: ?PWSTR,
+            cchOut: u32,
+            pcchRet: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecodeScript: fn(
+            self: *const IActiveScriptEncode,
+            pchIn: ?[*:0]const u16,
+            cchIn: u32,
+            pchOut: ?PWSTR,
+            cchOut: u32,
+            pcchRet: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEncodeProgId: fn(
+            self: *const IActiveScriptEncode,
+            pbstrOut: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptEncode_EncodeSection(self: *const T, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).EncodeSection(@ptrCast(*const IActiveScriptEncode, self), pchIn, cchIn, pchOut, cchOut, pcchRet);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptEncode_DecodeScript(self: *const T, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).DecodeScript(@ptrCast(*const IActiveScriptEncode, self), pchIn, cchIn, pchOut, cchOut, pcchRet);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptEncode_GetEncodeProgId(self: *const T, pbstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).GetEncodeProgId(@ptrCast(*const IActiveScriptEncode, self), pbstrOut);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptHostEncode_Value = @import("../../zig.zig").Guid.initString("bee9b76e-cfe3-11d1-b747-00c04fc2b085");
+pub const IID_IActiveScriptHostEncode = &IID_IActiveScriptHostEncode_Value;
+pub const IActiveScriptHostEncode = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EncodeScriptHostFile: fn(
+            self: *const IActiveScriptHostEncode,
+            bstrInFile: ?BSTR,
+            pbstrOutFile: ?*?BSTR,
+            cFlags: u32,
+            bstrDefaultLang: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptHostEncode_EncodeScriptHostFile(self: *const T, bstrInFile: ?BSTR, pbstrOutFile: ?*?BSTR, cFlags: u32, bstrDefaultLang: ?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptHostEncode.VTable, self.vtable).EncodeScriptHostFile(@ptrCast(*const IActiveScriptHostEncode, self), bstrInFile, pbstrOutFile, cFlags, bstrDefaultLang);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IBindEventHandler_Value = @import("../../zig.zig").Guid.initString("63cdbcb0-c1b1-11d0-9336-00a0c90dcaa9");
+pub const IID_IBindEventHandler = &IID_IBindEventHandler_Value;
+pub const IBindEventHandler = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BindHandler: fn(
+            self: *const IBindEventHandler,
+            pstrEvent: ?[*:0]const u16,
+            pdisp: ?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IBindEventHandler_BindHandler(self: *const T, pstrEvent: ?[*:0]const u16, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IBindEventHandler.VTable, self.vtable).BindHandler(@ptrCast(*const IBindEventHandler, self), pstrEvent, pdisp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptStats_Value = @import("../../zig.zig").Guid.initString("b8da6310-e19b-11d0-933c-00a0c90dcaa9");
+pub const IID_IActiveScriptStats = &IID_IActiveScriptStats_Value;
+pub const IActiveScriptStats = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStat: fn(
+            self: *const IActiveScriptStats,
+            stid: u32,
+            pluHi: ?*u32,
+            pluLo: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatEx: fn(
+            self: *const IActiveScriptStats,
+            guid: ?*const Guid,
+            pluHi: ?*u32,
+            pluLo: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResetStats: fn(
+            self: *const IActiveScriptStats,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptStats_GetStat(self: *const T, stid: u32, pluHi: ?*u32, pluLo: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).GetStat(@ptrCast(*const IActiveScriptStats, self), stid, pluHi, pluLo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptStats_GetStatEx(self: *const T, guid: ?*const Guid, pluHi: ?*u32, pluLo: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).GetStatEx(@ptrCast(*const IActiveScriptStats, self), guid, pluHi, pluLo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptStats_ResetStats(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).ResetStats(@ptrCast(*const IActiveScriptStats, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProperty_Value = @import("../../zig.zig").Guid.initString("4954e0d0-fbc7-11d1-8410-006008c3fbfc");
+pub const IID_IActiveScriptProperty = &IID_IActiveScriptProperty_Value;
+pub const IActiveScriptProperty = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetProperty: fn(
+            self: *const IActiveScriptProperty,
+            dwProperty: u32,
+            pvarIndex: ?*VARIANT,
+            pvarValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: fn(
+            self: *const IActiveScriptProperty,
+            dwProperty: u32,
+            pvarIndex: ?*VARIANT,
+            pvarValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProperty_GetProperty(self: *const T, dwProperty: u32, pvarIndex: ?*VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProperty.VTable, self.vtable).GetProperty(@ptrCast(*const IActiveScriptProperty, self), dwProperty, pvarIndex, pvarValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProperty_SetProperty(self: *const T, dwProperty: u32, pvarIndex: ?*VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProperty.VTable, self.vtable).SetProperty(@ptrCast(*const IActiveScriptProperty, self), dwProperty, pvarIndex, pvarValue);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ITridentEventSink_Value = @import("../../zig.zig").Guid.initString("1dc9ca50-06ef-11d2-8415-006008c3fbfc");
+pub const IID_ITridentEventSink = &IID_ITridentEventSink_Value;
+pub const ITridentEventSink = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        FireEvent: fn(
+            self: *const ITridentEventSink,
+            pstrEvent: ?[*:0]const u16,
+            pdp: ?*DISPPARAMS,
+            pvarRes: ?*VARIANT,
+            pei: ?*EXCEPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITridentEventSink_FireEvent(self: *const T, pstrEvent: ?[*:0]const u16, pdp: ?*DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITridentEventSink.VTable, self.vtable).FireEvent(@ptrCast(*const ITridentEventSink, self), pstrEvent, pdp, pvarRes, pei);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptGarbageCollector_Value = @import("../../zig.zig").Guid.initString("6aa2c4a0-2b53-11d4-a2a0-00104bd35090");
+pub const IID_IActiveScriptGarbageCollector = &IID_IActiveScriptGarbageCollector_Value;
+pub const IActiveScriptGarbageCollector = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CollectGarbage: fn(
+            self: *const IActiveScriptGarbageCollector,
+            scriptgctype: SCRIPTGCTYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptGarbageCollector_CollectGarbage(self: *const T, scriptgctype: SCRIPTGCTYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptGarbageCollector.VTable, self.vtable).CollectGarbage(@ptrCast(*const IActiveScriptGarbageCollector, self), scriptgctype);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptSIPInfo_Value = @import("../../zig.zig").Guid.initString("764651d0-38de-11d4-a2a3-00104bd35090");
+pub const IID_IActiveScriptSIPInfo = &IID_IActiveScriptSIPInfo_Value;
+pub const IActiveScriptSIPInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSIPOID: fn(
+            self: *const IActiveScriptSIPInfo,
+            poid_sip: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSIPInfo_GetSIPOID(self: *const T, poid_sip: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSIPInfo.VTable, self.vtable).GetSIPOID(@ptrCast(*const IActiveScriptSIPInfo, self), poid_sip);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptSiteTraceInfo_Value = @import("../../zig.zig").Guid.initString("4b7272ae-1955-4bfe-98b0-780621888569");
+pub const IID_IActiveScriptSiteTraceInfo = &IID_IActiveScriptSiteTraceInfo_Value;
+pub const IActiveScriptSiteTraceInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SendScriptTraceInfo: fn(
+            self: *const IActiveScriptSiteTraceInfo,
+            stiEventType: SCRIPTTRACEINFO,
+            guidContextID: Guid,
+            dwScriptContextCookie: u32,
+            lScriptStatementStart: i32,
+            lScriptStatementEnd: i32,
+            dwReserved: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteTraceInfo_SendScriptTraceInfo(self: *const T, stiEventType: SCRIPTTRACEINFO, guidContextID: Guid, dwScriptContextCookie: u32, lScriptStatementStart: i32, lScriptStatementEnd: i32, dwReserved: u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteTraceInfo.VTable, self.vtable).SendScriptTraceInfo(@ptrCast(*const IActiveScriptSiteTraceInfo, self), stiEventType, guidContextID, dwScriptContextCookie, lScriptStatementStart, lScriptStatementEnd, dwReserved);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptTraceInfo_Value = @import("../../zig.zig").Guid.initString("c35456e7-bebf-4a1b-86a9-24d56be8b369");
+pub const IID_IActiveScriptTraceInfo = &IID_IActiveScriptTraceInfo_Value;
+pub const IActiveScriptTraceInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartScriptTracing: fn(
+            self: *const IActiveScriptTraceInfo,
+            pSiteTraceInfo: ?*IActiveScriptSiteTraceInfo,
+            guidContextID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StopScriptTracing: fn(
+            self: *const IActiveScriptTraceInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptTraceInfo_StartScriptTracing(self: *const T, pSiteTraceInfo: ?*IActiveScriptSiteTraceInfo, guidContextID: Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptTraceInfo.VTable, self.vtable).StartScriptTracing(@ptrCast(*const IActiveScriptTraceInfo, self), pSiteTraceInfo, guidContextID);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptTraceInfo_StopScriptTracing(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptTraceInfo.VTable, self.vtable).StopScriptTracing(@ptrCast(*const IActiveScriptTraceInfo, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptStringCompare_Value = @import("../../zig.zig").Guid.initString("58562769-ed52-42f7-8403-4963514e1f11");
+pub const IID_IActiveScriptStringCompare = &IID_IActiveScriptStringCompare_Value;
+pub const IActiveScriptStringCompare = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StrComp: fn(
+            self: *const IActiveScriptStringCompare,
+            bszStr1: ?BSTR,
+            bszStr2: ?BSTR,
+            iRet: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptStringCompare_StrComp(self: *const T, bszStr1: ?BSTR, bszStr2: ?BSTR, iRet: ?*i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptStringCompare.VTable, self.vtable).StrComp(@ptrCast(*const IActiveScriptStringCompare, self), bszStr1, bszStr2, iRet);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DBGPROP_ATTRIB_FLAGS = enum(u32) {
+    NO_ATTRIB = 0,
+    VALUE_IS_INVALID = 8,
+    VALUE_IS_EXPANDABLE = 16,
+    VALUE_IS_FAKE = 32,
+    VALUE_IS_METHOD = 256,
+    VALUE_IS_EVENT = 512,
+    VALUE_IS_RAW_STRING = 1024,
+    VALUE_READONLY = 2048,
+    ACCESS_PUBLIC = 4096,
+    ACCESS_PRIVATE = 8192,
+    ACCESS_PROTECTED = 16384,
+    ACCESS_FINAL = 32768,
+    STORAGE_GLOBAL = 65536,
+    STORAGE_STATIC = 131072,
+    STORAGE_FIELD = 262144,
+    STORAGE_VIRTUAL = 524288,
+    TYPE_IS_CONSTANT = 1048576,
+    TYPE_IS_SYNCHRONIZED = 2097152,
+    TYPE_IS_VOLATILE = 4194304,
+    HAS_EXTENDED_ATTRIBS = 8388608,
+    FRAME_INTRYBLOCK = 16777216,
+    FRAME_INCATCHBLOCK = 33554432,
+    FRAME_INFINALLYBLOCK = 67108864,
+    VALUE_IS_RETURN_VALUE = 134217728,
+    VALUE_PENDING_MUTATION = 268435456,
+    _,
+    pub fn initFlags(o: struct {
+        NO_ATTRIB: u1 = 0,
+        VALUE_IS_INVALID: u1 = 0,
+        VALUE_IS_EXPANDABLE: u1 = 0,
+        VALUE_IS_FAKE: u1 = 0,
+        VALUE_IS_METHOD: u1 = 0,
+        VALUE_IS_EVENT: u1 = 0,
+        VALUE_IS_RAW_STRING: u1 = 0,
+        VALUE_READONLY: u1 = 0,
+        ACCESS_PUBLIC: u1 = 0,
+        ACCESS_PRIVATE: u1 = 0,
+        ACCESS_PROTECTED: u1 = 0,
+        ACCESS_FINAL: u1 = 0,
+        STORAGE_GLOBAL: u1 = 0,
+        STORAGE_STATIC: u1 = 0,
+        STORAGE_FIELD: u1 = 0,
+        STORAGE_VIRTUAL: u1 = 0,
+        TYPE_IS_CONSTANT: u1 = 0,
+        TYPE_IS_SYNCHRONIZED: u1 = 0,
+        TYPE_IS_VOLATILE: u1 = 0,
+        HAS_EXTENDED_ATTRIBS: u1 = 0,
+        FRAME_INTRYBLOCK: u1 = 0,
+        FRAME_INCATCHBLOCK: u1 = 0,
+        FRAME_INFINALLYBLOCK: u1 = 0,
+        VALUE_IS_RETURN_VALUE: u1 = 0,
+        VALUE_PENDING_MUTATION: u1 = 0,
+    }) DBGPROP_ATTRIB_FLAGS {
+        return @intToEnum(DBGPROP_ATTRIB_FLAGS,
+              (if (o.NO_ATTRIB == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.NO_ATTRIB) else 0)
+            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID) else 0)
+            | (if (o.VALUE_IS_EXPANDABLE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EXPANDABLE) else 0)
+            | (if (o.VALUE_IS_FAKE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_FAKE) else 0)
+            | (if (o.VALUE_IS_METHOD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_METHOD) else 0)
+            | (if (o.VALUE_IS_EVENT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EVENT) else 0)
+            | (if (o.VALUE_IS_RAW_STRING == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RAW_STRING) else 0)
+            | (if (o.VALUE_READONLY == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_READONLY) else 0)
+            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PUBLIC) else 0)
+            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PRIVATE) else 0)
+            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PROTECTED) else 0)
+            | (if (o.ACCESS_FINAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_FINAL) else 0)
+            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_GLOBAL) else 0)
+            | (if (o.STORAGE_STATIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_STATIC) else 0)
+            | (if (o.STORAGE_FIELD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_FIELD) else 0)
+            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_VIRTUAL) else 0)
+            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_CONSTANT) else 0)
+            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED) else 0)
+            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_VOLATILE) else 0)
+            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS) else 0)
+            | (if (o.FRAME_INTRYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INTRYBLOCK) else 0)
+            | (if (o.FRAME_INCATCHBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INCATCHBLOCK) else 0)
+            | (if (o.FRAME_INFINALLYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INFINALLYBLOCK) else 0)
+            | (if (o.VALUE_IS_RETURN_VALUE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE) else 0)
+            | (if (o.VALUE_PENDING_MUTATION == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION) else 0)
+        );
+    }
+};
+pub const DBGPROP_ATTRIB_NO_ATTRIB = DBGPROP_ATTRIB_FLAGS.NO_ATTRIB;
+pub const DBGPROP_ATTRIB_VALUE_IS_INVALID = DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID;
+pub const DBGPROP_ATTRIB_VALUE_IS_EXPANDABLE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_EXPANDABLE;
+pub const DBGPROP_ATTRIB_VALUE_IS_FAKE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_FAKE;
+pub const DBGPROP_ATTRIB_VALUE_IS_METHOD = DBGPROP_ATTRIB_FLAGS.VALUE_IS_METHOD;
+pub const DBGPROP_ATTRIB_VALUE_IS_EVENT = DBGPROP_ATTRIB_FLAGS.VALUE_IS_EVENT;
+pub const DBGPROP_ATTRIB_VALUE_IS_RAW_STRING = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RAW_STRING;
+pub const DBGPROP_ATTRIB_VALUE_READONLY = DBGPROP_ATTRIB_FLAGS.VALUE_READONLY;
+pub const DBGPROP_ATTRIB_ACCESS_PUBLIC = DBGPROP_ATTRIB_FLAGS.ACCESS_PUBLIC;
+pub const DBGPROP_ATTRIB_ACCESS_PRIVATE = DBGPROP_ATTRIB_FLAGS.ACCESS_PRIVATE;
+pub const DBGPROP_ATTRIB_ACCESS_PROTECTED = DBGPROP_ATTRIB_FLAGS.ACCESS_PROTECTED;
+pub const DBGPROP_ATTRIB_ACCESS_FINAL = DBGPROP_ATTRIB_FLAGS.ACCESS_FINAL;
+pub const DBGPROP_ATTRIB_STORAGE_GLOBAL = DBGPROP_ATTRIB_FLAGS.STORAGE_GLOBAL;
+pub const DBGPROP_ATTRIB_STORAGE_STATIC = DBGPROP_ATTRIB_FLAGS.STORAGE_STATIC;
+pub const DBGPROP_ATTRIB_STORAGE_FIELD = DBGPROP_ATTRIB_FLAGS.STORAGE_FIELD;
+pub const DBGPROP_ATTRIB_STORAGE_VIRTUAL = DBGPROP_ATTRIB_FLAGS.STORAGE_VIRTUAL;
+pub const DBGPROP_ATTRIB_TYPE_IS_CONSTANT = DBGPROP_ATTRIB_FLAGS.TYPE_IS_CONSTANT;
+pub const DBGPROP_ATTRIB_TYPE_IS_SYNCHRONIZED = DBGPROP_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED;
+pub const DBGPROP_ATTRIB_TYPE_IS_VOLATILE = DBGPROP_ATTRIB_FLAGS.TYPE_IS_VOLATILE;
+pub const DBGPROP_ATTRIB_HAS_EXTENDED_ATTRIBS = DBGPROP_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS;
+pub const DBGPROP_ATTRIB_FRAME_INTRYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INTRYBLOCK;
+pub const DBGPROP_ATTRIB_FRAME_INCATCHBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INCATCHBLOCK;
+pub const DBGPROP_ATTRIB_FRAME_INFINALLYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INFINALLYBLOCK;
+pub const DBGPROP_ATTRIB_VALUE_IS_RETURN_VALUE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE;
+pub const DBGPROP_ATTRIB_VALUE_PENDING_MUTATION = DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION;
+
+pub const DBGPROP_INFO = enum(u32) {
+    NAME = 1,
+    TYPE = 2,
+    VALUE = 4,
+    FULLNAME = 32,
+    ATTRIBUTES = 8,
+    DEBUGPROP = 16,
+    BEAUTIFY = 33554432,
+    CALLTOSTRING = 67108864,
+    AUTOEXPAND = 134217728,
+    _,
+    pub fn initFlags(o: struct {
+        NAME: u1 = 0,
+        TYPE: u1 = 0,
+        VALUE: u1 = 0,
+        FULLNAME: u1 = 0,
+        ATTRIBUTES: u1 = 0,
+        DEBUGPROP: u1 = 0,
+        BEAUTIFY: u1 = 0,
+        CALLTOSTRING: u1 = 0,
+        AUTOEXPAND: u1 = 0,
+    }) DBGPROP_INFO {
+        return @intToEnum(DBGPROP_INFO,
+              (if (o.NAME == 1) @enumToInt(DBGPROP_INFO.NAME) else 0)
+            | (if (o.TYPE == 1) @enumToInt(DBGPROP_INFO.TYPE) else 0)
+            | (if (o.VALUE == 1) @enumToInt(DBGPROP_INFO.VALUE) else 0)
+            | (if (o.FULLNAME == 1) @enumToInt(DBGPROP_INFO.FULLNAME) else 0)
+            | (if (o.ATTRIBUTES == 1) @enumToInt(DBGPROP_INFO.ATTRIBUTES) else 0)
+            | (if (o.DEBUGPROP == 1) @enumToInt(DBGPROP_INFO.DEBUGPROP) else 0)
+            | (if (o.BEAUTIFY == 1) @enumToInt(DBGPROP_INFO.BEAUTIFY) else 0)
+            | (if (o.CALLTOSTRING == 1) @enumToInt(DBGPROP_INFO.CALLTOSTRING) else 0)
+            | (if (o.AUTOEXPAND == 1) @enumToInt(DBGPROP_INFO.AUTOEXPAND) else 0)
+        );
+    }
+};
+pub const DBGPROP_INFO_NAME = DBGPROP_INFO.NAME;
+pub const DBGPROP_INFO_TYPE = DBGPROP_INFO.TYPE;
+pub const DBGPROP_INFO_VALUE = DBGPROP_INFO.VALUE;
+pub const DBGPROP_INFO_FULLNAME = DBGPROP_INFO.FULLNAME;
+pub const DBGPROP_INFO_ATTRIBUTES = DBGPROP_INFO.ATTRIBUTES;
+pub const DBGPROP_INFO_DEBUGPROP = DBGPROP_INFO.DEBUGPROP;
+pub const DBGPROP_INFO_BEAUTIFY = DBGPROP_INFO.BEAUTIFY;
+pub const DBGPROP_INFO_CALLTOSTRING = DBGPROP_INFO.CALLTOSTRING;
+pub const DBGPROP_INFO_AUTOEXPAND = DBGPROP_INFO.AUTOEXPAND;
+
+pub const OBJECT_ATTRIB_FLAG = enum(u32) {
+    NO_ATTRIB = 0,
+    NO_NAME = 1,
+    NO_TYPE = 2,
+    NO_VALUE = 4,
+    VALUE_IS_INVALID = 8,
+    VALUE_IS_OBJECT = 16,
+    VALUE_IS_ENUM = 32,
+    VALUE_IS_CUSTOM = 64,
+    OBJECT_IS_EXPANDABLE = 112,
+    VALUE_HAS_CODE = 128,
+    TYPE_IS_OBJECT = 256,
+    TYPE_HAS_CODE = 512,
+    // TYPE_IS_EXPANDABLE = 256, this enum value conflicts with TYPE_IS_OBJECT
+    SLOT_IS_CATEGORY = 1024,
+    VALUE_READONLY = 2048,
+    ACCESS_PUBLIC = 4096,
+    ACCESS_PRIVATE = 8192,
+    ACCESS_PROTECTED = 16384,
+    ACCESS_FINAL = 32768,
+    STORAGE_GLOBAL = 65536,
+    STORAGE_STATIC = 131072,
+    STORAGE_FIELD = 262144,
+    STORAGE_VIRTUAL = 524288,
+    TYPE_IS_CONSTANT = 1048576,
+    TYPE_IS_SYNCHRONIZED = 2097152,
+    TYPE_IS_VOLATILE = 4194304,
+    HAS_EXTENDED_ATTRIBS = 8388608,
+    IS_CLASS = 16777216,
+    IS_FUNCTION = 33554432,
+    IS_VARIABLE = 67108864,
+    IS_PROPERTY = 134217728,
+    IS_MACRO = 268435456,
+    IS_TYPE = 536870912,
+    IS_INHERITED = 1073741824,
+    IS_INTERFACE = 2147483648,
+    _,
+    pub fn initFlags(o: struct {
+        NO_ATTRIB: u1 = 0,
+        NO_NAME: u1 = 0,
+        NO_TYPE: u1 = 0,
+        NO_VALUE: u1 = 0,
+        VALUE_IS_INVALID: u1 = 0,
+        VALUE_IS_OBJECT: u1 = 0,
+        VALUE_IS_ENUM: u1 = 0,
+        VALUE_IS_CUSTOM: u1 = 0,
+        OBJECT_IS_EXPANDABLE: u1 = 0,
+        VALUE_HAS_CODE: u1 = 0,
+        TYPE_IS_OBJECT: u1 = 0,
+        TYPE_HAS_CODE: u1 = 0,
+        SLOT_IS_CATEGORY: u1 = 0,
+        VALUE_READONLY: u1 = 0,
+        ACCESS_PUBLIC: u1 = 0,
+        ACCESS_PRIVATE: u1 = 0,
+        ACCESS_PROTECTED: u1 = 0,
+        ACCESS_FINAL: u1 = 0,
+        STORAGE_GLOBAL: u1 = 0,
+        STORAGE_STATIC: u1 = 0,
+        STORAGE_FIELD: u1 = 0,
+        STORAGE_VIRTUAL: u1 = 0,
+        TYPE_IS_CONSTANT: u1 = 0,
+        TYPE_IS_SYNCHRONIZED: u1 = 0,
+        TYPE_IS_VOLATILE: u1 = 0,
+        HAS_EXTENDED_ATTRIBS: u1 = 0,
+        IS_CLASS: u1 = 0,
+        IS_FUNCTION: u1 = 0,
+        IS_VARIABLE: u1 = 0,
+        IS_PROPERTY: u1 = 0,
+        IS_MACRO: u1 = 0,
+        IS_TYPE: u1 = 0,
+        IS_INHERITED: u1 = 0,
+        IS_INTERFACE: u1 = 0,
+    }) OBJECT_ATTRIB_FLAG {
+        return @intToEnum(OBJECT_ATTRIB_FLAG,
+              (if (o.NO_ATTRIB == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_ATTRIB) else 0)
+            | (if (o.NO_NAME == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_NAME) else 0)
+            | (if (o.NO_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_TYPE) else 0)
+            | (if (o.NO_VALUE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_VALUE) else 0)
+            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_INVALID) else 0)
+            | (if (o.VALUE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_OBJECT) else 0)
+            | (if (o.VALUE_IS_ENUM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_ENUM) else 0)
+            | (if (o.VALUE_IS_CUSTOM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_CUSTOM) else 0)
+            | (if (o.OBJECT_IS_EXPANDABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPANDABLE) else 0)
+            | (if (o.VALUE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE) else 0)
+            | (if (o.TYPE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT) else 0)
+            | (if (o.TYPE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE) else 0)
+            | (if (o.SLOT_IS_CATEGORY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY) else 0)
+            | (if (o.VALUE_READONLY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_READONLY) else 0)
+            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC) else 0)
+            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PRIVATE) else 0)
+            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PROTECTED) else 0)
+            | (if (o.ACCESS_FINAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_FINAL) else 0)
+            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_GLOBAL) else 0)
+            | (if (o.STORAGE_STATIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_STATIC) else 0)
+            | (if (o.STORAGE_FIELD == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_FIELD) else 0)
+            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_VIRTUAL) else 0)
+            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_CONSTANT) else 0)
+            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_SYNCHRONIZED) else 0)
+            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_VOLATILE) else 0)
+            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.HAS_EXTENDED_ATTRIBS) else 0)
+            | (if (o.IS_CLASS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_CLASS) else 0)
+            | (if (o.IS_FUNCTION == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_FUNCTION) else 0)
+            | (if (o.IS_VARIABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_VARIABLE) else 0)
+            | (if (o.IS_PROPERTY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_PROPERTY) else 0)
+            | (if (o.IS_MACRO == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_MACRO) else 0)
+            | (if (o.IS_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_TYPE) else 0)
+            | (if (o.IS_INHERITED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INHERITED) else 0)
+            | (if (o.IS_INTERFACE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INTERFACE) else 0)
+        );
+    }
+};
+pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAG.NO_ATTRIB;
+pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAG.NO_NAME;
+pub const OBJECT_ATTRIB_NO_TYPE = OBJECT_ATTRIB_FLAG.NO_TYPE;
+pub const OBJECT_ATTRIB_NO_VALUE = OBJECT_ATTRIB_FLAG.NO_VALUE;
+pub const OBJECT_ATTRIB_VALUE_IS_INVALID = OBJECT_ATTRIB_FLAG.VALUE_IS_INVALID;
+pub const OBJECT_ATTRIB_VALUE_IS_OBJECT = OBJECT_ATTRIB_FLAG.VALUE_IS_OBJECT;
+pub const OBJECT_ATTRIB_VALUE_IS_ENUM = OBJECT_ATTRIB_FLAG.VALUE_IS_ENUM;
+pub const OBJECT_ATTRIB_VALUE_IS_CUSTOM = OBJECT_ATTRIB_FLAG.VALUE_IS_CUSTOM;
+pub const OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPANDABLE;
+pub const OBJECT_ATTRIB_VALUE_HAS_CODE = OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE;
+pub const OBJECT_ATTRIB_TYPE_IS_OBJECT = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
+pub const OBJECT_ATTRIB_TYPE_HAS_CODE = OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE;
+pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
+pub const OBJECT_ATTRIB_SLOT_IS_CATEGORY = OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY;
+pub const OBJECT_ATTRIB_VALUE_READONLY = OBJECT_ATTRIB_FLAG.VALUE_READONLY;
+pub const OBJECT_ATTRIB_ACCESS_PUBLIC = OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC;
+pub const OBJECT_ATTRIB_ACCESS_PRIVATE = OBJECT_ATTRIB_FLAG.ACCESS_PRIVATE;
+pub const OBJECT_ATTRIB_ACCESS_PROTECTED = OBJECT_ATTRIB_FLAG.ACCESS_PROTECTED;
+pub const OBJECT_ATTRIB_ACCESS_FINAL = OBJECT_ATTRIB_FLAG.ACCESS_FINAL;
+pub const OBJECT_ATTRIB_STORAGE_GLOBAL = OBJECT_ATTRIB_FLAG.STORAGE_GLOBAL;
+pub const OBJECT_ATTRIB_STORAGE_STATIC = OBJECT_ATTRIB_FLAG.STORAGE_STATIC;
+pub const OBJECT_ATTRIB_STORAGE_FIELD = OBJECT_ATTRIB_FLAG.STORAGE_FIELD;
+pub const OBJECT_ATTRIB_STORAGE_VIRTUAL = OBJECT_ATTRIB_FLAG.STORAGE_VIRTUAL;
+pub const OBJECT_ATTRIB_TYPE_IS_CONSTANT = OBJECT_ATTRIB_FLAG.TYPE_IS_CONSTANT;
+pub const OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED = OBJECT_ATTRIB_FLAG.TYPE_IS_SYNCHRONIZED;
+pub const OBJECT_ATTRIB_TYPE_IS_VOLATILE = OBJECT_ATTRIB_FLAG.TYPE_IS_VOLATILE;
+pub const OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS = OBJECT_ATTRIB_FLAG.HAS_EXTENDED_ATTRIBS;
+pub const OBJECT_ATTRIB_IS_CLASS = OBJECT_ATTRIB_FLAG.IS_CLASS;
+pub const OBJECT_ATTRIB_IS_FUNCTION = OBJECT_ATTRIB_FLAG.IS_FUNCTION;
+pub const OBJECT_ATTRIB_IS_VARIABLE = OBJECT_ATTRIB_FLAG.IS_VARIABLE;
+pub const OBJECT_ATTRIB_IS_PROPERTY = OBJECT_ATTRIB_FLAG.IS_PROPERTY;
+pub const OBJECT_ATTRIB_IS_MACRO = OBJECT_ATTRIB_FLAG.IS_MACRO;
+pub const OBJECT_ATTRIB_IS_TYPE = OBJECT_ATTRIB_FLAG.IS_TYPE;
+pub const OBJECT_ATTRIB_IS_INHERITED = OBJECT_ATTRIB_FLAG.IS_INHERITED;
+pub const OBJECT_ATTRIB_IS_INTERFACE = OBJECT_ATTRIB_FLAG.IS_INTERFACE;
+
+pub const PROP_INFO_FLAGS = enum(i32) {
+    NAME = 1,
+    TYPE = 2,
+    VALUE = 4,
+    FULLNAME = 32,
+    ATTRIBUTES = 8,
+    DEBUGPROP = 16,
+    AUTOEXPAND = 134217728,
+};
+pub const PROP_INFO_NAME = PROP_INFO_FLAGS.NAME;
+pub const PROP_INFO_TYPE = PROP_INFO_FLAGS.TYPE;
+pub const PROP_INFO_VALUE = PROP_INFO_FLAGS.VALUE;
+pub const PROP_INFO_FULLNAME = PROP_INFO_FLAGS.FULLNAME;
+pub const PROP_INFO_ATTRIBUTES = PROP_INFO_FLAGS.ATTRIBUTES;
+pub const PROP_INFO_DEBUGPROP = PROP_INFO_FLAGS.DEBUGPROP;
+pub const PROP_INFO_AUTOEXPAND = PROP_INFO_FLAGS.AUTOEXPAND;
+
+pub const DebugPropertyInfo = extern struct {
+    m_dwValidFields: u32,
+    m_bstrName: ?BSTR,
+    m_bstrType: ?BSTR,
+    m_bstrValue: ?BSTR,
+    m_bstrFullName: ?BSTR,
+    m_dwAttrib: u32,
+    m_pDebugProp: ?*IDebugProperty,
+};
+
+pub const EX_PROP_INFO_FLAGS = enum(i32) {
+    ID = 256,
+    NTYPE = 512,
+    NVALUE = 1024,
+    LOCKBYTES = 2048,
+    DEBUGEXTPROP = 4096,
+};
+pub const EX_PROP_INFO_ID = EX_PROP_INFO_FLAGS.ID;
+pub const EX_PROP_INFO_NTYPE = EX_PROP_INFO_FLAGS.NTYPE;
+pub const EX_PROP_INFO_NVALUE = EX_PROP_INFO_FLAGS.NVALUE;
+pub const EX_PROP_INFO_LOCKBYTES = EX_PROP_INFO_FLAGS.LOCKBYTES;
+pub const EX_PROP_INFO_DEBUGEXTPROP = EX_PROP_INFO_FLAGS.DEBUGEXTPROP;
+
+pub const ExtendedDebugPropertyInfo = extern struct {
+    dwValidFields: u32,
+    pszName: ?PWSTR,
+    pszType: ?PWSTR,
+    pszValue: ?PWSTR,
+    pszFullName: ?PWSTR,
+    dwAttrib: u32,
+    pDebugProp: ?*IDebugProperty,
+    nDISPID: u32,
+    nType: u32,
+    varValue: VARIANT,
+    plbValue: ?*ILockBytes,
+    pDebugExtProp: ?*IDebugExtendedProperty,
+};
+
+const IID_IDebugProperty_Value = @import("../../zig.zig").Guid.initString("51973c50-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugProperty = &IID_IDebugProperty_Value;
+pub const IDebugProperty = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPropertyInfo: fn(
+            self: *const IDebugProperty,
+            dwFieldSpec: u32,
+            nRadix: u32,
+            pPropertyInfo: ?*DebugPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExtendedInfo: fn(
+            self: *const IDebugProperty,
+            cInfos: u32,
+            rgguidExtendedInfo: [*]Guid,
+            rgvar: [*]VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueAsString: fn(
+            self: *const IDebugProperty,
+            pszValue: ?[*:0]const u16,
+            nRadix: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumMembers: fn(
+            self: *const IDebugProperty,
+            dwFieldSpec: u32,
+            nRadix: u32,
+            refiid: ?*const Guid,
+            ppepi: ?*?*IEnumDebugPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParent: fn(
+            self: *const IDebugProperty,
+            ppDebugProp: ?*?*IDebugProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugProperty_GetPropertyInfo(self: *const T, dwFieldSpec: u32, nRadix: u32, pPropertyInfo: ?*DebugPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const IDebugProperty, self), dwFieldSpec, nRadix, pPropertyInfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugProperty_GetExtendedInfo(self: *const T, cInfos: u32, rgguidExtendedInfo: [*]Guid, rgvar: [*]VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetExtendedInfo(@ptrCast(*const IDebugProperty, self), cInfos, rgguidExtendedInfo, rgvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugProperty_SetValueAsString(self: *const T, pszValue: ?[*:0]const u16, nRadix: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugProperty.VTable, self.vtable).SetValueAsString(@ptrCast(*const IDebugProperty, self), pszValue, nRadix);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugProperty_EnumMembers(self: *const T, dwFieldSpec: u32, nRadix: u32, refiid: ?*const Guid, ppepi: ?*?*IEnumDebugPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugProperty.VTable, self.vtable).EnumMembers(@ptrCast(*const IDebugProperty, self), dwFieldSpec, nRadix, refiid, ppepi);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugProperty_GetParent(self: *const T, ppDebugProp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetParent(@ptrCast(*const IDebugProperty, self), ppDebugProp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugPropertyInfo_Value = @import("../../zig.zig").Guid.initString("51973c51-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugPropertyInfo = &IID_IEnumDebugPropertyInfo_Value;
+pub const IEnumDebugPropertyInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugPropertyInfo,
+            celt: u32,
+            pi: [*]DebugPropertyInfo,
+            pcEltsfetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugPropertyInfo,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugPropertyInfo,
+            ppepi: ?*?*IEnumDebugPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: fn(
+            self: *const IEnumDebugPropertyInfo,
+            pcelt: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugPropertyInfo_Next(self: *const T, celt: u32, pi: [*]DebugPropertyInfo, pcEltsfetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugPropertyInfo, self), celt, pi, pcEltsfetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugPropertyInfo_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugPropertyInfo, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugPropertyInfo_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugPropertyInfo, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugPropertyInfo_Clone(self: *const T, ppepi: ?*?*IEnumDebugPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugPropertyInfo, self), ppepi);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugPropertyInfo_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).GetCount(@ptrCast(*const IEnumDebugPropertyInfo, self), pcelt);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugExtendedProperty_Value = @import("../../zig.zig").Guid.initString("51973c52-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugExtendedProperty = &IID_IDebugExtendedProperty_Value;
+pub const IDebugExtendedProperty = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugProperty.VTable,
+        GetExtendedPropertyInfo: fn(
+            self: *const IDebugExtendedProperty,
+            dwFieldSpec: u32,
+            nRadix: u32,
+            pExtendedPropertyInfo: ?*ExtendedDebugPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumExtendedMembers: fn(
+            self: *const IDebugExtendedProperty,
+            dwFieldSpec: u32,
+            nRadix: u32,
+            ppeepi: ?*?*IEnumDebugExtendedPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugProperty.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExtendedProperty_GetExtendedPropertyInfo(self: *const T, dwFieldSpec: u32, nRadix: u32, pExtendedPropertyInfo: ?*ExtendedDebugPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExtendedProperty.VTable, self.vtable).GetExtendedPropertyInfo(@ptrCast(*const IDebugExtendedProperty, self), dwFieldSpec, nRadix, pExtendedPropertyInfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExtendedProperty_EnumExtendedMembers(self: *const T, dwFieldSpec: u32, nRadix: u32, ppeepi: ?*?*IEnumDebugExtendedPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExtendedProperty.VTable, self.vtable).EnumExtendedMembers(@ptrCast(*const IDebugExtendedProperty, self), dwFieldSpec, nRadix, ppeepi);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugExtendedPropertyInfo_Value = @import("../../zig.zig").Guid.initString("51973c53-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugExtendedPropertyInfo = &IID_IEnumDebugExtendedPropertyInfo_Value;
+pub const IEnumDebugExtendedPropertyInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugExtendedPropertyInfo,
+            celt: u32,
+            rgExtendedPropertyInfo: [*]ExtendedDebugPropertyInfo,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugExtendedPropertyInfo,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugExtendedPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugExtendedPropertyInfo,
+            pedpe: ?*?*IEnumDebugExtendedPropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: fn(
+            self: *const IEnumDebugExtendedPropertyInfo,
+            pcelt: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExtendedPropertyInfo_Next(self: *const T, celt: u32, rgExtendedPropertyInfo: [*]ExtendedDebugPropertyInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), celt, rgExtendedPropertyInfo, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExtendedPropertyInfo_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExtendedPropertyInfo_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExtendedPropertyInfo_Clone(self: *const T, pedpe: ?*?*IEnumDebugExtendedPropertyInfo) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), pedpe);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExtendedPropertyInfo_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).GetCount(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), pcelt);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IPerPropertyBrowsing2_Value = @import("../../zig.zig").Guid.initString("51973c54-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IPerPropertyBrowsing2 = &IID_IPerPropertyBrowsing2_Value;
+pub const IPerPropertyBrowsing2 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDisplayString: fn(
+            self: *const IPerPropertyBrowsing2,
+            dispid: i32,
+            pBstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapPropertyToPage: fn(
+            self: *const IPerPropertyBrowsing2,
+            dispid: i32,
+            pClsidPropPage: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPredefinedStrings: fn(
+            self: *const IPerPropertyBrowsing2,
+            dispid: i32,
+            pCaStrings: ?*CALPOLESTR,
+            pCaCookies: ?*CADWORD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPredefinedValue: fn(
+            self: *const IPerPropertyBrowsing2,
+            dispid: i32,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPerPropertyBrowsing2_GetDisplayString(self: *const T, dispid: i32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).GetDisplayString(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pBstr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPerPropertyBrowsing2_MapPropertyToPage(self: *const T, dispid: i32, pClsidPropPage: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).MapPropertyToPage(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pClsidPropPage);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPerPropertyBrowsing2_GetPredefinedStrings(self: *const T, dispid: i32, pCaStrings: ?*CALPOLESTR, pCaCookies: ?*CADWORD) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).GetPredefinedStrings(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pCaStrings, pCaCookies);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPerPropertyBrowsing2_SetPredefinedValue(self: *const T, dispid: i32, dwCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).SetPredefinedValue(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, dwCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugPropertyEnumType_All_Value = @import("../../zig.zig").Guid.initString("51973c55-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugPropertyEnumType_All = &IID_IDebugPropertyEnumType_All_Value;
+pub const IDebugPropertyEnumType_All = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: fn(
+            self: *const IDebugPropertyEnumType_All,
+            __MIDL__IDebugPropertyEnumType_All0000: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugPropertyEnumType_All_GetName(self: *const T, __MIDL__IDebugPropertyEnumType_All0000: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugPropertyEnumType_All.VTable, self.vtable).GetName(@ptrCast(*const IDebugPropertyEnumType_All, self), __MIDL__IDebugPropertyEnumType_All0000);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugPropertyEnumType_Locals_Value = @import("../../zig.zig").Guid.initString("51973c56-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugPropertyEnumType_Locals = &IID_IDebugPropertyEnumType_Locals_Value;
+pub const IDebugPropertyEnumType_Locals = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugPropertyEnumType_All.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugPropertyEnumType_Arguments_Value = @import("../../zig.zig").Guid.initString("51973c57-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugPropertyEnumType_Arguments = &IID_IDebugPropertyEnumType_Arguments_Value;
+pub const IDebugPropertyEnumType_Arguments = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugPropertyEnumType_All.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugPropertyEnumType_LocalsPlusArgs_Value = @import("../../zig.zig").Guid.initString("51973c58-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugPropertyEnumType_LocalsPlusArgs = &IID_IDebugPropertyEnumType_LocalsPlusArgs_Value;
+pub const IDebugPropertyEnumType_LocalsPlusArgs = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugPropertyEnumType_All.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugPropertyEnumType_Registers_Value = @import("../../zig.zig").Guid.initString("51973c59-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugPropertyEnumType_Registers = &IID_IDebugPropertyEnumType_Registers_Value;
+pub const IDebugPropertyEnumType_Registers = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugPropertyEnumType_All.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const BREAKPOINT_STATE = enum(i32) {
+    DELETED = 0,
+    DISABLED = 1,
+    ENABLED = 2,
+};
+pub const BREAKPOINT_DELETED = BREAKPOINT_STATE.DELETED;
+pub const BREAKPOINT_DISABLED = BREAKPOINT_STATE.DISABLED;
+pub const BREAKPOINT_ENABLED = BREAKPOINT_STATE.ENABLED;
+
+pub const BREAKREASON = enum(i32) {
+    STEP = 0,
+    BREAKPOINT = 1,
+    DEBUGGER_BLOCK = 2,
+    HOST_INITIATED = 3,
+    LANGUAGE_INITIATED = 4,
+    DEBUGGER_HALT = 5,
+    ERROR = 6,
+    JIT = 7,
+    MUTATION_BREAKPOINT = 8,
+};
+pub const BREAKREASON_STEP = BREAKREASON.STEP;
+pub const BREAKREASON_BREAKPOINT = BREAKREASON.BREAKPOINT;
+pub const BREAKREASON_DEBUGGER_BLOCK = BREAKREASON.DEBUGGER_BLOCK;
+pub const BREAKREASON_HOST_INITIATED = BREAKREASON.HOST_INITIATED;
+pub const BREAKREASON_LANGUAGE_INITIATED = BREAKREASON.LANGUAGE_INITIATED;
+pub const BREAKREASON_DEBUGGER_HALT = BREAKREASON.DEBUGGER_HALT;
+pub const BREAKREASON_ERROR = BREAKREASON.ERROR;
+pub const BREAKREASON_JIT = BREAKREASON.JIT;
+pub const BREAKREASON_MUTATION_BREAKPOINT = BREAKREASON.MUTATION_BREAKPOINT;
+
+pub const BREAKRESUME_ACTION = enum(i32) {
+    ABORT = 0,
+    CONTINUE = 1,
+    STEP_INTO = 2,
+    STEP_OVER = 3,
+    STEP_OUT = 4,
+    IGNORE = 5,
+    STEP_DOCUMENT = 6,
+};
+pub const BREAKRESUMEACTION_ABORT = BREAKRESUME_ACTION.ABORT;
+pub const BREAKRESUMEACTION_CONTINUE = BREAKRESUME_ACTION.CONTINUE;
+pub const BREAKRESUMEACTION_STEP_INTO = BREAKRESUME_ACTION.STEP_INTO;
+pub const BREAKRESUMEACTION_STEP_OVER = BREAKRESUME_ACTION.STEP_OVER;
+pub const BREAKRESUMEACTION_STEP_OUT = BREAKRESUME_ACTION.STEP_OUT;
+pub const BREAKRESUMEACTION_IGNORE = BREAKRESUME_ACTION.IGNORE;
+pub const BREAKRESUMEACTION_STEP_DOCUMENT = BREAKRESUME_ACTION.STEP_DOCUMENT;
+
+pub const ERRORRESUMEACTION = enum(i32) {
+    ReexecuteErrorStatement = 0,
+    AbortCallAndReturnErrorToCaller = 1,
+    SkipErrorStatement = 2,
+};
+pub const ERRORRESUMEACTION_ReexecuteErrorStatement = ERRORRESUMEACTION.ReexecuteErrorStatement;
+pub const ERRORRESUMEACTION_AbortCallAndReturnErrorToCaller = ERRORRESUMEACTION.AbortCallAndReturnErrorToCaller;
+pub const ERRORRESUMEACTION_SkipErrorStatement = ERRORRESUMEACTION.SkipErrorStatement;
+
+pub const DOCUMENTNAMETYPE = enum(i32) {
+    APPNODE = 0,
+    TITLE = 1,
+    FILE_TAIL = 2,
+    URL = 3,
+    UNIQUE_TITLE = 4,
+    SOURCE_MAP_URL = 5,
+};
+pub const DOCUMENTNAMETYPE_APPNODE = DOCUMENTNAMETYPE.APPNODE;
+pub const DOCUMENTNAMETYPE_TITLE = DOCUMENTNAMETYPE.TITLE;
+pub const DOCUMENTNAMETYPE_FILE_TAIL = DOCUMENTNAMETYPE.FILE_TAIL;
+pub const DOCUMENTNAMETYPE_URL = DOCUMENTNAMETYPE.URL;
+pub const DOCUMENTNAMETYPE_UNIQUE_TITLE = DOCUMENTNAMETYPE.UNIQUE_TITLE;
+pub const DOCUMENTNAMETYPE_SOURCE_MAP_URL = DOCUMENTNAMETYPE.SOURCE_MAP_URL;
+
+const IID_IActiveScriptDebug32_Value = @import("../../zig.zig").Guid.initString("51973c10-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IActiveScriptDebug32 = &IID_IActiveScriptDebug32_Value;
+pub const IActiveScriptDebug32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetScriptTextAttributes: fn(
+            self: *const IActiveScriptDebug32,
+            pstrCode: [*:0]const u16,
+            uNumCodeChars: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            pattr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptletTextAttributes: fn(
+            self: *const IActiveScriptDebug32,
+            pstrCode: [*:0]const u16,
+            uNumCodeChars: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            pattr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCodeContextsOfPosition: fn(
+            self: *const IActiveScriptDebug32,
+            dwSourceContext: u32,
+            uCharacterOffset: u32,
+            uNumChars: u32,
+            ppescc: ?*?*IEnumDebugCodeContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug32_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IActiveScriptDebug32, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug32_GetScriptletTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).GetScriptletTextAttributes(@ptrCast(*const IActiveScriptDebug32, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug32_EnumCodeContextsOfPosition(self: *const T, dwSourceContext: u32, uCharacterOffset: u32, uNumChars: u32, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).EnumCodeContextsOfPosition(@ptrCast(*const IActiveScriptDebug32, self), dwSourceContext, uCharacterOffset, uNumChars, ppescc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptDebug64_Value = @import("../../zig.zig").Guid.initString("bc437e23-f5b8-47f4-bb79-7d1ce5483b86");
+pub const IID_IActiveScriptDebug64 = &IID_IActiveScriptDebug64_Value;
+pub const IActiveScriptDebug64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetScriptTextAttributes: fn(
+            self: *const IActiveScriptDebug64,
+            pstrCode: [*:0]const u16,
+            uNumCodeChars: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            pattr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptletTextAttributes: fn(
+            self: *const IActiveScriptDebug64,
+            pstrCode: [*:0]const u16,
+            uNumCodeChars: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            pattr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCodeContextsOfPosition: fn(
+            self: *const IActiveScriptDebug64,
+            dwSourceContext: u64,
+            uCharacterOffset: u32,
+            uNumChars: u32,
+            ppescc: ?*?*IEnumDebugCodeContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug64_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IActiveScriptDebug64, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug64_GetScriptletTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).GetScriptletTextAttributes(@ptrCast(*const IActiveScriptDebug64, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptDebug64_EnumCodeContextsOfPosition(self: *const T, dwSourceContext: u64, uCharacterOffset: u32, uNumChars: u32, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).EnumCodeContextsOfPosition(@ptrCast(*const IActiveScriptDebug64, self), dwSourceContext, uCharacterOffset, uNumChars, ppescc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptSiteDebug32_Value = @import("../../zig.zig").Guid.initString("51973c11-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IActiveScriptSiteDebug32 = &IID_IActiveScriptSiteDebug32_Value;
+pub const IActiveScriptSiteDebug32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDocumentContextFromPosition: fn(
+            self: *const IActiveScriptSiteDebug32,
+            dwSourceContext: u32,
+            uCharacterOffset: u32,
+            uNumChars: u32,
+            ppsc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetApplication: fn(
+            self: *const IActiveScriptSiteDebug32,
+            ppda: ?*?*IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRootApplicationNode: fn(
+            self: *const IActiveScriptSiteDebug32,
+            ppdanRoot: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnScriptErrorDebug: fn(
+            self: *const IActiveScriptSiteDebug32,
+            pErrorDebug: ?*IActiveScriptErrorDebug,
+            pfEnterDebugger: ?*BOOL,
+            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug32_GetDocumentContextFromPosition(self: *const T, dwSourceContext: u32, uCharacterOffset: u32, uNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetDocumentContextFromPosition(@ptrCast(*const IActiveScriptSiteDebug32, self), dwSourceContext, uCharacterOffset, uNumChars, ppsc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug32_GetApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetApplication(@ptrCast(*const IActiveScriptSiteDebug32, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug32_GetRootApplicationNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetRootApplicationNode(@ptrCast(*const IActiveScriptSiteDebug32, self), ppdanRoot);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug32_OnScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfEnterDebugger: ?*BOOL, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).OnScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebug32, self), pErrorDebug, pfEnterDebugger, pfCallOnScriptErrorWhenContinuing);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptSiteDebug64_Value = @import("../../zig.zig").Guid.initString("d6b96b0a-7463-402c-92ac-89984226942f");
+pub const IID_IActiveScriptSiteDebug64 = &IID_IActiveScriptSiteDebug64_Value;
+pub const IActiveScriptSiteDebug64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDocumentContextFromPosition: fn(
+            self: *const IActiveScriptSiteDebug64,
+            dwSourceContext: u64,
+            uCharacterOffset: u32,
+            uNumChars: u32,
+            ppsc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetApplication: fn(
+            self: *const IActiveScriptSiteDebug64,
+            ppda: ?*?*IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRootApplicationNode: fn(
+            self: *const IActiveScriptSiteDebug64,
+            ppdanRoot: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnScriptErrorDebug: fn(
+            self: *const IActiveScriptSiteDebug64,
+            pErrorDebug: ?*IActiveScriptErrorDebug,
+            pfEnterDebugger: ?*BOOL,
+            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug64_GetDocumentContextFromPosition(self: *const T, dwSourceContext: u64, uCharacterOffset: u32, uNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetDocumentContextFromPosition(@ptrCast(*const IActiveScriptSiteDebug64, self), dwSourceContext, uCharacterOffset, uNumChars, ppsc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug64_GetApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetApplication(@ptrCast(*const IActiveScriptSiteDebug64, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug64_GetRootApplicationNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetRootApplicationNode(@ptrCast(*const IActiveScriptSiteDebug64, self), ppdanRoot);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebug64_OnScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfEnterDebugger: ?*BOOL, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).OnScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebug64, self), pErrorDebug, pfEnterDebugger, pfCallOnScriptErrorWhenContinuing);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptSiteDebugEx_Value = @import("../../zig.zig").Guid.initString("bb722ccb-6ad2-41c6-b780-af9c03ee69f5");
+pub const IID_IActiveScriptSiteDebugEx = &IID_IActiveScriptSiteDebugEx_Value;
+pub const IActiveScriptSiteDebugEx = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnCanNotJITScriptErrorDebug: fn(
+            self: *const IActiveScriptSiteDebugEx,
+            pErrorDebug: ?*IActiveScriptErrorDebug,
+            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptSiteDebugEx_OnCanNotJITScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptSiteDebugEx.VTable, self.vtable).OnCanNotJITScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebugEx, self), pErrorDebug, pfCallOnScriptErrorWhenContinuing);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptErrorDebug_Value = @import("../../zig.zig").Guid.initString("51973c12-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IActiveScriptErrorDebug = &IID_IActiveScriptErrorDebug_Value;
+pub const IActiveScriptErrorDebug = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptError.VTable,
+        GetDocumentContext: fn(
+            self: *const IActiveScriptErrorDebug,
+            ppssc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStackFrame: fn(
+            self: *const IActiveScriptErrorDebug,
+            ppdsf: ?*?*IDebugStackFrame,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptError.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptErrorDebug_GetDocumentContext(self: *const T, ppssc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptErrorDebug.VTable, self.vtable).GetDocumentContext(@ptrCast(*const IActiveScriptErrorDebug, self), ppssc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptErrorDebug_GetStackFrame(self: *const T, ppdsf: ?*?*IDebugStackFrame) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptErrorDebug.VTable, self.vtable).GetStackFrame(@ptrCast(*const IActiveScriptErrorDebug, self), ppdsf);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugCodeContext_Value = @import("../../zig.zig").Guid.initString("51973c13-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugCodeContext = &IID_IDebugCodeContext_Value;
+pub const IDebugCodeContext = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDocumentContext: fn(
+            self: *const IDebugCodeContext,
+            ppsc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakPoint: fn(
+            self: *const IDebugCodeContext,
+            bps: BREAKPOINT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugCodeContext_GetDocumentContext(self: *const T, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugCodeContext.VTable, self.vtable).GetDocumentContext(@ptrCast(*const IDebugCodeContext, self), ppsc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugCodeContext_SetBreakPoint(self: *const T, bps: BREAKPOINT_STATE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugCodeContext.VTable, self.vtable).SetBreakPoint(@ptrCast(*const IDebugCodeContext, self), bps);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugExpression_Value = @import("../../zig.zig").Guid.initString("51973c14-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugExpression = &IID_IDebugExpression_Value;
+pub const IDebugExpression = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Start: fn(
+            self: *const IDebugExpression,
+            pdecb: ?*IDebugExpressionCallBack,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Abort: fn(
+            self: *const IDebugExpression,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryIsComplete: fn(
+            self: *const IDebugExpression,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResultAsString: fn(
+            self: *const IDebugExpression,
+            phrResult: ?*HRESULT,
+            pbstrResult: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResultAsDebugProperty: fn(
+            self: *const IDebugExpression,
+            phrResult: ?*HRESULT,
+            ppdp: ?*?*IDebugProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpression_Start(self: *const T, pdecb: ?*IDebugExpressionCallBack) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpression.VTable, self.vtable).Start(@ptrCast(*const IDebugExpression, self), pdecb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpression_Abort(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpression.VTable, self.vtable).Abort(@ptrCast(*const IDebugExpression, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpression_QueryIsComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpression.VTable, self.vtable).QueryIsComplete(@ptrCast(*const IDebugExpression, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpression_GetResultAsString(self: *const T, phrResult: ?*HRESULT, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpression.VTable, self.vtable).GetResultAsString(@ptrCast(*const IDebugExpression, self), phrResult, pbstrResult);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpression_GetResultAsDebugProperty(self: *const T, phrResult: ?*HRESULT, ppdp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpression.VTable, self.vtable).GetResultAsDebugProperty(@ptrCast(*const IDebugExpression, self), phrResult, ppdp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugExpressionContext_Value = @import("../../zig.zig").Guid.initString("51973c15-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugExpressionContext = &IID_IDebugExpressionContext_Value;
+pub const IDebugExpressionContext = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParseLanguageText: fn(
+            self: *const IDebugExpressionContext,
+            pstrCode: ?[*:0]const u16,
+            nRadix: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            ppe: ?*?*IDebugExpression,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguageInfo: fn(
+            self: *const IDebugExpressionContext,
+            pbstrLanguageName: ?*?BSTR,
+            pLanguageID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpressionContext_ParseLanguageText(self: *const T, pstrCode: ?[*:0]const u16, nRadix: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, ppe: ?*?*IDebugExpression) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpressionContext.VTable, self.vtable).ParseLanguageText(@ptrCast(*const IDebugExpressionContext, self), pstrCode, nRadix, pstrDelimiter, dwFlags, ppe);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpressionContext_GetLanguageInfo(self: *const T, pbstrLanguageName: ?*?BSTR, pLanguageID: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpressionContext.VTable, self.vtable).GetLanguageInfo(@ptrCast(*const IDebugExpressionContext, self), pbstrLanguageName, pLanguageID);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugExpressionCallBack_Value = @import("../../zig.zig").Guid.initString("51973c16-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugExpressionCallBack = &IID_IDebugExpressionCallBack_Value;
+pub const IDebugExpressionCallBack = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onComplete: fn(
+            self: *const IDebugExpressionCallBack,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugExpressionCallBack_onComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugExpressionCallBack.VTable, self.vtable).onComplete(@ptrCast(*const IDebugExpressionCallBack, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugStackFrame_Value = @import("../../zig.zig").Guid.initString("51973c17-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugStackFrame = &IID_IDebugStackFrame_Value;
+pub const IDebugStackFrame = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCodeContext: fn(
+            self: *const IDebugStackFrame,
+            ppcc: ?*?*IDebugCodeContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptionString: fn(
+            self: *const IDebugStackFrame,
+            fLong: BOOL,
+            pbstrDescription: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguageString: fn(
+            self: *const IDebugStackFrame,
+            fLong: BOOL,
+            pbstrLanguage: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetThread: fn(
+            self: *const IDebugStackFrame,
+            ppat: ?*?*IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugProperty: fn(
+            self: *const IDebugStackFrame,
+            ppDebugProp: ?*?*IDebugProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrame_GetCodeContext(self: *const T, ppcc: ?*?*IDebugCodeContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetCodeContext(@ptrCast(*const IDebugStackFrame, self), ppcc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrame_GetDescriptionString(self: *const T, fLong: BOOL, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetDescriptionString(@ptrCast(*const IDebugStackFrame, self), fLong, pbstrDescription);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrame_GetLanguageString(self: *const T, fLong: BOOL, pbstrLanguage: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetLanguageString(@ptrCast(*const IDebugStackFrame, self), fLong, pbstrLanguage);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrame_GetThread(self: *const T, ppat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetThread(@ptrCast(*const IDebugStackFrame, self), ppat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrame_GetDebugProperty(self: *const T, ppDebugProp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetDebugProperty(@ptrCast(*const IDebugStackFrame, self), ppDebugProp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugStackFrameSniffer_Value = @import("../../zig.zig").Guid.initString("51973c18-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugStackFrameSniffer = &IID_IDebugStackFrameSniffer_Value;
+pub const IDebugStackFrameSniffer = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumStackFrames: fn(
+            self: *const IDebugStackFrameSniffer,
+            ppedsf: ?*?*IEnumDebugStackFrames,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrameSniffer_EnumStackFrames(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrameSniffer.VTable, self.vtable).EnumStackFrames(@ptrCast(*const IDebugStackFrameSniffer, self), ppedsf);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugStackFrameSnifferEx32_Value = @import("../../zig.zig").Guid.initString("51973c19-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugStackFrameSnifferEx32 = &IID_IDebugStackFrameSnifferEx32_Value;
+pub const IDebugStackFrameSnifferEx32 = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugStackFrameSniffer.VTable,
+        EnumStackFramesEx32: fn(
+            self: *const IDebugStackFrameSnifferEx32,
+            dwSpMin: u32,
+            ppedsf: ?*?*IEnumDebugStackFrames,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugStackFrameSniffer.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrameSnifferEx32_EnumStackFramesEx32(self: *const T, dwSpMin: u32, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrameSnifferEx32.VTable, self.vtable).EnumStackFramesEx32(@ptrCast(*const IDebugStackFrameSnifferEx32, self), dwSpMin, ppedsf);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugStackFrameSnifferEx64_Value = @import("../../zig.zig").Guid.initString("8cd12af4-49c1-4d52-8d8a-c146f47581aa");
+pub const IID_IDebugStackFrameSnifferEx64 = &IID_IDebugStackFrameSnifferEx64_Value;
+pub const IDebugStackFrameSnifferEx64 = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugStackFrameSniffer.VTable,
+        EnumStackFramesEx64: fn(
+            self: *const IDebugStackFrameSnifferEx64,
+            dwSpMin: u64,
+            ppedsf: ?*?*IEnumDebugStackFrames64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugStackFrameSniffer.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugStackFrameSnifferEx64_EnumStackFramesEx64(self: *const T, dwSpMin: u64, ppedsf: ?*?*IEnumDebugStackFrames64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugStackFrameSnifferEx64.VTable, self.vtable).EnumStackFramesEx64(@ptrCast(*const IDebugStackFrameSnifferEx64, self), dwSpMin, ppedsf);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugSyncOperation_Value = @import("../../zig.zig").Guid.initString("51973c1a-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugSyncOperation = &IID_IDebugSyncOperation_Value;
+pub const IDebugSyncOperation = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetTargetThread: fn(
+            self: *const IDebugSyncOperation,
+            ppatTarget: ?*?*IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Execute: fn(
+            self: *const IDebugSyncOperation,
+            ppunkResult: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InProgressAbort: fn(
+            self: *const IDebugSyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugSyncOperation_GetTargetThread(self: *const T, ppatTarget: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).GetTargetThread(@ptrCast(*const IDebugSyncOperation, self), ppatTarget);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugSyncOperation_Execute(self: *const T, ppunkResult: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).Execute(@ptrCast(*const IDebugSyncOperation, self), ppunkResult);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugSyncOperation_InProgressAbort(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).InProgressAbort(@ptrCast(*const IDebugSyncOperation, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugAsyncOperation_Value = @import("../../zig.zig").Guid.initString("51973c1b-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugAsyncOperation = &IID_IDebugAsyncOperation_Value;
+pub const IDebugAsyncOperation = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSyncDebugOperation: fn(
+            self: *const IDebugAsyncOperation,
+            ppsdo: ?*?*IDebugSyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Start: fn(
+            self: *const IDebugAsyncOperation,
+            padocb: ?*IDebugAsyncOperationCallBack,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Abort: fn(
+            self: *const IDebugAsyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryIsComplete: fn(
+            self: *const IDebugAsyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResult: fn(
+            self: *const IDebugAsyncOperation,
+            phrResult: ?*HRESULT,
+            ppunkResult: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperation_GetSyncDebugOperation(self: *const T, ppsdo: ?*?*IDebugSyncOperation) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).GetSyncDebugOperation(@ptrCast(*const IDebugAsyncOperation, self), ppsdo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperation_Start(self: *const T, padocb: ?*IDebugAsyncOperationCallBack) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).Start(@ptrCast(*const IDebugAsyncOperation, self), padocb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperation_Abort(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).Abort(@ptrCast(*const IDebugAsyncOperation, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperation_QueryIsComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).QueryIsComplete(@ptrCast(*const IDebugAsyncOperation, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperation_GetResult(self: *const T, phrResult: ?*HRESULT, ppunkResult: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).GetResult(@ptrCast(*const IDebugAsyncOperation, self), phrResult, ppunkResult);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugAsyncOperationCallBack_Value = @import("../../zig.zig").Guid.initString("51973c1c-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugAsyncOperationCallBack = &IID_IDebugAsyncOperationCallBack_Value;
+pub const IDebugAsyncOperationCallBack = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onComplete: fn(
+            self: *const IDebugAsyncOperationCallBack,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugAsyncOperationCallBack_onComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugAsyncOperationCallBack.VTable, self.vtable).onComplete(@ptrCast(*const IDebugAsyncOperationCallBack, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugCodeContexts_Value = @import("../../zig.zig").Guid.initString("51973c1d-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugCodeContexts = &IID_IEnumDebugCodeContexts_Value;
+pub const IEnumDebugCodeContexts = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugCodeContexts,
+            celt: u32,
+            pscc: ?*?*IDebugCodeContext,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugCodeContexts,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugCodeContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugCodeContexts,
+            ppescc: ?*?*IEnumDebugCodeContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugCodeContexts_Next(self: *const T, celt: u32, pscc: ?*?*IDebugCodeContext, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugCodeContexts, self), celt, pscc, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugCodeContexts_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugCodeContexts, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugCodeContexts_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugCodeContexts, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugCodeContexts_Clone(self: *const T, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugCodeContexts, self), ppescc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DebugStackFrameDescriptor = extern struct {
+    pdsf: ?*IDebugStackFrame,
+    dwMin: u32,
+    dwLim: u32,
+    fFinal: BOOL,
+    punkFinal: ?*IUnknown,
+};
+
+pub const DebugStackFrameDescriptor64 = extern struct {
+    pdsf: ?*IDebugStackFrame,
+    dwMin: u64,
+    dwLim: u64,
+    fFinal: BOOL,
+    punkFinal: ?*IUnknown,
+};
+
+const IID_IEnumDebugStackFrames_Value = @import("../../zig.zig").Guid.initString("51973c1e-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugStackFrames = &IID_IEnumDebugStackFrames_Value;
+pub const IEnumDebugStackFrames = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugStackFrames,
+            celt: u32,
+            prgdsfd: ?*DebugStackFrameDescriptor,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugStackFrames,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugStackFrames,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugStackFrames,
+            ppedsf: ?*?*IEnumDebugStackFrames,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugStackFrames_Next(self: *const T, celt: u32, prgdsfd: ?*DebugStackFrameDescriptor, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugStackFrames, self), celt, prgdsfd, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugStackFrames_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugStackFrames, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugStackFrames_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugStackFrames, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugStackFrames_Clone(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugStackFrames, self), ppedsf);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugStackFrames64_Value = @import("../../zig.zig").Guid.initString("0dc38853-c1b0-4176-a984-b298361027af");
+pub const IID_IEnumDebugStackFrames64 = &IID_IEnumDebugStackFrames64_Value;
+pub const IEnumDebugStackFrames64 = extern struct {
+    pub const VTable = extern struct {
+        base: IEnumDebugStackFrames.VTable,
+        Next64: fn(
+            self: *const IEnumDebugStackFrames64,
+            celt: u32,
+            prgdsfd: ?*DebugStackFrameDescriptor64,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IEnumDebugStackFrames.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugStackFrames64_Next64(self: *const T, celt: u32, prgdsfd: ?*DebugStackFrameDescriptor64, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugStackFrames64.VTable, self.vtable).Next64(@ptrCast(*const IEnumDebugStackFrames64, self), celt, prgdsfd, pceltFetched);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentInfo_Value = @import("../../zig.zig").Guid.initString("51973c1f-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentInfo = &IID_IDebugDocumentInfo_Value;
+pub const IDebugDocumentInfo = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetName: fn(
+            self: *const IDebugDocumentInfo,
+            dnt: DOCUMENTNAMETYPE,
+            pbstrName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentClassId: fn(
+            self: *const IDebugDocumentInfo,
+            pclsidDocument: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentInfo_GetName(self: *const T, dnt: DOCUMENTNAMETYPE, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentInfo.VTable, self.vtable).GetName(@ptrCast(*const IDebugDocumentInfo, self), dnt, pbstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentInfo_GetDocumentClassId(self: *const T, pclsidDocument: ?*Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentInfo.VTable, self.vtable).GetDocumentClassId(@ptrCast(*const IDebugDocumentInfo, self), pclsidDocument);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentProvider_Value = @import("../../zig.zig").Guid.initString("51973c20-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentProvider = &IID_IDebugDocumentProvider_Value;
+pub const IDebugDocumentProvider = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugDocumentInfo.VTable,
+        GetDocument: fn(
+            self: *const IDebugDocumentProvider,
+            ppssd: ?*?*IDebugDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugDocumentInfo.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentProvider_GetDocument(self: *const T, ppssd: ?*?*IDebugDocument) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentProvider.VTable, self.vtable).GetDocument(@ptrCast(*const IDebugDocumentProvider, self), ppssd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocument_Value = @import("../../zig.zig").Guid.initString("51973c21-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocument = &IID_IDebugDocument_Value;
+pub const IDebugDocument = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugDocumentInfo.VTable,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugDocumentInfo.MethodMixin(T);
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentText_Value = @import("../../zig.zig").Guid.initString("51973c22-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentText = &IID_IDebugDocumentText_Value;
+pub const IDebugDocumentText = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugDocument.VTable,
+        GetDocumentAttributes: fn(
+            self: *const IDebugDocumentText,
+            ptextdocattr: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSize: fn(
+            self: *const IDebugDocumentText,
+            pcNumLines: ?*u32,
+            pcNumChars: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPositionOfLine: fn(
+            self: *const IDebugDocumentText,
+            cLineNumber: u32,
+            pcCharacterPosition: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineOfPosition: fn(
+            self: *const IDebugDocumentText,
+            cCharacterPosition: u32,
+            pcLineNumber: ?*u32,
+            pcCharacterOffsetInLine: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetText: fn(
+            self: *const IDebugDocumentText,
+            cCharacterPosition: u32,
+            pcharText: [*:0]u16,
+            pstaTextAttr: ?[*:0]u16,
+            pcNumChars: ?*u32,
+            cMaxChars: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPositionOfContext: fn(
+            self: *const IDebugDocumentText,
+            psc: ?*IDebugDocumentContext,
+            pcCharacterPosition: ?*u32,
+            cNumChars: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContextOfPosition: fn(
+            self: *const IDebugDocumentText,
+            cCharacterPosition: u32,
+            cNumChars: u32,
+            ppsc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugDocument.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetDocumentAttributes(self: *const T, ptextdocattr: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetDocumentAttributes(@ptrCast(*const IDebugDocumentText, self), ptextdocattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetSize(self: *const T, pcNumLines: ?*u32, pcNumChars: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetSize(@ptrCast(*const IDebugDocumentText, self), pcNumLines, pcNumChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetPositionOfLine(self: *const T, cLineNumber: u32, pcCharacterPosition: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetPositionOfLine(@ptrCast(*const IDebugDocumentText, self), cLineNumber, pcCharacterPosition);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetLineOfPosition(self: *const T, cCharacterPosition: u32, pcLineNumber: ?*u32, pcCharacterOffsetInLine: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetLineOfPosition(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, pcLineNumber, pcCharacterOffsetInLine);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetText(self: *const T, cCharacterPosition: u32, pcharText: [*:0]u16, pstaTextAttr: ?[*:0]u16, pcNumChars: ?*u32, cMaxChars: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetText(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, pcharText, pstaTextAttr, pcNumChars, cMaxChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetPositionOfContext(self: *const T, psc: ?*IDebugDocumentContext, pcCharacterPosition: ?*u32, cNumChars: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetPositionOfContext(@ptrCast(*const IDebugDocumentText, self), psc, pcCharacterPosition, cNumChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentText_GetContextOfPosition(self: *const T, cCharacterPosition: u32, cNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetContextOfPosition(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, cNumChars, ppsc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentTextEvents_Value = @import("../../zig.zig").Guid.initString("51973c23-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentTextEvents = &IID_IDebugDocumentTextEvents_Value;
+pub const IDebugDocumentTextEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onDestroy: fn(
+            self: *const IDebugDocumentTextEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onInsertText: fn(
+            self: *const IDebugDocumentTextEvents,
+            cCharacterPosition: u32,
+            cNumToInsert: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onRemoveText: fn(
+            self: *const IDebugDocumentTextEvents,
+            cCharacterPosition: u32,
+            cNumToRemove: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onReplaceText: fn(
+            self: *const IDebugDocumentTextEvents,
+            cCharacterPosition: u32,
+            cNumToReplace: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onUpdateTextAttributes: fn(
+            self: *const IDebugDocumentTextEvents,
+            cCharacterPosition: u32,
+            cNumToUpdate: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onUpdateDocumentAttributes: fn(
+            self: *const IDebugDocumentTextEvents,
+            textdocattr: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onDestroy(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onDestroy(@ptrCast(*const IDebugDocumentTextEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onInsertText(self: *const T, cCharacterPosition: u32, cNumToInsert: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onInsertText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToInsert);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onRemoveText(self: *const T, cCharacterPosition: u32, cNumToRemove: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onRemoveText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToRemove);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onReplaceText(self: *const T, cCharacterPosition: u32, cNumToReplace: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onReplaceText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToReplace);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onUpdateTextAttributes(self: *const T, cCharacterPosition: u32, cNumToUpdate: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onUpdateTextAttributes(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToUpdate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextEvents_onUpdateDocumentAttributes(self: *const T, textdocattr: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onUpdateDocumentAttributes(@ptrCast(*const IDebugDocumentTextEvents, self), textdocattr);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentTextAuthor_Value = @import("../../zig.zig").Guid.initString("51973c24-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentTextAuthor = &IID_IDebugDocumentTextAuthor_Value;
+pub const IDebugDocumentTextAuthor = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugDocumentText.VTable,
+        InsertText: fn(
+            self: *const IDebugDocumentTextAuthor,
+            cCharacterPosition: u32,
+            cNumToInsert: u32,
+            pcharText: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveText: fn(
+            self: *const IDebugDocumentTextAuthor,
+            cCharacterPosition: u32,
+            cNumToRemove: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReplaceText: fn(
+            self: *const IDebugDocumentTextAuthor,
+            cCharacterPosition: u32,
+            cNumToReplace: u32,
+            pcharText: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugDocumentText.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextAuthor_InsertText(self: *const T, cCharacterPosition: u32, cNumToInsert: u32, pcharText: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).InsertText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToInsert, pcharText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextAuthor_RemoveText(self: *const T, cCharacterPosition: u32, cNumToRemove: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).RemoveText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToRemove);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextAuthor_ReplaceText(self: *const T, cCharacterPosition: u32, cNumToReplace: u32, pcharText: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).ReplaceText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToReplace, pcharText);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentTextExternalAuthor_Value = @import("../../zig.zig").Guid.initString("51973c25-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentTextExternalAuthor = &IID_IDebugDocumentTextExternalAuthor_Value;
+pub const IDebugDocumentTextExternalAuthor = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetPathName: fn(
+            self: *const IDebugDocumentTextExternalAuthor,
+            pbstrLongName: ?*?BSTR,
+            pfIsOriginalFile: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileName: fn(
+            self: *const IDebugDocumentTextExternalAuthor,
+            pbstrShortName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyChanged: fn(
+            self: *const IDebugDocumentTextExternalAuthor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextExternalAuthor_GetPathName(self: *const T, pbstrLongName: ?*?BSTR, pfIsOriginalFile: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).GetPathName(@ptrCast(*const IDebugDocumentTextExternalAuthor, self), pbstrLongName, pfIsOriginalFile);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextExternalAuthor_GetFileName(self: *const T, pbstrShortName: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).GetFileName(@ptrCast(*const IDebugDocumentTextExternalAuthor, self), pbstrShortName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentTextExternalAuthor_NotifyChanged(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).NotifyChanged(@ptrCast(*const IDebugDocumentTextExternalAuthor, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentHelper32_Value = @import("../../zig.zig").Guid.initString("51973c26-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentHelper32 = &IID_IDebugDocumentHelper32_Value;
+pub const IDebugDocumentHelper32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Init: fn(
+            self: *const IDebugDocumentHelper32,
+            pda: ?*IDebugApplication32,
+            pszShortName: ?[*:0]const u16,
+            pszLongName: ?[*:0]const u16,
+            docAttr: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Attach: fn(
+            self: *const IDebugDocumentHelper32,
+            pddhParent: ?*IDebugDocumentHelper32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Detach: fn(
+            self: *const IDebugDocumentHelper32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddUnicodeText: fn(
+            self: *const IDebugDocumentHelper32,
+            pszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDBCSText: fn(
+            self: *const IDebugDocumentHelper32,
+            pszText: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDebugDocumentHost: fn(
+            self: *const IDebugDocumentHelper32,
+            pddh: ?*IDebugDocumentHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDeferredText: fn(
+            self: *const IDebugDocumentHelper32,
+            cChars: u32,
+            dwTextStartCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DefineScriptBlock: fn(
+            self: *const IDebugDocumentHelper32,
+            ulCharOffset: u32,
+            cChars: u32,
+            pas: ?*IActiveScript,
+            fScriptlet: BOOL,
+            pdwSourceContext: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultTextAttr: fn(
+            self: *const IDebugDocumentHelper32,
+            staTextAttr: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTextAttributes: fn(
+            self: *const IDebugDocumentHelper32,
+            ulCharOffset: u32,
+            cChars: u32,
+            pstaTextAttr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLongName: fn(
+            self: *const IDebugDocumentHelper32,
+            pszLongName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetShortName: fn(
+            self: *const IDebugDocumentHelper32,
+            pszShortName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentAttr: fn(
+            self: *const IDebugDocumentHelper32,
+            pszAttributes: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugApplicationNode: fn(
+            self: *const IDebugDocumentHelper32,
+            ppdan: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptBlockInfo: fn(
+            self: *const IDebugDocumentHelper32,
+            dwSourceContext: u32,
+            ppasd: ?*?*IActiveScript,
+            piCharPos: ?*u32,
+            pcChars: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDebugDocumentContext: fn(
+            self: *const IDebugDocumentHelper32,
+            iCharPos: u32,
+            cChars: u32,
+            ppddc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BringDocumentToTop: fn(
+            self: *const IDebugDocumentHelper32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BringDocumentContextToTop: fn(
+            self: *const IDebugDocumentHelper32,
+            pddc: ?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_Init(self: *const T, pda: ?*IDebugApplication32, pszShortName: ?[*:0]const u16, pszLongName: ?[*:0]const u16, docAttr: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Init(@ptrCast(*const IDebugDocumentHelper32, self), pda, pszShortName, pszLongName, docAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_Attach(self: *const T, pddhParent: ?*IDebugDocumentHelper32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Attach(@ptrCast(*const IDebugDocumentHelper32, self), pddhParent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_Detach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Detach(@ptrCast(*const IDebugDocumentHelper32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_AddUnicodeText(self: *const T, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddUnicodeText(@ptrCast(*const IDebugDocumentHelper32, self), pszText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_AddDBCSText(self: *const T, pszText: ?[*:0]const u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddDBCSText(@ptrCast(*const IDebugDocumentHelper32, self), pszText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetDebugDocumentHost(self: *const T, pddh: ?*IDebugDocumentHost) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDebugDocumentHost(@ptrCast(*const IDebugDocumentHelper32, self), pddh);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_AddDeferredText(self: *const T, cChars: u32, dwTextStartCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddDeferredText(@ptrCast(*const IDebugDocumentHelper32, self), cChars, dwTextStartCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_DefineScriptBlock(self: *const T, ulCharOffset: u32, cChars: u32, pas: ?*IActiveScript, fScriptlet: BOOL, pdwSourceContext: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).DefineScriptBlock(@ptrCast(*const IDebugDocumentHelper32, self), ulCharOffset, cChars, pas, fScriptlet, pdwSourceContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetDefaultTextAttr(self: *const T, staTextAttr: u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDefaultTextAttr(@ptrCast(*const IDebugDocumentHelper32, self), staTextAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetTextAttributes(self: *const T, ulCharOffset: u32, cChars: u32, pstaTextAttr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetTextAttributes(@ptrCast(*const IDebugDocumentHelper32, self), ulCharOffset, cChars, pstaTextAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetLongName(self: *const T, pszLongName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetLongName(@ptrCast(*const IDebugDocumentHelper32, self), pszLongName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetShortName(self: *const T, pszShortName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetShortName(@ptrCast(*const IDebugDocumentHelper32, self), pszShortName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_SetDocumentAttr(self: *const T, pszAttributes: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDocumentAttr(@ptrCast(*const IDebugDocumentHelper32, self), pszAttributes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_GetDebugApplicationNode(self: *const T, ppdan: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).GetDebugApplicationNode(@ptrCast(*const IDebugDocumentHelper32, self), ppdan);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_GetScriptBlockInfo(self: *const T, dwSourceContext: u32, ppasd: ?*?*IActiveScript, piCharPos: ?*u32, pcChars: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).GetScriptBlockInfo(@ptrCast(*const IDebugDocumentHelper32, self), dwSourceContext, ppasd, piCharPos, pcChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_CreateDebugDocumentContext(self: *const T, iCharPos: u32, cChars: u32, ppddc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).CreateDebugDocumentContext(@ptrCast(*const IDebugDocumentHelper32, self), iCharPos, cChars, ppddc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_BringDocumentToTop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IDebugDocumentHelper32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper32_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IDebugDocumentHelper32, self), pddc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentHelper64_Value = @import("../../zig.zig").Guid.initString("c4c7363c-20fd-47f9-bd82-4855e0150871");
+pub const IID_IDebugDocumentHelper64 = &IID_IDebugDocumentHelper64_Value;
+pub const IDebugDocumentHelper64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Init: fn(
+            self: *const IDebugDocumentHelper64,
+            pda: ?*IDebugApplication64,
+            pszShortName: ?[*:0]const u16,
+            pszLongName: ?[*:0]const u16,
+            docAttr: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Attach: fn(
+            self: *const IDebugDocumentHelper64,
+            pddhParent: ?*IDebugDocumentHelper64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Detach: fn(
+            self: *const IDebugDocumentHelper64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddUnicodeText: fn(
+            self: *const IDebugDocumentHelper64,
+            pszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDBCSText: fn(
+            self: *const IDebugDocumentHelper64,
+            pszText: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDebugDocumentHost: fn(
+            self: *const IDebugDocumentHelper64,
+            pddh: ?*IDebugDocumentHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDeferredText: fn(
+            self: *const IDebugDocumentHelper64,
+            cChars: u32,
+            dwTextStartCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DefineScriptBlock: fn(
+            self: *const IDebugDocumentHelper64,
+            ulCharOffset: u32,
+            cChars: u32,
+            pas: ?*IActiveScript,
+            fScriptlet: BOOL,
+            pdwSourceContext: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultTextAttr: fn(
+            self: *const IDebugDocumentHelper64,
+            staTextAttr: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTextAttributes: fn(
+            self: *const IDebugDocumentHelper64,
+            ulCharOffset: u32,
+            cChars: u32,
+            pstaTextAttr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLongName: fn(
+            self: *const IDebugDocumentHelper64,
+            pszLongName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetShortName: fn(
+            self: *const IDebugDocumentHelper64,
+            pszShortName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentAttr: fn(
+            self: *const IDebugDocumentHelper64,
+            pszAttributes: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugApplicationNode: fn(
+            self: *const IDebugDocumentHelper64,
+            ppdan: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptBlockInfo: fn(
+            self: *const IDebugDocumentHelper64,
+            dwSourceContext: u64,
+            ppasd: ?*?*IActiveScript,
+            piCharPos: ?*u32,
+            pcChars: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDebugDocumentContext: fn(
+            self: *const IDebugDocumentHelper64,
+            iCharPos: u32,
+            cChars: u32,
+            ppddc: ?*?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BringDocumentToTop: fn(
+            self: *const IDebugDocumentHelper64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BringDocumentContextToTop: fn(
+            self: *const IDebugDocumentHelper64,
+            pddc: ?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_Init(self: *const T, pda: ?*IDebugApplication64, pszShortName: ?[*:0]const u16, pszLongName: ?[*:0]const u16, docAttr: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Init(@ptrCast(*const IDebugDocumentHelper64, self), pda, pszShortName, pszLongName, docAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_Attach(self: *const T, pddhParent: ?*IDebugDocumentHelper64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Attach(@ptrCast(*const IDebugDocumentHelper64, self), pddhParent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_Detach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Detach(@ptrCast(*const IDebugDocumentHelper64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_AddUnicodeText(self: *const T, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddUnicodeText(@ptrCast(*const IDebugDocumentHelper64, self), pszText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_AddDBCSText(self: *const T, pszText: ?[*:0]const u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddDBCSText(@ptrCast(*const IDebugDocumentHelper64, self), pszText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetDebugDocumentHost(self: *const T, pddh: ?*IDebugDocumentHost) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDebugDocumentHost(@ptrCast(*const IDebugDocumentHelper64, self), pddh);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_AddDeferredText(self: *const T, cChars: u32, dwTextStartCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddDeferredText(@ptrCast(*const IDebugDocumentHelper64, self), cChars, dwTextStartCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_DefineScriptBlock(self: *const T, ulCharOffset: u32, cChars: u32, pas: ?*IActiveScript, fScriptlet: BOOL, pdwSourceContext: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).DefineScriptBlock(@ptrCast(*const IDebugDocumentHelper64, self), ulCharOffset, cChars, pas, fScriptlet, pdwSourceContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetDefaultTextAttr(self: *const T, staTextAttr: u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDefaultTextAttr(@ptrCast(*const IDebugDocumentHelper64, self), staTextAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetTextAttributes(self: *const T, ulCharOffset: u32, cChars: u32, pstaTextAttr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetTextAttributes(@ptrCast(*const IDebugDocumentHelper64, self), ulCharOffset, cChars, pstaTextAttr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetLongName(self: *const T, pszLongName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetLongName(@ptrCast(*const IDebugDocumentHelper64, self), pszLongName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetShortName(self: *const T, pszShortName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetShortName(@ptrCast(*const IDebugDocumentHelper64, self), pszShortName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_SetDocumentAttr(self: *const T, pszAttributes: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDocumentAttr(@ptrCast(*const IDebugDocumentHelper64, self), pszAttributes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_GetDebugApplicationNode(self: *const T, ppdan: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).GetDebugApplicationNode(@ptrCast(*const IDebugDocumentHelper64, self), ppdan);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_GetScriptBlockInfo(self: *const T, dwSourceContext: u64, ppasd: ?*?*IActiveScript, piCharPos: ?*u32, pcChars: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).GetScriptBlockInfo(@ptrCast(*const IDebugDocumentHelper64, self), dwSourceContext, ppasd, piCharPos, pcChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_CreateDebugDocumentContext(self: *const T, iCharPos: u32, cChars: u32, ppddc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).CreateDebugDocumentContext(@ptrCast(*const IDebugDocumentHelper64, self), iCharPos, cChars, ppddc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_BringDocumentToTop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IDebugDocumentHelper64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHelper64_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IDebugDocumentHelper64, self), pddc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentHost_Value = @import("../../zig.zig").Guid.initString("51973c27-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentHost = &IID_IDebugDocumentHost_Value;
+pub const IDebugDocumentHost = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDeferredText: fn(
+            self: *const IDebugDocumentHost,
+            dwTextStartCookie: u32,
+            pcharText: [*:0]u16,
+            pstaTextAttr: [*:0]u16,
+            pcNumChars: ?*u32,
+            cMaxChars: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptTextAttributes: fn(
+            self: *const IDebugDocumentHost,
+            pstrCode: [*:0]const u16,
+            uNumCodeChars: u32,
+            pstrDelimiter: ?[*:0]const u16,
+            dwFlags: u32,
+            pattr: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreateDocumentContext: fn(
+            self: *const IDebugDocumentHost,
+            ppunkOuter: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPathName: fn(
+            self: *const IDebugDocumentHost,
+            pbstrLongName: ?*?BSTR,
+            pfIsOriginalFile: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileName: fn(
+            self: *const IDebugDocumentHost,
+            pbstrShortName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyChanged: fn(
+            self: *const IDebugDocumentHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_GetDeferredText(self: *const T, dwTextStartCookie: u32, pcharText: [*:0]u16, pstaTextAttr: [*:0]u16, pcNumChars: ?*u32, cMaxChars: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetDeferredText(@ptrCast(*const IDebugDocumentHost, self), dwTextStartCookie, pcharText, pstaTextAttr, pcNumChars, cMaxChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IDebugDocumentHost, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_OnCreateDocumentContext(self: *const T, ppunkOuter: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).OnCreateDocumentContext(@ptrCast(*const IDebugDocumentHost, self), ppunkOuter);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_GetPathName(self: *const T, pbstrLongName: ?*?BSTR, pfIsOriginalFile: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetPathName(@ptrCast(*const IDebugDocumentHost, self), pbstrLongName, pfIsOriginalFile);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_GetFileName(self: *const T, pbstrShortName: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetFileName(@ptrCast(*const IDebugDocumentHost, self), pbstrShortName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentHost_NotifyChanged(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).NotifyChanged(@ptrCast(*const IDebugDocumentHost, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugDocumentContext_Value = @import("../../zig.zig").Guid.initString("51973c28-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugDocumentContext = &IID_IDebugDocumentContext_Value;
+pub const IDebugDocumentContext = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetDocument: fn(
+            self: *const IDebugDocumentContext,
+            ppsd: ?*?*IDebugDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCodeContexts: fn(
+            self: *const IDebugDocumentContext,
+            ppescc: ?*?*IEnumDebugCodeContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentContext_GetDocument(self: *const T, ppsd: ?*?*IDebugDocument) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentContext.VTable, self.vtable).GetDocument(@ptrCast(*const IDebugDocumentContext, self), ppsd);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugDocumentContext_EnumCodeContexts(self: *const T, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugDocumentContext.VTable, self.vtable).EnumCodeContexts(@ptrCast(*const IDebugDocumentContext, self), ppescc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugSessionProvider_Value = @import("../../zig.zig").Guid.initString("51973c29-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugSessionProvider = &IID_IDebugSessionProvider_Value;
+pub const IDebugSessionProvider = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartDebugSession: fn(
+            self: *const IDebugSessionProvider,
+            pda: ?*IRemoteDebugApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugSessionProvider_StartDebugSession(self: *const T, pda: ?*IRemoteDebugApplication) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugSessionProvider.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugSessionProvider, self), pda);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IApplicationDebugger_Value = @import("../../zig.zig").Guid.initString("51973c2a-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IApplicationDebugger = &IID_IApplicationDebugger_Value;
+pub const IApplicationDebugger = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryAlive: fn(
+            self: *const IApplicationDebugger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateInstanceAtDebugger: fn(
+            self: *const IApplicationDebugger,
+            rclsid: ?*const Guid,
+            pUnkOuter: ?*IUnknown,
+            dwClsContext: u32,
+            riid: ?*const Guid,
+            ppvObject: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onDebugOutput: fn(
+            self: *const IApplicationDebugger,
+            pstr: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onHandleBreakPoint: fn(
+            self: *const IApplicationDebugger,
+            prpt: ?*IRemoteDebugApplicationThread,
+            br: BREAKREASON,
+            pError: ?*IActiveScriptErrorDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onClose: fn(
+            self: *const IApplicationDebugger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onDebuggerEvent: fn(
+            self: *const IApplicationDebugger,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_QueryAlive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).QueryAlive(@ptrCast(*const IApplicationDebugger, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_CreateInstanceAtDebugger(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).CreateInstanceAtDebugger(@ptrCast(*const IApplicationDebugger, self), rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_onDebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onDebugOutput(@ptrCast(*const IApplicationDebugger, self), pstr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_onHandleBreakPoint(self: *const T, prpt: ?*IRemoteDebugApplicationThread, br: BREAKREASON, pError: ?*IActiveScriptErrorDebug) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onHandleBreakPoint(@ptrCast(*const IApplicationDebugger, self), prpt, br, pError);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_onClose(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onClose(@ptrCast(*const IApplicationDebugger, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebugger_onDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onDebuggerEvent(@ptrCast(*const IApplicationDebugger, self), riid, punk);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IApplicationDebuggerUI_Value = @import("../../zig.zig").Guid.initString("51973c2b-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IApplicationDebuggerUI = &IID_IApplicationDebuggerUI_Value;
+pub const IApplicationDebuggerUI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BringDocumentToTop: fn(
+            self: *const IApplicationDebuggerUI,
+            pddt: ?*IDebugDocumentText,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BringDocumentContextToTop: fn(
+            self: *const IApplicationDebuggerUI,
+            pddc: ?*IDebugDocumentContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebuggerUI_BringDocumentToTop(self: *const T, pddt: ?*IDebugDocumentText) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebuggerUI.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IApplicationDebuggerUI, self), pddt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IApplicationDebuggerUI_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IApplicationDebuggerUI.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IApplicationDebuggerUI, self), pddc);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IMachineDebugManager_Value = @import("../../zig.zig").Guid.initString("51973c2c-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IMachineDebugManager = &IID_IMachineDebugManager_Value;
+pub const IMachineDebugManager = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddApplication: fn(
+            self: *const IMachineDebugManager,
+            pda: ?*IRemoteDebugApplication,
+            pdwAppCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveApplication: fn(
+            self: *const IMachineDebugManager,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumApplications: fn(
+            self: *const IMachineDebugManager,
+            ppeda: ?*?*IEnumRemoteDebugApplications,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManager_AddApplication(self: *const T, pda: ?*IRemoteDebugApplication, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).AddApplication(@ptrCast(*const IMachineDebugManager, self), pda, pdwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManager_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).RemoveApplication(@ptrCast(*const IMachineDebugManager, self), dwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManager_EnumApplications(self: *const T, ppeda: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).EnumApplications(@ptrCast(*const IMachineDebugManager, self), ppeda);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IMachineDebugManagerCookie_Value = @import("../../zig.zig").Guid.initString("51973c2d-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IMachineDebugManagerCookie = &IID_IMachineDebugManagerCookie_Value;
+pub const IMachineDebugManagerCookie = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddApplication: fn(
+            self: *const IMachineDebugManagerCookie,
+            pda: ?*IRemoteDebugApplication,
+            dwDebugAppCookie: u32,
+            pdwAppCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveApplication: fn(
+            self: *const IMachineDebugManagerCookie,
+            dwDebugAppCookie: u32,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumApplications: fn(
+            self: *const IMachineDebugManagerCookie,
+            ppeda: ?*?*IEnumRemoteDebugApplications,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManagerCookie_AddApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwDebugAppCookie: u32, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).AddApplication(@ptrCast(*const IMachineDebugManagerCookie, self), pda, dwDebugAppCookie, pdwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManagerCookie_RemoveApplication(self: *const T, dwDebugAppCookie: u32, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).RemoveApplication(@ptrCast(*const IMachineDebugManagerCookie, self), dwDebugAppCookie, dwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManagerCookie_EnumApplications(self: *const T, ppeda: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).EnumApplications(@ptrCast(*const IMachineDebugManagerCookie, self), ppeda);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IMachineDebugManagerEvents_Value = @import("../../zig.zig").Guid.initString("51973c2e-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IMachineDebugManagerEvents = &IID_IMachineDebugManagerEvents_Value;
+pub const IMachineDebugManagerEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onAddApplication: fn(
+            self: *const IMachineDebugManagerEvents,
+            pda: ?*IRemoteDebugApplication,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onRemoveApplication: fn(
+            self: *const IMachineDebugManagerEvents,
+            pda: ?*IRemoteDebugApplication,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManagerEvents_onAddApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManagerEvents.VTable, self.vtable).onAddApplication(@ptrCast(*const IMachineDebugManagerEvents, self), pda, dwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMachineDebugManagerEvents_onRemoveApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMachineDebugManagerEvents.VTable, self.vtable).onRemoveApplication(@ptrCast(*const IMachineDebugManagerEvents, self), pda, dwAppCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IProcessDebugManager32_Value = @import("../../zig.zig").Guid.initString("51973c2f-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IProcessDebugManager32 = &IID_IProcessDebugManager32_Value;
+pub const IProcessDebugManager32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateApplication: fn(
+            self: *const IProcessDebugManager32,
+            ppda: ?*?*IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultApplication: fn(
+            self: *const IProcessDebugManager32,
+            ppda: ?*?*IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddApplication: fn(
+            self: *const IProcessDebugManager32,
+            pda: ?*IDebugApplication32,
+            pdwAppCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveApplication: fn(
+            self: *const IProcessDebugManager32,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDebugDocumentHelper: fn(
+            self: *const IProcessDebugManager32,
+            punkOuter: ?*IUnknown,
+            pddh: ?*?*IDebugDocumentHelper32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager32_CreateApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).CreateApplication(@ptrCast(*const IProcessDebugManager32, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager32_GetDefaultApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).GetDefaultApplication(@ptrCast(*const IProcessDebugManager32, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager32_AddApplication(self: *const T, pda: ?*IDebugApplication32, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).AddApplication(@ptrCast(*const IProcessDebugManager32, self), pda, pdwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager32_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).RemoveApplication(@ptrCast(*const IProcessDebugManager32, self), dwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager32_CreateDebugDocumentHelper(self: *const T, punkOuter: ?*IUnknown, pddh: ?*?*IDebugDocumentHelper32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).CreateDebugDocumentHelper(@ptrCast(*const IProcessDebugManager32, self), punkOuter, pddh);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IProcessDebugManager64_Value = @import("../../zig.zig").Guid.initString("56b9fc1c-63a9-4cc1-ac21-087d69a17fab");
+pub const IID_IProcessDebugManager64 = &IID_IProcessDebugManager64_Value;
+pub const IProcessDebugManager64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateApplication: fn(
+            self: *const IProcessDebugManager64,
+            ppda: ?*?*IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultApplication: fn(
+            self: *const IProcessDebugManager64,
+            ppda: ?*?*IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddApplication: fn(
+            self: *const IProcessDebugManager64,
+            pda: ?*IDebugApplication64,
+            pdwAppCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveApplication: fn(
+            self: *const IProcessDebugManager64,
+            dwAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDebugDocumentHelper: fn(
+            self: *const IProcessDebugManager64,
+            punkOuter: ?*IUnknown,
+            pddh: ?*?*IDebugDocumentHelper64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager64_CreateApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).CreateApplication(@ptrCast(*const IProcessDebugManager64, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager64_GetDefaultApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).GetDefaultApplication(@ptrCast(*const IProcessDebugManager64, self), ppda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager64_AddApplication(self: *const T, pda: ?*IDebugApplication64, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).AddApplication(@ptrCast(*const IProcessDebugManager64, self), pda, pdwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager64_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).RemoveApplication(@ptrCast(*const IProcessDebugManager64, self), dwAppCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProcessDebugManager64_CreateDebugDocumentHelper(self: *const T, punkOuter: ?*IUnknown, pddh: ?*?*IDebugDocumentHelper64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).CreateDebugDocumentHelper(@ptrCast(*const IProcessDebugManager64, self), punkOuter, pddh);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IRemoteDebugApplication_Value = @import("../../zig.zig").Guid.initString("51973c30-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IRemoteDebugApplication = &IID_IRemoteDebugApplication_Value;
+pub const IRemoteDebugApplication = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ResumeFromBreakPoint: fn(
+            self: *const IRemoteDebugApplication,
+            prptFocus: ?*IRemoteDebugApplicationThread,
+            bra: BREAKRESUME_ACTION,
+            era: ERRORRESUMEACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CauseBreak: fn(
+            self: *const IRemoteDebugApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectDebugger: fn(
+            self: *const IRemoteDebugApplication,
+            pad: ?*IApplicationDebugger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisconnectDebugger: fn(
+            self: *const IRemoteDebugApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugger: fn(
+            self: *const IRemoteDebugApplication,
+            pad: ?*?*IApplicationDebugger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateInstanceAtApplication: fn(
+            self: *const IRemoteDebugApplication,
+            rclsid: ?*const Guid,
+            pUnkOuter: ?*IUnknown,
+            dwClsContext: u32,
+            riid: ?*const Guid,
+            ppvObject: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryAlive: fn(
+            self: *const IRemoteDebugApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumThreads: fn(
+            self: *const IRemoteDebugApplication,
+            pperdat: ?*?*IEnumRemoteDebugApplicationThreads,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: fn(
+            self: *const IRemoteDebugApplication,
+            pbstrName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRootNode: fn(
+            self: *const IRemoteDebugApplication,
+            ppdanRoot: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumGlobalExpressionContexts: fn(
+            self: *const IRemoteDebugApplication,
+            ppedec: ?*?*IEnumDebugExpressionContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_ResumeFromBreakPoint(self: *const T, prptFocus: ?*IRemoteDebugApplicationThread, bra: BREAKRESUME_ACTION, era: ERRORRESUMEACTION) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).ResumeFromBreakPoint(@ptrCast(*const IRemoteDebugApplication, self), prptFocus, bra, era);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_CauseBreak(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).CauseBreak(@ptrCast(*const IRemoteDebugApplication, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_ConnectDebugger(self: *const T, pad: ?*IApplicationDebugger) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).ConnectDebugger(@ptrCast(*const IRemoteDebugApplication, self), pad);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_DisconnectDebugger(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).DisconnectDebugger(@ptrCast(*const IRemoteDebugApplication, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_GetDebugger(self: *const T, pad: ?*?*IApplicationDebugger) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetDebugger(@ptrCast(*const IRemoteDebugApplication, self), pad);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_CreateInstanceAtApplication(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).CreateInstanceAtApplication(@ptrCast(*const IRemoteDebugApplication, self), rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_QueryAlive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).QueryAlive(@ptrCast(*const IRemoteDebugApplication, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_EnumThreads(self: *const T, pperdat: ?*?*IEnumRemoteDebugApplicationThreads) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).EnumThreads(@ptrCast(*const IRemoteDebugApplication, self), pperdat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_GetName(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetName(@ptrCast(*const IRemoteDebugApplication, self), pbstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_GetRootNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetRootNode(@ptrCast(*const IRemoteDebugApplication, self), ppdanRoot);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplication_EnumGlobalExpressionContexts(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).EnumGlobalExpressionContexts(@ptrCast(*const IRemoteDebugApplication, self), ppedec);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplication32_Value = @import("../../zig.zig").Guid.initString("51973c32-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugApplication32 = &IID_IDebugApplication32_Value;
+pub const IDebugApplication32 = extern struct {
+    pub const VTable = extern struct {
+        base: IRemoteDebugApplication.VTable,
+        SetName: fn(
+            self: *const IDebugApplication32,
+            pstrName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StepOutComplete: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DebugOutput: fn(
+            self: *const IDebugApplication32,
+            pstr: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartDebugSession: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleBreakPoint: fn(
+            self: *const IDebugApplication32,
+            br: BREAKREASON,
+            pbra: ?*BREAKRESUME_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBreakFlags: fn(
+            self: *const IDebugApplication32,
+            pabf: ?*u32,
+            pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentThread: fn(
+            self: *const IDebugApplication32,
+            pat: ?*?*IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAsyncDebugOperation: fn(
+            self: *const IDebugApplication32,
+            psdo: ?*IDebugSyncOperation,
+            ppado: ?*?*IDebugAsyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddStackFrameSniffer: fn(
+            self: *const IDebugApplication32,
+            pdsfs: ?*IDebugStackFrameSniffer,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveStackFrameSniffer: fn(
+            self: *const IDebugApplication32,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryCurrentThreadIsDebuggerThread: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SynchronousCallInDebuggerThread: fn(
+            self: *const IDebugApplication32,
+            pptc: ?*IDebugThreadCall32,
+            dwParam1: u32,
+            dwParam2: u32,
+            dwParam3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateApplicationNode: fn(
+            self: *const IDebugApplication32,
+            ppdanNew: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FireDebuggerEvent: fn(
+            self: *const IDebugApplication32,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleRuntimeError: fn(
+            self: *const IDebugApplication32,
+            pErrorDebug: ?*IActiveScriptErrorDebug,
+            pScriptSite: ?*IActiveScriptSite,
+            pbra: ?*BREAKRESUME_ACTION,
+            perra: ?*ERRORRESUMEACTION,
+            pfCallOnScriptError: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FCanJitDebug: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        FIsAutoJitDebugEnabled: fn(
+            self: *const IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        AddGlobalExpressionContextProvider: fn(
+            self: *const IDebugApplication32,
+            pdsfs: ?*IProvideExpressionContexts,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGlobalExpressionContextProvider: fn(
+            self: *const IDebugApplication32,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IRemoteDebugApplication.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_SetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).SetName(@ptrCast(*const IDebugApplication32, self), pstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_StepOutComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).StepOutComplete(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_DebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).DebugOutput(@ptrCast(*const IDebugApplication32, self), pstr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_StartDebugSession(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_HandleBreakPoint(self: *const T, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).HandleBreakPoint(@ptrCast(*const IDebugApplication32, self), br, pbra);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).Close(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_GetBreakFlags(self: *const T, pabf: ?*u32, pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).GetBreakFlags(@ptrCast(*const IDebugApplication32, self), pabf, pprdatSteppingThread);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_GetCurrentThread(self: *const T, pat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).GetCurrentThread(@ptrCast(*const IDebugApplication32, self), pat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_CreateAsyncDebugOperation(self: *const T, psdo: ?*IDebugSyncOperation, ppado: ?*?*IDebugAsyncOperation) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).CreateAsyncDebugOperation(@ptrCast(*const IDebugApplication32, self), psdo, ppado);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_AddStackFrameSniffer(self: *const T, pdsfs: ?*IDebugStackFrameSniffer, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).AddStackFrameSniffer(@ptrCast(*const IDebugApplication32, self), pdsfs, pdwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_RemoveStackFrameSniffer(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).RemoveStackFrameSniffer(@ptrCast(*const IDebugApplication32, self), dwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_QueryCurrentThreadIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).QueryCurrentThreadIsDebuggerThread(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_SynchronousCallInDebuggerThread(self: *const T, pptc: ?*IDebugThreadCall32, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).SynchronousCallInDebuggerThread(@ptrCast(*const IDebugApplication32, self), pptc, dwParam1, dwParam2, dwParam3);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_CreateApplicationNode(self: *const T, ppdanNew: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).CreateApplicationNode(@ptrCast(*const IDebugApplication32, self), ppdanNew);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_FireDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FireDebuggerEvent(@ptrCast(*const IDebugApplication32, self), riid, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_HandleRuntimeError(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).HandleRuntimeError(@ptrCast(*const IDebugApplication32, self), pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_FCanJitDebug(self: *const T) callconv(.Inline) BOOL {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FCanJitDebug(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_FIsAutoJitDebugEnabled(self: *const T) callconv(.Inline) BOOL {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FIsAutoJitDebugEnabled(@ptrCast(*const IDebugApplication32, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_AddGlobalExpressionContextProvider(self: *const T, pdsfs: ?*IProvideExpressionContexts, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).AddGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication32, self), pdsfs, pdwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication32_RemoveGlobalExpressionContextProvider(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).RemoveGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication32, self), dwCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplication64_Value = @import("../../zig.zig").Guid.initString("4dedc754-04c7-4f10-9e60-16a390fe6e62");
+pub const IID_IDebugApplication64 = &IID_IDebugApplication64_Value;
+pub const IDebugApplication64 = extern struct {
+    pub const VTable = extern struct {
+        base: IRemoteDebugApplication.VTable,
+        SetName: fn(
+            self: *const IDebugApplication64,
+            pstrName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StepOutComplete: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DebugOutput: fn(
+            self: *const IDebugApplication64,
+            pstr: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartDebugSession: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleBreakPoint: fn(
+            self: *const IDebugApplication64,
+            br: BREAKREASON,
+            pbra: ?*BREAKRESUME_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBreakFlags: fn(
+            self: *const IDebugApplication64,
+            pabf: ?*u32,
+            pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentThread: fn(
+            self: *const IDebugApplication64,
+            pat: ?*?*IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAsyncDebugOperation: fn(
+            self: *const IDebugApplication64,
+            psdo: ?*IDebugSyncOperation,
+            ppado: ?*?*IDebugAsyncOperation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddStackFrameSniffer: fn(
+            self: *const IDebugApplication64,
+            pdsfs: ?*IDebugStackFrameSniffer,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveStackFrameSniffer: fn(
+            self: *const IDebugApplication64,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryCurrentThreadIsDebuggerThread: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SynchronousCallInDebuggerThread: fn(
+            self: *const IDebugApplication64,
+            pptc: ?*IDebugThreadCall64,
+            dwParam1: u64,
+            dwParam2: u64,
+            dwParam3: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateApplicationNode: fn(
+            self: *const IDebugApplication64,
+            ppdanNew: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FireDebuggerEvent: fn(
+            self: *const IDebugApplication64,
+            riid: ?*const Guid,
+            punk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleRuntimeError: fn(
+            self: *const IDebugApplication64,
+            pErrorDebug: ?*IActiveScriptErrorDebug,
+            pScriptSite: ?*IActiveScriptSite,
+            pbra: ?*BREAKRESUME_ACTION,
+            perra: ?*ERRORRESUMEACTION,
+            pfCallOnScriptError: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FCanJitDebug: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        FIsAutoJitDebugEnabled: fn(
+            self: *const IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        AddGlobalExpressionContextProvider: fn(
+            self: *const IDebugApplication64,
+            pdsfs: ?*IProvideExpressionContexts,
+            pdwCookie: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGlobalExpressionContextProvider: fn(
+            self: *const IDebugApplication64,
+            dwCookie: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IRemoteDebugApplication.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_SetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).SetName(@ptrCast(*const IDebugApplication64, self), pstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_StepOutComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).StepOutComplete(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_DebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).DebugOutput(@ptrCast(*const IDebugApplication64, self), pstr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_StartDebugSession(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_HandleBreakPoint(self: *const T, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).HandleBreakPoint(@ptrCast(*const IDebugApplication64, self), br, pbra);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).Close(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_GetBreakFlags(self: *const T, pabf: ?*u32, pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).GetBreakFlags(@ptrCast(*const IDebugApplication64, self), pabf, pprdatSteppingThread);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_GetCurrentThread(self: *const T, pat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).GetCurrentThread(@ptrCast(*const IDebugApplication64, self), pat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_CreateAsyncDebugOperation(self: *const T, psdo: ?*IDebugSyncOperation, ppado: ?*?*IDebugAsyncOperation) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).CreateAsyncDebugOperation(@ptrCast(*const IDebugApplication64, self), psdo, ppado);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_AddStackFrameSniffer(self: *const T, pdsfs: ?*IDebugStackFrameSniffer, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).AddStackFrameSniffer(@ptrCast(*const IDebugApplication64, self), pdsfs, pdwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_RemoveStackFrameSniffer(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).RemoveStackFrameSniffer(@ptrCast(*const IDebugApplication64, self), dwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_QueryCurrentThreadIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).QueryCurrentThreadIsDebuggerThread(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_SynchronousCallInDebuggerThread(self: *const T, pptc: ?*IDebugThreadCall64, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).SynchronousCallInDebuggerThread(@ptrCast(*const IDebugApplication64, self), pptc, dwParam1, dwParam2, dwParam3);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_CreateApplicationNode(self: *const T, ppdanNew: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).CreateApplicationNode(@ptrCast(*const IDebugApplication64, self), ppdanNew);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_FireDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FireDebuggerEvent(@ptrCast(*const IDebugApplication64, self), riid, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_HandleRuntimeError(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).HandleRuntimeError(@ptrCast(*const IDebugApplication64, self), pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_FCanJitDebug(self: *const T) callconv(.Inline) BOOL {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FCanJitDebug(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_FIsAutoJitDebugEnabled(self: *const T) callconv(.Inline) BOOL {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FIsAutoJitDebugEnabled(@ptrCast(*const IDebugApplication64, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_AddGlobalExpressionContextProvider(self: *const T, pdsfs: ?*IProvideExpressionContexts, pdwCookie: ?*u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).AddGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication64, self), pdsfs, pdwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplication64_RemoveGlobalExpressionContextProvider(self: *const T, dwCookie: u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).RemoveGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication64, self), dwCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IRemoteDebugApplicationEvents_Value = @import("../../zig.zig").Guid.initString("51973c33-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IRemoteDebugApplicationEvents = &IID_IRemoteDebugApplicationEvents_Value;
+pub const IRemoteDebugApplicationEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnConnectDebugger: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            pad: ?*IApplicationDebugger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDisconnectDebugger: fn(
+            self: *const IRemoteDebugApplicationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnSetName: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            pstrName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDebugOutput: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            pstr: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnClose: fn(
+            self: *const IRemoteDebugApplicationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEnterBreakPoint: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            prdat: ?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnLeaveBreakPoint: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            prdat: ?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreateThread: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            prdat: ?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDestroyThread: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            prdat: ?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnBreakFlagChange: fn(
+            self: *const IRemoteDebugApplicationEvents,
+            abf: u32,
+            prdatSteppingThread: ?*IRemoteDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnConnectDebugger(self: *const T, pad: ?*IApplicationDebugger) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnConnectDebugger(@ptrCast(*const IRemoteDebugApplicationEvents, self), pad);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnDisconnectDebugger(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDisconnectDebugger(@ptrCast(*const IRemoteDebugApplicationEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnSetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnSetName(@ptrCast(*const IRemoteDebugApplicationEvents, self), pstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnDebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDebugOutput(@ptrCast(*const IRemoteDebugApplicationEvents, self), pstr);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnClose(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnClose(@ptrCast(*const IRemoteDebugApplicationEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnEnterBreakPoint(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnEnterBreakPoint(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnLeaveBreakPoint(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnLeaveBreakPoint(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnCreateThread(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnCreateThread(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnDestroyThread(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDestroyThread(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationEvents_OnBreakFlagChange(self: *const T, abf: u32, prdatSteppingThread: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnBreakFlagChange(@ptrCast(*const IRemoteDebugApplicationEvents, self), abf, prdatSteppingThread);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplicationNode_Value = @import("../../zig.zig").Guid.initString("51973c34-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugApplicationNode = &IID_IDebugApplicationNode_Value;
+pub const IDebugApplicationNode = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugDocumentProvider.VTable,
+        EnumChildren: fn(
+            self: *const IDebugApplicationNode,
+            pperddp: ?*?*IEnumDebugApplicationNodes,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParent: fn(
+            self: *const IDebugApplicationNode,
+            pprddp: ?*?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentProvider: fn(
+            self: *const IDebugApplicationNode,
+            pddp: ?*IDebugDocumentProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: fn(
+            self: *const IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Attach: fn(
+            self: *const IDebugApplicationNode,
+            pdanParent: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Detach: fn(
+            self: *const IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugDocumentProvider.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_EnumChildren(self: *const T, pperddp: ?*?*IEnumDebugApplicationNodes) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).EnumChildren(@ptrCast(*const IDebugApplicationNode, self), pperddp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_GetParent(self: *const T, pprddp: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).GetParent(@ptrCast(*const IDebugApplicationNode, self), pprddp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_SetDocumentProvider(self: *const T, pddp: ?*IDebugDocumentProvider) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).SetDocumentProvider(@ptrCast(*const IDebugApplicationNode, self), pddp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_Close(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Close(@ptrCast(*const IDebugApplicationNode, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_Attach(self: *const T, pdanParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Attach(@ptrCast(*const IDebugApplicationNode, self), pdanParent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNode_Detach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Detach(@ptrCast(*const IDebugApplicationNode, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplicationNodeEvents_Value = @import("../../zig.zig").Guid.initString("51973c35-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugApplicationNodeEvents = &IID_IDebugApplicationNodeEvents_Value;
+pub const IDebugApplicationNodeEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        onAddChild: fn(
+            self: *const IDebugApplicationNodeEvents,
+            prddpChild: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onRemoveChild: fn(
+            self: *const IDebugApplicationNodeEvents,
+            prddpChild: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onDetach: fn(
+            self: *const IDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        onAttach: fn(
+            self: *const IDebugApplicationNodeEvents,
+            prddpParent: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNodeEvents_onAddChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onAddChild(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpChild);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNodeEvents_onRemoveChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onRemoveChild(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpChild);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNodeEvents_onDetach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onDetach(@ptrCast(*const IDebugApplicationNodeEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationNodeEvents_onAttach(self: *const T, prddpParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onAttach(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpParent);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_AsyncIDebugApplicationNodeEvents_Value = @import("../../zig.zig").Guid.initString("a2e3aa3b-aa8d-4ebf-84cd-648b737b8c13");
+pub const IID_AsyncIDebugApplicationNodeEvents = &IID_AsyncIDebugApplicationNodeEvents_Value;
+pub const AsyncIDebugApplicationNodeEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Begin_onAddChild: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+            prddpChild: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_onAddChild: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_onRemoveChild: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+            prddpChild: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_onRemoveChild: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_onDetach: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_onDetach: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_onAttach: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+            prddpParent: ?*IDebugApplicationNode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_onAttach: fn(
+            self: *const AsyncIDebugApplicationNodeEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Begin_onAddChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onAddChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpChild);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Finish_onAddChild(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onAddChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Begin_onRemoveChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onRemoveChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpChild);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Finish_onRemoveChild(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onRemoveChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Begin_onDetach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onDetach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Finish_onDetach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onDetach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Begin_onAttach(self: *const T, prddpParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onAttach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpParent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn AsyncIDebugApplicationNodeEvents_Finish_onAttach(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onAttach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugThreadCall32_Value = @import("../../zig.zig").Guid.initString("51973c36-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugThreadCall32 = &IID_IDebugThreadCall32_Value;
+pub const IDebugThreadCall32 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ThreadCallHandler: fn(
+            self: *const IDebugThreadCall32,
+            dwParam1: u32,
+            dwParam2: u32,
+            dwParam3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugThreadCall32_ThreadCallHandler(self: *const T, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugThreadCall32.VTable, self.vtable).ThreadCallHandler(@ptrCast(*const IDebugThreadCall32, self), dwParam1, dwParam2, dwParam3);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugThreadCall64_Value = @import("../../zig.zig").Guid.initString("cb3fa335-e979-42fd-9fcf-a7546a0f3905");
+pub const IID_IDebugThreadCall64 = &IID_IDebugThreadCall64_Value;
+pub const IDebugThreadCall64 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ThreadCallHandler: fn(
+            self: *const IDebugThreadCall64,
+            dwParam1: u64,
+            dwParam2: u64,
+            dwParam3: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugThreadCall64_ThreadCallHandler(self: *const T, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugThreadCall64.VTable, self.vtable).ThreadCallHandler(@ptrCast(*const IDebugThreadCall64, self), dwParam1, dwParam2, dwParam3);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IRemoteDebugApplicationThread_Value = @import("../../zig.zig").Guid.initString("51973c37-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IRemoteDebugApplicationThread = &IID_IRemoteDebugApplicationThread_Value;
+pub const IRemoteDebugApplicationThread = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetSystemThreadId: fn(
+            self: *const IRemoteDebugApplicationThread,
+            dwThreadId: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetApplication: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pprda: ?*?*IRemoteDebugApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumStackFrames: fn(
+            self: *const IRemoteDebugApplicationThread,
+            ppedsf: ?*?*IEnumDebugStackFrames,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescription: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pbstrDescription: ?*?BSTR,
+            pbstrState: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNextStatement: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pStackFrame: ?*IDebugStackFrame,
+            pCodeContext: ?*IDebugCodeContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetState: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pState: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Suspend: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resume: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSuspendCount: fn(
+            self: *const IRemoteDebugApplicationThread,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_GetSystemThreadId(self: *const T, dwThreadId: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetSystemThreadId(@ptrCast(*const IRemoteDebugApplicationThread, self), dwThreadId);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_GetApplication(self: *const T, pprda: ?*?*IRemoteDebugApplication) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetApplication(@ptrCast(*const IRemoteDebugApplicationThread, self), pprda);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_EnumStackFrames(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).EnumStackFrames(@ptrCast(*const IRemoteDebugApplicationThread, self), ppedsf);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_GetDescription(self: *const T, pbstrDescription: ?*?BSTR, pbstrState: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetDescription(@ptrCast(*const IRemoteDebugApplicationThread, self), pbstrDescription, pbstrState);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_SetNextStatement(self: *const T, pStackFrame: ?*IDebugStackFrame, pCodeContext: ?*IDebugCodeContext) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).SetNextStatement(@ptrCast(*const IRemoteDebugApplicationThread, self), pStackFrame, pCodeContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_GetState(self: *const T, pState: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetState(@ptrCast(*const IRemoteDebugApplicationThread, self), pState);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_Suspend(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).Suspend(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_Resume(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).Resume(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRemoteDebugApplicationThread_GetSuspendCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetSuspendCount(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplicationThread_Value = @import("../../zig.zig").Guid.initString("51973c38-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugApplicationThread = &IID_IDebugApplicationThread_Value;
+pub const IDebugApplicationThread = extern struct {
+    pub const VTable = extern struct {
+        base: IRemoteDebugApplicationThread.VTable,
+        SynchronousCallIntoThread32: fn(
+            self: *const IDebugApplicationThread,
+            pstcb: ?*IDebugThreadCall32,
+            dwParam1: u32,
+            dwParam2: u32,
+            dwParam3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryIsCurrentThread: fn(
+            self: *const IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryIsDebuggerThread: fn(
+            self: *const IDebugApplicationThread,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDescription: fn(
+            self: *const IDebugApplicationThread,
+            pstrDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStateString: fn(
+            self: *const IDebugApplicationThread,
+            pstrState: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IRemoteDebugApplicationThread.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread_SynchronousCallIntoThread32(self: *const T, pstcb: ?*IDebugThreadCall32, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SynchronousCallIntoThread32(@ptrCast(*const IDebugApplicationThread, self), pstcb, dwParam1, dwParam2, dwParam3);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread_QueryIsCurrentThread(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).QueryIsCurrentThread(@ptrCast(*const IDebugApplicationThread, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread_QueryIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).QueryIsDebuggerThread(@ptrCast(*const IDebugApplicationThread, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread_SetDescription(self: *const T, pstrDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SetDescription(@ptrCast(*const IDebugApplicationThread, self), pstrDescription);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread_SetStateString(self: *const T, pstrState: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SetStateString(@ptrCast(*const IDebugApplicationThread, self), pstrState);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugApplicationThread64_Value = @import("../../zig.zig").Guid.initString("9dac5886-dbad-456d-9dee-5dec39ab3dda");
+pub const IID_IDebugApplicationThread64 = &IID_IDebugApplicationThread64_Value;
+pub const IDebugApplicationThread64 = extern struct {
+    pub const VTable = extern struct {
+        base: IDebugApplicationThread.VTable,
+        SynchronousCallIntoThread64: fn(
+            self: *const IDebugApplicationThread64,
+            pstcb: ?*IDebugThreadCall64,
+            dwParam1: u64,
+            dwParam2: u64,
+            dwParam3: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDebugApplicationThread.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugApplicationThread64_SynchronousCallIntoThread64(self: *const T, pstcb: ?*IDebugThreadCall64, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugApplicationThread64.VTable, self.vtable).SynchronousCallIntoThread64(@ptrCast(*const IDebugApplicationThread64, self), pstcb, dwParam1, dwParam2, dwParam3);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugCookie_Value = @import("../../zig.zig").Guid.initString("51973c39-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugCookie = &IID_IDebugCookie_Value;
+pub const IDebugCookie = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetDebugCookie: fn(
+            self: *const IDebugCookie,
+            dwDebugAppCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugCookie_SetDebugCookie(self: *const T, dwDebugAppCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugCookie.VTable, self.vtable).SetDebugCookie(@ptrCast(*const IDebugCookie, self), dwDebugAppCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugApplicationNodes_Value = @import("../../zig.zig").Guid.initString("51973c3a-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugApplicationNodes = &IID_IEnumDebugApplicationNodes_Value;
+pub const IEnumDebugApplicationNodes = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugApplicationNodes,
+            celt: u32,
+            pprddp: ?*?*IDebugApplicationNode,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugApplicationNodes,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugApplicationNodes,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugApplicationNodes,
+            pperddp: ?*?*IEnumDebugApplicationNodes,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugApplicationNodes_Next(self: *const T, celt: u32, pprddp: ?*?*IDebugApplicationNode, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugApplicationNodes, self), celt, pprddp, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugApplicationNodes_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugApplicationNodes, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugApplicationNodes_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugApplicationNodes, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugApplicationNodes_Clone(self: *const T, pperddp: ?*?*IEnumDebugApplicationNodes) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugApplicationNodes, self), pperddp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumRemoteDebugApplications_Value = @import("../../zig.zig").Guid.initString("51973c3b-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumRemoteDebugApplications = &IID_IEnumRemoteDebugApplications_Value;
+pub const IEnumRemoteDebugApplications = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumRemoteDebugApplications,
+            celt: u32,
+            ppda: ?*?*IRemoteDebugApplication,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumRemoteDebugApplications,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumRemoteDebugApplications,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumRemoteDebugApplications,
+            ppessd: ?*?*IEnumRemoteDebugApplications,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplications_Next(self: *const T, celt: u32, ppda: ?*?*IRemoteDebugApplication, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Next(@ptrCast(*const IEnumRemoteDebugApplications, self), celt, ppda, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplications_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Skip(@ptrCast(*const IEnumRemoteDebugApplications, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplications_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Reset(@ptrCast(*const IEnumRemoteDebugApplications, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplications_Clone(self: *const T, ppessd: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Clone(@ptrCast(*const IEnumRemoteDebugApplications, self), ppessd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumRemoteDebugApplicationThreads_Value = @import("../../zig.zig").Guid.initString("51973c3c-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumRemoteDebugApplicationThreads = &IID_IEnumRemoteDebugApplicationThreads_Value;
+pub const IEnumRemoteDebugApplicationThreads = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumRemoteDebugApplicationThreads,
+            celt: u32,
+            pprdat: ?*?*IRemoteDebugApplicationThread,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumRemoteDebugApplicationThreads,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumRemoteDebugApplicationThreads,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumRemoteDebugApplicationThreads,
+            pperdat: ?*?*IEnumRemoteDebugApplicationThreads,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplicationThreads_Next(self: *const T, celt: u32, pprdat: ?*?*IRemoteDebugApplicationThread, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Next(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), celt, pprdat, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplicationThreads_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Skip(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplicationThreads_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Reset(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumRemoteDebugApplicationThreads_Clone(self: *const T, pperdat: ?*?*IEnumRemoteDebugApplicationThreads) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Clone(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), pperdat);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugFormatter_Value = @import("../../zig.zig").Guid.initString("51973c05-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugFormatter = &IID_IDebugFormatter_Value;
+pub const IDebugFormatter = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStringForVariant: fn(
+            self: *const IDebugFormatter,
+            pvar: ?*VARIANT,
+            nRadix: u32,
+            pbstrValue: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVariantForString: fn(
+            self: *const IDebugFormatter,
+            pwstrValue: ?[*:0]const u16,
+            pvar: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringForVarType: fn(
+            self: *const IDebugFormatter,
+            vt: u16,
+            ptdescArrayType: ?*TYPEDESC,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugFormatter_GetStringForVariant(self: *const T, pvar: ?*VARIANT, nRadix: u32, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetStringForVariant(@ptrCast(*const IDebugFormatter, self), pvar, nRadix, pbstrValue);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugFormatter_GetVariantForString(self: *const T, pwstrValue: ?[*:0]const u16, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetVariantForString(@ptrCast(*const IDebugFormatter, self), pwstrValue, pvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugFormatter_GetStringForVarType(self: *const T, vt: u16, ptdescArrayType: ?*TYPEDESC, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetStringForVarType(@ptrCast(*const IDebugFormatter, self), vt, ptdescArrayType, pbstr);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ISimpleConnectionPoint_Value = @import("../../zig.zig").Guid.initString("51973c3e-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_ISimpleConnectionPoint = &IID_ISimpleConnectionPoint_Value;
+pub const ISimpleConnectionPoint = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetEventCount: fn(
+            self: *const ISimpleConnectionPoint,
+            pulCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DescribeEvents: fn(
+            self: *const ISimpleConnectionPoint,
+            iEvent: u32,
+            cEvents: u32,
+            prgid: [*]i32,
+            prgbstr: [*]?BSTR,
+            pcEventsFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Advise: fn(
+            self: *const ISimpleConnectionPoint,
+            pdisp: ?*IDispatch,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unadvise: fn(
+            self: *const ISimpleConnectionPoint,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ISimpleConnectionPoint_GetEventCount(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).GetEventCount(@ptrCast(*const ISimpleConnectionPoint, self), pulCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ISimpleConnectionPoint_DescribeEvents(self: *const T, iEvent: u32, cEvents: u32, prgid: [*]i32, prgbstr: [*]?BSTR, pcEventsFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).DescribeEvents(@ptrCast(*const ISimpleConnectionPoint, self), iEvent, cEvents, prgid, prgbstr, pcEventsFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ISimpleConnectionPoint_Advise(self: *const T, pdisp: ?*IDispatch, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).Advise(@ptrCast(*const ISimpleConnectionPoint, self), pdisp, pdwCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ISimpleConnectionPoint_Unadvise(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).Unadvise(@ptrCast(*const ISimpleConnectionPoint, self), dwCookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDebugHelper_Value = @import("../../zig.zig").Guid.initString("51973c3f-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IDebugHelper = &IID_IDebugHelper_Value;
+pub const IDebugHelper = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreatePropertyBrowser: fn(
+            self: *const IDebugHelper,
+            pvar: ?*VARIANT,
+            bstrName: ?[*:0]const u16,
+            pdat: ?*IDebugApplicationThread,
+            ppdob: ?*?*IDebugProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePropertyBrowserEx: fn(
+            self: *const IDebugHelper,
+            pvar: ?*VARIANT,
+            bstrName: ?[*:0]const u16,
+            pdat: ?*IDebugApplicationThread,
+            pdf: ?*IDebugFormatter,
+            ppdob: ?*?*IDebugProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSimpleConnectionPoint: fn(
+            self: *const IDebugHelper,
+            pdisp: ?*IDispatch,
+            ppscp: ?*?*ISimpleConnectionPoint,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugHelper_CreatePropertyBrowser(self: *const T, pvar: ?*VARIANT, bstrName: ?[*:0]const u16, pdat: ?*IDebugApplicationThread, ppdob: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreatePropertyBrowser(@ptrCast(*const IDebugHelper, self), pvar, bstrName, pdat, ppdob);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugHelper_CreatePropertyBrowserEx(self: *const T, pvar: ?*VARIANT, bstrName: ?[*:0]const u16, pdat: ?*IDebugApplicationThread, pdf: ?*IDebugFormatter, ppdob: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreatePropertyBrowserEx(@ptrCast(*const IDebugHelper, self), pvar, bstrName, pdat, pdf, ppdob);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDebugHelper_CreateSimpleConnectionPoint(self: *const T, pdisp: ?*IDispatch, ppscp: ?*?*ISimpleConnectionPoint) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreateSimpleConnectionPoint(@ptrCast(*const IDebugHelper, self), pdisp, ppscp);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDebugExpressionContexts_Value = @import("../../zig.zig").Guid.initString("51973c40-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IEnumDebugExpressionContexts = &IID_IEnumDebugExpressionContexts_Value;
+pub const IEnumDebugExpressionContexts = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDebugExpressionContexts,
+            celt: u32,
+            ppdec: ?*?*IDebugExpressionContext,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDebugExpressionContexts,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDebugExpressionContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDebugExpressionContexts,
+            ppedec: ?*?*IEnumDebugExpressionContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExpressionContexts_Next(self: *const T, celt: u32, ppdec: ?*?*IDebugExpressionContext, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugExpressionContexts, self), celt, ppdec, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExpressionContexts_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugExpressionContexts, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExpressionContexts_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugExpressionContexts, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDebugExpressionContexts_Clone(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugExpressionContexts, self), ppedec);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IProvideExpressionContexts_Value = @import("../../zig.zig").Guid.initString("51973c41-cb0c-11d0-b5c9-00a0244a0e7a");
+pub const IID_IProvideExpressionContexts = &IID_IProvideExpressionContexts_Value;
+pub const IProvideExpressionContexts = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        EnumExpressionContexts: fn(
+            self: *const IProvideExpressionContexts,
+            ppedec: ?*?*IEnumDebugExpressionContexts,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IProvideExpressionContexts_EnumExpressionContexts(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IProvideExpressionContexts.VTable, self.vtable).EnumExpressionContexts(@ptrCast(*const IProvideExpressionContexts, self), ppedec);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PROFILER_SCRIPT_TYPE = enum(i32) {
+    USER = 0,
+    DYNAMIC = 1,
+    NATIVE = 2,
+    DOM = 3,
+};
+pub const PROFILER_SCRIPT_TYPE_USER = PROFILER_SCRIPT_TYPE.USER;
+pub const PROFILER_SCRIPT_TYPE_DYNAMIC = PROFILER_SCRIPT_TYPE.DYNAMIC;
+pub const PROFILER_SCRIPT_TYPE_NATIVE = PROFILER_SCRIPT_TYPE.NATIVE;
+pub const PROFILER_SCRIPT_TYPE_DOM = PROFILER_SCRIPT_TYPE.DOM;
+
+pub const PROFILER_EVENT_MASK = enum(u32) {
+    SCRIPT_FUNCTION_CALL = 1,
+    NATIVE_FUNCTION_CALL = 2,
+    DOM_FUNCTION_CALL = 4,
+    ALL = 3,
+    ALL_WITH_DOM = 7,
+    _,
+    pub fn initFlags(o: struct {
+        SCRIPT_FUNCTION_CALL: u1 = 0,
+        NATIVE_FUNCTION_CALL: u1 = 0,
+        DOM_FUNCTION_CALL: u1 = 0,
+        ALL: u1 = 0,
+        ALL_WITH_DOM: u1 = 0,
+    }) PROFILER_EVENT_MASK {
+        return @intToEnum(PROFILER_EVENT_MASK,
+              (if (o.SCRIPT_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL) else 0)
+            | (if (o.NATIVE_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL) else 0)
+            | (if (o.DOM_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.DOM_FUNCTION_CALL) else 0)
+            | (if (o.ALL == 1) @enumToInt(PROFILER_EVENT_MASK.ALL) else 0)
+            | (if (o.ALL_WITH_DOM == 1) @enumToInt(PROFILER_EVENT_MASK.ALL_WITH_DOM) else 0)
+        );
+    }
+};
+pub const PROFILER_EVENT_MASK_TRACE_SCRIPT_FUNCTION_CALL = PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL;
+pub const PROFILER_EVENT_MASK_TRACE_NATIVE_FUNCTION_CALL = PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL;
+pub const PROFILER_EVENT_MASK_TRACE_DOM_FUNCTION_CALL = PROFILER_EVENT_MASK.DOM_FUNCTION_CALL;
+pub const PROFILER_EVENT_MASK_TRACE_ALL = PROFILER_EVENT_MASK.ALL;
+pub const PROFILER_EVENT_MASK_TRACE_ALL_WITH_DOM = PROFILER_EVENT_MASK.ALL_WITH_DOM;
+
+const IID_IActiveScriptProfilerControl_Value = @import("../../zig.zig").Guid.initString("784b5ff0-69b0-47d1-a7dc-2518f4230e90");
+pub const IID_IActiveScriptProfilerControl = &IID_IActiveScriptProfilerControl_Value;
+pub const IActiveScriptProfilerControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        StartProfiling: fn(
+            self: *const IActiveScriptProfilerControl,
+            clsidProfilerObject: ?*const Guid,
+            dwEventMask: u32,
+            dwContext: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProfilerEventMask: fn(
+            self: *const IActiveScriptProfilerControl,
+            dwEventMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StopProfiling: fn(
+            self: *const IActiveScriptProfilerControl,
+            hrShutdownReason: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl_StartProfiling(self: *const T, clsidProfilerObject: ?*const Guid, dwEventMask: u32, dwContext: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).StartProfiling(@ptrCast(*const IActiveScriptProfilerControl, self), clsidProfilerObject, dwEventMask, dwContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl_SetProfilerEventMask(self: *const T, dwEventMask: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).SetProfilerEventMask(@ptrCast(*const IActiveScriptProfilerControl, self), dwEventMask);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl_StopProfiling(self: *const T, hrShutdownReason: HRESULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).StopProfiling(@ptrCast(*const IActiveScriptProfilerControl, self), hrShutdownReason);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerControl2_Value = @import("../../zig.zig").Guid.initString("47810165-498f-40be-94f1-653557e9e7da");
+pub const IID_IActiveScriptProfilerControl2 = &IID_IActiveScriptProfilerControl2_Value;
+pub const IActiveScriptProfilerControl2 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerControl.VTable,
+        CompleteProfilerStart: fn(
+            self: *const IActiveScriptProfilerControl2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrepareProfilerStop: fn(
+            self: *const IActiveScriptProfilerControl2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerControl.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl2_CompleteProfilerStart(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl2.VTable, self.vtable).CompleteProfilerStart(@ptrCast(*const IActiveScriptProfilerControl2, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl2_PrepareProfilerStop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl2.VTable, self.vtable).PrepareProfilerStop(@ptrCast(*const IActiveScriptProfilerControl2, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PROFILER_HEAP_OBJECT_FLAGS = enum(u32) {
+    NEW_OBJECT = 1,
+    IS_ROOT = 2,
+    SITE_CLOSED = 4,
+    EXTERNAL = 8,
+    EXTERNAL_UNKNOWN = 16,
+    EXTERNAL_DISPATCH = 32,
+    SIZE_APPROXIMATE = 64,
+    SIZE_UNAVAILABLE = 128,
+    NEW_STATE_UNAVAILABLE = 256,
+    WINRT_INSTANCE = 512,
+    WINRT_RUNTIMECLASS = 1024,
+    WINRT_DELEGATE = 2048,
+    WINRT_NAMESPACE = 4096,
+    _,
+    pub fn initFlags(o: struct {
+        NEW_OBJECT: u1 = 0,
+        IS_ROOT: u1 = 0,
+        SITE_CLOSED: u1 = 0,
+        EXTERNAL: u1 = 0,
+        EXTERNAL_UNKNOWN: u1 = 0,
+        EXTERNAL_DISPATCH: u1 = 0,
+        SIZE_APPROXIMATE: u1 = 0,
+        SIZE_UNAVAILABLE: u1 = 0,
+        NEW_STATE_UNAVAILABLE: u1 = 0,
+        WINRT_INSTANCE: u1 = 0,
+        WINRT_RUNTIMECLASS: u1 = 0,
+        WINRT_DELEGATE: u1 = 0,
+        WINRT_NAMESPACE: u1 = 0,
+    }) PROFILER_HEAP_OBJECT_FLAGS {
+        return @intToEnum(PROFILER_HEAP_OBJECT_FLAGS,
+              (if (o.NEW_OBJECT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT) else 0)
+            | (if (o.IS_ROOT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT) else 0)
+            | (if (o.SITE_CLOSED == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SITE_CLOSED) else 0)
+            | (if (o.EXTERNAL == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL) else 0)
+            | (if (o.EXTERNAL_UNKNOWN == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_UNKNOWN) else 0)
+            | (if (o.EXTERNAL_DISPATCH == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_DISPATCH) else 0)
+            | (if (o.SIZE_APPROXIMATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_APPROXIMATE) else 0)
+            | (if (o.SIZE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_UNAVAILABLE) else 0)
+            | (if (o.NEW_STATE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_STATE_UNAVAILABLE) else 0)
+            | (if (o.WINRT_INSTANCE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_INSTANCE) else 0)
+            | (if (o.WINRT_RUNTIMECLASS == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_RUNTIMECLASS) else 0)
+            | (if (o.WINRT_DELEGATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE) else 0)
+            | (if (o.WINRT_NAMESPACE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE) else 0)
+        );
+    }
+};
+pub const PROFILER_HEAP_OBJECT_FLAGS_NEW_OBJECT = PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT;
+pub const PROFILER_HEAP_OBJECT_FLAGS_IS_ROOT = PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT;
+pub const PROFILER_HEAP_OBJECT_FLAGS_SITE_CLOSED = PROFILER_HEAP_OBJECT_FLAGS.SITE_CLOSED;
+pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL;
+pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL_UNKNOWN = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_UNKNOWN;
+pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL_DISPATCH = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_DISPATCH;
+pub const PROFILER_HEAP_OBJECT_FLAGS_SIZE_APPROXIMATE = PROFILER_HEAP_OBJECT_FLAGS.SIZE_APPROXIMATE;
+pub const PROFILER_HEAP_OBJECT_FLAGS_SIZE_UNAVAILABLE = PROFILER_HEAP_OBJECT_FLAGS.SIZE_UNAVAILABLE;
+pub const PROFILER_HEAP_OBJECT_FLAGS_NEW_STATE_UNAVAILABLE = PROFILER_HEAP_OBJECT_FLAGS.NEW_STATE_UNAVAILABLE;
+pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_INSTANCE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_INSTANCE;
+pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_RUNTIMECLASS = PROFILER_HEAP_OBJECT_FLAGS.WINRT_RUNTIMECLASS;
+pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_DELEGATE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE;
+pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_NAMESPACE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE;
+
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE = enum(i32) {
+    PROTOTYPE = 1,
+    FUNCTION_NAME = 2,
+    SCOPE_LIST = 3,
+    INTERNAL_PROPERTY = 4,
+    NAME_PROPERTIES = 5,
+    INDEX_PROPERTIES = 6,
+    ELEMENT_ATTRIBUTES_SIZE = 7,
+    ELEMENT_TEXT_CHILDREN_SIZE = 8,
+    RELATIONSHIPS = 9,
+    WINRTEVENTS = 10,
+    WEAKMAP_COLLECTION_LIST = 11,
+    MAP_COLLECTION_LIST = 12,
+    SET_COLLECTION_LIST = 13,
+    // MAX_VALUE = 13, this enum value conflicts with SET_COLLECTION_LIST
+};
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_PROTOTYPE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.PROTOTYPE;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_FUNCTION_NAME = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.FUNCTION_NAME;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SCOPE_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SCOPE_LIST;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_INTERNAL_PROPERTY = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.INTERNAL_PROPERTY;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_NAME_PROPERTIES = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.NAME_PROPERTIES;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_INDEX_PROPERTIES = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.INDEX_PROPERTIES;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_ELEMENT_ATTRIBUTES_SIZE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.ELEMENT_ATTRIBUTES_SIZE;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_ELEMENT_TEXT_CHILDREN_SIZE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.ELEMENT_TEXT_CHILDREN_SIZE;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_RELATIONSHIPS = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.RELATIONSHIPS;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WINRTEVENTS = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.WINRTEVENTS;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WEAKMAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.WEAKMAP_COLLECTION_LIST;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.MAP_COLLECTION_LIST;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SET_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAX_VALUE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
+
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = enum(u32) {
+    NONE = 0,
+    IS_GET_ACCESSOR = 65536,
+    IS_SET_ACCESSOR = 131072,
+    LET_VARIABLE = 262144,
+    CONST_VARIABLE = 524288,
+    _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IS_GET_ACCESSOR: u1 = 0,
+        IS_SET_ACCESSOR: u1 = 0,
+        LET_VARIABLE: u1 = 0,
+        CONST_VARIABLE: u1 = 0,
+    }) PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS {
+        return @intToEnum(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE) else 0)
+            | (if (o.IS_GET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR) else 0)
+            | (if (o.IS_SET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_SET_ACCESSOR) else 0)
+            | (if (o.LET_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE) else 0)
+            | (if (o.CONST_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE) else 0)
+        );
+    }
+};
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_NONE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE;
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_GET_ACCESSOR = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR;
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_SET_ACCESSOR = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_SET_ACCESSOR;
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_LET_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE;
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_CONST_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE;
+
+pub const PROFILER_HEAP_ENUM_FLAGS = enum(u32) {
+    NONE = 0,
+    STORE_RELATIONSHIP_FLAGS = 1,
+    SUBSTRINGS = 2,
+    RELATIONSHIP_SUBSTRINGS = 3,
+    _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        STORE_RELATIONSHIP_FLAGS: u1 = 0,
+        SUBSTRINGS: u1 = 0,
+        RELATIONSHIP_SUBSTRINGS: u1 = 0,
+    }) PROFILER_HEAP_ENUM_FLAGS {
+        return @intToEnum(PROFILER_HEAP_ENUM_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.NONE) else 0)
+            | (if (o.STORE_RELATIONSHIP_FLAGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS) else 0)
+            | (if (o.SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.SUBSTRINGS) else 0)
+            | (if (o.RELATIONSHIP_SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.RELATIONSHIP_SUBSTRINGS) else 0)
+        );
+    }
+};
+pub const PROFILER_HEAP_ENUM_FLAGS_NONE = PROFILER_HEAP_ENUM_FLAGS.NONE;
+pub const PROFILER_HEAP_ENUM_FLAGS_STORE_RELATIONSHIP_FLAGS = PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS;
+pub const PROFILER_HEAP_ENUM_FLAGS_SUBSTRINGS = PROFILER_HEAP_ENUM_FLAGS.SUBSTRINGS;
+pub const PROFILER_HEAP_ENUM_FLAGS_RELATIONSHIP_SUBSTRINGS = PROFILER_HEAP_ENUM_FLAGS.RELATIONSHIP_SUBSTRINGS;
+
+pub const PROFILER_HEAP_OBJECT_SCOPE_LIST = extern struct {
+    count: u32,
+    scopes: [1]usize,
+};
+
+pub const PROFILER_RELATIONSHIP_INFO = enum(i32) {
+    NUMBER = 1,
+    STRING = 2,
+    HEAP_OBJECT = 3,
+    EXTERNAL_OBJECT = 4,
+    BSTR = 5,
+    SUBSTRING = 6,
+};
+pub const PROFILER_PROPERTY_TYPE_NUMBER = PROFILER_RELATIONSHIP_INFO.NUMBER;
+pub const PROFILER_PROPERTY_TYPE_STRING = PROFILER_RELATIONSHIP_INFO.STRING;
+pub const PROFILER_PROPERTY_TYPE_HEAP_OBJECT = PROFILER_RELATIONSHIP_INFO.HEAP_OBJECT;
+pub const PROFILER_PROPERTY_TYPE_EXTERNAL_OBJECT = PROFILER_RELATIONSHIP_INFO.EXTERNAL_OBJECT;
+pub const PROFILER_PROPERTY_TYPE_BSTR = PROFILER_RELATIONSHIP_INFO.BSTR;
+pub const PROFILER_PROPERTY_TYPE_SUBSTRING = PROFILER_RELATIONSHIP_INFO.SUBSTRING;
+
+pub const PROFILER_PROPERTY_TYPE_SUBSTRING_INFO = extern struct {
+    length: u32,
+    value: ?[*:0]const u16,
+};
+
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP = extern struct {
+    relationshipId: u32,
+    relationshipInfo: PROFILER_RELATIONSHIP_INFO,
+    Anonymous: extern union {
+        numberValue: f64,
+        stringValue: ?[*:0]const u16,
+        bstrValue: ?BSTR,
+        objectId: usize,
+        externalObjectAddress: ?*c_void,
+        subString: ?*PROFILER_PROPERTY_TYPE_SUBSTRING_INFO,
+    },
+};
+
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST = extern struct {
+    count: u32,
+    elements: [1]PROFILER_HEAP_OBJECT_RELATIONSHIP,
+};
+
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO = extern struct {
+    infoType: PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE,
+    Anonymous: extern union {
+        prototype: usize,
+        functionName: ?[*:0]const u16,
+        elementAttributesSize: u32,
+        elementTextChildrenSize: u32,
+        scopeList: ?*PROFILER_HEAP_OBJECT_SCOPE_LIST,
+        internalProperty: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP,
+        namePropertyList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        indexPropertyList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        relationshipList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        eventList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        weakMapCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        mapCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        setCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+    },
+};
+
+pub const PROFILER_HEAP_OBJECT = extern struct {
+    size: u32,
+    Anonymous: extern union {
+        objectId: usize,
+        externalObjectAddress: ?*c_void,
+    },
+    typeNameId: u32,
+    flags: u32,
+    unused: u16,
+    optionalInfoCount: u16,
+};
+
+const IID_IActiveScriptProfilerHeapEnum_Value = @import("../../zig.zig").Guid.initString("32e4694e-0d37-419b-b93d-fa20ded6e8ea");
+pub const IID_IActiveScriptProfilerHeapEnum = &IID_IActiveScriptProfilerHeapEnum_Value;
+pub const IActiveScriptProfilerHeapEnum = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IActiveScriptProfilerHeapEnum,
+            celt: u32,
+            heapObjects: [*]?*PROFILER_HEAP_OBJECT,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionalInfo: fn(
+            self: *const IActiveScriptProfilerHeapEnum,
+            heapObject: ?*PROFILER_HEAP_OBJECT,
+            celt: u32,
+            optionalInfo: [*]PROFILER_HEAP_OBJECT_OPTIONAL_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeObjectAndOptionalInfo: fn(
+            self: *const IActiveScriptProfilerHeapEnum,
+            celt: u32,
+            heapObjects: [*]?*PROFILER_HEAP_OBJECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNameIdMap: fn(
+            self: *const IActiveScriptProfilerHeapEnum,
+            pNameList: [*]?*?*?PWSTR,
+            pcelt: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerHeapEnum_Next(self: *const T, celt: u32, heapObjects: [*]?*PROFILER_HEAP_OBJECT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).Next(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), celt, heapObjects, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerHeapEnum_GetOptionalInfo(self: *const T, heapObject: ?*PROFILER_HEAP_OBJECT, celt: u32, optionalInfo: [*]PROFILER_HEAP_OBJECT_OPTIONAL_INFO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).GetOptionalInfo(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), heapObject, celt, optionalInfo);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerHeapEnum_FreeObjectAndOptionalInfo(self: *const T, celt: u32, heapObjects: [*]?*PROFILER_HEAP_OBJECT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).FreeObjectAndOptionalInfo(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), celt, heapObjects);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerHeapEnum_GetNameIdMap(self: *const T, pNameList: [*]?*?*?PWSTR, pcelt: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).GetNameIdMap(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), pNameList, pcelt);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerControl3_Value = @import("../../zig.zig").Guid.initString("0b403015-f381-4023-a5d0-6fed076de716");
+pub const IID_IActiveScriptProfilerControl3 = &IID_IActiveScriptProfilerControl3_Value;
+pub const IActiveScriptProfilerControl3 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerControl2.VTable,
+        EnumHeap: fn(
+            self: *const IActiveScriptProfilerControl3,
+            ppEnum: ?*?*IActiveScriptProfilerHeapEnum,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerControl2.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl3_EnumHeap(self: *const T, ppEnum: ?*?*IActiveScriptProfilerHeapEnum) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl3.VTable, self.vtable).EnumHeap(@ptrCast(*const IActiveScriptProfilerControl3, self), ppEnum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PROFILER_HEAP_SUMMARY_VERSION = enum(i32) {
+    @"1" = 1,
+};
+pub const PROFILER_HEAP_SUMMARY_VERSION_1 = PROFILER_HEAP_SUMMARY_VERSION.@"1";
+
+pub const PROFILER_HEAP_SUMMARY = extern struct {
+    version: PROFILER_HEAP_SUMMARY_VERSION,
+    totalHeapSize: u32,
+};
+
+const IID_IActiveScriptProfilerControl4_Value = @import("../../zig.zig").Guid.initString("160f94fd-9dbc-40d4-9eac-2b71db3132f4");
+pub const IID_IActiveScriptProfilerControl4 = &IID_IActiveScriptProfilerControl4_Value;
+pub const IActiveScriptProfilerControl4 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerControl3.VTable,
+        SummarizeHeap: fn(
+            self: *const IActiveScriptProfilerControl4,
+            heapSummary: ?*PROFILER_HEAP_SUMMARY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerControl3.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl4_SummarizeHeap(self: *const T, heapSummary: ?*PROFILER_HEAP_SUMMARY) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl4.VTable, self.vtable).SummarizeHeap(@ptrCast(*const IActiveScriptProfilerControl4, self), heapSummary);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerControl5_Value = @import("../../zig.zig").Guid.initString("1c01a2d1-8f0f-46a5-9720-0d7ed2c62f0a");
+pub const IID_IActiveScriptProfilerControl5 = &IID_IActiveScriptProfilerControl5_Value;
+pub const IActiveScriptProfilerControl5 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerControl4.VTable,
+        EnumHeap2: fn(
+            self: *const IActiveScriptProfilerControl5,
+            enumFlags: PROFILER_HEAP_ENUM_FLAGS,
+            ppEnum: ?*?*IActiveScriptProfilerHeapEnum,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerControl4.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerControl5_EnumHeap2(self: *const T, enumFlags: PROFILER_HEAP_ENUM_FLAGS, ppEnum: ?*?*IActiveScriptProfilerHeapEnum) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerControl5.VTable, self.vtable).EnumHeap2(@ptrCast(*const IActiveScriptProfilerControl5, self), enumFlags, ppEnum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerCallback_Value = @import("../../zig.zig").Guid.initString("740eca23-7d9d-42e5-ba9d-f8b24b1c7a9b");
+pub const IID_IActiveScriptProfilerCallback = &IID_IActiveScriptProfilerCallback_Value;
+pub const IActiveScriptProfilerCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IActiveScriptProfilerCallback,
+            dwContext: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Shutdown: fn(
+            self: *const IActiveScriptProfilerCallback,
+            hrReason: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ScriptCompiled: fn(
+            self: *const IActiveScriptProfilerCallback,
+            scriptId: i32,
+            type: PROFILER_SCRIPT_TYPE,
+            pIDebugDocumentContext: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FunctionCompiled: fn(
+            self: *const IActiveScriptProfilerCallback,
+            functionId: i32,
+            scriptId: i32,
+            pwszFunctionName: ?[*:0]const u16,
+            pwszFunctionNameHint: ?[*:0]const u16,
+            pIDebugDocumentContext: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFunctionEnter: fn(
+            self: *const IActiveScriptProfilerCallback,
+            scriptId: i32,
+            functionId: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFunctionExit: fn(
+            self: *const IActiveScriptProfilerCallback,
+            scriptId: i32,
+            functionId: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_Initialize(self: *const T, dwContext: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).Initialize(@ptrCast(*const IActiveScriptProfilerCallback, self), dwContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_Shutdown(self: *const T, hrReason: HRESULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).Shutdown(@ptrCast(*const IActiveScriptProfilerCallback, self), hrReason);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_ScriptCompiled(self: *const T, scriptId: i32, type_: PROFILER_SCRIPT_TYPE, pIDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).ScriptCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, type_, pIDebugDocumentContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_FunctionCompiled(self: *const T, functionId: i32, scriptId: i32, pwszFunctionName: ?[*:0]const u16, pwszFunctionNameHint: ?[*:0]const u16, pIDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).FunctionCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), functionId, scriptId, pwszFunctionName, pwszFunctionNameHint, pIDebugDocumentContext);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_OnFunctionEnter(self: *const T, scriptId: i32, functionId: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).OnFunctionEnter(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, functionId);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback_OnFunctionExit(self: *const T, scriptId: i32, functionId: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).OnFunctionExit(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, functionId);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerCallback2_Value = @import("../../zig.zig").Guid.initString("31b7f8ad-a637-409c-b22f-040995b6103d");
+pub const IID_IActiveScriptProfilerCallback2 = &IID_IActiveScriptProfilerCallback2_Value;
+pub const IActiveScriptProfilerCallback2 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerCallback.VTable,
+        OnFunctionEnterByName: fn(
+            self: *const IActiveScriptProfilerCallback2,
+            pwszFunctionName: ?[*:0]const u16,
+            type: PROFILER_SCRIPT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFunctionExitByName: fn(
+            self: *const IActiveScriptProfilerCallback2,
+            pwszFunctionName: ?[*:0]const u16,
+            type: PROFILER_SCRIPT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerCallback.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback2_OnFunctionEnterByName(self: *const T, pwszFunctionName: ?[*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionEnterByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback2_OnFunctionExitByName(self: *const T, pwszFunctionName: ?[*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionExitByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IActiveScriptProfilerCallback3_Value = @import("../../zig.zig").Guid.initString("6ac5ad25-2037-4687-91df-b59979d93d73");
+pub const IID_IActiveScriptProfilerCallback3 = &IID_IActiveScriptProfilerCallback3_Value;
+pub const IActiveScriptProfilerCallback3 = extern struct {
+    pub const VTable = extern struct {
+        base: IActiveScriptProfilerCallback2.VTable,
+        SetWebWorkerId: fn(
+            self: *const IActiveScriptProfilerCallback3,
+            webWorkerId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IActiveScriptProfilerCallback2.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActiveScriptProfilerCallback3_SetWebWorkerId(self: *const T, webWorkerId: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActiveScriptProfilerCallback3.VTable, self.vtable).SetWebWorkerId(@ptrCast(*const IActiveScriptProfilerCallback3, self), webWorkerId);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationScriptEvents_Value = @import("../../zig.zig").Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
+pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
+pub const IWebApplicationScriptEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BeforeScriptExecute: fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ScriptError: fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            scriptError: ?*IActiveScriptError,
+            url: ?[*:0]const u16,
+            errorHandled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationScriptEvents_BeforeScriptExecute(self: *const T, htmlWindow: ?*IHTMLWindow2) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationScriptEvents.VTable, self.vtable).BeforeScriptExecute(@ptrCast(*const IWebApplicationScriptEvents, self), htmlWindow);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationScriptEvents_ScriptError(self: *const T, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationScriptEvents.VTable, self.vtable).ScriptError(@ptrCast(*const IWebApplicationScriptEvents, self), htmlWindow, scriptError, url, errorHandled);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationNavigationEvents_Value = @import("../../zig.zig").Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
+pub const IID_IWebApplicationNavigationEvents = &IID_IWebApplicationNavigationEvents_Value;
+pub const IWebApplicationNavigationEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        BeforeNavigate: fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+            navigationFlags: u32,
+            targetFrameName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NavigateComplete: fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NavigateError: fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+            targetFrameName: ?[*:0]const u16,
+            statusCode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DocumentComplete: fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DownloadBegin: fn(
+            self: *const IWebApplicationNavigationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DownloadComplete: fn(
+            self: *const IWebApplicationNavigationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_BeforeNavigate(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).BeforeNavigate(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url, navigationFlags, targetFrameName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_NavigateComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).NavigateComplete(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_NavigateError(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).NavigateError(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url, targetFrameName, statusCode);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_DocumentComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DocumentComplete(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_DownloadBegin(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DownloadBegin(@ptrCast(*const IWebApplicationNavigationEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationNavigationEvents_DownloadComplete(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DownloadComplete(@ptrCast(*const IWebApplicationNavigationEvents, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationUIEvents_Value = @import("../../zig.zig").Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
+pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
+pub const IWebApplicationUIEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SecurityProblem: fn(
+            self: *const IWebApplicationUIEvents,
+            securityProblem: u32,
+            result: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationUIEvents_SecurityProblem(self: *const T, securityProblem: u32, result: ?*HRESULT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationUIEvents.VTable, self.vtable).SecurityProblem(@ptrCast(*const IWebApplicationUIEvents, self), securityProblem, result);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationUpdateEvents_Value = @import("../../zig.zig").Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
+pub const IID_IWebApplicationUpdateEvents = &IID_IWebApplicationUpdateEvents_Value;
+pub const IWebApplicationUpdateEvents = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnPaint: fn(
+            self: *const IWebApplicationUpdateEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCssChanged: fn(
+            self: *const IWebApplicationUpdateEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationUpdateEvents_OnPaint(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationUpdateEvents.VTable, self.vtable).OnPaint(@ptrCast(*const IWebApplicationUpdateEvents, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationUpdateEvents_OnCssChanged(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationUpdateEvents.VTable, self.vtable).OnCssChanged(@ptrCast(*const IWebApplicationUpdateEvents, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationHost_Value = @import("../../zig.zig").Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
+pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
+pub const IWebApplicationHost = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HWND: fn(
+            self: *const IWebApplicationHost,
+            hwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Document: fn(
+            self: *const IWebApplicationHost,
+            htmlDocument: ?*?*IHTMLDocument2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Refresh: fn(
+            self: *const IWebApplicationHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Advise: fn(
+            self: *const IWebApplicationHost,
+            interfaceId: ?*const Guid,
+            callback: ?*IUnknown,
+            cookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unadvise: fn(
+            self: *const IWebApplicationHost,
+            cookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationHost_get_HWND(self: *const T, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).get_HWND(@ptrCast(*const IWebApplicationHost, self), hwnd);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationHost_get_Document(self: *const T, htmlDocument: ?*?*IHTMLDocument2) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).get_Document(@ptrCast(*const IWebApplicationHost, self), htmlDocument);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationHost_Refresh(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Refresh(@ptrCast(*const IWebApplicationHost, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationHost_Advise(self: *const T, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Advise(@ptrCast(*const IWebApplicationHost, self), interfaceId, callback, cookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationHost_Unadvise(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Unadvise(@ptrCast(*const IWebApplicationHost, self), cookie);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationActivation_Value = @import("../../zig.zig").Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
+pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
+pub const IWebApplicationActivation = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CancelPendingActivation: fn(
+            self: *const IWebApplicationActivation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationActivation_CancelPendingActivation(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationActivation.VTable, self.vtable).CancelPendingActivation(@ptrCast(*const IWebApplicationActivation, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IWebApplicationAuthoringMode_Value = @import("../../zig.zig").Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
+pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
+pub const IWebApplicationAuthoringMode = extern struct {
+    pub const VTable = extern struct {
+        base: IServiceProvider.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AuthoringClientBinary: fn(
+            self: *const IWebApplicationAuthoringMode,
+            designModeDllPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IServiceProvider.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWebApplicationAuthoringMode_get_AuthoringClientBinary(self: *const T, designModeDllPath: ?*?BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IWebApplicationAuthoringMode.VTable, self.vtable).get_AuthoringClientBinary(@ptrCast(*const IWebApplicationAuthoringMode, self), designModeDllPath);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const RegisterAuthoringClientFunctionType = fn(
+    authoringModeObject: ?*IWebApplicationAuthoringMode,
+    host: ?*IWebApplicationHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const UnregisterAuthoringClientFunctionType = fn(
+    host: ?*IWebApplicationHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const PFIND_DEBUG_FILE_CALLBACK = fn(
+    FileHandle: ?HANDLE,
+    FileName: ?[*:0]const u8,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFIND_DEBUG_FILE_CALLBACKW = fn(
+    FileHandle: ?HANDLE,
+    FileName: ?[*:0]const u16,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFINDFILEINPATHCALLBACK = fn(
+    filename: ?[*:0]const u8,
+    context: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFINDFILEINPATHCALLBACKW = fn(
+    filename: ?[*:0]const u16,
+    context: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFIND_EXE_FILE_CALLBACK = fn(
+    FileHandle: ?HANDLE,
+    FileName: ?[*:0]const u8,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFIND_EXE_FILE_CALLBACKW = fn(
+    FileHandle: ?HANDLE,
+    FileName: ?[*:0]const u16,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PENUMDIRTREE_CALLBACK = fn(
+    FilePath: ?[*:0]const u8,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PENUMDIRTREE_CALLBACKW = fn(
+    FilePath: ?[*:0]const u16,
+    CallerData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const MODLOAD_DATA = extern struct {
+    ssize: u32,
+    ssig: MODLOAD_DATA_TYPE,
+    data: ?*c_void,
+    size: u32,
+    flags: u32,
+};
+
+pub const MODLOAD_CVMISC = extern struct {
+    oCV: u32,
+    cCV: usize,
+    oMisc: u32,
+    cMisc: usize,
+    dtImage: u32,
+    cImage: u32,
+};
+
+pub const MODLOAD_PDBGUID_PDBAGE = extern struct {
+    PdbGuid: Guid,
+    PdbAge: u32,
+};
+
+pub const ADDRESS_MODE = enum(i32) {
+    @"1616" = 0,
+    @"1632" = 1,
+    Real = 2,
+    Flat = 3,
+};
+pub const AddrMode1616 = ADDRESS_MODE.@"1616";
+pub const AddrMode1632 = ADDRESS_MODE.@"1632";
+pub const AddrModeReal = ADDRESS_MODE.Real;
+pub const AddrModeFlat = ADDRESS_MODE.Flat;
+
+pub const ADDRESS64 = extern struct {
+    Offset: u64,
     Segment: u16,
     Mode: ADDRESS_MODE,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KDHELP = extern struct {
-    Thread: u32,
+pub const KDHELP64 = extern struct {
+    Thread: u64,
     ThCallbackStack: u32,
+    ThCallbackBStore: u32,
     NextCallback: u32,
     FramePointer: u32,
-    KiCallUserMode: u32,
-    KeUserCallbackDispatcher: u32,
-    SystemRangeStart: u32,
-    ThCallbackBStore: u32,
-    KiUserExceptionDispatcher: u32,
-    StackBase: u32,
-    StackLimit: u32,
-    Reserved: [5]u32,
+    KiCallUserMode: u64,
+    KeUserCallbackDispatcher: u64,
+    SystemRangeStart: u64,
+    KiUserExceptionDispatcher: u64,
+    StackBase: u64,
+    StackLimit: u64,
+    BuildVersion: u32,
+    RetpolineStubFunctionTableSize: u32,
+    RetpolineStubFunctionTable: u64,
+    RetpolineStubOffset: u32,
+    RetpolineStubSize: u32,
+    Reserved0: [2]u64,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const STACKFRAME = extern struct {
-    AddrPC: ADDRESS,
-    AddrReturn: ADDRESS,
-    AddrFrame: ADDRESS,
-    AddrStack: ADDRESS,
+pub const STACKFRAME64 = extern struct {
+    AddrPC: ADDRESS64,
+    AddrReturn: ADDRESS64,
+    AddrFrame: ADDRESS64,
+    AddrStack: ADDRESS64,
+    AddrBStore: ADDRESS64,
     FuncTableEntry: ?*c_void,
-    Params: [4]u32,
+    Params: [4]u64,
     Far: BOOL,
     Virtual: BOOL,
-    Reserved: [3]u32,
-    KdHelp: KDHELP,
-    AddrBStore: ADDRESS,
+    Reserved: [3]u64,
+    KdHelp: KDHELP64,
 };
 
-}, else => struct { } };
+pub const STACKFRAME_EX = extern struct {
+    AddrPC: ADDRESS64,
+    AddrReturn: ADDRESS64,
+    AddrFrame: ADDRESS64,
+    AddrStack: ADDRESS64,
+    AddrBStore: ADDRESS64,
+    FuncTableEntry: ?*c_void,
+    Params: [4]u64,
+    Far: BOOL,
+    Virtual: BOOL,
+    Reserved: [3]u64,
+    KdHelp: KDHELP64,
+    StackFrameSize: u32,
+    InlineFrameContext: u32,
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PREAD_PROCESS_MEMORY_ROUTINE = fn(
+pub const PREAD_PROCESS_MEMORY_ROUTINE64 = fn(
     hProcess: ?HANDLE,
-    lpBaseAddress: u32,
+    qwBaseAddress: u64,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*c_void,
     nSize: u32,
     lpNumberOfBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PFUNCTION_TABLE_ACCESS_ROUTINE = fn(
-    hProcess: ?HANDLE,
-    AddrBase: u32,
+pub const PFUNCTION_TABLE_ACCESS_ROUTINE64 = fn(
+    ahProcess: ?HANDLE,
+    AddrBase: u64,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PGET_MODULE_BASE_ROUTINE = fn(
+pub const PGET_MODULE_BASE_ROUTINE64 = fn(
     hProcess: ?HANDLE,
-    Address: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+    Address: u64,
+) callconv(@import("std").os.windows.WINAPI) u64;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PTRANSLATE_ADDRESS_ROUTINE = fn(
+pub const PTRANSLATE_ADDRESS_ROUTINE64 = fn(
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
-    lpaddr: ?*ADDRESS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+    lpaddr: ?*ADDRESS64,
+) callconv(@import("std").os.windows.WINAPI) u64;
 
-}, else => struct { } };
+pub const API_VERSION = extern struct {
+    MajorVersion: u16,
+    MinorVersion: u16,
+    Revision: u16,
+    Reserved: u16,
+};
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMMODULES_CALLBACK = fn(
+pub const PSYM_ENUMMODULES_CALLBACK64 = fn(
     ModuleName: ?[*:0]const u8,
-    BaseOfDll: u32,
+    BaseOfDll: u64,
     UserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMSYMBOLS_CALLBACK = fn(
-    SymbolName: ?[*:0]const u8,
-    SymbolAddress: u32,
-    SymbolSize: u32,
+pub const PSYM_ENUMMODULES_CALLBACKW64 = fn(
+    ModuleName: ?[*:0]const u16,
+    BaseOfDll: u64,
     UserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYM_ENUMSYMBOLS_CALLBACKW = fn(
-    SymbolName: ?[*:0]const u16,
-    SymbolAddress: u32,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PENUMLOADED_MODULES_CALLBACK = fn(
+pub const PENUMLOADED_MODULES_CALLBACK64 = fn(
     ModuleName: ?[*:0]const u8,
-    ModuleBase: u32,
+    ModuleBase: u64,
     ModuleSize: u32,
     UserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PSYMBOL_REGISTERED_CALLBACK = fn(
-    hProcess: ?HANDLE,
-    ActionCode: u32,
-    CallbackData: ?*c_void,
+pub const PENUMLOADED_MODULES_CALLBACKW64 = fn(
+    ModuleName: ?[*:0]const u16,
+    ModuleBase: u64,
+    ModuleSize: u32,
     UserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+pub const PSYM_ENUMSYMBOLS_CALLBACK64 = fn(
+    SymbolName: ?[*:0]const u8,
+    SymbolAddress: u64,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-}, else => struct { } };
+pub const PSYM_ENUMSYMBOLS_CALLBACK64W = fn(
+    SymbolName: ?[*:0]const u16,
+    SymbolAddress: u64,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
+pub const PSYMBOL_REGISTERED_CALLBACK64 = fn(
+    hProcess: ?HANDLE,
+    ActionCode: u32,
+    CallbackData: u64,
+    UserContext: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const IMAGEHLP_SYMBOL = extern struct {
+pub const PSYMBOL_FUNCENTRY_CALLBACK = fn(
+    hProcess: ?HANDLE,
+    AddrBase: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const PSYMBOL_FUNCENTRY_CALLBACK64 = fn(
+    hProcess: ?HANDLE,
+    AddrBase: u64,
+    UserContext: u64,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+pub const SYM_TYPE = enum(i32) {
+    SymNone = 0,
+    SymCoff = 1,
+    SymCv = 2,
+    SymPdb = 3,
+    SymExport = 4,
+    SymDeferred = 5,
+    SymSym = 6,
+    SymDia = 7,
+    SymVirtual = 8,
+    NumSymTypes = 9,
+};
+pub const SymNone = SYM_TYPE.SymNone;
+pub const SymCoff = SYM_TYPE.SymCoff;
+pub const SymCv = SYM_TYPE.SymCv;
+pub const SymPdb = SYM_TYPE.SymPdb;
+pub const SymExport = SYM_TYPE.SymExport;
+pub const SymDeferred = SYM_TYPE.SymDeferred;
+pub const SymSym = SYM_TYPE.SymSym;
+pub const SymDia = SYM_TYPE.SymDia;
+pub const SymVirtual = SYM_TYPE.SymVirtual;
+pub const NumSymTypes = SYM_TYPE.NumSymTypes;
+
+pub const IMAGEHLP_SYMBOL64 = extern struct {
     SizeOfStruct: u32,
-    Address: u32,
+    Address: u64,
     Size: u32,
     Flags: u32,
     MaxNameLength: u32,
     Name: [1]CHAR,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOL_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOL,
+pub const IMAGEHLP_SYMBOL64_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOL64,
     name: [2001]CHAR,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOLW = extern struct {
+pub const IMAGEHLP_SYMBOLW64 = extern struct {
     SizeOfStruct: u32,
-    Address: u32,
+    Address: u64,
     Size: u32,
     Flags: u32,
     MaxNameLength: u32,
     Name: [1]u16,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_SYMBOLW_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOLW,
+pub const IMAGEHLP_SYMBOLW64_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOLW64,
     name: [2001]u16,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_MODULE = extern struct {
+pub const IMAGEHLP_MODULE64 = extern struct {
     SizeOfStruct: u32,
-    BaseOfImage: u32,
+    BaseOfImage: u64,
     ImageSize: u32,
     TimeDateStamp: u32,
     CheckSum: u32,
@@ -2175,16 +8879,26 @@ pub const IMAGEHLP_MODULE = extern struct {
     ModuleName: [32]CHAR,
     ImageName: [256]CHAR,
     LoadedImageName: [256]CHAR,
+    LoadedPdbName: [256]CHAR,
+    CVSig: u32,
+    CVData: [780]CHAR,
+    PdbSig: u32,
+    PdbSig70: Guid,
+    PdbAge: u32,
+    PdbUnmatched: BOOL,
+    DbgUnmatched: BOOL,
+    LineNumbers: BOOL,
+    GlobalSymbols: BOOL,
+    TypeInfo: BOOL,
+    SourceIndexed: BOOL,
+    Publics: BOOL,
+    MachineType: u32,
+    Reserved: u32,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_MODULEW = extern struct {
+pub const IMAGEHLP_MODULEW64 = extern struct {
     SizeOfStruct: u32,
-    BaseOfImage: u32,
+    BaseOfImage: u64,
     ImageSize: u32,
     TimeDateStamp: u32,
     CheckSum: u32,
@@ -2193,27 +8907,24 @@ pub const IMAGEHLP_MODULEW = extern struct {
     ModuleName: [32]u16,
     ImageName: [256]u16,
     LoadedImageName: [256]u16,
+    LoadedPdbName: [256]u16,
+    CVSig: u32,
+    CVData: [780]u16,
+    PdbSig: u32,
+    PdbSig70: Guid,
+    PdbAge: u32,
+    PdbUnmatched: BOOL,
+    DbgUnmatched: BOOL,
+    LineNumbers: BOOL,
+    GlobalSymbols: BOOL,
+    TypeInfo: BOOL,
+    SourceIndexed: BOOL,
+    Publics: BOOL,
+    MachineType: u32,
+    Reserved: u32,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_LINE = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    LineNumber: u32,
-    FileName: ?[*]u8,
-    Address: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_LINEW = extern struct {
+pub const IMAGEHLP_LINE64 = extern struct {
     SizeOfStruct: u32,
     Key: ?*c_void,
     LineNumber: u32,
@@ -2221,34 +8932,632 @@ pub const IMAGEHLP_LINEW = extern struct {
     Address: u64,
 };
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = extern struct {
+pub const IMAGEHLP_LINEW64 = extern struct {
     SizeOfStruct: u32,
-    BaseOfImage: u32,
+    Key: ?*c_void,
+    LineNumber: u32,
+    FileName: ?PWSTR,
+    Address: u64,
+};
+
+pub const SOURCEFILE = extern struct {
+    ModBase: u64,
+    FileName: ?[*]u8,
+};
+
+pub const SOURCEFILEW = extern struct {
+    ModBase: u64,
+    FileName: ?PWSTR,
+};
+
+pub const IMAGEHLP_CBA_READ_MEMORY = extern struct {
+    addr: u64,
+    buf: ?*c_void,
+    bytes: u32,
+    bytesread: ?*u32,
+};
+
+pub const IMAGEHLP_CBA_EVENT = extern struct {
+    severity: IMAGEHLP_CBA_EVENT_SEVERITY,
+    code: u32,
+    desc: ?[*]u8,
+    object: ?*c_void,
+};
+
+pub const IMAGEHLP_CBA_EVENTW = extern struct {
+    severity: IMAGEHLP_CBA_EVENT_SEVERITY,
+    code: u32,
+    desc: ?[*:0]const u16,
+    object: ?*c_void,
+};
+
+pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD64 = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u64,
     CheckSum: u32,
     TimeDateStamp: u32,
     FileName: [260]CHAR,
-    Reparse: u8,
+    Reparse: BOOLEAN,
     hFile: ?HANDLE,
+    Flags: u32,
 };
 
-}, else => struct { } };
+pub const IMAGEHLP_DEFERRED_SYMBOL_LOADW64 = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u64,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    FileName: [261]u16,
+    Reparse: BOOLEAN,
+    hFile: ?HANDLE,
+    Flags: u32,
+};
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const IMAGEHLP_DUPLICATE_SYMBOL = extern struct {
+pub const IMAGEHLP_DUPLICATE_SYMBOL64 = extern struct {
     SizeOfStruct: u32,
     NumberOfDups: u32,
-    Symbol: ?*IMAGEHLP_SYMBOL,
+    Symbol: ?*IMAGEHLP_SYMBOL64,
     SelectedSymbol: u32,
 };
 
-}, else => struct { } };
+pub const IMAGEHLP_HD_TYPE = enum(i32) {
+    Base = 0,
+    Sym = 1,
+    Src = 2,
+    Max = 3,
+};
+pub const hdBase = IMAGEHLP_HD_TYPE.Base;
+pub const hdSym = IMAGEHLP_HD_TYPE.Sym;
+pub const hdSrc = IMAGEHLP_HD_TYPE.Src;
+pub const hdMax = IMAGEHLP_HD_TYPE.Max;
+
+pub const OMAP = extern struct {
+    rva: u32,
+    rvaTo: u32,
+};
+
+pub const IMAGEHLP_EXTENDED_OPTIONS = enum(i32) {
+    DISABLEACCESSTIMEUPDATE = 0,
+    LASTVALIDDEBUGDIRECTORY = 1,
+    MAX = 2,
+};
+pub const SYMOPT_EX_DISABLEACCESSTIMEUPDATE = IMAGEHLP_EXTENDED_OPTIONS.DISABLEACCESSTIMEUPDATE;
+pub const SYMOPT_EX_LASTVALIDDEBUGDIRECTORY = IMAGEHLP_EXTENDED_OPTIONS.LASTVALIDDEBUGDIRECTORY;
+pub const SYMOPT_EX_MAX = IMAGEHLP_EXTENDED_OPTIONS.MAX;
+
+pub const PSYM_ENUMSOURCEFILES_CALLBACK = fn(
+    pSourceFile: ?*SOURCEFILE,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYM_ENUMSOURCEFILES_CALLBACKW = fn(
+    pSourceFile: ?*SOURCEFILEW,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SRCCODEINFO = extern struct {
+    SizeOfStruct: u32,
+    Key: ?*c_void,
+    ModBase: u64,
+    Obj: [261]CHAR,
+    FileName: [261]CHAR,
+    LineNumber: u32,
+    Address: u64,
+};
+
+pub const SRCCODEINFOW = extern struct {
+    SizeOfStruct: u32,
+    Key: ?*c_void,
+    ModBase: u64,
+    Obj: [261]u16,
+    FileName: [261]u16,
+    LineNumber: u32,
+    Address: u64,
+};
+
+pub const PSYM_ENUMLINES_CALLBACK = fn(
+    LineInfo: ?*SRCCODEINFO,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYM_ENUMLINES_CALLBACKW = fn(
+    LineInfo: ?*SRCCODEINFOW,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PENUMSOURCEFILETOKENSCALLBACK = fn(
+    token: ?*c_void,
+    size: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const IMAGEHLP_SYMBOL_SRC = extern struct {
+    sizeofstruct: u32,
+    type: u32,
+    file: [260]CHAR,
+};
+
+pub const MODULE_TYPE_INFO = extern struct {
+    dataLength: u16,
+    leaf: u16,
+    data: [1]u8,
+};
+
+pub const SYMBOL_INFO = extern struct {
+    SizeOfStruct: u32,
+    TypeIndex: u32,
+    Reserved: [2]u64,
+    Index: u32,
+    Size: u32,
+    ModBase: u64,
+    Flags: SYMBOL_INFO_FLAGS,
+    Value: u64,
+    Address: u64,
+    Register: u32,
+    Scope: u32,
+    Tag: u32,
+    NameLen: u32,
+    MaxNameLen: u32,
+    Name: [1]CHAR,
+};
+
+pub const SYMBOL_INFO_PACKAGE = extern struct {
+    si: SYMBOL_INFO,
+    name: [2001]CHAR,
+};
+
+pub const SYMBOL_INFOW = extern struct {
+    SizeOfStruct: u32,
+    TypeIndex: u32,
+    Reserved: [2]u64,
+    Index: u32,
+    Size: u32,
+    ModBase: u64,
+    Flags: SYMBOL_INFO_FLAGS,
+    Value: u64,
+    Address: u64,
+    Register: u32,
+    Scope: u32,
+    Tag: u32,
+    NameLen: u32,
+    MaxNameLen: u32,
+    Name: [1]u16,
+};
+
+pub const SYMBOL_INFO_PACKAGEW = extern struct {
+    si: SYMBOL_INFOW,
+    name: [2001]u16,
+};
+
+pub const IMAGEHLP_STACK_FRAME = extern struct {
+    InstructionOffset: u64,
+    ReturnOffset: u64,
+    FrameOffset: u64,
+    StackOffset: u64,
+    BackingStoreOffset: u64,
+    FuncTableEntry: u64,
+    Params: [4]u64,
+    Reserved: [5]u64,
+    Virtual: BOOL,
+    Reserved2: u32,
+};
+
+pub const PSYM_ENUMPROCESSES_CALLBACK = fn(
+    hProcess: ?HANDLE,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYM_ENUMERATESYMBOLS_CALLBACK = fn(
+    pSymInfo: ?*SYMBOL_INFO,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYM_ENUMERATESYMBOLS_CALLBACKW = fn(
+    pSymInfo: ?*SYMBOL_INFOW,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const IMAGEHLP_SYMBOL_TYPE_INFO = enum(i32) {
+    TI_GET_SYMTAG = 0,
+    TI_GET_SYMNAME = 1,
+    TI_GET_LENGTH = 2,
+    TI_GET_TYPE = 3,
+    TI_GET_TYPEID = 4,
+    TI_GET_BASETYPE = 5,
+    TI_GET_ARRAYINDEXTYPEID = 6,
+    TI_FINDCHILDREN = 7,
+    TI_GET_DATAKIND = 8,
+    TI_GET_ADDRESSOFFSET = 9,
+    TI_GET_OFFSET = 10,
+    TI_GET_VALUE = 11,
+    TI_GET_COUNT = 12,
+    TI_GET_CHILDRENCOUNT = 13,
+    TI_GET_BITPOSITION = 14,
+    TI_GET_VIRTUALBASECLASS = 15,
+    TI_GET_VIRTUALTABLESHAPEID = 16,
+    TI_GET_VIRTUALBASEPOINTEROFFSET = 17,
+    TI_GET_CLASSPARENTID = 18,
+    TI_GET_NESTED = 19,
+    TI_GET_SYMINDEX = 20,
+    TI_GET_LEXICALPARENT = 21,
+    TI_GET_ADDRESS = 22,
+    TI_GET_THISADJUST = 23,
+    TI_GET_UDTKIND = 24,
+    TI_IS_EQUIV_TO = 25,
+    TI_GET_CALLING_CONVENTION = 26,
+    TI_IS_CLOSE_EQUIV_TO = 27,
+    TI_GTIEX_REQS_VALID = 28,
+    TI_GET_VIRTUALBASEOFFSET = 29,
+    TI_GET_VIRTUALBASEDISPINDEX = 30,
+    TI_GET_IS_REFERENCE = 31,
+    TI_GET_INDIRECTVIRTUALBASECLASS = 32,
+    TI_GET_VIRTUALBASETABLETYPE = 33,
+    IMAGEHLP_SYMBOL_TYPE_INFO_MAX = 34,
+};
+pub const TI_GET_SYMTAG = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMTAG;
+pub const TI_GET_SYMNAME = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMNAME;
+pub const TI_GET_LENGTH = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_LENGTH;
+pub const TI_GET_TYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_TYPE;
+pub const TI_GET_TYPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_TYPEID;
+pub const TI_GET_BASETYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_BASETYPE;
+pub const TI_GET_ARRAYINDEXTYPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ARRAYINDEXTYPEID;
+pub const TI_FINDCHILDREN = IMAGEHLP_SYMBOL_TYPE_INFO.TI_FINDCHILDREN;
+pub const TI_GET_DATAKIND = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_DATAKIND;
+pub const TI_GET_ADDRESSOFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ADDRESSOFFSET;
+pub const TI_GET_OFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_OFFSET;
+pub const TI_GET_VALUE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VALUE;
+pub const TI_GET_COUNT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_COUNT;
+pub const TI_GET_CHILDRENCOUNT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CHILDRENCOUNT;
+pub const TI_GET_BITPOSITION = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_BITPOSITION;
+pub const TI_GET_VIRTUALBASECLASS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASECLASS;
+pub const TI_GET_VIRTUALTABLESHAPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALTABLESHAPEID;
+pub const TI_GET_VIRTUALBASEPOINTEROFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEPOINTEROFFSET;
+pub const TI_GET_CLASSPARENTID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CLASSPARENTID;
+pub const TI_GET_NESTED = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_NESTED;
+pub const TI_GET_SYMINDEX = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMINDEX;
+pub const TI_GET_LEXICALPARENT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_LEXICALPARENT;
+pub const TI_GET_ADDRESS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ADDRESS;
+pub const TI_GET_THISADJUST = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_THISADJUST;
+pub const TI_GET_UDTKIND = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_UDTKIND;
+pub const TI_IS_EQUIV_TO = IMAGEHLP_SYMBOL_TYPE_INFO.TI_IS_EQUIV_TO;
+pub const TI_GET_CALLING_CONVENTION = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CALLING_CONVENTION;
+pub const TI_IS_CLOSE_EQUIV_TO = IMAGEHLP_SYMBOL_TYPE_INFO.TI_IS_CLOSE_EQUIV_TO;
+pub const TI_GTIEX_REQS_VALID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GTIEX_REQS_VALID;
+pub const TI_GET_VIRTUALBASEOFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEOFFSET;
+pub const TI_GET_VIRTUALBASEDISPINDEX = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEDISPINDEX;
+pub const TI_GET_IS_REFERENCE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_IS_REFERENCE;
+pub const TI_GET_INDIRECTVIRTUALBASECLASS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_INDIRECTVIRTUALBASECLASS;
+pub const TI_GET_VIRTUALBASETABLETYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASETABLETYPE;
+pub const IMAGEHLP_SYMBOL_TYPE_INFO_MAX = IMAGEHLP_SYMBOL_TYPE_INFO.IMAGEHLP_SYMBOL_TYPE_INFO_MAX;
+
+pub const TI_FINDCHILDREN_PARAMS = extern struct {
+    Count: u32,
+    Start: u32,
+    ChildId: [1]u32,
+};
+
+pub const IMAGEHLP_GET_TYPE_INFO_PARAMS = extern struct {
+    SizeOfStruct: u32,
+    Flags: IMAGEHLP_GET_TYPE_INFO_FLAGS,
+    NumIds: u32,
+    TypeIds: ?*u32,
+    TagFilter: u64,
+    NumReqs: u32,
+    ReqKinds: ?*IMAGEHLP_SYMBOL_TYPE_INFO,
+    ReqOffsets: ?*usize,
+    ReqSizes: ?*u32,
+    ReqStride: usize,
+    BufferSize: usize,
+    Buffer: ?*c_void,
+    EntriesMatched: u32,
+    EntriesFilled: u32,
+    TagsFound: u64,
+    AllReqsValid: u64,
+    NumReqsValid: u32,
+    ReqsValid: ?*u64,
+};
+
+pub const SYMADDSOURCESTREAM = fn(
+    param0: ?HANDLE,
+    param1: u64,
+    param2: ?[*:0]const u8,
+    param3: ?*u8,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SYMADDSOURCESTREAMA = fn(
+    param0: ?HANDLE,
+    param1: u64,
+    param2: ?[*:0]const u8,
+    param3: ?*u8,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SYMSRV_INDEX_INFO = extern struct {
+    sizeofstruct: u32,
+    file: [261]CHAR,
+    stripped: BOOL,
+    timestamp: u32,
+    size: u32,
+    dbgfile: [261]CHAR,
+    pdbfile: [261]CHAR,
+    guid: Guid,
+    sig: u32,
+    age: u32,
+};
+
+pub const SYMSRV_INDEX_INFOW = extern struct {
+    sizeofstruct: u32,
+    file: [261]u16,
+    stripped: BOOL,
+    timestamp: u32,
+    size: u32,
+    dbgfile: [261]u16,
+    pdbfile: [261]u16,
+    guid: Guid,
+    sig: u32,
+    age: u32,
+};
+
+pub const IMAGEHLP_SF_TYPE = enum(i32) {
+    Image = 0,
+    Dbg = 1,
+    Pdb = 2,
+    Mpd = 3,
+    Max = 4,
+};
+pub const sfImage = IMAGEHLP_SF_TYPE.Image;
+pub const sfDbg = IMAGEHLP_SF_TYPE.Dbg;
+pub const sfPdb = IMAGEHLP_SF_TYPE.Pdb;
+pub const sfMpd = IMAGEHLP_SF_TYPE.Mpd;
+pub const sfMax = IMAGEHLP_SF_TYPE.Max;
+
+pub const PDBGHELP_CREATE_USER_DUMP_CALLBACK = fn(
+    DataType: u32,
+    Data: ?*?*c_void,
+    DataLength: ?*u32,
+    UserData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SYMSRV_EXTENDED_OUTPUT_DATA = extern struct {
+    sizeOfStruct: u32,
+    version: u32,
+    filePtrMsg: [261]u16,
+};
+
+pub const PSYMBOLSERVERPROC = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERPROCA = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERPROCW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERBYINDEXPROC = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERBYINDEXPROCA = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERBYINDEXPROCW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVEROPENPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERCLOSEPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSETOPTIONSPROC = fn(
+    param0: usize,
+    param1: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSETOPTIONSWPROC = fn(
+    param0: usize,
+    param1: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERCALLBACKPROC = fn(
+    action: usize,
+    data: u64,
+    context: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETOPTIONSPROC = fn(
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const PSYMBOLSERVERPINGPROC = fn(
+    param0: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERPINGPROCA = fn(
+    param0: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERPINGPROCW = fn(
+    param0: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETVERSION = fn(
+    param0: ?*API_VERSION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERDELTANAME = fn(
+    param0: ?[*:0]const u8,
+    param1: ?*c_void,
+    param2: u32,
+    param3: u32,
+    param4: ?*c_void,
+    param5: u32,
+    param6: u32,
+    param7: ?PSTR,
+    param8: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERDELTANAMEW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?*c_void,
+    param2: u32,
+    param3: u32,
+    param4: ?*c_void,
+    param5: u32,
+    param6: u32,
+    param7: ?PWSTR,
+    param8: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETSUPPLEMENT = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?PSTR,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETSUPPLEMENTW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?PWSTR,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSTORESUPPLEMENT = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?[*:0]const u8,
+    param3: ?PSTR,
+    param4: usize,
+    param5: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSTORESUPPLEMENTW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?[*:0]const u16,
+    param3: ?PWSTR,
+    param4: usize,
+    param5: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETINDEXSTRING = fn(
+    param0: ?*c_void,
+    param1: u32,
+    param2: u32,
+    param3: ?PSTR,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETINDEXSTRINGW = fn(
+    param0: ?*c_void,
+    param1: u32,
+    param2: u32,
+    param3: ?PWSTR,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSTOREFILE = fn(
+    param0: ?[*:0]const u8,
+    param1: ?[*:0]const u8,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PSTR,
+    param6: usize,
+    param7: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSTOREFILEW = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PWSTR,
+    param6: usize,
+    param7: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERISSTORE = fn(
+    param0: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERISSTOREW = fn(
+    param0: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERVERSION = fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PSYMBOLSERVERMESSAGEPROC = fn(
+    action: usize,
+    data: u64,
+    context: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERWEXPROC = fn(
+    param0: ?[*:0]const u16,
+    param1: ?[*:0]const u16,
+    param2: ?*c_void,
+    param3: u32,
+    param4: u32,
+    param5: ?PWSTR,
+    param6: ?*SYMSRV_EXTENDED_OUTPUT_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERPINGPROCWEX = fn(
+    param0: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERGETOPTIONDATAPROC = fn(
+    param0: usize,
+    param1: ?*u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PSYMBOLSERVERSETHTTPAUTHHEADER = fn(
+    pszAuthHeader: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const LPCALL_BACK_USER_INTERRUPT_ROUTINE = fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const DBGHELP_DATA_REPORT_STRUCT = extern struct {
+    pBinPathNonExist: ?[*:0]const u16,
+    pSymbolPathNonExist: ?[*:0]const u16,
+};
 
 pub const DEBUG_OFFSET_REGION = extern struct {
     Base: u64,
@@ -32056,7819 +39365,6 @@ pub const FLASHWINFO = extern struct {
     dwTimeout: u32,
 };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const CONTEXT = extern struct {
-    ContextFlags: u32,
-    Dr0: u32,
-    Dr1: u32,
-    Dr2: u32,
-    Dr3: u32,
-    Dr6: u32,
-    Dr7: u32,
-    FloatSave: FLOATING_SAVE_AREA,
-    SegGs: u32,
-    SegFs: u32,
-    SegEs: u32,
-    SegDs: u32,
-    Edi: u32,
-    Esi: u32,
-    Ebx: u32,
-    Edx: u32,
-    Ecx: u32,
-    Eax: u32,
-    Ebp: u32,
-    Eip: u32,
-    SegCs: u32,
-    EFlags: u32,
-    Esp: u32,
-    SegSs: u32,
-    ExtendedRegisters: [512]u8,
-};
-
-}, else => struct { } };
-
-pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
-    ExceptionInfo: ?*EXCEPTION_POINTERS,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const WCT_OBJECT_TYPE = enum(i32) {
-    CriticalSectionType = 1,
-    SendMessageType = 2,
-    MutexType = 3,
-    AlpcType = 4,
-    ComType = 5,
-    ThreadWaitType = 6,
-    ProcessWaitType = 7,
-    ThreadType = 8,
-    ComActivationType = 9,
-    UnknownType = 10,
-    SocketIoType = 11,
-    SmbIoType = 12,
-    MaxType = 13,
-};
-pub const WctCriticalSectionType = WCT_OBJECT_TYPE.CriticalSectionType;
-pub const WctSendMessageType = WCT_OBJECT_TYPE.SendMessageType;
-pub const WctMutexType = WCT_OBJECT_TYPE.MutexType;
-pub const WctAlpcType = WCT_OBJECT_TYPE.AlpcType;
-pub const WctComType = WCT_OBJECT_TYPE.ComType;
-pub const WctThreadWaitType = WCT_OBJECT_TYPE.ThreadWaitType;
-pub const WctProcessWaitType = WCT_OBJECT_TYPE.ProcessWaitType;
-pub const WctThreadType = WCT_OBJECT_TYPE.ThreadType;
-pub const WctComActivationType = WCT_OBJECT_TYPE.ComActivationType;
-pub const WctUnknownType = WCT_OBJECT_TYPE.UnknownType;
-pub const WctSocketIoType = WCT_OBJECT_TYPE.SocketIoType;
-pub const WctSmbIoType = WCT_OBJECT_TYPE.SmbIoType;
-pub const WctMaxType = WCT_OBJECT_TYPE.MaxType;
-
-pub const WCT_OBJECT_STATUS = enum(i32) {
-    NoAccess = 1,
-    Running = 2,
-    Blocked = 3,
-    PidOnly = 4,
-    PidOnlyRpcss = 5,
-    Owned = 6,
-    NotOwned = 7,
-    Abandoned = 8,
-    Unknown = 9,
-    Error = 10,
-    Max = 11,
-};
-pub const WctStatusNoAccess = WCT_OBJECT_STATUS.NoAccess;
-pub const WctStatusRunning = WCT_OBJECT_STATUS.Running;
-pub const WctStatusBlocked = WCT_OBJECT_STATUS.Blocked;
-pub const WctStatusPidOnly = WCT_OBJECT_STATUS.PidOnly;
-pub const WctStatusPidOnlyRpcss = WCT_OBJECT_STATUS.PidOnlyRpcss;
-pub const WctStatusOwned = WCT_OBJECT_STATUS.Owned;
-pub const WctStatusNotOwned = WCT_OBJECT_STATUS.NotOwned;
-pub const WctStatusAbandoned = WCT_OBJECT_STATUS.Abandoned;
-pub const WctStatusUnknown = WCT_OBJECT_STATUS.Unknown;
-pub const WctStatusError = WCT_OBJECT_STATUS.Error;
-pub const WctStatusMax = WCT_OBJECT_STATUS.Max;
-
-pub const WAITCHAIN_NODE_INFO = extern struct {
-    ObjectType: WCT_OBJECT_TYPE,
-    ObjectStatus: WCT_OBJECT_STATUS,
-    Anonymous: extern union {
-        LockObject: extern struct {
-            ObjectName: [128]u16,
-            Timeout: LARGE_INTEGER,
-            Alertable: BOOL,
-        },
-        ThreadObject: extern struct {
-            ProcessId: u32,
-            ThreadId: u32,
-            WaitTime: u32,
-            ContextSwitches: u32,
-        },
-    },
-};
-
-pub const PWAITCHAINCALLBACK = fn(
-    WctHandle: ?*c_void,
-    Context: usize,
-    CallbackStatus: u32,
-    NodeCount: ?*u32,
-    NodeInfoArray: ?*WAITCHAIN_NODE_INFO,
-    IsCycle: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PCOGETCALLSTATE = fn(
-    param0: i32,
-    param1: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const PCOGETACTIVATIONSTATE = fn(
-    param0: Guid,
-    param1: u32,
-    param2: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
-    DataSize: u32,
-    Rva: u32,
-};
-
-pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    DataSize: u64,
-    Rva: u64,
-};
-
-pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartOfMemoryRange: u64,
-    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
-};
-
-pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartOfMemoryRange: u64,
-    DataSize: u64,
-};
-
-pub const MINIDUMP_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Signature: u32,
-    Version: u32,
-    NumberOfStreams: u32,
-    StreamDirectoryRva: u32,
-    CheckSum: u32,
-    Anonymous: extern union {
-        Reserved: u32,
-        TimeDateStamp: u32,
-    },
-    Flags: u64,
-};
-
-pub const MINIDUMP_DIRECTORY = extern struct {
-    StreamType: u32,
-    Location: MINIDUMP_LOCATION_DESCRIPTOR,
-};
-
-pub const MINIDUMP_STRING = extern struct {
-    Length: u32,
-    Buffer: [1]u16,
-};
-
-pub const MINIDUMP_STREAM_TYPE = enum(i32) {
-    UnusedStream = 0,
-    ReservedStream0 = 1,
-    ReservedStream1 = 2,
-    ThreadListStream = 3,
-    ModuleListStream = 4,
-    MemoryListStream = 5,
-    ExceptionStream = 6,
-    SystemInfoStream = 7,
-    ThreadExListStream = 8,
-    Memory64ListStream = 9,
-    CommentStreamA = 10,
-    CommentStreamW = 11,
-    HandleDataStream = 12,
-    FunctionTableStream = 13,
-    UnloadedModuleListStream = 14,
-    MiscInfoStream = 15,
-    MemoryInfoListStream = 16,
-    ThreadInfoListStream = 17,
-    HandleOperationListStream = 18,
-    TokenStream = 19,
-    JavaScriptDataStream = 20,
-    SystemMemoryInfoStream = 21,
-    ProcessVmCountersStream = 22,
-    IptTraceStream = 23,
-    ThreadNamesStream = 24,
-    ceStreamNull = 32768,
-    ceStreamSystemInfo = 32769,
-    ceStreamException = 32770,
-    ceStreamModuleList = 32771,
-    ceStreamProcessList = 32772,
-    ceStreamThreadList = 32773,
-    ceStreamThreadContextList = 32774,
-    ceStreamThreadCallStackList = 32775,
-    ceStreamMemoryVirtualList = 32776,
-    ceStreamMemoryPhysicalList = 32777,
-    ceStreamBucketParameters = 32778,
-    ceStreamProcessModuleMap = 32779,
-    ceStreamDiagnosisList = 32780,
-    LastReservedStream = 65535,
-};
-pub const UnusedStream = MINIDUMP_STREAM_TYPE.UnusedStream;
-pub const ReservedStream0 = MINIDUMP_STREAM_TYPE.ReservedStream0;
-pub const ReservedStream1 = MINIDUMP_STREAM_TYPE.ReservedStream1;
-pub const ThreadListStream = MINIDUMP_STREAM_TYPE.ThreadListStream;
-pub const ModuleListStream = MINIDUMP_STREAM_TYPE.ModuleListStream;
-pub const MemoryListStream = MINIDUMP_STREAM_TYPE.MemoryListStream;
-pub const ExceptionStream = MINIDUMP_STREAM_TYPE.ExceptionStream;
-pub const SystemInfoStream = MINIDUMP_STREAM_TYPE.SystemInfoStream;
-pub const ThreadExListStream = MINIDUMP_STREAM_TYPE.ThreadExListStream;
-pub const Memory64ListStream = MINIDUMP_STREAM_TYPE.Memory64ListStream;
-pub const CommentStreamA = MINIDUMP_STREAM_TYPE.CommentStreamA;
-pub const CommentStreamW = MINIDUMP_STREAM_TYPE.CommentStreamW;
-pub const HandleDataStream = MINIDUMP_STREAM_TYPE.HandleDataStream;
-pub const FunctionTableStream = MINIDUMP_STREAM_TYPE.FunctionTableStream;
-pub const UnloadedModuleListStream = MINIDUMP_STREAM_TYPE.UnloadedModuleListStream;
-pub const MiscInfoStream = MINIDUMP_STREAM_TYPE.MiscInfoStream;
-pub const MemoryInfoListStream = MINIDUMP_STREAM_TYPE.MemoryInfoListStream;
-pub const ThreadInfoListStream = MINIDUMP_STREAM_TYPE.ThreadInfoListStream;
-pub const HandleOperationListStream = MINIDUMP_STREAM_TYPE.HandleOperationListStream;
-pub const TokenStream = MINIDUMP_STREAM_TYPE.TokenStream;
-pub const JavaScriptDataStream = MINIDUMP_STREAM_TYPE.JavaScriptDataStream;
-pub const SystemMemoryInfoStream = MINIDUMP_STREAM_TYPE.SystemMemoryInfoStream;
-pub const ProcessVmCountersStream = MINIDUMP_STREAM_TYPE.ProcessVmCountersStream;
-pub const IptTraceStream = MINIDUMP_STREAM_TYPE.IptTraceStream;
-pub const ThreadNamesStream = MINIDUMP_STREAM_TYPE.ThreadNamesStream;
-pub const ceStreamNull = MINIDUMP_STREAM_TYPE.ceStreamNull;
-pub const ceStreamSystemInfo = MINIDUMP_STREAM_TYPE.ceStreamSystemInfo;
-pub const ceStreamException = MINIDUMP_STREAM_TYPE.ceStreamException;
-pub const ceStreamModuleList = MINIDUMP_STREAM_TYPE.ceStreamModuleList;
-pub const ceStreamProcessList = MINIDUMP_STREAM_TYPE.ceStreamProcessList;
-pub const ceStreamThreadList = MINIDUMP_STREAM_TYPE.ceStreamThreadList;
-pub const ceStreamThreadContextList = MINIDUMP_STREAM_TYPE.ceStreamThreadContextList;
-pub const ceStreamThreadCallStackList = MINIDUMP_STREAM_TYPE.ceStreamThreadCallStackList;
-pub const ceStreamMemoryVirtualList = MINIDUMP_STREAM_TYPE.ceStreamMemoryVirtualList;
-pub const ceStreamMemoryPhysicalList = MINIDUMP_STREAM_TYPE.ceStreamMemoryPhysicalList;
-pub const ceStreamBucketParameters = MINIDUMP_STREAM_TYPE.ceStreamBucketParameters;
-pub const ceStreamProcessModuleMap = MINIDUMP_STREAM_TYPE.ceStreamProcessModuleMap;
-pub const ceStreamDiagnosisList = MINIDUMP_STREAM_TYPE.ceStreamDiagnosisList;
-pub const LastReservedStream = MINIDUMP_STREAM_TYPE.LastReservedStream;
-
-pub const CPU_INFORMATION = extern union {
-    X86CpuInfo: extern struct {
-        VendorId: [3]u32,
-        VersionInformation: u32,
-        FeatureInformation: u32,
-        AMDExtendedCpuFeatures: u32,
-    },
-    OtherCpuInfo: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ProcessorFeatures: [2]u64,
-    },
-};
-
-pub const MINIDUMP_SYSTEM_INFO = extern struct {
-    ProcessorArchitecture: PROCESSOR_ARCHITECTURE,
-    ProcessorLevel: u16,
-    ProcessorRevision: u16,
-    Anonymous1: extern union {
-        Reserved0: u16,
-        Anonymous: extern struct {
-            NumberOfProcessors: u8,
-            ProductType: u8,
-        },
-    },
-    MajorVersion: u32,
-    MinorVersion: u32,
-    BuildNumber: u32,
-    PlatformId: VER_PLATFORM,
-    CSDVersionRva: u32,
-    Anonymous2: extern union {
-        Reserved1: u32,
-        Anonymous: extern struct {
-            SuiteMask: u16,
-            Reserved2: u16,
-        },
-    },
-    Cpu: CPU_INFORMATION,
-};
-
-pub const MINIDUMP_THREAD = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    SuspendCount: u32,
-    PriorityClass: u32,
-    Priority: u32,
-    Teb: u64,
-    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
-};
-
-pub const MINIDUMP_THREAD_LIST = extern struct {
-    NumberOfThreads: u32,
-    Threads: [1]MINIDUMP_THREAD,
-};
-
-pub const MINIDUMP_THREAD_EX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    SuspendCount: u32,
-    PriorityClass: u32,
-    Priority: u32,
-    Teb: u64,
-    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
-    BackingStore: MINIDUMP_MEMORY_DESCRIPTOR,
-};
-
-pub const MINIDUMP_THREAD_EX_LIST = extern struct {
-    NumberOfThreads: u32,
-    Threads: [1]MINIDUMP_THREAD_EX,
-};
-
-pub const MINIDUMP_EXCEPTION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ExceptionCode: u32,
-    ExceptionFlags: u32,
-    ExceptionRecord: u64,
-    ExceptionAddress: u64,
-    NumberParameters: u32,
-    __unusedAlignment: u32,
-    ExceptionInformation: [15]u64,
-};
-
-pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
-    ThreadId: u32,
-    __alignment: u32,
-    ExceptionRecord: MINIDUMP_EXCEPTION,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
-};
-
-pub const MINIDUMP_MODULE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    ModuleNameRva: u32,
-    VersionInfo: VS_FIXEDFILEINFO,
-    CvRecord: MINIDUMP_LOCATION_DESCRIPTOR,
-    MiscRecord: MINIDUMP_LOCATION_DESCRIPTOR,
-    Reserved0: u64,
-    Reserved1: u64,
-};
-
-pub const MINIDUMP_MODULE_LIST = extern struct {
-    NumberOfModules: u32,
-    Modules: [1]MINIDUMP_MODULE,
-};
-
-pub const MINIDUMP_MEMORY_LIST = extern struct {
-    NumberOfMemoryRanges: u32,
-    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR,
-};
-
-pub const MINIDUMP_MEMORY64_LIST = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    NumberOfMemoryRanges: u64,
-    BaseRva: u64,
-    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
-};
-
-pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ExceptionRecord: u64,
-    ContextRecord: u64,
-    ClientPointers: BOOL,
-};
-
-pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = enum(i32) {
-    HandleObjectInformationNone = 0,
-    ThreadInformation1 = 1,
-    MutantInformation1 = 2,
-    MutantInformation2 = 3,
-    ProcessInformation1 = 4,
-    ProcessInformation2 = 5,
-    EventInformation1 = 6,
-    SectionInformation1 = 7,
-    SemaphoreInformation1 = 8,
-    HandleObjectInformationTypeMax = 9,
-};
-pub const MiniHandleObjectInformationNone = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.HandleObjectInformationNone;
-pub const MiniThreadInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ThreadInformation1;
-pub const MiniMutantInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.MutantInformation1;
-pub const MiniMutantInformation2 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.MutantInformation2;
-pub const MiniProcessInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ProcessInformation1;
-pub const MiniProcessInformation2 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.ProcessInformation2;
-pub const MiniEventInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.EventInformation1;
-pub const MiniSectionInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.SectionInformation1;
-pub const MiniSemaphoreInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.SemaphoreInformation1;
-pub const MiniHandleObjectInformationTypeMax = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.HandleObjectInformationTypeMax;
-
-pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
-    NextInfoRva: u32,
-    InfoType: u32,
-    SizeOfInfo: u32,
-};
-
-pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: u64,
-    TypeNameRva: u32,
-    ObjectNameRva: u32,
-    Attributes: u32,
-    GrantedAccess: u32,
-    HandleCount: u32,
-    PointerCount: u32,
-};
-
-pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: u64,
-    TypeNameRva: u32,
-    ObjectNameRva: u32,
-    Attributes: u32,
-    GrantedAccess: u32,
-    HandleCount: u32,
-    PointerCount: u32,
-    ObjectInfoRva: u32,
-    Reserved0: u32,
-};
-
-pub const MINIDUMP_HANDLE_DATA_STREAM = extern struct {
-    SizeOfHeader: u32,
-    SizeOfDescriptor: u32,
-    NumberOfDescriptors: u32,
-    Reserved: u32,
-};
-
-pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
-    Reserved: u32,
-};
-
-pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    MinimumAddress: u64,
-    MaximumAddress: u64,
-    BaseAddress: u64,
-    EntryCount: u32,
-    SizeOfAlignPad: u32,
-};
-
-pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
-    SizeOfHeader: u32,
-    SizeOfDescriptor: u32,
-    SizeOfNativeDescriptor: u32,
-    SizeOfFunctionEntry: u32,
-    NumberOfDescriptors: u32,
-    SizeOfAlignPad: u32,
-};
-
-pub const MINIDUMP_UNLOADED_MODULE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    ModuleNameRva: u32,
-};
-
-pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
-};
-
-pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    SizeOfInfo: u32,
-    ContextSize: u32,
-    EnabledFeatures: u64,
-    Features: [64]XSTATE_FEATURE,
-};
-
-pub const MINIDUMP_MISC_INFO = extern struct {
-    SizeOfInfo: u32,
-    Flags1: MINIDUMP_MISC_INFO_FLAGS,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-};
-
-pub const MINIDUMP_MISC_INFO_2 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-};
-
-pub const MINIDUMP_MISC_INFO_3 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
-};
-
-pub const MINIDUMP_MISC_INFO_4 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
-    BuildString: [260]u16,
-    DbgBldStr: [40]u16,
-};
-
-pub const MINIDUMP_MISC_INFO_5 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
-    BuildString: [260]u16,
-    DbgBldStr: [40]u16,
-    XStateData: XSTATE_CONFIG_FEATURE_MSC_INFO,
-    ProcessCookie: u32,
-};
-
-pub const MINIDUMP_MEMORY_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: u32,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: u32,
-    Type: u32,
-    __alignment2: u32,
-};
-
-pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u64,
-};
-
-pub const MINIDUMP_THREAD_NAME = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    RvaOfThreadName: u64,
-};
-
-pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
-    NumberOfThreadNames: u32,
-    ThreadNames: [1]MINIDUMP_THREAD_NAME,
-};
-
-pub const MINIDUMP_THREAD_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
-    DumpError: u32,
-    ExitStatus: u32,
-    CreateTime: u64,
-    ExitTime: u64,
-    KernelTime: u64,
-    UserTime: u64,
-    StartAddress: u64,
-    Affinity: u64,
-};
-
-pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
-};
-
-pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    TokenSize: u32,
-    TokenId: u32,
-    TokenHandle: u64,
-};
-
-pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
-    TokenListSize: u32,
-    TokenListEntries: u32,
-    ListHeaderSize: u32,
-    ElementHeaderSize: u32,
-};
-
-pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    TimerResolution: u32,
-    PageSize: u32,
-    NumberOfPhysicalPages: u32,
-    LowestPhysicalPageNumber: u32,
-    HighestPhysicalPageNumber: u32,
-    AllocationGranularity: u32,
-    MinimumUserModeAddress: u64,
-    MaximumUserModeAddress: u64,
-    ActiveProcessorsAffinityMask: u64,
-    NumberOfProcessors: u32,
-};
-
-pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    CurrentSize: u64,
-    PeakSize: u64,
-    PageFaultCount: u32,
-    MinimumWorkingSet: u64,
-    MaximumWorkingSet: u64,
-    CurrentSizeIncludingTransitionInPages: u64,
-    PeakSizeIncludingTransitionInPages: u64,
-    TransitionRePurposeCount: u32,
-    Flags: u32,
-};
-
-pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    AvailablePages: u64,
-    CommittedPages: u64,
-    CommitLimit: u64,
-    PeakCommitment: u64,
-};
-
-pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    IdleProcessTime: u64,
-    IoReadTransferCount: u64,
-    IoWriteTransferCount: u64,
-    IoOtherTransferCount: u64,
-    IoReadOperationCount: u32,
-    IoWriteOperationCount: u32,
-    IoOtherOperationCount: u32,
-    AvailablePages: u32,
-    CommittedPages: u32,
-    CommitLimit: u32,
-    PeakCommitment: u32,
-    PageFaultCount: u32,
-    CopyOnWriteCount: u32,
-    TransitionCount: u32,
-    CacheTransitionCount: u32,
-    DemandZeroCount: u32,
-    PageReadCount: u32,
-    PageReadIoCount: u32,
-    CacheReadCount: u32,
-    CacheIoCount: u32,
-    DirtyPagesWriteCount: u32,
-    DirtyWriteIoCount: u32,
-    MappedPagesWriteCount: u32,
-    MappedWriteIoCount: u32,
-    PagedPoolPages: u32,
-    NonPagedPoolPages: u32,
-    PagedPoolAllocs: u32,
-    PagedPoolFrees: u32,
-    NonPagedPoolAllocs: u32,
-    NonPagedPoolFrees: u32,
-    FreeSystemPtes: u32,
-    ResidentSystemCodePage: u32,
-    TotalSystemDriverPages: u32,
-    TotalSystemCodePages: u32,
-    NonPagedPoolLookasideHits: u32,
-    PagedPoolLookasideHits: u32,
-    AvailablePagedPoolPages: u32,
-    ResidentSystemCachePage: u32,
-    ResidentPagedPoolPage: u32,
-    ResidentSystemDriverPage: u32,
-    CcFastReadNoWait: u32,
-    CcFastReadWait: u32,
-    CcFastReadResourceMiss: u32,
-    CcFastReadNotPossible: u32,
-    CcFastMdlReadNoWait: u32,
-    CcFastMdlReadWait: u32,
-    CcFastMdlReadResourceMiss: u32,
-    CcFastMdlReadNotPossible: u32,
-    CcMapDataNoWait: u32,
-    CcMapDataWait: u32,
-    CcMapDataNoWaitMiss: u32,
-    CcMapDataWaitMiss: u32,
-    CcPinMappedDataCount: u32,
-    CcPinReadNoWait: u32,
-    CcPinReadWait: u32,
-    CcPinReadNoWaitMiss: u32,
-    CcPinReadWaitMiss: u32,
-    CcCopyReadNoWait: u32,
-    CcCopyReadWait: u32,
-    CcCopyReadNoWaitMiss: u32,
-    CcCopyReadWaitMiss: u32,
-    CcMdlReadNoWait: u32,
-    CcMdlReadWait: u32,
-    CcMdlReadNoWaitMiss: u32,
-    CcMdlReadWaitMiss: u32,
-    CcReadAheadIos: u32,
-    CcLazyWriteIos: u32,
-    CcLazyWritePages: u32,
-    CcDataFlushes: u32,
-    CcDataPages: u32,
-    ContextSwitches: u32,
-    FirstLevelTbFills: u32,
-    SecondLevelTbFills: u32,
-    SystemCalls: u32,
-    CcTotalDirtyPages: u64,
-    CcDirtyPageThreshold: u64,
-    ResidentAvailablePages: i64,
-    SharedCommittedPages: u64,
-};
-
-pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
-    Revision: u16,
-    Flags: u16,
-    BasicInfo: MINIDUMP_SYSTEM_BASIC_INFORMATION,
-    FileCacheInfo: MINIDUMP_SYSTEM_FILECACHE_INFORMATION,
-    BasicPerfInfo: MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION,
-    PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION,
-};
-
-pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Revision: u16,
-    PageFaultCount: u32,
-    PeakWorkingSetSize: u64,
-    WorkingSetSize: u64,
-    QuotaPeakPagedPoolUsage: u64,
-    QuotaPagedPoolUsage: u64,
-    QuotaPeakNonPagedPoolUsage: u64,
-    QuotaNonPagedPoolUsage: u64,
-    PagefileUsage: u64,
-    PeakPagefileUsage: u64,
-    PrivateUsage: u64,
-};
-
-pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Revision: u16,
-    Flags: u16,
-    PageFaultCount: u32,
-    PeakWorkingSetSize: u64,
-    WorkingSetSize: u64,
-    QuotaPeakPagedPoolUsage: u64,
-    QuotaPagedPoolUsage: u64,
-    QuotaPeakNonPagedPoolUsage: u64,
-    QuotaNonPagedPoolUsage: u64,
-    PagefileUsage: u64,
-    PeakPagefileUsage: u64,
-    PeakVirtualSize: u64,
-    VirtualSize: u64,
-    PrivateUsage: u64,
-    PrivateWorkingSetSize: u64,
-    SharedCommitUsage: u64,
-    JobSharedCommitUsage: u64,
-    JobPrivateCommitUsage: u64,
-    JobPeakPrivateCommitUsage: u64,
-    JobPrivateCommitLimit: u64,
-    JobTotalCommitLimit: u64,
-};
-
-pub const MINIDUMP_USER_RECORD = extern struct {
-    Type: u32,
-    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
-};
-
-pub const MINIDUMP_CALLBACK_TYPE = enum(i32) {
-    ModuleCallback = 0,
-    ThreadCallback = 1,
-    ThreadExCallback = 2,
-    IncludeThreadCallback = 3,
-    IncludeModuleCallback = 4,
-    MemoryCallback = 5,
-    CancelCallback = 6,
-    WriteKernelMinidumpCallback = 7,
-    KernelMinidumpStatusCallback = 8,
-    RemoveMemoryCallback = 9,
-    IncludeVmRegionCallback = 10,
-    IoStartCallback = 11,
-    IoWriteAllCallback = 12,
-    IoFinishCallback = 13,
-    ReadMemoryFailureCallback = 14,
-    SecondaryFlagsCallback = 15,
-    IsProcessSnapshotCallback = 16,
-    VmStartCallback = 17,
-    VmQueryCallback = 18,
-    VmPreReadCallback = 19,
-    VmPostReadCallback = 20,
-};
-pub const ModuleCallback = MINIDUMP_CALLBACK_TYPE.ModuleCallback;
-pub const ThreadCallback = MINIDUMP_CALLBACK_TYPE.ThreadCallback;
-pub const ThreadExCallback = MINIDUMP_CALLBACK_TYPE.ThreadExCallback;
-pub const IncludeThreadCallback = MINIDUMP_CALLBACK_TYPE.IncludeThreadCallback;
-pub const IncludeModuleCallback = MINIDUMP_CALLBACK_TYPE.IncludeModuleCallback;
-pub const MemoryCallback = MINIDUMP_CALLBACK_TYPE.MemoryCallback;
-pub const CancelCallback = MINIDUMP_CALLBACK_TYPE.CancelCallback;
-pub const WriteKernelMinidumpCallback = MINIDUMP_CALLBACK_TYPE.WriteKernelMinidumpCallback;
-pub const KernelMinidumpStatusCallback = MINIDUMP_CALLBACK_TYPE.KernelMinidumpStatusCallback;
-pub const RemoveMemoryCallback = MINIDUMP_CALLBACK_TYPE.RemoveMemoryCallback;
-pub const IncludeVmRegionCallback = MINIDUMP_CALLBACK_TYPE.IncludeVmRegionCallback;
-pub const IoStartCallback = MINIDUMP_CALLBACK_TYPE.IoStartCallback;
-pub const IoWriteAllCallback = MINIDUMP_CALLBACK_TYPE.IoWriteAllCallback;
-pub const IoFinishCallback = MINIDUMP_CALLBACK_TYPE.IoFinishCallback;
-pub const ReadMemoryFailureCallback = MINIDUMP_CALLBACK_TYPE.ReadMemoryFailureCallback;
-pub const SecondaryFlagsCallback = MINIDUMP_CALLBACK_TYPE.SecondaryFlagsCallback;
-pub const IsProcessSnapshotCallback = MINIDUMP_CALLBACK_TYPE.IsProcessSnapshotCallback;
-pub const VmStartCallback = MINIDUMP_CALLBACK_TYPE.VmStartCallback;
-pub const VmQueryCallback = MINIDUMP_CALLBACK_TYPE.VmQueryCallback;
-pub const VmPreReadCallback = MINIDUMP_CALLBACK_TYPE.VmPreReadCallback;
-pub const VmPostReadCallback = MINIDUMP_CALLBACK_TYPE.VmPostReadCallback;
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub const MINIDUMP_THREAD_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64 => struct {
-
-pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
-    ThreadId: u32,
-    ThreadHandle: ?HANDLE,
-    Context: CONTEXT,
-    SizeOfContext: u32,
-    StackBase: u64,
-    StackEnd: u64,
-    BackingStoreBase: u64,
-    BackingStoreEnd: u64,
-};
-
-}, else => struct { } };
-
-pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
-    ThreadId: u32,
-};
-
-pub const THREAD_WRITE_FLAGS = enum(i32) {
-    Thread = 1,
-    Stack = 2,
-    Context = 4,
-    BackingStore = 8,
-    InstructionWindow = 16,
-    ThreadData = 32,
-    ThreadInfo = 64,
-};
-pub const ThreadWriteThread = THREAD_WRITE_FLAGS.Thread;
-pub const ThreadWriteStack = THREAD_WRITE_FLAGS.Stack;
-pub const ThreadWriteContext = THREAD_WRITE_FLAGS.Context;
-pub const ThreadWriteBackingStore = THREAD_WRITE_FLAGS.BackingStore;
-pub const ThreadWriteInstructionWindow = THREAD_WRITE_FLAGS.InstructionWindow;
-pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
-pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
-
-pub const MINIDUMP_MODULE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    FullPath: ?[*]u16,
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    VersionInfo: VS_FIXEDFILEINFO,
-    CvRecord: ?*c_void,
-    SizeOfCvRecord: u32,
-    MiscRecord: ?*c_void,
-    SizeOfMiscRecord: u32,
-};
-
-pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
-};
-
-pub const MODULE_WRITE_FLAGS = enum(i32) {
-    WriteModule = 1,
-    WriteDataSeg = 2,
-    WriteMiscRecord = 4,
-    WriteCvRecord = 8,
-    ReferencedByMemory = 16,
-    WriteTlsData = 32,
-    WriteCodeSegs = 64,
-};
-pub const ModuleWriteModule = MODULE_WRITE_FLAGS.WriteModule;
-pub const ModuleWriteDataSeg = MODULE_WRITE_FLAGS.WriteDataSeg;
-pub const ModuleWriteMiscRecord = MODULE_WRITE_FLAGS.WriteMiscRecord;
-pub const ModuleWriteCvRecord = MODULE_WRITE_FLAGS.WriteCvRecord;
-pub const ModuleReferencedByMemory = MODULE_WRITE_FLAGS.ReferencedByMemory;
-pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
-pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
-
-pub const MINIDUMP_IO_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: ?HANDLE,
-    Offset: u64,
-    Buffer: ?*c_void,
-    BufferBytes: u32,
-};
-
-pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Bytes: u32,
-    FailureStatus: HRESULT,
-};
-
-pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-};
-
-pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Buffer: ?*c_void,
-    Size: u32,
-};
-
-pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Buffer: ?*c_void,
-    Size: u32,
-    Completed: u32,
-    Status: HRESULT,
-};
-
-pub const MINIDUMP_CALLBACK_INPUT = extern struct {
-    ProcessId: u32,
-    ProcessHandle: ?HANDLE,
-    CallbackType: u32,
-    Anonymous: extern union {
-        Status: HRESULT,
-        Thread: MINIDUMP_THREAD_CALLBACK,
-        ThreadEx: MINIDUMP_THREAD_EX_CALLBACK,
-        Module: MINIDUMP_MODULE_CALLBACK,
-        IncludeThread: MINIDUMP_INCLUDE_THREAD_CALLBACK,
-        IncludeModule: MINIDUMP_INCLUDE_MODULE_CALLBACK,
-        Io: MINIDUMP_IO_CALLBACK,
-        ReadMemoryFailure: MINIDUMP_READ_MEMORY_FAILURE_CALLBACK,
-        SecondaryFlags: u32,
-        VmQuery: MINIDUMP_VM_QUERY_CALLBACK,
-        VmPreRead: MINIDUMP_VM_PRE_READ_CALLBACK,
-        VmPostRead: MINIDUMP_VM_POST_READ_CALLBACK,
-    },
-};
-
-pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
-    Anonymous: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        ModuleWriteFlags: u32,
-        ThreadWriteFlags: u32,
-        SecondaryFlags: u32,
-        Anonymous1: extern struct {
-            // WARNING: unable to add field alignment because it's causing a compiler bug
-            MemoryBase: u64,
-            MemorySize: u32,
-        },
-        Anonymous2: extern struct {
-            CheckCancel: BOOL,
-            Cancel: BOOL,
-        },
-        Handle: ?HANDLE,
-        Anonymous3: extern struct {
-            VmRegion: MINIDUMP_MEMORY_INFO,
-            Continue: BOOL,
-        },
-        Anonymous4: extern struct {
-            VmQueryStatus: HRESULT,
-            VmQueryResult: MINIDUMP_MEMORY_INFO,
-        },
-        Anonymous5: extern struct {
-            VmReadStatus: HRESULT,
-            VmReadBytesCompleted: u32,
-        },
-        Status: HRESULT,
-    },
-};
-
-pub const MINIDUMP_TYPE = enum(u32) {
-    Normal = 0,
-    WithDataSegs = 1,
-    WithFullMemory = 2,
-    WithHandleData = 4,
-    FilterMemory = 8,
-    ScanMemory = 16,
-    WithUnloadedModules = 32,
-    WithIndirectlyReferencedMemory = 64,
-    FilterModulePaths = 128,
-    WithProcessThreadData = 256,
-    WithPrivateReadWriteMemory = 512,
-    WithoutOptionalData = 1024,
-    WithFullMemoryInfo = 2048,
-    WithThreadInfo = 4096,
-    WithCodeSegs = 8192,
-    WithoutAuxiliaryState = 16384,
-    WithFullAuxiliaryState = 32768,
-    WithPrivateWriteCopyMemory = 65536,
-    IgnoreInaccessibleMemory = 131072,
-    WithTokenInformation = 262144,
-    WithModuleHeaders = 524288,
-    FilterTriage = 1048576,
-    WithAvxXStateContext = 2097152,
-    WithIptTrace = 4194304,
-    ScanInaccessiblePartialPages = 8388608,
-    ValidTypeFlags = 16777215,
-    _,
-    pub fn initFlags(o: struct {
-        Normal: u1 = 0,
-        WithDataSegs: u1 = 0,
-        WithFullMemory: u1 = 0,
-        WithHandleData: u1 = 0,
-        FilterMemory: u1 = 0,
-        ScanMemory: u1 = 0,
-        WithUnloadedModules: u1 = 0,
-        WithIndirectlyReferencedMemory: u1 = 0,
-        FilterModulePaths: u1 = 0,
-        WithProcessThreadData: u1 = 0,
-        WithPrivateReadWriteMemory: u1 = 0,
-        WithoutOptionalData: u1 = 0,
-        WithFullMemoryInfo: u1 = 0,
-        WithThreadInfo: u1 = 0,
-        WithCodeSegs: u1 = 0,
-        WithoutAuxiliaryState: u1 = 0,
-        WithFullAuxiliaryState: u1 = 0,
-        WithPrivateWriteCopyMemory: u1 = 0,
-        IgnoreInaccessibleMemory: u1 = 0,
-        WithTokenInformation: u1 = 0,
-        WithModuleHeaders: u1 = 0,
-        FilterTriage: u1 = 0,
-        WithAvxXStateContext: u1 = 0,
-        WithIptTrace: u1 = 0,
-        ScanInaccessiblePartialPages: u1 = 0,
-        ValidTypeFlags: u1 = 0,
-    }) MINIDUMP_TYPE {
-        return @intToEnum(MINIDUMP_TYPE,
-              (if (o.Normal == 1) @enumToInt(MINIDUMP_TYPE.Normal) else 0)
-            | (if (o.WithDataSegs == 1) @enumToInt(MINIDUMP_TYPE.WithDataSegs) else 0)
-            | (if (o.WithFullMemory == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemory) else 0)
-            | (if (o.WithHandleData == 1) @enumToInt(MINIDUMP_TYPE.WithHandleData) else 0)
-            | (if (o.FilterMemory == 1) @enumToInt(MINIDUMP_TYPE.FilterMemory) else 0)
-            | (if (o.ScanMemory == 1) @enumToInt(MINIDUMP_TYPE.ScanMemory) else 0)
-            | (if (o.WithUnloadedModules == 1) @enumToInt(MINIDUMP_TYPE.WithUnloadedModules) else 0)
-            | (if (o.WithIndirectlyReferencedMemory == 1) @enumToInt(MINIDUMP_TYPE.WithIndirectlyReferencedMemory) else 0)
-            | (if (o.FilterModulePaths == 1) @enumToInt(MINIDUMP_TYPE.FilterModulePaths) else 0)
-            | (if (o.WithProcessThreadData == 1) @enumToInt(MINIDUMP_TYPE.WithProcessThreadData) else 0)
-            | (if (o.WithPrivateReadWriteMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateReadWriteMemory) else 0)
-            | (if (o.WithoutOptionalData == 1) @enumToInt(MINIDUMP_TYPE.WithoutOptionalData) else 0)
-            | (if (o.WithFullMemoryInfo == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemoryInfo) else 0)
-            | (if (o.WithThreadInfo == 1) @enumToInt(MINIDUMP_TYPE.WithThreadInfo) else 0)
-            | (if (o.WithCodeSegs == 1) @enumToInt(MINIDUMP_TYPE.WithCodeSegs) else 0)
-            | (if (o.WithoutAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithoutAuxiliaryState) else 0)
-            | (if (o.WithFullAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithFullAuxiliaryState) else 0)
-            | (if (o.WithPrivateWriteCopyMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateWriteCopyMemory) else 0)
-            | (if (o.IgnoreInaccessibleMemory == 1) @enumToInt(MINIDUMP_TYPE.IgnoreInaccessibleMemory) else 0)
-            | (if (o.WithTokenInformation == 1) @enumToInt(MINIDUMP_TYPE.WithTokenInformation) else 0)
-            | (if (o.WithModuleHeaders == 1) @enumToInt(MINIDUMP_TYPE.WithModuleHeaders) else 0)
-            | (if (o.FilterTriage == 1) @enumToInt(MINIDUMP_TYPE.FilterTriage) else 0)
-            | (if (o.WithAvxXStateContext == 1) @enumToInt(MINIDUMP_TYPE.WithAvxXStateContext) else 0)
-            | (if (o.WithIptTrace == 1) @enumToInt(MINIDUMP_TYPE.WithIptTrace) else 0)
-            | (if (o.ScanInaccessiblePartialPages == 1) @enumToInt(MINIDUMP_TYPE.ScanInaccessiblePartialPages) else 0)
-            | (if (o.ValidTypeFlags == 1) @enumToInt(MINIDUMP_TYPE.ValidTypeFlags) else 0)
-        );
-    }
-};
-pub const MiniDumpNormal = MINIDUMP_TYPE.Normal;
-pub const MiniDumpWithDataSegs = MINIDUMP_TYPE.WithDataSegs;
-pub const MiniDumpWithFullMemory = MINIDUMP_TYPE.WithFullMemory;
-pub const MiniDumpWithHandleData = MINIDUMP_TYPE.WithHandleData;
-pub const MiniDumpFilterMemory = MINIDUMP_TYPE.FilterMemory;
-pub const MiniDumpScanMemory = MINIDUMP_TYPE.ScanMemory;
-pub const MiniDumpWithUnloadedModules = MINIDUMP_TYPE.WithUnloadedModules;
-pub const MiniDumpWithIndirectlyReferencedMemory = MINIDUMP_TYPE.WithIndirectlyReferencedMemory;
-pub const MiniDumpFilterModulePaths = MINIDUMP_TYPE.FilterModulePaths;
-pub const MiniDumpWithProcessThreadData = MINIDUMP_TYPE.WithProcessThreadData;
-pub const MiniDumpWithPrivateReadWriteMemory = MINIDUMP_TYPE.WithPrivateReadWriteMemory;
-pub const MiniDumpWithoutOptionalData = MINIDUMP_TYPE.WithoutOptionalData;
-pub const MiniDumpWithFullMemoryInfo = MINIDUMP_TYPE.WithFullMemoryInfo;
-pub const MiniDumpWithThreadInfo = MINIDUMP_TYPE.WithThreadInfo;
-pub const MiniDumpWithCodeSegs = MINIDUMP_TYPE.WithCodeSegs;
-pub const MiniDumpWithoutAuxiliaryState = MINIDUMP_TYPE.WithoutAuxiliaryState;
-pub const MiniDumpWithFullAuxiliaryState = MINIDUMP_TYPE.WithFullAuxiliaryState;
-pub const MiniDumpWithPrivateWriteCopyMemory = MINIDUMP_TYPE.WithPrivateWriteCopyMemory;
-pub const MiniDumpIgnoreInaccessibleMemory = MINIDUMP_TYPE.IgnoreInaccessibleMemory;
-pub const MiniDumpWithTokenInformation = MINIDUMP_TYPE.WithTokenInformation;
-pub const MiniDumpWithModuleHeaders = MINIDUMP_TYPE.WithModuleHeaders;
-pub const MiniDumpFilterTriage = MINIDUMP_TYPE.FilterTriage;
-pub const MiniDumpWithAvxXStateContext = MINIDUMP_TYPE.WithAvxXStateContext;
-pub const MiniDumpWithIptTrace = MINIDUMP_TYPE.WithIptTrace;
-pub const MiniDumpScanInaccessiblePartialPages = MINIDUMP_TYPE.ScanInaccessiblePartialPages;
-pub const MiniDumpValidTypeFlags = MINIDUMP_TYPE.ValidTypeFlags;
-
-pub const MINIDUMP_SECONDARY_FLAGS = enum(i32) {
-    WithoutPowerInfo = 1,
-    // ValidFlags = 1, this enum value conflicts with WithoutPowerInfo
-};
-pub const MiniSecondaryWithoutPowerInfo = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
-pub const MiniSecondaryValidFlags = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
-
-pub const MINIDUMP_CALLBACK_ROUTINE = fn(
-    CallbackParam: ?*c_void,
-    CallbackInput: ?*MINIDUMP_CALLBACK_INPUT,
-    CallbackOutput: ?*MINIDUMP_CALLBACK_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-const CLSID_ProcessDebugManager_Value = @import("../../zig.zig").Guid.initString("78a51822-51f4-11d0-8f20-00805f2cd064");
-pub const CLSID_ProcessDebugManager = &CLSID_ProcessDebugManager_Value;
-
-const CLSID_DebugHelper_Value = @import("../../zig.zig").Guid.initString("0bfcc060-8c1d-11d0-accd-00aa0060275c");
-pub const CLSID_DebugHelper = &CLSID_DebugHelper_Value;
-
-const CLSID_CDebugDocumentHelper_Value = @import("../../zig.zig").Guid.initString("83b8bca6-687c-11d0-a405-00aa0060275c");
-pub const CLSID_CDebugDocumentHelper = &CLSID_CDebugDocumentHelper_Value;
-
-const CLSID_MachineDebugManager_RETAIL_Value = @import("../../zig.zig").Guid.initString("0c0a3666-30c9-11d0-8f20-00805f2cd064");
-pub const CLSID_MachineDebugManager_RETAIL = &CLSID_MachineDebugManager_RETAIL_Value;
-
-const CLSID_MachineDebugManager_DEBUG_Value = @import("../../zig.zig").Guid.initString("49769cec-3a55-4bb0-b697-88fede77e8ea");
-pub const CLSID_MachineDebugManager_DEBUG = &CLSID_MachineDebugManager_DEBUG_Value;
-
-const CLSID_DefaultDebugSessionProvider_Value = @import("../../zig.zig").Guid.initString("834128a2-51f4-11d0-8f20-00805f2cd064");
-pub const CLSID_DefaultDebugSessionProvider = &CLSID_DefaultDebugSessionProvider_Value;
-
-pub const SCRIPTLANGUAGEVERSION = enum(i32) {
-    DEFAULT = 0,
-    @"5_7" = 1,
-    @"5_8" = 2,
-    MAX = 255,
-};
-pub const SCRIPTLANGUAGEVERSION_DEFAULT = SCRIPTLANGUAGEVERSION.DEFAULT;
-pub const SCRIPTLANGUAGEVERSION_5_7 = SCRIPTLANGUAGEVERSION.@"5_7";
-pub const SCRIPTLANGUAGEVERSION_5_8 = SCRIPTLANGUAGEVERSION.@"5_8";
-pub const SCRIPTLANGUAGEVERSION_MAX = SCRIPTLANGUAGEVERSION.MAX;
-
-pub const SCRIPTSTATE = enum(i32) {
-    UNINITIALIZED = 0,
-    INITIALIZED = 5,
-    STARTED = 1,
-    CONNECTED = 2,
-    DISCONNECTED = 3,
-    CLOSED = 4,
-};
-pub const SCRIPTSTATE_UNINITIALIZED = SCRIPTSTATE.UNINITIALIZED;
-pub const SCRIPTSTATE_INITIALIZED = SCRIPTSTATE.INITIALIZED;
-pub const SCRIPTSTATE_STARTED = SCRIPTSTATE.STARTED;
-pub const SCRIPTSTATE_CONNECTED = SCRIPTSTATE.CONNECTED;
-pub const SCRIPTSTATE_DISCONNECTED = SCRIPTSTATE.DISCONNECTED;
-pub const SCRIPTSTATE_CLOSED = SCRIPTSTATE.CLOSED;
-
-pub const SCRIPTTRACEINFO = enum(i32) {
-    SCRIPTSTART = 0,
-    SCRIPTEND = 1,
-    COMCALLSTART = 2,
-    COMCALLEND = 3,
-    CREATEOBJSTART = 4,
-    CREATEOBJEND = 5,
-    GETOBJSTART = 6,
-    GETOBJEND = 7,
-};
-pub const SCRIPTTRACEINFO_SCRIPTSTART = SCRIPTTRACEINFO.SCRIPTSTART;
-pub const SCRIPTTRACEINFO_SCRIPTEND = SCRIPTTRACEINFO.SCRIPTEND;
-pub const SCRIPTTRACEINFO_COMCALLSTART = SCRIPTTRACEINFO.COMCALLSTART;
-pub const SCRIPTTRACEINFO_COMCALLEND = SCRIPTTRACEINFO.COMCALLEND;
-pub const SCRIPTTRACEINFO_CREATEOBJSTART = SCRIPTTRACEINFO.CREATEOBJSTART;
-pub const SCRIPTTRACEINFO_CREATEOBJEND = SCRIPTTRACEINFO.CREATEOBJEND;
-pub const SCRIPTTRACEINFO_GETOBJSTART = SCRIPTTRACEINFO.GETOBJSTART;
-pub const SCRIPTTRACEINFO_GETOBJEND = SCRIPTTRACEINFO.GETOBJEND;
-
-pub const SCRIPTTHREADSTATE = enum(i32) {
-    NOTINSCRIPT = 0,
-    RUNNING = 1,
-};
-pub const SCRIPTTHREADSTATE_NOTINSCRIPT = SCRIPTTHREADSTATE.NOTINSCRIPT;
-pub const SCRIPTTHREADSTATE_RUNNING = SCRIPTTHREADSTATE.RUNNING;
-
-pub const SCRIPTGCTYPE = enum(i32) {
-    NORMAL = 0,
-    EXHAUSTIVE = 1,
-};
-pub const SCRIPTGCTYPE_NORMAL = SCRIPTGCTYPE.NORMAL;
-pub const SCRIPTGCTYPE_EXHAUSTIVE = SCRIPTGCTYPE.EXHAUSTIVE;
-
-pub const SCRIPTUICITEM = enum(i32) {
-    INPUTBOX = 1,
-    MSGBOX = 2,
-};
-pub const SCRIPTUICITEM_INPUTBOX = SCRIPTUICITEM.INPUTBOX;
-pub const SCRIPTUICITEM_MSGBOX = SCRIPTUICITEM.MSGBOX;
-
-pub const SCRIPTUICHANDLING = enum(i32) {
-    ALLOW = 0,
-    NOUIERROR = 1,
-    NOUIDEFAULT = 2,
-};
-pub const SCRIPTUICHANDLING_ALLOW = SCRIPTUICHANDLING.ALLOW;
-pub const SCRIPTUICHANDLING_NOUIERROR = SCRIPTUICHANDLING.NOUIERROR;
-pub const SCRIPTUICHANDLING_NOUIDEFAULT = SCRIPTUICHANDLING.NOUIDEFAULT;
-
-const IID_IActiveScriptSite_Value = @import("../../zig.zig").Guid.initString("db01a1e3-a42b-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScriptSite = &IID_IActiveScriptSite_Value;
-pub const IActiveScriptSite = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetLCID: fn(
-            self: *const IActiveScriptSite,
-            plcid: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemInfo: fn(
-            self: *const IActiveScriptSite,
-            pstrName: ?[*:0]const u16,
-            dwReturnMask: u32,
-            ppiunkItem: ?*?*IUnknown,
-            ppti: ?*?*ITypeInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocVersionString: fn(
-            self: *const IActiveScriptSite,
-            pbstrVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnScriptTerminate: fn(
-            self: *const IActiveScriptSite,
-            pvarResult: ?*const VARIANT,
-            pexcepinfo: ?*const EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnStateChange: fn(
-            self: *const IActiveScriptSite,
-            ssScriptState: SCRIPTSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnScriptError: fn(
-            self: *const IActiveScriptSite,
-            pscripterror: ?*IActiveScriptError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnEnterScript: fn(
-            self: *const IActiveScriptSite,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnLeaveScript: fn(
-            self: *const IActiveScriptSite,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_GetLCID(self: *const T, plcid: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetLCID(@ptrCast(*const IActiveScriptSite, self), plcid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_GetItemInfo(self: *const T, pstrName: ?[*:0]const u16, dwReturnMask: u32, ppiunkItem: ?*?*IUnknown, ppti: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetItemInfo(@ptrCast(*const IActiveScriptSite, self), pstrName, dwReturnMask, ppiunkItem, ppti);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_GetDocVersionString(self: *const T, pbstrVersion: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).GetDocVersionString(@ptrCast(*const IActiveScriptSite, self), pbstrVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_OnScriptTerminate(self: *const T, pvarResult: ?*const VARIANT, pexcepinfo: ?*const EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnScriptTerminate(@ptrCast(*const IActiveScriptSite, self), pvarResult, pexcepinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_OnStateChange(self: *const T, ssScriptState: SCRIPTSTATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnStateChange(@ptrCast(*const IActiveScriptSite, self), ssScriptState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_OnScriptError(self: *const T, pscripterror: ?*IActiveScriptError) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnScriptError(@ptrCast(*const IActiveScriptSite, self), pscripterror);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_OnEnterScript(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnEnterScript(@ptrCast(*const IActiveScriptSite, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSite_OnLeaveScript(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSite.VTable, self.vtable).OnLeaveScript(@ptrCast(*const IActiveScriptSite, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptError_Value = @import("../../zig.zig").Guid.initString("eae1ba61-a4ed-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScriptError = &IID_IActiveScriptError_Value;
-pub const IActiveScriptError = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetExceptionInfo: fn(
-            self: *const IActiveScriptError,
-            pexcepinfo: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourcePosition: fn(
-            self: *const IActiveScriptError,
-            pdwSourceContext: ?*u32,
-            pulLineNumber: ?*u32,
-            plCharacterPosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourceLineText: fn(
-            self: *const IActiveScriptError,
-            pbstrSourceLine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptError_GetExceptionInfo(self: *const T, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetExceptionInfo(@ptrCast(*const IActiveScriptError, self), pexcepinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptError_GetSourcePosition(self: *const T, pdwSourceContext: ?*u32, pulLineNumber: ?*u32, plCharacterPosition: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetSourcePosition(@ptrCast(*const IActiveScriptError, self), pdwSourceContext, pulLineNumber, plCharacterPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptError_GetSourceLineText(self: *const T, pbstrSourceLine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptError.VTable, self.vtable).GetSourceLineText(@ptrCast(*const IActiveScriptError, self), pbstrSourceLine);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptError64_Value = @import("../../zig.zig").Guid.initString("b21fb2a1-5b8f-4963-8c21-21450f84ed7f");
-pub const IID_IActiveScriptError64 = &IID_IActiveScriptError64_Value;
-pub const IActiveScriptError64 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptError.VTable,
-        GetSourcePosition64: fn(
-            self: *const IActiveScriptError64,
-            pdwSourceContext: ?*u64,
-            pulLineNumber: ?*u32,
-            plCharacterPosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptError.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptError64_GetSourcePosition64(self: *const T, pdwSourceContext: ?*u64, pulLineNumber: ?*u32, plCharacterPosition: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptError64.VTable, self.vtable).GetSourcePosition64(@ptrCast(*const IActiveScriptError64, self), pdwSourceContext, pulLineNumber, plCharacterPosition);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteWindow_Value = @import("../../zig.zig").Guid.initString("d10f6761-83e9-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScriptSiteWindow = &IID_IActiveScriptSiteWindow_Value;
-pub const IActiveScriptSiteWindow = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetWindow: fn(
-            self: *const IActiveScriptSiteWindow,
-            phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableModeless: fn(
-            self: *const IActiveScriptSiteWindow,
-            fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteWindow_GetWindow(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteWindow.VTable, self.vtable).GetWindow(@ptrCast(*const IActiveScriptSiteWindow, self), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteWindow_EnableModeless(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteWindow.VTable, self.vtable).EnableModeless(@ptrCast(*const IActiveScriptSiteWindow, self), fEnable);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteUIControl_Value = @import("../../zig.zig").Guid.initString("aedae97e-d7ee-4796-b960-7f092ae844ab");
-pub const IID_IActiveScriptSiteUIControl = &IID_IActiveScriptSiteUIControl_Value;
-pub const IActiveScriptSiteUIControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetUIBehavior: fn(
-            self: *const IActiveScriptSiteUIControl,
-            UicItem: SCRIPTUICITEM,
-            pUicHandling: ?*SCRIPTUICHANDLING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteUIControl_GetUIBehavior(self: *const T, UicItem: SCRIPTUICITEM, pUicHandling: ?*SCRIPTUICHANDLING) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteUIControl.VTable, self.vtable).GetUIBehavior(@ptrCast(*const IActiveScriptSiteUIControl, self), UicItem, pUicHandling);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteInterruptPoll_Value = @import("../../zig.zig").Guid.initString("539698a0-cdca-11cf-a5eb-00aa0047a063");
-pub const IID_IActiveScriptSiteInterruptPoll = &IID_IActiveScriptSiteInterruptPoll_Value;
-pub const IActiveScriptSiteInterruptPoll = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryContinue: fn(
-            self: *const IActiveScriptSiteInterruptPoll,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteInterruptPoll_QueryContinue(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteInterruptPoll.VTable, self.vtable).QueryContinue(@ptrCast(*const IActiveScriptSiteInterruptPoll, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScript_Value = @import("../../zig.zig").Guid.initString("bb1a2ae1-a4f9-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScript = &IID_IActiveScript_Value;
-pub const IActiveScript = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetScriptSite: fn(
-            self: *const IActiveScript,
-            pass: ?*IActiveScriptSite,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptSite: fn(
-            self: *const IActiveScript,
-            riid: ?*const Guid,
-            ppvObject: ?*?*c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetScriptState: fn(
-            self: *const IActiveScript,
-            ss: SCRIPTSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptState: fn(
-            self: *const IActiveScript,
-            pssState: ?*SCRIPTSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IActiveScript,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddNamedItem: fn(
-            self: *const IActiveScript,
-            pstrName: ?[*:0]const u16,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddTypeLib: fn(
-            self: *const IActiveScript,
-            rguidTypeLib: ?*const Guid,
-            dwMajor: u32,
-            dwMinor: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptDispatch: fn(
-            self: *const IActiveScript,
-            pstrItemName: ?[*:0]const u16,
-            ppdisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentScriptThreadID: fn(
-            self: *const IActiveScript,
-            pstidThread: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptThreadID: fn(
-            self: *const IActiveScript,
-            dwWin32ThreadId: u32,
-            pstidThread: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptThreadState: fn(
-            self: *const IActiveScript,
-            stidThread: u32,
-            pstsState: ?*SCRIPTTHREADSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InterruptScriptThread: fn(
-            self: *const IActiveScript,
-            stidThread: u32,
-            pexcepinfo: ?*const EXCEPINFO,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IActiveScript,
-            ppscript: ?*?*IActiveScript,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_SetScriptSite(self: *const T, pass: ?*IActiveScriptSite) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).SetScriptSite(@ptrCast(*const IActiveScript, self), pass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptSite(self: *const T, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptSite(@ptrCast(*const IActiveScript, self), riid, ppvObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_SetScriptState(self: *const T, ss: SCRIPTSTATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).SetScriptState(@ptrCast(*const IActiveScript, self), ss);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptState(self: *const T, pssState: ?*SCRIPTSTATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptState(@ptrCast(*const IActiveScript, self), pssState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).Close(@ptrCast(*const IActiveScript, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_AddNamedItem(self: *const T, pstrName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).AddNamedItem(@ptrCast(*const IActiveScript, self), pstrName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_AddTypeLib(self: *const T, rguidTypeLib: ?*const Guid, dwMajor: u32, dwMinor: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).AddTypeLib(@ptrCast(*const IActiveScript, self), rguidTypeLib, dwMajor, dwMinor, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptDispatch(self: *const T, pstrItemName: ?[*:0]const u16, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptDispatch(@ptrCast(*const IActiveScript, self), pstrItemName, ppdisp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetCurrentScriptThreadID(self: *const T, pstidThread: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetCurrentScriptThreadID(@ptrCast(*const IActiveScript, self), pstidThread);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptThreadID(self: *const T, dwWin32ThreadId: u32, pstidThread: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptThreadID(@ptrCast(*const IActiveScript, self), dwWin32ThreadId, pstidThread);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptThreadState(self: *const T, stidThread: u32, pstsState: ?*SCRIPTTHREADSTATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptThreadState(@ptrCast(*const IActiveScript, self), stidThread, pstsState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_InterruptScriptThread(self: *const T, stidThread: u32, pexcepinfo: ?*const EXCEPINFO, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).InterruptScriptThread(@ptrCast(*const IActiveScript, self), stidThread, pexcepinfo, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_Clone(self: *const T, ppscript: ?*?*IActiveScript) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScript.VTable, self.vtable).Clone(@ptrCast(*const IActiveScript, self), ppscript);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParse32_Value = @import("../../zig.zig").Guid.initString("bb1a2ae2-a4f9-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScriptParse32 = &IID_IActiveScriptParse32_Value;
-pub const IActiveScriptParse32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitNew: fn(
-            self: *const IActiveScriptParse32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddScriptlet: fn(
-            self: *const IActiveScriptParse32,
-            pstrDefaultName: ?[*:0]const u16,
-            pstrCode: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            pstrSubItemName: ?[*:0]const u16,
-            pstrEventName: ?[*:0]const u16,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u32,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            pbstrName: ?*?BSTR,
-            pexcepinfo: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ParseScriptText: fn(
-            self: *const IActiveScriptParse32,
-            pstrCode: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u32,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            pvarResult: ?*VARIANT,
-            pexcepinfo: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse32_InitNew(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).InitNew(@ptrCast(*const IActiveScriptParse32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse32_AddScriptlet(self: *const T, pstrDefaultName: ?[*:0]const u16, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, pstrSubItemName: ?[*:0]const u16, pstrEventName: ?[*:0]const u16, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, pbstrName: ?*?BSTR, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).AddScriptlet(@ptrCast(*const IActiveScriptParse32, self), pstrDefaultName, pstrCode, pstrItemName, pstrSubItemName, pstrEventName, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pbstrName, pexcepinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse32_ParseScriptText(self: *const T, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse32.VTable, self.vtable).ParseScriptText(@ptrCast(*const IActiveScriptParse32, self), pstrCode, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pvarResult, pexcepinfo);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParse64_Value = @import("../../zig.zig").Guid.initString("c7ef7658-e1ee-480e-97ea-d52cb4d76d17");
-pub const IID_IActiveScriptParse64 = &IID_IActiveScriptParse64_Value;
-pub const IActiveScriptParse64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        InitNew: fn(
-            self: *const IActiveScriptParse64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddScriptlet: fn(
-            self: *const IActiveScriptParse64,
-            pstrDefaultName: ?[*:0]const u16,
-            pstrCode: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            pstrSubItemName: ?[*:0]const u16,
-            pstrEventName: ?[*:0]const u16,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u64,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            pbstrName: ?*?BSTR,
-            pexcepinfo: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ParseScriptText: fn(
-            self: *const IActiveScriptParse64,
-            pstrCode: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u64,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            pvarResult: ?*VARIANT,
-            pexcepinfo: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse64_InitNew(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).InitNew(@ptrCast(*const IActiveScriptParse64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse64_AddScriptlet(self: *const T, pstrDefaultName: ?[*:0]const u16, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, pstrSubItemName: ?[*:0]const u16, pstrEventName: ?[*:0]const u16, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, pbstrName: ?*?BSTR, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).AddScriptlet(@ptrCast(*const IActiveScriptParse64, self), pstrDefaultName, pstrCode, pstrItemName, pstrSubItemName, pstrEventName, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pbstrName, pexcepinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParse64_ParseScriptText(self: *const T, pstrCode: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, pvarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParse64.VTable, self.vtable).ParseScriptText(@ptrCast(*const IActiveScriptParse64, self), pstrCode, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, pvarResult, pexcepinfo);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedureOld32_Value = @import("../../zig.zig").Guid.initString("1cff0050-6fdd-11d0-9328-00a0c90dcaa9");
-pub const IID_IActiveScriptParseProcedureOld32 = &IID_IActiveScriptParseProcedureOld32_Value;
-pub const IActiveScriptParseProcedureOld32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseProcedureText: fn(
-            self: *const IActiveScriptParseProcedureOld32,
-            pstrCode: ?[*:0]const u16,
-            pstrFormalParams: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u32,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            ppdisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParseProcedureOld32_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParseProcedureOld32.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedureOld32, self), pstrCode, pstrFormalParams, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedureOld64_Value = @import("../../zig.zig").Guid.initString("21f57128-08c9-4638-ba12-22d15d88dc5c");
-pub const IID_IActiveScriptParseProcedureOld64 = &IID_IActiveScriptParseProcedureOld64_Value;
-pub const IActiveScriptParseProcedureOld64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseProcedureText: fn(
-            self: *const IActiveScriptParseProcedureOld64,
-            pstrCode: ?[*:0]const u16,
-            pstrFormalParams: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u64,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            ppdisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParseProcedureOld64_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParseProcedureOld64.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedureOld64, self), pstrCode, pstrFormalParams, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedure32_Value = @import("../../zig.zig").Guid.initString("aa5b6a80-b834-11d0-932f-00a0c90dcaa9");
-pub const IID_IActiveScriptParseProcedure32 = &IID_IActiveScriptParseProcedure32_Value;
-pub const IActiveScriptParseProcedure32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseProcedureText: fn(
-            self: *const IActiveScriptParseProcedure32,
-            pstrCode: ?[*:0]const u16,
-            pstrFormalParams: ?[*:0]const u16,
-            pstrProcedureName: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u32,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            ppdisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParseProcedure32_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrProcedureName: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u32, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParseProcedure32.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedure32, self), pstrCode, pstrFormalParams, pstrProcedureName, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedure64_Value = @import("../../zig.zig").Guid.initString("c64713b6-e029-4cc5-9200-438b72890b6a");
-pub const IID_IActiveScriptParseProcedure64 = &IID_IActiveScriptParseProcedure64_Value;
-pub const IActiveScriptParseProcedure64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseProcedureText: fn(
-            self: *const IActiveScriptParseProcedure64,
-            pstrCode: ?[*:0]const u16,
-            pstrFormalParams: ?[*:0]const u16,
-            pstrProcedureName: ?[*:0]const u16,
-            pstrItemName: ?[*:0]const u16,
-            punkContext: ?*IUnknown,
-            pstrDelimiter: ?[*:0]const u16,
-            dwSourceContextCookie: u64,
-            ulStartingLineNumber: u32,
-            dwFlags: u32,
-            ppdisp: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptParseProcedure64_ParseProcedureText(self: *const T, pstrCode: ?[*:0]const u16, pstrFormalParams: ?[*:0]const u16, pstrProcedureName: ?[*:0]const u16, pstrItemName: ?[*:0]const u16, punkContext: ?*IUnknown, pstrDelimiter: ?[*:0]const u16, dwSourceContextCookie: u64, ulStartingLineNumber: u32, dwFlags: u32, ppdisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptParseProcedure64.VTable, self.vtable).ParseProcedureText(@ptrCast(*const IActiveScriptParseProcedure64, self), pstrCode, pstrFormalParams, pstrProcedureName, pstrItemName, punkContext, pstrDelimiter, dwSourceContextCookie, ulStartingLineNumber, dwFlags, ppdisp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedure2_32_Value = @import("../../zig.zig").Guid.initString("71ee5b20-fb04-11d1-b3a8-00a0c911e8b2");
-pub const IID_IActiveScriptParseProcedure2_32 = &IID_IActiveScriptParseProcedure2_32_Value;
-pub const IActiveScriptParseProcedure2_32 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptParseProcedure32.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptParseProcedure32.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptParseProcedure2_64_Value = @import("../../zig.zig").Guid.initString("fe7c4271-210c-448d-9f54-76dab7047b28");
-pub const IID_IActiveScriptParseProcedure2_64 = &IID_IActiveScriptParseProcedure2_64_Value;
-pub const IActiveScriptParseProcedure2_64 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptParseProcedure64.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptParseProcedure64.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptEncode_Value = @import("../../zig.zig").Guid.initString("bb1a2ae3-a4f9-11cf-8f20-00805f2cd064");
-pub const IID_IActiveScriptEncode = &IID_IActiveScriptEncode_Value;
-pub const IActiveScriptEncode = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EncodeSection: fn(
-            self: *const IActiveScriptEncode,
-            pchIn: ?[*:0]const u16,
-            cchIn: u32,
-            pchOut: ?PWSTR,
-            cchOut: u32,
-            pcchRet: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecodeScript: fn(
-            self: *const IActiveScriptEncode,
-            pchIn: ?[*:0]const u16,
-            cchIn: u32,
-            pchOut: ?PWSTR,
-            cchOut: u32,
-            pcchRet: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEncodeProgId: fn(
-            self: *const IActiveScriptEncode,
-            pbstrOut: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptEncode_EncodeSection(self: *const T, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).EncodeSection(@ptrCast(*const IActiveScriptEncode, self), pchIn, cchIn, pchOut, cchOut, pcchRet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptEncode_DecodeScript(self: *const T, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).DecodeScript(@ptrCast(*const IActiveScriptEncode, self), pchIn, cchIn, pchOut, cchOut, pcchRet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptEncode_GetEncodeProgId(self: *const T, pbstrOut: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptEncode.VTable, self.vtable).GetEncodeProgId(@ptrCast(*const IActiveScriptEncode, self), pbstrOut);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptHostEncode_Value = @import("../../zig.zig").Guid.initString("bee9b76e-cfe3-11d1-b747-00c04fc2b085");
-pub const IID_IActiveScriptHostEncode = &IID_IActiveScriptHostEncode_Value;
-pub const IActiveScriptHostEncode = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EncodeScriptHostFile: fn(
-            self: *const IActiveScriptHostEncode,
-            bstrInFile: ?BSTR,
-            pbstrOutFile: ?*?BSTR,
-            cFlags: u32,
-            bstrDefaultLang: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptHostEncode_EncodeScriptHostFile(self: *const T, bstrInFile: ?BSTR, pbstrOutFile: ?*?BSTR, cFlags: u32, bstrDefaultLang: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptHostEncode.VTable, self.vtable).EncodeScriptHostFile(@ptrCast(*const IActiveScriptHostEncode, self), bstrInFile, pbstrOutFile, cFlags, bstrDefaultLang);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IBindEventHandler_Value = @import("../../zig.zig").Guid.initString("63cdbcb0-c1b1-11d0-9336-00a0c90dcaa9");
-pub const IID_IBindEventHandler = &IID_IBindEventHandler_Value;
-pub const IBindEventHandler = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BindHandler: fn(
-            self: *const IBindEventHandler,
-            pstrEvent: ?[*:0]const u16,
-            pdisp: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBindEventHandler_BindHandler(self: *const T, pstrEvent: ?[*:0]const u16, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBindEventHandler.VTable, self.vtable).BindHandler(@ptrCast(*const IBindEventHandler, self), pstrEvent, pdisp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptStats_Value = @import("../../zig.zig").Guid.initString("b8da6310-e19b-11d0-933c-00a0c90dcaa9");
-pub const IID_IActiveScriptStats = &IID_IActiveScriptStats_Value;
-pub const IActiveScriptStats = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStat: fn(
-            self: *const IActiveScriptStats,
-            stid: u32,
-            pluHi: ?*u32,
-            pluLo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatEx: fn(
-            self: *const IActiveScriptStats,
-            guid: ?*const Guid,
-            pluHi: ?*u32,
-            pluLo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResetStats: fn(
-            self: *const IActiveScriptStats,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptStats_GetStat(self: *const T, stid: u32, pluHi: ?*u32, pluLo: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).GetStat(@ptrCast(*const IActiveScriptStats, self), stid, pluHi, pluLo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptStats_GetStatEx(self: *const T, guid: ?*const Guid, pluHi: ?*u32, pluLo: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).GetStatEx(@ptrCast(*const IActiveScriptStats, self), guid, pluHi, pluLo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptStats_ResetStats(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptStats.VTable, self.vtable).ResetStats(@ptrCast(*const IActiveScriptStats, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProperty_Value = @import("../../zig.zig").Guid.initString("4954e0d0-fbc7-11d1-8410-006008c3fbfc");
-pub const IID_IActiveScriptProperty = &IID_IActiveScriptProperty_Value;
-pub const IActiveScriptProperty = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetProperty: fn(
-            self: *const IActiveScriptProperty,
-            dwProperty: u32,
-            pvarIndex: ?*VARIANT,
-            pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
-            self: *const IActiveScriptProperty,
-            dwProperty: u32,
-            pvarIndex: ?*VARIANT,
-            pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProperty_GetProperty(self: *const T, dwProperty: u32, pvarIndex: ?*VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProperty.VTable, self.vtable).GetProperty(@ptrCast(*const IActiveScriptProperty, self), dwProperty, pvarIndex, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProperty_SetProperty(self: *const T, dwProperty: u32, pvarIndex: ?*VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProperty.VTable, self.vtable).SetProperty(@ptrCast(*const IActiveScriptProperty, self), dwProperty, pvarIndex, pvarValue);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ITridentEventSink_Value = @import("../../zig.zig").Guid.initString("1dc9ca50-06ef-11d2-8415-006008c3fbfc");
-pub const IID_ITridentEventSink = &IID_ITridentEventSink_Value;
-pub const ITridentEventSink = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        FireEvent: fn(
-            self: *const ITridentEventSink,
-            pstrEvent: ?[*:0]const u16,
-            pdp: ?*DISPPARAMS,
-            pvarRes: ?*VARIANT,
-            pei: ?*EXCEPINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITridentEventSink_FireEvent(self: *const T, pstrEvent: ?[*:0]const u16, pdp: ?*DISPPARAMS, pvarRes: ?*VARIANT, pei: ?*EXCEPINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITridentEventSink.VTable, self.vtable).FireEvent(@ptrCast(*const ITridentEventSink, self), pstrEvent, pdp, pvarRes, pei);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptGarbageCollector_Value = @import("../../zig.zig").Guid.initString("6aa2c4a0-2b53-11d4-a2a0-00104bd35090");
-pub const IID_IActiveScriptGarbageCollector = &IID_IActiveScriptGarbageCollector_Value;
-pub const IActiveScriptGarbageCollector = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CollectGarbage: fn(
-            self: *const IActiveScriptGarbageCollector,
-            scriptgctype: SCRIPTGCTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptGarbageCollector_CollectGarbage(self: *const T, scriptgctype: SCRIPTGCTYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptGarbageCollector.VTable, self.vtable).CollectGarbage(@ptrCast(*const IActiveScriptGarbageCollector, self), scriptgctype);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSIPInfo_Value = @import("../../zig.zig").Guid.initString("764651d0-38de-11d4-a2a3-00104bd35090");
-pub const IID_IActiveScriptSIPInfo = &IID_IActiveScriptSIPInfo_Value;
-pub const IActiveScriptSIPInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSIPOID: fn(
-            self: *const IActiveScriptSIPInfo,
-            poid_sip: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSIPInfo_GetSIPOID(self: *const T, poid_sip: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSIPInfo.VTable, self.vtable).GetSIPOID(@ptrCast(*const IActiveScriptSIPInfo, self), poid_sip);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteTraceInfo_Value = @import("../../zig.zig").Guid.initString("4b7272ae-1955-4bfe-98b0-780621888569");
-pub const IID_IActiveScriptSiteTraceInfo = &IID_IActiveScriptSiteTraceInfo_Value;
-pub const IActiveScriptSiteTraceInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SendScriptTraceInfo: fn(
-            self: *const IActiveScriptSiteTraceInfo,
-            stiEventType: SCRIPTTRACEINFO,
-            guidContextID: Guid,
-            dwScriptContextCookie: u32,
-            lScriptStatementStart: i32,
-            lScriptStatementEnd: i32,
-            dwReserved: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteTraceInfo_SendScriptTraceInfo(self: *const T, stiEventType: SCRIPTTRACEINFO, guidContextID: Guid, dwScriptContextCookie: u32, lScriptStatementStart: i32, lScriptStatementEnd: i32, dwReserved: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteTraceInfo.VTable, self.vtable).SendScriptTraceInfo(@ptrCast(*const IActiveScriptSiteTraceInfo, self), stiEventType, guidContextID, dwScriptContextCookie, lScriptStatementStart, lScriptStatementEnd, dwReserved);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptTraceInfo_Value = @import("../../zig.zig").Guid.initString("c35456e7-bebf-4a1b-86a9-24d56be8b369");
-pub const IID_IActiveScriptTraceInfo = &IID_IActiveScriptTraceInfo_Value;
-pub const IActiveScriptTraceInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartScriptTracing: fn(
-            self: *const IActiveScriptTraceInfo,
-            pSiteTraceInfo: ?*IActiveScriptSiteTraceInfo,
-            guidContextID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopScriptTracing: fn(
-            self: *const IActiveScriptTraceInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptTraceInfo_StartScriptTracing(self: *const T, pSiteTraceInfo: ?*IActiveScriptSiteTraceInfo, guidContextID: Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptTraceInfo.VTable, self.vtable).StartScriptTracing(@ptrCast(*const IActiveScriptTraceInfo, self), pSiteTraceInfo, guidContextID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptTraceInfo_StopScriptTracing(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptTraceInfo.VTable, self.vtable).StopScriptTracing(@ptrCast(*const IActiveScriptTraceInfo, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptStringCompare_Value = @import("../../zig.zig").Guid.initString("58562769-ed52-42f7-8403-4963514e1f11");
-pub const IID_IActiveScriptStringCompare = &IID_IActiveScriptStringCompare_Value;
-pub const IActiveScriptStringCompare = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StrComp: fn(
-            self: *const IActiveScriptStringCompare,
-            bszStr1: ?BSTR,
-            bszStr2: ?BSTR,
-            iRet: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptStringCompare_StrComp(self: *const T, bszStr1: ?BSTR, bszStr2: ?BSTR, iRet: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptStringCompare.VTable, self.vtable).StrComp(@ptrCast(*const IActiveScriptStringCompare, self), bszStr1, bszStr2, iRet);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DBGPROP_ATTRIB_FLAGS = enum(u32) {
-    NO_ATTRIB = 0,
-    VALUE_IS_INVALID = 8,
-    VALUE_IS_EXPANDABLE = 16,
-    VALUE_IS_FAKE = 32,
-    VALUE_IS_METHOD = 256,
-    VALUE_IS_EVENT = 512,
-    VALUE_IS_RAW_STRING = 1024,
-    VALUE_READONLY = 2048,
-    ACCESS_PUBLIC = 4096,
-    ACCESS_PRIVATE = 8192,
-    ACCESS_PROTECTED = 16384,
-    ACCESS_FINAL = 32768,
-    STORAGE_GLOBAL = 65536,
-    STORAGE_STATIC = 131072,
-    STORAGE_FIELD = 262144,
-    STORAGE_VIRTUAL = 524288,
-    TYPE_IS_CONSTANT = 1048576,
-    TYPE_IS_SYNCHRONIZED = 2097152,
-    TYPE_IS_VOLATILE = 4194304,
-    HAS_EXTENDED_ATTRIBS = 8388608,
-    FRAME_INTRYBLOCK = 16777216,
-    FRAME_INCATCHBLOCK = 33554432,
-    FRAME_INFINALLYBLOCK = 67108864,
-    VALUE_IS_RETURN_VALUE = 134217728,
-    VALUE_PENDING_MUTATION = 268435456,
-    _,
-    pub fn initFlags(o: struct {
-        NO_ATTRIB: u1 = 0,
-        VALUE_IS_INVALID: u1 = 0,
-        VALUE_IS_EXPANDABLE: u1 = 0,
-        VALUE_IS_FAKE: u1 = 0,
-        VALUE_IS_METHOD: u1 = 0,
-        VALUE_IS_EVENT: u1 = 0,
-        VALUE_IS_RAW_STRING: u1 = 0,
-        VALUE_READONLY: u1 = 0,
-        ACCESS_PUBLIC: u1 = 0,
-        ACCESS_PRIVATE: u1 = 0,
-        ACCESS_PROTECTED: u1 = 0,
-        ACCESS_FINAL: u1 = 0,
-        STORAGE_GLOBAL: u1 = 0,
-        STORAGE_STATIC: u1 = 0,
-        STORAGE_FIELD: u1 = 0,
-        STORAGE_VIRTUAL: u1 = 0,
-        TYPE_IS_CONSTANT: u1 = 0,
-        TYPE_IS_SYNCHRONIZED: u1 = 0,
-        TYPE_IS_VOLATILE: u1 = 0,
-        HAS_EXTENDED_ATTRIBS: u1 = 0,
-        FRAME_INTRYBLOCK: u1 = 0,
-        FRAME_INCATCHBLOCK: u1 = 0,
-        FRAME_INFINALLYBLOCK: u1 = 0,
-        VALUE_IS_RETURN_VALUE: u1 = 0,
-        VALUE_PENDING_MUTATION: u1 = 0,
-    }) DBGPROP_ATTRIB_FLAGS {
-        return @intToEnum(DBGPROP_ATTRIB_FLAGS,
-              (if (o.NO_ATTRIB == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.NO_ATTRIB) else 0)
-            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID) else 0)
-            | (if (o.VALUE_IS_EXPANDABLE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EXPANDABLE) else 0)
-            | (if (o.VALUE_IS_FAKE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_FAKE) else 0)
-            | (if (o.VALUE_IS_METHOD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_METHOD) else 0)
-            | (if (o.VALUE_IS_EVENT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EVENT) else 0)
-            | (if (o.VALUE_IS_RAW_STRING == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RAW_STRING) else 0)
-            | (if (o.VALUE_READONLY == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_READONLY) else 0)
-            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PUBLIC) else 0)
-            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PRIVATE) else 0)
-            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PROTECTED) else 0)
-            | (if (o.ACCESS_FINAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_FINAL) else 0)
-            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_GLOBAL) else 0)
-            | (if (o.STORAGE_STATIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_STATIC) else 0)
-            | (if (o.STORAGE_FIELD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_FIELD) else 0)
-            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_VIRTUAL) else 0)
-            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_CONSTANT) else 0)
-            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED) else 0)
-            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_VOLATILE) else 0)
-            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS) else 0)
-            | (if (o.FRAME_INTRYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INTRYBLOCK) else 0)
-            | (if (o.FRAME_INCATCHBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INCATCHBLOCK) else 0)
-            | (if (o.FRAME_INFINALLYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INFINALLYBLOCK) else 0)
-            | (if (o.VALUE_IS_RETURN_VALUE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE) else 0)
-            | (if (o.VALUE_PENDING_MUTATION == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION) else 0)
-        );
-    }
-};
-pub const DBGPROP_ATTRIB_NO_ATTRIB = DBGPROP_ATTRIB_FLAGS.NO_ATTRIB;
-pub const DBGPROP_ATTRIB_VALUE_IS_INVALID = DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID;
-pub const DBGPROP_ATTRIB_VALUE_IS_EXPANDABLE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_EXPANDABLE;
-pub const DBGPROP_ATTRIB_VALUE_IS_FAKE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_FAKE;
-pub const DBGPROP_ATTRIB_VALUE_IS_METHOD = DBGPROP_ATTRIB_FLAGS.VALUE_IS_METHOD;
-pub const DBGPROP_ATTRIB_VALUE_IS_EVENT = DBGPROP_ATTRIB_FLAGS.VALUE_IS_EVENT;
-pub const DBGPROP_ATTRIB_VALUE_IS_RAW_STRING = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RAW_STRING;
-pub const DBGPROP_ATTRIB_VALUE_READONLY = DBGPROP_ATTRIB_FLAGS.VALUE_READONLY;
-pub const DBGPROP_ATTRIB_ACCESS_PUBLIC = DBGPROP_ATTRIB_FLAGS.ACCESS_PUBLIC;
-pub const DBGPROP_ATTRIB_ACCESS_PRIVATE = DBGPROP_ATTRIB_FLAGS.ACCESS_PRIVATE;
-pub const DBGPROP_ATTRIB_ACCESS_PROTECTED = DBGPROP_ATTRIB_FLAGS.ACCESS_PROTECTED;
-pub const DBGPROP_ATTRIB_ACCESS_FINAL = DBGPROP_ATTRIB_FLAGS.ACCESS_FINAL;
-pub const DBGPROP_ATTRIB_STORAGE_GLOBAL = DBGPROP_ATTRIB_FLAGS.STORAGE_GLOBAL;
-pub const DBGPROP_ATTRIB_STORAGE_STATIC = DBGPROP_ATTRIB_FLAGS.STORAGE_STATIC;
-pub const DBGPROP_ATTRIB_STORAGE_FIELD = DBGPROP_ATTRIB_FLAGS.STORAGE_FIELD;
-pub const DBGPROP_ATTRIB_STORAGE_VIRTUAL = DBGPROP_ATTRIB_FLAGS.STORAGE_VIRTUAL;
-pub const DBGPROP_ATTRIB_TYPE_IS_CONSTANT = DBGPROP_ATTRIB_FLAGS.TYPE_IS_CONSTANT;
-pub const DBGPROP_ATTRIB_TYPE_IS_SYNCHRONIZED = DBGPROP_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED;
-pub const DBGPROP_ATTRIB_TYPE_IS_VOLATILE = DBGPROP_ATTRIB_FLAGS.TYPE_IS_VOLATILE;
-pub const DBGPROP_ATTRIB_HAS_EXTENDED_ATTRIBS = DBGPROP_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS;
-pub const DBGPROP_ATTRIB_FRAME_INTRYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INTRYBLOCK;
-pub const DBGPROP_ATTRIB_FRAME_INCATCHBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INCATCHBLOCK;
-pub const DBGPROP_ATTRIB_FRAME_INFINALLYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INFINALLYBLOCK;
-pub const DBGPROP_ATTRIB_VALUE_IS_RETURN_VALUE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE;
-pub const DBGPROP_ATTRIB_VALUE_PENDING_MUTATION = DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION;
-
-pub const DBGPROP_INFO = enum(u32) {
-    NAME = 1,
-    TYPE = 2,
-    VALUE = 4,
-    FULLNAME = 32,
-    ATTRIBUTES = 8,
-    DEBUGPROP = 16,
-    BEAUTIFY = 33554432,
-    CALLTOSTRING = 67108864,
-    AUTOEXPAND = 134217728,
-    _,
-    pub fn initFlags(o: struct {
-        NAME: u1 = 0,
-        TYPE: u1 = 0,
-        VALUE: u1 = 0,
-        FULLNAME: u1 = 0,
-        ATTRIBUTES: u1 = 0,
-        DEBUGPROP: u1 = 0,
-        BEAUTIFY: u1 = 0,
-        CALLTOSTRING: u1 = 0,
-        AUTOEXPAND: u1 = 0,
-    }) DBGPROP_INFO {
-        return @intToEnum(DBGPROP_INFO,
-              (if (o.NAME == 1) @enumToInt(DBGPROP_INFO.NAME) else 0)
-            | (if (o.TYPE == 1) @enumToInt(DBGPROP_INFO.TYPE) else 0)
-            | (if (o.VALUE == 1) @enumToInt(DBGPROP_INFO.VALUE) else 0)
-            | (if (o.FULLNAME == 1) @enumToInt(DBGPROP_INFO.FULLNAME) else 0)
-            | (if (o.ATTRIBUTES == 1) @enumToInt(DBGPROP_INFO.ATTRIBUTES) else 0)
-            | (if (o.DEBUGPROP == 1) @enumToInt(DBGPROP_INFO.DEBUGPROP) else 0)
-            | (if (o.BEAUTIFY == 1) @enumToInt(DBGPROP_INFO.BEAUTIFY) else 0)
-            | (if (o.CALLTOSTRING == 1) @enumToInt(DBGPROP_INFO.CALLTOSTRING) else 0)
-            | (if (o.AUTOEXPAND == 1) @enumToInt(DBGPROP_INFO.AUTOEXPAND) else 0)
-        );
-    }
-};
-pub const DBGPROP_INFO_NAME = DBGPROP_INFO.NAME;
-pub const DBGPROP_INFO_TYPE = DBGPROP_INFO.TYPE;
-pub const DBGPROP_INFO_VALUE = DBGPROP_INFO.VALUE;
-pub const DBGPROP_INFO_FULLNAME = DBGPROP_INFO.FULLNAME;
-pub const DBGPROP_INFO_ATTRIBUTES = DBGPROP_INFO.ATTRIBUTES;
-pub const DBGPROP_INFO_DEBUGPROP = DBGPROP_INFO.DEBUGPROP;
-pub const DBGPROP_INFO_BEAUTIFY = DBGPROP_INFO.BEAUTIFY;
-pub const DBGPROP_INFO_CALLTOSTRING = DBGPROP_INFO.CALLTOSTRING;
-pub const DBGPROP_INFO_AUTOEXPAND = DBGPROP_INFO.AUTOEXPAND;
-
-pub const OBJECT_ATTRIB_FLAG = enum(u32) {
-    NO_ATTRIB = 0,
-    NO_NAME = 1,
-    NO_TYPE = 2,
-    NO_VALUE = 4,
-    VALUE_IS_INVALID = 8,
-    VALUE_IS_OBJECT = 16,
-    VALUE_IS_ENUM = 32,
-    VALUE_IS_CUSTOM = 64,
-    OBJECT_IS_EXPANDABLE = 112,
-    VALUE_HAS_CODE = 128,
-    TYPE_IS_OBJECT = 256,
-    TYPE_HAS_CODE = 512,
-    // TYPE_IS_EXPANDABLE = 256, this enum value conflicts with TYPE_IS_OBJECT
-    SLOT_IS_CATEGORY = 1024,
-    VALUE_READONLY = 2048,
-    ACCESS_PUBLIC = 4096,
-    ACCESS_PRIVATE = 8192,
-    ACCESS_PROTECTED = 16384,
-    ACCESS_FINAL = 32768,
-    STORAGE_GLOBAL = 65536,
-    STORAGE_STATIC = 131072,
-    STORAGE_FIELD = 262144,
-    STORAGE_VIRTUAL = 524288,
-    TYPE_IS_CONSTANT = 1048576,
-    TYPE_IS_SYNCHRONIZED = 2097152,
-    TYPE_IS_VOLATILE = 4194304,
-    HAS_EXTENDED_ATTRIBS = 8388608,
-    IS_CLASS = 16777216,
-    IS_FUNCTION = 33554432,
-    IS_VARIABLE = 67108864,
-    IS_PROPERTY = 134217728,
-    IS_MACRO = 268435456,
-    IS_TYPE = 536870912,
-    IS_INHERITED = 1073741824,
-    IS_INTERFACE = 2147483648,
-    _,
-    pub fn initFlags(o: struct {
-        NO_ATTRIB: u1 = 0,
-        NO_NAME: u1 = 0,
-        NO_TYPE: u1 = 0,
-        NO_VALUE: u1 = 0,
-        VALUE_IS_INVALID: u1 = 0,
-        VALUE_IS_OBJECT: u1 = 0,
-        VALUE_IS_ENUM: u1 = 0,
-        VALUE_IS_CUSTOM: u1 = 0,
-        OBJECT_IS_EXPANDABLE: u1 = 0,
-        VALUE_HAS_CODE: u1 = 0,
-        TYPE_IS_OBJECT: u1 = 0,
-        TYPE_HAS_CODE: u1 = 0,
-        SLOT_IS_CATEGORY: u1 = 0,
-        VALUE_READONLY: u1 = 0,
-        ACCESS_PUBLIC: u1 = 0,
-        ACCESS_PRIVATE: u1 = 0,
-        ACCESS_PROTECTED: u1 = 0,
-        ACCESS_FINAL: u1 = 0,
-        STORAGE_GLOBAL: u1 = 0,
-        STORAGE_STATIC: u1 = 0,
-        STORAGE_FIELD: u1 = 0,
-        STORAGE_VIRTUAL: u1 = 0,
-        TYPE_IS_CONSTANT: u1 = 0,
-        TYPE_IS_SYNCHRONIZED: u1 = 0,
-        TYPE_IS_VOLATILE: u1 = 0,
-        HAS_EXTENDED_ATTRIBS: u1 = 0,
-        IS_CLASS: u1 = 0,
-        IS_FUNCTION: u1 = 0,
-        IS_VARIABLE: u1 = 0,
-        IS_PROPERTY: u1 = 0,
-        IS_MACRO: u1 = 0,
-        IS_TYPE: u1 = 0,
-        IS_INHERITED: u1 = 0,
-        IS_INTERFACE: u1 = 0,
-    }) OBJECT_ATTRIB_FLAG {
-        return @intToEnum(OBJECT_ATTRIB_FLAG,
-              (if (o.NO_ATTRIB == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_ATTRIB) else 0)
-            | (if (o.NO_NAME == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_NAME) else 0)
-            | (if (o.NO_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_TYPE) else 0)
-            | (if (o.NO_VALUE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_VALUE) else 0)
-            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_INVALID) else 0)
-            | (if (o.VALUE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_OBJECT) else 0)
-            | (if (o.VALUE_IS_ENUM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_ENUM) else 0)
-            | (if (o.VALUE_IS_CUSTOM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_CUSTOM) else 0)
-            | (if (o.OBJECT_IS_EXPANDABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPANDABLE) else 0)
-            | (if (o.VALUE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE) else 0)
-            | (if (o.TYPE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT) else 0)
-            | (if (o.TYPE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE) else 0)
-            | (if (o.SLOT_IS_CATEGORY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY) else 0)
-            | (if (o.VALUE_READONLY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_READONLY) else 0)
-            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC) else 0)
-            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PRIVATE) else 0)
-            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PROTECTED) else 0)
-            | (if (o.ACCESS_FINAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_FINAL) else 0)
-            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_GLOBAL) else 0)
-            | (if (o.STORAGE_STATIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_STATIC) else 0)
-            | (if (o.STORAGE_FIELD == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_FIELD) else 0)
-            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_VIRTUAL) else 0)
-            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_CONSTANT) else 0)
-            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_SYNCHRONIZED) else 0)
-            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_VOLATILE) else 0)
-            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.HAS_EXTENDED_ATTRIBS) else 0)
-            | (if (o.IS_CLASS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_CLASS) else 0)
-            | (if (o.IS_FUNCTION == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_FUNCTION) else 0)
-            | (if (o.IS_VARIABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_VARIABLE) else 0)
-            | (if (o.IS_PROPERTY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_PROPERTY) else 0)
-            | (if (o.IS_MACRO == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_MACRO) else 0)
-            | (if (o.IS_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_TYPE) else 0)
-            | (if (o.IS_INHERITED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INHERITED) else 0)
-            | (if (o.IS_INTERFACE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INTERFACE) else 0)
-        );
-    }
-};
-pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAG.NO_ATTRIB;
-pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAG.NO_NAME;
-pub const OBJECT_ATTRIB_NO_TYPE = OBJECT_ATTRIB_FLAG.NO_TYPE;
-pub const OBJECT_ATTRIB_NO_VALUE = OBJECT_ATTRIB_FLAG.NO_VALUE;
-pub const OBJECT_ATTRIB_VALUE_IS_INVALID = OBJECT_ATTRIB_FLAG.VALUE_IS_INVALID;
-pub const OBJECT_ATTRIB_VALUE_IS_OBJECT = OBJECT_ATTRIB_FLAG.VALUE_IS_OBJECT;
-pub const OBJECT_ATTRIB_VALUE_IS_ENUM = OBJECT_ATTRIB_FLAG.VALUE_IS_ENUM;
-pub const OBJECT_ATTRIB_VALUE_IS_CUSTOM = OBJECT_ATTRIB_FLAG.VALUE_IS_CUSTOM;
-pub const OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPANDABLE;
-pub const OBJECT_ATTRIB_VALUE_HAS_CODE = OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE;
-pub const OBJECT_ATTRIB_TYPE_IS_OBJECT = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
-pub const OBJECT_ATTRIB_TYPE_HAS_CODE = OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE;
-pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
-pub const OBJECT_ATTRIB_SLOT_IS_CATEGORY = OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY;
-pub const OBJECT_ATTRIB_VALUE_READONLY = OBJECT_ATTRIB_FLAG.VALUE_READONLY;
-pub const OBJECT_ATTRIB_ACCESS_PUBLIC = OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC;
-pub const OBJECT_ATTRIB_ACCESS_PRIVATE = OBJECT_ATTRIB_FLAG.ACCESS_PRIVATE;
-pub const OBJECT_ATTRIB_ACCESS_PROTECTED = OBJECT_ATTRIB_FLAG.ACCESS_PROTECTED;
-pub const OBJECT_ATTRIB_ACCESS_FINAL = OBJECT_ATTRIB_FLAG.ACCESS_FINAL;
-pub const OBJECT_ATTRIB_STORAGE_GLOBAL = OBJECT_ATTRIB_FLAG.STORAGE_GLOBAL;
-pub const OBJECT_ATTRIB_STORAGE_STATIC = OBJECT_ATTRIB_FLAG.STORAGE_STATIC;
-pub const OBJECT_ATTRIB_STORAGE_FIELD = OBJECT_ATTRIB_FLAG.STORAGE_FIELD;
-pub const OBJECT_ATTRIB_STORAGE_VIRTUAL = OBJECT_ATTRIB_FLAG.STORAGE_VIRTUAL;
-pub const OBJECT_ATTRIB_TYPE_IS_CONSTANT = OBJECT_ATTRIB_FLAG.TYPE_IS_CONSTANT;
-pub const OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED = OBJECT_ATTRIB_FLAG.TYPE_IS_SYNCHRONIZED;
-pub const OBJECT_ATTRIB_TYPE_IS_VOLATILE = OBJECT_ATTRIB_FLAG.TYPE_IS_VOLATILE;
-pub const OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS = OBJECT_ATTRIB_FLAG.HAS_EXTENDED_ATTRIBS;
-pub const OBJECT_ATTRIB_IS_CLASS = OBJECT_ATTRIB_FLAG.IS_CLASS;
-pub const OBJECT_ATTRIB_IS_FUNCTION = OBJECT_ATTRIB_FLAG.IS_FUNCTION;
-pub const OBJECT_ATTRIB_IS_VARIABLE = OBJECT_ATTRIB_FLAG.IS_VARIABLE;
-pub const OBJECT_ATTRIB_IS_PROPERTY = OBJECT_ATTRIB_FLAG.IS_PROPERTY;
-pub const OBJECT_ATTRIB_IS_MACRO = OBJECT_ATTRIB_FLAG.IS_MACRO;
-pub const OBJECT_ATTRIB_IS_TYPE = OBJECT_ATTRIB_FLAG.IS_TYPE;
-pub const OBJECT_ATTRIB_IS_INHERITED = OBJECT_ATTRIB_FLAG.IS_INHERITED;
-pub const OBJECT_ATTRIB_IS_INTERFACE = OBJECT_ATTRIB_FLAG.IS_INTERFACE;
-
-pub const PROP_INFO_FLAGS = enum(i32) {
-    NAME = 1,
-    TYPE = 2,
-    VALUE = 4,
-    FULLNAME = 32,
-    ATTRIBUTES = 8,
-    DEBUGPROP = 16,
-    AUTOEXPAND = 134217728,
-};
-pub const PROP_INFO_NAME = PROP_INFO_FLAGS.NAME;
-pub const PROP_INFO_TYPE = PROP_INFO_FLAGS.TYPE;
-pub const PROP_INFO_VALUE = PROP_INFO_FLAGS.VALUE;
-pub const PROP_INFO_FULLNAME = PROP_INFO_FLAGS.FULLNAME;
-pub const PROP_INFO_ATTRIBUTES = PROP_INFO_FLAGS.ATTRIBUTES;
-pub const PROP_INFO_DEBUGPROP = PROP_INFO_FLAGS.DEBUGPROP;
-pub const PROP_INFO_AUTOEXPAND = PROP_INFO_FLAGS.AUTOEXPAND;
-
-pub const DebugPropertyInfo = extern struct {
-    m_dwValidFields: u32,
-    m_bstrName: ?BSTR,
-    m_bstrType: ?BSTR,
-    m_bstrValue: ?BSTR,
-    m_bstrFullName: ?BSTR,
-    m_dwAttrib: u32,
-    m_pDebugProp: ?*IDebugProperty,
-};
-
-pub const EX_PROP_INFO_FLAGS = enum(i32) {
-    ID = 256,
-    NTYPE = 512,
-    NVALUE = 1024,
-    LOCKBYTES = 2048,
-    DEBUGEXTPROP = 4096,
-};
-pub const EX_PROP_INFO_ID = EX_PROP_INFO_FLAGS.ID;
-pub const EX_PROP_INFO_NTYPE = EX_PROP_INFO_FLAGS.NTYPE;
-pub const EX_PROP_INFO_NVALUE = EX_PROP_INFO_FLAGS.NVALUE;
-pub const EX_PROP_INFO_LOCKBYTES = EX_PROP_INFO_FLAGS.LOCKBYTES;
-pub const EX_PROP_INFO_DEBUGEXTPROP = EX_PROP_INFO_FLAGS.DEBUGEXTPROP;
-
-pub const ExtendedDebugPropertyInfo = extern struct {
-    dwValidFields: u32,
-    pszName: ?PWSTR,
-    pszType: ?PWSTR,
-    pszValue: ?PWSTR,
-    pszFullName: ?PWSTR,
-    dwAttrib: u32,
-    pDebugProp: ?*IDebugProperty,
-    nDISPID: u32,
-    nType: u32,
-    varValue: VARIANT,
-    plbValue: ?*ILockBytes,
-    pDebugExtProp: ?*IDebugExtendedProperty,
-};
-
-const IID_IDebugProperty_Value = @import("../../zig.zig").Guid.initString("51973c50-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugProperty = &IID_IDebugProperty_Value;
-pub const IDebugProperty = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPropertyInfo: fn(
-            self: *const IDebugProperty,
-            dwFieldSpec: u32,
-            nRadix: u32,
-            pPropertyInfo: ?*DebugPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExtendedInfo: fn(
-            self: *const IDebugProperty,
-            cInfos: u32,
-            rgguidExtendedInfo: [*]Guid,
-            rgvar: [*]VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueAsString: fn(
-            self: *const IDebugProperty,
-            pszValue: ?[*:0]const u16,
-            nRadix: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumMembers: fn(
-            self: *const IDebugProperty,
-            dwFieldSpec: u32,
-            nRadix: u32,
-            refiid: ?*const Guid,
-            ppepi: ?*?*IEnumDebugPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParent: fn(
-            self: *const IDebugProperty,
-            ppDebugProp: ?*?*IDebugProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugProperty_GetPropertyInfo(self: *const T, dwFieldSpec: u32, nRadix: u32, pPropertyInfo: ?*DebugPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const IDebugProperty, self), dwFieldSpec, nRadix, pPropertyInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugProperty_GetExtendedInfo(self: *const T, cInfos: u32, rgguidExtendedInfo: [*]Guid, rgvar: [*]VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetExtendedInfo(@ptrCast(*const IDebugProperty, self), cInfos, rgguidExtendedInfo, rgvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugProperty_SetValueAsString(self: *const T, pszValue: ?[*:0]const u16, nRadix: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugProperty.VTable, self.vtable).SetValueAsString(@ptrCast(*const IDebugProperty, self), pszValue, nRadix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugProperty_EnumMembers(self: *const T, dwFieldSpec: u32, nRadix: u32, refiid: ?*const Guid, ppepi: ?*?*IEnumDebugPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugProperty.VTable, self.vtable).EnumMembers(@ptrCast(*const IDebugProperty, self), dwFieldSpec, nRadix, refiid, ppepi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugProperty_GetParent(self: *const T, ppDebugProp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugProperty.VTable, self.vtable).GetParent(@ptrCast(*const IDebugProperty, self), ppDebugProp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugPropertyInfo_Value = @import("../../zig.zig").Guid.initString("51973c51-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugPropertyInfo = &IID_IEnumDebugPropertyInfo_Value;
-pub const IEnumDebugPropertyInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugPropertyInfo,
-            celt: u32,
-            pi: [*]DebugPropertyInfo,
-            pcEltsfetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugPropertyInfo,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugPropertyInfo,
-            ppepi: ?*?*IEnumDebugPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumDebugPropertyInfo,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugPropertyInfo_Next(self: *const T, celt: u32, pi: [*]DebugPropertyInfo, pcEltsfetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugPropertyInfo, self), celt, pi, pcEltsfetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugPropertyInfo_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugPropertyInfo, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugPropertyInfo_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugPropertyInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugPropertyInfo_Clone(self: *const T, ppepi: ?*?*IEnumDebugPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugPropertyInfo, self), ppepi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugPropertyInfo_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugPropertyInfo.VTable, self.vtable).GetCount(@ptrCast(*const IEnumDebugPropertyInfo, self), pcelt);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugExtendedProperty_Value = @import("../../zig.zig").Guid.initString("51973c52-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugExtendedProperty = &IID_IDebugExtendedProperty_Value;
-pub const IDebugExtendedProperty = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugProperty.VTable,
-        GetExtendedPropertyInfo: fn(
-            self: *const IDebugExtendedProperty,
-            dwFieldSpec: u32,
-            nRadix: u32,
-            pExtendedPropertyInfo: ?*ExtendedDebugPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumExtendedMembers: fn(
-            self: *const IDebugExtendedProperty,
-            dwFieldSpec: u32,
-            nRadix: u32,
-            ppeepi: ?*?*IEnumDebugExtendedPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugProperty.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExtendedProperty_GetExtendedPropertyInfo(self: *const T, dwFieldSpec: u32, nRadix: u32, pExtendedPropertyInfo: ?*ExtendedDebugPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExtendedProperty.VTable, self.vtable).GetExtendedPropertyInfo(@ptrCast(*const IDebugExtendedProperty, self), dwFieldSpec, nRadix, pExtendedPropertyInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExtendedProperty_EnumExtendedMembers(self: *const T, dwFieldSpec: u32, nRadix: u32, ppeepi: ?*?*IEnumDebugExtendedPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExtendedProperty.VTable, self.vtable).EnumExtendedMembers(@ptrCast(*const IDebugExtendedProperty, self), dwFieldSpec, nRadix, ppeepi);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugExtendedPropertyInfo_Value = @import("../../zig.zig").Guid.initString("51973c53-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugExtendedPropertyInfo = &IID_IEnumDebugExtendedPropertyInfo_Value;
-pub const IEnumDebugExtendedPropertyInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugExtendedPropertyInfo,
-            celt: u32,
-            rgExtendedPropertyInfo: [*]ExtendedDebugPropertyInfo,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugExtendedPropertyInfo,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugExtendedPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugExtendedPropertyInfo,
-            pedpe: ?*?*IEnumDebugExtendedPropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumDebugExtendedPropertyInfo,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExtendedPropertyInfo_Next(self: *const T, celt: u32, rgExtendedPropertyInfo: [*]ExtendedDebugPropertyInfo, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), celt, rgExtendedPropertyInfo, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExtendedPropertyInfo_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExtendedPropertyInfo_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExtendedPropertyInfo_Clone(self: *const T, pedpe: ?*?*IEnumDebugExtendedPropertyInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), pedpe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExtendedPropertyInfo_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExtendedPropertyInfo.VTable, self.vtable).GetCount(@ptrCast(*const IEnumDebugExtendedPropertyInfo, self), pcelt);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IPerPropertyBrowsing2_Value = @import("../../zig.zig").Guid.initString("51973c54-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IPerPropertyBrowsing2 = &IID_IPerPropertyBrowsing2_Value;
-pub const IPerPropertyBrowsing2 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDisplayString: fn(
-            self: *const IPerPropertyBrowsing2,
-            dispid: i32,
-            pBstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MapPropertyToPage: fn(
-            self: *const IPerPropertyBrowsing2,
-            dispid: i32,
-            pClsidPropPage: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPredefinedStrings: fn(
-            self: *const IPerPropertyBrowsing2,
-            dispid: i32,
-            pCaStrings: ?*CALPOLESTR,
-            pCaCookies: ?*CADWORD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPredefinedValue: fn(
-            self: *const IPerPropertyBrowsing2,
-            dispid: i32,
-            dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing2_GetDisplayString(self: *const T, dispid: i32, pBstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).GetDisplayString(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pBstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing2_MapPropertyToPage(self: *const T, dispid: i32, pClsidPropPage: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).MapPropertyToPage(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pClsidPropPage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing2_GetPredefinedStrings(self: *const T, dispid: i32, pCaStrings: ?*CALPOLESTR, pCaCookies: ?*CADWORD) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).GetPredefinedStrings(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, pCaStrings, pCaCookies);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerPropertyBrowsing2_SetPredefinedValue(self: *const T, dispid: i32, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerPropertyBrowsing2.VTable, self.vtable).SetPredefinedValue(@ptrCast(*const IPerPropertyBrowsing2, self), dispid, dwCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugPropertyEnumType_All_Value = @import("../../zig.zig").Guid.initString("51973c55-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugPropertyEnumType_All = &IID_IDebugPropertyEnumType_All_Value;
-pub const IDebugPropertyEnumType_All = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: fn(
-            self: *const IDebugPropertyEnumType_All,
-            __MIDL__IDebugPropertyEnumType_All0000: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugPropertyEnumType_All_GetName(self: *const T, __MIDL__IDebugPropertyEnumType_All0000: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugPropertyEnumType_All.VTable, self.vtable).GetName(@ptrCast(*const IDebugPropertyEnumType_All, self), __MIDL__IDebugPropertyEnumType_All0000);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugPropertyEnumType_Locals_Value = @import("../../zig.zig").Guid.initString("51973c56-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugPropertyEnumType_Locals = &IID_IDebugPropertyEnumType_Locals_Value;
-pub const IDebugPropertyEnumType_Locals = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugPropertyEnumType_All.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugPropertyEnumType_Arguments_Value = @import("../../zig.zig").Guid.initString("51973c57-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugPropertyEnumType_Arguments = &IID_IDebugPropertyEnumType_Arguments_Value;
-pub const IDebugPropertyEnumType_Arguments = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugPropertyEnumType_All.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugPropertyEnumType_LocalsPlusArgs_Value = @import("../../zig.zig").Guid.initString("51973c58-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugPropertyEnumType_LocalsPlusArgs = &IID_IDebugPropertyEnumType_LocalsPlusArgs_Value;
-pub const IDebugPropertyEnumType_LocalsPlusArgs = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugPropertyEnumType_All.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugPropertyEnumType_Registers_Value = @import("../../zig.zig").Guid.initString("51973c59-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugPropertyEnumType_Registers = &IID_IDebugPropertyEnumType_Registers_Value;
-pub const IDebugPropertyEnumType_Registers = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugPropertyEnumType_All.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugPropertyEnumType_All.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const BREAKPOINT_STATE = enum(i32) {
-    DELETED = 0,
-    DISABLED = 1,
-    ENABLED = 2,
-};
-pub const BREAKPOINT_DELETED = BREAKPOINT_STATE.DELETED;
-pub const BREAKPOINT_DISABLED = BREAKPOINT_STATE.DISABLED;
-pub const BREAKPOINT_ENABLED = BREAKPOINT_STATE.ENABLED;
-
-pub const BREAKREASON = enum(i32) {
-    STEP = 0,
-    BREAKPOINT = 1,
-    DEBUGGER_BLOCK = 2,
-    HOST_INITIATED = 3,
-    LANGUAGE_INITIATED = 4,
-    DEBUGGER_HALT = 5,
-    ERROR = 6,
-    JIT = 7,
-    MUTATION_BREAKPOINT = 8,
-};
-pub const BREAKREASON_STEP = BREAKREASON.STEP;
-pub const BREAKREASON_BREAKPOINT = BREAKREASON.BREAKPOINT;
-pub const BREAKREASON_DEBUGGER_BLOCK = BREAKREASON.DEBUGGER_BLOCK;
-pub const BREAKREASON_HOST_INITIATED = BREAKREASON.HOST_INITIATED;
-pub const BREAKREASON_LANGUAGE_INITIATED = BREAKREASON.LANGUAGE_INITIATED;
-pub const BREAKREASON_DEBUGGER_HALT = BREAKREASON.DEBUGGER_HALT;
-pub const BREAKREASON_ERROR = BREAKREASON.ERROR;
-pub const BREAKREASON_JIT = BREAKREASON.JIT;
-pub const BREAKREASON_MUTATION_BREAKPOINT = BREAKREASON.MUTATION_BREAKPOINT;
-
-pub const BREAKRESUME_ACTION = enum(i32) {
-    ABORT = 0,
-    CONTINUE = 1,
-    STEP_INTO = 2,
-    STEP_OVER = 3,
-    STEP_OUT = 4,
-    IGNORE = 5,
-    STEP_DOCUMENT = 6,
-};
-pub const BREAKRESUMEACTION_ABORT = BREAKRESUME_ACTION.ABORT;
-pub const BREAKRESUMEACTION_CONTINUE = BREAKRESUME_ACTION.CONTINUE;
-pub const BREAKRESUMEACTION_STEP_INTO = BREAKRESUME_ACTION.STEP_INTO;
-pub const BREAKRESUMEACTION_STEP_OVER = BREAKRESUME_ACTION.STEP_OVER;
-pub const BREAKRESUMEACTION_STEP_OUT = BREAKRESUME_ACTION.STEP_OUT;
-pub const BREAKRESUMEACTION_IGNORE = BREAKRESUME_ACTION.IGNORE;
-pub const BREAKRESUMEACTION_STEP_DOCUMENT = BREAKRESUME_ACTION.STEP_DOCUMENT;
-
-pub const ERRORRESUMEACTION = enum(i32) {
-    ReexecuteErrorStatement = 0,
-    AbortCallAndReturnErrorToCaller = 1,
-    SkipErrorStatement = 2,
-};
-pub const ERRORRESUMEACTION_ReexecuteErrorStatement = ERRORRESUMEACTION.ReexecuteErrorStatement;
-pub const ERRORRESUMEACTION_AbortCallAndReturnErrorToCaller = ERRORRESUMEACTION.AbortCallAndReturnErrorToCaller;
-pub const ERRORRESUMEACTION_SkipErrorStatement = ERRORRESUMEACTION.SkipErrorStatement;
-
-pub const DOCUMENTNAMETYPE = enum(i32) {
-    APPNODE = 0,
-    TITLE = 1,
-    FILE_TAIL = 2,
-    URL = 3,
-    UNIQUE_TITLE = 4,
-    SOURCE_MAP_URL = 5,
-};
-pub const DOCUMENTNAMETYPE_APPNODE = DOCUMENTNAMETYPE.APPNODE;
-pub const DOCUMENTNAMETYPE_TITLE = DOCUMENTNAMETYPE.TITLE;
-pub const DOCUMENTNAMETYPE_FILE_TAIL = DOCUMENTNAMETYPE.FILE_TAIL;
-pub const DOCUMENTNAMETYPE_URL = DOCUMENTNAMETYPE.URL;
-pub const DOCUMENTNAMETYPE_UNIQUE_TITLE = DOCUMENTNAMETYPE.UNIQUE_TITLE;
-pub const DOCUMENTNAMETYPE_SOURCE_MAP_URL = DOCUMENTNAMETYPE.SOURCE_MAP_URL;
-
-const IID_IActiveScriptDebug32_Value = @import("../../zig.zig").Guid.initString("51973c10-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IActiveScriptDebug32 = &IID_IActiveScriptDebug32_Value;
-pub const IActiveScriptDebug32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetScriptTextAttributes: fn(
-            self: *const IActiveScriptDebug32,
-            pstrCode: [*:0]const u16,
-            uNumCodeChars: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            pattr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptletTextAttributes: fn(
-            self: *const IActiveScriptDebug32,
-            pstrCode: [*:0]const u16,
-            uNumCodeChars: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            pattr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumCodeContextsOfPosition: fn(
-            self: *const IActiveScriptDebug32,
-            dwSourceContext: u32,
-            uCharacterOffset: u32,
-            uNumChars: u32,
-            ppescc: ?*?*IEnumDebugCodeContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug32_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IActiveScriptDebug32, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug32_GetScriptletTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).GetScriptletTextAttributes(@ptrCast(*const IActiveScriptDebug32, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug32_EnumCodeContextsOfPosition(self: *const T, dwSourceContext: u32, uCharacterOffset: u32, uNumChars: u32, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug32.VTable, self.vtable).EnumCodeContextsOfPosition(@ptrCast(*const IActiveScriptDebug32, self), dwSourceContext, uCharacterOffset, uNumChars, ppescc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptDebug64_Value = @import("../../zig.zig").Guid.initString("bc437e23-f5b8-47f4-bb79-7d1ce5483b86");
-pub const IID_IActiveScriptDebug64 = &IID_IActiveScriptDebug64_Value;
-pub const IActiveScriptDebug64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetScriptTextAttributes: fn(
-            self: *const IActiveScriptDebug64,
-            pstrCode: [*:0]const u16,
-            uNumCodeChars: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            pattr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptletTextAttributes: fn(
-            self: *const IActiveScriptDebug64,
-            pstrCode: [*:0]const u16,
-            uNumCodeChars: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            pattr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumCodeContextsOfPosition: fn(
-            self: *const IActiveScriptDebug64,
-            dwSourceContext: u64,
-            uCharacterOffset: u32,
-            uNumChars: u32,
-            ppescc: ?*?*IEnumDebugCodeContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug64_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IActiveScriptDebug64, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug64_GetScriptletTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).GetScriptletTextAttributes(@ptrCast(*const IActiveScriptDebug64, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptDebug64_EnumCodeContextsOfPosition(self: *const T, dwSourceContext: u64, uCharacterOffset: u32, uNumChars: u32, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptDebug64.VTable, self.vtable).EnumCodeContextsOfPosition(@ptrCast(*const IActiveScriptDebug64, self), dwSourceContext, uCharacterOffset, uNumChars, ppescc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteDebug32_Value = @import("../../zig.zig").Guid.initString("51973c11-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IActiveScriptSiteDebug32 = &IID_IActiveScriptSiteDebug32_Value;
-pub const IActiveScriptSiteDebug32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocumentContextFromPosition: fn(
-            self: *const IActiveScriptSiteDebug32,
-            dwSourceContext: u32,
-            uCharacterOffset: u32,
-            uNumChars: u32,
-            ppsc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetApplication: fn(
-            self: *const IActiveScriptSiteDebug32,
-            ppda: ?*?*IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRootApplicationNode: fn(
-            self: *const IActiveScriptSiteDebug32,
-            ppdanRoot: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnScriptErrorDebug: fn(
-            self: *const IActiveScriptSiteDebug32,
-            pErrorDebug: ?*IActiveScriptErrorDebug,
-            pfEnterDebugger: ?*BOOL,
-            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug32_GetDocumentContextFromPosition(self: *const T, dwSourceContext: u32, uCharacterOffset: u32, uNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetDocumentContextFromPosition(@ptrCast(*const IActiveScriptSiteDebug32, self), dwSourceContext, uCharacterOffset, uNumChars, ppsc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug32_GetApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetApplication(@ptrCast(*const IActiveScriptSiteDebug32, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug32_GetRootApplicationNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).GetRootApplicationNode(@ptrCast(*const IActiveScriptSiteDebug32, self), ppdanRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug32_OnScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfEnterDebugger: ?*BOOL, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug32.VTable, self.vtable).OnScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebug32, self), pErrorDebug, pfEnterDebugger, pfCallOnScriptErrorWhenContinuing);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteDebug64_Value = @import("../../zig.zig").Guid.initString("d6b96b0a-7463-402c-92ac-89984226942f");
-pub const IID_IActiveScriptSiteDebug64 = &IID_IActiveScriptSiteDebug64_Value;
-pub const IActiveScriptSiteDebug64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocumentContextFromPosition: fn(
-            self: *const IActiveScriptSiteDebug64,
-            dwSourceContext: u64,
-            uCharacterOffset: u32,
-            uNumChars: u32,
-            ppsc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetApplication: fn(
-            self: *const IActiveScriptSiteDebug64,
-            ppda: ?*?*IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRootApplicationNode: fn(
-            self: *const IActiveScriptSiteDebug64,
-            ppdanRoot: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnScriptErrorDebug: fn(
-            self: *const IActiveScriptSiteDebug64,
-            pErrorDebug: ?*IActiveScriptErrorDebug,
-            pfEnterDebugger: ?*BOOL,
-            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug64_GetDocumentContextFromPosition(self: *const T, dwSourceContext: u64, uCharacterOffset: u32, uNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetDocumentContextFromPosition(@ptrCast(*const IActiveScriptSiteDebug64, self), dwSourceContext, uCharacterOffset, uNumChars, ppsc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug64_GetApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetApplication(@ptrCast(*const IActiveScriptSiteDebug64, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug64_GetRootApplicationNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).GetRootApplicationNode(@ptrCast(*const IActiveScriptSiteDebug64, self), ppdanRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebug64_OnScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfEnterDebugger: ?*BOOL, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebug64.VTable, self.vtable).OnScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebug64, self), pErrorDebug, pfEnterDebugger, pfCallOnScriptErrorWhenContinuing);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptSiteDebugEx_Value = @import("../../zig.zig").Guid.initString("bb722ccb-6ad2-41c6-b780-af9c03ee69f5");
-pub const IID_IActiveScriptSiteDebugEx = &IID_IActiveScriptSiteDebugEx_Value;
-pub const IActiveScriptSiteDebugEx = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnCanNotJITScriptErrorDebug: fn(
-            self: *const IActiveScriptSiteDebugEx,
-            pErrorDebug: ?*IActiveScriptErrorDebug,
-            pfCallOnScriptErrorWhenContinuing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptSiteDebugEx_OnCanNotJITScriptErrorDebug(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pfCallOnScriptErrorWhenContinuing: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptSiteDebugEx.VTable, self.vtable).OnCanNotJITScriptErrorDebug(@ptrCast(*const IActiveScriptSiteDebugEx, self), pErrorDebug, pfCallOnScriptErrorWhenContinuing);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptErrorDebug_Value = @import("../../zig.zig").Guid.initString("51973c12-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IActiveScriptErrorDebug = &IID_IActiveScriptErrorDebug_Value;
-pub const IActiveScriptErrorDebug = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptError.VTable,
-        GetDocumentContext: fn(
-            self: *const IActiveScriptErrorDebug,
-            ppssc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStackFrame: fn(
-            self: *const IActiveScriptErrorDebug,
-            ppdsf: ?*?*IDebugStackFrame,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptError.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptErrorDebug_GetDocumentContext(self: *const T, ppssc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptErrorDebug.VTable, self.vtable).GetDocumentContext(@ptrCast(*const IActiveScriptErrorDebug, self), ppssc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptErrorDebug_GetStackFrame(self: *const T, ppdsf: ?*?*IDebugStackFrame) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptErrorDebug.VTable, self.vtable).GetStackFrame(@ptrCast(*const IActiveScriptErrorDebug, self), ppdsf);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugCodeContext_Value = @import("../../zig.zig").Guid.initString("51973c13-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugCodeContext = &IID_IDebugCodeContext_Value;
-pub const IDebugCodeContext = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocumentContext: fn(
-            self: *const IDebugCodeContext,
-            ppsc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBreakPoint: fn(
-            self: *const IDebugCodeContext,
-            bps: BREAKPOINT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugCodeContext_GetDocumentContext(self: *const T, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugCodeContext.VTable, self.vtable).GetDocumentContext(@ptrCast(*const IDebugCodeContext, self), ppsc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugCodeContext_SetBreakPoint(self: *const T, bps: BREAKPOINT_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugCodeContext.VTable, self.vtable).SetBreakPoint(@ptrCast(*const IDebugCodeContext, self), bps);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugExpression_Value = @import("../../zig.zig").Guid.initString("51973c14-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugExpression = &IID_IDebugExpression_Value;
-pub const IDebugExpression = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Start: fn(
-            self: *const IDebugExpression,
-            pdecb: ?*IDebugExpressionCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const IDebugExpression,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryIsComplete: fn(
-            self: *const IDebugExpression,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResultAsString: fn(
-            self: *const IDebugExpression,
-            phrResult: ?*HRESULT,
-            pbstrResult: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResultAsDebugProperty: fn(
-            self: *const IDebugExpression,
-            phrResult: ?*HRESULT,
-            ppdp: ?*?*IDebugProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpression_Start(self: *const T, pdecb: ?*IDebugExpressionCallBack) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpression.VTable, self.vtable).Start(@ptrCast(*const IDebugExpression, self), pdecb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpression_Abort(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpression.VTable, self.vtable).Abort(@ptrCast(*const IDebugExpression, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpression_QueryIsComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpression.VTable, self.vtable).QueryIsComplete(@ptrCast(*const IDebugExpression, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpression_GetResultAsString(self: *const T, phrResult: ?*HRESULT, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpression.VTable, self.vtable).GetResultAsString(@ptrCast(*const IDebugExpression, self), phrResult, pbstrResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpression_GetResultAsDebugProperty(self: *const T, phrResult: ?*HRESULT, ppdp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpression.VTable, self.vtable).GetResultAsDebugProperty(@ptrCast(*const IDebugExpression, self), phrResult, ppdp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugExpressionContext_Value = @import("../../zig.zig").Guid.initString("51973c15-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugExpressionContext = &IID_IDebugExpressionContext_Value;
-pub const IDebugExpressionContext = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParseLanguageText: fn(
-            self: *const IDebugExpressionContext,
-            pstrCode: ?[*:0]const u16,
-            nRadix: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            ppe: ?*?*IDebugExpression,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLanguageInfo: fn(
-            self: *const IDebugExpressionContext,
-            pbstrLanguageName: ?*?BSTR,
-            pLanguageID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpressionContext_ParseLanguageText(self: *const T, pstrCode: ?[*:0]const u16, nRadix: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, ppe: ?*?*IDebugExpression) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpressionContext.VTable, self.vtable).ParseLanguageText(@ptrCast(*const IDebugExpressionContext, self), pstrCode, nRadix, pstrDelimiter, dwFlags, ppe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpressionContext_GetLanguageInfo(self: *const T, pbstrLanguageName: ?*?BSTR, pLanguageID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpressionContext.VTable, self.vtable).GetLanguageInfo(@ptrCast(*const IDebugExpressionContext, self), pbstrLanguageName, pLanguageID);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugExpressionCallBack_Value = @import("../../zig.zig").Guid.initString("51973c16-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugExpressionCallBack = &IID_IDebugExpressionCallBack_Value;
-pub const IDebugExpressionCallBack = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onComplete: fn(
-            self: *const IDebugExpressionCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugExpressionCallBack_onComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugExpressionCallBack.VTable, self.vtable).onComplete(@ptrCast(*const IDebugExpressionCallBack, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugStackFrame_Value = @import("../../zig.zig").Guid.initString("51973c17-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugStackFrame = &IID_IDebugStackFrame_Value;
-pub const IDebugStackFrame = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCodeContext: fn(
-            self: *const IDebugStackFrame,
-            ppcc: ?*?*IDebugCodeContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDescriptionString: fn(
-            self: *const IDebugStackFrame,
-            fLong: BOOL,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLanguageString: fn(
-            self: *const IDebugStackFrame,
-            fLong: BOOL,
-            pbstrLanguage: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThread: fn(
-            self: *const IDebugStackFrame,
-            ppat: ?*?*IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDebugProperty: fn(
-            self: *const IDebugStackFrame,
-            ppDebugProp: ?*?*IDebugProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrame_GetCodeContext(self: *const T, ppcc: ?*?*IDebugCodeContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetCodeContext(@ptrCast(*const IDebugStackFrame, self), ppcc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrame_GetDescriptionString(self: *const T, fLong: BOOL, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetDescriptionString(@ptrCast(*const IDebugStackFrame, self), fLong, pbstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrame_GetLanguageString(self: *const T, fLong: BOOL, pbstrLanguage: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetLanguageString(@ptrCast(*const IDebugStackFrame, self), fLong, pbstrLanguage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrame_GetThread(self: *const T, ppat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetThread(@ptrCast(*const IDebugStackFrame, self), ppat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrame_GetDebugProperty(self: *const T, ppDebugProp: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrame.VTable, self.vtable).GetDebugProperty(@ptrCast(*const IDebugStackFrame, self), ppDebugProp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugStackFrameSniffer_Value = @import("../../zig.zig").Guid.initString("51973c18-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugStackFrameSniffer = &IID_IDebugStackFrameSniffer_Value;
-pub const IDebugStackFrameSniffer = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumStackFrames: fn(
-            self: *const IDebugStackFrameSniffer,
-            ppedsf: ?*?*IEnumDebugStackFrames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrameSniffer_EnumStackFrames(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrameSniffer.VTable, self.vtable).EnumStackFrames(@ptrCast(*const IDebugStackFrameSniffer, self), ppedsf);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugStackFrameSnifferEx32_Value = @import("../../zig.zig").Guid.initString("51973c19-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugStackFrameSnifferEx32 = &IID_IDebugStackFrameSnifferEx32_Value;
-pub const IDebugStackFrameSnifferEx32 = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugStackFrameSniffer.VTable,
-        EnumStackFramesEx32: fn(
-            self: *const IDebugStackFrameSnifferEx32,
-            dwSpMin: u32,
-            ppedsf: ?*?*IEnumDebugStackFrames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugStackFrameSniffer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrameSnifferEx32_EnumStackFramesEx32(self: *const T, dwSpMin: u32, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrameSnifferEx32.VTable, self.vtable).EnumStackFramesEx32(@ptrCast(*const IDebugStackFrameSnifferEx32, self), dwSpMin, ppedsf);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugStackFrameSnifferEx64_Value = @import("../../zig.zig").Guid.initString("8cd12af4-49c1-4d52-8d8a-c146f47581aa");
-pub const IID_IDebugStackFrameSnifferEx64 = &IID_IDebugStackFrameSnifferEx64_Value;
-pub const IDebugStackFrameSnifferEx64 = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugStackFrameSniffer.VTable,
-        EnumStackFramesEx64: fn(
-            self: *const IDebugStackFrameSnifferEx64,
-            dwSpMin: u64,
-            ppedsf: ?*?*IEnumDebugStackFrames64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugStackFrameSniffer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugStackFrameSnifferEx64_EnumStackFramesEx64(self: *const T, dwSpMin: u64, ppedsf: ?*?*IEnumDebugStackFrames64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugStackFrameSnifferEx64.VTable, self.vtable).EnumStackFramesEx64(@ptrCast(*const IDebugStackFrameSnifferEx64, self), dwSpMin, ppedsf);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugSyncOperation_Value = @import("../../zig.zig").Guid.initString("51973c1a-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugSyncOperation = &IID_IDebugSyncOperation_Value;
-pub const IDebugSyncOperation = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetTargetThread: fn(
-            self: *const IDebugSyncOperation,
-            ppatTarget: ?*?*IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Execute: fn(
-            self: *const IDebugSyncOperation,
-            ppunkResult: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InProgressAbort: fn(
-            self: *const IDebugSyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSyncOperation_GetTargetThread(self: *const T, ppatTarget: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).GetTargetThread(@ptrCast(*const IDebugSyncOperation, self), ppatTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSyncOperation_Execute(self: *const T, ppunkResult: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).Execute(@ptrCast(*const IDebugSyncOperation, self), ppunkResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSyncOperation_InProgressAbort(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSyncOperation.VTable, self.vtable).InProgressAbort(@ptrCast(*const IDebugSyncOperation, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugAsyncOperation_Value = @import("../../zig.zig").Guid.initString("51973c1b-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugAsyncOperation = &IID_IDebugAsyncOperation_Value;
-pub const IDebugAsyncOperation = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSyncDebugOperation: fn(
-            self: *const IDebugAsyncOperation,
-            ppsdo: ?*?*IDebugSyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IDebugAsyncOperation,
-            padocb: ?*IDebugAsyncOperationCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const IDebugAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryIsComplete: fn(
-            self: *const IDebugAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResult: fn(
-            self: *const IDebugAsyncOperation,
-            phrResult: ?*HRESULT,
-            ppunkResult: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperation_GetSyncDebugOperation(self: *const T, ppsdo: ?*?*IDebugSyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).GetSyncDebugOperation(@ptrCast(*const IDebugAsyncOperation, self), ppsdo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperation_Start(self: *const T, padocb: ?*IDebugAsyncOperationCallBack) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).Start(@ptrCast(*const IDebugAsyncOperation, self), padocb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperation_Abort(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).Abort(@ptrCast(*const IDebugAsyncOperation, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperation_QueryIsComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).QueryIsComplete(@ptrCast(*const IDebugAsyncOperation, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperation_GetResult(self: *const T, phrResult: ?*HRESULT, ppunkResult: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperation.VTable, self.vtable).GetResult(@ptrCast(*const IDebugAsyncOperation, self), phrResult, ppunkResult);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugAsyncOperationCallBack_Value = @import("../../zig.zig").Guid.initString("51973c1c-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugAsyncOperationCallBack = &IID_IDebugAsyncOperationCallBack_Value;
-pub const IDebugAsyncOperationCallBack = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onComplete: fn(
-            self: *const IDebugAsyncOperationCallBack,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAsyncOperationCallBack_onComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugAsyncOperationCallBack.VTable, self.vtable).onComplete(@ptrCast(*const IDebugAsyncOperationCallBack, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugCodeContexts_Value = @import("../../zig.zig").Guid.initString("51973c1d-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugCodeContexts = &IID_IEnumDebugCodeContexts_Value;
-pub const IEnumDebugCodeContexts = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugCodeContexts,
-            celt: u32,
-            pscc: ?*?*IDebugCodeContext,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugCodeContexts,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugCodeContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugCodeContexts,
-            ppescc: ?*?*IEnumDebugCodeContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugCodeContexts_Next(self: *const T, celt: u32, pscc: ?*?*IDebugCodeContext, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugCodeContexts, self), celt, pscc, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugCodeContexts_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugCodeContexts, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugCodeContexts_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugCodeContexts, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugCodeContexts_Clone(self: *const T, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugCodeContexts.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugCodeContexts, self), ppescc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DebugStackFrameDescriptor = extern struct {
-    pdsf: ?*IDebugStackFrame,
-    dwMin: u32,
-    dwLim: u32,
-    fFinal: BOOL,
-    punkFinal: ?*IUnknown,
-};
-
-pub const DebugStackFrameDescriptor64 = extern struct {
-    pdsf: ?*IDebugStackFrame,
-    dwMin: u64,
-    dwLim: u64,
-    fFinal: BOOL,
-    punkFinal: ?*IUnknown,
-};
-
-const IID_IEnumDebugStackFrames_Value = @import("../../zig.zig").Guid.initString("51973c1e-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugStackFrames = &IID_IEnumDebugStackFrames_Value;
-pub const IEnumDebugStackFrames = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugStackFrames,
-            celt: u32,
-            prgdsfd: ?*DebugStackFrameDescriptor,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugStackFrames,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugStackFrames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugStackFrames,
-            ppedsf: ?*?*IEnumDebugStackFrames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugStackFrames_Next(self: *const T, celt: u32, prgdsfd: ?*DebugStackFrameDescriptor, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugStackFrames, self), celt, prgdsfd, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugStackFrames_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugStackFrames, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugStackFrames_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugStackFrames, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugStackFrames_Clone(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugStackFrames.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugStackFrames, self), ppedsf);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugStackFrames64_Value = @import("../../zig.zig").Guid.initString("0dc38853-c1b0-4176-a984-b298361027af");
-pub const IID_IEnumDebugStackFrames64 = &IID_IEnumDebugStackFrames64_Value;
-pub const IEnumDebugStackFrames64 = extern struct {
-    pub const VTable = extern struct {
-        base: IEnumDebugStackFrames.VTable,
-        Next64: fn(
-            self: *const IEnumDebugStackFrames64,
-            celt: u32,
-            prgdsfd: ?*DebugStackFrameDescriptor64,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEnumDebugStackFrames.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugStackFrames64_Next64(self: *const T, celt: u32, prgdsfd: ?*DebugStackFrameDescriptor64, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugStackFrames64.VTable, self.vtable).Next64(@ptrCast(*const IEnumDebugStackFrames64, self), celt, prgdsfd, pceltFetched);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentInfo_Value = @import("../../zig.zig").Guid.initString("51973c1f-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentInfo = &IID_IDebugDocumentInfo_Value;
-pub const IDebugDocumentInfo = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetName: fn(
-            self: *const IDebugDocumentInfo,
-            dnt: DOCUMENTNAMETYPE,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocumentClassId: fn(
-            self: *const IDebugDocumentInfo,
-            pclsidDocument: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentInfo_GetName(self: *const T, dnt: DOCUMENTNAMETYPE, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentInfo.VTable, self.vtable).GetName(@ptrCast(*const IDebugDocumentInfo, self), dnt, pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentInfo_GetDocumentClassId(self: *const T, pclsidDocument: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentInfo.VTable, self.vtable).GetDocumentClassId(@ptrCast(*const IDebugDocumentInfo, self), pclsidDocument);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentProvider_Value = @import("../../zig.zig").Guid.initString("51973c20-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentProvider = &IID_IDebugDocumentProvider_Value;
-pub const IDebugDocumentProvider = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugDocumentInfo.VTable,
-        GetDocument: fn(
-            self: *const IDebugDocumentProvider,
-            ppssd: ?*?*IDebugDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugDocumentInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentProvider_GetDocument(self: *const T, ppssd: ?*?*IDebugDocument) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentProvider.VTable, self.vtable).GetDocument(@ptrCast(*const IDebugDocumentProvider, self), ppssd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocument_Value = @import("../../zig.zig").Guid.initString("51973c21-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocument = &IID_IDebugDocument_Value;
-pub const IDebugDocument = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugDocumentInfo.VTable,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugDocumentInfo.MethodMixin(T);
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentText_Value = @import("../../zig.zig").Guid.initString("51973c22-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentText = &IID_IDebugDocumentText_Value;
-pub const IDebugDocumentText = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugDocument.VTable,
-        GetDocumentAttributes: fn(
-            self: *const IDebugDocumentText,
-            ptextdocattr: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSize: fn(
-            self: *const IDebugDocumentText,
-            pcNumLines: ?*u32,
-            pcNumChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPositionOfLine: fn(
-            self: *const IDebugDocumentText,
-            cLineNumber: u32,
-            pcCharacterPosition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLineOfPosition: fn(
-            self: *const IDebugDocumentText,
-            cCharacterPosition: u32,
-            pcLineNumber: ?*u32,
-            pcCharacterOffsetInLine: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText: fn(
-            self: *const IDebugDocumentText,
-            cCharacterPosition: u32,
-            pcharText: [*:0]u16,
-            pstaTextAttr: ?[*:0]u16,
-            pcNumChars: ?*u32,
-            cMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPositionOfContext: fn(
-            self: *const IDebugDocumentText,
-            psc: ?*IDebugDocumentContext,
-            pcCharacterPosition: ?*u32,
-            cNumChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContextOfPosition: fn(
-            self: *const IDebugDocumentText,
-            cCharacterPosition: u32,
-            cNumChars: u32,
-            ppsc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugDocument.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetDocumentAttributes(self: *const T, ptextdocattr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetDocumentAttributes(@ptrCast(*const IDebugDocumentText, self), ptextdocattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetSize(self: *const T, pcNumLines: ?*u32, pcNumChars: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetSize(@ptrCast(*const IDebugDocumentText, self), pcNumLines, pcNumChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetPositionOfLine(self: *const T, cLineNumber: u32, pcCharacterPosition: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetPositionOfLine(@ptrCast(*const IDebugDocumentText, self), cLineNumber, pcCharacterPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetLineOfPosition(self: *const T, cCharacterPosition: u32, pcLineNumber: ?*u32, pcCharacterOffsetInLine: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetLineOfPosition(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, pcLineNumber, pcCharacterOffsetInLine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetText(self: *const T, cCharacterPosition: u32, pcharText: [*:0]u16, pstaTextAttr: ?[*:0]u16, pcNumChars: ?*u32, cMaxChars: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetText(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, pcharText, pstaTextAttr, pcNumChars, cMaxChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetPositionOfContext(self: *const T, psc: ?*IDebugDocumentContext, pcCharacterPosition: ?*u32, cNumChars: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetPositionOfContext(@ptrCast(*const IDebugDocumentText, self), psc, pcCharacterPosition, cNumChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentText_GetContextOfPosition(self: *const T, cCharacterPosition: u32, cNumChars: u32, ppsc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentText.VTable, self.vtable).GetContextOfPosition(@ptrCast(*const IDebugDocumentText, self), cCharacterPosition, cNumChars, ppsc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentTextEvents_Value = @import("../../zig.zig").Guid.initString("51973c23-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentTextEvents = &IID_IDebugDocumentTextEvents_Value;
-pub const IDebugDocumentTextEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onDestroy: fn(
-            self: *const IDebugDocumentTextEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onInsertText: fn(
-            self: *const IDebugDocumentTextEvents,
-            cCharacterPosition: u32,
-            cNumToInsert: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onRemoveText: fn(
-            self: *const IDebugDocumentTextEvents,
-            cCharacterPosition: u32,
-            cNumToRemove: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onReplaceText: fn(
-            self: *const IDebugDocumentTextEvents,
-            cCharacterPosition: u32,
-            cNumToReplace: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onUpdateTextAttributes: fn(
-            self: *const IDebugDocumentTextEvents,
-            cCharacterPosition: u32,
-            cNumToUpdate: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onUpdateDocumentAttributes: fn(
-            self: *const IDebugDocumentTextEvents,
-            textdocattr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onDestroy(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onDestroy(@ptrCast(*const IDebugDocumentTextEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onInsertText(self: *const T, cCharacterPosition: u32, cNumToInsert: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onInsertText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToInsert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onRemoveText(self: *const T, cCharacterPosition: u32, cNumToRemove: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onRemoveText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToRemove);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onReplaceText(self: *const T, cCharacterPosition: u32, cNumToReplace: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onReplaceText(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToReplace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onUpdateTextAttributes(self: *const T, cCharacterPosition: u32, cNumToUpdate: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onUpdateTextAttributes(@ptrCast(*const IDebugDocumentTextEvents, self), cCharacterPosition, cNumToUpdate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextEvents_onUpdateDocumentAttributes(self: *const T, textdocattr: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextEvents.VTable, self.vtable).onUpdateDocumentAttributes(@ptrCast(*const IDebugDocumentTextEvents, self), textdocattr);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentTextAuthor_Value = @import("../../zig.zig").Guid.initString("51973c24-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentTextAuthor = &IID_IDebugDocumentTextAuthor_Value;
-pub const IDebugDocumentTextAuthor = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugDocumentText.VTable,
-        InsertText: fn(
-            self: *const IDebugDocumentTextAuthor,
-            cCharacterPosition: u32,
-            cNumToInsert: u32,
-            pcharText: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveText: fn(
-            self: *const IDebugDocumentTextAuthor,
-            cCharacterPosition: u32,
-            cNumToRemove: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReplaceText: fn(
-            self: *const IDebugDocumentTextAuthor,
-            cCharacterPosition: u32,
-            cNumToReplace: u32,
-            pcharText: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugDocumentText.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextAuthor_InsertText(self: *const T, cCharacterPosition: u32, cNumToInsert: u32, pcharText: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).InsertText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToInsert, pcharText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextAuthor_RemoveText(self: *const T, cCharacterPosition: u32, cNumToRemove: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).RemoveText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToRemove);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextAuthor_ReplaceText(self: *const T, cCharacterPosition: u32, cNumToReplace: u32, pcharText: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextAuthor.VTable, self.vtable).ReplaceText(@ptrCast(*const IDebugDocumentTextAuthor, self), cCharacterPosition, cNumToReplace, pcharText);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentTextExternalAuthor_Value = @import("../../zig.zig").Guid.initString("51973c25-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentTextExternalAuthor = &IID_IDebugDocumentTextExternalAuthor_Value;
-pub const IDebugDocumentTextExternalAuthor = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetPathName: fn(
-            self: *const IDebugDocumentTextExternalAuthor,
-            pbstrLongName: ?*?BSTR,
-            pfIsOriginalFile: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileName: fn(
-            self: *const IDebugDocumentTextExternalAuthor,
-            pbstrShortName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NotifyChanged: fn(
-            self: *const IDebugDocumentTextExternalAuthor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextExternalAuthor_GetPathName(self: *const T, pbstrLongName: ?*?BSTR, pfIsOriginalFile: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).GetPathName(@ptrCast(*const IDebugDocumentTextExternalAuthor, self), pbstrLongName, pfIsOriginalFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextExternalAuthor_GetFileName(self: *const T, pbstrShortName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).GetFileName(@ptrCast(*const IDebugDocumentTextExternalAuthor, self), pbstrShortName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentTextExternalAuthor_NotifyChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentTextExternalAuthor.VTable, self.vtable).NotifyChanged(@ptrCast(*const IDebugDocumentTextExternalAuthor, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentHelper32_Value = @import("../../zig.zig").Guid.initString("51973c26-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentHelper32 = &IID_IDebugDocumentHelper32_Value;
-pub const IDebugDocumentHelper32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Init: fn(
-            self: *const IDebugDocumentHelper32,
-            pda: ?*IDebugApplication32,
-            pszShortName: ?[*:0]const u16,
-            pszLongName: ?[*:0]const u16,
-            docAttr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Attach: fn(
-            self: *const IDebugDocumentHelper32,
-            pddhParent: ?*IDebugDocumentHelper32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Detach: fn(
-            self: *const IDebugDocumentHelper32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddUnicodeText: fn(
-            self: *const IDebugDocumentHelper32,
-            pszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDBCSText: fn(
-            self: *const IDebugDocumentHelper32,
-            pszText: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDebugDocumentHost: fn(
-            self: *const IDebugDocumentHelper32,
-            pddh: ?*IDebugDocumentHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDeferredText: fn(
-            self: *const IDebugDocumentHelper32,
-            cChars: u32,
-            dwTextStartCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DefineScriptBlock: fn(
-            self: *const IDebugDocumentHelper32,
-            ulCharOffset: u32,
-            cChars: u32,
-            pas: ?*IActiveScript,
-            fScriptlet: BOOL,
-            pdwSourceContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultTextAttr: fn(
-            self: *const IDebugDocumentHelper32,
-            staTextAttr: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTextAttributes: fn(
-            self: *const IDebugDocumentHelper32,
-            ulCharOffset: u32,
-            cChars: u32,
-            pstaTextAttr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLongName: fn(
-            self: *const IDebugDocumentHelper32,
-            pszLongName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetShortName: fn(
-            self: *const IDebugDocumentHelper32,
-            pszShortName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentAttr: fn(
-            self: *const IDebugDocumentHelper32,
-            pszAttributes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDebugApplicationNode: fn(
-            self: *const IDebugDocumentHelper32,
-            ppdan: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptBlockInfo: fn(
-            self: *const IDebugDocumentHelper32,
-            dwSourceContext: u32,
-            ppasd: ?*?*IActiveScript,
-            piCharPos: ?*u32,
-            pcChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDebugDocumentContext: fn(
-            self: *const IDebugDocumentHelper32,
-            iCharPos: u32,
-            cChars: u32,
-            ppddc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BringDocumentToTop: fn(
-            self: *const IDebugDocumentHelper32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BringDocumentContextToTop: fn(
-            self: *const IDebugDocumentHelper32,
-            pddc: ?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_Init(self: *const T, pda: ?*IDebugApplication32, pszShortName: ?[*:0]const u16, pszLongName: ?[*:0]const u16, docAttr: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Init(@ptrCast(*const IDebugDocumentHelper32, self), pda, pszShortName, pszLongName, docAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_Attach(self: *const T, pddhParent: ?*IDebugDocumentHelper32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Attach(@ptrCast(*const IDebugDocumentHelper32, self), pddhParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_Detach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).Detach(@ptrCast(*const IDebugDocumentHelper32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_AddUnicodeText(self: *const T, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddUnicodeText(@ptrCast(*const IDebugDocumentHelper32, self), pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_AddDBCSText(self: *const T, pszText: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddDBCSText(@ptrCast(*const IDebugDocumentHelper32, self), pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetDebugDocumentHost(self: *const T, pddh: ?*IDebugDocumentHost) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDebugDocumentHost(@ptrCast(*const IDebugDocumentHelper32, self), pddh);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_AddDeferredText(self: *const T, cChars: u32, dwTextStartCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).AddDeferredText(@ptrCast(*const IDebugDocumentHelper32, self), cChars, dwTextStartCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_DefineScriptBlock(self: *const T, ulCharOffset: u32, cChars: u32, pas: ?*IActiveScript, fScriptlet: BOOL, pdwSourceContext: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).DefineScriptBlock(@ptrCast(*const IDebugDocumentHelper32, self), ulCharOffset, cChars, pas, fScriptlet, pdwSourceContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetDefaultTextAttr(self: *const T, staTextAttr: u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDefaultTextAttr(@ptrCast(*const IDebugDocumentHelper32, self), staTextAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetTextAttributes(self: *const T, ulCharOffset: u32, cChars: u32, pstaTextAttr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetTextAttributes(@ptrCast(*const IDebugDocumentHelper32, self), ulCharOffset, cChars, pstaTextAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetLongName(self: *const T, pszLongName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetLongName(@ptrCast(*const IDebugDocumentHelper32, self), pszLongName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetShortName(self: *const T, pszShortName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetShortName(@ptrCast(*const IDebugDocumentHelper32, self), pszShortName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_SetDocumentAttr(self: *const T, pszAttributes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).SetDocumentAttr(@ptrCast(*const IDebugDocumentHelper32, self), pszAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_GetDebugApplicationNode(self: *const T, ppdan: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).GetDebugApplicationNode(@ptrCast(*const IDebugDocumentHelper32, self), ppdan);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_GetScriptBlockInfo(self: *const T, dwSourceContext: u32, ppasd: ?*?*IActiveScript, piCharPos: ?*u32, pcChars: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).GetScriptBlockInfo(@ptrCast(*const IDebugDocumentHelper32, self), dwSourceContext, ppasd, piCharPos, pcChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_CreateDebugDocumentContext(self: *const T, iCharPos: u32, cChars: u32, ppddc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).CreateDebugDocumentContext(@ptrCast(*const IDebugDocumentHelper32, self), iCharPos, cChars, ppddc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_BringDocumentToTop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IDebugDocumentHelper32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper32_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper32.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IDebugDocumentHelper32, self), pddc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentHelper64_Value = @import("../../zig.zig").Guid.initString("c4c7363c-20fd-47f9-bd82-4855e0150871");
-pub const IID_IDebugDocumentHelper64 = &IID_IDebugDocumentHelper64_Value;
-pub const IDebugDocumentHelper64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Init: fn(
-            self: *const IDebugDocumentHelper64,
-            pda: ?*IDebugApplication64,
-            pszShortName: ?[*:0]const u16,
-            pszLongName: ?[*:0]const u16,
-            docAttr: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Attach: fn(
-            self: *const IDebugDocumentHelper64,
-            pddhParent: ?*IDebugDocumentHelper64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Detach: fn(
-            self: *const IDebugDocumentHelper64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddUnicodeText: fn(
-            self: *const IDebugDocumentHelper64,
-            pszText: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDBCSText: fn(
-            self: *const IDebugDocumentHelper64,
-            pszText: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDebugDocumentHost: fn(
-            self: *const IDebugDocumentHelper64,
-            pddh: ?*IDebugDocumentHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDeferredText: fn(
-            self: *const IDebugDocumentHelper64,
-            cChars: u32,
-            dwTextStartCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DefineScriptBlock: fn(
-            self: *const IDebugDocumentHelper64,
-            ulCharOffset: u32,
-            cChars: u32,
-            pas: ?*IActiveScript,
-            fScriptlet: BOOL,
-            pdwSourceContext: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultTextAttr: fn(
-            self: *const IDebugDocumentHelper64,
-            staTextAttr: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTextAttributes: fn(
-            self: *const IDebugDocumentHelper64,
-            ulCharOffset: u32,
-            cChars: u32,
-            pstaTextAttr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLongName: fn(
-            self: *const IDebugDocumentHelper64,
-            pszLongName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetShortName: fn(
-            self: *const IDebugDocumentHelper64,
-            pszShortName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentAttr: fn(
-            self: *const IDebugDocumentHelper64,
-            pszAttributes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDebugApplicationNode: fn(
-            self: *const IDebugDocumentHelper64,
-            ppdan: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptBlockInfo: fn(
-            self: *const IDebugDocumentHelper64,
-            dwSourceContext: u64,
-            ppasd: ?*?*IActiveScript,
-            piCharPos: ?*u32,
-            pcChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDebugDocumentContext: fn(
-            self: *const IDebugDocumentHelper64,
-            iCharPos: u32,
-            cChars: u32,
-            ppddc: ?*?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BringDocumentToTop: fn(
-            self: *const IDebugDocumentHelper64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BringDocumentContextToTop: fn(
-            self: *const IDebugDocumentHelper64,
-            pddc: ?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_Init(self: *const T, pda: ?*IDebugApplication64, pszShortName: ?[*:0]const u16, pszLongName: ?[*:0]const u16, docAttr: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Init(@ptrCast(*const IDebugDocumentHelper64, self), pda, pszShortName, pszLongName, docAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_Attach(self: *const T, pddhParent: ?*IDebugDocumentHelper64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Attach(@ptrCast(*const IDebugDocumentHelper64, self), pddhParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_Detach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).Detach(@ptrCast(*const IDebugDocumentHelper64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_AddUnicodeText(self: *const T, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddUnicodeText(@ptrCast(*const IDebugDocumentHelper64, self), pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_AddDBCSText(self: *const T, pszText: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddDBCSText(@ptrCast(*const IDebugDocumentHelper64, self), pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetDebugDocumentHost(self: *const T, pddh: ?*IDebugDocumentHost) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDebugDocumentHost(@ptrCast(*const IDebugDocumentHelper64, self), pddh);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_AddDeferredText(self: *const T, cChars: u32, dwTextStartCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).AddDeferredText(@ptrCast(*const IDebugDocumentHelper64, self), cChars, dwTextStartCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_DefineScriptBlock(self: *const T, ulCharOffset: u32, cChars: u32, pas: ?*IActiveScript, fScriptlet: BOOL, pdwSourceContext: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).DefineScriptBlock(@ptrCast(*const IDebugDocumentHelper64, self), ulCharOffset, cChars, pas, fScriptlet, pdwSourceContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetDefaultTextAttr(self: *const T, staTextAttr: u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDefaultTextAttr(@ptrCast(*const IDebugDocumentHelper64, self), staTextAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetTextAttributes(self: *const T, ulCharOffset: u32, cChars: u32, pstaTextAttr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetTextAttributes(@ptrCast(*const IDebugDocumentHelper64, self), ulCharOffset, cChars, pstaTextAttr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetLongName(self: *const T, pszLongName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetLongName(@ptrCast(*const IDebugDocumentHelper64, self), pszLongName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetShortName(self: *const T, pszShortName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetShortName(@ptrCast(*const IDebugDocumentHelper64, self), pszShortName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_SetDocumentAttr(self: *const T, pszAttributes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).SetDocumentAttr(@ptrCast(*const IDebugDocumentHelper64, self), pszAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_GetDebugApplicationNode(self: *const T, ppdan: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).GetDebugApplicationNode(@ptrCast(*const IDebugDocumentHelper64, self), ppdan);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_GetScriptBlockInfo(self: *const T, dwSourceContext: u64, ppasd: ?*?*IActiveScript, piCharPos: ?*u32, pcChars: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).GetScriptBlockInfo(@ptrCast(*const IDebugDocumentHelper64, self), dwSourceContext, ppasd, piCharPos, pcChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_CreateDebugDocumentContext(self: *const T, iCharPos: u32, cChars: u32, ppddc: ?*?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).CreateDebugDocumentContext(@ptrCast(*const IDebugDocumentHelper64, self), iCharPos, cChars, ppddc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_BringDocumentToTop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IDebugDocumentHelper64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHelper64_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHelper64.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IDebugDocumentHelper64, self), pddc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentHost_Value = @import("../../zig.zig").Guid.initString("51973c27-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentHost = &IID_IDebugDocumentHost_Value;
-pub const IDebugDocumentHost = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDeferredText: fn(
-            self: *const IDebugDocumentHost,
-            dwTextStartCookie: u32,
-            pcharText: [*:0]u16,
-            pstaTextAttr: [*:0]u16,
-            pcNumChars: ?*u32,
-            cMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptTextAttributes: fn(
-            self: *const IDebugDocumentHost,
-            pstrCode: [*:0]const u16,
-            uNumCodeChars: u32,
-            pstrDelimiter: ?[*:0]const u16,
-            dwFlags: u32,
-            pattr: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreateDocumentContext: fn(
-            self: *const IDebugDocumentHost,
-            ppunkOuter: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPathName: fn(
-            self: *const IDebugDocumentHost,
-            pbstrLongName: ?*?BSTR,
-            pfIsOriginalFile: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileName: fn(
-            self: *const IDebugDocumentHost,
-            pbstrShortName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NotifyChanged: fn(
-            self: *const IDebugDocumentHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_GetDeferredText(self: *const T, dwTextStartCookie: u32, pcharText: [*:0]u16, pstaTextAttr: [*:0]u16, pcNumChars: ?*u32, cMaxChars: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetDeferredText(@ptrCast(*const IDebugDocumentHost, self), dwTextStartCookie, pcharText, pstaTextAttr, pcNumChars, cMaxChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_GetScriptTextAttributes(self: *const T, pstrCode: [*:0]const u16, uNumCodeChars: u32, pstrDelimiter: ?[*:0]const u16, dwFlags: u32, pattr: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetScriptTextAttributes(@ptrCast(*const IDebugDocumentHost, self), pstrCode, uNumCodeChars, pstrDelimiter, dwFlags, pattr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_OnCreateDocumentContext(self: *const T, ppunkOuter: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).OnCreateDocumentContext(@ptrCast(*const IDebugDocumentHost, self), ppunkOuter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_GetPathName(self: *const T, pbstrLongName: ?*?BSTR, pfIsOriginalFile: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetPathName(@ptrCast(*const IDebugDocumentHost, self), pbstrLongName, pfIsOriginalFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_GetFileName(self: *const T, pbstrShortName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).GetFileName(@ptrCast(*const IDebugDocumentHost, self), pbstrShortName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentHost_NotifyChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentHost.VTable, self.vtable).NotifyChanged(@ptrCast(*const IDebugDocumentHost, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugDocumentContext_Value = @import("../../zig.zig").Guid.initString("51973c28-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugDocumentContext = &IID_IDebugDocumentContext_Value;
-pub const IDebugDocumentContext = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetDocument: fn(
-            self: *const IDebugDocumentContext,
-            ppsd: ?*?*IDebugDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumCodeContexts: fn(
-            self: *const IDebugDocumentContext,
-            ppescc: ?*?*IEnumDebugCodeContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentContext_GetDocument(self: *const T, ppsd: ?*?*IDebugDocument) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentContext.VTable, self.vtable).GetDocument(@ptrCast(*const IDebugDocumentContext, self), ppsd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDocumentContext_EnumCodeContexts(self: *const T, ppescc: ?*?*IEnumDebugCodeContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugDocumentContext.VTable, self.vtable).EnumCodeContexts(@ptrCast(*const IDebugDocumentContext, self), ppescc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugSessionProvider_Value = @import("../../zig.zig").Guid.initString("51973c29-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugSessionProvider = &IID_IDebugSessionProvider_Value;
-pub const IDebugSessionProvider = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartDebugSession: fn(
-            self: *const IDebugSessionProvider,
-            pda: ?*IRemoteDebugApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSessionProvider_StartDebugSession(self: *const T, pda: ?*IRemoteDebugApplication) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugSessionProvider.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugSessionProvider, self), pda);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IApplicationDebugger_Value = @import("../../zig.zig").Guid.initString("51973c2a-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IApplicationDebugger = &IID_IApplicationDebugger_Value;
-pub const IApplicationDebugger = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryAlive: fn(
-            self: *const IApplicationDebugger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstanceAtDebugger: fn(
-            self: *const IApplicationDebugger,
-            rclsid: ?*const Guid,
-            pUnkOuter: ?*IUnknown,
-            dwClsContext: u32,
-            riid: ?*const Guid,
-            ppvObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onDebugOutput: fn(
-            self: *const IApplicationDebugger,
-            pstr: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onHandleBreakPoint: fn(
-            self: *const IApplicationDebugger,
-            prpt: ?*IRemoteDebugApplicationThread,
-            br: BREAKREASON,
-            pError: ?*IActiveScriptErrorDebug,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onClose: fn(
-            self: *const IApplicationDebugger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onDebuggerEvent: fn(
-            self: *const IApplicationDebugger,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_QueryAlive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).QueryAlive(@ptrCast(*const IApplicationDebugger, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_CreateInstanceAtDebugger(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).CreateInstanceAtDebugger(@ptrCast(*const IApplicationDebugger, self), rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_onDebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onDebugOutput(@ptrCast(*const IApplicationDebugger, self), pstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_onHandleBreakPoint(self: *const T, prpt: ?*IRemoteDebugApplicationThread, br: BREAKREASON, pError: ?*IActiveScriptErrorDebug) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onHandleBreakPoint(@ptrCast(*const IApplicationDebugger, self), prpt, br, pError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_onClose(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onClose(@ptrCast(*const IApplicationDebugger, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebugger_onDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebugger.VTable, self.vtable).onDebuggerEvent(@ptrCast(*const IApplicationDebugger, self), riid, punk);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IApplicationDebuggerUI_Value = @import("../../zig.zig").Guid.initString("51973c2b-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IApplicationDebuggerUI = &IID_IApplicationDebuggerUI_Value;
-pub const IApplicationDebuggerUI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BringDocumentToTop: fn(
-            self: *const IApplicationDebuggerUI,
-            pddt: ?*IDebugDocumentText,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BringDocumentContextToTop: fn(
-            self: *const IApplicationDebuggerUI,
-            pddc: ?*IDebugDocumentContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebuggerUI_BringDocumentToTop(self: *const T, pddt: ?*IDebugDocumentText) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebuggerUI.VTable, self.vtable).BringDocumentToTop(@ptrCast(*const IApplicationDebuggerUI, self), pddt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDebuggerUI_BringDocumentContextToTop(self: *const T, pddc: ?*IDebugDocumentContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IApplicationDebuggerUI.VTable, self.vtable).BringDocumentContextToTop(@ptrCast(*const IApplicationDebuggerUI, self), pddc);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IMachineDebugManager_Value = @import("../../zig.zig").Guid.initString("51973c2c-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IMachineDebugManager = &IID_IMachineDebugManager_Value;
-pub const IMachineDebugManager = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddApplication: fn(
-            self: *const IMachineDebugManager,
-            pda: ?*IRemoteDebugApplication,
-            pdwAppCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveApplication: fn(
-            self: *const IMachineDebugManager,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumApplications: fn(
-            self: *const IMachineDebugManager,
-            ppeda: ?*?*IEnumRemoteDebugApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManager_AddApplication(self: *const T, pda: ?*IRemoteDebugApplication, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).AddApplication(@ptrCast(*const IMachineDebugManager, self), pda, pdwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManager_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).RemoveApplication(@ptrCast(*const IMachineDebugManager, self), dwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManager_EnumApplications(self: *const T, ppeda: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManager.VTable, self.vtable).EnumApplications(@ptrCast(*const IMachineDebugManager, self), ppeda);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IMachineDebugManagerCookie_Value = @import("../../zig.zig").Guid.initString("51973c2d-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IMachineDebugManagerCookie = &IID_IMachineDebugManagerCookie_Value;
-pub const IMachineDebugManagerCookie = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddApplication: fn(
-            self: *const IMachineDebugManagerCookie,
-            pda: ?*IRemoteDebugApplication,
-            dwDebugAppCookie: u32,
-            pdwAppCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveApplication: fn(
-            self: *const IMachineDebugManagerCookie,
-            dwDebugAppCookie: u32,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumApplications: fn(
-            self: *const IMachineDebugManagerCookie,
-            ppeda: ?*?*IEnumRemoteDebugApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManagerCookie_AddApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwDebugAppCookie: u32, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).AddApplication(@ptrCast(*const IMachineDebugManagerCookie, self), pda, dwDebugAppCookie, pdwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManagerCookie_RemoveApplication(self: *const T, dwDebugAppCookie: u32, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).RemoveApplication(@ptrCast(*const IMachineDebugManagerCookie, self), dwDebugAppCookie, dwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManagerCookie_EnumApplications(self: *const T, ppeda: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManagerCookie.VTable, self.vtable).EnumApplications(@ptrCast(*const IMachineDebugManagerCookie, self), ppeda);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IMachineDebugManagerEvents_Value = @import("../../zig.zig").Guid.initString("51973c2e-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IMachineDebugManagerEvents = &IID_IMachineDebugManagerEvents_Value;
-pub const IMachineDebugManagerEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onAddApplication: fn(
-            self: *const IMachineDebugManagerEvents,
-            pda: ?*IRemoteDebugApplication,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onRemoveApplication: fn(
-            self: *const IMachineDebugManagerEvents,
-            pda: ?*IRemoteDebugApplication,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManagerEvents_onAddApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManagerEvents.VTable, self.vtable).onAddApplication(@ptrCast(*const IMachineDebugManagerEvents, self), pda, dwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMachineDebugManagerEvents_onRemoveApplication(self: *const T, pda: ?*IRemoteDebugApplication, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMachineDebugManagerEvents.VTable, self.vtable).onRemoveApplication(@ptrCast(*const IMachineDebugManagerEvents, self), pda, dwAppCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IProcessDebugManager32_Value = @import("../../zig.zig").Guid.initString("51973c2f-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IProcessDebugManager32 = &IID_IProcessDebugManager32_Value;
-pub const IProcessDebugManager32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateApplication: fn(
-            self: *const IProcessDebugManager32,
-            ppda: ?*?*IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultApplication: fn(
-            self: *const IProcessDebugManager32,
-            ppda: ?*?*IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddApplication: fn(
-            self: *const IProcessDebugManager32,
-            pda: ?*IDebugApplication32,
-            pdwAppCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveApplication: fn(
-            self: *const IProcessDebugManager32,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDebugDocumentHelper: fn(
-            self: *const IProcessDebugManager32,
-            punkOuter: ?*IUnknown,
-            pddh: ?*?*IDebugDocumentHelper32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager32_CreateApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).CreateApplication(@ptrCast(*const IProcessDebugManager32, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager32_GetDefaultApplication(self: *const T, ppda: ?*?*IDebugApplication32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).GetDefaultApplication(@ptrCast(*const IProcessDebugManager32, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager32_AddApplication(self: *const T, pda: ?*IDebugApplication32, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).AddApplication(@ptrCast(*const IProcessDebugManager32, self), pda, pdwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager32_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).RemoveApplication(@ptrCast(*const IProcessDebugManager32, self), dwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager32_CreateDebugDocumentHelper(self: *const T, punkOuter: ?*IUnknown, pddh: ?*?*IDebugDocumentHelper32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager32.VTable, self.vtable).CreateDebugDocumentHelper(@ptrCast(*const IProcessDebugManager32, self), punkOuter, pddh);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IProcessDebugManager64_Value = @import("../../zig.zig").Guid.initString("56b9fc1c-63a9-4cc1-ac21-087d69a17fab");
-pub const IID_IProcessDebugManager64 = &IID_IProcessDebugManager64_Value;
-pub const IProcessDebugManager64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateApplication: fn(
-            self: *const IProcessDebugManager64,
-            ppda: ?*?*IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultApplication: fn(
-            self: *const IProcessDebugManager64,
-            ppda: ?*?*IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddApplication: fn(
-            self: *const IProcessDebugManager64,
-            pda: ?*IDebugApplication64,
-            pdwAppCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveApplication: fn(
-            self: *const IProcessDebugManager64,
-            dwAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDebugDocumentHelper: fn(
-            self: *const IProcessDebugManager64,
-            punkOuter: ?*IUnknown,
-            pddh: ?*?*IDebugDocumentHelper64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager64_CreateApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).CreateApplication(@ptrCast(*const IProcessDebugManager64, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager64_GetDefaultApplication(self: *const T, ppda: ?*?*IDebugApplication64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).GetDefaultApplication(@ptrCast(*const IProcessDebugManager64, self), ppda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager64_AddApplication(self: *const T, pda: ?*IDebugApplication64, pdwAppCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).AddApplication(@ptrCast(*const IProcessDebugManager64, self), pda, pdwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager64_RemoveApplication(self: *const T, dwAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).RemoveApplication(@ptrCast(*const IProcessDebugManager64, self), dwAppCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProcessDebugManager64_CreateDebugDocumentHelper(self: *const T, punkOuter: ?*IUnknown, pddh: ?*?*IDebugDocumentHelper64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProcessDebugManager64.VTable, self.vtable).CreateDebugDocumentHelper(@ptrCast(*const IProcessDebugManager64, self), punkOuter, pddh);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IRemoteDebugApplication_Value = @import("../../zig.zig").Guid.initString("51973c30-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IRemoteDebugApplication = &IID_IRemoteDebugApplication_Value;
-pub const IRemoteDebugApplication = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ResumeFromBreakPoint: fn(
-            self: *const IRemoteDebugApplication,
-            prptFocus: ?*IRemoteDebugApplicationThread,
-            bra: BREAKRESUME_ACTION,
-            era: ERRORRESUMEACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CauseBreak: fn(
-            self: *const IRemoteDebugApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConnectDebugger: fn(
-            self: *const IRemoteDebugApplication,
-            pad: ?*IApplicationDebugger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisconnectDebugger: fn(
-            self: *const IRemoteDebugApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDebugger: fn(
-            self: *const IRemoteDebugApplication,
-            pad: ?*?*IApplicationDebugger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstanceAtApplication: fn(
-            self: *const IRemoteDebugApplication,
-            rclsid: ?*const Guid,
-            pUnkOuter: ?*IUnknown,
-            dwClsContext: u32,
-            riid: ?*const Guid,
-            ppvObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryAlive: fn(
-            self: *const IRemoteDebugApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumThreads: fn(
-            self: *const IRemoteDebugApplication,
-            pperdat: ?*?*IEnumRemoteDebugApplicationThreads,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetName: fn(
-            self: *const IRemoteDebugApplication,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRootNode: fn(
-            self: *const IRemoteDebugApplication,
-            ppdanRoot: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumGlobalExpressionContexts: fn(
-            self: *const IRemoteDebugApplication,
-            ppedec: ?*?*IEnumDebugExpressionContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_ResumeFromBreakPoint(self: *const T, prptFocus: ?*IRemoteDebugApplicationThread, bra: BREAKRESUME_ACTION, era: ERRORRESUMEACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).ResumeFromBreakPoint(@ptrCast(*const IRemoteDebugApplication, self), prptFocus, bra, era);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_CauseBreak(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).CauseBreak(@ptrCast(*const IRemoteDebugApplication, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_ConnectDebugger(self: *const T, pad: ?*IApplicationDebugger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).ConnectDebugger(@ptrCast(*const IRemoteDebugApplication, self), pad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_DisconnectDebugger(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).DisconnectDebugger(@ptrCast(*const IRemoteDebugApplication, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_GetDebugger(self: *const T, pad: ?*?*IApplicationDebugger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetDebugger(@ptrCast(*const IRemoteDebugApplication, self), pad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_CreateInstanceAtApplication(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).CreateInstanceAtApplication(@ptrCast(*const IRemoteDebugApplication, self), rclsid, pUnkOuter, dwClsContext, riid, ppvObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_QueryAlive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).QueryAlive(@ptrCast(*const IRemoteDebugApplication, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_EnumThreads(self: *const T, pperdat: ?*?*IEnumRemoteDebugApplicationThreads) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).EnumThreads(@ptrCast(*const IRemoteDebugApplication, self), pperdat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_GetName(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetName(@ptrCast(*const IRemoteDebugApplication, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_GetRootNode(self: *const T, ppdanRoot: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).GetRootNode(@ptrCast(*const IRemoteDebugApplication, self), ppdanRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplication_EnumGlobalExpressionContexts(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplication.VTable, self.vtable).EnumGlobalExpressionContexts(@ptrCast(*const IRemoteDebugApplication, self), ppedec);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplication32_Value = @import("../../zig.zig").Guid.initString("51973c32-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugApplication32 = &IID_IDebugApplication32_Value;
-pub const IDebugApplication32 = extern struct {
-    pub const VTable = extern struct {
-        base: IRemoteDebugApplication.VTable,
-        SetName: fn(
-            self: *const IDebugApplication32,
-            pstrName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StepOutComplete: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DebugOutput: fn(
-            self: *const IDebugApplication32,
-            pstr: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartDebugSession: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleBreakPoint: fn(
-            self: *const IDebugApplication32,
-            br: BREAKREASON,
-            pbra: ?*BREAKRESUME_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBreakFlags: fn(
-            self: *const IDebugApplication32,
-            pabf: ?*u32,
-            pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentThread: fn(
-            self: *const IDebugApplication32,
-            pat: ?*?*IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAsyncDebugOperation: fn(
-            self: *const IDebugApplication32,
-            psdo: ?*IDebugSyncOperation,
-            ppado: ?*?*IDebugAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStackFrameSniffer: fn(
-            self: *const IDebugApplication32,
-            pdsfs: ?*IDebugStackFrameSniffer,
-            pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStackFrameSniffer: fn(
-            self: *const IDebugApplication32,
-            dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryCurrentThreadIsDebuggerThread: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SynchronousCallInDebuggerThread: fn(
-            self: *const IDebugApplication32,
-            pptc: ?*IDebugThreadCall32,
-            dwParam1: u32,
-            dwParam2: u32,
-            dwParam3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateApplicationNode: fn(
-            self: *const IDebugApplication32,
-            ppdanNew: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FireDebuggerEvent: fn(
-            self: *const IDebugApplication32,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleRuntimeError: fn(
-            self: *const IDebugApplication32,
-            pErrorDebug: ?*IActiveScriptErrorDebug,
-            pScriptSite: ?*IActiveScriptSite,
-            pbra: ?*BREAKRESUME_ACTION,
-            perra: ?*ERRORRESUMEACTION,
-            pfCallOnScriptError: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FCanJitDebug: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        FIsAutoJitDebugEnabled: fn(
-            self: *const IDebugApplication32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        AddGlobalExpressionContextProvider: fn(
-            self: *const IDebugApplication32,
-            pdsfs: ?*IProvideExpressionContexts,
-            pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveGlobalExpressionContextProvider: fn(
-            self: *const IDebugApplication32,
-            dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IRemoteDebugApplication.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_SetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).SetName(@ptrCast(*const IDebugApplication32, self), pstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_StepOutComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).StepOutComplete(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_DebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).DebugOutput(@ptrCast(*const IDebugApplication32, self), pstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_StartDebugSession(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_HandleBreakPoint(self: *const T, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).HandleBreakPoint(@ptrCast(*const IDebugApplication32, self), br, pbra);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).Close(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_GetBreakFlags(self: *const T, pabf: ?*u32, pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).GetBreakFlags(@ptrCast(*const IDebugApplication32, self), pabf, pprdatSteppingThread);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_GetCurrentThread(self: *const T, pat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).GetCurrentThread(@ptrCast(*const IDebugApplication32, self), pat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_CreateAsyncDebugOperation(self: *const T, psdo: ?*IDebugSyncOperation, ppado: ?*?*IDebugAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).CreateAsyncDebugOperation(@ptrCast(*const IDebugApplication32, self), psdo, ppado);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_AddStackFrameSniffer(self: *const T, pdsfs: ?*IDebugStackFrameSniffer, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).AddStackFrameSniffer(@ptrCast(*const IDebugApplication32, self), pdsfs, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_RemoveStackFrameSniffer(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).RemoveStackFrameSniffer(@ptrCast(*const IDebugApplication32, self), dwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_QueryCurrentThreadIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).QueryCurrentThreadIsDebuggerThread(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_SynchronousCallInDebuggerThread(self: *const T, pptc: ?*IDebugThreadCall32, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).SynchronousCallInDebuggerThread(@ptrCast(*const IDebugApplication32, self), pptc, dwParam1, dwParam2, dwParam3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_CreateApplicationNode(self: *const T, ppdanNew: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).CreateApplicationNode(@ptrCast(*const IDebugApplication32, self), ppdanNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_FireDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FireDebuggerEvent(@ptrCast(*const IDebugApplication32, self), riid, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_HandleRuntimeError(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).HandleRuntimeError(@ptrCast(*const IDebugApplication32, self), pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_FCanJitDebug(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FCanJitDebug(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_FIsAutoJitDebugEnabled(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).FIsAutoJitDebugEnabled(@ptrCast(*const IDebugApplication32, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_AddGlobalExpressionContextProvider(self: *const T, pdsfs: ?*IProvideExpressionContexts, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).AddGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication32, self), pdsfs, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication32_RemoveGlobalExpressionContextProvider(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication32.VTable, self.vtable).RemoveGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication32, self), dwCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplication64_Value = @import("../../zig.zig").Guid.initString("4dedc754-04c7-4f10-9e60-16a390fe6e62");
-pub const IID_IDebugApplication64 = &IID_IDebugApplication64_Value;
-pub const IDebugApplication64 = extern struct {
-    pub const VTable = extern struct {
-        base: IRemoteDebugApplication.VTable,
-        SetName: fn(
-            self: *const IDebugApplication64,
-            pstrName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StepOutComplete: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DebugOutput: fn(
-            self: *const IDebugApplication64,
-            pstr: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartDebugSession: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleBreakPoint: fn(
-            self: *const IDebugApplication64,
-            br: BREAKREASON,
-            pbra: ?*BREAKRESUME_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBreakFlags: fn(
-            self: *const IDebugApplication64,
-            pabf: ?*u32,
-            pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentThread: fn(
-            self: *const IDebugApplication64,
-            pat: ?*?*IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAsyncDebugOperation: fn(
-            self: *const IDebugApplication64,
-            psdo: ?*IDebugSyncOperation,
-            ppado: ?*?*IDebugAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStackFrameSniffer: fn(
-            self: *const IDebugApplication64,
-            pdsfs: ?*IDebugStackFrameSniffer,
-            pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStackFrameSniffer: fn(
-            self: *const IDebugApplication64,
-            dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryCurrentThreadIsDebuggerThread: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SynchronousCallInDebuggerThread: fn(
-            self: *const IDebugApplication64,
-            pptc: ?*IDebugThreadCall64,
-            dwParam1: u64,
-            dwParam2: u64,
-            dwParam3: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateApplicationNode: fn(
-            self: *const IDebugApplication64,
-            ppdanNew: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FireDebuggerEvent: fn(
-            self: *const IDebugApplication64,
-            riid: ?*const Guid,
-            punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleRuntimeError: fn(
-            self: *const IDebugApplication64,
-            pErrorDebug: ?*IActiveScriptErrorDebug,
-            pScriptSite: ?*IActiveScriptSite,
-            pbra: ?*BREAKRESUME_ACTION,
-            perra: ?*ERRORRESUMEACTION,
-            pfCallOnScriptError: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FCanJitDebug: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        FIsAutoJitDebugEnabled: fn(
-            self: *const IDebugApplication64,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        AddGlobalExpressionContextProvider: fn(
-            self: *const IDebugApplication64,
-            pdsfs: ?*IProvideExpressionContexts,
-            pdwCookie: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveGlobalExpressionContextProvider: fn(
-            self: *const IDebugApplication64,
-            dwCookie: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IRemoteDebugApplication.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_SetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).SetName(@ptrCast(*const IDebugApplication64, self), pstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_StepOutComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).StepOutComplete(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_DebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).DebugOutput(@ptrCast(*const IDebugApplication64, self), pstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_StartDebugSession(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).StartDebugSession(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_HandleBreakPoint(self: *const T, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).HandleBreakPoint(@ptrCast(*const IDebugApplication64, self), br, pbra);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).Close(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_GetBreakFlags(self: *const T, pabf: ?*u32, pprdatSteppingThread: ?*?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).GetBreakFlags(@ptrCast(*const IDebugApplication64, self), pabf, pprdatSteppingThread);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_GetCurrentThread(self: *const T, pat: ?*?*IDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).GetCurrentThread(@ptrCast(*const IDebugApplication64, self), pat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_CreateAsyncDebugOperation(self: *const T, psdo: ?*IDebugSyncOperation, ppado: ?*?*IDebugAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).CreateAsyncDebugOperation(@ptrCast(*const IDebugApplication64, self), psdo, ppado);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_AddStackFrameSniffer(self: *const T, pdsfs: ?*IDebugStackFrameSniffer, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).AddStackFrameSniffer(@ptrCast(*const IDebugApplication64, self), pdsfs, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_RemoveStackFrameSniffer(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).RemoveStackFrameSniffer(@ptrCast(*const IDebugApplication64, self), dwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_QueryCurrentThreadIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).QueryCurrentThreadIsDebuggerThread(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_SynchronousCallInDebuggerThread(self: *const T, pptc: ?*IDebugThreadCall64, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).SynchronousCallInDebuggerThread(@ptrCast(*const IDebugApplication64, self), pptc, dwParam1, dwParam2, dwParam3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_CreateApplicationNode(self: *const T, ppdanNew: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).CreateApplicationNode(@ptrCast(*const IDebugApplication64, self), ppdanNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_FireDebuggerEvent(self: *const T, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FireDebuggerEvent(@ptrCast(*const IDebugApplication64, self), riid, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_HandleRuntimeError(self: *const T, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).HandleRuntimeError(@ptrCast(*const IDebugApplication64, self), pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_FCanJitDebug(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FCanJitDebug(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_FIsAutoJitDebugEnabled(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).FIsAutoJitDebugEnabled(@ptrCast(*const IDebugApplication64, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_AddGlobalExpressionContextProvider(self: *const T, pdsfs: ?*IProvideExpressionContexts, pdwCookie: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).AddGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication64, self), pdsfs, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplication64_RemoveGlobalExpressionContextProvider(self: *const T, dwCookie: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplication64.VTable, self.vtable).RemoveGlobalExpressionContextProvider(@ptrCast(*const IDebugApplication64, self), dwCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IRemoteDebugApplicationEvents_Value = @import("../../zig.zig").Guid.initString("51973c33-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IRemoteDebugApplicationEvents = &IID_IRemoteDebugApplicationEvents_Value;
-pub const IRemoteDebugApplicationEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnConnectDebugger: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            pad: ?*IApplicationDebugger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnDisconnectDebugger: fn(
-            self: *const IRemoteDebugApplicationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnSetName: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            pstrName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnDebugOutput: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            pstr: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnClose: fn(
-            self: *const IRemoteDebugApplicationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnEnterBreakPoint: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            prdat: ?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnLeaveBreakPoint: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            prdat: ?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreateThread: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            prdat: ?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnDestroyThread: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            prdat: ?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnBreakFlagChange: fn(
-            self: *const IRemoteDebugApplicationEvents,
-            abf: u32,
-            prdatSteppingThread: ?*IRemoteDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnConnectDebugger(self: *const T, pad: ?*IApplicationDebugger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnConnectDebugger(@ptrCast(*const IRemoteDebugApplicationEvents, self), pad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnDisconnectDebugger(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDisconnectDebugger(@ptrCast(*const IRemoteDebugApplicationEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnSetName(self: *const T, pstrName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnSetName(@ptrCast(*const IRemoteDebugApplicationEvents, self), pstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnDebugOutput(self: *const T, pstr: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDebugOutput(@ptrCast(*const IRemoteDebugApplicationEvents, self), pstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnClose(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnClose(@ptrCast(*const IRemoteDebugApplicationEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnEnterBreakPoint(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnEnterBreakPoint(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnLeaveBreakPoint(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnLeaveBreakPoint(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnCreateThread(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnCreateThread(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnDestroyThread(self: *const T, prdat: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnDestroyThread(@ptrCast(*const IRemoteDebugApplicationEvents, self), prdat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationEvents_OnBreakFlagChange(self: *const T, abf: u32, prdatSteppingThread: ?*IRemoteDebugApplicationThread) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationEvents.VTable, self.vtable).OnBreakFlagChange(@ptrCast(*const IRemoteDebugApplicationEvents, self), abf, prdatSteppingThread);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplicationNode_Value = @import("../../zig.zig").Guid.initString("51973c34-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugApplicationNode = &IID_IDebugApplicationNode_Value;
-pub const IDebugApplicationNode = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugDocumentProvider.VTable,
-        EnumChildren: fn(
-            self: *const IDebugApplicationNode,
-            pperddp: ?*?*IEnumDebugApplicationNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParent: fn(
-            self: *const IDebugApplicationNode,
-            pprddp: ?*?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentProvider: fn(
-            self: *const IDebugApplicationNode,
-            pddp: ?*IDebugDocumentProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Attach: fn(
-            self: *const IDebugApplicationNode,
-            pdanParent: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Detach: fn(
-            self: *const IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugDocumentProvider.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_EnumChildren(self: *const T, pperddp: ?*?*IEnumDebugApplicationNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).EnumChildren(@ptrCast(*const IDebugApplicationNode, self), pperddp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_GetParent(self: *const T, pprddp: ?*?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).GetParent(@ptrCast(*const IDebugApplicationNode, self), pprddp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_SetDocumentProvider(self: *const T, pddp: ?*IDebugDocumentProvider) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).SetDocumentProvider(@ptrCast(*const IDebugApplicationNode, self), pddp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Close(@ptrCast(*const IDebugApplicationNode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_Attach(self: *const T, pdanParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Attach(@ptrCast(*const IDebugApplicationNode, self), pdanParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNode_Detach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNode.VTable, self.vtable).Detach(@ptrCast(*const IDebugApplicationNode, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplicationNodeEvents_Value = @import("../../zig.zig").Guid.initString("51973c35-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugApplicationNodeEvents = &IID_IDebugApplicationNodeEvents_Value;
-pub const IDebugApplicationNodeEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        onAddChild: fn(
-            self: *const IDebugApplicationNodeEvents,
-            prddpChild: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onRemoveChild: fn(
-            self: *const IDebugApplicationNodeEvents,
-            prddpChild: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onDetach: fn(
-            self: *const IDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        onAttach: fn(
-            self: *const IDebugApplicationNodeEvents,
-            prddpParent: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNodeEvents_onAddChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onAddChild(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNodeEvents_onRemoveChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onRemoveChild(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNodeEvents_onDetach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onDetach(@ptrCast(*const IDebugApplicationNodeEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationNodeEvents_onAttach(self: *const T, prddpParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationNodeEvents.VTable, self.vtable).onAttach(@ptrCast(*const IDebugApplicationNodeEvents, self), prddpParent);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_AsyncIDebugApplicationNodeEvents_Value = @import("../../zig.zig").Guid.initString("a2e3aa3b-aa8d-4ebf-84cd-648b737b8c13");
-pub const IID_AsyncIDebugApplicationNodeEvents = &IID_AsyncIDebugApplicationNodeEvents_Value;
-pub const AsyncIDebugApplicationNodeEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Begin_onAddChild: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-            prddpChild: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Finish_onAddChild: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Begin_onRemoveChild: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-            prddpChild: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Finish_onRemoveChild: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Begin_onDetach: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Finish_onDetach: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Begin_onAttach: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-            prddpParent: ?*IDebugApplicationNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Finish_onAttach: fn(
-            self: *const AsyncIDebugApplicationNodeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Begin_onAddChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onAddChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Finish_onAddChild(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onAddChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Begin_onRemoveChild(self: *const T, prddpChild: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onRemoveChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Finish_onRemoveChild(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onRemoveChild(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Begin_onDetach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onDetach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Finish_onDetach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onDetach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Begin_onAttach(self: *const T, prddpParent: ?*IDebugApplicationNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Begin_onAttach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self), prddpParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn AsyncIDebugApplicationNodeEvents_Finish_onAttach(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const AsyncIDebugApplicationNodeEvents.VTable, self.vtable).Finish_onAttach(@ptrCast(*const AsyncIDebugApplicationNodeEvents, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugThreadCall32_Value = @import("../../zig.zig").Guid.initString("51973c36-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugThreadCall32 = &IID_IDebugThreadCall32_Value;
-pub const IDebugThreadCall32 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ThreadCallHandler: fn(
-            self: *const IDebugThreadCall32,
-            dwParam1: u32,
-            dwParam2: u32,
-            dwParam3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugThreadCall32_ThreadCallHandler(self: *const T, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugThreadCall32.VTable, self.vtable).ThreadCallHandler(@ptrCast(*const IDebugThreadCall32, self), dwParam1, dwParam2, dwParam3);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugThreadCall64_Value = @import("../../zig.zig").Guid.initString("cb3fa335-e979-42fd-9fcf-a7546a0f3905");
-pub const IID_IDebugThreadCall64 = &IID_IDebugThreadCall64_Value;
-pub const IDebugThreadCall64 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ThreadCallHandler: fn(
-            self: *const IDebugThreadCall64,
-            dwParam1: u64,
-            dwParam2: u64,
-            dwParam3: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugThreadCall64_ThreadCallHandler(self: *const T, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugThreadCall64.VTable, self.vtable).ThreadCallHandler(@ptrCast(*const IDebugThreadCall64, self), dwParam1, dwParam2, dwParam3);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IRemoteDebugApplicationThread_Value = @import("../../zig.zig").Guid.initString("51973c37-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IRemoteDebugApplicationThread = &IID_IRemoteDebugApplicationThread_Value;
-pub const IRemoteDebugApplicationThread = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetSystemThreadId: fn(
-            self: *const IRemoteDebugApplicationThread,
-            dwThreadId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetApplication: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pprda: ?*?*IRemoteDebugApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumStackFrames: fn(
-            self: *const IRemoteDebugApplicationThread,
-            ppedsf: ?*?*IEnumDebugStackFrames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDescription: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pbstrDescription: ?*?BSTR,
-            pbstrState: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNextStatement: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pStackFrame: ?*IDebugStackFrame,
-            pCodeContext: ?*IDebugCodeContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetState: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Suspend: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSuspendCount: fn(
-            self: *const IRemoteDebugApplicationThread,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_GetSystemThreadId(self: *const T, dwThreadId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetSystemThreadId(@ptrCast(*const IRemoteDebugApplicationThread, self), dwThreadId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_GetApplication(self: *const T, pprda: ?*?*IRemoteDebugApplication) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetApplication(@ptrCast(*const IRemoteDebugApplicationThread, self), pprda);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_EnumStackFrames(self: *const T, ppedsf: ?*?*IEnumDebugStackFrames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).EnumStackFrames(@ptrCast(*const IRemoteDebugApplicationThread, self), ppedsf);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_GetDescription(self: *const T, pbstrDescription: ?*?BSTR, pbstrState: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetDescription(@ptrCast(*const IRemoteDebugApplicationThread, self), pbstrDescription, pbstrState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_SetNextStatement(self: *const T, pStackFrame: ?*IDebugStackFrame, pCodeContext: ?*IDebugCodeContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).SetNextStatement(@ptrCast(*const IRemoteDebugApplicationThread, self), pStackFrame, pCodeContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_GetState(self: *const T, pState: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetState(@ptrCast(*const IRemoteDebugApplicationThread, self), pState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_Suspend(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).Suspend(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_Resume(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).Resume(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteDebugApplicationThread_GetSuspendCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteDebugApplicationThread.VTable, self.vtable).GetSuspendCount(@ptrCast(*const IRemoteDebugApplicationThread, self), pdwCount);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplicationThread_Value = @import("../../zig.zig").Guid.initString("51973c38-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugApplicationThread = &IID_IDebugApplicationThread_Value;
-pub const IDebugApplicationThread = extern struct {
-    pub const VTable = extern struct {
-        base: IRemoteDebugApplicationThread.VTable,
-        SynchronousCallIntoThread32: fn(
-            self: *const IDebugApplicationThread,
-            pstcb: ?*IDebugThreadCall32,
-            dwParam1: u32,
-            dwParam2: u32,
-            dwParam3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryIsCurrentThread: fn(
-            self: *const IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryIsDebuggerThread: fn(
-            self: *const IDebugApplicationThread,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDescription: fn(
-            self: *const IDebugApplicationThread,
-            pstrDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStateString: fn(
-            self: *const IDebugApplicationThread,
-            pstrState: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IRemoteDebugApplicationThread.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread_SynchronousCallIntoThread32(self: *const T, pstcb: ?*IDebugThreadCall32, dwParam1: u32, dwParam2: u32, dwParam3: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SynchronousCallIntoThread32(@ptrCast(*const IDebugApplicationThread, self), pstcb, dwParam1, dwParam2, dwParam3);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread_QueryIsCurrentThread(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).QueryIsCurrentThread(@ptrCast(*const IDebugApplicationThread, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread_QueryIsDebuggerThread(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).QueryIsDebuggerThread(@ptrCast(*const IDebugApplicationThread, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread_SetDescription(self: *const T, pstrDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SetDescription(@ptrCast(*const IDebugApplicationThread, self), pstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread_SetStateString(self: *const T, pstrState: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread.VTable, self.vtable).SetStateString(@ptrCast(*const IDebugApplicationThread, self), pstrState);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugApplicationThread64_Value = @import("../../zig.zig").Guid.initString("9dac5886-dbad-456d-9dee-5dec39ab3dda");
-pub const IID_IDebugApplicationThread64 = &IID_IDebugApplicationThread64_Value;
-pub const IDebugApplicationThread64 = extern struct {
-    pub const VTable = extern struct {
-        base: IDebugApplicationThread.VTable,
-        SynchronousCallIntoThread64: fn(
-            self: *const IDebugApplicationThread64,
-            pstcb: ?*IDebugThreadCall64,
-            dwParam1: u64,
-            dwParam2: u64,
-            dwParam3: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDebugApplicationThread.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugApplicationThread64_SynchronousCallIntoThread64(self: *const T, pstcb: ?*IDebugThreadCall64, dwParam1: u64, dwParam2: u64, dwParam3: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugApplicationThread64.VTable, self.vtable).SynchronousCallIntoThread64(@ptrCast(*const IDebugApplicationThread64, self), pstcb, dwParam1, dwParam2, dwParam3);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugCookie_Value = @import("../../zig.zig").Guid.initString("51973c39-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugCookie = &IID_IDebugCookie_Value;
-pub const IDebugCookie = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetDebugCookie: fn(
-            self: *const IDebugCookie,
-            dwDebugAppCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugCookie_SetDebugCookie(self: *const T, dwDebugAppCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugCookie.VTable, self.vtable).SetDebugCookie(@ptrCast(*const IDebugCookie, self), dwDebugAppCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugApplicationNodes_Value = @import("../../zig.zig").Guid.initString("51973c3a-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugApplicationNodes = &IID_IEnumDebugApplicationNodes_Value;
-pub const IEnumDebugApplicationNodes = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugApplicationNodes,
-            celt: u32,
-            pprddp: ?*?*IDebugApplicationNode,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugApplicationNodes,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugApplicationNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugApplicationNodes,
-            pperddp: ?*?*IEnumDebugApplicationNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugApplicationNodes_Next(self: *const T, celt: u32, pprddp: ?*?*IDebugApplicationNode, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugApplicationNodes, self), celt, pprddp, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugApplicationNodes_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugApplicationNodes, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugApplicationNodes_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugApplicationNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugApplicationNodes_Clone(self: *const T, pperddp: ?*?*IEnumDebugApplicationNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugApplicationNodes.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugApplicationNodes, self), pperddp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumRemoteDebugApplications_Value = @import("../../zig.zig").Guid.initString("51973c3b-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumRemoteDebugApplications = &IID_IEnumRemoteDebugApplications_Value;
-pub const IEnumRemoteDebugApplications = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumRemoteDebugApplications,
-            celt: u32,
-            ppda: ?*?*IRemoteDebugApplication,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumRemoteDebugApplications,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumRemoteDebugApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumRemoteDebugApplications,
-            ppessd: ?*?*IEnumRemoteDebugApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplications_Next(self: *const T, celt: u32, ppda: ?*?*IRemoteDebugApplication, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Next(@ptrCast(*const IEnumRemoteDebugApplications, self), celt, ppda, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplications_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Skip(@ptrCast(*const IEnumRemoteDebugApplications, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplications_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Reset(@ptrCast(*const IEnumRemoteDebugApplications, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplications_Clone(self: *const T, ppessd: ?*?*IEnumRemoteDebugApplications) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplications.VTable, self.vtable).Clone(@ptrCast(*const IEnumRemoteDebugApplications, self), ppessd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumRemoteDebugApplicationThreads_Value = @import("../../zig.zig").Guid.initString("51973c3c-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumRemoteDebugApplicationThreads = &IID_IEnumRemoteDebugApplicationThreads_Value;
-pub const IEnumRemoteDebugApplicationThreads = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumRemoteDebugApplicationThreads,
-            celt: u32,
-            pprdat: ?*?*IRemoteDebugApplicationThread,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumRemoteDebugApplicationThreads,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumRemoteDebugApplicationThreads,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumRemoteDebugApplicationThreads,
-            pperdat: ?*?*IEnumRemoteDebugApplicationThreads,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplicationThreads_Next(self: *const T, celt: u32, pprdat: ?*?*IRemoteDebugApplicationThread, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Next(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), celt, pprdat, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplicationThreads_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Skip(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplicationThreads_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Reset(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumRemoteDebugApplicationThreads_Clone(self: *const T, pperdat: ?*?*IEnumRemoteDebugApplicationThreads) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumRemoteDebugApplicationThreads.VTable, self.vtable).Clone(@ptrCast(*const IEnumRemoteDebugApplicationThreads, self), pperdat);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugFormatter_Value = @import("../../zig.zig").Guid.initString("51973c05-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugFormatter = &IID_IDebugFormatter_Value;
-pub const IDebugFormatter = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStringForVariant: fn(
-            self: *const IDebugFormatter,
-            pvar: ?*VARIANT,
-            nRadix: u32,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVariantForString: fn(
-            self: *const IDebugFormatter,
-            pwstrValue: ?[*:0]const u16,
-            pvar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStringForVarType: fn(
-            self: *const IDebugFormatter,
-            vt: u16,
-            ptdescArrayType: ?*TYPEDESC,
-            pbstr: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugFormatter_GetStringForVariant(self: *const T, pvar: ?*VARIANT, nRadix: u32, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetStringForVariant(@ptrCast(*const IDebugFormatter, self), pvar, nRadix, pbstrValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugFormatter_GetVariantForString(self: *const T, pwstrValue: ?[*:0]const u16, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetVariantForString(@ptrCast(*const IDebugFormatter, self), pwstrValue, pvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugFormatter_GetStringForVarType(self: *const T, vt: u16, ptdescArrayType: ?*TYPEDESC, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugFormatter.VTable, self.vtable).GetStringForVarType(@ptrCast(*const IDebugFormatter, self), vt, ptdescArrayType, pbstr);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_ISimpleConnectionPoint_Value = @import("../../zig.zig").Guid.initString("51973c3e-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_ISimpleConnectionPoint = &IID_ISimpleConnectionPoint_Value;
-pub const ISimpleConnectionPoint = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetEventCount: fn(
-            self: *const ISimpleConnectionPoint,
-            pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DescribeEvents: fn(
-            self: *const ISimpleConnectionPoint,
-            iEvent: u32,
-            cEvents: u32,
-            prgid: [*]i32,
-            prgbstr: [*]?BSTR,
-            pcEventsFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Advise: fn(
-            self: *const ISimpleConnectionPoint,
-            pdisp: ?*IDispatch,
-            pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
-            self: *const ISimpleConnectionPoint,
-            dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleConnectionPoint_GetEventCount(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).GetEventCount(@ptrCast(*const ISimpleConnectionPoint, self), pulCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleConnectionPoint_DescribeEvents(self: *const T, iEvent: u32, cEvents: u32, prgid: [*]i32, prgbstr: [*]?BSTR, pcEventsFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).DescribeEvents(@ptrCast(*const ISimpleConnectionPoint, self), iEvent, cEvents, prgid, prgbstr, pcEventsFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleConnectionPoint_Advise(self: *const T, pdisp: ?*IDispatch, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).Advise(@ptrCast(*const ISimpleConnectionPoint, self), pdisp, pdwCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleConnectionPoint_Unadvise(self: *const T, dwCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleConnectionPoint.VTable, self.vtable).Unadvise(@ptrCast(*const ISimpleConnectionPoint, self), dwCookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDebugHelper_Value = @import("../../zig.zig").Guid.initString("51973c3f-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IDebugHelper = &IID_IDebugHelper_Value;
-pub const IDebugHelper = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreatePropertyBrowser: fn(
-            self: *const IDebugHelper,
-            pvar: ?*VARIANT,
-            bstrName: ?[*:0]const u16,
-            pdat: ?*IDebugApplicationThread,
-            ppdob: ?*?*IDebugProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePropertyBrowserEx: fn(
-            self: *const IDebugHelper,
-            pvar: ?*VARIANT,
-            bstrName: ?[*:0]const u16,
-            pdat: ?*IDebugApplicationThread,
-            pdf: ?*IDebugFormatter,
-            ppdob: ?*?*IDebugProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSimpleConnectionPoint: fn(
-            self: *const IDebugHelper,
-            pdisp: ?*IDispatch,
-            ppscp: ?*?*ISimpleConnectionPoint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHelper_CreatePropertyBrowser(self: *const T, pvar: ?*VARIANT, bstrName: ?[*:0]const u16, pdat: ?*IDebugApplicationThread, ppdob: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreatePropertyBrowser(@ptrCast(*const IDebugHelper, self), pvar, bstrName, pdat, ppdob);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHelper_CreatePropertyBrowserEx(self: *const T, pvar: ?*VARIANT, bstrName: ?[*:0]const u16, pdat: ?*IDebugApplicationThread, pdf: ?*IDebugFormatter, ppdob: ?*?*IDebugProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreatePropertyBrowserEx(@ptrCast(*const IDebugHelper, self), pvar, bstrName, pdat, pdf, ppdob);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHelper_CreateSimpleConnectionPoint(self: *const T, pdisp: ?*IDispatch, ppscp: ?*?*ISimpleConnectionPoint) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDebugHelper.VTable, self.vtable).CreateSimpleConnectionPoint(@ptrCast(*const IDebugHelper, self), pdisp, ppscp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDebugExpressionContexts_Value = @import("../../zig.zig").Guid.initString("51973c40-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IEnumDebugExpressionContexts = &IID_IEnumDebugExpressionContexts_Value;
-pub const IEnumDebugExpressionContexts = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDebugExpressionContexts,
-            celt: u32,
-            ppdec: ?*?*IDebugExpressionContext,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDebugExpressionContexts,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDebugExpressionContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDebugExpressionContexts,
-            ppedec: ?*?*IEnumDebugExpressionContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExpressionContexts_Next(self: *const T, celt: u32, ppdec: ?*?*IDebugExpressionContext, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Next(@ptrCast(*const IEnumDebugExpressionContexts, self), celt, ppdec, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExpressionContexts_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Skip(@ptrCast(*const IEnumDebugExpressionContexts, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExpressionContexts_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Reset(@ptrCast(*const IEnumDebugExpressionContexts, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDebugExpressionContexts_Clone(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDebugExpressionContexts.VTable, self.vtable).Clone(@ptrCast(*const IEnumDebugExpressionContexts, self), ppedec);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IProvideExpressionContexts_Value = @import("../../zig.zig").Guid.initString("51973c41-cb0c-11d0-b5c9-00a0244a0e7a");
-pub const IID_IProvideExpressionContexts = &IID_IProvideExpressionContexts_Value;
-pub const IProvideExpressionContexts = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        EnumExpressionContexts: fn(
-            self: *const IProvideExpressionContexts,
-            ppedec: ?*?*IEnumDebugExpressionContexts,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvideExpressionContexts_EnumExpressionContexts(self: *const T, ppedec: ?*?*IEnumDebugExpressionContexts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProvideExpressionContexts.VTable, self.vtable).EnumExpressionContexts(@ptrCast(*const IProvideExpressionContexts, self), ppedec);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PROFILER_SCRIPT_TYPE = enum(i32) {
-    USER = 0,
-    DYNAMIC = 1,
-    NATIVE = 2,
-    DOM = 3,
-};
-pub const PROFILER_SCRIPT_TYPE_USER = PROFILER_SCRIPT_TYPE.USER;
-pub const PROFILER_SCRIPT_TYPE_DYNAMIC = PROFILER_SCRIPT_TYPE.DYNAMIC;
-pub const PROFILER_SCRIPT_TYPE_NATIVE = PROFILER_SCRIPT_TYPE.NATIVE;
-pub const PROFILER_SCRIPT_TYPE_DOM = PROFILER_SCRIPT_TYPE.DOM;
-
-pub const PROFILER_EVENT_MASK = enum(u32) {
-    SCRIPT_FUNCTION_CALL = 1,
-    NATIVE_FUNCTION_CALL = 2,
-    DOM_FUNCTION_CALL = 4,
-    ALL = 3,
-    ALL_WITH_DOM = 7,
-    _,
-    pub fn initFlags(o: struct {
-        SCRIPT_FUNCTION_CALL: u1 = 0,
-        NATIVE_FUNCTION_CALL: u1 = 0,
-        DOM_FUNCTION_CALL: u1 = 0,
-        ALL: u1 = 0,
-        ALL_WITH_DOM: u1 = 0,
-    }) PROFILER_EVENT_MASK {
-        return @intToEnum(PROFILER_EVENT_MASK,
-              (if (o.SCRIPT_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL) else 0)
-            | (if (o.NATIVE_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL) else 0)
-            | (if (o.DOM_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.DOM_FUNCTION_CALL) else 0)
-            | (if (o.ALL == 1) @enumToInt(PROFILER_EVENT_MASK.ALL) else 0)
-            | (if (o.ALL_WITH_DOM == 1) @enumToInt(PROFILER_EVENT_MASK.ALL_WITH_DOM) else 0)
-        );
-    }
-};
-pub const PROFILER_EVENT_MASK_TRACE_SCRIPT_FUNCTION_CALL = PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL;
-pub const PROFILER_EVENT_MASK_TRACE_NATIVE_FUNCTION_CALL = PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL;
-pub const PROFILER_EVENT_MASK_TRACE_DOM_FUNCTION_CALL = PROFILER_EVENT_MASK.DOM_FUNCTION_CALL;
-pub const PROFILER_EVENT_MASK_TRACE_ALL = PROFILER_EVENT_MASK.ALL;
-pub const PROFILER_EVENT_MASK_TRACE_ALL_WITH_DOM = PROFILER_EVENT_MASK.ALL_WITH_DOM;
-
-const IID_IActiveScriptProfilerControl_Value = @import("../../zig.zig").Guid.initString("784b5ff0-69b0-47d1-a7dc-2518f4230e90");
-pub const IID_IActiveScriptProfilerControl = &IID_IActiveScriptProfilerControl_Value;
-pub const IActiveScriptProfilerControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        StartProfiling: fn(
-            self: *const IActiveScriptProfilerControl,
-            clsidProfilerObject: ?*const Guid,
-            dwEventMask: u32,
-            dwContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProfilerEventMask: fn(
-            self: *const IActiveScriptProfilerControl,
-            dwEventMask: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopProfiling: fn(
-            self: *const IActiveScriptProfilerControl,
-            hrShutdownReason: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl_StartProfiling(self: *const T, clsidProfilerObject: ?*const Guid, dwEventMask: u32, dwContext: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).StartProfiling(@ptrCast(*const IActiveScriptProfilerControl, self), clsidProfilerObject, dwEventMask, dwContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl_SetProfilerEventMask(self: *const T, dwEventMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).SetProfilerEventMask(@ptrCast(*const IActiveScriptProfilerControl, self), dwEventMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl_StopProfiling(self: *const T, hrShutdownReason: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl.VTable, self.vtable).StopProfiling(@ptrCast(*const IActiveScriptProfilerControl, self), hrShutdownReason);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerControl2_Value = @import("../../zig.zig").Guid.initString("47810165-498f-40be-94f1-653557e9e7da");
-pub const IID_IActiveScriptProfilerControl2 = &IID_IActiveScriptProfilerControl2_Value;
-pub const IActiveScriptProfilerControl2 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerControl.VTable,
-        CompleteProfilerStart: fn(
-            self: *const IActiveScriptProfilerControl2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrepareProfilerStop: fn(
-            self: *const IActiveScriptProfilerControl2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerControl.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl2_CompleteProfilerStart(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl2.VTable, self.vtable).CompleteProfilerStart(@ptrCast(*const IActiveScriptProfilerControl2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl2_PrepareProfilerStop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl2.VTable, self.vtable).PrepareProfilerStop(@ptrCast(*const IActiveScriptProfilerControl2, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PROFILER_HEAP_OBJECT_FLAGS = enum(u32) {
-    NEW_OBJECT = 1,
-    IS_ROOT = 2,
-    SITE_CLOSED = 4,
-    EXTERNAL = 8,
-    EXTERNAL_UNKNOWN = 16,
-    EXTERNAL_DISPATCH = 32,
-    SIZE_APPROXIMATE = 64,
-    SIZE_UNAVAILABLE = 128,
-    NEW_STATE_UNAVAILABLE = 256,
-    WINRT_INSTANCE = 512,
-    WINRT_RUNTIMECLASS = 1024,
-    WINRT_DELEGATE = 2048,
-    WINRT_NAMESPACE = 4096,
-    _,
-    pub fn initFlags(o: struct {
-        NEW_OBJECT: u1 = 0,
-        IS_ROOT: u1 = 0,
-        SITE_CLOSED: u1 = 0,
-        EXTERNAL: u1 = 0,
-        EXTERNAL_UNKNOWN: u1 = 0,
-        EXTERNAL_DISPATCH: u1 = 0,
-        SIZE_APPROXIMATE: u1 = 0,
-        SIZE_UNAVAILABLE: u1 = 0,
-        NEW_STATE_UNAVAILABLE: u1 = 0,
-        WINRT_INSTANCE: u1 = 0,
-        WINRT_RUNTIMECLASS: u1 = 0,
-        WINRT_DELEGATE: u1 = 0,
-        WINRT_NAMESPACE: u1 = 0,
-    }) PROFILER_HEAP_OBJECT_FLAGS {
-        return @intToEnum(PROFILER_HEAP_OBJECT_FLAGS,
-              (if (o.NEW_OBJECT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT) else 0)
-            | (if (o.IS_ROOT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT) else 0)
-            | (if (o.SITE_CLOSED == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SITE_CLOSED) else 0)
-            | (if (o.EXTERNAL == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL) else 0)
-            | (if (o.EXTERNAL_UNKNOWN == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_UNKNOWN) else 0)
-            | (if (o.EXTERNAL_DISPATCH == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_DISPATCH) else 0)
-            | (if (o.SIZE_APPROXIMATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_APPROXIMATE) else 0)
-            | (if (o.SIZE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_UNAVAILABLE) else 0)
-            | (if (o.NEW_STATE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_STATE_UNAVAILABLE) else 0)
-            | (if (o.WINRT_INSTANCE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_INSTANCE) else 0)
-            | (if (o.WINRT_RUNTIMECLASS == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_RUNTIMECLASS) else 0)
-            | (if (o.WINRT_DELEGATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE) else 0)
-            | (if (o.WINRT_NAMESPACE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE) else 0)
-        );
-    }
-};
-pub const PROFILER_HEAP_OBJECT_FLAGS_NEW_OBJECT = PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT;
-pub const PROFILER_HEAP_OBJECT_FLAGS_IS_ROOT = PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT;
-pub const PROFILER_HEAP_OBJECT_FLAGS_SITE_CLOSED = PROFILER_HEAP_OBJECT_FLAGS.SITE_CLOSED;
-pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL;
-pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL_UNKNOWN = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_UNKNOWN;
-pub const PROFILER_HEAP_OBJECT_FLAGS_EXTERNAL_DISPATCH = PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_DISPATCH;
-pub const PROFILER_HEAP_OBJECT_FLAGS_SIZE_APPROXIMATE = PROFILER_HEAP_OBJECT_FLAGS.SIZE_APPROXIMATE;
-pub const PROFILER_HEAP_OBJECT_FLAGS_SIZE_UNAVAILABLE = PROFILER_HEAP_OBJECT_FLAGS.SIZE_UNAVAILABLE;
-pub const PROFILER_HEAP_OBJECT_FLAGS_NEW_STATE_UNAVAILABLE = PROFILER_HEAP_OBJECT_FLAGS.NEW_STATE_UNAVAILABLE;
-pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_INSTANCE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_INSTANCE;
-pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_RUNTIMECLASS = PROFILER_HEAP_OBJECT_FLAGS.WINRT_RUNTIMECLASS;
-pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_DELEGATE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE;
-pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_NAMESPACE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE;
-
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE = enum(i32) {
-    PROTOTYPE = 1,
-    FUNCTION_NAME = 2,
-    SCOPE_LIST = 3,
-    INTERNAL_PROPERTY = 4,
-    NAME_PROPERTIES = 5,
-    INDEX_PROPERTIES = 6,
-    ELEMENT_ATTRIBUTES_SIZE = 7,
-    ELEMENT_TEXT_CHILDREN_SIZE = 8,
-    RELATIONSHIPS = 9,
-    WINRTEVENTS = 10,
-    WEAKMAP_COLLECTION_LIST = 11,
-    MAP_COLLECTION_LIST = 12,
-    SET_COLLECTION_LIST = 13,
-    // MAX_VALUE = 13, this enum value conflicts with SET_COLLECTION_LIST
-};
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_PROTOTYPE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.PROTOTYPE;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_FUNCTION_NAME = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.FUNCTION_NAME;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SCOPE_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SCOPE_LIST;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_INTERNAL_PROPERTY = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.INTERNAL_PROPERTY;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_NAME_PROPERTIES = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.NAME_PROPERTIES;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_INDEX_PROPERTIES = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.INDEX_PROPERTIES;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_ELEMENT_ATTRIBUTES_SIZE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.ELEMENT_ATTRIBUTES_SIZE;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_ELEMENT_TEXT_CHILDREN_SIZE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.ELEMENT_TEXT_CHILDREN_SIZE;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_RELATIONSHIPS = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.RELATIONSHIPS;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WINRTEVENTS = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.WINRTEVENTS;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WEAKMAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.WEAKMAP_COLLECTION_LIST;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.MAP_COLLECTION_LIST;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SET_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAX_VALUE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
-
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = enum(u32) {
-    NONE = 0,
-    IS_GET_ACCESSOR = 65536,
-    IS_SET_ACCESSOR = 131072,
-    LET_VARIABLE = 262144,
-    CONST_VARIABLE = 524288,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IS_GET_ACCESSOR: u1 = 0,
-        IS_SET_ACCESSOR: u1 = 0,
-        LET_VARIABLE: u1 = 0,
-        CONST_VARIABLE: u1 = 0,
-    }) PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS {
-        return @intToEnum(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE) else 0)
-            | (if (o.IS_GET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR) else 0)
-            | (if (o.IS_SET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_SET_ACCESSOR) else 0)
-            | (if (o.LET_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE) else 0)
-            | (if (o.CONST_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE) else 0)
-        );
-    }
-};
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_NONE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE;
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_GET_ACCESSOR = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR;
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_SET_ACCESSOR = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_SET_ACCESSOR;
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_LET_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE;
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_CONST_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE;
-
-pub const PROFILER_HEAP_ENUM_FLAGS = enum(u32) {
-    NONE = 0,
-    STORE_RELATIONSHIP_FLAGS = 1,
-    SUBSTRINGS = 2,
-    RELATIONSHIP_SUBSTRINGS = 3,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        STORE_RELATIONSHIP_FLAGS: u1 = 0,
-        SUBSTRINGS: u1 = 0,
-        RELATIONSHIP_SUBSTRINGS: u1 = 0,
-    }) PROFILER_HEAP_ENUM_FLAGS {
-        return @intToEnum(PROFILER_HEAP_ENUM_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.NONE) else 0)
-            | (if (o.STORE_RELATIONSHIP_FLAGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS) else 0)
-            | (if (o.SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.SUBSTRINGS) else 0)
-            | (if (o.RELATIONSHIP_SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.RELATIONSHIP_SUBSTRINGS) else 0)
-        );
-    }
-};
-pub const PROFILER_HEAP_ENUM_FLAGS_NONE = PROFILER_HEAP_ENUM_FLAGS.NONE;
-pub const PROFILER_HEAP_ENUM_FLAGS_STORE_RELATIONSHIP_FLAGS = PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS;
-pub const PROFILER_HEAP_ENUM_FLAGS_SUBSTRINGS = PROFILER_HEAP_ENUM_FLAGS.SUBSTRINGS;
-pub const PROFILER_HEAP_ENUM_FLAGS_RELATIONSHIP_SUBSTRINGS = PROFILER_HEAP_ENUM_FLAGS.RELATIONSHIP_SUBSTRINGS;
-
-pub const PROFILER_HEAP_OBJECT_SCOPE_LIST = extern struct {
-    count: u32,
-    scopes: [1]usize,
-};
-
-pub const PROFILER_RELATIONSHIP_INFO = enum(i32) {
-    NUMBER = 1,
-    STRING = 2,
-    HEAP_OBJECT = 3,
-    EXTERNAL_OBJECT = 4,
-    BSTR = 5,
-    SUBSTRING = 6,
-};
-pub const PROFILER_PROPERTY_TYPE_NUMBER = PROFILER_RELATIONSHIP_INFO.NUMBER;
-pub const PROFILER_PROPERTY_TYPE_STRING = PROFILER_RELATIONSHIP_INFO.STRING;
-pub const PROFILER_PROPERTY_TYPE_HEAP_OBJECT = PROFILER_RELATIONSHIP_INFO.HEAP_OBJECT;
-pub const PROFILER_PROPERTY_TYPE_EXTERNAL_OBJECT = PROFILER_RELATIONSHIP_INFO.EXTERNAL_OBJECT;
-pub const PROFILER_PROPERTY_TYPE_BSTR = PROFILER_RELATIONSHIP_INFO.BSTR;
-pub const PROFILER_PROPERTY_TYPE_SUBSTRING = PROFILER_RELATIONSHIP_INFO.SUBSTRING;
-
-pub const PROFILER_PROPERTY_TYPE_SUBSTRING_INFO = extern struct {
-    length: u32,
-    value: ?[*:0]const u16,
-};
-
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP = extern struct {
-    relationshipId: u32,
-    relationshipInfo: PROFILER_RELATIONSHIP_INFO,
-    Anonymous: extern union {
-        numberValue: f64,
-        stringValue: ?[*:0]const u16,
-        bstrValue: ?BSTR,
-        objectId: usize,
-        externalObjectAddress: ?*c_void,
-        subString: ?*PROFILER_PROPERTY_TYPE_SUBSTRING_INFO,
-    },
-};
-
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST = extern struct {
-    count: u32,
-    elements: [1]PROFILER_HEAP_OBJECT_RELATIONSHIP,
-};
-
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO = extern struct {
-    infoType: PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE,
-    Anonymous: extern union {
-        prototype: usize,
-        functionName: ?[*:0]const u16,
-        elementAttributesSize: u32,
-        elementTextChildrenSize: u32,
-        scopeList: ?*PROFILER_HEAP_OBJECT_SCOPE_LIST,
-        internalProperty: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP,
-        namePropertyList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        indexPropertyList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        relationshipList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        eventList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        weakMapCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        mapCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-        setCollectionList: ?*PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
-    },
-};
-
-pub const PROFILER_HEAP_OBJECT = extern struct {
-    size: u32,
-    Anonymous: extern union {
-        objectId: usize,
-        externalObjectAddress: ?*c_void,
-    },
-    typeNameId: u32,
-    flags: u32,
-    unused: u16,
-    optionalInfoCount: u16,
-};
-
-const IID_IActiveScriptProfilerHeapEnum_Value = @import("../../zig.zig").Guid.initString("32e4694e-0d37-419b-b93d-fa20ded6e8ea");
-pub const IID_IActiveScriptProfilerHeapEnum = &IID_IActiveScriptProfilerHeapEnum_Value;
-pub const IActiveScriptProfilerHeapEnum = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IActiveScriptProfilerHeapEnum,
-            celt: u32,
-            heapObjects: [*]?*PROFILER_HEAP_OBJECT,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOptionalInfo: fn(
-            self: *const IActiveScriptProfilerHeapEnum,
-            heapObject: ?*PROFILER_HEAP_OBJECT,
-            celt: u32,
-            optionalInfo: [*]PROFILER_HEAP_OBJECT_OPTIONAL_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreeObjectAndOptionalInfo: fn(
-            self: *const IActiveScriptProfilerHeapEnum,
-            celt: u32,
-            heapObjects: [*]?*PROFILER_HEAP_OBJECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameIdMap: fn(
-            self: *const IActiveScriptProfilerHeapEnum,
-            pNameList: [*]?*?*?PWSTR,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerHeapEnum_Next(self: *const T, celt: u32, heapObjects: [*]?*PROFILER_HEAP_OBJECT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).Next(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), celt, heapObjects, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerHeapEnum_GetOptionalInfo(self: *const T, heapObject: ?*PROFILER_HEAP_OBJECT, celt: u32, optionalInfo: [*]PROFILER_HEAP_OBJECT_OPTIONAL_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).GetOptionalInfo(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), heapObject, celt, optionalInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerHeapEnum_FreeObjectAndOptionalInfo(self: *const T, celt: u32, heapObjects: [*]?*PROFILER_HEAP_OBJECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).FreeObjectAndOptionalInfo(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), celt, heapObjects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerHeapEnum_GetNameIdMap(self: *const T, pNameList: [*]?*?*?PWSTR, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerHeapEnum.VTable, self.vtable).GetNameIdMap(@ptrCast(*const IActiveScriptProfilerHeapEnum, self), pNameList, pcelt);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerControl3_Value = @import("../../zig.zig").Guid.initString("0b403015-f381-4023-a5d0-6fed076de716");
-pub const IID_IActiveScriptProfilerControl3 = &IID_IActiveScriptProfilerControl3_Value;
-pub const IActiveScriptProfilerControl3 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerControl2.VTable,
-        EnumHeap: fn(
-            self: *const IActiveScriptProfilerControl3,
-            ppEnum: ?*?*IActiveScriptProfilerHeapEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerControl2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl3_EnumHeap(self: *const T, ppEnum: ?*?*IActiveScriptProfilerHeapEnum) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl3.VTable, self.vtable).EnumHeap(@ptrCast(*const IActiveScriptProfilerControl3, self), ppEnum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PROFILER_HEAP_SUMMARY_VERSION = enum(i32) {
-    @"1" = 1,
-};
-pub const PROFILER_HEAP_SUMMARY_VERSION_1 = PROFILER_HEAP_SUMMARY_VERSION.@"1";
-
-pub const PROFILER_HEAP_SUMMARY = extern struct {
-    version: PROFILER_HEAP_SUMMARY_VERSION,
-    totalHeapSize: u32,
-};
-
-const IID_IActiveScriptProfilerControl4_Value = @import("../../zig.zig").Guid.initString("160f94fd-9dbc-40d4-9eac-2b71db3132f4");
-pub const IID_IActiveScriptProfilerControl4 = &IID_IActiveScriptProfilerControl4_Value;
-pub const IActiveScriptProfilerControl4 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerControl3.VTable,
-        SummarizeHeap: fn(
-            self: *const IActiveScriptProfilerControl4,
-            heapSummary: ?*PROFILER_HEAP_SUMMARY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerControl3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl4_SummarizeHeap(self: *const T, heapSummary: ?*PROFILER_HEAP_SUMMARY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl4.VTable, self.vtable).SummarizeHeap(@ptrCast(*const IActiveScriptProfilerControl4, self), heapSummary);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerControl5_Value = @import("../../zig.zig").Guid.initString("1c01a2d1-8f0f-46a5-9720-0d7ed2c62f0a");
-pub const IID_IActiveScriptProfilerControl5 = &IID_IActiveScriptProfilerControl5_Value;
-pub const IActiveScriptProfilerControl5 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerControl4.VTable,
-        EnumHeap2: fn(
-            self: *const IActiveScriptProfilerControl5,
-            enumFlags: PROFILER_HEAP_ENUM_FLAGS,
-            ppEnum: ?*?*IActiveScriptProfilerHeapEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerControl4.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerControl5_EnumHeap2(self: *const T, enumFlags: PROFILER_HEAP_ENUM_FLAGS, ppEnum: ?*?*IActiveScriptProfilerHeapEnum) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerControl5.VTable, self.vtable).EnumHeap2(@ptrCast(*const IActiveScriptProfilerControl5, self), enumFlags, ppEnum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerCallback_Value = @import("../../zig.zig").Guid.initString("740eca23-7d9d-42e5-ba9d-f8b24b1c7a9b");
-pub const IID_IActiveScriptProfilerCallback = &IID_IActiveScriptProfilerCallback_Value;
-pub const IActiveScriptProfilerCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IActiveScriptProfilerCallback,
-            dwContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shutdown: fn(
-            self: *const IActiveScriptProfilerCallback,
-            hrReason: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScriptCompiled: fn(
-            self: *const IActiveScriptProfilerCallback,
-            scriptId: i32,
-            type: PROFILER_SCRIPT_TYPE,
-            pIDebugDocumentContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FunctionCompiled: fn(
-            self: *const IActiveScriptProfilerCallback,
-            functionId: i32,
-            scriptId: i32,
-            pwszFunctionName: ?[*:0]const u16,
-            pwszFunctionNameHint: ?[*:0]const u16,
-            pIDebugDocumentContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnFunctionEnter: fn(
-            self: *const IActiveScriptProfilerCallback,
-            scriptId: i32,
-            functionId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnFunctionExit: fn(
-            self: *const IActiveScriptProfilerCallback,
-            scriptId: i32,
-            functionId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_Initialize(self: *const T, dwContext: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).Initialize(@ptrCast(*const IActiveScriptProfilerCallback, self), dwContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_Shutdown(self: *const T, hrReason: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).Shutdown(@ptrCast(*const IActiveScriptProfilerCallback, self), hrReason);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_ScriptCompiled(self: *const T, scriptId: i32, type_: PROFILER_SCRIPT_TYPE, pIDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).ScriptCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, type_, pIDebugDocumentContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_FunctionCompiled(self: *const T, functionId: i32, scriptId: i32, pwszFunctionName: ?[*:0]const u16, pwszFunctionNameHint: ?[*:0]const u16, pIDebugDocumentContext: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).FunctionCompiled(@ptrCast(*const IActiveScriptProfilerCallback, self), functionId, scriptId, pwszFunctionName, pwszFunctionNameHint, pIDebugDocumentContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_OnFunctionEnter(self: *const T, scriptId: i32, functionId: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).OnFunctionEnter(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, functionId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback_OnFunctionExit(self: *const T, scriptId: i32, functionId: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback.VTable, self.vtable).OnFunctionExit(@ptrCast(*const IActiveScriptProfilerCallback, self), scriptId, functionId);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerCallback2_Value = @import("../../zig.zig").Guid.initString("31b7f8ad-a637-409c-b22f-040995b6103d");
-pub const IID_IActiveScriptProfilerCallback2 = &IID_IActiveScriptProfilerCallback2_Value;
-pub const IActiveScriptProfilerCallback2 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerCallback.VTable,
-        OnFunctionEnterByName: fn(
-            self: *const IActiveScriptProfilerCallback2,
-            pwszFunctionName: ?[*:0]const u16,
-            type: PROFILER_SCRIPT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnFunctionExitByName: fn(
-            self: *const IActiveScriptProfilerCallback2,
-            pwszFunctionName: ?[*:0]const u16,
-            type: PROFILER_SCRIPT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerCallback.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback2_OnFunctionEnterByName(self: *const T, pwszFunctionName: ?[*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionEnterByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback2_OnFunctionExitByName(self: *const T, pwszFunctionName: ?[*:0]const u16, type_: PROFILER_SCRIPT_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback2.VTable, self.vtable).OnFunctionExitByName(@ptrCast(*const IActiveScriptProfilerCallback2, self), pwszFunctionName, type_);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IActiveScriptProfilerCallback3_Value = @import("../../zig.zig").Guid.initString("6ac5ad25-2037-4687-91df-b59979d93d73");
-pub const IID_IActiveScriptProfilerCallback3 = &IID_IActiveScriptProfilerCallback3_Value;
-pub const IActiveScriptProfilerCallback3 = extern struct {
-    pub const VTable = extern struct {
-        base: IActiveScriptProfilerCallback2.VTable,
-        SetWebWorkerId: fn(
-            self: *const IActiveScriptProfilerCallback3,
-            webWorkerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IActiveScriptProfilerCallback2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScriptProfilerCallback3_SetWebWorkerId(self: *const T, webWorkerId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveScriptProfilerCallback3.VTable, self.vtable).SetWebWorkerId(@ptrCast(*const IActiveScriptProfilerCallback3, self), webWorkerId);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationScriptEvents_Value = @import("../../zig.zig").Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
-pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
-pub const IWebApplicationScriptEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BeforeScriptExecute: fn(
-            self: *const IWebApplicationScriptEvents,
-            htmlWindow: ?*IHTMLWindow2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScriptError: fn(
-            self: *const IWebApplicationScriptEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            scriptError: ?*IActiveScriptError,
-            url: ?[*:0]const u16,
-            errorHandled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationScriptEvents_BeforeScriptExecute(self: *const T, htmlWindow: ?*IHTMLWindow2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationScriptEvents.VTable, self.vtable).BeforeScriptExecute(@ptrCast(*const IWebApplicationScriptEvents, self), htmlWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationScriptEvents_ScriptError(self: *const T, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationScriptEvents.VTable, self.vtable).ScriptError(@ptrCast(*const IWebApplicationScriptEvents, self), htmlWindow, scriptError, url, errorHandled);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationNavigationEvents_Value = @import("../../zig.zig").Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
-pub const IID_IWebApplicationNavigationEvents = &IID_IWebApplicationNavigationEvents_Value;
-pub const IWebApplicationNavigationEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        BeforeNavigate: fn(
-            self: *const IWebApplicationNavigationEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            url: ?[*:0]const u16,
-            navigationFlags: u32,
-            targetFrameName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NavigateComplete: fn(
-            self: *const IWebApplicationNavigationEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            url: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NavigateError: fn(
-            self: *const IWebApplicationNavigationEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            url: ?[*:0]const u16,
-            targetFrameName: ?[*:0]const u16,
-            statusCode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DocumentComplete: fn(
-            self: *const IWebApplicationNavigationEvents,
-            htmlWindow: ?*IHTMLWindow2,
-            url: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DownloadBegin: fn(
-            self: *const IWebApplicationNavigationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DownloadComplete: fn(
-            self: *const IWebApplicationNavigationEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_BeforeNavigate(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).BeforeNavigate(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url, navigationFlags, targetFrameName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_NavigateComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).NavigateComplete(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_NavigateError(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).NavigateError(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url, targetFrameName, statusCode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_DocumentComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DocumentComplete(@ptrCast(*const IWebApplicationNavigationEvents, self), htmlWindow, url);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_DownloadBegin(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DownloadBegin(@ptrCast(*const IWebApplicationNavigationEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationNavigationEvents_DownloadComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationNavigationEvents.VTable, self.vtable).DownloadComplete(@ptrCast(*const IWebApplicationNavigationEvents, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationUIEvents_Value = @import("../../zig.zig").Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
-pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
-pub const IWebApplicationUIEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SecurityProblem: fn(
-            self: *const IWebApplicationUIEvents,
-            securityProblem: u32,
-            result: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationUIEvents_SecurityProblem(self: *const T, securityProblem: u32, result: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationUIEvents.VTable, self.vtable).SecurityProblem(@ptrCast(*const IWebApplicationUIEvents, self), securityProblem, result);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationUpdateEvents_Value = @import("../../zig.zig").Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
-pub const IID_IWebApplicationUpdateEvents = &IID_IWebApplicationUpdateEvents_Value;
-pub const IWebApplicationUpdateEvents = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        OnPaint: fn(
-            self: *const IWebApplicationUpdateEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCssChanged: fn(
-            self: *const IWebApplicationUpdateEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationUpdateEvents_OnPaint(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationUpdateEvents.VTable, self.vtable).OnPaint(@ptrCast(*const IWebApplicationUpdateEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationUpdateEvents_OnCssChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationUpdateEvents.VTable, self.vtable).OnCssChanged(@ptrCast(*const IWebApplicationUpdateEvents, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationHost_Value = @import("../../zig.zig").Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
-pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
-pub const IWebApplicationHost = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: fn(
-            self: *const IWebApplicationHost,
-            hwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Document: fn(
-            self: *const IWebApplicationHost,
-            htmlDocument: ?*?*IHTMLDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const IWebApplicationHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Advise: fn(
-            self: *const IWebApplicationHost,
-            interfaceId: ?*const Guid,
-            callback: ?*IUnknown,
-            cookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
-            self: *const IWebApplicationHost,
-            cookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationHost_get_HWND(self: *const T, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).get_HWND(@ptrCast(*const IWebApplicationHost, self), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationHost_get_Document(self: *const T, htmlDocument: ?*?*IHTMLDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).get_Document(@ptrCast(*const IWebApplicationHost, self), htmlDocument);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationHost_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Refresh(@ptrCast(*const IWebApplicationHost, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationHost_Advise(self: *const T, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Advise(@ptrCast(*const IWebApplicationHost, self), interfaceId, callback, cookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationHost_Unadvise(self: *const T, cookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationHost.VTable, self.vtable).Unadvise(@ptrCast(*const IWebApplicationHost, self), cookie);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationActivation_Value = @import("../../zig.zig").Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
-pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
-pub const IWebApplicationActivation = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CancelPendingActivation: fn(
-            self: *const IWebApplicationActivation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationActivation_CancelPendingActivation(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationActivation.VTable, self.vtable).CancelPendingActivation(@ptrCast(*const IWebApplicationActivation, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows8.0'
-const IID_IWebApplicationAuthoringMode_Value = @import("../../zig.zig").Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
-pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
-pub const IWebApplicationAuthoringMode = extern struct {
-    pub const VTable = extern struct {
-        base: IServiceProvider.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthoringClientBinary: fn(
-            self: *const IWebApplicationAuthoringMode,
-            designModeDllPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IServiceProvider.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebApplicationAuthoringMode_get_AuthoringClientBinary(self: *const T, designModeDllPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWebApplicationAuthoringMode.VTable, self.vtable).get_AuthoringClientBinary(@ptrCast(*const IWebApplicationAuthoringMode, self), designModeDllPath);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const RegisterAuthoringClientFunctionType = fn(
-    authoringModeObject: ?*IWebApplicationAuthoringMode,
-    host: ?*IWebApplicationHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const UnregisterAuthoringClientFunctionType = fn(
-    host: ?*IWebApplicationHost,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const PFIND_DEBUG_FILE_CALLBACK = fn(
-    FileHandle: ?HANDLE,
-    FileName: ?[*:0]const u8,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFIND_DEBUG_FILE_CALLBACKW = fn(
-    FileHandle: ?HANDLE,
-    FileName: ?[*:0]const u16,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFINDFILEINPATHCALLBACK = fn(
-    filename: ?[*:0]const u8,
-    context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFINDFILEINPATHCALLBACKW = fn(
-    filename: ?[*:0]const u16,
-    context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFIND_EXE_FILE_CALLBACK = fn(
-    FileHandle: ?HANDLE,
-    FileName: ?[*:0]const u8,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFIND_EXE_FILE_CALLBACKW = fn(
-    FileHandle: ?HANDLE,
-    FileName: ?[*:0]const u16,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PENUMDIRTREE_CALLBACK = fn(
-    FilePath: ?[*:0]const u8,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PENUMDIRTREE_CALLBACKW = fn(
-    FilePath: ?[*:0]const u16,
-    CallerData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const MODLOAD_DATA = extern struct {
-    ssize: u32,
-    ssig: MODLOAD_DATA_TYPE,
-    data: ?*c_void,
-    size: u32,
-    flags: u32,
-};
-
-pub const MODLOAD_CVMISC = extern struct {
-    oCV: u32,
-    cCV: usize,
-    oMisc: u32,
-    cMisc: usize,
-    dtImage: u32,
-    cImage: u32,
-};
-
-pub const MODLOAD_PDBGUID_PDBAGE = extern struct {
-    PdbGuid: Guid,
-    PdbAge: u32,
-};
-
-pub const ADDRESS_MODE = enum(i32) {
-    @"1616" = 0,
-    @"1632" = 1,
-    Real = 2,
-    Flat = 3,
-};
-pub const AddrMode1616 = ADDRESS_MODE.@"1616";
-pub const AddrMode1632 = ADDRESS_MODE.@"1632";
-pub const AddrModeReal = ADDRESS_MODE.Real;
-pub const AddrModeFlat = ADDRESS_MODE.Flat;
-
-pub const ADDRESS64 = extern struct {
-    Offset: u64,
-    Segment: u16,
-    Mode: ADDRESS_MODE,
-};
-
-pub const KDHELP64 = extern struct {
-    Thread: u64,
-    ThCallbackStack: u32,
-    ThCallbackBStore: u32,
-    NextCallback: u32,
-    FramePointer: u32,
-    KiCallUserMode: u64,
-    KeUserCallbackDispatcher: u64,
-    SystemRangeStart: u64,
-    KiUserExceptionDispatcher: u64,
-    StackBase: u64,
-    StackLimit: u64,
-    BuildVersion: u32,
-    RetpolineStubFunctionTableSize: u32,
-    RetpolineStubFunctionTable: u64,
-    RetpolineStubOffset: u32,
-    RetpolineStubSize: u32,
-    Reserved0: [2]u64,
-};
-
-pub const STACKFRAME64 = extern struct {
-    AddrPC: ADDRESS64,
-    AddrReturn: ADDRESS64,
-    AddrFrame: ADDRESS64,
-    AddrStack: ADDRESS64,
-    AddrBStore: ADDRESS64,
-    FuncTableEntry: ?*c_void,
-    Params: [4]u64,
-    Far: BOOL,
-    Virtual: BOOL,
-    Reserved: [3]u64,
-    KdHelp: KDHELP64,
-};
-
-pub const STACKFRAME_EX = extern struct {
-    AddrPC: ADDRESS64,
-    AddrReturn: ADDRESS64,
-    AddrFrame: ADDRESS64,
-    AddrStack: ADDRESS64,
-    AddrBStore: ADDRESS64,
-    FuncTableEntry: ?*c_void,
-    Params: [4]u64,
-    Far: BOOL,
-    Virtual: BOOL,
-    Reserved: [3]u64,
-    KdHelp: KDHELP64,
-    StackFrameSize: u32,
-    InlineFrameContext: u32,
-};
-
-pub const PREAD_PROCESS_MEMORY_ROUTINE64 = fn(
-    hProcess: ?HANDLE,
-    qwBaseAddress: u64,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
-    nSize: u32,
-    lpNumberOfBytesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFUNCTION_TABLE_ACCESS_ROUTINE64 = fn(
-    ahProcess: ?HANDLE,
-    AddrBase: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const PGET_MODULE_BASE_ROUTINE64 = fn(
-    hProcess: ?HANDLE,
-    Address: u64,
-) callconv(@import("std").os.windows.WINAPI) u64;
-
-pub const PTRANSLATE_ADDRESS_ROUTINE64 = fn(
-    hProcess: ?HANDLE,
-    hThread: ?HANDLE,
-    lpaddr: ?*ADDRESS64,
-) callconv(@import("std").os.windows.WINAPI) u64;
-
-pub const API_VERSION = extern struct {
-    MajorVersion: u16,
-    MinorVersion: u16,
-    Revision: u16,
-    Reserved: u16,
-};
-
-pub const PSYM_ENUMMODULES_CALLBACK64 = fn(
-    ModuleName: ?[*:0]const u8,
-    BaseOfDll: u64,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMMODULES_CALLBACKW64 = fn(
-    ModuleName: ?[*:0]const u16,
-    BaseOfDll: u64,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PENUMLOADED_MODULES_CALLBACK64 = fn(
-    ModuleName: ?[*:0]const u8,
-    ModuleBase: u64,
-    ModuleSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PENUMLOADED_MODULES_CALLBACKW64 = fn(
-    ModuleName: ?[*:0]const u16,
-    ModuleBase: u64,
-    ModuleSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMSYMBOLS_CALLBACK64 = fn(
-    SymbolName: ?[*:0]const u8,
-    SymbolAddress: u64,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMSYMBOLS_CALLBACK64W = fn(
-    SymbolName: ?[*:0]const u16,
-    SymbolAddress: u64,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOL_REGISTERED_CALLBACK64 = fn(
-    hProcess: ?HANDLE,
-    ActionCode: u32,
-    CallbackData: u64,
-    UserContext: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOL_FUNCENTRY_CALLBACK = fn(
-    hProcess: ?HANDLE,
-    AddrBase: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const PSYMBOL_FUNCENTRY_CALLBACK64 = fn(
-    hProcess: ?HANDLE,
-    AddrBase: u64,
-    UserContext: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub const SYM_TYPE = enum(i32) {
-    SymNone = 0,
-    SymCoff = 1,
-    SymCv = 2,
-    SymPdb = 3,
-    SymExport = 4,
-    SymDeferred = 5,
-    SymSym = 6,
-    SymDia = 7,
-    SymVirtual = 8,
-    NumSymTypes = 9,
-};
-pub const SymNone = SYM_TYPE.SymNone;
-pub const SymCoff = SYM_TYPE.SymCoff;
-pub const SymCv = SYM_TYPE.SymCv;
-pub const SymPdb = SYM_TYPE.SymPdb;
-pub const SymExport = SYM_TYPE.SymExport;
-pub const SymDeferred = SYM_TYPE.SymDeferred;
-pub const SymSym = SYM_TYPE.SymSym;
-pub const SymDia = SYM_TYPE.SymDia;
-pub const SymVirtual = SYM_TYPE.SymVirtual;
-pub const NumSymTypes = SYM_TYPE.NumSymTypes;
-
-pub const IMAGEHLP_SYMBOL64 = extern struct {
-    SizeOfStruct: u32,
-    Address: u64,
-    Size: u32,
-    Flags: u32,
-    MaxNameLength: u32,
-    Name: [1]CHAR,
-};
-
-pub const IMAGEHLP_SYMBOL64_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOL64,
-    name: [2001]CHAR,
-};
-
-pub const IMAGEHLP_SYMBOLW64 = extern struct {
-    SizeOfStruct: u32,
-    Address: u64,
-    Size: u32,
-    Flags: u32,
-    MaxNameLength: u32,
-    Name: [1]u16,
-};
-
-pub const IMAGEHLP_SYMBOLW64_PACKAGE = extern struct {
-    sym: IMAGEHLP_SYMBOLW64,
-    name: [2001]u16,
-};
-
-pub const IMAGEHLP_MODULE64 = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u64,
-    ImageSize: u32,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    NumSyms: u32,
-    SymType: SYM_TYPE,
-    ModuleName: [32]CHAR,
-    ImageName: [256]CHAR,
-    LoadedImageName: [256]CHAR,
-    LoadedPdbName: [256]CHAR,
-    CVSig: u32,
-    CVData: [780]CHAR,
-    PdbSig: u32,
-    PdbSig70: Guid,
-    PdbAge: u32,
-    PdbUnmatched: BOOL,
-    DbgUnmatched: BOOL,
-    LineNumbers: BOOL,
-    GlobalSymbols: BOOL,
-    TypeInfo: BOOL,
-    SourceIndexed: BOOL,
-    Publics: BOOL,
-    MachineType: u32,
-    Reserved: u32,
-};
-
-pub const IMAGEHLP_MODULEW64 = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u64,
-    ImageSize: u32,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    NumSyms: u32,
-    SymType: SYM_TYPE,
-    ModuleName: [32]u16,
-    ImageName: [256]u16,
-    LoadedImageName: [256]u16,
-    LoadedPdbName: [256]u16,
-    CVSig: u32,
-    CVData: [780]u16,
-    PdbSig: u32,
-    PdbSig70: Guid,
-    PdbAge: u32,
-    PdbUnmatched: BOOL,
-    DbgUnmatched: BOOL,
-    LineNumbers: BOOL,
-    GlobalSymbols: BOOL,
-    TypeInfo: BOOL,
-    SourceIndexed: BOOL,
-    Publics: BOOL,
-    MachineType: u32,
-    Reserved: u32,
-};
-
-pub const IMAGEHLP_LINE64 = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    LineNumber: u32,
-    FileName: ?[*]u8,
-    Address: u64,
-};
-
-pub const IMAGEHLP_LINEW64 = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    LineNumber: u32,
-    FileName: ?PWSTR,
-    Address: u64,
-};
-
-pub const SOURCEFILE = extern struct {
-    ModBase: u64,
-    FileName: ?[*]u8,
-};
-
-pub const SOURCEFILEW = extern struct {
-    ModBase: u64,
-    FileName: ?PWSTR,
-};
-
-pub const IMAGEHLP_CBA_READ_MEMORY = extern struct {
-    addr: u64,
-    buf: ?*c_void,
-    bytes: u32,
-    bytesread: ?*u32,
-};
-
-pub const IMAGEHLP_CBA_EVENT = extern struct {
-    severity: IMAGEHLP_CBA_EVENT_SEVERITY,
-    code: u32,
-    desc: ?[*]u8,
-    object: ?*c_void,
-};
-
-pub const IMAGEHLP_CBA_EVENTW = extern struct {
-    severity: IMAGEHLP_CBA_EVENT_SEVERITY,
-    code: u32,
-    desc: ?[*:0]const u16,
-    object: ?*c_void,
-};
-
-pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD64 = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u64,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    FileName: [260]CHAR,
-    Reparse: u8,
-    hFile: ?HANDLE,
-    Flags: u32,
-};
-
-pub const IMAGEHLP_DEFERRED_SYMBOL_LOADW64 = extern struct {
-    SizeOfStruct: u32,
-    BaseOfImage: u64,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    FileName: [261]u16,
-    Reparse: u8,
-    hFile: ?HANDLE,
-    Flags: u32,
-};
-
-pub const IMAGEHLP_DUPLICATE_SYMBOL64 = extern struct {
-    SizeOfStruct: u32,
-    NumberOfDups: u32,
-    Symbol: ?*IMAGEHLP_SYMBOL64,
-    SelectedSymbol: u32,
-};
-
-pub const IMAGEHLP_HD_TYPE = enum(i32) {
-    Base = 0,
-    Sym = 1,
-    Src = 2,
-    Max = 3,
-};
-pub const hdBase = IMAGEHLP_HD_TYPE.Base;
-pub const hdSym = IMAGEHLP_HD_TYPE.Sym;
-pub const hdSrc = IMAGEHLP_HD_TYPE.Src;
-pub const hdMax = IMAGEHLP_HD_TYPE.Max;
-
-pub const OMAP = extern struct {
-    rva: u32,
-    rvaTo: u32,
-};
-
-pub const IMAGEHLP_EXTENDED_OPTIONS = enum(i32) {
-    DISABLEACCESSTIMEUPDATE = 0,
-    LASTVALIDDEBUGDIRECTORY = 1,
-    MAX = 2,
-};
-pub const SYMOPT_EX_DISABLEACCESSTIMEUPDATE = IMAGEHLP_EXTENDED_OPTIONS.DISABLEACCESSTIMEUPDATE;
-pub const SYMOPT_EX_LASTVALIDDEBUGDIRECTORY = IMAGEHLP_EXTENDED_OPTIONS.LASTVALIDDEBUGDIRECTORY;
-pub const SYMOPT_EX_MAX = IMAGEHLP_EXTENDED_OPTIONS.MAX;
-
-pub const PSYM_ENUMSOURCEFILES_CALLBACK = fn(
-    pSourceFile: ?*SOURCEFILE,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMSOURCEFILES_CALLBACKW = fn(
-    pSourceFile: ?*SOURCEFILEW,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const SRCCODEINFO = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    ModBase: u64,
-    Obj: [261]CHAR,
-    FileName: [261]CHAR,
-    LineNumber: u32,
-    Address: u64,
-};
-
-pub const SRCCODEINFOW = extern struct {
-    SizeOfStruct: u32,
-    Key: ?*c_void,
-    ModBase: u64,
-    Obj: [261]u16,
-    FileName: [261]u16,
-    LineNumber: u32,
-    Address: u64,
-};
-
-pub const PSYM_ENUMLINES_CALLBACK = fn(
-    LineInfo: ?*SRCCODEINFO,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMLINES_CALLBACKW = fn(
-    LineInfo: ?*SRCCODEINFOW,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PENUMSOURCEFILETOKENSCALLBACK = fn(
-    token: ?*c_void,
-    size: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const IMAGEHLP_SYMBOL_SRC = extern struct {
-    sizeofstruct: u32,
-    type: u32,
-    file: [260]CHAR,
-};
-
-pub const MODULE_TYPE_INFO = extern struct {
-    dataLength: u16,
-    leaf: u16,
-    data: [1]u8,
-};
-
-pub const SYMBOL_INFO = extern struct {
-    SizeOfStruct: u32,
-    TypeIndex: u32,
-    Reserved: [2]u64,
-    Index: u32,
-    Size: u32,
-    ModBase: u64,
-    Flags: SYMBOL_INFO_FLAGS,
-    Value: u64,
-    Address: u64,
-    Register: u32,
-    Scope: u32,
-    Tag: u32,
-    NameLen: u32,
-    MaxNameLen: u32,
-    Name: [1]CHAR,
-};
-
-pub const SYMBOL_INFO_PACKAGE = extern struct {
-    si: SYMBOL_INFO,
-    name: [2001]CHAR,
-};
-
-pub const SYMBOL_INFOW = extern struct {
-    SizeOfStruct: u32,
-    TypeIndex: u32,
-    Reserved: [2]u64,
-    Index: u32,
-    Size: u32,
-    ModBase: u64,
-    Flags: SYMBOL_INFO_FLAGS,
-    Value: u64,
-    Address: u64,
-    Register: u32,
-    Scope: u32,
-    Tag: u32,
-    NameLen: u32,
-    MaxNameLen: u32,
-    Name: [1]u16,
-};
-
-pub const SYMBOL_INFO_PACKAGEW = extern struct {
-    si: SYMBOL_INFOW,
-    name: [2001]u16,
-};
-
-pub const IMAGEHLP_STACK_FRAME = extern struct {
-    InstructionOffset: u64,
-    ReturnOffset: u64,
-    FrameOffset: u64,
-    StackOffset: u64,
-    BackingStoreOffset: u64,
-    FuncTableEntry: u64,
-    Params: [4]u64,
-    Reserved: [5]u64,
-    Virtual: BOOL,
-    Reserved2: u32,
-};
-
-pub const PSYM_ENUMPROCESSES_CALLBACK = fn(
-    hProcess: ?HANDLE,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMERATESYMBOLS_CALLBACK = fn(
-    pSymInfo: ?*SYMBOL_INFO,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYM_ENUMERATESYMBOLS_CALLBACKW = fn(
-    pSymInfo: ?*SYMBOL_INFOW,
-    SymbolSize: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const IMAGEHLP_SYMBOL_TYPE_INFO = enum(i32) {
-    TI_GET_SYMTAG = 0,
-    TI_GET_SYMNAME = 1,
-    TI_GET_LENGTH = 2,
-    TI_GET_TYPE = 3,
-    TI_GET_TYPEID = 4,
-    TI_GET_BASETYPE = 5,
-    TI_GET_ARRAYINDEXTYPEID = 6,
-    TI_FINDCHILDREN = 7,
-    TI_GET_DATAKIND = 8,
-    TI_GET_ADDRESSOFFSET = 9,
-    TI_GET_OFFSET = 10,
-    TI_GET_VALUE = 11,
-    TI_GET_COUNT = 12,
-    TI_GET_CHILDRENCOUNT = 13,
-    TI_GET_BITPOSITION = 14,
-    TI_GET_VIRTUALBASECLASS = 15,
-    TI_GET_VIRTUALTABLESHAPEID = 16,
-    TI_GET_VIRTUALBASEPOINTEROFFSET = 17,
-    TI_GET_CLASSPARENTID = 18,
-    TI_GET_NESTED = 19,
-    TI_GET_SYMINDEX = 20,
-    TI_GET_LEXICALPARENT = 21,
-    TI_GET_ADDRESS = 22,
-    TI_GET_THISADJUST = 23,
-    TI_GET_UDTKIND = 24,
-    TI_IS_EQUIV_TO = 25,
-    TI_GET_CALLING_CONVENTION = 26,
-    TI_IS_CLOSE_EQUIV_TO = 27,
-    TI_GTIEX_REQS_VALID = 28,
-    TI_GET_VIRTUALBASEOFFSET = 29,
-    TI_GET_VIRTUALBASEDISPINDEX = 30,
-    TI_GET_IS_REFERENCE = 31,
-    TI_GET_INDIRECTVIRTUALBASECLASS = 32,
-    TI_GET_VIRTUALBASETABLETYPE = 33,
-    IMAGEHLP_SYMBOL_TYPE_INFO_MAX = 34,
-};
-pub const TI_GET_SYMTAG = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMTAG;
-pub const TI_GET_SYMNAME = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMNAME;
-pub const TI_GET_LENGTH = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_LENGTH;
-pub const TI_GET_TYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_TYPE;
-pub const TI_GET_TYPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_TYPEID;
-pub const TI_GET_BASETYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_BASETYPE;
-pub const TI_GET_ARRAYINDEXTYPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ARRAYINDEXTYPEID;
-pub const TI_FINDCHILDREN = IMAGEHLP_SYMBOL_TYPE_INFO.TI_FINDCHILDREN;
-pub const TI_GET_DATAKIND = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_DATAKIND;
-pub const TI_GET_ADDRESSOFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ADDRESSOFFSET;
-pub const TI_GET_OFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_OFFSET;
-pub const TI_GET_VALUE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VALUE;
-pub const TI_GET_COUNT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_COUNT;
-pub const TI_GET_CHILDRENCOUNT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CHILDRENCOUNT;
-pub const TI_GET_BITPOSITION = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_BITPOSITION;
-pub const TI_GET_VIRTUALBASECLASS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASECLASS;
-pub const TI_GET_VIRTUALTABLESHAPEID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALTABLESHAPEID;
-pub const TI_GET_VIRTUALBASEPOINTEROFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEPOINTEROFFSET;
-pub const TI_GET_CLASSPARENTID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CLASSPARENTID;
-pub const TI_GET_NESTED = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_NESTED;
-pub const TI_GET_SYMINDEX = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_SYMINDEX;
-pub const TI_GET_LEXICALPARENT = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_LEXICALPARENT;
-pub const TI_GET_ADDRESS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_ADDRESS;
-pub const TI_GET_THISADJUST = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_THISADJUST;
-pub const TI_GET_UDTKIND = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_UDTKIND;
-pub const TI_IS_EQUIV_TO = IMAGEHLP_SYMBOL_TYPE_INFO.TI_IS_EQUIV_TO;
-pub const TI_GET_CALLING_CONVENTION = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_CALLING_CONVENTION;
-pub const TI_IS_CLOSE_EQUIV_TO = IMAGEHLP_SYMBOL_TYPE_INFO.TI_IS_CLOSE_EQUIV_TO;
-pub const TI_GTIEX_REQS_VALID = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GTIEX_REQS_VALID;
-pub const TI_GET_VIRTUALBASEOFFSET = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEOFFSET;
-pub const TI_GET_VIRTUALBASEDISPINDEX = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASEDISPINDEX;
-pub const TI_GET_IS_REFERENCE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_IS_REFERENCE;
-pub const TI_GET_INDIRECTVIRTUALBASECLASS = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_INDIRECTVIRTUALBASECLASS;
-pub const TI_GET_VIRTUALBASETABLETYPE = IMAGEHLP_SYMBOL_TYPE_INFO.TI_GET_VIRTUALBASETABLETYPE;
-pub const IMAGEHLP_SYMBOL_TYPE_INFO_MAX = IMAGEHLP_SYMBOL_TYPE_INFO.IMAGEHLP_SYMBOL_TYPE_INFO_MAX;
-
-pub const TI_FINDCHILDREN_PARAMS = extern struct {
-    Count: u32,
-    Start: u32,
-    ChildId: [1]u32,
-};
-
-pub const IMAGEHLP_GET_TYPE_INFO_PARAMS = extern struct {
-    SizeOfStruct: u32,
-    Flags: IMAGEHLP_GET_TYPE_INFO_FLAGS,
-    NumIds: u32,
-    TypeIds: ?*u32,
-    TagFilter: u64,
-    NumReqs: u32,
-    ReqKinds: ?*IMAGEHLP_SYMBOL_TYPE_INFO,
-    ReqOffsets: ?*usize,
-    ReqSizes: ?*u32,
-    ReqStride: usize,
-    BufferSize: usize,
-    Buffer: ?*c_void,
-    EntriesMatched: u32,
-    EntriesFilled: u32,
-    TagsFound: u64,
-    AllReqsValid: u64,
-    NumReqsValid: u32,
-    ReqsValid: ?*u64,
-};
-
-pub const SYMADDSOURCESTREAM = fn(
-    param0: ?HANDLE,
-    param1: u64,
-    param2: ?[*:0]const u8,
-    param3: ?*u8,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const SYMADDSOURCESTREAMA = fn(
-    param0: ?HANDLE,
-    param1: u64,
-    param2: ?[*:0]const u8,
-    param3: ?*u8,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const SYMSRV_INDEX_INFO = extern struct {
-    sizeofstruct: u32,
-    file: [261]CHAR,
-    stripped: BOOL,
-    timestamp: u32,
-    size: u32,
-    dbgfile: [261]CHAR,
-    pdbfile: [261]CHAR,
-    guid: Guid,
-    sig: u32,
-    age: u32,
-};
-
-pub const SYMSRV_INDEX_INFOW = extern struct {
-    sizeofstruct: u32,
-    file: [261]u16,
-    stripped: BOOL,
-    timestamp: u32,
-    size: u32,
-    dbgfile: [261]u16,
-    pdbfile: [261]u16,
-    guid: Guid,
-    sig: u32,
-    age: u32,
-};
-
-pub const IMAGEHLP_SF_TYPE = enum(i32) {
-    Image = 0,
-    Dbg = 1,
-    Pdb = 2,
-    Mpd = 3,
-    Max = 4,
-};
-pub const sfImage = IMAGEHLP_SF_TYPE.Image;
-pub const sfDbg = IMAGEHLP_SF_TYPE.Dbg;
-pub const sfPdb = IMAGEHLP_SF_TYPE.Pdb;
-pub const sfMpd = IMAGEHLP_SF_TYPE.Mpd;
-pub const sfMax = IMAGEHLP_SF_TYPE.Max;
-
-pub const PDBGHELP_CREATE_USER_DUMP_CALLBACK = fn(
-    DataType: u32,
-    Data: ?*?*c_void,
-    DataLength: ?*u32,
-    UserData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const SYMSRV_EXTENDED_OUTPUT_DATA = extern struct {
-    sizeOfStruct: u32,
-    version: u32,
-    filePtrMsg: [261]u16,
-};
-
-pub const PSYMBOLSERVERPROC = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERPROCA = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERPROCW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERBYINDEXPROC = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERBYINDEXPROCA = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERBYINDEXPROCW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVEROPENPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERCLOSEPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSETOPTIONSPROC = fn(
-    param0: usize,
-    param1: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSETOPTIONSWPROC = fn(
-    param0: usize,
-    param1: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERCALLBACKPROC = fn(
-    action: usize,
-    data: u64,
-    context: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETOPTIONSPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub const PSYMBOLSERVERPINGPROC = fn(
-    param0: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERPINGPROCA = fn(
-    param0: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERPINGPROCW = fn(
-    param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETVERSION = fn(
-    param0: ?*API_VERSION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERDELTANAME = fn(
-    param0: ?[*:0]const u8,
-    param1: ?*c_void,
-    param2: u32,
-    param3: u32,
-    param4: ?*c_void,
-    param5: u32,
-    param6: u32,
-    param7: ?PSTR,
-    param8: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERDELTANAMEW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?*c_void,
-    param2: u32,
-    param3: u32,
-    param4: ?*c_void,
-    param5: u32,
-    param6: u32,
-    param7: ?PWSTR,
-    param8: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETSUPPLEMENT = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?PSTR,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETSUPPLEMENTW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?PWSTR,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSTORESUPPLEMENT = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?PSTR,
-    param4: usize,
-    param5: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSTORESUPPLEMENTW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?PWSTR,
-    param4: usize,
-    param5: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETINDEXSTRING = fn(
-    param0: ?*c_void,
-    param1: u32,
-    param2: u32,
-    param3: ?PSTR,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETINDEXSTRINGW = fn(
-    param0: ?*c_void,
-    param1: u32,
-    param2: u32,
-    param3: ?PWSTR,
-    param4: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSTOREFILE = fn(
-    param0: ?[*:0]const u8,
-    param1: ?[*:0]const u8,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PSTR,
-    param6: usize,
-    param7: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSTOREFILEW = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PWSTR,
-    param6: usize,
-    param7: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERISSTORE = fn(
-    param0: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERISSTOREW = fn(
-    param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERVERSION = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PSYMBOLSERVERMESSAGEPROC = fn(
-    action: usize,
-    data: u64,
-    context: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERWEXPROC = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?*c_void,
-    param3: u32,
-    param4: u32,
-    param5: ?PWSTR,
-    param6: ?*SYMSRV_EXTENDED_OUTPUT_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERPINGPROCWEX = fn(
-    param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERGETOPTIONDATAPROC = fn(
-    param0: usize,
-    param1: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PSYMBOLSERVERSETHTTPAUTHHEADER = fn(
-    pszAuthHeader: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const LPCALL_BACK_USER_INTERRUPT_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const DBGHELP_DATA_REPORT_STRUCT = extern struct {
-    pBinPathNonExist: ?[*:0]const u16,
-    pSymbolPathNonExist: ?[*:0]const u16,
-};
-
 pub const SYM_LOAD_FLAGS = enum(u32) {
     NONE = 0,
     VIRTUAL = 1,
@@ -47200,6 +46696,510 @@ pub const MODLOAD_DATA_TYPE = enum(u32) {
 pub const DBHHEADER_DEBUGDIRS = MODLOAD_DATA_TYPE.DEBUGDIRS;
 pub const DBHHEADER_CVMISC = MODLOAD_DATA_TYPE.CVMISC;
 
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const CONTEXT = extern struct {
+    ContextFlags: u32,
+    Dr0: u32,
+    Dr1: u32,
+    Dr2: u32,
+    Dr3: u32,
+    Dr6: u32,
+    Dr7: u32,
+    FloatSave: FLOATING_SAVE_AREA,
+    SegGs: u32,
+    SegFs: u32,
+    SegEs: u32,
+    SegDs: u32,
+    Edi: u32,
+    Esi: u32,
+    Ebx: u32,
+    Edx: u32,
+    Ecx: u32,
+    Eax: u32,
+    Ebp: u32,
+    Eip: u32,
+    SegCs: u32,
+    EFlags: u32,
+    Esp: u32,
+    SegSs: u32,
+    ExtendedRegisters: [512]u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+    ThreadId: u32,
+    ExceptionPointers: ?*EXCEPTION_POINTERS,
+    ClientPointers: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_USER_STREAM = extern struct {
+    Type: u32,
+    BufferSize: u32,
+    Buffer: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+    UserStreamCount: u32,
+    UserStreamArray: ?*MINIDUMP_USER_STREAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    ThreadHandle: ?HANDLE,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ThreadId: u32,
+    ThreadHandle: ?HANDLE,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+    BackingStoreBase: u64,
+    BackingStoreEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
+    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
+    CallbackParam: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const LOADED_IMAGE = extern struct {
+    ModuleName: ?PSTR,
+    hFile: ?HANDLE,
+    MappedAddress: ?*u8,
+    FileHeader: ?*IMAGE_NT_HEADERS32,
+    LastRvaSection: ?*IMAGE_SECTION_HEADER,
+    NumberOfSections: u32,
+    Sections: ?*IMAGE_SECTION_HEADER,
+    Characteristics: IMAGE_FILE_CHARACTERISTICS,
+    fSystemImage: BOOLEAN,
+    fDOSImage: BOOLEAN,
+    fReadOnly: BOOLEAN,
+    Version: u8,
+    Links: LIST_ENTRY,
+    SizeOfImage: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGE_DEBUG_INFORMATION = extern struct {
+    List: LIST_ENTRY,
+    ReservedSize: u32,
+    ReservedMappedBase: ?*c_void,
+    ReservedMachine: u16,
+    ReservedCharacteristics: u16,
+    ReservedCheckSum: u32,
+    ImageBase: u32,
+    SizeOfImage: u32,
+    ReservedNumberOfSections: u32,
+    ReservedSections: ?*IMAGE_SECTION_HEADER,
+    ReservedExportedNamesSize: u32,
+    ReservedExportedNames: ?PSTR,
+    ReservedNumberOfFunctionTableEntries: u32,
+    ReservedFunctionTableEntries: ?*IMAGE_FUNCTION_ENTRY,
+    ReservedLowestFunctionStartingAddress: u32,
+    ReservedHighestFunctionEndingAddress: u32,
+    ReservedNumberOfFpoTableEntries: u32,
+    ReservedFpoTableEntries: ?*FPO_DATA,
+    SizeOfCoffSymbols: u32,
+    CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
+    ReservedSizeOfCodeViewSymbols: u32,
+    ReservedCodeViewSymbols: ?*c_void,
+    ImageFilePath: ?PSTR,
+    ImageFileName: ?PSTR,
+    ReservedDebugFilePath: ?PSTR,
+    ReservedTimeDateStamp: u32,
+    ReservedRomImage: BOOL,
+    ReservedDebugDirectory: ?*IMAGE_DEBUG_DIRECTORY,
+    ReservedNumberOfDebugDirectories: u32,
+    ReservedOriginalFunctionTableBaseAddress: u32,
+    Reserved: [2]u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const ADDRESS = extern struct {
+    Offset: u32,
+    Segment: u16,
+    Mode: ADDRESS_MODE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const KDHELP = extern struct {
+    Thread: u32,
+    ThCallbackStack: u32,
+    NextCallback: u32,
+    FramePointer: u32,
+    KiCallUserMode: u32,
+    KeUserCallbackDispatcher: u32,
+    SystemRangeStart: u32,
+    ThCallbackBStore: u32,
+    KiUserExceptionDispatcher: u32,
+    StackBase: u32,
+    StackLimit: u32,
+    Reserved: [5]u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const STACKFRAME = extern struct {
+    AddrPC: ADDRESS,
+    AddrReturn: ADDRESS,
+    AddrFrame: ADDRESS,
+    AddrStack: ADDRESS,
+    FuncTableEntry: ?*c_void,
+    Params: [4]u32,
+    Far: BOOL,
+    Virtual: BOOL,
+    Reserved: [3]u32,
+    KdHelp: KDHELP,
+    AddrBStore: ADDRESS,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PREAD_PROCESS_MEMORY_ROUTINE = fn(
+    hProcess: ?HANDLE,
+    lpBaseAddress: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*c_void,
+    nSize: u32,
+    lpNumberOfBytesRead: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PFUNCTION_TABLE_ACCESS_ROUTINE = fn(
+    hProcess: ?HANDLE,
+    AddrBase: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PGET_MODULE_BASE_ROUTINE = fn(
+    hProcess: ?HANDLE,
+    Address: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PTRANSLATE_ADDRESS_ROUTINE = fn(
+    hProcess: ?HANDLE,
+    hThread: ?HANDLE,
+    lpaddr: ?*ADDRESS,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMMODULES_CALLBACK = fn(
+    ModuleName: ?[*:0]const u8,
+    BaseOfDll: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMSYMBOLS_CALLBACK = fn(
+    SymbolName: ?[*:0]const u8,
+    SymbolAddress: u32,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMSYMBOLS_CALLBACKW = fn(
+    SymbolName: ?[*:0]const u16,
+    SymbolAddress: u32,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PENUMLOADED_MODULES_CALLBACK = fn(
+    ModuleName: ?[*:0]const u8,
+    ModuleBase: u32,
+    ModuleSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYMBOL_REGISTERED_CALLBACK = fn(
+    hProcess: ?HANDLE,
+    ActionCode: u32,
+    CallbackData: ?*c_void,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOL = extern struct {
+    SizeOfStruct: u32,
+    Address: u32,
+    Size: u32,
+    Flags: u32,
+    MaxNameLength: u32,
+    Name: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOL_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOL,
+    name: [2001]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOLW = extern struct {
+    SizeOfStruct: u32,
+    Address: u32,
+    Size: u32,
+    Flags: u32,
+    MaxNameLength: u32,
+    Name: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOLW_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOLW,
+    name: [2001]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_MODULE = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    ImageSize: u32,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    NumSyms: u32,
+    SymType: SYM_TYPE,
+    ModuleName: [32]CHAR,
+    ImageName: [256]CHAR,
+    LoadedImageName: [256]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_MODULEW = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    ImageSize: u32,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    NumSyms: u32,
+    SymType: SYM_TYPE,
+    ModuleName: [32]u16,
+    ImageName: [256]u16,
+    LoadedImageName: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_LINE = extern struct {
+    SizeOfStruct: u32,
+    Key: ?*c_void,
+    LineNumber: u32,
+    FileName: ?[*]u8,
+    Address: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_LINEW = extern struct {
+    SizeOfStruct: u32,
+    Key: ?*c_void,
+    LineNumber: u32,
+    FileName: ?[*]u8,
+    Address: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    FileName: [260]CHAR,
+    Reparse: BOOLEAN,
+    hFile: ?HANDLE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_DUPLICATE_SYMBOL = extern struct {
+    SizeOfStruct: u32,
+    NumberOfDups: u32,
+    Symbol: ?*IMAGEHLP_SYMBOL,
+    SelectedSymbol: u32,
+};
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (302)
@@ -47211,7 +47211,7 @@ pub extern "KERNEL32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     BaseAddress: usize,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47220,7 +47220,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "KERNEL32" fn RtlDeleteFunctionTable(
     FunctionTable: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47234,7 +47234,7 @@ pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
     Callback: ?PGET_RUNTIME_FUNCTION_CALLBACK,
     Context: ?*c_void,
     OutOfProcessCallbackDll: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47325,147 +47325,37 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
 
 }, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FatalExit(
-    ExitCode: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadSelectorEntry(
-    hThread: ?HANDLE,
-    dwSelector: u32,
-    lpSelectorEntry: ?*LDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn Wow64GetThreadSelectorEntry(
-    hThread: ?HANDLE,
-    dwSelector: u32,
-    lpSelectorEntry: ?*WOW64_LDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugSetProcessKillOnExit(
-    KillOnExit: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DebugBreakProcess(
-    Process: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FormatMessageA(
-    dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
-    dwMessageId: u32,
-    dwLanguageId: u32,
-    lpBuffer: ?PSTR,
-    nSize: u32,
-    Arguments: ?*?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FormatMessageW(
-    dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
-    dwMessageId: u32,
-    dwLanguageId: u32,
-    lpBuffer: ?PWSTR,
-    nSize: u32,
-    Arguments: ?*?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CopyContext(
-    Destination: ?*CONTEXT,
-    ContextFlags: u32,
-    Source: ?*CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn InitializeContext(
-    // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
-    ContextFlags: u32,
-    Context: ?*?*CONTEXT,
-    ContextLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+.X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetEnabledXStateFeatures(
-) callconv(@import("std").os.windows.WINAPI) u64;
+pub extern "dbghelp" fn ImageNtHeader(
+    Base: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS64;
 
 }, else => struct { } };
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+.X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetXStateFeaturesMask(
-    Context: ?*CONTEXT,
-    FeatureMask: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "dbghelp" fn ImageRvaToSection(
+    NtHeaders: ?*IMAGE_NT_HEADERS64,
+    Base: ?*c_void,
+    Rva: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
 
 }, else => struct { } };
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
+.X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn LocateXStateFeature(
-    Context: ?*CONTEXT,
-    FeatureId: u32,
-    Length: ?*u32,
+pub extern "dbghelp" fn ImageRvaToVa(
+    NtHeaders: ?*IMAGE_NT_HEADERS64,
+    Base: ?*c_void,
+    Rva: u32,
+    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
 
 }, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86, .X64 => struct {
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetXStateFeaturesMask(
-    Context: ?*CONTEXT,
-    FeatureMask: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetThreadContext(
-    hThread: ?HANDLE,
-    lpContext: ?*CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadContext(
-    hThread: ?HANDLE,
-    lpContext: ?*const CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FlushInstructionCache(
-    hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    lpBaseAddress: ?*const c_void,
-    dwSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64GetThreadContext(
-    hThread: ?HANDLE,
-    lpContext: ?*WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn Wow64SetThreadContext(
-    hThread: ?HANDLE,
-    lpContext: ?*const WOW64_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
@@ -47504,7 +47394,7 @@ pub extern "KERNEL32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     BaseAddress: u64,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47513,7 +47403,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "KERNEL32" fn RtlDeleteFunctionTable(
     FunctionTable: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47527,7 +47417,7 @@ pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
     Callback: ?PGET_RUNTIME_FUNCTION_CALLBACK,
     Context: ?*c_void,
     OutOfProcessCallbackDll: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 }, else => struct { } };
 
@@ -47577,391 +47467,6 @@ pub extern "KERNEL32" fn RtlPcToFileHeader(
     PcValue: ?*c_void,
     BaseOfImage: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "dbghelp" fn ImageNtHeader(
-    Base: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS64;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "dbghelp" fn ImageRvaToSection(
-    NtHeaders: ?*IMAGE_NT_HEADERS64,
-    Base: ?*c_void,
-    Rva: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "dbghelp" fn ImageRvaToVa(
-    NtHeaders: ?*IMAGE_NT_HEADERS64,
-    Base: ?*c_void,
-    Rva: u32,
-    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageNtHeader(
-    Base: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageRvaToSection(
-    NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*c_void,
-    Rva: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn ImageRvaToVa(
-    NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*c_void,
-    Rva: u32,
-    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn StackWalk(
-    MachineType: u32,
-    hProcess: ?HANDLE,
-    hThread: ?HANDLE,
-    StackFrame: ?*STACKFRAME,
-    ContextRecord: ?*c_void,
-    ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE,
-    FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE,
-    GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE,
-    TranslateAddress: ?PTRANSLATE_ADDRESS_ROUTINE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymEnumerateModules(
-    hProcess: ?HANDLE,
-    EnumModulesCallback: ?PSYM_ENUMMODULES_CALLBACK,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn EnumerateLoadedModules(
-    hProcess: ?HANDLE,
-    EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACK,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymFunctionTableAccess(
-    hProcess: ?HANDLE,
-    AddrBase: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetModuleInfo(
-    hProcess: ?HANDLE,
-    dwAddr: u32,
-    ModuleInfo: ?*IMAGEHLP_MODULE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetModuleInfoW(
-    hProcess: ?HANDLE,
-    dwAddr: u32,
-    ModuleInfo: ?*IMAGEHLP_MODULEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetModuleBase(
-    hProcess: ?HANDLE,
-    dwAddr: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetLineFromAddr(
-    hProcess: ?HANDLE,
-    dwAddr: u32,
-    pdwDisplacement: ?*u32,
-    Line: ?*IMAGEHLP_LINE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetLineFromName(
-    hProcess: ?HANDLE,
-    ModuleName: ?[*:0]const u8,
-    FileName: ?[*:0]const u8,
-    dwLineNumber: u32,
-    plDisplacement: ?*i32,
-    Line: ?*IMAGEHLP_LINE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetLineNext(
-    hProcess: ?HANDLE,
-    Line: ?*IMAGEHLP_LINE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetLinePrev(
-    hProcess: ?HANDLE,
-    Line: ?*IMAGEHLP_LINE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymUnloadModule(
-    hProcess: ?HANDLE,
-    BaseOfDll: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymUnDName(
-    sym: ?*IMAGEHLP_SYMBOL,
-    UnDecName: [*:0]u8,
-    UnDecNameLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymRegisterCallback(
-    hProcess: ?HANDLE,
-    CallbackFunction: ?PSYMBOL_REGISTERED_CALLBACK,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
-    hProcess: ?HANDLE,
-    CallbackFunction: ?PSYMBOL_FUNCENTRY_CALLBACK,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetSymFromAddr(
-    hProcess: ?HANDLE,
-    dwAddr: u32,
-    pdwDisplacement: ?*u32,
-    Symbol: ?*IMAGEHLP_SYMBOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetSymFromName(
-    hProcess: ?HANDLE,
-    Name: ?[*:0]const u8,
-    Symbol: ?*IMAGEHLP_SYMBOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymEnumerateSymbols(
-    hProcess: ?HANDLE,
-    BaseOfDll: u32,
-    EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymEnumerateSymbolsW(
-    hProcess: ?HANDLE,
-    BaseOfDll: u32,
-    EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymLoadModule(
-    hProcess: ?HANDLE,
-    hFile: ?HANDLE,
-    ImageName: ?[*:0]const u8,
-    ModuleName: ?[*:0]const u8,
-    BaseOfDll: u32,
-    SizeOfDll: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetSymNext(
-    hProcess: ?HANDLE,
-    Symbol: ?*IMAGEHLP_SYMBOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "dbghelp" fn SymGetSymPrev(
-    hProcess: ?HANDLE,
-    Symbol: ?*IMAGEHLP_SYMBOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-pub extern "dbgeng" fn DebugConnect(
-    RemoteOptions: ?[*:0]const u8,
-    InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "dbgeng" fn DebugConnectWide(
-    RemoteOptions: ?[*:0]const u16,
-    InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "dbgeng" fn DebugCreate(
-    InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "dbgeng" fn DebugCreateEx(
-    InterfaceId: ?*const Guid,
-    DbgEngOptions: u32,
-    Interface: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "dbgmodel" fn CreateDataModelManager(
-    debugHost: ?*IDebugHost,
-    manager: ?*?*IDataModelManager,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReadProcessMemory(
-    hProcess: ?HANDLE,
-    lpBaseAddress: ?*const c_void,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
-    nSize: usize,
-    lpNumberOfBytesRead: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WriteProcessMemory(
-    hProcess: ?HANDLE,
-    lpBaseAddress: ?*c_void,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*const c_void,
-    nSize: usize,
-    lpNumberOfBytesWritten: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn FlashWindow(
-    hWnd: ?HWND,
-    bInvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn FlashWindowEx(
-    pfwi: ?*FLASHWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn MessageBeep(
-    uType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetLastErrorEx(
-    dwErrCode: u32,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsDebuggerPresent(
@@ -48291,7 +47796,7 @@ pub extern "dbghelp" fn FindExecutableImageExW(
 
 pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
     Base: ?*c_void,
-    MappedAsImage: u8,
+    MappedAsImage: BOOLEAN,
     DirectoryEntry: IMAGE_DIRECTORY_ENTRY,
     Size: ?*u32,
     FoundHeader: ?*?*IMAGE_SECTION_HEADER,
@@ -48299,7 +47804,7 @@ pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
 
 pub extern "dbghelp" fn ImageDirectoryEntryToData(
     Base: ?*c_void,
-    MappedAsImage: u8,
+    MappedAsImage: BOOLEAN,
     DirectoryEntry: IMAGE_DIRECTORY_ENTRY,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*c_void;
@@ -49484,47 +48989,547 @@ pub extern "dbghelp" fn RangeMapWrite(
     DoneBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub extern "dbgeng" fn DebugConnect(
+    RemoteOptions: ?[*:0]const u8,
+    InterfaceId: ?*const Guid,
+    Interface: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dbgeng" fn DebugConnectWide(
+    RemoteOptions: ?[*:0]const u16,
+    InterfaceId: ?*const Guid,
+    Interface: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dbgeng" fn DebugCreate(
+    InterfaceId: ?*const Guid,
+    Interface: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dbgeng" fn DebugCreateEx(
+    InterfaceId: ?*const Guid,
+    DbgEngOptions: u32,
+    Interface: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dbgmodel" fn CreateDataModelManager(
+    debugHost: ?*IDebugHost,
+    manager: ?*?*IDataModelManager,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ReadProcessMemory(
+    hProcess: ?HANDLE,
+    lpBaseAddress: ?*const c_void,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*c_void,
+    nSize: usize,
+    lpNumberOfBytesRead: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn WriteProcessMemory(
+    hProcess: ?HANDLE,
+    lpBaseAddress: ?*c_void,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*const c_void,
+    nSize: usize,
+    lpNumberOfBytesWritten: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindow(
+    hWnd: ?HWND,
+    bInvert: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindowEx(
+    pfwi: ?*FLASHWINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn MessageBeep(
+    uType: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetLastErrorEx(
+    dwErrCode: u32,
+    dwType: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetThreadContext(
+    hThread: ?HANDLE,
+    lpContext: ?*CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetThreadContext(
+    hThread: ?HANDLE,
+    lpContext: ?*const CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FlushInstructionCache(
+    hProcess: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    lpBaseAddress: ?*const c_void,
+    dwSize: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn Wow64GetThreadContext(
+    hThread: ?HANDLE,
+    lpContext: ?*WOW64_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn Wow64SetThreadContext(
+    hThread: ?HANDLE,
+    lpContext: ?*const WOW64_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FatalExit(
+    ExitCode: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetThreadSelectorEntry(
+    hThread: ?HANDLE,
+    dwSelector: u32,
+    lpSelectorEntry: ?*LDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn Wow64GetThreadSelectorEntry(
+    hThread: ?HANDLE,
+    dwSelector: u32,
+    lpSelectorEntry: ?*WOW64_LDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DebugSetProcessKillOnExit(
+    KillOnExit: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DebugBreakProcess(
+    Process: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FormatMessageA(
+    dwFlags: FORMAT_MESSAGE_OPTIONS,
+    lpSource: ?*const c_void,
+    dwMessageId: u32,
+    dwLanguageId: u32,
+    lpBuffer: ?PSTR,
+    nSize: u32,
+    Arguments: ?*?*i8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FormatMessageW(
+    dwFlags: FORMAT_MESSAGE_OPTIONS,
+    lpSource: ?*const c_void,
+    dwMessageId: u32,
+    dwLanguageId: u32,
+    lpBuffer: ?PWSTR,
+    nSize: u32,
+    Arguments: ?*?*i8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn CopyContext(
+    Destination: ?*CONTEXT,
+    ContextFlags: u32,
+    Source: ?*CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn InitializeContext(
+    // TODO: what to do with BytesParamIndex 3?
+    Buffer: ?*c_void,
+    ContextFlags: u32,
+    Context: ?*?*CONTEXT,
+    ContextLength: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86, .X64 => struct {
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetEnabledXStateFeatures(
+) callconv(@import("std").os.windows.WINAPI) u64;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86, .X64 => struct {
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetXStateFeaturesMask(
+    Context: ?*CONTEXT,
+    FeatureMask: ?*u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86, .X64 => struct {
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn LocateXStateFeature(
+    Context: ?*CONTEXT,
+    FeatureId: u32,
+    Length: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86, .X64 => struct {
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn SetXStateFeaturesMask(
+    Context: ?*CONTEXT,
+    FeatureMask: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn ImageNtHeader(
+    Base: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn ImageRvaToSection(
+    NtHeaders: ?*IMAGE_NT_HEADERS32,
+    Base: ?*c_void,
+    Rva: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn ImageRvaToVa(
+    NtHeaders: ?*IMAGE_NT_HEADERS32,
+    Base: ?*c_void,
+    Rva: u32,
+    LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn StackWalk(
+    MachineType: u32,
+    hProcess: ?HANDLE,
+    hThread: ?HANDLE,
+    StackFrame: ?*STACKFRAME,
+    ContextRecord: ?*c_void,
+    ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE,
+    FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE,
+    GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE,
+    TranslateAddress: ?PTRANSLATE_ADDRESS_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateModules(
+    hProcess: ?HANDLE,
+    EnumModulesCallback: ?PSYM_ENUMMODULES_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn EnumerateLoadedModules(
+    hProcess: ?HANDLE,
+    EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymFunctionTableAccess(
+    hProcess: ?HANDLE,
+    AddrBase: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleInfo(
+    hProcess: ?HANDLE,
+    dwAddr: u32,
+    ModuleInfo: ?*IMAGEHLP_MODULE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleInfoW(
+    hProcess: ?HANDLE,
+    dwAddr: u32,
+    ModuleInfo: ?*IMAGEHLP_MODULEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleBase(
+    hProcess: ?HANDLE,
+    dwAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineFromAddr(
+    hProcess: ?HANDLE,
+    dwAddr: u32,
+    pdwDisplacement: ?*u32,
+    Line: ?*IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineFromName(
+    hProcess: ?HANDLE,
+    ModuleName: ?[*:0]const u8,
+    FileName: ?[*:0]const u8,
+    dwLineNumber: u32,
+    plDisplacement: ?*i32,
+    Line: ?*IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineNext(
+    hProcess: ?HANDLE,
+    Line: ?*IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLinePrev(
+    hProcess: ?HANDLE,
+    Line: ?*IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymUnloadModule(
+    hProcess: ?HANDLE,
+    BaseOfDll: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymUnDName(
+    sym: ?*IMAGEHLP_SYMBOL,
+    UnDecName: [*:0]u8,
+    UnDecNameLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymRegisterCallback(
+    hProcess: ?HANDLE,
+    CallbackFunction: ?PSYMBOL_REGISTERED_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
+    hProcess: ?HANDLE,
+    CallbackFunction: ?PSYMBOL_FUNCENTRY_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymFromAddr(
+    hProcess: ?HANDLE,
+    dwAddr: u32,
+    pdwDisplacement: ?*u32,
+    Symbol: ?*IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymFromName(
+    hProcess: ?HANDLE,
+    Name: ?[*:0]const u8,
+    Symbol: ?*IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateSymbols(
+    hProcess: ?HANDLE,
+    BaseOfDll: u32,
+    EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateSymbolsW(
+    hProcess: ?HANDLE,
+    BaseOfDll: u32,
+    EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACKW,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymLoadModule(
+    hProcess: ?HANDLE,
+    hFile: ?HANDLE,
+    ImageName: ?[*:0]const u8,
+    ModuleName: ?[*:0]const u8,
+    BaseOfDll: u32,
+    SizeOfDll: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymNext(
+    hProcess: ?HANDLE,
+    Symbol: ?*IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymPrev(
+    hProcess: ?HANDLE,
+    Symbol: ?*IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const FormatMessage = FormatMessageA;
         pub const OutputDebugString = OutputDebugStringA;
         pub const FatalAppExit = FatalAppExitA;
+        pub const FormatMessage = FormatMessageA;
     },
     .wide => struct {
-        pub const FormatMessage = FormatMessageW;
         pub const OutputDebugString = OutputDebugStringW;
         pub const FatalAppExit = FatalAppExitW;
+        pub const FormatMessage = FormatMessageW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const FormatMessage = *opaque{};
         pub const OutputDebugString = *opaque{};
         pub const FatalAppExit = *opaque{};
+        pub const FormatMessage = *opaque{};
     } else struct {
-        pub const FormatMessage = @compileError("'FormatMessage' requires that UNICODE be set to true or false in the root module");
         pub const OutputDebugString = @compileError("'OutputDebugString' requires that UNICODE be set to true or false in the root module");
         pub const FatalAppExit = @compileError("'FatalAppExit' requires that UNICODE be set to true or false in the root module");
+        pub const FormatMessage = @compileError("'FormatMessage' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (48)
+// Section: Imports (49)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
+const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
 usingnamespace switch (@import("../../zig.zig").arch) {
 .X64 => struct {
 
     pub const M128A = @import("../../system/system_services.zig").M128A;
 
 }, else => struct { } };
-const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
-const CHAR = @import("../../system/system_services.zig").CHAR;
 const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
 const IServiceProvider = @import("../../system/system_services.zig").IServiceProvider;
+const CHAR = @import("../../system/system_services.zig").CHAR;
+usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+    pub const FLOATING_SAVE_AREA = @import("../../system/kernel.zig").FLOATING_SAVE_AREA;
+
+}, else => struct { } };
 const HRESULT = @import("../../foundation.zig").HRESULT;
 usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -49552,6 +49557,7 @@ usingnamespace switch (@import("../../zig.zig").arch) {
     pub const PGET_RUNTIME_FUNCTION_CALLBACK = @import("../../system/system_services.zig").PGET_RUNTIME_FUNCTION_CALLBACK;
 
 }, else => struct { } };
+const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const PROCESSOR_ARCHITECTURE = @import("../../system/deployment_services.zig").PROCESSOR_ARCHITECTURE;
 const DISPPARAMS = @import("../../system/ole_automation.zig").DISPPARAMS;
 const ILockBytes = @import("../../storage/structured_storage.zig").ILockBytes;
@@ -49564,10 +49570,10 @@ usingnamespace switch (@import("../../zig.zig").arch) {
 }, else => struct { } };
 const CADWORD = @import("../../system/com.zig").CADWORD;
 const LIST_ENTRY = @import("../../system/kernel.zig").LIST_ENTRY;
-const FARPROC = @import("../../foundation.zig").FARPROC;
 const ITypeInfo = @import("../../system/ole_automation.zig").ITypeInfo;
-const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
 const IHTMLDocument2 = @import("../../web/ms_html.zig").IHTMLDocument2;
+const FARPROC = @import("../../foundation.zig").FARPROC;
+const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
 usingnamespace switch (@import("../../zig.zig").arch) {
 .Arm64 => struct {
 
@@ -49599,80 +49605,16 @@ const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOC
 const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = @import("../../system/system_services.zig").IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
 const LIST_ENTRY64 = @import("../../system/kernel.zig").LIST_ENTRY64;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
 const XSTATE_FEATURE = @import("../../system/system_services.zig").XSTATE_FEATURE;
+const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const LIST_ENTRY32 = @import("../../system/kernel.zig").LIST_ENTRY32;
 const IHTMLWindow2 = @import("../../web/ms_html.zig").IHTMLWindow2;
-usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-    pub const FLOATING_SAVE_AREA = @import("../../system/kernel.zig").FLOATING_SAVE_AREA;
-
-}, else => struct { } };
+const LIST_ENTRY32 = @import("../../system/kernel.zig").LIST_ENTRY32;
+const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "PVECTORED_EXCEPTION_HANDLER")) { _ = PVECTORED_EXCEPTION_HANDLER; }
-    if (@hasDecl(@This(), "PREAD_PROCESS_MEMORY_ROUTINE")) { _ = PREAD_PROCESS_MEMORY_ROUTINE; }
-    if (@hasDecl(@This(), "PFUNCTION_TABLE_ACCESS_ROUTINE")) { _ = PFUNCTION_TABLE_ACCESS_ROUTINE; }
-    if (@hasDecl(@This(), "PGET_MODULE_BASE_ROUTINE")) { _ = PGET_MODULE_BASE_ROUTINE; }
-    if (@hasDecl(@This(), "PTRANSLATE_ADDRESS_ROUTINE")) { _ = PTRANSLATE_ADDRESS_ROUTINE; }
-    if (@hasDecl(@This(), "PSYM_ENUMMODULES_CALLBACK")) { _ = PSYM_ENUMMODULES_CALLBACK; }
-    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACK")) { _ = PSYM_ENUMSYMBOLS_CALLBACK; }
-    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACKW")) { _ = PSYM_ENUMSYMBOLS_CALLBACKW; }
-    if (@hasDecl(@This(), "PENUMLOADED_MODULES_CALLBACK")) { _ = PENUMLOADED_MODULES_CALLBACK; }
-    if (@hasDecl(@This(), "PSYMBOL_REGISTERED_CALLBACK")) { _ = PSYMBOL_REGISTERED_CALLBACK; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_INITIALIZE")) { _ = PDEBUG_EXTENSION_INITIALIZE; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_UNINITIALIZE")) { _ = PDEBUG_EXTENSION_UNINITIALIZE; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_CANUNLOAD")) { _ = PDEBUG_EXTENSION_CANUNLOAD; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_UNLOAD")) { _ = PDEBUG_EXTENSION_UNLOAD; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_NOTIFY")) { _ = PDEBUG_EXTENSION_NOTIFY; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_CALL")) { _ = PDEBUG_EXTENSION_CALL; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_KNOWN_STRUCT")) { _ = PDEBUG_EXTENSION_KNOWN_STRUCT; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_KNOWN_STRUCT_EX")) { _ = PDEBUG_EXTENSION_KNOWN_STRUCT_EX; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_QUERY_VALUE_NAMES")) { _ = PDEBUG_EXTENSION_QUERY_VALUE_NAMES; }
-    if (@hasDecl(@This(), "PDEBUG_EXTENSION_PROVIDE_VALUE")) { _ = PDEBUG_EXTENSION_PROVIDE_VALUE; }
-    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_BEGINTHREADSTACKRECONSTRUCTION")) { _ = PDEBUG_STACK_PROVIDER_BEGINTHREADSTACKRECONSTRUCTION; }
-    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_RECONSTRUCTSTACK")) { _ = PDEBUG_STACK_PROVIDER_RECONSTRUCTSTACK; }
-    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_FREESTACKSYMFRAMES")) { _ = PDEBUG_STACK_PROVIDER_FREESTACKSYMFRAMES; }
-    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_ENDTHREADSTACKRECONSTRUCTION")) { _ = PDEBUG_STACK_PROVIDER_ENDTHREADSTACKRECONSTRUCTION; }
-    if (@hasDecl(@This(), "PWINDBG_OUTPUT_ROUTINE")) { _ = PWINDBG_OUTPUT_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION")) { _ = PWINDBG_GET_EXPRESSION; }
-    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION32")) { _ = PWINDBG_GET_EXPRESSION32; }
-    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION64")) { _ = PWINDBG_GET_EXPRESSION64; }
-    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL")) { _ = PWINDBG_GET_SYMBOL; }
-    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL32")) { _ = PWINDBG_GET_SYMBOL32; }
-    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL64")) { _ = PWINDBG_GET_SYMBOL64; }
-    if (@hasDecl(@This(), "PWINDBG_DISASM")) { _ = PWINDBG_DISASM; }
-    if (@hasDecl(@This(), "PWINDBG_DISASM32")) { _ = PWINDBG_DISASM32; }
-    if (@hasDecl(@This(), "PWINDBG_DISASM64")) { _ = PWINDBG_DISASM64; }
-    if (@hasDecl(@This(), "PWINDBG_CHECK_CONTROL_C")) { _ = PWINDBG_CHECK_CONTROL_C; }
-    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE32")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE32; }
-    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE64")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE64; }
-    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE32")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE32; }
-    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE64")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE64; }
-    if (@hasDecl(@This(), "PWINDBG_GET_THREAD_CONTEXT_ROUTINE")) { _ = PWINDBG_GET_THREAD_CONTEXT_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_SET_THREAD_CONTEXT_ROUTINE")) { _ = PWINDBG_SET_THREAD_CONTEXT_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_IOCTL_ROUTINE")) { _ = PWINDBG_IOCTL_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_OLDKD_READ_PHYSICAL_MEMORY")) { _ = PWINDBG_OLDKD_READ_PHYSICAL_MEMORY; }
-    if (@hasDecl(@This(), "PWINDBG_OLDKD_WRITE_PHYSICAL_MEMORY")) { _ = PWINDBG_OLDKD_WRITE_PHYSICAL_MEMORY; }
-    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE")) { _ = PWINDBG_STACKTRACE_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE32")) { _ = PWINDBG_STACKTRACE_ROUTINE32; }
-    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE64")) { _ = PWINDBG_STACKTRACE_ROUTINE64; }
-    if (@hasDecl(@This(), "PWINDBG_OLD_EXTENSION_ROUTINE")) { _ = PWINDBG_OLD_EXTENSION_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE")) { _ = PWINDBG_EXTENSION_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE32")) { _ = PWINDBG_EXTENSION_ROUTINE32; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE64")) { _ = PWINDBG_EXTENSION_ROUTINE64; }
-    if (@hasDecl(@This(), "PWINDBG_OLDKD_EXTENSION_ROUTINE")) { _ = PWINDBG_OLDKD_EXTENSION_ROUTINE; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT")) { _ = PWINDBG_EXTENSION_DLL_INIT; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT32")) { _ = PWINDBG_EXTENSION_DLL_INIT32; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT64")) { _ = PWINDBG_EXTENSION_DLL_INIT64; }
-    if (@hasDecl(@This(), "PWINDBG_CHECK_VERSION")) { _ = PWINDBG_CHECK_VERSION; }
-    if (@hasDecl(@This(), "PWINDBG_EXTENSION_API_VERSION")) { _ = PWINDBG_EXTENSION_API_VERSION; }
-    if (@hasDecl(@This(), "PSYM_DUMP_FIELD_CALLBACK")) { _ = PSYM_DUMP_FIELD_CALLBACK; }
     if (@hasDecl(@This(), "LPTOP_LEVEL_EXCEPTION_FILTER")) { _ = LPTOP_LEVEL_EXCEPTION_FILTER; }
     if (@hasDecl(@This(), "PWAITCHAINCALLBACK")) { _ = PWAITCHAINCALLBACK; }
     if (@hasDecl(@This(), "PCOGETCALLSTATE")) { _ = PCOGETCALLSTATE; }
@@ -49747,6 +49689,65 @@ test {
     if (@hasDecl(@This(), "PSYMBOLSERVERGETOPTIONDATAPROC")) { _ = PSYMBOLSERVERGETOPTIONDATAPROC; }
     if (@hasDecl(@This(), "PSYMBOLSERVERSETHTTPAUTHHEADER")) { _ = PSYMBOLSERVERSETHTTPAUTHHEADER; }
     if (@hasDecl(@This(), "LPCALL_BACK_USER_INTERRUPT_ROUTINE")) { _ = LPCALL_BACK_USER_INTERRUPT_ROUTINE; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_INITIALIZE")) { _ = PDEBUG_EXTENSION_INITIALIZE; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_UNINITIALIZE")) { _ = PDEBUG_EXTENSION_UNINITIALIZE; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_CANUNLOAD")) { _ = PDEBUG_EXTENSION_CANUNLOAD; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_UNLOAD")) { _ = PDEBUG_EXTENSION_UNLOAD; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_NOTIFY")) { _ = PDEBUG_EXTENSION_NOTIFY; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_CALL")) { _ = PDEBUG_EXTENSION_CALL; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_KNOWN_STRUCT")) { _ = PDEBUG_EXTENSION_KNOWN_STRUCT; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_KNOWN_STRUCT_EX")) { _ = PDEBUG_EXTENSION_KNOWN_STRUCT_EX; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_QUERY_VALUE_NAMES")) { _ = PDEBUG_EXTENSION_QUERY_VALUE_NAMES; }
+    if (@hasDecl(@This(), "PDEBUG_EXTENSION_PROVIDE_VALUE")) { _ = PDEBUG_EXTENSION_PROVIDE_VALUE; }
+    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_BEGINTHREADSTACKRECONSTRUCTION")) { _ = PDEBUG_STACK_PROVIDER_BEGINTHREADSTACKRECONSTRUCTION; }
+    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_RECONSTRUCTSTACK")) { _ = PDEBUG_STACK_PROVIDER_RECONSTRUCTSTACK; }
+    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_FREESTACKSYMFRAMES")) { _ = PDEBUG_STACK_PROVIDER_FREESTACKSYMFRAMES; }
+    if (@hasDecl(@This(), "PDEBUG_STACK_PROVIDER_ENDTHREADSTACKRECONSTRUCTION")) { _ = PDEBUG_STACK_PROVIDER_ENDTHREADSTACKRECONSTRUCTION; }
+    if (@hasDecl(@This(), "PWINDBG_OUTPUT_ROUTINE")) { _ = PWINDBG_OUTPUT_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION")) { _ = PWINDBG_GET_EXPRESSION; }
+    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION32")) { _ = PWINDBG_GET_EXPRESSION32; }
+    if (@hasDecl(@This(), "PWINDBG_GET_EXPRESSION64")) { _ = PWINDBG_GET_EXPRESSION64; }
+    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL")) { _ = PWINDBG_GET_SYMBOL; }
+    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL32")) { _ = PWINDBG_GET_SYMBOL32; }
+    if (@hasDecl(@This(), "PWINDBG_GET_SYMBOL64")) { _ = PWINDBG_GET_SYMBOL64; }
+    if (@hasDecl(@This(), "PWINDBG_DISASM")) { _ = PWINDBG_DISASM; }
+    if (@hasDecl(@This(), "PWINDBG_DISASM32")) { _ = PWINDBG_DISASM32; }
+    if (@hasDecl(@This(), "PWINDBG_DISASM64")) { _ = PWINDBG_DISASM64; }
+    if (@hasDecl(@This(), "PWINDBG_CHECK_CONTROL_C")) { _ = PWINDBG_CHECK_CONTROL_C; }
+    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE32")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE32; }
+    if (@hasDecl(@This(), "PWINDBG_READ_PROCESS_MEMORY_ROUTINE64")) { _ = PWINDBG_READ_PROCESS_MEMORY_ROUTINE64; }
+    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE32")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE32; }
+    if (@hasDecl(@This(), "PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE64")) { _ = PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE64; }
+    if (@hasDecl(@This(), "PWINDBG_GET_THREAD_CONTEXT_ROUTINE")) { _ = PWINDBG_GET_THREAD_CONTEXT_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_SET_THREAD_CONTEXT_ROUTINE")) { _ = PWINDBG_SET_THREAD_CONTEXT_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_IOCTL_ROUTINE")) { _ = PWINDBG_IOCTL_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_OLDKD_READ_PHYSICAL_MEMORY")) { _ = PWINDBG_OLDKD_READ_PHYSICAL_MEMORY; }
+    if (@hasDecl(@This(), "PWINDBG_OLDKD_WRITE_PHYSICAL_MEMORY")) { _ = PWINDBG_OLDKD_WRITE_PHYSICAL_MEMORY; }
+    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE")) { _ = PWINDBG_STACKTRACE_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE32")) { _ = PWINDBG_STACKTRACE_ROUTINE32; }
+    if (@hasDecl(@This(), "PWINDBG_STACKTRACE_ROUTINE64")) { _ = PWINDBG_STACKTRACE_ROUTINE64; }
+    if (@hasDecl(@This(), "PWINDBG_OLD_EXTENSION_ROUTINE")) { _ = PWINDBG_OLD_EXTENSION_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE")) { _ = PWINDBG_EXTENSION_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE32")) { _ = PWINDBG_EXTENSION_ROUTINE32; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_ROUTINE64")) { _ = PWINDBG_EXTENSION_ROUTINE64; }
+    if (@hasDecl(@This(), "PWINDBG_OLDKD_EXTENSION_ROUTINE")) { _ = PWINDBG_OLDKD_EXTENSION_ROUTINE; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT")) { _ = PWINDBG_EXTENSION_DLL_INIT; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT32")) { _ = PWINDBG_EXTENSION_DLL_INIT32; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_DLL_INIT64")) { _ = PWINDBG_EXTENSION_DLL_INIT64; }
+    if (@hasDecl(@This(), "PWINDBG_CHECK_VERSION")) { _ = PWINDBG_CHECK_VERSION; }
+    if (@hasDecl(@This(), "PWINDBG_EXTENSION_API_VERSION")) { _ = PWINDBG_EXTENSION_API_VERSION; }
+    if (@hasDecl(@This(), "PSYM_DUMP_FIELD_CALLBACK")) { _ = PSYM_DUMP_FIELD_CALLBACK; }
+    if (@hasDecl(@This(), "PREAD_PROCESS_MEMORY_ROUTINE")) { _ = PREAD_PROCESS_MEMORY_ROUTINE; }
+    if (@hasDecl(@This(), "PFUNCTION_TABLE_ACCESS_ROUTINE")) { _ = PFUNCTION_TABLE_ACCESS_ROUTINE; }
+    if (@hasDecl(@This(), "PGET_MODULE_BASE_ROUTINE")) { _ = PGET_MODULE_BASE_ROUTINE; }
+    if (@hasDecl(@This(), "PTRANSLATE_ADDRESS_ROUTINE")) { _ = PTRANSLATE_ADDRESS_ROUTINE; }
+    if (@hasDecl(@This(), "PSYM_ENUMMODULES_CALLBACK")) { _ = PSYM_ENUMMODULES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACK")) { _ = PSYM_ENUMSYMBOLS_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACKW")) { _ = PSYM_ENUMSYMBOLS_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUMLOADED_MODULES_CALLBACK")) { _ = PENUMLOADED_MODULES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYMBOL_REGISTERED_CALLBACK")) { _ = PSYMBOL_REGISTERED_CALLBACK; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

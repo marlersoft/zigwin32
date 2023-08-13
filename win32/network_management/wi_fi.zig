@@ -843,8 +843,8 @@ pub const DOT11_WEP_OFFLOAD = extern struct {
     hOffload: ?HANDLE,
     dot11OffloadType: DOT11_OFFLOAD_TYPE,
     dwAlgorithm: u32,
-    bRowIsOutbound: u8,
-    bUseDefault: u8,
+    bRowIsOutbound: BOOLEAN,
+    bUseDefault: BOOLEAN,
     uFlags: u32,
     ucMacAddress: [6]u8,
     uNumOfRWsOnPeer: u32,
@@ -929,8 +929,8 @@ pub const DOT11_SCAN_REQUEST = extern struct {
     dot11BSSID: [6]u8,
     dot11SSID: DOT11_SSID,
     dot11ScanType: DOT11_SCAN_TYPE,
-    bRestrictedScan: u8,
-    bUseRequestIE: u8,
+    bRestrictedScan: BOOLEAN,
+    bUseRequestIE: BOOLEAN,
     uRequestIDsOffset: u32,
     uNumOfRequestIDs: u32,
     uPhyTypesOffset: u32,
@@ -951,7 +951,7 @@ pub const ch_description_type_phy_specific = CH_DESCRIPTION_TYPE.phy_specific;
 
 pub const DOT11_PHY_TYPE_INFO = extern struct {
     dot11PhyType: DOT11_PHY_TYPE,
-    bUseParameters: u8,
+    bUseParameters: BOOLEAN,
     uProbeDelay: u32,
     uMinChannelTime: u32,
     uMaxChannelTime: u32,
@@ -964,10 +964,10 @@ pub const DOT11_SCAN_REQUEST_V2 = extern struct {
     dot11BSSType: DOT11_BSS_TYPE,
     dot11BSSID: [6]u8,
     dot11ScanType: DOT11_SCAN_TYPE,
-    bRestrictedScan: u8,
+    bRestrictedScan: BOOLEAN,
     udot11SSIDsOffset: u32,
     uNumOfdot11SSIDs: u32,
-    bUseRequestIE: u8,
+    bUseRequestIE: BOOLEAN,
     uRequestIDsOffset: u32,
     uNumOfRequestIDs: u32,
     uPhyTypeInfosOffset: u32,
@@ -1034,22 +1034,22 @@ pub const dot11_reset_type_phy_and_mac = DOT11_RESET_TYPE.phy_and_mac;
 pub const DOT11_RESET_REQUEST = extern struct {
     dot11ResetType: DOT11_RESET_TYPE,
     dot11MacAddress: [6]u8,
-    bSetDefaultMIB: u8,
+    bSetDefaultMIB: BOOLEAN,
 };
 
 pub const DOT11_OPTIONAL_CAPABILITY = extern struct {
     uReserved: u32,
-    bDot11PCF: u8,
-    bDot11PCFMPDUTransferToPC: u8,
-    bStrictlyOrderedServiceClass: u8,
+    bDot11PCF: BOOLEAN,
+    bDot11PCFMPDUTransferToPC: BOOLEAN,
+    bStrictlyOrderedServiceClass: BOOLEAN,
 };
 
 pub const DOT11_CURRENT_OPTIONAL_CAPABILITY = extern struct {
     uReserved: u32,
-    bDot11CFPollable: u8,
-    bDot11PCF: u8,
-    bDot11PCFMPDUTransferToPC: u8,
-    bStrictlyOrderedServiceClass: u8,
+    bDot11CFPollable: BOOLEAN,
+    bDot11PCF: BOOLEAN,
+    bDot11PCFMPDUTransferToPC: BOOLEAN,
+    bStrictlyOrderedServiceClass: BOOLEAN,
 };
 
 pub const DOT11_POWER_MODE = enum(i32) {
@@ -1066,7 +1066,7 @@ pub const DOT11_POWER_MGMT_MODE = extern struct {
     uPowerSaveLevel: u32,
     usListenInterval: u16,
     usAID: u16,
-    bReceiveDTIMs: u8,
+    bReceiveDTIMs: BOOLEAN,
 };
 
 pub const DOT11_COUNTERS_ENTRY = extern struct {
@@ -1129,7 +1129,7 @@ pub const DOT11_REG_DOMAINS_SUPPORT_VALUE = extern struct {
 
 pub const DOT11_SUPPORTED_ANTENNA = extern struct {
     uAntennaListIndex: u32,
-    bSupportedAntenna: u8,
+    bSupportedAntenna: BOOLEAN,
 };
 
 pub const DOT11_SUPPORTED_ANTENNA_LIST = extern struct {
@@ -1140,7 +1140,7 @@ pub const DOT11_SUPPORTED_ANTENNA_LIST = extern struct {
 
 pub const DOT11_DIVERSITY_SELECTION_RX = extern struct {
     uAntennaListIndex: u32,
-    bDiversitySelectionRX: u8,
+    bDiversitySelectionRX: BOOLEAN,
 };
 
 pub const DOT11_DIVERSITY_SELECTION_RX_LIST = extern struct {
@@ -1325,7 +1325,7 @@ pub const DOT11_BSS_ENTRY = extern struct {
     dot11BSSType: DOT11_BSS_TYPE,
     lRSSI: i32,
     uLinkQuality: u32,
-    bInRegDomain: u8,
+    bInRegDomain: BOOLEAN,
     usBeaconPeriod: u16,
     ullTimestamp: u64,
     ullHostTimestamp: u64,
@@ -1448,8 +1448,8 @@ pub const DOT11_CIPHER_DEFAULT_KEY_VALUE = extern struct {
     uKeyIndex: u32,
     AlgorithmId: DOT11_CIPHER_ALGORITHM,
     MacAddr: [6]u8,
-    bDelete: u8,
-    bStatic: u8,
+    bDelete: BOOLEAN,
+    bStatic: BOOLEAN,
     usKeyLength: u16,
     ucKey: [1]u8,
 };
@@ -1504,8 +1504,8 @@ pub const DOT11_CIPHER_KEY_MAPPING_KEY_VALUE = extern struct {
     PeerMacAddr: [6]u8,
     AlgorithmId: DOT11_CIPHER_ALGORITHM,
     Direction: DOT11_DIRECTION,
-    bDelete: u8,
-    bStatic: u8,
+    bDelete: BOOLEAN,
+    bStatic: BOOLEAN,
     usKeyLength: u16,
     ucKey: [1]u8,
 };
@@ -1587,12 +1587,12 @@ pub const DOT11_COUNTRY_OR_REGION_STRING_LIST = extern struct {
 pub const DOT11_PORT_STATE_NOTIFICATION = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerMac: [6]u8,
-    bOpen: u8,
+    bOpen: BOOLEAN,
 };
 
 pub const DOT11_IBSS_PARAMS = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bJoinOnly: u8,
+    bJoinOnly: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -1623,9 +1623,9 @@ pub const DOT11_PER_MSDU_COUNTERS = extern struct {
 };
 
 pub const DOT11_HRDSSS_PHY_ATTRIBUTES = extern struct {
-    bShortPreambleOptionImplemented: u8,
-    bPBCCOptionImplemented: u8,
-    bChannelAgilityPresent: u8,
+    bShortPreambleOptionImplemented: BOOLEAN,
+    bPBCCOptionImplemented: BOOLEAN,
+    bChannelAgilityPresent: BOOLEAN,
     uHRCCAModeSupported: u32,
 };
 
@@ -1635,17 +1635,17 @@ pub const DOT11_OFDM_PHY_ATTRIBUTES = extern struct {
 
 pub const DOT11_ERP_PHY_ATTRIBUTES = extern struct {
     HRDSSSAttributes: DOT11_HRDSSS_PHY_ATTRIBUTES,
-    bERPPBCCOptionImplemented: u8,
-    bDSSSOFDMOptionImplemented: u8,
-    bShortSlotTimeOptionImplemented: u8,
+    bERPPBCCOptionImplemented: BOOLEAN,
+    bDSSSOFDMOptionImplemented: BOOLEAN,
+    bShortSlotTimeOptionImplemented: BOOLEAN,
 };
 
 pub const DOT11_PHY_ATTRIBUTES = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PhyType: DOT11_PHY_TYPE,
-    bHardwarePhyState: u8,
-    bSoftwarePhyState: u8,
-    bCFPollable: u8,
+    bHardwarePhyState: BOOLEAN,
+    bSoftwarePhyState: BOOLEAN,
+    bCFPollable: BOOLEAN,
     uMPDUMaxLength: u32,
     TempType: DOT11_TEMP_TYPE,
     DiversitySupport: DOT11_DIVERSITY_SUPPORT,
@@ -1673,9 +1673,9 @@ pub const DOT11_EXTSTA_ATTRIBUTES = extern struct {
     uWEPKeyValueMaxLength: u32,
     uPMKIDCacheSize: u32,
     uMaxNumPerSTADefaultKeyTables: u32,
-    bStrictlyOrderedServiceClassImplemented: u8,
+    bStrictlyOrderedServiceClassImplemented: BOOLEAN,
     ucSupportedQoSProtocolFlags: u8,
-    bSafeModeImplemented: u8,
+    bSafeModeImplemented: BOOLEAN,
     uNumSupportedCountryOrRegionStrings: u32,
     pSupportedCountryOrRegionStrings: ?*u8,
     uInfraNumSupportedUcastAlgoPairs: u32,
@@ -1686,16 +1686,16 @@ pub const DOT11_EXTSTA_ATTRIBUTES = extern struct {
     pAdhocSupportedUcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
     uAdhocNumSupportedMcastAlgoPairs: u32,
     pAdhocSupportedMcastAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
-    bAutoPowerSaveMode: u8,
+    bAutoPowerSaveMode: BOOLEAN,
     uMaxNetworkOffloadListSize: u32,
-    bMFPCapable: u8,
+    bMFPCapable: BOOLEAN,
     uInfraNumSupportedMcastMgmtAlgoPairs: u32,
     pInfraSupportedMcastMgmtAlgoPairs: ?*DOT11_AUTH_CIPHER_PAIR,
-    bNeighborReportSupported: u8,
-    bAPChannelReportSupported: u8,
-    bActionFramesSupported: u8,
-    bANQPQueryOffloadSupported: u8,
-    bHESSIDConnectionSupported: u8,
+    bNeighborReportSupported: BOOLEAN,
+    bAPChannelReportSupported: BOOLEAN,
+    bActionFramesSupported: BOOLEAN,
+    bANQPQueryOffloadSupported: BOOLEAN,
+    bHESSIDConnectionSupported: BOOLEAN,
 };
 
 pub const DOT11_RECV_EXTENSION_INFO = extern struct {
@@ -1785,8 +1785,8 @@ pub const DOT11_ASSOCIATION_COMPLETION_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     MacAddr: [6]u8,
     uStatus: u32,
-    bReAssocReq: u8,
-    bReAssocResp: u8,
+    bReAssocReq: BOOLEAN,
+    bReAssocResp: BOOLEAN,
     uAssocReqOffset: u32,
     uAssocReqSize: u32,
     uAssocRespOffset: u32,
@@ -1800,8 +1800,8 @@ pub const DOT11_ASSOCIATION_COMPLETION_PARAMETERS = extern struct {
     MulticastCipher: DOT11_CIPHER_ALGORITHM,
     uActivePhyListOffset: u32,
     uActivePhyListSize: u32,
-    bFourAddressSupported: u8,
-    bPortAuthorized: u8,
+    bFourAddressSupported: BOOLEAN,
+    bPortAuthorized: BOOLEAN,
     ucActiveQoSProtocol: u8,
     DSInfo: DOT11_DS_INFO,
     uEncapTableOffset: u32,
@@ -1844,7 +1844,7 @@ pub const DOT11_DISASSOCIATION_PARAMETERS = extern struct {
 
 pub const DOT11_TKIPMIC_FAILURE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bDefaultKeyFailure: u8,
+    bDefaultKeyFailure: BOOLEAN,
     uKeyIndex: u32,
     PeerMac: [6]u8,
 };
@@ -1863,8 +1863,8 @@ pub const DOT11_BSSID_CANDIDATE = extern struct {
 pub const DOT11_PHY_STATE_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     uPhyId: u32,
-    bHardwarePhyState: u8,
-    bSoftwarePhyState: u8,
+    bHardwarePhyState: BOOLEAN,
+    bSoftwarePhyState: BOOLEAN,
 };
 
 pub const DOT11_LINK_QUALITY_ENTRY = extern struct {
@@ -1908,7 +1908,7 @@ pub const DOT11_EXTAP_ATTRIBUTES = extern struct {
     uAssociationTableSize: u32,
     uDefaultKeyTableSize: u32,
     uWEPKeyValueMaxLength: u32,
-    bStrictlyOrderedServiceClassImplemented: u8,
+    bStrictlyOrderedServiceClassImplemented: BOOLEAN,
     uNumSupportedCountryOrRegionStrings: u32,
     pSupportedCountryOrRegionStrings: ?*u8,
     uInfraNumSupportedUcastAlgoPairs: u32,
@@ -1925,7 +1925,7 @@ pub const DOT11_INCOMING_ASSOC_STARTED_PARAMETERS = extern struct {
 pub const DOT11_INCOMING_ASSOC_REQUEST_RECEIVED_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerMacAddr: [6]u8,
-    bReAssocReq: u8,
+    bReAssocReq: BOOLEAN,
     uAssocReqOffset: u32,
     uAssocReqSize: u32,
 };
@@ -1935,8 +1935,8 @@ pub const DOT11_INCOMING_ASSOC_COMPLETION_PARAMETERS = extern struct {
     PeerMacAddr: [6]u8,
     uStatus: u32,
     ucErrorSource: u8,
-    bReAssocReq: u8,
-    bReAssocResp: u8,
+    bReAssocReq: BOOLEAN,
+    bReAssocResp: BOOLEAN,
     uAssocReqOffset: u32,
     uAssocReqSize: u32,
     uAssocRespOffset: u32,
@@ -1992,7 +1992,7 @@ pub const DOT11_DISASSOCIATE_PEER_REQUEST = extern struct {
 pub const DOT11_INCOMING_ASSOC_DECISION = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerMacAddr: [6]u8,
-    bAccept: u8,
+    bAccept: BOOLEAN,
     usReasonCode: u16,
     uAssocResponseIEsOffset: u32,
     uAssocResponseIEsLength: u32,
@@ -2001,7 +2001,7 @@ pub const DOT11_INCOMING_ASSOC_DECISION = extern struct {
 pub const DOT11_INCOMING_ASSOC_DECISION_V2 = extern struct {
     Header: NDIS_OBJECT_HEADER,
     PeerMacAddr: [6]u8,
-    bAccept: u8,
+    bAccept: BOOLEAN,
     usReasonCode: u16,
     uAssocResponseIEsOffset: u32,
     uAssocResponseIEsLength: u32,
@@ -2031,7 +2031,7 @@ pub const DOT11_PEER_INFO = extern struct {
     AuthAlgo: DOT11_AUTH_ALGORITHM,
     UnicastCipherAlgo: DOT11_CIPHER_ALGORITHM,
     MulticastCipherAlgo: DOT11_CIPHER_ALGORITHM,
-    bWpsEnabled: u8,
+    bWpsEnabled: BOOLEAN,
     usListenInterval: u16,
     ucSupportedRates: [255]u8,
     usAssociationID: u16,
@@ -2094,9 +2094,9 @@ pub const DOT11_WFD_ATTRIBUTES = extern struct {
     uNumConcurrentGORole: u32,
     uNumConcurrentClientRole: u32,
     WPSVersionsSupported: u32,
-    bServiceDiscoverySupported: u8,
-    bClientDiscoverabilitySupported: u8,
-    bInfrastructureManagementSupported: u8,
+    bServiceDiscoverySupported: BOOLEAN,
+    bClientDiscoverabilitySupported: BOOLEAN,
+    bInfrastructureManagementSupported: BOOLEAN,
     uMaxSecondaryDeviceTypeListSize: u32,
     DeviceAddress: [6]u8,
     uInterfaceAddressListCount: u32,
@@ -2179,9 +2179,9 @@ pub const DOT11_WPS_PASSWORD_ID_OOB_RANGE_MIN = DOT11_WPS_DEVICE_PASSWORD_ID.OOB
 pub const DOT11_WPS_PASSWORD_ID_OOB_RANGE_MAX = DOT11_WPS_DEVICE_PASSWORD_ID.OOB_RANGE_MAX;
 
 pub const WFDSVC_CONNECTION_CAPABILITY = extern struct {
-    bNew: u8,
-    bClient: u8,
-    bGO: u8,
+    bNew: BOOLEAN,
+    bClient: BOOLEAN,
+    bGO: BOOLEAN,
 };
 
 pub const DOT11_WFD_SERVICE_HASH_LIST = extern struct {
@@ -2377,34 +2377,34 @@ pub const DOT11_ANQP_QUERY_COMPLETE_PARAMETERS = extern struct {
 
 pub const DOT11_WFD_DEVICE_CAPABILITY_CONFIG = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bServiceDiscoveryEnabled: u8,
-    bClientDiscoverabilityEnabled: u8,
-    bConcurrentOperationSupported: u8,
-    bInfrastructureManagementEnabled: u8,
-    bDeviceLimitReached: u8,
-    bInvitationProcedureEnabled: u8,
+    bServiceDiscoveryEnabled: BOOLEAN,
+    bClientDiscoverabilityEnabled: BOOLEAN,
+    bConcurrentOperationSupported: BOOLEAN,
+    bInfrastructureManagementEnabled: BOOLEAN,
+    bDeviceLimitReached: BOOLEAN,
+    bInvitationProcedureEnabled: BOOLEAN,
     WPSVersionsEnabled: u32,
 };
 
 pub const DOT11_WFD_GROUP_OWNER_CAPABILITY_CONFIG = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bPersistentGroupEnabled: u8,
-    bIntraBSSDistributionSupported: u8,
-    bCrossConnectionSupported: u8,
-    bPersistentReconnectSupported: u8,
-    bGroupFormationEnabled: u8,
+    bPersistentGroupEnabled: BOOLEAN,
+    bIntraBSSDistributionSupported: BOOLEAN,
+    bCrossConnectionSupported: BOOLEAN,
+    bPersistentReconnectSupported: BOOLEAN,
+    bGroupFormationEnabled: BOOLEAN,
     uMaximumGroupLimit: u32,
 };
 
 pub const DOT11_WFD_GROUP_OWNER_CAPABILITY_CONFIG_V2 = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bPersistentGroupEnabled: u8,
-    bIntraBSSDistributionSupported: u8,
-    bCrossConnectionSupported: u8,
-    bPersistentReconnectSupported: u8,
-    bGroupFormationEnabled: u8,
+    bPersistentGroupEnabled: BOOLEAN,
+    bIntraBSSDistributionSupported: BOOLEAN,
+    bCrossConnectionSupported: BOOLEAN,
+    bPersistentReconnectSupported: BOOLEAN,
+    bGroupFormationEnabled: BOOLEAN,
     uMaximumGroupLimit: u32,
-    bEapolKeyIpAddressAllocationSupported: u8,
+    bEapolKeyIpAddressAllocationSupported: BOOLEAN,
 };
 
 pub const DOT11_WFD_DEVICE_INFO = extern struct {
@@ -2459,7 +2459,7 @@ pub const DOT11_WFD_DISCOVER_REQUEST = extern struct {
     uNumDeviceFilters: u32,
     uIEsOffset: u32,
     uIEsLength: u32,
-    bForceScanLegacyNetworks: u8,
+    bForceScanLegacyNetworks: BOOLEAN,
 };
 
 pub const DOT11_WFD_DEVICE_ENTRY = extern struct {
@@ -2516,7 +2516,7 @@ pub const DOT11_SEND_GO_NEGOTIATION_RESPONSE_PARAMETERS = extern struct {
     IntendedInterfaceAddress: [6]u8,
     GroupCapability: u8,
     GroupID: DOT11_WFD_GROUP_ID,
-    bUseGroupID: u8,
+    bUseGroupID: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2530,7 +2530,7 @@ pub const DOT11_SEND_GO_NEGOTIATION_CONFIRMATION_PARAMETERS = extern struct {
     Status: u8,
     GroupCapability: u8,
     GroupID: DOT11_WFD_GROUP_ID,
-    bUseGroupID: u8,
+    bUseGroupID: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2547,11 +2547,11 @@ pub const DOT11_SEND_INVITATION_REQUEST_PARAMETERS = extern struct {
     MinimumConfigTimeout: DOT11_WFD_CONFIGURATION_TIMEOUT,
     InvitationFlags: DOT11_WFD_INVITATION_FLAGS,
     GroupBSSID: [6]u8,
-    bUseGroupBSSID: u8,
+    bUseGroupBSSID: BOOLEAN,
     OperatingChannel: DOT11_WFD_CHANNEL,
-    bUseSpecifiedOperatingChannel: u8,
+    bUseSpecifiedOperatingChannel: BOOLEAN,
     GroupID: DOT11_WFD_GROUP_ID,
-    bLocalGO: u8,
+    bLocalGO: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2565,9 +2565,9 @@ pub const DOT11_SEND_INVITATION_RESPONSE_PARAMETERS = extern struct {
     Status: u8,
     MinimumConfigTimeout: DOT11_WFD_CONFIGURATION_TIMEOUT,
     GroupBSSID: [6]u8,
-    bUseGroupBSSID: u8,
+    bUseGroupBSSID: BOOLEAN,
     OperatingChannel: DOT11_WFD_CHANNEL,
-    bUseSpecifiedOperatingChannel: u8,
+    bUseSpecifiedOperatingChannel: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2579,7 +2579,7 @@ pub const DOT11_SEND_PROVISION_DISCOVERY_REQUEST_PARAMETERS = extern struct {
     uSendTimeout: u32,
     GroupCapability: u8,
     GroupID: DOT11_WFD_GROUP_ID,
-    bUseGroupID: u8,
+    bUseGroupID: BOOLEAN,
     uIEsOffset: u32,
     uIEsLength: u32,
 };
@@ -2608,13 +2608,13 @@ pub const DOT11_WFD_GROUP_JOIN_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     GOOperatingChannel: DOT11_WFD_CHANNEL,
     GOConfigTime: u32,
-    bInGroupFormation: u8,
-    bWaitForWPSReady: u8,
+    bInGroupFormation: BOOLEAN,
+    bWaitForWPSReady: BOOLEAN,
 };
 
 pub const DOT11_POWER_MGMT_AUTO_MODE_ENABLED_INFO = extern struct {
     Header: NDIS_OBJECT_HEADER,
-    bEnabled: u8,
+    bEnabled: BOOLEAN,
 };
 
 pub const DOT11_POWER_MODE_REASON = enum(i32) {
@@ -2720,7 +2720,7 @@ pub const DOT11_MANUFACTURING_SELF_TEST_SET_PARAMS = extern struct {
 pub const DOT11_MANUFACTURING_SELF_TEST_QUERY_RESULTS = extern struct {
     SelfTestType: DOT11_MANUFACTURING_SELF_TEST_TYPE,
     uTestID: u32,
-    bResult: u8,
+    bResult: BOOLEAN,
     uPinFailedBitMask: u32,
     pvContext: ?*c_void,
     uBytesWrittenOut: u32,
@@ -2737,15 +2737,15 @@ pub const dot11_band_4p9g = DOT11_BAND.@"4p9g";
 pub const dot11_band_5g = DOT11_BAND.@"5g";
 
 pub const DOT11_MANUFACTURING_FUNCTIONAL_TEST_RX = extern struct {
-    bEnabled: u8,
+    bEnabled: BOOLEAN,
     Dot11Band: DOT11_BAND,
     uChannel: u32,
     PowerLevel: i32,
 };
 
 pub const DOT11_MANUFACTURING_FUNCTIONAL_TEST_TX = extern struct {
-    bEnable: u8,
-    bOpenLoop: u8,
+    bEnable: BOOLEAN,
+    bOpenLoop: BOOLEAN,
     Dot11Band: DOT11_BAND,
     uChannel: u32,
     uSetPowerLevel: u32,
@@ -2897,7 +2897,7 @@ pub const WLAN_BSS_ENTRY = extern struct {
     dot11BssPhyType: DOT11_PHY_TYPE,
     lRssi: i32,
     uLinkQuality: u32,
-    bInRegDomain: u8,
+    bInRegDomain: BOOLEAN,
     usBeaconPeriod: u16,
     ullTimestamp: u64,
     ullHostTimestamp: u64,
@@ -3843,8 +3843,8 @@ pub const IDot11AdHocManager = extern struct {
         CommitCreatedNetwork: fn(
             self: *const IDot11AdHocManager,
             pIAdHoc: ?*IDot11AdHocNetwork,
-            fSaveProfile: u8,
-            fMakeSavedProfileUserSpecific: u8,
+            fSaveProfile: BOOLEAN,
+            fMakeSavedProfileUserSpecific: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIEnumDot11AdHocNetworks: fn(
             self: *const IDot11AdHocManager,
@@ -3869,7 +3869,7 @@ pub const IDot11AdHocManager = extern struct {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CreateNetwork(@ptrCast(*const IDot11AdHocManager, self), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CommitCreatedNetwork(@ptrCast(*const IDot11AdHocManager, self), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4031,8 +4031,8 @@ pub const IDot11AdHocNetwork = extern struct {
             self: *const IDot11AdHocNetwork,
             Passphrase: ?[*:0]const u16,
             GeographicalId: i32,
-            fSaveProfile: u8,
-            fMakeSavedProfileUserSpecific: u8,
+            fSaveProfile: BOOLEAN,
+            fMakeSavedProfileUserSpecific: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disconnect: fn(
             self: *const IDot11AdHocNetwork,
@@ -4082,7 +4082,7 @@ pub const IDot11AdHocNetwork = extern struct {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetInterface(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: u8, fMakeSavedProfileUserSpecific: u8) callconv(.Inline) HRESULT {
+        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Connect(@ptrCast(*const IDot11AdHocNetwork, self), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4899,9 +4899,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;

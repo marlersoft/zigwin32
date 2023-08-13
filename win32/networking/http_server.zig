@@ -215,7 +215,7 @@ pub const HTTP_SERVICE_CONFIG_SETTING_SET = extern struct {
 
 pub const HTTP_LISTEN_ENDPOINT_INFO = extern struct {
     Flags: HTTP_PROPERTY_FLAGS,
-    EnableSharing: u8,
+    EnableSharing: BOOLEAN,
 };
 
 pub const HTTP_SERVER_AUTHENTICATION_DIGEST_PARAMS = extern struct {
@@ -233,9 +233,9 @@ pub const HTTP_SERVER_AUTHENTICATION_BASIC_PARAMS = extern struct {
 pub const HTTP_SERVER_AUTHENTICATION_INFO = extern struct {
     Flags: HTTP_PROPERTY_FLAGS,
     AuthSchemes: u32,
-    ReceiveMutualAuth: u8,
-    ReceiveContextHandle: u8,
-    DisableNTLMCredentialCaching: u8,
+    ReceiveMutualAuth: BOOLEAN,
+    ReceiveContextHandle: BOOLEAN,
+    DisableNTLMCredentialCaching: BOOLEAN,
     ExFlags: u8,
     DigestParams: HTTP_SERVER_AUTHENTICATION_DIGEST_PARAMS,
     BasicParams: HTTP_SERVER_AUTHENTICATION_BASIC_PARAMS,
@@ -693,7 +693,7 @@ pub const HTTP_SSL_CLIENT_CERT_INFO = extern struct {
     CertEncodedSize: u32,
     pCertEncoded: ?*u8,
     Token: ?HANDLE,
-    CertDeniedByMapper: u8,
+    CertDeniedByMapper: BOOLEAN,
 };
 
 pub const HTTP_SSL_INFO = extern struct {
@@ -1035,7 +1035,7 @@ pub const HTTP2_SETTINGS_LIMITS_PARAM = extern struct {
 
 pub const HTTP_PERFORMANCE_PARAM = extern struct {
     SendBufferingFlags: u64,
-    EnableAggressiveICW: u8,
+    EnableAggressiveICW: BOOLEAN,
     MaxBufferedSendBytes: u32,
     MaxConcurrentClientStreams: u32,
 };
@@ -1572,12 +1572,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;

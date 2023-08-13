@@ -33,32 +33,6 @@ pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const TBS_CONTEXT_PARAMS = extern struct {
-    version: u32,
-};
-
-pub const TBS_CONTEXT_PARAMS2 = extern struct {
-    version: u32,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-        asUINT32: u32,
-    },
-};
-
-pub const tdTPM_WNF_PROVISIONING = extern struct {
-    status: u32,
-    message: [28]u8,
-};
-
-pub const TPM_DEVICE_INFO = extern struct {
-    structVersion: u32,
-    tpmVersion: u32,
-    tpmInterfaceType: u32,
-    tpmImpRevision: u32,
-};
-
 pub const TBS_COMMAND_PRIORITY = enum(u32) {
     LOW = 100,
     NORMAL = 200,
@@ -84,6 +58,32 @@ pub const TBS_COMMAND_LOCALITY_ONE = TBS_COMMAND_LOCALITY.ONE;
 pub const TBS_COMMAND_LOCALITY_TWO = TBS_COMMAND_LOCALITY.TWO;
 pub const TBS_COMMAND_LOCALITY_THREE = TBS_COMMAND_LOCALITY.THREE;
 pub const TBS_COMMAND_LOCALITY_FOUR = TBS_COMMAND_LOCALITY.FOUR;
+
+pub const TBS_CONTEXT_PARAMS = extern struct {
+    version: u32,
+};
+
+pub const TBS_CONTEXT_PARAMS2 = extern struct {
+    version: u32,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        asUINT32: u32,
+    },
+};
+
+pub const tdTPM_WNF_PROVISIONING = extern struct {
+    status: u32,
+    message: [28]u8,
+};
+
+pub const TPM_DEVICE_INFO = extern struct {
+    structVersion: u32,
+    tpmVersion: u32,
+    tpmInterfaceType: u32,
+    tpmImpRevision: u32,
+};
 
 
 //--------------------------------------------------------------------------------

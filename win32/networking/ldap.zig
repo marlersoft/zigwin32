@@ -317,21 +317,21 @@ pub const LDAPMessage = extern struct {
     Request: ?*c_void,
     lm_returncode: u32,
     lm_referral: u16,
-    lm_chased: u8,
-    lm_eom: u8,
-    ConnectionReferenced: u8,
+    lm_chased: BOOLEAN,
+    lm_eom: BOOLEAN,
+    ConnectionReferenced: BOOLEAN,
 };
 
 pub const ldapcontrolA = extern struct {
     ldctl_oid: ?[*]u8,
     ldctl_value: LDAP_BERVAL,
-    ldctl_iscritical: u8,
+    ldctl_iscritical: BOOLEAN,
 };
 
 pub const ldapcontrolW = extern struct {
     ldctl_oid: ?[*]u16,
     ldctl_value: LDAP_BERVAL,
-    ldctl_iscritical: u8,
+    ldctl_iscritical: BOOLEAN,
 };
 
 pub const ldapmodW = extern struct {
@@ -399,13 +399,13 @@ pub const DBGPRINT = fn(
 pub const ldapsortkeyW = extern struct {
     sk_attrtype: ?[*]u16,
     sk_matchruleoid: ?[*]u16,
-    sk_reverseorder: u8,
+    sk_reverseorder: BOOLEAN,
 };
 
 pub const ldapsortkeyA = extern struct {
     sk_attrtype: ?[*]u8,
     sk_matchruleoid: ?[*]u8,
-    sk_reverseorder: u8,
+    sk_reverseorder: BOOLEAN,
 };
 
 pub const ldapvlvinfo = extern struct {
@@ -440,7 +440,7 @@ pub const NOTIFYOFNEWCONNECTION = fn(
     SecAuthIdentity: ?*c_void,
     CurrentUser: ?*c_void,
     ErrorCodeFromBind: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const DEREFERENCECONNECTION = fn(
     PrimaryConnection: ?*ldap,
@@ -458,12 +458,12 @@ pub const QUERYCLIENTCERT = fn(
     Connection: ?*ldap,
     trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
     ppCertificate: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const VERIFYSERVERCERT = fn(
     Connection: ?*ldap,
     pServerCert: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -1520,7 +1520,7 @@ pub extern "WLDAP32" fn ldap_parse_resultW(
     ErrorMessage: ?*?PWSTR,
     Referrals: ?*?*?*u16,
     ServerControls: ?*?*?*ldapcontrolW,
-    Freeit: u8,
+    Freeit: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1532,7 +1532,7 @@ pub extern "WLDAP32" fn ldap_parse_resultA(
     ErrorMessage: ?*?PSTR,
     Referrals: ?*?*?*i8,
     ServerControls: ?*?*?*ldapcontrolA,
-    Freeit: u8,
+    Freeit: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1541,7 +1541,7 @@ pub extern "WLDAP32" fn ldap_parse_extended_resultA(
     ResultMessage: ?*LDAPMessage,
     ResultOID: ?*?PSTR,
     ResultData: ?*?*LDAP_BERVAL,
-    Freeit: u8,
+    Freeit: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1550,7 +1550,7 @@ pub extern "WLDAP32" fn ldap_parse_extended_resultW(
     ResultMessage: ?*LDAPMessage,
     ResultOID: ?*?PWSTR,
     ResultData: ?*?*LDAP_BERVAL,
-    Freeit: u8,
+    Freeit: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1592,7 +1592,7 @@ pub extern "WLDAP32" fn ldap_parse_result(
     ErrorMessage: ?*?PSTR,
     Referrals: ?*?*?PSTR,
     ServerControls: ?*?*?*ldapcontrolA,
-    Freeit: u8,
+    Freeit: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1979,7 +1979,7 @@ pub extern "WLDAP32" fn ldap_encode_sort_controlW(
     ExternalHandle: ?*ldap,
     SortKeys: ?*?*ldapsortkeyW,
     Control: ?*ldapcontrolW,
-    Criticality: u8,
+    Criticality: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1987,7 +1987,7 @@ pub extern "WLDAP32" fn ldap_encode_sort_controlA(
     ExternalHandle: ?*ldap,
     SortKeys: ?*?*ldapsortkeyA,
     Control: ?*ldapcontrolA,
-    Criticality: u8,
+    Criticality: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2175,7 +2175,7 @@ pub extern "WLDAP32" fn ldap_start_tls_sA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ldap_stop_tls_s(
     ExternalHandle: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ldap_first_reference(
@@ -2429,13 +2429,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const PSTR = @import("../foundation.zig").PSTR;
 const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const CHAR = @import("../system/system_services.zig").CHAR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity/core.zig").SecPkgContext_IssuerListInfoEx;
 
 test {

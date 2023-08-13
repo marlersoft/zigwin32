@@ -6,6 +6,31 @@
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
+    NONE = 0,
+    MICROSOFT = -1024700366,
+};
+pub const GAMING_DEVICE_VENDOR_ID_NONE = GAMING_DEVICE_VENDOR_ID.NONE;
+pub const GAMING_DEVICE_VENDOR_ID_MICROSOFT = GAMING_DEVICE_VENDOR_ID.MICROSOFT;
+
+pub const GAMING_DEVICE_DEVICE_ID = enum(i32) {
+    NONE = 0,
+    XBOX_ONE = 1988865574,
+    XBOX_ONE_S = 712204761,
+    XBOX_ONE_X = 1523980231,
+    XBOX_ONE_X_DEVKIT = 284675555,
+};
+pub const GAMING_DEVICE_DEVICE_ID_NONE = GAMING_DEVICE_DEVICE_ID.NONE;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE = GAMING_DEVICE_DEVICE_ID.XBOX_ONE;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_S = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_S;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X;
+pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X_DEVKIT = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X_DEVKIT;
+
+pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
+    vendorId: GAMING_DEVICE_VENDOR_ID,
+    deviceId: GAMING_DEVICE_DEVICE_ID,
+};
+
 pub const GameUICompletionRoutine = fn(
     returnCode: HRESULT,
     context: ?*c_void,
@@ -64,31 +89,6 @@ pub const XPRIVILEGE_PROFILE_VIEWING = KnownGamingPrivileges.PROFILE_VIEWING;
 pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
 pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
 pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
-
-pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
-    NONE = 0,
-    MICROSOFT = -1024700366,
-};
-pub const GAMING_DEVICE_VENDOR_ID_NONE = GAMING_DEVICE_VENDOR_ID.NONE;
-pub const GAMING_DEVICE_VENDOR_ID_MICROSOFT = GAMING_DEVICE_VENDOR_ID.MICROSOFT;
-
-pub const GAMING_DEVICE_DEVICE_ID = enum(i32) {
-    NONE = 0,
-    XBOX_ONE = 1988865574,
-    XBOX_ONE_S = 712204761,
-    XBOX_ONE_X = 1523980231,
-    XBOX_ONE_X_DEVKIT = 284675555,
-};
-pub const GAMING_DEVICE_DEVICE_ID_NONE = GAMING_DEVICE_DEVICE_ID.NONE;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE = GAMING_DEVICE_DEVICE_ID.XBOX_ONE;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_S = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_S;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X;
-pub const GAMING_DEVICE_DEVICE_ID_XBOX_ONE_X_DEVKIT = GAMING_DEVICE_DEVICE_ID.XBOX_ONE_X_DEVKIT;
-
-pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
-    vendorId: GAMING_DEVICE_VENDOR_ID,
-    deviceId: GAMING_DEVICE_DEVICE_ID,
-};
 
 const CLSID_XblIdpAuthManager_Value = @import("zig.zig").Guid.initString("ce23534b-56d8-4978-86a2-7ee570640468");
 pub const CLSID_XblIdpAuthManager = &CLSID_XblIdpAuthManager_Value;
@@ -405,6 +405,21 @@ pub const IXblIdpAuthTokenResult2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
+    hasExpandedResources: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
+    exclusiveCpuCount: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
+    information: ?*GAMING_DEVICE_MODEL_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
     serviceConfigurationId: ?HSTRING,
     sessionTemplateName: ?HSTRING,
@@ -594,21 +609,6 @@ pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
     user: ?*IInspectable,
     completionRoutine: ?GameUICompletionRoutine,
     context: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
-    hasExpandedResources: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
-    exclusiveCpuCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
-    information: ?*GAMING_DEVICE_MODEL_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

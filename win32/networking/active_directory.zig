@@ -1124,7 +1124,7 @@ pub const ADS_CLASS_DEF = extern struct {
 pub const ADS_SORTKEY = extern struct {
     pszAttrType: ?PWSTR,
     pszReserved: ?PWSTR,
-    fReverseorder: u8,
+    fReverseorder: BOOLEAN,
 };
 
 pub const ADS_VLV = extern struct {
@@ -10869,7 +10869,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (34)
+// Section: Imports (35)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("../foundation.zig").LPARAM;
@@ -10883,9 +10883,10 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const PSID = @import("../foundation.zig").PSID;
 const BOOL = @import("../foundation.zig").BOOL;
 const IPersist = @import("../system/com.zig").IPersist;
-const DISPPARAMS = @import("../system/ole_automation.zig").DISPPARAMS;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const WPARAM = @import("../foundation.zig").WPARAM;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
+const DISPPARAMS = @import("../system/ole_automation.zig").DISPPARAMS;
 const BFFCALLBACK = @import("../ui/shell.zig").BFFCALLBACK;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const ITypeInfo = @import("../system/ole_automation.zig").ITypeInfo;

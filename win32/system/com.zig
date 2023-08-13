@@ -880,105 +880,6 @@ pub const TYSPEC_PROGID = TYSPEC.PROGID;
 pub const TYSPEC_PACKAGENAME = TYSPEC.PACKAGENAME;
 pub const TYSPEC_OBJECTID = TYSPEC.OBJECTID;
 
-const IID_IAccessibilityDockingServiceCallback_Value = @import("../zig.zig").Guid.initString("157733fd-a592-42e5-b594-248468c5a81b");
-pub const IID_IAccessibilityDockingServiceCallback = &IID_IAccessibilityDockingServiceCallback_Value;
-pub const IAccessibilityDockingServiceCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Undocked: fn(
-            self: *const IAccessibilityDockingServiceCallback,
-            undockReason: UNDOCK_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingServiceCallback_Undocked(self: *const T, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingServiceCallback.VTable, self.vtable).Undocked(@ptrCast(*const IAccessibilityDockingServiceCallback, self), undockReason);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAccessibilityDockingService_Value = @import("../zig.zig").Guid.initString("8849dc22-cedf-4c95-998d-051419dd3f76");
-pub const IID_IAccessibilityDockingService = &IID_IAccessibilityDockingService_Value;
-pub const IAccessibilityDockingService = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAvailableSize: fn(
-            self: *const IAccessibilityDockingService,
-            hMonitor: ?HMONITOR,
-            pcxFixed: ?*u32,
-            pcyMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DockWindow: fn(
-            self: *const IAccessibilityDockingService,
-            hwnd: ?HWND,
-            hMonitor: ?HMONITOR,
-            cyRequested: u32,
-            pCallback: ?*IAccessibilityDockingServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UndockWindow: fn(
-            self: *const IAccessibilityDockingService,
-            hwnd: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_GetAvailableSize(self: *const T, hMonitor: ?HMONITOR, pcxFixed: ?*u32, pcyMax: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).GetAvailableSize(@ptrCast(*const IAccessibilityDockingService, self), hMonitor, pcxFixed, pcyMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_DockWindow(self: *const T, hwnd: ?HWND, hMonitor: ?HMONITOR, cyRequested: u32, pCallback: ?*IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).DockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd, hMonitor, cyRequested, pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_UndockWindow(self: *const T, hwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).UndockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const COINIT = enum(u32) {
-    APARTMENTTHREADED = 2,
-    MULTITHREADED = 0,
-    DISABLE_OLE1DDE = 4,
-    SPEED_OVER_MEMORY = 8,
-    _,
-    pub fn initFlags(o: struct {
-        APARTMENTTHREADED: u1 = 0,
-        MULTITHREADED: u1 = 0,
-        DISABLE_OLE1DDE: u1 = 0,
-        SPEED_OVER_MEMORY: u1 = 0,
-    }) COINIT {
-        return @intToEnum(COINIT,
-              (if (o.APARTMENTTHREADED == 1) @enumToInt(COINIT.APARTMENTTHREADED) else 0)
-            | (if (o.MULTITHREADED == 1) @enumToInt(COINIT.MULTITHREADED) else 0)
-            | (if (o.DISABLE_OLE1DDE == 1) @enumToInt(COINIT.DISABLE_OLE1DDE) else 0)
-            | (if (o.SPEED_OVER_MEMORY == 1) @enumToInt(COINIT.SPEED_OVER_MEMORY) else 0)
-        );
-    }
-};
-pub const COINIT_APARTMENTTHREADED = COINIT.APARTMENTTHREADED;
-pub const COINIT_MULTITHREADED = COINIT.MULTITHREADED;
-pub const COINIT_DISABLE_OLE1DDE = COINIT.DISABLE_OLE1DDE;
-pub const COINIT_SPEED_OVER_MEMORY = COINIT.SPEED_OVER_MEMORY;
-
-pub const COMSD = enum(i32) {
-    LAUNCHPERMISSIONS = 0,
-    ACCESSPERMISSIONS = 1,
-    LAUNCHRESTRICTIONS = 2,
-    ACCESSRESTRICTIONS = 3,
-};
-pub const SD_LAUNCHPERMISSIONS = COMSD.LAUNCHPERMISSIONS;
-pub const SD_ACCESSPERMISSIONS = COMSD.ACCESSPERMISSIONS;
-pub const SD_LAUNCHRESTRICTIONS = COMSD.LAUNCHRESTRICTIONS;
-pub const SD_ACCESSRESTRICTIONS = COMSD.ACCESSRESTRICTIONS;
-
 pub const REGCLS = enum(i32) {
     SINGLEUSE = 0,
     MULTIPLEUSE = 1,
@@ -14904,8 +14805,8 @@ pub const CALLFRAMEINFO = extern struct {
 };
 
 pub const CALLFRAMEPARAMINFO = extern struct {
-    fIn: u8,
-    fOut: u8,
+    fIn: BOOLEAN,
+    fOut: BOOLEAN,
     stackOffset: u32,
     cbParam: u32,
 };
@@ -14955,7 +14856,7 @@ pub const CALLFRAME_WALK_INOUT = CALLFRAME_WALK.INOUT;
 pub const CALLFRAME_WALK_OUT = CALLFRAME_WALK.OUT;
 
 pub const CALLFRAME_MARSHALCONTEXT = extern struct {
-    fIn: u8,
+    fIn: BOOLEAN,
     dwDestContext: u32,
     pvDestContext: ?*c_void,
     punkReserved: ?*IUnknown,
@@ -15614,6 +15515,105 @@ pub const IEventProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+const IID_IAccessibilityDockingServiceCallback_Value = @import("../zig.zig").Guid.initString("157733fd-a592-42e5-b594-248468c5a81b");
+pub const IID_IAccessibilityDockingServiceCallback = &IID_IAccessibilityDockingServiceCallback_Value;
+pub const IAccessibilityDockingServiceCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Undocked: fn(
+            self: *const IAccessibilityDockingServiceCallback,
+            undockReason: UNDOCK_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingServiceCallback_Undocked(self: *const T, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingServiceCallback.VTable, self.vtable).Undocked(@ptrCast(*const IAccessibilityDockingServiceCallback, self), undockReason);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IAccessibilityDockingService_Value = @import("../zig.zig").Guid.initString("8849dc22-cedf-4c95-998d-051419dd3f76");
+pub const IID_IAccessibilityDockingService = &IID_IAccessibilityDockingService_Value;
+pub const IAccessibilityDockingService = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAvailableSize: fn(
+            self: *const IAccessibilityDockingService,
+            hMonitor: ?HMONITOR,
+            pcxFixed: ?*u32,
+            pcyMax: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DockWindow: fn(
+            self: *const IAccessibilityDockingService,
+            hwnd: ?HWND,
+            hMonitor: ?HMONITOR,
+            cyRequested: u32,
+            pCallback: ?*IAccessibilityDockingServiceCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UndockWindow: fn(
+            self: *const IAccessibilityDockingService,
+            hwnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_GetAvailableSize(self: *const T, hMonitor: ?HMONITOR, pcxFixed: ?*u32, pcyMax: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).GetAvailableSize(@ptrCast(*const IAccessibilityDockingService, self), hMonitor, pcxFixed, pcyMax);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_DockWindow(self: *const T, hwnd: ?HWND, hMonitor: ?HMONITOR, cyRequested: u32, pCallback: ?*IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).DockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd, hMonitor, cyRequested, pCallback);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_UndockWindow(self: *const T, hwnd: ?HWND) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).UndockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const COINIT = enum(u32) {
+    APARTMENTTHREADED = 2,
+    MULTITHREADED = 0,
+    DISABLE_OLE1DDE = 4,
+    SPEED_OVER_MEMORY = 8,
+    _,
+    pub fn initFlags(o: struct {
+        APARTMENTTHREADED: u1 = 0,
+        MULTITHREADED: u1 = 0,
+        DISABLE_OLE1DDE: u1 = 0,
+        SPEED_OVER_MEMORY: u1 = 0,
+    }) COINIT {
+        return @intToEnum(COINIT,
+              (if (o.APARTMENTTHREADED == 1) @enumToInt(COINIT.APARTMENTTHREADED) else 0)
+            | (if (o.MULTITHREADED == 1) @enumToInt(COINIT.MULTITHREADED) else 0)
+            | (if (o.DISABLE_OLE1DDE == 1) @enumToInt(COINIT.DISABLE_OLE1DDE) else 0)
+            | (if (o.SPEED_OVER_MEMORY == 1) @enumToInt(COINIT.SPEED_OVER_MEMORY) else 0)
+        );
+    }
+};
+pub const COINIT_APARTMENTTHREADED = COINIT.APARTMENTTHREADED;
+pub const COINIT_MULTITHREADED = COINIT.MULTITHREADED;
+pub const COINIT_DISABLE_OLE1DDE = COINIT.DISABLE_OLE1DDE;
+pub const COINIT_SPEED_OVER_MEMORY = COINIT.SPEED_OVER_MEMORY;
+
+pub const COMSD = enum(i32) {
+    LAUNCHPERMISSIONS = 0,
+    ACCESSPERMISSIONS = 1,
+    LAUNCHRESTRICTIONS = 2,
+    ACCESSRESTRICTIONS = 3,
+};
+pub const SD_LAUNCHPERMISSIONS = COMSD.LAUNCHPERMISSIONS;
+pub const SD_ACCESSPERMISSIONS = COMSD.ACCESSPERMISSIONS;
+pub const SD_LAUNCHRESTRICTIONS = COMSD.LAUNCHRESTRICTIONS;
+pub const SD_ACCESSRESTRICTIONS = COMSD.ACCESSRESTRICTIONS;
+
 pub const UPDFCACHE_FLAGS = enum(u32) {
     ALL = 2147483647,
     ALLBUTNODATACACHE = 2147483646,
@@ -15804,50 +15804,27 @@ pub const MULTICLASSINFO_GETIIDSOURCE = MULTICLASSINFO_FLAGS.IIDSOURCE;
 //--------------------------------------------------------------------------------
 // Section: Functions (359)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn HMENU_UserSize(
+pub extern "OLE32" fn CLIPFORMAT_UserSize(
     param0: ?*u32,
     param1: u32,
-    param2: ?*?HMENU,
+    param2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HMENU_UserMarshal(
+pub extern "OLE32" fn CLIPFORMAT_UserMarshal(
     param0: ?*u32,
     param1: ?*u8,
-    param2: ?*?HMENU,
+    param2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMENU_UserUnmarshal(
+pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal(
     param0: ?*u32,
     param1: [*:0]u8,
-    param2: ?*?HMENU,
+    param2: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HMENU_UserFree(
+pub extern "OLE32" fn CLIPFORMAT_UserFree(
     param0: ?*u32,
-    param1: ?*?HMENU,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HMENU_UserSize64(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*?HMENU,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HMENU_UserMarshal64(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*?HMENU,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn HMENU_UserUnmarshal64(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*?HMENU,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn HMENU_UserFree64(
-    param0: ?*u32,
-    param1: ?*?HMENU,
+    param1: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HBITMAP_UserSize(
@@ -15873,73 +15850,27 @@ pub extern "OLE32" fn HBITMAP_UserFree(
     param1: ?*?HBITMAP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HBITMAP_UserSize64(
+pub extern "OLE32" fn HDC_UserSize(
     param0: ?*u32,
     param1: u32,
-    param2: ?*?HBITMAP,
+    param2: ?*?HDC,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HBITMAP_UserMarshal64(
+pub extern "OLE32" fn HDC_UserMarshal(
     param0: ?*u32,
     param1: ?*u8,
-    param2: ?*?HBITMAP,
+    param2: ?*?HDC,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HBITMAP_UserUnmarshal64(
+pub extern "OLE32" fn HDC_UserUnmarshal(
     param0: ?*u32,
     param1: [*:0]u8,
-    param2: ?*?HBITMAP,
+    param2: ?*?HDC,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HBITMAP_UserFree64(
+pub extern "OLE32" fn HDC_UserFree(
     param0: ?*u32,
-    param1: ?*?HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn CLIPFORMAT_UserSize(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn CLIPFORMAT_UserMarshal(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserFree(
-    param0: ?*u32,
-    param1: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn CLIPFORMAT_UserSize64(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn CLIPFORMAT_UserMarshal64(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal64(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserFree64(
-    param0: ?*u32,
-    param1: ?*u16,
+    param1: ?*?HDC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HICON_UserSize(
@@ -15965,6 +15896,98 @@ pub extern "OLE32" fn HICON_UserFree(
     param1: ?*?HICON,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "ole32" fn SNB_UserSize(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ole32" fn SNB_UserMarshal(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "ole32" fn SNB_UserUnmarshal(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "ole32" fn SNB_UserFree(
+    param0: ?*u32,
+    param1: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn CLIPFORMAT_UserSize64(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn CLIPFORMAT_UserMarshal64(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal64(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserFree64(
+    param0: ?*u32,
+    param1: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HBITMAP_UserSize64(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*?HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HBITMAP_UserMarshal64(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HBITMAP_UserUnmarshal64(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*?HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HBITMAP_UserFree64(
+    param0: ?*u32,
+    param1: ?*?HBITMAP,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HDC_UserSize64(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*?HDC,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HDC_UserMarshal64(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HDC_UserUnmarshal64(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*?HDC,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HDC_UserFree64(
+    param0: ?*u32,
+    param1: ?*?HDC,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLE32" fn HICON_UserSize64(
     param0: ?*u32,
     param1: u32,
@@ -15986,6 +16009,29 @@ pub extern "OLE32" fn HICON_UserUnmarshal64(
 pub extern "OLE32" fn HICON_UserFree64(
     param0: ?*u32,
     param1: ?*?HICON,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ole32" fn SNB_UserSize64(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ole32" fn SNB_UserMarshal64(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "ole32" fn SNB_UserUnmarshal64(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*?*?*u16,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "ole32" fn SNB_UserFree64(
+    param0: ?*u32,
+    param1: ?*?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HACCEL_UserSize(
@@ -16034,6 +16080,29 @@ pub extern "OLE32" fn HGLOBAL_UserFree(
     param1: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "OLE32" fn HMENU_UserSize(
+    param0: ?*u32,
+    param1: u32,
+    param2: ?*?HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HMENU_UserMarshal(
+    param0: ?*u32,
+    param1: ?*u8,
+    param2: ?*?HMENU,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HMENU_UserUnmarshal(
+    param0: ?*u32,
+    param1: [*:0]u8,
+    param2: ?*?HMENU,
+) callconv(@import("std").os.windows.WINAPI) ?*u8;
+
+pub extern "OLE32" fn HMENU_UserFree(
+    param0: ?*u32,
+    param1: ?*?HMENU,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLE32" fn HACCEL_UserSize64(
     param0: ?*u32,
     param1: u32,
@@ -16080,323 +16149,27 @@ pub extern "OLE32" fn HGLOBAL_UserFree64(
     param1: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HDC_UserSize(
+pub extern "OLE32" fn HMENU_UserSize64(
     param0: ?*u32,
     param1: u32,
-    param2: ?*?HDC,
+    param2: ?*?HMENU,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HDC_UserMarshal(
+pub extern "OLE32" fn HMENU_UserMarshal64(
     param0: ?*u32,
     param1: ?*u8,
-    param2: ?*?HDC,
+    param2: ?*?HMENU,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HDC_UserUnmarshal(
+pub extern "OLE32" fn HMENU_UserUnmarshal64(
     param0: ?*u32,
     param1: [*:0]u8,
-    param2: ?*?HDC,
+    param2: ?*?HMENU,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub extern "OLE32" fn HDC_UserFree(
+pub extern "OLE32" fn HMENU_UserFree64(
     param0: ?*u32,
-    param1: ?*?HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HDC_UserSize64(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*?HDC,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HDC_UserMarshal64(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*?HDC,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn HDC_UserUnmarshal64(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*?HDC,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "OLE32" fn HDC_UserFree64(
-    param0: ?*u32,
-    param1: ?*?HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoInitialize(
-    pvReserved: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterMallocSpy(
-    pMallocSpy: ?*IMallocSpy,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevokeMallocSpy(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLE32" fn CoRegisterInitializeSpy(
-    pSpy: ?*IInitializeSpy,
-    puliCookie: ?*ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRevokeInitializeSpy(
-    uliCookie: ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetSystemSecurityPermissions(
-    comSDType: COMSD,
-    ppSD: ?*?*SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoLoadLibrary(
-    lpszLibName: ?PWSTR,
-    bAutoFree: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFreeLibrary(
-    hInst: ?HINSTANCE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFreeAllLibraries(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetInstanceFromFile(
-    pServerInfo: ?*COSERVERINFO,
-    pClsid: ?*Guid,
-    punkOuter: ?*IUnknown,
-    dwClsCtx: CLSCTX,
-    grfMode: u32,
-    pwszName: ?PWSTR,
-    dwCount: u32,
-    pResults: [*]MULTI_QI,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetInstanceFromIStorage(
-    pServerInfo: ?*COSERVERINFO,
-    pClsid: ?*Guid,
-    punkOuter: ?*IUnknown,
-    dwClsCtx: CLSCTX,
-    pstg: ?*IStorage,
-    dwCount: u32,
-    pResults: [*]MULTI_QI,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoAllowSetForegroundWindow(
-    pUnk: ?*IUnknown,
-    lpvReserved: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn CoIsOle1Class(
-    rclsid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoFileTimeToDosDateTime(
-    lpFileTime: ?*FILETIME,
-    lpDosDate: ?*u16,
-    lpDosTime: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoDosDateTimeToFileTime(
-    nDosDate: u16,
-    nDosTime: u16,
-    lpFileTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoRegisterMessageFilter(
-    lpMessageFilter: ?*IMessageFilter,
-    lplpMessageFilter: ?*?*IMessageFilter,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "ole32" fn CoRegisterChannelHook(
-    ExtensionUuid: ?*const Guid,
-    pChannelHook: ?*IChannelHook,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoTreatAsClass(
-    clsidOld: ?*const Guid,
-    clsidNew: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateDataCache(
-    pUnkOuter: ?*IUnknown,
-    rclsid: ?*const Guid,
-    iid: ?*const Guid,
-    ppv: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "ole32" fn CoInstall(
-    pbc: ?*IBindCtx,
-    dwFlags: u32,
-    pClassSpec: ?*uCLSSPEC,
-    pQuery: ?*QUERYCONTEXT,
-    pszCodeBase: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn BindMoniker(
-    pmk: ?*IMoniker,
-    grfOpt: u32,
-    iidResult: ?*const Guid,
-    ppvResult: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CoGetObject(
-    pszName: ?[*:0]const u16,
-    pBindOptions: ?*BIND_OPTS,
-    riid: ?*const Guid,
-    ppv: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn MkParseDisplayName(
-    pbc: ?*IBindCtx,
-    szUserName: ?[*:0]const u16,
-    pchEaten: ?*u32,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn MonikerRelativePathTo(
-    pmkSrc: ?*IMoniker,
-    pmkDest: ?*IMoniker,
-    ppmkRelPath: ?*?*IMoniker,
-    dwReserved: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn MonikerCommonPrefixWith(
-    pmkThis: ?*IMoniker,
-    pmkOther: ?*IMoniker,
-    ppmkCommon: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateBindCtx(
-    reserved: u32,
-    ppbc: ?*?*IBindCtx,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateGenericComposite(
-    pmkFirst: ?*IMoniker,
-    pmkRest: ?*IMoniker,
-    ppmkComposite: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetClassFile(
-    szFilename: ?[*:0]const u16,
-    pclsid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateClassMoniker(
-    rclsid: ?*const Guid,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateFileMoniker(
-    lpszPathName: ?[*:0]const u16,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateItemMoniker(
-    lpszDelim: ?[*:0]const u16,
-    lpszItem: ?[*:0]const u16,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateAntiMoniker(
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreatePointerMoniker(
-    punk: ?*IUnknown,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateObjrefMoniker(
-    punk: ?*IUnknown,
-    ppmk: ?*?*IMoniker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetRunningObjectTable(
-    reserved: u32,
-    pprot: ?*?*IRunningObjectTable,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "ole32" fn SNB_UserSize(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ole32" fn SNB_UserMarshal(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "ole32" fn SNB_UserUnmarshal(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "ole32" fn SNB_UserFree(
-    param0: ?*u32,
-    param1: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ole32" fn SNB_UserSize64(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ole32" fn SNB_UserMarshal64(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "ole32" fn SNB_UserUnmarshal64(
-    param0: ?*u32,
-    param1: [*:0]u8,
-    param2: ?*?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
-
-pub extern "ole32" fn SNB_UserFree64(
-    param0: ?*u32,
-    param1: ?*?*?*u16,
+    param1: ?*?HMENU,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "urlmon" fn CreateURLMoniker(
@@ -18182,6 +17955,233 @@ pub extern "ole32" fn CoSetMessageDispatcher(
 pub extern "ole32" fn CoHandlePriorityEventsFromMessagePump(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoInitialize(
+    pvReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoRegisterMallocSpy(
+    pMallocSpy: ?*IMallocSpy,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoRevokeMallocSpy(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLE32" fn CoRegisterInitializeSpy(
+    pSpy: ?*IInitializeSpy,
+    puliCookie: ?*ULARGE_INTEGER,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoRevokeInitializeSpy(
+    uliCookie: ULARGE_INTEGER,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoGetSystemSecurityPermissions(
+    comSDType: COMSD,
+    ppSD: ?*?*SECURITY_DESCRIPTOR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoLoadLibrary(
+    lpszLibName: ?PWSTR,
+    bAutoFree: BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoFreeLibrary(
+    hInst: ?HINSTANCE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoFreeAllLibraries(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoGetInstanceFromFile(
+    pServerInfo: ?*COSERVERINFO,
+    pClsid: ?*Guid,
+    punkOuter: ?*IUnknown,
+    dwClsCtx: CLSCTX,
+    grfMode: u32,
+    pwszName: ?PWSTR,
+    dwCount: u32,
+    pResults: [*]MULTI_QI,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoGetInstanceFromIStorage(
+    pServerInfo: ?*COSERVERINFO,
+    pClsid: ?*Guid,
+    punkOuter: ?*IUnknown,
+    dwClsCtx: CLSCTX,
+    pstg: ?*IStorage,
+    dwCount: u32,
+    pResults: [*]MULTI_QI,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoAllowSetForegroundWindow(
+    pUnk: ?*IUnknown,
+    lpvReserved: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn CoIsOle1Class(
+    rclsid: ?*const Guid,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoFileTimeToDosDateTime(
+    lpFileTime: ?*FILETIME,
+    lpDosDate: ?*u16,
+    lpDosTime: ?*u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoDosDateTimeToFileTime(
+    nDosDate: u16,
+    nDosTime: u16,
+    lpFileTime: ?*FILETIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoRegisterMessageFilter(
+    lpMessageFilter: ?*IMessageFilter,
+    lplpMessageFilter: ?*?*IMessageFilter,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "ole32" fn CoRegisterChannelHook(
+    ExtensionUuid: ?*const Guid,
+    pChannelHook: ?*IChannelHook,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoTreatAsClass(
+    clsidOld: ?*const Guid,
+    clsidNew: ?*const Guid,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateDataCache(
+    pUnkOuter: ?*IUnknown,
+    rclsid: ?*const Guid,
+    iid: ?*const Guid,
+    ppv: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "ole32" fn CoInstall(
+    pbc: ?*IBindCtx,
+    dwFlags: u32,
+    pClassSpec: ?*uCLSSPEC,
+    pQuery: ?*QUERYCONTEXT,
+    pszCodeBase: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn BindMoniker(
+    pmk: ?*IMoniker,
+    grfOpt: u32,
+    iidResult: ?*const Guid,
+    ppvResult: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CoGetObject(
+    pszName: ?[*:0]const u16,
+    pBindOptions: ?*BIND_OPTS,
+    riid: ?*const Guid,
+    ppv: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn MkParseDisplayName(
+    pbc: ?*IBindCtx,
+    szUserName: ?[*:0]const u16,
+    pchEaten: ?*u32,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn MonikerRelativePathTo(
+    pmkSrc: ?*IMoniker,
+    pmkDest: ?*IMoniker,
+    ppmkRelPath: ?*?*IMoniker,
+    dwReserved: BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn MonikerCommonPrefixWith(
+    pmkThis: ?*IMoniker,
+    pmkOther: ?*IMoniker,
+    ppmkCommon: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateBindCtx(
+    reserved: u32,
+    ppbc: ?*?*IBindCtx,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateGenericComposite(
+    pmkFirst: ?*IMoniker,
+    pmkRest: ?*IMoniker,
+    ppmkComposite: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn GetClassFile(
+    szFilename: ?[*:0]const u16,
+    pclsid: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateClassMoniker(
+    rclsid: ?*const Guid,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateFileMoniker(
+    lpszPathName: ?[*:0]const u16,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateItemMoniker(
+    lpszDelim: ?[*:0]const u16,
+    lpszItem: ?[*:0]const u16,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateAntiMoniker(
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreatePointerMoniker(
+    punk: ?*IUnknown,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateObjrefMoniker(
+    punk: ?*IUnknown,
+    ppmk: ?*?*IMoniker,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn GetRunningObjectTable(
+    reserved: u32,
+    pprot: ?*?*IRunningObjectTable,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (32)
@@ -18324,7 +18324,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (66)
+// Section: Imports (67)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
@@ -18334,6 +18334,7 @@ const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const userHENHMETAFILE = @import("../system/system_services.zig").userHENHMETAFILE;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const WPARAM = @import("../foundation.zig").WPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const HTASK = @import("../media/audio/core_audio.zig").HTASK;

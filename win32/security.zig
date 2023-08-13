@@ -1156,7 +1156,7 @@ pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
     Length: u32,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     ContextTrackingMode: u8,
-    EffectiveOnly: u8,
+    EffectiveOnly: BOOLEAN,
 };
 
 pub const SECURITY_CAPABILITIES = extern struct {
@@ -3231,7 +3231,7 @@ pub const CAT_MEMBERINFO2 = extern struct {
 
 pub const INTENT_TO_SEAL_ATTRIBUTE = extern struct {
     version: u32,
-    seal: u8,
+    seal: BOOLEAN,
 };
 
 pub const SEALING_SIGNATURE_ATTRIBUTE = extern struct {
@@ -4299,311 +4299,6 @@ pub const WTD_UICONTEXT_INSTALL = WINTRUST_DATA_UICONTEXT.INSTALL;
 // Section: Functions (288)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    DesiredAccess: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*i32,
-    pfGenerateOnClose: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*i32,
-    pfGenerateOnClose: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ClientToken: ?HANDLE,
-    ObjectTypeName: ?[*:0]const u8,
-    ObjectName: ?[*:0]const u8,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    PrincipalSelfSid: ?PSID,
-    DesiredAccess: u32,
-    AuditType: AUDIT_EVENT_TYPE,
-    Flags: u32,
-    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
-    ObjectTypeListLength: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    ObjectCreation: BOOL,
-    GrantedAccess: [*]u32,
-    AccessStatusList: [*]u32,
-    pfGenerateOnClose: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    ClientToken: ?HANDLE,
-    DesiredAccess: u32,
-    GrantedAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    ObjectCreation: BOOL,
-    AccessGranted: BOOL,
-    GenerateOnClose: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    ClientToken: ?HANDLE,
-    DesiredAccess: u32,
-    Privileges: ?*PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    HandleId: ?*c_void,
-    GenerateOnClose: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
-    SubsystemName: ?[*:0]const u8,
-    ServiceName: ?[*:0]const u8,
-    ClientToken: ?HANDLE,
-    Privileges: ?*PRIVILEGE_SET,
-    AccessGranted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "ADVAPI32" fn AddConditionalAce(
-    pAcl: ?*ACL,
-    dwAceRevision: u32,
-    AceFlags: ACE_FLAGS,
-    AceType: u8,
-    AccessMask: u32,
-    pSid: ?PSID,
-    ConditionStr: ?[*]u16,
-    ReturnLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetFileSecurityA(
-    lpFileName: ?[*:0]const u8,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn GetFileSecurityA(
-    lpFileName: ?[*:0]const u8,
-    RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    nLength: u32,
-    lpnLengthNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountSidA(
-    lpSystemName: ?[*:0]const u8,
-    Sid: ?PSID,
-    Name: ?[*:0]u8,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountSidW(
-    lpSystemName: ?[*:0]const u16,
-    Sid: ?PSID,
-    Name: ?[*:0]u16,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpAccountName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupAccountNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpAccountName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeValueA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpLuid: ?*LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeValueW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpLuid: ?*LUID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpLuid: ?*LUID,
-    lpName: ?[*:0]u8,
-    cchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpLuid: ?*LUID,
-    lpName: ?[*:0]u16,
-    cchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
-    lpSystemName: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpDisplayName: ?[*:0]u8,
-    cchDisplayName: ?*u32,
-    lpLanguageId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
-    lpSystemName: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpDisplayName: ?[*:0]u16,
-    cchDisplayName: ?*u32,
-    lpLanguageId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserA(
-    lpszUsername: ?[*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserW(
-    lpszUsername: ?[*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserExA(
-    lpszUsername: ?[*:0]const u8,
-    lpszDomain: ?[*:0]const u8,
-    lpszPassword: ?[*:0]const u8,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-    ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn LogonUserExW(
-    lpszUsername: ?[*:0]const u16,
-    lpszDomain: ?[*:0]const u16,
-    lpszPassword: ?[*:0]const u16,
-    dwLogonType: LOGON32_LOGON,
-    dwLogonProvider: LOGON32_PROVIDER,
-    phToken: ?*?HANDLE,
-    ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
-    ppProfileBuffer: ?*?*c_void,
-    pdwProfileLength: ?*u32,
-    pQuotaLimits: ?*QUOTA_LIMITS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlConvertSidToUnicodeString(
-    UnicodeString: ?*UNICODE_STRING,
-    Sid: ?PSID,
-    AllocateDestinationString: u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn SetUserObjectSecurity(
     hObj: ?HANDLE,
     pSIRequested: ?*OBJECT_SECURITY_INFORMATION,
@@ -4955,7 +4650,7 @@ pub extern "ADVAPI32" fn ConvertToAutoInheritPrivateObjectSecurity(
     CurrentSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     NewSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
     ObjectType: ?*Guid,
-    IsDirectoryObject: u8,
+    IsDirectoryObject: BOOLEAN,
     GenericMapping: ?*GENERIC_MAPPING,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6100,7 +5795,7 @@ pub extern "ADVAPI32" fn SaferRecordEventLogEntry(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn SaferiIsExecutableFileType(
     szFullPathname: ?[*:0]const u16,
-    bFromShellExecute: u8,
+    bFromShellExecute: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6662,6 +6357,311 @@ pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
     currentConfig: ?*DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn AccessCheckAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?PSTR,
+    ObjectName: ?PSTR,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    DesiredAccess: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn AccessCheckByTypeAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+    pfGenerateOnClose: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn AccessCheckByTypeResultListAndAuditAlarmByHandleA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
+    ObjectTypeName: ?[*:0]const u8,
+    ObjectName: ?[*:0]const u8,
+    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    PrincipalSelfSid: ?PSID,
+    DesiredAccess: u32,
+    AuditType: AUDIT_EVENT_TYPE,
+    Flags: u32,
+    ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
+    ObjectTypeListLength: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    ObjectCreation: BOOL,
+    GrantedAccess: [*]u32,
+    AccessStatusList: [*]u32,
+    pfGenerateOnClose: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ObjectOpenAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ObjectTypeName: ?PSTR,
+    ObjectName: ?PSTR,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ClientToken: ?HANDLE,
+    DesiredAccess: u32,
+    GrantedAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    ObjectCreation: BOOL,
+    AccessGranted: BOOL,
+    GenerateOnClose: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ObjectPrivilegeAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    ClientToken: ?HANDLE,
+    DesiredAccess: u32,
+    Privileges: ?*PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ObjectCloseAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ObjectDeleteAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    HandleId: ?*c_void,
+    GenerateOnClose: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn PrivilegedServiceAuditAlarmA(
+    SubsystemName: ?[*:0]const u8,
+    ServiceName: ?[*:0]const u8,
+    ClientToken: ?HANDLE,
+    Privileges: ?*PRIVILEGE_SET,
+    AccessGranted: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "ADVAPI32" fn AddConditionalAce(
+    pAcl: ?*ACL,
+    dwAceRevision: u32,
+    AceFlags: ACE_FLAGS,
+    AceType: u8,
+    AccessMask: u32,
+    pSid: ?PSID,
+    ConditionStr: ?[*]u16,
+    ReturnLength: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn SetFileSecurityA(
+    lpFileName: ?[*:0]const u8,
+    SecurityInformation: u32,
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn GetFileSecurityA(
+    lpFileName: ?[*:0]const u8,
+    RequestedInformation: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    nLength: u32,
+    lpnLengthNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupAccountSidA(
+    lpSystemName: ?[*:0]const u8,
+    Sid: ?PSID,
+    Name: ?[*:0]u8,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupAccountSidW(
+    lpSystemName: ?[*:0]const u16,
+    Sid: ?PSID,
+    Name: ?[*:0]u16,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupAccountNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpAccountName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupAccountNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpAccountName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 3?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeValueA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpLuid: ?*LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeValueW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpLuid: ?*LUID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpLuid: ?*LUID,
+    lpName: ?[*:0]u8,
+    cchName: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpLuid: ?*LUID,
+    lpName: ?[*:0]u16,
+    cchName: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameA(
+    lpSystemName: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpDisplayName: ?[*:0]u8,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LookupPrivilegeDisplayNameW(
+    lpSystemName: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpDisplayName: ?[*:0]u16,
+    cchDisplayName: ?*u32,
+    lpLanguageId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LogonUserA(
+    lpszUsername: ?[*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LogonUserW(
+    lpszUsername: ?[*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LogonUserExA(
+    lpszUsername: ?[*:0]const u8,
+    lpszDomain: ?[*:0]const u8,
+    lpszPassword: ?[*:0]const u8,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
+    // TODO: what to do with BytesParamIndex 8?
+    ppProfileBuffer: ?*?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn LogonUserExW(
+    lpszUsername: ?[*:0]const u16,
+    lpszDomain: ?[*:0]const u16,
+    lpszPassword: ?[*:0]const u16,
+    dwLogonType: LOGON32_LOGON,
+    dwLogonProvider: LOGON32_PROVIDER,
+    phToken: ?*?HANDLE,
+    ppLogonSid: ?*?PSID,
+    // TODO: what to do with BytesParamIndex 8?
+    ppProfileBuffer: ?*?*c_void,
+    pdwProfileLength: ?*u32,
+    pQuotaLimits: ?*QUOTA_LIMITS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlConvertSidToUnicodeString(
+    UnicodeString: ?*UNICODE_STRING,
+    Sid: ?PSID,
+    AllocateDestinationString: BOOLEAN,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (18)
@@ -6672,13 +6672,13 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleA;
-        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmA;
-        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmA;
+        pub const GetFileSecurity = GetFileSecurityA;
         pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmA;
         pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmA;
+        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmA;
+        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmA;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmA;
         pub const SetFileSecurity = SetFileSecurityA;
-        pub const GetFileSecurity = GetFileSecurityA;
         pub const LookupAccountSid = LookupAccountSidA;
         pub const LookupAccountName = LookupAccountNameA;
         pub const LookupPrivilegeValue = LookupPrivilegeValueA;
@@ -6692,13 +6692,13 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleW;
-        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW;
-        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmW;
+        pub const GetFileSecurity = GetFileSecurityW;
         pub const ObjectCloseAuditAlarm = ObjectCloseAuditAlarmW;
         pub const ObjectDeleteAuditAlarm = ObjectDeleteAuditAlarmW;
+        pub const ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW;
+        pub const ObjectPrivilegeAuditAlarm = ObjectPrivilegeAuditAlarmW;
         pub const PrivilegedServiceAuditAlarm = PrivilegedServiceAuditAlarmW;
         pub const SetFileSecurity = SetFileSecurityW;
-        pub const GetFileSecurity = GetFileSecurityW;
         pub const LookupAccountSid = LookupAccountSidW;
         pub const LookupAccountName = LookupAccountNameW;
         pub const LookupPrivilegeValue = LookupPrivilegeValueW;
@@ -6712,13 +6712,13 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque{};
-        pub const ObjectOpenAuditAlarm = *opaque{};
-        pub const ObjectPrivilegeAuditAlarm = *opaque{};
+        pub const GetFileSecurity = *opaque{};
         pub const ObjectCloseAuditAlarm = *opaque{};
         pub const ObjectDeleteAuditAlarm = *opaque{};
+        pub const ObjectOpenAuditAlarm = *opaque{};
+        pub const ObjectPrivilegeAuditAlarm = *opaque{};
         pub const PrivilegedServiceAuditAlarm = *opaque{};
         pub const SetFileSecurity = *opaque{};
-        pub const GetFileSecurity = *opaque{};
         pub const LookupAccountSid = *opaque{};
         pub const LookupAccountName = *opaque{};
         pub const LookupPrivilegeValue = *opaque{};
@@ -6731,13 +6731,13 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarm = @compileError("'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = @compileError("'AccessCheckByTypeResultListAndAuditAlarmByHandle' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
-        pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
         pub const ObjectCloseAuditAlarm = @compileError("'ObjectCloseAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const ObjectDeleteAuditAlarm = @compileError("'ObjectDeleteAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectOpenAuditAlarm = @compileError("'ObjectOpenAuditAlarm' requires that UNICODE be set to true or false in the root module");
+        pub const ObjectPrivilegeAuditAlarm = @compileError("'ObjectPrivilegeAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const PrivilegedServiceAuditAlarm = @compileError("'PrivilegedServiceAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const SetFileSecurity = @compileError("'SetFileSecurity' requires that UNICODE be set to true or false in the root module");
-        pub const GetFileSecurity = @compileError("'GetFileSecurity' requires that UNICODE be set to true or false in the root module");
         pub const LookupAccountSid = @compileError("'LookupAccountSid' requires that UNICODE be set to true or false in the root module");
         pub const LookupAccountName = @compileError("'LookupAccountName' requires that UNICODE be set to true or false in the root module");
         pub const LookupPrivilegeValue = @compileError("'LookupPrivilegeValue' requires that UNICODE be set to true or false in the root module");
@@ -6748,7 +6748,7 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (38)
+// Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const LPARAM = @import("foundation.zig").LPARAM;
@@ -6764,6 +6764,7 @@ const PSID = @import("foundation.zig").PSID;
 const BOOL = @import("foundation.zig").BOOL;
 const LUID = @import("system/system_services.zig").LUID;
 const CMSG_SIGNER_INFO = @import("security/cryptography/core.zig").CMSG_SIGNER_INFO;
+const BOOLEAN = @import("foundation.zig").BOOLEAN;
 const ISecurityInformation = @import("security/authorization.zig").ISecurityInformation;
 const DLGPROC = @import("ui/windows_and_messaging.zig").DLGPROC;
 const UNICODE_STRING = @import("system/kernel.zig").UNICODE_STRING;
@@ -6781,7 +6782,7 @@ const LARGE_INTEGER = @import("system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("system/ole_automation.zig").VARIANT;
 const CERT_STRONG_SIGN_PARA = @import("security/cryptography/core.zig").CERT_STRONG_SIGN_PARA;
 const CERT_QUERY_ENCODING_TYPE = @import("security/cryptography/core.zig").CERT_QUERY_ENCODING_TYPE;
-const OBJECT_SECURITY_INFORMATION = @import("system/services.zig").OBJECT_SECURITY_INFORMATION;
+const OBJECT_SECURITY_INFORMATION = @import("security/authorization.zig").OBJECT_SECURITY_INFORMATION;
 const HANDLE = @import("foundation.zig").HANDLE;
 const HPROPSHEETPAGE = @import("ui/controls.zig").HPROPSHEETPAGE;
 const CRYPTOAPI_BLOB = @import("security/cryptography/core.zig").CRYPTOAPI_BLOB;

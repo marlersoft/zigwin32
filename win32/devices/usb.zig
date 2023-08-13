@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (423)
 //--------------------------------------------------------------------------------
+pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 pub const SHORT_PACKET_TERMINATE = @as(u32, 1);
 pub const AUTO_CLEAR_STALL = @as(u32, 2);
 pub const PIPE_TRANSFER_TIMEOUT = @as(u32, 3);
@@ -424,7 +425,6 @@ pub const MS_GENRE_DESCRIPTOR_INDEX = @as(u32, 1);
 pub const MS_POWER_DESCRIPTOR_INDEX = @as(u32, 2);
 pub const MS_OS_FLAGS_CONTAINERID = @as(u32, 2);
 pub const URB_OPEN_STATIC_STREAMS_VERSION_100 = @as(u32, 256);
-pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 
 //--------------------------------------------------------------------------------
 // Section: Types (124)
@@ -1481,8 +1481,8 @@ pub const USB_POWER_INFO = packed struct {
     RhDeviceWake: WDMUSB_POWER_STATE,
     RhSystemWake: WDMUSB_POWER_STATE,
     LastSystemSleepState: WDMUSB_POWER_STATE,
-    CanWakeup: u8,
-    IsPowered: u8,
+    CanWakeup: BOOLEAN,
+    IsPowered: BOOLEAN,
 };
 
 pub const USBUSER_POWER_INFO_REQUEST = extern struct {
@@ -1560,7 +1560,7 @@ pub const USB_BUS_STATISTICS_0 = packed struct {
     WorkerSignalCount: u32,
     CommonBufferBytes: u32,
     WorkerIdleTimeMs: u32,
-    RootHubEnabled: u8,
+    RootHubEnabled: BOOLEAN,
     RootHubDevicePowerState: u8,
     Unused: u8,
     NameIndex: u8,
@@ -1575,8 +1575,8 @@ pub const USB_DRIVER_VERSION_PARAMETERS = packed struct {
     DriverTrackingCode: u32,
     USBDI_Version: u32,
     USBUSER_Version: u32,
-    CheckedPortDriver: u8,
-    CheckedMiniportDriver: u8,
+    CheckedPortDriver: BOOLEAN,
+    CheckedMiniportDriver: BOOLEAN,
     USB_Version: u16,
 };
 
@@ -1624,7 +1624,7 @@ pub const WINUSB_SETUP_PACKET = packed struct {
 
 pub const USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION = packed struct {
     TimeTrackingHandle: ?HANDLE,
-    IsStartupDelayTolerable: u8,
+    IsStartupDelayTolerable: BOOLEAN,
 };
 
 pub const USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION = packed struct {
@@ -1917,9 +1917,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;

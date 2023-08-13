@@ -2,6 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (122)
 //--------------------------------------------------------------------------------
+pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
+pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 pub const FS_INITIALIZING = @as(u32, 536870912);
 pub const FS_DIALING = @as(u32, 536870913);
 pub const FS_TRANSMITTING = @as(u32, 536870914);
@@ -122,8 +124,6 @@ pub const FAX_CONFIG_SET = @as(u32, 8);
 pub const FAX_PORT_QUERY = @as(u32, 16);
 pub const FAX_PORT_SET = @as(u32, 32);
 pub const FAX_JOB_MANAGE = @as(u32, 64);
-pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
-pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 
 //--------------------------------------------------------------------------------
 // Section: Types (260)

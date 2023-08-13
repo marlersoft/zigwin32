@@ -351,7 +351,7 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     DNSFlags: u32,
     DNSNameLength: u32,
     DNSName: ?*u8,
-    DSDomainNameRequested: u8,
+    DSDomainNameRequested: BOOLEAN,
     DSDomainName: ?PSTR,
     DSDomainNameLen: u32,
     ScopeId: ?*u32,
@@ -1830,7 +1830,7 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     DNSFlags: u32,
     DNSNameLength: u32,
     DNSName: ?*u8,
-    DSDomainNameRequested: u8,
+    DSDomainNameRequested: BOOLEAN,
     DSDomainName: ?PSTR,
     DSDomainNameLen: u32,
     ScopeId: ?*u32,
@@ -3496,8 +3496,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;

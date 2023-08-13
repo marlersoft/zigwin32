@@ -151,6 +151,9 @@ pub const REG_CREATE_KEY_DISPOSITION = enum(u32) {
 pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
 pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
 
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = *opaque{};
+
 pub const val_context = extern struct {
     valuelen: i32,
     value_context: ?*c_void,
@@ -202,9 +205,6 @@ pub const VALENTW = extern struct {
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
 };
-
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = *opaque{};
 
 pub const REG_SAVE_FORMAT = enum(u32) {
     STANDARD_FORMAT = 1,

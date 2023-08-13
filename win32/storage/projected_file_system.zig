@@ -167,7 +167,7 @@ pub const PRJ_PLACEHOLDER_VERSION_INFO = extern struct {
 };
 
 pub const PRJ_FILE_BASIC_INFO = extern struct {
-    IsDirectory: u8,
+    IsDirectory: BOOLEAN,
     FileSize: i64,
     CreationTime: LARGE_INTEGER,
     LastAccessTime: LARGE_INTEGER,
@@ -353,13 +353,13 @@ pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
         NotificationMask: PRJ_NOTIFY_TYPES,
     },
     FileDeletedOnHandleClose: extern struct {
-        IsFileModified: u8,
+        IsFileModified: BOOLEAN,
     },
 };
 
 pub const PRJ_NOTIFICATION_CB = fn(
     callbackData: ?*const PRJ_CALLBACK_DATA,
-    isDirectory: u8,
+    isDirectory: BOOLEAN,
     notification: PRJ_NOTIFICATION,
     destinationFileName: ?[*:0]const u16,
     operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
@@ -518,7 +518,7 @@ pub extern "PROJECTEDFSLIB" fn PrjFillDirEntryBuffer2(
 pub extern "PROJECTEDFSLIB" fn PrjFileNameMatch(
     fileNameToCheck: ?[*:0]const u16,
     pattern: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjFileNameCompare(
@@ -529,7 +529,7 @@ pub extern "PROJECTEDFSLIB" fn PrjFileNameCompare(
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "PROJECTEDFSLIB" fn PrjDoesNameContainWildCards(
     fileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -545,9 +545,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const HRESULT = @import("../foundation.zig").HRESULT;

@@ -2,6 +2,12 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (16)
 //--------------------------------------------------------------------------------
+pub const Speech_Default_Weight = @as(f32, 1);
+pub const Speech_Max_Word_Length = @as(i32, 128);
+pub const Speech_Max_Pron_Length = @as(i32, 384);
+pub const Speech_StreamPos_Asap = @as(i32, 0);
+pub const Speech_StreamPos_RealTime = @as(i32, -1);
+pub const SpeechAllElements = @as(i32, -1);
 pub const SP_LOW_CONFIDENCE = @as(i32, -1);
 pub const SP_NORMAL_CONFIDENCE = @as(u32, 0);
 pub const DEFAULT_WEIGHT = @as(u32, 1);
@@ -12,12 +18,6 @@ pub const SP_STREAMPOS_ASAP = @as(u32, 0);
 pub const SP_STREAMPOS_REALTIME = @as(i32, -1);
 pub const SPRP_NORMAL = @as(u32, 0);
 pub const SP_MAX_LANGIDS = @as(u32, 20);
-pub const Speech_Default_Weight = @as(f32, 1);
-pub const Speech_Max_Word_Length = @as(i32, 128);
-pub const Speech_Max_Pron_Length = @as(i32, 384);
-pub const Speech_StreamPos_Asap = @as(i32, 0);
-pub const Speech_StreamPos_RealTime = @as(i32, -1);
-pub const SpeechAllElements = @as(i32, -1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (294)

@@ -470,389 +470,6 @@ pub const IRowsetExactScroll = extern struct {
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBVECTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    size: usize,
-    ptr: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBTIMESTAMP = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    year: i16,
-    month: u16,
-    day: u16,
-    hour: u16,
-    minute: u16,
-    second: u16,
-    fraction: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SEC_OBJECT_ELEMENT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    guidObjectType: Guid,
-    ObjectID: DBID,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SEC_OBJECT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cObjects: u32,
-    prgObjects: ?*SEC_OBJECT_ELEMENT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBIMPLICITSESSION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pUnkOuter: ?*IUnknown,
-    piid: ?*Guid,
-    pSession: ?*IUnknown,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBOBJECT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwFlags: u32,
-    iid: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBBINDEXT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pExtension: ?*u8,
-    ulExtension: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBBINDING = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    iOrdinal: usize,
-    obValue: usize,
-    obLength: usize,
-    obStatus: usize,
-    pTypeInfo: ?*ITypeInfo,
-    pObject: ?*DBOBJECT,
-    pBindExt: ?*DBBINDEXT,
-    dwPart: u32,
-    dwMemOwner: u32,
-    eParamIO: u32,
-    cbMaxLen: usize,
-    dwFlags: u32,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBFAILUREINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    hRow: usize,
-    iColumn: usize,
-    failure: HRESULT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBCOLUMNINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pwszName: ?PWSTR,
-    pTypeInfo: ?*ITypeInfo,
-    iOrdinal: usize,
-    dwFlags: u32,
-    ulColumnSize: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-    columnid: DBID,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pData: ?*c_void,
-    cParamSets: usize,
-    hAccessor: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPARAMINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwFlags: u32,
-    iOrdinal: usize,
-    pwszName: ?PWSTR,
-    pTypeInfo: ?*ITypeInfo,
-    ulParamSize: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPROPIDSET = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    rgPropertyIDs: ?*u32,
-    cPropertyIDs: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPROPINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pwszDescription: ?PWSTR,
-    dwPropertyID: u32,
-    dwFlags: u32,
-    vtType: u16,
-    vValues: VARIANT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPROPINFOSET = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    rgPropertyInfos: ?*DBPROPINFO,
-    cPropertyInfos: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPROP = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwPropertyID: u32,
-    dwOptions: u32,
-    dwStatus: u32,
-    colid: DBID,
-    vValue: VARIANT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPROPSET = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    rgProperties: ?*DBPROP,
-    cProperties: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBINDEXCOLUMNDESC = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pColumnID: ?*DBID,
-    eIndexColOrder: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBCOLUMNDESC = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pwszTypeName: ?PWSTR,
-    pTypeInfo: ?*ITypeInfo,
-    rgPropertySets: ?*DBPROPSET,
-    pclsid: ?*Guid,
-    cPropertySets: u32,
-    ulColumnSize: usize,
-    dbcid: DBID,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBCOLUMNACCESS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pData: ?*c_void,
-    columnid: DBID,
-    cbDataLen: usize,
-    dwStatus: u32,
-    cbMaxLen: usize,
-    dwReserved: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBCONSTRAINTDESC = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pConstraintID: ?*DBID,
-    ConstraintType: u32,
-    cColumns: usize,
-    rgColumnList: ?*DBID,
-    pReferencedTableID: ?*DBID,
-    cForeignKeyColumns: usize,
-    rgForeignKeyColumnList: ?*DBID,
-    pwszConstraintText: ?PWSTR,
-    UpdateRule: u32,
-    DeleteRule: u32,
-    MatchType: u32,
-    Deferrability: u32,
-    cReserved: usize,
-    rgReserved: ?*DBPROPSET,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const MDAXISINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbSize: usize,
-    iAxis: usize,
-    cDimensions: usize,
-    cCoordinates: usize,
-    rgcColumns: ?*usize,
-    rgpwszDimensionNames: ?*?PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const RMTPACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pISeqStream: ?*ISequentialStream,
-    cbData: u32,
-    cBSTR: u32,
-    rgBSTR: ?*?BSTR,
-    cVARIANT: u32,
-    rgVARIANT: ?*VARIANT,
-    cIDISPATCH: u32,
-    rgIDISPATCH: ?*?*IDispatch,
-    cIUNKNOWN: u32,
-    rgIUNKNOWN: ?*?*IUnknown,
-    cPROPVARIANT: u32,
-    rgPROPVARIANT: ?*PROPVARIANT,
-    cArray: u32,
-    rgArray: ?*VARIANT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBPARAMBINDINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pwszDataSourceType: ?PWSTR,
-    pwszName: ?PWSTR,
-    ulParamSize: usize,
-    dwFlags: u32,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DBLITERALINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    pwszLiteralValue: ?PWSTR,
-    pwszInvalidChars: ?PWSTR,
-    pwszInvalidStartingChars: ?PWSTR,
-    lt: u32,
-    fSupported: BOOL,
-    cchMaxLen: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ERRORINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    hrError: HRESULT,
-    dwMinor: u32,
-    clsid: Guid,
-    iid: Guid,
-    dispid: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub const DBVECTOR = extern struct {
@@ -9898,6 +9515,389 @@ pub const CHANNEL_AGENT_DYNAMIC_SCHEDULE = CHANNEL_AGENT_FLAGS.DYNAMIC_SCHEDULE;
 pub const CHANNEL_AGENT_PRECACHE_SOME = CHANNEL_AGENT_FLAGS.PRECACHE_SOME;
 pub const CHANNEL_AGENT_PRECACHE_ALL = CHANNEL_AGENT_FLAGS.PRECACHE_ALL;
 pub const CHANNEL_AGENT_PRECACHE_SCRNSAVER = CHANNEL_AGENT_FLAGS.PRECACHE_SCRNSAVER;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBVECTOR = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    size: usize,
+    ptr: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBTIMESTAMP = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    year: i16,
+    month: u16,
+    day: u16,
+    hour: u16,
+    minute: u16,
+    second: u16,
+    fraction: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SEC_OBJECT_ELEMENT = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    guidObjectType: Guid,
+    ObjectID: DBID,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SEC_OBJECT = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cObjects: u32,
+    prgObjects: ?*SEC_OBJECT_ELEMENT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBIMPLICITSESSION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pUnkOuter: ?*IUnknown,
+    piid: ?*Guid,
+    pSession: ?*IUnknown,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBOBJECT = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwFlags: u32,
+    iid: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBBINDEXT = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pExtension: ?*u8,
+    ulExtension: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBBINDING = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    iOrdinal: usize,
+    obValue: usize,
+    obLength: usize,
+    obStatus: usize,
+    pTypeInfo: ?*ITypeInfo,
+    pObject: ?*DBOBJECT,
+    pBindExt: ?*DBBINDEXT,
+    dwPart: u32,
+    dwMemOwner: u32,
+    eParamIO: u32,
+    cbMaxLen: usize,
+    dwFlags: u32,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBFAILUREINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    hRow: usize,
+    iColumn: usize,
+    failure: HRESULT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBCOLUMNINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pwszName: ?PWSTR,
+    pTypeInfo: ?*ITypeInfo,
+    iOrdinal: usize,
+    dwFlags: u32,
+    ulColumnSize: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+    columnid: DBID,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPARAMS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pData: ?*c_void,
+    cParamSets: usize,
+    hAccessor: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPARAMINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwFlags: u32,
+    iOrdinal: usize,
+    pwszName: ?PWSTR,
+    pTypeInfo: ?*ITypeInfo,
+    ulParamSize: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPROPIDSET = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    rgPropertyIDs: ?*u32,
+    cPropertyIDs: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPROPINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pwszDescription: ?PWSTR,
+    dwPropertyID: u32,
+    dwFlags: u32,
+    vtType: u16,
+    vValues: VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPROPINFOSET = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    rgPropertyInfos: ?*DBPROPINFO,
+    cPropertyInfos: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPROP = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwPropertyID: u32,
+    dwOptions: u32,
+    dwStatus: u32,
+    colid: DBID,
+    vValue: VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPROPSET = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    rgProperties: ?*DBPROP,
+    cProperties: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBINDEXCOLUMNDESC = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pColumnID: ?*DBID,
+    eIndexColOrder: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBCOLUMNDESC = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pwszTypeName: ?PWSTR,
+    pTypeInfo: ?*ITypeInfo,
+    rgPropertySets: ?*DBPROPSET,
+    pclsid: ?*Guid,
+    cPropertySets: u32,
+    ulColumnSize: usize,
+    dbcid: DBID,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBCOLUMNACCESS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pData: ?*c_void,
+    columnid: DBID,
+    cbDataLen: usize,
+    dwStatus: u32,
+    cbMaxLen: usize,
+    dwReserved: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBCONSTRAINTDESC = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pConstraintID: ?*DBID,
+    ConstraintType: u32,
+    cColumns: usize,
+    rgColumnList: ?*DBID,
+    pReferencedTableID: ?*DBID,
+    cForeignKeyColumns: usize,
+    rgForeignKeyColumnList: ?*DBID,
+    pwszConstraintText: ?PWSTR,
+    UpdateRule: u32,
+    DeleteRule: u32,
+    MatchType: u32,
+    Deferrability: u32,
+    cReserved: usize,
+    rgReserved: ?*DBPROPSET,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MDAXISINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbSize: usize,
+    iAxis: usize,
+    cDimensions: usize,
+    cCoordinates: usize,
+    rgcColumns: ?*usize,
+    rgpwszDimensionNames: ?*?PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RMTPACK = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pISeqStream: ?*ISequentialStream,
+    cbData: u32,
+    cBSTR: u32,
+    rgBSTR: ?*?BSTR,
+    cVARIANT: u32,
+    rgVARIANT: ?*VARIANT,
+    cIDISPATCH: u32,
+    rgIDISPATCH: ?*?*IDispatch,
+    cIUNKNOWN: u32,
+    rgIUNKNOWN: ?*?*IUnknown,
+    cPROPVARIANT: u32,
+    rgPROPVARIANT: ?*PROPVARIANT,
+    cArray: u32,
+    rgArray: ?*VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBPARAMBINDINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pwszDataSourceType: ?PWSTR,
+    pwszName: ?PWSTR,
+    ulParamSize: usize,
+    dwFlags: u32,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBLITERALINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    pwszLiteralValue: ?PWSTR,
+    pwszInvalidChars: ?PWSTR,
+    pwszInvalidStartingChars: ?PWSTR,
+    lt: u32,
+    fSupported: BOOL,
+    cchMaxLen: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ERRORINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    hrError: HRESULT,
+    dwMinor: u32,
+    clsid: Guid,
+    iid: Guid,
+    dispid: i32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

@@ -51,7 +51,7 @@ pub extern "KERNEL32" fn DisableThreadProfiling(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn QueryThreadProfiling(
     ThreadHandle: ?HANDLE,
-    Enabled: ?*u8,
+    Enabled: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -75,8 +75,9 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (1)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 
 test {

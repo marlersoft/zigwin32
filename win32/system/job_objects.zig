@@ -207,26 +207,6 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateJobObjectA(
-    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenJobObjectA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn UserHandleGrantAccess(
-    hUserHandle: ?HANDLE,
-    hJob: ?HANDLE,
-    bGrant: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsProcessInJob(
     ProcessHandle: ?HANDLE,
     JobHandle: ?HANDLE,
@@ -295,6 +275,26 @@ pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
     InfoBlocks: ?*?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
     InfoBlockCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn UserHandleGrantAccess(
+    hUserHandle: ?HANDLE,
+    hJob: ?HANDLE,
+    bGrant: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateJobObjectA(
+    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn OpenJobObjectA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 
 //--------------------------------------------------------------------------------

@@ -6,18 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-pub const OPERATION_START_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_START_FLAGS,
-};
-
-pub const OPERATION_END_PARAMETERS = extern struct {
-    Version: u32,
-    OperationId: u32,
-    Flags: OPERATION_END_PARAMETERS_FLAGS,
-};
-
 pub const OPERATION_START_FLAGS = enum(u32) {
     D = 1,
     _,
@@ -43,6 +31,18 @@ pub const OPERATION_END_PARAMETERS_FLAGS = enum(u32) {
     }
 };
 pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERS_FLAGS.D;
+
+pub const OPERATION_START_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_START_FLAGS,
+};
+
+pub const OPERATION_END_PARAMETERS = extern struct {
+    Version: u32,
+    OperationId: u32,
+    Flags: OPERATION_END_PARAMETERS_FLAGS,
+};
 
 
 //--------------------------------------------------------------------------------

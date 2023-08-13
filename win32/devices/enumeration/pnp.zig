@@ -53,6 +53,47 @@ pub const UPNP_E_DEVICE_NOTREGISTERED = @import("../../zig.zig").typedConst(HRES
 //--------------------------------------------------------------------------------
 pub const HSWDEVICE = *opaque{};
 
+pub const SW_DEVICE_CAPABILITIES = enum(i32) {
+    None = 0,
+    Removable = 1,
+    SilentInstall = 2,
+    NoDisplayInUI = 4,
+    DriverRequired = 8,
+};
+pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.None;
+pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.Removable;
+pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SilentInstall;
+pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.NoDisplayInUI;
+pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.DriverRequired;
+
+pub const SW_DEVICE_CREATE_INFO = extern struct {
+    cbSize: u32,
+    pszInstanceId: ?[*:0]const u16,
+    pszzHardwareIds: ?[*]const u16,
+    pszzCompatibleIds: ?[*]const u16,
+    pContainerId: ?*const Guid,
+    CapabilityFlags: u32,
+    pszDeviceDescription: ?[*:0]const u16,
+    pszDeviceLocation: ?[*:0]const u16,
+    pSecurityDescriptor: ?*const SECURITY_DESCRIPTOR,
+};
+
+pub const SW_DEVICE_LIFETIME = enum(i32) {
+    Handle = 0,
+    ParentPresent = 1,
+    Max = 2,
+};
+pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.Handle;
+pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.ParentPresent;
+pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
+
+pub const SW_DEVICE_CREATE_CALLBACK = fn(
+    hSwDevice: ?HSWDEVICE,
+    CreateResult: HRESULT,
+    pContext: ?*c_void,
+    pszDeviceInstanceId: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 const CLSID_UPnPDeviceFinder_Value = @import("../../zig.zig").Guid.initString("e2085f28-feb7-404a-b8e7-e659bdeaaa02");
 pub const CLSID_UPnPDeviceFinder = &CLSID_UPnPDeviceFinder_Value;
 
@@ -1249,47 +1290,6 @@ pub const IUPnPRemoteEndpointInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SW_DEVICE_CAPABILITIES = enum(i32) {
-    None = 0,
-    Removable = 1,
-    SilentInstall = 2,
-    NoDisplayInUI = 4,
-    DriverRequired = 8,
-};
-pub const SWDeviceCapabilitiesNone = SW_DEVICE_CAPABILITIES.None;
-pub const SWDeviceCapabilitiesRemovable = SW_DEVICE_CAPABILITIES.Removable;
-pub const SWDeviceCapabilitiesSilentInstall = SW_DEVICE_CAPABILITIES.SilentInstall;
-pub const SWDeviceCapabilitiesNoDisplayInUI = SW_DEVICE_CAPABILITIES.NoDisplayInUI;
-pub const SWDeviceCapabilitiesDriverRequired = SW_DEVICE_CAPABILITIES.DriverRequired;
-
-pub const SW_DEVICE_CREATE_INFO = extern struct {
-    cbSize: u32,
-    pszInstanceId: ?[*:0]const u16,
-    pszzHardwareIds: ?[*]const u16,
-    pszzCompatibleIds: ?[*]const u16,
-    pContainerId: ?*const Guid,
-    CapabilityFlags: u32,
-    pszDeviceDescription: ?[*:0]const u16,
-    pszDeviceLocation: ?[*:0]const u16,
-    pSecurityDescriptor: ?*const SECURITY_DESCRIPTOR,
-};
-
-pub const SW_DEVICE_LIFETIME = enum(i32) {
-    Handle = 0,
-    ParentPresent = 1,
-    Max = 2,
-};
-pub const SWDeviceLifetimeHandle = SW_DEVICE_LIFETIME.Handle;
-pub const SWDeviceLifetimeParentPresent = SW_DEVICE_LIFETIME.ParentPresent;
-pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
-
-pub const SW_DEVICE_CREATE_CALLBACK = fn(
-    hSwDevice: ?HSWDEVICE,
-    CreateResult: HRESULT,
-    pContext: ?*c_void,
-    pszDeviceInstanceId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
@@ -1378,8 +1378,8 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
+const IDispatch = @import("../../system/ole_automation.zig").IDispatch;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
 const IUnknown = @import("../../system/com.zig").IUnknown;

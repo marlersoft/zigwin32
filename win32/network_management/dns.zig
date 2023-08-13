@@ -312,11 +312,6 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
-pub const IP4_ARRAY = extern struct {
-    AddrCount: u32,
-    AddrArray: [1]u32,
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -328,6 +323,14 @@ pub const IP6_ADDRESS = extern union {
 };
 
 }, else => struct { } };
+
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+pub const DnsContextHandle = isize;
+
+pub const IP4_ARRAY = extern struct {
+    AddrCount: u32,
+    AddrArray: [1]u32,
+};
 
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
@@ -1286,9 +1289,6 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
-
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-pub const DnsContextHandle = isize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {

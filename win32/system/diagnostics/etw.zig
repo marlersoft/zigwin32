@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (345)
 //--------------------------------------------------------------------------------
+pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const WNODE_FLAG_ALL_DATA = @as(u32, 1);
 pub const WNODE_FLAG_SINGLE_INSTANCE = @as(u32, 2);
 pub const WNODE_FLAG_SINGLE_ITEM = @as(u32, 4);
@@ -346,7 +347,6 @@ pub const EVENT_ENABLE_PROPERTY_SOURCE_CONTAINER_TRACKING = @as(u32, 2048);
 pub const PROCESS_TRACE_MODE_REAL_TIME = @as(u32, 256);
 pub const PROCESS_TRACE_MODE_RAW_TIMESTAMP = @as(u32, 4096);
 pub const PROCESS_TRACE_MODE_EVENT_RECORD = @as(u32, 268435456);
-pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)
@@ -762,7 +762,7 @@ pub const TRACE_GUID_PROPERTIES = extern struct {
     LoggerId: u32,
     EnableLevel: u32,
     EnableFlags: u32,
-    IsEnable: u8,
+    IsEnable: BOOLEAN,
 };
 
 pub const ETW_BUFFER_CONTEXT = extern struct {
@@ -1044,7 +1044,7 @@ pub const EVENT_FILTER_HEADER = extern struct {
 };
 
 pub const EVENT_FILTER_EVENT_ID = extern struct {
-    FilterIn: u8,
+    FilterIn: BOOLEAN,
     Reserved: u8,
     Count: u16,
     Events: [1]u16,
@@ -1054,7 +1054,7 @@ pub const EVENT_FILTER_EVENT_NAME = extern struct {
     MatchAnyKeyword: u64,
     MatchAllKeyword: u64,
     Level: u8,
-    FilterIn: u8,
+    FilterIn: BOOLEAN,
     NameCount: u16,
     Names: [1]u8,
 };
@@ -1063,7 +1063,7 @@ pub const EVENT_FILTER_LEVEL_KW = extern struct {
     MatchAnyKeyword: u64,
     MatchAllKeyword: u64,
     Level: u8,
-    FilterIn: u8,
+    FilterIn: BOOLEAN,
 };
 
 pub const EVENT_INFO_CLASS = enum(i32) {
@@ -1824,7 +1824,7 @@ pub const ITraceRelogger = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompressionMode: fn(
             self: *const ITraceRelogger,
-            CompressionMode: u8,
+            CompressionMode: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const ITraceRelogger,
@@ -1862,7 +1862,7 @@ pub const ITraceRelogger = extern struct {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetOutputFilename(@ptrCast(*const ITraceRelogger, self), LogfileName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: u8) callconv(.Inline) HRESULT {
+        pub fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITraceRelogger, self), CompressionMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2367,14 +2367,14 @@ pub extern "ADVAPI32" fn EventSetInformation(
 pub extern "ADVAPI32" fn EventEnabled(
     RegHandle: u64,
     EventDescriptor: ?*const EVENT_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventProviderEnabled(
     RegHandle: u64,
     Level: u8,
     Keyword: u64,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn EventWrite(
@@ -2426,7 +2426,7 @@ pub extern "ADVAPI32" fn EventAccessControl(
     Operation: u32,
     Sid: ?PSID,
     Rights: u32,
-    AllowOrDeny: u8,
+    AllowOrDeny: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2446,7 +2446,7 @@ pub extern "ADVAPI32" fn EventAccessRemove(
 pub extern "tdh" fn TdhCreatePayloadFilter(
     ProviderGuid: ?*const Guid,
     EventDescriptor: ?*const EVENT_DESCRIPTOR,
-    EventMatchANY: u8,
+    EventMatchANY: BOOLEAN,
     PayloadPredicateCount: u32,
     PayloadPredicates: [*]PAYLOAD_FILTER_PREDICATE,
     PayloadFilter: ?*?*c_void,
@@ -2461,7 +2461,7 @@ pub extern "tdh" fn TdhDeletePayloadFilter(
 pub extern "tdh" fn TdhAggregatePayloadFilters(
     PayloadFilterCount: u32,
     PayloadFilterPtrs: [*]?*c_void,
-    EventMatchALLFlags: ?[*:0]u8,
+    EventMatchALLFlags: ?[*]BOOLEAN,
     EventFilterDescriptor: ?*EVENT_FILTER_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2714,15 +2714,16 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
+const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const IUnknown = @import("../../system/com.zig").IUnknown;
+const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const PSTR = @import("../../foundation.zig").PSTR;

@@ -410,8 +410,125 @@ pub const WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (35)
+// Section: Types (36)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_CONNECTION_INFO = extern struct {
+    cbSize: u32,
+    LocalAddress: SOCKADDR_STORAGE,
+    RemoteAddress: SOCKADDR_STORAGE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_TIMES = extern struct {
+    cTimes: u32,
+    rgullTimes: [64]u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_STATS = extern struct {
+    ullFlags: u64,
+    ulIndex: u32,
+    cStats: u32,
+    rgullStats: [32]u64,
+};
+
+}, else => struct { } };
+
+pub const INTERNET_PORT = enum(u32) {
+    HTTP_PORT = 80,
+    HTTPS_PORT = 443,
+    PORT = 0,
+};
+pub const INTERNET_DEFAULT_HTTP_PORT = INTERNET_PORT.HTTP_PORT;
+pub const INTERNET_DEFAULT_HTTPS_PORT = INTERNET_PORT.HTTPS_PORT;
+pub const INTERNET_DEFAULT_PORT = INTERNET_PORT.PORT;
+
+pub const WINHTTP_OPEN_REQUEST_FLAGS = enum(u32) {
+    BYPASS_PROXY_CACHE = 256,
+    ESCAPE_DISABLE = 64,
+    ESCAPE_DISABLE_QUERY = 128,
+    ESCAPE_PERCENT = 4,
+    NULL_CODEPAGE = 8,
+    // REFRESH = 256, this enum value conflicts with BYPASS_PROXY_CACHE
+    SECURE = 8388608,
+    _,
+    pub fn initFlags(o: struct {
+        BYPASS_PROXY_CACHE: u1 = 0,
+        ESCAPE_DISABLE: u1 = 0,
+        ESCAPE_DISABLE_QUERY: u1 = 0,
+        ESCAPE_PERCENT: u1 = 0,
+        NULL_CODEPAGE: u1 = 0,
+        SECURE: u1 = 0,
+    }) WINHTTP_OPEN_REQUEST_FLAGS {
+        return @intToEnum(WINHTTP_OPEN_REQUEST_FLAGS,
+              (if (o.BYPASS_PROXY_CACHE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE) else 0)
+            | (if (o.ESCAPE_DISABLE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE) else 0)
+            | (if (o.ESCAPE_DISABLE_QUERY == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY) else 0)
+            | (if (o.ESCAPE_PERCENT == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT) else 0)
+            | (if (o.NULL_CODEPAGE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE) else 0)
+            | (if (o.SECURE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.SECURE) else 0)
+        );
+    }
+};
+pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
+pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE;
+pub const WINHTTP_FLAG_ESCAPE_DISABLE_QUERY = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY;
+pub const WINHTTP_FLAG_ESCAPE_PERCENT = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT;
+pub const WINHTTP_FLAG_NULL_CODEPAGE = WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE;
+pub const WINHTTP_FLAG_REFRESH = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
+pub const WINHTTP_FLAG_SECURE = WINHTTP_OPEN_REQUEST_FLAGS.SECURE;
+
+pub const WIN_HTTP_CREATE_URL_FLAGS = enum(u32) {
+    ESCAPE = 2147483648,
+    REJECT_USERPWD = 16384,
+    DECODE = 268435456,
+};
+pub const ICU_ESCAPE = WIN_HTTP_CREATE_URL_FLAGS.ESCAPE;
+pub const ICU_REJECT_USERPWD = WIN_HTTP_CREATE_URL_FLAGS.REJECT_USERPWD;
+pub const ICU_DECODE = WIN_HTTP_CREATE_URL_FLAGS.DECODE;
+
+pub const WINHTTP_ACCESS_TYPE = enum(u32) {
+    NO_PROXY = 1,
+    DEFAULT_PROXY = 0,
+    NAMED_PROXY = 3,
+    AUTOMATIC_PROXY = 4,
+};
+pub const WINHTTP_ACCESS_TYPE_NO_PROXY = WINHTTP_ACCESS_TYPE.NO_PROXY;
+pub const WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = WINHTTP_ACCESS_TYPE.DEFAULT_PROXY;
+pub const WINHTTP_ACCESS_TYPE_NAMED_PROXY = WINHTTP_ACCESS_TYPE.NAMED_PROXY;
+pub const WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY = WINHTTP_ACCESS_TYPE.AUTOMATIC_PROXY;
+
+pub const WINHTTP_CREDS_AUTHSCHEME = enum(u32) {
+    BASIC = 1,
+    NTLM = 2,
+    NEGOTIATE = 16,
+};
+pub const WINHTTP_AUTH_SCHEME_BASIC = WINHTTP_CREDS_AUTHSCHEME.BASIC;
+pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
+pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
+
+pub const WINHTTP_INTERNET_SCHEME = enum(u32) {
+    HTTP = 1,
+    HTTPS = 2,
+    FTP = 3,
+    SOCKS = 4,
+};
+pub const WINHTTP_INTERNET_SCHEME_HTTP = WINHTTP_INTERNET_SCHEME.HTTP;
+pub const WINHTTP_INTERNET_SCHEME_HTTPS = WINHTTP_INTERNET_SCHEME.HTTPS;
+pub const WINHTTP_INTERNET_SCHEME_FTP = WINHTTP_INTERNET_SCHEME.FTP;
+pub const WINHTTP_INTERNET_SCHEME_SOCKS = WINHTTP_INTERNET_SCHEME.SOCKS;
+
 pub const WINHTTP_ASYNC_RESULT = extern struct {
     dwResult: usize,
     dwError: u32,
@@ -426,7 +543,7 @@ pub const URL_COMPONENTS = extern struct {
     dwStructSize: u32,
     lpszScheme: ?PWSTR,
     dwSchemeLength: u32,
-    nScheme: INTERNET_SCHEME,
+    nScheme: WINHTTP_INTERNET_SCHEME,
     lpszHostName: ?PWSTR,
     dwHostNameLength: u32,
     nPort: u16,
@@ -458,7 +575,7 @@ pub const WINHTTP_AUTOPROXY_OPTIONS = extern struct {
 pub const WINHTTP_PROXY_RESULT_ENTRY = extern struct {
     fProxy: BOOL,
     fBypass: BOOL,
-    ProxyScheme: INTERNET_SCHEME,
+    ProxyScheme: WINHTTP_INTERNET_SCHEME,
     pwszProxy: ?PWSTR,
     ProxyPort: u16,
 };
@@ -508,17 +625,6 @@ pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     lpszEncryptionAlgName: ?PWSTR,
     dwKeySize: u32,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
-};
-
-}, else => struct { } };
 
 pub const WINHTTP_REQUEST_TIME_ENTRY = enum(i32) {
     ProxyDetectionStart = 0,
@@ -599,16 +705,6 @@ pub const WinHttpProxyTlsHandshakeClientLeg3End = WINHTTP_REQUEST_TIME_ENTRY.Pro
 pub const WinHttpRequestTimeLast = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeLast;
 pub const WinHttpRequestTimeMax = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeMax;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    cTimes: u32,
-    rgullTimes: [64]u64,
-};
-
-}, else => struct { } };
-
 pub const WINHTTP_REQUEST_STAT_ENTRY = enum(i32) {
     ConnectFailureCount = 0,
     ProxyFailureCount = 1,
@@ -647,18 +743,6 @@ pub const WinHttpProxyTlsHandshakeClientLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.Pr
 pub const WinHttpProxyTlsHandshakeServerLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.ProxyTlsHandshakeServerLeg2Size;
 pub const WinHttpRequestStatLast = WINHTTP_REQUEST_STAT_ENTRY.RequestStatLast;
 pub const WinHttpRequestStatMax = WINHTTP_REQUEST_STAT_ENTRY.RequestStatMax;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
-};
-
-}, else => struct { } };
 
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
     Anonymous1: extern union {
@@ -804,79 +888,6 @@ pub const WINHTTP_REQUEST_STATS = extern struct {
 };
 
 }, else => struct { } };
-
-pub const INTERNET_PORT = enum(u32) {
-    HTTP_PORT = 80,
-    HTTPS_PORT = 443,
-    PORT = 0,
-};
-pub const INTERNET_DEFAULT_HTTP_PORT = INTERNET_PORT.HTTP_PORT;
-pub const INTERNET_DEFAULT_HTTPS_PORT = INTERNET_PORT.HTTPS_PORT;
-pub const INTERNET_DEFAULT_PORT = INTERNET_PORT.PORT;
-
-pub const WINHTTP_OPEN_REQUEST_FLAGS = enum(u32) {
-    BYPASS_PROXY_CACHE = 256,
-    ESCAPE_DISABLE = 64,
-    ESCAPE_DISABLE_QUERY = 128,
-    ESCAPE_PERCENT = 4,
-    NULL_CODEPAGE = 8,
-    // REFRESH = 256, this enum value conflicts with BYPASS_PROXY_CACHE
-    SECURE = 8388608,
-    _,
-    pub fn initFlags(o: struct {
-        BYPASS_PROXY_CACHE: u1 = 0,
-        ESCAPE_DISABLE: u1 = 0,
-        ESCAPE_DISABLE_QUERY: u1 = 0,
-        ESCAPE_PERCENT: u1 = 0,
-        NULL_CODEPAGE: u1 = 0,
-        SECURE: u1 = 0,
-    }) WINHTTP_OPEN_REQUEST_FLAGS {
-        return @intToEnum(WINHTTP_OPEN_REQUEST_FLAGS,
-              (if (o.BYPASS_PROXY_CACHE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE) else 0)
-            | (if (o.ESCAPE_DISABLE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE) else 0)
-            | (if (o.ESCAPE_DISABLE_QUERY == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY) else 0)
-            | (if (o.ESCAPE_PERCENT == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT) else 0)
-            | (if (o.NULL_CODEPAGE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE) else 0)
-            | (if (o.SECURE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.SECURE) else 0)
-        );
-    }
-};
-pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
-pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE;
-pub const WINHTTP_FLAG_ESCAPE_DISABLE_QUERY = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY;
-pub const WINHTTP_FLAG_ESCAPE_PERCENT = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT;
-pub const WINHTTP_FLAG_NULL_CODEPAGE = WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE;
-pub const WINHTTP_FLAG_REFRESH = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
-pub const WINHTTP_FLAG_SECURE = WINHTTP_OPEN_REQUEST_FLAGS.SECURE;
-
-pub const WIN_HTTP_CREATE_URL_FLAGS = enum(u32) {
-    ESCAPE = 2147483648,
-    REJECT_USERPWD = 16384,
-    DECODE = 268435456,
-};
-pub const ICU_ESCAPE = WIN_HTTP_CREATE_URL_FLAGS.ESCAPE;
-pub const ICU_REJECT_USERPWD = WIN_HTTP_CREATE_URL_FLAGS.REJECT_USERPWD;
-pub const ICU_DECODE = WIN_HTTP_CREATE_URL_FLAGS.DECODE;
-
-pub const WINHTTP_ACCESS_TYPE = enum(u32) {
-    NO_PROXY = 1,
-    DEFAULT_PROXY = 0,
-    NAMED_PROXY = 3,
-    AUTOMATIC_PROXY = 4,
-};
-pub const WINHTTP_ACCESS_TYPE_NO_PROXY = WINHTTP_ACCESS_TYPE.NO_PROXY;
-pub const WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = WINHTTP_ACCESS_TYPE.DEFAULT_PROXY;
-pub const WINHTTP_ACCESS_TYPE_NAMED_PROXY = WINHTTP_ACCESS_TYPE.NAMED_PROXY;
-pub const WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY = WINHTTP_ACCESS_TYPE.AUTOMATIC_PROXY;
-
-pub const WINHTTP_CREDS_AUTHSCHEME = enum(u32) {
-    BASIC = 1,
-    NTLM = 2,
-    NEGOTIATE = 16,
-};
-pub const WINHTTP_AUTH_SCHEME_BASIC = WINHTTP_CREDS_AUTHSCHEME.BASIC;
-pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
-pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 
 
 //--------------------------------------------------------------------------------
@@ -1243,11 +1254,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("../foundation.zig").PWSTR;
 const FILETIME = @import("../foundation.zig").FILETIME;
-const INTERNET_SCHEME = @import("../networking/win_inet.zig").INTERNET_SCHEME;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

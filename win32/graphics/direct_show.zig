@@ -2,6 +2,73 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (717)
 //--------------------------------------------------------------------------------
+pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
+pub const g_wszStreamBufferRecordingDuration = "Duration";
+pub const g_wszStreamBufferRecordingBitrate = "Bitrate";
+pub const g_wszStreamBufferRecordingSeekable = "Seekable";
+pub const g_wszStreamBufferRecordingStridable = "Stridable";
+pub const g_wszStreamBufferRecordingBroadcast = "Broadcast";
+pub const g_wszStreamBufferRecordingProtected = "Is_Protected";
+pub const g_wszStreamBufferRecordingTrusted = "Is_Trusted";
+pub const g_wszStreamBufferRecordingSignature_Name = "Signature_Name";
+pub const g_wszStreamBufferRecordingHasAudio = "HasAudio";
+pub const g_wszStreamBufferRecordingHasImage = "HasImage";
+pub const g_wszStreamBufferRecordingHasScript = "HasScript";
+pub const g_wszStreamBufferRecordingHasVideo = "HasVideo";
+pub const g_wszStreamBufferRecordingCurrentBitrate = "CurrentBitrate";
+pub const g_wszStreamBufferRecordingOptimalBitrate = "OptimalBitrate";
+pub const g_wszStreamBufferRecordingHasAttachedImages = "HasAttachedImages";
+pub const g_wszStreamBufferRecordingSkipBackward = "Can_Skip_Backward";
+pub const g_wszStreamBufferRecordingSkipForward = "Can_Skip_Forward";
+pub const g_wszStreamBufferRecordingNumberOfFrames = "NumberOfFrames";
+pub const g_wszStreamBufferRecordingFileSize = "FileSize";
+pub const g_wszStreamBufferRecordingHasArbitraryDataStream = "HasArbitraryDataStream";
+pub const g_wszStreamBufferRecordingHasFileTransferStream = "HasFileTransferStream";
+pub const g_wszStreamBufferRecordingTitle = "Title";
+pub const g_wszStreamBufferRecordingAuthor = "Author";
+pub const g_wszStreamBufferRecordingDescription = "Description";
+pub const g_wszStreamBufferRecordingRating = "Rating";
+pub const g_wszStreamBufferRecordingCopyright = "Copyright";
+pub const g_wszStreamBufferRecordingUse_DRM = "Use_DRM";
+pub const g_wszStreamBufferRecordingDRM_Flags = "DRM_Flags";
+pub const g_wszStreamBufferRecordingDRM_Level = "DRM_Level";
+pub const g_wszStreamBufferRecordingAlbumTitle = "WM/AlbumTitle";
+pub const g_wszStreamBufferRecordingTrack = "WM/Track";
+pub const g_wszStreamBufferRecordingPromotionURL = "WM/PromotionURL";
+pub const g_wszStreamBufferRecordingAlbumCoverURL = "WM/AlbumCoverURL";
+pub const g_wszStreamBufferRecordingGenre = "WM/Genre";
+pub const g_wszStreamBufferRecordingYear = "WM/Year";
+pub const g_wszStreamBufferRecordingGenreID = "WM/GenreID";
+pub const g_wszStreamBufferRecordingMCDI = "WM/MCDI";
+pub const g_wszStreamBufferRecordingComposer = "WM/Composer";
+pub const g_wszStreamBufferRecordingLyrics = "WM/Lyrics";
+pub const g_wszStreamBufferRecordingTrackNumber = "WM/TrackNumber";
+pub const g_wszStreamBufferRecordingToolName = "WM/ToolName";
+pub const g_wszStreamBufferRecordingToolVersion = "WM/ToolVersion";
+pub const g_wszStreamBufferRecordingIsVBR = "IsVBR";
+pub const g_wszStreamBufferRecordingAlbumArtist = "WM/AlbumArtist";
+pub const g_wszStreamBufferRecordingBannerImageType = "BannerImageType";
+pub const g_wszStreamBufferRecordingBannerImageData = "BannerImageData";
+pub const g_wszStreamBufferRecordingBannerImageURL = "BannerImageURL";
+pub const g_wszStreamBufferRecordingCopyrightURL = "CopyrightURL";
+pub const g_wszStreamBufferRecordingAspectRatioX = "AspectRatioX";
+pub const g_wszStreamBufferRecordingAspectRatioY = "AspectRatioY";
+pub const g_wszStreamBufferRecordingNSCName = "NSC_Name";
+pub const g_wszStreamBufferRecordingNSCAddress = "NSC_Address";
+pub const g_wszStreamBufferRecordingNSCPhone = "NSC_Phone";
+pub const g_wszStreamBufferRecordingNSCEmail = "NSC_Email";
+pub const g_wszStreamBufferRecordingNSCDescription = "NSC_Description";
+pub const STREAMBUFFER_EC_TIMEHOLE = @as(i32, 806);
+pub const STREAMBUFFER_EC_STALE_DATA_READ = @as(i32, 807);
+pub const STREAMBUFFER_EC_STALE_FILE_DELETED = @as(i32, 808);
+pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE = @as(i32, 809);
+pub const STREAMBUFFER_EC_WRITE_FAILURE = @as(i32, 810);
+pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR = @as(i32, 811);
+pub const STREAMBUFFER_EC_READ_FAILURE = @as(i32, 812);
+pub const STREAMBUFFER_EC_RATE_CHANGED = @as(i32, 813);
+pub const STREAMBUFFER_EC_PRIMARY_AUDIO = @as(i32, 814);
+pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
+pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 pub const EC_SND_DEVICE_ERROR_BASE = @as(u32, 512);
 pub const EC_SNDDEV_IN_ERROR = @as(u32, 512);
 pub const EC_SNDDEV_OUT_ERROR = @as(u32, 513);
@@ -652,141 +719,53 @@ pub const COMPONENT_TAG_CAPTION_MIN = @as(u32, 48);
 pub const COMPONENT_TAG_CAPTION_MAX = @as(u32, 55);
 pub const COMPONENT_TAG_SUPERIMPOSE_MIN = @as(u32, 56);
 pub const COMPONENT_TAG_SUPERIMPOSE_MAX = @as(u32, 63);
-pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
-pub const g_wszStreamBufferRecordingDuration = "Duration";
-pub const g_wszStreamBufferRecordingBitrate = "Bitrate";
-pub const g_wszStreamBufferRecordingSeekable = "Seekable";
-pub const g_wszStreamBufferRecordingStridable = "Stridable";
-pub const g_wszStreamBufferRecordingBroadcast = "Broadcast";
-pub const g_wszStreamBufferRecordingProtected = "Is_Protected";
-pub const g_wszStreamBufferRecordingTrusted = "Is_Trusted";
-pub const g_wszStreamBufferRecordingSignature_Name = "Signature_Name";
-pub const g_wszStreamBufferRecordingHasAudio = "HasAudio";
-pub const g_wszStreamBufferRecordingHasImage = "HasImage";
-pub const g_wszStreamBufferRecordingHasScript = "HasScript";
-pub const g_wszStreamBufferRecordingHasVideo = "HasVideo";
-pub const g_wszStreamBufferRecordingCurrentBitrate = "CurrentBitrate";
-pub const g_wszStreamBufferRecordingOptimalBitrate = "OptimalBitrate";
-pub const g_wszStreamBufferRecordingHasAttachedImages = "HasAttachedImages";
-pub const g_wszStreamBufferRecordingSkipBackward = "Can_Skip_Backward";
-pub const g_wszStreamBufferRecordingSkipForward = "Can_Skip_Forward";
-pub const g_wszStreamBufferRecordingNumberOfFrames = "NumberOfFrames";
-pub const g_wszStreamBufferRecordingFileSize = "FileSize";
-pub const g_wszStreamBufferRecordingHasArbitraryDataStream = "HasArbitraryDataStream";
-pub const g_wszStreamBufferRecordingHasFileTransferStream = "HasFileTransferStream";
-pub const g_wszStreamBufferRecordingTitle = "Title";
-pub const g_wszStreamBufferRecordingAuthor = "Author";
-pub const g_wszStreamBufferRecordingDescription = "Description";
-pub const g_wszStreamBufferRecordingRating = "Rating";
-pub const g_wszStreamBufferRecordingCopyright = "Copyright";
-pub const g_wszStreamBufferRecordingUse_DRM = "Use_DRM";
-pub const g_wszStreamBufferRecordingDRM_Flags = "DRM_Flags";
-pub const g_wszStreamBufferRecordingDRM_Level = "DRM_Level";
-pub const g_wszStreamBufferRecordingAlbumTitle = "WM/AlbumTitle";
-pub const g_wszStreamBufferRecordingTrack = "WM/Track";
-pub const g_wszStreamBufferRecordingPromotionURL = "WM/PromotionURL";
-pub const g_wszStreamBufferRecordingAlbumCoverURL = "WM/AlbumCoverURL";
-pub const g_wszStreamBufferRecordingGenre = "WM/Genre";
-pub const g_wszStreamBufferRecordingYear = "WM/Year";
-pub const g_wszStreamBufferRecordingGenreID = "WM/GenreID";
-pub const g_wszStreamBufferRecordingMCDI = "WM/MCDI";
-pub const g_wszStreamBufferRecordingComposer = "WM/Composer";
-pub const g_wszStreamBufferRecordingLyrics = "WM/Lyrics";
-pub const g_wszStreamBufferRecordingTrackNumber = "WM/TrackNumber";
-pub const g_wszStreamBufferRecordingToolName = "WM/ToolName";
-pub const g_wszStreamBufferRecordingToolVersion = "WM/ToolVersion";
-pub const g_wszStreamBufferRecordingIsVBR = "IsVBR";
-pub const g_wszStreamBufferRecordingAlbumArtist = "WM/AlbumArtist";
-pub const g_wszStreamBufferRecordingBannerImageType = "BannerImageType";
-pub const g_wszStreamBufferRecordingBannerImageData = "BannerImageData";
-pub const g_wszStreamBufferRecordingBannerImageURL = "BannerImageURL";
-pub const g_wszStreamBufferRecordingCopyrightURL = "CopyrightURL";
-pub const g_wszStreamBufferRecordingAspectRatioX = "AspectRatioX";
-pub const g_wszStreamBufferRecordingAspectRatioY = "AspectRatioY";
-pub const g_wszStreamBufferRecordingNSCName = "NSC_Name";
-pub const g_wszStreamBufferRecordingNSCAddress = "NSC_Address";
-pub const g_wszStreamBufferRecordingNSCPhone = "NSC_Phone";
-pub const g_wszStreamBufferRecordingNSCEmail = "NSC_Email";
-pub const g_wszStreamBufferRecordingNSCDescription = "NSC_Description";
-pub const STREAMBUFFER_EC_TIMEHOLE = @as(i32, 806);
-pub const STREAMBUFFER_EC_STALE_DATA_READ = @as(i32, 807);
-pub const STREAMBUFFER_EC_STALE_FILE_DELETED = @as(i32, 808);
-pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE = @as(i32, 809);
-pub const STREAMBUFFER_EC_WRITE_FAILURE = @as(i32, 810);
-pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR = @as(i32, 811);
-pub const STREAMBUFFER_EC_READ_FAILURE = @as(i32, 812);
-pub const STREAMBUFFER_EC_RATE_CHANGED = @as(i32, 813);
-pub const STREAMBUFFER_EC_PRIMARY_AUDIO = @as(i32, 814);
-pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
-pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 
 //--------------------------------------------------------------------------------
 // Section: Types (1475)
 //--------------------------------------------------------------------------------
-pub const OA_BOOL = enum(i32) {
-    TRUE = -1,
-    FALSE = 0,
+pub const IKsPin = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const OATRUE = OA_BOOL.TRUE;
-pub const OAFALSE = OA_BOOL.FALSE;
 
-pub const MPEG2VIDEOINFO_FLAGS = enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-    pub fn initFlags(o: struct {
-        DoPanScan: u1 = 0,
-        DVDLine21Field1: u1 = 0,
-        DVDLine21Field2: u1 = 0,
-        SourceIsLetterboxed: u1 = 0,
-        FilmCameraMode: u1 = 0,
-        LetterboxAnalogOut: u1 = 0,
-        DSS_UserData: u1 = 0,
-        DVB_UserData: u1 = 0,
-        @"27MhzTimebase": u1 = 0,
-        WidescreenAnalogOut: u1 = 0,
-    }) MPEG2VIDEOINFO_FLAGS {
-        return @intToEnum(MPEG2VIDEOINFO_FLAGS,
-              (if (o.DoPanScan == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
-            | (if (o.DVDLine21Field1 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
-            | (if (o.DVDLine21Field2 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
-            | (if (o.SourceIsLetterboxed == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
-            | (if (o.FilmCameraMode == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
-            | (if (o.LetterboxAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
-            | (if (o.DSS_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
-            | (if (o.DVB_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
-            | (if (o.@"27MhzTimebase" == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
-            | (if (o.WidescreenAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
-        );
-    }
+pub const IKsAllocator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
 
-pub const MPEGLAYER3WAVEFORMAT_FLAGS = enum(u32) {
-    ISO = 0,
-    ON = 1,
-    OFF = 2,
+pub const IKsAllocatorEx = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
-pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
-pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
-pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
+
+pub const KSTOPOLOGY_CONNECTION = extern struct {
+    FromNode: u32,
+    FromNodePin: u32,
+    ToNode: u32,
+    ToNodePin: u32,
+};
+
+pub const TIMECODE = extern union {
+    Anonymous: extern struct {
+        wFrameRate: u16,
+        wFrameFract: u16,
+        dwFrames: u32,
+    },
+    qw: u64,
+};
+
+pub const TIMECODE_SAMPLE = extern struct {
+    qwTick: i64,
+    timecode: TIMECODE,
+    dwUser: u32,
+    dwFlags: u32,
+};
+
+pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
+    ConstantBitRate = 0,
+    VariableBitRateAverage = 1,
+    VariableBitRatePeak = 2,
+};
+pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
+pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
+pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
 
 pub const AMVP_SELECT_FORMAT_BY = enum(i32) {
     DO_NOT_CARE = 0,
@@ -9357,7 +9336,7 @@ pub const DVD_TitleAttributes = extern struct {
 };
 
 pub const DVD_MenuAttributes = extern struct {
-    fCompatibleRegion: [8]?*BOOL,
+    fCompatibleRegion: [8]BOOL,
     VideoAttributes: DVD_VideoAttributes,
     fAudioPresent: BOOL,
     AudioAttributes: DVD_AudioAttributes,
@@ -12471,7 +12450,7 @@ pub const IBDA_SignalStatistics = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignalPresent: fn(
             self: *const IBDA_SignalStatistics,
-            fPresent: u8,
+            fPresent: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignalPresent: fn(
@@ -12481,7 +12460,7 @@ pub const IBDA_SignalStatistics = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SignalLocked: fn(
             self: *const IBDA_SignalStatistics,
-            fLocked: u8,
+            fLocked: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignalLocked: fn(
@@ -12519,7 +12498,7 @@ pub const IBDA_SignalStatistics = extern struct {
             return @ptrCast(*const IBDA_SignalStatistics.VTable, self.vtable).get_SignalQuality(@ptrCast(*const IBDA_SignalStatistics, self), plPercentQuality);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBDA_SignalStatistics_put_SignalPresent(self: *const T, fPresent: u8) callconv(.Inline) HRESULT {
+        pub fn IBDA_SignalStatistics_put_SignalPresent(self: *const T, fPresent: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBDA_SignalStatistics.VTable, self.vtable).put_SignalPresent(@ptrCast(*const IBDA_SignalStatistics, self), fPresent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12527,7 +12506,7 @@ pub const IBDA_SignalStatistics = extern struct {
             return @ptrCast(*const IBDA_SignalStatistics.VTable, self.vtable).get_SignalPresent(@ptrCast(*const IBDA_SignalStatistics, self), pfPresent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBDA_SignalStatistics_put_SignalLocked(self: *const T, fLocked: u8) callconv(.Inline) HRESULT {
+        pub fn IBDA_SignalStatistics_put_SignalLocked(self: *const T, fLocked: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBDA_SignalStatistics.VTable, self.vtable).put_SignalLocked(@ptrCast(*const IBDA_SignalStatistics, self), fLocked);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12915,7 +12894,7 @@ pub const IBDA_DiseqCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableDiseqCommands: fn(
             self: *const IBDA_DiseqCommand,
-            bEnable: u8,
+            bEnable: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DiseqLNBSource: fn(
@@ -12925,7 +12904,7 @@ pub const IBDA_DiseqCommand = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DiseqUseToneBurst: fn(
             self: *const IBDA_DiseqCommand,
-            bUseToneBurst: u8,
+            bUseToneBurst: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DiseqRepeats: fn(
@@ -12951,7 +12930,7 @@ pub const IBDA_DiseqCommand = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBDA_DiseqCommand_put_EnableDiseqCommands(self: *const T, bEnable: u8) callconv(.Inline) HRESULT {
+        pub fn IBDA_DiseqCommand_put_EnableDiseqCommands(self: *const T, bEnable: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBDA_DiseqCommand.VTable, self.vtable).put_EnableDiseqCommands(@ptrCast(*const IBDA_DiseqCommand, self), bEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12959,7 +12938,7 @@ pub const IBDA_DiseqCommand = extern struct {
             return @ptrCast(*const IBDA_DiseqCommand.VTable, self.vtable).put_DiseqLNBSource(@ptrCast(*const IBDA_DiseqCommand, self), ulLNBSource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBDA_DiseqCommand_put_DiseqUseToneBurst(self: *const T, bUseToneBurst: u8) callconv(.Inline) HRESULT {
+        pub fn IBDA_DiseqCommand_put_DiseqUseToneBurst(self: *const T, bUseToneBurst: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBDA_DiseqCommand.VTable, self.vtable).put_DiseqUseToneBurst(@ptrCast(*const IBDA_DiseqCommand, self), bUseToneBurst);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20779,18 +20758,6 @@ pub const OPTIMAL_WEIGHT_TOTALS = extern struct {
     TotalDenominator: i64,
 };
 
-pub const IKsPin = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IKsAllocator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IKsAllocatorEx = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const PIPE_STATE = enum(i32) {
     DontCare = 0,
     RangeNotFixed = 1,
@@ -23698,6 +23665,71 @@ pub const DMO_ENUM_FLAGS = enum(i32) {
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
 
+pub const OA_BOOL = enum(i32) {
+    TRUE = -1,
+    FALSE = 0,
+};
+pub const OATRUE = OA_BOOL.TRUE;
+pub const OAFALSE = OA_BOOL.FALSE;
+
+pub const MPEG2VIDEOINFO_FLAGS = enum(u32) {
+    DoPanScan = 1,
+    DVDLine21Field1 = 2,
+    DVDLine21Field2 = 4,
+    SourceIsLetterboxed = 8,
+    FilmCameraMode = 16,
+    LetterboxAnalogOut = 32,
+    DSS_UserData = 64,
+    DVB_UserData = 128,
+    @"27MhzTimebase" = 256,
+    WidescreenAnalogOut = 512,
+    _,
+    pub fn initFlags(o: struct {
+        DoPanScan: u1 = 0,
+        DVDLine21Field1: u1 = 0,
+        DVDLine21Field2: u1 = 0,
+        SourceIsLetterboxed: u1 = 0,
+        FilmCameraMode: u1 = 0,
+        LetterboxAnalogOut: u1 = 0,
+        DSS_UserData: u1 = 0,
+        DVB_UserData: u1 = 0,
+        @"27MhzTimebase": u1 = 0,
+        WidescreenAnalogOut: u1 = 0,
+    }) MPEG2VIDEOINFO_FLAGS {
+        return @intToEnum(MPEG2VIDEOINFO_FLAGS,
+              (if (o.DoPanScan == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
+            | (if (o.DVDLine21Field1 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
+            | (if (o.DVDLine21Field2 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
+            | (if (o.SourceIsLetterboxed == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
+            | (if (o.FilmCameraMode == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
+            | (if (o.LetterboxAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
+            | (if (o.DSS_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
+            | (if (o.DVB_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
+            | (if (o.@"27MhzTimebase" == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
+            | (if (o.WidescreenAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
+        );
+    }
+};
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
+
+pub const MPEGLAYER3WAVEFORMAT_FLAGS = enum(u32) {
+    ISO = 0,
+    ON = 1,
+    OFF = 2,
+};
+pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
+pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
+pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
+
 pub const DMO_MEDIA_TYPE = extern struct {
     majortype: Guid,
     subtype: Guid,
@@ -24373,38 +24405,6 @@ pub const DXVA_COPPStatusSignalingCmdData = extern struct {
     ExtendedInfoValidMask: [4]u32,
     ExtendedInfoData: [4]u32,
 };
-
-pub const KSTOPOLOGY_CONNECTION = extern struct {
-    FromNode: u32,
-    FromNodePin: u32,
-    ToNode: u32,
-    ToNodePin: u32,
-};
-
-pub const TIMECODE = extern union {
-    Anonymous: extern struct {
-        wFrameRate: u16,
-        wFrameFract: u16,
-        dwFrames: u32,
-    },
-    qw: u64,
-};
-
-pub const TIMECODE_SAMPLE = extern struct {
-    qwTick: i64,
-    timecode: TIMECODE,
-    dwUser: u32,
-    dwFlags: u32,
-};
-
-pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
-    ConstantBitRate = 0,
-    VariableBitRateAverage = 1,
-    VariableBitRatePeak = 2,
-};
-pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
-pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
-pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
 
 const CLSID_SystemTuningSpaces_Value = @import("../zig.zig").Guid.initString("d02aac50-027e-11d3-9d8e-00c04f72d980");
 pub const CLSID_SystemTuningSpaces = &CLSID_SystemTuningSpaces_Value;
@@ -46940,7 +46940,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (68)
+// Section: Imports (69)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
@@ -46948,6 +46948,7 @@ const KSDATAFORMAT = @import("../media/audio/core_audio.zig").KSDATAFORMAT;
 const KS_COMPRESSION = @import("../media/audio/core_audio.zig").KS_COMPRESSION;
 const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;
 const IDirectDraw7 = @import("../graphics/direct_draw.zig").IDirectDraw7;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PAPCFUNC = @import("../system/system_services.zig").PAPCFUNC;
 const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
 const DDCOLORCONTROL = @import("../graphics/direct_draw.zig").DDCOLORCONTROL;

@@ -152,6 +152,92 @@ pub const VDMLDT_ENTRY = extern struct {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MODULEENTRY = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    szModule: [10]CHAR,
+    hModule: ?HANDLE,
+    wcUsage: u16,
+    szExePath: [256]CHAR,
+    wNext: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const GLOBALENTRY = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    dwAddress: u32,
+    dwBlockSize: u32,
+    hBlock: ?HANDLE,
+    wcLock: u16,
+    wcPageLock: u16,
+    wFlags: u16,
+    wHeapPresent: BOOL,
+    hOwner: ?HANDLE,
+    wType: u16,
+    wData: u16,
+    dwNext: u32,
+    dwNextAlt: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMGETTHREADSELECTORENTRYPROC = fn(
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: u32,
+    param3: ?*VDMLDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMGETCONTEXTPROC = fn(
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*VDMCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMSETCONTEXTPROC = fn(
+    param0: ?HANDLE,
+    param1: ?HANDLE,
+    param2: ?*VDMCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
 pub const VDMCONTEXT_WITHOUT_XSAVE = extern struct {
     ContextFlags: u32,
     Dr0: u32,
@@ -196,21 +282,6 @@ pub const IMAGE_NOTE = extern struct {
     hTask: u16,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MODULEENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szModule: [10]CHAR,
-    hModule: ?HANDLE,
-    wcUsage: u16,
-    szExePath: [256]CHAR,
-    wNext: u16,
-};
-
-}, else => struct { } };
-
 pub const TEMP_BP_NOTE = extern struct {
     Seg: u16,
     Offset: u32,
@@ -225,28 +296,6 @@ pub const VDM_SEGINFO = extern struct {
     ModuleName: [9]CHAR,
     FileName: [255]CHAR,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const GLOBALENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwAddress: u32,
-    dwBlockSize: u32,
-    hBlock: ?HANDLE,
-    wcLock: u16,
-    wcPageLock: u16,
-    wFlags: u16,
-    wHeapPresent: BOOL,
-    hOwner: ?HANDLE,
-    wType: u16,
-    wData: u16,
-    dwNext: u32,
-    dwNextAlt: u32,
-};
-
-}, else => struct { } };
 
 pub const DEBUGEVENTPROC = fn(
     param0: ?*DEBUG_EVENT,
@@ -279,23 +328,6 @@ pub const VDMPROCESSEXCEPTIONPROC = fn(
     param0: ?*DEBUG_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u32,
-    param3: ?*VDMLDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
 pub const VDMGETPOINTERPROC = fn(
     param0: ?HANDLE,
     param1: ?HANDLE,
@@ -303,38 +335,6 @@ pub const VDMGETPOINTERPROC = fn(
     param3: u32,
     param4: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMGETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const VDMSETCONTEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
-
-}, else => struct { } };
 
 pub const VDMKILLWOWPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -591,15 +591,15 @@ const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
+    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
+    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
     if (@hasDecl(@This(), "DEBUGEVENTPROC")) { _ = DEBUGEVENTPROC; }
     if (@hasDecl(@This(), "PROCESSENUMPROC")) { _ = PROCESSENUMPROC; }
     if (@hasDecl(@This(), "TASKENUMPROC")) { _ = TASKENUMPROC; }
     if (@hasDecl(@This(), "TASKENUMPROCEX")) { _ = TASKENUMPROCEX; }
     if (@hasDecl(@This(), "VDMPROCESSEXCEPTIONPROC")) { _ = VDMPROCESSEXCEPTIONPROC; }
-    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
     if (@hasDecl(@This(), "VDMGETPOINTERPROC")) { _ = VDMGETPOINTERPROC; }
-    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
-    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
     if (@hasDecl(@This(), "VDMKILLWOWPROC")) { _ = VDMKILLWOWPROC; }
     if (@hasDecl(@This(), "VDMDETECTWOWPROC")) { _ = VDMDETECTWOWPROC; }
     if (@hasDecl(@This(), "VDMBREAKTHREADPROC")) { _ = VDMBREAKTHREADPROC; }

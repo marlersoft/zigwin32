@@ -4,8 +4,153 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (30)
+// Section: Types (31)
 //--------------------------------------------------------------------------------
+pub const HRAWINPUT = *opaque{};
+
+pub const MOUSEMOVEPOINT = extern struct {
+    x: i32,
+    y: i32,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const TRACKMOUSEEVENT = extern struct {
+    cbSize: u32,
+    dwFlags: TRACKMOUSEEVENT_FLAGS,
+    hwndTrack: ?HWND,
+    dwHoverTime: u32,
+};
+
+pub const MOUSEINPUT = extern struct {
+    dx: i32,
+    dy: i32,
+    mouseData: u32,
+    dwFlags: MOUSE_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const KEYBDINPUT = extern struct {
+    wVk: VIRTUAL_KEY,
+    wScan: u16,
+    dwFlags: KEYBD_EVENT_FLAGS,
+    time: u32,
+    dwExtraInfo: usize,
+};
+
+pub const HARDWAREINPUT = extern struct {
+    uMsg: u32,
+    wParamL: u16,
+    wParamH: u16,
+};
+
+pub const INPUT = extern struct {
+    type: INPUT_TYPE,
+    Anonymous: extern union {
+        mi: MOUSEINPUT,
+        ki: KEYBDINPUT,
+        hi: HARDWAREINPUT,
+    },
+};
+
+pub const LASTINPUTINFO = extern struct {
+    cbSize: u32,
+    dwTime: u32,
+};
+
+pub const RAWINPUTHEADER = extern struct {
+    dwType: u32,
+    dwSize: u32,
+    hDevice: ?HANDLE,
+    wParam: WPARAM,
+};
+
+pub const RAWMOUSE = extern struct {
+    usFlags: u16,
+    Anonymous: extern union {
+        ulButtons: u32,
+        Anonymous: extern struct {
+            usButtonFlags: u16,
+            usButtonData: u16,
+        },
+    },
+    ulRawButtons: u32,
+    lLastX: i32,
+    lLastY: i32,
+    ulExtraInformation: u32,
+};
+
+pub const RAWKEYBOARD = extern struct {
+    MakeCode: u16,
+    Flags: u16,
+    Reserved: u16,
+    VKey: u16,
+    Message: u32,
+    ExtraInformation: u32,
+};
+
+pub const RAWHID = extern struct {
+    dwSizeHid: u32,
+    dwCount: u32,
+    bRawData: [1]u8,
+};
+
+pub const RAWINPUT = extern struct {
+    header: RAWINPUTHEADER,
+    data: extern union {
+        mouse: RAWMOUSE,
+        keyboard: RAWKEYBOARD,
+        hid: RAWHID,
+    },
+};
+
+pub const RID_DEVICE_INFO_MOUSE = extern struct {
+    dwId: u32,
+    dwNumberOfButtons: u32,
+    dwSampleRate: u32,
+    fHasHorizontalWheel: BOOL,
+};
+
+pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
+    dwType: u32,
+    dwSubType: u32,
+    dwKeyboardMode: u32,
+    dwNumberOfFunctionKeys: u32,
+    dwNumberOfIndicators: u32,
+    dwNumberOfKeysTotal: u32,
+};
+
+pub const RID_DEVICE_INFO_HID = extern struct {
+    dwVendorId: u32,
+    dwProductId: u32,
+    dwVersionNumber: u32,
+    usUsagePage: u16,
+    usUsage: u16,
+};
+
+pub const RID_DEVICE_INFO = extern struct {
+    cbSize: u32,
+    dwType: RID_DEVICE_INFO_TYPE,
+    Anonymous: extern union {
+        mouse: RID_DEVICE_INFO_MOUSE,
+        keyboard: RID_DEVICE_INFO_KEYBOARD,
+        hid: RID_DEVICE_INFO_HID,
+    },
+};
+
+pub const RAWINPUTDEVICE = extern struct {
+    usUsagePage: u16,
+    usUsage: u16,
+    dwFlags: RAWINPUTDEVICE_FLAGS,
+    hwndTarget: ?HWND,
+};
+
+pub const RAWINPUTDEVICELIST = extern struct {
+    hDevice: ?HANDLE,
+    dwType: RID_DEVICE_INFO_TYPE,
+};
+
 pub const RAW_INPUT_DATA_COMMAND_FLAGS = enum(u32) {
     HEADER = 268435461,
     INPUT = 268435459,
@@ -237,155 +382,474 @@ pub const TME_LEAVE = TRACKMOUSEEVENT_FLAGS.LEAVE;
 pub const TME_NONCLIENT = TRACKMOUSEEVENT_FLAGS.NONCLIENT;
 pub const TME_QUERY = TRACKMOUSEEVENT_FLAGS.QUERY;
 
-pub const HRAWINPUT = *opaque{};
-
-pub const MOUSEMOVEPOINT = extern struct {
-    x: i32,
-    y: i32,
-    time: u32,
-    dwExtraInfo: usize,
+pub const VIRTUAL_KEY = enum(u16) {
+    @"0" = 48,
+    @"1" = 49,
+    @"2" = 50,
+    @"3" = 51,
+    @"4" = 52,
+    @"5" = 53,
+    @"6" = 54,
+    @"7" = 55,
+    @"8" = 56,
+    @"9" = 57,
+    A = 65,
+    B = 66,
+    C = 67,
+    D = 68,
+    E = 69,
+    F = 70,
+    G = 71,
+    H = 72,
+    I = 73,
+    J = 74,
+    K = 75,
+    L = 76,
+    M = 77,
+    N = 78,
+    O = 79,
+    P = 80,
+    Q = 81,
+    R = 82,
+    S = 83,
+    T = 84,
+    U = 85,
+    V = 86,
+    W = 87,
+    X = 88,
+    Y = 89,
+    Z = 90,
+    LBUTTON = 1,
+    RBUTTON = 2,
+    CANCEL = 3,
+    MBUTTON = 4,
+    XBUTTON1 = 5,
+    XBUTTON2 = 6,
+    BACK = 8,
+    TAB = 9,
+    CLEAR = 12,
+    RETURN = 13,
+    SHIFT = 16,
+    CONTROL = 17,
+    MENU = 18,
+    PAUSE = 19,
+    CAPITAL = 20,
+    KANA = 21,
+    // HANGEUL = 21, this enum value conflicts with KANA
+    // HANGUL = 21, this enum value conflicts with KANA
+    JUNJA = 23,
+    FINAL = 24,
+    HANJA = 25,
+    // KANJI = 25, this enum value conflicts with HANJA
+    ESCAPE = 27,
+    CONVERT = 28,
+    NONCONVERT = 29,
+    ACCEPT = 30,
+    MODECHANGE = 31,
+    SPACE = 32,
+    PRIOR = 33,
+    NEXT = 34,
+    END = 35,
+    HOME = 36,
+    LEFT = 37,
+    UP = 38,
+    RIGHT = 39,
+    DOWN = 40,
+    SELECT = 41,
+    PRINT = 42,
+    EXECUTE = 43,
+    SNAPSHOT = 44,
+    INSERT = 45,
+    DELETE = 46,
+    HELP = 47,
+    LWIN = 91,
+    RWIN = 92,
+    APPS = 93,
+    SLEEP = 95,
+    NUMPAD0 = 96,
+    NUMPAD1 = 97,
+    NUMPAD2 = 98,
+    NUMPAD3 = 99,
+    NUMPAD4 = 100,
+    NUMPAD5 = 101,
+    NUMPAD6 = 102,
+    NUMPAD7 = 103,
+    NUMPAD8 = 104,
+    NUMPAD9 = 105,
+    MULTIPLY = 106,
+    ADD = 107,
+    SEPARATOR = 108,
+    SUBTRACT = 109,
+    DECIMAL = 110,
+    DIVIDE = 111,
+    F1 = 112,
+    F2 = 113,
+    F3 = 114,
+    F4 = 115,
+    F5 = 116,
+    F6 = 117,
+    F7 = 118,
+    F8 = 119,
+    F9 = 120,
+    F10 = 121,
+    F11 = 122,
+    F12 = 123,
+    F13 = 124,
+    F14 = 125,
+    F15 = 126,
+    F16 = 127,
+    F17 = 128,
+    F18 = 129,
+    F19 = 130,
+    F20 = 131,
+    F21 = 132,
+    F22 = 133,
+    F23 = 134,
+    F24 = 135,
+    NAVIGATION_VIEW = 136,
+    NAVIGATION_MENU = 137,
+    NAVIGATION_UP = 138,
+    NAVIGATION_DOWN = 139,
+    NAVIGATION_LEFT = 140,
+    NAVIGATION_RIGHT = 141,
+    NAVIGATION_ACCEPT = 142,
+    NAVIGATION_CANCEL = 143,
+    NUMLOCK = 144,
+    SCROLL = 145,
+    OEM_NEC_EQUAL = 146,
+    // OEM_FJ_JISHO = 146, this enum value conflicts with OEM_NEC_EQUAL
+    OEM_FJ_MASSHOU = 147,
+    OEM_FJ_TOUROKU = 148,
+    OEM_FJ_LOYA = 149,
+    OEM_FJ_ROYA = 150,
+    LSHIFT = 160,
+    RSHIFT = 161,
+    LCONTROL = 162,
+    RCONTROL = 163,
+    LMENU = 164,
+    RMENU = 165,
+    BROWSER_BACK = 166,
+    BROWSER_FORWARD = 167,
+    BROWSER_REFRESH = 168,
+    BROWSER_STOP = 169,
+    BROWSER_SEARCH = 170,
+    BROWSER_FAVORITES = 171,
+    BROWSER_HOME = 172,
+    VOLUME_MUTE = 173,
+    VOLUME_DOWN = 174,
+    VOLUME_UP = 175,
+    MEDIA_NEXT_TRACK = 176,
+    MEDIA_PREV_TRACK = 177,
+    MEDIA_STOP = 178,
+    MEDIA_PLAY_PAUSE = 179,
+    LAUNCH_MAIL = 180,
+    LAUNCH_MEDIA_SELECT = 181,
+    LAUNCH_APP1 = 182,
+    LAUNCH_APP2 = 183,
+    OEM_1 = 186,
+    OEM_PLUS = 187,
+    OEM_COMMA = 188,
+    OEM_MINUS = 189,
+    OEM_PERIOD = 190,
+    OEM_2 = 191,
+    OEM_3 = 192,
+    GAMEPAD_A = 195,
+    GAMEPAD_B = 196,
+    GAMEPAD_X = 197,
+    GAMEPAD_Y = 198,
+    GAMEPAD_RIGHT_SHOULDER = 199,
+    GAMEPAD_LEFT_SHOULDER = 200,
+    GAMEPAD_LEFT_TRIGGER = 201,
+    GAMEPAD_RIGHT_TRIGGER = 202,
+    GAMEPAD_DPAD_UP = 203,
+    GAMEPAD_DPAD_DOWN = 204,
+    GAMEPAD_DPAD_LEFT = 205,
+    GAMEPAD_DPAD_RIGHT = 206,
+    GAMEPAD_MENU = 207,
+    GAMEPAD_VIEW = 208,
+    GAMEPAD_LEFT_THUMBSTICK_BUTTON = 209,
+    GAMEPAD_RIGHT_THUMBSTICK_BUTTON = 210,
+    GAMEPAD_LEFT_THUMBSTICK_UP = 211,
+    GAMEPAD_LEFT_THUMBSTICK_DOWN = 212,
+    GAMEPAD_LEFT_THUMBSTICK_RIGHT = 213,
+    GAMEPAD_LEFT_THUMBSTICK_LEFT = 214,
+    GAMEPAD_RIGHT_THUMBSTICK_UP = 215,
+    GAMEPAD_RIGHT_THUMBSTICK_DOWN = 216,
+    GAMEPAD_RIGHT_THUMBSTICK_RIGHT = 217,
+    GAMEPAD_RIGHT_THUMBSTICK_LEFT = 218,
+    OEM_4 = 219,
+    OEM_5 = 220,
+    OEM_6 = 221,
+    OEM_7 = 222,
+    OEM_8 = 223,
+    OEM_AX = 225,
+    OEM_102 = 226,
+    ICO_HELP = 227,
+    ICO_00 = 228,
+    PROCESSKEY = 229,
+    ICO_CLEAR = 230,
+    PACKET = 231,
+    OEM_RESET = 233,
+    OEM_JUMP = 234,
+    OEM_PA1 = 235,
+    OEM_PA2 = 236,
+    OEM_PA3 = 237,
+    OEM_WSCTRL = 238,
+    OEM_CUSEL = 239,
+    OEM_ATTN = 240,
+    OEM_FINISH = 241,
+    OEM_COPY = 242,
+    OEM_AUTO = 243,
+    OEM_ENLW = 244,
+    OEM_BACKTAB = 245,
+    ATTN = 246,
+    CRSEL = 247,
+    EXSEL = 248,
+    EREOF = 249,
+    PLAY = 250,
+    ZOOM = 251,
+    NONAME = 252,
+    PA1 = 253,
+    OEM_CLEAR = 254,
 };
-
-pub const TRACKMOUSEEVENT = extern struct {
-    cbSize: u32,
-    dwFlags: TRACKMOUSEEVENT_FLAGS,
-    hwndTrack: ?HWND,
-    dwHoverTime: u32,
-};
-
-pub const MOUSEINPUT = extern struct {
-    dx: i32,
-    dy: i32,
-    mouseData: u32,
-    dwFlags: MOUSE_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const KEYBDINPUT = extern struct {
-    wVk: u16,
-    wScan: u16,
-    dwFlags: KEYBD_EVENT_FLAGS,
-    time: u32,
-    dwExtraInfo: usize,
-};
-
-pub const HARDWAREINPUT = extern struct {
-    uMsg: u32,
-    wParamL: u16,
-    wParamH: u16,
-};
-
-pub const INPUT = extern struct {
-    type: INPUT_TYPE,
-    Anonymous: extern union {
-        mi: MOUSEINPUT,
-        ki: KEYBDINPUT,
-        hi: HARDWAREINPUT,
-    },
-};
-
-pub const LASTINPUTINFO = extern struct {
-    cbSize: u32,
-    dwTime: u32,
-};
-
-pub const RAWINPUTHEADER = extern struct {
-    dwType: u32,
-    dwSize: u32,
-    hDevice: ?HANDLE,
-    wParam: WPARAM,
-};
-
-pub const RAWMOUSE = extern struct {
-    usFlags: u16,
-    Anonymous: extern union {
-        ulButtons: u32,
-        Anonymous: extern struct {
-            usButtonFlags: u16,
-            usButtonData: u16,
-        },
-    },
-    ulRawButtons: u32,
-    lLastX: i32,
-    lLastY: i32,
-    ulExtraInformation: u32,
-};
-
-pub const RAWKEYBOARD = extern struct {
-    MakeCode: u16,
-    Flags: u16,
-    Reserved: u16,
-    VKey: u16,
-    Message: u32,
-    ExtraInformation: u32,
-};
-
-pub const RAWHID = extern struct {
-    dwSizeHid: u32,
-    dwCount: u32,
-    bRawData: [1]u8,
-};
-
-pub const RAWINPUT = extern struct {
-    header: RAWINPUTHEADER,
-    data: extern union {
-        mouse: RAWMOUSE,
-        keyboard: RAWKEYBOARD,
-        hid: RAWHID,
-    },
-};
-
-pub const RID_DEVICE_INFO_MOUSE = extern struct {
-    dwId: u32,
-    dwNumberOfButtons: u32,
-    dwSampleRate: u32,
-    fHasHorizontalWheel: BOOL,
-};
-
-pub const RID_DEVICE_INFO_KEYBOARD = extern struct {
-    dwType: u32,
-    dwSubType: u32,
-    dwKeyboardMode: u32,
-    dwNumberOfFunctionKeys: u32,
-    dwNumberOfIndicators: u32,
-    dwNumberOfKeysTotal: u32,
-};
-
-pub const RID_DEVICE_INFO_HID = extern struct {
-    dwVendorId: u32,
-    dwProductId: u32,
-    dwVersionNumber: u32,
-    usUsagePage: u16,
-    usUsage: u16,
-};
-
-pub const RID_DEVICE_INFO = extern struct {
-    cbSize: u32,
-    dwType: RID_DEVICE_INFO_TYPE,
-    Anonymous: extern union {
-        mouse: RID_DEVICE_INFO_MOUSE,
-        keyboard: RID_DEVICE_INFO_KEYBOARD,
-        hid: RID_DEVICE_INFO_HID,
-    },
-};
-
-pub const RAWINPUTDEVICE = extern struct {
-    usUsagePage: u16,
-    usUsage: u16,
-    dwFlags: RAWINPUTDEVICE_FLAGS,
-    hwndTarget: ?HWND,
-};
-
-pub const RAWINPUTDEVICELIST = extern struct {
-    hDevice: ?HANDLE,
-    dwType: RID_DEVICE_INFO_TYPE,
-};
+pub const VK_0 = VIRTUAL_KEY.@"0";
+pub const VK_1 = VIRTUAL_KEY.@"1";
+pub const VK_2 = VIRTUAL_KEY.@"2";
+pub const VK_3 = VIRTUAL_KEY.@"3";
+pub const VK_4 = VIRTUAL_KEY.@"4";
+pub const VK_5 = VIRTUAL_KEY.@"5";
+pub const VK_6 = VIRTUAL_KEY.@"6";
+pub const VK_7 = VIRTUAL_KEY.@"7";
+pub const VK_8 = VIRTUAL_KEY.@"8";
+pub const VK_9 = VIRTUAL_KEY.@"9";
+pub const VK_A = VIRTUAL_KEY.A;
+pub const VK_B = VIRTUAL_KEY.B;
+pub const VK_C = VIRTUAL_KEY.C;
+pub const VK_D = VIRTUAL_KEY.D;
+pub const VK_E = VIRTUAL_KEY.E;
+pub const VK_F = VIRTUAL_KEY.F;
+pub const VK_G = VIRTUAL_KEY.G;
+pub const VK_H = VIRTUAL_KEY.H;
+pub const VK_I = VIRTUAL_KEY.I;
+pub const VK_J = VIRTUAL_KEY.J;
+pub const VK_K = VIRTUAL_KEY.K;
+pub const VK_L = VIRTUAL_KEY.L;
+pub const VK_M = VIRTUAL_KEY.M;
+pub const VK_N = VIRTUAL_KEY.N;
+pub const VK_O = VIRTUAL_KEY.O;
+pub const VK_P = VIRTUAL_KEY.P;
+pub const VK_Q = VIRTUAL_KEY.Q;
+pub const VK_R = VIRTUAL_KEY.R;
+pub const VK_S = VIRTUAL_KEY.S;
+pub const VK_T = VIRTUAL_KEY.T;
+pub const VK_U = VIRTUAL_KEY.U;
+pub const VK_V = VIRTUAL_KEY.V;
+pub const VK_W = VIRTUAL_KEY.W;
+pub const VK_X = VIRTUAL_KEY.X;
+pub const VK_Y = VIRTUAL_KEY.Y;
+pub const VK_Z = VIRTUAL_KEY.Z;
+pub const VK_LBUTTON = VIRTUAL_KEY.LBUTTON;
+pub const VK_RBUTTON = VIRTUAL_KEY.RBUTTON;
+pub const VK_CANCEL = VIRTUAL_KEY.CANCEL;
+pub const VK_MBUTTON = VIRTUAL_KEY.MBUTTON;
+pub const VK_XBUTTON1 = VIRTUAL_KEY.XBUTTON1;
+pub const VK_XBUTTON2 = VIRTUAL_KEY.XBUTTON2;
+pub const VK_BACK = VIRTUAL_KEY.BACK;
+pub const VK_TAB = VIRTUAL_KEY.TAB;
+pub const VK_CLEAR = VIRTUAL_KEY.CLEAR;
+pub const VK_RETURN = VIRTUAL_KEY.RETURN;
+pub const VK_SHIFT = VIRTUAL_KEY.SHIFT;
+pub const VK_CONTROL = VIRTUAL_KEY.CONTROL;
+pub const VK_MENU = VIRTUAL_KEY.MENU;
+pub const VK_PAUSE = VIRTUAL_KEY.PAUSE;
+pub const VK_CAPITAL = VIRTUAL_KEY.CAPITAL;
+pub const VK_KANA = VIRTUAL_KEY.KANA;
+pub const VK_HANGEUL = VIRTUAL_KEY.KANA;
+pub const VK_HANGUL = VIRTUAL_KEY.KANA;
+pub const VK_JUNJA = VIRTUAL_KEY.JUNJA;
+pub const VK_FINAL = VIRTUAL_KEY.FINAL;
+pub const VK_HANJA = VIRTUAL_KEY.HANJA;
+pub const VK_KANJI = VIRTUAL_KEY.HANJA;
+pub const VK_ESCAPE = VIRTUAL_KEY.ESCAPE;
+pub const VK_CONVERT = VIRTUAL_KEY.CONVERT;
+pub const VK_NONCONVERT = VIRTUAL_KEY.NONCONVERT;
+pub const VK_ACCEPT = VIRTUAL_KEY.ACCEPT;
+pub const VK_MODECHANGE = VIRTUAL_KEY.MODECHANGE;
+pub const VK_SPACE = VIRTUAL_KEY.SPACE;
+pub const VK_PRIOR = VIRTUAL_KEY.PRIOR;
+pub const VK_NEXT = VIRTUAL_KEY.NEXT;
+pub const VK_END = VIRTUAL_KEY.END;
+pub const VK_HOME = VIRTUAL_KEY.HOME;
+pub const VK_LEFT = VIRTUAL_KEY.LEFT;
+pub const VK_UP = VIRTUAL_KEY.UP;
+pub const VK_RIGHT = VIRTUAL_KEY.RIGHT;
+pub const VK_DOWN = VIRTUAL_KEY.DOWN;
+pub const VK_SELECT = VIRTUAL_KEY.SELECT;
+pub const VK_PRINT = VIRTUAL_KEY.PRINT;
+pub const VK_EXECUTE = VIRTUAL_KEY.EXECUTE;
+pub const VK_SNAPSHOT = VIRTUAL_KEY.SNAPSHOT;
+pub const VK_INSERT = VIRTUAL_KEY.INSERT;
+pub const VK_DELETE = VIRTUAL_KEY.DELETE;
+pub const VK_HELP = VIRTUAL_KEY.HELP;
+pub const VK_LWIN = VIRTUAL_KEY.LWIN;
+pub const VK_RWIN = VIRTUAL_KEY.RWIN;
+pub const VK_APPS = VIRTUAL_KEY.APPS;
+pub const VK_SLEEP = VIRTUAL_KEY.SLEEP;
+pub const VK_NUMPAD0 = VIRTUAL_KEY.NUMPAD0;
+pub const VK_NUMPAD1 = VIRTUAL_KEY.NUMPAD1;
+pub const VK_NUMPAD2 = VIRTUAL_KEY.NUMPAD2;
+pub const VK_NUMPAD3 = VIRTUAL_KEY.NUMPAD3;
+pub const VK_NUMPAD4 = VIRTUAL_KEY.NUMPAD4;
+pub const VK_NUMPAD5 = VIRTUAL_KEY.NUMPAD5;
+pub const VK_NUMPAD6 = VIRTUAL_KEY.NUMPAD6;
+pub const VK_NUMPAD7 = VIRTUAL_KEY.NUMPAD7;
+pub const VK_NUMPAD8 = VIRTUAL_KEY.NUMPAD8;
+pub const VK_NUMPAD9 = VIRTUAL_KEY.NUMPAD9;
+pub const VK_MULTIPLY = VIRTUAL_KEY.MULTIPLY;
+pub const VK_ADD = VIRTUAL_KEY.ADD;
+pub const VK_SEPARATOR = VIRTUAL_KEY.SEPARATOR;
+pub const VK_SUBTRACT = VIRTUAL_KEY.SUBTRACT;
+pub const VK_DECIMAL = VIRTUAL_KEY.DECIMAL;
+pub const VK_DIVIDE = VIRTUAL_KEY.DIVIDE;
+pub const VK_F1 = VIRTUAL_KEY.F1;
+pub const VK_F2 = VIRTUAL_KEY.F2;
+pub const VK_F3 = VIRTUAL_KEY.F3;
+pub const VK_F4 = VIRTUAL_KEY.F4;
+pub const VK_F5 = VIRTUAL_KEY.F5;
+pub const VK_F6 = VIRTUAL_KEY.F6;
+pub const VK_F7 = VIRTUAL_KEY.F7;
+pub const VK_F8 = VIRTUAL_KEY.F8;
+pub const VK_F9 = VIRTUAL_KEY.F9;
+pub const VK_F10 = VIRTUAL_KEY.F10;
+pub const VK_F11 = VIRTUAL_KEY.F11;
+pub const VK_F12 = VIRTUAL_KEY.F12;
+pub const VK_F13 = VIRTUAL_KEY.F13;
+pub const VK_F14 = VIRTUAL_KEY.F14;
+pub const VK_F15 = VIRTUAL_KEY.F15;
+pub const VK_F16 = VIRTUAL_KEY.F16;
+pub const VK_F17 = VIRTUAL_KEY.F17;
+pub const VK_F18 = VIRTUAL_KEY.F18;
+pub const VK_F19 = VIRTUAL_KEY.F19;
+pub const VK_F20 = VIRTUAL_KEY.F20;
+pub const VK_F21 = VIRTUAL_KEY.F21;
+pub const VK_F22 = VIRTUAL_KEY.F22;
+pub const VK_F23 = VIRTUAL_KEY.F23;
+pub const VK_F24 = VIRTUAL_KEY.F24;
+pub const VK_NAVIGATION_VIEW = VIRTUAL_KEY.NAVIGATION_VIEW;
+pub const VK_NAVIGATION_MENU = VIRTUAL_KEY.NAVIGATION_MENU;
+pub const VK_NAVIGATION_UP = VIRTUAL_KEY.NAVIGATION_UP;
+pub const VK_NAVIGATION_DOWN = VIRTUAL_KEY.NAVIGATION_DOWN;
+pub const VK_NAVIGATION_LEFT = VIRTUAL_KEY.NAVIGATION_LEFT;
+pub const VK_NAVIGATION_RIGHT = VIRTUAL_KEY.NAVIGATION_RIGHT;
+pub const VK_NAVIGATION_ACCEPT = VIRTUAL_KEY.NAVIGATION_ACCEPT;
+pub const VK_NAVIGATION_CANCEL = VIRTUAL_KEY.NAVIGATION_CANCEL;
+pub const VK_NUMLOCK = VIRTUAL_KEY.NUMLOCK;
+pub const VK_SCROLL = VIRTUAL_KEY.SCROLL;
+pub const VK_OEM_NEC_EQUAL = VIRTUAL_KEY.OEM_NEC_EQUAL;
+pub const VK_OEM_FJ_JISHO = VIRTUAL_KEY.OEM_NEC_EQUAL;
+pub const VK_OEM_FJ_MASSHOU = VIRTUAL_KEY.OEM_FJ_MASSHOU;
+pub const VK_OEM_FJ_TOUROKU = VIRTUAL_KEY.OEM_FJ_TOUROKU;
+pub const VK_OEM_FJ_LOYA = VIRTUAL_KEY.OEM_FJ_LOYA;
+pub const VK_OEM_FJ_ROYA = VIRTUAL_KEY.OEM_FJ_ROYA;
+pub const VK_LSHIFT = VIRTUAL_KEY.LSHIFT;
+pub const VK_RSHIFT = VIRTUAL_KEY.RSHIFT;
+pub const VK_LCONTROL = VIRTUAL_KEY.LCONTROL;
+pub const VK_RCONTROL = VIRTUAL_KEY.RCONTROL;
+pub const VK_LMENU = VIRTUAL_KEY.LMENU;
+pub const VK_RMENU = VIRTUAL_KEY.RMENU;
+pub const VK_BROWSER_BACK = VIRTUAL_KEY.BROWSER_BACK;
+pub const VK_BROWSER_FORWARD = VIRTUAL_KEY.BROWSER_FORWARD;
+pub const VK_BROWSER_REFRESH = VIRTUAL_KEY.BROWSER_REFRESH;
+pub const VK_BROWSER_STOP = VIRTUAL_KEY.BROWSER_STOP;
+pub const VK_BROWSER_SEARCH = VIRTUAL_KEY.BROWSER_SEARCH;
+pub const VK_BROWSER_FAVORITES = VIRTUAL_KEY.BROWSER_FAVORITES;
+pub const VK_BROWSER_HOME = VIRTUAL_KEY.BROWSER_HOME;
+pub const VK_VOLUME_MUTE = VIRTUAL_KEY.VOLUME_MUTE;
+pub const VK_VOLUME_DOWN = VIRTUAL_KEY.VOLUME_DOWN;
+pub const VK_VOLUME_UP = VIRTUAL_KEY.VOLUME_UP;
+pub const VK_MEDIA_NEXT_TRACK = VIRTUAL_KEY.MEDIA_NEXT_TRACK;
+pub const VK_MEDIA_PREV_TRACK = VIRTUAL_KEY.MEDIA_PREV_TRACK;
+pub const VK_MEDIA_STOP = VIRTUAL_KEY.MEDIA_STOP;
+pub const VK_MEDIA_PLAY_PAUSE = VIRTUAL_KEY.MEDIA_PLAY_PAUSE;
+pub const VK_LAUNCH_MAIL = VIRTUAL_KEY.LAUNCH_MAIL;
+pub const VK_LAUNCH_MEDIA_SELECT = VIRTUAL_KEY.LAUNCH_MEDIA_SELECT;
+pub const VK_LAUNCH_APP1 = VIRTUAL_KEY.LAUNCH_APP1;
+pub const VK_LAUNCH_APP2 = VIRTUAL_KEY.LAUNCH_APP2;
+pub const VK_OEM_1 = VIRTUAL_KEY.OEM_1;
+pub const VK_OEM_PLUS = VIRTUAL_KEY.OEM_PLUS;
+pub const VK_OEM_COMMA = VIRTUAL_KEY.OEM_COMMA;
+pub const VK_OEM_MINUS = VIRTUAL_KEY.OEM_MINUS;
+pub const VK_OEM_PERIOD = VIRTUAL_KEY.OEM_PERIOD;
+pub const VK_OEM_2 = VIRTUAL_KEY.OEM_2;
+pub const VK_OEM_3 = VIRTUAL_KEY.OEM_3;
+pub const VK_GAMEPAD_A = VIRTUAL_KEY.GAMEPAD_A;
+pub const VK_GAMEPAD_B = VIRTUAL_KEY.GAMEPAD_B;
+pub const VK_GAMEPAD_X = VIRTUAL_KEY.GAMEPAD_X;
+pub const VK_GAMEPAD_Y = VIRTUAL_KEY.GAMEPAD_Y;
+pub const VK_GAMEPAD_RIGHT_SHOULDER = VIRTUAL_KEY.GAMEPAD_RIGHT_SHOULDER;
+pub const VK_GAMEPAD_LEFT_SHOULDER = VIRTUAL_KEY.GAMEPAD_LEFT_SHOULDER;
+pub const VK_GAMEPAD_LEFT_TRIGGER = VIRTUAL_KEY.GAMEPAD_LEFT_TRIGGER;
+pub const VK_GAMEPAD_RIGHT_TRIGGER = VIRTUAL_KEY.GAMEPAD_RIGHT_TRIGGER;
+pub const VK_GAMEPAD_DPAD_UP = VIRTUAL_KEY.GAMEPAD_DPAD_UP;
+pub const VK_GAMEPAD_DPAD_DOWN = VIRTUAL_KEY.GAMEPAD_DPAD_DOWN;
+pub const VK_GAMEPAD_DPAD_LEFT = VIRTUAL_KEY.GAMEPAD_DPAD_LEFT;
+pub const VK_GAMEPAD_DPAD_RIGHT = VIRTUAL_KEY.GAMEPAD_DPAD_RIGHT;
+pub const VK_GAMEPAD_MENU = VIRTUAL_KEY.GAMEPAD_MENU;
+pub const VK_GAMEPAD_VIEW = VIRTUAL_KEY.GAMEPAD_VIEW;
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_BUTTON = VIRTUAL_KEY.GAMEPAD_LEFT_THUMBSTICK_BUTTON;
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_BUTTON = VIRTUAL_KEY.GAMEPAD_RIGHT_THUMBSTICK_BUTTON;
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_UP = VIRTUAL_KEY.GAMEPAD_LEFT_THUMBSTICK_UP;
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_DOWN = VIRTUAL_KEY.GAMEPAD_LEFT_THUMBSTICK_DOWN;
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_RIGHT = VIRTUAL_KEY.GAMEPAD_LEFT_THUMBSTICK_RIGHT;
+pub const VK_GAMEPAD_LEFT_THUMBSTICK_LEFT = VIRTUAL_KEY.GAMEPAD_LEFT_THUMBSTICK_LEFT;
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_UP = VIRTUAL_KEY.GAMEPAD_RIGHT_THUMBSTICK_UP;
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_DOWN = VIRTUAL_KEY.GAMEPAD_RIGHT_THUMBSTICK_DOWN;
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_RIGHT = VIRTUAL_KEY.GAMEPAD_RIGHT_THUMBSTICK_RIGHT;
+pub const VK_GAMEPAD_RIGHT_THUMBSTICK_LEFT = VIRTUAL_KEY.GAMEPAD_RIGHT_THUMBSTICK_LEFT;
+pub const VK_OEM_4 = VIRTUAL_KEY.OEM_4;
+pub const VK_OEM_5 = VIRTUAL_KEY.OEM_5;
+pub const VK_OEM_6 = VIRTUAL_KEY.OEM_6;
+pub const VK_OEM_7 = VIRTUAL_KEY.OEM_7;
+pub const VK_OEM_8 = VIRTUAL_KEY.OEM_8;
+pub const VK_OEM_AX = VIRTUAL_KEY.OEM_AX;
+pub const VK_OEM_102 = VIRTUAL_KEY.OEM_102;
+pub const VK_ICO_HELP = VIRTUAL_KEY.ICO_HELP;
+pub const VK_ICO_00 = VIRTUAL_KEY.ICO_00;
+pub const VK_PROCESSKEY = VIRTUAL_KEY.PROCESSKEY;
+pub const VK_ICO_CLEAR = VIRTUAL_KEY.ICO_CLEAR;
+pub const VK_PACKET = VIRTUAL_KEY.PACKET;
+pub const VK_OEM_RESET = VIRTUAL_KEY.OEM_RESET;
+pub const VK_OEM_JUMP = VIRTUAL_KEY.OEM_JUMP;
+pub const VK_OEM_PA1 = VIRTUAL_KEY.OEM_PA1;
+pub const VK_OEM_PA2 = VIRTUAL_KEY.OEM_PA2;
+pub const VK_OEM_PA3 = VIRTUAL_KEY.OEM_PA3;
+pub const VK_OEM_WSCTRL = VIRTUAL_KEY.OEM_WSCTRL;
+pub const VK_OEM_CUSEL = VIRTUAL_KEY.OEM_CUSEL;
+pub const VK_OEM_ATTN = VIRTUAL_KEY.OEM_ATTN;
+pub const VK_OEM_FINISH = VIRTUAL_KEY.OEM_FINISH;
+pub const VK_OEM_COPY = VIRTUAL_KEY.OEM_COPY;
+pub const VK_OEM_AUTO = VIRTUAL_KEY.OEM_AUTO;
+pub const VK_OEM_ENLW = VIRTUAL_KEY.OEM_ENLW;
+pub const VK_OEM_BACKTAB = VIRTUAL_KEY.OEM_BACKTAB;
+pub const VK_ATTN = VIRTUAL_KEY.ATTN;
+pub const VK_CRSEL = VIRTUAL_KEY.CRSEL;
+pub const VK_EXSEL = VIRTUAL_KEY.EXSEL;
+pub const VK_EREOF = VIRTUAL_KEY.EREOF;
+pub const VK_PLAY = VIRTUAL_KEY.PLAY;
+pub const VK_ZOOM = VIRTUAL_KEY.ZOOM;
+pub const VK_NONAME = VIRTUAL_KEY.NONAME;
+pub const VK_PA1 = VIRTUAL_KEY.PA1;
+pub const VK_OEM_CLEAR = VIRTUAL_KEY.OEM_CLEAR;
 
 
 //--------------------------------------------------------------------------------
 // Section: Functions (60)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "COMCTL32" fn _TrackMouseEvent(
+    lpEventTrack: ?*TRACKMOUSEEVENT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadKeyboardLayoutA(
     pwszKLID: ?[*:0]const u8,
@@ -753,11 +1217,6 @@ pub extern "USER32" fn DefRawInputProc(
     nInput: i32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "COMCTL32" fn _TrackMouseEvent(
-    lpEventTrack: ?*TRACKMOUSEEVENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

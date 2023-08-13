@@ -52,6 +52,10 @@ pub const WAB_DISPLAY_ISNTDS = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (115)
 //--------------------------------------------------------------------------------
+pub const _WABACTIONITEM = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const ENTRYID = extern struct {
     abFlags: [4]u8,
     ab: [1]u8,
@@ -1920,10 +1924,6 @@ pub const IAddrBook = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const _WABACTIONITEM = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 // TODO: this type is limited to platform 'windows5.0'

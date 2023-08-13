@@ -2,6 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (218)
 //--------------------------------------------------------------------------------
+pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
+pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 pub const RPC_C_BINDING_INFINITE_TIMEOUT = @as(u32, 10);
 pub const RPC_C_BINDING_MIN_TIMEOUT = @as(u32, 0);
 pub const RPC_C_BINDING_DEFAULT_TIMEOUT = @as(u32, 5);
@@ -218,8 +220,6 @@ pub const USER_MARSHAL_FC_ULONG = @as(u32, 9);
 pub const USER_MARSHAL_FC_FLOAT = @as(u32, 10);
 pub const USER_MARSHAL_FC_HYPER = @as(u32, 11);
 pub const USER_MARSHAL_FC_DOUBLE = @as(u32, 12);
-pub const MidlInterceptionInfoVersionOne = @as(i32, 1);
-pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (171)

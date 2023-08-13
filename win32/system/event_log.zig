@@ -12,10 +12,6 @@ pub const EVT_ALL_ACCESS = @as(u32, 7);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-pub const EVENTLOG_FULL_INFORMATION = extern struct {
-    dwFull: u32,
-};
-
 // TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
 pub const EventLogHandle = isize;
 
@@ -529,160 +525,14 @@ pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
 pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
 pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
 
+pub const EVENTLOG_FULL_INFORMATION = extern struct {
+    dwFull: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (55)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ClearEventLogA(
-    hEventLog: ?HANDLE,
-    lpBackupFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ClearEventLogW(
-    hEventLog: ?HANDLE,
-    lpBackupFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn BackupEventLogA(
-    hEventLog: ?HANDLE,
-    lpBackupFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn BackupEventLogW(
-    hEventLog: ?HANDLE,
-    lpBackupFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn CloseEventLog(
-    hEventLog: EventLogHandle,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn DeregisterEventSource(
-    hEventLog: EventSourceHandle,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn NotifyChangeEventLog(
-    hEventLog: ?HANDLE,
-    hEvent: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetNumberOfEventLogRecords(
-    hEventLog: ?HANDLE,
-    NumberOfRecords: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetOldestEventLogRecord(
-    hEventLog: ?HANDLE,
-    OldestRecord: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn OpenEventLogA(
-    lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn OpenEventLogW(
-    lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn RegisterEventSourceA(
-    lpUNCServerName: ?[*:0]const u8,
-    lpSourceName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) EventSourceHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn RegisterEventSourceW(
-    lpUNCServerName: ?[*:0]const u16,
-    lpSourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn OpenBackupEventLogA(
-    lpUNCServerName: ?[*:0]const u8,
-    lpFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn OpenBackupEventLogW(
-    lpUNCServerName: ?[*:0]const u16,
-    lpFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ReadEventLogA(
-    hEventLog: ?HANDLE,
-    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
-    dwRecordOffset: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
-    nNumberOfBytesToRead: u32,
-    pnBytesRead: ?*u32,
-    pnMinNumberOfBytesNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ReadEventLogW(
-    hEventLog: ?HANDLE,
-    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
-    dwRecordOffset: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpBuffer: ?*c_void,
-    nNumberOfBytesToRead: u32,
-    pnBytesRead: ?*u32,
-    pnMinNumberOfBytesNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ReportEventA(
-    hEventLog: ?HANDLE,
-    wType: REPORT_EVENT_TYPE,
-    wCategory: u16,
-    dwEventID: u32,
-    lpUserSid: ?PSID,
-    wNumStrings: u16,
-    dwDataSize: u32,
-    lpStrings: ?[*]?PSTR,
-    // TODO: what to do with BytesParamIndex 6?
-    lpRawData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn ReportEventW(
-    hEventLog: ?HANDLE,
-    wType: REPORT_EVENT_TYPE,
-    wCategory: u16,
-    dwEventID: u32,
-    lpUserSid: ?PSID,
-    wNumStrings: u16,
-    dwDataSize: u32,
-    lpStrings: ?[*]?PWSTR,
-    // TODO: what to do with BytesParamIndex 6?
-    lpRawData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn GetEventLogInformation(
-    hEventLog: ?HANDLE,
-    dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
-    cbBufSize: u32,
-    pcbBytesNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenSession(
     LoginClass: EVT_LOGIN_CLASS,
@@ -971,6 +821,156 @@ pub extern "wevtapi" fn EvtGetEventInfo(
     // TODO: what to do with BytesParamIndex 2?
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ClearEventLogA(
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ClearEventLogW(
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn BackupEventLogA(
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn BackupEventLogW(
+    hEventLog: ?HANDLE,
+    lpBackupFileName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn CloseEventLog(
+    hEventLog: EventLogHandle,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn DeregisterEventSource(
+    hEventLog: EventSourceHandle,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn NotifyChangeEventLog(
+    hEventLog: ?HANDLE,
+    hEvent: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetNumberOfEventLogRecords(
+    hEventLog: ?HANDLE,
+    NumberOfRecords: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetOldestEventLogRecord(
+    hEventLog: ?HANDLE,
+    OldestRecord: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenEventLogA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenEventLogW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn RegisterEventSourceA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventSourceHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn RegisterEventSourceW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) EventSourceHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenBackupEventLogA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpFileName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenBackupEventLogW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpFileName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReadEventLogA(
+    hEventLog: ?HANDLE,
+    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
+    dwRecordOffset: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpBuffer: ?*c_void,
+    nNumberOfBytesToRead: u32,
+    pnBytesRead: ?*u32,
+    pnMinNumberOfBytesNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReadEventLogW(
+    hEventLog: ?HANDLE,
+    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
+    dwRecordOffset: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpBuffer: ?*c_void,
+    nNumberOfBytesToRead: u32,
+    pnBytesRead: ?*u32,
+    pnMinNumberOfBytesNeeded: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReportEventA(
+    hEventLog: ?HANDLE,
+    wType: REPORT_EVENT_TYPE,
+    wCategory: u16,
+    dwEventID: u32,
+    lpUserSid: ?PSID,
+    wNumStrings: u16,
+    dwDataSize: u32,
+    lpStrings: ?[*]?PSTR,
+    // TODO: what to do with BytesParamIndex 6?
+    lpRawData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReportEventW(
+    hEventLog: ?HANDLE,
+    wType: REPORT_EVENT_TYPE,
+    wCategory: u16,
+    dwEventID: u32,
+    lpUserSid: ?PSID,
+    wNumStrings: u16,
+    dwDataSize: u32,
+    lpStrings: ?[*]?PWSTR,
+    // TODO: what to do with BytesParamIndex 6?
+    lpRawData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetEventLogInformation(
+    hEventLog: ?HANDLE,
+    dwInfoLevel: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: ?*c_void,
+    cbBufSize: u32,
+    pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

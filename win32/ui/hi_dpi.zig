@@ -11,26 +11,6 @@ pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = @import("../zig.zig").typedC
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const PROCESS_DPI_AWARENESS = enum(i32) {
-    DPI_UNAWARE = 0,
-    SYSTEM_DPI_AWARE = 1,
-    PER_MONITOR_DPI_AWARE = 2,
-};
-pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.DPI_UNAWARE;
-pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.SYSTEM_DPI_AWARE;
-pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PER_MONITOR_DPI_AWARE;
-
-pub const MONITOR_DPI_TYPE = enum(i32) {
-    EFFECTIVE_DPI = 0,
-    ANGULAR_DPI = 1,
-    RAW_DPI = 2,
-    // DEFAULT = 0, this enum value conflicts with EFFECTIVE_DPI
-};
-pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
-pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
-pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
-pub const MDT_DEFAULT = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
-
 pub const DPI_AWARENESS = enum(i32) {
     INVALID = -1,
     UNAWARE = 0,
@@ -97,28 +77,36 @@ pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;
 pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE;
 pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT;
 
+pub const PROCESS_DPI_AWARENESS = enum(i32) {
+    DPI_UNAWARE = 0,
+    SYSTEM_DPI_AWARE = 1,
+    PER_MONITOR_DPI_AWARE = 2,
+};
+pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.DPI_UNAWARE;
+pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.SYSTEM_DPI_AWARE;
+pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PER_MONITOR_DPI_AWARE;
+
+pub const MONITOR_DPI_TYPE = enum(i32) {
+    EFFECTIVE_DPI = 0,
+    ANGULAR_DPI = 1,
+    RAW_DPI = 2,
+    // DEFAULT = 0, this enum value conflicts with EFFECTIVE_DPI
+};
+pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
+pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
+pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
+pub const MDT_DEFAULT = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
-    value: PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
-    hprocess: ?HANDLE,
-    value: ?*PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
-    hmonitor: ?HMONITOR,
-    dpiType: MONITOR_DPI_TYPE,
-    dpiX: ?*u32,
-    dpiY: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+// TODO: this type is limited to platform 'windows10.0.15063'
+pub extern "UxTheme" fn OpenThemeDataForDpi(
+    hwnd: ?HWND,
+    pszClassList: ?[*:0]const u16,
+    dpi: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn SetDialogControlDpiChangeBehavior(
@@ -253,12 +241,24 @@ pub extern "USER32" fn GetWindowDpiHostingBehavior(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
-// TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "UxTheme" fn OpenThemeDataForDpi(
-    hwnd: ?HWND,
-    pszClassList: ?[*:0]const u16,
-    dpi: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
+    value: PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
+    hprocess: ?HANDLE,
+    value: ?*PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
+    hmonitor: ?HMONITOR,
+    dpiType: MONITOR_DPI_TYPE,
+    dpiX: ?*u32,
+    dpiY: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -279,12 +279,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const HANDLE = @import("../foundation.zig").HANDLE;
+const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 const DPI_AWARENESS_CONTEXT = @import("../system/system_services.zig").DPI_AWARENESS_CONTEXT;
 const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
-const POINT = @import("../foundation.zig").POINT;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     @setEvalBranchQuota(

@@ -340,6 +340,8 @@ pub const TS_STRF_END = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (211)
 //--------------------------------------------------------------------------------
+pub const HKL = *opaque{};
+
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,
     dwStaticFlags: u32,
@@ -8823,8 +8825,6 @@ pub const TF_ES_SYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.SYNC;
 pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READ;
 pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READWRITE;
 pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNC;
-
-pub const HKL = *opaque{};
 
 
 //--------------------------------------------------------------------------------

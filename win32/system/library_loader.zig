@@ -164,141 +164,6 @@ pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS.LOAD_LI
 // Section: Functions (49)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LoadModule(
-    lpModuleName: ?[*:0]const u8,
-    lpParameterBlock: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn LoadPackagedLibrary(
-    lpwLibFileName: ?[*:0]const u16,
-    Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindResourceA(
-    hModule: ?HINSTANCE,
-    lpName: ?[*:0]const u8,
-    lpType: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindResourceExA(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    wLanguage: u16,
-) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceTypesA(
-    hModule: ?HINSTANCE,
-    lpEnumFunc: ?ENUMRESTYPEPROCA,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceTypesW(
-    hModule: ?HINSTANCE,
-    lpEnumFunc: ?ENUMRESTYPEPROCW,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceNamesA(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpEnumFunc: ?ENUMRESNAMEPROCA,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceLanguagesA(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    lpEnumFunc: ?ENUMRESLANGPROCA,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EnumResourceLanguagesW(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    lpEnumFunc: ?ENUMRESLANGPROCW,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn BeginUpdateResourceA(
-    pFileName: ?[*:0]const u8,
-    bDeleteExistingResources: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn BeginUpdateResourceW(
-    pFileName: ?[*:0]const u16,
-    bDeleteExistingResources: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn UpdateResourceA(
-    hUpdate: ?HANDLE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    wLanguage: u16,
-    // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*c_void,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn UpdateResourceW(
-    hUpdate: ?HANDLE,
-    lpType: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    wLanguage: u16,
-    // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*c_void,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EndUpdateResourceA(
-    hUpdate: ?HANDLE,
-    fDiscard: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn EndUpdateResourceW(
-    hUpdate: ?HANDLE,
-    fDiscard: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetDllDirectoryA(
-    lpPathName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetDllDirectoryW(
-    lpPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetDllDirectoryA(
-    nBufferLength: u32,
-    lpBuffer: ?[*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetDllDirectoryW(
-    nBufferLength: u32,
-    lpBuffer: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn DisableThreadLibraryCalls(
     hLibModule: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -499,6 +364,141 @@ pub extern "KERNEL32" fn EnumResourceNamesW(
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LoadModule(
+    lpModuleName: ?[*:0]const u8,
+    lpParameterBlock: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "KERNEL32" fn LoadPackagedLibrary(
+    lpwLibFileName: ?[*:0]const u16,
+    Reserved: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HINSTANCE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn FindResourceA(
+    hModule: ?HINSTANCE,
+    lpName: ?[*:0]const u8,
+    lpType: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn FindResourceExA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    wLanguage: u16,
+) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceTypesA(
+    hModule: ?HINSTANCE,
+    lpEnumFunc: ?ENUMRESTYPEPROCA,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceTypesW(
+    hModule: ?HINSTANCE,
+    lpEnumFunc: ?ENUMRESTYPEPROCW,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceNamesA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESNAMEPROCA,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceLanguagesA(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    lpEnumFunc: ?ENUMRESLANGPROCA,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EnumResourceLanguagesW(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    lpEnumFunc: ?ENUMRESLANGPROCW,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn BeginUpdateResourceA(
+    pFileName: ?[*:0]const u8,
+    bDeleteExistingResources: BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn BeginUpdateResourceW(
+    pFileName: ?[*:0]const u16,
+    bDeleteExistingResources: BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn UpdateResourceA(
+    hUpdate: ?HANDLE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    wLanguage: u16,
+    // TODO: what to do with BytesParamIndex 5?
+    lpData: ?*c_void,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn UpdateResourceW(
+    hUpdate: ?HANDLE,
+    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]const u16,
+    wLanguage: u16,
+    // TODO: what to do with BytesParamIndex 5?
+    lpData: ?*c_void,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EndUpdateResourceA(
+    hUpdate: ?HANDLE,
+    fDiscard: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn EndUpdateResourceW(
+    hUpdate: ?HANDLE,
+    fDiscard: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn SetDllDirectoryA(
+    lpPathName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn SetDllDirectoryW(
+    lpPathName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetDllDirectoryA(
+    nBufferLength: u32,
+    lpBuffer: ?[*:0]u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetDllDirectoryW(
+    nBufferLength: u32,
+    lpBuffer: ?[*:0]u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
@@ -509,16 +509,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCA;
         pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCA;
         pub const PGET_MODULE_HANDLE_EX = PGET_MODULE_HANDLE_EXA;
-        pub const FindResource = FindResourceA;
         pub const FindResourceEx = FindResourceExA;
-        pub const EnumResourceTypes = EnumResourceTypesA;
-        pub const EnumResourceNames = EnumResourceNamesA;
-        pub const EnumResourceLanguages = EnumResourceLanguagesA;
-        pub const BeginUpdateResource = BeginUpdateResourceA;
-        pub const UpdateResource = UpdateResourceA;
-        pub const EndUpdateResource = EndUpdateResourceA;
-        pub const SetDllDirectory = SetDllDirectoryA;
-        pub const GetDllDirectory = GetDllDirectoryA;
         pub const GetModuleFileName = GetModuleFileNameA;
         pub const GetModuleHandle = GetModuleHandleA;
         pub const GetModuleHandleEx = GetModuleHandleExA;
@@ -526,23 +517,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = EnumResourceLanguagesExA;
         pub const EnumResourceNamesEx = EnumResourceNamesExA;
         pub const EnumResourceTypesEx = EnumResourceTypesExA;
+        pub const FindResource = FindResourceA;
         pub const LoadLibrary = LoadLibraryA;
+        pub const EnumResourceNames = EnumResourceNamesA;
+        pub const EnumResourceTypes = EnumResourceTypesA;
+        pub const EnumResourceLanguages = EnumResourceLanguagesA;
+        pub const BeginUpdateResource = BeginUpdateResourceA;
+        pub const UpdateResource = UpdateResourceA;
+        pub const EndUpdateResource = EndUpdateResourceA;
+        pub const SetDllDirectory = SetDllDirectoryA;
+        pub const GetDllDirectory = GetDllDirectoryA;
     },
     .wide => struct {
         pub const ENUMRESLANGPROC = ENUMRESLANGPROCW;
         pub const ENUMRESNAMEPROC = ENUMRESNAMEPROCW;
         pub const ENUMRESTYPEPROC = ENUMRESTYPEPROCW;
         pub const PGET_MODULE_HANDLE_EX = PGET_MODULE_HANDLE_EXW;
-        pub const FindResource = FindResourceW;
         pub const FindResourceEx = FindResourceExW;
-        pub const EnumResourceTypes = EnumResourceTypesW;
-        pub const EnumResourceNames = EnumResourceNamesW;
-        pub const EnumResourceLanguages = EnumResourceLanguagesW;
-        pub const BeginUpdateResource = BeginUpdateResourceW;
-        pub const UpdateResource = UpdateResourceW;
-        pub const EndUpdateResource = EndUpdateResourceW;
-        pub const SetDllDirectory = SetDllDirectoryW;
-        pub const GetDllDirectory = GetDllDirectoryW;
         pub const GetModuleFileName = GetModuleFileNameW;
         pub const GetModuleHandle = GetModuleHandleW;
         pub const GetModuleHandleEx = GetModuleHandleExW;
@@ -550,23 +541,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = EnumResourceLanguagesExW;
         pub const EnumResourceNamesEx = EnumResourceNamesExW;
         pub const EnumResourceTypesEx = EnumResourceTypesExW;
+        pub const FindResource = FindResourceW;
         pub const LoadLibrary = LoadLibraryW;
+        pub const EnumResourceNames = EnumResourceNamesW;
+        pub const EnumResourceTypes = EnumResourceTypesW;
+        pub const EnumResourceLanguages = EnumResourceLanguagesW;
+        pub const BeginUpdateResource = BeginUpdateResourceW;
+        pub const UpdateResource = UpdateResourceW;
+        pub const EndUpdateResource = EndUpdateResourceW;
+        pub const SetDllDirectory = SetDllDirectoryW;
+        pub const GetDllDirectory = GetDllDirectoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ENUMRESLANGPROC = *opaque{};
         pub const ENUMRESNAMEPROC = *opaque{};
         pub const ENUMRESTYPEPROC = *opaque{};
         pub const PGET_MODULE_HANDLE_EX = *opaque{};
-        pub const FindResource = *opaque{};
         pub const FindResourceEx = *opaque{};
-        pub const EnumResourceTypes = *opaque{};
-        pub const EnumResourceNames = *opaque{};
-        pub const EnumResourceLanguages = *opaque{};
-        pub const BeginUpdateResource = *opaque{};
-        pub const UpdateResource = *opaque{};
-        pub const EndUpdateResource = *opaque{};
-        pub const SetDllDirectory = *opaque{};
-        pub const GetDllDirectory = *opaque{};
         pub const GetModuleFileName = *opaque{};
         pub const GetModuleHandle = *opaque{};
         pub const GetModuleHandleEx = *opaque{};
@@ -574,22 +565,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = *opaque{};
         pub const EnumResourceNamesEx = *opaque{};
         pub const EnumResourceTypesEx = *opaque{};
+        pub const FindResource = *opaque{};
         pub const LoadLibrary = *opaque{};
+        pub const EnumResourceNames = *opaque{};
+        pub const EnumResourceTypes = *opaque{};
+        pub const EnumResourceLanguages = *opaque{};
+        pub const BeginUpdateResource = *opaque{};
+        pub const UpdateResource = *opaque{};
+        pub const EndUpdateResource = *opaque{};
+        pub const SetDllDirectory = *opaque{};
+        pub const GetDllDirectory = *opaque{};
     } else struct {
         pub const ENUMRESLANGPROC = @compileError("'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module");
         pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
         pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
         pub const PGET_MODULE_HANDLE_EX = @compileError("'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module");
-        pub const FindResource = @compileError("'FindResource' requires that UNICODE be set to true or false in the root module");
         pub const FindResourceEx = @compileError("'FindResourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypes = @compileError("'EnumResourceTypes' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNames = @compileError("'EnumResourceNames' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguages = @compileError("'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module");
-        pub const BeginUpdateResource = @compileError("'BeginUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateResource = @compileError("'UpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const EndUpdateResource = @compileError("'EndUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const SetDllDirectory = @compileError("'SetDllDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetDllDirectory = @compileError("'GetDllDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetModuleFileName = @compileError("'GetModuleFileName' requires that UNICODE be set to true or false in the root module");
         pub const GetModuleHandle = @compileError("'GetModuleHandle' requires that UNICODE be set to true or false in the root module");
         pub const GetModuleHandleEx = @compileError("'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module");
@@ -597,7 +588,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
         pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
         pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
+        pub const FindResource = @compileError("'FindResource' requires that UNICODE be set to true or false in the root module");
         pub const LoadLibrary = @compileError("'LoadLibrary' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceNames = @compileError("'EnumResourceNames' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceTypes = @compileError("'EnumResourceTypes' requires that UNICODE be set to true or false in the root module");
+        pub const EnumResourceLanguages = @compileError("'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module");
+        pub const BeginUpdateResource = @compileError("'BeginUpdateResource' requires that UNICODE be set to true or false in the root module");
+        pub const UpdateResource = @compileError("'UpdateResource' requires that UNICODE be set to true or false in the root module");
+        pub const EndUpdateResource = @compileError("'EndUpdateResource' requires that UNICODE be set to true or false in the root module");
+        pub const SetDllDirectory = @compileError("'SetDllDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetDllDirectory = @compileError("'GetDllDirectory' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

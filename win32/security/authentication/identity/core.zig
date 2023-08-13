@@ -862,6 +862,10 @@ pub const MSV1_0_SUBAUTH_LOCKOUT = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (586)
 //--------------------------------------------------------------------------------
+pub const _HMAPPER = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 // TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
 pub const LsaHandle = isize;
 
@@ -1123,13 +1127,13 @@ pub const POLICY_AUDIT_LOG_INFO = extern struct {
     AuditLogPercentFull: u32,
     MaximumLogSize: u32,
     AuditRetentionPeriod: LARGE_INTEGER,
-    AuditLogFullShutdownInProgress: u8,
+    AuditLogFullShutdownInProgress: BOOLEAN,
     TimeToShutdown: LARGE_INTEGER,
     NextAuditRecordId: u32,
 };
 
 pub const POLICY_AUDIT_EVENTS_INFO = extern struct {
-    AuditingMode: u8,
+    AuditingMode: BOOLEAN,
     EventAuditingOptions: ?*u32,
     MaximumAuditEventCount: u32,
 };
@@ -1172,12 +1176,12 @@ pub const POLICY_MODIFICATION_INFO = extern struct {
 };
 
 pub const POLICY_AUDIT_FULL_SET_INFO = extern struct {
-    ShutDownOnFull: u8,
+    ShutDownOnFull: BOOLEAN,
 };
 
 pub const POLICY_AUDIT_FULL_QUERY_INFO = extern struct {
-    ShutDownOnFull: u8,
-    LogIsFull: u8,
+    ShutDownOnFull: BOOLEAN,
+    LogIsFull: BOOLEAN,
 };
 
 pub const POLICY_DOMAIN_INFORMATION_CLASS = enum(i32) {
@@ -1497,14 +1501,14 @@ pub const PSAM_PASSWORD_NOTIFICATION_ROUTINE = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PSAM_INIT_NOTIFICATION_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const PSAM_PASSWORD_FILTER_ROUTINE = fn(
     AccountName: ?*UNICODE_STRING,
     FullName: ?*UNICODE_STRING,
     Password: ?*UNICODE_STRING,
-    SetOperation: u8,
-) callconv(@import("std").os.windows.WINAPI) u8;
+    SetOperation: BOOLEAN,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const MSV1_0_LOGON_SUBMIT_TYPE = enum(i32) {
     InteractiveLogon = 2,
@@ -1760,12 +1764,12 @@ pub const MSV1_0_CHANGEPASSWORD_REQUEST = extern struct {
     AccountName: UNICODE_STRING,
     OldPassword: UNICODE_STRING,
     NewPassword: UNICODE_STRING,
-    Impersonating: u8,
+    Impersonating: BOOLEAN,
 };
 
 pub const MSV1_0_CHANGEPASSWORD_RESPONSE = extern struct {
     MessageType: MSV1_0_PROTOCOL_MESSAGE_TYPE,
-    PasswordInfoValid: u8,
+    PasswordInfoValid: BOOLEAN,
     DomainPasswordInfo: DOMAIN_PASSWORD_INFORMATION,
 };
 
@@ -2195,7 +2199,7 @@ pub const KDC_PROXY_CACHE_ENTRY_DATA = extern struct {
     LogonId: LUID,
     CredUserName: UNICODE_STRING,
     CredDomainName: UNICODE_STRING,
-    GlobalCache: u8,
+    GlobalCache: BOOLEAN,
 };
 
 pub const KERB_QUERY_KDC_PROXY_CACHE_RESPONSE = extern struct {
@@ -2264,7 +2268,7 @@ pub const KERB_CHANGEPASSWORD_REQUEST = extern struct {
     AccountName: UNICODE_STRING,
     OldPassword: UNICODE_STRING,
     NewPassword: UNICODE_STRING,
-    Impersonating: u8,
+    Impersonating: BOOLEAN,
 };
 
 pub const KERB_SETPASSWORD_REQUEST = extern struct {
@@ -2287,7 +2291,7 @@ pub const KERB_SETPASSWORD_EX_REQUEST = extern struct {
     Password: UNICODE_STRING,
     ClientRealm: UNICODE_STRING,
     ClientName: UNICODE_STRING,
-    Impersonating: u8,
+    Impersonating: BOOLEAN,
     KdcAddress: UNICODE_STRING,
     KdcAddressType: u32,
 };
@@ -2842,7 +2846,7 @@ pub const SECPKG_APP_MODE_INFO = extern struct {
     Argument1: usize,
     Argument2: usize,
     UserData: SecBuffer,
-    ReturnToLsa: u8,
+    ReturnToLsa: BOOLEAN,
 };
 
 pub const SEC_GET_KEY_FN = fn(
@@ -2909,7 +2913,7 @@ pub const CHANGE_PASSWORD_FN_W = fn(
     param2: ?*u16,
     param3: ?*u16,
     param4: ?*u16,
-    param5: u8,
+    param5: BOOLEAN,
     param6: u32,
     param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2920,7 +2924,7 @@ pub const CHANGE_PASSWORD_FN_A = fn(
     param2: ?*i8,
     param3: ?*i8,
     param4: ?*i8,
-    param5: u8,
+    param5: BOOLEAN,
     param6: u32,
     param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3360,7 +3364,7 @@ pub const PLSA_GET_CREDENTIALS = fn(
     LogonId: ?*LUID,
     AuthenticationPackage: u32,
     QueryContext: ?*u32,
-    RetrieveAllCredentials: u8,
+    RetrieveAllCredentials: BOOLEAN,
     PrimaryKeyValue: ?*STRING,
     PrimaryKeyLength: ?*u32,
     Credentials: ?*STRING,
@@ -3516,7 +3520,7 @@ pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = fn(
 
 pub const PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE = fn(
     CredentialName: ?*UNICODE_STRING,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = fn(
     p: ?*c_void,
@@ -3525,7 +3529,7 @@ pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = fn(
 pub const SAM_REGISTER_MAPPING_ELEMENT = extern struct {
     Original: ?PSTR,
     Mapped: ?PSTR,
-    Continuable: u8,
+    Continuable: BOOLEAN,
 };
 
 pub const SAM_REGISTER_MAPPING_LIST = extern struct {
@@ -3546,9 +3550,9 @@ pub const SECPKG_CLIENT_INFO = extern struct {
     LogonId: LUID,
     ProcessID: u32,
     ThreadID: u32,
-    HasTcbPrivilege: u8,
-    Impersonating: u8,
-    Restricted: u8,
+    HasTcbPrivilege: BOOLEAN,
+    Impersonating: BOOLEAN,
+    Restricted: BOOLEAN,
     ClientFlags: u8,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
     ClientToken: ?HANDLE,
@@ -3848,7 +3852,7 @@ pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = fn(
     SupplementalCredSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     SupplementalCreds: ?*c_void,
-    Synchronous: u8,
+    Synchronous: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_CREATE_THREAD = fn(
@@ -3966,7 +3970,7 @@ pub const PLSA_CALL_PACKAGE_PASSTHROUGH = fn(
 
 pub const PLSA_GET_CALL_INFO = fn(
     Info: ?*SECPKG_CALL_INFO,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const PLSA_CREATE_SHARED_MEMORY = fn(
     MaxSize: u32,
@@ -3985,14 +3989,14 @@ pub const PLSA_FREE_SHARED_MEMORY = fn(
 
 pub const PLSA_DELETE_SHARED_MEMORY = fn(
     SharedMem: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const PLSA_GET_APP_MODE_INFO = fn(
     UserFunction: ?*u32,
     Argument1: ?*usize,
     Argument2: ?*usize,
     UserData: ?*SecBuffer,
-    ReturnToLsa: ?*u8,
+    ReturnToLsa: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_SET_APP_MODE_INFO = fn(
@@ -4000,7 +4004,7 @@ pub const PLSA_SET_APP_MODE_INFO = fn(
     Argument1: usize,
     Argument2: usize,
     UserData: ?*SecBuffer,
-    ReturnToLsa: u8,
+    ReturnToLsa: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const SECPKG_NAME_TYPE = enum(i32) {
@@ -4020,7 +4024,7 @@ pub const PLSA_OPEN_SAM_USER = fn(
     Name: ?*UNICODE_STRING,
     NameType: SECPKG_NAME_TYPE,
     Prefix: ?*UNICODE_STRING,
-    AllowGuest: u8,
+    AllowGuest: BOOLEAN,
     Reserved: u32,
     UserHandle: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4067,7 +4071,7 @@ pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = fn(
 
 pub const PLSA_CRACK_SINGLE_NAME = fn(
     FormatOffered: u32,
-    PerformAtGC: u8,
+    PerformAtGC: BOOLEAN,
     NameInput: ?*UNICODE_STRING,
     Prefix: ?*UNICODE_STRING,
     RequestedFormat: u32,
@@ -4078,7 +4082,7 @@ pub const PLSA_CRACK_SINGLE_NAME = fn(
 
 pub const PLSA_AUDIT_ACCOUNT_LOGON = fn(
     AuditId: u32,
-    Success: u8,
+    Success: BOOLEAN,
     Source: ?*UNICODE_STRING,
     ClientName: ?*UNICODE_STRING,
     MappedName: ?*UNICODE_STRING,
@@ -4180,7 +4184,7 @@ pub const PLSA_AUDIT_LOGON_EX = fn(
 
 pub const PLSA_CHECK_PROTECTED_USER_BY_TOKEN = fn(
     UserToken: ?HANDLE,
-    ProtectedUser: ?*u8,
+    ProtectedUser: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PLSA_QUERY_CLIENT_REQUEST = fn(
@@ -4503,7 +4507,7 @@ pub const SpInitLsaModeContextFn = fn(
     OutputBuffers: ?*SecBufferDesc,
     ContextAttributes: ?*u32,
     ExpirationTime: ?*LARGE_INTEGER,
-    MappedContext: ?*u8,
+    MappedContext: ?*BOOLEAN,
     ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4526,7 +4530,7 @@ pub const SpAcceptLsaModeContextFn = fn(
     OutputBuffer: ?*SecBufferDesc,
     ContextAttributes: ?*u32,
     ExpirationTime: ?*LARGE_INTEGER,
-    MappedContext: ?*u8,
+    MappedContext: ?*BOOLEAN,
     ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4555,7 +4559,7 @@ pub const SpChangeAccountPasswordFn = fn(
     pAccountName: ?*UNICODE_STRING,
     pOldPassword: ?*UNICODE_STRING,
     pNewPassword: ?*UNICODE_STRING,
-    Impersonating: u8,
+    Impersonating: BOOLEAN,
     pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4811,7 +4815,7 @@ pub const PKSEC_INSERT_LIST_ENTRY = fn(
 pub const PKSEC_REFERENCE_LIST_ENTRY = fn(
     Entry: ?*KSEC_LIST_ENTRY,
     Signature: u32,
-    RemoveNoRef: u8,
+    RemoveNoRef: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const PKSEC_DEREFERENCE_LIST_ENTRY = fn(
@@ -4913,7 +4917,7 @@ pub const KspMapHandleFn = fn(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspSetPagingModeFn = fn(
-    PagingMode: u8,
+    PagingMode: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const KspSerializeAuthDataFn = fn(
@@ -5150,10 +5154,6 @@ pub const SecPkgContext_TokenBinding = extern struct {
     KeyParameters: ?*u8,
 };
 
-pub const _HMAPPER = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const SCHANNEL_CRED = extern struct {
     dwVersion: u32,
     cCreds: u32,
@@ -5379,10 +5379,10 @@ pub const USER_ALL_INFORMATION = extern struct {
     LogonCount: u16,
     CountryCode: u16,
     CodePage: u16,
-    LmPasswordPresent: u8,
-    NtPasswordPresent: u8,
-    PasswordExpired: u8,
-    PrivateDataSensitive: u8,
+    LmPasswordPresent: BOOLEAN,
+    NtPasswordPresent: BOOLEAN,
+    PasswordExpired: BOOLEAN,
+    PrivateDataSensitive: BOOLEAN,
 };
 
 pub const CLEAR_BLOCK = extern struct {
@@ -5450,7 +5450,7 @@ pub const MSV1_0_VALIDATION_INFO = extern struct {
     LogonServer: UNICODE_STRING,
     LogonDomainName: UNICODE_STRING,
     SessionKey: USER_SESSION_KEY,
-    Authoritative: u8,
+    Authoritative: BOOLEAN,
     UserFlags: u32,
     WhichFields: u32,
     UserId: u32,
@@ -6295,7 +6295,7 @@ pub extern "ADVAPI32" fn LsaAddAccountRights(
 pub extern "ADVAPI32" fn LsaRemoveAccountRights(
     PolicyHandle: ?*c_void,
     AccountSid: ?PSID,
-    AllRights: u8,
+    AllRights: BOOLEAN,
     UserRights: ?[*]UNICODE_STRING,
     CountOfRights: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -6376,7 +6376,7 @@ pub extern "ADVAPI32" fn LsaSetForestTrustInformation(
     PolicyHandle: ?*c_void,
     TrustedDomainName: ?*UNICODE_STRING,
     ForestTrustInfo: ?*LSA_FOREST_TRUST_INFORMATION,
-    CheckOnly: u8,
+    CheckOnly: BOOLEAN,
     CollisionInfo: ?*?*LSA_FOREST_TRUST_COLLISION_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -6403,7 +6403,7 @@ pub extern "ADVAPI32" fn SystemFunction036(
     // TODO: what to do with BytesParamIndex 1?
     RandomBuffer: ?*c_void,
     RandomBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "ADVAPI32" fn SystemFunction040(
     // TODO: what to do with BytesParamIndex 1?
@@ -6423,21 +6423,21 @@ pub extern "ADVAPI32" fn SystemFunction041(
 pub extern "ADVAPI32" fn AuditSetSystemPolicy(
     pAuditPolicy: [*]AUDIT_POLICY_INFORMATION,
     dwPolicyCount: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditSetPerUserPolicy(
     pSid: ?PSID,
     pAuditPolicy: [*]AUDIT_POLICY_INFORMATION,
     dwPolicyCount: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditQuerySystemPolicy(
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
     ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditQueryPerUserPolicy(
@@ -6445,12 +6445,12 @@ pub extern "ADVAPI32" fn AuditQueryPerUserPolicy(
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
     ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumeratePerUserPolicy(
     ppAuditSidArray: ?*?*POLICY_AUDIT_SID_ARRAY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditComputeEffectivePolicyBySid(
@@ -6458,7 +6458,7 @@ pub extern "ADVAPI32" fn AuditComputeEffectivePolicyBySid(
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
     ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditComputeEffectivePolicyByToken(
@@ -6466,93 +6466,93 @@ pub extern "ADVAPI32" fn AuditComputeEffectivePolicyByToken(
     pSubCategoryGuids: [*]const Guid,
     dwPolicyCount: u32,
     ppAuditPolicy: ?*?*AUDIT_POLICY_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumerateCategories(
     ppAuditCategoriesArray: ?*?*Guid,
     pdwCountReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditEnumerateSubCategories(
     pAuditCategoryGuid: ?*const Guid,
-    bRetrieveAllSubCategories: u8,
+    bRetrieveAllSubCategories: BOOLEAN,
     ppAuditSubCategoriesArray: ?*?*Guid,
     pdwCountReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryNameW(
     pAuditCategoryGuid: ?*const Guid,
     ppszCategoryName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryNameA(
     pAuditCategoryGuid: ?*const Guid,
     ppszCategoryName: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupSubCategoryNameW(
     pAuditSubCategoryGuid: ?*const Guid,
     ppszSubCategoryName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupSubCategoryNameA(
     pAuditSubCategoryGuid: ?*const Guid,
     ppszSubCategoryName: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryIdFromCategoryGuid(
     pAuditCategoryGuid: ?*const Guid,
     pAuditCategoryId: ?*POLICY_AUDIT_EVENT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditLookupCategoryGuidFromCategoryId(
     AuditCategoryId: POLICY_AUDIT_EVENT_TYPE,
     pAuditCategoryGuid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditSetSecurity(
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditQuerySecurity(
     SecurityInformation: u32,
     ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditSetGlobalSaclW(
     ObjectTypeName: ?[*:0]const u16,
     Acl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditSetGlobalSaclA(
     ObjectTypeName: ?[*:0]const u8,
     Acl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditQueryGlobalSaclW(
     ObjectTypeName: ?[*:0]const u16,
     Acl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ADVAPI32" fn AuditQueryGlobalSaclA(
     ObjectTypeName: ?[*:0]const u8,
     Acl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn AuditFree(
@@ -6619,7 +6619,7 @@ pub extern "SECUR32" fn ChangeAccountPasswordW(
     pszAccountName: ?*u16,
     pszOldPassword: ?*u16,
     pszNewPassword: ?*u16,
-    bImpersonating: u8,
+    bImpersonating: BOOLEAN,
     dwReserved: u32,
     pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -6631,7 +6631,7 @@ pub extern "SECUR32" fn ChangeAccountPasswordA(
     pszAccountName: ?*i8,
     pszOldPassword: ?*i8,
     pszNewPassword: ?*i8,
-    bImpersonating: u8,
+    bImpersonating: BOOLEAN,
     dwReserved: u32,
     pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -7071,7 +7071,7 @@ pub extern "SspiCli" fn SspiDecryptAuthIdentityEx(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiIsAuthIdentityEncrypted(
     EncryptedAuthData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiEncodeAuthIdentityAsStrings(
@@ -7119,8 +7119,8 @@ pub extern "SECUR32" fn SspiEncodeStringsAsAuthIdentity(
 pub extern "SECUR32" fn SspiCompareAuthIdentities(
     AuthIdentity1: ?*c_void,
     AuthIdentity2: ?*c_void,
-    SameSuppliedUser: ?*u8,
-    SameSuppliedIdentity: ?*u8,
+    SameSuppliedUser: ?*BOOLEAN,
+    SameSuppliedIdentity: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7141,7 +7141,7 @@ pub extern "SECUR32" fn SspiUnmarshalAuthIdentity(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "credui" fn SspiIsPromptingNeeded(
     ErrorOrNtStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "SECUR32" fn SspiGetTargetHostName(
@@ -7326,28 +7326,28 @@ pub extern "SECUR32" fn GetUserNameExA(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u8,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetUserNameExW(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u16,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetComputerObjectNameA(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u8,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn GetComputerObjectNameW(
     NameFormat: EXTENDED_NAME_FORMAT,
     lpNameBuffer: ?[*:0]u16,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn TranslateNameA(
@@ -7356,7 +7356,7 @@ pub extern "SECUR32" fn TranslateNameA(
     DesiredNameFormat: EXTENDED_NAME_FORMAT,
     lpTranslatedName: ?[*:0]u8,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SECUR32" fn TranslateNameW(
@@ -7365,7 +7365,7 @@ pub extern "SECUR32" fn TranslateNameW(
     DesiredNameFormat: EXTENDED_NAME_FORMAT,
     lpTranslatedName: ?[*:0]u16,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -7609,7 +7609,7 @@ pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (42)
+// Section: Imports (43)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const TOKEN_DEVICE_CLAIMS = @import("../../../security.zig").TOKEN_DEVICE_CLAIMS;
@@ -7627,6 +7627,7 @@ const OBJECT_ATTRIBUTES = @import("../../../system/windows_programming.zig").OBJ
 const PSID = @import("../../../foundation.zig").PSID;
 const BOOL = @import("../../../foundation.zig").BOOL;
 const LUID = @import("../../../system/system_services.zig").LUID;
+const BOOLEAN = @import("../../../foundation.zig").BOOLEAN;
 const SEC_WINNT_AUTH_IDENTITY_A = @import("../../../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_A;
 const CREDENTIAL_TARGET_INFORMATIONW = @import("../../../security/credentials.zig").CREDENTIAL_TARGET_INFORMATIONW;
 const LIST_ENTRY = @import("../../../system/kernel.zig").LIST_ENTRY;

@@ -56,7 +56,7 @@ pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
     // TODO: what to do with BytesParamIndex 1?
     Addr: ?*c_void,
     Range: usize,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const HEAP_SUMMARY = extern struct {
     cb: u32,
@@ -109,21 +109,6 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     RegionSize: usize,
     CommitSize: usize,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const MEMORY_BASIC_INFORMATION = extern struct {
-    BaseAddress: ?*c_void,
-    AllocationBase: ?*c_void,
-    AllocationProtect: PAGE_PROTECTION_FLAGS,
-    RegionSize: usize,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: PAGE_PROTECTION_FLAGS,
-    Type: PAGE_TYPE,
-};
-
-}, else => struct { } };
 
 pub const FILE_MAP = enum(u32) {
     WRITE = 2,
@@ -530,181 +515,25 @@ pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
 pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MEMORY_BASIC_INFORMATION = extern struct {
+    BaseAddress: ?*c_void,
+    AllocationBase: ?*c_void,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: usize,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (99)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalAlloc(
-    uFlags: GLOBAL_ALLOC_FLAGS,
-    dwBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalReAlloc(
-    hMem: isize,
-    dwBytes: usize,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalSize(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalUnlock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalLock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalFlags(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalHandle(
-    pMem: ?*const c_void,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalFree(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalAlloc(
-    uFlags: LOCAL_ALLOC_FLAGS,
-    uBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalReAlloc(
-    hMem: isize,
-    uBytes: usize,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalLock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalHandle(
-    pMem: ?*const c_void,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalUnlock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalSize(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalFlags(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalFree(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateFileMappingA(
-    hFile: ?HANDLE,
-    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_PROTECTION_FLAGS,
-    dwMaximumSizeHigh: u32,
-    dwMaximumSizeLow: u32,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateFileMappingNumaA(
-    hFile: ?HANDLE,
-    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_PROTECTION_FLAGS,
-    dwMaximumSizeHigh: u32,
-    dwMaximumSizeLow: u32,
-    lpName: ?[*:0]const u8,
-    nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn OpenFileMappingA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn MapViewOfFileExNuma(
-    hFileMappingObject: ?HANDLE,
-    dwDesiredAccess: FILE_MAP,
-    dwFileOffsetHigh: u32,
-    dwFileOffsetLow: u32,
-    dwNumberOfBytesToMap: usize,
-    lpBaseAddress: ?*c_void,
-    nndPreferred: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsBadReadPtr(
-    lp: ?*const c_void,
-    ucb: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsBadWritePtr(
-    lp: ?*c_void,
-    ucb: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsBadCodePtr(
-    lpfn: ?FARPROC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsBadStringPtrA(
-    lpsz: ?[*:0]const u8,
-    ucchMax: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsBadStringPtrW(
-    lpsz: ?[*:0]const u16,
-    ucchMax: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn MapUserPhysicalPagesScatter(
-    VirtualAddresses: [*]?*c_void,
-    NumberOfPages: usize,
-    PageArray: ?[*]usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn AddSecureMemoryCacheCallback(
-    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn RemoveSecureMemoryCacheCallback(
-    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapCreate(
     flOptions: HEAP_FLAGS,
@@ -1249,6 +1078,177 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
     ParameterCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalAlloc(
+    uFlags: GLOBAL_ALLOC_FLAGS,
+    dwBytes: usize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalReAlloc(
+    hMem: isize,
+    dwBytes: usize,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalSize(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalUnlock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalLock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalFlags(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalHandle(
+    pMem: ?*const c_void,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalFree(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalAlloc(
+    uFlags: LOCAL_ALLOC_FLAGS,
+    uBytes: usize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalReAlloc(
+    hMem: isize,
+    uBytes: usize,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalLock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalHandle(
+    pMem: ?*const c_void,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalUnlock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalSize(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalFlags(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalFree(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateFileMappingA(
+    hFile: ?HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+    flProtect: PAGE_PROTECTION_FLAGS,
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn CreateFileMappingNumaA(
+    hFile: ?HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+    flProtect: PAGE_PROTECTION_FLAGS,
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+    nndPreferred: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn OpenFileMappingA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn MapViewOfFileExNuma(
+    hFileMappingObject: ?HANDLE,
+    dwDesiredAccess: FILE_MAP,
+    dwFileOffsetHigh: u32,
+    dwFileOffsetLow: u32,
+    dwNumberOfBytesToMap: usize,
+    lpBaseAddress: ?*c_void,
+    nndPreferred: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadReadPtr(
+    lp: ?*const c_void,
+    ucb: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadWritePtr(
+    lp: ?*c_void,
+    ucb: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadCodePtr(
+    lpfn: ?FARPROC,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadStringPtrA(
+    lpsz: ?[*:0]const u8,
+    ucchMax: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadStringPtrW(
+    lpsz: ?[*:0]const u16,
+    ucchMax: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn MapUserPhysicalPagesScatter(
+    VirtualAddresses: [*]?*c_void,
+    NumberOfPages: usize,
+    PageArray: ?[*]usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn AddSecureMemoryCacheCallback(
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn RemoveSecureMemoryCacheCallback(
+    pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
@@ -1256,31 +1256,32 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const CreateFileMapping = CreateFileMappingA;
-        pub const CreateFileMappingNuma = CreateFileMappingNumaA;
         pub const OpenFileMapping = OpenFileMappingA;
+        pub const CreateFileMappingNuma = CreateFileMappingNumaA;
         pub const IsBadStringPtr = IsBadStringPtrA;
     },
     .wide => struct {
         pub const CreateFileMapping = CreateFileMappingW;
-        pub const CreateFileMappingNuma = CreateFileMappingNumaW;
         pub const OpenFileMapping = OpenFileMappingW;
+        pub const CreateFileMappingNuma = CreateFileMappingNumaW;
         pub const IsBadStringPtr = IsBadStringPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateFileMapping = *opaque{};
-        pub const CreateFileMappingNuma = *opaque{};
         pub const OpenFileMapping = *opaque{};
+        pub const CreateFileMappingNuma = *opaque{};
         pub const IsBadStringPtr = *opaque{};
     } else struct {
         pub const CreateFileMapping = @compileError("'CreateFileMapping' requires that UNICODE be set to true or false in the root module");
-        pub const CreateFileMappingNuma = @compileError("'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module");
         pub const OpenFileMapping = @compileError("'OpenFileMapping' requires that UNICODE be set to true or false in the root module");
+        pub const CreateFileMappingNuma = @compileError("'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module");
         pub const IsBadStringPtr = @compileError("'IsBadStringPtr' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
 const HEAP_INFORMATION_CLASS = @import("../system/system_services.zig").HEAP_INFORMATION_CLASS;

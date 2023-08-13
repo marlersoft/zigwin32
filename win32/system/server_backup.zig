@@ -47,14 +47,14 @@ pub const IWsbApplicationRestoreSupport = extern struct {
             wszWriterMetadata: ?PWSTR,
             wszComponentName: ?PWSTR,
             wszComponentLogicalPath: ?PWSTR,
-            bNoRollForward: u8,
+            bNoRollForward: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PostRestore: fn(
             self: *const IWsbApplicationRestoreSupport,
             wszWriterMetadata: ?PWSTR,
             wszComponentName: ?PWSTR,
             wszComponentLogicalPath: ?PWSTR,
-            bNoRollForward: u8,
+            bNoRollForward: BOOLEAN,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OrderComponents: fn(
             self: *const IWsbApplicationRestoreSupport,
@@ -73,11 +73,11 @@ pub const IWsbApplicationRestoreSupport = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWsbApplicationRestoreSupport_PreRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: u8) callconv(.Inline) HRESULT {
+        pub fn IWsbApplicationRestoreSupport_PreRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).PreRestore(@ptrCast(*const IWsbApplicationRestoreSupport, self), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWsbApplicationRestoreSupport_PostRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: u8) callconv(.Inline) HRESULT {
+        pub fn IWsbApplicationRestoreSupport_PostRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).PostRestore(@ptrCast(*const IWsbApplicationRestoreSupport, self), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -162,7 +162,7 @@ pub const WSB_OB_REGISTRATION_INFO = extern struct {
     m_guidSnapinId: Guid,
     m_dwProviderName: u32,
     m_dwProviderIcon: u32,
-    m_bSupportsRemoting: u8,
+    m_bSupportsRemoting: BOOLEAN,
 };
 
 
@@ -183,9 +183,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;

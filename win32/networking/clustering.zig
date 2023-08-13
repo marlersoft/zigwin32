@@ -598,7 +598,7 @@ pub const CLUSTER_VALIDATE_CSV_FILENAME = extern struct {
 
 pub const CLUSTER_SET_PASSWORD_STATUS = extern struct {
     NodeId: u32,
-    SetAttempted: u8,
+    SetAttempted: BOOLEAN,
     ReturnStatus: u32,
 };
 
@@ -614,7 +614,7 @@ pub const CREATE_CLUSTER_CONFIG = extern struct {
     ppszNodeNames: ?*?PWSTR,
     cIpEntries: u32,
     pIpEntries: ?*CLUSTER_IP_ENTRY,
-    fEmptyCluster: u8,
+    fEmptyCluster: BOOLEAN,
     managementPointType: CLUSTER_MGMT_POINT_TYPE,
     managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
 };
@@ -628,7 +628,7 @@ pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
     pszDomain: ?[*:0]const u16,
     managementPointType: CLUSTER_MGMT_POINT_TYPE,
     managementPointResType: CLUSTER_MGMT_POINT_RESTYPE,
-    bUpgradeVCOs: u8,
+    bUpgradeVCOs: BOOLEAN,
 };
 
 pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = fn(
@@ -4457,19 +4457,19 @@ pub const SrDiskReplicationEligibleOther = SR_DISK_REPLICATION_ELIGIBLE.Other;
 
 pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_LOGDISKS = extern struct {
     DataDiskGuid: Guid,
-    IncludeOfflineDisks: u8,
+    IncludeOfflineDisks: BOOLEAN,
 };
 
 pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_TARGET_DATADISKS = extern struct {
     SourceDataDiskGuid: Guid,
     TargetReplicationGroupGuid: Guid,
-    SkipConnectivityCheck: u8,
-    IncludeOfflineDisks: u8,
+    SkipConnectivityCheck: BOOLEAN,
+    IncludeOfflineDisks: BOOLEAN,
 };
 
 pub const SR_RESOURCE_TYPE_QUERY_ELIGIBLE_SOURCE_DATADISKS = extern struct {
     DataDiskGuid: Guid,
-    IncludeAvailableStoargeDisks: u8,
+    IncludeAvailableStoargeDisks: BOOLEAN,
 };
 
 pub const SR_RESOURCE_TYPE_DISK_INFO = extern struct {
@@ -12288,7 +12288,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -12304,6 +12304,7 @@ const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 const BSTR = @import("../foundation.zig").BSTR;
 const HFONT = @import("../graphics/gdi.zig").HFONT;
 const BOOL = @import("../foundation.zig").BOOL;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;

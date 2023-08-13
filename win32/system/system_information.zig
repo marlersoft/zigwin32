@@ -7,40 +7,6 @@ pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
-pub const MEMORYSTATUS = extern struct {
-    dwLength: u32,
-    dwMemoryLoad: u32,
-    dwTotalPhys: usize,
-    dwAvailPhys: usize,
-    dwTotalPageFile: usize,
-    dwAvailPageFile: usize,
-    dwTotalVirtual: usize,
-    dwAvailVirtual: usize,
-};
-
-pub const DEP_SYSTEM_POLICY_TYPE = enum(i32) {
-    PolicyAlwaysOff = 0,
-    PolicyAlwaysOn = 1,
-    PolicyOptIn = 2,
-    PolicyOptOut = 3,
-    TotalPolicyCount = 4,
-};
-pub const DEPPolicyAlwaysOff = DEP_SYSTEM_POLICY_TYPE.PolicyAlwaysOff;
-pub const DEPPolicyAlwaysOn = DEP_SYSTEM_POLICY_TYPE.PolicyAlwaysOn;
-pub const DEPPolicyOptIn = DEP_SYSTEM_POLICY_TYPE.PolicyOptIn;
-pub const DEPPolicyOptOut = DEP_SYSTEM_POLICY_TYPE.PolicyOptOut;
-pub const DEPTotalPolicyCount = DEP_SYSTEM_POLICY_TYPE.TotalPolicyCount;
-
-pub const PGET_SYSTEM_WOW64_DIRECTORY_A = fn(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 pub const WOW64_ARCHITECTURE_INFORMATION = extern struct {
     _bitfield: u32,
 };
@@ -433,70 +399,44 @@ pub const ComputerNamePhysicalDnsDomain = COMPUTER_NAME_FORMAT.PhysicalDnsDomain
 pub const ComputerNamePhysicalDnsFullyQualified = COMPUTER_NAME_FORMAT.PhysicalDnsFullyQualified;
 pub const ComputerNameMax = COMPUTER_NAME_FORMAT.Max;
 
+pub const MEMORYSTATUS = extern struct {
+    dwLength: u32,
+    dwMemoryLoad: u32,
+    dwTotalPhys: usize,
+    dwAvailPhys: usize,
+    dwTotalPageFile: usize,
+    dwAvailPageFile: usize,
+    dwTotalVirtual: usize,
+    dwAvailVirtual: usize,
+};
+
+pub const DEP_SYSTEM_POLICY_TYPE = enum(i32) {
+    PolicyAlwaysOff = 0,
+    PolicyAlwaysOn = 1,
+    PolicyOptIn = 2,
+    PolicyOptOut = 3,
+    TotalPolicyCount = 4,
+};
+pub const DEPPolicyAlwaysOff = DEP_SYSTEM_POLICY_TYPE.PolicyAlwaysOff;
+pub const DEPPolicyAlwaysOn = DEP_SYSTEM_POLICY_TYPE.PolicyAlwaysOn;
+pub const DEPPolicyOptIn = DEP_SYSTEM_POLICY_TYPE.PolicyOptIn;
+pub const DEPPolicyOptOut = DEP_SYSTEM_POLICY_TYPE.PolicyOptOut;
+pub const DEPTotalPolicyCount = DEP_SYSTEM_POLICY_TYPE.TotalPolicyCount;
+
+pub const PGET_SYSTEM_WOW64_DIRECTORY_A = fn(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (55)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalMemoryStatus(
-    lpBuffer: ?*MEMORYSTATUS,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetSystemDEPPolicy(
-) callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "KERNEL32" fn GetFirmwareType(
-    FirmwareType: ?*FIRMWARE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn VerifyVersionInfoA(
-    lpVersionInformation: ?*OSVERSIONINFOEXA,
-    dwTypeMask: VER_FLAGS,
-    dwlConditionMask: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn VerifyVersionInfoW(
-    lpVersionInformation: ?*OSVERSIONINFOEXW,
-    dwTypeMask: VER_FLAGS,
-    dwlConditionMask: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetSystemWow64DirectoryA(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetSystemWow64DirectoryW(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10586'
-pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-    ImageFileMachineType: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows10.0.10586'
-pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-    ImageFileMachineType: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
-    WowGuestMachine: u16,
-    MachineIsSupported: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GlobalMemoryStatusEx(
     lpBuffer: ?*MEMORYSTATUSEX,
@@ -757,18 +697,75 @@ pub extern "KERNEL32" fn SetComputerNameExA(
     lpBuffer: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetSystemWow64DirectoryA(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetSystemWow64DirectoryW(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10586'
+pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+    ImageFileMachineType: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10586'
+pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+    ImageFileMachineType: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows10.0.16299'
+pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
+    WowGuestMachine: u16,
+    MachineIsSupported: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalMemoryStatus(
+    lpBuffer: ?*MEMORYSTATUS,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetSystemDEPPolicy(
+) callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "KERNEL32" fn GetFirmwareType(
+    FirmwareType: ?*FIRMWARE_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn VerifyVersionInfoA(
+    lpVersionInformation: ?*OSVERSIONINFOEXA,
+    dwTypeMask: VER_FLAGS,
+    dwlConditionMask: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn VerifyVersionInfoW(
+    lpVersionInformation: ?*OSVERSIONINFOEXW,
+    dwTypeMask: VER_FLAGS,
+    dwlConditionMask: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_A;
         pub const OSVERSIONINFO = OSVERSIONINFOA;
         pub const OSVERSIONINFOEX = OSVERSIONINFOEXA;
-        pub const VerifyVersionInfo = VerifyVersionInfoA;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_A;
         pub const GetSystemDirectory = GetSystemDirectoryA;
         pub const GetWindowsDirectory = GetWindowsDirectoryA;
         pub const GetSystemWindowsDirectory = GetSystemWindowsDirectoryA;
@@ -776,14 +773,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetComputerNameEx = SetComputerNameExA;
         pub const GetVersionEx = GetVersionExA;
         pub const SetComputerName = SetComputerNameA;
+        pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
+        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
+        pub const VerifyVersionInfo = VerifyVersionInfoA;
     },
     .wide => struct {
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_W;
         pub const OSVERSIONINFO = OSVERSIONINFOW;
         pub const OSVERSIONINFOEX = OSVERSIONINFOEXW;
-        pub const VerifyVersionInfo = VerifyVersionInfoW;
-        pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
-        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = PGET_SYSTEM_WOW64_DIRECTORY_W;
         pub const GetSystemDirectory = GetSystemDirectoryW;
         pub const GetWindowsDirectory = GetWindowsDirectoryW;
         pub const GetSystemWindowsDirectory = GetSystemWindowsDirectoryW;
@@ -791,14 +788,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetComputerNameEx = SetComputerNameExW;
         pub const GetVersionEx = GetVersionExW;
         pub const SetComputerName = SetComputerNameW;
+        pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
+        pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
+        pub const VerifyVersionInfo = VerifyVersionInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque{};
         pub const OSVERSIONINFO = *opaque{};
         pub const OSVERSIONINFOEX = *opaque{};
-        pub const VerifyVersionInfo = *opaque{};
-        pub const GetSystemWow64Directory = *opaque{};
-        pub const GetSystemWow64Directory2 = *opaque{};
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque{};
         pub const GetSystemDirectory = *opaque{};
         pub const GetWindowsDirectory = *opaque{};
         pub const GetSystemWindowsDirectory = *opaque{};
@@ -806,13 +803,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetComputerNameEx = *opaque{};
         pub const GetVersionEx = *opaque{};
         pub const SetComputerName = *opaque{};
+        pub const GetSystemWow64Directory = *opaque{};
+        pub const GetSystemWow64Directory2 = *opaque{};
+        pub const VerifyVersionInfo = *opaque{};
     } else struct {
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = @compileError("'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module");
         pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
         pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const VerifyVersionInfo = @compileError("'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = @compileError("'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemDirectory = @compileError("'GetSystemDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetWindowsDirectory = @compileError("'GetWindowsDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWindowsDirectory = @compileError("'GetSystemWindowsDirectory' requires that UNICODE be set to true or false in the root module");
@@ -820,6 +817,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetComputerNameEx = @compileError("'SetComputerNameEx' requires that UNICODE be set to true or false in the root module");
         pub const GetVersionEx = @compileError("'GetVersionEx' requires that UNICODE be set to true or false in the root module");
         pub const SetComputerName = @compileError("'SetComputerName' requires that UNICODE be set to true or false in the root module");
+        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
+        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
+        pub const VerifyVersionInfo = @compileError("'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

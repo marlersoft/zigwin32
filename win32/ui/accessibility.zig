@@ -928,6 +928,372 @@ pub const UIA_PFIA_UNWRAP_BRIDGE = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (241)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+pub const HWINEVENTHOOK = *opaque{};
+
+pub const HUIANODE = *opaque{};
+
+pub const HUIAPATTERNOBJECT = *opaque{};
+
+pub const HUIATEXTRANGE = *opaque{};
+
+pub const HUIAEVENT = *opaque{};
+
+pub const SERIALKEYSA = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PSTR,
+    lpszPort: ?PSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
+
+pub const SERIALKEYSW = extern struct {
+    cbSize: u32,
+    dwFlags: SERIALKEYS_FLAGS,
+    lpszActivePort: ?PWSTR,
+    lpszPort: ?PWSTR,
+    iBaudRate: u32,
+    iPortState: u32,
+    iActive: u32,
+};
+
+pub const HIGHCONTRASTA = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PSTR,
+};
+
+pub const HIGHCONTRASTW = extern struct {
+    cbSize: u32,
+    dwFlags: HIGHCONTRASTW_FLAGS,
+    lpszDefaultScheme: ?PWSTR,
+};
+
+pub const FILTERKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iWaitMSec: u32,
+    iDelayMSec: u32,
+    iRepeatMSec: u32,
+    iBounceMSec: u32,
+};
+
+pub const STICKYKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: STICKYKEYS_FLAGS,
+};
+
+pub const MOUSEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iMaxSpeed: u32,
+    iTimeToMaxSpeed: u32,
+    iCtrlSpeed: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+};
+
+pub const ACCESSTIMEOUT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    iTimeOutMSec: u32,
+};
+
+pub const SOUNDSENTRYA = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const SOUNDSENTRYW = extern struct {
+    cbSize: u32,
+    dwFlags: SOUNDSENTRY_FLAGS,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
+    iFSTextEffectMSec: u32,
+    iFSTextEffectColorBits: u32,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
+    iFSGrafEffectMSec: u32,
+    iFSGrafEffectColor: u32,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
+    iWindowsEffectMSec: u32,
+    lpszWindowsEffectDLL: ?PWSTR,
+    iWindowsEffectOrdinal: u32,
+};
+
+pub const TOGGLEKEYS = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+};
+
+pub const WINEVENTPROC = fn(
+    hWinEventHook: ?HWINEVENTHOOK,
+    event: u32,
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+    idEventThread: u32,
+    dwmsEventTime: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const STICKYKEYS_FLAGS = enum(u32) {
+    STICKYKEYSON = 1,
+    AVAILABLE = 2,
+    HOTKEYACTIVE = 4,
+    CONFIRMHOTKEY = 8,
+    HOTKEYSOUND = 16,
+    INDICATOR = 32,
+    AUDIBLEFEEDBACK = 64,
+    TRISTATE = 128,
+    TWOKEYSOFF = 256,
+    LALTLATCHED = 268435456,
+    LCTLLATCHED = 67108864,
+    LSHIFTLATCHED = 16777216,
+    RALTLATCHED = 536870912,
+    RCTLLATCHED = 134217728,
+    RSHIFTLATCHED = 33554432,
+    LWINLATCHED = 1073741824,
+    RWINLATCHED = 2147483648,
+    LALTLOCKED = 1048576,
+    LCTLLOCKED = 262144,
+    LSHIFTLOCKED = 65536,
+    RALTLOCKED = 2097152,
+    RCTLLOCKED = 524288,
+    RSHIFTLOCKED = 131072,
+    LWINLOCKED = 4194304,
+    RWINLOCKED = 8388608,
+    _,
+    pub fn initFlags(o: struct {
+        STICKYKEYSON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        HOTKEYACTIVE: u1 = 0,
+        CONFIRMHOTKEY: u1 = 0,
+        HOTKEYSOUND: u1 = 0,
+        INDICATOR: u1 = 0,
+        AUDIBLEFEEDBACK: u1 = 0,
+        TRISTATE: u1 = 0,
+        TWOKEYSOFF: u1 = 0,
+        LALTLATCHED: u1 = 0,
+        LCTLLATCHED: u1 = 0,
+        LSHIFTLATCHED: u1 = 0,
+        RALTLATCHED: u1 = 0,
+        RCTLLATCHED: u1 = 0,
+        RSHIFTLATCHED: u1 = 0,
+        LWINLATCHED: u1 = 0,
+        RWINLATCHED: u1 = 0,
+        LALTLOCKED: u1 = 0,
+        LCTLLOCKED: u1 = 0,
+        LSHIFTLOCKED: u1 = 0,
+        RALTLOCKED: u1 = 0,
+        RCTLLOCKED: u1 = 0,
+        RSHIFTLOCKED: u1 = 0,
+        LWINLOCKED: u1 = 0,
+        RWINLOCKED: u1 = 0,
+    }) STICKYKEYS_FLAGS {
+        return @intToEnum(STICKYKEYS_FLAGS,
+              (if (o.STICKYKEYSON == 1) @enumToInt(STICKYKEYS_FLAGS.STICKYKEYSON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(STICKYKEYS_FLAGS.AVAILABLE) else 0)
+            | (if (o.HOTKEYACTIVE == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYACTIVE) else 0)
+            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(STICKYKEYS_FLAGS.CONFIRMHOTKEY) else 0)
+            | (if (o.HOTKEYSOUND == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYSOUND) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(STICKYKEYS_FLAGS.INDICATOR) else 0)
+            | (if (o.AUDIBLEFEEDBACK == 1) @enumToInt(STICKYKEYS_FLAGS.AUDIBLEFEEDBACK) else 0)
+            | (if (o.TRISTATE == 1) @enumToInt(STICKYKEYS_FLAGS.TRISTATE) else 0)
+            | (if (o.TWOKEYSOFF == 1) @enumToInt(STICKYKEYS_FLAGS.TWOKEYSOFF) else 0)
+            | (if (o.LALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLATCHED) else 0)
+            | (if (o.LCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLATCHED) else 0)
+            | (if (o.LSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLATCHED) else 0)
+            | (if (o.RALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLATCHED) else 0)
+            | (if (o.RCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLATCHED) else 0)
+            | (if (o.RSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLATCHED) else 0)
+            | (if (o.LWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLATCHED) else 0)
+            | (if (o.RWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLATCHED) else 0)
+            | (if (o.LALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLOCKED) else 0)
+            | (if (o.LCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLOCKED) else 0)
+            | (if (o.LSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLOCKED) else 0)
+            | (if (o.RALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLOCKED) else 0)
+            | (if (o.RCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLOCKED) else 0)
+            | (if (o.RSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLOCKED) else 0)
+            | (if (o.LWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLOCKED) else 0)
+            | (if (o.RWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLOCKED) else 0)
+        );
+    }
+};
+pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS.STICKYKEYSON;
+pub const SKF_AVAILABLE = STICKYKEYS_FLAGS.AVAILABLE;
+pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS.HOTKEYACTIVE;
+pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS.CONFIRMHOTKEY;
+pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS.HOTKEYSOUND;
+pub const SKF_INDICATOR = STICKYKEYS_FLAGS.INDICATOR;
+pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS.AUDIBLEFEEDBACK;
+pub const SKF_TRISTATE = STICKYKEYS_FLAGS.TRISTATE;
+pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS.TWOKEYSOFF;
+pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS.LALTLATCHED;
+pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS.LCTLLATCHED;
+pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS.LSHIFTLATCHED;
+pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS.RALTLATCHED;
+pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS.RCTLLATCHED;
+pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS.RSHIFTLATCHED;
+pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS.LWINLATCHED;
+pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS.RWINLATCHED;
+pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS.LALTLOCKED;
+pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS.LCTLLOCKED;
+pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS.LSHIFTLOCKED;
+pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS.RALTLOCKED;
+pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS.RCTLLOCKED;
+pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS.RSHIFTLOCKED;
+pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS.LWINLOCKED;
+pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS.RWINLOCKED;
+
+pub const SOUNDSENTRY_FLAGS = enum(u32) {
+    SOUNDSENTRYON = 1,
+    AVAILABLE = 2,
+    INDICATOR = 4,
+    _,
+    pub fn initFlags(o: struct {
+        SOUNDSENTRYON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        INDICATOR: u1 = 0,
+    }) SOUNDSENTRY_FLAGS {
+        return @intToEnum(SOUNDSENTRY_FLAGS,
+              (if (o.SOUNDSENTRYON == 1) @enumToInt(SOUNDSENTRY_FLAGS.SOUNDSENTRYON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(SOUNDSENTRY_FLAGS.AVAILABLE) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(SOUNDSENTRY_FLAGS.INDICATOR) else 0)
+        );
+    }
+};
+pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS.SOUNDSENTRYON;
+pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
+pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
+
+pub const ACC_UTILITY_STATE_FLAGS = enum(u32) {
+    ON_SCREEN_KEYBOARD_ACTIVE = 1,
+    TOUCH_MODIFICATION_ACTIVE = 2,
+    PRIORITY_AUDIO_ACTIVE = 4,
+    PRIORITY_AUDIO_ACTIVE_NODUCK = 8,
+    _,
+    pub fn initFlags(o: struct {
+        ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
+        TOUCH_MODIFICATION_ACTIVE: u1 = 0,
+        PRIORITY_AUDIO_ACTIVE: u1 = 0,
+        PRIORITY_AUDIO_ACTIVE_NODUCK: u1 = 0,
+    }) ACC_UTILITY_STATE_FLAGS {
+        return @intToEnum(ACC_UTILITY_STATE_FLAGS,
+              (if (o.ON_SCREEN_KEYBOARD_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE) else 0)
+            | (if (o.TOUCH_MODIFICATION_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE) else 0)
+            | (if (o.PRIORITY_AUDIO_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE) else 0)
+            | (if (o.PRIORITY_AUDIO_ACTIVE_NODUCK == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK) else 0)
+        );
+    }
+};
+pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE;
+pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE;
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE;
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK;
+
+pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
+    DISPLAY = 3,
+    NONE = 0,
+};
+pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
+pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
+
+pub const SERIALKEYS_FLAGS = enum(u32) {
+    AVAILABLE = 2,
+    INDICATOR = 4,
+    SERIALKEYSON = 1,
+    _,
+    pub fn initFlags(o: struct {
+        AVAILABLE: u1 = 0,
+        INDICATOR: u1 = 0,
+        SERIALKEYSON: u1 = 0,
+    }) SERIALKEYS_FLAGS {
+        return @intToEnum(SERIALKEYS_FLAGS,
+              (if (o.AVAILABLE == 1) @enumToInt(SERIALKEYS_FLAGS.AVAILABLE) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(SERIALKEYS_FLAGS.INDICATOR) else 0)
+            | (if (o.SERIALKEYSON == 1) @enumToInt(SERIALKEYS_FLAGS.SERIALKEYSON) else 0)
+        );
+    }
+};
+pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
+pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
+pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
+
+pub const HIGHCONTRASTW_FLAGS = enum(u32) {
+    HIGHCONTRASTON = 1,
+    AVAILABLE = 2,
+    HOTKEYACTIVE = 4,
+    CONFIRMHOTKEY = 8,
+    HOTKEYSOUND = 16,
+    INDICATOR = 32,
+    HOTKEYAVAILABLE = 64,
+    OPTION_NOTHEMECHANGE = 4096,
+    _,
+    pub fn initFlags(o: struct {
+        HIGHCONTRASTON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        HOTKEYACTIVE: u1 = 0,
+        CONFIRMHOTKEY: u1 = 0,
+        HOTKEYSOUND: u1 = 0,
+        INDICATOR: u1 = 0,
+        HOTKEYAVAILABLE: u1 = 0,
+        OPTION_NOTHEMECHANGE: u1 = 0,
+    }) HIGHCONTRASTW_FLAGS {
+        return @intToEnum(HIGHCONTRASTW_FLAGS,
+              (if (o.HIGHCONTRASTON == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HIGHCONTRASTON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.AVAILABLE) else 0)
+            | (if (o.HOTKEYACTIVE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYACTIVE) else 0)
+            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY) else 0)
+            | (if (o.HOTKEYSOUND == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYSOUND) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(HIGHCONTRASTW_FLAGS.INDICATOR) else 0)
+            | (if (o.HOTKEYAVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE) else 0)
+            | (if (o.OPTION_NOTHEMECHANGE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE) else 0)
+        );
+    }
+};
+pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS.HIGHCONTRASTON;
+pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS.AVAILABLE;
+pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_FLAGS.HOTKEYACTIVE;
+pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY;
+pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_FLAGS.HOTKEYSOUND;
+pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS.INDICATOR;
+pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE;
+pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE;
+
+pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
+    BORDER = 2,
+    CHARS = 1,
+    DISPLAY = 3,
+    NONE = 0,
+};
+pub const SSTF_BORDER = SOUNDSENTRY_TEXT_EFFECT.BORDER;
+pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
+pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
+pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
+
+pub const SOUNDSENTRY_WINDOWS_EFFECT = enum(u32) {
+    CUSTOM = 4,
+    DISPLAY = 3,
+    NONE = 0,
+    TITLE = 1,
+    WINDOW = 2,
+};
+pub const SSWF_CUSTOM = SOUNDSENTRY_WINDOWS_EFFECT.CUSTOM;
+pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
+pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
+pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
+pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
+
 const CLSID_CAccPropServices_Value = @import("../zig.zig").Guid.initString("b5f8350b-0548-48b1-a6ee-88bd00b4a5e7");
 pub const CLSID_CAccPropServices = &CLSID_CAccPropServices_Value;
 
@@ -4754,7 +5120,7 @@ pub const IUIAutomationElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
-            retVal: ?*?*c_void,
+            retVal: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemType: fn(
@@ -4914,7 +5280,7 @@ pub const IUIAutomationElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
-            retVal: ?*?*c_void,
+            retVal: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemType: fn(
@@ -5133,7 +5499,7 @@ pub const IUIAutomationElement = extern struct {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentIsPassword(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CurrentNativeWindowHandle(self: *const T, retVal: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CurrentNativeWindowHandle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5261,7 +5627,7 @@ pub const IUIAutomationElement = extern struct {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedIsPassword(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_get_CachedNativeWindowHandle(self: *const T, retVal: ?HWND) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).get_CachedNativeWindowHandle(@ptrCast(*const IUIAutomationElement, self), retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9056,7 +9422,7 @@ pub const IUIAutomationProxyFactory = extern struct {
         base: IUnknown.VTable,
         CreateProvider: fn(
             self: *const IUIAutomationProxyFactory,
-            hwnd: ?*c_void,
+            hwnd: ?HWND,
             idObject: i32,
             idChild: i32,
             provider: ?*?*IRawElementProviderSimple,
@@ -9071,7 +9437,7 @@ pub const IUIAutomationProxyFactory = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationProxyFactory_CreateProvider(self: *const T, hwnd: ?*c_void, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationProxyFactory_CreateProvider(self: *const T, hwnd: ?HWND, idObject: i32, idChild: i32, provider: ?*?*IRawElementProviderSimple) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationProxyFactory.VTable, self.vtable).CreateProvider(@ptrCast(*const IUIAutomationProxyFactory, self), hwnd, idObject, idChild, provider);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9417,7 +9783,7 @@ pub const IUIAutomation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromHandle: fn(
             self: *const IUIAutomation,
-            hwnd: ?*c_void,
+            hwnd: ?HWND,
             element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromPoint: fn(
@@ -9436,7 +9802,7 @@ pub const IUIAutomation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ElementFromHandleBuildCache: fn(
             self: *const IUIAutomation,
-            hwnd: ?*c_void,
+            hwnd: ?HWND,
             cacheRequest: ?*IUIAutomationCacheRequest,
             element: ?*?*IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -9715,7 +10081,7 @@ pub const IUIAutomation = extern struct {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetRootElement(@ptrCast(*const IUIAutomation, self), root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromHandle(self: *const T, hwnd: ?*c_void, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromHandle(self: *const T, hwnd: ?HWND, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromHandle(@ptrCast(*const IUIAutomation, self), hwnd, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9731,7 +10097,7 @@ pub const IUIAutomation = extern struct {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).GetRootElementBuildCache(@ptrCast(*const IUIAutomation, self), cacheRequest, root);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomation_ElementFromHandleBuildCache(self: *const T, hwnd: ?*c_void, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
+        pub fn IUIAutomation_ElementFromHandleBuildCache(self: *const T, hwnd: ?HWND, cacheRequest: ?*IUIAutomationCacheRequest, element: ?*?*IUIAutomationElement) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation.VTable, self.vtable).ElementFromHandleBuildCache(@ptrCast(*const IUIAutomation, self), hwnd, cacheRequest, element);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10380,376 +10746,64 @@ pub const UiaEventCallback = fn(
     pTreeStructure: ?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const STICKYKEYS_FLAGS = enum(u32) {
-    STICKYKEYSON = 1,
-    AVAILABLE = 2,
-    HOTKEYACTIVE = 4,
-    CONFIRMHOTKEY = 8,
-    HOTKEYSOUND = 16,
-    INDICATOR = 32,
-    AUDIBLEFEEDBACK = 64,
-    TRISTATE = 128,
-    TWOKEYSOFF = 256,
-    LALTLATCHED = 268435456,
-    LCTLLATCHED = 67108864,
-    LSHIFTLATCHED = 16777216,
-    RALTLATCHED = 536870912,
-    RCTLLATCHED = 134217728,
-    RSHIFTLATCHED = 33554432,
-    LWINLATCHED = 1073741824,
-    RWINLATCHED = 2147483648,
-    LALTLOCKED = 1048576,
-    LCTLLOCKED = 262144,
-    LSHIFTLOCKED = 65536,
-    RALTLOCKED = 2097152,
-    RCTLLOCKED = 524288,
-    RSHIFTLOCKED = 131072,
-    LWINLOCKED = 4194304,
-    RWINLOCKED = 8388608,
-    _,
-    pub fn initFlags(o: struct {
-        STICKYKEYSON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        HOTKEYACTIVE: u1 = 0,
-        CONFIRMHOTKEY: u1 = 0,
-        HOTKEYSOUND: u1 = 0,
-        INDICATOR: u1 = 0,
-        AUDIBLEFEEDBACK: u1 = 0,
-        TRISTATE: u1 = 0,
-        TWOKEYSOFF: u1 = 0,
-        LALTLATCHED: u1 = 0,
-        LCTLLATCHED: u1 = 0,
-        LSHIFTLATCHED: u1 = 0,
-        RALTLATCHED: u1 = 0,
-        RCTLLATCHED: u1 = 0,
-        RSHIFTLATCHED: u1 = 0,
-        LWINLATCHED: u1 = 0,
-        RWINLATCHED: u1 = 0,
-        LALTLOCKED: u1 = 0,
-        LCTLLOCKED: u1 = 0,
-        LSHIFTLOCKED: u1 = 0,
-        RALTLOCKED: u1 = 0,
-        RCTLLOCKED: u1 = 0,
-        RSHIFTLOCKED: u1 = 0,
-        LWINLOCKED: u1 = 0,
-        RWINLOCKED: u1 = 0,
-    }) STICKYKEYS_FLAGS {
-        return @intToEnum(STICKYKEYS_FLAGS,
-              (if (o.STICKYKEYSON == 1) @enumToInt(STICKYKEYS_FLAGS.STICKYKEYSON) else 0)
-            | (if (o.AVAILABLE == 1) @enumToInt(STICKYKEYS_FLAGS.AVAILABLE) else 0)
-            | (if (o.HOTKEYACTIVE == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYACTIVE) else 0)
-            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(STICKYKEYS_FLAGS.CONFIRMHOTKEY) else 0)
-            | (if (o.HOTKEYSOUND == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYSOUND) else 0)
-            | (if (o.INDICATOR == 1) @enumToInt(STICKYKEYS_FLAGS.INDICATOR) else 0)
-            | (if (o.AUDIBLEFEEDBACK == 1) @enumToInt(STICKYKEYS_FLAGS.AUDIBLEFEEDBACK) else 0)
-            | (if (o.TRISTATE == 1) @enumToInt(STICKYKEYS_FLAGS.TRISTATE) else 0)
-            | (if (o.TWOKEYSOFF == 1) @enumToInt(STICKYKEYS_FLAGS.TWOKEYSOFF) else 0)
-            | (if (o.LALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLATCHED) else 0)
-            | (if (o.LCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLATCHED) else 0)
-            | (if (o.LSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLATCHED) else 0)
-            | (if (o.RALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLATCHED) else 0)
-            | (if (o.RCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLATCHED) else 0)
-            | (if (o.RSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLATCHED) else 0)
-            | (if (o.LWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLATCHED) else 0)
-            | (if (o.RWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLATCHED) else 0)
-            | (if (o.LALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLOCKED) else 0)
-            | (if (o.LCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLOCKED) else 0)
-            | (if (o.LSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLOCKED) else 0)
-            | (if (o.RALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLOCKED) else 0)
-            | (if (o.RCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLOCKED) else 0)
-            | (if (o.RSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLOCKED) else 0)
-            | (if (o.LWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLOCKED) else 0)
-            | (if (o.RWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLOCKED) else 0)
-        );
-    }
-};
-pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS.STICKYKEYSON;
-pub const SKF_AVAILABLE = STICKYKEYS_FLAGS.AVAILABLE;
-pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS.HOTKEYACTIVE;
-pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS.CONFIRMHOTKEY;
-pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS.HOTKEYSOUND;
-pub const SKF_INDICATOR = STICKYKEYS_FLAGS.INDICATOR;
-pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS.AUDIBLEFEEDBACK;
-pub const SKF_TRISTATE = STICKYKEYS_FLAGS.TRISTATE;
-pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS.TWOKEYSOFF;
-pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS.LALTLATCHED;
-pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS.LCTLLATCHED;
-pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS.LSHIFTLATCHED;
-pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS.RALTLATCHED;
-pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS.RCTLLATCHED;
-pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS.RSHIFTLATCHED;
-pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS.LWINLATCHED;
-pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS.RWINLATCHED;
-pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS.LALTLOCKED;
-pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS.LCTLLOCKED;
-pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS.LSHIFTLOCKED;
-pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS.RALTLOCKED;
-pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS.RCTLLOCKED;
-pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS.RSHIFTLOCKED;
-pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS.LWINLOCKED;
-pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS.RWINLOCKED;
-
-pub const SOUNDSENTRY_FLAGS = enum(u32) {
-    SOUNDSENTRYON = 1,
-    AVAILABLE = 2,
-    INDICATOR = 4,
-    _,
-    pub fn initFlags(o: struct {
-        SOUNDSENTRYON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        INDICATOR: u1 = 0,
-    }) SOUNDSENTRY_FLAGS {
-        return @intToEnum(SOUNDSENTRY_FLAGS,
-              (if (o.SOUNDSENTRYON == 1) @enumToInt(SOUNDSENTRY_FLAGS.SOUNDSENTRYON) else 0)
-            | (if (o.AVAILABLE == 1) @enumToInt(SOUNDSENTRY_FLAGS.AVAILABLE) else 0)
-            | (if (o.INDICATOR == 1) @enumToInt(SOUNDSENTRY_FLAGS.INDICATOR) else 0)
-        );
-    }
-};
-pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS.SOUNDSENTRYON;
-pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
-pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
-
-pub const ACC_UTILITY_STATE_FLAGS = enum(u32) {
-    ON_SCREEN_KEYBOARD_ACTIVE = 1,
-    TOUCH_MODIFICATION_ACTIVE = 2,
-    PRIORITY_AUDIO_ACTIVE = 4,
-    PRIORITY_AUDIO_ACTIVE_NODUCK = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
-        TOUCH_MODIFICATION_ACTIVE: u1 = 0,
-        PRIORITY_AUDIO_ACTIVE: u1 = 0,
-        PRIORITY_AUDIO_ACTIVE_NODUCK: u1 = 0,
-    }) ACC_UTILITY_STATE_FLAGS {
-        return @intToEnum(ACC_UTILITY_STATE_FLAGS,
-              (if (o.ON_SCREEN_KEYBOARD_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE) else 0)
-            | (if (o.TOUCH_MODIFICATION_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE) else 0)
-            | (if (o.PRIORITY_AUDIO_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE) else 0)
-            | (if (o.PRIORITY_AUDIO_ACTIVE_NODUCK == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK) else 0)
-        );
-    }
-};
-pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE;
-pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK;
-
-pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
-    DISPLAY = 3,
-    NONE = 0,
-};
-pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
-pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
-
-pub const SERIALKEYS_FLAGS = enum(u32) {
-    AVAILABLE = 2,
-    INDICATOR = 4,
-    SERIALKEYSON = 1,
-    _,
-    pub fn initFlags(o: struct {
-        AVAILABLE: u1 = 0,
-        INDICATOR: u1 = 0,
-        SERIALKEYSON: u1 = 0,
-    }) SERIALKEYS_FLAGS {
-        return @intToEnum(SERIALKEYS_FLAGS,
-              (if (o.AVAILABLE == 1) @enumToInt(SERIALKEYS_FLAGS.AVAILABLE) else 0)
-            | (if (o.INDICATOR == 1) @enumToInt(SERIALKEYS_FLAGS.INDICATOR) else 0)
-            | (if (o.SERIALKEYSON == 1) @enumToInt(SERIALKEYS_FLAGS.SERIALKEYSON) else 0)
-        );
-    }
-};
-pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
-pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
-pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
-
-pub const HIGHCONTRASTW_FLAGS = enum(u32) {
-    HIGHCONTRASTON = 1,
-    AVAILABLE = 2,
-    HOTKEYACTIVE = 4,
-    CONFIRMHOTKEY = 8,
-    HOTKEYSOUND = 16,
-    INDICATOR = 32,
-    HOTKEYAVAILABLE = 64,
-    OPTION_NOTHEMECHANGE = 4096,
-    _,
-    pub fn initFlags(o: struct {
-        HIGHCONTRASTON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        HOTKEYACTIVE: u1 = 0,
-        CONFIRMHOTKEY: u1 = 0,
-        HOTKEYSOUND: u1 = 0,
-        INDICATOR: u1 = 0,
-        HOTKEYAVAILABLE: u1 = 0,
-        OPTION_NOTHEMECHANGE: u1 = 0,
-    }) HIGHCONTRASTW_FLAGS {
-        return @intToEnum(HIGHCONTRASTW_FLAGS,
-              (if (o.HIGHCONTRASTON == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HIGHCONTRASTON) else 0)
-            | (if (o.AVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.AVAILABLE) else 0)
-            | (if (o.HOTKEYACTIVE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYACTIVE) else 0)
-            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY) else 0)
-            | (if (o.HOTKEYSOUND == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYSOUND) else 0)
-            | (if (o.INDICATOR == 1) @enumToInt(HIGHCONTRASTW_FLAGS.INDICATOR) else 0)
-            | (if (o.HOTKEYAVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE) else 0)
-            | (if (o.OPTION_NOTHEMECHANGE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE) else 0)
-        );
-    }
-};
-pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS.HIGHCONTRASTON;
-pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS.AVAILABLE;
-pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_FLAGS.HOTKEYACTIVE;
-pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY;
-pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_FLAGS.HOTKEYSOUND;
-pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS.INDICATOR;
-pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE;
-pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE;
-
-pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
-    BORDER = 2,
-    CHARS = 1,
-    DISPLAY = 3,
-    NONE = 0,
-};
-pub const SSTF_BORDER = SOUNDSENTRY_TEXT_EFFECT.BORDER;
-pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
-pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
-pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
-
-pub const SOUNDSENTRY_WINDOWS_EFFECT = enum(u32) {
-    CUSTOM = 4,
-    DISPLAY = 3,
-    NONE = 0,
-    TITLE = 1,
-    WINDOW = 2,
-};
-pub const SSWF_CUSTOM = SOUNDSENTRY_WINDOWS_EFFECT.CUSTOM;
-pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
-pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
-pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
-pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
-
-// TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
-pub const HWINEVENTHOOK = *opaque{};
-
-pub const HUIANODE = *opaque{};
-
-pub const HUIAPATTERNOBJECT = *opaque{};
-
-pub const HUIATEXTRANGE = *opaque{};
-
-pub const HUIAEVENT = *opaque{};
-
-pub const SERIALKEYSA = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PSTR,
-    lpszPort: ?PSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
-};
-
-pub const SERIALKEYSW = extern struct {
-    cbSize: u32,
-    dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PWSTR,
-    lpszPort: ?PWSTR,
-    iBaudRate: u32,
-    iPortState: u32,
-    iActive: u32,
-};
-
-pub const HIGHCONTRASTA = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PSTR,
-};
-
-pub const HIGHCONTRASTW = extern struct {
-    cbSize: u32,
-    dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PWSTR,
-};
-
-pub const FILTERKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iWaitMSec: u32,
-    iDelayMSec: u32,
-    iRepeatMSec: u32,
-    iBounceMSec: u32,
-};
-
-pub const STICKYKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: STICKYKEYS_FLAGS,
-};
-
-pub const MOUSEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iMaxSpeed: u32,
-    iTimeToMaxSpeed: u32,
-    iCtrlSpeed: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-};
-
-pub const ACCESSTIMEOUT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    iTimeOutMSec: u32,
-};
-
-pub const SOUNDSENTRYA = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const SOUNDSENTRYW = extern struct {
-    cbSize: u32,
-    dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
-    iFSTextEffectMSec: u32,
-    iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
-    iFSGrafEffectMSec: u32,
-    iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
-    iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PWSTR,
-    iWindowsEffectOrdinal: u32,
-};
-
-pub const TOGGLEKEYS = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-};
-
-pub const WINEVENTPROC = fn(
-    hWinEventHook: ?HWINEVENTHOOK,
-    event: u32,
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-    idEventThread: u32,
-    dwmsEventTime: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (123)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USER32" fn RegisterPointerInputTarget(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USER32" fn UnregisterPointerInputTarget(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USER32" fn RegisterPointerInputTargetEx(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+    fObserve: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USER32" fn UnregisterPointerInputTargetEx(
+    hwnd: ?HWND,
+    pointerType: POINTER_INPUT_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn NotifyWinEvent(
+    event: u32,
+    hwnd: ?HWND,
+    idObject: i32,
+    idChild: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn SetWinEventHook(
+    eventMin: u32,
+    eventMax: u32,
+    hmodWinEventProc: ?HINSTANCE,
+    pfnWinEventProc: ?WINEVENTPROC,
+    idProcess: u32,
+    idThread: u32,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn IsWinEventHookInstalled(
+    event: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn UnhookWinEvent(
+    hWinEventHook: ?HWINEVENTHOOK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLEACC" fn LresultFromObject(
     riid: ?*const Guid,
@@ -11509,60 +11563,6 @@ pub extern "UIAutomationCore" fn UiaHasServerSideProvider(
     hwnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn RegisterPointerInputTarget(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USER32" fn UnregisterPointerInputTarget(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn RegisterPointerInputTargetEx(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-    fObserve: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USER32" fn UnregisterPointerInputTargetEx(
-    hwnd: ?HWND,
-    pointerType: POINTER_INPUT_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn NotifyWinEvent(
-    event: u32,
-    hwnd: ?HWND,
-    idObject: i32,
-    idChild: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetWinEventHook(
-    eventMin: u32,
-    eventMax: u32,
-    hmodWinEventProc: ?HINSTANCE,
-    pfnWinEventProc: ?WINEVENTPROC,
-    idProcess: u32,
-    idThread: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HWINEVENTHOOK;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn IsWinEventHookInstalled(
-    event: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn UnhookWinEvent(
-    hWinEventHook: ?HWINEVENTHOOK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (6)
@@ -11607,13 +11607,13 @@ const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const BSTR = @import("../foundation.zig").BSTR;
-const RECT = @import("../foundation.zig").RECT;
 const PSTR = @import("../foundation.zig").PSTR;
+const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
 const WPARAM = @import("../foundation.zig").WPARAM;
@@ -11625,6 +11625,7 @@ const POINT = @import("../foundation.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "WINEVENTPROC")) { _ = WINEVENTPROC; }
     if (@hasDecl(@This(), "LPFNLRESULTFROMOBJECT")) { _ = LPFNLRESULTFROMOBJECT; }
     if (@hasDecl(@This(), "LPFNOBJECTFROMLRESULT")) { _ = LPFNOBJECTFROMLRESULT; }
     if (@hasDecl(@This(), "LPFNACCESSIBLEOBJECTFROMWINDOW")) { _ = LPFNACCESSIBLEOBJECTFROMWINDOW; }
@@ -11633,7 +11634,6 @@ test {
     if (@hasDecl(@This(), "LPFNACCESSIBLECHILDREN")) { _ = LPFNACCESSIBLECHILDREN; }
     if (@hasDecl(@This(), "UiaProviderCallback")) { _ = UiaProviderCallback; }
     if (@hasDecl(@This(), "UiaEventCallback")) { _ = UiaEventCallback; }
-    if (@hasDecl(@This(), "WINEVENTPROC")) { _ = WINEVENTPROC; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

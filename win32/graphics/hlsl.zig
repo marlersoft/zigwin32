@@ -5,6 +5,23 @@
 pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
 pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
 pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
+pub const DxcValidatorFlags_Default = @as(u32, 0);
+pub const DxcValidatorFlags_InPlaceEdit = @as(u32, 1);
+pub const DxcValidatorFlags_RootSignatureOnly = @as(u32, 2);
+pub const DxcValidatorFlags_ModuleOnly = @as(u32, 4);
+pub const DxcValidatorFlags_ValidMask = @as(u32, 7);
+pub const DxcVersionInfoFlags_None = @as(u32, 0);
+pub const DxcVersionInfoFlags_Debug = @as(u32, 1);
+pub const DxcVersionInfoFlags_Internal = @as(u32, 2);
+pub const CLSID_DxcCompiler = Guid.initString("73e22d93-e6ce-47f3-b5bf-f0664f39c1b0");
+pub const CLSID_DxcLinker = Guid.initString("ef6a8087-b0ea-4d56-9e45-d07e1a8b7806");
+pub const CLSID_DxcDiaDataSource = Guid.initString("cd1f6b73-2ab0-484d-8edc-ebe7a43ca09f");
+pub const CLSID_DxcLibrary = Guid.initString("6245d6af-66e0-48fd-80b4-4d271796748c");
+pub const CLSID_DxcValidator = Guid.initString("8ca3e215-f728-4cf3-8cdd-88af917587a1");
+pub const CLSID_DxcAssembler = Guid.initString("d728db68-f903-4f80-94cd-dccf76ec7151");
+pub const CLSID_DxcContainerReflection = Guid.initString("b9f54489-55b8-400c-ba3a-1675e4728b91");
+pub const CLSID_DxcOptimizer = Guid.initString("ae2cd79f-cc22-453f-9b6b-b124e7a5204c");
+pub const CLSID_DxcContainerBuilder = Guid.initString("94134294-411f-4574-b4d0-8741e25240d2");
 pub const D3D_COMPILER_VERSION = @as(u32, 47);
 pub const D3DCOMPILE_DEBUG = @as(u32, 1);
 pub const D3DCOMPILE_SKIP_VALIDATION = @as(u32, 2);
@@ -49,23 +66,6 @@ pub const D3D_DISASM_INSTRUCTION_ONLY = @as(u32, 64);
 pub const D3D_DISASM_PRINT_HEX_LITERALS = @as(u32, 128);
 pub const D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = @as(u32, 1);
 pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
-pub const DxcValidatorFlags_Default = @as(u32, 0);
-pub const DxcValidatorFlags_InPlaceEdit = @as(u32, 1);
-pub const DxcValidatorFlags_RootSignatureOnly = @as(u32, 2);
-pub const DxcValidatorFlags_ModuleOnly = @as(u32, 4);
-pub const DxcValidatorFlags_ValidMask = @as(u32, 7);
-pub const DxcVersionInfoFlags_None = @as(u32, 0);
-pub const DxcVersionInfoFlags_Debug = @as(u32, 1);
-pub const DxcVersionInfoFlags_Internal = @as(u32, 2);
-pub const CLSID_DxcCompiler = Guid.initString("73e22d93-e6ce-47f3-b5bf-f0664f39c1b0");
-pub const CLSID_DxcLinker = Guid.initString("ef6a8087-b0ea-4d56-9e45-d07e1a8b7806");
-pub const CLSID_DxcDiaDataSource = Guid.initString("cd1f6b73-2ab0-484d-8edc-ebe7a43ca09f");
-pub const CLSID_DxcLibrary = Guid.initString("6245d6af-66e0-48fd-80b4-4d271796748c");
-pub const CLSID_DxcValidator = Guid.initString("8ca3e215-f728-4cf3-8cdd-88af917587a1");
-pub const CLSID_DxcAssembler = Guid.initString("d728db68-f903-4f80-94cd-dccf76ec7151");
-pub const CLSID_DxcContainerReflection = Guid.initString("b9f54489-55b8-400c-ba3a-1675e4728b91");
-pub const CLSID_DxcOptimizer = Guid.initString("ae2cd79f-cc22-453f-9b6b-b124e7a5204c");
-pub const CLSID_DxcContainerBuilder = Guid.initString("94134294-411f-4574-b4d0-8741e25240d2");
 
 //--------------------------------------------------------------------------------
 // Section: Types (26)
@@ -839,7 +839,7 @@ pub const DXC_CP_UTF8 = DXC_CP.UTF8;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (25)
+// Section: Functions (27)
 //--------------------------------------------------------------------------------
 pub extern "D3DCOMPILER_47" fn D3DReadFileToBlob(
     pFileName: ?[*:0]const u16,
@@ -1057,6 +1057,19 @@ pub extern "D3DCOMPILER_47" fn D3DDisassemble10Effect(
     pEffect: ?*ID3D10Effect,
     Flags: u32,
     ppDisassembly: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dxcompiler" fn DxcCreateInstance(
+    rclsid: ?*const Guid,
+    riid: ?*const Guid,
+    ppv: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "dxcompiler" fn DxcCreateInstance2(
+    pMalloc: ?*IMalloc,
+    rclsid: ?*const Guid,
+    riid: ?*const Guid,
+    ppv: ?*?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

@@ -579,7 +579,7 @@ pub const DDIRQ_VPORT9_VSYNC = @as(i32, 65536);
 pub const DDIRQ_VPORT9_LINE = @as(i32, 131072);
 
 //--------------------------------------------------------------------------------
-// Section: Types (159)
+// Section: Types (148)
 //--------------------------------------------------------------------------------
 pub const _D3DHAL_CALLBACKS = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -598,6 +598,46 @@ pub const tcp_request_query_information_ex32_xp = extern struct {
 };
 
 }, else => struct { } };
+
+pub const HWINWATCH = *opaque{};
+
+pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
+
+pub const FH_SERVICE_PIPE_HANDLE = isize;
+
+pub const NT_CREATE_FILE_DISPOSITION = enum(u32) {
+    SUPERSEDE = 0,
+    CREATE = 2,
+    OPEN = 1,
+    OPEN_IF = 3,
+    OVERWRITE = 4,
+    OVERWRITE_IF = 5,
+};
+pub const FILE_SUPERSEDE = NT_CREATE_FILE_DISPOSITION.SUPERSEDE;
+pub const FILE_CREATE = NT_CREATE_FILE_DISPOSITION.CREATE;
+pub const FILE_OPEN = NT_CREATE_FILE_DISPOSITION.OPEN;
+pub const FILE_OPEN_IF = NT_CREATE_FILE_DISPOSITION.OPEN_IF;
+pub const FILE_OVERWRITE = NT_CREATE_FILE_DISPOSITION.OVERWRITE;
+pub const FILE_OVERWRITE_IF = NT_CREATE_FILE_DISPOSITION.OVERWRITE_IF;
+
+pub const TDIENTITY_ENTITY_TYPE = enum(u32) {
+    GENERIC_ENTITY = 0,
+    AT_ENTITY = 640,
+    CL_NL_ENTITY = 769,
+    CO_NL_ENTITY = 768,
+    CL_TL_ENTITY = 1025,
+    CO_TL_ENTITY = 1024,
+    ER_ENTITY = 896,
+    IF_ENTITY = 512,
+};
+pub const GENERIC_ENTITY = TDIENTITY_ENTITY_TYPE.GENERIC_ENTITY;
+pub const AT_ENTITY = TDIENTITY_ENTITY_TYPE.AT_ENTITY;
+pub const CL_NL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_NL_ENTITY;
+pub const CO_NL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_NL_ENTITY;
+pub const CL_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_TL_ENTITY;
+pub const CO_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_TL_ENTITY;
+pub const ER_ENTITY = TDIENTITY_ENTITY_TYPE.ER_ENTITY;
+pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
 
 pub const LPFIBER_START_ROUTINE = fn(
     lpFiberParameter: ?*c_void,
@@ -940,7 +980,7 @@ pub const PWINSTATIONQUERYINFORMATIONW = fn(
     param3: ?*c_void,
     param4: u32,
     param5: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 const CLSID_CameraUIControl_Value = @import("../zig.zig").Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
 pub const CLSID_CameraUIControl = &CLSID_CameraUIControl_Value;
@@ -3694,90 +3734,6 @@ pub const JAVA_TRUST = extern struct {
     hVerify: HRESULT,
 };
 
-pub const PFN_IO_COMPLETION = fn(
-    pContext: ?*FIO_CONTEXT,
-    lpo: ?*FH_OVERLAPPED,
-    cb: u32,
-    dwCompletionStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const FH_OVERLAPPED = extern struct {
-    Internal: usize,
-    InternalHigh: usize,
-    Offset: u32,
-    OffsetHigh: u32,
-    hEvent: ?HANDLE,
-    pfnCompletion: ?PFN_IO_COMPLETION,
-    Reserved1: usize,
-    Reserved2: usize,
-    Reserved3: usize,
-    Reserved4: usize,
-};
-
-pub const FIO_CONTEXT = extern struct {
-    m_dwTempHack: u32,
-    m_dwSignature: u32,
-    m_hFile: ?HANDLE,
-    m_dwLinesOffset: u32,
-    m_dwHeaderLength: u32,
-};
-
-pub const FCACHE_CREATE_CALLBACK = fn(
-    lpstrName: ?PSTR,
-    lpvData: ?*c_void,
-    cbFileSize: ?*u32,
-    cbFileSizeHigh: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-pub const FCACHE_RICHCREATE_CALLBACK = fn(
-    lpstrName: ?PSTR,
-    lpvData: ?*c_void,
-    cbFileSize: ?*u32,
-    cbFileSizeHigh: ?*u32,
-    pfDidWeScanIt: ?*BOOL,
-    pfIsStuffed: ?*BOOL,
-    pfStoredWithDots: ?*BOOL,
-    pfStoredWithTerminatingDot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-pub const CACHE_KEY_COMPARE = fn(
-    cbKey1: u32,
-    lpbKey1: ?*u8,
-    cbKey2: u32,
-    lpbKey2: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const CACHE_KEY_HASH = fn(
-    lpbKey: ?*u8,
-    cbKey: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const CACHE_READ_CALLBACK = fn(
-    cb: u32,
-    lpb: ?*u8,
-    lpvContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const CACHE_DESTROY_CALLBACK = fn(
-    cb: u32,
-    lpb: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const CACHE_ACCESS_CHECK = fn(
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    hClientToken: ?HANDLE,
-    dwDesiredAccess: u32,
-    GenericMapping: ?*GENERIC_MAPPING,
-    PrivilegeSet: ?*PRIVILEGE_SET,
-    PrivilegeSetLength: ?*u32,
-    GrantedAccess: ?*u32,
-    AccessStatus: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const NAME_CACHE_CONTEXT = extern struct {
-    m_dwSignature: u32,
-};
-
 pub const TDIEntityID = extern struct {
     tei_entity: TDIENTITY_ENTITY_TYPE,
     tei_instance: u32,
@@ -3961,46 +3917,6 @@ pub const PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API = fn(
     PackageFamilyName: ?[*:0]const u16,
     PackageVersion: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const HWINWATCH = *opaque{};
-
-pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
-
-pub const FH_SERVICE_PIPE_HANDLE = isize;
-
-pub const NT_CREATE_FILE_DISPOSITION = enum(u32) {
-    SUPERSEDE = 0,
-    CREATE = 2,
-    OPEN = 1,
-    OPEN_IF = 3,
-    OVERWRITE = 4,
-    OVERWRITE_IF = 5,
-};
-pub const FILE_SUPERSEDE = NT_CREATE_FILE_DISPOSITION.SUPERSEDE;
-pub const FILE_CREATE = NT_CREATE_FILE_DISPOSITION.CREATE;
-pub const FILE_OPEN = NT_CREATE_FILE_DISPOSITION.OPEN;
-pub const FILE_OPEN_IF = NT_CREATE_FILE_DISPOSITION.OPEN_IF;
-pub const FILE_OVERWRITE = NT_CREATE_FILE_DISPOSITION.OVERWRITE;
-pub const FILE_OVERWRITE_IF = NT_CREATE_FILE_DISPOSITION.OVERWRITE_IF;
-
-pub const TDIENTITY_ENTITY_TYPE = enum(u32) {
-    GENERIC_ENTITY = 0,
-    AT_ENTITY = 640,
-    CL_NL_ENTITY = 769,
-    CO_NL_ENTITY = 768,
-    CL_TL_ENTITY = 1025,
-    CO_TL_ENTITY = 1024,
-    ER_ENTITY = 896,
-    IF_ENTITY = 512,
-};
-pub const GENERIC_ENTITY = TDIENTITY_ENTITY_TYPE.GENERIC_ENTITY;
-pub const AT_ENTITY = TDIENTITY_ENTITY_TYPE.AT_ENTITY;
-pub const CL_NL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_NL_ENTITY;
-pub const CO_NL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_NL_ENTITY;
-pub const CL_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_TL_ENTITY;
-pub const CO_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_TL_ENTITY;
-pub const ER_ENTITY = TDIENTITY_ENTITY_TYPE.ER_ENTITY;
-pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
 
 
 //--------------------------------------------------------------------------------
@@ -4754,11 +4670,11 @@ pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
     ApcContext: ?*c_void,
     IoStatusBlock: ?*IO_STATUS_BLOCK,
     CompletionFilter: u32,
-    WatchTree: u8,
+    WatchTree: BOOLEAN,
     // TODO: what to do with BytesParamIndex 10?
     Buffer: ?*c_void,
     BufferSize: u32,
-    Asynchronous: u8,
+    Asynchronous: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn NtQueryMultipleValueKey(
@@ -4796,15 +4712,15 @@ pub extern "ntdll" fn NtDeviceIoControlFile(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtWaitForSingleObject(
     Handle: ?HANDLE,
-    Alertable: u8,
+    Alertable: BOOLEAN,
     Timeout: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "ntdll" fn RtlIsNameLegalDOS8Dot3(
     Name: ?*UNICODE_STRING,
     OemName: ?*STRING,
-    NameContainsSpaces: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u8;
+    NameContainsSpaces: ?*BOOLEAN,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "ntdll" fn NtQueryObject(
     Handle: ?HANDLE,
@@ -4834,7 +4750,7 @@ pub extern "ntdll" fn RtlLocalTimeToSystemTime(
 pub extern "ntdll" fn RtlTimeToSecondsSince1970(
     Time: ?*LARGE_INTEGER,
     ElapsedSeconds: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlFreeAnsiString(
@@ -4881,21 +4797,21 @@ pub extern "ntdll" fn RtlInitUnicodeString(
 pub extern "ntdll" fn RtlAnsiStringToUnicodeString(
     DestinationString: ?*UNICODE_STRING,
     SourceString: ?*STRING,
-    AllocateDestinationString: u8,
+    AllocateDestinationString: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeStringToAnsiString(
     DestinationString: ?*STRING,
     SourceString: ?*UNICODE_STRING,
-    AllocateDestinationString: u8,
+    AllocateDestinationString: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeStringToOemString(
     DestinationString: ?*STRING,
     SourceString: ?*UNICODE_STRING,
-    AllocateDestinationString: u8,
+    AllocateDestinationString: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5761,7 +5677,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (42)
+// Section: Imports (40)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("../foundation.zig").LPARAM;
@@ -5778,7 +5694,7 @@ const HDC = @import("../graphics/gdi.zig").HDC;
 const STARTUPINFOA = @import("../system/threading.zig").STARTUPINFOA;
 const HKEY = @import("../system/registry.zig").HKEY;
 const BOOL = @import("../foundation.zig").BOOL;
-const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const WPARAM = @import("../foundation.zig").WPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const FILE_SHARE_MODE = @import("../storage/file_system.zig").FILE_SHARE_MODE;
@@ -5787,7 +5703,6 @@ const JOB_SET_ARRAY = @import("../system/system_services.zig").JOB_SET_ARRAY;
 const SHANDLE_PTR = @import("../system/system_services.zig").SHANDLE_PTR;
 const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
@@ -5796,7 +5711,6 @@ const PSTR = @import("../foundation.zig").PSTR;
 const RECT = @import("../foundation.zig").RECT;
 const READYSTATE = @import("../system/com.zig").READYSTATE;
 const HWND = @import("../foundation.zig").HWND;
-const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const STRING = @import("../system/kernel.zig").STRING;
@@ -5819,14 +5733,6 @@ test {
     if (@hasDecl(@This(), "ENUM_CALLBACK")) { _ = ENUM_CALLBACK; }
     if (@hasDecl(@This(), "WINWATCHNOTIFYPROC")) { _ = WINWATCHNOTIFYPROC; }
     if (@hasDecl(@This(), "REGINSTALLA")) { _ = REGINSTALLA; }
-    if (@hasDecl(@This(), "PFN_IO_COMPLETION")) { _ = PFN_IO_COMPLETION; }
-    if (@hasDecl(@This(), "FCACHE_CREATE_CALLBACK")) { _ = FCACHE_CREATE_CALLBACK; }
-    if (@hasDecl(@This(), "FCACHE_RICHCREATE_CALLBACK")) { _ = FCACHE_RICHCREATE_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_KEY_COMPARE")) { _ = CACHE_KEY_COMPARE; }
-    if (@hasDecl(@This(), "CACHE_KEY_HASH")) { _ = CACHE_KEY_HASH; }
-    if (@hasDecl(@This(), "CACHE_READ_CALLBACK")) { _ = CACHE_READ_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_DESTROY_CALLBACK")) { _ = CACHE_DESTROY_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_ACCESS_CHECK")) { _ = CACHE_ACCESS_CHECK; }
     if (@hasDecl(@This(), "PWLDP_SETDYNAMICCODETRUST_API")) { _ = PWLDP_SETDYNAMICCODETRUST_API; }
     if (@hasDecl(@This(), "PWLDP_ISDYNAMICCODEPOLICYENABLED_API")) { _ = PWLDP_ISDYNAMICCODEPOLICYENABLED_API; }
     if (@hasDecl(@This(), "PWLDP_QUERYDYNAMICODETRUST_API")) { _ = PWLDP_QUERYDYNAMICODETRUST_API; }

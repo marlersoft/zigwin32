@@ -264,10 +264,10 @@ pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
     PhysDisp: ?*c_void,
     Param: usize,
     Status: i32,
-    LockUserSession: u8,
-    IsPostDevice: u8,
-    SurpriseRemoval: u8,
-    WaitForQueueReady: u8,
+    LockUserSession: BOOLEAN,
+    IsPostDevice: BOOLEAN,
+    SurpriseRemoval: BOOLEAN,
+    WaitForQueueReady: BOOLEAN,
 };
 
 pub const PVIDEO_WIN32K_CALLOUT = fn(
@@ -553,7 +553,7 @@ pub const DISPLAY_BRIGHTNESS = extern struct {
 };
 
 pub const VIDEO_BRIGHTNESS_POLICY = extern struct {
-    DefaultToBiosPolicy: u8,
+    DefaultToBiosPolicy: BOOLEAN,
     LevelCount: u8,
     Level: [1]extern struct {
         BatteryLevel: u8,
@@ -1461,7 +1461,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
@@ -1472,6 +1472,7 @@ const COORD = @import("../system/console.zig").COORD;
 const CHAR_INFO = @import("../system/console.zig").CHAR_INFO;
 const BOOL = @import("../foundation.zig").BOOL;
 const LUID = @import("../system/system_services.zig").LUID;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const HANDLE = @import("../foundation.zig").HANDLE;

@@ -9,6 +9,52 @@ pub const HF32_SHARED = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = enum(u32) {
+    INHERIT = 2147483648,
+    SNAPALL = 15,
+    SNAPHEAPLIST = 1,
+    SNAPMODULE = 8,
+    SNAPMODULE32 = 16,
+    SNAPPROCESS = 2,
+    SNAPTHREAD = 4,
+    _,
+    pub fn initFlags(o: struct {
+        INHERIT: u1 = 0,
+        SNAPALL: u1 = 0,
+        SNAPHEAPLIST: u1 = 0,
+        SNAPMODULE: u1 = 0,
+        SNAPMODULE32: u1 = 0,
+        SNAPPROCESS: u1 = 0,
+        SNAPTHREAD: u1 = 0,
+    }) CREATE_TOOLHELP_SNAPSHOT_FLAGS {
+        return @intToEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS,
+              (if (o.INHERIT == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT) else 0)
+            | (if (o.SNAPALL == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL) else 0)
+            | (if (o.SNAPHEAPLIST == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST) else 0)
+            | (if (o.SNAPMODULE == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE) else 0)
+            | (if (o.SNAPMODULE32 == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32) else 0)
+            | (if (o.SNAPPROCESS == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS) else 0)
+            | (if (o.SNAPTHREAD == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD) else 0)
+        );
+    }
+};
+pub const TH32CS_INHERIT = CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT;
+pub const TH32CS_SNAPALL = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL;
+pub const TH32CS_SNAPHEAPLIST = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST;
+pub const TH32CS_SNAPMODULE = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE;
+pub const TH32CS_SNAPMODULE32 = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32;
+pub const TH32CS_SNAPPROCESS = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS;
+pub const TH32CS_SNAPTHREAD = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD;
+
+pub const HEAPENTRY32_FLAGS = enum(u32) {
+    FIXED = 1,
+    FREE = 2,
+    MOVEABLE = 4,
+};
+pub const LF32_FIXED = HEAPENTRY32_FLAGS.FIXED;
+pub const LF32_FREE = HEAPENTRY32_FLAGS.FREE;
+pub const LF32_MOVEABLE = HEAPENTRY32_FLAGS.MOVEABLE;
+
 pub const HEAPLIST32 = extern struct {
     dwSize: usize,
     th32ProcessID: u32,
@@ -89,52 +135,6 @@ pub const MODULEENTRY32 = extern struct {
     szModule: [256]CHAR,
     szExePath: [260]CHAR,
 };
-
-pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = enum(u32) {
-    INHERIT = 2147483648,
-    SNAPALL = 15,
-    SNAPHEAPLIST = 1,
-    SNAPMODULE = 8,
-    SNAPMODULE32 = 16,
-    SNAPPROCESS = 2,
-    SNAPTHREAD = 4,
-    _,
-    pub fn initFlags(o: struct {
-        INHERIT: u1 = 0,
-        SNAPALL: u1 = 0,
-        SNAPHEAPLIST: u1 = 0,
-        SNAPMODULE: u1 = 0,
-        SNAPMODULE32: u1 = 0,
-        SNAPPROCESS: u1 = 0,
-        SNAPTHREAD: u1 = 0,
-    }) CREATE_TOOLHELP_SNAPSHOT_FLAGS {
-        return @intToEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS,
-              (if (o.INHERIT == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT) else 0)
-            | (if (o.SNAPALL == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL) else 0)
-            | (if (o.SNAPHEAPLIST == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST) else 0)
-            | (if (o.SNAPMODULE == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE) else 0)
-            | (if (o.SNAPMODULE32 == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32) else 0)
-            | (if (o.SNAPPROCESS == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS) else 0)
-            | (if (o.SNAPTHREAD == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD) else 0)
-        );
-    }
-};
-pub const TH32CS_INHERIT = CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT;
-pub const TH32CS_SNAPALL = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL;
-pub const TH32CS_SNAPHEAPLIST = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST;
-pub const TH32CS_SNAPMODULE = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE;
-pub const TH32CS_SNAPMODULE32 = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32;
-pub const TH32CS_SNAPPROCESS = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS;
-pub const TH32CS_SNAPTHREAD = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD;
-
-pub const HEAPENTRY32_FLAGS = enum(u32) {
-    FIXED = 1,
-    FREE = 2,
-    MOVEABLE = 4,
-};
-pub const LF32_FIXED = HEAPENTRY32_FLAGS.FIXED;
-pub const LF32_FREE = HEAPENTRY32_FLAGS.FREE;
-pub const LF32_MOVEABLE = HEAPENTRY32_FLAGS.MOVEABLE;
 
 
 //--------------------------------------------------------------------------------

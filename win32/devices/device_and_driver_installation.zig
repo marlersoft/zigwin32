@@ -1073,8 +1073,6 @@ pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
 pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
 pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 
-pub const HCMNOTIFICATION = *opaque{};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -1847,6 +1845,8 @@ pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
 
 }, else => struct { } };
 
+pub const HCMNOTIFICATION = *opaque{};
+
 pub const SP_COPY_STYLE = enum(u32) {
     DELETESOURCE = 1,
     REPLACEONLY = 2,
@@ -1997,6 +1997,427 @@ pub const SP_INF_STYLE = enum(u32) {
 pub const INF_STYLE_NONE = SP_INF_STYLE.NONE;
 pub const INF_STYLE_OLDNT = SP_INF_STYLE.OLDNT;
 pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
+
+pub const PSP_FILE_CALLBACK_A = fn(
+    Context: ?*c_void,
+    Notification: u32,
+    Param1: usize,
+    Param2: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PSP_FILE_CALLBACK_W = fn(
+    Context: ?*c_void,
+    Notification: u32,
+    Param1: usize,
+    Param2: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Title: [60]CHAR,
+    Instructions: [256]CHAR,
+    ListLabel: [30]CHAR,
+    SubTitle: [256]CHAR,
+    Reserved: [2]u8,
+};
+
+pub const PDETECT_PROGRESS_NOTIFY = fn(
+    ProgressNotifyParam: ?*c_void,
+    DetectComplete: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ChmFile: [260]CHAR,
+    HtmlTroubleShooter: [260]CHAR,
+};
+
+pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    PowerMessageWake: [512]CHAR,
+};
+
+pub const PSP_DETSIG_CMPPROC = fn(
+    DeviceInfoSet: ?*c_void,
+    NewDeviceData: ?*SP_DEVINFO_DATA,
+    ExistingDeviceData: ?*SP_DEVINFO_DATA,
+    CompareContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const SetupFileLogInfo = enum(i32) {
+    SourceFilename = 0,
+    Checksum = 1,
+    DiskTagfile = 2,
+    DiskDescription = 3,
+    OtherInfo = 4,
+    Max = 5,
+};
+pub const SetupFileLogSourceFilename = SetupFileLogInfo.SourceFilename;
+pub const SetupFileLogChecksum = SetupFileLogInfo.Checksum;
+pub const SetupFileLogDiskTagfile = SetupFileLogInfo.DiskTagfile;
+pub const SetupFileLogDiskDescription = SetupFileLogInfo.DiskDescription;
+pub const SetupFileLogOtherInfo = SetupFileLogInfo.OtherInfo;
+pub const SetupFileLogMax = SetupFileLogInfo.Max;
+
+pub const PNP_VETO_TYPE = enum(i32) {
+    TypeUnknown = 0,
+    LegacyDevice = 1,
+    PendingClose = 2,
+    WindowsApp = 3,
+    WindowsService = 4,
+    OutstandingOpen = 5,
+    Device = 6,
+    Driver = 7,
+    IllegalDeviceRequest = 8,
+    InsufficientPower = 9,
+    NonDisableable = 10,
+    LegacyDriver = 11,
+    InsufficientRights = 12,
+    AlreadyRemoved = 13,
+};
+pub const PNP_VetoTypeUnknown = PNP_VETO_TYPE.TypeUnknown;
+pub const PNP_VetoLegacyDevice = PNP_VETO_TYPE.LegacyDevice;
+pub const PNP_VetoPendingClose = PNP_VETO_TYPE.PendingClose;
+pub const PNP_VetoWindowsApp = PNP_VETO_TYPE.WindowsApp;
+pub const PNP_VetoWindowsService = PNP_VETO_TYPE.WindowsService;
+pub const PNP_VetoOutstandingOpen = PNP_VETO_TYPE.OutstandingOpen;
+pub const PNP_VetoDevice = PNP_VETO_TYPE.Device;
+pub const PNP_VetoDriver = PNP_VETO_TYPE.Driver;
+pub const PNP_VetoIllegalDeviceRequest = PNP_VETO_TYPE.IllegalDeviceRequest;
+pub const PNP_VetoInsufficientPower = PNP_VETO_TYPE.InsufficientPower;
+pub const PNP_VetoNonDisableable = PNP_VETO_TYPE.NonDisableable;
+pub const PNP_VetoLegacyDriver = PNP_VETO_TYPE.LegacyDriver;
+pub const PNP_VetoInsufficientRights = PNP_VETO_TYPE.InsufficientRights;
+pub const PNP_VetoAlreadyRemoved = PNP_VETO_TYPE.AlreadyRemoved;
+
+pub const CONFLICT_DETAILS_A = extern struct {
+    CD_ulSize: u32,
+    CD_ulMask: u32,
+    CD_dnDevInst: u32,
+    CD_rdResDes: usize,
+    CD_ulFlags: u32,
+    CD_szDescription: [260]CHAR,
+};
+
+pub const CONFLICT_DETAILS_W = extern struct {
+    CD_ulSize: u32,
+    CD_ulMask: u32,
+    CD_dnDevInst: u32,
+    CD_rdResDes: usize,
+    CD_ulFlags: u32,
+    CD_szDescription: [260]u16,
+};
+
+pub const MEM_RANGE = packed struct {
+    MR_Align: u64,
+    MR_nBytes: u32,
+    MR_Min: u64,
+    MR_Max: u64,
+    MR_Flags: u32,
+    MR_Reserved: u32,
+};
+
+pub const MEM_DES = packed struct {
+    MD_Count: u32,
+    MD_Type: u32,
+    MD_Alloc_Base: u64,
+    MD_Alloc_End: u64,
+    MD_Flags: u32,
+    MD_Reserved: u32,
+};
+
+pub const MEM_RESOURCE = extern struct {
+    MEM_Header: MEM_DES,
+    MEM_Data: [1]MEM_RANGE,
+};
+
+pub const Mem_Large_Range_s = packed struct {
+    MLR_Align: u64,
+    MLR_nBytes: u64,
+    MLR_Min: u64,
+    MLR_Max: u64,
+    MLR_Flags: u32,
+    MLR_Reserved: u32,
+};
+
+pub const Mem_Large_Des_s = packed struct {
+    MLD_Count: u32,
+    MLD_Type: u32,
+    MLD_Alloc_Base: u64,
+    MLD_Alloc_End: u64,
+    MLD_Flags: u32,
+    MLD_Reserved: u32,
+};
+
+pub const Mem_Large_Resource_s = extern struct {
+    MEM_LARGE_Header: Mem_Large_Des_s,
+    MEM_LARGE_Data: [1]Mem_Large_Range_s,
+};
+
+pub const IO_RANGE = packed struct {
+    IOR_Align: u64,
+    IOR_nPorts: u32,
+    IOR_Min: u64,
+    IOR_Max: u64,
+    IOR_RangeFlags: u32,
+    IOR_Alias: u64,
+};
+
+pub const IO_DES = packed struct {
+    IOD_Count: u32,
+    IOD_Type: u32,
+    IOD_Alloc_Base: u64,
+    IOD_Alloc_End: u64,
+    IOD_DesFlags: u32,
+};
+
+pub const IO_RESOURCE = extern struct {
+    IO_Header: IO_DES,
+    IO_Data: [1]IO_RANGE,
+};
+
+pub const DMA_RANGE = packed struct {
+    DR_Min: u32,
+    DR_Max: u32,
+    DR_Flags: u32,
+};
+
+pub const DMA_DES = packed struct {
+    DD_Count: u32,
+    DD_Type: u32,
+    DD_Flags: u32,
+    DD_Alloc_Chan: u32,
+};
+
+pub const DMA_RESOURCE = extern struct {
+    DMA_Header: DMA_DES,
+    DMA_Data: [1]DMA_RANGE,
+};
+
+pub const IRQ_RANGE = packed struct {
+    IRQR_Min: u32,
+    IRQR_Max: u32,
+    IRQR_Flags: u32,
+};
+
+pub const IRQ_DES_32 = packed struct {
+    IRQD_Count: u32,
+    IRQD_Type: u32,
+    IRQD_Flags: u32,
+    IRQD_Alloc_Num: u32,
+    IRQD_Affinity: u32,
+};
+
+pub const IRQ_DES_64 = packed struct {
+    IRQD_Count: u32,
+    IRQD_Type: u32,
+    IRQD_Flags: u32,
+    IRQD_Alloc_Num: u32,
+    IRQD_Affinity: u64,
+};
+
+pub const IRQ_RESOURCE_32 = extern struct {
+    IRQ_Header: IRQ_DES_32,
+    IRQ_Data: [1]IRQ_RANGE,
+};
+
+pub const IRQ_RESOURCE_64 = extern struct {
+    IRQ_Header: IRQ_DES_64,
+    IRQ_Data: [1]IRQ_RANGE,
+};
+
+pub const DevPrivate_Range_s = packed struct {
+    PR_Data1: u32,
+    PR_Data2: u32,
+    PR_Data3: u32,
+};
+
+pub const DevPrivate_Des_s = packed struct {
+    PD_Count: u32,
+    PD_Type: u32,
+    PD_Data1: u32,
+    PD_Data2: u32,
+    PD_Data3: u32,
+    PD_Flags: u32,
+};
+
+pub const DevPrivate_Resource_s = extern struct {
+    PRV_Header: DevPrivate_Des_s,
+    PRV_Data: [1]DevPrivate_Range_s,
+};
+
+pub const CS_DES = packed struct {
+    CSD_SignatureLength: u32,
+    CSD_LegacyDataOffset: u32,
+    CSD_LegacyDataSize: u32,
+    CSD_Flags: u32,
+    CSD_ClassGuid: Guid,
+    CSD_Signature: [1]u8,
+};
+
+pub const CS_RESOURCE = extern struct {
+    CS_Header: CS_DES,
+};
+
+pub const PCCARD_DES = packed struct {
+    PCD_Count: u32,
+    PCD_Type: u32,
+    PCD_Flags: u32,
+    PCD_ConfigIndex: u8,
+    PCD_Reserved: [3]u8,
+    PCD_MemoryCardBase1: u32,
+    PCD_MemoryCardBase2: u32,
+    PCD_MemoryCardBase: [2]u32,
+    PCD_MemoryFlags: [2]u16,
+    PCD_IoFlags: [2]u8,
+};
+
+pub const PCCARD_RESOURCE = extern struct {
+    PcCard_Header: PCCARD_DES,
+};
+
+pub const MFCARD_DES = packed struct {
+    PMF_Count: u32,
+    PMF_Type: u32,
+    PMF_Flags: u32,
+    PMF_ConfigOptions: u8,
+    PMF_IoResourceIndex: u8,
+    PMF_Reserved: [2]u8,
+    PMF_ConfigRegisterBase: u32,
+};
+
+pub const MFCARD_RESOURCE = extern struct {
+    MfCard_Header: MFCARD_DES,
+};
+
+pub const BUSNUMBER_RANGE = packed struct {
+    BUSR_Min: u32,
+    BUSR_Max: u32,
+    BUSR_nBusNumbers: u32,
+    BUSR_Flags: u32,
+};
+
+pub const BUSNUMBER_DES = packed struct {
+    BUSD_Count: u32,
+    BUSD_Type: u32,
+    BUSD_Flags: u32,
+    BUSD_Alloc_Base: u32,
+    BUSD_Alloc_End: u32,
+};
+
+pub const BUSNUMBER_RESOURCE = extern struct {
+    BusNumber_Header: BUSNUMBER_DES,
+    BusNumber_Data: [1]BUSNUMBER_RANGE,
+};
+
+pub const Connection_Des_s = packed struct {
+    COND_Type: u32,
+    COND_Flags: u32,
+    COND_Class: u8,
+    COND_ClassType: u8,
+    COND_Reserved1: u8,
+    COND_Reserved2: u8,
+    COND_Id: LARGE_INTEGER,
+};
+
+pub const Connection_Resource_s = extern struct {
+    Connection_Header: Connection_Des_s,
+};
+
+pub const HWProfileInfo_sA = packed struct {
+    HWPI_ulHWProfile: u32,
+    HWPI_szFriendlyName: [80]CHAR,
+    HWPI_dwFlags: u32,
+};
+
+pub const HWProfileInfo_sW = packed struct {
+    HWPI_ulHWProfile: u32,
+    HWPI_szFriendlyName: [80]u16,
+    HWPI_dwFlags: u32,
+};
+
+pub const CM_NOTIFY_FILTER_TYPE = enum(i32) {
+    DEVICEINTERFACE = 0,
+    DEVICEHANDLE = 1,
+    DEVICEINSTANCE = 2,
+    MAX = 3,
+};
+pub const CM_NOTIFY_FILTER_TYPE_DEVICEINTERFACE = CM_NOTIFY_FILTER_TYPE.DEVICEINTERFACE;
+pub const CM_NOTIFY_FILTER_TYPE_DEVICEHANDLE = CM_NOTIFY_FILTER_TYPE.DEVICEHANDLE;
+pub const CM_NOTIFY_FILTER_TYPE_DEVICEINSTANCE = CM_NOTIFY_FILTER_TYPE.DEVICEINSTANCE;
+pub const CM_NOTIFY_FILTER_TYPE_MAX = CM_NOTIFY_FILTER_TYPE.MAX;
+
+pub const CM_NOTIFY_FILTER = extern struct {
+    cbSize: u32,
+    Flags: u32,
+    FilterType: CM_NOTIFY_FILTER_TYPE,
+    Reserved: u32,
+    u: extern union {
+        DeviceInterface: extern struct {
+            ClassGuid: Guid,
+        },
+        DeviceHandle: extern struct {
+            hTarget: ?HANDLE,
+        },
+        DeviceInstance: extern struct {
+            InstanceId: [200]u16,
+        },
+    },
+};
+
+pub const CM_NOTIFY_ACTION = enum(i32) {
+    DEVICEINTERFACEARRIVAL = 0,
+    DEVICEINTERFACEREMOVAL = 1,
+    DEVICEQUERYREMOVE = 2,
+    DEVICEQUERYREMOVEFAILED = 3,
+    DEVICEREMOVEPENDING = 4,
+    DEVICEREMOVECOMPLETE = 5,
+    DEVICECUSTOMEVENT = 6,
+    DEVICEINSTANCEENUMERATED = 7,
+    DEVICEINSTANCESTARTED = 8,
+    DEVICEINSTANCEREMOVED = 9,
+    MAX = 10,
+};
+pub const CM_NOTIFY_ACTION_DEVICEINTERFACEARRIVAL = CM_NOTIFY_ACTION.DEVICEINTERFACEARRIVAL;
+pub const CM_NOTIFY_ACTION_DEVICEINTERFACEREMOVAL = CM_NOTIFY_ACTION.DEVICEINTERFACEREMOVAL;
+pub const CM_NOTIFY_ACTION_DEVICEQUERYREMOVE = CM_NOTIFY_ACTION.DEVICEQUERYREMOVE;
+pub const CM_NOTIFY_ACTION_DEVICEQUERYREMOVEFAILED = CM_NOTIFY_ACTION.DEVICEQUERYREMOVEFAILED;
+pub const CM_NOTIFY_ACTION_DEVICEREMOVEPENDING = CM_NOTIFY_ACTION.DEVICEREMOVEPENDING;
+pub const CM_NOTIFY_ACTION_DEVICEREMOVECOMPLETE = CM_NOTIFY_ACTION.DEVICEREMOVECOMPLETE;
+pub const CM_NOTIFY_ACTION_DEVICECUSTOMEVENT = CM_NOTIFY_ACTION.DEVICECUSTOMEVENT;
+pub const CM_NOTIFY_ACTION_DEVICEINSTANCEENUMERATED = CM_NOTIFY_ACTION.DEVICEINSTANCEENUMERATED;
+pub const CM_NOTIFY_ACTION_DEVICEINSTANCESTARTED = CM_NOTIFY_ACTION.DEVICEINSTANCESTARTED;
+pub const CM_NOTIFY_ACTION_DEVICEINSTANCEREMOVED = CM_NOTIFY_ACTION.DEVICEINSTANCEREMOVED;
+pub const CM_NOTIFY_ACTION_MAX = CM_NOTIFY_ACTION.MAX;
+
+pub const CM_NOTIFY_EVENT_DATA = extern struct {
+    FilterType: CM_NOTIFY_FILTER_TYPE,
+    Reserved: u32,
+    u: extern union {
+        DeviceInterface: extern struct {
+            ClassGuid: Guid,
+            SymbolicLink: [1]u16,
+        },
+        DeviceHandle: extern struct {
+            EventGuid: Guid,
+            NameOffset: i32,
+            DataSize: u32,
+            Data: [1]u8,
+        },
+        DeviceInstance: extern struct {
+            InstanceId: [1]u16,
+        },
+    },
+};
+
+pub const PCM_NOTIFY_CALLBACK = fn(
+    hNotify: ?HCMNOTIFICATION,
+    Context: ?*c_void,
+    Action: CM_NOTIFY_ACTION,
+    // TODO: what to do with BytesParamIndex 4?
+    EventData: ?*CM_NOTIFY_EVENT_DATA,
+    EventDataSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
@@ -2769,427 +3190,6 @@ pub const SP_INF_SIGNER_INFO_V2_W = packed struct {
 };
 
 }, else => struct { } };
-
-pub const PSP_FILE_CALLBACK_A = fn(
-    Context: ?*c_void,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PSP_FILE_CALLBACK_W = fn(
-    Context: ?*c_void,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]CHAR,
-    Instructions: [256]CHAR,
-    ListLabel: [30]CHAR,
-    SubTitle: [256]CHAR,
-    Reserved: [2]u8,
-};
-
-pub const PDETECT_PROGRESS_NOTIFY = fn(
-    ProgressNotifyParam: ?*c_void,
-    DetectComplete: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]CHAR,
-    HtmlTroubleShooter: [260]CHAR,
-};
-
-pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]CHAR,
-};
-
-pub const PSP_DETSIG_CMPPROC = fn(
-    DeviceInfoSet: ?*c_void,
-    NewDeviceData: ?*SP_DEVINFO_DATA,
-    ExistingDeviceData: ?*SP_DEVINFO_DATA,
-    CompareContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const SetupFileLogInfo = enum(i32) {
-    SourceFilename = 0,
-    Checksum = 1,
-    DiskTagfile = 2,
-    DiskDescription = 3,
-    OtherInfo = 4,
-    Max = 5,
-};
-pub const SetupFileLogSourceFilename = SetupFileLogInfo.SourceFilename;
-pub const SetupFileLogChecksum = SetupFileLogInfo.Checksum;
-pub const SetupFileLogDiskTagfile = SetupFileLogInfo.DiskTagfile;
-pub const SetupFileLogDiskDescription = SetupFileLogInfo.DiskDescription;
-pub const SetupFileLogOtherInfo = SetupFileLogInfo.OtherInfo;
-pub const SetupFileLogMax = SetupFileLogInfo.Max;
-
-pub const PNP_VETO_TYPE = enum(i32) {
-    TypeUnknown = 0,
-    LegacyDevice = 1,
-    PendingClose = 2,
-    WindowsApp = 3,
-    WindowsService = 4,
-    OutstandingOpen = 5,
-    Device = 6,
-    Driver = 7,
-    IllegalDeviceRequest = 8,
-    InsufficientPower = 9,
-    NonDisableable = 10,
-    LegacyDriver = 11,
-    InsufficientRights = 12,
-    AlreadyRemoved = 13,
-};
-pub const PNP_VetoTypeUnknown = PNP_VETO_TYPE.TypeUnknown;
-pub const PNP_VetoLegacyDevice = PNP_VETO_TYPE.LegacyDevice;
-pub const PNP_VetoPendingClose = PNP_VETO_TYPE.PendingClose;
-pub const PNP_VetoWindowsApp = PNP_VETO_TYPE.WindowsApp;
-pub const PNP_VetoWindowsService = PNP_VETO_TYPE.WindowsService;
-pub const PNP_VetoOutstandingOpen = PNP_VETO_TYPE.OutstandingOpen;
-pub const PNP_VetoDevice = PNP_VETO_TYPE.Device;
-pub const PNP_VetoDriver = PNP_VETO_TYPE.Driver;
-pub const PNP_VetoIllegalDeviceRequest = PNP_VETO_TYPE.IllegalDeviceRequest;
-pub const PNP_VetoInsufficientPower = PNP_VETO_TYPE.InsufficientPower;
-pub const PNP_VetoNonDisableable = PNP_VETO_TYPE.NonDisableable;
-pub const PNP_VetoLegacyDriver = PNP_VETO_TYPE.LegacyDriver;
-pub const PNP_VetoInsufficientRights = PNP_VETO_TYPE.InsufficientRights;
-pub const PNP_VetoAlreadyRemoved = PNP_VETO_TYPE.AlreadyRemoved;
-
-pub const CONFLICT_DETAILS_A = extern struct {
-    CD_ulSize: u32,
-    CD_ulMask: u32,
-    CD_dnDevInst: u32,
-    CD_rdResDes: usize,
-    CD_ulFlags: u32,
-    CD_szDescription: [260]CHAR,
-};
-
-pub const CONFLICT_DETAILS_W = extern struct {
-    CD_ulSize: u32,
-    CD_ulMask: u32,
-    CD_dnDevInst: u32,
-    CD_rdResDes: usize,
-    CD_ulFlags: u32,
-    CD_szDescription: [260]u16,
-};
-
-pub const MEM_RANGE = packed struct {
-    MR_Align: u64,
-    MR_nBytes: u32,
-    MR_Min: u64,
-    MR_Max: u64,
-    MR_Flags: u32,
-    MR_Reserved: u32,
-};
-
-pub const MEM_DES = packed struct {
-    MD_Count: u32,
-    MD_Type: u32,
-    MD_Alloc_Base: u64,
-    MD_Alloc_End: u64,
-    MD_Flags: u32,
-    MD_Reserved: u32,
-};
-
-pub const MEM_RESOURCE = extern struct {
-    MEM_Header: MEM_DES,
-    MEM_Data: [1]MEM_RANGE,
-};
-
-pub const Mem_Large_Range_s = packed struct {
-    MLR_Align: u64,
-    MLR_nBytes: u64,
-    MLR_Min: u64,
-    MLR_Max: u64,
-    MLR_Flags: u32,
-    MLR_Reserved: u32,
-};
-
-pub const Mem_Large_Des_s = packed struct {
-    MLD_Count: u32,
-    MLD_Type: u32,
-    MLD_Alloc_Base: u64,
-    MLD_Alloc_End: u64,
-    MLD_Flags: u32,
-    MLD_Reserved: u32,
-};
-
-pub const Mem_Large_Resource_s = extern struct {
-    MEM_LARGE_Header: Mem_Large_Des_s,
-    MEM_LARGE_Data: [1]Mem_Large_Range_s,
-};
-
-pub const IO_RANGE = packed struct {
-    IOR_Align: u64,
-    IOR_nPorts: u32,
-    IOR_Min: u64,
-    IOR_Max: u64,
-    IOR_RangeFlags: u32,
-    IOR_Alias: u64,
-};
-
-pub const IO_DES = packed struct {
-    IOD_Count: u32,
-    IOD_Type: u32,
-    IOD_Alloc_Base: u64,
-    IOD_Alloc_End: u64,
-    IOD_DesFlags: u32,
-};
-
-pub const IO_RESOURCE = extern struct {
-    IO_Header: IO_DES,
-    IO_Data: [1]IO_RANGE,
-};
-
-pub const DMA_RANGE = packed struct {
-    DR_Min: u32,
-    DR_Max: u32,
-    DR_Flags: u32,
-};
-
-pub const DMA_DES = packed struct {
-    DD_Count: u32,
-    DD_Type: u32,
-    DD_Flags: u32,
-    DD_Alloc_Chan: u32,
-};
-
-pub const DMA_RESOURCE = extern struct {
-    DMA_Header: DMA_DES,
-    DMA_Data: [1]DMA_RANGE,
-};
-
-pub const IRQ_RANGE = packed struct {
-    IRQR_Min: u32,
-    IRQR_Max: u32,
-    IRQR_Flags: u32,
-};
-
-pub const IRQ_DES_32 = packed struct {
-    IRQD_Count: u32,
-    IRQD_Type: u32,
-    IRQD_Flags: u32,
-    IRQD_Alloc_Num: u32,
-    IRQD_Affinity: u32,
-};
-
-pub const IRQ_DES_64 = packed struct {
-    IRQD_Count: u32,
-    IRQD_Type: u32,
-    IRQD_Flags: u32,
-    IRQD_Alloc_Num: u32,
-    IRQD_Affinity: u64,
-};
-
-pub const IRQ_RESOURCE_32 = extern struct {
-    IRQ_Header: IRQ_DES_32,
-    IRQ_Data: [1]IRQ_RANGE,
-};
-
-pub const IRQ_RESOURCE_64 = extern struct {
-    IRQ_Header: IRQ_DES_64,
-    IRQ_Data: [1]IRQ_RANGE,
-};
-
-pub const DevPrivate_Range_s = packed struct {
-    PR_Data1: u32,
-    PR_Data2: u32,
-    PR_Data3: u32,
-};
-
-pub const DevPrivate_Des_s = packed struct {
-    PD_Count: u32,
-    PD_Type: u32,
-    PD_Data1: u32,
-    PD_Data2: u32,
-    PD_Data3: u32,
-    PD_Flags: u32,
-};
-
-pub const DevPrivate_Resource_s = extern struct {
-    PRV_Header: DevPrivate_Des_s,
-    PRV_Data: [1]DevPrivate_Range_s,
-};
-
-pub const CS_DES = packed struct {
-    CSD_SignatureLength: u32,
-    CSD_LegacyDataOffset: u32,
-    CSD_LegacyDataSize: u32,
-    CSD_Flags: u32,
-    CSD_ClassGuid: Guid,
-    CSD_Signature: [1]u8,
-};
-
-pub const CS_RESOURCE = extern struct {
-    CS_Header: CS_DES,
-};
-
-pub const PCCARD_DES = packed struct {
-    PCD_Count: u32,
-    PCD_Type: u32,
-    PCD_Flags: u32,
-    PCD_ConfigIndex: u8,
-    PCD_Reserved: [3]u8,
-    PCD_MemoryCardBase1: u32,
-    PCD_MemoryCardBase2: u32,
-    PCD_MemoryCardBase: [2]u32,
-    PCD_MemoryFlags: [2]u16,
-    PCD_IoFlags: [2]u8,
-};
-
-pub const PCCARD_RESOURCE = extern struct {
-    PcCard_Header: PCCARD_DES,
-};
-
-pub const MFCARD_DES = packed struct {
-    PMF_Count: u32,
-    PMF_Type: u32,
-    PMF_Flags: u32,
-    PMF_ConfigOptions: u8,
-    PMF_IoResourceIndex: u8,
-    PMF_Reserved: [2]u8,
-    PMF_ConfigRegisterBase: u32,
-};
-
-pub const MFCARD_RESOURCE = extern struct {
-    MfCard_Header: MFCARD_DES,
-};
-
-pub const BUSNUMBER_RANGE = packed struct {
-    BUSR_Min: u32,
-    BUSR_Max: u32,
-    BUSR_nBusNumbers: u32,
-    BUSR_Flags: u32,
-};
-
-pub const BUSNUMBER_DES = packed struct {
-    BUSD_Count: u32,
-    BUSD_Type: u32,
-    BUSD_Flags: u32,
-    BUSD_Alloc_Base: u32,
-    BUSD_Alloc_End: u32,
-};
-
-pub const BUSNUMBER_RESOURCE = extern struct {
-    BusNumber_Header: BUSNUMBER_DES,
-    BusNumber_Data: [1]BUSNUMBER_RANGE,
-};
-
-pub const Connection_Des_s = packed struct {
-    COND_Type: u32,
-    COND_Flags: u32,
-    COND_Class: u8,
-    COND_ClassType: u8,
-    COND_Reserved1: u8,
-    COND_Reserved2: u8,
-    COND_Id: LARGE_INTEGER,
-};
-
-pub const Connection_Resource_s = extern struct {
-    Connection_Header: Connection_Des_s,
-};
-
-pub const HWProfileInfo_sA = packed struct {
-    HWPI_ulHWProfile: u32,
-    HWPI_szFriendlyName: [80]CHAR,
-    HWPI_dwFlags: u32,
-};
-
-pub const HWProfileInfo_sW = packed struct {
-    HWPI_ulHWProfile: u32,
-    HWPI_szFriendlyName: [80]u16,
-    HWPI_dwFlags: u32,
-};
-
-pub const CM_NOTIFY_FILTER_TYPE = enum(i32) {
-    DEVICEINTERFACE = 0,
-    DEVICEHANDLE = 1,
-    DEVICEINSTANCE = 2,
-    MAX = 3,
-};
-pub const CM_NOTIFY_FILTER_TYPE_DEVICEINTERFACE = CM_NOTIFY_FILTER_TYPE.DEVICEINTERFACE;
-pub const CM_NOTIFY_FILTER_TYPE_DEVICEHANDLE = CM_NOTIFY_FILTER_TYPE.DEVICEHANDLE;
-pub const CM_NOTIFY_FILTER_TYPE_DEVICEINSTANCE = CM_NOTIFY_FILTER_TYPE.DEVICEINSTANCE;
-pub const CM_NOTIFY_FILTER_TYPE_MAX = CM_NOTIFY_FILTER_TYPE.MAX;
-
-pub const CM_NOTIFY_FILTER = extern struct {
-    cbSize: u32,
-    Flags: u32,
-    FilterType: CM_NOTIFY_FILTER_TYPE,
-    Reserved: u32,
-    u: extern union {
-        DeviceInterface: extern struct {
-            ClassGuid: Guid,
-        },
-        DeviceHandle: extern struct {
-            hTarget: ?HANDLE,
-        },
-        DeviceInstance: extern struct {
-            InstanceId: [200]u16,
-        },
-    },
-};
-
-pub const CM_NOTIFY_ACTION = enum(i32) {
-    DEVICEINTERFACEARRIVAL = 0,
-    DEVICEINTERFACEREMOVAL = 1,
-    DEVICEQUERYREMOVE = 2,
-    DEVICEQUERYREMOVEFAILED = 3,
-    DEVICEREMOVEPENDING = 4,
-    DEVICEREMOVECOMPLETE = 5,
-    DEVICECUSTOMEVENT = 6,
-    DEVICEINSTANCEENUMERATED = 7,
-    DEVICEINSTANCESTARTED = 8,
-    DEVICEINSTANCEREMOVED = 9,
-    MAX = 10,
-};
-pub const CM_NOTIFY_ACTION_DEVICEINTERFACEARRIVAL = CM_NOTIFY_ACTION.DEVICEINTERFACEARRIVAL;
-pub const CM_NOTIFY_ACTION_DEVICEINTERFACEREMOVAL = CM_NOTIFY_ACTION.DEVICEINTERFACEREMOVAL;
-pub const CM_NOTIFY_ACTION_DEVICEQUERYREMOVE = CM_NOTIFY_ACTION.DEVICEQUERYREMOVE;
-pub const CM_NOTIFY_ACTION_DEVICEQUERYREMOVEFAILED = CM_NOTIFY_ACTION.DEVICEQUERYREMOVEFAILED;
-pub const CM_NOTIFY_ACTION_DEVICEREMOVEPENDING = CM_NOTIFY_ACTION.DEVICEREMOVEPENDING;
-pub const CM_NOTIFY_ACTION_DEVICEREMOVECOMPLETE = CM_NOTIFY_ACTION.DEVICEREMOVECOMPLETE;
-pub const CM_NOTIFY_ACTION_DEVICECUSTOMEVENT = CM_NOTIFY_ACTION.DEVICECUSTOMEVENT;
-pub const CM_NOTIFY_ACTION_DEVICEINSTANCEENUMERATED = CM_NOTIFY_ACTION.DEVICEINSTANCEENUMERATED;
-pub const CM_NOTIFY_ACTION_DEVICEINSTANCESTARTED = CM_NOTIFY_ACTION.DEVICEINSTANCESTARTED;
-pub const CM_NOTIFY_ACTION_DEVICEINSTANCEREMOVED = CM_NOTIFY_ACTION.DEVICEINSTANCEREMOVED;
-pub const CM_NOTIFY_ACTION_MAX = CM_NOTIFY_ACTION.MAX;
-
-pub const CM_NOTIFY_EVENT_DATA = extern struct {
-    FilterType: CM_NOTIFY_FILTER_TYPE,
-    Reserved: u32,
-    u: extern union {
-        DeviceInterface: extern struct {
-            ClassGuid: Guid,
-            SymbolicLink: [1]u16,
-        },
-        DeviceHandle: extern struct {
-            EventGuid: Guid,
-            NameOffset: i32,
-            DataSize: u32,
-            Data: [1]u8,
-        },
-        DeviceInstance: extern struct {
-            InstanceId: [1]u16,
-        },
-    },
-};
-
-pub const PCM_NOTIFY_CALLBACK = fn(
-    hNotify: ?HCMNOTIFICATION,
-    Context: ?*c_void,
-    Action: CM_NOTIFY_ACTION,
-    // TODO: what to do with BytesParamIndex 4?
-    EventData: ?*CM_NOTIFY_EVENT_DATA,
-    EventDataSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

@@ -74,75 +74,418 @@ pub const IFIMETRICS = extern struct {
 
 }, else => struct { } };
 
-const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
-pub const IDirectDrawKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
+pub const HSEMAPHORE = *opaque{};
+
+pub const FD_XFORM = extern struct {
+    eXX: f32,
+    eXY: f32,
+    eYX: f32,
+    eYY: f32,
 };
 
-const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
-pub const IDirectDrawSurfaceKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+pub const FD_DEVICEMETRICS = extern struct {
+    flRealizedType: u32,
+    pteBase: POINTE,
+    pteSide: POINTE,
+    lD: i32,
+    fxMaxAscender: i32,
+    fxMaxDescender: i32,
+    ptlUnderline1: POINTL,
+    ptlStrikeOut: POINTL,
+    ptlULThickness: POINTL,
+    ptlSOThickness: POINTL,
+    cxMax: u32,
+    cyMax: u32,
+    cjGlyphMax: u32,
+    fdxQuantized: FD_XFORM,
+    lNonLinearExtLeading: i32,
+    lNonLinearIntLeading: i32,
+    lNonLinearMaxCharWidth: i32,
+    lNonLinearAvgCharWidth: i32,
+    lMinA: i32,
+    lMinC: i32,
+    lMinD: i32,
+    alReserved: [1]i32,
 };
 
-pub const DDKERNELCAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwIRQCaps: u32,
+pub const WCRUN = extern struct {
+    wcLow: u16,
+    cGlyphs: u16,
+    phg: ?*u32,
 };
+
+pub const FD_GLYPHSET = extern struct {
+    cjThis: u32,
+    flAccel: u32,
+    cGlyphsSupported: u32,
+    cRuns: u32,
+    awcrun: [1]WCRUN,
+};
+
+pub const FD_GLYPHATTR = extern struct {
+    cjThis: u32,
+    cGlyphs: u32,
+    iMode: u32,
+    aGlyphAttr: [1]u8,
+};
+
+pub const FD_KERNINGPAIR = extern struct {
+    wcFirst: u16,
+    wcSecond: u16,
+    fwdKern: i16,
+};
+
+pub const FONTDIFF = extern struct {
+    jReserved1: u8,
+    jReserved2: u8,
+    jReserved3: u8,
+    bWeight: u8,
+    usWinWeight: u16,
+    fsSelection: u16,
+    fwdAveCharWidth: i16,
+    fwdMaxCharInc: i16,
+    ptlCaret: POINTL,
+};
+
+pub const FONTSIM = extern struct {
+    dpBold: i32,
+    dpItalic: i32,
+    dpBoldItalic: i32,
+};
+
+pub const IFIEXTRA = extern struct {
+    ulIdentifier: u32,
+    dpFontSig: i32,
+    cig: u32,
+    dpDesignVector: i32,
+    dpAxesInfoW: i32,
+    aulReserved: [1]u32,
+};
+
+pub const DRVFN = extern struct {
+    iFunc: u32,
+    pfn: ?PFN,
+};
+
+pub const DRVENABLEDATA = extern struct {
+    iDriverVersion: u32,
+    c: u32,
+    pdrvfn: ?*DRVFN,
+};
+
+pub const DEVINFO = extern struct {
+    flGraphicsCaps: u32,
+    lfDefaultFont: LOGFONTW,
+    lfAnsiVarFont: LOGFONTW,
+    lfAnsiFixFont: LOGFONTW,
+    cFonts: u32,
+    iDitherFormat: u32,
+    cxDither: u16,
+    cyDither: u16,
+    hpalDefault: ?HPALETTE,
+    flGraphicsCaps2: u32,
+};
+
+pub const LINEATTRS = extern struct {
+    fl: u32,
+    iJoin: u32,
+    iEndCap: u32,
+    elWidth: FLOAT_LONG,
+    eMiterLimit: f32,
+    cstyle: u32,
+    pstyle: ?*FLOAT_LONG,
+    elStyleState: FLOAT_LONG,
+};
+
+pub const XFORML = extern struct {
+    eM11: f32,
+    eM12: f32,
+    eM21: f32,
+    eM22: f32,
+    eDx: f32,
+    eDy: f32,
+};
+
+pub const CIECHROMA = extern struct {
+    x: i32,
+    y: i32,
+    Y: i32,
+};
+
+pub const COLORINFO = extern struct {
+    Red: CIECHROMA,
+    Green: CIECHROMA,
+    Blue: CIECHROMA,
+    Cyan: CIECHROMA,
+    Magenta: CIECHROMA,
+    Yellow: CIECHROMA,
+    AlignmentWhite: CIECHROMA,
+    RedGamma: i32,
+    GreenGamma: i32,
+    BlueGamma: i32,
+    MagentaInCyanDye: i32,
+    YellowInCyanDye: i32,
+    CyanInMagentaDye: i32,
+    YellowInMagentaDye: i32,
+    CyanInYellowDye: i32,
+    MagentaInYellowDye: i32,
+};
+
+pub const GDIINFO = extern struct {
+    ulVersion: u32,
+    ulTechnology: u32,
+    ulHorzSize: u32,
+    ulVertSize: u32,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+    cBitsPixel: u32,
+    cPlanes: u32,
+    ulNumColors: u32,
+    flRaster: u32,
+    ulLogPixelsX: u32,
+    ulLogPixelsY: u32,
+    flTextCaps: u32,
+    ulDACRed: u32,
+    ulDACGreen: u32,
+    ulDACBlue: u32,
+    ulAspectX: u32,
+    ulAspectY: u32,
+    ulAspectXY: u32,
+    xStyleStep: i32,
+    yStyleStep: i32,
+    denStyleStep: i32,
+    ptlPhysOffset: POINTL,
+    szlPhysSize: SIZE,
+    ulNumPalReg: u32,
+    ciDevice: COLORINFO,
+    ulDevicePelsDPI: u32,
+    ulPrimaryOrder: u32,
+    ulHTPatternSize: u32,
+    ulHTOutputFormat: u32,
+    flHTFlags: u32,
+    ulVRefresh: u32,
+    ulBltAlignment: u32,
+    ulPanningHorzRes: u32,
+    ulPanningVertRes: u32,
+    xPanningAlignment: u32,
+    yPanningAlignment: u32,
+    cxHTPat: u32,
+    cyHTPat: u32,
+    pHTPatA: ?*u8,
+    pHTPatB: ?*u8,
+    pHTPatC: ?*u8,
+    flShadeBlend: u32,
+    ulPhysicalPixelCharacteristics: u32,
+    ulPhysicalPixelGamma: u32,
+};
+
+pub const BRUSHOBJ = extern struct {
+    iSolidColor: u32,
+    pvRbrush: ?*c_void,
+    flColorType: u32,
+};
+
+pub const CLIPOBJ = extern struct {
+    iUniq: u32,
+    rclBounds: RECTL,
+    iDComplexity: u8,
+    iFComplexity: u8,
+    iMode: u8,
+    fjOptions: u8,
+};
+
+pub const DRIVEROBJ = extern struct {
+    pvObj: ?*c_void,
+    pFreeProc: ?FREEOBJPROC,
+    hdev: ?HDEV,
+    dhpdev: DHPDEV,
+};
+
+pub const FONTOBJ = extern struct {
+    iUniq: u32,
+    iFace: u32,
+    cxMax: u32,
+    flFontType: u32,
+    iTTUniq: usize,
+    iFile: usize,
+    sizLogResPpi: SIZE,
+    ulStyleSize: u32,
+    pvConsumer: ?*c_void,
+    pvProducer: ?*c_void,
+};
+
+pub const BLENDOBJ = extern struct {
+    BlendFunction: BLENDFUNCTION,
+};
+
+pub const PALOBJ = extern struct {
+    ulReserved: u32,
+};
+
+pub const PATHOBJ = extern struct {
+    fl: u32,
+    cCurves: u32,
+};
+
+pub const SURFOBJ = extern struct {
+    dhsurf: DHSURF,
+    hsurf: ?HSURF,
+    dhpdev: DHPDEV,
+    hdev: ?HDEV,
+    sizlBitmap: SIZE,
+    cjBits: u32,
+    pvBits: ?*c_void,
+    pvScan0: ?*c_void,
+    lDelta: i32,
+    iUniq: u32,
+    iBitmapFormat: u32,
+    iType: u16,
+    fjBitmap: u16,
+};
+
+pub const WNDOBJ = extern struct {
+    coClient: CLIPOBJ,
+    pvConsumer: ?*c_void,
+    rclClient: RECTL,
+    psoOwner: ?*SURFOBJ,
+};
+
+pub const XLATEOBJ = extern struct {
+    iUniq: u32,
+    flXlate: u32,
+    iSrcType: u16,
+    iDstType: u16,
+    cEntries: u32,
+    pulXlate: ?*u32,
+};
+
+pub const ENUMRECTS = extern struct {
+    c: u32,
+    arcl: [1]RECTL,
+};
+
+pub const GLYPHBITS = extern struct {
+    ptlOrigin: POINTL,
+    sizlBitmap: SIZE,
+    aj: [1]u8,
+};
+
+pub const GLYPHDEF = extern union {
+    pgb: ?*GLYPHBITS,
+    ppo: ?*PATHOBJ,
+};
+
+pub const GLYPHPOS = extern struct {
+    hg: u32,
+    pgdf: ?*GLYPHDEF,
+    ptl: POINTL,
+};
+
+pub const GLYPHDATA = extern struct {
+    gdf: GLYPHDEF,
+    hg: u32,
+    fxD: i32,
+    fxA: i32,
+    fxAB: i32,
+    fxInkTop: i32,
+    fxInkBottom: i32,
+    rclInk: RECTL,
+    ptqD: POINTQF,
+};
+
+pub const STROBJ = extern struct {
+    cGlyphs: u32,
+    flAccel: u32,
+    ulCharInc: u32,
+    rclBkGround: RECTL,
+    pgp: ?*GLYPHPOS,
+    pwszOrg: ?PWSTR,
+};
+
+pub const FONTINFO = extern struct {
+    cjThis: u32,
+    flCaps: u32,
+    cGlyphsSupported: u32,
+    cjMaxGlyph1: u32,
+    cjMaxGlyph4: u32,
+    cjMaxGlyph8: u32,
+    cjMaxGlyph32: u32,
+};
+
+pub const PATHDATA = extern struct {
+    flags: u32,
+    count: u32,
+    pptfx: ?*POINTFIX,
+};
+
+pub const RUN = extern struct {
+    iStart: i32,
+    iStop: i32,
+};
+
+pub const CLIPLINE = extern struct {
+    ptfxA: POINTFIX,
+    ptfxB: POINTFIX,
+    lStyleState: i32,
+    c: u32,
+    arun: [1]RUN,
+};
+
+pub const PERBANDINFO = extern struct {
+    bRepeatThisBand: BOOL,
+    szlBand: SIZE,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+};
+
+pub const GAMMARAMP = extern struct {
+    Red: [256]u16,
+    Green: [256]u16,
+    Blue: [256]u16,
+};
+
+pub const DEVHTINFO = extern struct {
+    HTFlags: u32,
+    HTPatternSize: u32,
+    DevPelsDPI: u32,
+    ColorInfo: COLORINFO,
+};
+
+pub const DEVHTADJDATA = extern struct {
+    DeviceFlags: u32,
+    DeviceXDPI: u32,
+    DeviceYDPI: u32,
+    pDefHTInfo: ?*DEVHTINFO,
+    pAdjHTInfo: ?*DEVHTINFO,
+};
+
+pub const TYPE1_FONT = extern struct {
+    hPFM: ?HANDLE,
+    hPFB: ?HANDLE,
+    ulIdentifier: u32,
+};
+
+pub const ENGSAFESEMAPHORE = extern struct {
+    hsem: ?*HSEMAPHORE__,
+    lCount: i32,
+};
+
+pub const ENG_TIME_FIELDS = extern struct {
+    usYear: u16,
+    usMonth: u16,
+    usDay: u16,
+    usHour: u16,
+    usMinute: u16,
+    usSecond: u16,
+    usMilliseconds: u16,
+    usWeekday: u16,
+};
+
+pub const PFN_DrvQueryGlyphAttrs = fn(
+    param0: ?*FONTOBJ,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR;
 
 pub const DDVIDEOPORTCAPS = extern struct {
     dwSize: u32,
@@ -1354,9 +1697,6 @@ pub const DD_GETDRIVERSTATEDATA = extern struct {
     ddRVal: HRESULT,
 };
 
-// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
-pub const HSEMAPHORE = *opaque{};
-
 pub const DEVMODEA = extern struct {
     dmDeviceName: [32]u8,
     dmSpecVersion: u16,
@@ -1767,415 +2107,101 @@ pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
     },
 };
 
-pub const FD_XFORM = extern struct {
-    eXX: f32,
-    eXY: f32,
-    eYX: f32,
-    eYY: f32,
+pub const VIDEOPARAMETERS = extern struct {
+    Guid: Guid,
+    dwOffset: u32,
+    dwCommand: u32,
+    dwFlags: u32,
+    dwMode: u32,
+    dwTVStandard: u32,
+    dwAvailableModes: u32,
+    dwAvailableTVStandard: u32,
+    dwFlickerFilter: u32,
+    dwOverScanX: u32,
+    dwOverScanY: u32,
+    dwMaxUnscaledX: u32,
+    dwMaxUnscaledY: u32,
+    dwPositionX: u32,
+    dwPositionY: u32,
+    dwBrightness: u32,
+    dwContrast: u32,
+    dwCPType: u32,
+    dwCPCommand: u32,
+    dwCPStandard: u32,
+    dwCPKey: u32,
+    bCP_APSTriggerBits: u32,
+    bOEMCopyProtection: [256]u8,
 };
 
-pub const FD_DEVICEMETRICS = extern struct {
-    flRealizedType: u32,
-    pteBase: POINTE,
-    pteSide: POINTE,
-    lD: i32,
-    fxMaxAscender: i32,
-    fxMaxDescender: i32,
-    ptlUnderline1: POINTL,
-    ptlStrikeOut: POINTL,
-    ptlULThickness: POINTL,
-    ptlSOThickness: POINTL,
-    cxMax: u32,
-    cyMax: u32,
-    cjGlyphMax: u32,
-    fdxQuantized: FD_XFORM,
-    lNonLinearExtLeading: i32,
-    lNonLinearIntLeading: i32,
-    lNonLinearMaxCharWidth: i32,
-    lNonLinearAvgCharWidth: i32,
-    lMinA: i32,
-    lMinC: i32,
-    lMinD: i32,
-    alReserved: [1]i32,
+const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
+pub const IDirectDrawKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: fn(
+            self: *const IDirectDrawKernel,
+            param0: ?*DDKERNELCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+            param0: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-pub const WCRUN = extern struct {
-    wcLow: u16,
-    cGlyphs: u16,
-    phg: ?*u32,
+const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
+pub const IDirectDrawSurfaceKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+            param0: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: ?*usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-pub const FD_GLYPHSET = extern struct {
-    cjThis: u32,
-    flAccel: u32,
-    cGlyphsSupported: u32,
-    cRuns: u32,
-    awcrun: [1]WCRUN,
+pub const DDKERNELCAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwIRQCaps: u32,
 };
-
-pub const FD_GLYPHATTR = extern struct {
-    cjThis: u32,
-    cGlyphs: u32,
-    iMode: u32,
-    aGlyphAttr: [1]u8,
-};
-
-pub const FD_KERNINGPAIR = extern struct {
-    wcFirst: u16,
-    wcSecond: u16,
-    fwdKern: i16,
-};
-
-pub const FONTDIFF = extern struct {
-    jReserved1: u8,
-    jReserved2: u8,
-    jReserved3: u8,
-    bWeight: u8,
-    usWinWeight: u16,
-    fsSelection: u16,
-    fwdAveCharWidth: i16,
-    fwdMaxCharInc: i16,
-    ptlCaret: POINTL,
-};
-
-pub const FONTSIM = extern struct {
-    dpBold: i32,
-    dpItalic: i32,
-    dpBoldItalic: i32,
-};
-
-pub const IFIEXTRA = extern struct {
-    ulIdentifier: u32,
-    dpFontSig: i32,
-    cig: u32,
-    dpDesignVector: i32,
-    dpAxesInfoW: i32,
-    aulReserved: [1]u32,
-};
-
-pub const DRVFN = extern struct {
-    iFunc: u32,
-    pfn: ?PFN,
-};
-
-pub const DRVENABLEDATA = extern struct {
-    iDriverVersion: u32,
-    c: u32,
-    pdrvfn: ?*DRVFN,
-};
-
-pub const DEVINFO = extern struct {
-    flGraphicsCaps: u32,
-    lfDefaultFont: LOGFONTW,
-    lfAnsiVarFont: LOGFONTW,
-    lfAnsiFixFont: LOGFONTW,
-    cFonts: u32,
-    iDitherFormat: u32,
-    cxDither: u16,
-    cyDither: u16,
-    hpalDefault: ?HPALETTE,
-    flGraphicsCaps2: u32,
-};
-
-pub const LINEATTRS = extern struct {
-    fl: u32,
-    iJoin: u32,
-    iEndCap: u32,
-    elWidth: FLOAT_LONG,
-    eMiterLimit: f32,
-    cstyle: u32,
-    pstyle: ?*FLOAT_LONG,
-    elStyleState: FLOAT_LONG,
-};
-
-pub const XFORML = extern struct {
-    eM11: f32,
-    eM12: f32,
-    eM21: f32,
-    eM22: f32,
-    eDx: f32,
-    eDy: f32,
-};
-
-pub const CIECHROMA = extern struct {
-    x: i32,
-    y: i32,
-    Y: i32,
-};
-
-pub const COLORINFO = extern struct {
-    Red: CIECHROMA,
-    Green: CIECHROMA,
-    Blue: CIECHROMA,
-    Cyan: CIECHROMA,
-    Magenta: CIECHROMA,
-    Yellow: CIECHROMA,
-    AlignmentWhite: CIECHROMA,
-    RedGamma: i32,
-    GreenGamma: i32,
-    BlueGamma: i32,
-    MagentaInCyanDye: i32,
-    YellowInCyanDye: i32,
-    CyanInMagentaDye: i32,
-    YellowInMagentaDye: i32,
-    CyanInYellowDye: i32,
-    MagentaInYellowDye: i32,
-};
-
-pub const GDIINFO = extern struct {
-    ulVersion: u32,
-    ulTechnology: u32,
-    ulHorzSize: u32,
-    ulVertSize: u32,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-    cBitsPixel: u32,
-    cPlanes: u32,
-    ulNumColors: u32,
-    flRaster: u32,
-    ulLogPixelsX: u32,
-    ulLogPixelsY: u32,
-    flTextCaps: u32,
-    ulDACRed: u32,
-    ulDACGreen: u32,
-    ulDACBlue: u32,
-    ulAspectX: u32,
-    ulAspectY: u32,
-    ulAspectXY: u32,
-    xStyleStep: i32,
-    yStyleStep: i32,
-    denStyleStep: i32,
-    ptlPhysOffset: POINTL,
-    szlPhysSize: SIZE,
-    ulNumPalReg: u32,
-    ciDevice: COLORINFO,
-    ulDevicePelsDPI: u32,
-    ulPrimaryOrder: u32,
-    ulHTPatternSize: u32,
-    ulHTOutputFormat: u32,
-    flHTFlags: u32,
-    ulVRefresh: u32,
-    ulBltAlignment: u32,
-    ulPanningHorzRes: u32,
-    ulPanningVertRes: u32,
-    xPanningAlignment: u32,
-    yPanningAlignment: u32,
-    cxHTPat: u32,
-    cyHTPat: u32,
-    pHTPatA: ?*u8,
-    pHTPatB: ?*u8,
-    pHTPatC: ?*u8,
-    flShadeBlend: u32,
-    ulPhysicalPixelCharacteristics: u32,
-    ulPhysicalPixelGamma: u32,
-};
-
-pub const BRUSHOBJ = extern struct {
-    iSolidColor: u32,
-    pvRbrush: ?*c_void,
-    flColorType: u32,
-};
-
-pub const CLIPOBJ = extern struct {
-    iUniq: u32,
-    rclBounds: RECTL,
-    iDComplexity: u8,
-    iFComplexity: u8,
-    iMode: u8,
-    fjOptions: u8,
-};
-
-pub const DRIVEROBJ = extern struct {
-    pvObj: ?*c_void,
-    pFreeProc: ?FREEOBJPROC,
-    hdev: ?HDEV,
-    dhpdev: DHPDEV,
-};
-
-pub const FONTOBJ = extern struct {
-    iUniq: u32,
-    iFace: u32,
-    cxMax: u32,
-    flFontType: u32,
-    iTTUniq: usize,
-    iFile: usize,
-    sizLogResPpi: SIZE,
-    ulStyleSize: u32,
-    pvConsumer: ?*c_void,
-    pvProducer: ?*c_void,
-};
-
-pub const BLENDOBJ = extern struct {
-    BlendFunction: BLENDFUNCTION,
-};
-
-pub const PALOBJ = extern struct {
-    ulReserved: u32,
-};
-
-pub const PATHOBJ = extern struct {
-    fl: u32,
-    cCurves: u32,
-};
-
-pub const SURFOBJ = extern struct {
-    dhsurf: DHSURF,
-    hsurf: ?HSURF,
-    dhpdev: DHPDEV,
-    hdev: ?HDEV,
-    sizlBitmap: SIZE,
-    cjBits: u32,
-    pvBits: ?*c_void,
-    pvScan0: ?*c_void,
-    lDelta: i32,
-    iUniq: u32,
-    iBitmapFormat: u32,
-    iType: u16,
-    fjBitmap: u16,
-};
-
-pub const WNDOBJ = extern struct {
-    coClient: CLIPOBJ,
-    pvConsumer: ?*c_void,
-    rclClient: RECTL,
-    psoOwner: ?*SURFOBJ,
-};
-
-pub const XLATEOBJ = extern struct {
-    iUniq: u32,
-    flXlate: u32,
-    iSrcType: u16,
-    iDstType: u16,
-    cEntries: u32,
-    pulXlate: ?*u32,
-};
-
-pub const ENUMRECTS = extern struct {
-    c: u32,
-    arcl: [1]RECTL,
-};
-
-pub const GLYPHBITS = extern struct {
-    ptlOrigin: POINTL,
-    sizlBitmap: SIZE,
-    aj: [1]u8,
-};
-
-pub const GLYPHDEF = extern union {
-    pgb: ?*GLYPHBITS,
-    ppo: ?*PATHOBJ,
-};
-
-pub const GLYPHPOS = extern struct {
-    hg: u32,
-    pgdf: ?*GLYPHDEF,
-    ptl: POINTL,
-};
-
-pub const GLYPHDATA = extern struct {
-    gdf: GLYPHDEF,
-    hg: u32,
-    fxD: i32,
-    fxA: i32,
-    fxAB: i32,
-    fxInkTop: i32,
-    fxInkBottom: i32,
-    rclInk: RECTL,
-    ptqD: POINTQF,
-};
-
-pub const STROBJ = extern struct {
-    cGlyphs: u32,
-    flAccel: u32,
-    ulCharInc: u32,
-    rclBkGround: RECTL,
-    pgp: ?*GLYPHPOS,
-    pwszOrg: ?PWSTR,
-};
-
-pub const FONTINFO = extern struct {
-    cjThis: u32,
-    flCaps: u32,
-    cGlyphsSupported: u32,
-    cjMaxGlyph1: u32,
-    cjMaxGlyph4: u32,
-    cjMaxGlyph8: u32,
-    cjMaxGlyph32: u32,
-};
-
-pub const PATHDATA = extern struct {
-    flags: u32,
-    count: u32,
-    pptfx: ?*POINTFIX,
-};
-
-pub const RUN = extern struct {
-    iStart: i32,
-    iStop: i32,
-};
-
-pub const CLIPLINE = extern struct {
-    ptfxA: POINTFIX,
-    ptfxB: POINTFIX,
-    lStyleState: i32,
-    c: u32,
-    arun: [1]RUN,
-};
-
-pub const PERBANDINFO = extern struct {
-    bRepeatThisBand: BOOL,
-    szlBand: SIZE,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-};
-
-pub const GAMMARAMP = extern struct {
-    Red: [256]u16,
-    Green: [256]u16,
-    Blue: [256]u16,
-};
-
-pub const DEVHTINFO = extern struct {
-    HTFlags: u32,
-    HTPatternSize: u32,
-    DevPelsDPI: u32,
-    ColorInfo: COLORINFO,
-};
-
-pub const DEVHTADJDATA = extern struct {
-    DeviceFlags: u32,
-    DeviceXDPI: u32,
-    DeviceYDPI: u32,
-    pDefHTInfo: ?*DEVHTINFO,
-    pAdjHTInfo: ?*DEVHTINFO,
-};
-
-pub const TYPE1_FONT = extern struct {
-    hPFM: ?HANDLE,
-    hPFB: ?HANDLE,
-    ulIdentifier: u32,
-};
-
-pub const ENGSAFESEMAPHORE = extern struct {
-    hsem: ?*HSEMAPHORE__,
-    lCount: i32,
-};
-
-pub const ENG_TIME_FIELDS = extern struct {
-    usYear: u16,
-    usMonth: u16,
-    usDay: u16,
-    usHour: u16,
-    usMinute: u16,
-    usSecond: u16,
-    usMilliseconds: u16,
-    usWeekday: u16,
-};
-
-pub const PFN_DrvQueryGlyphAttrs = fn(
-    param0: ?*FONTOBJ,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
@@ -2243,32 +2269,6 @@ pub const IFIMETRICS = extern struct {
 };
 
 }, else => struct { } };
-
-pub const VIDEOPARAMETERS = extern struct {
-    Guid: Guid,
-    dwOffset: u32,
-    dwCommand: u32,
-    dwFlags: u32,
-    dwMode: u32,
-    dwTVStandard: u32,
-    dwAvailableModes: u32,
-    dwAvailableTVStandard: u32,
-    dwFlickerFilter: u32,
-    dwOverScanX: u32,
-    dwOverScanY: u32,
-    dwMaxUnscaledX: u32,
-    dwMaxUnscaledY: u32,
-    dwPositionX: u32,
-    dwPositionY: u32,
-    dwBrightness: u32,
-    dwContrast: u32,
-    dwCPType: u32,
-    dwCPCommand: u32,
-    dwCPStandard: u32,
-    dwCPKey: u32,
-    bCP_APSTriggerBits: u32,
-    bOEMCopyProtection: [256]u8,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -2925,7 +2925,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
+const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
 const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
 const POINTE = @import("../system/system_services.zig").POINTE;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
@@ -2943,19 +2943,19 @@ const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
 const HDEV = @import("../system/system_services.zig").HDEV;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
-const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const PFN = @import("../system/system_services.zig").PFN;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
+const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PFN = @import("../system/system_services.zig").PFN;
 const DDRAWI_DIRECTDRAW_GBL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_GBL;
 const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
 const POINTL = @import("../foundation.zig").POINTL;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
 const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
+const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
+const DHSURF = @import("../system/system_services.zig").DHSURF;
 const BOOL = @import("../foundation.zig").BOOL;
 const LUID = @import("../system/system_services.zig").LUID;
-const DHSURF = @import("../system/system_services.zig").DHSURF;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const DD_DESTROYDDLOCALDATA = @import("../graphics/direct_draw.zig").DD_DESTROYDDLOCALDATA;
 const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
@@ -2974,14 +2974,15 @@ const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
 const LPDDHAL_WAITFORVERTICALBLANK = @import("../graphics/direct_draw.zig").LPDDHAL_WAITFORVERTICALBLANK;
 const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
-const SIZE = @import("../foundation.zig").SIZE;
 const RECTL = @import("../foundation.zig").RECTL;
-const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
-const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
+const SIZE = @import("../foundation.zig").SIZE;
+const PANOSE = @import("../graphics/gdi.zig").PANOSE;
+const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
     if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
     if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }
     if (@hasDecl(@This(), "PDD_CREATESURFACE")) { _ = PDD_CREATESURFACE; }
@@ -3038,7 +3039,6 @@ test {
     if (@hasDecl(@This(), "PDD_MOCOMPCB_RENDER")) { _ = PDD_MOCOMPCB_RENDER; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_QUERYSTATUS")) { _ = PDD_MOCOMPCB_QUERYSTATUS; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_DESTROY")) { _ = PDD_MOCOMPCB_DESTROY; }
-    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

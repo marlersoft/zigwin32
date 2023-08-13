@@ -172,42 +172,6 @@ pub const ID_IPV6_ADDR = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
-pub const _ADAPTER_OBJECT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const SCSI_PASS_THROUGH = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBufferOffset: usize,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBuffer: ?*c_void,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -249,44 +213,6 @@ pub const SCSI_PASS_THROUGH_DIRECT32 = extern struct {
 };
 
 }, else => struct { } };
-
-pub const SCSI_PASS_THROUGH_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBufferOffset: usize,
-    DataInBufferOffset: usize,
-    Cdb: [1]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBuffer: ?*c_void,
-    DataInBuffer: ?*c_void,
-    Cdb: [1]u8,
-};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -336,36 +262,6 @@ pub const SCSI_PASS_THROUGH_DIRECT32_EX = extern struct {
 
 }, else => struct { } };
 
-pub const ATA_PASS_THROUGH_EX = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBufferOffset: usize,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
-pub const ATA_PASS_THROUGH_DIRECT = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBuffer: ?*c_void,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -405,51 +301,6 @@ pub const ATA_PASS_THROUGH_DIRECT32 = extern struct {
 };
 
 }, else => struct { } };
-
-pub const IDE_IO_CONTROL = extern struct {
-    HeaderLength: u32,
-    Signature: [8]u8,
-    Timeout: u32,
-    ControlCode: u32,
-    ReturnStatus: u32,
-    DataLength: u32,
-};
-
-pub const MPIO_PASS_THROUGH_PATH = extern struct {
-    PassThrough: SCSI_PASS_THROUGH,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
-    PassThrough: SCSI_PASS_THROUGH_DIRECT,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -507,6 +358,155 @@ pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = extern struct {
 
 }, else => struct { } };
 
+pub const _ADAPTER_OBJECT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const SCSI_PASS_THROUGH = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBufferOffset: usize,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBuffer: ?*c_void,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+pub const SCSI_PASS_THROUGH_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBufferOffset: usize,
+    DataInBufferOffset: usize,
+    Cdb: [1]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBuffer: ?*c_void,
+    DataInBuffer: ?*c_void,
+    Cdb: [1]u8,
+};
+
+pub const ATA_PASS_THROUGH_EX = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBufferOffset: usize,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
+pub const ATA_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBuffer: ?*c_void,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
+pub const IDE_IO_CONTROL = extern struct {
+    HeaderLength: u32,
+    Signature: [8]u8,
+    Timeout: u32,
+    ControlCode: u32,
+    ReturnStatus: u32,
+    DataLength: u32,
+};
+
+pub const MPIO_PASS_THROUGH_PATH = extern struct {
+    PassThrough: SCSI_PASS_THROUGH,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
+    PassThrough: SCSI_PASS_THROUGH_DIRECT,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
 pub const SCSI_BUS_DATA = extern struct {
     NumberOfLogicalUnits: u8,
     InitiatorBusId: u8,
@@ -522,7 +522,7 @@ pub const SCSI_INQUIRY_DATA = extern struct {
     PathId: u8,
     TargetId: u8,
     Lun: u8,
-    DeviceClaimed: u8,
+    DeviceClaimed: BOOLEAN,
     InquiryDataLength: u32,
     NextInquiryDataOffset: u32,
     InquiryData: [1]u8,
@@ -691,7 +691,7 @@ pub const NVCACHE_PRIORITY_LEVEL_DESCRIPTOR = extern struct {
 pub const HYBRID_INFORMATION = extern struct {
     Version: u32,
     Size: u32,
-    HybridSupported: u8,
+    HybridSupported: BOOLEAN,
     Status: NVCACHE_STATUS,
     CacheTypeEffective: NVCACHE_TYPE,
     CacheTypeDefault: NVCACHE_TYPE,
@@ -702,7 +702,7 @@ pub const HYBRID_INFORMATION = extern struct {
     },
     Priorities: extern struct {
         PriorityLevelCount: u8,
-        MaxPriorityBehavior: u8,
+        MaxPriorityBehavior: BOOLEAN,
         OptimalWriteGranularity: u8,
         Reserved: u8,
         DirtyThresholdLow: u32,
@@ -745,7 +745,7 @@ pub const FIRMWARE_REQUEST_BLOCK = extern struct {
 
 pub const STORAGE_FIRMWARE_SLOT_INFO = extern struct {
     SlotNumber: u8,
-    ReadOnly: u8,
+    ReadOnly: BOOLEAN,
     Reserved: [6]u8,
     Revision: extern union {
         Info: [8]u8,
@@ -755,7 +755,7 @@ pub const STORAGE_FIRMWARE_SLOT_INFO = extern struct {
 
 pub const STORAGE_FIRMWARE_SLOT_INFO_V2 = extern struct {
     SlotNumber: u8,
-    ReadOnly: u8,
+    ReadOnly: BOOLEAN,
     Reserved: [6]u8,
     Revision: [16]u8,
 };
@@ -763,7 +763,7 @@ pub const STORAGE_FIRMWARE_SLOT_INFO_V2 = extern struct {
 pub const STORAGE_FIRMWARE_INFO = extern struct {
     Version: u32,
     Size: u32,
-    UpgradeSupport: u8,
+    UpgradeSupport: BOOLEAN,
     SlotCount: u8,
     ActiveSlot: u8,
     PendingActivateSlot: u8,
@@ -774,11 +774,11 @@ pub const STORAGE_FIRMWARE_INFO = extern struct {
 pub const STORAGE_FIRMWARE_INFO_V2 = extern struct {
     Version: u32,
     Size: u32,
-    UpgradeSupport: u8,
+    UpgradeSupport: BOOLEAN,
     SlotCount: u8,
     ActiveSlot: u8,
     PendingActivateSlot: u8,
-    FirmwareShared: u8,
+    FirmwareShared: BOOLEAN,
     Reserved: [3]u8,
     ImagePayloadAlignment: u32,
     ImagePayloadMaxSize: u32,
@@ -817,9 +817,9 @@ pub const IO_SCSI_CAPABILITIES = extern struct {
     MaximumPhysicalPages: u32,
     SupportedAsynchronousEvents: u32,
     AlignmentMask: u32,
-    TaggedQueuing: u8,
-    AdapterScansDown: u8,
-    AdapterUsesPio: u8,
+    TaggedQueuing: BOOLEAN,
+    AdapterScansDown: BOOLEAN,
+    AdapterUsesPio: BOOLEAN,
 };
 
 pub const SCSI_ADDRESS = extern struct {
@@ -849,8 +849,8 @@ pub const DUMP_POINTERS = extern struct {
     CommonBufferVa: ?*c_void,
     CommonBufferPa: LARGE_INTEGER,
     CommonBufferSize: u32,
-    AllocateCommonBuffers: u8,
-    UseDiskDump: u8,
+    AllocateCommonBuffers: BOOLEAN,
+    UseDiskDump: BOOLEAN,
     Spare1: [2]u8,
     DeviceObject: ?*c_void,
 };
@@ -860,7 +860,7 @@ pub const DUMP_POINTERS_EX = extern struct {
     DumpData: ?*c_void,
     CommonBufferVa: ?*c_void,
     CommonBufferSize: u32,
-    AllocateCommonBuffers: u8,
+    AllocateCommonBuffers: BOOLEAN,
     DeviceObject: ?*c_void,
     DriverList: ?*c_void,
     dwPortFlags: u32,
@@ -869,7 +869,7 @@ pub const DUMP_POINTERS_EX = extern struct {
     MaxTransferSize: u32,
     AdapterObject: ?*c_void,
     MappedRegisterBase: ?*c_void,
-    DeviceReady: ?*u8,
+    DeviceReady: ?*BOOLEAN,
     DumpDevicePowerOn: ?PDUMP_DEVICE_POWERON_ROUTINE,
     DumpDevicePowerOnContext: ?*c_void,
 };
@@ -1107,11 +1107,11 @@ pub const ISCSI_CONNECTION_INFO_EX = extern struct {
 
 pub const ISCSI_SESSION_INFO_EX = extern struct {
     SessionId: ISCSI_UNIQUE_SESSION_ID,
-    InitialR2t: u8,
-    ImmediateData: u8,
+    InitialR2t: BOOLEAN,
+    ImmediateData: BOOLEAN,
     Type: u8,
-    DataSequenceInOrder: u8,
-    DataPduInOrder: u8,
+    DataSequenceInOrder: BOOLEAN,
+    DataPduInOrder: BOOLEAN,
     ErrorRecoveryLevel: u8,
     MaxOutstandingR2t: u32,
     FirstBurstLength: u32,
@@ -1145,7 +1145,7 @@ pub const ISCSI_DEVICE_ON_SESSIONA = extern struct {
 
 pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
     TargetName: [224]u16,
-    IsInformationalSession: u8,
+    IsInformationalSession: BOOLEAN,
     InitiatorInstance: [256]u16,
     InitiatorPortNumber: u32,
     TargetPortal: ISCSI_TARGET_PORTALW,
@@ -1156,7 +1156,7 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
 
 pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
     TargetName: [224]CHAR,
-    IsInformationalSession: u8,
+    IsInformationalSession: BOOLEAN,
     InitiatorInstance: [256]CHAR,
     InitiatorPortNumber: u32,
     TargetPortal: ISCSI_TARGET_PORTALA,
@@ -1256,14 +1256,14 @@ pub extern "ISCSIDSC" fn RemoveIScsiConnection(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetsW(
-    ForceUpdate: u8,
+    ForceUpdate: BOOLEAN,
     BufferSize: ?*u32,
     Buffer: ?[*]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn ReportIScsiTargetsA(
-    ForceUpdate: u8,
+    ForceUpdate: BOOLEAN,
     BufferSize: ?*u32,
     Buffer: ?[*]u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1273,7 +1273,7 @@ pub extern "ISCSIDSC" fn AddIScsiStaticTargetW(
     TargetName: ?PWSTR,
     TargetAlias: ?PWSTR,
     TargetFlags: u32,
-    Persist: u8,
+    Persist: BOOLEAN,
     Mappings: ?*ISCSI_TARGET_MAPPINGW,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPW,
@@ -1284,7 +1284,7 @@ pub extern "ISCSIDSC" fn AddIScsiStaticTargetA(
     TargetName: ?PSTR,
     TargetAlias: ?PSTR,
     TargetFlags: u32,
-    Persist: u8,
+    Persist: BOOLEAN,
     Mappings: ?*ISCSI_TARGET_MAPPINGA,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     PortalGroup: ?*ISCSI_TARGET_PORTAL_GROUPA,
@@ -1375,7 +1375,7 @@ pub extern "ISCSIDSC" fn ReportIScsiSendTargetPortalsExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn LoginIScsiTargetW(
     TargetName: ?PWSTR,
-    IsInformationalSession: u8,
+    IsInformationalSession: BOOLEAN,
     InitiatorInstance: ?PWSTR,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALW,
@@ -1384,7 +1384,7 @@ pub extern "ISCSIDSC" fn LoginIScsiTargetW(
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
-    IsPersistent: u8,
+    IsPersistent: BOOLEAN,
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
     UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1392,7 +1392,7 @@ pub extern "ISCSIDSC" fn LoginIScsiTargetW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ISCSIDSC" fn LoginIScsiTargetA(
     TargetName: ?PSTR,
-    IsInformationalSession: u8,
+    IsInformationalSession: BOOLEAN,
     InitiatorInstance: ?PSTR,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALA,
@@ -1401,7 +1401,7 @@ pub extern "ISCSIDSC" fn LoginIScsiTargetA(
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     KeySize: u32,
     Key: ?[*]u8,
-    IsPersistent: u8,
+    IsPersistent: BOOLEAN,
     UniqueSessionId: ?*ISCSI_UNIQUE_SESSION_ID,
     UniqueConnectionId: ?*ISCSI_UNIQUE_SESSION_ID,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1507,7 +1507,7 @@ pub extern "ISCSIDSC" fn SetIScsiTunnelModeOuterAddressW(
     InitiatorPortNumber: u32,
     DestinationAddress: ?PWSTR,
     OuterModeAddress: ?PWSTR,
-    Persist: u8,
+    Persist: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1516,7 +1516,7 @@ pub extern "ISCSIDSC" fn SetIScsiTunnelModeOuterAddressA(
     InitiatorPortNumber: u32,
     DestinationAddress: ?PSTR,
     OuterModeAddress: ?PSTR,
-    Persist: u8,
+    Persist: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1524,7 +1524,7 @@ pub extern "ISCSIDSC" fn SetIScsiIKEInfoW(
     InitiatorName: ?PWSTR,
     InitiatorPortNumber: u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
-    Persist: u8,
+    Persist: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1532,7 +1532,7 @@ pub extern "ISCSIDSC" fn SetIScsiIKEInfoA(
     InitiatorName: ?PSTR,
     InitiatorPortNumber: u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
-    Persist: u8,
+    Persist: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1555,7 +1555,7 @@ pub extern "ISCSIDSC" fn GetIScsiIKEInfoA(
 pub extern "ISCSIDSC" fn SetIScsiGroupPresharedKey(
     KeyLength: u32,
     Key: ?*u8,
-    Persist: u8,
+    Persist: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1941,9 +1941,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const STORAGE_DEVICE_NUMBER = @import("../system/system_services.zig").STORAGE_DEVICE_NUMBER;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("../foundation.zig").PWSTR;

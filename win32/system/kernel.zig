@@ -50,6 +50,23 @@ pub const SLIST_HEADER = extern union {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FLOATING_SAVE_AREA = extern struct {
+    ControlWord: u32,
+    StatusWord: u32,
+    TagWord: u32,
+    ErrorOffset: u32,
+    ErrorSelector: u32,
+    DataOffset: u32,
+    DataSelector: u32,
+    RegisterArea: [80]u8,
+    Cr0NpxState: u32,
+};
+
+}, else => struct { } };
+
 pub const COMPARTMENT_ID = enum(i32) {
     UNSPECIFIED_COMPARTMENT_ID = 0,
     DEFAULT_COMPARTMENT_ID = 1,
@@ -72,54 +89,6 @@ pub const SLIST_HEADER = extern union {
     HeaderX64: extern struct {
         _bitfield1: u64,
         _bitfield2: u64,
-    },
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Cr0NpxState: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Spare0: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SLIST_HEADER = extern union {
-    Alignment: u64,
-    Anonymous: extern struct {
-        Next: SLIST_ENTRY,
-        Depth: u16,
-        CpuId: u16,
     },
 };
 
@@ -315,6 +284,37 @@ pub const WHServer = SUITE_TYPE.WHServer;
 pub const PhoneNT = SUITE_TYPE.PhoneNT;
 pub const MultiUserTS = SUITE_TYPE.MultiUserTS;
 pub const MaxSuiteType = SUITE_TYPE.MaxSuiteType;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FLOATING_SAVE_AREA = extern struct {
+    ControlWord: u32,
+    StatusWord: u32,
+    TagWord: u32,
+    ErrorOffset: u32,
+    ErrorSelector: u32,
+    DataOffset: u32,
+    DataSelector: u32,
+    RegisterArea: [80]u8,
+    Spare0: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SLIST_HEADER = extern union {
+    Alignment: u64,
+    Anonymous: extern struct {
+        Next: SLIST_ENTRY,
+        Depth: u16,
+        CpuId: u16,
+    },
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

@@ -30,7 +30,7 @@ pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
 pub extern "ADVAPI32" fn MSChapSrvChangePassword(
     ServerName: ?PWSTR,
     UserName: ?PWSTR,
-    LmOldPresent: u8,
+    LmOldPresent: BOOLEAN,
     LmOldOwfPassword: ?*LM_OWF_PASSWORD,
     LmNewOwfPassword: ?*LM_OWF_PASSWORD,
     NtOldOwfPassword: ?*LM_OWF_PASSWORD,
@@ -43,7 +43,7 @@ pub extern "ADVAPI32" fn MSChapSrvChangePassword2(
     UserName: ?PWSTR,
     NewPasswordEncryptedWithOldNt: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
     OldNtOwfPasswordEncryptedWithNewNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
-    LmPresent: u8,
+    LmPresent: BOOLEAN,
     NewPasswordEncryptedWithOldLm: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
     OldLmOwfPasswordEncryptedWithNewLmOrNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -62,8 +62,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 

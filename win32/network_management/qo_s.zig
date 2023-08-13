@@ -2,6 +2,13 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (199)
 //--------------------------------------------------------------------------------
+pub const IS_GUAR_RSPEC = @as(i32, 130);
+pub const GUAR_ADSPARM_C = @as(i32, 131);
+pub const GUAR_ADSPARM_D = @as(i32, 132);
+pub const GUAR_ADSPARM_Ctot = @as(i32, 133);
+pub const GUAR_ADSPARM_Dtot = @as(i32, 134);
+pub const GUAR_ADSPARM_Csum = @as(i32, 135);
+pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 pub const QOS_MAX_OBJECT_STRING_LENGTH = @as(u32, 256);
 pub const QOS_TRAFFIC_GENERAL_ID_BASE = @as(u32, 4000);
 pub const SERVICETYPE_NOTRAFFIC = @as(u32, 0);
@@ -194,23 +201,10 @@ pub const MAX_STRING_LENGTH = @as(u32, 256);
 pub const QOS_OUTGOING_DEFAULT_MINIMUM_BANDWIDTH = @as(u32, 4294967295);
 pub const QOS_QUERYFLOW_FRESH = @as(u32, 1);
 pub const QOS_NON_ADAPTIVE_FLOW = @as(u32, 2);
-pub const IS_GUAR_RSPEC = @as(i32, 130);
-pub const GUAR_ADSPARM_C = @as(i32, 131);
-pub const GUAR_ADSPARM_D = @as(i32, 132);
-pub const GUAR_ADSPARM_Ctot = @as(i32, 133);
-pub const GUAR_ADSPARM_Dtot = @as(i32, 134);
-pub const GUAR_ADSPARM_Csum = @as(i32, 135);
-pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 
 //--------------------------------------------------------------------------------
 // Section: Types (81)
 //--------------------------------------------------------------------------------
-pub const QOS = extern struct {
-    SendingFlowspec: FLOWSPEC,
-    ReceivingFlowspec: FLOWSPEC,
-    ProviderSpecific: WSABUF,
-};
-
 pub const LPM_HANDLE = isize;
 
 pub const RHANDLE = isize;
@@ -793,6 +787,12 @@ pub const ENUMERATION_BUFFER = extern struct {
     GenericFilter: [1]TC_GEN_FILTER,
 };
 
+pub const QOS = extern struct {
+    SendingFlowspec: FLOWSPEC,
+    ReceivingFlowspec: FLOWSPEC,
+    ProviderSpecific: WSABUF,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -926,7 +926,7 @@ pub extern "TRAFFIC" fn TcCloseInterface(
 pub extern "TRAFFIC" fn TcQueryInterface(
     IfcHandle: ?HANDLE,
     pGuidParam: ?*Guid,
-    NotifyChange: u8,
+    NotifyChange: BOOLEAN,
     pBufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*c_void,
@@ -1067,9 +1067,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
 const WSABUF = @import("../networking/win_sock.zig").WSABUF;

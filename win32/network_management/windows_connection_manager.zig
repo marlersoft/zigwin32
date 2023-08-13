@@ -11,21 +11,6 @@ pub const NET_INTERFACE_FLAG_CONNECT_IF_NEEDED = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (15)
 //--------------------------------------------------------------------------------
-pub const ONDEMAND_NOTIFICATION_CALLBACK = fn(
-    param0: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const NET_INTERFACE_CONTEXT = extern struct {
-    InterfaceIndex: u32,
-    ConfigurationName: ?PWSTR,
-};
-
-pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
-    InterfaceContextHandle: ?HANDLE,
-    NumberOfEntries: u32,
-    InterfaceContextArray: ?*NET_INTERFACE_CONTEXT,
-};
-
 pub const WCM_PROPERTY = enum(i32) {
     global_property_domain_policy = 0,
     global_property_minimize_policy = 1,
@@ -140,44 +125,25 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
     Reserved: u32,
 };
 
+pub const ONDEMAND_NOTIFICATION_CALLBACK = fn(
+    param0: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const NET_INTERFACE_CONTEXT = extern struct {
+    InterfaceIndex: u32,
+    ConfigurationName: ?PWSTR,
+};
+
+pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
+    InterfaceContextHandle: ?HANDLE,
+    NumberOfEntries: u32,
+    InterfaceContextArray: ?*NET_INTERFACE_CONTEXT,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandGetRoutingHint(
-    destinationHostName: ?[*:0]const u16,
-    interfaceIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandRegisterNotification(
-    callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
-    callbackContext: ?*c_void,
-    registrationHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "OnDemandConnRouteHelper" fn OnDemandUnRegisterNotification(
-    registrationHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
-    HostName: ?[*:0]const u16,
-    ProxyName: ?[*:0]const u16,
-    Flags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    ConnectionProfileFilterRawData: ?*u8,
-    ConnectionProfileFilterRawDataSize: u32,
-    InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn FreeInterfaceContextTable(
-    InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmQueryProperty(
     pInterface: ?*const Guid,
@@ -217,6 +183,40 @@ pub extern "wcmapi" fn WcmFreeMemory(
     pMemory: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "OnDemandConnRouteHelper" fn OnDemandGetRoutingHint(
+    destinationHostName: ?[*:0]const u16,
+    interfaceIndex: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "OnDemandConnRouteHelper" fn OnDemandRegisterNotification(
+    callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
+    callbackContext: ?*c_void,
+    registrationHandle: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.1'
+pub extern "OnDemandConnRouteHelper" fn OnDemandUnRegisterNotification(
+    registrationHandle: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
+    HostName: ?[*:0]const u16,
+    ProxyName: ?[*:0]const u16,
+    Flags: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    ConnectionProfileFilterRawData: ?*u8,
+    ConnectionProfileFilterRawDataSize: u32,
+    InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "OnDemandConnRouteHelper" fn FreeInterfaceContextTable(
+    InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -234,9 +234,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const FILETIME = @import("../foundation.zig").FILETIME;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 

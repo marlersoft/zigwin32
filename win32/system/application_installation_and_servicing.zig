@@ -89,45 +89,6 @@ pub const SFC_QUOTA_DEFAULT = @as(u32, 50);
 //--------------------------------------------------------------------------------
 // Section: Types (83)
 //--------------------------------------------------------------------------------
-pub const ACTCTXA = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: ?[*:0]const u8,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: ?[*:0]const u8,
-    lpResourceName: ?[*:0]const u8,
-    lpApplicationName: ?[*:0]const u8,
-    hModule: ?HINSTANCE,
-};
-
-pub const ACTCTXW = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    lpSource: ?[*:0]const u16,
-    wProcessorArchitecture: u16,
-    wLangId: u16,
-    lpAssemblyDirectory: ?[*:0]const u16,
-    lpResourceName: ?[*:0]const u16,
-    lpApplicationName: ?[*:0]const u16,
-    hModule: ?HINSTANCE,
-};
-
-pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
-    cbSize: u32,
-    ulDataFormatVersion: u32,
-    lpData: ?*c_void,
-    ulLength: u32,
-    lpSectionGlobalData: ?*c_void,
-    ulSectionGlobalDataLength: u32,
-    lpSectionBase: ?*c_void,
-    ulSectionTotalLength: u32,
-    hActCtx: ?HANDLE,
-    ulAssemblyRosterIndex: u32,
-    ulFlags: u32,
-    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
-};
-
 // TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
 pub const MSIHANDLE = u32;
 
@@ -221,37 +182,6 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     lpRootConfigurationPath: ?[*:0]const u16,
     lpAppDirPath: ?[*:0]const u16,
 };
-
-pub const MSIASSEMBLYINFO = enum(u32) {
-    NETASSEMBLY = 0,
-    WIN32ASSEMBLY = 1,
-};
-pub const MSIASSEMBLYINFO_NETASSEMBLY = MSIASSEMBLYINFO.NETASSEMBLY;
-pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MSIASSEMBLYINFO.WIN32ASSEMBLY;
-
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION = enum(u32) {
-    UNINSTALLED = 1,
-    STILL_IN_USE = 2,
-    ALREADY_UNINSTALLED = 3,
-    DELETE_PENDING = 4,
-};
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.STILL_IN_USE;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.ALREADY_UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.DELETE_PENDING;
-
-pub const QUERYASMINFO_FLAGS = enum(u32) {
-    E = 1,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) QUERYASMINFO_FLAGS {
-        return @intToEnum(QUERYASMINFO_FLAGS,
-              (if (o.E == 1) @enumToInt(QUERYASMINFO_FLAGS.E) else 0)
-        );
-    }
-};
-pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
 
 pub const RESULTTYPES = enum(i32) {
     Unknown = 0,
@@ -1889,103 +1819,80 @@ pub const PROTECTED_FILE_DATA = extern struct {
     FileNumber: u32,
 };
 
+pub const MSIASSEMBLYINFO = enum(u32) {
+    NETASSEMBLY = 0,
+    WIN32ASSEMBLY = 1,
+};
+pub const MSIASSEMBLYINFO_NETASSEMBLY = MSIASSEMBLYINFO.NETASSEMBLY;
+pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MSIASSEMBLYINFO.WIN32ASSEMBLY;
+
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION = enum(u32) {
+    UNINSTALLED = 1,
+    STILL_IN_USE = 2,
+    ALREADY_UNINSTALLED = 3,
+    DELETE_PENDING = 4,
+};
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.STILL_IN_USE;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.ALREADY_UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.DELETE_PENDING;
+
+pub const QUERYASMINFO_FLAGS = enum(u32) {
+    E = 1,
+    _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) QUERYASMINFO_FLAGS {
+        return @intToEnum(QUERYASMINFO_FLAGS,
+              (if (o.E == 1) @enumToInt(QUERYASMINFO_FLAGS.E) else 0)
+        );
+    }
+};
+pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
+
+pub const ACTCTXA = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: ?[*:0]const u8,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: ?[*:0]const u8,
+    lpResourceName: ?[*:0]const u8,
+    lpApplicationName: ?[*:0]const u8,
+    hModule: ?HINSTANCE,
+};
+
+pub const ACTCTXW = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    lpSource: ?[*:0]const u16,
+    wProcessorArchitecture: u16,
+    wLangId: u16,
+    lpAssemblyDirectory: ?[*:0]const u16,
+    lpResourceName: ?[*:0]const u16,
+    lpApplicationName: ?[*:0]const u16,
+    hModule: ?HINSTANCE,
+};
+
+pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
+    cbSize: u32,
+    ulDataFormatVersion: u32,
+    lpData: ?*c_void,
+    ulLength: u32,
+    lpSectionGlobalData: ?*c_void,
+    ulSectionGlobalDataLength: u32,
+    lpSectionBase: ?*c_void,
+    ulSectionTotalLength: u32,
+    hActCtx: ?HANDLE,
+    ulAssemblyRosterIndex: u32,
+    ulFlags: u32,
+    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (281)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxA(
-    pActCtx: ?*ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxW(
-    pActCtx: ?*ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn AddRefActCtx(
-    hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReleaseActCtx(
-    hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ZombifyActCtx(
-    hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ActivateActCtx(
-    hActCtx: ?HANDLE,
-    lpCookie: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeactivateActCtx(
-    dwFlags: u32,
-    ulCookie: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentActCtx(
-    lphActCtx: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringA(
-    dwFlags: u32,
-    lpExtensionGuid: ?*const Guid,
-    ulSectionId: u32,
-    lpStringToFind: ?[*:0]const u8,
-    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringW(
-    dwFlags: u32,
-    lpExtensionGuid: ?*const Guid,
-    ulSectionId: u32,
-    lpStringToFind: ?[*:0]const u16,
-    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionGuid(
-    dwFlags: u32,
-    lpExtensionGuid: ?*const Guid,
-    ulSectionId: u32,
-    lpGuidToFind: ?*const Guid,
-    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueryActCtxW(
-    dwFlags: u32,
-    hActCtx: ?HANDLE,
-    pvSubInstance: ?*c_void,
-    ulInfoClass: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?*c_void,
-    cbBuffer: usize,
-    pcbWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryActCtxSettingsW(
-    dwFlags: u32,
-    hActCtx: ?HANDLE,
-    settingsNameSpace: ?[*:0]const u16,
-    settingName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?PWSTR,
-    dwBuffer: usize,
-    pdwWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiCloseHandle(
     hAny: MSIHANDLE,
@@ -4074,17 +3981,108 @@ pub extern "sfc" fn SfpVerifyFile(
     dwErrSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxA(
+    pActCtx: ?*ACTCTXA,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxW(
+    pActCtx: ?*ACTCTXW,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn AddRefActCtx(
+    hActCtx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ReleaseActCtx(
+    hActCtx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ZombifyActCtx(
+    hActCtx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ActivateActCtx(
+    hActCtx: ?HANDLE,
+    lpCookie: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DeactivateActCtx(
+    dwFlags: u32,
+    ulCookie: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetCurrentActCtx(
+    lphActCtx: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringA(
+    dwFlags: u32,
+    lpExtensionGuid: ?*const Guid,
+    ulSectionId: u32,
+    lpStringToFind: ?[*:0]const u8,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringW(
+    dwFlags: u32,
+    lpExtensionGuid: ?*const Guid,
+    ulSectionId: u32,
+    lpStringToFind: ?[*:0]const u16,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionGuid(
+    dwFlags: u32,
+    lpExtensionGuid: ?*const Guid,
+    ulSectionId: u32,
+    lpGuidToFind: ?*const Guid,
+    ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn QueryActCtxW(
+    dwFlags: u32,
+    hActCtx: ?HANDLE,
+    pvSubInstance: ?*c_void,
+    ulInfoClass: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    pvBuffer: ?*c_void,
+    cbBuffer: usize,
+    pcbWrittenOrRequired: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn QueryActCtxSettingsW(
+    dwFlags: u32,
+    hActCtx: ?HANDLE,
+    settingsNameSpace: ?[*:0]const u16,
+    settingName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 5?
+    pvBuffer: ?PWSTR,
+    dwBuffer: usize,
+    pdwWrittenOrRequired: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (121)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ACTCTX = ACTCTXA;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERA;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOA;
-        pub const CreateActCtx = CreateActCtxA;
-        pub const FindActCtxSectionString = FindActCtxSectionStringA;
+        pub const ACTCTX = ACTCTXA;
         pub const MsiSetExternalUI = MsiSetExternalUIA;
         pub const MsiEnableLog = MsiEnableLogA;
         pub const MsiQueryProductState = MsiQueryProductStateA;
@@ -4201,13 +4199,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathA;
         pub const MsiPreviewDialog = MsiPreviewDialogA;
         pub const MsiPreviewBillboard = MsiPreviewBillboardA;
+        pub const CreateActCtx = CreateActCtxA;
+        pub const FindActCtxSectionString = FindActCtxSectionStringA;
     },
     .wide => struct {
-        pub const ACTCTX = ACTCTXW;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERW;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOW;
-        pub const CreateActCtx = CreateActCtxW;
-        pub const FindActCtxSectionString = FindActCtxSectionStringW;
+        pub const ACTCTX = ACTCTXW;
         pub const MsiSetExternalUI = MsiSetExternalUIW;
         pub const MsiEnableLog = MsiEnableLogW;
         pub const MsiQueryProductState = MsiQueryProductStateW;
@@ -4324,13 +4322,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = MsiSetTargetPathW;
         pub const MsiPreviewDialog = MsiPreviewDialogW;
         pub const MsiPreviewBillboard = MsiPreviewBillboardW;
+        pub const CreateActCtx = CreateActCtxW;
+        pub const FindActCtxSectionString = FindActCtxSectionStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ACTCTX = *opaque{};
         pub const INSTALLUI_HANDLER = *opaque{};
         pub const MSIPATCHSEQUENCEINFO = *opaque{};
-        pub const CreateActCtx = *opaque{};
-        pub const FindActCtxSectionString = *opaque{};
+        pub const ACTCTX = *opaque{};
         pub const MsiSetExternalUI = *opaque{};
         pub const MsiEnableLog = *opaque{};
         pub const MsiQueryProductState = *opaque{};
@@ -4447,12 +4445,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = *opaque{};
         pub const MsiPreviewDialog = *opaque{};
         pub const MsiPreviewBillboard = *opaque{};
+        pub const CreateActCtx = *opaque{};
+        pub const FindActCtxSectionString = *opaque{};
     } else struct {
-        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
         pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
-        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
+        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const MsiSetExternalUI = @compileError("'MsiSetExternalUI' requires that UNICODE be set to true or false in the root module");
         pub const MsiEnableLog = @compileError("'MsiEnableLog' requires that UNICODE be set to true or false in the root module");
         pub const MsiQueryProductState = @compileError("'MsiQueryProductState' requires that UNICODE be set to true or false in the root module");
@@ -4569,6 +4567,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiSetTargetPath = @compileError("'MsiSetTargetPath' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewDialog = @compileError("'MsiPreviewDialog' requires that UNICODE be set to true or false in the root module");
         pub const MsiPreviewBillboard = @compileError("'MsiPreviewBillboard' requires that UNICODE be set to true or false in the root module");
+        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
+        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -4577,9 +4577,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const IStream = @import("../storage/structured_storage.zig").IStream;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;

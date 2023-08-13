@@ -309,6 +309,34 @@ pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn ExitWindowsEx(
+    uFlags: EXIT_WINDOWS_FLAGS,
+    dwReason: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn LockWorkStation(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonCreate(
+    hWnd: ?HWND,
+    pwszReason: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonQuery(
+    hWnd: ?HWND,
+    pwszBuff: ?[*:0]u16,
+    pcchBuff: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn ShutdownBlockReasonDestroy(
+    hWnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn InitiateSystemShutdownA(
     lpMachineName: ?PSTR,
     lpMessage: ?PSTR,
@@ -375,37 +403,9 @@ pub extern "ADVAPI32" fn InitiateShutdownW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "ADVAPI32" fn CheckForHiberboot(
-    pHiberboot: ?*u8,
-    bClearFlag: u8,
+    pHiberboot: ?*BOOLEAN,
+    bClearFlag: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn ExitWindowsEx(
-    uFlags: EXIT_WINDOWS_FLAGS,
-    dwReason: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn LockWorkStation(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonCreate(
-    hWnd: ?HWND,
-    pwszReason: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonQuery(
-    hWnd: ?HWND,
-    pwszBuff: ?[*:0]u16,
-    pcchBuff: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn ShutdownBlockReasonDestroy(
-    hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------
@@ -437,8 +437,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;

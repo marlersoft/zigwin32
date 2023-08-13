@@ -1382,7 +1382,7 @@ pub extern "cldapi" fn CfOpenFileWithOplock(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfReferenceProtectedHandle(
     ProtectedHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetWin32HandleFromProtectedHandle(
@@ -1564,9 +1564,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;

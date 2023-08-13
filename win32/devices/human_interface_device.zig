@@ -2345,6 +2345,52 @@ pub const JOY_OEMPOLL_PASSDRIVERDATA = @as(u32, 7);
 //--------------------------------------------------------------------------------
 // Section: Types (134)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const HIDP_LINK_COLLECTION_NODE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    LinkUsage: u16,
+    LinkUsagePage: u16,
+    Parent: u16,
+    NumberOfChildren: u16,
+    NextSibling: u16,
+    FirstChild: u16,
+    _bitfield: u32,
+    UserContext: ?*c_void,
+};
+
+}, else => struct { } };
+
+pub const _HIDP_PREPARSED_DATA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    NumGlobalUnknowns: u8,
+    Reserved: [3]u8,
+    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
+    Data: [1]u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const HIDD_CONFIGURATION = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cookie: ?*c_void,
+    size: u32,
+    RingBufferSize: u32,
+};
+
+}, else => struct { } };
+
 pub const DICONSTANTFORCE = extern struct {
     lMagnitude: i32,
 };
@@ -4708,7 +4754,7 @@ pub const LPDIJOYTYPECALLBACK = fn(
 
 pub const DIJOYTYPEINFO_DX5 = extern struct {
     dwSize: u32,
-    hws: joyreghwsettings_tag,
+    hws: JOYREGHWSETTINGS,
     clsidConfig: Guid,
     wszDisplayName: [256]u16,
     wszCallout: [260]u16,
@@ -4716,7 +4762,7 @@ pub const DIJOYTYPEINFO_DX5 = extern struct {
 
 pub const DIJOYTYPEINFO_DX6 = extern struct {
     dwSize: u32,
-    hws: joyreghwsettings_tag,
+    hws: JOYREGHWSETTINGS,
     clsidConfig: Guid,
     wszDisplayName: [256]u16,
     wszCallout: [260]u16,
@@ -4726,7 +4772,7 @@ pub const DIJOYTYPEINFO_DX6 = extern struct {
 
 pub const DIJOYTYPEINFO = extern struct {
     dwSize: u32,
-    hws: joyreghwsettings_tag,
+    hws: JOYREGHWSETTINGS,
     clsidConfig: Guid,
     wszDisplayName: [256]u16,
     wszCallout: [260]u16,
@@ -4739,7 +4785,7 @@ pub const DIJOYTYPEINFO = extern struct {
 pub const DIJOYCONFIG_DX5 = extern struct {
     dwSize: u32,
     guidInstance: Guid,
-    hwc: joyreghwconfig_tag,
+    hwc: JOYREGHWCONFIG,
     dwGain: u32,
     wszType: [256]u16,
     wszCallout: [256]u16,
@@ -4748,7 +4794,7 @@ pub const DIJOYCONFIG_DX5 = extern struct {
 pub const DIJOYCONFIG = extern struct {
     dwSize: u32,
     guidInstance: Guid,
-    hwc: joyreghwconfig_tag,
+    hwc: JOYREGHWCONFIG,
     dwGain: u32,
     wszType: [256]u16,
     wszCallout: [256]u16,
@@ -4757,7 +4803,7 @@ pub const DIJOYCONFIG = extern struct {
 
 pub const DIJOYUSERVALUES = extern struct {
     dwSize: u32,
-    ruv: joyreguservalues_tag,
+    ruv: JOYREGUSERVALUES,
     wszGlobalDriver: [256]u16,
     wszGameportEmulator: [256]u16,
 };
@@ -5180,15 +5226,15 @@ pub const USAGE_AND_PAGE = extern struct {
 pub const HIDP_BUTTON_CAPS = extern struct {
     UsagePage: u16,
     ReportID: u8,
-    IsAlias: u8,
+    IsAlias: BOOLEAN,
     BitField: u16,
     LinkCollection: u16,
     LinkUsage: u16,
     LinkUsagePage: u16,
-    IsRange: u8,
-    IsStringRange: u8,
-    IsDesignatorRange: u8,
-    IsAbsolute: u8,
+    IsRange: BOOLEAN,
+    IsStringRange: BOOLEAN,
+    IsDesignatorRange: BOOLEAN,
+    IsAbsolute: BOOLEAN,
     Reserved: [10]u32,
     Anonymous: extern union {
         Range: extern struct {
@@ -5217,16 +5263,16 @@ pub const HIDP_BUTTON_CAPS = extern struct {
 pub const HIDP_VALUE_CAPS = extern struct {
     UsagePage: u16,
     ReportID: u8,
-    IsAlias: u8,
+    IsAlias: BOOLEAN,
     BitField: u16,
     LinkCollection: u16,
     LinkUsage: u16,
     LinkUsagePage: u16,
-    IsRange: u8,
-    IsStringRange: u8,
-    IsDesignatorRange: u8,
-    IsAbsolute: u8,
-    HasNull: u8,
+    IsRange: BOOLEAN,
+    IsStringRange: BOOLEAN,
+    IsDesignatorRange: BOOLEAN,
+    IsAbsolute: BOOLEAN,
+    HasNull: BOOLEAN,
     Reserved: u8,
     BitSize: u16,
     ReportCount: u16,
@@ -5261,27 +5307,6 @@ pub const HIDP_VALUE_CAPS = extern struct {
     },
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HIDP_LINK_COLLECTION_NODE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    LinkUsage: u16,
-    LinkUsagePage: u16,
-    Parent: u16,
-    NumberOfChildren: u16,
-    NextSibling: u16,
-    FirstChild: u16,
-    _bitfield: u32,
-    UserContext: ?*c_void,
-};
-
-}, else => struct { } };
-
-pub const _HIDP_PREPARSED_DATA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const HIDP_CAPS = extern struct {
     Usage: u16,
     UsagePage: u16,
@@ -5306,7 +5331,7 @@ pub const HIDP_DATA = extern struct {
     Reserved: u16,
     Anonymous: extern union {
         RawValue: u32,
-        On: u8,
+        On: BOOLEAN,
     },
 };
 
@@ -5315,19 +5340,6 @@ pub const HIDP_UNKNOWN_TOKEN = extern struct {
     Reserved: [3]u8,
     BitField: u32,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    NumGlobalUnknowns: u8,
-    Reserved: [3]u8,
-    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
-    Data: [1]u32,
-};
-
-}, else => struct { } };
 
 pub const HIDP_KEYBOARD_DIRECTION = enum(i32) {
     Break = 0,
@@ -5350,19 +5362,7 @@ pub const PHIDP_INSERT_SCANCODES = fn(
     // TODO: what to do with BytesParamIndex 2?
     NewScanCodes: ?[*]u8,
     Length: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const HIDD_CONFIGURATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cookie: ?*c_void,
-    size: u32,
-    RingBufferSize: u32,
-};
-
-}, else => struct { } };
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const HIDD_ATTRIBUTES = extern struct {
     Size: u32,
@@ -5379,7 +5379,7 @@ pub const HID_XFER_PACKET = extern struct {
 
 pub const HID_COLLECTION_INFORMATION = extern struct {
     DescriptorSize: u32,
-    Polled: u8,
+    Polled: BOOLEAN,
     Reserved1: [1]u8,
     VendorID: u16,
     ProductID: u16,
@@ -5389,6 +5389,12 @@ pub const HID_COLLECTION_INFORMATION = extern struct {
 pub const HID_DRIVER_CONFIG = extern struct {
     Size: u32,
     RingBufferSize: u32,
+};
+
+pub const JOYREGHWVALUES = packed struct {
+    jrvHardware: JOYRANGE,
+    dwPOVValues: [4]u32,
+    dwCalFlags: u32,
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -5429,12 +5435,6 @@ pub const HIDD_CONFIGURATION = extern struct {
 };
 
 }, else => struct { } };
-
-pub const JOYREGHWVALUES = packed struct {
-    jrvHardware: joyrange_tag,
-    dwPOVValues: [4]u32,
-    dwCalFlags: u32,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -5689,7 +5689,7 @@ pub extern "HID" fn HidP_TranslateUsagesToI8042ScanCodes(
 pub extern "HID" fn HidD_GetAttributes(
     HidDeviceObject: ?HANDLE,
     Attributes: ?*HIDD_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetHidGuid(
     HidGuid: ?*Guid,
@@ -5698,88 +5698,88 @@ pub extern "HID" fn HidD_GetHidGuid(
 pub extern "HID" fn HidD_GetPreparsedData(
     HidDeviceObject: ?HANDLE,
     PreparsedData: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_FreePreparsedData(
     PreparsedData: isize,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_FlushQueue(
     HidDeviceObject: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetConfiguration(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetConfiguration(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*c_void,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*c_void,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetInputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*c_void,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetOutputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     ReportBuffer: ?*c_void,
     ReportBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetNumInputBuffers(
     HidDeviceObject: ?HANDLE,
     NumberBuffers: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetManufacturerString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetProductString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetIndexedString(
     HidDeviceObject: ?HANDLE,
@@ -5787,21 +5787,21 @@ pub extern "HID" fn HidD_GetIndexedString(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetSerialNumberString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     Buffer: ?*c_void,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -5905,24 +5905,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
+const JOYRANGE = @import("../media/multimedia.zig").JOYRANGE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const joyreguservalues_tag = @import("../media/multimedia.zig").joyreguservalues_tag;
+const JOYREGHWSETTINGS = @import("../media/multimedia.zig").JOYREGHWSETTINGS;
 const PSTR = @import("../foundation.zig").PSTR;
 const RECT = @import("../foundation.zig").RECT;
 const BOOL = @import("../foundation.zig").BOOL;
 const HWND = @import("../foundation.zig").HWND;
-const joyreghwsettings_tag = @import("../media/multimedia.zig").joyreghwsettings_tag;
-const joyrange_tag = @import("../media/multimedia.zig").joyrange_tag;
-const joyreghwconfig_tag = @import("../media/multimedia.zig").joyreghwconfig_tag;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const JOYREGHWCONFIG = @import("../media/multimedia.zig").JOYREGHWCONFIG;
+const JOYREGUSERVALUES = @import("../media/multimedia.zig").JOYREGUSERVALUES;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const POINT = @import("../foundation.zig").POINT;
 const HANDLE = @import("../foundation.zig").HANDLE;

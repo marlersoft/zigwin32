@@ -67,6 +67,1647 @@ pub const WBEMS_DISPID_CONNECTION_READY = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (356)
 //--------------------------------------------------------------------------------
+pub const MI_Module_Self = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const MI_Result = enum(i32) {
+    OK = 0,
+    FAILED = 1,
+    ACCESS_DENIED = 2,
+    INVALID_NAMESPACE = 3,
+    INVALID_PARAMETER = 4,
+    INVALID_CLASS = 5,
+    NOT_FOUND = 6,
+    NOT_SUPPORTED = 7,
+    CLASS_HAS_CHILDREN = 8,
+    CLASS_HAS_INSTANCES = 9,
+    INVALID_SUPERCLASS = 10,
+    ALREADY_EXISTS = 11,
+    NO_SUCH_PROPERTY = 12,
+    TYPE_MISMATCH = 13,
+    QUERY_LANGUAGE_NOT_SUPPORTED = 14,
+    INVALID_QUERY = 15,
+    METHOD_NOT_AVAILABLE = 16,
+    METHOD_NOT_FOUND = 17,
+    NAMESPACE_NOT_EMPTY = 20,
+    INVALID_ENUMERATION_CONTEXT = 21,
+    INVALID_OPERATION_TIMEOUT = 22,
+    PULL_HAS_BEEN_ABANDONED = 23,
+    PULL_CANNOT_BE_ABANDONED = 24,
+    FILTERED_ENUMERATION_NOT_SUPPORTED = 25,
+    CONTINUATION_ON_ERROR_NOT_SUPPORTED = 26,
+    SERVER_LIMITS_EXCEEDED = 27,
+    SERVER_IS_SHUTTING_DOWN = 28,
+};
+pub const MI_RESULT_OK = MI_Result.OK;
+pub const MI_RESULT_FAILED = MI_Result.FAILED;
+pub const MI_RESULT_ACCESS_DENIED = MI_Result.ACCESS_DENIED;
+pub const MI_RESULT_INVALID_NAMESPACE = MI_Result.INVALID_NAMESPACE;
+pub const MI_RESULT_INVALID_PARAMETER = MI_Result.INVALID_PARAMETER;
+pub const MI_RESULT_INVALID_CLASS = MI_Result.INVALID_CLASS;
+pub const MI_RESULT_NOT_FOUND = MI_Result.NOT_FOUND;
+pub const MI_RESULT_NOT_SUPPORTED = MI_Result.NOT_SUPPORTED;
+pub const MI_RESULT_CLASS_HAS_CHILDREN = MI_Result.CLASS_HAS_CHILDREN;
+pub const MI_RESULT_CLASS_HAS_INSTANCES = MI_Result.CLASS_HAS_INSTANCES;
+pub const MI_RESULT_INVALID_SUPERCLASS = MI_Result.INVALID_SUPERCLASS;
+pub const MI_RESULT_ALREADY_EXISTS = MI_Result.ALREADY_EXISTS;
+pub const MI_RESULT_NO_SUCH_PROPERTY = MI_Result.NO_SUCH_PROPERTY;
+pub const MI_RESULT_TYPE_MISMATCH = MI_Result.TYPE_MISMATCH;
+pub const MI_RESULT_QUERY_LANGUAGE_NOT_SUPPORTED = MI_Result.QUERY_LANGUAGE_NOT_SUPPORTED;
+pub const MI_RESULT_INVALID_QUERY = MI_Result.INVALID_QUERY;
+pub const MI_RESULT_METHOD_NOT_AVAILABLE = MI_Result.METHOD_NOT_AVAILABLE;
+pub const MI_RESULT_METHOD_NOT_FOUND = MI_Result.METHOD_NOT_FOUND;
+pub const MI_RESULT_NAMESPACE_NOT_EMPTY = MI_Result.NAMESPACE_NOT_EMPTY;
+pub const MI_RESULT_INVALID_ENUMERATION_CONTEXT = MI_Result.INVALID_ENUMERATION_CONTEXT;
+pub const MI_RESULT_INVALID_OPERATION_TIMEOUT = MI_Result.INVALID_OPERATION_TIMEOUT;
+pub const MI_RESULT_PULL_HAS_BEEN_ABANDONED = MI_Result.PULL_HAS_BEEN_ABANDONED;
+pub const MI_RESULT_PULL_CANNOT_BE_ABANDONED = MI_Result.PULL_CANNOT_BE_ABANDONED;
+pub const MI_RESULT_FILTERED_ENUMERATION_NOT_SUPPORTED = MI_Result.FILTERED_ENUMERATION_NOT_SUPPORTED;
+pub const MI_RESULT_CONTINUATION_ON_ERROR_NOT_SUPPORTED = MI_Result.CONTINUATION_ON_ERROR_NOT_SUPPORTED;
+pub const MI_RESULT_SERVER_LIMITS_EXCEEDED = MI_Result.SERVER_LIMITS_EXCEEDED;
+pub const MI_RESULT_SERVER_IS_SHUTTING_DOWN = MI_Result.SERVER_IS_SHUTTING_DOWN;
+
+pub const MI_ErrorCategory = enum(i32) {
+    NOT_SPECIFIED = 0,
+    OPEN_ERROR = 1,
+    CLOS_EERROR = 2,
+    DEVICE_ERROR = 3,
+    DEADLOCK_DETECTED = 4,
+    INVALID_ARGUMENT = 5,
+    INVALID_DATA = 6,
+    INVALID_OPERATION = 7,
+    INVALID_RESULT = 8,
+    INVALID_TYPE = 9,
+    METADATA_ERROR = 10,
+    NOT_IMPLEMENTED = 11,
+    NOT_INSTALLED = 12,
+    OBJECT_NOT_FOUND = 13,
+    OPERATION_STOPPED = 14,
+    OPERATION_TIMEOUT = 15,
+    SYNTAX_ERROR = 16,
+    PARSER_ERROR = 17,
+    ACCESS_DENIED = 18,
+    RESOURCE_BUSY = 19,
+    RESOURCE_EXISTS = 20,
+    RESOURCE_UNAVAILABLE = 21,
+    READ_ERROR = 22,
+    WRITE_ERROR = 23,
+    FROM_STDERR = 24,
+    SECURITY_ERROR = 25,
+    PROTOCOL_ERROR = 26,
+    CONNECTION_ERROR = 27,
+    AUTHENTICATION_ERROR = 28,
+    LIMITS_EXCEEDED = 29,
+    QUOTA_EXCEEDED = 30,
+    NOT_ENABLED = 31,
+};
+pub const MI_ERRORCATEGORY_NOT_SPECIFIED = MI_ErrorCategory.NOT_SPECIFIED;
+pub const MI_ERRORCATEGORY_OPEN_ERROR = MI_ErrorCategory.OPEN_ERROR;
+pub const MI_ERRORCATEGORY_CLOS_EERROR = MI_ErrorCategory.CLOS_EERROR;
+pub const MI_ERRORCATEGORY_DEVICE_ERROR = MI_ErrorCategory.DEVICE_ERROR;
+pub const MI_ERRORCATEGORY_DEADLOCK_DETECTED = MI_ErrorCategory.DEADLOCK_DETECTED;
+pub const MI_ERRORCATEGORY_INVALID_ARGUMENT = MI_ErrorCategory.INVALID_ARGUMENT;
+pub const MI_ERRORCATEGORY_INVALID_DATA = MI_ErrorCategory.INVALID_DATA;
+pub const MI_ERRORCATEGORY_INVALID_OPERATION = MI_ErrorCategory.INVALID_OPERATION;
+pub const MI_ERRORCATEGORY_INVALID_RESULT = MI_ErrorCategory.INVALID_RESULT;
+pub const MI_ERRORCATEGORY_INVALID_TYPE = MI_ErrorCategory.INVALID_TYPE;
+pub const MI_ERRORCATEGORY_METADATA_ERROR = MI_ErrorCategory.METADATA_ERROR;
+pub const MI_ERRORCATEGORY_NOT_IMPLEMENTED = MI_ErrorCategory.NOT_IMPLEMENTED;
+pub const MI_ERRORCATEGORY_NOT_INSTALLED = MI_ErrorCategory.NOT_INSTALLED;
+pub const MI_ERRORCATEGORY_OBJECT_NOT_FOUND = MI_ErrorCategory.OBJECT_NOT_FOUND;
+pub const MI_ERRORCATEGORY_OPERATION_STOPPED = MI_ErrorCategory.OPERATION_STOPPED;
+pub const MI_ERRORCATEGORY_OPERATION_TIMEOUT = MI_ErrorCategory.OPERATION_TIMEOUT;
+pub const MI_ERRORCATEGORY_SYNTAX_ERROR = MI_ErrorCategory.SYNTAX_ERROR;
+pub const MI_ERRORCATEGORY_PARSER_ERROR = MI_ErrorCategory.PARSER_ERROR;
+pub const MI_ERRORCATEGORY_ACCESS_DENIED = MI_ErrorCategory.ACCESS_DENIED;
+pub const MI_ERRORCATEGORY_RESOURCE_BUSY = MI_ErrorCategory.RESOURCE_BUSY;
+pub const MI_ERRORCATEGORY_RESOURCE_EXISTS = MI_ErrorCategory.RESOURCE_EXISTS;
+pub const MI_ERRORCATEGORY_RESOURCE_UNAVAILABLE = MI_ErrorCategory.RESOURCE_UNAVAILABLE;
+pub const MI_ERRORCATEGORY_READ_ERROR = MI_ErrorCategory.READ_ERROR;
+pub const MI_ERRORCATEGORY_WRITE_ERROR = MI_ErrorCategory.WRITE_ERROR;
+pub const MI_ERRORCATEGORY_FROM_STDERR = MI_ErrorCategory.FROM_STDERR;
+pub const MI_ERRORCATEGORY_SECURITY_ERROR = MI_ErrorCategory.SECURITY_ERROR;
+pub const MI_ERRORCATEGORY_PROTOCOL_ERROR = MI_ErrorCategory.PROTOCOL_ERROR;
+pub const MI_ERRORCATEGORY_CONNECTION_ERROR = MI_ErrorCategory.CONNECTION_ERROR;
+pub const MI_ERRORCATEGORY_AUTHENTICATION_ERROR = MI_ErrorCategory.AUTHENTICATION_ERROR;
+pub const MI_ERRORCATEGORY_LIMITS_EXCEEDED = MI_ErrorCategory.LIMITS_EXCEEDED;
+pub const MI_ERRORCATEGORY_QUOTA_EXCEEDED = MI_ErrorCategory.QUOTA_EXCEEDED;
+pub const MI_ERRORCATEGORY_NOT_ENABLED = MI_ErrorCategory.NOT_ENABLED;
+
+pub const MI_PromptType = enum(i32) {
+    NORMAL = 0,
+    CRITICAL = 1,
+};
+pub const MI_PROMPTTYPE_NORMAL = MI_PromptType.NORMAL;
+pub const MI_PROMPTTYPE_CRITICAL = MI_PromptType.CRITICAL;
+
+pub const MI_CallbackMode = enum(i32) {
+    REPORT = 0,
+    INQUIRE = 1,
+    IGNORE = 2,
+};
+pub const MI_CALLBACKMODE_REPORT = MI_CallbackMode.REPORT;
+pub const MI_CALLBACKMODE_INQUIRE = MI_CallbackMode.INQUIRE;
+pub const MI_CALLBACKMODE_IGNORE = MI_CallbackMode.IGNORE;
+
+pub const MI_ProviderArchitecture = enum(i32) {
+    @"32BIT" = 0,
+    @"64BIT" = 1,
+};
+pub const MI_PROVIDER_ARCHITECTURE_32BIT = MI_ProviderArchitecture.@"32BIT";
+pub const MI_PROVIDER_ARCHITECTURE_64BIT = MI_ProviderArchitecture.@"64BIT";
+
+pub const MI_Type = enum(i32) {
+    BOOLEAN = 0,
+    UINT8 = 1,
+    SINT8 = 2,
+    UINT16 = 3,
+    SINT16 = 4,
+    UINT32 = 5,
+    SINT32 = 6,
+    UINT64 = 7,
+    SINT64 = 8,
+    REAL32 = 9,
+    REAL64 = 10,
+    CHAR16 = 11,
+    DATETIME = 12,
+    STRING = 13,
+    REFERENCE = 14,
+    INSTANCE = 15,
+    BOOLEANA = 16,
+    UINT8A = 17,
+    SINT8A = 18,
+    UINT16A = 19,
+    SINT16A = 20,
+    UINT32A = 21,
+    SINT32A = 22,
+    UINT64A = 23,
+    SINT64A = 24,
+    REAL32A = 25,
+    REAL64A = 26,
+    CHAR16A = 27,
+    DATETIMEA = 28,
+    STRINGA = 29,
+    REFERENCEA = 30,
+    INSTANCEA = 31,
+    // ARRAY = 16, this enum value conflicts with BOOLEANA
+};
+pub const MI_BOOLEAN = MI_Type.BOOLEAN;
+pub const MI_UINT8 = MI_Type.UINT8;
+pub const MI_SINT8 = MI_Type.SINT8;
+pub const MI_UINT16 = MI_Type.UINT16;
+pub const MI_SINT16 = MI_Type.SINT16;
+pub const MI_UINT32 = MI_Type.UINT32;
+pub const MI_SINT32 = MI_Type.SINT32;
+pub const MI_UINT64 = MI_Type.UINT64;
+pub const MI_SINT64 = MI_Type.SINT64;
+pub const MI_REAL32 = MI_Type.REAL32;
+pub const MI_REAL64 = MI_Type.REAL64;
+pub const MI_CHAR16 = MI_Type.CHAR16;
+pub const MI_DATETIME = MI_Type.DATETIME;
+pub const MI_STRING = MI_Type.STRING;
+pub const MI_REFERENCE = MI_Type.REFERENCE;
+pub const MI_INSTANCE = MI_Type.INSTANCE;
+pub const MI_BOOLEANA = MI_Type.BOOLEANA;
+pub const MI_UINT8A = MI_Type.UINT8A;
+pub const MI_SINT8A = MI_Type.SINT8A;
+pub const MI_UINT16A = MI_Type.UINT16A;
+pub const MI_SINT16A = MI_Type.SINT16A;
+pub const MI_UINT32A = MI_Type.UINT32A;
+pub const MI_SINT32A = MI_Type.SINT32A;
+pub const MI_UINT64A = MI_Type.UINT64A;
+pub const MI_SINT64A = MI_Type.SINT64A;
+pub const MI_REAL32A = MI_Type.REAL32A;
+pub const MI_REAL64A = MI_Type.REAL64A;
+pub const MI_CHAR16A = MI_Type.CHAR16A;
+pub const MI_DATETIMEA = MI_Type.DATETIMEA;
+pub const MI_STRINGA = MI_Type.STRINGA;
+pub const MI_REFERENCEA = MI_Type.REFERENCEA;
+pub const MI_INSTANCEA = MI_Type.INSTANCEA;
+pub const MI_ARRAY = MI_Type.BOOLEANA;
+
+pub const MI_Timestamp = extern struct {
+    year: u32,
+    month: u32,
+    day: u32,
+    hour: u32,
+    minute: u32,
+    second: u32,
+    microseconds: u32,
+    utc: i32,
+};
+
+pub const MI_Interval = extern struct {
+    days: u32,
+    hours: u32,
+    minutes: u32,
+    seconds: u32,
+    microseconds: u32,
+    __padding1: u32,
+    __padding2: u32,
+    __padding3: u32,
+};
+
+pub const MI_Datetime = extern struct {
+    isTimestamp: u32,
+    u: extern union {
+        timestamp: MI_Timestamp,
+        interval: MI_Interval,
+    },
+};
+
+pub const MI_BooleanA = extern struct {
+    data: ?*u8,
+    size: u32,
+};
+
+pub const MI_Uint8A = extern struct {
+    data: ?*u8,
+    size: u32,
+};
+
+pub const MI_Sint8A = extern struct {
+    data: ?*i8,
+    size: u32,
+};
+
+pub const MI_Uint16A = extern struct {
+    data: ?*u16,
+    size: u32,
+};
+
+pub const MI_Sint16A = extern struct {
+    data: ?*i16,
+    size: u32,
+};
+
+pub const MI_Uint32A = extern struct {
+    data: ?*u32,
+    size: u32,
+};
+
+pub const MI_Sint32A = extern struct {
+    data: ?*i32,
+    size: u32,
+};
+
+pub const MI_Uint64A = extern struct {
+    data: ?*u64,
+    size: u32,
+};
+
+pub const MI_Sint64A = extern struct {
+    data: ?*i64,
+    size: u32,
+};
+
+pub const MI_Real32A = extern struct {
+    data: ?*f32,
+    size: u32,
+};
+
+pub const MI_Real64A = extern struct {
+    data: ?*f64,
+    size: u32,
+};
+
+pub const MI_Char16A = extern struct {
+    data: ?*u16,
+    size: u32,
+};
+
+pub const MI_DatetimeA = extern struct {
+    data: ?*MI_Datetime,
+    size: u32,
+};
+
+pub const MI_StringA = extern struct {
+    data: ?*?*u16,
+    size: u32,
+};
+
+pub const MI_ReferenceA = extern struct {
+    data: ?*?*MI_Instance,
+    size: u32,
+};
+
+pub const MI_InstanceA = extern struct {
+    data: ?*?*MI_Instance,
+    size: u32,
+};
+
+pub const MI_Array = extern struct {
+    data: ?*c_void,
+    size: u32,
+};
+
+pub const MI_ConstBooleanA = extern struct {
+    data: ?*const u8,
+    size: u32,
+};
+
+pub const MI_ConstUint8A = extern struct {
+    data: ?*const u8,
+    size: u32,
+};
+
+pub const MI_ConstSint8A = extern struct {
+    data: ?*const i8,
+    size: u32,
+};
+
+pub const MI_ConstUint16A = extern struct {
+    data: ?*const u16,
+    size: u32,
+};
+
+pub const MI_ConstSint16A = extern struct {
+    data: ?*const i16,
+    size: u32,
+};
+
+pub const MI_ConstUint32A = extern struct {
+    data: ?*const u32,
+    size: u32,
+};
+
+pub const MI_ConstSint32A = extern struct {
+    data: ?*const i32,
+    size: u32,
+};
+
+pub const MI_ConstUint64A = extern struct {
+    data: ?*const u64,
+    size: u32,
+};
+
+pub const MI_ConstSint64A = extern struct {
+    data: ?*const i64,
+    size: u32,
+};
+
+pub const MI_ConstReal32A = extern struct {
+    data: ?*const f32,
+    size: u32,
+};
+
+pub const MI_ConstReal64A = extern struct {
+    data: ?*const f64,
+    size: u32,
+};
+
+pub const MI_ConstChar16A = extern struct {
+    data: ?*const u16,
+    size: u32,
+};
+
+pub const MI_ConstDatetimeA = extern struct {
+    data: ?*const MI_Datetime,
+    size: u32,
+};
+
+pub const MI_ConstStringA = extern struct {
+    data: ?*const ?*u16,
+    size: u32,
+};
+
+pub const MI_ConstReferenceA = extern struct {
+    data: ?*const ?*MI_Instance,
+    size: u32,
+};
+
+pub const MI_ConstInstanceA = extern struct {
+    data: ?*const ?*MI_Instance,
+    size: u32,
+};
+
+pub const MI_Value = extern union {
+    boolean: u8,
+    uint8: u8,
+    sint8: i8,
+    uint16: u16,
+    sint16: i16,
+    uint32: u32,
+    sint32: i32,
+    uint64: u64,
+    sint64: i64,
+    real32: f32,
+    real64: f64,
+    char16: u16,
+    datetime: MI_Datetime,
+    string: ?*u16,
+    instance: ?*MI_Instance,
+    reference: ?*MI_Instance,
+    booleana: MI_BooleanA,
+    uint8a: MI_Uint8A,
+    sint8a: MI_Sint8A,
+    uint16a: MI_Uint16A,
+    sint16a: MI_Sint16A,
+    uint32a: MI_Uint32A,
+    sint32a: MI_Sint32A,
+    uint64a: MI_Uint64A,
+    sint64a: MI_Sint64A,
+    real32a: MI_Real32A,
+    real64a: MI_Real64A,
+    char16a: MI_Char16A,
+    datetimea: MI_DatetimeA,
+    stringa: MI_StringA,
+    referencea: MI_ReferenceA,
+    instancea: MI_InstanceA,
+    array: MI_Array,
+};
+
+pub const MI_BooleanField = extern struct {
+    value: u8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint8Field = extern struct {
+    value: i8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint8Field = extern struct {
+    value: u8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint16Field = extern struct {
+    value: i16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint16Field = extern struct {
+    value: u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint32Field = extern struct {
+    value: i32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint32Field = extern struct {
+    value: u32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint64Field = extern struct {
+    value: i64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint64Field = extern struct {
+    value: u64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Real32Field = extern struct {
+    value: f32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Real64Field = extern struct {
+    value: f64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Char16Field = extern struct {
+    value: u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_DatetimeField = extern struct {
+    value: MI_Datetime,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_StringField = extern struct {
+    value: ?*u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ReferenceField = extern struct {
+    value: ?*MI_Instance,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_InstanceField = extern struct {
+    value: ?*MI_Instance,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_BooleanAField = extern struct {
+    value: MI_BooleanA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint8AField = extern struct {
+    value: MI_Uint8A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint8AField = extern struct {
+    value: MI_Sint8A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint16AField = extern struct {
+    value: MI_Uint16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint16AField = extern struct {
+    value: MI_Sint16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint32AField = extern struct {
+    value: MI_Uint32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint32AField = extern struct {
+    value: MI_Sint32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Uint64AField = extern struct {
+    value: MI_Uint64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Sint64AField = extern struct {
+    value: MI_Sint64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Real32AField = extern struct {
+    value: MI_Real32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Real64AField = extern struct {
+    value: MI_Real64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_Char16AField = extern struct {
+    value: MI_Char16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_DatetimeAField = extern struct {
+    value: MI_DatetimeA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_StringAField = extern struct {
+    value: MI_StringA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ReferenceAField = extern struct {
+    value: MI_ReferenceA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_InstanceAField = extern struct {
+    value: MI_InstanceA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ArrayField = extern struct {
+    value: MI_Array,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstBooleanField = extern struct {
+    value: u8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint8Field = extern struct {
+    value: i8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint8Field = extern struct {
+    value: u8,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint16Field = extern struct {
+    value: i16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint16Field = extern struct {
+    value: u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint32Field = extern struct {
+    value: i32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint32Field = extern struct {
+    value: u32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint64Field = extern struct {
+    value: i64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint64Field = extern struct {
+    value: u64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReal32Field = extern struct {
+    value: f32,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReal64Field = extern struct {
+    value: f64,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstChar16Field = extern struct {
+    value: u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstDatetimeField = extern struct {
+    value: MI_Datetime,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstStringField = extern struct {
+    value: ?*const u16,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReferenceField = extern struct {
+    value: ?*const MI_Instance,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstInstanceField = extern struct {
+    value: ?*const MI_Instance,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstBooleanAField = extern struct {
+    value: MI_ConstBooleanA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint8AField = extern struct {
+    value: MI_ConstUint8A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint8AField = extern struct {
+    value: MI_ConstSint8A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint16AField = extern struct {
+    value: MI_ConstUint16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint16AField = extern struct {
+    value: MI_ConstSint16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint32AField = extern struct {
+    value: MI_ConstUint32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint32AField = extern struct {
+    value: MI_ConstSint32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstUint64AField = extern struct {
+    value: MI_ConstUint64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstSint64AField = extern struct {
+    value: MI_ConstSint64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReal32AField = extern struct {
+    value: MI_ConstReal32A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReal64AField = extern struct {
+    value: MI_ConstReal64A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstChar16AField = extern struct {
+    value: MI_ConstChar16A,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstDatetimeAField = extern struct {
+    value: MI_ConstDatetimeA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstStringAField = extern struct {
+    value: MI_ConstStringA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstReferenceAField = extern struct {
+    value: MI_ConstReferenceA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ConstInstanceAField = extern struct {
+    value: MI_ConstInstanceA,
+    exists: u8,
+    flags: u8,
+};
+
+pub const MI_ServerFT = extern struct {
+    GetVersion: isize,
+    GetSystemName: isize,
+};
+
+pub const MI_Server = extern struct {
+    serverFT: ?*const MI_ServerFT,
+    contextFT: ?*const MI_ContextFT,
+    instanceFT: ?*const MI_InstanceFT,
+    propertySetFT: ?*const MI_PropertySetFT,
+    filterFT: ?*const MI_FilterFT,
+};
+
+pub const MI_FilterFT = extern struct {
+    Evaluate: isize,
+    GetExpression: isize,
+};
+
+pub const MI_Filter = extern struct {
+    ft: ?*const MI_FilterFT,
+    reserved: [3]isize,
+};
+
+pub const MI_PropertySetFT = extern struct {
+    GetElementCount: isize,
+    ContainsElement: isize,
+    AddElement: isize,
+    GetElementAt: isize,
+    Clear: isize,
+    Destruct: isize,
+    Delete: isize,
+    Clone: isize,
+};
+
+pub const MI_PropertySet = extern struct {
+    ft: ?*const MI_PropertySetFT,
+    reserved: [3]isize,
+};
+
+pub const MI_ObjectDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+    properties: ?*const ?*MI_PropertyDecl,
+    numProperties: u32,
+    size: u32,
+};
+
+pub const MI_ClassDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+    properties: ?*const ?*MI_PropertyDecl,
+    numProperties: u32,
+    size: u32,
+    superClass: ?*const u16,
+    superClassDecl: ?*const MI_ClassDecl,
+    methods: ?*const ?*MI_MethodDecl,
+    numMethods: u32,
+    schema: ?*const MI_SchemaDecl,
+    providerFT: ?*const MI_ProviderFT,
+    owningClass: ?*MI_Class,
+};
+
+pub const MI_FeatureDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+};
+
+pub const MI_ParameterDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+    type: u32,
+    className: ?*const u16,
+    subscript: u32,
+    offset: u32,
+};
+
+pub const MI_PropertyDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+    type: u32,
+    className: ?*const u16,
+    subscript: u32,
+    offset: u32,
+    origin: ?*const u16,
+    propagator: ?*const u16,
+    value: ?*const c_void,
+};
+
+pub const MI_MethodDecl_Invoke = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    methodName: ?*const u16,
+    instanceName: ?*const MI_Instance,
+    parameters: ?*const MI_Instance,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_MethodDecl = extern struct {
+    flags: u32,
+    code: u32,
+    name: ?*const u16,
+    qualifiers: ?*const ?*MI_Qualifier,
+    numQualifiers: u32,
+    parameters: ?*const ?*MI_ParameterDecl,
+    numParameters: u32,
+    size: u32,
+    returnType: u32,
+    origin: ?*const u16,
+    propagator: ?*const u16,
+    schema: ?*const MI_SchemaDecl,
+    function: ?MI_MethodDecl_Invoke,
+};
+
+pub const MI_QualifierDecl = extern struct {
+    name: ?*const u16,
+    type: u32,
+    scope: u32,
+    flavor: u32,
+    subscript: u32,
+    value: ?*const c_void,
+};
+
+pub const MI_Qualifier = extern struct {
+    name: ?*const u16,
+    type: u32,
+    flavor: u32,
+    value: ?*const c_void,
+};
+
+pub const MI_SchemaDecl = extern struct {
+    qualifierDecls: ?*const ?*MI_QualifierDecl,
+    numQualifierDecls: u32,
+    classDecls: ?*const ?*MI_ClassDecl,
+    numClassDecls: u32,
+};
+
+pub const MI_ProviderFT_Load = fn(
+    self: ?*?*c_void,
+    selfModule: ?*MI_Module_Self,
+    context: ?*MI_Context,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_Unload = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_GetInstance = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    instanceName: ?*const MI_Instance,
+    propertySet: ?*const MI_PropertySet,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_EnumerateInstances = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    propertySet: ?*const MI_PropertySet,
+    keysOnly: u8,
+    filter: ?*const MI_Filter,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_CreateInstance = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    newInstance: ?*const MI_Instance,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_ModifyInstance = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    modifiedInstance: ?*const MI_Instance,
+    propertySet: ?*const MI_PropertySet,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_DeleteInstance = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    instanceName: ?*const MI_Instance,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_AssociatorInstances = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    instanceName: ?*const MI_Instance,
+    resultClass: ?*const u16,
+    role: ?*const u16,
+    resultRole: ?*const u16,
+    propertySet: ?*const MI_PropertySet,
+    keysOnly: u8,
+    filter: ?*const MI_Filter,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_ReferenceInstances = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    instanceName: ?*const MI_Instance,
+    role: ?*const u16,
+    propertySet: ?*const MI_PropertySet,
+    keysOnly: u8,
+    filter: ?*const MI_Filter,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_EnableIndications = fn(
+    self: ?*c_void,
+    indicationsContext: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_DisableIndications = fn(
+    self: ?*c_void,
+    indicationsContext: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_Subscribe = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    filter: ?*const MI_Filter,
+    bookmark: ?*const u16,
+    subscriptionID: u64,
+    subscriptionSelf: ?*?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_Unsubscribe = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    subscriptionID: u64,
+    subscriptionSelf: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT_Invoke = fn(
+    self: ?*c_void,
+    context: ?*MI_Context,
+    nameSpace: ?*const u16,
+    className: ?*const u16,
+    methodName: ?*const u16,
+    instanceName: ?*const MI_Instance,
+    inputParameters: ?*const MI_Instance,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ProviderFT = extern struct {
+    Load: ?MI_ProviderFT_Load,
+    Unload: ?MI_ProviderFT_Unload,
+    GetInstance: ?MI_ProviderFT_GetInstance,
+    EnumerateInstances: ?MI_ProviderFT_EnumerateInstances,
+    CreateInstance: ?MI_ProviderFT_CreateInstance,
+    ModifyInstance: ?MI_ProviderFT_ModifyInstance,
+    DeleteInstance: ?MI_ProviderFT_DeleteInstance,
+    AssociatorInstances: ?MI_ProviderFT_AssociatorInstances,
+    ReferenceInstances: ?MI_ProviderFT_ReferenceInstances,
+    EnableIndications: ?MI_ProviderFT_EnableIndications,
+    DisableIndications: ?MI_ProviderFT_DisableIndications,
+    Subscribe: ?MI_ProviderFT_Subscribe,
+    Unsubscribe: ?MI_ProviderFT_Unsubscribe,
+    Invoke: ?MI_ProviderFT_Invoke,
+};
+
+pub const MI_Module_Load = fn(
+    self: ?*?*MI_Module_Self,
+    context: ?*MI_Context,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_Module_Unload = fn(
+    self: ?*MI_Module_Self,
+    context: ?*MI_Context,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_Module = extern struct {
+    version: u32,
+    generatorVersion: u32,
+    flags: u32,
+    charSize: u32,
+    schemaDecl: ?*MI_SchemaDecl,
+    Load: ?MI_Module_Load,
+    Unload: ?MI_Module_Unload,
+    dynamicProviderFT: ?*const MI_ProviderFT,
+};
+
+pub const MI_InstanceFT = extern struct {
+    Clone: isize,
+    Destruct: isize,
+    Delete: isize,
+    IsA: isize,
+    GetClassNameA: isize,
+    SetNameSpace: isize,
+    GetNameSpace: isize,
+    GetElementCount: isize,
+    AddElement: isize,
+    SetElement: isize,
+    SetElementAt: isize,
+    GetElement: isize,
+    GetElementAt: isize,
+    ClearElement: isize,
+    ClearElementAt: isize,
+    GetServerName: isize,
+    SetServerName: isize,
+    GetClass: isize,
+};
+
+pub const MI_InstanceExFT = extern struct {
+    parent: MI_InstanceFT,
+    Normalize: isize,
+};
+
+pub const MI_Instance = extern struct {
+    ft: ?*const MI_InstanceFT,
+    classDecl: ?*const MI_ClassDecl,
+    serverName: ?*const u16,
+    nameSpace: ?*const u16,
+    reserved: [4]isize,
+};
+
+pub const MI_LocaleType = enum(i32) {
+    REQUESTED_UI = 0,
+    REQUESTED_DATA = 1,
+    CLOSEST_UI = 2,
+    CLOSEST_DATA = 3,
+};
+pub const MI_LOCALE_TYPE_REQUESTED_UI = MI_LocaleType.REQUESTED_UI;
+pub const MI_LOCALE_TYPE_REQUESTED_DATA = MI_LocaleType.REQUESTED_DATA;
+pub const MI_LOCALE_TYPE_CLOSEST_UI = MI_LocaleType.CLOSEST_UI;
+pub const MI_LOCALE_TYPE_CLOSEST_DATA = MI_LocaleType.CLOSEST_DATA;
+
+pub const MI_CancellationReason = enum(i32) {
+    NONE = 0,
+    TIMEOUT = 1,
+    SHUTDOWN = 2,
+    SERVICESTOP = 3,
+};
+pub const MI_REASON_NONE = MI_CancellationReason.NONE;
+pub const MI_REASON_TIMEOUT = MI_CancellationReason.TIMEOUT;
+pub const MI_REASON_SHUTDOWN = MI_CancellationReason.SHUTDOWN;
+pub const MI_REASON_SERVICESTOP = MI_CancellationReason.SERVICESTOP;
+
+pub const MI_CancelCallback = fn(
+    reason: MI_CancellationReason,
+    callbackData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_ContextFT = extern struct {
+    PostResult: isize,
+    PostInstance: isize,
+    PostIndication: isize,
+    ConstructInstance: isize,
+    ConstructParameters: isize,
+    NewInstance: isize,
+    NewDynamicInstance: isize,
+    NewParameters: isize,
+    Canceled: isize,
+    GetLocale: isize,
+    RegisterCancel: isize,
+    RequestUnload: isize,
+    RefuseUnload: isize,
+    GetLocalSession: isize,
+    SetStringOption: isize,
+    GetStringOption: isize,
+    GetNumberOption: isize,
+    GetCustomOption: isize,
+    GetCustomOptionCount: isize,
+    GetCustomOptionAt: isize,
+    WriteMessage: isize,
+    WriteProgress: isize,
+    WriteStreamParameter: isize,
+    WriteCimError: isize,
+    PromptUser: isize,
+    ShouldProcess: isize,
+    ShouldContinue: isize,
+    PostError: isize,
+    PostCimError: isize,
+    WriteError: isize,
+};
+
+pub const MI_Context = extern struct {
+    ft: ?*const MI_ContextFT,
+    reserved: [3]isize,
+};
+
+pub const MI_MainFunction = fn(
+    server: ?*MI_Server,
+) callconv(@import("std").os.windows.WINAPI) ?*MI_Module;
+
+pub const MI_QualifierSetFT = extern struct {
+    GetQualifierCount: isize,
+    GetQualifierAt: isize,
+    GetQualifier: isize,
+};
+
+pub const MI_QualifierSet = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_QualifierSetFT,
+};
+
+pub const MI_ParameterSetFT = extern struct {
+    GetMethodReturnType: isize,
+    GetParameterCount: isize,
+    GetParameterAt: isize,
+    GetParameter: isize,
+};
+
+pub const MI_ParameterSet = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_ParameterSetFT,
+};
+
+pub const MI_ClassFT = extern struct {
+    GetClassNameA: isize,
+    GetNameSpace: isize,
+    GetServerName: isize,
+    GetElementCount: isize,
+    GetElement: isize,
+    GetElementAt: isize,
+    GetClassQualifierSet: isize,
+    GetMethodCount: isize,
+    GetMethodAt: isize,
+    GetMethod: isize,
+    GetParentClassName: isize,
+    GetParentClass: isize,
+    Delete: isize,
+    Clone: isize,
+};
+
+pub const MI_Class = extern struct {
+    ft: ?*const MI_ClassFT,
+    classDecl: ?*const MI_ClassDecl,
+    namespaceName: ?*const u16,
+    serverName: ?*const u16,
+    reserved: [4]isize,
+};
+
+pub const MI_OperationCallback_ResponseType = enum(i32) {
+    No = 0,
+    Yes = 1,
+    NoToAll = 2,
+    YesToAll = 3,
+};
+pub const MI_OperationCallback_ResponseType_No = MI_OperationCallback_ResponseType.No;
+pub const MI_OperationCallback_ResponseType_Yes = MI_OperationCallback_ResponseType.Yes;
+pub const MI_OperationCallback_ResponseType_NoToAll = MI_OperationCallback_ResponseType.NoToAll;
+pub const MI_OperationCallback_ResponseType_YesToAll = MI_OperationCallback_ResponseType.YesToAll;
+
+pub const MI_OperationCallback_PromptUser = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    message: ?*const u16,
+    promptType: MI_PromptType,
+    promptUserResult: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_WriteError = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    instance: ?*MI_Instance,
+    writeErrorResult: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_WriteMessage = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    channel: u32,
+    message: ?*const u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_WriteProgress = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    activity: ?*const u16,
+    currentOperation: ?*const u16,
+    statusDescription: ?*const u16,
+    percentageComplete: u32,
+    secondsRemaining: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_Instance = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    instance: ?*const MI_Instance,
+    moreResults: u8,
+    resultCode: MI_Result,
+    errorString: ?*const u16,
+    errorDetails: ?*const MI_Instance,
+    resultAcknowledgement: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_StreamedParameter = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    parameterName: ?*const u16,
+    resultType: MI_Type,
+    result: ?*const MI_Value,
+    resultAcknowledgement: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_Indication = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    instance: ?*const MI_Instance,
+    bookmark: ?*const u16,
+    machineID: ?*const u16,
+    moreResults: u8,
+    resultCode: MI_Result,
+    errorString: ?*const u16,
+    errorDetails: ?*const MI_Instance,
+    resultAcknowledgement: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallback_Class = fn(
+    operation: ?*MI_Operation,
+    callbackContext: ?*c_void,
+    classResult: ?*const MI_Class,
+    moreResults: u8,
+    resultCode: MI_Result,
+    errorString: ?*const u16,
+    errorDetails: ?*const MI_Instance,
+    resultAcknowledgement: isize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const MI_OperationCallbacks = extern struct {
+    callbackContext: ?*c_void,
+    promptUser: ?MI_OperationCallback_PromptUser,
+    writeError: ?MI_OperationCallback_WriteError,
+    writeMessage: ?MI_OperationCallback_WriteMessage,
+    writeProgress: ?MI_OperationCallback_WriteProgress,
+    instanceResult: ?MI_OperationCallback_Instance,
+    indicationResult: ?MI_OperationCallback_Indication,
+    classResult: ?MI_OperationCallback_Class,
+    streamedParameterResult: ?MI_OperationCallback_StreamedParameter,
+};
+
+pub const MI_SessionCallbacks = extern struct {
+    callbackContext: ?*c_void,
+    writeMessage: isize,
+    writeError: isize,
+};
+
+pub const MI_UsernamePasswordCreds = extern struct {
+    domain: ?*const u16,
+    username: ?*const u16,
+    password: ?*const u16,
+};
+
+pub const MI_UserCredentials = extern struct {
+    authenticationType: ?*const u16,
+    credentials: extern union {
+        usernamePassword: MI_UsernamePasswordCreds,
+        certificateThumbprint: ?*const u16,
+    },
+};
+
+pub const MI_SubscriptionDeliveryType = enum(i32) {
+    ll = 1,
+    sh = 2,
+};
+pub const MI_SubscriptionDeliveryType_Pull = MI_SubscriptionDeliveryType.ll;
+pub const MI_SubscriptionDeliveryType_Push = MI_SubscriptionDeliveryType.sh;
+
+pub const MI_SubscriptionDeliveryOptionsFT = extern struct {
+    SetString: isize,
+    SetNumber: isize,
+    SetDateTime: isize,
+    SetInterval: isize,
+    AddCredentials: isize,
+    Delete: isize,
+    GetString: isize,
+    GetNumber: isize,
+    GetDateTime: isize,
+    GetInterval: isize,
+    GetOptionCount: isize,
+    GetOptionAt: isize,
+    GetOption: isize,
+    GetCredentialsCount: isize,
+    GetCredentialsAt: isize,
+    GetCredentialsPasswordAt: isize,
+    Clone: isize,
+};
+
+pub const MI_SubscriptionDeliveryOptions = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_SubscriptionDeliveryOptionsFT,
+};
+
+pub const MI_Serializer = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+};
+
+pub const MI_Deserializer = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+};
+
+pub const MI_SerializerFT = extern struct {
+    Close: isize,
+    SerializeClass: isize,
+    SerializeInstance: isize,
+};
+
+pub const MI_Deserializer_ClassObjectNeeded = fn(
+    context: ?*c_void,
+    serverName: ?*const u16,
+    namespaceName: ?*const u16,
+    className: ?*const u16,
+    requestedClassObject: ?*?*MI_Class,
+) callconv(@import("std").os.windows.WINAPI) MI_Result;
+
+pub const MI_DeserializerFT = extern struct {
+    Close: isize,
+    DeserializeClass: isize,
+    Class_GetClassName: isize,
+    Class_GetParentClassName: isize,
+    DeserializeInstance: isize,
+    Instance_GetClassName: isize,
+};
+
+pub const MI_ApplicationFT = extern struct {
+    Close: isize,
+    NewSession: isize,
+    NewHostedProvider: isize,
+    NewInstance: isize,
+    NewDestinationOptions: isize,
+    NewOperationOptions: isize,
+    NewSubscriptionDeliveryOptions: isize,
+    NewSerializer: isize,
+    NewDeserializer: isize,
+    NewInstanceFromClass: isize,
+    NewClass: isize,
+};
+
+pub const MI_HostedProviderFT = extern struct {
+    Close: isize,
+    GetApplication: isize,
+};
+
+pub const MI_SessionFT = extern struct {
+    Close: isize,
+    GetApplication: isize,
+    GetInstance: isize,
+    ModifyInstance: isize,
+    CreateInstance: isize,
+    DeleteInstance: isize,
+    Invoke: isize,
+    EnumerateInstances: isize,
+    QueryInstances: isize,
+    AssociatorInstances: isize,
+    ReferenceInstances: isize,
+    Subscribe: isize,
+    GetClass: isize,
+    EnumerateClasses: isize,
+    TestConnection: isize,
+};
+
+pub const MI_OperationFT = extern struct {
+    Close: isize,
+    Cancel: isize,
+    GetSession: isize,
+    GetInstance: isize,
+    GetIndication: isize,
+    GetClass: isize,
+};
+
+pub const MI_DestinationOptionsFT = extern struct {
+    Delete: isize,
+    SetString: isize,
+    SetNumber: isize,
+    AddCredentials: isize,
+    GetString: isize,
+    GetNumber: isize,
+    GetOptionCount: isize,
+    GetOptionAt: isize,
+    GetOption: isize,
+    GetCredentialsCount: isize,
+    GetCredentialsAt: isize,
+    GetCredentialsPasswordAt: isize,
+    Clone: isize,
+    SetInterval: isize,
+    GetInterval: isize,
+};
+
+pub const MI_OperationOptionsFT = extern struct {
+    Delete: isize,
+    SetString: isize,
+    SetNumber: isize,
+    SetCustomOption: isize,
+    GetString: isize,
+    GetNumber: isize,
+    GetOptionCount: isize,
+    GetOptionAt: isize,
+    GetOption: isize,
+    GetEnabledChannels: isize,
+    Clone: isize,
+    SetInterval: isize,
+    GetInterval: isize,
+};
+
+pub const MI_Application = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_ApplicationFT,
+};
+
+pub const MI_Session = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_SessionFT,
+};
+
+pub const MI_Operation = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_OperationFT,
+};
+
+pub const MI_HostedProvider = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_HostedProviderFT,
+};
+
+pub const MI_DestinationOptions = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_DestinationOptionsFT,
+};
+
+pub const MI_OperationOptions = extern struct {
+    reserved1: u64,
+    reserved2: isize,
+    ft: ?*const MI_OperationOptionsFT,
+};
+
+pub const MI_UtilitiesFT = extern struct {
+    MapErrorToMiErrorCategory: isize,
+    CimErrorFromErrorCode: isize,
+};
+
+pub const MI_ClientFT_V1 = extern struct {
+    applicationFT: ?*const MI_ApplicationFT,
+    sessionFT: ?*const MI_SessionFT,
+    operationFT: ?*const MI_OperationFT,
+    hostedProviderFT: ?*const MI_HostedProviderFT,
+    serializerFT: ?*const MI_SerializerFT,
+    deserializerFT: ?*const MI_DeserializerFT,
+    subscribeDeliveryOptionsFT: ?*const MI_SubscriptionDeliveryOptionsFT,
+    destinationOptionsFT: ?*const MI_DestinationOptionsFT,
+    operationOptionsFT: ?*const MI_OperationOptionsFT,
+    utilitiesFT: ?*const MI_UtilitiesFT,
+};
+
+pub const MI_DestinationOptions_ImpersonationType = enum(i32) {
+    Default = 0,
+    None = 1,
+    Identify = 2,
+    Impersonate = 3,
+    Delegate = 4,
+};
+pub const MI_DestinationOptions_ImpersonationType_Default = MI_DestinationOptions_ImpersonationType.Default;
+pub const MI_DestinationOptions_ImpersonationType_None = MI_DestinationOptions_ImpersonationType.None;
+pub const MI_DestinationOptions_ImpersonationType_Identify = MI_DestinationOptions_ImpersonationType.Identify;
+pub const MI_DestinationOptions_ImpersonationType_Impersonate = MI_DestinationOptions_ImpersonationType.Impersonate;
+pub const MI_DestinationOptions_ImpersonationType_Delegate = MI_DestinationOptions_ImpersonationType.Delegate;
+
 const CLSID_WbemDefPath_Value = @import("../zig.zig").Guid.initString("cf4cc405-e2c5-4ddd-b3ce-5e7582d8c9fa");
 pub const CLSID_WbemDefPath = &CLSID_WbemDefPath_Value;
 
@@ -6482,1647 +8123,6 @@ pub const ISWbemRefreshableItem = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const MI_Result = enum(i32) {
-    OK = 0,
-    FAILED = 1,
-    ACCESS_DENIED = 2,
-    INVALID_NAMESPACE = 3,
-    INVALID_PARAMETER = 4,
-    INVALID_CLASS = 5,
-    NOT_FOUND = 6,
-    NOT_SUPPORTED = 7,
-    CLASS_HAS_CHILDREN = 8,
-    CLASS_HAS_INSTANCES = 9,
-    INVALID_SUPERCLASS = 10,
-    ALREADY_EXISTS = 11,
-    NO_SUCH_PROPERTY = 12,
-    TYPE_MISMATCH = 13,
-    QUERY_LANGUAGE_NOT_SUPPORTED = 14,
-    INVALID_QUERY = 15,
-    METHOD_NOT_AVAILABLE = 16,
-    METHOD_NOT_FOUND = 17,
-    NAMESPACE_NOT_EMPTY = 20,
-    INVALID_ENUMERATION_CONTEXT = 21,
-    INVALID_OPERATION_TIMEOUT = 22,
-    PULL_HAS_BEEN_ABANDONED = 23,
-    PULL_CANNOT_BE_ABANDONED = 24,
-    FILTERED_ENUMERATION_NOT_SUPPORTED = 25,
-    CONTINUATION_ON_ERROR_NOT_SUPPORTED = 26,
-    SERVER_LIMITS_EXCEEDED = 27,
-    SERVER_IS_SHUTTING_DOWN = 28,
-};
-pub const MI_RESULT_OK = MI_Result.OK;
-pub const MI_RESULT_FAILED = MI_Result.FAILED;
-pub const MI_RESULT_ACCESS_DENIED = MI_Result.ACCESS_DENIED;
-pub const MI_RESULT_INVALID_NAMESPACE = MI_Result.INVALID_NAMESPACE;
-pub const MI_RESULT_INVALID_PARAMETER = MI_Result.INVALID_PARAMETER;
-pub const MI_RESULT_INVALID_CLASS = MI_Result.INVALID_CLASS;
-pub const MI_RESULT_NOT_FOUND = MI_Result.NOT_FOUND;
-pub const MI_RESULT_NOT_SUPPORTED = MI_Result.NOT_SUPPORTED;
-pub const MI_RESULT_CLASS_HAS_CHILDREN = MI_Result.CLASS_HAS_CHILDREN;
-pub const MI_RESULT_CLASS_HAS_INSTANCES = MI_Result.CLASS_HAS_INSTANCES;
-pub const MI_RESULT_INVALID_SUPERCLASS = MI_Result.INVALID_SUPERCLASS;
-pub const MI_RESULT_ALREADY_EXISTS = MI_Result.ALREADY_EXISTS;
-pub const MI_RESULT_NO_SUCH_PROPERTY = MI_Result.NO_SUCH_PROPERTY;
-pub const MI_RESULT_TYPE_MISMATCH = MI_Result.TYPE_MISMATCH;
-pub const MI_RESULT_QUERY_LANGUAGE_NOT_SUPPORTED = MI_Result.QUERY_LANGUAGE_NOT_SUPPORTED;
-pub const MI_RESULT_INVALID_QUERY = MI_Result.INVALID_QUERY;
-pub const MI_RESULT_METHOD_NOT_AVAILABLE = MI_Result.METHOD_NOT_AVAILABLE;
-pub const MI_RESULT_METHOD_NOT_FOUND = MI_Result.METHOD_NOT_FOUND;
-pub const MI_RESULT_NAMESPACE_NOT_EMPTY = MI_Result.NAMESPACE_NOT_EMPTY;
-pub const MI_RESULT_INVALID_ENUMERATION_CONTEXT = MI_Result.INVALID_ENUMERATION_CONTEXT;
-pub const MI_RESULT_INVALID_OPERATION_TIMEOUT = MI_Result.INVALID_OPERATION_TIMEOUT;
-pub const MI_RESULT_PULL_HAS_BEEN_ABANDONED = MI_Result.PULL_HAS_BEEN_ABANDONED;
-pub const MI_RESULT_PULL_CANNOT_BE_ABANDONED = MI_Result.PULL_CANNOT_BE_ABANDONED;
-pub const MI_RESULT_FILTERED_ENUMERATION_NOT_SUPPORTED = MI_Result.FILTERED_ENUMERATION_NOT_SUPPORTED;
-pub const MI_RESULT_CONTINUATION_ON_ERROR_NOT_SUPPORTED = MI_Result.CONTINUATION_ON_ERROR_NOT_SUPPORTED;
-pub const MI_RESULT_SERVER_LIMITS_EXCEEDED = MI_Result.SERVER_LIMITS_EXCEEDED;
-pub const MI_RESULT_SERVER_IS_SHUTTING_DOWN = MI_Result.SERVER_IS_SHUTTING_DOWN;
-
-pub const MI_ErrorCategory = enum(i32) {
-    NOT_SPECIFIED = 0,
-    OPEN_ERROR = 1,
-    CLOS_EERROR = 2,
-    DEVICE_ERROR = 3,
-    DEADLOCK_DETECTED = 4,
-    INVALID_ARGUMENT = 5,
-    INVALID_DATA = 6,
-    INVALID_OPERATION = 7,
-    INVALID_RESULT = 8,
-    INVALID_TYPE = 9,
-    METADATA_ERROR = 10,
-    NOT_IMPLEMENTED = 11,
-    NOT_INSTALLED = 12,
-    OBJECT_NOT_FOUND = 13,
-    OPERATION_STOPPED = 14,
-    OPERATION_TIMEOUT = 15,
-    SYNTAX_ERROR = 16,
-    PARSER_ERROR = 17,
-    ACCESS_DENIED = 18,
-    RESOURCE_BUSY = 19,
-    RESOURCE_EXISTS = 20,
-    RESOURCE_UNAVAILABLE = 21,
-    READ_ERROR = 22,
-    WRITE_ERROR = 23,
-    FROM_STDERR = 24,
-    SECURITY_ERROR = 25,
-    PROTOCOL_ERROR = 26,
-    CONNECTION_ERROR = 27,
-    AUTHENTICATION_ERROR = 28,
-    LIMITS_EXCEEDED = 29,
-    QUOTA_EXCEEDED = 30,
-    NOT_ENABLED = 31,
-};
-pub const MI_ERRORCATEGORY_NOT_SPECIFIED = MI_ErrorCategory.NOT_SPECIFIED;
-pub const MI_ERRORCATEGORY_OPEN_ERROR = MI_ErrorCategory.OPEN_ERROR;
-pub const MI_ERRORCATEGORY_CLOS_EERROR = MI_ErrorCategory.CLOS_EERROR;
-pub const MI_ERRORCATEGORY_DEVICE_ERROR = MI_ErrorCategory.DEVICE_ERROR;
-pub const MI_ERRORCATEGORY_DEADLOCK_DETECTED = MI_ErrorCategory.DEADLOCK_DETECTED;
-pub const MI_ERRORCATEGORY_INVALID_ARGUMENT = MI_ErrorCategory.INVALID_ARGUMENT;
-pub const MI_ERRORCATEGORY_INVALID_DATA = MI_ErrorCategory.INVALID_DATA;
-pub const MI_ERRORCATEGORY_INVALID_OPERATION = MI_ErrorCategory.INVALID_OPERATION;
-pub const MI_ERRORCATEGORY_INVALID_RESULT = MI_ErrorCategory.INVALID_RESULT;
-pub const MI_ERRORCATEGORY_INVALID_TYPE = MI_ErrorCategory.INVALID_TYPE;
-pub const MI_ERRORCATEGORY_METADATA_ERROR = MI_ErrorCategory.METADATA_ERROR;
-pub const MI_ERRORCATEGORY_NOT_IMPLEMENTED = MI_ErrorCategory.NOT_IMPLEMENTED;
-pub const MI_ERRORCATEGORY_NOT_INSTALLED = MI_ErrorCategory.NOT_INSTALLED;
-pub const MI_ERRORCATEGORY_OBJECT_NOT_FOUND = MI_ErrorCategory.OBJECT_NOT_FOUND;
-pub const MI_ERRORCATEGORY_OPERATION_STOPPED = MI_ErrorCategory.OPERATION_STOPPED;
-pub const MI_ERRORCATEGORY_OPERATION_TIMEOUT = MI_ErrorCategory.OPERATION_TIMEOUT;
-pub const MI_ERRORCATEGORY_SYNTAX_ERROR = MI_ErrorCategory.SYNTAX_ERROR;
-pub const MI_ERRORCATEGORY_PARSER_ERROR = MI_ErrorCategory.PARSER_ERROR;
-pub const MI_ERRORCATEGORY_ACCESS_DENIED = MI_ErrorCategory.ACCESS_DENIED;
-pub const MI_ERRORCATEGORY_RESOURCE_BUSY = MI_ErrorCategory.RESOURCE_BUSY;
-pub const MI_ERRORCATEGORY_RESOURCE_EXISTS = MI_ErrorCategory.RESOURCE_EXISTS;
-pub const MI_ERRORCATEGORY_RESOURCE_UNAVAILABLE = MI_ErrorCategory.RESOURCE_UNAVAILABLE;
-pub const MI_ERRORCATEGORY_READ_ERROR = MI_ErrorCategory.READ_ERROR;
-pub const MI_ERRORCATEGORY_WRITE_ERROR = MI_ErrorCategory.WRITE_ERROR;
-pub const MI_ERRORCATEGORY_FROM_STDERR = MI_ErrorCategory.FROM_STDERR;
-pub const MI_ERRORCATEGORY_SECURITY_ERROR = MI_ErrorCategory.SECURITY_ERROR;
-pub const MI_ERRORCATEGORY_PROTOCOL_ERROR = MI_ErrorCategory.PROTOCOL_ERROR;
-pub const MI_ERRORCATEGORY_CONNECTION_ERROR = MI_ErrorCategory.CONNECTION_ERROR;
-pub const MI_ERRORCATEGORY_AUTHENTICATION_ERROR = MI_ErrorCategory.AUTHENTICATION_ERROR;
-pub const MI_ERRORCATEGORY_LIMITS_EXCEEDED = MI_ErrorCategory.LIMITS_EXCEEDED;
-pub const MI_ERRORCATEGORY_QUOTA_EXCEEDED = MI_ErrorCategory.QUOTA_EXCEEDED;
-pub const MI_ERRORCATEGORY_NOT_ENABLED = MI_ErrorCategory.NOT_ENABLED;
-
-pub const MI_PromptType = enum(i32) {
-    NORMAL = 0,
-    CRITICAL = 1,
-};
-pub const MI_PROMPTTYPE_NORMAL = MI_PromptType.NORMAL;
-pub const MI_PROMPTTYPE_CRITICAL = MI_PromptType.CRITICAL;
-
-pub const MI_CallbackMode = enum(i32) {
-    REPORT = 0,
-    INQUIRE = 1,
-    IGNORE = 2,
-};
-pub const MI_CALLBACKMODE_REPORT = MI_CallbackMode.REPORT;
-pub const MI_CALLBACKMODE_INQUIRE = MI_CallbackMode.INQUIRE;
-pub const MI_CALLBACKMODE_IGNORE = MI_CallbackMode.IGNORE;
-
-pub const MI_ProviderArchitecture = enum(i32) {
-    @"32BIT" = 0,
-    @"64BIT" = 1,
-};
-pub const MI_PROVIDER_ARCHITECTURE_32BIT = MI_ProviderArchitecture.@"32BIT";
-pub const MI_PROVIDER_ARCHITECTURE_64BIT = MI_ProviderArchitecture.@"64BIT";
-
-pub const MI_Type = enum(i32) {
-    BOOLEAN = 0,
-    UINT8 = 1,
-    SINT8 = 2,
-    UINT16 = 3,
-    SINT16 = 4,
-    UINT32 = 5,
-    SINT32 = 6,
-    UINT64 = 7,
-    SINT64 = 8,
-    REAL32 = 9,
-    REAL64 = 10,
-    CHAR16 = 11,
-    DATETIME = 12,
-    STRING = 13,
-    REFERENCE = 14,
-    INSTANCE = 15,
-    BOOLEANA = 16,
-    UINT8A = 17,
-    SINT8A = 18,
-    UINT16A = 19,
-    SINT16A = 20,
-    UINT32A = 21,
-    SINT32A = 22,
-    UINT64A = 23,
-    SINT64A = 24,
-    REAL32A = 25,
-    REAL64A = 26,
-    CHAR16A = 27,
-    DATETIMEA = 28,
-    STRINGA = 29,
-    REFERENCEA = 30,
-    INSTANCEA = 31,
-    // ARRAY = 16, this enum value conflicts with BOOLEANA
-};
-pub const MI_BOOLEAN = MI_Type.BOOLEAN;
-pub const MI_UINT8 = MI_Type.UINT8;
-pub const MI_SINT8 = MI_Type.SINT8;
-pub const MI_UINT16 = MI_Type.UINT16;
-pub const MI_SINT16 = MI_Type.SINT16;
-pub const MI_UINT32 = MI_Type.UINT32;
-pub const MI_SINT32 = MI_Type.SINT32;
-pub const MI_UINT64 = MI_Type.UINT64;
-pub const MI_SINT64 = MI_Type.SINT64;
-pub const MI_REAL32 = MI_Type.REAL32;
-pub const MI_REAL64 = MI_Type.REAL64;
-pub const MI_CHAR16 = MI_Type.CHAR16;
-pub const MI_DATETIME = MI_Type.DATETIME;
-pub const MI_STRING = MI_Type.STRING;
-pub const MI_REFERENCE = MI_Type.REFERENCE;
-pub const MI_INSTANCE = MI_Type.INSTANCE;
-pub const MI_BOOLEANA = MI_Type.BOOLEANA;
-pub const MI_UINT8A = MI_Type.UINT8A;
-pub const MI_SINT8A = MI_Type.SINT8A;
-pub const MI_UINT16A = MI_Type.UINT16A;
-pub const MI_SINT16A = MI_Type.SINT16A;
-pub const MI_UINT32A = MI_Type.UINT32A;
-pub const MI_SINT32A = MI_Type.SINT32A;
-pub const MI_UINT64A = MI_Type.UINT64A;
-pub const MI_SINT64A = MI_Type.SINT64A;
-pub const MI_REAL32A = MI_Type.REAL32A;
-pub const MI_REAL64A = MI_Type.REAL64A;
-pub const MI_CHAR16A = MI_Type.CHAR16A;
-pub const MI_DATETIMEA = MI_Type.DATETIMEA;
-pub const MI_STRINGA = MI_Type.STRINGA;
-pub const MI_REFERENCEA = MI_Type.REFERENCEA;
-pub const MI_INSTANCEA = MI_Type.INSTANCEA;
-pub const MI_ARRAY = MI_Type.BOOLEANA;
-
-pub const MI_Timestamp = extern struct {
-    year: u32,
-    month: u32,
-    day: u32,
-    hour: u32,
-    minute: u32,
-    second: u32,
-    microseconds: u32,
-    utc: i32,
-};
-
-pub const MI_Interval = extern struct {
-    days: u32,
-    hours: u32,
-    minutes: u32,
-    seconds: u32,
-    microseconds: u32,
-    __padding1: u32,
-    __padding2: u32,
-    __padding3: u32,
-};
-
-pub const MI_Datetime = extern struct {
-    isTimestamp: u32,
-    u: extern union {
-        timestamp: MI_Timestamp,
-        interval: MI_Interval,
-    },
-};
-
-pub const MI_BooleanA = extern struct {
-    data: ?*u8,
-    size: u32,
-};
-
-pub const MI_Uint8A = extern struct {
-    data: ?*u8,
-    size: u32,
-};
-
-pub const MI_Sint8A = extern struct {
-    data: ?*i8,
-    size: u32,
-};
-
-pub const MI_Uint16A = extern struct {
-    data: ?*u16,
-    size: u32,
-};
-
-pub const MI_Sint16A = extern struct {
-    data: ?*i16,
-    size: u32,
-};
-
-pub const MI_Uint32A = extern struct {
-    data: ?*u32,
-    size: u32,
-};
-
-pub const MI_Sint32A = extern struct {
-    data: ?*i32,
-    size: u32,
-};
-
-pub const MI_Uint64A = extern struct {
-    data: ?*u64,
-    size: u32,
-};
-
-pub const MI_Sint64A = extern struct {
-    data: ?*i64,
-    size: u32,
-};
-
-pub const MI_Real32A = extern struct {
-    data: ?*f32,
-    size: u32,
-};
-
-pub const MI_Real64A = extern struct {
-    data: ?*f64,
-    size: u32,
-};
-
-pub const MI_Char16A = extern struct {
-    data: ?*u16,
-    size: u32,
-};
-
-pub const MI_DatetimeA = extern struct {
-    data: ?*MI_Datetime,
-    size: u32,
-};
-
-pub const MI_StringA = extern struct {
-    data: ?*?*u16,
-    size: u32,
-};
-
-pub const MI_ReferenceA = extern struct {
-    data: ?*?*MI_Instance,
-    size: u32,
-};
-
-pub const MI_InstanceA = extern struct {
-    data: ?*?*MI_Instance,
-    size: u32,
-};
-
-pub const MI_Array = extern struct {
-    data: ?*c_void,
-    size: u32,
-};
-
-pub const MI_ConstBooleanA = extern struct {
-    data: ?*const u8,
-    size: u32,
-};
-
-pub const MI_ConstUint8A = extern struct {
-    data: ?*const u8,
-    size: u32,
-};
-
-pub const MI_ConstSint8A = extern struct {
-    data: ?*const i8,
-    size: u32,
-};
-
-pub const MI_ConstUint16A = extern struct {
-    data: ?*const u16,
-    size: u32,
-};
-
-pub const MI_ConstSint16A = extern struct {
-    data: ?*const i16,
-    size: u32,
-};
-
-pub const MI_ConstUint32A = extern struct {
-    data: ?*const u32,
-    size: u32,
-};
-
-pub const MI_ConstSint32A = extern struct {
-    data: ?*const i32,
-    size: u32,
-};
-
-pub const MI_ConstUint64A = extern struct {
-    data: ?*const u64,
-    size: u32,
-};
-
-pub const MI_ConstSint64A = extern struct {
-    data: ?*const i64,
-    size: u32,
-};
-
-pub const MI_ConstReal32A = extern struct {
-    data: ?*const f32,
-    size: u32,
-};
-
-pub const MI_ConstReal64A = extern struct {
-    data: ?*const f64,
-    size: u32,
-};
-
-pub const MI_ConstChar16A = extern struct {
-    data: ?*const u16,
-    size: u32,
-};
-
-pub const MI_ConstDatetimeA = extern struct {
-    data: ?*const MI_Datetime,
-    size: u32,
-};
-
-pub const MI_ConstStringA = extern struct {
-    data: ?*const ?*u16,
-    size: u32,
-};
-
-pub const MI_ConstReferenceA = extern struct {
-    data: ?*const ?*MI_Instance,
-    size: u32,
-};
-
-pub const MI_ConstInstanceA = extern struct {
-    data: ?*const ?*MI_Instance,
-    size: u32,
-};
-
-pub const MI_Value = extern union {
-    boolean: u8,
-    uint8: u8,
-    sint8: i8,
-    uint16: u16,
-    sint16: i16,
-    uint32: u32,
-    sint32: i32,
-    uint64: u64,
-    sint64: i64,
-    real32: f32,
-    real64: f64,
-    char16: u16,
-    datetime: MI_Datetime,
-    string: ?*u16,
-    instance: ?*MI_Instance,
-    reference: ?*MI_Instance,
-    booleana: MI_BooleanA,
-    uint8a: MI_Uint8A,
-    sint8a: MI_Sint8A,
-    uint16a: MI_Uint16A,
-    sint16a: MI_Sint16A,
-    uint32a: MI_Uint32A,
-    sint32a: MI_Sint32A,
-    uint64a: MI_Uint64A,
-    sint64a: MI_Sint64A,
-    real32a: MI_Real32A,
-    real64a: MI_Real64A,
-    char16a: MI_Char16A,
-    datetimea: MI_DatetimeA,
-    stringa: MI_StringA,
-    referencea: MI_ReferenceA,
-    instancea: MI_InstanceA,
-    array: MI_Array,
-};
-
-pub const MI_BooleanField = extern struct {
-    value: u8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint8Field = extern struct {
-    value: i8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint8Field = extern struct {
-    value: u8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint16Field = extern struct {
-    value: i16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint16Field = extern struct {
-    value: u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint32Field = extern struct {
-    value: i32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint32Field = extern struct {
-    value: u32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint64Field = extern struct {
-    value: i64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint64Field = extern struct {
-    value: u64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Real32Field = extern struct {
-    value: f32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Real64Field = extern struct {
-    value: f64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Char16Field = extern struct {
-    value: u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_DatetimeField = extern struct {
-    value: MI_Datetime,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_StringField = extern struct {
-    value: ?*u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ReferenceField = extern struct {
-    value: ?*MI_Instance,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_InstanceField = extern struct {
-    value: ?*MI_Instance,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_BooleanAField = extern struct {
-    value: MI_BooleanA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint8AField = extern struct {
-    value: MI_Uint8A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint8AField = extern struct {
-    value: MI_Sint8A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint16AField = extern struct {
-    value: MI_Uint16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint16AField = extern struct {
-    value: MI_Sint16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint32AField = extern struct {
-    value: MI_Uint32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint32AField = extern struct {
-    value: MI_Sint32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Uint64AField = extern struct {
-    value: MI_Uint64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Sint64AField = extern struct {
-    value: MI_Sint64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Real32AField = extern struct {
-    value: MI_Real32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Real64AField = extern struct {
-    value: MI_Real64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_Char16AField = extern struct {
-    value: MI_Char16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_DatetimeAField = extern struct {
-    value: MI_DatetimeA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_StringAField = extern struct {
-    value: MI_StringA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ReferenceAField = extern struct {
-    value: MI_ReferenceA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_InstanceAField = extern struct {
-    value: MI_InstanceA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ArrayField = extern struct {
-    value: MI_Array,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstBooleanField = extern struct {
-    value: u8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint8Field = extern struct {
-    value: i8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint8Field = extern struct {
-    value: u8,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint16Field = extern struct {
-    value: i16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint16Field = extern struct {
-    value: u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint32Field = extern struct {
-    value: i32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint32Field = extern struct {
-    value: u32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint64Field = extern struct {
-    value: i64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint64Field = extern struct {
-    value: u64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReal32Field = extern struct {
-    value: f32,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReal64Field = extern struct {
-    value: f64,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstChar16Field = extern struct {
-    value: u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstDatetimeField = extern struct {
-    value: MI_Datetime,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstStringField = extern struct {
-    value: ?*const u16,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReferenceField = extern struct {
-    value: ?*const MI_Instance,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstInstanceField = extern struct {
-    value: ?*const MI_Instance,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstBooleanAField = extern struct {
-    value: MI_ConstBooleanA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint8AField = extern struct {
-    value: MI_ConstUint8A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint8AField = extern struct {
-    value: MI_ConstSint8A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint16AField = extern struct {
-    value: MI_ConstUint16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint16AField = extern struct {
-    value: MI_ConstSint16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint32AField = extern struct {
-    value: MI_ConstUint32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint32AField = extern struct {
-    value: MI_ConstSint32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstUint64AField = extern struct {
-    value: MI_ConstUint64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstSint64AField = extern struct {
-    value: MI_ConstSint64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReal32AField = extern struct {
-    value: MI_ConstReal32A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReal64AField = extern struct {
-    value: MI_ConstReal64A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstChar16AField = extern struct {
-    value: MI_ConstChar16A,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstDatetimeAField = extern struct {
-    value: MI_ConstDatetimeA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstStringAField = extern struct {
-    value: MI_ConstStringA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstReferenceAField = extern struct {
-    value: MI_ConstReferenceA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ConstInstanceAField = extern struct {
-    value: MI_ConstInstanceA,
-    exists: u8,
-    flags: u8,
-};
-
-pub const MI_ServerFT = extern struct {
-    GetVersion: isize,
-    GetSystemName: isize,
-};
-
-pub const MI_Server = extern struct {
-    serverFT: ?*const MI_ServerFT,
-    contextFT: ?*const MI_ContextFT,
-    instanceFT: ?*const MI_InstanceFT,
-    propertySetFT: ?*const MI_PropertySetFT,
-    filterFT: ?*const MI_FilterFT,
-};
-
-pub const MI_FilterFT = extern struct {
-    Evaluate: isize,
-    GetExpression: isize,
-};
-
-pub const MI_Filter = extern struct {
-    ft: ?*const MI_FilterFT,
-    reserved: [3]isize,
-};
-
-pub const MI_PropertySetFT = extern struct {
-    GetElementCount: isize,
-    ContainsElement: isize,
-    AddElement: isize,
-    GetElementAt: isize,
-    Clear: isize,
-    Destruct: isize,
-    Delete: isize,
-    Clone: isize,
-};
-
-pub const MI_PropertySet = extern struct {
-    ft: ?*const MI_PropertySetFT,
-    reserved: [3]isize,
-};
-
-pub const MI_ObjectDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-    properties: ?*const ?*MI_PropertyDecl,
-    numProperties: u32,
-    size: u32,
-};
-
-pub const MI_ClassDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-    properties: ?*const ?*MI_PropertyDecl,
-    numProperties: u32,
-    size: u32,
-    superClass: ?*const u16,
-    superClassDecl: ?*const MI_ClassDecl,
-    methods: ?*const ?*MI_MethodDecl,
-    numMethods: u32,
-    schema: ?*const MI_SchemaDecl,
-    providerFT: ?*const MI_ProviderFT,
-    owningClass: ?*MI_Class,
-};
-
-pub const MI_FeatureDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-};
-
-pub const MI_ParameterDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-    type: u32,
-    className: ?*const u16,
-    subscript: u32,
-    offset: u32,
-};
-
-pub const MI_PropertyDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-    type: u32,
-    className: ?*const u16,
-    subscript: u32,
-    offset: u32,
-    origin: ?*const u16,
-    propagator: ?*const u16,
-    value: ?*const c_void,
-};
-
-pub const MI_MethodDecl_Invoke = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    methodName: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    parameters: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_MethodDecl = extern struct {
-    flags: u32,
-    code: u32,
-    name: ?*const u16,
-    qualifiers: ?*const ?*MI_Qualifier,
-    numQualifiers: u32,
-    parameters: ?*const ?*MI_ParameterDecl,
-    numParameters: u32,
-    size: u32,
-    returnType: u32,
-    origin: ?*const u16,
-    propagator: ?*const u16,
-    schema: ?*const MI_SchemaDecl,
-    function: ?MI_MethodDecl_Invoke,
-};
-
-pub const MI_QualifierDecl = extern struct {
-    name: ?*const u16,
-    type: u32,
-    scope: u32,
-    flavor: u32,
-    subscript: u32,
-    value: ?*const c_void,
-};
-
-pub const MI_Qualifier = extern struct {
-    name: ?*const u16,
-    type: u32,
-    flavor: u32,
-    value: ?*const c_void,
-};
-
-pub const MI_SchemaDecl = extern struct {
-    qualifierDecls: ?*const ?*MI_QualifierDecl,
-    numQualifierDecls: u32,
-    classDecls: ?*const ?*MI_ClassDecl,
-    numClassDecls: u32,
-};
-
-pub const MI_Module_Self = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const MI_ProviderFT_Load = fn(
-    self: ?*?*c_void,
-    selfModule: ?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_Unload = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_GetInstance = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    propertySet: ?*const MI_PropertySet,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_EnumerateInstances = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_CreateInstance = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    newInstance: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_ModifyInstance = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    modifiedInstance: ?*const MI_Instance,
-    propertySet: ?*const MI_PropertySet,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_DeleteInstance = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_AssociatorInstances = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    resultClass: ?*const u16,
-    role: ?*const u16,
-    resultRole: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_ReferenceInstances = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    role: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_EnableIndications = fn(
-    self: ?*c_void,
-    indicationsContext: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_DisableIndications = fn(
-    self: ?*c_void,
-    indicationsContext: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_Subscribe = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    filter: ?*const MI_Filter,
-    bookmark: ?*const u16,
-    subscriptionID: u64,
-    subscriptionSelf: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_Unsubscribe = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    subscriptionID: u64,
-    subscriptionSelf: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT_Invoke = fn(
-    self: ?*c_void,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    methodName: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    inputParameters: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ProviderFT = extern struct {
-    Load: ?MI_ProviderFT_Load,
-    Unload: ?MI_ProviderFT_Unload,
-    GetInstance: ?MI_ProviderFT_GetInstance,
-    EnumerateInstances: ?MI_ProviderFT_EnumerateInstances,
-    CreateInstance: ?MI_ProviderFT_CreateInstance,
-    ModifyInstance: ?MI_ProviderFT_ModifyInstance,
-    DeleteInstance: ?MI_ProviderFT_DeleteInstance,
-    AssociatorInstances: ?MI_ProviderFT_AssociatorInstances,
-    ReferenceInstances: ?MI_ProviderFT_ReferenceInstances,
-    EnableIndications: ?MI_ProviderFT_EnableIndications,
-    DisableIndications: ?MI_ProviderFT_DisableIndications,
-    Subscribe: ?MI_ProviderFT_Subscribe,
-    Unsubscribe: ?MI_ProviderFT_Unsubscribe,
-    Invoke: ?MI_ProviderFT_Invoke,
-};
-
-pub const MI_Module_Load = fn(
-    self: ?*?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_Module_Unload = fn(
-    self: ?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_Module = extern struct {
-    version: u32,
-    generatorVersion: u32,
-    flags: u32,
-    charSize: u32,
-    schemaDecl: ?*MI_SchemaDecl,
-    Load: ?MI_Module_Load,
-    Unload: ?MI_Module_Unload,
-    dynamicProviderFT: ?*const MI_ProviderFT,
-};
-
-pub const MI_InstanceFT = extern struct {
-    Clone: isize,
-    Destruct: isize,
-    Delete: isize,
-    IsA: isize,
-    GetClassNameA: isize,
-    SetNameSpace: isize,
-    GetNameSpace: isize,
-    GetElementCount: isize,
-    AddElement: isize,
-    SetElement: isize,
-    SetElementAt: isize,
-    GetElement: isize,
-    GetElementAt: isize,
-    ClearElement: isize,
-    ClearElementAt: isize,
-    GetServerName: isize,
-    SetServerName: isize,
-    GetClass: isize,
-};
-
-pub const MI_InstanceExFT = extern struct {
-    parent: MI_InstanceFT,
-    Normalize: isize,
-};
-
-pub const MI_Instance = extern struct {
-    ft: ?*const MI_InstanceFT,
-    classDecl: ?*const MI_ClassDecl,
-    serverName: ?*const u16,
-    nameSpace: ?*const u16,
-    reserved: [4]isize,
-};
-
-pub const MI_LocaleType = enum(i32) {
-    REQUESTED_UI = 0,
-    REQUESTED_DATA = 1,
-    CLOSEST_UI = 2,
-    CLOSEST_DATA = 3,
-};
-pub const MI_LOCALE_TYPE_REQUESTED_UI = MI_LocaleType.REQUESTED_UI;
-pub const MI_LOCALE_TYPE_REQUESTED_DATA = MI_LocaleType.REQUESTED_DATA;
-pub const MI_LOCALE_TYPE_CLOSEST_UI = MI_LocaleType.CLOSEST_UI;
-pub const MI_LOCALE_TYPE_CLOSEST_DATA = MI_LocaleType.CLOSEST_DATA;
-
-pub const MI_CancellationReason = enum(i32) {
-    NONE = 0,
-    TIMEOUT = 1,
-    SHUTDOWN = 2,
-    SERVICESTOP = 3,
-};
-pub const MI_REASON_NONE = MI_CancellationReason.NONE;
-pub const MI_REASON_TIMEOUT = MI_CancellationReason.TIMEOUT;
-pub const MI_REASON_SHUTDOWN = MI_CancellationReason.SHUTDOWN;
-pub const MI_REASON_SERVICESTOP = MI_CancellationReason.SERVICESTOP;
-
-pub const MI_CancelCallback = fn(
-    reason: MI_CancellationReason,
-    callbackData: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_ContextFT = extern struct {
-    PostResult: isize,
-    PostInstance: isize,
-    PostIndication: isize,
-    ConstructInstance: isize,
-    ConstructParameters: isize,
-    NewInstance: isize,
-    NewDynamicInstance: isize,
-    NewParameters: isize,
-    Canceled: isize,
-    GetLocale: isize,
-    RegisterCancel: isize,
-    RequestUnload: isize,
-    RefuseUnload: isize,
-    GetLocalSession: isize,
-    SetStringOption: isize,
-    GetStringOption: isize,
-    GetNumberOption: isize,
-    GetCustomOption: isize,
-    GetCustomOptionCount: isize,
-    GetCustomOptionAt: isize,
-    WriteMessage: isize,
-    WriteProgress: isize,
-    WriteStreamParameter: isize,
-    WriteCimError: isize,
-    PromptUser: isize,
-    ShouldProcess: isize,
-    ShouldContinue: isize,
-    PostError: isize,
-    PostCimError: isize,
-    WriteError: isize,
-};
-
-pub const MI_Context = extern struct {
-    ft: ?*const MI_ContextFT,
-    reserved: [3]isize,
-};
-
-pub const MI_MainFunction = fn(
-    server: ?*MI_Server,
-) callconv(@import("std").os.windows.WINAPI) ?*MI_Module;
-
-pub const MI_QualifierSetFT = extern struct {
-    GetQualifierCount: isize,
-    GetQualifierAt: isize,
-    GetQualifier: isize,
-};
-
-pub const MI_QualifierSet = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_QualifierSetFT,
-};
-
-pub const MI_ParameterSetFT = extern struct {
-    GetMethodReturnType: isize,
-    GetParameterCount: isize,
-    GetParameterAt: isize,
-    GetParameter: isize,
-};
-
-pub const MI_ParameterSet = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_ParameterSetFT,
-};
-
-pub const MI_ClassFT = extern struct {
-    GetClassNameA: isize,
-    GetNameSpace: isize,
-    GetServerName: isize,
-    GetElementCount: isize,
-    GetElement: isize,
-    GetElementAt: isize,
-    GetClassQualifierSet: isize,
-    GetMethodCount: isize,
-    GetMethodAt: isize,
-    GetMethod: isize,
-    GetParentClassName: isize,
-    GetParentClass: isize,
-    Delete: isize,
-    Clone: isize,
-};
-
-pub const MI_Class = extern struct {
-    ft: ?*const MI_ClassFT,
-    classDecl: ?*const MI_ClassDecl,
-    namespaceName: ?*const u16,
-    serverName: ?*const u16,
-    reserved: [4]isize,
-};
-
-pub const MI_OperationCallback_ResponseType = enum(i32) {
-    No = 0,
-    Yes = 1,
-    NoToAll = 2,
-    YesToAll = 3,
-};
-pub const MI_OperationCallback_ResponseType_No = MI_OperationCallback_ResponseType.No;
-pub const MI_OperationCallback_ResponseType_Yes = MI_OperationCallback_ResponseType.Yes;
-pub const MI_OperationCallback_ResponseType_NoToAll = MI_OperationCallback_ResponseType.NoToAll;
-pub const MI_OperationCallback_ResponseType_YesToAll = MI_OperationCallback_ResponseType.YesToAll;
-
-pub const MI_OperationCallback_PromptUser = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    message: ?*const u16,
-    promptType: MI_PromptType,
-    promptUserResult: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_WriteError = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    instance: ?*MI_Instance,
-    writeErrorResult: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_WriteMessage = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    channel: u32,
-    message: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_WriteProgress = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    activity: ?*const u16,
-    currentOperation: ?*const u16,
-    statusDescription: ?*const u16,
-    percentageComplete: u32,
-    secondsRemaining: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_Instance = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    instance: ?*const MI_Instance,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_StreamedParameter = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    parameterName: ?*const u16,
-    resultType: MI_Type,
-    result: ?*const MI_Value,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_Indication = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    instance: ?*const MI_Instance,
-    bookmark: ?*const u16,
-    machineID: ?*const u16,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallback_Class = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*c_void,
-    classResult: ?*const MI_Class,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const MI_OperationCallbacks = extern struct {
-    callbackContext: ?*c_void,
-    promptUser: ?MI_OperationCallback_PromptUser,
-    writeError: ?MI_OperationCallback_WriteError,
-    writeMessage: ?MI_OperationCallback_WriteMessage,
-    writeProgress: ?MI_OperationCallback_WriteProgress,
-    instanceResult: ?MI_OperationCallback_Instance,
-    indicationResult: ?MI_OperationCallback_Indication,
-    classResult: ?MI_OperationCallback_Class,
-    streamedParameterResult: ?MI_OperationCallback_StreamedParameter,
-};
-
-pub const MI_SessionCallbacks = extern struct {
-    callbackContext: ?*c_void,
-    writeMessage: isize,
-    writeError: isize,
-};
-
-pub const MI_UsernamePasswordCreds = extern struct {
-    domain: ?*const u16,
-    username: ?*const u16,
-    password: ?*const u16,
-};
-
-pub const MI_UserCredentials = extern struct {
-    authenticationType: ?*const u16,
-    credentials: extern union {
-        usernamePassword: MI_UsernamePasswordCreds,
-        certificateThumbprint: ?*const u16,
-    },
-};
-
-pub const MI_SubscriptionDeliveryType = enum(i32) {
-    ll = 1,
-    sh = 2,
-};
-pub const MI_SubscriptionDeliveryType_Pull = MI_SubscriptionDeliveryType.ll;
-pub const MI_SubscriptionDeliveryType_Push = MI_SubscriptionDeliveryType.sh;
-
-pub const MI_SubscriptionDeliveryOptionsFT = extern struct {
-    SetString: isize,
-    SetNumber: isize,
-    SetDateTime: isize,
-    SetInterval: isize,
-    AddCredentials: isize,
-    Delete: isize,
-    GetString: isize,
-    GetNumber: isize,
-    GetDateTime: isize,
-    GetInterval: isize,
-    GetOptionCount: isize,
-    GetOptionAt: isize,
-    GetOption: isize,
-    GetCredentialsCount: isize,
-    GetCredentialsAt: isize,
-    GetCredentialsPasswordAt: isize,
-    Clone: isize,
-};
-
-pub const MI_SubscriptionDeliveryOptions = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_SubscriptionDeliveryOptionsFT,
-};
-
-pub const MI_Serializer = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-};
-
-pub const MI_Deserializer = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-};
-
-pub const MI_SerializerFT = extern struct {
-    Close: isize,
-    SerializeClass: isize,
-    SerializeInstance: isize,
-};
-
-pub const MI_Deserializer_ClassObjectNeeded = fn(
-    context: ?*c_void,
-    serverName: ?*const u16,
-    namespaceName: ?*const u16,
-    className: ?*const u16,
-    requestedClassObject: ?*?*MI_Class,
-) callconv(@import("std").os.windows.WINAPI) MI_Result;
-
-pub const MI_DeserializerFT = extern struct {
-    Close: isize,
-    DeserializeClass: isize,
-    Class_GetClassName: isize,
-    Class_GetParentClassName: isize,
-    DeserializeInstance: isize,
-    Instance_GetClassName: isize,
-};
-
-pub const MI_ApplicationFT = extern struct {
-    Close: isize,
-    NewSession: isize,
-    NewHostedProvider: isize,
-    NewInstance: isize,
-    NewDestinationOptions: isize,
-    NewOperationOptions: isize,
-    NewSubscriptionDeliveryOptions: isize,
-    NewSerializer: isize,
-    NewDeserializer: isize,
-    NewInstanceFromClass: isize,
-    NewClass: isize,
-};
-
-pub const MI_HostedProviderFT = extern struct {
-    Close: isize,
-    GetApplication: isize,
-};
-
-pub const MI_SessionFT = extern struct {
-    Close: isize,
-    GetApplication: isize,
-    GetInstance: isize,
-    ModifyInstance: isize,
-    CreateInstance: isize,
-    DeleteInstance: isize,
-    Invoke: isize,
-    EnumerateInstances: isize,
-    QueryInstances: isize,
-    AssociatorInstances: isize,
-    ReferenceInstances: isize,
-    Subscribe: isize,
-    GetClass: isize,
-    EnumerateClasses: isize,
-    TestConnection: isize,
-};
-
-pub const MI_OperationFT = extern struct {
-    Close: isize,
-    Cancel: isize,
-    GetSession: isize,
-    GetInstance: isize,
-    GetIndication: isize,
-    GetClass: isize,
-};
-
-pub const MI_DestinationOptionsFT = extern struct {
-    Delete: isize,
-    SetString: isize,
-    SetNumber: isize,
-    AddCredentials: isize,
-    GetString: isize,
-    GetNumber: isize,
-    GetOptionCount: isize,
-    GetOptionAt: isize,
-    GetOption: isize,
-    GetCredentialsCount: isize,
-    GetCredentialsAt: isize,
-    GetCredentialsPasswordAt: isize,
-    Clone: isize,
-    SetInterval: isize,
-    GetInterval: isize,
-};
-
-pub const MI_OperationOptionsFT = extern struct {
-    Delete: isize,
-    SetString: isize,
-    SetNumber: isize,
-    SetCustomOption: isize,
-    GetString: isize,
-    GetNumber: isize,
-    GetOptionCount: isize,
-    GetOptionAt: isize,
-    GetOption: isize,
-    GetEnabledChannels: isize,
-    Clone: isize,
-    SetInterval: isize,
-    GetInterval: isize,
-};
-
-pub const MI_Application = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_ApplicationFT,
-};
-
-pub const MI_Session = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_SessionFT,
-};
-
-pub const MI_Operation = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_OperationFT,
-};
-
-pub const MI_HostedProvider = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_HostedProviderFT,
-};
-
-pub const MI_DestinationOptions = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_DestinationOptionsFT,
-};
-
-pub const MI_OperationOptions = extern struct {
-    reserved1: u64,
-    reserved2: isize,
-    ft: ?*const MI_OperationOptionsFT,
-};
-
-pub const MI_UtilitiesFT = extern struct {
-    MapErrorToMiErrorCategory: isize,
-    CimErrorFromErrorCode: isize,
-};
-
-pub const MI_ClientFT_V1 = extern struct {
-    applicationFT: ?*const MI_ApplicationFT,
-    sessionFT: ?*const MI_SessionFT,
-    operationFT: ?*const MI_OperationFT,
-    hostedProviderFT: ?*const MI_HostedProviderFT,
-    serializerFT: ?*const MI_SerializerFT,
-    deserializerFT: ?*const MI_DeserializerFT,
-    subscribeDeliveryOptionsFT: ?*const MI_SubscriptionDeliveryOptionsFT,
-    destinationOptionsFT: ?*const MI_DestinationOptionsFT,
-    operationOptionsFT: ?*const MI_OperationOptionsFT,
-    utilitiesFT: ?*const MI_UtilitiesFT,
-};
-
-pub const MI_DestinationOptions_ImpersonationType = enum(i32) {
-    Default = 0,
-    None = 1,
-    Identify = 2,
-    Impersonate = 3,
-    Delegate = 4,
-};
-pub const MI_DestinationOptions_ImpersonationType_Default = MI_DestinationOptions_ImpersonationType.Default;
-pub const MI_DestinationOptions_ImpersonationType_None = MI_DestinationOptions_ImpersonationType.None;
-pub const MI_DestinationOptions_ImpersonationType_Identify = MI_DestinationOptions_ImpersonationType.Identify;
-pub const MI_DestinationOptions_ImpersonationType_Impersonate = MI_DestinationOptions_ImpersonationType.Impersonate;
-pub const MI_DestinationOptions_ImpersonationType_Delegate = MI_DestinationOptions_ImpersonationType.Delegate;
 
 
 //--------------------------------------------------------------------------------

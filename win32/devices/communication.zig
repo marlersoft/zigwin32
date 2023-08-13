@@ -93,68 +93,42 @@ pub const MDM_PIAFS_OUTGOING = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (18)
 //--------------------------------------------------------------------------------
-pub const COMMPROP = extern struct {
-    wPacketLength: u16,
-    wPacketVersion: u16,
-    dwServiceMask: u32,
-    dwReserved1: u32,
-    dwMaxTxQueue: u32,
-    dwMaxRxQueue: u32,
-    dwMaxBaud: u32,
-    dwProvSubType: u32,
-    dwProvCapabilities: u32,
-    dwSettableParams: u32,
-    dwSettableBaud: u32,
-    wSettableData: u16,
-    wSettableStopParity: COMMPROP_STOP_PARITY,
-    dwCurrentTxQueue: u32,
-    dwCurrentRxQueue: u32,
-    dwProvSpec1: u32,
-    dwProvSpec2: u32,
-    wcProvChar: [1]u16,
+pub const MODEMDEVCAPS = extern struct {
+    dwActualSize: u32,
+    dwRequiredSize: u32,
+    dwDevSpecificOffset: u32,
+    dwDevSpecificSize: u32,
+    dwModemProviderVersion: u32,
+    dwModemManufacturerOffset: u32,
+    dwModemManufacturerSize: u32,
+    dwModemModelOffset: u32,
+    dwModemModelSize: u32,
+    dwModemVersionOffset: u32,
+    dwModemVersionSize: u32,
+    dwDialOptions: MODEMDEVCAPS_DIAL_OPTIONS,
+    dwCallSetupFailTimer: u32,
+    dwInactivityTimeout: u32,
+    dwSpeakerVolume: MODEMDEVCAPS_SPEAKER_VOLUME,
+    dwSpeakerMode: MODEMDEVCAPS_SPEAKER_MODE,
+    dwModemOptions: u32,
+    dwMaxDTERate: u32,
+    dwMaxDCERate: u32,
+    abVariablePortion: [1]u8,
 };
 
-pub const COMSTAT = extern struct {
-    _bitfield: u32,
-    cbInQue: u32,
-    cbOutQue: u32,
-};
-
-pub const DCB = extern struct {
-    DCBlength: u32,
-    BaudRate: u32,
-    _bitfield: u32,
-    wReserved: u16,
-    XonLim: u16,
-    XoffLim: u16,
-    ByteSize: u8,
-    Parity: u8,
-    StopBits: u8,
-    XonChar: CHAR,
-    XoffChar: CHAR,
-    ErrorChar: CHAR,
-    EofChar: CHAR,
-    EvtChar: CHAR,
-    wReserved1: u16,
-};
-
-pub const COMMTIMEOUTS = extern struct {
-    ReadIntervalTimeout: u32,
-    ReadTotalTimeoutMultiplier: u32,
-    ReadTotalTimeoutConstant: u32,
-    WriteTotalTimeoutMultiplier: u32,
-    WriteTotalTimeoutConstant: u32,
-};
-
-pub const COMMCONFIG = extern struct {
-    dwSize: u32,
-    wVersion: u16,
-    wReserved: u16,
-    dcb: DCB,
-    dwProviderSubType: u32,
-    dwProviderOffset: u32,
-    dwProviderSize: u32,
-    wcProviderData: [1]u16,
+pub const MODEMSETTINGS = extern struct {
+    dwActualSize: u32,
+    dwRequiredSize: u32,
+    dwDevSpecificOffset: u32,
+    dwDevSpecificSize: u32,
+    dwCallSetupFailTimer: u32,
+    dwInactivityTimeout: u32,
+    dwSpeakerVolume: MODEM_SPEAKER_VOLUME,
+    dwSpeakerMode: MODEMSETTINGS_SPEAKER_MODE,
+    dwPreferredModemOptions: u32,
+    dwNegotiatedModemOptions: u32,
+    dwNegotiatedDCERate: u32,
+    abVariablePortion: [1]u8,
 };
 
 pub const MODEM_STATUS_FLAGS = enum(u32) {
@@ -444,42 +418,68 @@ pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE.DIAL;
 pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE.OFF;
 pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE.ON;
 
-pub const MODEMDEVCAPS = extern struct {
-    dwActualSize: u32,
-    dwRequiredSize: u32,
-    dwDevSpecificOffset: u32,
-    dwDevSpecificSize: u32,
-    dwModemProviderVersion: u32,
-    dwModemManufacturerOffset: u32,
-    dwModemManufacturerSize: u32,
-    dwModemModelOffset: u32,
-    dwModemModelSize: u32,
-    dwModemVersionOffset: u32,
-    dwModemVersionSize: u32,
-    dwDialOptions: MODEMDEVCAPS_DIAL_OPTIONS,
-    dwCallSetupFailTimer: u32,
-    dwInactivityTimeout: u32,
-    dwSpeakerVolume: MODEMDEVCAPS_SPEAKER_VOLUME,
-    dwSpeakerMode: MODEMDEVCAPS_SPEAKER_MODE,
-    dwModemOptions: u32,
-    dwMaxDTERate: u32,
-    dwMaxDCERate: u32,
-    abVariablePortion: [1]u8,
+pub const COMMPROP = extern struct {
+    wPacketLength: u16,
+    wPacketVersion: u16,
+    dwServiceMask: u32,
+    dwReserved1: u32,
+    dwMaxTxQueue: u32,
+    dwMaxRxQueue: u32,
+    dwMaxBaud: u32,
+    dwProvSubType: u32,
+    dwProvCapabilities: u32,
+    dwSettableParams: u32,
+    dwSettableBaud: u32,
+    wSettableData: u16,
+    wSettableStopParity: COMMPROP_STOP_PARITY,
+    dwCurrentTxQueue: u32,
+    dwCurrentRxQueue: u32,
+    dwProvSpec1: u32,
+    dwProvSpec2: u32,
+    wcProvChar: [1]u16,
 };
 
-pub const MODEMSETTINGS = extern struct {
-    dwActualSize: u32,
-    dwRequiredSize: u32,
-    dwDevSpecificOffset: u32,
-    dwDevSpecificSize: u32,
-    dwCallSetupFailTimer: u32,
-    dwInactivityTimeout: u32,
-    dwSpeakerVolume: MODEM_SPEAKER_VOLUME,
-    dwSpeakerMode: MODEMSETTINGS_SPEAKER_MODE,
-    dwPreferredModemOptions: u32,
-    dwNegotiatedModemOptions: u32,
-    dwNegotiatedDCERate: u32,
-    abVariablePortion: [1]u8,
+pub const COMSTAT = extern struct {
+    _bitfield: u32,
+    cbInQue: u32,
+    cbOutQue: u32,
+};
+
+pub const DCB = extern struct {
+    DCBlength: u32,
+    BaudRate: u32,
+    _bitfield: u32,
+    wReserved: u16,
+    XonLim: u16,
+    XoffLim: u16,
+    ByteSize: u8,
+    Parity: u8,
+    StopBits: u8,
+    XonChar: CHAR,
+    XoffChar: CHAR,
+    ErrorChar: CHAR,
+    EofChar: CHAR,
+    EvtChar: CHAR,
+    wReserved1: u16,
+};
+
+pub const COMMTIMEOUTS = extern struct {
+    ReadIntervalTimeout: u32,
+    ReadTotalTimeoutMultiplier: u32,
+    ReadTotalTimeoutConstant: u32,
+    WriteTotalTimeoutMultiplier: u32,
+    WriteTotalTimeoutConstant: u32,
+};
+
+pub const COMMCONFIG = extern struct {
+    dwSize: u32,
+    wVersion: u16,
+    wReserved: u16,
+    dcb: DCB,
+    dwProviderSubType: u32,
+    dwProviderOffset: u32,
+    dwProviderSize: u32,
+    wcProviderData: [1]u16,
 };
 
 

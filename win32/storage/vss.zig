@@ -8,6 +8,10 @@ pub const VSS_ASSOC_REMOVE = @as(u32, 0);
 //--------------------------------------------------------------------------------
 // Section: Types (70)
 //--------------------------------------------------------------------------------
+pub const IVssExamineWriterMetadata = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const VSS_OBJECT_TYPE = enum(i32) {
     UNKNOWN = 0,
     NONE = 1,
@@ -610,10 +614,6 @@ pub const VSS_COMPONENT_FLAGS = enum(i32) {
 pub const VSS_CF_BACKUP_RECOVERY = VSS_COMPONENT_FLAGS.BACKUP_RECOVERY;
 pub const VSS_CF_APP_ROLLBACK_RECOVERY = VSS_COMPONENT_FLAGS.APP_ROLLBACK_RECOVERY;
 pub const VSS_CF_NOT_SYSTEM_STATE = VSS_COMPONENT_FLAGS.NOT_SYSTEM_STATE;
-
-pub const IVssExamineWriterMetadata = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
 
 pub const IVssWMFiledesc = extern struct {
     pub const VTable = extern struct {

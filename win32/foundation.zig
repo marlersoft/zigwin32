@@ -6137,9 +6137,11 @@ pub const ERROR_QUIC_HANDSHAKE_FAILURE = @import("zig.zig").typedConst(HRESULT, 
 pub const ERROR_QUIC_VER_NEG_FAILURE = @import("zig.zig").typedConst(HRESULT, @as(i32, -2143223807));
 
 //--------------------------------------------------------------------------------
-// Section: Types (29)
+// Section: Types (30)
 //--------------------------------------------------------------------------------
 pub const BOOL = i32;
+
+pub const BOOLEAN = u8;
 
 // TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
 pub const BSTR = *u16;
@@ -6382,11 +6384,6 @@ pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAGS.PROTECT_FROM_CLOSE;
 //--------------------------------------------------------------------------------
 // Section: Functions (16)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlNtStatusToDosError(
-    Status: NTSTATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 pub extern "OLEAUT32" fn SysAllocString(
     psz: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?BSTR;
@@ -6468,6 +6465,11 @@ pub extern "KERNEL32" fn SetHandleInformation(
     dwMask: u32,
     dwFlags: HANDLE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ntdll" fn RtlNtStatusToDosError(
+    Status: NTSTATUS,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

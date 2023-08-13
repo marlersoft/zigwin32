@@ -2,6 +2,40 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1332)
 //--------------------------------------------------------------------------------
+pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
+pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
+pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
+pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
+pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
+pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
+pub const UTEXT_MAGIC = @as(i32, 878368812);
+pub const USET_IGNORE_SPACE = @as(i32, 1);
+pub const USET_CASE_INSENSITIVE = @as(i32, 2);
+pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
+pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
+pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
+pub const UIDNA_DEFAULT = @as(i32, 0);
+pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
+pub const UIDNA_CHECK_BIDI = @as(i32, 4);
+pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
+pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
+pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
+pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
+pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
+pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
+pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
+pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
+pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
+pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
+pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
+pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
+pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
+pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
+pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
+pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
+pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
+pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
+pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 pub const ALL_SERVICE_TYPES = @as(u32, 0);
 pub const HIGHLEVEL_SERVICE_TYPES = @as(u32, 1);
 pub const LOWLEVEL_SERVICE_TYPES = @as(u32, 2);
@@ -1300,44 +1334,142 @@ pub const UBIDI_OUTPUT_REVERSE = @as(u32, 16);
 pub const USPREP_DEFAULT = @as(u32, 0);
 pub const USPREP_ALLOW_UNASSIGNED = @as(u32, 1);
 pub const USEARCH_DONE = @as(i32, -1);
-pub const UITER_UNKNOWN_INDEX = @as(i32, -2);
-pub const UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = @as(i32, 1);
-pub const UTEXT_PROVIDER_STABLE_CHUNKS = @as(i32, 2);
-pub const UTEXT_PROVIDER_WRITABLE = @as(i32, 3);
-pub const UTEXT_PROVIDER_HAS_META_DATA = @as(i32, 4);
-pub const UTEXT_PROVIDER_OWNS_TEXT = @as(i32, 5);
-pub const UTEXT_MAGIC = @as(i32, 878368812);
-pub const USET_IGNORE_SPACE = @as(i32, 1);
-pub const USET_CASE_INSENSITIVE = @as(i32, 2);
-pub const USET_ADD_CASE_MAPPINGS = @as(i32, 4);
-pub const USET_SERIALIZED_STATIC_ARRAY_CAPACITY = @as(i32, 8);
-pub const U_PARSE_CONTEXT_LEN = @as(i32, 16);
-pub const UIDNA_DEFAULT = @as(i32, 0);
-pub const UIDNA_USE_STD3_RULES = @as(i32, 2);
-pub const UIDNA_CHECK_BIDI = @as(i32, 4);
-pub const UIDNA_CHECK_CONTEXTJ = @as(i32, 8);
-pub const UIDNA_NONTRANSITIONAL_TO_ASCII = @as(i32, 16);
-pub const UIDNA_NONTRANSITIONAL_TO_UNICODE = @as(i32, 32);
-pub const UIDNA_CHECK_CONTEXTO = @as(i32, 64);
-pub const UIDNA_ERROR_EMPTY_LABEL = @as(i32, 1);
-pub const UIDNA_ERROR_LABEL_TOO_LONG = @as(i32, 2);
-pub const UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = @as(i32, 4);
-pub const UIDNA_ERROR_LEADING_HYPHEN = @as(i32, 8);
-pub const UIDNA_ERROR_TRAILING_HYPHEN = @as(i32, 16);
-pub const UIDNA_ERROR_HYPHEN_3_4 = @as(i32, 32);
-pub const UIDNA_ERROR_LEADING_COMBINING_MARK = @as(i32, 64);
-pub const UIDNA_ERROR_DISALLOWED = @as(i32, 128);
-pub const UIDNA_ERROR_PUNYCODE = @as(i32, 256);
-pub const UIDNA_ERROR_LABEL_HAS_DOT = @as(i32, 512);
-pub const UIDNA_ERROR_INVALID_ACE_LABEL = @as(i32, 1024);
-pub const UIDNA_ERROR_BIDI = @as(i32, 2048);
-pub const UIDNA_ERROR_CONTEXTJ = @as(i32, 4096);
-pub const UIDNA_ERROR_CONTEXTO_PUNCTUATION = @as(i32, 8192);
-pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 
 //--------------------------------------------------------------------------------
 // Section: Types (358)
 //--------------------------------------------------------------------------------
+pub const UEnumeration = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UResourceBundle = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const ULocaleDisplayNames = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USet = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBiDi = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBiDiTransform = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNormalizer2 = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UConverterSelector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UBreakIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCaseMap = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UStringPrepProfile = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UIDNA = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCollator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCollationElements = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCharsetDetector = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UCharsetMatch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFieldPositionIterator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateIntervalFormat = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UGenderInfo = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UListFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const ULocaleData = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UDateFormatSymbols = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNumberFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UFormattedNumber = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UNumberingSystem = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UPluralRules = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URegularExpression = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URegion = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const URelativeDateTimeFormatter = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const UStringSearch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USpoofChecker = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const USpoofCheckResult = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const HIMC = *opaque{};
 
 pub const HIMCC = *opaque{};
@@ -1721,138 +1853,6 @@ pub const IS_TEXT_UNICODE_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.UNICODE_MASK;
 pub const IS_TEXT_UNICODE_REVERSE_MASK = IS_TEXT_UNICODE_RESULT.REVERSE_MASK;
 pub const IS_TEXT_UNICODE_NOT_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.NOT_UNICODE_MASK;
 pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK;
-
-pub const UEnumeration = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UResourceBundle = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const ULocaleDisplayNames = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USet = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBiDi = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBiDiTransform = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNormalizer2 = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UConverterSelector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UBreakIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCaseMap = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringPrepProfile = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UIDNA = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCollator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCollationElements = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetDetector = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UCharsetMatch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFieldPositionIterator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UDateIntervalFormat = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UGenderInfo = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UListFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const ULocaleData = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UDateFormatSymbols = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNumberFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UFormattedNumber = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UNumberingSystem = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UPluralRules = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URegularExpression = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URegion = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const URelativeDateTimeFormatter = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const UStringSearch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USpoofChecker = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const USpoofCheckResult = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
 
 pub const CPINFO = extern struct {
     MaxCharSize: u32,
@@ -10203,86 +10203,6 @@ pub const IActiveIME2 = extern struct {
 // Section: Functions (1237)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpA(
-    lpString1: ?[*:0]const u8,
-    lpString2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpW(
-    lpString1: ?[*:0]const u16,
-    lpString2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpiA(
-    lpString1: ?[*:0]const u8,
-    lpString2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcmpiW(
-    lpString1: ?[*:0]const u16,
-    lpString2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpynA(
-    lpString1: [*:0]u8,
-    lpString2: ?[*:0]const u8,
-    iMaxLength: i32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpynW(
-    lpString1: [*:0]u16,
-    lpString2: ?[*:0]const u16,
-    iMaxLength: i32,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpyA(
-    lpString1: ?PSTR,
-    lpString2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcpyW(
-    lpString1: ?PWSTR,
-    lpString2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcatA(
-    lpString1: ?PSTR,
-    lpString2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrcatW(
-    lpString1: ?PWSTR,
-    lpString2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrlenA(
-    lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn lstrlenW(
-    lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn IsTextUnicode(
-    // TODO: what to do with BytesParamIndex 1?
-    lpv: ?*const c_void,
-    iSize: i32,
-    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetTextCharset(
     hdc: ?HDC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -10300,16 +10220,6 @@ pub extern "GDI32" fn TranslateCharsetInfo(
     lpCs: ?*CHARSETINFO,
     dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn FindStringOrdinal(
-    dwFindStringOrdinalFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    bIgnoreCase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetDateFormatA(
@@ -18190,6 +18100,96 @@ pub extern "icu" fn utrans_getSourceSet(
     status: ?*UErrorCode,
 ) callconv(@import("std").os.windows.WINAPI) ?*USet;
 
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn FindStringOrdinal(
+    dwFindStringOrdinalFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    bIgnoreCase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcmpA(
+    lpString1: ?[*:0]const u8,
+    lpString2: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcmpW(
+    lpString1: ?[*:0]const u16,
+    lpString2: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcmpiA(
+    lpString1: ?[*:0]const u8,
+    lpString2: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcmpiW(
+    lpString1: ?[*:0]const u16,
+    lpString2: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcpynA(
+    lpString1: [*:0]u8,
+    lpString2: ?[*:0]const u8,
+    iMaxLength: i32,
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcpynW(
+    lpString1: [*:0]u16,
+    lpString2: ?[*:0]const u16,
+    iMaxLength: i32,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcpyA(
+    lpString1: ?PSTR,
+    lpString2: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcpyW(
+    lpString1: ?PWSTR,
+    lpString2: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcatA(
+    lpString1: ?PSTR,
+    lpString2: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrcatW(
+    lpString1: ?PWSTR,
+    lpString2: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrlenA(
+    lpString: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn lstrlenW(
+    lpString: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn IsTextUnicode(
+    // TODO: what to do with BytesParamIndex 1?
+    lpv: ?*const c_void,
+    iSize: i32,
+    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (69)
@@ -18214,12 +18214,6 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const IMEMENUITEMINFO = IMEMENUITEMINFOA;
         pub const REGISTERWORDENUMPROC = REGISTERWORDENUMPROCA;
         pub const IEnumRegisterWord = IEnumRegisterWordA;
-        pub const lstrcmp = lstrcmpA;
-        pub const lstrcmpi = lstrcmpiA;
-        pub const lstrcpyn = lstrcpynA;
-        pub const lstrcpy = lstrcpyA;
-        pub const lstrcat = lstrcatA;
-        pub const lstrlen = lstrlenA;
         pub const GetDateFormat = GetDateFormatA;
         pub const GetTimeFormat = GetTimeFormatA;
         pub const CompareString = CompareStringA;
@@ -18265,6 +18259,12 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const ImmEnumRegisterWord = ImmEnumRegisterWordA;
         pub const ImmGetImeMenuItems = ImmGetImeMenuItemsA;
         pub const ImmRequestMessage = ImmRequestMessageA;
+        pub const lstrcmp = lstrcmpA;
+        pub const lstrcmpi = lstrcmpiA;
+        pub const lstrcpyn = lstrcpynA;
+        pub const lstrcpy = lstrcpyA;
+        pub const lstrcat = lstrcatA;
+        pub const lstrlen = lstrlenA;
     },
     .wide => struct {
         pub const CPINFOEX = CPINFOEXW;
@@ -18285,12 +18285,6 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const IMEMENUITEMINFO = IMEMENUITEMINFOW;
         pub const REGISTERWORDENUMPROC = REGISTERWORDENUMPROCW;
         pub const IEnumRegisterWord = IEnumRegisterWordW;
-        pub const lstrcmp = lstrcmpW;
-        pub const lstrcmpi = lstrcmpiW;
-        pub const lstrcpyn = lstrcpynW;
-        pub const lstrcpy = lstrcpyW;
-        pub const lstrcat = lstrcatW;
-        pub const lstrlen = lstrlenW;
         pub const GetDateFormat = GetDateFormatW;
         pub const GetTimeFormat = GetTimeFormatW;
         pub const CompareString = CompareStringW;
@@ -18336,6 +18330,12 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const ImmEnumRegisterWord = ImmEnumRegisterWordW;
         pub const ImmGetImeMenuItems = ImmGetImeMenuItemsW;
         pub const ImmRequestMessage = ImmRequestMessageW;
+        pub const lstrcmp = lstrcmpW;
+        pub const lstrcmpi = lstrcmpiW;
+        pub const lstrcpyn = lstrcpynW;
+        pub const lstrcpy = lstrcpyW;
+        pub const lstrcat = lstrcatW;
+        pub const lstrlen = lstrlenW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CPINFOEX = *opaque{};
@@ -18356,12 +18356,6 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const IMEMENUITEMINFO = *opaque{};
         pub const REGISTERWORDENUMPROC = *opaque{};
         pub const IEnumRegisterWord = *opaque{};
-        pub const lstrcmp = *opaque{};
-        pub const lstrcmpi = *opaque{};
-        pub const lstrcpyn = *opaque{};
-        pub const lstrcpy = *opaque{};
-        pub const lstrcat = *opaque{};
-        pub const lstrlen = *opaque{};
         pub const GetDateFormat = *opaque{};
         pub const GetTimeFormat = *opaque{};
         pub const CompareString = *opaque{};
@@ -18407,6 +18401,12 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const ImmEnumRegisterWord = *opaque{};
         pub const ImmGetImeMenuItems = *opaque{};
         pub const ImmRequestMessage = *opaque{};
+        pub const lstrcmp = *opaque{};
+        pub const lstrcmpi = *opaque{};
+        pub const lstrcpyn = *opaque{};
+        pub const lstrcpy = *opaque{};
+        pub const lstrcat = *opaque{};
+        pub const lstrlen = *opaque{};
     } else struct {
         pub const CPINFOEX = @compileError("'CPINFOEX' requires that UNICODE be set to true or false in the root module");
         pub const NUMBERFMT = @compileError("'NUMBERFMT' requires that UNICODE be set to true or false in the root module");
@@ -18426,12 +18426,6 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const IMEMENUITEMINFO = @compileError("'IMEMENUITEMINFO' requires that UNICODE be set to true or false in the root module");
         pub const REGISTERWORDENUMPROC = @compileError("'REGISTERWORDENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const IEnumRegisterWord = @compileError("'IEnumRegisterWord' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcmp = @compileError("'lstrcmp' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcmpi = @compileError("'lstrcmpi' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcpyn = @compileError("'lstrcpyn' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcpy = @compileError("'lstrcpy' requires that UNICODE be set to true or false in the root module");
-        pub const lstrcat = @compileError("'lstrcat' requires that UNICODE be set to true or false in the root module");
-        pub const lstrlen = @compileError("'lstrlen' requires that UNICODE be set to true or false in the root module");
         pub const GetDateFormat = @compileError("'GetDateFormat' requires that UNICODE be set to true or false in the root module");
         pub const GetTimeFormat = @compileError("'GetTimeFormat' requires that UNICODE be set to true or false in the root module");
         pub const CompareString = @compileError("'CompareString' requires that UNICODE be set to true or false in the root module");
@@ -18477,6 +18471,12 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const ImmEnumRegisterWord = @compileError("'ImmEnumRegisterWord' requires that UNICODE be set to true or false in the root module");
         pub const ImmGetImeMenuItems = @compileError("'ImmGetImeMenuItems' requires that UNICODE be set to true or false in the root module");
         pub const ImmRequestMessage = @compileError("'ImmRequestMessage' requires that UNICODE be set to true or false in the root module");
+        pub const lstrcmp = @compileError("'lstrcmp' requires that UNICODE be set to true or false in the root module");
+        pub const lstrcmpi = @compileError("'lstrcmpi' requires that UNICODE be set to true or false in the root module");
+        pub const lstrcpyn = @compileError("'lstrcpyn' requires that UNICODE be set to true or false in the root module");
+        pub const lstrcpy = @compileError("'lstrcpy' requires that UNICODE be set to true or false in the root module");
+        pub const lstrcat = @compileError("'lstrcat' requires that UNICODE be set to true or false in the root module");
+        pub const lstrlen = @compileError("'lstrlen' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

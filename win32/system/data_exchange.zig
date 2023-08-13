@@ -22,8 +22,8 @@ pub const DDE_FREQUESTED = @as(u32, 4096);
 pub const DDE_FAPPSTATUS = @as(u32, 255);
 pub const DDE_FNOTPROCESSED = @as(u32, 0);
 pub const MSGF_DDEMGR = @as(u32, 32769);
-pub const CP_WINANSI = @as(u32, 1004);
-pub const CP_WINUNICODE = @as(u32, 1200);
+pub const CP_WINANSI = @as(i32, 1004);
+pub const CP_WINUNICODE = @as(i32, 1200);
 pub const XTYPF_NOBLOCK = @as(u32, 2);
 pub const XTYPF_NODATA = @as(u32, 4);
 pub const XTYPF_ACKREQ = @as(u32, 8);
@@ -77,19 +77,6 @@ pub const HCONV = *opaque{};
 pub const HCONVLIST = *opaque{};
 
 pub const HDDEDATA = *opaque{};
-
-pub const METAFILEPICT = extern struct {
-    mm: i32,
-    xExt: i32,
-    yExt: i32,
-    hMF: ?HMETAFILE,
-};
-
-pub const COPYDATASTRUCT = extern struct {
-    dwData: usize,
-    cbData: u32,
-    lpData: ?*c_void,
-};
 
 pub const DDEACK = extern struct {
     _bitfield: u16,
@@ -253,6 +240,19 @@ pub const MONCONVSTRUCT = extern struct {
     hszTopic: ?HSZ,
     hConvClient: ?HCONV,
     hConvServer: ?HCONV,
+};
+
+pub const METAFILEPICT = extern struct {
+    mm: i32,
+    xExt: i32,
+    yExt: i32,
+    hMF: ?HMETAFILE,
+};
+
+pub const COPYDATASTRUCT = extern struct {
+    dwData: usize,
+    cbData: u32,
+    lpData: ?*c_void,
 };
 
 pub const DDE_ENABLE_CALLBACK_CMD = enum(u32) {
@@ -497,211 +497,6 @@ pub const ST_TERMINATED = CONVINFO_STATUS.TERMINATED;
 //--------------------------------------------------------------------------------
 // Section: Functions (76)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalDeleteAtom(
-    nAtom: u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn InitAtomTable(
-    nSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn DeleteAtom(
-    nAtom: u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalAddAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalAddAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-pub extern "KERNEL32" fn GlobalAddAtomExA(
-    lpString: ?[*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-pub extern "KERNEL32" fn GlobalAddAtomExW(
-    lpString: ?[*:0]const u16,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalFindAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalFindAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalGetAtomNameA(
-    nAtom: u16,
-    lpBuffer: [*:0]u8,
-    nSize: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GlobalGetAtomNameW(
-    nAtom: u16,
-    lpBuffer: [*:0]u16,
-    nSize: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn AddAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn AddAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindAtomA(
-    lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn FindAtomW(
-    lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetAtomNameA(
-    nAtom: u16,
-    lpBuffer: [*:0]u8,
-    nSize: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetAtomNameW(
-    nAtom: u16,
-    lpBuffer: [*:0]u16,
-    nSize: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn OpenClipboard(
-    hWndNewOwner: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CloseClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardSequenceNumber(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardOwner(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClipboardViewer(
-    hWndNewViewer: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardViewer(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn ChangeClipboardChain(
-    hWndRemove: ?HWND,
-    hWndNewNext: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClipboardData(
-    uFormat: u32,
-    hMem: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardData(
-    uFormat: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn RegisterClipboardFormatA(
-    lpszFormat: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn RegisterClipboardFormatW(
-    lpszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CountClipboardFormats(
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EnumClipboardFormats(
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardFormatNameA(
-    format: u32,
-    lpszFormatName: [*:0]u8,
-    cchMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClipboardFormatNameW(
-    format: u32,
-    lpszFormatName: [*:0]u16,
-    cchMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EmptyClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn IsClipboardFormatAvailable(
-    format: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetPriorityClipboardFormat(
-    paFormatPriorityList: [*]u32,
-    cFormats: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetOpenClipboardWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn AddClipboardFormatListener(
-    hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn RemoveClipboardFormatListener(
-    hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn GetUpdatedClipboardFormats(
-    lpuiFormats: [*]u32,
-    cFormats: u32,
-    pcFormatsOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DdeSetQualityOfService(
     hwndClient: ?HWND,
@@ -965,6 +760,211 @@ pub extern "USER32" fn DdeCmpStringHandles(
     hsz2: ?HSZ,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn OpenClipboard(
+    hWndNewOwner: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn CloseClipboard(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardSequenceNumber(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardOwner(
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn SetClipboardViewer(
+    hWndNewViewer: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardViewer(
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn ChangeClipboardChain(
+    hWndRemove: ?HWND,
+    hWndNewNext: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn SetClipboardData(
+    uFormat: u32,
+    hMem: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardData(
+    uFormat: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn RegisterClipboardFormatA(
+    lpszFormat: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn RegisterClipboardFormatW(
+    lpszFormat: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn CountClipboardFormats(
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn EnumClipboardFormats(
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardFormatNameA(
+    format: u32,
+    lpszFormatName: [*:0]u8,
+    cchMaxCount: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetClipboardFormatNameW(
+    format: u32,
+    lpszFormatName: [*:0]u16,
+    cchMaxCount: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn EmptyClipboard(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn IsClipboardFormatAvailable(
+    format: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetPriorityClipboardFormat(
+    paFormatPriorityList: [*]u32,
+    cFormats: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USER32" fn GetOpenClipboardWindow(
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn AddClipboardFormatListener(
+    hwnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn RemoveClipboardFormatListener(
+    hwnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USER32" fn GetUpdatedClipboardFormats(
+    lpuiFormats: [*]u32,
+    cFormats: u32,
+    pcFormatsOut: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalDeleteAtom(
+    nAtom: u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn InitAtomTable(
+    nSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn DeleteAtom(
+    nAtom: u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalAddAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalAddAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+pub extern "KERNEL32" fn GlobalAddAtomExA(
+    lpString: ?[*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+pub extern "KERNEL32" fn GlobalAddAtomExW(
+    lpString: ?[*:0]const u16,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalFindAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalFindAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalGetAtomNameA(
+    nAtom: u16,
+    lpBuffer: [*:0]u8,
+    nSize: i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GlobalGetAtomNameW(
+    nAtom: u16,
+    lpBuffer: [*:0]u16,
+    nSize: i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn AddAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn AddAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn FindAtomA(
+    lpString: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn FindAtomW(
+    lpString: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GetAtomNameA(
+    nAtom: u16,
+    lpBuffer: [*:0]u8,
+    nSize: i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GetAtomNameW(
+    nAtom: u16,
+    lpBuffer: [*:0]u16,
+    nSize: i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
@@ -972,6 +972,11 @@ pub extern "USER32" fn DdeCmpStringHandles(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const MONHSZSTRUCT = MONHSZSTRUCTA;
+        pub const DdeInitialize = DdeInitializeA;
+        pub const DdeCreateStringHandle = DdeCreateStringHandleA;
+        pub const DdeQueryString = DdeQueryStringA;
+        pub const RegisterClipboardFormat = RegisterClipboardFormatA;
+        pub const GetClipboardFormatName = GetClipboardFormatNameA;
         pub const GlobalAddAtom = GlobalAddAtomA;
         pub const GlobalAddAtomEx = GlobalAddAtomExA;
         pub const GlobalFindAtom = GlobalFindAtomA;
@@ -979,14 +984,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AddAtom = AddAtomA;
         pub const FindAtom = FindAtomA;
         pub const GetAtomName = GetAtomNameA;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatA;
-        pub const GetClipboardFormatName = GetClipboardFormatNameA;
-        pub const DdeInitialize = DdeInitializeA;
-        pub const DdeCreateStringHandle = DdeCreateStringHandleA;
-        pub const DdeQueryString = DdeQueryStringA;
     },
     .wide => struct {
         pub const MONHSZSTRUCT = MONHSZSTRUCTW;
+        pub const DdeInitialize = DdeInitializeW;
+        pub const DdeCreateStringHandle = DdeCreateStringHandleW;
+        pub const DdeQueryString = DdeQueryStringW;
+        pub const RegisterClipboardFormat = RegisterClipboardFormatW;
+        pub const GetClipboardFormatName = GetClipboardFormatNameW;
         pub const GlobalAddAtom = GlobalAddAtomW;
         pub const GlobalAddAtomEx = GlobalAddAtomExW;
         pub const GlobalFindAtom = GlobalFindAtomW;
@@ -994,14 +999,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AddAtom = AddAtomW;
         pub const FindAtom = FindAtomW;
         pub const GetAtomName = GetAtomNameW;
-        pub const RegisterClipboardFormat = RegisterClipboardFormatW;
-        pub const GetClipboardFormatName = GetClipboardFormatNameW;
-        pub const DdeInitialize = DdeInitializeW;
-        pub const DdeCreateStringHandle = DdeCreateStringHandleW;
-        pub const DdeQueryString = DdeQueryStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const MONHSZSTRUCT = *opaque{};
+        pub const DdeInitialize = *opaque{};
+        pub const DdeCreateStringHandle = *opaque{};
+        pub const DdeQueryString = *opaque{};
+        pub const RegisterClipboardFormat = *opaque{};
+        pub const GetClipboardFormatName = *opaque{};
         pub const GlobalAddAtom = *opaque{};
         pub const GlobalAddAtomEx = *opaque{};
         pub const GlobalFindAtom = *opaque{};
@@ -1009,13 +1014,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AddAtom = *opaque{};
         pub const FindAtom = *opaque{};
         pub const GetAtomName = *opaque{};
-        pub const RegisterClipboardFormat = *opaque{};
-        pub const GetClipboardFormatName = *opaque{};
-        pub const DdeInitialize = *opaque{};
-        pub const DdeCreateStringHandle = *opaque{};
-        pub const DdeQueryString = *opaque{};
     } else struct {
         pub const MONHSZSTRUCT = @compileError("'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const DdeInitialize = @compileError("'DdeInitialize' requires that UNICODE be set to true or false in the root module");
+        pub const DdeCreateStringHandle = @compileError("'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module");
+        pub const DdeQueryString = @compileError("'DdeQueryString' requires that UNICODE be set to true or false in the root module");
+        pub const RegisterClipboardFormat = @compileError("'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module");
+        pub const GetClipboardFormatName = @compileError("'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module");
         pub const GlobalAddAtom = @compileError("'GlobalAddAtom' requires that UNICODE be set to true or false in the root module");
         pub const GlobalAddAtomEx = @compileError("'GlobalAddAtomEx' requires that UNICODE be set to true or false in the root module");
         pub const GlobalFindAtom = @compileError("'GlobalFindAtom' requires that UNICODE be set to true or false in the root module");
@@ -1023,11 +1028,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AddAtom = @compileError("'AddAtom' requires that UNICODE be set to true or false in the root module");
         pub const FindAtom = @compileError("'FindAtom' requires that UNICODE be set to true or false in the root module");
         pub const GetAtomName = @compileError("'GetAtomName' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterClipboardFormat = @compileError("'RegisterClipboardFormat' requires that UNICODE be set to true or false in the root module");
-        pub const GetClipboardFormatName = @compileError("'GetClipboardFormatName' requires that UNICODE be set to true or false in the root module");
-        pub const DdeInitialize = @compileError("'DdeInitialize' requires that UNICODE be set to true or false in the root module");
-        pub const DdeCreateStringHandle = @compileError("'DdeCreateStringHandle' requires that UNICODE be set to true or false in the root module");
-        pub const DdeQueryString = @compileError("'DdeQueryString' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

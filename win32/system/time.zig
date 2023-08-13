@@ -29,7 +29,7 @@ pub const DYNAMIC_TIME_ZONE_INFORMATION = extern struct {
     DaylightDate: SYSTEMTIME,
     DaylightBias: i32,
     TimeZoneKeyName: [128]u16,
-    DynamicDaylightTimeDisabled: u8,
+    DynamicDaylightTimeDisabled: BOOLEAN,
 };
 
 
@@ -142,8 +142,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const BOOL = @import("../foundation.zig").BOOL;

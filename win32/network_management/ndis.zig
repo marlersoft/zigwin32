@@ -2960,26 +2960,26 @@ pub const NDIS_PORT_ARRAY = extern struct {
 };
 
 pub const NDIS_TIMESTAMP_CAPABILITY_FLAGS = extern struct {
-    PtpV2OverUdpIPv4EventMsgReceiveHw: u8,
-    PtpV2OverUdpIPv4AllMsgReceiveHw: u8,
-    PtpV2OverUdpIPv4EventMsgTransmitHw: u8,
-    PtpV2OverUdpIPv4AllMsgTransmitHw: u8,
-    PtpV2OverUdpIPv6EventMsgReceiveHw: u8,
-    PtpV2OverUdpIPv6AllMsgReceiveHw: u8,
-    PtpV2OverUdpIPv6EventMsgTransmitHw: u8,
-    PtpV2OverUdpIPv6AllMsgTransmitHw: u8,
-    AllReceiveHw: u8,
-    AllTransmitHw: u8,
-    TaggedTransmitHw: u8,
-    AllReceiveSw: u8,
-    AllTransmitSw: u8,
-    TaggedTransmitSw: u8,
+    PtpV2OverUdpIPv4EventMsgReceiveHw: BOOLEAN,
+    PtpV2OverUdpIPv4AllMsgReceiveHw: BOOLEAN,
+    PtpV2OverUdpIPv4EventMsgTransmitHw: BOOLEAN,
+    PtpV2OverUdpIPv4AllMsgTransmitHw: BOOLEAN,
+    PtpV2OverUdpIPv6EventMsgReceiveHw: BOOLEAN,
+    PtpV2OverUdpIPv6AllMsgReceiveHw: BOOLEAN,
+    PtpV2OverUdpIPv6EventMsgTransmitHw: BOOLEAN,
+    PtpV2OverUdpIPv6AllMsgTransmitHw: BOOLEAN,
+    AllReceiveHw: BOOLEAN,
+    AllTransmitHw: BOOLEAN,
+    TaggedTransmitHw: BOOLEAN,
+    AllReceiveSw: BOOLEAN,
+    AllTransmitSw: BOOLEAN,
+    TaggedTransmitSw: BOOLEAN,
 };
 
 pub const NDIS_TIMESTAMP_CAPABILITIES = extern struct {
     Header: NDIS_OBJECT_HEADER,
     HardwareClockFrequencyHz: u64,
-    CrossTimestamp: u8,
+    CrossTimestamp: BOOLEAN,
     Reserved1: u64,
     Reserved2: u64,
     TimestampFlags: NDIS_TIMESTAMP_CAPABILITY_FLAGS,
@@ -3011,12 +3011,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const NET_IF_MEDIA_CONNECT_STATE = @import("../network_management/ip_helper.zig").NET_IF_MEDIA_CONNECT_STATE;
 const NET_LUID_LH = @import("../network_management/ip_helper.zig").NET_LUID_LH;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const NET_IF_DIRECTION_TYPE = @import("../network_management/ip_helper.zig").NET_IF_DIRECTION_TYPE;
 const HANDLE = @import("../foundation.zig").HANDLE;

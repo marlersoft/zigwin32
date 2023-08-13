@@ -84,6 +84,73 @@ pub const VER_VDS_LUN_INFORMATION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (139)
 //--------------------------------------------------------------------------------
+pub const VDS_NF_PACK = enum(u32) {
+    ARRIVE = 1,
+    DEPART = 2,
+    MODIFY = 3,
+};
+pub const VDS_NF_PACK_ARRIVE = VDS_NF_PACK.ARRIVE;
+pub const VDS_NF_PACK_DEPART = VDS_NF_PACK.DEPART;
+pub const VDS_NF_PACK_MODIFY = VDS_NF_PACK.MODIFY;
+
+pub const VDS_NF_FILE_SYSTEM = enum(u32) {
+    MODIFY = 203,
+    FORMAT_PROGRESS = 204,
+};
+pub const VDS_NF_FILE_SYSTEM_MODIFY = VDS_NF_FILE_SYSTEM.MODIFY;
+pub const VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS = VDS_NF_FILE_SYSTEM.FORMAT_PROGRESS;
+
+pub const VDS_NF_CONTROLLER = enum(u32) {
+    ARRIVE = 103,
+    DEPART = 104,
+    MODIFY = 350,
+    REMOVED = 351,
+};
+pub const VDS_NF_CONTROLLER_ARRIVE = VDS_NF_CONTROLLER.ARRIVE;
+pub const VDS_NF_CONTROLLER_DEPART = VDS_NF_CONTROLLER.DEPART;
+pub const VDS_NF_CONTROLLER_MODIFY = VDS_NF_CONTROLLER.MODIFY;
+pub const VDS_NF_CONTROLLER_REMOVED = VDS_NF_CONTROLLER.REMOVED;
+
+pub const VDS_NF_DRIVE = enum(u32) {
+    ARRIVE = 105,
+    DEPART = 106,
+    MODIFY = 107,
+    REMOVED = 354,
+};
+pub const VDS_NF_DRIVE_ARRIVE = VDS_NF_DRIVE.ARRIVE;
+pub const VDS_NF_DRIVE_DEPART = VDS_NF_DRIVE.DEPART;
+pub const VDS_NF_DRIVE_MODIFY = VDS_NF_DRIVE.MODIFY;
+pub const VDS_NF_DRIVE_REMOVED = VDS_NF_DRIVE.REMOVED;
+
+pub const VDS_NF_PORT = enum(u32) {
+    ARRIVE = 121,
+    DEPART = 122,
+    MODIFY = 352,
+    REMOVED = 353,
+};
+pub const VDS_NF_PORT_ARRIVE = VDS_NF_PORT.ARRIVE;
+pub const VDS_NF_PORT_DEPART = VDS_NF_PORT.DEPART;
+pub const VDS_NF_PORT_MODIFY = VDS_NF_PORT.MODIFY;
+pub const VDS_NF_PORT_REMOVED = VDS_NF_PORT.REMOVED;
+
+pub const VDS_NF_LUN = enum(u32) {
+    ARRIVE = 108,
+    DEPART = 109,
+    MODIFY = 110,
+};
+pub const VDS_NF_LUN_ARRIVE = VDS_NF_LUN.ARRIVE;
+pub const VDS_NF_LUN_DEPART = VDS_NF_LUN.DEPART;
+pub const VDS_NF_LUN_MODIFY = VDS_NF_LUN.MODIFY;
+
+pub const VDS_NF_DISK = enum(u32) {
+    ARRIVE = 8,
+    DEPART = 9,
+    MODIFY = 10,
+};
+pub const VDS_NF_DISK_ARRIVE = VDS_NF_DISK.ARRIVE;
+pub const VDS_NF_DISK_DEPART = VDS_NF_DISK.DEPART;
+pub const VDS_NF_DISK_MODIFY = VDS_NF_DISK.MODIFY;
+
 pub const VDS_STORAGE_IDENTIFIER_CODE_SET = enum(i32) {
     Reserved = 0,
     Binary = 1,
@@ -523,20 +590,11 @@ pub const VDS_ASYNCOUT_EXPAND_VDISK = VDS_ASYNC_OUTPUT_TYPE.EXPAND_VDISK;
 pub const VDS_ASYNC_OUTPUT = extern struct {
     type: VDS_ASYNC_OUTPUT_TYPE,
     Anonymous: extern union {
-        pub const _cvd = extern struct {
-            pVDiskUnk: ?*IUnknown,
-        };
-        pub const _ct = extern struct {
-            pTargetUnk: ?*IUnknown,
-        };
-        pub const _sv = extern struct {
-            ullReclaimedBytes: u64,
-        };
-        pub const _cv = extern struct {
-            pVolumeUnk: ?*IUnknown,
-        };
         pub const _cpg = extern struct {
             pPortalGroupUnk: ?*IUnknown,
+        };
+        pub const _cl = extern struct {
+            pLunUnk: ?*IUnknown,
         };
         pub const _bvp = extern struct {
             pVolumeUnk: ?*IUnknown,
@@ -545,8 +603,17 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
             ullOffset: u64,
             volumeId: Guid,
         };
-        pub const _cl = extern struct {
-            pLunUnk: ?*IUnknown,
+        pub const _ct = extern struct {
+            pTargetUnk: ?*IUnknown,
+        };
+        pub const _cv = extern struct {
+            pVolumeUnk: ?*IUnknown,
+        };
+        pub const _sv = extern struct {
+            ullReclaimedBytes: u64,
+        };
+        pub const _cvd = extern struct {
+            pVDiskUnk: ?*IUnknown,
         };
         cp: _cp,
         cv: _cv,
@@ -3198,73 +3265,6 @@ pub const IVdsAdmin = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const VDS_NF_PACK = enum(u32) {
-    ARRIVE = 1,
-    DEPART = 2,
-    MODIFY = 3,
-};
-pub const VDS_NF_PACK_ARRIVE = VDS_NF_PACK.ARRIVE;
-pub const VDS_NF_PACK_DEPART = VDS_NF_PACK.DEPART;
-pub const VDS_NF_PACK_MODIFY = VDS_NF_PACK.MODIFY;
-
-pub const VDS_NF_FILE_SYSTEM = enum(u32) {
-    MODIFY = 203,
-    FORMAT_PROGRESS = 204,
-};
-pub const VDS_NF_FILE_SYSTEM_MODIFY = VDS_NF_FILE_SYSTEM.MODIFY;
-pub const VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS = VDS_NF_FILE_SYSTEM.FORMAT_PROGRESS;
-
-pub const VDS_NF_CONTROLLER = enum(u32) {
-    ARRIVE = 103,
-    DEPART = 104,
-    MODIFY = 350,
-    REMOVED = 351,
-};
-pub const VDS_NF_CONTROLLER_ARRIVE = VDS_NF_CONTROLLER.ARRIVE;
-pub const VDS_NF_CONTROLLER_DEPART = VDS_NF_CONTROLLER.DEPART;
-pub const VDS_NF_CONTROLLER_MODIFY = VDS_NF_CONTROLLER.MODIFY;
-pub const VDS_NF_CONTROLLER_REMOVED = VDS_NF_CONTROLLER.REMOVED;
-
-pub const VDS_NF_DRIVE = enum(u32) {
-    ARRIVE = 105,
-    DEPART = 106,
-    MODIFY = 107,
-    REMOVED = 354,
-};
-pub const VDS_NF_DRIVE_ARRIVE = VDS_NF_DRIVE.ARRIVE;
-pub const VDS_NF_DRIVE_DEPART = VDS_NF_DRIVE.DEPART;
-pub const VDS_NF_DRIVE_MODIFY = VDS_NF_DRIVE.MODIFY;
-pub const VDS_NF_DRIVE_REMOVED = VDS_NF_DRIVE.REMOVED;
-
-pub const VDS_NF_PORT = enum(u32) {
-    ARRIVE = 121,
-    DEPART = 122,
-    MODIFY = 352,
-    REMOVED = 353,
-};
-pub const VDS_NF_PORT_ARRIVE = VDS_NF_PORT.ARRIVE;
-pub const VDS_NF_PORT_DEPART = VDS_NF_PORT.DEPART;
-pub const VDS_NF_PORT_MODIFY = VDS_NF_PORT.MODIFY;
-pub const VDS_NF_PORT_REMOVED = VDS_NF_PORT.REMOVED;
-
-pub const VDS_NF_LUN = enum(u32) {
-    ARRIVE = 108,
-    DEPART = 109,
-    MODIFY = 110,
-};
-pub const VDS_NF_LUN_ARRIVE = VDS_NF_LUN.ARRIVE;
-pub const VDS_NF_LUN_DEPART = VDS_NF_LUN.DEPART;
-pub const VDS_NF_LUN_MODIFY = VDS_NF_LUN.MODIFY;
-
-pub const VDS_NF_DISK = enum(u32) {
-    ARRIVE = 8,
-    DEPART = 9,
-    MODIFY = 10,
-};
-pub const VDS_NF_DISK_ARRIVE = VDS_NF_DISK.ARRIVE;
-pub const VDS_NF_DISK_DEPART = VDS_NF_DISK.DEPART;
-pub const VDS_NF_DISK_MODIFY = VDS_NF_DISK.MODIFY;
 
 
 //--------------------------------------------------------------------------------

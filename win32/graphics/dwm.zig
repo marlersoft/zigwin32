@@ -2,6 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (18)
 //--------------------------------------------------------------------------------
+pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
+pub const c_DwmMaxMonitors = @as(u32, 16);
+pub const c_DwmMaxAdapters = @as(u32, 16);
 pub const DWM_BB_ENABLE = @as(u32, 1);
 pub const DWM_BB_BLURREGION = @as(u32, 2);
 pub const DWM_BB_TRANSITIONONMAXIMIZED = @as(u32, 4);
@@ -17,9 +20,6 @@ pub const DWM_FRAME_DURATION_DEFAULT = @as(i32, -1);
 pub const DWM_EC_DISABLECOMPOSITION = @as(u32, 0);
 pub const DWM_EC_ENABLECOMPOSITION = @as(u32, 1);
 pub const DWM_SIT_DISPLAYFRAME = @as(u32, 1);
-pub const c_DwmMaxQueuedBuffers = @as(u32, 8);
-pub const c_DwmMaxMonitors = @as(u32, 16);
-pub const c_DwmMaxAdapters = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (14)

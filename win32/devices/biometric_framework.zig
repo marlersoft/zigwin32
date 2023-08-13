@@ -17,6 +17,18 @@ pub const WINBIO_BIR_ALIGN_SIZE = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (178)
 //--------------------------------------------------------------------------------
+pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const WINBIO_SETTING_SOURCE = enum(u32) {
     INVALID = 0,
     DEFAULT = 1,
@@ -43,18 +55,6 @@ pub const WINBIO_POOL = enum(u32) {
 };
 pub const WINBIO_POOL_SYSTEM = WINBIO_POOL.SYSTEM;
 pub const WINBIO_POOL_PRIVATE = WINBIO_POOL.PRIVATE;
-
-pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
 
 pub const WINBIO_VERSION = extern struct {
     MajorVersion: u32,
@@ -481,7 +481,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     UserData: ?*c_void,
     Parameters: extern union {
         Verify: extern struct {
-            Match: u8,
+            Match: BOOLEAN,
             RejectDetail: u32,
         },
         Identify: extern struct {
@@ -497,7 +497,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
         },
         EnrollCommit: extern struct {
             Identity: WINBIO_IDENTITY,
-            IsNewTemplate: u8,
+            IsNewTemplate: BOOLEAN,
         },
         EnumEnrollments: extern struct {
             Identity: WINBIO_IDENTITY,
@@ -555,7 +555,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
             StorageSchemaArray: ?*WINBIO_STORAGE_SCHEMA,
         },
         VerifyAndReleaseTicket: extern struct {
-            Match: u8,
+            Match: BOOLEAN,
             RejectDetail: u32,
             Ticket: u64,
         },
@@ -591,7 +591,7 @@ pub const PWINBIO_VERIFY_CALLBACK = fn(
     VerifyCallbackContext: ?*c_void,
     OperationStatus: HRESULT,
     UnitId: u32,
-    Match: u8,
+    Match: BOOLEAN,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -956,7 +956,7 @@ pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    Match: ?*u8,
+    Match: ?*BOOLEAN,
     // TODO: what to do with BytesParamIndex 5?
     PayloadBlob: ?*?*u8,
     PayloadBlobSize: ?*usize,
@@ -1004,7 +1004,7 @@ pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: ?*u8,
-    Duplicate: ?*u8,
+    Duplicate: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = fn(
@@ -1116,7 +1116,7 @@ pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = fn(
 
 pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
-    DiscardAndRepeatCapture: ?*u8,
+    DiscardAndRepeatCapture: ?*BOOLEAN,
     // TODO: what to do with BytesParamIndex 4?
     CalibrationBuffer: ?*u8,
     CalibrationBufferSize: ?*usize,
@@ -1379,7 +1379,7 @@ pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = fn(
 
 pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = fn(
     Pipeline: ?*WINBIO_PIPELINE,
-    RecordsAdded: u8,
+    RecordsAdded: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PIBIO_STORAGE_RESERVED_1_FN = fn(
@@ -2018,9 +2018,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;

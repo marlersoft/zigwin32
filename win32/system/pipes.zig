@@ -48,80 +48,6 @@ pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_INFO_FLAGS.TYPE_MESSAGE;
 // Section: Functions (22)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CreateNamedPipeA(
-    lpName: ?[*:0]const u8,
-    dwOpenMode: u32,
-    dwPipeMode: u32,
-    nMaxInstances: u32,
-    nOutBufferSize: u32,
-    nInBufferSize: u32,
-    nDefaultTimeOut: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
-    hNamedPipe: ?HANDLE,
-    lpState: ?*NAMED_PIPE_HANDLE_STATE,
-    lpCurInstances: ?*u32,
-    lpMaxCollectionCount: ?*u32,
-    lpCollectDataTimeout: ?*u32,
-    lpUserName: ?[*:0]u8,
-    nMaxUserNameSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn CallNamedPipeA(
-    lpNamedPipeName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
-    lpInBuffer: ?*c_void,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpOutBuffer: ?*c_void,
-    nOutBufferSize: u32,
-    lpBytesRead: ?*u32,
-    nTimeOut: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "KERNEL32" fn WaitNamedPipeA(
-    lpNamedPipeName: ?[*:0]const u8,
-    nTimeOut: WAIT_NAMED_PIPE_TIME_OUT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientComputerNameA(
-    Pipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
-    ClientComputerName: ?PSTR,
-    ClientComputerNameLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientProcessId(
-    Pipe: ?HANDLE,
-    ClientProcessId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeClientSessionId(
-    Pipe: ?HANDLE,
-    ClientSessionId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeServerProcessId(
-    Pipe: ?HANDLE,
-    ServerProcessId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNamedPipeServerSessionId(
-    Pipe: ?HANDLE,
-    ServerSessionId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn CreatePipe(
     hReadPipe: ?*?HANDLE,
     hWritePipe: ?*?HANDLE,
@@ -231,6 +157,80 @@ pub extern "KERNEL32" fn CallNamedPipeW(
     nTimeOut: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn CreateNamedPipeA(
+    lpName: ?[*:0]const u8,
+    dwOpenMode: u32,
+    dwPipeMode: u32,
+    nMaxInstances: u32,
+    nOutBufferSize: u32,
+    nInBufferSize: u32,
+    nDefaultTimeOut: u32,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn GetNamedPipeHandleStateA(
+    hNamedPipe: ?HANDLE,
+    lpState: ?*NAMED_PIPE_HANDLE_STATE,
+    lpCurInstances: ?*u32,
+    lpMaxCollectionCount: ?*u32,
+    lpCollectDataTimeout: ?*u32,
+    lpUserName: ?[*:0]u8,
+    nMaxUserNameSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn CallNamedPipeA(
+    lpNamedPipeName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    lpInBuffer: ?*c_void,
+    nInBufferSize: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpOutBuffer: ?*c_void,
+    nOutBufferSize: u32,
+    lpBytesRead: ?*u32,
+    nTimeOut: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn WaitNamedPipeA(
+    lpNamedPipeName: ?[*:0]const u8,
+    nTimeOut: WAIT_NAMED_PIPE_TIME_OUT_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNamedPipeClientComputerNameA(
+    Pipe: ?HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
+    ClientComputerName: ?PSTR,
+    ClientComputerNameLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNamedPipeClientProcessId(
+    Pipe: ?HANDLE,
+    ClientProcessId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNamedPipeClientSessionId(
+    Pipe: ?HANDLE,
+    ClientSessionId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNamedPipeServerProcessId(
+    Pipe: ?HANDLE,
+    ServerProcessId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNamedPipeServerSessionId(
+    Pipe: ?HANDLE,
+    ServerSessionId: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
@@ -238,30 +238,30 @@ pub extern "KERNEL32" fn CallNamedPipeW(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const CreateNamedPipe = CreateNamedPipeA;
-        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateA;
-        pub const CallNamedPipe = CallNamedPipeA;
         pub const WaitNamedPipe = WaitNamedPipeA;
         pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameA;
+        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateA;
+        pub const CallNamedPipe = CallNamedPipeA;
     },
     .wide => struct {
         pub const CreateNamedPipe = CreateNamedPipeW;
-        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateW;
-        pub const CallNamedPipe = CallNamedPipeW;
         pub const WaitNamedPipe = WaitNamedPipeW;
         pub const GetNamedPipeClientComputerName = GetNamedPipeClientComputerNameW;
+        pub const GetNamedPipeHandleState = GetNamedPipeHandleStateW;
+        pub const CallNamedPipe = CallNamedPipeW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const CreateNamedPipe = *opaque{};
-        pub const GetNamedPipeHandleState = *opaque{};
-        pub const CallNamedPipe = *opaque{};
         pub const WaitNamedPipe = *opaque{};
         pub const GetNamedPipeClientComputerName = *opaque{};
+        pub const GetNamedPipeHandleState = *opaque{};
+        pub const CallNamedPipe = *opaque{};
     } else struct {
         pub const CreateNamedPipe = @compileError("'CreateNamedPipe' requires that UNICODE be set to true or false in the root module");
-        pub const GetNamedPipeHandleState = @compileError("'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module");
-        pub const CallNamedPipe = @compileError("'CallNamedPipe' requires that UNICODE be set to true or false in the root module");
         pub const WaitNamedPipe = @compileError("'WaitNamedPipe' requires that UNICODE be set to true or false in the root module");
         pub const GetNamedPipeClientComputerName = @compileError("'GetNamedPipeClientComputerName' requires that UNICODE be set to true or false in the root module");
+        pub const GetNamedPipeHandleState = @compileError("'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module");
+        pub const CallNamedPipe = @compileError("'CallNamedPipe' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -269,8 +269,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
 const BOOL = @import("../foundation.zig").BOOL;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 

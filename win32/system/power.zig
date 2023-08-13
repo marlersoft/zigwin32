@@ -114,15 +114,6 @@ pub const THERMAL_EVENT_VERSION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (57)
 //--------------------------------------------------------------------------------
-pub const SYSTEM_POWER_STATUS = extern struct {
-    ACLineStatus: u8,
-    BatteryFlag: u8,
-    BatteryLifePercent: u8,
-    SystemStatusFlag: u8,
-    BatteryLifeTime: u32,
-    BatteryFullLifeTime: u32,
-};
-
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
 pub const HPOWERNOTIFY = *opaque{};
 
@@ -219,7 +210,7 @@ pub const POWER_ACTION_POLICY = extern struct {
 };
 
 pub const SYSTEM_POWER_LEVEL = extern struct {
-    Enable: u8,
+    Enable: BOOLEAN,
     Spare: [3]u8,
     BatteryLevel: u32,
     PowerPolicy: POWER_ACTION_POLICY,
@@ -247,10 +238,10 @@ pub const SYSTEM_POWER_POLICY = extern struct {
     BroadcastCapacityResolution: u32,
     DischargePolicy: [4]SYSTEM_POWER_LEVEL,
     VideoTimeout: u32,
-    VideoDimDisplay: u8,
+    VideoDimDisplay: BOOLEAN,
     VideoReserved: [3]u32,
     SpindownTimeout: u32,
-    OptimizeForPower: u8,
+    OptimizeForPower: BOOLEAN,
     FanThrottleTolerance: u8,
     ForcedThrottle: u8,
     MinThrottle: u8,
@@ -286,33 +277,33 @@ pub const ADMINISTRATOR_POWER_POLICY = extern struct {
 };
 
 pub const SYSTEM_POWER_CAPABILITIES = extern struct {
-    PowerButtonPresent: u8,
-    SleepButtonPresent: u8,
-    LidPresent: u8,
-    SystemS1: u8,
-    SystemS2: u8,
-    SystemS3: u8,
-    SystemS4: u8,
-    SystemS5: u8,
-    HiberFilePresent: u8,
-    FullWake: u8,
-    VideoDimPresent: u8,
-    ApmPresent: u8,
-    UpsPresent: u8,
-    ThermalControl: u8,
-    ProcessorThrottle: u8,
+    PowerButtonPresent: BOOLEAN,
+    SleepButtonPresent: BOOLEAN,
+    LidPresent: BOOLEAN,
+    SystemS1: BOOLEAN,
+    SystemS2: BOOLEAN,
+    SystemS3: BOOLEAN,
+    SystemS4: BOOLEAN,
+    SystemS5: BOOLEAN,
+    HiberFilePresent: BOOLEAN,
+    FullWake: BOOLEAN,
+    VideoDimPresent: BOOLEAN,
+    ApmPresent: BOOLEAN,
+    UpsPresent: BOOLEAN,
+    ThermalControl: BOOLEAN,
+    ProcessorThrottle: BOOLEAN,
     ProcessorMinThrottle: u8,
     ProcessorMaxThrottle: u8,
-    FastSystemS4: u8,
-    Hiberboot: u8,
-    WakeAlarmPresent: u8,
-    AoAc: u8,
-    DiskSpinDown: u8,
+    FastSystemS4: BOOLEAN,
+    Hiberboot: BOOLEAN,
+    WakeAlarmPresent: BOOLEAN,
+    AoAc: BOOLEAN,
+    DiskSpinDown: BOOLEAN,
     HiberFileType: u8,
-    AoAcConnectivitySupported: u8,
+    AoAcConnectivitySupported: BOOLEAN,
     spare3: [6]u8,
-    SystemBatteriesPresent: u8,
-    BatteriesAreShortTerm: u8,
+    SystemBatteriesPresent: BOOLEAN,
+    BatteriesAreShortTerm: BOOLEAN,
     BatteryScale: [3]BATTERY_REPORTING_SCALE,
     AcOnLineWake: SYSTEM_POWER_STATE,
     SoftLidWake: SYSTEM_POWER_STATE,
@@ -322,11 +313,11 @@ pub const SYSTEM_POWER_CAPABILITIES = extern struct {
 };
 
 pub const SYSTEM_BATTERY_STATE = extern struct {
-    AcOnLine: u8,
-    BatteryPresent: u8,
-    Charging: u8,
-    Discharging: u8,
-    Spare1: [3]u8,
+    AcOnLine: BOOLEAN,
+    BatteryPresent: BOOLEAN,
+    Charging: BOOLEAN,
+    Discharging: BOOLEAN,
+    Spare1: [3]BOOLEAN,
     Tag: u8,
     MaxCapacity: u32,
     RemainingCapacity: u32,
@@ -341,83 +332,6 @@ pub const POWERBROADCAST_SETTING = extern struct {
     DataLength: u32,
     Data: [1]u8,
 };
-
-pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
-    @"1" = 1,
-    @"2" = 2,
-};
-// TODO: enum 'POWER_PLATFORM_ROLE_VERSION' has known issues with its value aliases
-
-pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = enum(u32) {
-    SERVICE_HANDLE = 1,
-    CALLBACK = 2,
-    WINDOW_HANDLE = 0,
-};
-pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.SERVICE_HANDLE;
-pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
-pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
-
-pub const EXECUTION_STATE = enum(u32) {
-    AWAYMODE_REQUIRED = 64,
-    CONTINUOUS = 2147483648,
-    DISPLAY_REQUIRED = 2,
-    SYSTEM_REQUIRED = 1,
-    USER_PRESENT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        AWAYMODE_REQUIRED: u1 = 0,
-        CONTINUOUS: u1 = 0,
-        DISPLAY_REQUIRED: u1 = 0,
-        SYSTEM_REQUIRED: u1 = 0,
-        USER_PRESENT: u1 = 0,
-    }) EXECUTION_STATE {
-        return @intToEnum(EXECUTION_STATE,
-              (if (o.AWAYMODE_REQUIRED == 1) @enumToInt(EXECUTION_STATE.AWAYMODE_REQUIRED) else 0)
-            | (if (o.CONTINUOUS == 1) @enumToInt(EXECUTION_STATE.CONTINUOUS) else 0)
-            | (if (o.DISPLAY_REQUIRED == 1) @enumToInt(EXECUTION_STATE.DISPLAY_REQUIRED) else 0)
-            | (if (o.SYSTEM_REQUIRED == 1) @enumToInt(EXECUTION_STATE.SYSTEM_REQUIRED) else 0)
-            | (if (o.USER_PRESENT == 1) @enumToInt(EXECUTION_STATE.USER_PRESENT) else 0)
-        );
-    }
-};
-pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE.AWAYMODE_REQUIRED;
-pub const ES_CONTINUOUS = EXECUTION_STATE.CONTINUOUS;
-pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE.DISPLAY_REQUIRED;
-pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE.SYSTEM_REQUIRED;
-pub const ES_USER_PRESENT = EXECUTION_STATE.USER_PRESENT;
-
-pub const POWER_ACTION_POLICY_EVENT_CODE = enum(u32) {
-    FORCE_TRIGGER_RESET = 2147483648,
-    LEVEL_USER_NOTIFY_EXEC = 4,
-    LEVEL_USER_NOTIFY_SOUND = 2,
-    LEVEL_USER_NOTIFY_TEXT = 1,
-    USER_NOTIFY_BUTTON = 8,
-    USER_NOTIFY_SHUTDOWN = 16,
-    _,
-    pub fn initFlags(o: struct {
-        FORCE_TRIGGER_RESET: u1 = 0,
-        LEVEL_USER_NOTIFY_EXEC: u1 = 0,
-        LEVEL_USER_NOTIFY_SOUND: u1 = 0,
-        LEVEL_USER_NOTIFY_TEXT: u1 = 0,
-        USER_NOTIFY_BUTTON: u1 = 0,
-        USER_NOTIFY_SHUTDOWN: u1 = 0,
-    }) POWER_ACTION_POLICY_EVENT_CODE {
-        return @intToEnum(POWER_ACTION_POLICY_EVENT_CODE,
-              (if (o.FORCE_TRIGGER_RESET == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_EXEC == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_SOUND == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_TEXT == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT) else 0)
-            | (if (o.USER_NOTIFY_BUTTON == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON) else 0)
-            | (if (o.USER_NOTIFY_SHUTDOWN == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN) else 0)
-        );
-    }
-};
-pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET;
-pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC;
-pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND;
-pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT;
-pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON;
-pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN;
 
 pub const EFFECTIVE_POWER_MODE = enum(i32) {
     BatterySaver = 0,
@@ -506,8 +420,8 @@ pub const USER_POWER_POLICY = extern struct {
     VideoTimeoutDc: u32,
     SpindownTimeoutAc: u32,
     SpindownTimeoutDc: u32,
-    OptimizeForPowerAc: u8,
-    OptimizeForPowerDc: u8,
+    OptimizeForPowerAc: BOOLEAN,
+    OptimizeForPowerDc: BOOLEAN,
     FanThrottleToleranceAc: u8,
     FanThrottleToleranceDc: u8,
     ForcedThrottleAc: u8,
@@ -529,7 +443,7 @@ pub const PWRSCHEMESENUMPROC_V1 = fn(
     Description: ?*i8,
     Policy: ?*POWER_POLICY,
     Context: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const PWRSCHEMESENUMPROC = fn(
     Index: u32,
@@ -541,7 +455,7 @@ pub const PWRSCHEMESENUMPROC = fn(
     Description: ?PWSTR,
     Policy: ?*POWER_POLICY,
     Context: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const POWER_DATA_ACCESSOR = enum(i32) {
     AC_POWER_SETTING_INDEX = 0,
@@ -680,7 +594,7 @@ pub const BATTERY_CHARGING_SOURCE = extern struct {
 
 pub const BATTERY_CHARGING_SOURCE_INFORMATION = extern struct {
     Type: BATTERY_CHARGING_SOURCE_TYPE,
-    SourceOnline: u8,
+    SourceOnline: BOOLEAN,
 };
 
 pub const USB_CHARGER_PORT = enum(i32) {
@@ -772,14 +686,14 @@ pub const THERMAL_WAIT_READ = extern struct {
 
 pub const THERMAL_POLICY = extern struct {
     Version: u32,
-    WaitForUpdate: u8,
-    Hibernate: u8,
-    Critical: u8,
-    ThermalStandby: u8,
+    WaitForUpdate: BOOLEAN,
+    Hibernate: BOOLEAN,
+    Critical: BOOLEAN,
+    ThermalStandby: BOOLEAN,
     ActivationReasons: u32,
     PassiveLimit: u32,
     ActiveLevel: u32,
-    OverThrottled: u8,
+    OverThrottled: BOOLEAN,
 };
 
 pub const PROCESSOR_OBJECT_INFO = extern struct {
@@ -814,58 +728,96 @@ pub const ACPI_REAL_TIME = extern struct {
     Reserved1: [3]u8,
 };
 
+pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
+    @"1" = 1,
+    @"2" = 2,
+};
+// TODO: enum 'POWER_PLATFORM_ROLE_VERSION' has known issues with its value aliases
+
+pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = enum(u32) {
+    SERVICE_HANDLE = 1,
+    CALLBACK = 2,
+    WINDOW_HANDLE = 0,
+};
+pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.SERVICE_HANDLE;
+pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
+pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
+
+pub const EXECUTION_STATE = enum(u32) {
+    AWAYMODE_REQUIRED = 64,
+    CONTINUOUS = 2147483648,
+    DISPLAY_REQUIRED = 2,
+    SYSTEM_REQUIRED = 1,
+    USER_PRESENT = 4,
+    _,
+    pub fn initFlags(o: struct {
+        AWAYMODE_REQUIRED: u1 = 0,
+        CONTINUOUS: u1 = 0,
+        DISPLAY_REQUIRED: u1 = 0,
+        SYSTEM_REQUIRED: u1 = 0,
+        USER_PRESENT: u1 = 0,
+    }) EXECUTION_STATE {
+        return @intToEnum(EXECUTION_STATE,
+              (if (o.AWAYMODE_REQUIRED == 1) @enumToInt(EXECUTION_STATE.AWAYMODE_REQUIRED) else 0)
+            | (if (o.CONTINUOUS == 1) @enumToInt(EXECUTION_STATE.CONTINUOUS) else 0)
+            | (if (o.DISPLAY_REQUIRED == 1) @enumToInt(EXECUTION_STATE.DISPLAY_REQUIRED) else 0)
+            | (if (o.SYSTEM_REQUIRED == 1) @enumToInt(EXECUTION_STATE.SYSTEM_REQUIRED) else 0)
+            | (if (o.USER_PRESENT == 1) @enumToInt(EXECUTION_STATE.USER_PRESENT) else 0)
+        );
+    }
+};
+pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE.AWAYMODE_REQUIRED;
+pub const ES_CONTINUOUS = EXECUTION_STATE.CONTINUOUS;
+pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE.DISPLAY_REQUIRED;
+pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE.SYSTEM_REQUIRED;
+pub const ES_USER_PRESENT = EXECUTION_STATE.USER_PRESENT;
+
+pub const POWER_ACTION_POLICY_EVENT_CODE = enum(u32) {
+    FORCE_TRIGGER_RESET = 2147483648,
+    LEVEL_USER_NOTIFY_EXEC = 4,
+    LEVEL_USER_NOTIFY_SOUND = 2,
+    LEVEL_USER_NOTIFY_TEXT = 1,
+    USER_NOTIFY_BUTTON = 8,
+    USER_NOTIFY_SHUTDOWN = 16,
+    _,
+    pub fn initFlags(o: struct {
+        FORCE_TRIGGER_RESET: u1 = 0,
+        LEVEL_USER_NOTIFY_EXEC: u1 = 0,
+        LEVEL_USER_NOTIFY_SOUND: u1 = 0,
+        LEVEL_USER_NOTIFY_TEXT: u1 = 0,
+        USER_NOTIFY_BUTTON: u1 = 0,
+        USER_NOTIFY_SHUTDOWN: u1 = 0,
+    }) POWER_ACTION_POLICY_EVENT_CODE {
+        return @intToEnum(POWER_ACTION_POLICY_EVENT_CODE,
+              (if (o.FORCE_TRIGGER_RESET == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_EXEC == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_SOUND == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND) else 0)
+            | (if (o.LEVEL_USER_NOTIFY_TEXT == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT) else 0)
+            | (if (o.USER_NOTIFY_BUTTON == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON) else 0)
+            | (if (o.USER_NOTIFY_SHUTDOWN == 1) @enumToInt(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN) else 0)
+        );
+    }
+};
+pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET;
+pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC;
+pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND;
+pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT;
+pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON;
+pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN;
+
+pub const SYSTEM_POWER_STATUS = extern struct {
+    ACLineStatus: u8,
+    BatteryFlag: u8,
+    BatteryLifePercent: u8,
+    SystemStatusFlag: u8,
+    BatteryLifeTime: u32,
+    BatteryFullLifeTime: u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (97)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RequestWakeupLatency(
-    latency: LATENCY_TIME,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn IsSystemResumeAutomatic(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadExecutionState(
-    esFlags: EXECUTION_STATE,
-) callconv(@import("std").os.windows.WINAPI) EXECUTION_STATE;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn PowerCreateRequest(
-    Context: ?*REASON_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn PowerSetRequest(
-    PowerRequest: ?HANDLE,
-    RequestType: POWER_REQUEST_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn PowerClearRequest(
-    PowerRequest: ?HANDLE,
-    RequestType: POWER_REQUEST_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetDevicePowerState(
-    hDevice: ?HANDLE,
-    pfOn: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetSystemPowerState(
-    fSuspend: BOOL,
-    fForce: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetSystemPowerStatus(
-    lpSystemPowerStatus: ?*SYSTEM_POWER_STATUS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USER32" fn RegisterPowerSettingNotification(
     hRecipient: ?HANDLE,
@@ -903,7 +855,7 @@ pub extern "POWRPROF" fn CallNtPowerInformation(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn GetPwrCapabilities(
     lpspc: ?*SYSTEM_POWER_CAPABILITIES,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "POWRPROF" fn PowerDeterminePlatformRoleEx(
@@ -1006,24 +958,24 @@ pub extern "POWRPROF" fn PowerUnregisterFromEffectivePowerModeNotifications(
 pub extern "POWRPROF" fn GetPwrDiskSpindownRange(
     puiMax: ?*u32,
     puiMin: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn EnumPwrSchemes(
     lpfn: ?PWRSCHEMESENUMPROC,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn ReadGlobalPwrPolicy(
     pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn ReadPwrScheme(
     uiID: u32,
     pPowerPolicy: ?*POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn WritePwrScheme(
@@ -1031,85 +983,85 @@ pub extern "POWRPROF" fn WritePwrScheme(
     lpszSchemeName: ?[*:0]const u16,
     lpszDescription: ?[*:0]const u16,
     lpScheme: ?*POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn WriteGlobalPwrPolicy(
     pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn DeletePwrScheme(
     uiID: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn GetActivePwrScheme(
     puiID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn SetActivePwrScheme(
     uiID: u32,
     pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
     pPowerPolicy: ?*POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn IsPwrSuspendAllowed(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn IsPwrHibernateAllowed(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn IsPwrShutdownAllowed(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "POWRPROF" fn IsAdminOverrideActive(
     papp: ?*ADMINISTRATOR_POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn SetSuspendState(
-    bHibernate: u8,
-    bForce: u8,
-    bWakeupEventsDisabled: u8,
-) callconv(@import("std").os.windows.WINAPI) u8;
+    bHibernate: BOOLEAN,
+    bForce: BOOLEAN,
+    bWakeupEventsDisabled: BOOLEAN,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn GetCurrentPowerPolicies(
     pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
     pPowerPolicy: ?*POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn CanUserWritePwrScheme(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn ReadProcessorPwrScheme(
     uiID: u32,
     pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "POWRPROF" fn WriteProcessorPwrScheme(
     uiID: u32,
     pMachineProcessorPowerPolicy: ?*MACHINE_PROCESSOR_POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "POWRPROF" fn ValidatePowerPolicies(
     pGlobalPowerPolicy: ?*GLOBAL_POWER_POLICY,
     pPowerPolicy: ?*POWER_POLICY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "POWRPROF" fn PowerIsSettingRangeDefined(
     SubKeyGuid: ?*const Guid,
     SettingGuid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "POWRPROF" fn PowerSettingAccessCheckEx(
@@ -1488,7 +1440,7 @@ pub extern "POWRPROF" fn DevicePowerEnumDevices(
     // TODO: what to do with BytesParamIndex 4?
     pReturnBuffer: ?*u8,
     pBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn DevicePowerSetDeviceState(
@@ -1500,16 +1452,64 @@ pub extern "POWRPROF" fn DevicePowerSetDeviceState(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn DevicePowerOpen(
     DebugMask: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "POWRPROF" fn DevicePowerClose(
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "POWRPROF" fn PowerReportThermalEvent(
     Event: ?*THERMAL_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn RequestWakeupLatency(
+    latency: LATENCY_TIME,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsSystemResumeAutomatic(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetThreadExecutionState(
+    esFlags: EXECUTION_STATE,
+) callconv(@import("std").os.windows.WINAPI) EXECUTION_STATE;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn PowerCreateRequest(
+    Context: ?*REASON_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn PowerSetRequest(
+    PowerRequest: ?HANDLE,
+    RequestType: POWER_REQUEST_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn PowerClearRequest(
+    PowerRequest: ?HANDLE,
+    RequestType: POWER_REQUEST_TYPE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetDevicePowerState(
+    hDevice: ?HANDLE,
+    pfOn: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetSystemPowerState(
+    fSuspend: BOOL,
+    fForce: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetSystemPowerStatus(
+    lpSystemPowerStatus: ?*SYSTEM_POWER_STATUS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------
@@ -1525,19 +1525,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const HKEY = @import("../system/registry.zig").HKEY;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const POWER_INFORMATION_LEVEL = @import("../system/system_services.zig").POWER_INFORMATION_LEVEL;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const REASON_CONTEXT = @import("../system/system_services.zig").REASON_CONTEXT;
-const BOOL = @import("../foundation.zig").BOOL;
 const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
+const BOOL = @import("../foundation.zig").BOOL;
+const REASON_CONTEXT = @import("../system/system_services.zig").REASON_CONTEXT;
 const POWER_REQUEST_TYPE = @import("../system/system_services.zig").POWER_REQUEST_TYPE;
 
 test {
