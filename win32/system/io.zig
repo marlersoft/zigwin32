@@ -26,11 +26,18 @@ pub const OVERLAPPED_ENTRY = extern struct {
     dwNumberOfBytesTransferred: u32,
 };
 
-pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
-    dwErrorCode: u32,
-    dwNumberOfBytesTransfered: u32,
-    lpOverlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LPOVERLAPPED_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwErrorCode: u32,
+        dwNumberOfBytesTransfered: u32,
+        lpOverlapped: ?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        dwErrorCode: u32,
+        dwNumberOfBytesTransfered: u32,
+        lpOverlapped: ?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 //--------------------------------------------------------------------------------

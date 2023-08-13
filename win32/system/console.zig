@@ -216,9 +216,14 @@ pub const CONSOLE_READCONSOLE_CONTROL = extern struct {
     dwControlKeyState: u32,
 };
 
-pub const PHANDLER_ROUTINE = fn(
-    CtrlType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PHANDLER_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CtrlType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        CtrlType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const CONSOLE_CURSOR_INFO = extern struct {
     dwSize: u32,

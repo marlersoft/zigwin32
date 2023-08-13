@@ -1436,9 +1436,14 @@ pub const URB = extern struct {
     },
 };
 
-pub const USB_IDLE_CALLBACK = fn(
-    Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const USB_IDLE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const USB_IDLE_CALLBACK_INFO = extern struct {
     IdleCallback: ?USB_IDLE_CALLBACK,

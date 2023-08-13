@@ -648,90 +648,188 @@ pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
     bUpgradeVCOs: BOOLEAN,
 };
 
-pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = fn(
-    lpszNodeName: ?[*:0]const u16,
-    pdwClusterState: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszNodeName: ?[*:0]const u16,
+        pdwClusterState: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszNodeName: ?[*:0]const u16,
+        pdwClusterState: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER = fn(
-    lpszClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_OPEN_CLUSTER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszClusterName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        lpszClusterName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_EX = fn(
-    lpszClusterName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_OPEN_CLUSTER_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszClusterName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        lpszClusterName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER = fn(
-    hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_SetClusterName = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNewClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SetClusterName = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNewClusterName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNewClusterName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_INFORMATION = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszClusterName: [*:0]u16,
-    lpcchClusterName: ?*u32,
-    lpClusterInfo: ?*CLUSTERVERSIONINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_INFORMATION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszClusterName: [*:0]u16,
+        lpcchClusterName: ?*u32,
+        lpClusterInfo: ?*CLUSTERVERSIONINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszClusterName: [*:0]u16,
+        lpcchClusterName: ?*u32,
+        lpClusterInfo: ?*CLUSTERVERSIONINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: [*:0]u16,
-    lpcchResourceName: ?*u32,
-    lpszDeviceName: [*:0]u16,
-    lpcchDeviceName: ?*u32,
-    lpdwMaxQuorumLogSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: [*:0]u16,
+        lpcchResourceName: ?*u32,
+        lpszDeviceName: [*:0]u16,
+        lpcchDeviceName: ?*u32,
+        lpdwMaxQuorumLogSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: [*:0]u16,
+        lpcchResourceName: ?*u32,
+        lpszDeviceName: [*:0]u16,
+        lpcchDeviceName: ?*u32,
+        lpdwMaxQuorumLogSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-    lpszDeviceName: ?[*:0]const u16,
-    dwMaxQuoLogSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpszDeviceName: ?[*:0]const u16,
+        dwMaxQuoLogSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpszDeviceName: ?[*:0]const u16,
+        dwMaxQuoLogSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszPathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszPathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = fn(
-    lpszPathName: ?[*:0]const u16,
-    bForce: BOOL,
-    lpszQuorumDriveLetter: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszPathName: ?[*:0]const u16,
+        bForce: BOOL,
+        lpszQuorumDriveLetter: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszPathName: ?[*:0]const u16,
+        bForce: BOOL,
+        lpszQuorumDriveLetter: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = fn(
-    hCluster: ?*_HCLUSTER,
-    NetworkCount: u32,
-    NetworkList: [*]?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        NetworkCount: u32,
+        NetworkList: [*]?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        NetworkCount: u32,
+        NetworkList: [*]?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = fn(
-    lpszClusterName: ?[*:0]const u16,
-    lpszNewPassword: ?[*:0]const u16,
-    dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
-    lpcbReturnStatusBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszClusterName: ?[*:0]const u16,
+        lpszNewPassword: ?[*:0]const u16,
+        dwFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
+        lpcbReturnStatusBufferSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszClusterName: ?[*:0]const u16,
+        lpszNewPassword: ?[*:0]const u16,
+        dwFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
+        lpcbReturnStatusBufferSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_CONTROL = fn(
-    hCluster: ?*_HCLUSTER,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_UPGRADE_PHASE = enum(i32) {
     Initialize = 1,
@@ -746,17 +844,31 @@ pub const ClusterUpgradePhaseUpgradingComponents = CLUSTER_UPGRADE_PHASE.Upgradi
 pub const ClusterUpgradePhaseInstallingNewComponents = CLUSTER_UPGRADE_PHASE.InstallingNewComponents;
 pub const ClusterUpgradePhaseUpgradeComplete = CLUSTER_UPGRADE_PHASE.UpgradeComplete;
 
-pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = fn(
-    pvCallbackArg: ?*anyopaque,
-    eUpgradePhase: CLUSTER_UPGRADE_PHASE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pvCallbackArg: ?*anyopaque,
+        eUpgradePhase: CLUSTER_UPGRADE_PHASE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pvCallbackArg: ?*anyopaque,
+        eUpgradePhase: CLUSTER_UPGRADE_PHASE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_CLUSTER_UPGRADE = fn(
-    hCluster: ?*_HCLUSTER,
-    perform: BOOL,
-    pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_UPGRADE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        perform: BOOL,
+        pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        perform: BOOL,
+        pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_CHANGE = enum(i32) {
     NODE_STATE = 1,
@@ -1108,69 +1220,141 @@ pub const CLUSTER_MEMBERSHIP_INFO = extern struct {
     Upnodes: [1]u8,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = fn(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    Filters: ?*NOTIFY_FILTER_AND_TYPE,
-    dwFilterCount: u32,
-    dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        hCluster: ?*_HCLUSTER,
+        Filters: ?*NOTIFY_FILTER_AND_TYPE,
+        dwFilterCount: u32,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        hCluster: ?*_HCLUSTER,
+        Filters: ?*NOTIFY_FILTER_AND_TYPE,
+        dwFilterCount: u32,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE,
+} ;
 
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = fn(
-    hChange: ?*_HCHANGE,
-    Filter: NOTIFY_FILTER_AND_TYPE,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        Filter: NOTIFY_FILTER_AND_TYPE,
+        hObject: ?HANDLE,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        Filter: NOTIFY_FILTER_AND_TYPE,
+        hObject: ?HANDLE,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = fn(
-    hChange: ?*_HCHANGE,
-    lphTargetEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        lphTargetEvent: ?*?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        lphTargetEvent: ?*?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = fn(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
-    buffer: ?*u8,
-    lpcchBufferSize: ?*u32,
-    lpszObjectId: ?PWSTR,
-    lpcchObjectId: ?*u32,
-    lpszParentId: ?PWSTR,
-    lpcchParentId: ?*u32,
-    lpszName: ?PWSTR,
-    lpcchName: ?*u32,
-    lpszType: ?PWSTR,
-    lpcchType: ?*u32,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        lpdwNotifyKey: ?*usize,
+        pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
+        buffer: ?*u8,
+        lpcchBufferSize: ?*u32,
+        lpszObjectId: ?PWSTR,
+        lpcchObjectId: ?*u32,
+        lpszParentId: ?PWSTR,
+        lpcchParentId: ?*u32,
+        lpszName: ?PWSTR,
+        lpcchName: ?*u32,
+        lpszType: ?PWSTR,
+        lpcchType: ?*u32,
+        dwMilliseconds: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        lpdwNotifyKey: ?*usize,
+        pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
+        buffer: ?*u8,
+        lpcchBufferSize: ?*u32,
+        lpszObjectId: ?PWSTR,
+        lpcchObjectId: ?*u32,
+        lpszParentId: ?PWSTR,
+        lpcchParentId: ?*u32,
+        lpszName: ?PWSTR,
+        lpcchName: ?*u32,
+        lpszType: ?PWSTR,
+        lpcchType: ?*u32,
+        dwMilliseconds: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = fn(
-    hChange: ?*_HCHANGE,
-    hCluster: ?*_HCLUSTER,
-    dwFilter: u32,
-    dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        hCluster: ?*_HCLUSTER,
+        dwFilter: u32,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        hCluster: ?*_HCLUSTER,
+        dwFilter: u32,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE,
+} ;
 
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = fn(
-    hChange: ?*_HCHANGE,
-    dwFilterType: u32,
-    hObject: ?HANDLE,
-    dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        dwFilterType: u32,
+        hObject: ?HANDLE,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        dwFilterType: u32,
+        hObject: ?HANDLE,
+        dwNotifyKey: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY = fn(
-    hChange: ?*_HCHANGE,
-    lpdwNotifyKey: ?*usize,
-    lpdwFilterType: ?*u32,
-    lpszName: ?[*:0]u16,
-    lpcchName: ?*u32,
-    dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+        lpdwNotifyKey: ?*usize,
+        lpdwFilterType: ?*u32,
+        lpszName: ?[*:0]u16,
+        lpcchName: ?*u32,
+        dwMilliseconds: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+        lpdwNotifyKey: ?*usize,
+        lpdwFilterType: ?*u32,
+        lpszName: ?[*:0]u16,
+        lpcchName: ?*u32,
+        dwMilliseconds: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = fn(
-    hChange: ?*_HCHANGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hChange: ?*_HCHANGE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hChange: ?*_HCHANGE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const CLUSTER_ENUM = enum(i32) {
     NODE = 1,
@@ -1195,144 +1379,309 @@ pub const CLUSTER_ENUM_SHARED_VOLUME_RESOURCE = CLUSTER_ENUM.SHARED_VOLUME_RESOU
 pub const CLUSTER_ENUM_INTERNAL_NETWORK = CLUSTER_ENUM.INTERNAL_NETWORK;
 pub const CLUSTER_ENUM_ALL = CLUSTER_ENUM.ALL;
 
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM = fn(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM;
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = fn(
-    hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hEnum: ?*_HCLUSENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hEnum: ?*_HCLUSENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_ENUM = fn(
-    hEnum: ?*_HCLUSENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hEnum: ?*_HCLUSENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hEnum: ?*_HCLUSENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = fn(
-    hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hEnum: ?*_HCLUSENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hEnum: ?*_HCLUSENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    dwType: u32,
-    pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX;
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        dwType: u32,
+        pOptions: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        dwType: u32,
+        pOptions: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_ENUM_EX = fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = fn(
-    hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusterEnum: ?*_HCLUSENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = fn(
-    hGroupSet: ?*_HGROUPSET,
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = fn(
-    hGroupSet: ?*_HGROUPSET,
-    hGroupName: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+        hGroupName: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+        hGroupName: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = fn(
-    hGroupSet: ?*_HGROUPSET,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = fn(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hDependentGroup: ?*_HGROUP,
+        hProviderGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hDependentGroup: ?*_HGROUP,
+        hProviderGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = fn(
-    hGroupSet: ?*_HGROUP,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUP,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUP,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = fn(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        hDependsOn: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        hDependsOn: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        hProviderGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        hProviderGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = fn(
-    hGroupSet: ?*_HGROUPSET,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn(
-    hGroupSet: ?*_HGROUPSET,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+        hDependsOn: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+        hDependsOn: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn(
-    hDependentGroup: ?*_HGROUP,
-    hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hDependentGroup: ?*_HGROUP,
+        hProviderGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hDependentGroup: ?*_HGROUP,
+        hProviderGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn(
-    hGroup: ?*_HGROUP,
-    hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        hDependsOn: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        hDependsOn: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = fn(
-    hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hGroupSet: ?*_HGROUPSET,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        lpRemoteClusterName: ?[*:0]const u16,
+        lpRemoteGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        lpRemoteClusterName: ?[*:0]const u16,
+        lpRemoteGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn(
-    hDependentGroupSet: ?*_HGROUPSET,
-    lpRemoteClusterName: ?[*:0]const u16,
-    lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        lpRemoteClusterName: ?[*:0]const u16,
+        lpRemoteGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hDependentGroupSet: ?*_HGROUPSET,
+        lpRemoteClusterName: ?[*:0]const u16,
+        lpRemoteGroupSetName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
     dwVersion: u32,
@@ -1341,48 +1690,97 @@ pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
     bReserveSpareNode: BOOL,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = fn(
-    hCluster: ?*_HCLUSTER,
-    lpAvailabilitySetName: ?[*:0]const u16,
-    pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpAvailabilitySetName: ?[*:0]const u16,
+        pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpAvailabilitySetName: ?[*:0]const u16,
+        pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET,
+} ;
 
-pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    ruleType: CLUS_AFFINITY_RULE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        ruleType: CLUS_AFFINITY_RULE_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        ruleType: CLUS_AFFINITY_RULE_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        ruleName: ?[*:0]const u16,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = fn(
-    hCluster: ?*_HCLUSTER,
-    affinityRuleName: ?[*:0]const u16,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        affinityRuleName: ?[*:0]const u16,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 7?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        affinityRuleName: ?[*:0]const u16,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 7?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_NODE_ENUM = enum(i32) {
     NETINTERFACES = 1,
@@ -1455,106 +1853,227 @@ pub const NodeStatusDrainFailed = CLUSTER_NODE_STATUS.DrainFailed;
 pub const NodeStatusAvoidPlacement = CLUSTER_NODE_STATUS.AvoidPlacement;
 pub const NodeStatusMax = CLUSTER_NODE_STATUS.Max;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NODE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+pub const PCLUSAPI_OPEN_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+} ;
 
-pub const PCLUSAPI_OPEN_NODE_BY_ID = fn(
-    hCluster: ?*_HCLUSTER,
-    nodeId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+pub const PCLUSAPI_OPEN_NODE_BY_ID = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        nodeId: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        nodeId: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NODE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE;
+pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_ID = fn(
-    hNode: ?*_HNODE,
-    lpszNodeId: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_NODE_ID = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        lpszNodeId: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        lpszNodeId: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_RESUME_CLUSTER_NODE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_RESUME_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_EVICT_CLUSTER_NODE = fn(
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_EVICT_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = fn(
-    hNode: ?*_HNODE,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM;
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = fn(
-    hNode: ?*_HNODE,
-    dwType: u32,
-    pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX;
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        dwType: u32,
+        pOptions: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        dwType: u32,
+        pOptions: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = fn(
-    hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = fn(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = fn(
-    hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_ENUM = fn(
-    hNodeEnum: ?*_HNODEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNodeEnum: ?*_HNODEENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNodeEnum: ?*_HNODEENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = fn(
-    hNode: ?*_HNODE,
-    dwTimeOut: u32,
-    phrCleanupStatus: ?*HRESULT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        dwTimeOut: u32,
+        phrCleanupStatus: ?*HRESULT,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        dwTimeOut: u32,
+        phrCleanupStatus: ?*HRESULT,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszTypeName: ?[*:0]const u16,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszTypeName: ?[*:0]const u16,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszTypeName: ?[*:0]const u16,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
 pub const CLUSTER_GROUP_ENUM = enum(i32) {
     CONTAINS = 1,
@@ -1632,29 +2151,57 @@ pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
     pRoProperties: ?*anyopaque,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+} ;
 
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = fn(
-    hNode: ?*_HNODE,
-    bDrainNode: BOOL,
-    dwPauseFlags: u32,
-    hNodeDrainTarget: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        bDrainNode: BOOL,
+        dwPauseFlags: u32,
+        hNodeDrainTarget: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        bDrainNode: BOOL,
+        dwPauseFlags: u32,
+        hNodeDrainTarget: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_NODE_RESUME_FAILBACK_TYPE = enum(i32) {
     DoNotFailbackGroups = 0,
@@ -1667,142 +2214,304 @@ pub const FailbackGroupsImmediately = CLUSTER_NODE_RESUME_FAILBACK_TYPE.Failback
 pub const FailbackGroupsPerPolicy = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsPerPolicy;
 pub const ClusterNodeResumeFailbackTypeCount = CLUSTER_NODE_RESUME_FAILBACK_TYPE.ClusterNodeResumeFailbackTypeCount;
 
-pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = fn(
-    hNode: ?*_HNODE,
-    eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
-    dwResumeFlagsReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
+        dwResumeFlagsReserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
+        dwResumeFlagsReserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszGroupName: ?[*:0]const u16,
-    pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+        pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszGroupName: ?[*:0]const u16,
+        pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX;
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        // TODO: what to do with BytesParamIndex 2?
+        lpszProperties: ?[*:0]const u16,
+        cbProperties: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpszRoProperties: ?[*:0]const u16,
+        cbRoProperties: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        // TODO: what to do with BytesParamIndex 2?
+        lpszProperties: ?[*:0]const u16,
+        cbProperties: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpszRoProperties: ?[*:0]const u16,
+        cbRoProperties: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = fn(
-    hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnumEx: ?*_HGROUPENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
-    lpszProperties: ?[*:0]const u16,
-    cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpszRoProperties: ?[*:0]const u16,
-    cbRoProperties: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX;
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        // TODO: what to do with BytesParamIndex 2?
+        lpszProperties: ?[*:0]const u16,
+        cbProperties: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpszRoProperties: ?[*:0]const u16,
+        cbRoProperties: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        // TODO: what to do with BytesParamIndex 2?
+        lpszProperties: ?[*:0]const u16,
+        cbProperties: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpszRoProperties: ?[*:0]const u16,
+        cbRoProperties: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-    dwIndex: u32,
-    pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
-    cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+        dwIndex: u32,
+        pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
+        cbItem: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = fn(
-    hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResourceEnumEx: ?*_HRESENUMEX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = fn(
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = fn(
-    hGroup: ?*_HGROUP,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE;
+pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        lpszNodeName: ?[*:0]u16,
+        lpcchNodeName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        lpszNodeName: ?[*:0]u16,
+        lpcchNodeName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = fn(
-    hGroup: ?*_HGROUP,
-    lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        lpszGroupName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = fn(
-    hGroup: ?*_HGROUP,
-    NodeCount: u32,
-    NodeList: ?[*]?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        NodeCount: u32,
+        NodeList: ?[*]?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        NodeCount: u32,
+        NodeList: ?[*]?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        hDestinationNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        hDestinationNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_MOVE_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-    hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_MOVE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        hDestinationNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        hDestinationNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = fn(
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = fn(
-    hGroup: ?*_HGROUP,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM;
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = fn(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnum: ?*_HGROUPENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnum: ?*_HGROUPENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM = fn(
-    hGroupEnum: ?*_HGROUPENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszResourceName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnum: ?*_HGROUPENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszResourceName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnum: ?*_HGROUPENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszResourceName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = fn(
-    hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroupEnum: ?*_HGROUPENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroupEnum: ?*_HGROUPENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_RESOURCE_STATE = enum(i32) {
     StateUnknown = -1,
@@ -1865,186 +2574,396 @@ pub const ClusterSharedVolumePrepareForHWSnapshot = CLUSTER_SHARED_VOLUME_SNAPSH
 pub const ClusterSharedVolumeHWSnapshotCompleted = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.HWSnapshotCompleted;
 pub const ClusterSharedVolumePrepareForFreeze = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForFreeze;
 
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = fn(
-    hGroup: ?*_HGROUP,
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = fn(
-    hResource: ?*_HRESOURCE,
-    lpszNodeName: ?[*:0]u16,
-    lpcchNodeName: ?*u32,
-    lpszGroupName: ?[*:0]u16,
-    lpcchGroupName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE;
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpszNodeName: ?[*:0]u16,
+        lpcchNodeName: ?*u32,
+        lpszGroupName: ?[*:0]u16,
+        lpcchGroupName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpszNodeName: ?[*:0]u16,
+        lpcchNodeName: ?*u32,
+        lpszGroupName: ?[*:0]u16,
+        lpcchGroupName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = fn(
-    hResource: ?*_HRESOURCE,
-    lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpszResourceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpszResourceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = fn(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hGroup: ?*_HGROUP,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = fn(
-    hResource: ?*_HRESOURCE,
-    hGroup: ?*_HGROUP,
-    Flags: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hGroup: ?*_HGROUP,
+        Flags: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hGroup: ?*_HGROUP,
+        Flags: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = fn(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = fn(
-    hResource: ?*_HRESOURCE,
-    hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hNode: ?*_HNODE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = fn(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hDependsOn: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hDependsOn: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = fn(
-    hResource: ?*_HRESOURCE,
-    hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hDependsOn: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hDependsOn: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpszDependencyExpression: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn(
-    hResource: ?*_HRESOURCE,
-    lpszDependencyExpression: ?[*:0]u16,
-    lpcchDependencyExpression: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpszDependencyExpression: ?[*:0]u16,
+        lpcchDependencyExpression: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpszDependencyExpression: ?[*:0]u16,
+        lpcchDependencyExpression: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = fn(
-    lpszPathName: ?[*:0]const u16,
-    pbFileIsOnSharedVolume: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszPathName: ?[*:0]const u16,
+        pbFileIsOnSharedVolume: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszPathName: ?[*:0]const u16,
+        pbFileIsOnSharedVolume: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = fn(
-    guidSnapshotSet: Guid,
-    lpszVolumeName: ?[*:0]const u16,
-    state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        guidSnapshotSet: Guid,
+        lpszVolumeName: ?[*:0]const u16,
+        state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        guidSnapshotSet: Guid,
+        lpszVolumeName: ?[*:0]const u16,
+        state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = fn(
-    hResource: ?*_HRESOURCE,
-    hResourceDependent: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hResourceDependent: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hResourceDependent: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = fn(
-    hResource: ?*_HRESOURCE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    cbOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        cbInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        cbOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 7?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 7?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = fn(
-    hGroup: ?*_HGROUP,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NODE_CONTROL = fn(
-    hNode: ?*_HNODE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NODE_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = fn(
-    hResource: ?*_HRESOURCE,
-    lpBuffer: [*:0]u16,
-    nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        lpBuffer: [*:0]u16,
+        nSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        lpBuffer: [*:0]u16,
+        nSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const CLUSTER_PROPERTY_TYPE = enum(i32) {
     UNKNOWN = -1,
@@ -3844,62 +4763,129 @@ pub const CLUSTER_RESOURCE_TYPE_ENUM_NODES = CLUSTER_RESOURCE_TYPE_ENUM.NODES;
 pub const CLUSTER_RESOURCE_TYPE_ENUM_RESOURCES = CLUSTER_RESOURCE_TYPE_ENUM.RESOURCES;
 pub const CLUSTER_RESOURCE_TYPE_ENUM_ALL = CLUSTER_RESOURCE_TYPE_ENUM.ALL;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = fn(
-    hResource: ?*_HRESOURCE,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM;
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = fn(
-    hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResEnum: ?*_HRESENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResEnum: ?*_HRESENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = fn(
-    hResEnum: ?*_HRESENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResEnum: ?*_HRESENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResEnum: ?*_HRESENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = fn(
-    hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResEnum: ?*_HRESENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResEnum: ?*_HRESENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    lpszDisplayName: ?[*:0]const u16,
-    lpszResourceTypeDll: ?[*:0]const u16,
-    dwLooksAlivePollInterval: u32,
-    dwIsAlivePollInterval: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        lpszDisplayName: ?[*:0]const u16,
+        lpszResourceTypeDll: ?[*:0]const u16,
+        dwLooksAlivePollInterval: u32,
+        dwIsAlivePollInterval: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        lpszDisplayName: ?[*:0]const u16,
+        lpszResourceTypeDll: ?[*:0]const u16,
+        dwLooksAlivePollInterval: u32,
+        dwIsAlivePollInterval: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszResourceTypeName: ?[*:0]const u16,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM;
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszResourceTypeName: ?[*:0]const u16,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = fn(
-    hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResTypeEnum: ?*_HRESTYPEENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_NETWORK_ENUM = enum(i32) {
     NETINTERFACES = 1,
@@ -3932,74 +4918,155 @@ pub const ClusterNetworkRoleInternalUse = CLUSTER_NETWORK_ROLE.InternalUse;
 pub const ClusterNetworkRoleClientAccess = CLUSTER_NETWORK_ROLE.ClientAccess;
 pub const ClusterNetworkRoleInternalAndClient = CLUSTER_NETWORK_ROLE.InternalAndClient;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetworkName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetworkName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetworkName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetworkName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetworkName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = fn(
-    hNetwork: ?*_HNETWORK,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM;
+pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+        dwType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-    dwIndex: u32,
-    lpdwType: ?*u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+        dwIndex: u32,
+        lpdwType: ?*u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = fn(
-    hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetworkEnum: ?*_HNETWORKENUM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = fn(
-    hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE;
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE,
+} ;
 
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = fn(
-    hNetwork: ?*_HNETWORK,
-    lpszName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+        lpszName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+        lpszName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = fn(
-    hNetwork: ?*_HNETWORK,
-    lpszNetworkId: [*:0]u16,
-    lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+        lpszNetworkId: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+        lpszNetworkId: [*:0]u16,
+        lpcchName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = fn(
-    hNetwork: ?*_HNETWORK,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_NETINTERFACE_STATE = enum(i32) {
     StateUnknown = -1,
@@ -4014,259 +5081,554 @@ pub const ClusterNetInterfaceFailed = CLUSTER_NETINTERFACE_STATE.Failed;
 pub const ClusterNetInterfaceUnreachable = CLUSTER_NETINTERFACE_STATE.Unreachable;
 pub const ClusterNetInterfaceUp = CLUSTER_NETINTERFACE_STATE.Up;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszInterfaceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszInterfaceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszInterfaceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+} ;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNetInterfaceName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetInterfaceName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNetInterfaceName: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+        lpdwGrantedAccess: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    lpszNetworkName: ?[*:0]const u16,
-    lpszInterfaceName: ?[*:0]u16,
-    lpcchInterfaceName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        lpszNetworkName: ?[*:0]const u16,
+        lpszInterfaceName: ?[*:0]u16,
+        lpcchInterfaceName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        lpszNetworkName: ?[*:0]const u16,
+        lpszInterfaceName: ?[*:0]u16,
+        lpcchInterfaceName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = fn(
-    hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE;
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE,
+    else => *const fn(
+        hNetInterface: ?*_HNETINTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE,
+} ;
 
-pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = fn(
-    hNetInterface: ?*_HNETINTERFACE,
-    hHostNode: ?*_HNODE,
-    dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpInBuffer: ?*anyopaque,
-    nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpOutBuffer: ?*anyopaque,
-    nOutBufferSize: u32,
-    lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetInterface: ?*_HNETINTERFACE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNetInterface: ?*_HNETINTERFACE,
+        hHostNode: ?*_HNODE,
+        dwControlCode: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpInBuffer: ?*anyopaque,
+        nInBufferSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpOutBuffer: ?*anyopaque,
+        nOutBufferSize: u32,
+        lpBytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_KEY = fn(
-    hCluster: ?*_HCLUSTER,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = fn(
-    hGroup: ?*_HGROUP,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGroup: ?*_HGROUP,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hGroup: ?*_HGROUP,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = fn(
-    hResource: ?*_HRESOURCE,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = fn(
-    hNode: ?*_HNODE,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNode: ?*_HNODE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hNode: ?*_HNODE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = fn(
-    hNetwork: ?*_HNETWORK,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetwork: ?*_HNETWORK,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hNetwork: ?*_HNETWORK,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = fn(
-    hNetInterface: ?*_HNETINTERFACE,
-    samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNetInterface: ?*_HNETINTERFACE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+    else => *const fn(
+        hNetInterface: ?*_HNETINTERFACE,
+        samDesired: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?HKEY,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-    dwOptions: u32,
-    samDesired: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    phkResult: ?*?HKEY,
-    lpdwDisposition: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+        dwOptions: u32,
+        samDesired: u32,
+        lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+        phkResult: ?*?HKEY,
+        lpdwDisposition: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+        dwOptions: u32,
+        samDesired: u32,
+        lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+        phkResult: ?*?HKEY,
+        lpdwDisposition: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-    samDesired: u32,
-    phkResult: ?*?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+        samDesired: u32,
+        phkResult: ?*?HKEY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+        samDesired: u32,
+        phkResult: ?*?HKEY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = fn(
-    hKey: ?HKEY,
-    lpszSubKey: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszSubKey: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = fn(
-    hKey: ?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = fn(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszName: [*:0]u16,
-    lpcchName: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        dwIndex: u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+        lpftLastWriteTime: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        dwIndex: u32,
+        lpszName: [*:0]u16,
+        lpcchName: ?*u32,
+        lpftLastWriteTime: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    dwType: u32,
-    lpData: ?*const u8,
-    cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+        dwType: u32,
+        lpData: ?*const u8,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+        dwType: u32,
+        lpData: ?*const u8,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = fn(
-    hKey: ?HKEY,
-    lpszValueName: ?[*:0]const u16,
-    lpdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+        lpdwValueType: ?*u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpData: ?*u8,
+        lpcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpszValueName: ?[*:0]const u16,
+        lpdwValueType: ?*u32,
+        // TODO: what to do with BytesParamIndex 4?
+        lpData: ?*u8,
+        lpcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = fn(
-    hKey: ?HKEY,
-    dwIndex: u32,
-    lpszValueName: [*:0]u16,
-    lpcchValueName: ?*u32,
-    lpdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
-    lpData: ?*u8,
-    lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        dwIndex: u32,
+        lpszValueName: [*:0]u16,
+        lpcchValueName: ?*u32,
+        lpdwType: ?*u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpData: ?*u8,
+        lpcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hKey: ?HKEY,
+        dwIndex: u32,
+        lpszValueName: [*:0]u16,
+        lpcchValueName: ?*u32,
+        lpdwType: ?*u32,
+        // TODO: what to do with BytesParamIndex 6?
+        lpData: ?*u8,
+        lpcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = fn(
-    hKey: ?HKEY,
-    lpcSubKeys: ?*u32,
-    lpcbMaxSubKeyLen: ?*u32,
-    lpcValues: ?*u32,
-    lpcbMaxValueNameLen: ?*u32,
-    lpcbMaxValueLen: ?*u32,
-    lpcbSecurityDescriptor: ?*u32,
-    lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        lpcSubKeys: ?*u32,
+        lpcbMaxSubKeyLen: ?*u32,
+        lpcValues: ?*u32,
+        lpcbMaxValueNameLen: ?*u32,
+        lpcbMaxValueLen: ?*u32,
+        lpcbSecurityDescriptor: ?*u32,
+        lpftLastWriteTime: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        lpcSubKeys: ?*u32,
+        lpcbMaxSubKeyLen: ?*u32,
+        lpcValues: ?*u32,
+        lpcbMaxValueNameLen: ?*u32,
+        lpcbMaxValueLen: ?*u32,
+        lpcbSecurityDescriptor: ?*u32,
+        lpftLastWriteTime: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = fn(
-    hKey: ?HKEY,
-    RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    lpcbSecurityDescriptor: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        RequestedInformation: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        lpcbSecurityDescriptor: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        RequestedInformation: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        lpcbSecurityDescriptor: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = fn(
-    hKey: ?HKEY,
-    SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        SecurityInformation: u32,
+        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        SecurityInformation: u32,
+        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = fn(
-    hCluster: ?*_HCLUSTER,
-    flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        flags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        flags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = fn(
-    hKey: ?HKEY,
-    pHREGBATCH: ?*?*_HREGBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        pHREGBATCH: ?*?*_HREGBATCH,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        pHREGBATCH: ?*?*_HREGBATCH,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_BATCH_ADD_COMMAND = fn(
-    hRegBatch: ?*_HREGBATCH,
-    dwCommand: CLUSTER_REG_COMMAND,
-    wzName: ?PWSTR,
-    dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*const anyopaque,
-    cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_BATCH_ADD_COMMAND = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegBatch: ?*_HREGBATCH,
+        dwCommand: CLUSTER_REG_COMMAND,
+        wzName: ?PWSTR,
+        dwOptions: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpData: ?*const anyopaque,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegBatch: ?*_HREGBATCH,
+        dwCommand: CLUSTER_REG_COMMAND,
+        wzName: ?PWSTR,
+        dwOptions: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        lpData: ?*const anyopaque,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CLOSE_BATCH = fn(
-    hRegBatch: ?*_HREGBATCH,
-    bCommit: BOOL,
-    failedCommandNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CLOSE_BATCH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegBatch: ?*_HREGBATCH,
+        bCommit: BOOL,
+        failedCommandNumber: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegBatch: ?*_HREGBATCH,
+        bCommit: BOOL,
+        failedCommandNumber: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_BATCH_READ_COMMAND = fn(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-    pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_BATCH_READ_COMMAND = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+        pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+        pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = fn(
-    hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hBatchNotification: ?*_HREGBATCHNOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = fn(
-    hKey: ?HKEY,
-    phBatchNotifyPort: ?*?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        phBatchNotifyPort: ?*?*_HREGBATCHPORT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        phBatchNotifyPort: ?*?*_HREGBATCHPORT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = fn(
-    hBatchNotifyPort: ?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBatchNotifyPort: ?*_HREGBATCHPORT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hBatchNotifyPort: ?*_HREGBATCHPORT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = fn(
-    hBatchNotify: ?*_HREGBATCHPORT,
-    phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBatchNotify: ?*_HREGBATCHPORT,
+        phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hBatchNotify: ?*_HREGBATCHPORT,
+        phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CREATE_READ_BATCH = fn(
-    hKey: ?HKEY,
-    phRegReadBatch: ?*?*_HREGREADBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CREATE_READ_BATCH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hKey: ?HKEY,
+        phRegReadBatch: ?*?*_HREGREADBATCH,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hKey: ?HKEY,
+        phRegReadBatch: ?*?*_HREGREADBATCH,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    wzSubkeyName: ?[*:0]const u16,
-    wzValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        wzSubkeyName: ?[*:0]const u16,
+        wzValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        wzSubkeyName: ?[*:0]const u16,
+        wzValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH = fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CLOSE_READ_BATCH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = fn(
-    hRegReadBatch: ?*_HREGREADBATCH,
-    flags: u32,
-    phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        flags: u32,
+        phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegReadBatch: ?*_HREGREADBATCH,
+        flags: u32,
+        phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = fn(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-    pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+        pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+        pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = fn(
-    hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PCLUSTER_SET_ACCOUNT_ACCESS = fn(
-    hCluster: ?*_HCLUSTER,
-    szAccountSID: ?[*:0]const u16,
-    dwAccess: u32,
-    dwControlType: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSTER_SET_ACCOUNT_ACCESS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        szAccountSID: ?[*:0]const u16,
+        dwAccess: u32,
+        dwControlType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        szAccountSID: ?[*:0]const u16,
+        dwAccess: u32,
+        dwControlType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_SETUP_PHASE = enum(i32) {
     Initialize = 1,
@@ -4347,60 +5709,123 @@ pub const ClusterSetupPhaseInformational = CLUSTER_SETUP_PHASE_SEVERITY.Informat
 pub const ClusterSetupPhaseWarning = CLUSTER_SETUP_PHASE_SEVERITY.Warning;
 pub const ClusterSetupPhaseFatal = CLUSTER_SETUP_PHASE_SEVERITY.Fatal;
 
-pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = fn(
-    pvCallbackArg: ?*anyopaque,
-    eSetupPhase: CLUSTER_SETUP_PHASE,
-    ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
-    ePhaseSeverity: CLUSTER_SETUP_PHASE_SEVERITY,
-    dwPercentComplete: u32,
-    lpszObjectName: ?[*:0]const u16,
-    dwStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pvCallbackArg: ?*anyopaque,
+        eSetupPhase: CLUSTER_SETUP_PHASE,
+        ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
+        ePhaseSeverity: CLUSTER_SETUP_PHASE_SEVERITY,
+        dwPercentComplete: u32,
+        lpszObjectName: ?[*:0]const u16,
+        dwStatus: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pvCallbackArg: ?*anyopaque,
+        eSetupPhase: CLUSTER_SETUP_PHASE,
+        ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
+        ePhaseSeverity: CLUSTER_SETUP_PHASE_SEVERITY,
+        dwPercentComplete: u32,
+        lpszObjectName: ?[*:0]const u16,
+        dwStatus: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER = fn(
-    pConfig: ?*CREATE_CLUSTER_CONFIG,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_CREATE_CLUSTER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pConfig: ?*CREATE_CLUSTER_CONFIG,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        pConfig: ?*CREATE_CLUSTER_CONFIG,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = fn(
-    pConfig: ?*CREATE_CLUSTER_CONFIG,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pConfig: ?*CREATE_CLUSTER_CONFIG,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+    else => *const fn(
+        pConfig: ?*CREATE_CLUSTER_CONFIG,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+} ;
 
-pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = fn(
-    hCluster: ?*_HCLUSTER,
-    pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = fn(
-    hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+pub const PCLUSAPI_ADD_CLUSTER_NODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+} ;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    lpszNodeName: ?[*:0]const u16,
-    dwFlags: u32,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        dwFlags: u32,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        lpszNodeName: ?[*:0]const u16,
+        dwFlags: u32,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+} ;
 
-pub const PCLUSAPI_DESTROY_CLUSTER = fn(
-    hCluster: ?*_HCLUSTER,
-    pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
-    pvCallbackArg: ?*anyopaque,
-    fdeleteVirtualComputerObjects: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_DESTROY_CLUSTER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+        fdeleteVirtualComputerObjects: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
+        pvCallbackArg: ?*anyopaque,
+        fdeleteVirtualComputerObjects: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const PLACEMENT_OPTIONS = enum(i32) {
     MIN_VALUE = 0,
@@ -4626,19 +6051,36 @@ pub const RESOURCE_STATUS_EX = extern struct {
     WaitHint: u32,
 };
 
-pub const PSET_RESOURCE_STATUS_ROUTINE_EX = fn(
-    ResourceHandle: isize,
-    ResourceStatus: ?*RESOURCE_STATUS_EX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_RESOURCE_STATUS_ROUTINE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        ResourceStatus: ?*RESOURCE_STATUS_EX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        ResourceStatus: ?*RESOURCE_STATUS_EX,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSET_RESOURCE_STATUS_ROUTINE = fn(
-    ResourceHandle: isize,
-    ResourceStatus: ?*RESOURCE_STATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_RESOURCE_STATUS_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        ResourceStatus: ?*RESOURCE_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        ResourceStatus: ?*RESOURCE_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PQUORUM_RESOURCE_LOST = fn(
-    Resource: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PQUORUM_RESOURCE_LOST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Resource: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const LOG_LEVEL = enum(i32) {
     INFORMATION = 0,
@@ -4651,127 +6093,267 @@ pub const LOG_WARNING = LOG_LEVEL.WARNING;
 pub const LOG_ERROR = LOG_LEVEL.ERROR;
 pub const LOG_SEVERE = LOG_LEVEL.SEVERE;
 
-pub const PLOG_EVENT_ROUTINE = fn(
-    ResourceHandle: isize,
-    LogLevel: LOG_LEVEL,
-    FormatString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PLOG_EVENT_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        LogLevel: LOG_LEVEL,
+        FormatString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        ResourceHandle: isize,
+        LogLevel: LOG_LEVEL,
+        FormatString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const POPEN_ROUTINE = fn(
-    ResourceName: ?[*:0]const u16,
-    ResourceKey: ?HKEY,
-    ResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const POPEN_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceName: ?[*:0]const u16,
+        ResourceKey: ?HKEY,
+        ResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        ResourceName: ?[*:0]const u16,
+        ResourceKey: ?HKEY,
+        ResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PCLOSE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PCLOSE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PONLINE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    EventHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PONLINE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        EventHandle: ?*?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        EventHandle: ?*?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const POFFLINE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const POFFLINE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PTERMINATE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PTERMINATE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PIS_ALIVE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PIS_ALIVE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PLOOKS_ALIVE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PLOOKS_ALIVE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PARBITRATE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PARBITRATE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRELEASE_ROUTINE = fn(
-    Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRELEASE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESOURCE_CONTROL_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESOURCE_CONTROL_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESOURCE_TYPE_CONTROL_ROUTINE = fn(
-    ResourceTypeName: ?[*:0]const u16,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESOURCE_TYPE_CONTROL_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceTypeName: ?[*:0]const u16,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceTypeName: ?[*:0]const u16,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const POPEN_V2_ROUTINE = fn(
-    ResourceName: ?[*:0]const u16,
-    ResourceKey: ?HKEY,
-    ResourceHandle: isize,
-    OpenFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const POPEN_V2_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceName: ?[*:0]const u16,
+        ResourceKey: ?HKEY,
+        ResourceHandle: isize,
+        OpenFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        ResourceName: ?[*:0]const u16,
+        ResourceKey: ?HKEY,
+        ResourceHandle: isize,
+        OpenFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PONLINE_V2_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    EventHandle: ?*?HANDLE,
-    OnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    InBuffer: ?*u8,
-    InBufferSize: u32,
-    Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PONLINE_V2_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        EventHandle: ?*?HANDLE,
+        OnlineFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        InBuffer: ?*u8,
+        InBufferSize: u32,
+        Reserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        EventHandle: ?*?HANDLE,
+        OnlineFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        InBuffer: ?*u8,
+        InBufferSize: u32,
+        Reserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const POFFLINE_V2_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    DestinationNodeName: ?[*:0]const u16,
-    OfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    InBuffer: ?*u8,
-    InBufferSize: u32,
-    Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const POFFLINE_V2_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        DestinationNodeName: ?[*:0]const u16,
+        OfflineFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        InBuffer: ?*u8,
+        InBufferSize: u32,
+        Reserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        DestinationNodeName: ?[*:0]const u16,
+        OfflineFlags: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        InBuffer: ?*u8,
+        InBufferSize: u32,
+        Reserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCANCEL_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    CancelFlags_RESERVED: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCANCEL_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        CancelFlags_RESERVED: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        CancelFlags_RESERVED: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PBEGIN_RESCALL_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PBEGIN_RESCALL_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PBEGIN_RESTYPECALL_ROUTINE = fn(
-    ResourceTypeName: ?[*:0]const u16,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PBEGIN_RESTYPECALL_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceTypeName: ?[*:0]const u16,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceTypeName: ?[*:0]const u16,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const RESOURCE_EXIT_STATE = enum(i32) {
     Continue = 0,
@@ -4782,31 +6364,59 @@ pub const ResourceExitStateContinue = RESOURCE_EXIT_STATE.Continue;
 pub const ResourceExitStateTerminate = RESOURCE_EXIT_STATE.Terminate;
 pub const ResourceExitStateMax = RESOURCE_EXIT_STATE.Max;
 
-pub const PBEGIN_RESCALL_AS_USER_ROUTINE = fn(
-    Resource: ?*anyopaque,
-    TokenHandle: ?HANDLE,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PBEGIN_RESCALL_AS_USER_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Resource: ?*anyopaque,
+        TokenHandle: ?HANDLE,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Resource: ?*anyopaque,
+        TokenHandle: ?HANDLE,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = fn(
-    ResourceTypeName: ?[*:0]const u16,
-    TokenHandle: ?HANDLE,
-    ControlCode: u32,
-    InBuffer: ?*anyopaque,
-    InBufferSize: u32,
-    OutBuffer: ?*anyopaque,
-    OutBufferSize: u32,
-    BytesReturned: ?*u32,
-    context: i64,
-    ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceTypeName: ?[*:0]const u16,
+        TokenHandle: ?HANDLE,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceTypeName: ?[*:0]const u16,
+        TokenHandle: ?HANDLE,
+        ControlCode: u32,
+        InBuffer: ?*anyopaque,
+        InBufferSize: u32,
+        OutBuffer: ?*anyopaque,
+        OutBufferSize: u32,
+        BytesReturned: ?*u32,
+        context: i64,
+        ReturnedAsynchronously: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLRES_V1_FUNCTIONS = extern struct {
     Open: ?POPEN_ROUTINE,
@@ -4916,14 +6526,24 @@ pub const RESUTIL_PROPERTY_ITEM = extern struct {
     Offset: u32,
 };
 
-pub const PSTARTUP_ROUTINE = fn(
-    ResourceType: ?[*:0]const u16,
-    MinVersionSupported: u32,
-    MaxVersionSupported: u32,
-    SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
-    LogEvent: ?PLOG_EVENT_ROUTINE,
-    FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSTARTUP_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceType: ?[*:0]const u16,
+        MinVersionSupported: u32,
+        MaxVersionSupported: u32,
+        SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
+        LogEvent: ?PLOG_EVENT_ROUTINE,
+        FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceType: ?[*:0]const u16,
+        MinVersionSupported: u32,
+        MaxVersionSupported: u32,
+        SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
+        LogEvent: ?PLOG_EVENT_ROUTINE,
+        FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const FAILURE_TYPE = enum(i32) {
     GENERAL = 0,
@@ -4943,83 +6563,174 @@ pub const ClusterResourceApplicationStateUnknown = CLUSTER_RESOURCE_APPLICATION_
 pub const ClusterResourceApplicationOSHeartBeat = CLUSTER_RESOURCE_APPLICATION_STATE.OSHeartBeat;
 pub const ClusterResourceApplicationReady = CLUSTER_RESOURCE_APPLICATION_STATE.Ready;
 
-pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = fn(
-    ResourceHandle: isize,
-    LockedModeEnabled: BOOL,
-    LockedModeReason: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        LockedModeEnabled: BOOL,
+        LockedModeReason: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        LockedModeEnabled: BOOL,
+        LockedModeReason: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSIGNAL_FAILURE_ROUTINE = fn(
-    ResourceHandle: isize,
-    FailureType: FAILURE_TYPE,
-    ApplicationSpecificErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSIGNAL_FAILURE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        FailureType: FAILURE_TYPE,
+        ApplicationSpecificErrorCode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        FailureType: FAILURE_TYPE,
+        ApplicationSpecificErrorCode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = fn(
-    ResourceHandle: isize,
-    propertyListBuffer: ?*u8,
-    propertyListBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        propertyListBuffer: ?*u8,
+        propertyListBufferSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        propertyListBuffer: ?*u8,
+        propertyListBufferSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PEND_CONTROL_CALL = fn(
-    context: i64,
-    status: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PEND_CONTROL_CALL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: i64,
+        status: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        context: i64,
+        status: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PEND_TYPE_CONTROL_CALL = fn(
-    context: i64,
-    status: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PEND_TYPE_CONTROL_CALL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: i64,
+        status: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        context: i64,
+        status: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PEXTEND_RES_CONTROL_CALL = fn(
-    context: i64,
-    newTimeoutInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PEXTEND_RES_CONTROL_CALL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: i64,
+        newTimeoutInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        context: i64,
+        newTimeoutInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PEXTEND_RES_TYPE_CONTROL_CALL = fn(
-    context: i64,
-    newTimeoutInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PEXTEND_RES_TYPE_CONTROL_CALL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: i64,
+        newTimeoutInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        context: i64,
+        newTimeoutInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRAISE_RES_TYPE_NOTIFICATION = fn(
-    ResourceType: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
-    pPayload: ?*const u8,
-    payloadSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRAISE_RES_TYPE_NOTIFICATION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceType: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 2?
+        pPayload: ?*const u8,
+        payloadSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceType: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 2?
+        pPayload: ?*const u8,
+        payloadSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = fn(
-    resource: isize,
-    processName: ?[*:0]const u16,
-    processId: u32,
-    isAdd: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        resource: isize,
+        processName: ?[*:0]const u16,
+        processId: u32,
+        isAdd: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        resource: isize,
+        processName: ?[*:0]const u16,
+        processId: u32,
+        isAdd: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = fn(
-    resourceTypeName: ?[*:0]const u16,
-    processName: ?[*:0]const u16,
-    processId: u32,
-    isAdd: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        resourceTypeName: ?[*:0]const u16,
+        processName: ?[*:0]const u16,
+        processId: u32,
+        isAdd: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        resourceTypeName: ?[*:0]const u16,
+        processName: ?[*:0]const u16,
+        processId: u32,
+        isAdd: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSET_INTERNAL_STATE = fn(
-    param0: isize,
-    stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
-    active: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_INTERNAL_STATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: isize,
+        stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
+        active: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: isize,
+        stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
+        active: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = fn(
-    ResourceHandle: isize,
-    LockedModeEnabled: BOOL,
-    LockedModeReason: u32,
-    LockedModeFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        LockedModeEnabled: BOOL,
+        LockedModeReason: u32,
+        LockedModeFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        LockedModeEnabled: BOOL,
+        LockedModeReason: u32,
+        LockedModeFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PREQUEST_DUMP_ROUTINE = fn(
-    ResourceHandle: isize,
-    DumpDueToCallInProgress: BOOL,
-    DumpDelayInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PREQUEST_DUMP_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceHandle: isize,
+        DumpDueToCallInProgress: BOOL,
+        DumpDelayInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceHandle: isize,
+        DumpDueToCallInProgress: BOOL,
+        DumpDelayInMs: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
     LogEvent: ?PLOG_EVENT_ROUTINE,
@@ -5039,13 +6750,22 @@ pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
     RequestDump: ?PREQUEST_DUMP_ROUTINE,
 };
 
-pub const PSTARTUP_EX_ROUTINE = fn(
-    ResourceType: ?[*:0]const u16,
-    MinVersionSupported: u32,
-    MaxVersionSupported: u32,
-    MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
-    ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSTARTUP_EX_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceType: ?[*:0]const u16,
+        MinVersionSupported: u32,
+        MaxVersionSupported: u32,
+        MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
+        ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceType: ?[*:0]const u16,
+        MinVersionSupported: u32,
+        MaxVersionSupported: u32,
+        MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
+        ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const RESOURCE_MONITOR_STATE = enum(i32) {
     Initializing = 0,
@@ -5112,620 +6832,1313 @@ pub const CLUSTER_HEALTH_FAULT_ARRAY = extern struct {
     faults: ?*CLUSTER_HEALTH_FAULT,
 };
 
-pub const PRESUTIL_START_RESOURCE_SERVICE = fn(
-    pszServiceName: ?[*:0]const u16,
-    phServiceHandle: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_START_RESOURCE_SERVICE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+        phServiceHandle: ?*isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+        phServiceHandle: ?*isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = fn(
-    pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_STOP_RESOURCE_SERVICE = fn(
-    pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_STOP_RESOURCE_SERVICE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_VERIFY_SERVICE = fn(
-    hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_VERIFY_SERVICE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hServiceHandle: SC_HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hServiceHandle: SC_HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_STOP_SERVICE = fn(
-    hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_STOP_SERVICE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hServiceHandle: SC_HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hServiceHandle: SC_HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_CREATE_DIRECTORY_TREE = fn(
-    pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_CREATE_DIRECTORY_TREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszPath: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszPath: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_IS_PATH_VALID = fn(
-    pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PRESUTIL_IS_PATH_VALID = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszPath: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pszPath: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PRESUTIL_ENUM_PROPERTIES = fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pszOutProperties: ?PWSTR,
-    cbOutPropertiesSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ENUM_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pszOutProperties: ?PWSTR,
+        cbOutPropertiesSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pszOutProperties: ?PWSTR,
+        cbOutPropertiesSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pszOutProperties: ?PWSTR,
-    cbOutPropertiesSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pszOutProperties: ?PWSTR,
+        cbOutPropertiesSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pszOutProperties: ?PWSTR,
+        cbOutPropertiesSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_ALL_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_ALL_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PRIVATE_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    cbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PRIVATE_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyList: ?*anyopaque,
+        cbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PROPERTY_SIZE = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    pcbOutPropertyListSize: ?*u32,
-    pnPropertyCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PROPERTY_SIZE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+        pcbOutPropertyListSize: ?*u32,
+        pnPropertyCount: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+        pcbOutPropertyListSize: ?*u32,
+        pnPropertyCount: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PROPERTY = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pOutPropertyItem: ?*?*anyopaque,
-    pcbOutPropertyItemSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyItem: ?*?*anyopaque,
+        pcbOutPropertyItemSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pOutPropertyItem: ?*?*anyopaque,
+        pcbOutPropertyItemSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_VERIFY_PROPERTY_TABLE = fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 4?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_VERIFY_PROPERTY_TABLE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        // TODO: what to do with BytesParamIndex 4?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        // TODO: what to do with BytesParamIndex 4?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_PROPERTY_TABLE = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 5?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_PROPERTY_TABLE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        // TODO: what to do with BytesParamIndex 5?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        // TODO: what to do with BytesParamIndex 5?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_PROPERTY_TABLE_EX = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    bAllowUnknownProperties: BOOL,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    bForceWrite: BOOL,
-    pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_PROPERTY_TABLE_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        bForceWrite: BOOL,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        bAllowUnknownProperties: BOOL,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        bForceWrite: BOOL,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        pInParams: ?*const u8,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        pInParams: ?*const u8,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    Reserved: ?*anyopaque,
-    pInParams: ?*const u8,
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-    bForceWrite: BOOL,
-    pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        pInParams: ?*const u8,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        bForceWrite: BOOL,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        Reserved: ?*anyopaque,
+        pInParams: ?*const u8,
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+        bForceWrite: BOOL,
+        pOutParams: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 3?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutParams: ?*u8,
-    bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        pOutParams: ?*u8,
+        bCheckForRequiredProperties: BOOL,
+        pszNameOfPropInError: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        pOutParams: ?*u8,
+        bCheckForRequiredProperties: BOOL,
+        pszNameOfPropInError: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: ?*u32,
-    pInParams: ?*const u8,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyList: ?*anyopaque,
+        pcbOutPropertyListSize: ?*u32,
+        pInParams: ?*const u8,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyList: ?*anyopaque,
+        pcbOutPropertyListSize: ?*u32,
+        pInParams: ?*const u8,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_DUP_PARAMETER_BLOCK = fn(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_DUP_PARAMETER_BLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pOutParams: ?*u8,
+        pInParams: ?*const u8,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pOutParams: ?*u8,
+        pInParams: ?*const u8,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FREE_PARAMETER_BLOCK = fn(
-    pOutParams: ?*u8,
-    pInParams: ?*const u8,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PRESUTIL_FREE_PARAMETER_BLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pOutParams: ?*u8,
+        pInParams: ?*const u8,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pOutParams: ?*u8,
+        pInParams: ?*const u8,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = fn(
-    hkeyClusterKey: ?HKEY,
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    pOutPropertyList: ?*anyopaque,
-    pcbOutPropertyListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        pOutPropertyList: ?*anyopaque,
+        pcbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        pOutPropertyList: ?*anyopaque,
+        pcbOutPropertyListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = fn(
-    hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        // TODO: what to do with BytesParamIndex 2?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pInPropertyList: ?*const anyopaque,
-    cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pInPropertyList: ?*const anyopaque,
+        cbInPropertyListSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_DUP_STRING = fn(
-    pszInString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub const PRESUTIL_DUP_STRING = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszInString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+    else => *const fn(
+        pszInString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+} ;
 
-pub const PRESUTIL_GET_BINARY_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_BINARY_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_SZ_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub const PRESUTIL_GET_SZ_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+} ;
 
-pub const PRESUTIL_GET_EXPAND_SZ_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    bExpand: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub const PRESUTIL_GET_EXPAND_SZ_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        bExpand: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        bExpand: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+} ;
 
-pub const PRESUTIL_GET_DWORD_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pdwOutValue: ?*u32,
-    dwDefaultValue: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_DWORD_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pdwOutValue: ?*u32,
+        dwDefaultValue: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pdwOutValue: ?*u32,
+        dwDefaultValue: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_QWORD_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pqwOutValue: ?*u64,
-    qwDefaultValue: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_QWORD_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pqwOutValue: ?*u64,
+        qwDefaultValue: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pqwOutValue: ?*u64,
+        qwDefaultValue: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_BINARY_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pbNewValue: ?*const u8,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_BINARY_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        pbNewValue: ?*const u8,
+        cbNewValueSize: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        pbNewValue: ?*const u8,
+        cbNewValueSize: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_SZ_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_SZ_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pszNewValue: ?[*:0]const u16,
+        ppszOutString: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pszNewValue: ?[*:0]const u16,
+        ppszOutString: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_EXPAND_SZ_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_EXPAND_SZ_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pszNewValue: ?[*:0]const u16,
+        ppszOutString: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        pszNewValue: ?[*:0]const u16,
+        ppszOutString: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
-    pszNewValue: ?[*:0]const u16,
-    cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_MULTI_SZ_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        pszNewValue: ?[*:0]const u16,
+        cbNewValueSize: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        ppszOutValue: ?*?PWSTR,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 3?
+        pszNewValue: ?[*:0]const u16,
+        cbNewValueSize: u32,
+        // TODO: what to do with BytesParamIndex 5?
+        ppszOutValue: ?*?PWSTR,
+        pcbOutValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_DWORD_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    dwNewValue: u32,
-    pdwOutValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_DWORD_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        dwNewValue: u32,
+        pdwOutValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        dwNewValue: u32,
+        pdwOutValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_QWORD_VALUE = fn(
-    hkeyClusterKey: ?HKEY,
-    pszValueName: ?[*:0]const u16,
-    qwNewValue: u64,
-    pqwOutValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_QWORD_VALUE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        qwNewValue: u64,
+        pqwOutValue: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hkeyClusterKey: ?HKEY,
+        pszValueName: ?[*:0]const u16,
+        qwNewValue: u64,
+        pqwOutValue: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_BINARY_PROPERTY = fn(
-    ppbOutValue: ?*?*u8,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_BINARY,
-    // TODO: what to do with BytesParamIndex 4?
-    pbOldValue: ?*const u8,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_BINARY_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+        pValueStruct: ?*const CLUSPROP_BINARY,
+        // TODO: what to do with BytesParamIndex 4?
+        pbOldValue: ?*const u8,
+        cbOldValueSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ppbOutValue: ?*?*u8,
+        pcbOutValueSize: ?*u32,
+        pValueStruct: ?*const CLUSPROP_BINARY,
+        // TODO: what to do with BytesParamIndex 4?
+        pbOldValue: ?*const u8,
+        cbOldValueSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_SZ_PROPERTY = fn(
-    ppszOutValue: ?*?PWSTR,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    pszOldValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ppszOutValue: ?*?PWSTR,
+        pValueStruct: ?*const CLUSPROP_SZ,
+        pszOldValue: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ppszOutValue: ?*?PWSTR,
+        pValueStruct: ?*const CLUSPROP_SZ,
+        pszOldValue: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = fn(
-    ppszOutValue: ?*?PWSTR,
-    pcbOutValueSize: ?*u32,
-    pValueStruct: ?*const CLUSPROP_SZ,
-    // TODO: what to do with BytesParamIndex 4?
-    pszOldValue: ?[*:0]const u16,
-    cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ppszOutValue: ?*?PWSTR,
+        pcbOutValueSize: ?*u32,
+        pValueStruct: ?*const CLUSPROP_SZ,
+        // TODO: what to do with BytesParamIndex 4?
+        pszOldValue: ?[*:0]const u16,
+        cbOldValueSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ppszOutValue: ?*?PWSTR,
+        pcbOutValueSize: ?*u32,
+        pValueStruct: ?*const CLUSPROP_SZ,
+        // TODO: what to do with BytesParamIndex 4?
+        pszOldValue: ?[*:0]const u16,
+        cbOldValueSize: u32,
+        // TODO: what to do with BytesParamIndex 6?
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_DWORD_PROPERTY = fn(
-    pdwOutValue: ?*u32,
-    pValueStruct: ?*const CLUSPROP_DWORD,
-    dwOldValue: u32,
-    dwMinimum: u32,
-    dwMaximum: u32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_DWORD_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pdwOutValue: ?*u32,
+        pValueStruct: ?*const CLUSPROP_DWORD,
+        dwOldValue: u32,
+        dwMinimum: u32,
+        dwMaximum: u32,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pdwOutValue: ?*u32,
+        pValueStruct: ?*const CLUSPROP_DWORD,
+        dwOldValue: u32,
+        dwMinimum: u32,
+        dwMaximum: u32,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_LONG_PROPERTY = fn(
-    plOutValue: ?*i32,
-    pValueStruct: ?*const CLUSPROP_LONG,
-    lOldValue: i32,
-    lMinimum: i32,
-    lMaximum: i32,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_LONG_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        plOutValue: ?*i32,
+        pValueStruct: ?*const CLUSPROP_LONG,
+        lOldValue: i32,
+        lMinimum: i32,
+        lMaximum: i32,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        plOutValue: ?*i32,
+        pValueStruct: ?*const CLUSPROP_LONG,
+        lOldValue: i32,
+        lMinimum: i32,
+        lMaximum: i32,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_FILETIME_PROPERTY = fn(
-    pftOutValue: ?*FILETIME,
-    pValueStruct: ?*const CLUSPROP_FILETIME,
-    ftOldValue: FILETIME,
-    ftMinimum: FILETIME,
-    ftMaximum: FILETIME,
-    ppPropertyList: ?*?*u8,
-    pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_FILETIME_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pftOutValue: ?*FILETIME,
+        pValueStruct: ?*const CLUSPROP_FILETIME,
+        ftOldValue: FILETIME,
+        ftMinimum: FILETIME,
+        ftMaximum: FILETIME,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pftOutValue: ?*FILETIME,
+        pValueStruct: ?*const CLUSPROP_FILETIME,
+        ftOldValue: FILETIME,
+        ftMinimum: FILETIME,
+        ftMaximum: FILETIME,
+        ppPropertyList: ?*?*u8,
+        pcbPropertyListSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = fn(
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PRESUTIL_FREE_ENVIRONMENT = fn(
-    lpEnvironment: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FREE_ENVIRONMENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpEnvironment: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpEnvironment: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = fn(
-    pszSrc: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszSrc: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+    else => *const fn(
+        pszSrc: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
+} ;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = fn(
-    pszServiceName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+        hResource: ?*_HRESOURCE,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+        hResource: ?*_HRESOURCE,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = fn(
-    pszServiceName: ?[*:0]const u16,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = fn(
-    pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+        schSCMHandle: SC_HANDLE,
+        phService: ?*isize,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+        schSCMHandle: SC_HANDLE,
+        phService: ?*isize,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_SZ_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pszPropertyValue: ?*?PWSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_DWORD_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pdwPropertyValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_DWORD_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pdwPropertyValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pdwPropertyValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_BINARY_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pbPropertyValue: ?*?*u8,
-    pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_BINARY_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        pbPropertyValue: ?*?*u8,
+        pcbPropertyValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        pbPropertyValue: ?*?*u8,
+        pcbPropertyValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
-    pszPropertyValue: ?*?PWSTR,
-    pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        pszPropertyValue: ?*?PWSTR,
+        pcbPropertyValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        // TODO: what to do with BytesParamIndex 4?
+        pszPropertyValue: ?*?PWSTR,
+        pcbPropertyValueSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_LONG_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_LONG_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        plPropertyValue: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        plPropertyValue: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    plPropertyValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        plPropertyValue: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        plPropertyValue: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_FILETIME_PROPERTY = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pPropertyList: ?*const anyopaque,
-    cbPropertyListSize: u32,
-    pszPropertyName: ?[*:0]const u16,
-    pftPropertyValue: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_FILETIME_PROPERTY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pftPropertyValue: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pPropertyList: ?*const anyopaque,
+        cbPropertyListSize: u32,
+        pszPropertyName: ?[*:0]const u16,
+        pftPropertyValue: ?*FILETIME,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUS_WORKER = extern struct {
     hThread: ?HANDLE,
     Terminate: BOOL,
 };
 
-pub const PWORKER_START_ROUTINE = fn(
-    pWorker: ?*CLUS_WORKER,
-    lpThreadParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PWORKER_START_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pWorker: ?*CLUS_WORKER,
+        lpThreadParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pWorker: ?*CLUS_WORKER,
+        lpThreadParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPI_CLUS_WORKER_CREATE = fn(
-    lpWorker: ?*CLUS_WORKER,
-    lpStartAddress: ?PWORKER_START_ROUTINE,
-    lpParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSAPI_CLUS_WORKER_CREATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpWorker: ?*CLUS_WORKER,
+        lpStartAddress: ?PWORKER_START_ROUTINE,
+        lpParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpWorker: ?*CLUS_WORKER,
+        lpStartAddress: ?PWORKER_START_ROUTINE,
+        lpParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSAPIClusWorkerCheckTerminate = fn(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSAPIClusWorkerCheckTerminate = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpWorker: ?*CLUS_WORKER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpWorker: ?*CLUS_WORKER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSAPI_CLUS_WORKER_TERMINATE = fn(
-    lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PCLUSAPI_CLUS_WORKER_TERMINATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpWorker: ?*CLUS_WORKER,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        lpWorker: ?*CLUS_WORKER,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const LPRESOURCE_CALLBACK = fn(
-    param0: ?*_HRESOURCE,
-    param1: ?*_HRESOURCE,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPRESOURCE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_HRESOURCE,
+        param1: ?*_HRESOURCE,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_HRESOURCE,
+        param1: ?*_HRESOURCE,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPRESOURCE_CALLBACK_EX = fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HRESOURCE,
-    param2: ?*_HRESOURCE,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPRESOURCE_CALLBACK_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HRESOURCE,
+        param2: ?*_HRESOURCE,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HRESOURCE,
+        param2: ?*_HRESOURCE,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPGROUP_CALLBACK_EX = fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HGROUP,
-    param2: ?*_HGROUP,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPGROUP_CALLBACK_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HGROUP,
+        param2: ?*_HGROUP,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HGROUP,
+        param2: ?*_HGROUP,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPNODE_CALLBACK = fn(
-    param0: ?*_HCLUSTER,
-    param1: ?*_HNODE,
-    param2: CLUSTER_NODE_STATE,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPNODE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HNODE,
+        param2: CLUSTER_NODE_STATE,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_HCLUSTER,
+        param1: ?*_HNODE,
+        param2: CLUSTER_NODE_STATE,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_RESOURCES_EQUAL = fn(
-    hSelf: ?*_HRESOURCE,
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PRESUTIL_RESOURCES_EQUAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSelf: ?*_HRESOURCE,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hSelf: ?*_HRESOURCE,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PRESUTIL_RESOURCE_TYPES_EQUAL = fn(
-    lpszResourceTypeName: ?[*:0]const u16,
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PRESUTIL_RESOURCE_TYPES_EQUAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszResourceTypeName: ?[*:0]const u16,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszResourceTypeName: ?[*:0]const u16,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = fn(
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        hResource: ?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PRESUTIL_ENUM_RESOURCES = fn(
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK,
-    pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ENUM_RESOURCES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK,
+        pParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK,
+        pParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_ENUM_RESOURCES_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ENUM_RESOURCES_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+        pParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+        pParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = fn(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        bRecurse: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        bRecurse: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        bRecurse: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        bRecurse: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = fn(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = fn(
-    hResource: ?*_HRESOURCE,
-    pszAddress: [*:0]u16,
-    pcchAddress: ?*u32,
-    pszSubnetMask: [*:0]u16,
-    pcchSubnetMask: ?*u32,
-    pszNetwork: [*:0]u16,
-    pcchNetwork: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        pszAddress: [*:0]u16,
+        pcchAddress: ?*u32,
+        pszSubnetMask: [*:0]u16,
+        pcchSubnetMask: ?*u32,
+        pszNetwork: [*:0]u16,
+        pcchNetwork: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        pszAddress: [*:0]u16,
+        pcchAddress: ?*u32,
+        pszSubnetMask: [*:0]u16,
+        pcchSubnetMask: ?*u32,
+        pszNetwork: [*:0]u16,
+        pcchNetwork: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = fn(
-    hCluster: ?*_HCLUSTER,
-    hResource: ?*_HRESOURCE,
-    pszDriveLetter: [*:0]u16,
-    pcchDriveLetter: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hResource: ?*_HRESOURCE,
+        pszDriveLetter: [*:0]u16,
+        pcchDriveLetter: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hResource: ?*_HRESOURCE,
+        pszDriveLetter: [*:0]u16,
+        pcchDriveLetter: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = fn(
-    dwServicePid: u32,
-    bOffline: BOOL,
-    pdwResourceState: ?*u32,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwServicePid: u32,
+        bOffline: BOOL,
+        pdwResourceState: ?*u32,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        dwServicePid: u32,
+        bOffline: BOOL,
+        pdwResourceState: ?*u32,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_PROPERTY_FORMATS = fn(
-    pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
-    pOutPropertyFormatList: ?*anyopaque,
-    cbPropertyFormatListSize: u32,
-    pcbBytesReturned: ?*u32,
-    pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_PROPERTY_FORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyFormatList: ?*anyopaque,
+        cbPropertyFormatListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
+        // TODO: what to do with BytesParamIndex 2?
+        pOutPropertyFormatList: ?*anyopaque,
+        cbPropertyFormatListSize: u32,
+        pcbBytesReturned: ?*u32,
+        pcbRequired: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = fn(
-    hCluster: ?*_HCLUSTER,
-    phClusterNameResource: ?*?*_HRESOURCE,
-    phClusterIPAddressResource: ?*?*_HRESOURCE,
-    phClusterQuorumResource: ?*?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        phClusterNameResource: ?*?*_HRESOURCE,
+        phClusterIPAddressResource: ?*?*_HRESOURCE,
+        phClusterQuorumResource: ?*?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        phClusterNameResource: ?*?*_HRESOURCE,
+        phClusterIPAddressResource: ?*?*_HRESOURCE,
+        phClusterQuorumResource: ?*?*_HRESOURCE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_NAME = fn(
-    hResource: ?*_HRESOURCE,
-    pszResourceName: [*:0]u16,
-    pcchResourceNameInOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_RESOURCE_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hResource: ?*_HRESOURCE,
+        pszResourceName: [*:0]u16,
+        pcchResourceNameInOut: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hResource: ?*_HRESOURCE,
+        pszResourceName: [*:0]u16,
+        pcchResourceNameInOut: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUSTER_ROLE = enum(i32) {
     DHCP = 0,
@@ -5803,136 +8216,282 @@ pub const ClusterRoleUnknown = CLUSTER_ROLE_STATE.Unknown;
 pub const ClusterRoleClustered = CLUSTER_ROLE_STATE.Clustered;
 pub const ClusterRoleUnclustered = CLUSTER_ROLE_STATE.Unclustered;
 
-pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = fn(
-    lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszPathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszPathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSTER_GET_VOLUME_PATH_NAME = fn(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSTER_GET_VOLUME_PATH_NAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszFileName: ?[*:0]const u16,
+        lpszVolumePathName: ?PWSTR,
+        cchBufferLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszFileName: ?[*:0]const u16,
+        lpszVolumePathName: ?PWSTR,
+        cchBufferLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = fn(
-    lpszVolumeMountPoint: ?[*:0]const u16,
-    lpszVolumeName: ?PWSTR,
-    cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszVolumeMountPoint: ?[*:0]const u16,
+        lpszVolumeName: ?PWSTR,
+        cchBufferLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszVolumeMountPoint: ?[*:0]const u16,
+        lpszVolumeName: ?PWSTR,
+        cchBufferLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = fn(
-    lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
-    lpcchVolumePathName: ?*u32,
-    lpszVolumeName: ?PWSTR,
-    lpcchVolumeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszFileName: ?[*:0]const u16,
+        lpszVolumePathName: ?PWSTR,
+        lpcchVolumePathName: ?*u32,
+        lpszVolumeName: ?PWSTR,
+        lpcchVolumeName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszFileName: ?[*:0]const u16,
+        lpszVolumePathName: ?PWSTR,
+        lpcchVolumePathName: ?*u32,
+        lpszVolumeName: ?PWSTR,
+        lpcchVolumeName: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = fn(
-    lpszVolumePathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszVolumePathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpszVolumePathName: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = fn(
-    pszServiceName: ?[*:0]const u16,
-    schSCMHandle: SC_HANDLE,
-    phService: ?*isize,
-    dwDesiredAccess: u32,
-    pfnLogEvent: ?PLOG_EVENT_ROUTINE,
-    hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszServiceName: ?[*:0]const u16,
+        schSCMHandle: SC_HANDLE,
+        phService: ?*isize,
+        dwDesiredAccess: u32,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pszServiceName: ?[*:0]const u16,
+        schSCMHandle: SC_HANDLE,
+        phService: ?*isize,
+        dwDesiredAccess: u32,
+        pfnLogEvent: ?PLOG_EVENT_ROUTINE,
+        hResourceHandle: isize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_ENUM_RESOURCES_EX2 = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?*_HRESOURCE,
-    lpszResTypeName: ?[*:0]const u16,
-    pResCallBack: ?LPRESOURCE_CALLBACK_EX,
-    pParameter: ?*anyopaque,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_ENUM_RESOURCES_EX2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+        pParameter: ?*anyopaque,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?*_HRESOURCE,
+        lpszResTypeName: ?[*:0]const u16,
+        pResCallBack: ?LPRESOURCE_CALLBACK_EX,
+        pParameter: ?*anyopaque,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = fn(
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    lpszResourceType: ?[*:0]const u16,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        bRecurse: BOOL,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        lpszResourceType: ?[*:0]const u16,
+        bRecurse: BOOL,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = fn(
-    hCluster: ?*_HCLUSTER,
-    hSelf: ?HANDLE,
-    prci: ?*CLUS_RESOURCE_CLASS_INFO,
-    bRecurse: BOOL,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        bRecurse: BOOL,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        hCluster: ?*_HCLUSTER,
+        hSelf: ?HANDLE,
+        prci: ?*CLUS_RESOURCE_CLASS_INFO,
+        bRecurse: BOOL,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = fn(
-    lpszResourceName: ?[*:0]const u16,
-    lpszResourceType: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+    else => *const fn(
+        lpszResourceName: ?[*:0]const u16,
+        lpszResourceType: ?[*:0]const u16,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+} ;
 
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = fn(
-    hClusterIn: ?*_HCLUSTER,
-    phClusterNameResourceOut: ?*?*_HRESOURCE,
-    phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
-    phClusterQuorumResourceOut: ?*?*_HRESOURCE,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusterIn: ?*_HCLUSTER,
+        phClusterNameResourceOut: ?*?*_HRESOURCE,
+        phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
+        phClusterQuorumResourceOut: ?*?*_HRESOURCE,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusterIn: ?*_HCLUSTER,
+        phClusterNameResourceOut: ?*?*_HRESOURCE,
+        phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
+        phClusterQuorumResourceOut: ?*?*_HRESOURCE,
+        dwDesiredAccess: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const _HCLUSCRYPTPROVIDER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDER = fn(
-    lpszResource: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+pub const POPEN_CLUSTER_CRYPT_PROVIDER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszResource: ?[*:0]const u16,
+        lpszProvider: ?*i8,
+        dwType: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER,
+    else => *const fn(
+        lpszResource: ?[*:0]const u16,
+        lpszProvider: ?*i8,
+        dwType: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER,
+} ;
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = fn(
-    lpszResource: ?[*:0]const u16,
-    lpszKeyname: ?[*:0]const u16,
-    lpszProvider: ?*i8,
-    dwType: u32,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszResource: ?[*:0]const u16,
+        lpszKeyname: ?[*:0]const u16,
+        lpszProvider: ?*i8,
+        dwType: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER,
+    else => *const fn(
+        lpszResource: ?[*:0]const u16,
+        lpszKeyname: ?[*:0]const u16,
+        lpszProvider: ?*i8,
+        dwType: u32,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER,
+} ;
 
-pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSTER_ENCRYPT = fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pData: [*:0]u8,
-    cbData: u32,
-    ppData: ?*?*u8,
-    pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSTER_ENCRYPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+        pData: [*:0]u8,
+        cbData: u32,
+        ppData: ?*?*u8,
+        pcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+        pData: [*:0]u8,
+        cbData: u32,
+        ppData: ?*?*u8,
+        pcbData: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PCLUSTER_DECRYPT = fn(
-    hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-    pCryptInput: ?*u8,
-    cbCryptInput: u32,
-    ppCryptOutput: ?*?*u8,
-    pcbCryptOutput: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCLUSTER_DECRYPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+        pCryptInput: ?*u8,
+        cbCryptInput: u32,
+        ppCryptOutput: ?*?*u8,
+        pcbCryptOutput: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
+        pCryptInput: ?*u8,
+        cbCryptInput: u32,
+        ppCryptOutput: ?*?*u8,
+        pcbCryptOutput: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFREE_CLUSTER_CRYPT = fn(
-    pCryptInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFREE_CLUSTER_CRYPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pCryptInfo: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        pCryptInfo: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = fn(
-    flags: u32,
-    reason: u32,
-    pResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        flags: u32,
+        reason: u32,
+        pResult: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        flags: u32,
+        reason: u32,
+        pResult: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const PaxosTagCStruct = extern struct {
     __padding__PaxosTagVtable: u64,
@@ -5961,33 +8520,66 @@ pub const WitnessTagHelper = extern struct {
     paxosToValidate: PaxosTagCStruct,
 };
 
-pub const PREGISTER_APPINSTANCE = fn(
-    ProcessHandle: ?HANDLE,
-    AppInstanceId: ?*Guid,
-    ChildrenInheritAppInstance: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PREGISTER_APPINSTANCE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ProcessHandle: ?HANDLE,
+        AppInstanceId: ?*Guid,
+        ChildrenInheritAppInstance: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ProcessHandle: ?HANDLE,
+        AppInstanceId: ?*Guid,
+        ChildrenInheritAppInstance: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PREGISTER_APPINSTANCE_VERSION = fn(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: u64,
-    InstanceVersionLow: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PREGISTER_APPINSTANCE_VERSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        AppInstanceId: ?*Guid,
+        InstanceVersionHigh: u64,
+        InstanceVersionLow: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        AppInstanceId: ?*Guid,
+        InstanceVersionHigh: u64,
+        InstanceVersionLow: u64,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PQUERY_APPINSTANCE_VERSION = fn(
-    AppInstanceId: ?*Guid,
-    InstanceVersionHigh: ?*u64,
-    InstanceVersionLow: ?*u64,
-    VersionStatus: ?*NTSTATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PQUERY_APPINSTANCE_VERSION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        AppInstanceId: ?*Guid,
+        InstanceVersionHigh: ?*u64,
+        InstanceVersionLow: ?*u64,
+        VersionStatus: ?*NTSTATUS,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        AppInstanceId: ?*Guid,
+        InstanceVersionHigh: ?*u64,
+        InstanceVersionLow: ?*u64,
+        VersionStatus: ?*NTSTATUS,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PRESET_ALL_APPINSTANCE_VERSIONS = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESET_ALL_APPINSTANCE_VERSIONS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const SET_APP_INSTANCE_CSV_FLAGS = fn(
-    ProcessHandle: ?HANDLE,
-    Mask: u32,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const SET_APP_INSTANCE_CSV_FLAGS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ProcessHandle: ?HANDLE,
+        Mask: u32,
+        Flags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ProcessHandle: ?HANDLE,
+        Mask: u32,
+        Flags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const CLUADMEX_OBJECT_TYPE = enum(i32) {
     NONE = 0,
@@ -6014,20 +8606,42 @@ pub const IID_IGetClusterUIInfo = &IID_IGetClusterUIInfo_Value;
 pub const IGetClusterUIInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClusterName: fn(
-            self: *const IGetClusterUIInfo,
-            lpszName: ?BSTR,
-            pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocale: fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
-        GetFont: fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?HFONT,
-        GetIcon: fn(
-            self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?HICON,
+        GetClusterName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterUIInfo,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGetClusterUIInfo,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocale: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) u32,
+            else => *const fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) u32,
+        },
+        GetFont: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?HFONT,
+            else => *const fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?HFONT,
+        },
+        GetIcon: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?HICON,
+            else => *const fn(
+                self: *const IGetClusterUIInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?HICON,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6058,17 +8672,34 @@ pub const IID_IGetClusterDataInfo = &IID_IGetClusterDataInfo_Value;
 pub const IGetClusterDataInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClusterName: fn(
-            self: *const IGetClusterDataInfo,
-            lpszName: ?BSTR,
-            pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClusterHandle: fn(
-            self: *const IGetClusterDataInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
-        GetObjectCount: fn(
-            self: *const IGetClusterDataInfo,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        GetClusterName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterDataInfo,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGetClusterDataInfo,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClusterHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterDataInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+            else => *const fn(
+                self: *const IGetClusterDataInfo,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+        },
+        GetObjectCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterDataInfo,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IGetClusterDataInfo,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6095,16 +8726,30 @@ pub const IID_IGetClusterObjectInfo = &IID_IGetClusterObjectInfo_Value;
 pub const IGetClusterObjectInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetObjectName: fn(
-            self: *const IGetClusterObjectInfo,
-            lObjIndex: i32,
-            lpszName: ?BSTR,
-            pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectType: fn(
-            self: *const IGetClusterObjectInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) CLUADMEX_OBJECT_TYPE,
+        GetObjectName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterObjectInfo,
+                lObjIndex: i32,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGetClusterObjectInfo,
+                lObjIndex: i32,
+                lpszName: ?BSTR,
+                pcchName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterObjectInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) CLUADMEX_OBJECT_TYPE,
+            else => *const fn(
+                self: *const IGetClusterObjectInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) CLUADMEX_OBJECT_TYPE,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6127,10 +8772,16 @@ pub const IID_IGetClusterNodeInfo = &IID_IGetClusterNodeInfo_Value;
 pub const IGetClusterNodeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNodeHandle: fn(
-            self: *const IGetClusterNodeInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+        GetNodeHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterNodeInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+            else => *const fn(
+                self: *const IGetClusterNodeInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6149,10 +8800,16 @@ pub const IID_IGetClusterGroupInfo = &IID_IGetClusterGroupInfo_Value;
 pub const IGetClusterGroupInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGroupHandle: fn(
-            self: *const IGetClusterGroupInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+        GetGroupHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterGroupInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+            else => *const fn(
+                self: *const IGetClusterGroupInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6171,22 +8828,44 @@ pub const IID_IGetClusterResourceInfo = &IID_IGetClusterResourceInfo_Value;
 pub const IGetClusterResourceInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetResourceHandle: fn(
-            self: *const IGetClusterResourceInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
-        GetResourceTypeName: fn(
-            self: *const IGetClusterResourceInfo,
-            lObjIndex: i32,
-            lpszResTypeName: ?BSTR,
-            pcchResTypeName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResourceNetworkName: fn(
-            self: *const IGetClusterResourceInfo,
-            lObjIndex: i32,
-            lpszNetName: ?BSTR,
-            pcchNetName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetResourceHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+            else => *const fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+        },
+        GetResourceTypeName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+                lpszResTypeName: ?BSTR,
+                pcchResTypeName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+                lpszResTypeName: ?BSTR,
+                pcchResTypeName: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetResourceNetworkName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+                lpszNetName: ?BSTR,
+                pcchNetName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IGetClusterResourceInfo,
+                lObjIndex: i32,
+                lpszNetName: ?BSTR,
+                pcchNetName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6213,10 +8892,16 @@ pub const IID_IGetClusterNetworkInfo = &IID_IGetClusterNetworkInfo_Value;
 pub const IGetClusterNetworkInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNetworkHandle: fn(
-            self: *const IGetClusterNetworkInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+        GetNetworkHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterNetworkInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+            else => *const fn(
+                self: *const IGetClusterNetworkInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6235,10 +8920,16 @@ pub const IID_IGetClusterNetInterfaceInfo = &IID_IGetClusterNetInterfaceInfo_Val
 pub const IGetClusterNetInterfaceInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNetInterfaceHandle: fn(
-            self: *const IGetClusterNetInterfaceInfo,
-            lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+        GetNetInterfaceHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetClusterNetInterfaceInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+            else => *const fn(
+                self: *const IGetClusterNetInterfaceInfo,
+                lObjIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6257,10 +8948,16 @@ pub const IID_IWCPropertySheetCallback = &IID_IWCPropertySheetCallback_Value;
 pub const IWCPropertySheetCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddPropertySheetPage: fn(
-            self: *const IWCPropertySheetCallback,
-            hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddPropertySheetPage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCPropertySheetCallback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCPropertySheetCallback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6279,11 +8976,18 @@ pub const IID_IWEExtendPropertySheet = &IID_IWEExtendPropertySheet_Value;
 pub const IWEExtendPropertySheet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreatePropertySheetPages: fn(
-            self: *const IWEExtendPropertySheet,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCPropertySheetCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePropertySheetPages: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWEExtendPropertySheet,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCPropertySheetCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWEExtendPropertySheet,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCPropertySheetCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6302,15 +9006,28 @@ pub const IID_IWCWizardCallback = &IID_IWCWizardCallback_Value;
 pub const IWCWizardCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddWizardPage: fn(
-            self: *const IWCWizardCallback,
-            hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNext: fn(
-            self: *const IWCWizardCallback,
-            hpage: ?*i32,
-            bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddWizardPage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCWizardCallback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCWizardCallback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnableNext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCWizardCallback,
+                hpage: ?*i32,
+                bEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCWizardCallback,
+                hpage: ?*i32,
+                bEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6333,11 +9050,18 @@ pub const IID_IWEExtendWizard = &IID_IWEExtendWizard_Value;
 pub const IWEExtendWizard = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateWizardPages: fn(
-            self: *const IWEExtendWizard,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCWizardCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateWizardPages: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWEExtendWizard,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCWizardCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWEExtendWizard,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCWizardCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6356,14 +9080,24 @@ pub const IID_IWCContextMenuCallback = &IID_IWCContextMenuCallback_Value;
 pub const IWCContextMenuCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddExtensionMenuItem: fn(
-            self: *const IWCContextMenuCallback,
-            lpszName: ?BSTR,
-            lpszStatusBarText: ?BSTR,
-            nCommandID: u32,
-            nSubmenuCommandID: u32,
-            uFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddExtensionMenuItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCContextMenuCallback,
+                lpszName: ?BSTR,
+                lpszStatusBarText: ?BSTR,
+                nCommandID: u32,
+                nSubmenuCommandID: u32,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCContextMenuCallback,
+                lpszName: ?BSTR,
+                lpszStatusBarText: ?BSTR,
+                nCommandID: u32,
+                nSubmenuCommandID: u32,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6382,11 +9116,18 @@ pub const IID_IWEExtendContextMenu = &IID_IWEExtendContextMenu_Value;
 pub const IWEExtendContextMenu = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddContextMenuItems: fn(
-            self: *const IWEExtendContextMenu,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCContextMenuCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddContextMenuItems: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWEExtendContextMenu,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCContextMenuCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWEExtendContextMenu,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCContextMenuCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6405,11 +9146,18 @@ pub const IID_IWEInvokeCommand = &IID_IWEInvokeCommand_Value;
 pub const IWEInvokeCommand = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InvokeCommand: fn(
-            self: *const IWEInvokeCommand,
-            nCommandID: u32,
-            piData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InvokeCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWEInvokeCommand,
+                nCommandID: u32,
+                piData: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWEInvokeCommand,
+                nCommandID: u32,
+                piData: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6428,15 +9176,28 @@ pub const IID_IWCWizard97Callback = &IID_IWCWizard97Callback_Value;
 pub const IWCWizard97Callback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddWizard97Page: fn(
-            self: *const IWCWizard97Callback,
-            hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNext: fn(
-            self: *const IWCWizard97Callback,
-            hpage: ?*i32,
-            bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddWizard97Page: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCWizard97Callback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCWizard97Callback,
+                hpage: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnableNext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWCWizard97Callback,
+                hpage: ?*i32,
+                bEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWCWizard97Callback,
+                hpage: ?*i32,
+                bEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6459,11 +9220,18 @@ pub const IID_IWEExtendWizard97 = &IID_IWEExtendWizard97_Value;
 pub const IWEExtendWizard97 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateWizard97Pages: fn(
-            self: *const IWEExtendWizard97,
-            piData: ?*IUnknown,
-            piCallback: ?*IWCWizard97Callback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateWizard97Pages: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWEExtendWizard97,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCWizard97Callback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWEExtendWizard97,
+                piData: ?*IUnknown,
+                piCallback: ?*IWCWizard97Callback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6602,21 +9370,45 @@ pub const ISClusApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainNames: fn(
-            self: *const ISClusApplication,
-            ppDomains: ?*?*ISDomainNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DomainNames: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusApplication,
+                ppDomains: ?*?*ISDomainNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusApplication,
+                ppDomains: ?*?*ISDomainNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterNames: fn(
-            self: *const ISClusApplication,
-            bstrDomainName: ?BSTR,
-            ppClusters: ?*?*ISClusterNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenCluster: fn(
-            self: *const ISClusApplication,
-            bstrClusterName: ?BSTR,
-            pCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClusterNames: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusApplication,
+                bstrDomainName: ?BSTR,
+                ppClusters: ?*?*ISClusterNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusApplication,
+                bstrDomainName: ?BSTR,
+                ppClusters: ?*?*ISClusterNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OpenCluster: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusApplication,
+                bstrClusterName: ?BSTR,
+                pCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusApplication,
+                bstrClusterName: ?BSTR,
+                pCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6643,24 +9435,54 @@ pub const ISDomainNames = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISDomainNames,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISDomainNames,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISDomainNames,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISDomainNames,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISDomainNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISDomainNames,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISDomainNames,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISDomainNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISDomainNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISDomainNames,
-            varIndex: VARIANT,
-            pbstrDomainName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISDomainNames,
+                varIndex: VARIANT,
+                pbstrDomainName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISDomainNames,
+                varIndex: VARIANT,
+                pbstrDomainName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6691,29 +9513,67 @@ pub const ISClusterNames = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusterNames,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusterNames,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusterNames,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusterNames,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusterNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusterNames,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusterNames,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusterNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusterNames,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusterNames,
-            varIndex: VARIANT,
-            pbstrClusterName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusterNames,
+                varIndex: VARIANT,
+                pbstrClusterName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusterNames,
+                varIndex: VARIANT,
+                pbstrClusterName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainName: fn(
-            self: *const ISClusterNames,
-            pbstrDomainName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DomainName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusterNames,
+                pbstrDomainName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusterNames,
+                pbstrDomainName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6748,10 +9608,18 @@ pub const ISClusRefObject = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusRefObject,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusRefObject,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusRefObject,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6770,55 +9638,135 @@ pub const ISClusVersion = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusVersion,
-            pbstrClusterName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pbstrClusterName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pbstrClusterName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MajorVersion: fn(
-            self: *const ISClusVersion,
-            pnMajorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MajorVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnMajorVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnMajorVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinorVersion: fn(
-            self: *const ISClusVersion,
-            pnMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MinorVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnMinorVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnMinorVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuildNumber: fn(
-            self: *const ISClusVersion,
-            pnBuildNumber: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_BuildNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnBuildNumber: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnBuildNumber: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VendorId: fn(
-            self: *const ISClusVersion,
-            pbstrVendorId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_VendorId: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pbstrVendorId: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pbstrVendorId: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CSDVersion: fn(
-            self: *const ISClusVersion,
-            pbstrCSDVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CSDVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pbstrCSDVersion: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pbstrCSDVersion: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterHighestVersion: fn(
-            self: *const ISClusVersion,
-            pnClusterHighestVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClusterHighestVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnClusterHighestVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnClusterHighestVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterLowestVersion: fn(
-            self: *const ISClusVersion,
-            pnClusterLowestVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClusterLowestVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnClusterLowestVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnClusterLowestVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: fn(
-            self: *const ISClusVersion,
-            pnFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Flags: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pnFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pnFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MixedVersion: fn(
-            self: *const ISClusVersion,
-            pvarMixedVersion: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MixedVersion: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusVersion,
+                pvarMixedVersion: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusVersion,
+                pvarMixedVersion: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6873,109 +9821,275 @@ pub const ISCluster = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISCluster,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISCluster,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISCluster,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISCluster,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISCluster,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
-            self: *const ISCluster,
-            bstrClusterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISCluster,
+                bstrClusterName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISCluster,
+                bstrClusterName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISCluster,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const ISCluster,
-            bstrClusterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                bstrClusterName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                bstrClusterName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: fn(
-            self: *const ISCluster,
-            ppClusVersion: ?*?*ISClusVersion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Version: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppClusVersion: ?*?*ISClusVersion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppClusVersion: ?*?*ISClusVersion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumResource: fn(
-            self: *const ISCluster,
-            pClusterResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_QuorumResource: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                pClusterResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                pClusterResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumResource: fn(
-            self: *const ISCluster,
-            pClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_QuorumResource: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                pClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                pClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumLogSize: fn(
-            self: *const ISCluster,
-            pnLogSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_QuorumLogSize: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                pnLogSize: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                pnLogSize: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumLogSize: fn(
-            self: *const ISCluster,
-            nLogSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_QuorumLogSize: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                nLogSize: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                nLogSize: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumPath: fn(
-            self: *const ISCluster,
-            ppPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_QuorumPath: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumPath: fn(
-            self: *const ISCluster,
-            pPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_QuorumPath: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                pPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                pPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Nodes: fn(
-            self: *const ISCluster,
-            ppNodes: ?*?*ISClusNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Nodes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppNodes: ?*?*ISClusNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppNodes: ?*?*ISClusNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceGroups: fn(
-            self: *const ISCluster,
-            ppClusterResourceGroups: ?*?*ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ResourceGroups: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppClusterResourceGroups: ?*?*ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppClusterResourceGroups: ?*?*ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
-            self: *const ISCluster,
-            ppClusterResources: ?*?*ISClusResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Resources: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppClusterResources: ?*?*ISClusResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppClusterResources: ?*?*ISClusResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceTypes: fn(
-            self: *const ISCluster,
-            ppResourceTypes: ?*?*ISClusResTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ResourceTypes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppResourceTypes: ?*?*ISClusResTypes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppResourceTypes: ?*?*ISClusResTypes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Networks: fn(
-            self: *const ISCluster,
-            ppNetworks: ?*?*ISClusNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Networks: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppNetworks: ?*?*ISClusNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppNetworks: ?*?*ISClusNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
-            self: *const ISCluster,
-            ppNetInterfaces: ?*?*ISClusNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetInterfaces: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISCluster,
+                ppNetInterfaces: ?*?*ISClusNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISCluster,
+                ppNetInterfaces: ?*?*ISClusNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7074,69 +10188,172 @@ pub const ISClusNode = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusNode,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusNode,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusNode,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusNode,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusNode,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusNode,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NodeID: fn(
-            self: *const ISClusNode,
-            pbstrNodeID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NodeID: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                pbstrNodeID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                pbstrNodeID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const ISClusNode,
-            dwState: ?*CLUSTER_NODE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
-            self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
-            self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Evict: fn(
-            self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                dwState: ?*CLUSTER_NODE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                dwState: ?*CLUSTER_NODE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Pause: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Resume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Evict: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceGroups: fn(
-            self: *const ISClusNode,
-            ppResourceGroups: ?*?*ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ResourceGroups: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppResourceGroups: ?*?*ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppResourceGroups: ?*?*ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusNode,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
-            self: *const ISClusNode,
-            ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetInterfaces: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNode,
+                ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNode,
+                ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7207,24 +10424,54 @@ pub const ISClusNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusNodes,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7255,60 +10502,148 @@ pub const ISClusNetwork = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusNetwork,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusNetwork,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusNetwork,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const ISClusNetwork,
-            bstrNetworkName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                bstrNetworkName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                bstrNetworkName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkID: fn(
-            self: *const ISClusNetwork,
-            pbstrNetworkID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetworkID: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                pbstrNetworkID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                pbstrNetworkID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const ISClusNetwork,
-            dwState: ?*CLUSTER_NETWORK_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                dwState: ?*CLUSTER_NETWORK_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                dwState: ?*CLUSTER_NETWORK_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
-            self: *const ISClusNetwork,
-            ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetInterfaces: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusNetwork,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetwork,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetwork,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7367,24 +10702,54 @@ pub const ISClusNetworks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusNetworks,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworks,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworks,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusNetworks,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworks,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworks,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusNetworks,
-            varIndex: VARIANT,
-            ppClusNetwork: ?*?*ISClusNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworks,
+                varIndex: VARIANT,
+                ppClusNetwork: ?*?*ISClusNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworks,
+                varIndex: VARIANT,
+                ppClusNetwork: ?*?*ISClusNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7415,45 +10780,109 @@ pub const ISClusNetInterface = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusNetInterface,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusNetInterface,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusNetInterface,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const ISClusNetInterface,
-            dwState: ?*CLUSTER_NETINTERFACE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                dwState: ?*CLUSTER_NETINTERFACE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                dwState: ?*CLUSTER_NETINTERFACE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusNetInterface,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterface,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterface,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7500,24 +10929,54 @@ pub const ISClusNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusNetInterfaces,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusNetInterfaces,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusNetInterfaces,
-            varIndex: VARIANT,
-            ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7548,24 +11007,54 @@ pub const ISClusNodeNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusNodeNetInterfaces,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodeNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodeNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusNodeNetInterfaces,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusNodeNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodeNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodeNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNodeNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNodeNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusNodeNetInterfaces,
-            varIndex: VARIANT,
-            ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNodeNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNodeNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7596,24 +11085,54 @@ pub const ISClusNetworkNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusNetworkNetInterfaces,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworkNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworkNetInterfaces,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusNetworkNetInterfaces,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusNetworkNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworkNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworkNetInterfaces,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusNetworkNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusNetworkNetInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusNetworkNetInterfaces,
-            varIndex: VARIANT,
-            ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusNetworkNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusNetworkNetInterfaces,
+                varIndex: VARIANT,
+                ppClusNetInterface: ?*?*ISClusNetInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7644,85 +11163,209 @@ pub const ISClusResGroup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusResGroup,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusResGroup,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusResGroup,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusResGroup,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusResGroup,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusResGroup,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const ISClusResGroup,
-            bstrGroupName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                bstrGroupName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                bstrGroupName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const ISClusResGroup,
-            dwState: ?*CLUSTER_GROUP_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                dwState: ?*CLUSTER_GROUP_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                dwState: ?*CLUSTER_GROUP_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerNode: fn(
-            self: *const ISClusResGroup,
-            ppOwnerNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_OwnerNode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppOwnerNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppOwnerNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
-            self: *const ISClusResGroup,
-            ppClusterGroupResources: ?*?*ISClusResGroupResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Resources: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppClusterGroupResources: ?*?*ISClusResGroupResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppClusterGroupResources: ?*?*ISClusResGroupResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredOwnerNodes: fn(
-            self: *const ISClusResGroup,
-            ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Online: fn(
-            self: *const ISClusResGroup,
-            varTimeout: VARIANT,
-            varNode: VARIANT,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
-            self: *const ISClusResGroup,
-            varTimeout: VARIANT,
-            varNode: VARIANT,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Offline: fn(
-            self: *const ISClusResGroup,
-            varTimeout: VARIANT,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredOwnerNodes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Online: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                varNode: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                varNode: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Move: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                varNode: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                varNode: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Offline: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroup,
+                varTimeout: VARIANT,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusResGroup,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroup,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroup,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7801,33 +11444,76 @@ pub const ISClusResGroups = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResGroups,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroups,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResGroups,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroups,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResGroups,
-            varIndex: VARIANT,
-            ppClusResGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResGroups,
-            bstrResourceGroupName: ?BSTR,
-            ppResourceGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResGroups,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+                varIndex: VARIANT,
+                ppClusResGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroups,
+                varIndex: VARIANT,
+                ppClusResGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+                bstrResourceGroupName: ?BSTR,
+                ppResourceGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroups,
+                bstrResourceGroupName: ?BSTR,
+                ppResourceGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroups,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroups,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7866,158 +11552,398 @@ pub const ISClusResource = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusResource,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusResource,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusResource,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusResource,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
-            self: *const ISClusResource,
-            phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Handle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                phandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusResource,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const ISClusResource,
-            bstrResourceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                bstrResourceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                bstrResourceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const ISClusResource,
-            dwState: ?*CLUSTER_RESOURCE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                dwState: ?*CLUSTER_RESOURCE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                dwState: ?*CLUSTER_RESOURCE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CoreFlag: fn(
-            self: *const ISClusResource,
-            dwCoreFlag: ?*CLUS_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BecomeQuorumResource: fn(
-            self: *const ISClusResource,
-            bstrDevicePath: ?BSTR,
-            lMaxLogSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Fail: fn(
-            self: *const ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Online: fn(
-            self: *const ISClusResource,
-            nTimeout: i32,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Offline: fn(
-            self: *const ISClusResource,
-            nTimeout: i32,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeResourceGroup: fn(
-            self: *const ISClusResource,
-            pResourceGroup: ?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddResourceNode: fn(
-            self: *const ISClusResource,
-            pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveResourceNode: fn(
-            self: *const ISClusResource,
-            pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanResourceBeDependent: fn(
-            self: *const ISClusResource,
-            pResource: ?*ISClusResource,
-            pvarDependent: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CoreFlag: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                dwCoreFlag: ?*CLUS_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                dwCoreFlag: ?*CLUS_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BecomeQuorumResource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                bstrDevicePath: ?BSTR,
+                lMaxLogSize: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                bstrDevicePath: ?BSTR,
+                lMaxLogSize: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Fail: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Online: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                nTimeout: i32,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                nTimeout: i32,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Offline: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                nTimeout: i32,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                nTimeout: i32,
+                pvarPending: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ChangeResourceGroup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pResourceGroup: ?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                pResourceGroup: ?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddResourceNode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveResourceNode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CanResourceBeDependent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pResource: ?*ISClusResource,
+                pvarDependent: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResource,
+                pResource: ?*ISClusResource,
+                pvarDependent: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleOwnerNodes: fn(
-            self: *const ISClusResource,
-            ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PossibleOwnerNodes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dependencies: fn(
-            self: *const ISClusResource,
-            ppResDependencies: ?*?*ISClusResDependencies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Dependencies: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppResDependencies: ?*?*ISClusResDependencies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppResDependencies: ?*?*ISClusResDependencies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dependents: fn(
-            self: *const ISClusResource,
-            ppResDependents: ?*?*ISClusResDependents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Dependents: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppResDependents: ?*?*ISClusResDependents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppResDependents: ?*?*ISClusResDependents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Group: fn(
-            self: *const ISClusResource,
-            ppResGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Group: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppResGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppResGroup: ?*?*ISClusResGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerNode: fn(
-            self: *const ISClusResource,
-            ppOwnerNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_OwnerNode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppOwnerNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppOwnerNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusResource,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassInfo: fn(
-            self: *const ISClusResource,
-            prcClassInfo: ?*CLUSTER_RESOURCE_CLASS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClassInfo: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                prcClassInfo: ?*CLUSTER_RESOURCE_CLASS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                prcClassInfo: ?*CLUSTER_RESOURCE_CLASS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Disk: fn(
-            self: *const ISClusResource,
-            ppDisk: ?*?*ISClusDisk,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Disk: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppDisk: ?*?*ISClusDisk,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppDisk: ?*?*ISClusDisk,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RegistryKeys: fn(
-            self: *const ISClusResource,
-            ppRegistryKeys: ?*?*ISClusRegistryKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RegistryKeys: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppRegistryKeys: ?*?*ISClusRegistryKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppRegistryKeys: ?*?*ISClusRegistryKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CryptoKeys: fn(
-            self: *const ISClusResource,
-            ppCryptoKeys: ?*?*ISClusCryptoKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CryptoKeys: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppCryptoKeys: ?*?*ISClusCryptoKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppCryptoKeys: ?*?*ISClusCryptoKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TypeName: fn(
-            self: *const ISClusResource,
-            pbstrTypeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TypeName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pbstrTypeName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                pbstrTypeName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
-            self: *const ISClusResource,
-            ppResourceType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                ppResourceType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                ppResourceType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaintenanceMode: fn(
-            self: *const ISClusResource,
-            pbMaintenanceMode: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MaintenanceMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                pbMaintenanceMode: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                pbMaintenanceMode: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaintenanceMode: fn(
-            self: *const ISClusResource,
-            bMaintenanceMode: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_MaintenanceMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResource,
+                bMaintenanceMode: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResource,
+                bMaintenanceMode: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8160,43 +12086,100 @@ pub const ISClusResDependencies = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResDependencies,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResDependencies,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResDependencies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependencies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResDependencies,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusResDependencies,
-            pResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusResDependencies,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                pResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                pResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependencies,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8243,35 +12226,80 @@ pub const ISClusResGroupResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResGroupResources,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResGroupResources,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResGroupResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResGroupResources,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResGroupResources,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResGroupResources,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8310,35 +12338,80 @@ pub const ISClusResTypeResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResTypeResources,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResTypeResources,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResTypeResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResTypeResources,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResTypeResources,
-            bstrResourceName: ?BSTR,
-            bstrGroupName: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResTypeResources,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+                bstrResourceName: ?BSTR,
+                bstrGroupName: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+                bstrResourceName: ?BSTR,
+                bstrGroupName: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypeResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypeResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8377,36 +12450,82 @@ pub const ISClusResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResources,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResources,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResources,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResources,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResources,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResources,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            bstrGroupName: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResources,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResources,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResources,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                bstrGroupName: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResources,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                bstrGroupName: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResources,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8445,45 +12564,107 @@ pub const ISClusResGroupPreferredOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertItem: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pNode: ?*ISClusNode,
-            nPosition: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InsertItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pNode: ?*ISClusNode,
+                nPosition: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pNode: ?*ISClusNode,
+                nPosition: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveChanges: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusResGroupPreferredOwnerNodes,
-            pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Modified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SaveChanges: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResGroupPreferredOwnerNodes,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8534,37 +12715,87 @@ pub const ISClusResPossibleOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                pNode: ?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
-            self: *const ISClusResPossibleOwnerNodes,
-            pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Modified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResPossibleOwnerNodes,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8607,24 +12838,54 @@ pub const ISClusResTypePossibleOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResTypePossibleOwnerNodes,
-            varIndex: VARIANT,
-            ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypePossibleOwnerNodes,
+                varIndex: VARIANT,
+                ppNode: ?*?*ISClusNode,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8655,53 +12916,130 @@ pub const ISClusResType = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
-            self: *const ISClusResType,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
-            self: *const ISClusResType,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
-            self: *const ISClusResType,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CommonROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
-            self: *const ISClusResType,
-            ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivateROProperties: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppProperties: ?*?*ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusResType,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
-            self: *const ISClusResType,
-            ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cluster: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppCluster: ?*?*ISCluster,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
-            self: *const ISClusResType,
-            ppClusterResTypeResources: ?*?*ISClusResTypeResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Resources: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppClusterResTypeResources: ?*?*ISClusResTypeResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppClusterResTypeResources: ?*?*ISClusResTypeResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleOwnerNodes: fn(
-            self: *const ISClusResType,
-            ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PossibleOwnerNodes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AvailableDisks: fn(
-            self: *const ISClusResType,
-            ppAvailableDisks: ?*?*ISClusDisks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AvailableDisks: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResType,
+                ppAvailableDisks: ?*?*ISClusDisks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResType,
+                ppAvailableDisks: ?*?*ISClusDisks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8756,37 +13094,84 @@ pub const ISClusResTypes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResTypes,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypes,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResTypes,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypes,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResTypes,
-            varIndex: VARIANT,
-            ppClusResType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResTypes,
-            bstrResourceTypeName: ?BSTR,
-            bstrDisplayName: ?BSTR,
-            bstrResourceTypeDll: ?BSTR,
-            dwLooksAlivePollInterval: i32,
-            dwIsAlivePollInterval: i32,
-            ppResourceType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResTypes,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+                varIndex: VARIANT,
+                ppClusResType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResTypes,
+                varIndex: VARIANT,
+                ppClusResType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+                bstrResourceTypeName: ?BSTR,
+                bstrDisplayName: ?BSTR,
+                bstrResourceTypeDll: ?BSTR,
+                dwLooksAlivePollInterval: i32,
+                dwIsAlivePollInterval: i32,
+                ppResourceType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypes,
+                bstrResourceTypeName: ?BSTR,
+                bstrDisplayName: ?BSTR,
+                bstrResourceTypeDll: ?BSTR,
+                dwLooksAlivePollInterval: i32,
+                dwIsAlivePollInterval: i32,
+                ppResourceType: ?*?*ISClusResType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResTypes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResTypes,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8825,78 +13210,195 @@ pub const ISClusProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISClusProperty,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: fn(
-            self: *const ISClusProperty,
-            pLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Length: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueCount: fn(
-            self: *const ISClusProperty,
-            pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ValueCount: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Values: fn(
-            self: *const ISClusProperty,
-            ppClusterPropertyValues: ?*?*ISClusPropertyValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Values: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                ppClusterPropertyValues: ?*?*ISClusPropertyValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                ppClusterPropertyValues: ?*?*ISClusPropertyValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISClusProperty,
-            pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISClusProperty,
-            varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                varValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                varValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
-            self: *const ISClusProperty,
-            pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pType: ?*CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pType: ?*CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: fn(
-            self: *const ISClusProperty,
-            Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                Type: CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                Type: CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: fn(
-            self: *const ISClusProperty,
-            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Format: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: fn(
-            self: *const ISClusProperty,
-            Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Format: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                Format: CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                Format: CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: fn(
-            self: *const ISClusProperty,
-            pvarReadOnly: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReadOnly: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pvarReadOnly: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pvarReadOnly: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: fn(
-            self: *const ISClusProperty,
-            pvarPrivate: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Private: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pvarPrivate: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pvarPrivate: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: fn(
-            self: *const ISClusProperty,
-            pvarCommon: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Common: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pvarCommon: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pvarCommon: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
-            self: *const ISClusProperty,
-            pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UseDefaultValue: fn(
-            self: *const ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Modified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperty,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperty,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UseDefaultValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8971,50 +13473,122 @@ pub const ISClusPropertyValue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISClusPropertyValue,
-            pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISClusPropertyValue,
-            varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                varValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                varValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
-            self: *const ISClusPropertyValue,
-            pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                pType: ?*CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                pType: ?*CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: fn(
-            self: *const ISClusPropertyValue,
-            Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                Type: CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                Type: CLUSTER_PROPERTY_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: fn(
-            self: *const ISClusPropertyValue,
-            pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Format: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                pFormat: ?*CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: fn(
-            self: *const ISClusPropertyValue,
-            Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Format: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                Format: CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                Format: CLUSTER_PROPERTY_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: fn(
-            self: *const ISClusPropertyValue,
-            pLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Length: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                pLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                pLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCount: fn(
-            self: *const ISClusPropertyValue,
-            pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DataCount: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                pCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                pCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
-            self: *const ISClusPropertyValue,
-            ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Data: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValue,
+                ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValue,
+                ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9065,31 +13639,70 @@ pub const ISClusPropertyValues = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusPropertyValues,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValues,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValues,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusPropertyValues,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValues,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValues,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusPropertyValues,
-            varIndex: VARIANT,
-            ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusPropertyValues,
-            bstrName: ?BSTR,
-            varValue: VARIANT,
-            ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusPropertyValues,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValues,
+                varIndex: VARIANT,
+                ppPropertyValue: ?*?*ISClusPropertyValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValues,
+                varIndex: VARIANT,
+                ppPropertyValue: ?*?*ISClusPropertyValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusPropertyValues,
+                bstrName: ?BSTR,
+                varValue: VARIANT,
+                ppPropertyValue: ?*?*ISClusPropertyValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusPropertyValues,
+                bstrName: ?BSTR,
+                varValue: VARIANT,
+                ppPropertyValue: ?*?*ISClusPropertyValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusPropertyValues,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusPropertyValues,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9124,58 +13737,140 @@ pub const ISClusProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusProperties,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusProperties,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusProperties,
-            varIndex: VARIANT,
-            ppClusProperty: ?*?*ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusProperties,
-            bstrName: ?BSTR,
-            varValue: VARIANT,
-            pProperty: ?*?*ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UseDefaultValue: fn(
-            self: *const ISClusProperties,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveChanges: fn(
-            self: *const ISClusProperties,
-            pvarStatusCode: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                varIndex: VARIANT,
+                ppClusProperty: ?*?*ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                varIndex: VARIANT,
+                ppClusProperty: ?*?*ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                bstrName: ?BSTR,
+                varValue: VARIANT,
+                pProperty: ?*?*ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusProperties,
+                bstrName: ?BSTR,
+                varValue: VARIANT,
+                pProperty: ?*?*ISClusProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UseDefaultValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusProperties,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SaveChanges: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                pvarStatusCode: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusProperties,
+                pvarStatusCode: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: fn(
-            self: *const ISClusProperties,
-            pvarReadOnly: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReadOnly: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                pvarReadOnly: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                pvarReadOnly: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: fn(
-            self: *const ISClusProperties,
-            pvarPrivate: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Private: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                pvarPrivate: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                pvarPrivate: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: fn(
-            self: *const ISClusProperties,
-            pvarCommon: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Common: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                pvarCommon: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                pvarCommon: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
-            self: *const ISClusProperties,
-            pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Modified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusProperties,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusProperties,
+                pvarModified: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9234,30 +13929,68 @@ pub const ISClusPropertyValueData = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusPropertyValueData,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValueData,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValueData,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusPropertyValueData,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValueData,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValueData,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusPropertyValueData,
-            varIndex: VARIANT,
-            pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusPropertyValueData,
-            varValue: VARIANT,
-            pvarData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusPropertyValueData,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPropertyValueData,
+                varIndex: VARIANT,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPropertyValueData,
+                varIndex: VARIANT,
+                pvarValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusPropertyValueData,
+                varValue: VARIANT,
+                pvarData: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusPropertyValueData,
+                varValue: VARIANT,
+                pvarData: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusPropertyValueData,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusPropertyValueData,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9292,40 +14025,96 @@ pub const ISClusPartition = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: fn(
-            self: *const ISClusPartition,
-            plFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Flags: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                plFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                plFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceName: fn(
-            self: *const ISClusPartition,
-            pbstrDeviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DeviceName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeLabel: fn(
-            self: *const ISClusPartition,
-            pbstrVolumeLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_VolumeLabel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                pbstrVolumeLabel: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                pbstrVolumeLabel: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SerialNumber: fn(
-            self: *const ISClusPartition,
-            plSerialNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SerialNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                plSerialNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                plSerialNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumComponentLength: fn(
-            self: *const ISClusPartition,
-            plMaximumComponentLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MaximumComponentLength: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                plMaximumComponentLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                plMaximumComponentLength: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystemFlags: fn(
-            self: *const ISClusPartition,
-            plFileSystemFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_FileSystemFlags: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                plFileSystemFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                plFileSystemFlags: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystem: fn(
-            self: *const ISClusPartition,
-            pbstrFileSystem: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_FileSystem: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartition,
+                pbstrFileSystem: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartition,
+                pbstrFileSystem: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9369,30 +14158,70 @@ pub const ISClusPartitionEx = extern struct {
     pub const VTable = extern struct {
         base: ISClusPartition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalSize: fn(
-            self: *const ISClusPartitionEx,
-            plTotalSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TotalSize: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitionEx,
+                plTotalSize: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitionEx,
+                plTotalSize: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FreeSpace: fn(
-            self: *const ISClusPartitionEx,
-            plFreeSpace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_FreeSpace: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitionEx,
+                plFreeSpace: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitionEx,
+                plFreeSpace: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceNumber: fn(
-            self: *const ISClusPartitionEx,
-            plDeviceNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DeviceNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitionEx,
+                plDeviceNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitionEx,
+                plDeviceNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PartitionNumber: fn(
-            self: *const ISClusPartitionEx,
-            plPartitionNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PartitionNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitionEx,
+                plPartitionNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitionEx,
+                plPartitionNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeGuid: fn(
-            self: *const ISClusPartitionEx,
-            pbstrVolumeGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_VolumeGuid: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitionEx,
+                pbstrVolumeGuid: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitionEx,
+                pbstrVolumeGuid: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9427,21 +14256,46 @@ pub const ISClusPartitions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusPartitions,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitions,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitions,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusPartitions,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitions,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitions,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusPartitions,
-            varIndex: VARIANT,
-            ppPartition: ?*?*ISClusPartition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusPartitions,
+                varIndex: VARIANT,
+                ppPartition: ?*?*ISClusPartition,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusPartitions,
+                varIndex: VARIANT,
+                ppPartition: ?*?*ISClusPartition,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9468,25 +14322,57 @@ pub const ISClusDisk = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: fn(
-            self: *const ISClusDisk,
-            plSignature: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Signature: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisk,
+                plSignature: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisk,
+                plSignature: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScsiAddress: fn(
-            self: *const ISClusDisk,
-            ppScsiAddress: ?*?*ISClusScsiAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ScsiAddress: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisk,
+                ppScsiAddress: ?*?*ISClusScsiAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisk,
+                ppScsiAddress: ?*?*ISClusScsiAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DiskNumber: fn(
-            self: *const ISClusDisk,
-            plDiskNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DiskNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisk,
+                plDiskNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisk,
+                plDiskNumber: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Partitions: fn(
-            self: *const ISClusDisk,
-            ppPartitions: ?*?*ISClusPartitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Partitions: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisk,
+                ppPartitions: ?*?*ISClusPartitions,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisk,
+                ppPartitions: ?*?*ISClusPartitions,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9517,21 +14403,46 @@ pub const ISClusDisks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusDisks,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisks,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisks,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusDisks,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisks,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisks,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusDisks,
-            varIndex: VARIANT,
-            ppDisk: ?*?*ISClusDisk,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusDisks,
+                varIndex: VARIANT,
+                ppDisk: ?*?*ISClusDisk,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusDisks,
+                varIndex: VARIANT,
+                ppDisk: ?*?*ISClusDisk,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9558,25 +14469,57 @@ pub const ISClusScsiAddress = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PortNumber: fn(
-            self: *const ISClusScsiAddress,
-            pvarPortNumber: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PortNumber: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusScsiAddress,
+                pvarPortNumber: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusScsiAddress,
+                pvarPortNumber: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathId: fn(
-            self: *const ISClusScsiAddress,
-            pvarPathId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PathId: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusScsiAddress,
+                pvarPathId: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusScsiAddress,
+                pvarPathId: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetId: fn(
-            self: *const ISClusScsiAddress,
-            pvarTargetId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TargetId: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusScsiAddress,
+                pvarTargetId: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusScsiAddress,
+                pvarTargetId: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Lun: fn(
-            self: *const ISClusScsiAddress,
-            pvarLun: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Lun: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusScsiAddress,
+                pvarLun: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusScsiAddress,
+                pvarLun: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9607,32 +14550,74 @@ pub const ISClusRegistryKeys = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusRegistryKeys,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusRegistryKeys,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusRegistryKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusRegistryKeys,
-            varIndex: VARIANT,
-            pbstrRegistryKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusRegistryKeys,
-            bstrRegistryKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusRegistryKeys,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+                varIndex: VARIANT,
+                pbstrRegistryKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+                varIndex: VARIANT,
+                pbstrRegistryKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+                bstrRegistryKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+                bstrRegistryKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusRegistryKeys,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusRegistryKeys,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9671,32 +14656,74 @@ pub const ISClusCryptoKeys = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusCryptoKeys,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusCryptoKeys,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusCryptoKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusCryptoKeys,
-            varIndex: VARIANT,
-            pbstrCyrptoKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusCryptoKeys,
-            bstrCryptoKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusCryptoKeys,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+                varIndex: VARIANT,
+                pbstrCyrptoKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+                varIndex: VARIANT,
+                pbstrCyrptoKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+                bstrCryptoKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+                bstrCryptoKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusCryptoKeys,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusCryptoKeys,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9735,43 +14762,100 @@ pub const ISClusResDependents = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISClusResDependents,
-            plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependents,
+                plCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISClusResDependents,
-            retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISClusResDependents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependents,
+                retval: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
-            ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
-            self: *const ISClusResDependents,
-            bstrResourceName: ?BSTR,
-            bstrResourceType: ?BSTR,
-            dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
-            ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
-            self: *const ISClusResDependents,
-            pResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
-            self: *const ISClusResDependents,
-            varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+                ppClusResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependents,
+                bstrResourceName: ?BSTR,
+                bstrResourceType: ?BSTR,
+                dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
+                ppClusterResource: ?*?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                pResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependents,
+                pResource: ?*ISClusResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISClusResDependents,
+                varIndex: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

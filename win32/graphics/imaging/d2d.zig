@@ -12,24 +12,48 @@ pub const IID_IWICImageEncoder = &IID_IWICImageEncoder_Value;
 pub const IWICImageEncoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        WriteFrame: fn(
-            self: *const IWICImageEncoder,
-            pImage: ?*ID2D1Image,
-            pFrameEncode: ?*IWICBitmapFrameEncode,
-            pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteFrameThumbnail: fn(
-            self: *const IWICImageEncoder,
-            pImage: ?*ID2D1Image,
-            pFrameEncode: ?*IWICBitmapFrameEncode,
-            pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteThumbnail: fn(
-            self: *const IWICImageEncoder,
-            pImage: ?*ID2D1Image,
-            pEncoder: ?*IWICBitmapEncoder,
-            pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteFrame: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pFrameEncode: ?*IWICBitmapFrameEncode,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pFrameEncode: ?*IWICBitmapFrameEncode,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteFrameThumbnail: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pFrameEncode: ?*IWICBitmapFrameEncode,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pFrameEncode: ?*IWICBitmapFrameEncode,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteThumbnail: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pEncoder: ?*IWICBitmapEncoder,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWICImageEncoder,
+                pImage: ?*ID2D1Image,
+                pEncoder: ?*IWICBitmapEncoder,
+                pImageParameters: ?*const WICImageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -56,11 +80,18 @@ pub const IID_IWICImagingFactory2 = &IID_IWICImagingFactory2_Value;
 pub const IWICImagingFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IWICImagingFactory.VTable,
-        CreateImageEncoder: fn(
-            self: *const IWICImagingFactory2,
-            pD2DDevice: ?*ID2D1Device,
-            ppWICImageEncoder: ?*?*IWICImageEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateImageEncoder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWICImagingFactory2,
+                pD2DDevice: ?*ID2D1Device,
+                ppWICImageEncoder: ?*?*IWICImageEncoder,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWICImagingFactory2,
+                pD2DDevice: ?*ID2D1Device,
+                ppWICImageEncoder: ?*?*IWICImageEncoder,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

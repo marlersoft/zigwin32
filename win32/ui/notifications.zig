@@ -17,13 +17,22 @@ pub const IID_INotificationActivationCallback = &IID_INotificationActivationCall
 pub const INotificationActivationCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Activate: fn(
-            self: *const INotificationActivationCallback,
-            appUserModelId: ?[*:0]const u16,
-            invokedArgs: ?[*:0]const u16,
-            data: [*]const NOTIFICATION_USER_INPUT_DATA,
-            count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Activate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INotificationActivationCallback,
+                appUserModelId: ?[*:0]const u16,
+                invokedArgs: ?[*:0]const u16,
+                data: [*]const NOTIFICATION_USER_INPUT_DATA,
+                count: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INotificationActivationCallback,
+                appUserModelId: ?[*:0]const u16,
+                invokedArgs: ?[*:0]const u16,
+                data: [*]const NOTIFICATION_USER_INPUT_DATA,
+                count: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

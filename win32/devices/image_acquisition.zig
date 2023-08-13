@@ -1080,74 +1080,160 @@ pub const IID_IWiaDevMgr = &IID_IWiaDevMgr_Value;
 pub const IWiaDevMgr = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumDeviceInfo: fn(
-            self: *const IWiaDevMgr,
-            lFlag: i32,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDevice: fn(
-            self: *const IWiaDevMgr,
-            bstrDeviceID: ?BSTR,
-            ppWiaItemRoot: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectDeviceDlg: fn(
-            self: *const IWiaDevMgr,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-            ppItemRoot: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectDeviceDlgID: fn(
-            self: *const IWiaDevMgr,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImageDlg: fn(
-            self: *const IWiaDevMgr,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            lIntent: i32,
-            pItemRoot: ?*IWiaItem,
-            bstrFilename: ?BSTR,
-            pguidFormat: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackProgram: fn(
-            self: *const IWiaDevMgr,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            bstrCommandline: ?BSTR,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackInterface: fn(
-            self: *const IWiaDevMgr,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pIWiaEventCallback: ?*IWiaEventCallback,
-            pEventObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackCLSID: fn(
-            self: *const IWiaDevMgr,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pClsID: ?*const Guid,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDeviceDlg: fn(
-            self: *const IWiaDevMgr,
-            hwndParent: ?HWND,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDeviceInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                lFlag: i32,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                lFlag: i32,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                bstrDeviceID: ?BSTR,
+                ppWiaItemRoot: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                bstrDeviceID: ?BSTR,
+                ppWiaItemRoot: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SelectDeviceDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+                ppItemRoot: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+                ppItemRoot: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SelectDeviceDlgID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetImageDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                lIntent: i32,
+                pItemRoot: ?*IWiaItem,
+                bstrFilename: ?BSTR,
+                pguidFormat: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                lIntent: i32,
+                pItemRoot: ?*IWiaItem,
+                bstrFilename: ?BSTR,
+                pguidFormat: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackProgram: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                bstrCommandline: ?BSTR,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                bstrCommandline: ?BSTR,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pIWiaEventCallback: ?*IWiaEventCallback,
+                pEventObject: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pIWiaEventCallback: ?*IWiaEventCallback,
+                pEventObject: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackCLSID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pClsID: ?*const Guid,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pClsID: ?*const Guid,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddDeviceDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr,
+                hwndParent: ?HWND,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1198,27 +1284,58 @@ pub const IID_IEnumWIA_DEV_INFO = &IID_IEnumWIA_DEV_INFO_Value;
 pub const IEnumWIA_DEV_INFO = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: u32,
-            rgelt: ?*?*IWiaPropertyStorage,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWIA_DEV_INFO,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumWIA_DEV_INFO,
-            celt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: u32,
+                rgelt: ?*?*IWiaPropertyStorage,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: u32,
+                rgelt: ?*?*IWiaPropertyStorage,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_INFO,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_INFO,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_INFO,
+                celt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1253,17 +1370,30 @@ pub const IID_IWiaEventCallback = &IID_IWiaEventCallback_Value;
 pub const IWiaEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ImageEventCallback: fn(
-            self: *const IWiaEventCallback,
-            pEventGUID: ?*const Guid,
-            bstrEventDescription: ?BSTR,
-            bstrDeviceID: ?BSTR,
-            bstrDeviceDescription: ?BSTR,
-            dwDeviceType: u32,
-            bstrFullItemName: ?BSTR,
-            pulEventType: ?*u32,
-            ulReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImageEventCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaEventCallback,
+                pEventGUID: ?*const Guid,
+                bstrEventDescription: ?BSTR,
+                bstrDeviceID: ?BSTR,
+                bstrDeviceDescription: ?BSTR,
+                dwDeviceType: u32,
+                bstrFullItemName: ?BSTR,
+                pulEventType: ?*u32,
+                ulReserved: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaEventCallback,
+                pEventGUID: ?*const Guid,
+                bstrEventDescription: ?BSTR,
+                bstrDeviceID: ?BSTR,
+                bstrDeviceDescription: ?BSTR,
+                dwDeviceType: u32,
+                bstrFullItemName: ?BSTR,
+                pulEventType: ?*u32,
+                ulReserved: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1289,17 +1419,30 @@ pub const IID_IWiaDataCallback = &IID_IWiaDataCallback_Value;
 pub const IWiaDataCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BandedDataCallback: fn(
-            self: *const IWiaDataCallback,
-            lMessage: i32,
-            lStatus: i32,
-            lPercentComplete: i32,
-            lOffset: i32,
-            lLength: i32,
-            lReserved: i32,
-            lResLength: i32,
-            pbBuffer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BandedDataCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataCallback,
+                lMessage: i32,
+                lStatus: i32,
+                lPercentComplete: i32,
+                lOffset: i32,
+                lLength: i32,
+                lReserved: i32,
+                lResLength: i32,
+                pbBuffer: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataCallback,
+                lMessage: i32,
+                lStatus: i32,
+                lPercentComplete: i32,
+                lOffset: i32,
+                lLength: i32,
+                lReserved: i32,
+                lResLength: i32,
+                pbBuffer: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1336,28 +1479,60 @@ pub const IID_IWiaDataTransfer = &IID_IWiaDataTransfer_Value;
 pub const IWiaDataTransfer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        idtGetData: fn(
-            self: *const IWiaDataTransfer,
-            pMedium: ?*STGMEDIUM,
-            pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        idtGetBandedData: fn(
-            self: *const IWiaDataTransfer,
-            pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
-            pIWiaDataCallback: ?*IWiaDataCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        idtQueryGetData: fn(
-            self: *const IWiaDataTransfer,
-            pfe: ?*WIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        idtEnumWIA_FORMAT_INFO: fn(
-            self: *const IWiaDataTransfer,
-            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        idtGetExtendedTransferInfo: fn(
-            self: *const IWiaDataTransfer,
-            pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        idtGetData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataTransfer,
+                pMedium: ?*STGMEDIUM,
+                pIWiaDataCallback: ?*IWiaDataCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataTransfer,
+                pMedium: ?*STGMEDIUM,
+                pIWiaDataCallback: ?*IWiaDataCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        idtGetBandedData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataTransfer,
+                pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
+                pIWiaDataCallback: ?*IWiaDataCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataTransfer,
+                pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
+                pIWiaDataCallback: ?*IWiaDataCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        idtQueryGetData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataTransfer,
+                pfe: ?*WIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataTransfer,
+                pfe: ?*WIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        idtEnumWIA_FORMAT_INFO: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataTransfer,
+                ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataTransfer,
+                ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        idtGetExtendedTransferInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDataTransfer,
+                pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDataTransfer,
+                pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1392,81 +1567,186 @@ pub const IID_IWiaItem = &IID_IWiaItem_Value;
 pub const IWiaItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemType: fn(
-            self: *const IWiaItem,
-            pItemType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AnalyzeItem: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumChildItems: fn(
-            self: *const IWiaItem,
-            ppIEnumWiaItem: ?*?*IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateChildItem: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-            bstrItemName: ?BSTR,
-            bstrFullItemName: ?BSTR,
-            ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumRegisterEventInfo: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-            pEventGUID: ?*const Guid,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindItemByName: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-            bstrFullItemName: ?BSTR,
-            ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeviceDlg: fn(
-            self: *const IWiaItem,
-            hwndParent: ?HWND,
-            lFlags: i32,
-            lIntent: i32,
-            plItemCount: ?*i32,
-            ppIWiaItem: ?*?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeviceCommand: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-            pCmdGUID: ?*const Guid,
-            pIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRootItem: fn(
-            self: *const IWiaItem,
-            ppIWiaItem: ?*?*IWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDeviceCapabilities: fn(
-            self: *const IWiaItem,
-            lFlags: i32,
-            ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DumpItemData: fn(
-            self: *const IWiaItem,
-            bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DumpDrvItemData: fn(
-            self: *const IWiaItem,
-            bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DumpTreeItemData: fn(
-            self: *const IWiaItem,
-            bstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Diagnostic: fn(
-            self: *const IWiaItem,
-            ulSize: u32,
-            pBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                pItemType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                pItemType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AnalyzeItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumChildItems: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                ppIEnumWiaItem: ?*?*IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                ppIEnumWiaItem: ?*?*IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateChildItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumRegisterEventInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                pEventGUID: ?*const Guid,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                pEventGUID: ?*const Guid,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindItemByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeviceDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                hwndParent: ?HWND,
+                lFlags: i32,
+                lIntent: i32,
+                plItemCount: ?*i32,
+                ppIWiaItem: ?*?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                hwndParent: ?HWND,
+                lFlags: i32,
+                lIntent: i32,
+                plItemCount: ?*i32,
+                ppIWiaItem: ?*?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeviceCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                pCmdGUID: ?*const Guid,
+                pIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                pCmdGUID: ?*const Guid,
+                pIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRootItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                ppIWiaItem: ?*?*IWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDeviceCapabilities: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                lFlags: i32,
+                ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DumpItemData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DumpDrvItemData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DumpTreeItemData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                bstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Diagnostic: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem,
+                ulSize: u32,
+                pBuffer: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem,
+                ulSize: u32,
+                pBuffer: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1541,87 +1821,200 @@ pub const IID_IWiaPropertyStorage = &IID_IWiaPropertyStorage_Value;
 pub const IWiaPropertyStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReadMultiple: fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteMultiple: fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: ?*const PROPSPEC,
-            rgpropvar: ?*const PROPVARIANT,
-            propidNameFirst: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteMultiple: fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadPropertyNames: fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WritePropertyNames: fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]const ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeletePropertyNames: fn(
-            self: *const IWiaPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
-            self: *const IWiaPropertyStorage,
-            grfCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revert: fn(
-            self: *const IWiaPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enum: fn(
-            self: *const IWiaPropertyStorage,
-            ppenum: ?*?*IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTimes: fn(
-            self: *const IWiaPropertyStorage,
-            pctime: ?*const FILETIME,
-            patime: ?*const FILETIME,
-            pmtime: ?*const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClass: fn(
-            self: *const IWiaPropertyStorage,
-            clsid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stat: fn(
-            self: *const IWiaPropertyStorage,
-            pstatpsstg: ?*STATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyAttributes: fn(
-            self: *const IWiaPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]PROPSPEC,
-            rgflags: [*]u32,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IWiaPropertyStorage,
-            pulNumProps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStream: fn(
-            self: *const IWiaPropertyStorage,
-            pCompatibilityId: ?*Guid,
-            ppIStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropertyStream: fn(
-            self: *const IWiaPropertyStorage,
-            pCompatibilityId: ?*Guid,
-            pIStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadMultiple: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]const PROPSPEC,
+                rgpropvar: [*]PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]const PROPSPEC,
+                rgpropvar: [*]PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteMultiple: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: ?*const PROPSPEC,
+                rgpropvar: ?*const PROPVARIANT,
+                propidNameFirst: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: ?*const PROPSPEC,
+                rgpropvar: ?*const PROPVARIANT,
+                propidNameFirst: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteMultiple: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]const PROPSPEC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]const PROPSPEC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReadPropertyNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+                rglpwstrName: [*]?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+                rglpwstrName: [*]?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WritePropertyNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+                rglpwstrName: [*]const ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+                rglpwstrName: [*]const ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeletePropertyNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpropid: u32,
+                rgpropid: [*]const u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Commit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                grfCommitFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                grfCommitFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Revert: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Enum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                ppenum: ?*?*IEnumSTATPROPSTG,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                ppenum: ?*?*IEnumSTATPROPSTG,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTimes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                pctime: ?*const FILETIME,
+                patime: ?*const FILETIME,
+                pmtime: ?*const FILETIME,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                pctime: ?*const FILETIME,
+                patime: ?*const FILETIME,
+                pmtime: ?*const FILETIME,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                clsid: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                clsid: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                pstatpsstg: ?*STATPROPSETSTG,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                pstatpsstg: ?*STATPROPSETSTG,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]PROPSPEC,
+                rgflags: [*]u32,
+                rgpropvar: [*]PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                cpspec: u32,
+                rgpspec: [*]PROPSPEC,
+                rgflags: [*]u32,
+                rgpropvar: [*]PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                pulNumProps: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                pulNumProps: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                pCompatibilityId: ?*Guid,
+                ppIStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                pCompatibilityId: ?*Guid,
+                ppIStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPropertyStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPropertyStorage,
+                pCompatibilityId: ?*Guid,
+                pIStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPropertyStorage,
+                pCompatibilityId: ?*Guid,
+                pIStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1700,27 +2093,58 @@ pub const IID_IEnumWiaItem = &IID_IEnumWiaItem_Value;
 pub const IEnumWiaItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumWiaItem,
-            celt: u32,
-            ppIWiaItem: ?*?*IWiaItem,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWiaItem,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWiaItem,
-            ppIEnum: ?*?*IEnumWiaItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumWiaItem,
-            celt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem,
+                celt: u32,
+                ppIWiaItem: ?*?*IWiaItem,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem,
+                celt: u32,
+                ppIWiaItem: ?*?*IWiaItem,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem,
+                ppIEnum: ?*?*IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem,
+                ppIEnum: ?*?*IEnumWiaItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem,
+                celt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem,
+                celt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1764,27 +2188,58 @@ pub const IID_IEnumWIA_DEV_CAPS = &IID_IEnumWIA_DEV_CAPS_Value;
 pub const IEnumWIA_DEV_CAPS = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            celt: u32,
-            rgelt: ?*WIA_DEV_CAP,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumWIA_DEV_CAPS,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                celt: u32,
+                rgelt: ?*WIA_DEV_CAP,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                celt: u32,
+                rgelt: ?*WIA_DEV_CAP,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_DEV_CAPS,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1819,27 +2274,58 @@ pub const IID_IEnumWIA_FORMAT_INFO = &IID_IEnumWIA_FORMAT_INFO_Value;
 pub const IEnumWIA_FORMAT_INFO = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            celt: u32,
-            rgelt: ?*WIA_FORMAT_INFO,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumWIA_FORMAT_INFO,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                celt: u32,
+                rgelt: ?*WIA_FORMAT_INFO,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                celt: u32,
+                rgelt: ?*WIA_FORMAT_INFO,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWIA_FORMAT_INFO,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1874,21 +2360,42 @@ pub const IID_IWiaLog = &IID_IWiaLog_Value;
 pub const IWiaLog = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeLog: fn(
-            self: *const IWiaLog,
-            hInstance: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        hResult: fn(
-            self: *const IWiaLog,
-            hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Log: fn(
-            self: *const IWiaLog,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitializeLog: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLog,
+                hInstance: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLog,
+                hInstance: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        hResult: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLog,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLog,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Log: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLog,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLog,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1915,34 +2422,72 @@ pub const IID_IWiaLogEx = &IID_IWiaLogEx_Value;
 pub const IWiaLogEx = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeLogEx: fn(
-            self: *const IWiaLogEx,
-            hInstance: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        hResult: fn(
-            self: *const IWiaLogEx,
-            hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Log: fn(
-            self: *const IWiaLogEx,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        hResultEx: fn(
-            self: *const IWiaLogEx,
-            lMethodId: i32,
-            hResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LogEx: fn(
-            self: *const IWiaLogEx,
-            lMethodId: i32,
-            lFlags: i32,
-            lResID: i32,
-            lDetail: i32,
-            bstrText: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitializeLogEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLogEx,
+                hInstance: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLogEx,
+                hInstance: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        hResult: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLogEx,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLogEx,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Log: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLogEx,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLogEx,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        hResultEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLogEx,
+                lMethodId: i32,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLogEx,
+                lMethodId: i32,
+                hResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        LogEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaLogEx,
+                lMethodId: i32,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaLogEx,
+                lMethodId: i32,
+                lFlags: i32,
+                lResID: i32,
+                lDetail: i32,
+                bstrText: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1977,9 +2522,14 @@ pub const IID_IWiaNotifyDevMgr = &IID_IWiaNotifyDevMgr_Value;
 pub const IWiaNotifyDevMgr = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NewDeviceArrival: fn(
-            self: *const IWiaNotifyDevMgr,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NewDeviceArrival: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaNotifyDevMgr,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaNotifyDevMgr,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1998,22 +2548,44 @@ pub const IID_IWiaItemExtras = &IID_IWiaItemExtras_Value;
 pub const IWiaItemExtras = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetExtendedErrorInfo: fn(
-            self: *const IWiaItemExtras,
-            bstrErrorText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Escape: fn(
-            self: *const IWiaItemExtras,
-            dwEscapeCode: u32,
-            lpInData: [*:0]u8,
-            cbInDataSize: u32,
-            pOutData: ?*u8,
-            dwOutDataSize: u32,
-            pdwActualDataSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelPendingIO: fn(
-            self: *const IWiaItemExtras,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExtendedErrorInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItemExtras,
+                bstrErrorText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItemExtras,
+                bstrErrorText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Escape: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItemExtras,
+                dwEscapeCode: u32,
+                lpInData: [*:0]u8,
+                cbInDataSize: u32,
+                pOutData: ?*u8,
+                dwOutDataSize: u32,
+                pdwActualDataSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItemExtras,
+                dwEscapeCode: u32,
+                lpInData: [*:0]u8,
+                cbInDataSize: u32,
+                pOutData: ?*u8,
+                dwOutDataSize: u32,
+                pdwActualDataSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelPendingIO: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItemExtras,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItemExtras,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2039,17 +2611,32 @@ pub const IID_IWiaAppErrorHandler = &IID_IWiaAppErrorHandler_Value;
 pub const IWiaAppErrorHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWindow: fn(
-            self: *const IWiaAppErrorHandler,
-            phwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReportStatus: fn(
-            self: *const IWiaAppErrorHandler,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            lPercentComplete: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWindow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaAppErrorHandler,
+                phwnd: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaAppErrorHandler,
+                phwnd: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReportStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaAppErrorHandler,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                lPercentComplete: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaAppErrorHandler,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                lPercentComplete: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2071,21 +2658,40 @@ pub const IID_IWiaErrorHandler = &IID_IWiaErrorHandler_Value;
 pub const IWiaErrorHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReportStatus: fn(
-            self: *const IWiaErrorHandler,
-            lFlags: i32,
-            hwndParent: ?HWND,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            lPercentComplete: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatusDescription: fn(
-            self: *const IWiaErrorHandler,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            hrStatus: HRESULT,
-            pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaErrorHandler,
+                lFlags: i32,
+                hwndParent: ?HWND,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                lPercentComplete: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaErrorHandler,
+                lFlags: i32,
+                hwndParent: ?HWND,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                lPercentComplete: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatusDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaErrorHandler,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                pbstrDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaErrorHandler,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                hrStatus: HRESULT,
+                pbstrDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2107,24 +2713,50 @@ pub const IID_IWiaTransfer = &IID_IWiaTransfer_Value;
 pub const IWiaTransfer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Download: fn(
-            self: *const IWiaTransfer,
-            lFlags: i32,
-            pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Upload: fn(
-            self: *const IWiaTransfer,
-            lFlags: i32,
-            pSource: ?*IStream,
-            pIWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IWiaTransfer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumWIA_FORMAT_INFO: fn(
-            self: *const IWiaTransfer,
-            ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Download: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransfer,
+                lFlags: i32,
+                pIWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransfer,
+                lFlags: i32,
+                pIWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Upload: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransfer,
+                lFlags: i32,
+                pSource: ?*IStream,
+                pIWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransfer,
+                lFlags: i32,
+                pSource: ?*IStream,
+                pIWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransfer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransfer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumWIA_FORMAT_INFO: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransfer,
+                ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransfer,
+                ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2161,18 +2793,34 @@ pub const IID_IWiaTransferCallback = &IID_IWiaTransferCallback_Value;
 pub const IWiaTransferCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TransferCallback: fn(
-            self: *const IWiaTransferCallback,
-            lFlags: i32,
-            pWiaTransferParams: ?*WiaTransferParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNextStream: fn(
-            self: *const IWiaTransferCallback,
-            lFlags: i32,
-            bstrItemName: ?BSTR,
-            bstrFullItemName: ?BSTR,
-            ppDestination: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransferCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransferCallback,
+                lFlags: i32,
+                pWiaTransferParams: ?*WiaTransferParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransferCallback,
+                lFlags: i32,
+                pWiaTransferParams: ?*WiaTransferParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNextStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaTransferCallback,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppDestination: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaTransferCallback,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppDestination: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2194,12 +2842,20 @@ pub const IID_IWiaSegmentationFilter = &IID_IWiaSegmentationFilter_Value;
 pub const IWiaSegmentationFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DetectRegions: fn(
-            self: *const IWiaSegmentationFilter,
-            lFlags: i32,
-            pInputStream: ?*IStream,
-            pWiaItem2: ?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DetectRegions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaSegmentationFilter,
+                lFlags: i32,
+                pInputStream: ?*IStream,
+                pWiaItem2: ?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaSegmentationFilter,
+                lFlags: i32,
+                pInputStream: ?*IStream,
+                pWiaItem2: ?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2217,26 +2873,54 @@ pub const IID_IWiaImageFilter = &IID_IWiaImageFilter_Value;
 pub const IWiaImageFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeFilter: fn(
-            self: *const IWiaImageFilter,
-            pWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNewCallback: fn(
-            self: *const IWiaImageFilter,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FilterPreviewImage: fn(
-            self: *const IWiaImageFilter,
-            lFlags: i32,
-            pWiaChildItem2: ?*IWiaItem2,
-            InputImageExtents: RECT,
-            pInputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ApplyProperties: fn(
-            self: *const IWiaImageFilter,
-            pWiaPropertyStorage: ?*IWiaPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitializeFilter: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaImageFilter,
+                pWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaImageFilter,
+                pWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNewCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaImageFilter,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaImageFilter,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FilterPreviewImage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaImageFilter,
+                lFlags: i32,
+                pWiaChildItem2: ?*IWiaItem2,
+                InputImageExtents: RECT,
+                pInputStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaImageFilter,
+                lFlags: i32,
+                pWiaChildItem2: ?*IWiaItem2,
+                InputImageExtents: RECT,
+                pInputStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ApplyProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaImageFilter,
+                pWiaPropertyStorage: ?*IWiaPropertyStorage,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaImageFilter,
+                pWiaPropertyStorage: ?*IWiaPropertyStorage,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2266,25 +2950,52 @@ pub const IID_IWiaPreview = &IID_IWiaPreview_Value;
 pub const IWiaPreview = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNewPreview: fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-            pWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdatePreview: fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-            pChildWiaItem2: ?*IWiaItem2,
-            pWiaTransferCallback: ?*IWiaTransferCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DetectRegions: fn(
-            self: *const IWiaPreview,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IWiaPreview,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNewPreview: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+                pWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdatePreview: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+                pChildWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+                pChildWiaItem2: ?*IWiaItem2,
+                pWiaTransferCallback: ?*IWiaTransferCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DetectRegions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPreview,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaPreview,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaPreview,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2314,27 +3025,58 @@ pub const IID_IEnumWiaItem2 = &IID_IEnumWiaItem2_Value;
 pub const IEnumWiaItem2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumWiaItem2,
-            cElt: u32,
-            ppIWiaItem2: ?*?*IWiaItem2,
-            pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWiaItem2,
-            cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWiaItem2,
-            ppIEnum: ?*?*IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
-            self: *const IEnumWiaItem2,
-            cElt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem2,
+                cElt: u32,
+                ppIWiaItem2: ?*?*IWiaItem2,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem2,
+                cElt: u32,
+                ppIWiaItem2: ?*?*IWiaItem2,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem2,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem2,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem2,
+                ppIEnum: ?*?*IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem2,
+                ppIEnum: ?*?*IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWiaItem2,
+                cElt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWiaItem2,
+                cElt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2368,95 +3110,216 @@ pub const IID_IWiaItem2 = &IID_IWiaItem2_Value;
 pub const IWiaItem2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateChildItem: fn(
-            self: *const IWiaItem2,
-            lItemFlags: i32,
-            lCreationFlags: i32,
-            bstrItemName: ?BSTR,
-            ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumChildItems: fn(
-            self: *const IWiaItem2,
-            pCategoryGUID: ?*const Guid,
-            ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindItemByName: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            bstrFullItemName: ?BSTR,
-            ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemCategory: fn(
-            self: *const IWiaItem2,
-            pItemCategoryGUID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemType: fn(
-            self: *const IWiaItem2,
-            pItemType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeviceDlg: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            hwndParent: ?HWND,
-            bstrFolderName: ?BSTR,
-            bstrFilename: ?BSTR,
-            plNumFiles: ?*i32,
-            ppbstrFilePaths: ?*?*?BSTR,
-            ppItem: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeviceCommand: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            pCmdGUID: ?*const Guid,
-            ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDeviceCapabilities: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckExtension: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            bstrName: ?BSTR,
-            riidExtensionInterface: ?*const Guid,
-            pbExtensionExists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExtension: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            bstrName: ?BSTR,
-            riidExtensionInterface: ?*const Guid,
-            ppOut: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParentItem: fn(
-            self: *const IWiaItem2,
-            ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRootItem: fn(
-            self: *const IWiaItem2,
-            ppIWiaItem2: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreviewComponent: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            ppWiaPreview: ?*?*IWiaPreview,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumRegisterEventInfo: fn(
-            self: *const IWiaItem2,
-            lFlags: i32,
-            pEventGUID: ?*const Guid,
-            ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Diagnostic: fn(
-            self: *const IWiaItem2,
-            ulSize: u32,
-            pBuffer: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateChildItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lItemFlags: i32,
+                lCreationFlags: i32,
+                bstrItemName: ?BSTR,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lItemFlags: i32,
+                lCreationFlags: i32,
+                bstrItemName: ?BSTR,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumChildItems: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                pCategoryGUID: ?*const Guid,
+                ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                pCategoryGUID: ?*const Guid,
+                ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindItemByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrFullItemName: ?BSTR,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetItemCategory: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                pItemCategoryGUID: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                pItemCategoryGUID: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetItemType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                pItemType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                pItemType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeviceDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                hwndParent: ?HWND,
+                bstrFolderName: ?BSTR,
+                bstrFilename: ?BSTR,
+                plNumFiles: ?*i32,
+                ppbstrFilePaths: ?*?*?BSTR,
+                ppItem: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                hwndParent: ?HWND,
+                bstrFolderName: ?BSTR,
+                bstrFilename: ?BSTR,
+                plNumFiles: ?*i32,
+                ppbstrFilePaths: ?*?*?BSTR,
+                ppItem: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeviceCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                pCmdGUID: ?*const Guid,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                pCmdGUID: ?*const Guid,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDeviceCapabilities: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CheckExtension: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrName: ?BSTR,
+                riidExtensionInterface: ?*const Guid,
+                pbExtensionExists: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrName: ?BSTR,
+                riidExtensionInterface: ?*const Guid,
+                pbExtensionExists: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetExtension: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrName: ?BSTR,
+                riidExtensionInterface: ?*const Guid,
+                ppOut: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                bstrName: ?BSTR,
+                riidExtensionInterface: ?*const Guid,
+                ppOut: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetParentItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRootItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                ppIWiaItem2: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPreviewComponent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                ppWiaPreview: ?*?*IWiaPreview,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                ppWiaPreview: ?*?*IWiaPreview,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumRegisterEventInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                pEventGUID: ?*const Guid,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                lFlags: i32,
+                pEventGUID: ?*const Guid,
+                ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Diagnostic: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaItem2,
+                ulSize: u32,
+                pBuffer: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaItem2,
+                ulSize: u32,
+                pBuffer: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2534,72 +3397,154 @@ pub const IID_IWiaDevMgr2 = &IID_IWiaDevMgr2_Value;
 pub const IWiaDevMgr2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumDeviceInfo: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            ppIEnum: ?*?*IEnumWIA_DEV_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDevice: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            ppWiaItem2Root: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectDeviceDlg: fn(
-            self: *const IWiaDevMgr2,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-            ppItemRoot: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectDeviceDlgID: fn(
-            self: *const IWiaDevMgr2,
-            hwndParent: ?HWND,
-            lDeviceType: i32,
-            lFlags: i32,
-            pbstrDeviceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackInterface: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pIWiaEventCallback: ?*IWiaEventCallback,
-            pEventObject: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackProgram: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            bstrFullAppName: ?BSTR,
-            bstrCommandLineArg: ?BSTR,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterEventCallbackCLSID: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            pEventGUID: ?*const Guid,
-            pClsID: ?*const Guid,
-            bstrName: ?BSTR,
-            bstrDescription: ?BSTR,
-            bstrIcon: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImageDlg: fn(
-            self: *const IWiaDevMgr2,
-            lFlags: i32,
-            bstrDeviceID: ?BSTR,
-            hwndParent: ?HWND,
-            bstrFolderName: ?BSTR,
-            bstrFilename: ?BSTR,
-            plNumFiles: ?*i32,
-            ppbstrFilePaths: ?*?*?BSTR,
-            ppItem: ?*?*IWiaItem2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDeviceInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                ppIEnum: ?*?*IEnumWIA_DEV_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                ppWiaItem2Root: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                ppWiaItem2Root: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SelectDeviceDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+                ppItemRoot: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+                ppItemRoot: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SelectDeviceDlgID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                hwndParent: ?HWND,
+                lDeviceType: i32,
+                lFlags: i32,
+                pbstrDeviceID: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pIWiaEventCallback: ?*IWiaEventCallback,
+                pEventObject: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pIWiaEventCallback: ?*IWiaEventCallback,
+                pEventObject: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackProgram: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                bstrFullAppName: ?BSTR,
+                bstrCommandLineArg: ?BSTR,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                bstrFullAppName: ?BSTR,
+                bstrCommandLineArg: ?BSTR,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterEventCallbackCLSID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pClsID: ?*const Guid,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                pEventGUID: ?*const Guid,
+                pClsID: ?*const Guid,
+                bstrName: ?BSTR,
+                bstrDescription: ?BSTR,
+                bstrIcon: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetImageDlg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                hwndParent: ?HWND,
+                bstrFolderName: ?BSTR,
+                bstrFilename: ?BSTR,
+                plNumFiles: ?*i32,
+                ppbstrFilePaths: ?*?*?BSTR,
+                ppItem: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDevMgr2,
+                lFlags: i32,
+                bstrDeviceID: ?BSTR,
+                hwndParent: ?HWND,
+                bstrFolderName: ?BSTR,
+                bstrFilename: ?BSTR,
+                plNumFiles: ?*i32,
+                ppbstrFilePaths: ?*?*?BSTR,
+                ppItem: ?*?*IWiaItem2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2683,125 +3628,278 @@ pub const IID_IWiaMiniDrv = &IID_IWiaMiniDrv_Value;
 pub const IWiaMiniDrv = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        drvInitializeWia: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0000: ?*u8,
-            __MIDL__IWiaMiniDrv0001: i32,
-            __MIDL__IWiaMiniDrv0002: ?BSTR,
-            __MIDL__IWiaMiniDrv0003: ?BSTR,
-            __MIDL__IWiaMiniDrv0004: ?*IUnknown,
-            __MIDL__IWiaMiniDrv0005: ?*IUnknown,
-            __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem,
-            __MIDL__IWiaMiniDrv0007: ?*?*IUnknown,
-            __MIDL__IWiaMiniDrv0008: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvAcquireItemData: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0009: ?*u8,
-            __MIDL__IWiaMiniDrv0010: i32,
-            __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT,
-            __MIDL__IWiaMiniDrv0012: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvInitItemProperties: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0013: ?*u8,
-            __MIDL__IWiaMiniDrv0014: i32,
-            __MIDL__IWiaMiniDrv0015: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvValidateItemProperties: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0016: ?*u8,
-            __MIDL__IWiaMiniDrv0017: i32,
-            __MIDL__IWiaMiniDrv0018: u32,
-            __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC,
-            __MIDL__IWiaMiniDrv0020: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvWriteItemProperties: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0021: ?*u8,
-            __MIDL__IWiaMiniDrv0022: i32,
-            __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT,
-            __MIDL__IWiaMiniDrv0024: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvReadItemProperties: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0025: ?*u8,
-            __MIDL__IWiaMiniDrv0026: i32,
-            __MIDL__IWiaMiniDrv0027: u32,
-            __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC,
-            __MIDL__IWiaMiniDrv0029: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvLockWiaDevice: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0030: ?*u8,
-            __MIDL__IWiaMiniDrv0031: i32,
-            __MIDL__IWiaMiniDrv0032: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvUnLockWiaDevice: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0033: ?*u8,
-            __MIDL__IWiaMiniDrv0034: i32,
-            __MIDL__IWiaMiniDrv0035: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvAnalyzeItem: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0036: ?*u8,
-            __MIDL__IWiaMiniDrv0037: i32,
-            __MIDL__IWiaMiniDrv0038: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvGetDeviceErrorStr: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0039: i32,
-            __MIDL__IWiaMiniDrv0040: i32,
-            __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
-            __MIDL__IWiaMiniDrv0042: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvDeviceCommand: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0043: ?*u8,
-            __MIDL__IWiaMiniDrv0044: i32,
-            __MIDL__IWiaMiniDrv0045: ?*const Guid,
-            __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem,
-            __MIDL__IWiaMiniDrv0047: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvGetCapabilities: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0048: ?*u8,
-            __MIDL__IWiaMiniDrv0049: i32,
-            __MIDL__IWiaMiniDrv0050: ?*i32,
-            __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV,
-            __MIDL__IWiaMiniDrv0052: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvDeleteItem: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0053: ?*u8,
-            __MIDL__IWiaMiniDrv0054: i32,
-            __MIDL__IWiaMiniDrv0055: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvFreeDrvItemContext: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0056: i32,
-            __MIDL__IWiaMiniDrv0057: ?*u8,
-            __MIDL__IWiaMiniDrv0058: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvGetWiaFormatInfo: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0059: ?*u8,
-            __MIDL__IWiaMiniDrv0060: i32,
-            __MIDL__IWiaMiniDrv0061: ?*i32,
-            __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO,
-            __MIDL__IWiaMiniDrv0063: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvNotifyPnpEvent: fn(
-            self: *const IWiaMiniDrv,
-            pEventGUID: ?*const Guid,
-            bstrDeviceID: ?BSTR,
-            ulReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        drvUnInitializeWia: fn(
-            self: *const IWiaMiniDrv,
-            __MIDL__IWiaMiniDrv0064: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        drvInitializeWia: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0000: ?*u8,
+                __MIDL__IWiaMiniDrv0001: i32,
+                __MIDL__IWiaMiniDrv0002: ?BSTR,
+                __MIDL__IWiaMiniDrv0003: ?BSTR,
+                __MIDL__IWiaMiniDrv0004: ?*IUnknown,
+                __MIDL__IWiaMiniDrv0005: ?*IUnknown,
+                __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem,
+                __MIDL__IWiaMiniDrv0007: ?*?*IUnknown,
+                __MIDL__IWiaMiniDrv0008: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0000: ?*u8,
+                __MIDL__IWiaMiniDrv0001: i32,
+                __MIDL__IWiaMiniDrv0002: ?BSTR,
+                __MIDL__IWiaMiniDrv0003: ?BSTR,
+                __MIDL__IWiaMiniDrv0004: ?*IUnknown,
+                __MIDL__IWiaMiniDrv0005: ?*IUnknown,
+                __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem,
+                __MIDL__IWiaMiniDrv0007: ?*?*IUnknown,
+                __MIDL__IWiaMiniDrv0008: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvAcquireItemData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0009: ?*u8,
+                __MIDL__IWiaMiniDrv0010: i32,
+                __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT,
+                __MIDL__IWiaMiniDrv0012: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0009: ?*u8,
+                __MIDL__IWiaMiniDrv0010: i32,
+                __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT,
+                __MIDL__IWiaMiniDrv0012: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvInitItemProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0013: ?*u8,
+                __MIDL__IWiaMiniDrv0014: i32,
+                __MIDL__IWiaMiniDrv0015: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0013: ?*u8,
+                __MIDL__IWiaMiniDrv0014: i32,
+                __MIDL__IWiaMiniDrv0015: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvValidateItemProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0016: ?*u8,
+                __MIDL__IWiaMiniDrv0017: i32,
+                __MIDL__IWiaMiniDrv0018: u32,
+                __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC,
+                __MIDL__IWiaMiniDrv0020: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0016: ?*u8,
+                __MIDL__IWiaMiniDrv0017: i32,
+                __MIDL__IWiaMiniDrv0018: u32,
+                __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC,
+                __MIDL__IWiaMiniDrv0020: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvWriteItemProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0021: ?*u8,
+                __MIDL__IWiaMiniDrv0022: i32,
+                __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT,
+                __MIDL__IWiaMiniDrv0024: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0021: ?*u8,
+                __MIDL__IWiaMiniDrv0022: i32,
+                __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT,
+                __MIDL__IWiaMiniDrv0024: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvReadItemProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0025: ?*u8,
+                __MIDL__IWiaMiniDrv0026: i32,
+                __MIDL__IWiaMiniDrv0027: u32,
+                __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC,
+                __MIDL__IWiaMiniDrv0029: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0025: ?*u8,
+                __MIDL__IWiaMiniDrv0026: i32,
+                __MIDL__IWiaMiniDrv0027: u32,
+                __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC,
+                __MIDL__IWiaMiniDrv0029: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvLockWiaDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0030: ?*u8,
+                __MIDL__IWiaMiniDrv0031: i32,
+                __MIDL__IWiaMiniDrv0032: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0030: ?*u8,
+                __MIDL__IWiaMiniDrv0031: i32,
+                __MIDL__IWiaMiniDrv0032: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvUnLockWiaDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0033: ?*u8,
+                __MIDL__IWiaMiniDrv0034: i32,
+                __MIDL__IWiaMiniDrv0035: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0033: ?*u8,
+                __MIDL__IWiaMiniDrv0034: i32,
+                __MIDL__IWiaMiniDrv0035: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvAnalyzeItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0036: ?*u8,
+                __MIDL__IWiaMiniDrv0037: i32,
+                __MIDL__IWiaMiniDrv0038: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0036: ?*u8,
+                __MIDL__IWiaMiniDrv0037: i32,
+                __MIDL__IWiaMiniDrv0038: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvGetDeviceErrorStr: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0039: i32,
+                __MIDL__IWiaMiniDrv0040: i32,
+                __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
+                __MIDL__IWiaMiniDrv0042: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0039: i32,
+                __MIDL__IWiaMiniDrv0040: i32,
+                __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
+                __MIDL__IWiaMiniDrv0042: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvDeviceCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0043: ?*u8,
+                __MIDL__IWiaMiniDrv0044: i32,
+                __MIDL__IWiaMiniDrv0045: ?*const Guid,
+                __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem,
+                __MIDL__IWiaMiniDrv0047: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0043: ?*u8,
+                __MIDL__IWiaMiniDrv0044: i32,
+                __MIDL__IWiaMiniDrv0045: ?*const Guid,
+                __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem,
+                __MIDL__IWiaMiniDrv0047: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvGetCapabilities: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0048: ?*u8,
+                __MIDL__IWiaMiniDrv0049: i32,
+                __MIDL__IWiaMiniDrv0050: ?*i32,
+                __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV,
+                __MIDL__IWiaMiniDrv0052: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0048: ?*u8,
+                __MIDL__IWiaMiniDrv0049: i32,
+                __MIDL__IWiaMiniDrv0050: ?*i32,
+                __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV,
+                __MIDL__IWiaMiniDrv0052: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvDeleteItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0053: ?*u8,
+                __MIDL__IWiaMiniDrv0054: i32,
+                __MIDL__IWiaMiniDrv0055: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0053: ?*u8,
+                __MIDL__IWiaMiniDrv0054: i32,
+                __MIDL__IWiaMiniDrv0055: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvFreeDrvItemContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0056: i32,
+                __MIDL__IWiaMiniDrv0057: ?*u8,
+                __MIDL__IWiaMiniDrv0058: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0056: i32,
+                __MIDL__IWiaMiniDrv0057: ?*u8,
+                __MIDL__IWiaMiniDrv0058: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvGetWiaFormatInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0059: ?*u8,
+                __MIDL__IWiaMiniDrv0060: i32,
+                __MIDL__IWiaMiniDrv0061: ?*i32,
+                __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO,
+                __MIDL__IWiaMiniDrv0063: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0059: ?*u8,
+                __MIDL__IWiaMiniDrv0060: i32,
+                __MIDL__IWiaMiniDrv0061: ?*i32,
+                __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO,
+                __MIDL__IWiaMiniDrv0063: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvNotifyPnpEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                pEventGUID: ?*const Guid,
+                bstrDeviceID: ?BSTR,
+                ulReserved: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                pEventGUID: ?*const Guid,
+                bstrDeviceID: ?BSTR,
+                ulReserved: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        drvUnInitializeWia: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0064: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrv,
+                __MIDL__IWiaMiniDrv0064: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2883,16 +3981,28 @@ pub const IID_IWiaMiniDrvCallBack = &IID_IWiaMiniDrvCallBack_Value;
 pub const IWiaMiniDrvCallBack = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MiniDrvCallback: fn(
-            self: *const IWiaMiniDrvCallBack,
-            lReason: i32,
-            lStatus: i32,
-            lPercentComplete: i32,
-            lOffset: i32,
-            lLength: i32,
-            pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT,
-            lReserved: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MiniDrvCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrvCallBack,
+                lReason: i32,
+                lStatus: i32,
+                lPercentComplete: i32,
+                lOffset: i32,
+                lLength: i32,
+                pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT,
+                lReserved: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrvCallBack,
+                lReason: i32,
+                lStatus: i32,
+                lPercentComplete: i32,
+                lOffset: i32,
+                lLength: i32,
+                pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT,
+                lReserved: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2910,18 +4020,34 @@ pub const IID_IWiaMiniDrvTransferCallback = &IID_IWiaMiniDrvTransferCallback_Val
 pub const IWiaMiniDrvTransferCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNextStream: fn(
-            self: *const IWiaMiniDrvTransferCallback,
-            lFlags: i32,
-            bstrItemName: ?BSTR,
-            bstrFullItemName: ?BSTR,
-            ppIStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendMessage: fn(
-            self: *const IWiaMiniDrvTransferCallback,
-            lFlags: i32,
-            pWiaTransferParams: ?*WiaTransferParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNextStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrvTransferCallback,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppIStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrvTransferCallback,
+                lFlags: i32,
+                bstrItemName: ?BSTR,
+                bstrFullItemName: ?BSTR,
+                ppIStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendMessage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaMiniDrvTransferCallback,
+                lFlags: i32,
+                pWiaTransferParams: ?*WiaTransferParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaMiniDrvTransferCallback,
+                lFlags: i32,
+                pWiaTransferParams: ?*WiaTransferParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2943,61 +4069,142 @@ pub const IID_IWiaDrvItem = &IID_IWiaDrvItem_Value;
 pub const IWiaDrvItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemFlags: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0000: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceSpecContext: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0001: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFullItemName: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0002: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemName: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0003: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItemToFolder: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnlinkItemTree: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0005: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItemFromFolder: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0006: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindItemByName: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0007: i32,
-            __MIDL__IWiaDrvItem0008: ?BSTR,
-            __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindChildItemByName: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0010: ?BSTR,
-            __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParentItem: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFirstChildItem: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNextSiblingItem: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DumpItemData: fn(
-            self: *const IWiaDrvItem,
-            __MIDL__IWiaDrvItem0015: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0000: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0000: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceSpecContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0001: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0001: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFullItemName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0002: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0002: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetItemName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0003: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0003: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddItemToFolder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnlinkItemTree: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0005: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0005: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveItemFromFolder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0006: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0006: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindItemByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0007: i32,
+                __MIDL__IWiaDrvItem0008: ?BSTR,
+                __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0007: i32,
+                __MIDL__IWiaDrvItem0008: ?BSTR,
+                __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindChildItemByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0010: ?BSTR,
+                __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0010: ?BSTR,
+                __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetParentItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFirstChildItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNextSiblingItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DumpItemData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0015: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaDrvItem,
+                __MIDL__IWiaDrvItem0015: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3178,67 +4385,159 @@ pub const IWiaVideo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreviewVisible: fn(
-            self: *const IWiaVideo,
-            pbPreviewVisible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreviewVisible: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                pbPreviewVisible: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IWiaVideo,
+                pbPreviewVisible: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreviewVisible: fn(
-            self: *const IWiaVideo,
-            bPreviewVisible: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreviewVisible: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                bPreviewVisible: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IWiaVideo,
+                bPreviewVisible: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ImagesDirectory: fn(
-            self: *const IWiaVideo,
-            pbstrImageDirectory: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ImagesDirectory: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                pbstrImageDirectory: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IWiaVideo,
+                pbstrImageDirectory: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ImagesDirectory: fn(
-            self: *const IWiaVideo,
-            bstrImageDirectory: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByWiaDevID: fn(
-            self: *const IWiaVideo,
-            bstrWiaDeviceID: ?BSTR,
-            hwndParent: ?HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByDevNum: fn(
-            self: *const IWiaVideo,
-            uiDeviceNumber: u32,
-            hwndParent: ?HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateVideoByName: fn(
-            self: *const IWiaVideo,
-            bstrFriendlyName: ?BSTR,
-            hwndParent: ?HWND,
-            bStretchToFitParent: BOOL,
-            bAutoBeginPlayback: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DestroyVideo: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Play: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
-            self: *const IWiaVideo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TakePicture: fn(
-            self: *const IWiaVideo,
-            pbstrNewImageFilename: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResizeVideo: fn(
-            self: *const IWiaVideo,
-            bStretchToFitParent: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentState: fn(
-            self: *const IWiaVideo,
-            pState: ?*WIAVIDEO_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ImagesDirectory: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                bstrImageDirectory: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IWiaVideo,
+                bstrImageDirectory: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateVideoByWiaDevID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                bstrWiaDeviceID: ?BSTR,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                bstrWiaDeviceID: ?BSTR,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateVideoByDevNum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                uiDeviceNumber: u32,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                uiDeviceNumber: u32,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateVideoByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                bstrFriendlyName: ?BSTR,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                bstrFriendlyName: ?BSTR,
+                hwndParent: ?HWND,
+                bStretchToFitParent: BOOL,
+                bAutoBeginPlayback: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DestroyVideo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Play: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Pause: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TakePicture: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                pbstrNewImageFilename: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                pbstrNewImageFilename: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ResizeVideo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                bStretchToFitParent: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                bStretchToFitParent: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCurrentState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaVideo,
+                pState: ?*WIAVIDEO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaVideo,
+                pState: ?*WIAVIDEO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3316,16 +4615,30 @@ pub const IID_IWiaUIExtension2 = &IID_IWiaUIExtension2_Value;
 pub const IWiaUIExtension2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeviceDialog: fn(
-            self: *const IWiaUIExtension2,
-            pDeviceDialogData: ?*DEVICEDIALOGDATA2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceIcon: fn(
-            self: *const IWiaUIExtension2,
-            bstrDeviceId: ?BSTR,
-            phIcon: ?*?HICON,
-            nSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeviceDialog: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaUIExtension2,
+                pDeviceDialogData: ?*DEVICEDIALOGDATA2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaUIExtension2,
+                pDeviceDialogData: ?*DEVICEDIALOGDATA2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceIcon: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaUIExtension2,
+                bstrDeviceId: ?BSTR,
+                phIcon: ?*?HICON,
+                nSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaUIExtension2,
+                bstrDeviceId: ?BSTR,
+                phIcon: ?*?HICON,
+                nSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3357,23 +4670,46 @@ pub const IID_IWiaUIExtension = &IID_IWiaUIExtension_Value;
 pub const IWiaUIExtension = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeviceDialog: fn(
-            self: *const IWiaUIExtension,
-            pDeviceDialogData: ?*DEVICEDIALOGDATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceIcon: fn(
-            self: *const IWiaUIExtension,
-            bstrDeviceId: ?BSTR,
-            phIcon: ?*?HICON,
-            nSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceBitmapLogo: fn(
-            self: *const IWiaUIExtension,
-            bstrDeviceId: ?BSTR,
-            phBitmap: ?*?HBITMAP,
-            nMaxWidth: u32,
-            nMaxHeight: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeviceDialog: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaUIExtension,
+                pDeviceDialogData: ?*DEVICEDIALOGDATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaUIExtension,
+                pDeviceDialogData: ?*DEVICEDIALOGDATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceIcon: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaUIExtension,
+                bstrDeviceId: ?BSTR,
+                phIcon: ?*?HICON,
+                nSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaUIExtension,
+                bstrDeviceId: ?BSTR,
+                phIcon: ?*?HICON,
+                nSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceBitmapLogo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWiaUIExtension,
+                bstrDeviceId: ?BSTR,
+                phBitmap: ?*?HBITMAP,
+                nMaxWidth: u32,
+                nMaxHeight: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWiaUIExtension,
+                bstrDeviceId: ?BSTR,
+                phBitmap: ?*?HBITMAP,
+                nMaxWidth: u32,
+                nMaxHeight: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3394,9 +4730,14 @@ pub const IWiaUIExtension = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DeviceDialogFunction = fn(
-    param0: ?*DEVICEDIALOGDATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const DeviceDialogFunction = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DEVICEDIALOGDATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*DEVICEDIALOGDATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const RANGEVALUE = extern struct {
     lMin: i32,

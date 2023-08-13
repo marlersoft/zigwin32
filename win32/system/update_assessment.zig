@@ -72,10 +72,16 @@ pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
 pub const IWaaSAssessor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOSUpdateAssessment: fn(
-            self: *const IWaaSAssessor,
-            result: ?*OSUpdateAssessment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOSUpdateAssessment: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWaaSAssessor,
+                result: ?*OSUpdateAssessment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWaaSAssessor,
+                result: ?*OSUpdateAssessment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -67,94 +67,196 @@ pub const CCAB = extern struct {
     szCabPath: [256]CHAR,
 };
 
-pub const PFNFCIALLOC = fn(
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const PFNFCIALLOC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PFNFCIFREE = fn(
-    memory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFNFCIFREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        memory: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        memory: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PFNFCIOPEN = fn(
-    pszFile: ?PSTR,
-    oflag: i32,
-    pmode: i32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PFNFCIOPEN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszFile: ?PSTR,
+        oflag: i32,
+        pmode: i32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+        pszFile: ?PSTR,
+        oflag: i32,
+        pmode: i32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
-pub const PFNFCIREAD = fn(
-    hf: isize,
-    memory: ?*anyopaque,
-    cb: u32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNFCIREAD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        memory: ?*anyopaque,
+        cb: u32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hf: isize,
+        memory: ?*anyopaque,
+        cb: u32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNFCIWRITE = fn(
-    hf: isize,
-    memory: ?*anyopaque,
-    cb: u32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNFCIWRITE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        memory: ?*anyopaque,
+        cb: u32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hf: isize,
+        memory: ?*anyopaque,
+        cb: u32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNFCICLOSE = fn(
-    hf: isize,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFCICLOSE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hf: isize,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFCISEEK = fn(
-    hf: isize,
-    dist: i32,
-    seektype: i32,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFCISEEK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        dist: i32,
+        seektype: i32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hf: isize,
+        dist: i32,
+        seektype: i32,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFCIDELETE = fn(
-    pszFile: ?PSTR,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFCIDELETE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszFile: ?PSTR,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        pszFile: ?PSTR,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFCIGETNEXTCABINET = fn(
-    pccab: ?*CCAB,
-    cbPrevCab: u32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNFCIGETNEXTCABINET = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pccab: ?*CCAB,
+        cbPrevCab: u32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pccab: ?*CCAB,
+        cbPrevCab: u32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNFCIFILEPLACED = fn(
-    pccab: ?*CCAB,
-    pszFile: ?PSTR,
-    cbFile: i32,
-    fContinuation: BOOL,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFCIFILEPLACED = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pccab: ?*CCAB,
+        pszFile: ?PSTR,
+        cbFile: i32,
+        fContinuation: BOOL,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        pccab: ?*CCAB,
+        pszFile: ?PSTR,
+        cbFile: i32,
+        fContinuation: BOOL,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFCIGETOPENINFO = fn(
-    pszName: ?PSTR,
-    pdate: ?*u16,
-    ptime: ?*u16,
-    pattribs: ?*u16,
-    err: ?*i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PFNFCIGETOPENINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszName: ?PSTR,
+        pdate: ?*u16,
+        ptime: ?*u16,
+        pattribs: ?*u16,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+        pszName: ?PSTR,
+        pdate: ?*u16,
+        ptime: ?*u16,
+        pattribs: ?*u16,
+        err: ?*i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
-pub const PFNFCISTATUS = fn(
-    typeStatus: u32,
-    cb1: u32,
-    cb2: u32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFCISTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        typeStatus: u32,
+        cb1: u32,
+        cb2: u32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        typeStatus: u32,
+        cb1: u32,
+        cb2: u32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFCIGETTEMPFILE = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pszTempName: ?PSTR,
-    cbTempName: i32,
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNFCIGETTEMPFILE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pszTempName: ?PSTR,
+        cbTempName: i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        pszTempName: ?PSTR,
+        cbTempName: i32,
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const FDIERROR = enum(i32) {
     NONE = 0,
@@ -231,47 +333,97 @@ pub const FDIDECRYPT = extern struct {
     },
 };
 
-pub const PFNALLOC = fn(
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const PFNALLOC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PFNFREE = fn(
-    pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFNFREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pv: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PFNOPEN = fn(
-    pszFile: ?PSTR,
-    oflag: i32,
-    pmode: i32,
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PFNOPEN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszFile: ?PSTR,
+        oflag: i32,
+        pmode: i32,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+        pszFile: ?PSTR,
+        oflag: i32,
+        pmode: i32,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
-pub const PFNREAD = fn(
-    hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*anyopaque,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNREAD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        // TODO: what to do with BytesParamIndex 2?
+        pv: ?*anyopaque,
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hf: isize,
+        // TODO: what to do with BytesParamIndex 2?
+        pv: ?*anyopaque,
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNWRITE = fn(
-    hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
-    pv: ?*anyopaque,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNWRITE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        // TODO: what to do with BytesParamIndex 2?
+        pv: ?*anyopaque,
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hf: isize,
+        // TODO: what to do with BytesParamIndex 2?
+        pv: ?*anyopaque,
+        cb: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNCLOSE = fn(
-    hf: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNCLOSE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hf: isize,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNSEEK = fn(
-    hf: isize,
-    dist: i32,
-    seektype: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNSEEK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hf: isize,
+        dist: i32,
+        seektype: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hf: isize,
+        dist: i32,
+        seektype: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const PFNFDIDECRYPT = fn(
-    pfdid: ?*FDIDECRYPT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const PFNFDIDECRYPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pfdid: ?*FDIDECRYPT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        pfdid: ?*FDIDECRYPT,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const FDINOTIFICATION = extern struct {
     cb: i32,
@@ -304,10 +456,16 @@ pub const fdintCLOSE_FILE_INFO = FDINOTIFICATIONTYPE.CLOSE_FILE_INFO;
 pub const fdintNEXT_CABINET = FDINOTIFICATIONTYPE.NEXT_CABINET;
 pub const fdintENUMERATE = FDINOTIFICATIONTYPE.ENUMERATE;
 
-pub const PFNFDINOTIFY = fn(
-    fdint: FDINOTIFICATIONTYPE,
-    pfdin: ?*FDINOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PFNFDINOTIFY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        fdint: FDINOTIFICATIONTYPE,
+        pfdin: ?*FDINOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+        fdint: FDINOTIFICATIONTYPE,
+        pfdin: ?*FDINOTIFICATION,
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
 
 

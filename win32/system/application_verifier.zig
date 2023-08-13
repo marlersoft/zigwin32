@@ -96,23 +96,44 @@ pub const AvrfResourceHeapAllocation = eAvrfResourceTypes.HeapAllocation;
 pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
 pub const AvrfResourceMax = eAvrfResourceTypes.Max;
 
-pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = fn(
-    ResourceDescription: ?*anyopaque,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ResourceDescription: ?*anyopaque,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        ResourceDescription: ?*anyopaque,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = fn(
-    HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
-    HandleOperation: ?*AVRF_HANDLE_OPERATION,
-    EnumerationContext: ?*anyopaque,
-    EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        HandleOperation: ?*AVRF_HANDLE_OPERATION,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        HandleOperation: ?*AVRF_HANDLE_OPERATION,
+        EnumerationContext: ?*anyopaque,
+        EnumerationLevel: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 //--------------------------------------------------------------------------------

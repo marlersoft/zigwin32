@@ -411,14 +411,24 @@ pub const pvalueW = extern struct {
     pv_type: u32,
 };
 
-pub const PQUERYHANDLER = fn(
-    keycontext: ?*anyopaque,
-    val_list: ?*val_context,
-    num_vals: u32,
-    outputbuffer: ?*anyopaque,
-    total_outlen: ?*u32,
-    input_blen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PQUERYHANDLER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        keycontext: ?*anyopaque,
+        val_list: ?*val_context,
+        num_vals: u32,
+        outputbuffer: ?*anyopaque,
+        total_outlen: ?*u32,
+        input_blen: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        keycontext: ?*anyopaque,
+        val_list: ?*val_context,
+        num_vals: u32,
+        outputbuffer: ?*anyopaque,
+        total_outlen: ?*u32,
+        input_blen: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const provider_info = extern struct {
     pi_R0_1val: ?PQUERYHANDLER,

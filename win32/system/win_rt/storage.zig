@@ -12,10 +12,16 @@ pub const IID_IRandomAccessStreamFileAccessMode = &IID_IRandomAccessStreamFileAc
 pub const IRandomAccessStreamFileAccessMode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMode: fn(
-            self: *const IRandomAccessStreamFileAccessMode,
-            fileAccessMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRandomAccessStreamFileAccessMode,
+                fileAccessMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRandomAccessStreamFileAccessMode,
+                fileAccessMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -34,9 +40,14 @@ pub const IID_IUnbufferedFileHandleOplockCallback = &IID_IUnbufferedFileHandleOp
 pub const IUnbufferedFileHandleOplockCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnBrokenCallback: fn(
-            self: *const IUnbufferedFileHandleOplockCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnBrokenCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IUnbufferedFileHandleOplockCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IUnbufferedFileHandleOplockCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -55,14 +66,26 @@ pub const IID_IUnbufferedFileHandleProvider = &IID_IUnbufferedFileHandleProvider
 pub const IUnbufferedFileHandleProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OpenUnbufferedFileHandle: fn(
-            self: *const IUnbufferedFileHandleProvider,
-            oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback,
-            fileHandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CloseUnbufferedFileHandle: fn(
-            self: *const IUnbufferedFileHandleProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenUnbufferedFileHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IUnbufferedFileHandleProvider,
+                oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback,
+                fileHandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IUnbufferedFileHandleProvider,
+                oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback,
+                fileHandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CloseUnbufferedFileHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IUnbufferedFileHandleProvider,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IUnbufferedFileHandleProvider,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -193,9 +216,14 @@ pub const IID_IOplockBreakingHandler = &IID_IOplockBreakingHandler_Value;
 pub const IOplockBreakingHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OplockBreaking: fn(
-            self: *const IOplockBreakingHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OplockBreaking: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IOplockBreakingHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IOplockBreakingHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -214,14 +242,24 @@ pub const IID_IStorageItemHandleAccess = &IID_IStorageItemHandleAccess_Value;
 pub const IStorageItemHandleAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IStorageItemHandleAccess,
-            accessOptions: HANDLE_ACCESS_OPTIONS,
-            sharingOptions: HANDLE_SHARING_OPTIONS,
-            options: HANDLE_OPTIONS,
-            oplockBreakingHandler: ?*IOplockBreakingHandler,
-            interopHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IStorageItemHandleAccess,
+                accessOptions: HANDLE_ACCESS_OPTIONS,
+                sharingOptions: HANDLE_SHARING_OPTIONS,
+                options: HANDLE_OPTIONS,
+                oplockBreakingHandler: ?*IOplockBreakingHandler,
+                interopHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IStorageItemHandleAccess,
+                accessOptions: HANDLE_ACCESS_OPTIONS,
+                sharingOptions: HANDLE_SHARING_OPTIONS,
+                options: HANDLE_OPTIONS,
+                oplockBreakingHandler: ?*IOplockBreakingHandler,
+                interopHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -240,16 +278,28 @@ pub const IID_IStorageFolderHandleAccess = &IID_IStorageFolderHandleAccess_Value
 pub const IStorageFolderHandleAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IStorageFolderHandleAccess,
-            fileName: ?[*:0]const u16,
-            creationOptions: HANDLE_CREATION_OPTIONS,
-            accessOptions: HANDLE_ACCESS_OPTIONS,
-            sharingOptions: HANDLE_SHARING_OPTIONS,
-            options: HANDLE_OPTIONS,
-            oplockBreakingHandler: ?*IOplockBreakingHandler,
-            interopHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IStorageFolderHandleAccess,
+                fileName: ?[*:0]const u16,
+                creationOptions: HANDLE_CREATION_OPTIONS,
+                accessOptions: HANDLE_ACCESS_OPTIONS,
+                sharingOptions: HANDLE_SHARING_OPTIONS,
+                options: HANDLE_OPTIONS,
+                oplockBreakingHandler: ?*IOplockBreakingHandler,
+                interopHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IStorageFolderHandleAccess,
+                fileName: ?[*:0]const u16,
+                creationOptions: HANDLE_CREATION_OPTIONS,
+                accessOptions: HANDLE_ACCESS_OPTIONS,
+                sharingOptions: HANDLE_SHARING_OPTIONS,
+                options: HANDLE_OPTIONS,
+                oplockBreakingHandler: ?*IOplockBreakingHandler,
+                interopHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

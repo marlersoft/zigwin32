@@ -1007,10 +1007,16 @@ pub const DNS_RRSET = extern struct {
     pLastRR: ?*DNS_RECORDA,
 };
 
-pub const DNS_PROXY_COMPLETION_ROUTINE = fn(
-    completionContext: ?*anyopaque,
-    status: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const DNS_PROXY_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        completionContext: ?*anyopaque,
+        status: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        completionContext: ?*anyopaque,
+        status: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
     DIRECT = 0,
@@ -1057,10 +1063,16 @@ pub const DNS_QUERY_RESULT = extern struct {
     Reserved: ?*anyopaque,
 };
 
-pub const PDNS_QUERY_COMPLETION_ROUTINE = fn(
-    pQueryContext: ?*anyopaque,
-    pQueryResults: ?*DNS_QUERY_RESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PDNS_QUERY_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pQueryContext: ?*anyopaque,
+        pQueryResults: ?*DNS_QUERY_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pQueryContext: ?*anyopaque,
+        pQueryResults: ?*DNS_QUERY_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_QUERY_REQUEST = extern struct {
     Version: u32,
@@ -1255,11 +1267,18 @@ pub const DNS_SERVICE_CANCEL = extern struct {
     reserved: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_BROWSE_CALLBACK = fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pDnsRecord: ?*DNS_RECORDA,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PDNS_SERVICE_BROWSE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pDnsRecord: ?*DNS_RECORDA,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pDnsRecord: ?*DNS_RECORDA,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     Version: u32,
@@ -1272,11 +1291,18 @@ pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_RESOLVE_COMPLETE = fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pInstance: ?*DNS_SERVICE_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PDNS_SERVICE_RESOLVE_COMPLETE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pInstance: ?*DNS_SERVICE_INSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pInstance: ?*DNS_SERVICE_INSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     Version: u32,
@@ -1286,11 +1312,18 @@ pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_REGISTER_COMPLETE = fn(
-    Status: u32,
-    pQueryContext: ?*anyopaque,
-    pInstance: ?*DNS_SERVICE_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PDNS_SERVICE_REGISTER_COMPLETE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pInstance: ?*DNS_SERVICE_INSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Status: u32,
+        pQueryContext: ?*anyopaque,
+        pInstance: ?*DNS_SERVICE_INSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     Version: u32,
@@ -1310,11 +1343,18 @@ pub const MDNS_QUERY_HANDLE = extern struct {
     stateNameData: [2]u32,
 };
 
-pub const PMDNS_QUERY_CALLBACK = fn(
-    pQueryContext: ?*anyopaque,
-    pQueryHandle: ?*MDNS_QUERY_HANDLE,
-    pQueryResults: ?*DNS_QUERY_RESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PMDNS_QUERY_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pQueryContext: ?*anyopaque,
+        pQueryHandle: ?*MDNS_QUERY_HANDLE,
+        pQueryResults: ?*DNS_QUERY_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pQueryContext: ?*anyopaque,
+        pQueryHandle: ?*MDNS_QUERY_HANDLE,
+        pQueryResults: ?*DNS_QUERY_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MDNS_QUERY_REQUEST = extern struct {
     Version: u32,

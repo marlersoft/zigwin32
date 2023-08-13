@@ -188,176 +188,370 @@ pub const GLOBALENTRY = extern struct {
     dwNextAlt: u32,
 };
 
-pub const DEBUGEVENTPROC = fn(
-    param0: ?*DEBUG_EVENT,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const DEBUGEVENTPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DEBUG_EVENT,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DEBUG_EVENT,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PROCESSENUMPROC = fn(
-    dwProcessId: u32,
-    dwAttributes: u32,
-    lpUserDefined: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PROCESSENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwProcessId: u32,
+        dwAttributes: u32,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwProcessId: u32,
+        dwAttributes: u32,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const TASKENUMPROC = fn(
-    dwThreadId: u32,
-    hMod16: u16,
-    hTask16: u16,
-    lpUserDefined: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const TASKENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwThreadId: u32,
+        hMod16: u16,
+        hTask16: u16,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwThreadId: u32,
+        hMod16: u16,
+        hTask16: u16,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const TASKENUMPROCEX = fn(
-    dwThreadId: u32,
-    hMod16: u16,
-    hTask16: u16,
-    pszModName: ?*i8,
-    pszFileName: ?*i8,
-    lpUserDefined: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const TASKENUMPROCEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwThreadId: u32,
+        hMod16: u16,
+        hTask16: u16,
+        pszModName: ?*i8,
+        pszFileName: ?*i8,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwThreadId: u32,
+        hMod16: u16,
+        hTask16: u16,
+        pszModName: ?*i8,
+        pszFileName: ?*i8,
+        lpUserDefined: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMPROCESSEXCEPTIONPROC = fn(
-    param0: ?*DEBUG_EVENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMPROCESSEXCEPTIONPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DEBUG_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*DEBUG_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 
-pub const VDMGETPOINTERPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u16,
-    param3: u32,
-    param4: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const VDMGETPOINTERPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u16,
+        param3: u32,
+        param4: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u16,
+        param3: u32,
+        param4: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 
-pub const VDMKILLWOWPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMKILLWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMDETECTWOWPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMDETECTWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMBREAKTHREADPROC = fn(
-    param0: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMBREAKTHREADPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETSELECTORMODULEPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u16,
-    param3: ?*u32,
-    param4: ?PSTR,
-    param5: u32,
-    param6: ?PSTR,
-    param7: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGETSELECTORMODULEPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u16,
+        param3: ?*u32,
+        param4: ?PSTR,
+        param5: u32,
+        param6: ?PSTR,
+        param7: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u16,
+        param3: ?*u32,
+        param4: ?PSTR,
+        param5: u32,
+        param6: ?PSTR,
+        param7: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETMODULESELECTORPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: u32,
-    param3: ?PSTR,
-    param4: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGETMODULESELECTORPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u32,
+        param3: ?PSTR,
+        param4: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: u32,
+        param3: ?PSTR,
+        param4: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMMODULEFIRSTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*MODULEENTRY,
-    param3: ?DEBUGEVENTPROC,
-    param4: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMMODULEFIRSTPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*MODULEENTRY,
+        param3: ?DEBUGEVENTPROC,
+        param4: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*MODULEENTRY,
+        param3: ?DEBUGEVENTPROC,
+        param4: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMMODULENEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*MODULEENTRY,
-    param3: ?DEBUGEVENTPROC,
-    param4: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMMODULENEXTPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*MODULEENTRY,
+        param3: ?DEBUGEVENTPROC,
+        param4: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*MODULEENTRY,
+        param3: ?DEBUGEVENTPROC,
+        param4: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGLOBALFIRSTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*GLOBALENTRY,
-    param3: u16,
-    param4: ?DEBUGEVENTPROC,
-    param5: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGLOBALFIRSTPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*GLOBALENTRY,
+        param3: u16,
+        param4: ?DEBUGEVENTPROC,
+        param5: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*GLOBALENTRY,
+        param3: u16,
+        param4: ?DEBUGEVENTPROC,
+        param5: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGLOBALNEXTPROC = fn(
-    param0: ?HANDLE,
-    param1: ?HANDLE,
-    param2: ?*GLOBALENTRY,
-    param3: u16,
-    param4: ?DEBUGEVENTPROC,
-    param5: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGLOBALNEXTPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*GLOBALENTRY,
+        param3: u16,
+        param4: ?DEBUGEVENTPROC,
+        param5: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: ?HANDLE,
+        param2: ?*GLOBALENTRY,
+        param3: u16,
+        param4: ?DEBUGEVENTPROC,
+        param5: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMENUMPROCESSWOWPROC = fn(
-    param0: ?PROCESSENUMPROC,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VDMENUMPROCESSWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PROCESSENUMPROC,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?PROCESSENUMPROC,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VDMENUMTASKWOWPROC = fn(
-    param0: u32,
-    param1: ?TASKENUMPROC,
-    param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VDMENUMTASKWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: ?TASKENUMPROC,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: u32,
+        param1: ?TASKENUMPROC,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VDMENUMTASKWOWEXPROC = fn(
-    param0: u32,
-    param1: ?TASKENUMPROCEX,
-    param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VDMENUMTASKWOWEXPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: ?TASKENUMPROCEX,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: u32,
+        param1: ?TASKENUMPROCEX,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VDMTERMINATETASKINWOWPROC = fn(
-    param0: u32,
-    param1: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMTERMINATETASKINWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: u32,
+        param1: u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMSTARTTASKINWOWPROC = fn(
-    param0: u32,
-    param1: ?PSTR,
-    param2: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMSTARTTASKINWOWPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: ?PSTR,
+        param2: u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: u32,
+        param1: ?PSTR,
+        param2: u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETDBGFLAGSPROC = fn(
-    param0: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const VDMGETDBGFLAGSPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?HANDLE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const VDMSETDBGFLAGSPROC = fn(
-    param0: ?HANDLE,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMSETDBGFLAGSPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HANDLE,
+        param1: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HANDLE,
+        param1: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMISMODULELOADEDPROC = fn(
-    param0: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMISMODULELOADEDPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PSTR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETSEGMENTINFOPROC = fn(
-    param0: u16,
-    param1: u32,
-    param2: BOOL,
-    param3: VDM_SEGINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGETSEGMENTINFOPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u16,
+        param1: u32,
+        param2: BOOL,
+        param3: VDM_SEGINFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: u16,
+        param1: u32,
+        param2: BOOL,
+        param3: VDM_SEGINFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETSYMBOLPROC = fn(
-    param0: ?PSTR,
-    param1: u16,
-    param2: u32,
-    param3: BOOL,
-    param4: BOOL,
-    param5: *[256]u8,
-    param6: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGETSYMBOLPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: u16,
+        param2: u32,
+        param3: BOOL,
+        param4: BOOL,
+        param5: *[256]u8,
+        param6: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: u16,
+        param2: u32,
+        param3: BOOL,
+        param4: BOOL,
+        param5: *[256]u8,
+        param6: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const VDMGETADDREXPRESSIONPROC = fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
-    param2: ?*u16,
-    param3: ?*u32,
-    param4: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const VDMGETADDREXPRESSIONPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: ?PSTR,
+        param2: ?*u16,
+        param3: ?*u32,
+        param4: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: ?PSTR,
+        param2: ?*u16,
+        param3: ?*u32,
+        param4: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 
 
@@ -411,42 +605,86 @@ pub const VDMLDT_ENTRY = switch(@import("../zig.zig").arch) {
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const VDMGETTHREADSELECTORENTRYPROC = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: u32,
-        param3: ?*VDMLDT_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    .X86 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: u32,
-        param3: ?*LDT_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: u32,
+            param3: ?*VDMLDT_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: u32,
+            param3: ?*VDMLDT_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: u32,
+            param3: ?*LDT_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: u32,
+            param3: ?*LDT_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
 };
 pub const VDMGETCONTEXTPROC = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: ?*VDMCONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    .X86 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: ?*CONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*VDMCONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*VDMCONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*CONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*CONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
 };
 pub const VDMSETCONTEXTPROC = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: ?*VDMCONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    .X86 => fn(
-        param0: ?HANDLE,
-        param1: ?HANDLE,
-        param2: ?*CONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*VDMCONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*VDMCONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*CONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        else => *const fn(
+            param0: ?HANDLE,
+            param1: ?HANDLE,
+            param2: ?*CONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    } ,
 };
 
 //--------------------------------------------------------------------------------

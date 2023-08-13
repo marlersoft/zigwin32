@@ -12,117 +12,268 @@ pub const IID_IMFDeviceTransform = &IID_IMFDeviceTransform_Value;
 pub const IMFDeviceTransform = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeTransform: fn(
-            self: *const IMFDeviceTransform,
-            pAttributes: ?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputAvailableType: fn(
-            self: *const IMFDeviceTransform,
-            dwInputStreamID: u32,
-            dwTypeIndex: u32,
-            pMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputCurrentType: fn(
-            self: *const IMFDeviceTransform,
-            dwInputStreamID: u32,
-            pMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamAttributes: fn(
-            self: *const IMFDeviceTransform,
-            dwInputStreamID: u32,
-            ppAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputAvailableType: fn(
-            self: *const IMFDeviceTransform,
-            dwOutputStreamID: u32,
-            dwTypeIndex: u32,
-            pMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCurrentType: fn(
-            self: *const IMFDeviceTransform,
-            dwOutputStreamID: u32,
-            pMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputStreamAttributes: fn(
-            self: *const IMFDeviceTransform,
-            dwOutputStreamID: u32,
-            ppAttributes: ?*?*IMFAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamCount: fn(
-            self: *const IMFDeviceTransform,
-            pcInputStreams: ?*u32,
-            pcOutputStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamIDs: fn(
-            self: *const IMFDeviceTransform,
-            dwInputIDArraySize: u32,
-            pdwInputStreamIds: ?*u32,
-            dwOutputIDArraySize: u32,
-            pdwOutputStreamIds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessEvent: fn(
-            self: *const IMFDeviceTransform,
-            dwInputStreamID: u32,
-            pEvent: ?*IMFMediaEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessInput: fn(
-            self: *const IMFDeviceTransform,
-            dwInputStreamID: u32,
-            pSample: ?*IMFSample,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessMessage: fn(
-            self: *const IMFDeviceTransform,
-            eMessage: MFT_MESSAGE_TYPE,
-            ulParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessOutput: fn(
-            self: *const IMFDeviceTransform,
-            dwFlags: u32,
-            cOutputBufferCount: u32,
-            pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
-            pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputStreamState: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamID: u32,
-            pMediaType: ?*IMFMediaType,
-            value: DeviceStreamState,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamState: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamID: u32,
-            value: ?*DeviceStreamState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputStreamState: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamID: u32,
-            pMediaType: ?*IMFMediaType,
-            value: DeviceStreamState,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputStreamState: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamID: u32,
-            value: ?*DeviceStreamState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamPreferredState: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamID: u32,
-            value: ?*DeviceStreamState,
-            ppMediaType: ?*?*IMFMediaType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlushInputStream: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamIndex: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlushOutputStream: fn(
-            self: *const IMFDeviceTransform,
-            dwStreamIndex: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitializeTransform: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                pAttributes: ?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                pAttributes: ?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputAvailableType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputAvailableType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputStreamAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamIDs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputIDArraySize: u32,
+                pdwInputStreamIds: ?*u32,
+                dwOutputIDArraySize: u32,
+                pdwOutputStreamIds: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputIDArraySize: u32,
+                pdwInputStreamIds: ?*u32,
+                dwOutputIDArraySize: u32,
+                pdwOutputStreamIds: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pEvent: ?*IMFMediaEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pEvent: ?*IMFMediaEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessInput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pSample: ?*IMFSample,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pSample: ?*IMFSample,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessMessage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                eMessage: MFT_MESSAGE_TYPE,
+                ulParam: usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                eMessage: MFT_MESSAGE_TYPE,
+                ulParam: usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamPreferredState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+                ppMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+                ppMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlushInputStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlushOutputStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -217,11 +368,18 @@ pub const IID_IMFDeviceTransformCallback = &IID_IMFDeviceTransformCallback_Value
 pub const IMFDeviceTransformCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnBufferSent: fn(
-            self: *const IMFDeviceTransformCallback,
-            pCallbackAttributes: ?*IMFAttributes,
-            pinId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnBufferSent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransformCallback,
+                pCallbackAttributes: ?*IMFAttributes,
+                pinId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransformCallback,
+                pCallbackAttributes: ?*IMFAttributes,
+                pinId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

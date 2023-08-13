@@ -48,35 +48,74 @@ pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
 pub const ISensNetwork = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        ConnectionMade: fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-            lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConnectionMadeNoQOCInfo: fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConnectionLost: fn(
-            self: *const ISensNetwork,
-            bstrConnection: ?BSTR,
-            ulType: SENS_CONNECTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DestinationReachable: fn(
-            self: *const ISensNetwork,
-            bstrDestination: ?BSTR,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-            lpQOCInfo: ?*SENS_QOCINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DestinationReachableNoQOCInfo: fn(
-            self: *const ISensNetwork,
-            bstrDestination: ?BSTR,
-            bstrConnection: ?BSTR,
-            ulType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectionMade: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+                lpQOCInfo: ?*SENS_QOCINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+                lpQOCInfo: ?*SENS_QOCINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ConnectionMadeNoQOCInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ConnectionLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: SENS_CONNECTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensNetwork,
+                bstrConnection: ?BSTR,
+                ulType: SENS_CONNECTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DestinationReachable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensNetwork,
+                bstrDestination: ?BSTR,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+                lpQOCInfo: ?*SENS_QOCINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensNetwork,
+                bstrDestination: ?BSTR,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+                lpQOCInfo: ?*SENS_QOCINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DestinationReachableNoQOCInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensNetwork,
+                bstrDestination: ?BSTR,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensNetwork,
+                bstrDestination: ?BSTR,
+                bstrConnection: ?BSTR,
+                ulType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -111,17 +150,34 @@ pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
 pub const ISensOnNow = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        OnACPower: fn(
-            self: *const ISensOnNow,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnBatteryPower: fn(
-            self: *const ISensOnNow,
-            dwBatteryLifePercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BatteryLow: fn(
-            self: *const ISensOnNow,
-            dwBatteryLifePercent: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnACPower: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensOnNow,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensOnNow,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnBatteryPower: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensOnNow,
+                dwBatteryLifePercent: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensOnNow,
+                dwBatteryLifePercent: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BatteryLow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensOnNow,
+                dwBatteryLifePercent: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensOnNow,
+                dwBatteryLifePercent: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -148,34 +204,76 @@ pub const IID_ISensLogon = &IID_ISensLogon_Value;
 pub const ISensLogon = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Logon: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Logoff: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartShell: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisplayLock: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisplayUnlock: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartScreenSaver: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopScreenSaver: fn(
-            self: *const ISensLogon,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Logon: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Logoff: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartShell: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DisplayLock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DisplayUnlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartScreenSaver: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopScreenSaver: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -218,31 +316,66 @@ pub const IID_ISensLogon2 = &IID_ISensLogon2_Value;
 pub const ISensLogon2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Logon: fn(
-            self: *const ISensLogon2,
-            bstrUserName: ?BSTR,
-            dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Logoff: fn(
-            self: *const ISensLogon2,
-            bstrUserName: ?BSTR,
-            dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SessionDisconnect: fn(
-            self: *const ISensLogon2,
-            bstrUserName: ?BSTR,
-            dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SessionReconnect: fn(
-            self: *const ISensLogon2,
-            bstrUserName: ?BSTR,
-            dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PostShell: fn(
-            self: *const ISensLogon2,
-            bstrUserName: ?BSTR,
-            dwSessionId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Logon: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Logoff: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SessionDisconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SessionReconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PostShell: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISensLogon2,
+                bstrUserName: ?BSTR,
+                dwSessionId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

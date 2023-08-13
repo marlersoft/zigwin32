@@ -126,9 +126,14 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
     Reserved: u32,
 };
 
-pub const ONDEMAND_NOTIFICATION_CALLBACK = fn(
-    param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const ONDEMAND_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const NET_INTERFACE_CONTEXT = extern struct {
     InterfaceIndex: u32,

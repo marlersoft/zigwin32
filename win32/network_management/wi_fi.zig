@@ -3390,10 +3390,16 @@ pub const WLAN_NOTIFICATION_SECURITY = enum(i32) {
 pub const wlan_notification_security_start = WLAN_NOTIFICATION_SECURITY.start;
 pub const wlan_notification_security_end = WLAN_NOTIFICATION_SECURITY.end;
 
-pub const WLAN_NOTIFICATION_CALLBACK = fn(
-    param0: ?*L2_NOTIFICATION_DATA,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const WLAN_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*L2_NOTIFICATION_DATA,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*L2_NOTIFICATION_DATA,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const WLAN_OPCODE_VALUE_TYPE = enum(i32) {
     query_only = 0,
@@ -3759,13 +3765,22 @@ pub const WLAN_HOSTED_NETWORK_STATUS = extern struct {
     PeerList: [1]WLAN_HOSTED_NETWORK_PEER_STATE,
 };
 
-pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = fn(
-    hSessionHandle: ?HANDLE,
-    pvContext: ?*anyopaque,
-    guidSessionInterface: Guid,
-    dwError: u32,
-    dwReasonCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSessionHandle: ?HANDLE,
+        pvContext: ?*anyopaque,
+        guidSessionInterface: Guid,
+        dwError: u32,
+        dwReasonCode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hSessionHandle: ?HANDLE,
+        pvContext: ?*anyopaque,
+        guidSessionInterface: Guid,
+        dwError: u32,
+        dwReasonCode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const ONEX_AUTH_IDENTITY = enum(i32) {
     None = 0,
@@ -3991,36 +4006,76 @@ pub const IID_IDot11AdHocManager = &IID_IDot11AdHocManager_Value;
 pub const IDot11AdHocManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateNetwork: fn(
-            self: *const IDot11AdHocManager,
-            Name: ?[*:0]const u16,
-            Password: ?[*:0]const u16,
-            GeographicalId: i32,
-            pInterface: ?*IDot11AdHocInterface,
-            pSecurity: ?*IDot11AdHocSecuritySettings,
-            pContextGuid: ?*Guid,
-            pIAdHoc: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitCreatedNetwork: fn(
-            self: *const IDot11AdHocManager,
-            pIAdHoc: ?*IDot11AdHocNetwork,
-            fSaveProfile: BOOLEAN,
-            fMakeSavedProfileUserSpecific: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIEnumDot11AdHocNetworks: fn(
-            self: *const IDot11AdHocManager,
-            pContextGuid: ?*Guid,
-            ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIEnumDot11AdHocInterfaces: fn(
-            self: *const IDot11AdHocManager,
-            ppEnum: ?*?*IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetwork: fn(
-            self: *const IDot11AdHocManager,
-            NetworkSignature: ?*Guid,
-            pNetwork: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateNetwork: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManager,
+                Name: ?[*:0]const u16,
+                Password: ?[*:0]const u16,
+                GeographicalId: i32,
+                pInterface: ?*IDot11AdHocInterface,
+                pSecurity: ?*IDot11AdHocSecuritySettings,
+                pContextGuid: ?*Guid,
+                pIAdHoc: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManager,
+                Name: ?[*:0]const u16,
+                Password: ?[*:0]const u16,
+                GeographicalId: i32,
+                pInterface: ?*IDot11AdHocInterface,
+                pSecurity: ?*IDot11AdHocSecuritySettings,
+                pContextGuid: ?*Guid,
+                pIAdHoc: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CommitCreatedNetwork: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManager,
+                pIAdHoc: ?*IDot11AdHocNetwork,
+                fSaveProfile: BOOLEAN,
+                fMakeSavedProfileUserSpecific: BOOLEAN,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManager,
+                pIAdHoc: ?*IDot11AdHocNetwork,
+                fSaveProfile: BOOLEAN,
+                fMakeSavedProfileUserSpecific: BOOLEAN,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIEnumDot11AdHocNetworks: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManager,
+                pContextGuid: ?*Guid,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManager,
+                pContextGuid: ?*Guid,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIEnumDot11AdHocInterfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManager,
+                ppEnum: ?*?*IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManager,
+                ppEnum: ?*?*IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetwork: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManager,
+                NetworkSignature: ?*Guid,
+                pNetwork: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManager,
+                NetworkSignature: ?*Guid,
+                pNetwork: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4055,22 +4110,46 @@ pub const IID_IDot11AdHocManagerNotificationSink = &IID_IDot11AdHocManagerNotifi
 pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnNetworkAdd: fn(
-            self: *const IDot11AdHocManagerNotificationSink,
-            pIAdHocNetwork: ?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnNetworkRemove: fn(
-            self: *const IDot11AdHocManagerNotificationSink,
-            Signature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnInterfaceAdd: fn(
-            self: *const IDot11AdHocManagerNotificationSink,
-            pIAdHocInterface: ?*IDot11AdHocInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnInterfaceRemove: fn(
-            self: *const IDot11AdHocManagerNotificationSink,
-            Signature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnNetworkAdd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                pIAdHocNetwork: ?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                pIAdHocNetwork: ?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnNetworkRemove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                Signature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                Signature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnInterfaceAdd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                pIAdHocInterface: ?*IDot11AdHocInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                pIAdHocInterface: ?*IDot11AdHocInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnInterfaceRemove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                Signature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocManagerNotificationSink,
+                Signature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4101,23 +4180,48 @@ pub const IID_IEnumDot11AdHocNetworks = &IID_IEnumDot11AdHocNetworks_Value;
 pub const IEnumDot11AdHocNetworks = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDot11AdHocNetworks,
-            cElt: u32,
-            rgElt: [*]?*IDot11AdHocNetwork,
-            pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDot11AdHocNetworks,
-            cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDot11AdHocNetworks,
-            ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocNetworks,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocNetwork,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocNetworks,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocNetwork,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocNetworks,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocNetworks,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocNetworks,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocNetworks,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4148,56 +4252,130 @@ pub const IID_IDot11AdHocNetwork = &IID_IDot11AdHocNetwork_Value;
 pub const IDot11AdHocNetwork = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStatus: fn(
-            self: *const IDot11AdHocNetwork,
-            eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSSID: fn(
-            self: *const IDot11AdHocNetwork,
-            ppszwSSID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HasProfile: fn(
-            self: *const IDot11AdHocNetwork,
-            pf11d: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProfileName: fn(
-            self: *const IDot11AdHocNetwork,
-            ppszwProfileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteProfile: fn(
-            self: *const IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignalQuality: fn(
-            self: *const IDot11AdHocNetwork,
-            puStrengthValue: ?*u32,
-            puStrengthMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSecuritySetting: fn(
-            self: *const IDot11AdHocNetwork,
-            pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContextGuid: fn(
-            self: *const IDot11AdHocNetwork,
-            pContextGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignature: fn(
-            self: *const IDot11AdHocNetwork,
-            pSignature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInterface: fn(
-            self: *const IDot11AdHocNetwork,
-            pAdHocInterface: ?*?*IDot11AdHocInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Connect: fn(
-            self: *const IDot11AdHocNetwork,
-            Passphrase: ?[*:0]const u16,
-            GeographicalId: i32,
-            fSaveProfile: BOOLEAN,
-            fMakeSavedProfileUserSpecific: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
-            self: *const IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSSID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                ppszwSSID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                ppszwSSID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HasProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                pf11d: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                pf11d: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProfileName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                ppszwProfileName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                ppszwProfileName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignalQuality: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                puStrengthValue: ?*u32,
+                puStrengthMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                puStrengthValue: ?*u32,
+                puStrengthMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSecuritySetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetContextGuid: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                pContextGuid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                pContextGuid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                pSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                pSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                pAdHocInterface: ?*?*IDot11AdHocInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                pAdHocInterface: ?*?*IDot11AdHocInterface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Connect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+                Passphrase: ?[*:0]const u16,
+                GeographicalId: i32,
+                fSaveProfile: BOOLEAN,
+                fMakeSavedProfileUserSpecific: BOOLEAN,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+                Passphrase: ?[*:0]const u16,
+                GeographicalId: i32,
+                fSaveProfile: BOOLEAN,
+                fMakeSavedProfileUserSpecific: BOOLEAN,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Disconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4260,14 +4438,26 @@ pub const IID_IDot11AdHocNetworkNotificationSink = &IID_IDot11AdHocNetworkNotifi
 pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStatusChange: fn(
-            self: *const IDot11AdHocNetworkNotificationSink,
-            eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnConnectFail: fn(
-            self: *const IDot11AdHocNetworkNotificationSink,
-            eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnStatusChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetworkNotificationSink,
+                eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetworkNotificationSink,
+                eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnConnectFail: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocNetworkNotificationSink,
+                eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocNetworkNotificationSink,
+                eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4290,43 +4480,98 @@ pub const IID_IDot11AdHocInterface = &IID_IDot11AdHocInterface_Value;
 pub const IDot11AdHocInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDeviceSignature: fn(
-            self: *const IDot11AdHocInterface,
-            pSignature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFriendlyName: fn(
-            self: *const IDot11AdHocInterface,
-            ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsDot11d: fn(
-            self: *const IDot11AdHocInterface,
-            pf11d: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsAdHocCapable: fn(
-            self: *const IDot11AdHocInterface,
-            pfAdHocCapable: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRadioOn: fn(
-            self: *const IDot11AdHocInterface,
-            pfIsRadioOn: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetActiveNetwork: fn(
-            self: *const IDot11AdHocInterface,
-            ppNetwork: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIEnumSecuritySettings: fn(
-            self: *const IDot11AdHocInterface,
-            ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIEnumDot11AdHocNetworks: fn(
-            self: *const IDot11AdHocInterface,
-            pFilterGuid: ?*Guid,
-            ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDot11AdHocInterface,
-            pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFriendlyName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsDot11d: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pf11d: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pf11d: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsAdHocCapable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pfAdHocCapable: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pfAdHocCapable: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsRadioOn: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pfIsRadioOn: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pfIsRadioOn: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetActiveNetwork: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                ppNetwork: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                ppNetwork: ?*?*IDot11AdHocNetwork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIEnumSecuritySettings: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIEnumDot11AdHocNetworks: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pFilterGuid: ?*Guid,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pFilterGuid: ?*Guid,
+                ppEnum: ?*?*IEnumDot11AdHocNetworks,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterface,
+                pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterface,
+                pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4377,23 +4622,48 @@ pub const IID_IEnumDot11AdHocInterfaces = &IID_IEnumDot11AdHocInterfaces_Value;
 pub const IEnumDot11AdHocInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDot11AdHocInterfaces,
-            cElt: u32,
-            rgElt: [*]?*IDot11AdHocInterface,
-            pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDot11AdHocInterfaces,
-            cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDot11AdHocInterfaces,
-            ppEnum: ?*?*IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocInterface,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocInterface,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                ppEnum: ?*?*IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocInterfaces,
+                ppEnum: ?*?*IEnumDot11AdHocInterfaces,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4424,23 +4694,48 @@ pub const IID_IEnumDot11AdHocSecuritySettings = &IID_IEnumDot11AdHocSecuritySett
 pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDot11AdHocSecuritySettings,
-            cElt: u32,
-            rgElt: [*]?*IDot11AdHocSecuritySettings,
-            pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDot11AdHocSecuritySettings,
-            cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDot11AdHocSecuritySettings,
-            ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocSecuritySettings,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                cElt: u32,
+                rgElt: [*]?*IDot11AdHocSecuritySettings,
+                pcEltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                cElt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDot11AdHocSecuritySettings,
+                ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4471,14 +4766,26 @@ pub const IID_IDot11AdHocSecuritySettings = &IID_IDot11AdHocSecuritySettings_Val
 pub const IDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDot11AuthAlgorithm: fn(
-            self: *const IDot11AdHocSecuritySettings,
-            pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDot11CipherAlgorithm: fn(
-            self: *const IDot11AdHocSecuritySettings,
-            pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDot11AuthAlgorithm: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocSecuritySettings,
+                pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocSecuritySettings,
+                pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDot11CipherAlgorithm: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocSecuritySettings,
+                pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocSecuritySettings,
+                pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4501,10 +4808,16 @@ pub const IID_IDot11AdHocInterfaceNotificationSink = &IID_IDot11AdHocInterfaceNo
 pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnConnectionStatusChange: fn(
-            self: *const IDot11AdHocInterfaceNotificationSink,
-            eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnConnectionStatusChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDot11AdHocInterfaceNotificationSink,
+                eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDot11AdHocInterfaceNotificationSink,
+                eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

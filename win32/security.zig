@@ -333,20 +333,37 @@ pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TY
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.SID;
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
 
-pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
-    ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: ?*anyopaque,
-    ClientBufferBase: ?*anyopaque,
-    SubmitBufferLength: u32,
-    ProtocolReturnBuffer: ?*?*anyopaque,
-    ReturnBufferLength: ?*u32,
-    ProtocolStatus: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ClientRequest: ?*?*anyopaque,
+        // TODO: what to do with BytesParamIndex 3?
+        ProtocolSubmitBuffer: ?*anyopaque,
+        ClientBufferBase: ?*anyopaque,
+        SubmitBufferLength: u32,
+        ProtocolReturnBuffer: ?*?*anyopaque,
+        ReturnBufferLength: ?*u32,
+        ProtocolStatus: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
+    else => *const fn(
+        ClientRequest: ?*?*anyopaque,
+        // TODO: what to do with BytesParamIndex 3?
+        ProtocolSubmitBuffer: ?*anyopaque,
+        ClientBufferBase: ?*anyopaque,
+        SubmitBufferLength: u32,
+        ProtocolReturnBuffer: ?*?*anyopaque,
+        ReturnBufferLength: ?*u32,
+        ProtocolStatus: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
+} ;
 
-pub const SEC_THREAD_START = fn(
-    lpThreadParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const SEC_THREAD_START = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpThreadParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpThreadParameter: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const TOKEN_ACCESS_MASK = enum(u32) {
     DELETE = 65536,

@@ -20,18 +20,32 @@ pub const IID_IDDEInitializer = &IID_IDDEInitializer_Value;
 pub const IDDEInitializer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IDDEInitializer,
-            fileExtensionOrProtocol: ?[*:0]const u16,
-            method: CreateProcessMethod,
-            currentDirectory: ?[*:0]const u16,
-            execTarget: ?*IShellItem,
-            site: ?*IUnknown,
-            application: ?[*:0]const u16,
-            targetFile: ?[*:0]const u16,
-            arguments: ?[*:0]const u16,
-            verb: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDDEInitializer,
+                fileExtensionOrProtocol: ?[*:0]const u16,
+                method: CreateProcessMethod,
+                currentDirectory: ?[*:0]const u16,
+                execTarget: ?*IShellItem,
+                site: ?*IUnknown,
+                application: ?[*:0]const u16,
+                targetFile: ?[*:0]const u16,
+                arguments: ?[*:0]const u16,
+                verb: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDDEInitializer,
+                fileExtensionOrProtocol: ?[*:0]const u16,
+                method: CreateProcessMethod,
+                currentDirectory: ?[*:0]const u16,
+                execTarget: ?*IShellItem,
+                site: ?*IUnknown,
+                application: ?[*:0]const u16,
+                targetFile: ?[*:0]const u16,
+                arguments: ?[*:0]const u16,
+                verb: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

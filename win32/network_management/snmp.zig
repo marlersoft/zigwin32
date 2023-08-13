@@ -310,46 +310,94 @@ pub const SnmpVarBindList = extern struct {
     len: u32,
 };
 
-pub const PFNSNMPEXTENSIONINIT = fn(
-    dwUpTimeReference: u32,
-    phSubagentTrapEvent: ?*?HANDLE,
-    pFirstSupportedRegion: ?*AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONINIT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwUpTimeReference: u32,
+        phSubagentTrapEvent: ?*?HANDLE,
+        pFirstSupportedRegion: ?*AsnObjectIdentifier,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwUpTimeReference: u32,
+        phSubagentTrapEvent: ?*?HANDLE,
+        pFirstSupportedRegion: ?*AsnObjectIdentifier,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONINITEX = fn(
-    pNextSupportedRegion: ?*AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONINITEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pNextSupportedRegion: ?*AsnObjectIdentifier,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pNextSupportedRegion: ?*AsnObjectIdentifier,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONMONITOR = fn(
-    pAgentMgmtData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONMONITOR = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pAgentMgmtData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pAgentMgmtData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONQUERY = fn(
-    bPduType: u8,
-    pVarBindList: ?*SnmpVarBindList,
-    pErrorStatus: ?*i32,
-    pErrorIndex: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONQUERY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        bPduType: u8,
+        pVarBindList: ?*SnmpVarBindList,
+        pErrorStatus: ?*i32,
+        pErrorIndex: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        bPduType: u8,
+        pVarBindList: ?*SnmpVarBindList,
+        pErrorStatus: ?*i32,
+        pErrorIndex: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONQUERYEX = fn(
-    nRequestType: u32,
-    nTransactionId: u32,
-    pVarBindList: ?*SnmpVarBindList,
-    pContextInfo: ?*AsnOctetString,
-    pErrorStatus: ?*i32,
-    pErrorIndex: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONQUERYEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        nRequestType: u32,
+        nTransactionId: u32,
+        pVarBindList: ?*SnmpVarBindList,
+        pContextInfo: ?*AsnOctetString,
+        pErrorStatus: ?*i32,
+        pErrorIndex: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        nRequestType: u32,
+        nTransactionId: u32,
+        pVarBindList: ?*SnmpVarBindList,
+        pContextInfo: ?*AsnOctetString,
+        pErrorStatus: ?*i32,
+        pErrorIndex: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONTRAP = fn(
-    pEnterpriseOid: ?*AsnObjectIdentifier,
-    pGenericTrapId: ?*i32,
-    pSpecificTrapId: ?*i32,
-    pTimeStamp: ?*u32,
-    pVarBindList: ?*SnmpVarBindList,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFNSNMPEXTENSIONTRAP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pEnterpriseOid: ?*AsnObjectIdentifier,
+        pGenericTrapId: ?*i32,
+        pSpecificTrapId: ?*i32,
+        pTimeStamp: ?*u32,
+        pVarBindList: ?*SnmpVarBindList,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pEnterpriseOid: ?*AsnObjectIdentifier,
+        pGenericTrapId: ?*i32,
+        pSpecificTrapId: ?*i32,
+        pTimeStamp: ?*u32,
+        pVarBindList: ?*SnmpVarBindList,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFNSNMPEXTENSIONCLOSE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFNSNMPEXTENSIONCLOSE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const smiOCTETS = extern struct {
     len: u32,
@@ -386,25 +434,48 @@ pub const smiVENDORINFO = extern struct {
     vendorEnterprise: u32,
 };
 
-pub const SNMPAPI_CALLBACK = fn(
-    hSession: isize,
-    hWnd: ?HWND,
-    wMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    lpClientData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const SNMPAPI_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hSession: isize,
+        hWnd: ?HWND,
+        wMsg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        lpClientData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hSession: isize,
+        hWnd: ?HWND,
+        wMsg: u32,
+        wParam: WPARAM,
+        lParam: LPARAM,
+        lpClientData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNSNMPSTARTUPEX = fn(
-    param0: ?*u32,
-    param1: ?*u32,
-    param2: ?*u32,
-    param3: ?*u32,
-    param4: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNSNMPSTARTUPEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*u32,
+        param1: ?*u32,
+        param2: ?*u32,
+        param3: ?*u32,
+        param4: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*u32,
+        param1: ?*u32,
+        param2: ?*u32,
+        param3: ?*u32,
+        param4: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNSNMPCLEANUPEX = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNSNMPCLEANUPEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 //--------------------------------------------------------------------------------

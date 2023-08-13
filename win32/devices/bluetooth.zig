@@ -1029,10 +1029,16 @@ pub const BLUETOOTH_COD_PAIRS = extern struct {
     pcszDescription: ?[*:0]const u16,
 };
 
-pub const PFN_DEVICE_CALLBACK = fn(
-    pvParam: ?*anyopaque,
-    pDevice: ?*const BLUETOOTH_DEVICE_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFN_DEVICE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pvParam: ?*anyopaque,
+        pDevice: ?*const BLUETOOTH_DEVICE_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pvParam: ?*anyopaque,
+        pDevice: ?*const BLUETOOTH_DEVICE_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const BLUETOOTH_SELECT_DEVICE_PARAMS = extern struct {
     dwSize: u32,
@@ -1070,15 +1076,27 @@ pub const BLUETOOTH_PASSKEY_INFO = extern struct {
     passkey: u32,
 };
 
-pub const PFN_AUTHENTICATION_CALLBACK = fn(
-    pvParam: ?*anyopaque,
-    pDevice: ?*BLUETOOTH_DEVICE_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFN_AUTHENTICATION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pvParam: ?*anyopaque,
+        pDevice: ?*BLUETOOTH_DEVICE_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pvParam: ?*anyopaque,
+        pDevice: ?*BLUETOOTH_DEVICE_INFO,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PFN_AUTHENTICATION_CALLBACK_EX = fn(
-    pvParam: ?*anyopaque,
-    pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFN_AUTHENTICATION_CALLBACK_EX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pvParam: ?*anyopaque,
+        pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pvParam: ?*anyopaque,
+        pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const BLUETOOTH_AUTHENTICATE_RESPONSE = extern struct {
     bthAddressRemote: BLUETOOTH_ADDRESS,
@@ -1135,13 +1153,22 @@ pub const SDP_STRING_TYPE_DATA = extern struct {
     attributeId: u16,
 };
 
-pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = fn(
-    uAttribId: u32,
-    // TODO: what to do with BytesParamIndex 2?
-    pValueStream: ?*u8,
-    cbStreamSize: u32,
-    pvParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        uAttribId: u32,
+        // TODO: what to do with BytesParamIndex 2?
+        pValueStream: ?*u8,
+        cbStreamSize: u32,
+        pvParam: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        uAttribId: u32,
+        // TODO: what to do with BytesParamIndex 2?
+        pValueStream: ?*u8,
+        cbStreamSize: u32,
+        pvParam: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const SOCKADDR_BTH = packed struct {
     addressFamily: u16,

@@ -414,33 +414,64 @@ pub const WER_RUNTIME_EXCEPTION_INFORMATION = extern struct {
     dwReserved: u32,
 };
 
-pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = fn(
-    pContext: ?*anyopaque,
-    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
-    pbOwnershipClaimed: ?*BOOL,
-    pwszEventName: [*:0]u16,
-    pchSize: ?*u32,
-    pdwSignatureCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        pbOwnershipClaimed: ?*BOOL,
+        pwszEventName: [*:0]u16,
+        pchSize: ?*u32,
+        pdwSignatureCount: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        pbOwnershipClaimed: ?*BOOL,
+        pwszEventName: [*:0]u16,
+        pchSize: ?*u32,
+        pdwSignatureCount: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = fn(
-    pContext: ?*anyopaque,
-    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
-    dwIndex: u32,
-    pwszName: [*:0]u16,
-    pchName: ?*u32,
-    pwszValue: [*:0]u16,
-    pchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        dwIndex: u32,
+        pwszName: [*:0]u16,
+        pchName: ?*u32,
+        pwszValue: [*:0]u16,
+        pchValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        dwIndex: u32,
+        pwszName: [*:0]u16,
+        pchName: ?*u32,
+        pwszValue: [*:0]u16,
+        pchValue: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = fn(
-    pContext: ?*anyopaque,
-    pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
-    pbIsCustomDebugger: ?*BOOL,
-    pwszDebuggerLaunch: [*:0]u16,
-    pchDebuggerLaunch: ?*u32,
-    pbIsDebuggerAutolaunch: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        pbIsCustomDebugger: ?*BOOL,
+        pwszDebuggerLaunch: [*:0]u16,
+        pchDebuggerLaunch: ?*u32,
+        pbIsDebuggerAutolaunch: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        pContext: ?*anyopaque,
+        pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
+        pbIsCustomDebugger: ?*BOOL,
+        pwszDebuggerLaunch: [*:0]u16,
+        pchDebuggerLaunch: ?*u32,
+        pbIsDebuggerAutolaunch: ?*BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const REPORT_STORE_TYPES = enum(i32) {
     USER_ARCHIVE = 0,
@@ -532,18 +563,34 @@ pub const frrvErrAnotherInstance = EFaultRepRetVal.ErrAnotherInstance;
 pub const frrvErrNoMemory = EFaultRepRetVal.ErrNoMemory;
 pub const frrvErrDoubleFault = EFaultRepRetVal.ErrDoubleFault;
 
-pub const pfn_REPORTFAULT = fn(
-    param0: ?*EXCEPTION_POINTERS,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
+pub const pfn_REPORTFAULT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*EXCEPTION_POINTERS,
+        param1: u32,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+    else => *const fn(
+        param0: ?*EXCEPTION_POINTERS,
+        param1: u32,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+} ;
 
-pub const pfn_ADDEREXCLUDEDAPPLICATIONA = fn(
-    param0: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
+pub const pfn_ADDEREXCLUDEDAPPLICATIONA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+    else => *const fn(
+        param0: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+} ;
 
-pub const pfn_ADDEREXCLUDEDAPPLICATIONW = fn(
-    param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
+pub const pfn_ADDEREXCLUDEDAPPLICATIONW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
+} ;
 
 
 //--------------------------------------------------------------------------------

@@ -119,35 +119,66 @@ pub const VBS_BASIC_ENCLAVE_EXCEPTION_AMD64 = extern struct {
     ExceptionRSP: usize,
 };
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE = fn(
-    ReturnValue: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ReturnValue: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        ReturnValue: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES = fn(
-    EnclaveAddress: ?*anyopaque,
-    NumberOfBytes: usize,
-    SourceAddress: ?*anyopaque,
-    PageProtection: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfBytes: usize,
+        SourceAddress: ?*anyopaque,
+        PageProtection: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfBytes: usize,
+        SourceAddress: ?*anyopaque,
+        PageProtection: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES = fn(
-    EnclaveAddress: ?*anyopaque,
-    NumberOfBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfBytes: usize,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfBytes: usize,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES = fn(
-    EnclaveAddress: ?*anyopaque,
-    NumberOfytes: usize,
-    PageProtection: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfytes: usize,
+        PageProtection: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        EnclaveAddress: ?*anyopaque,
+        NumberOfytes: usize,
+        PageProtection: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION = fn(
-    EnclaveInfo: ?*ENCLAVE_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnclaveInfo: ?*ENCLAVE_INFORMATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        EnclaveInfo: ?*ENCLAVE_INFORMATION,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const ENCLAVE_VBS_BASIC_KEY_REQUEST = extern struct {
     RequestSize: u32,
@@ -157,32 +188,63 @@ pub const ENCLAVE_VBS_BASIC_KEY_REQUEST = extern struct {
     CurrentSystemKeyID: u32,
 };
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY = fn(
-    KeyRequest: ?*ENCLAVE_VBS_BASIC_KEY_REQUEST,
-    RequestedKeySize: u32,
-    ReturnedKey: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        KeyRequest: ?*ENCLAVE_VBS_BASIC_KEY_REQUEST,
+        RequestedKeySize: u32,
+        ReturnedKey: [*:0]u8,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        KeyRequest: ?*ENCLAVE_VBS_BASIC_KEY_REQUEST,
+        RequestedKeySize: u32,
+        ReturnedKey: [*:0]u8,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT = fn(
-    EnclaveData: ?*const u8,
-    // TODO: what to do with BytesParamIndex 2?
-    Report: ?*anyopaque,
-    BufferSize: u32,
-    OutputSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnclaveData: ?*const u8,
+        // TODO: what to do with BytesParamIndex 2?
+        Report: ?*anyopaque,
+        BufferSize: u32,
+        OutputSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        EnclaveData: ?*const u8,
+        // TODO: what to do with BytesParamIndex 2?
+        Report: ?*anyopaque,
+        BufferSize: u32,
+        OutputSize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    Report: ?*const anyopaque,
-    ReportSize: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        Report: ?*const anyopaque,
+        ReportSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        Report: ?*const anyopaque,
+        ReportSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    Buffer: ?*u8,
-    NumberOfBytes: u32,
-    Generation: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        // TODO: what to do with BytesParamIndex 1?
+        Buffer: ?*u8,
+        NumberOfBytes: u32,
+        Generation: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        // TODO: what to do with BytesParamIndex 1?
+        Buffer: ?*u8,
+        NumberOfBytes: u32,
+        Generation: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const VBS_BASIC_ENCLAVE_SYSCALL_PAGE = extern struct {
     ReturnFromEnclave: ?VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE,
@@ -205,36 +267,76 @@ pub const VBS_BASIC_ENCLAVE_SYSCALL_PAGE = extern struct {
 
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION = switch(@import("../zig.zig").arch) {
-    .X64 => fn(
-        ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    .X86, .Arm64 => fn(
-        ExceptionRecord: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    .X64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
+    .X86, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ExceptionRecord: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ExceptionRecord: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
 };
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    .X86 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
 };
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    .X86 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
 };
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    .X86 => fn(
-        ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
+    .X86 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
 };
 
 //--------------------------------------------------------------------------------

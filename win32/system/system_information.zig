@@ -848,15 +848,27 @@ pub const DEPPolicyOptIn = DEP_SYSTEM_POLICY_TYPE.PolicyOptIn;
 pub const DEPPolicyOptOut = DEP_SYSTEM_POLICY_TYPE.PolicyOptOut;
 pub const DEPTotalPolicyCount = DEP_SYSTEM_POLICY_TYPE.TotalPolicyCount;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_A = fn(
-    lpBuffer: ?[*:0]u8,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PGET_SYSTEM_WOW64_DIRECTORY_A = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpBuffer: ?[*:0]u8,
+        uSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpBuffer: ?[*:0]u8,
+        uSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
-    lpBuffer: ?[*:0]u16,
-    uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PGET_SYSTEM_WOW64_DIRECTORY_W = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpBuffer: ?[*:0]u16,
+        uSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpBuffer: ?[*:0]u16,
+        uSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 //--------------------------------------------------------------------------------

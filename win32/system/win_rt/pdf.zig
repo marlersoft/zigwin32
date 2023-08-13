@@ -6,10 +6,16 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const PFN_PDF_CREATE_RENDERER = fn(
-    param0: ?*IDXGIDevice,
-    param1: ?*?*IPdfRendererNative,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFN_PDF_CREATE_RENDERER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*IDXGIDevice,
+        param1: ?*?*IPdfRendererNative,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*IDXGIDevice,
+        param1: ?*?*IPdfRendererNative,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const PDF_RENDER_PARAMS = extern struct {
     SourceRect: D2D_RECT_F,
@@ -24,19 +30,36 @@ pub const IID_IPdfRendererNative = &IID_IPdfRendererNative_Value;
 pub const IPdfRendererNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RenderPageToSurface: fn(
-            self: *const IPdfRendererNative,
-            pdfPage: ?*IUnknown,
-            pSurface: ?*IDXGISurface,
-            offset: POINT,
-            pRenderParams: ?*PDF_RENDER_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RenderPageToDeviceContext: fn(
-            self: *const IPdfRendererNative,
-            pdfPage: ?*IUnknown,
-            pD2DDeviceContext: ?*ID2D1DeviceContext,
-            pRenderParams: ?*PDF_RENDER_PARAMS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RenderPageToSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPdfRendererNative,
+                pdfPage: ?*IUnknown,
+                pSurface: ?*IDXGISurface,
+                offset: POINT,
+                pRenderParams: ?*PDF_RENDER_PARAMS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPdfRendererNative,
+                pdfPage: ?*IUnknown,
+                pSurface: ?*IDXGISurface,
+                offset: POINT,
+                pRenderParams: ?*PDF_RENDER_PARAMS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RenderPageToDeviceContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPdfRendererNative,
+                pdfPage: ?*IUnknown,
+                pD2DDeviceContext: ?*ID2D1DeviceContext,
+                pRenderParams: ?*PDF_RENDER_PARAMS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPdfRendererNative,
+                pdfPage: ?*IUnknown,
+                pD2DDeviceContext: ?*ID2D1DeviceContext,
+                pRenderParams: ?*PDF_RENDER_PARAMS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

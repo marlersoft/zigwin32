@@ -399,9 +399,14 @@ pub const LDAPAPIFeatureInfoW = extern struct {
     ldapaif_version: i32,
 };
 
-pub const DBGPRINT = fn(
-    Format: ?[*]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const DBGPRINT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Format: ?[*]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Format: ?[*]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const ldapsearch = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -430,33 +435,64 @@ pub const ldapvlvinfo = extern struct {
     ldvlv_extradata: ?*anyopaque,
 };
 
-pub const QUERYFORCONNECTION = fn(
-    PrimaryConnection: ?*ldap,
-    ReferralFromConnection: ?*ldap,
-    NewDN: ?[*]u16,
-    HostName: ?[*]u8,
-    PortNumber: u32,
-    SecAuthIdentity: ?*anyopaque,
-    CurrentUserToken: ?*anyopaque,
-    ConnectionToUse: ?*?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const QUERYFORCONNECTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        PrimaryConnection: ?*ldap,
+        ReferralFromConnection: ?*ldap,
+        NewDN: ?[*]u16,
+        HostName: ?[*]u8,
+        PortNumber: u32,
+        SecAuthIdentity: ?*anyopaque,
+        CurrentUserToken: ?*anyopaque,
+        ConnectionToUse: ?*?*ldap,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        PrimaryConnection: ?*ldap,
+        ReferralFromConnection: ?*ldap,
+        NewDN: ?[*]u16,
+        HostName: ?[*]u8,
+        PortNumber: u32,
+        SecAuthIdentity: ?*anyopaque,
+        CurrentUserToken: ?*anyopaque,
+        ConnectionToUse: ?*?*ldap,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const NOTIFYOFNEWCONNECTION = fn(
-    PrimaryConnection: ?*ldap,
-    ReferralFromConnection: ?*ldap,
-    NewDN: ?[*]u16,
-    HostName: ?[*]u8,
-    NewConnection: ?*ldap,
-    PortNumber: u32,
-    SecAuthIdentity: ?*anyopaque,
-    CurrentUser: ?*anyopaque,
-    ErrorCodeFromBind: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub const NOTIFYOFNEWCONNECTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        PrimaryConnection: ?*ldap,
+        ReferralFromConnection: ?*ldap,
+        NewDN: ?[*]u16,
+        HostName: ?[*]u8,
+        NewConnection: ?*ldap,
+        PortNumber: u32,
+        SecAuthIdentity: ?*anyopaque,
+        CurrentUser: ?*anyopaque,
+        ErrorCodeFromBind: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+    else => *const fn(
+        PrimaryConnection: ?*ldap,
+        ReferralFromConnection: ?*ldap,
+        NewDN: ?[*]u16,
+        HostName: ?[*]u8,
+        NewConnection: ?*ldap,
+        PortNumber: u32,
+        SecAuthIdentity: ?*anyopaque,
+        CurrentUser: ?*anyopaque,
+        ErrorCodeFromBind: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+} ;
 
-pub const DEREFERENCECONNECTION = fn(
-    PrimaryConnection: ?*ldap,
-    ConnectionToDereference: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const DEREFERENCECONNECTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        PrimaryConnection: ?*ldap,
+        ConnectionToDereference: ?*ldap,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        PrimaryConnection: ?*ldap,
+        ConnectionToDereference: ?*ldap,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const LDAP_REFERRAL_CALLBACK = extern struct {
     SizeOfCallbacks: u32,
@@ -465,16 +501,29 @@ pub const LDAP_REFERRAL_CALLBACK = extern struct {
     DereferenceRoutine: ?DEREFERENCECONNECTION,
 };
 
-pub const QUERYCLIENTCERT = fn(
-    Connection: ?*ldap,
-    trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
-    ppCertificate: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub const QUERYCLIENTCERT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Connection: ?*ldap,
+        trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
+        ppCertificate: ?*?*CERT_CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+    else => *const fn(
+        Connection: ?*ldap,
+        trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
+        ppCertificate: ?*?*CERT_CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+} ;
 
-pub const VERIFYSERVERCERT = fn(
-    Connection: ?*ldap,
-    pServerCert: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub const VERIFYSERVERCERT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Connection: ?*ldap,
+        pServerCert: ?*?*CERT_CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+    else => *const fn(
+        Connection: ?*ldap,
+        pServerCert: ?*?*CERT_CONTEXT,
+    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
+} ;
 
 
 //--------------------------------------------------------------------------------

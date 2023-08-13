@@ -11,10 +11,16 @@ pub const IID_ILearningModelOperatorProviderNative = &IID_ILearningModelOperator
 pub const ILearningModelOperatorProviderNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRegistry: fn(
-            self: *const ILearningModelOperatorProviderNative,
-            ppOperatorRegistry: ?*?*IMLOperatorRegistry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegistry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ILearningModelOperatorProviderNative,
+                ppOperatorRegistry: ?*?*IMLOperatorRegistry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ILearningModelOperatorProviderNative,
+                ppOperatorRegistry: ?*?*IMLOperatorRegistry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -32,15 +38,28 @@ pub const IID_ITensorNative = &IID_ITensorNative_Value;
 pub const ITensorNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBuffer: fn(
-            self: *const ITensorNative,
-            value: [*]?*u8,
-            capacity: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetD3D12Resource: fn(
-            self: *const ITensorNative,
-            result: ?*?*ID3D12Resource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITensorNative,
+                value: [*]?*u8,
+                capacity: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITensorNative,
+                value: [*]?*u8,
+                capacity: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetD3D12Resource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITensorNative,
+                result: ?*?*ID3D12Resource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITensorNative,
+                result: ?*?*ID3D12Resource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -62,13 +81,22 @@ pub const IID_ITensorStaticsNative = &IID_ITensorStaticsNative_Value;
 pub const ITensorStaticsNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateFromD3D12Resource: fn(
-            self: *const ITensorStaticsNative,
-            value: ?*ID3D12Resource,
-            shape: ?*i64,
-            shapeCount: i32,
-            result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFromD3D12Resource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITensorStaticsNative,
+                value: ?*ID3D12Resource,
+                shape: ?*i64,
+                shapeCount: i32,
+                result: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITensorStaticsNative,
+                value: ?*ID3D12Resource,
+                shape: ?*i64,
+                shapeCount: i32,
+                result: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -86,11 +114,18 @@ pub const IID_ILearningModelDeviceFactoryNative = &IID_ILearningModelDeviceFacto
 pub const ILearningModelDeviceFactoryNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateFromD3D12CommandQueue: fn(
-            self: *const ILearningModelDeviceFactoryNative,
-            value: ?*ID3D12CommandQueue,
-            result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFromD3D12CommandQueue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ILearningModelDeviceFactoryNative,
+                value: ?*ID3D12CommandQueue,
+                result: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ILearningModelDeviceFactoryNative,
+                value: ?*ID3D12CommandQueue,
+                result: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -108,10 +143,16 @@ pub const IID_ILearningModelSessionOptionsNative = &IID_ILearningModelSessionOpt
 pub const ILearningModelSessionOptionsNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetIntraOpNumThreadsOverride: fn(
-            self: *const ILearningModelSessionOptionsNative,
-            intraOpNumThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIntraOpNumThreadsOverride: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ILearningModelSessionOptionsNative,
+                intraOpNumThreads: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ILearningModelSessionOptionsNative,
+                intraOpNumThreads: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -664,54 +664,110 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     },
 };
 
-pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = fn(
-    AsyncResult: ?*WINBIO_ASYNC_RESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        AsyncResult: ?*WINBIO_ASYNC_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        AsyncResult: ?*WINBIO_ASYNC_RESULT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_VERIFY_CALLBACK = fn(
-    VerifyCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    UnitId: u32,
-    Match: BOOLEAN,
-    RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_VERIFY_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        VerifyCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        Match: BOOLEAN,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        VerifyCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        Match: BOOLEAN,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_IDENTIFY_CALLBACK = fn(
-    IdentifyCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    UnitId: u32,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-    RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_IDENTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        IdentifyCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        IdentifyCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_LOCATE_SENSOR_CALLBACK = fn(
-    LocateCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_LOCATE_SENSOR_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        LocateCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        LocateCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = fn(
-    EnrollCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EnrollCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        EnrollCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_EVENT_CALLBACK = fn(
-    EventCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    Event: ?*WINBIO_EVENT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EventCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        Event: ?*WINBIO_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        EventCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        Event: ?*WINBIO_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PWINBIO_CAPTURE_CALLBACK = fn(
-    CaptureCallbackContext: ?*anyopaque,
-    OperationStatus: HRESULT,
-    UnitId: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    Sample: ?*WINBIO_BIR,
-    SampleSize: usize,
-    RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PWINBIO_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CaptureCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        Sample: ?*WINBIO_BIR,
+        SampleSize: usize,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CaptureCallbackContext: ?*anyopaque,
+        OperationStatus: HRESULT,
+        UnitId: u32,
+        // TODO: what to do with BytesParamIndex 4?
+        Sample: ?*WINBIO_BIR,
+        SampleSize: usize,
+        RejectDetail: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -754,195 +810,416 @@ pub const WINBIO_ADAPTER_INTERFACE_VERSION = extern struct {
     MinorVersion: u16,
 };
 
-pub const PIBIO_SENSOR_ATTACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_DETACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_QUERY_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Status: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_QUERY_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Status: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Status: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_RESET_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_RESET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_SET_MODE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Mode: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_SET_MODE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Mode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Mode: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    IndicatorStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndicatorStatus: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndicatorStatus: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    IndicatorStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndicatorStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndicatorStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_START_CAPTURE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Purpose: u8,
-    Overlapped: ?*?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_START_CAPTURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SampleBuffer: ?*?*WINBIO_BIR,
-    SampleSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SampleBuffer: ?*?*WINBIO_BIR,
+        SampleSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SampleBuffer: ?*?*WINBIO_BIR,
+        SampleSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_CANCEL_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_CANCEL_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Purpose: u8,
-    Flags: u8,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        Flags: u8,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        Flags: u8,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_CONTROL_UNIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PowerEventType: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_PIPELINE_INIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_ACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_DEACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    SensorInfo: ?*WINBIO_EXTENDED_SENSOR_INFO,
-    SensorInfoSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        SensorInfo: ?*WINBIO_EXTENDED_SENSOR_INFO,
+        SensorInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        SensorInfo: ?*WINBIO_EXTENDED_SENSOR_INFO,
+        SensorInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    FormatArray: [*]Guid,
-    FormatArraySize: usize,
-    FormatCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        FormatArray: [*]Guid,
+        FormatArraySize: usize,
+        FormatCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        FormatArray: [*]Guid,
+        FormatArraySize: usize,
+        FormatCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Format: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Format: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Format: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    CalibrationBuffer: ?*u8,
-    CalibrationBufferSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        CalibrationBuffer: ?*u8,
+        CalibrationBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        CalibrationBuffer: ?*u8,
+        CalibrationBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    RawBufferAddress: ?*u8,
-    RawBufferSize: usize,
-    ResultBufferAddress: ?*?*u8,
-    ResultBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        RawBufferAddress: ?*u8,
+        RawBufferSize: usize,
+        ResultBufferAddress: ?*?*u8,
+        ResultBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        RawBufferAddress: ?*u8,
+        RawBufferSize: usize,
+        ResultBufferAddress: ?*?*u8,
+        ResultBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SecureBufferIdentifier: Guid,
-    // TODO: what to do with BytesParamIndex 3?
-    MetadataBufferAddress: ?*u8,
-    MetadataBufferSize: usize,
-    ResultBufferAddress: ?*?*u8,
-    ResultBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+        // TODO: what to do with BytesParamIndex 3?
+        MetadataBufferAddress: ?*u8,
+        MetadataBufferSize: usize,
+        ResultBufferAddress: ?*?*u8,
+        ResultBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+        // TODO: what to do with BytesParamIndex 3?
+        MetadataBufferAddress: ?*u8,
+        MetadataBufferSize: usize,
+        ResultBufferAddress: ?*?*u8,
+        ResultBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    TypeInfoBufferAddress: ?*u8,
-    TypeInfoBufferSize: usize,
-    TypeInfoDataSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        TypeInfoBufferAddress: ?*u8,
+        TypeInfoBufferSize: usize,
+        TypeInfoDataSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        TypeInfoBufferAddress: ?*u8,
+        TypeInfoBufferSize: usize,
+        TypeInfoDataSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_CONNECT_SECURE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ConnectionParams: ?*const WINBIO_SECURE_CONNECTION_PARAMS,
-    ConnectionData: ?*?*WINBIO_SECURE_CONNECTION_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_CONNECT_SECURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ConnectionParams: ?*const WINBIO_SECURE_CONNECTION_PARAMS,
+        ConnectionData: ?*?*WINBIO_SECURE_CONNECTION_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ConnectionParams: ?*const WINBIO_SECURE_CONNECTION_PARAMS,
+        ConnectionData: ?*?*WINBIO_SECURE_CONNECTION_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Purpose: u8,
-    // TODO: what to do with BytesParamIndex 3?
-    Nonce: ?*const u8,
-    NonceSize: usize,
-    Flags: u8,
-    Overlapped: ?*?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        // TODO: what to do with BytesParamIndex 3?
+        Nonce: ?*const u8,
+        NonceSize: usize,
+        Flags: u8,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Purpose: u8,
+        // TODO: what to do with BytesParamIndex 3?
+        Nonce: ?*const u8,
+        NonceSize: usize,
+        Flags: u8,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Overlapped: ?*?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Overlapped: ?*?*OVERLAPPED,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Reason: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reason: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reason: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const WINBIO_SENSOR_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -982,292 +1259,621 @@ pub const WINBIO_SENSOR_INTERFACE = extern struct {
     FinishNotifyWake: ?PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN,
 };
 
-pub const PWINBIO_QUERY_SENSOR_INTERFACE_FN = fn(
-    SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PWINBIO_QUERY_SENSOR_INTERFACE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_ATTACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_DETACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    StandardFormat: ?*WINBIO_REGISTERED_FORMAT,
-    VendorFormat: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        StandardFormat: ?*WINBIO_REGISTERED_FORMAT,
+        VendorFormat: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        StandardFormat: ?*WINBIO_REGISTERED_FORMAT,
+        VendorFormat: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    IndexElementCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndexElementCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        IndexElementCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    AlgorithmCount: ?*usize,
-    AlgorithmBufferSize: ?*usize,
-    // TODO: what to do with BytesParamIndex 2?
-    AlgorithmBuffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AlgorithmCount: ?*usize,
+        AlgorithmBufferSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 2?
+        AlgorithmBuffer: ?*?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AlgorithmCount: ?*usize,
+        AlgorithmBufferSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 2?
+        AlgorithmBuffer: ?*?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    AlgorithmBufferSize: usize,
-    AlgorithmBuffer: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AlgorithmBufferSize: usize,
+        AlgorithmBuffer: [*:0]u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AlgorithmBufferSize: usize,
+        AlgorithmBuffer: [*:0]u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SampleHint: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SampleHint: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SampleHint: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    SampleBuffer: ?*WINBIO_BIR,
-    SampleSize: usize,
-    Purpose: u8,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        SampleBuffer: ?*WINBIO_BIR,
+        SampleSize: usize,
+        Purpose: u8,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        SampleBuffer: ?*WINBIO_BIR,
+        SampleSize: usize,
+        Purpose: u8,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Flags: u8,
-    // TODO: what to do with BytesParamIndex 3?
-    SampleBuffer: ?*?*WINBIO_BIR,
-    SampleSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Flags: u8,
+        // TODO: what to do with BytesParamIndex 3?
+        SampleBuffer: ?*?*WINBIO_BIR,
+        SampleSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Flags: u8,
+        // TODO: what to do with BytesParamIndex 3?
+        SampleBuffer: ?*?*WINBIO_BIR,
+        SampleSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-    Match: ?*BOOLEAN,
-    // TODO: what to do with BytesParamIndex 5?
-    PayloadBlob: ?*?*u8,
-    PayloadBlobSize: ?*usize,
-    // TODO: what to do with BytesParamIndex 7?
-    HashValue: ?*?*u8,
-    HashSize: ?*usize,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        Match: ?*BOOLEAN,
+        // TODO: what to do with BytesParamIndex 5?
+        PayloadBlob: ?*?*u8,
+        PayloadBlobSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 7?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        Match: ?*BOOLEAN,
+        // TODO: what to do with BytesParamIndex 5?
+        PayloadBlob: ?*?*u8,
+        PayloadBlobSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 7?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: ?*u8,
-    // TODO: what to do with BytesParamIndex 4?
-    PayloadBlob: ?*?*u8,
-    PayloadBlobSize: ?*usize,
-    // TODO: what to do with BytesParamIndex 6?
-    HashValue: ?*?*u8,
-    HashSize: ?*usize,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        // TODO: what to do with BytesParamIndex 4?
+        PayloadBlob: ?*?*u8,
+        PayloadBlobSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 6?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        // TODO: what to do with BytesParamIndex 4?
+        PayloadBlob: ?*?*u8,
+        PayloadBlobSize: ?*usize,
+        // TODO: what to do with BytesParamIndex 6?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RejectDetail: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    HashValue: ?*?*u8,
-    HashSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        HashValue: ?*?*u8,
+        HashSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: ?*u8,
-    Duplicate: ?*BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        Duplicate: ?*BOOLEAN,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        Duplicate: ?*BOOLEAN,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-    // TODO: what to do with BytesParamIndex 4?
-    PayloadBlob: ?*u8,
-    PayloadBlobSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        // TODO: what to do with BytesParamIndex 4?
+        PayloadBlob: ?*u8,
+        PayloadBlobSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        // TODO: what to do with BytesParamIndex 4?
+        PayloadBlob: ?*u8,
+        PayloadBlobSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CONTROL_UNIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PowerEventType: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_RESERVED_1_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_PIPELINE_INIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_ACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_DEACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    EngineInfo: ?*WINBIO_EXTENDED_ENGINE_INFO,
-    EngineInfoSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        EngineInfo: ?*WINBIO_EXTENDED_ENGINE_INFO,
+        EngineInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        EngineInfo: ?*WINBIO_EXTENDED_ENGINE_INFO,
+        EngineInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PresenceCount: ?*usize,
-    PresenceArray: ?*?*WINBIO_PRESENCE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PresenceCount: ?*usize,
+        PresenceArray: ?*?*WINBIO_PRESENCE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PresenceCount: ?*usize,
+        PresenceArray: ?*?*WINBIO_PRESENCE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SelectorValue: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SelectorValue: u64,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SelectorValue: u64,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Parameters: ?*WINBIO_EXTENDED_ENROLLMENT_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Parameters: ?*WINBIO_EXTENDED_ENROLLMENT_PARAMETERS,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Parameters: ?*WINBIO_EXTENDED_ENROLLMENT_PARAMETERS,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    EnrollmentStatus: ?*WINBIO_EXTENDED_ENROLLMENT_STATUS,
-    EnrollmentStatusSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        EnrollmentStatus: ?*WINBIO_EXTENDED_ENROLLMENT_STATUS,
+        EnrollmentStatusSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        EnrollmentStatus: ?*WINBIO_EXTENDED_ENROLLMENT_STATUS,
+        EnrollmentStatusSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_REFRESH_CACHE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_REFRESH_CACHE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    FormatArray: [*]Guid,
-    FormatCount: usize,
-    SelectedFormat: ?*Guid,
-    MaxBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        FormatArray: [*]Guid,
+        FormatCount: usize,
+        SelectedFormat: ?*Guid,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        FormatArray: [*]Guid,
+        FormatCount: usize,
+        SelectedFormat: ?*Guid,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    DiscardAndRepeatCapture: ?*BOOLEAN,
-    // TODO: what to do with BytesParamIndex 4?
-    CalibrationBuffer: ?*u8,
-    CalibrationBufferSize: ?*usize,
-    MaxBufferSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DiscardAndRepeatCapture: ?*BOOLEAN,
+        // TODO: what to do with BytesParamIndex 4?
+        CalibrationBuffer: ?*u8,
+        CalibrationBufferSize: ?*usize,
+        MaxBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DiscardAndRepeatCapture: ?*BOOLEAN,
+        // TODO: what to do with BytesParamIndex 4?
+        CalibrationBuffer: ?*u8,
+        CalibrationBufferSize: ?*usize,
+        MaxBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PolicyItemArray: [*]WINBIO_ACCOUNT_POLICY,
-    PolicyItemCount: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PolicyItemArray: [*]WINBIO_ACCOUNT_POLICY,
+        PolicyItemCount: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PolicyItemArray: [*]WINBIO_ACCOUNT_POLICY,
+        PolicyItemCount: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CREATE_KEY_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Key: [*:0]const u8,
-    KeySize: usize,
-    // TODO: what to do with BytesParamIndex 4?
-    KeyIdentifier: ?*u8,
-    KeyIdentifierSize: usize,
-    ResultSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CREATE_KEY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Key: [*:0]const u8,
+        KeySize: usize,
+        // TODO: what to do with BytesParamIndex 4?
+        KeyIdentifier: ?*u8,
+        KeyIdentifierSize: usize,
+        ResultSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Key: [*:0]const u8,
+        KeySize: usize,
+        // TODO: what to do with BytesParamIndex 4?
+        KeyIdentifier: ?*u8,
+        KeyIdentifierSize: usize,
+        ResultSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Nonce: [*:0]const u8,
-    NonceSize: usize,
-    KeyIdentifier: [*:0]const u8,
-    KeyIdentifierSize: usize,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: ?*u8,
-    RejectDetail: ?*u32,
-    Authorization: ?*?*u8,
-    AuthorizationSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Nonce: [*:0]const u8,
+        NonceSize: usize,
+        KeyIdentifier: [*:0]const u8,
+        KeyIdentifierSize: usize,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        RejectDetail: ?*u32,
+        Authorization: ?*?*u8,
+        AuthorizationSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Nonce: [*:0]const u8,
+        NonceSize: usize,
+        KeyIdentifier: [*:0]const u8,
+        KeyIdentifierSize: usize,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        RejectDetail: ?*u32,
+        Authorization: ?*?*u8,
+        AuthorizationSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    TypeInfoBufferAddress: [*:0]const u8,
-    TypeInfoBufferSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        TypeInfoBufferAddress: [*:0]const u8,
+        TypeInfoBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        TypeInfoBufferAddress: [*:0]const u8,
+        TypeInfoBufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Nonce: ?*?*u8,
-    NonceSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Nonce: ?*?*u8,
+        NonceSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Nonce: ?*?*u8,
+        NonceSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    Nonce: ?*const u8,
-    NonceSize: usize,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: ?*u8,
-    RejectDetail: ?*u32,
-    Authentication: ?*?*u8,
-    AuthenticationSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        Nonce: ?*const u8,
+        NonceSize: usize,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        RejectDetail: ?*u32,
+        Authentication: ?*?*u8,
+        AuthenticationSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        Nonce: ?*const u8,
+        NonceSize: usize,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: ?*u8,
+        RejectDetail: ?*u32,
+        Authentication: ?*?*u8,
+        AuthenticationSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const WINBIO_ENGINE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1317,187 +1923,400 @@ pub const WINBIO_ENGINE_INTERFACE = extern struct {
     IdentifyFeatureSetAuthenticated: ?PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN,
 };
 
-pub const PWINBIO_QUERY_ENGINE_INTERFACE_FN = fn(
-    EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PWINBIO_QUERY_ENGINE_INTERFACE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_ATTACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_DETACH_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_CREATE_DATABASE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    DatabaseId: ?*Guid,
-    Factor: u32,
-    Format: ?*Guid,
-    FilePath: ?[*:0]const u16,
-    ConnectString: ?[*:0]const u16,
-    IndexElementCount: usize,
-    InitialSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_CREATE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        Factor: u32,
+        Format: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+        IndexElementCount: usize,
+        InitialSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        Factor: u32,
+        Format: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+        IndexElementCount: usize,
+        InitialSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_ERASE_DATABASE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    DatabaseId: ?*Guid,
-    FilePath: ?[*:0]const u16,
-    ConnectString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_ERASE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_OPEN_DATABASE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    DatabaseId: ?*Guid,
-    FilePath: ?[*:0]const u16,
-    ConnectString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_OPEN_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        DatabaseId: ?*Guid,
+        FilePath: ?[*:0]const u16,
+        ConnectString: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Format: ?*Guid,
-    Version: ?*WINBIO_VERSION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Format: ?*Guid,
+        Version: ?*WINBIO_VERSION,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Format: ?*Guid,
+        Version: ?*WINBIO_VERSION,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    AvailableRecordCount: ?*usize,
-    TotalRecordCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AvailableRecordCount: ?*usize,
+        TotalRecordCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AvailableRecordCount: ?*usize,
+        TotalRecordCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_ADD_RECORD_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RecordContents: ?*WINBIO_STORAGE_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_ADD_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_DELETE_RECORD_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_DELETE_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SubFactor: u8,
-    IndexVector: [*]u32,
-    IndexElementCount: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SubFactor: u8,
+        IndexVector: [*]u32,
+        IndexElementCount: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SubFactor: u8,
+        IndexVector: [*]u32,
+        IndexElementCount: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RecordCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordCount: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_FIRST_RECORD_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_FIRST_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_NEXT_RECORD_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_NEXT_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RecordContents: ?*WINBIO_STORAGE_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_CONTROL_UNIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
-    SendBuffer: ?*u8,
-    SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 5?
-    ReceiveBuffer: ?*u8,
-    ReceiveBufferSize: usize,
-    ReceiveDataSize: ?*usize,
-    OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        ControlCode: u32,
+        // TODO: what to do with BytesParamIndex 3?
+        SendBuffer: ?*u8,
+        SendBufferSize: usize,
+        // TODO: what to do with BytesParamIndex 5?
+        ReceiveBuffer: ?*u8,
+        ReceiveBufferSize: usize,
+        ReceiveDataSize: ?*usize,
+        OperationStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PowerEventType: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PowerEventType: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_PIPELINE_INIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_ACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_DEACTIVATE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    StorageInfo: ?*WINBIO_EXTENDED_STORAGE_INFO,
-    StorageInfoSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        StorageInfo: ?*WINBIO_EXTENDED_STORAGE_INFO,
+        StorageInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        StorageInfo: ?*WINBIO_EXTENDED_STORAGE_INFO,
+        StorageInfoSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RecordsAdded: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordsAdded: BOOLEAN,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordsAdded: BOOLEAN,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_RESERVED_1_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    Reserved1: ?*u64,
-    Reserved2: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        Reserved1: ?*u64,
+        Reserved2: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        Reserved1: ?*u64,
+        Reserved2: ?*u64,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_RESERVED_2_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-    RecordContents: ?*WINBIO_STORAGE_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RecordContents: ?*WINBIO_STORAGE_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RecordContents: ?*WINBIO_STORAGE_RECORD,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const WINBIO_STORAGE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1536,124 +2355,262 @@ pub const WINBIO_STORAGE_INTERFACE = extern struct {
     UpdateRecordCommit: ?PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN,
 };
 
-pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = fn(
-    StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    ExtendedStatus: ?*WINBIO_EXTENDED_UNIT_STATUS,
-    ExtendedStatusSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        ExtendedStatus: ?*WINBIO_EXTENDED_UNIT_STATUS,
+        ExtendedStatusSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        ExtendedStatus: ?*WINBIO_EXTENDED_UNIT_STATUS,
+        ExtendedStatusSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RequiredCapacity: usize,
-    MaxBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RequiredCapacity: usize,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RequiredCapacity: usize,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    BufferAddress: ?*u8,
-    BufferSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        BufferAddress: ?*u8,
+        BufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        BufferAddress: ?*u8,
+        BufferSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    RequiredCapacity: ?*usize,
-    MaxBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RequiredCapacity: ?*usize,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        RequiredCapacity: ?*usize,
+        MaxBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    BufferAddress: ?*u8,
-    BufferSize: usize,
-    ReturnedDataSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        BufferAddress: ?*u8,
+        BufferSize: usize,
+        ReturnedDataSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        BufferAddress: ?*u8,
+        BufferSize: usize,
+        ReturnedDataSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Reserved1: usize,
-    Reserved2: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reserved1: usize,
+        Reserved2: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reserved1: usize,
+        Reserved2: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Reserved1: ?*u8,
-    Reserved2: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reserved1: ?*u8,
+        Reserved2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Reserved1: ?*u8,
+        Reserved2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    AllocationSize: usize,
-    Address: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AllocationSize: usize,
+        Address: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        AllocationSize: usize,
+        Address: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Address: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Address: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Address: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    PropertyType: u32,
-    PropertyId: u32,
-    Identity: ?*WINBIO_IDENTITY,
-    SubFactor: u8,
-    PropertyBuffer: ?*?*anyopaque,
-    PropertyBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PropertyType: u32,
+        PropertyId: u32,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        PropertyBuffer: ?*?*anyopaque,
+        PropertyBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        PropertyType: u32,
+        PropertyId: u32,
+        Identity: ?*WINBIO_IDENTITY,
+        SubFactor: u8,
+        PropertyBuffer: ?*?*anyopaque,
+        PropertyBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SecureBufferIdentifier: Guid,
-    SecureBufferAddress: ?*?*anyopaque,
-    SecureBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+        SecureBufferAddress: ?*?*anyopaque,
+        SecureBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+        SecureBufferAddress: ?*?*anyopaque,
+        SecureBufferSize: ?*usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    SecureBufferIdentifier: Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        SecureBufferIdentifier: Guid,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    Identity: ?*WINBIO_IDENTITY,
-    SecureIdentityCount: ?*usize,
-    SecureIdentities: ?*?*WINBIO_IDENTITY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SecureIdentityCount: ?*usize,
+        SecureIdentities: ?*?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        Identity: ?*WINBIO_IDENTITY,
+        SecureIdentityCount: ?*usize,
+        SecureIdentities: ?*?*WINBIO_IDENTITY,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = fn(
-    Pipeline: ?*WINBIO_PIPELINE,
-    // TODO: what to do with BytesParamIndex 2?
-    Authentication: ?*const u8,
-    AuthenticationSize: usize,
-    // TODO: what to do with BytesParamIndex 4?
-    Iv: ?*const u8,
-    IvSize: usize,
-    // TODO: what to do with BytesParamIndex 6?
-    EncryptedData: ?*u8,
-    EncryptedDataSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        Authentication: ?*const u8,
+        AuthenticationSize: usize,
+        // TODO: what to do with BytesParamIndex 4?
+        Iv: ?*const u8,
+        IvSize: usize,
+        // TODO: what to do with BytesParamIndex 6?
+        EncryptedData: ?*u8,
+        EncryptedDataSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        Pipeline: ?*WINBIO_PIPELINE,
+        // TODO: what to do with BytesParamIndex 2?
+        Authentication: ?*const u8,
+        AuthenticationSize: usize,
+        // TODO: what to do with BytesParamIndex 4?
+        Iv: ?*const u8,
+        IvSize: usize,
+        // TODO: what to do with BytesParamIndex 6?
+        EncryptedData: ?*u8,
+        EncryptedDataSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
